@@ -65,4 +65,26 @@ footer ul li a:any-link {
     color:#333;
 }
 
+footer div div div:nth-child(6) {
+    font-size: 12.3px;
+    color: #34393d;
+    font-family: "Proxima Nova Lt";
+}
+
+footer div div div:nth-child(6) ul{
+    float: right;
+    width: 58.33333333%;
+    margin-top: 5px;
+}
+
+footer div div div:nth-child(6) ul li {
+    margin-left: 7px;
+    display: inline-block;
+}
+
+footer div div div:nth-child(6) p{
+    float: left;
+    width: 41.66666667%;
+    margin-top: 5px;
+}
 
