@@ -29,8 +29,10 @@ footer h3 {
     margin-top: 0;
 }
 
-footer h3 a {
+footer h3 a:any-link {
     position:relative;
+    color: #008da9;
+    text-decoration: none;
 }
 
 footer ul {
