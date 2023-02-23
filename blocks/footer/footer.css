@@ -1,10 +1,7 @@
 footer {
     position:relative;
-    background-image: url(research-bg.png);
+    background-image: url("research-bg.png");
     background-size: cover;
-    /*move to general styles*/
-    color: #34393d;
-    font-family: "Proxima Nova Rg" !important;
     max-width: 1200px;
     margin: auto;
 }
@@ -27,7 +24,6 @@ footer h3 {
     font-size: 16px;
     font-weight: 100;
     color: #008da9;
-    font-family: "Proxima Nova Rg";
     margin-top: 0;
 }
 
@@ -75,7 +71,7 @@ footer div div div:nth-child(6) {
 
 footer div div div:nth-child(6) ul{
     float: right;
-    width: 58.33333333%;
+    width: 58.3333%;
     margin-top: 5px;
 }
 
@@ -86,7 +82,7 @@ footer div div div:nth-child(6) ul li {
 
 footer div div div:nth-child(6) p{
     float: left;
-    width: 41.66666667%;
+    width: 41.6666%;
     margin-top: 5px;
 }
 
