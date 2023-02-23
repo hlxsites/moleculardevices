@@ -5,6 +5,8 @@ footer {
     /*move to general styles*/
     color: #34393d;
     font-family: "Proxima Nova Rg" !important;
+    max-width: 1200px;
+    margin: auto;
 }
 
 footer div div div:nth-child(-n+4) {
