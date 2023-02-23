@@ -2,6 +2,9 @@ footer {
     position:relative;
     background-image: url(research-bg.png);
     background-size: cover;
+    /*move to general styles*/
+    color: #34393d;
+    font-family: "Proxima Nova Rg" !important;
 }
 
 footer div div div:nth-child(-n+4) {
@@ -31,8 +34,32 @@ footer h3 a {
 
 footer ul {
     font-size: 15px;
+    list-style: none;
+    padding-left: 0;
+}
+
+footer ul li {
+    display:flex;
+}
+
+footer div div div:nth-child(4) ul li:first-child {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    margin-top:-20px;
+}
+
+footer ul li:has(picture) {
+    padding-left: 10px;
+}
+
+footer ul li picture {
+    position: relative;
+    left: -12px;
+    top: 25px;
 }
 
 footer ul li a:any-link {
     color:#333;
 }
+
+
