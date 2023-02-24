@@ -49,20 +49,27 @@
   --text-white: #fff;
   --heading-color: #00758d;
   --link-color: #337ab7;
-  --link-hover-color: #136ff6;
+  --link-hover-color: #0066a4;
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --button-color: #008da9;
+  --button-color: #fff;
   --button-hover-color: #0066a4;
+  --button-bg-color: #008da9;
   --button-bg-hover-color: #fff;
+  --button-secondary-color: #038296;
+  --button-secondary-border-color: #4c9eaf;
+  --button-secondary-hover-color: #0066a4;
+  --button-secondary-bg-color: #038296;
+  --button-secondary-bg-hover-color: #fff;
 
   /* fonts */
-  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --fixed-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --fixed-font-family: menlo, monaco, consolas, "courier new", monospace;
 
+  /* font size */
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
   --heading-font-size-l: 24px;
@@ -156,6 +163,7 @@ button {
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
   font-size: 18px;
+  color: var(--link-color);
   line-height: 18px;
   display: inline-block;
   border: 0;
@@ -175,8 +183,7 @@ button {
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
   cursor: pointer;
-  color: #0066a4;
-  background: #fff;
+  color: var(--link-hover-color);
 }
 
 button:disabled, button:disabled:hover {
@@ -185,8 +192,8 @@ button:disabled, button:disabled:hover {
 }
 
 a.button.primary, button.primary {
-  color: var(--text-white);
-  background-color: var(--button-color);
+  color: var(--button-color);
+  background-color: var(--button-bg-color);
   border: 0;
 }
 
@@ -197,16 +204,28 @@ button.primary:hover, button.primary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
+a.button.primary:hover .button-border {
+  display: block;
+  width: 50%;
+  margin-bottom: 0;
+  position: absolute;
+  margin-left: 0;
+  height: 4px;
+  background: var(--button-hover-color);
+  left: 25%;
+  bottom: -5px
+}
+
 a.button.secondary, button.secondary {
   font-style: normal;
-  border: 2px solid #4c9eaf !important;
-  color: #038296 !important;
+  border: 2px solid var(--button-secondary-border-color);
+  color: var(--button-secondary-color);
 }
 
 a.button.secondary:hover,a.button.secondary:focus,
 button.secondary:hover, button.secondary:focus {
-  color: var(--button-hover-color);
-  background-color: var(--button-bg-hover-color);
+  color: var(--button-secondary-hover-color);
+  background-color: var(--button-secondary-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
