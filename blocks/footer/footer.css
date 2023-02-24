@@ -100,8 +100,12 @@ footer > div > div > div:nth-child(5) {
     float:none;
     clear: both;
     border-top: 1px solid #ccc;
-    padding-top: 12px;
     padding-bottom: 25px;
+}
+
+footer > div > div > div:nth-child(5) ul li {
+    float:left;
+    padding-right: 32px;
 }
 
 footer ul li:has(picture) {
@@ -165,4 +169,7 @@ footer h3:first-of-type {
     display: none;
 }
 
-
+footer .icon svg {
+    color: #34393d;
+    height: 20px;
+}
