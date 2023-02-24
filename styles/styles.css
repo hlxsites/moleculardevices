@@ -247,10 +247,6 @@ main input:hover {
   border: 1px solid var(--text-color);
 }
 
-main .section {
-  padding: 64px 16px;
-}
-
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
@@ -289,6 +285,11 @@ main img, main video {
   height: auto;
 }
 
+main .section>div {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -309,18 +310,21 @@ main img, main video {
     --heading-font-size-xxl: 70px;
     --heading-font-size-xl: 70px;
   }
-}
 
-@media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
+  main .section>div {
+    width: 750px
   }
 }
 
-@media (min-width: 900px) {
-  .section>div {
-    max-width: 1200px;
-    margin: auto;
+@media (min-width: 992px) {
+  main .section>div {
+    width: 970px
+  }
+}
+
+@media (min-width: 1200px) {
+  main .section>div {
+    width: 1170px
   }
 }
 
