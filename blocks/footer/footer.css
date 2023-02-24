@@ -1,12 +1,6 @@
 footer {
     --footer-font-family: 'Proxima Nova Rg', sans-serif;
-}
-
-footer h3 {
-    --footer-h3-color: #008da9;
-}
-
-footer {
+    
     position:relative;
     background-image: url("research-bg.png");
     background-size: cover;
@@ -47,6 +41,8 @@ footer div div div:nth-child(5) {
 }
 
 footer h3 {
+    --footer-h3-color: #008da9;
+    
     font-size: 16px;
     font-weight: 100;
     color: var(--footer-h3-color);
