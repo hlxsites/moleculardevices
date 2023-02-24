@@ -9,6 +9,40 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
+@font-face {
+  font-family: 'Proxima Nova Regular Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial');
+  ascent-override: 79.64%;
+  descent-override: 21.17%;
+  line-gap-override: 0.00%;
+  size-adjust: 99.19%;
+}
+
+@font-face {
+  font-family: 'Proxima Nova ExtraBold Fallback';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Arial');
+  ascent-override: 75.77%;
+  descent-override: 20.14%;
+  line-gap-override: 0.00%;
+  size-adjust: 104.26%;
+}
+
+@font-face {
+  font-family: 'Proxima Nova Light Fallback';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Arial');
+  ascent-override: 80.85%;
+  descent-override: 21.49%;
+  line-gap-override: 0.00%;
+  size-adjust: 97.72%;
+}
+
 :root {
   /* colors */
   --text-color: #34393d;
@@ -24,12 +58,10 @@
   --button-bg-hover-color: #fff;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
-
-  /* --heading-font-family: "Proxima Nova Lt";
---body-font-family: "Proxima Nova Rg"; */
+  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --fixed-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
@@ -50,7 +82,7 @@
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
-  font-family: var(--body-font-family);
+  font-family: var(--ff-proxima-regular);
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background-color);
@@ -114,12 +146,16 @@ pre {
   overflow: scroll;
 }
 
+strong {
+  font-family: var(--ff-proxima-xbold);
+}
+
 /* buttons */
 a.button:any-link,
 button {
-  font-family: var(--body-font-family);
-  font-size: 18px;
+  font-family: var(--ff-proxima-regular);
   font-weight: 400;
+  font-size: 18px;
   line-height: 18px;
   display: inline-block;
   border: 0;
