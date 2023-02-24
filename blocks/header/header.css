@@ -18,7 +18,7 @@ header nav {
   max-width: 1264px;
   height: var(--nav-height);
   padding: 0 1rem;
-  font-family: var(--body-font-family);
+  font-family: var(--ff-proxima-regular);
 }
 
 header nav[aria-expanded=true] {
