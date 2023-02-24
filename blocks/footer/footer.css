@@ -45,8 +45,9 @@ footer h3 {
     font-family: var(--footer-font-family);
 }
 
-footer h3:first-of-type {
-    margin-top:0;
+footer ul {
+    list-style: none;
+    padding-left: 0;
 }
 
 footer h3 a:any-link {
@@ -67,6 +68,11 @@ footer > div > div > div:nth-child(-n+4) {
     padding-left: 15px;
 }
 
+footer > div > div > div:nth-child(6),
+footer > div > div > div:nth-child(6) a {
+    font-size: 12.3px;
+}
+
 footer > div > div > div:nth-child(3) {
     background-color: #f0eff1;
     margin-top:-16px;
@@ -78,9 +84,8 @@ footer > div > div > div:nth-child(3) p {
     color: #5f696b;
     font-size: 10px;
     font-weight: 400;
-    line-height: 1.42857143;
+    line-height: 1.43;
 }
-
 
 footer > div > div > div:nth-child(3) ul {
     line-height: 1.66;
@@ -99,18 +104,8 @@ footer > div > div > div:nth-child(5) {
     padding-bottom: 25px;
 }
 
-footer ul {
-    list-style: none;
-    padding-left: 0;
-}
-
 footer ul li:has(picture) {
     padding-left: 37px;
-}
-
-footer > div > div > div:nth-child(6),
-footer > div > div > div:nth-child(6) a {
-    font-size: 12.3px;
 }
 
 footer > div > div > div:nth-child(6) ul{
@@ -150,7 +145,7 @@ footer > div > div > div:nth-child(6) p{
 
 .footer-news-events h3 {
     margin-top:0;
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px;
     border-bottom: 2px solid #ccc;
     color: #adb3b7;
 }
@@ -164,5 +159,9 @@ footer > div > div > div:nth-child(6) p{
 
 .footer-news-events > div:not(:nth-child(-n+2)) {
     display: none;
+}
+
+footer h3:first-of-type {
+    margin-top:0;
 }
 
