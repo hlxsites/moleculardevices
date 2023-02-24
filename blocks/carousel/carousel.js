@@ -1,16 +1,79 @@
 const chevronLeft = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><
   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-  stroke-width="20" d="M328 112L184 256l144 144"/>
+  stroke-width="25" d="M328 112L184 256l144 144"/>
 </svg>
 `;
 
 const chevronRight = `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><
   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-  stroke-width="20" d="M184 112l144 144-144 144"/>
+  stroke-width="25" d="M184 112l144 144-144 144"/>
 </svg>
 `;
+
+function nextItem(block) {
+  const dotButtons = block.parentNode.querySelectorAll(".carousel-item-button");
+  const items = block.querySelectorAll(".carousel-item:not(.clone)");
+  const selectedItem = block.querySelector(".carousel-item.selected");
+
+  const index = [...items].indexOf(selectedItem);
+  const newIndex = (index + 1) % items.length;
+  const newSelectedItem = items[newIndex];
+
+  if (newIndex === 0) {
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left:
+        newSelectedItem.previousElementSibling.offsetLeft -
+        newSelectedItem.parentNode.offsetLeft -
+        200,
+    });
+  }
+
+  newSelectedItem.parentNode.scrollTo({
+    top: 0,
+    left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
+    behavior: "smooth",
+  });
+
+  items.forEach((item) => item.classList.remove("selected"));
+  dotButtons.forEach((item) => item.classList.remove("selected"));
+
+  newSelectedItem.classList.add("selected");
+  dotButtons[newIndex].classList.add("selected");
+}
+
+function prevItem(block) {
+  const dotButtons = block.parentNode.querySelectorAll(".carousel-item-button");
+  const items = block.querySelectorAll(".carousel-item:not(.clone)");
+  const selectedItem = block.querySelector(".carousel-item.selected");
+
+  const index = [...items].indexOf(selectedItem);
+  const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
+  const newSelectedItem = items[newIndex];
+
+  if (newIndex == items.length - 1) {
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left:
+        newSelectedItem.nextElementSibling.offsetLeft -
+        newSelectedItem.parentNode.offsetLeft -
+        200,
+    });
+  }
+
+  newSelectedItem.parentNode.scrollTo({
+    top: 0,
+    left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
+    behavior: "smooth",
+  });
+
+  items.forEach((item) => item.classList.remove("selected"));
+  dotButtons.forEach((item) => item.classList.remove("selected"));
+  newSelectedItem.classList.add("selected");
+  dotButtons[newIndex].classList.add("selected");
+}
 
 function createClone(item) {
   const clone = item.cloneNode(true);
@@ -38,21 +101,15 @@ function createClones(block) {
 function createNavButtons(block) {
   const buttonLeft = document.createElement("button");
   buttonLeft.innerHTML = chevronLeft;
-
   buttonLeft.addEventListener("click", () => {
-    block.querySelector(".selected");
-
-    block.scrollTo({
-      top: 0,
-      left: item.offsetLeft - item.parentNode.offsetLeft - 200,
-      behavior: "smooth",
-    });
-    [...buttons.children].forEach((r) => r.classList.remove("selected"));
-    button.classList.add("selected");
+    prevItem(block);
   });
 
   const buttonRight = document.createElement("button");
   buttonRight.innerHTML = chevronRight;
+  buttonRight.addEventListener("click", () => {
+    nextItem(block);
+  });
 
   [buttonLeft, buttonRight].forEach((navButton) => {
     navButton.classList.add("carousel-nav-button");
@@ -87,7 +144,7 @@ export default function decorate(block) {
     button.addEventListener("click", () => {
       block.scrollTo({
         top: 0,
-        left: item.offsetLeft - item.parentNode.offsetLeft - 200,
+        left: item.offsetLeft - item.parentNode.offsetLeft,
         behavior: "smooth",
       });
       [...buttons.children].forEach((r) => r.classList.remove("selected"));
@@ -102,11 +159,14 @@ export default function decorate(block) {
   createNavButtons(block);
   createClones(block);
 
-  // Executed too early
-  // block.querySelectorAll(".carousel-item.selected").forEach((item) => {
-  //   item.parentNode.scrollTo({
-  //     top: 0,
-  //     left: item.offsetLeft - item.parentNode.offsetLeft - 200,
-  //   });
-  // });
+  // Scroll to start element
+  // FIXME - Can this be done without set timeout?
+  window.setTimeout(() => {
+    block.querySelectorAll(".carousel-item.selected").forEach((item) => {
+      item.parentNode.scrollTo({
+        top: 0,
+        left: item.offsetLeft - item.parentNode.offsetLeft,
+      });
+    });
+  }, 500);
 }
