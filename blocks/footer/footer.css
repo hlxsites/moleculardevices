@@ -103,13 +103,13 @@ footer > div > div > div:nth-child(5) {
     padding-bottom: 25px;
 }
 
+footer ul li:has(picture) {
+    padding-left: 37px;
+}
+
 footer > div > div > div:nth-child(5) ul li {
     float:left;
     padding-right: 32px;
-}
-
-footer ul li:has(picture) {
-    padding-left: 37px;
 }
 
 footer > div > div > div:nth-child(6) ul{
