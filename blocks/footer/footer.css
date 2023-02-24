@@ -1,62 +1,86 @@
 footer {
+    --footer-font-family: 'Proxima Nova Rg', sans-serif;
     position:relative;
     background-image: url("research-bg.png");
     background-size: cover;
     max-width: 1200px;
     margin: auto;
+    font-family: var(--footer-font-family);
+}
+
+@media (min-width: 600px) {
+  footer {
+    padding: 0 32px;
+  }  
+}
+
+@media (min-width: 900px) {
+  footer {
+    max-width: var(--main-max-width);
+    margin: auto;
+  }
+}
+
+footer div div div:first-child {
+    margin-left: 15px;
 }
 
 footer div div div:nth-child(-n+4) {
     float: left;
-    width: 25%;
+    width: calc(25% - 7px);
+    margin-bottom: 28px;
 }
 
 footer div div div:nth-child(5) {
     float:none;
     clear: both;
     border-top: 1px solid #ccc;
-    margin-top: 28px;
     padding-top: 12px;
     padding-bottom: 25px;
 }
 
 footer h3 {
+    --footer-h3-color: #008da9;
     font-size: 16px;
     font-weight: 100;
-    color: #008da9;
-    margin-top: 0;
+    color: var(--footer-h3-color);
+    margin-top: 30px;
+    margin-bottom:10px;
+    font-family: var(--footer-font-family);
+}
+
+footer h3:first-of-type {
+    margin-top:0;
 }
 
 footer h3 a:any-link {
     position:relative;
-    color: #008da9;
+    color: var(--footer-h3-color);
     text-decoration: none;
 }
 
 footer ul {
     font-size: 15px;
+    line-height: 1.33;
     list-style: none;
     padding-left: 0;
 }
 
-footer ul li {
-    display:flex;
-}
-
 footer ul li:has(picture) {
-    padding-left: 10px;
+    padding-left: 37px;
 }
 
 
-footer div div div:nth-child(6) {
+footer div div div:nth-child(6),
+footer div div div:nth-child(6) a {
     font-size: 12.3px;
-    color: #34393d;
 }
 
 footer div div div:nth-child(6) ul{
     float: right;
     width: 58.3333%;
     margin-top: 5px;
+    text-align: right;
 }
 
 footer div div div:nth-child(6) ul li {
@@ -72,12 +96,12 @@ footer div div div:nth-child(4) ul li:first-child {
 
 footer ul li picture {
     position: relative;
-    left: -12px;
-    top: 25px;
+    left: -37px;
+    top: 27px;
 }
 
 footer ul li a:any-link {
-    color:#333;
+    color: var(--text-color);
 }
 
 footer div div div:nth-child(6) p{

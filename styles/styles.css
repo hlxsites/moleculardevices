@@ -10,6 +10,9 @@
  * governing permissions and limitations under the License.
  */
  :root {
+  /* structure */
+  --main-max-width: 1200px;
+     
   /* colors */
   --text-color: #34393d;
   --text-white: #fff;
@@ -246,7 +249,7 @@ main img {
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: var(--main-max-width);
     margin: auto;
   }
 }
