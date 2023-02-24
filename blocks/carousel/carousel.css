@@ -1,0 +1,96 @@
+main .carousel-container {
+  padding: 0;
+}
+
+main .carousel-wrapper {
+  position: relative;
+  max-width: unset;
+}
+
+main .carousel {
+  scroll-snap-type: x mandatory;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  margin: auto;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+main .carousel-item {
+  scroll-snap-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  padding: 50px 80px;
+  flex: 1 0 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  margin-right: 30px;
+}
+
+main .carousel-item-image img {
+  width: 100%;
+  max-height: 400px;
+  display: block;
+  padding: 15px;
+  object-fit: contain;
+}
+
+main .carousel-item-text {
+  padding: 15px;
+  max-width: 570px;
+}
+
+main .carousel-item-text h3 {
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+main .carousel-item-text p {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+main .carousel-nav-button {
+  min-width: unset;
+  height: 38px;
+  width: 38px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid #cacaca;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: #cacaca;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .carousel-nav-left {
+  left: 20px;
+}
+
+main .carousel-nav-right {
+  right: 20px;
+}
+
+main .carousel-item-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  min-width: unset;
+}
+
+main .carousel-item-button {
+  min-width: unset;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #cacaca;
+  border-radius: 50%;
+  padding: 0;
+}
