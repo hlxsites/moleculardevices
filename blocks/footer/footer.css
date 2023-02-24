@@ -150,6 +150,10 @@ footer > div > div > div:nth-child(6) p{
     color: #adb3b7;
 }
 
+footer h3:first-of-type {
+    margin-top:0;
+}
+
 .footer-news-events h3:first-of-type {
     float:left;
     border-right: 2px solid var(--footer-blue-text-color);
@@ -161,7 +165,4 @@ footer > div > div > div:nth-child(6) p{
     display: none;
 }
 
-footer h3:first-of-type {
-    margin-top:0;
-}
 
