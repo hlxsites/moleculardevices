@@ -22,12 +22,10 @@ function nextItem(block) {
   const newSelectedItem = items[newIndex];
 
   if (newIndex === 0) {
+    // create the ilusion of infinite scrolling
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left:
-        newSelectedItem.previousElementSibling.offsetLeft -
-        newSelectedItem.parentNode.offsetLeft -
-        200,
+      left: newSelectedItem.previousElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft,
     });
   }
 
@@ -39,7 +37,6 @@ function nextItem(block) {
 
   items.forEach((item) => item.classList.remove("selected"));
   dotButtons.forEach((item) => item.classList.remove("selected"));
-
   newSelectedItem.classList.add("selected");
   dotButtons[newIndex].classList.add("selected");
 }
@@ -54,12 +51,10 @@ function prevItem(block) {
   const newSelectedItem = items[newIndex];
 
   if (newIndex == items.length - 1) {
+    // create the ilusion of infinite scrolling
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left:
-        newSelectedItem.nextElementSibling.offsetLeft -
-        newSelectedItem.parentNode.offsetLeft -
-        200,
+      left: newSelectedItem.nextElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft,
     });
   }
 
@@ -98,16 +93,18 @@ function createClones(block) {
   });
 }
 
-function createNavButtons(block) {
+function createNavButtons(block, intervalId) {
   const buttonLeft = document.createElement("button");
   buttonLeft.innerHTML = chevronLeft;
   buttonLeft.addEventListener("click", () => {
+    clearInterval(intervalId);
     prevItem(block);
   });
 
   const buttonRight = document.createElement("button");
   buttonRight.innerHTML = chevronRight;
   buttonRight.addEventListener("click", () => {
+    clearInterval(intervalId);
     nextItem(block);
   });
 
@@ -122,10 +119,12 @@ function createNavButtons(block) {
 }
 
 export default function decorate(block) {
+   // create autoscrolling animation
+  const intervalId = setInterval(nextItem, 10000, block);
+
+  // create dot buttons and add carousel classes
   const buttons = document.createElement("div");
-
   buttons.className = "carousel-item-buttons";
-
   [...block.children].forEach((item, i) => {
     item.className = "carousel-item";
 
@@ -142,6 +141,7 @@ export default function decorate(block) {
     }
 
     button.addEventListener("click", () => {
+      clearInterval(intervalId)
       block.scrollTo({
         top: 0,
         left: item.offsetLeft - item.parentNode.offsetLeft,
@@ -153,10 +153,9 @@ export default function decorate(block) {
 
     buttons.append(button);
   });
-
   block.parentElement.append(buttons);
 
-  createNavButtons(block);
+  createNavButtons(block, intervalId);
   createClones(block);
 
   // Scroll to start element

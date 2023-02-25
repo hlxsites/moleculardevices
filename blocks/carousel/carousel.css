@@ -91,6 +91,7 @@ main .carousel-item-buttons {
   justify-content: center;
   gap: 10px;
   min-width: unset;
+  margin-top: 20px;
 }
 
 main .carousel-item-button {
