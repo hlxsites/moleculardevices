@@ -18,25 +18,34 @@ main .carousel {
   padding-right: 200px;
 }
 
-main .carousel-item:not(.cloned) {
+main .carousel-item {
   scroll-snap-align: center;
   box-sizing: border-box;
   width: 100%;
-  display: flex;
+
   padding: 50px 80px;
-  flex: 1 0 100%;
+  margin-right: 30px;
+
+  flex: 1 0 auto;
+
+  /* flex: 0 0 auto; */
+  display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: #f2f2f2;
-  margin-right: 30px;
+}
+
+main .carousel-item-column {
+  width: 50%;
+  padding: 0 15px;
 }
 
 main .carousel-item-image img {
   width: 100%;
-  max-height: 400px;
   display: block;
-  padding: 15px;
   object-fit: contain;
+  max-height: 400px;
 }
 
 main .carousel-item-text {

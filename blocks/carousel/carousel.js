@@ -128,10 +128,22 @@ export default function decorate(block) {
   [...block.children].forEach((item, i) => {
     item.className = "carousel-item";
 
+    const columns = [document.createElement("div"), document.createElement("div")];
+
+    const itemChildren = [...item.children];
+
     const classes = ["image", "text"];
     classes.forEach((e, j) => {
-      item.children[j].classList.add(`carousel-item-${e}`);
+      itemChildren[j].classList.add(`carousel-item-${e}`);
+      item.removeChild(itemChildren[j]);
+      columns[j].appendChild(itemChildren[j]);
     });
+
+    columns.forEach((column) => { 
+      column.classList.add('carousel-item-column');
+      item.appendChild(column);
+    });
+
 
     const button = document.createElement("button");
     button.classList.add("carousel-item-button");
