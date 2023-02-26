@@ -50,11 +50,11 @@ function prevItem(block) {
   const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
   const newSelectedItem = items[newIndex];
 
-  if (newIndex == items.length - 1) {
+  if (newIndex === items.length - 1) {
     // create the ilusion of infinite scrolling
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.nextElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft,
+      left: newSelectedItem.nextElementSibling.offsetLeft-newSelectedItem.parentNode.offsetLeft,
     });
   }
 
@@ -116,7 +116,7 @@ function createNavButtons(block, intervalId) {
 }
 
 export default function decorate(block) {
-   // create autoscrolling animation
+  // create autoscrolling animation
   const intervalId = setInterval(nextItem, 7000, block);
 
   // create dot buttons and add carousel classes
@@ -135,7 +135,7 @@ export default function decorate(block) {
       columns[j].appendChild(itemChildren[j]);
     });
 
-    columns.forEach((column) => { 
+    columns.forEach((column) => {
       column.classList.add('carousel-item-column');
       item.appendChild(column);
     });
@@ -148,7 +148,7 @@ export default function decorate(block) {
     }
 
     button.addEventListener('click', () => {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
       block.scrollTo({
         top: 0,
         left: item.offsetLeft - item.parentNode.offsetLeft,
