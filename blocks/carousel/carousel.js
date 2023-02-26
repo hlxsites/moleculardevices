@@ -25,9 +25,9 @@ function nextItem(block) {
     // create the ilusion of infinite scrolling
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: ( 
+      left: (
         newSelectedItem.previousElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
-      )
+      ),
     });
   }
 
