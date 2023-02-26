@@ -54,7 +54,9 @@ function prevItem(block) {
     // create the ilusion of infinite scrolling
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.nextElementSibling.offsetLeft-newSelectedItem.parentNode.offsetLeft,
+      left: (
+        newSelectedItem.nextElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
+      ),
     });
   }
 
