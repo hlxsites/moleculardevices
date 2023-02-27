@@ -71,12 +71,12 @@ async function loadEager(doc) {
  * Adds the favicon.
  * @param {string} href The favicon URL
  */
-export function addFavIcon(href) {
+export function addFavIcon(href, rel) {
   const link = document.createElement('link');
-  link.rel = 'icon';
-  link.type = 'image/svg+xml';
+  link.rel = rel;
+  link.type = 'image/x-icon';
   link.href = href;
-  const existingLink = document.querySelector('head link[rel="icon"]');
+  const existingLink = document.querySelector(`head link[rel="${rel}"]`);
   if (existingLink) {
     existingLink.parentElement.replaceChild(link, existingLink);
   } else {
@@ -99,7 +99,8 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
+  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
+  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'apple-touch-icon');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
