@@ -144,6 +144,18 @@ export default function decorate(block) {
       item.appendChild(column);
     });
 
+    // ensure that links inside the carousel are correctly marked as buttons
+    // first link -> primary button
+    // all the other links -> secondary buttons
+    item.querySelectorAll('.button-container a').forEach((button, j) => {
+      button.classList.add('button');
+      if (j === 0) {
+        button.classList.add('primary');
+      } else {
+        button.classList.add('secondary');
+      }
+    });
+
     const button = document.createElement('button');
     button.classList.add('carousel-dot-button');
     if (i === 0) {

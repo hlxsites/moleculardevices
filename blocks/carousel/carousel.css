@@ -3,13 +3,15 @@ main .carousel-container {
 }
 
 main .carousel-wrapper {
+  width: 100% !important;
+  margin: 0 0 115px !important;
+  padding: 0 !important;
   position: relative;
   max-width: unset;
-  margin-bottom: 115px;
 }
 
 main .carousel-wrapper:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 main .carousel {
@@ -33,7 +35,12 @@ main .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid #efefef;
+}
+
+main .grey .carousel-item {
   background-color: #f2f2f2;
+  border: 0;
 }
 
 main .carousel-item-column {
@@ -56,6 +63,14 @@ main .carousel-item-text h3 {
 main .carousel-item-text p {
   font-size: 18px;
   font-weight: normal;
+}
+
+main .carousel-item-text .button-container {
+  display: inline-block;
+}
+
+main .carousel-item-text .button-container .secondary {
+  margin-left: 15px;
 }
 
 main .carousel-nav-button {
@@ -149,7 +164,15 @@ main .carousel-dot-button.selected {
 
 @media only screen and (max-width: 420px) {
   main .carousel-item {
-    padding: 20px 20px;
+    padding: 20px;
+  }
+
+  main .carousel-item-text .button-container {
+    display: block;
+  }
+  
+  main .carousel-item-text .button-container .secondary {
+    margin-left: 0;
   }
 
   main .carousel a.button {
