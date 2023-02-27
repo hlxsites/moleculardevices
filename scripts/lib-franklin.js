@@ -128,11 +128,22 @@ export function toCamelCase(name) {
  * @param {Element} element
  */
 export function decorateIcons(element = document) {
+  const iconPrefix = 'fa'; // the fontawesome icon prefix
+
   element.querySelectorAll('span.icon').forEach(async (span) => {
     if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
       return;
     }
     const icon = span.classList[1].substring(5);
+
+    if (icon.startsWith(iconPrefix)) {
+      const i = document.createElement('i');
+      i.setAttribute('aria-hidden', 'true');
+      i.className = `${iconPrefix} ${icon}`;
+      span.replaceWith(i);
+      return;
+    }
+
     // eslint-disable-next-line no-use-before-define
     const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
     if (resp.ok) {
@@ -485,13 +496,15 @@ export function decorateButtons(element) {
       const twoup = a.parentElement.parentElement;
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button primary'; // default
           up.classList.add('button-container');
         }
         if (up.childNodes.length === 1 && up.tagName === 'STRONG'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
           a.className = 'button primary';
           twoup.classList.add('button-container');
+          const btnBorder = document.createElement('span');
+          btnBorder.className = 'button-border';
+          a.append(btnBorder);
         }
         if (up.childNodes.length === 1 && up.tagName === 'EM'
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
