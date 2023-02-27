@@ -128,11 +128,22 @@ export function toCamelCase(name) {
  * @param {Element} element
  */
 export function decorateIcons(element = document) {
+  const iconPrefix = 'fa'; // the fontawesome icon prefix
+
   element.querySelectorAll('span.icon').forEach(async (span) => {
     if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
       return;
     }
     const icon = span.classList[1].substring(5);
+
+    if (icon.startsWith(iconPrefix)) {
+      const i = document.createElement('i');
+      i.setAttribute('aria-hidden', 'true');
+      i.className = `${iconPrefix} ${icon}`;
+      span.replaceWith(i);
+      return;
+    }
+
     // eslint-disable-next-line no-use-before-define
     const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
     if (resp.ok) {
