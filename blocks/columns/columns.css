@@ -1,25 +1,144 @@
-.columns > div {
+:root {
+    --gray: #f0f1f2;
+    --dark-gray: #5b6670;
+    --green: #6eb43f;
+    --border: #ababab;
+}
+
+.background-grey {
+    background-color: var(--gray);
+}
+
+.columns>div {
     display: flex;
     flex-direction: column;
 }
 
-.columns img {
+.columns.contact {
+    padding: 80px 0;
+}
+
+.columns.contact>div>div {
+    background-color: var(--background-color);
     width: 100%;
 }
 
+.columns.contact>div>div p,
+.columns.contact>div>div>ul,
+.columns.contact>div>div>ol {
+    padding: 0 24px;
+}
+
+
+.columns.contact>div>div>ul,
+.columns.contact>div>div>ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+.columns.contact>div p,
+.columns.contact>div ul li {
+    font-size: var(--body-font-size-m);
+}
+
+.columns.contact>div h3 {
+    background-color: var(--dark-gray);
+    color: var(--text-white);
+    text-align: center;
+    margin: 0;
+    padding: 16px 0;
+    font-weight: bold;
+}
+
+.columns.contact>div>div>ul>li {
+    position: relative;
+    margin-bottom: 16px;
+    padding-top: 8px;
+}
+
+.columns.contact>div ul li a {
+    color: inherit;
+}
+
+.columns.contact>div ul li a:hover {
+    color: var(--green);
+}
+
+.columns.contact>div>div>ul>li>i {
+    font-size: 36px;
+    color: var(--green);
+    padding-right: 20px;
+    float: left;
+}
+
+.columns.contact>div>div>ul>li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: calc(100% - 50px);
+    background-color: var(--border);
+    display: block;
+    height: 1px;
+}
+
+.columns.contact>div>div>ul>li>picture+a {
+    font-weight: bold;
+}
+
+.columns.contact>div ul li::after,
+.columns.contact>div>div ul ul::before {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.columns.contact>div ul li span.icon,
+.columns.contact>div ul li img {
+    color: var(--green);
+    padding-right: 20px;
+    float: left;
+}
+
+.columns.contact>div ul li span.icon svg,
+.columns.contact>div ul li img {
+    width: 32px;
+    height: 32px;
+    fill: var(--green);
+    display: inline-block;
+    vertical-align: top;
+    object-fit: contain;
+}
+
+.columns.contact>div>div ul ul {
+    padding-left: 70px;
+    margin-top: 8px;
+    list-style: disc;
+    margin-bottom: 0;
+}
+
 @media (min-width: 900px) {
-    .columns > div {
+    .columns>div {
         display: flex;
-        align-items: center;
         flex-direction: unset;
     }
 
-    .columns > div > div {
+    .columns>div>div {
         flex: 1;
         margin-left: 32px;
     }
 
-    .columns > div > div:first-of-type {
-        margin-left: unset;
+    .columns>div>div:first-of-type {
+        margin-left: 0;
+    }
+
+    .columns.contact>div>div {
+        min-height: 486px;
+    }
+
+    .columns.contact>div>div p,
+    .columns.contact>div>div>ul,
+    .columns.contact>div>div>ol {
+        padding: 0 48px;
     }
 }
