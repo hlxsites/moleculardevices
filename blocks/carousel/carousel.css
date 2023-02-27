@@ -43,11 +43,6 @@ main .carousel-item-image img {
   max-height: 400px;
 }
 
-main .carousel-item-text {
-  padding: 15px;
-  max-width: 570px;
-}
-
 main .carousel-item-text h3 {
   font-size: 32px;
   font-weight: lighter;
@@ -109,4 +104,36 @@ main .carousel-dot-button {
 
 main .carousel-dot-button.selected {
   background-color: #cacaca;
+}
+
+
+@media only screen and (max-width: 1400px) {
+  main .carousel {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  main .carousel-item {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  main .carousel-item-column {
+    width: 100%;
+    padding: 0;
+  }
+
+  main .carousel-item-image img {
+    max-height: 300px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  main .carousel {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }
