@@ -147,7 +147,8 @@ footer > div > div > div:nth-child(6) p{
     padding-bottom: 10px;
 }
 
-.footer-news-events h3 {
+.footer-news-events h3,
+.footer-news-events h3.off{
     margin-top:0;
     padding: 0 10px 10px;
     border-bottom: 2px solid #ccc;
@@ -159,8 +160,12 @@ footer h3:first-of-type {
 }
 
 .footer-news-events h3:first-of-type {
-    float:left;
     border-right: 2px solid var(--footer-blue-text-color);
+    float:left;
+}
+
+.footer-news-events h3:first-of-type:not(.off),
+.footer-news-events h3.on{
     border-bottom: 2px solid var(--footer-blue-text-color);
     color: var(--footer-blue-text-color);
 }
@@ -172,4 +177,12 @@ footer h3:first-of-type {
 footer .icon svg {
     color: #34393d;
     height: 20px;
+}
+
+.footer-news-events > div.off {
+    display:none;
+}
+
+.footer-news-events > div.on{
+    display: block;
 }
