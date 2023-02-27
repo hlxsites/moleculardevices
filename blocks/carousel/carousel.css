@@ -143,6 +143,7 @@ main .carousel-dot-button.selected {
   main .carousel-item-column {
     width: 100%;
     padding: 0;
+    align-items: center;
   }
 
   main .carousel-item-image img {
