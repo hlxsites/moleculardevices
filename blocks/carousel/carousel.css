@@ -5,6 +5,11 @@ main .carousel-container {
 main .carousel-wrapper {
   position: relative;
   max-width: unset;
+  margin-bottom: 115px;
+}
+
+main .carousel-wrapper:last-child {
+  margin-bottom: 0;
 }
 
 main .carousel {
@@ -130,10 +135,24 @@ main .carousel-dot-button.selected {
   }
 }
 
-
 @media only screen and (max-width: 768px) {
   main .carousel {
     padding-left: 40px;
     padding-right: 40px;
+  }
+
+  main .carousel-nav-button {
+    height: 26px;
+    width: 26px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  main .carousel-item {
+    padding: 20px 20px;
+  }
+
+  main .carousel a.button {
+    display: block;
   }
 }
