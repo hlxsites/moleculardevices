@@ -119,6 +119,27 @@ function createNavButtons(block, intervalId) {
   block.parentElement.append(buttonRight);
 }
 
+function addSwipeCapability(block, intervalId) {
+  let touchstartX = 0
+  let touchendX = 0
+
+  block.addEventListener('touchstart', e => {
+    touchstartX = e.changedTouches[0].screenX;
+  });
+
+  block.addEventListener('touchend', e => {
+    touchendX = e.changedTouches[0].screenX;
+    if (touchendX < touchstartX) {
+      clearInterval(intervalId);
+      nextItem(block);
+    }
+    if (touchendX > touchstartX) {
+      clearInterval(intervalId);
+      prevItem(block);
+    }
+  });
+}
+
 export default function decorate(block) {
   // create autoscrolling animation
   const intervalId = setInterval(nextItem, 7000, block);
@@ -180,6 +201,7 @@ export default function decorate(block) {
 
   createNavButtons(block, intervalId);
   createClones(block);
+  addSwipeCapability(block);
 
   // Scroll to start element
   // FIXME - Can this be done without set timeout?
