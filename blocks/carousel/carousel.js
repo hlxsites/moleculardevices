@@ -125,7 +125,7 @@ function addSwipeCapability(block, intervalId) {
 
   block.addEventListener('touchstart', (e) => {
     touchstartX = e.changedTouches[0].screenX;
-  });
+  }, {passive: true});
 
   block.addEventListener('touchend', (e) => {
     touchendX = e.changedTouches[0].screenX;
@@ -141,7 +141,7 @@ function addSwipeCapability(block, intervalId) {
       clearInterval(intervalId);
       prevItem(block);
     }
-  });
+  }, {passive: true});
 }
 
 export default function decorate(block) {
