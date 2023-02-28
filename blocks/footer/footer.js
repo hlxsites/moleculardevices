@@ -37,15 +37,13 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
 
-  const selectionDiv = footer.querySelector('div:nth-of-type(2)');
-
-  const newsTitle = selectionDiv.querySelector('h3:nth-of-type(1)');
+  const newsTitle = footer.querySelector('.footer-news-events h3:nth-of-type(1)');
   newsTitle.innerHTML = `<a>${newsTitle.textContent}</a>`;
   newsTitle.querySelector('a').addEventListener('click', () => {
     switchGroup(newsTitle, 1);
   });
 
-  const eventsTitle = selectionDiv.querySelector('h3:nth-of-type(2)');
+  const eventsTitle = footer.querySelector('.footer-news-events h3:nth-of-type(2)');
   eventsTitle.innerHTML = `<a>${eventsTitle.textContent}</a>`;
   eventsTitle.querySelector('a').addEventListener('click', () => {
     switchGroup(eventsTitle, 2);
