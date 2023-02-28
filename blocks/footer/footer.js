@@ -1,23 +1,27 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function switchGroup(selectionTitle, position) {
-  let i;
-  let div;
+
   // Set active and inactive selection title
-  for (i = 0; i < selectionTitle.parentElement.children.length; i += 1) {
+  [...selectionTitle.parentElement.children].forEach((h3) => {
+    h3.classList.add('off');
+    h3.classList.remove('on');
+  });
+  /*for (i = 0; i < selectionTitle.parentElement.children.length; i += 1) {
     div = selectionTitle.parentElement.children[i];
     div.classList.remove('on');
     div.classList.add('off');
-  }
+  }*/
   selectionTitle.classList.add('on');
   selectionTitle.classList.remove('off');
-  // Set active and inactive content div
-  const blockDiv = selectionTitle.parentElement.parentElement.parentElement;
-  for (i = 1; i < blockDiv.children.length; i += 1) {
-    div = blockDiv.children[i];
-    div.classList.add('off');
-    div.classList.remove('on');
-  }
+
+  const blockDiv = selectionTitle.closest('.footer-news-events');
+  [...blockDiv.children].forEach((div) => {
+      div.classList.add('off');
+      div.classList.remove('on');
+  });
+  blockDiv.children[0].classList.add('on');
+  blockDiv.children[0].classList.remove('off');
   blockDiv.children[position].classList.add('on');
   blockDiv.children[position].classList.remove('off');
 }
