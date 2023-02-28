@@ -1,4 +1,4 @@
-export default async function decorate(block) { 
+export default async function decorate(block) {
   block.classList.add('accordion-tab-wrapper');
   const accordionTabList = block.querySelector('div');
   accordionTabList.classList.add('accordion-tab-list');
@@ -9,7 +9,7 @@ export default async function decorate(block) {
   const viewsElementContainer = document.createElement('div');
   viewsElementContainer.classList.add('views-element-container', 'accordion-tab-main-content');
   [...block.children].forEach((row, i) => {
-    if(i !== 0) {
+    if (i !== 0) {
       const titleDiv = row.querySelector('div');
       const title = titleDiv.textContent;
       const li = document.createElement('li');
