@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-expressions */
-/* global describe it */
 
 import { readFile } from '@web/test-runner-commands';
 import { expect } from '@esm-bundle/chai';
@@ -22,10 +21,4 @@ decorateBlock(footerBlock);
 await loadBlock(footerBlock);
 await sleep();
 
-describe('Footer block', () => {
-  it('Displays footer content', async () => {
-    const a = document.querySelector('footer a');
-    //expect(a).to.exist;
-    //expect(a.href).to.equal('https://www.adobe.com/privacy.html');
-  });
 });
