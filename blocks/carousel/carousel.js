@@ -201,7 +201,7 @@ export default function decorate(block) {
 
   createNavButtons(block, intervalId);
   createClones(block);
-  addSwipeCapability(block);
+  addSwipeCapability(block, intervalId);
 
   // Scroll to start element
   // FIXME - Can this be done without set timeout?
