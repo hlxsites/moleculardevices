@@ -146,7 +146,7 @@ main .carousel-dot-button.selected {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .carousel {
     padding-left: 40px;
     padding-right: 40px;
@@ -160,9 +160,16 @@ main .carousel-dot-button.selected {
     font-size: 24px;
   }
 
+  main .carousel-item-text .button-container {
+    margin-top: 30px;
+    max-width: 200px !important;
+    width: 100% !important;
+  }
+
   main .carousel-item-text .button-container .button {
-    max-width: 200px;
-    width: 100%;
+    max-width: 200px !important;
+    width: 100% !important;
+    font-size: 12px;
   }
 
   main .carousel-nav-button {
@@ -171,14 +178,26 @@ main .carousel-dot-button.selected {
   }
 }
 
-@media only screen and (max-width: 420px) {
-
+@media only screen and (max-width: 576px) {
   main .carousel-item-text .button-container {
+    margin-bottom: 0;
+  }
+
+  main .carousel-item-text .button-container .button {
+    margin-left: 0;
+  }
+}
+
+
+
+@media only screen and (max-width: 420px) {
+  main .carousel-item-text .button-container {
+    max-width: unset !important;
     display: block;
   }
-  
-  main .carousel-item-text .button-container .secondary {
-    margin-left: 0;
+
+  main .carousel-item-text .button-container .button {
+    max-width: unset !important;
   }
 
   main .carousel a.button {

@@ -308,9 +308,7 @@ main .section>div {
 
   a.button:any-link, button {
     font-size: var(--body-font-size-xs);
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 8px;
+    padding: 8px 12px;
   }
 }
 
