@@ -2,11 +2,14 @@ import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function switchGroup(selectionTitle, position) {
   [...selectionTitle.parentElement.children].forEach((h3) => {
-    h3.classList.add('off');
-    h3.classList.remove('on');
+    if (h3 != selectionTitle) {
+      h3.classList.add('off');
+      h3.classList.remove('on');
+    } else {
+      h3.classList.add('on');
+      h3.classList.remove('off');
+    }
   });
-  selectionTitle.classList.add('on');
-  selectionTitle.classList.remove('off');
   const blockDiv = selectionTitle.closest('.footer-news-events');
   [...blockDiv.children].forEach((div) => {
     div.classList.add('off');
@@ -32,27 +35,24 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
-
-  const newsTitle = footer.querySelector('.footer-news-events h3:nth-of-type(1)');
-  newsTitle.innerHTML = `<a>${newsTitle.textContent}</a>`;
-  newsTitle.querySelector('a').addEventListener('click', () => {
-    switchGroup(newsTitle, 1);
+    
+  const titles = footer.querySelectorAll('.footer-news-events h3');
+  [...titles].forEach((title, i) => {
+    title.innerHTML = `<a>${title.textContent}</a>`;
+    title.querySelector('a').addEventListener('click', () => {
+        switchGroup(title, i+1);
+    });
   });
 
-  const eventsTitle = footer.querySelector('.footer-news-events h3:nth-of-type(2)');
-  eventsTitle.innerHTML = `<a>${eventsTitle.textContent}</a>`;
-  eventsTitle.querySelector('a').addEventListener('click', () => {
-    switchGroup(eventsTitle, 2);
-  });
-
-  const blockDiv = newsTitle.parentElement.parentElement.parentElement;
-  let i;
-  for (i = 1; i < blockDiv.children.length; i += 1) {
-    const div = blockDiv.children[i];
+  const blockDiv = footer.querySelector('.footer-news-events');
+  [...blockDiv.children].forEach((div) => {
     const pars = div.querySelectorAll('p');
-    pars.item(pars.length - 1).innerHTML
-        += "<span class='icon-icon_link'></span>";
-  }
+    const par = pars.item(pars.length - 1);
+    if (par) {
+      par.innerHTML
+        += "<span class='icon-icon_link'></span>";    
+    }
+  });  
 
   await decorateIcons(footer);
   block.append(footer);
