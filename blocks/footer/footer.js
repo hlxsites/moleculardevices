@@ -2,7 +2,7 @@ import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function switchGroup(selectionTitle, position) {
   [...selectionTitle.parentElement.children].forEach((h3) => {
-    if (h3 != selectionTitle) {
+    if (h3 !== selectionTitle) {
       h3.classList.add('off');
       h3.classList.remove('on');
     } else {
@@ -35,12 +35,12 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
-    
+
   const titles = footer.querySelectorAll('.footer-news-events h3');
   [...titles].forEach((title, i) => {
     title.innerHTML = `<a>${title.textContent}</a>`;
     title.querySelector('a').addEventListener('click', () => {
-        switchGroup(title, i+1);
+      switchGroup(title, i + 1);
     });
   });
 
@@ -50,9 +50,9 @@ export default async function decorate(block) {
     const par = pars.item(pars.length - 1);
     if (par) {
       par.innerHTML
-        += "<span class='icon-icon_link'></span>";    
+        += "<span class='icon-icon_link'></span>";
     }
-  });  
+  });
 
   await decorateIcons(footer);
   block.append(footer);
