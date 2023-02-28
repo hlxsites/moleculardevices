@@ -1,0 +1,201 @@
+.accordion-tab-main-content,
+.accordion-tab-list {
+    max-height: 800px;
+}
+.accordion-tab-main-content {
+    background-color: #000;
+    color: #fff;
+}
+.accordion-tab-main-content p {
+    line-height: 1.5;
+}
+.accordion-tab-main-content h3 {
+    font-family: "Proxima Nova Lt";
+    font-size: 36px;
+    padding-top: 16px;
+}
+
+.accordion-tab-list,
+.accordion-tab-main-content > .accordion-tab-pane {
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.accordion-tab-list {
+    padding: 0 24px;
+}
+
+.accordion-tab-main-content > .accordion-tab-pane > picture img,
+.accordion-tab-main-content > .accordion-tab-pane > img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.accordion-tab-list .nav-tabs li a {
+    border-radius: 0;
+}
+.accordion-tab-list .nav-tabs li.active a {
+    pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .accordion-tab-wrapper {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+    }
+
+    .accordion-tab-list,
+    .accordion-tab-pane-inside {
+        padding: 54px 24px;
+        position:relative;
+    }
+    .accordion-tab-list {
+        border-right: 3px solid #fff;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 30%;
+        flex: 1 30%;
+        min-width: 30%;
+        padding-right: 0 !important;
+        text-align: right;
+        position: relative;
+        overflow: hidden;
+    }
+    .accordion-tab-list ul {
+        position: relative;
+    }
+    .accordion-tab-list picture img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    .accordion-tab-list .nav-tabs {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        border: 0;
+        text-align: left;
+    }
+    .accordion-tab-list .nav-tabs li a,
+    .accordion-tab-list .nav-tabs li a:focus {
+        color: #fff;
+        background: transparent;
+        border: 0;
+        display: block;
+        margin-right: 0;
+        padding: 15px;
+    }
+    .accordion-tab-list .nav-tabs li:not(:first-child) a {
+        border-bottom: 1px solid #fff;
+    }
+    .accordion-tab-list .nav-tabs li:first-child a {
+        font-size: 24px;
+    }
+    .accordion-tab-list .nav-tabs li:hover a,
+    .accordion-tab-list .nav-tabs li.active a {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .accordion-tab-list .nav-tabs li.active a {
+        font-family: "Proxima Nova Th";
+    }
+    .accordion-tab-list + .views-element-container.form-group {
+        min-width: 70%;
+        overflow: hidden;
+    }
+    .accordion-tab-main-content {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 70%;
+        flex: 1 70%;
+    }
+    .accordion-tab-list + .views-element-container.form-group > div,
+    .accordion-tab-list + .views-element-container.form-group > div > div,
+    .accordion-tab-main-content {
+        height: 100%;
+    }
+
+    .accordion-tab-main-content > .accordion-tab-pane {
+        opacity: 1;
+        display: block;
+        overflow: hidden;
+        -webkit-transition: width 0.5s ease-in-out;
+        -o-transition: width 0.5s ease-in-out;
+        transition: width 0.5s ease-in-out;
+        min-width: 0;
+        width: 0;
+        height: auto;
+        visibility: visible;
+    }
+
+    .accordion-tab-main-content > .accordion-tab-pane.active {
+        width: 100% !important;
+    }
+
+    .accordion-tab-list picture img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .accordion-tab-content {
+        max-width: 45%;
+    }
+    .accordion-tab-list {
+        padding-left: 56px;
+    }
+    .accordion-tab-list,
+    .accordion-tab-pane-inside {
+        padding: 100px 32px;
+    }
+    .accordion-tab-list .nav-tabs {
+        padding-left: 40px;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .accordion-tab-list .nav-tabs li:not(:first-child) {
+        margin-left: 80px;
+    }
+    .accordion-tab-list,
+    .accordion-tab-main-content > .accordion-tab-pane {
+        min-height: 500px;
+    }
+    .accordion-tab-list {
+        -ms-flex: 1 35%;
+        -webkit-box-flex: 1;
+        flex: 1 35%;
+        min-width: 35%;
+    }
+    .accordion-tab-list + .views-element-container.form-group {
+        min-width: 65%;
+    }
+    .accordion-tab-list .nav-tabs {
+        padding-left: 90px;
+    }
