@@ -120,14 +120,14 @@ function createNavButtons(block, intervalId) {
 }
 
 function addSwipeCapability(block, intervalId) {
-  let touchstartX = 0
-  let touchendX = 0
+  let touchstartX = 0;
+  let touchendX = 0;
 
-  block.addEventListener('touchstart', e => {
+  block.addEventListener('touchstart', (e) => {
     touchstartX = e.changedTouches[0].screenX;
   });
 
-  block.addEventListener('touchend', e => {
+  block.addEventListener('touchend', (e) => {
     touchendX = e.changedTouches[0].screenX;
     if (touchendX < touchstartX) {
       clearInterval(intervalId);
