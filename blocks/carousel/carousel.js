@@ -129,6 +129,10 @@ function addSwipeCapability(block, intervalId) {
 
   block.addEventListener('touchend', (e) => {
     touchendX = e.changedTouches[0].screenX;
+    if (Math.abs(touchendX - touchstartX) < 10) {
+      return;
+    }
+
     if (touchendX < touchstartX) {
       clearInterval(intervalId);
       nextItem(block);
