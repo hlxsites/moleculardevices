@@ -1,14 +1,3 @@
-:root {
-  --gray: #f0f1f2;
-  --dark-gray: #5b6670;
-  --green: #6eb43f;
-  --border: #ababab;
-}
-
-.background-grey {
-  background-color: var(--gray);
-}
-
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -45,7 +34,7 @@
 }
 
 .columns.contact > div h3 {
-  background-color: var(--dark-gray);
+  background-color: var(--dark-gray-background-color);
   color: var(--text-white);
   text-align: center;
   margin: 0;
@@ -64,12 +53,12 @@
 }
 
 .columns.contact > div ul li a:hover {
-  color: var(--green);
+  color: var(--text-green);
 }
 
 .columns.contact > div > div > ul > li > i {
   font-size: 36px;
-  color: var(--green);
+  color: var(--text-green);
   padding-right: 20px;
   float: left;
   width: 36px;
@@ -81,7 +70,7 @@
   right: 0;
   bottom: -10px;
   width: calc(100% - 56px);
-  background-color: var(--border);
+  background-color: var(--border-color-gray);
   display: block;
   height: 1px;
 }
@@ -109,7 +98,7 @@
 }
 
 .columns.contact > div ul li span.icon:not(.icon-spectra) svg{
-    fill: var(--green);
+    fill: var(--text-green);
 }
 
 .columns.contact > div ul li span.icon-spectra svg{

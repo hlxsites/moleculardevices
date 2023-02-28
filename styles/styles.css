@@ -65,6 +65,11 @@
   --button-secondary-bg-color: #038296;
   --button-secondary-bg-hover-color: #fff;
 
+  --gray-background-color: #f0f1f2;
+  --dark-gray-background-color: #5b6670;
+  --text-green: #6eb43f;
+  --border-color-gray: #ababab;
+
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
   --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'helvetica neue', helvetica, arial, sans-serif;
@@ -350,4 +355,8 @@ main .section[data-section-status='initialized'] {
 
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+.background-grey {
+  background-color: var(--gray-background-color);
 }
