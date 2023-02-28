@@ -36,16 +36,16 @@
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
-  text-align: center;
+  font-weight: bold;
   margin: 0;
   padding: 16px 8px;
-  font-weight: bold;
+  text-align: center;
 }
 
 .columns.contact > div > div > ul > li {
-  position: relative;
   margin-bottom: 16px;
   padding-top: 8px;
+  position: relative;
 }
 
 .columns.contact > div ul li a {
@@ -57,70 +57,74 @@
 }
 
 .columns.contact > div > div > ul > li > i {
-  font-size: 36px;
   color: var(--text-green);
-  padding-right: 20px;
   float: left;
-  width: 36px;
+  font-size: 36px;
+  padding-right: 20px;
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -10px;
-  width: calc(100% - 56px);
   background-color: var(--border-color-gray);
+  bottom: -10px;
+  content: "";
   display: block;
   height: 1px;
+  position: absolute;
+  right: 0;
+  width: calc(100% - 56px);
 }
 
 .columns.contact > div ul li::after,
 .columns.contact > div > div ul ul::before {
-  content: "";
   clear: both;
+  content: "";
   display: table;
 }
 
 .columns.contact > div ul li span.icon,
 .columns.contact > div ul li img {
-  padding-right: 20px;
   float: left;
+  padding-right: 20px;
+}
+
+.columns.contact > div ul li span.icon,
+.columns.contact > div > div > ul > li > i {
+  width: 36px;
 }
 
 .columns.contact > div ul li span.icon svg,
 .columns.contact > div ul li img {
-  width: 32px;
-  height: 32px;
   display: inline-block;
-  vertical-align: top;
+  height: 32px;
   object-fit: contain;
+  vertical-align: top;
+  width: 32px;
 }
 
-.columns.contact > div ul li span.icon:not(.icon-spectra) svg{
-    fill: var(--text-green);
+.columns.contact > div ul li span.icon:not(.icon-spectra) svg {
+  fill: var(--text-green);
 }
 
-.columns.contact > div ul li span.icon-spectra svg{
-    height: 40px;
+.columns.contact > div ul li span.icon-spectra svg {
+  height: 40px;
 }
 
-.columns.contact > div ul li span.icon-spectra ~ a{
-    font-weight: bold;
-    font-size: var(--body-font-size-l);
+.columns.contact > div ul li span.icon-spectra ~ a {
+  font-size: var(--body-font-size-l);
+  font-weight: bold;
 }
 
 .columns.contact > div > div ul ul {
-  padding-left: 70px;
-  margin-top: 8px;
   list-style: disc;
   margin-bottom: 0;
+  margin-top: 8px;
+  padding-left: 70px;
 }
 
 @media (min-width: 900px) {
   .columns > div {
-    display: flex;
     align-items: center;
+    display: flex;
     flex-direction: unset;
   }
 
@@ -149,7 +153,8 @@
     margin-bottom: 30px;
   }
 
-  .columns.contact > div > div > ul > li > i {
+  .columns.contact > div > div > ul > li > i,
+  .columns.contact > div ul li span.icon {
     font-size: 24px;
     width: 24px;
   }
