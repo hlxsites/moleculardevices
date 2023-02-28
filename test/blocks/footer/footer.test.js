@@ -24,7 +24,7 @@ await sleep();
 
 describe('Footer block', () => {
   it('Displays footer content', async () => {
-    const a = document.querySelector('footer a');
-    expect(a).to.exist;
+    const div = document.querySelector('.footer-news-events');
+    expect(div).to.exist;
   });
 });
