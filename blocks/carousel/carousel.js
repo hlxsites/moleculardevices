@@ -121,7 +121,7 @@ function createNavButtonIcon(button, direction) {
 function createNavButtons(block, intervalId) {
   const buttonLeft = document.createElement('button');
   buttonLeft.classList.add('carousel-nav-left');
-  buttonLeft.ariaLabel = `Scroll to previous item`;
+  buttonLeft.ariaLabel = 'Scroll to previous item';
   createNavButtonIcon(buttonLeft, 'left');
   buttonLeft.addEventListener('click', () => {
     clearInterval(intervalId);
@@ -130,7 +130,7 @@ function createNavButtons(block, intervalId) {
 
   const buttonRight = document.createElement('button');
   buttonRight.classList.add('carousel-nav-right');
-  buttonRight.ariaLabel = `Scroll to next item`;
+  buttonRight.ariaLabel = 'Scroll to next item';
   createNavButtonIcon(buttonRight, 'right');
   buttonRight.addEventListener('click', () => {
     clearInterval(intervalId);
@@ -174,7 +174,6 @@ function addSwipeCapability(block, intervalId) {
 }
 
 export default function decorate(block) {
-  console.log(typeof block);
   // create autoscrolling animation
   const intervalId = setInterval(nextItem, 7000, block);
 
