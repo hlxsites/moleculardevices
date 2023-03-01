@@ -121,7 +121,7 @@
   padding-left: 70px
 }
 
-@media (min-width:900px) {
+@media (min-width:768px) {
   .columns > div {
     align-items: center;
     display: flex;
@@ -148,7 +148,7 @@
   }
 }
 
-@media (max-width:899px) {
+@media (max-width:767px) {
   .columns.contact > div > div:not(:last-child) {
     margin-bottom: 30px
   }
