@@ -121,6 +121,7 @@ function createNavButtonIcon(button, direction) {
 function createNavButtons(block, intervalId) {
   const buttonLeft = document.createElement('button');
   buttonLeft.classList.add('carousel-nav-left');
+  buttonLeft.ariaLabel = `Scroll to previous item`;
   createNavButtonIcon(buttonLeft, 'left');
   buttonLeft.addEventListener('click', () => {
     clearInterval(intervalId);
@@ -129,6 +130,7 @@ function createNavButtons(block, intervalId) {
 
   const buttonRight = document.createElement('button');
   buttonRight.classList.add('carousel-nav-right');
+  buttonRight.ariaLabel = `Scroll to next item`;
   createNavButtonIcon(buttonRight, 'right');
   buttonRight.addEventListener('click', () => {
     clearInterval(intervalId);
@@ -210,6 +212,7 @@ export default function decorate(block) {
     });
 
     const button = document.createElement('button');
+    button.ariaLabel = `Scroll to item ${i + 1}`;
     button.classList.add('carousel-dot-button');
     if (i === 0) {
       item.classList.add('selected');
