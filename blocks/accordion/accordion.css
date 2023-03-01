@@ -50,7 +50,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-
     .accordion-tab-wrapper {
         display: -webkit-box;
         display: flex;
@@ -118,7 +117,7 @@
 
     .accordion-tab-list .nav-tabs li:hover a,
     .accordion-tab-list .nav-tabs li.active a {
-        background-color: rgba(255 255 255 / 0.3);
+        background-color: rgba(255 255 255 / 30%);
     }
 
     .accordion-tab-list .nav-tabs li.active a {
@@ -160,7 +159,6 @@
 }
 
 @media only screen and (min-width: 992px) {
-    
     .accordion-tab-content {
         max-width: 45%;
     }
@@ -178,8 +176,8 @@
         padding-left: 40px;
     }
 }
-@media only screen and (min-width: 1200px) {
 
+@media only screen and (min-width: 1200px) {
     .accordion-tab-list .nav-tabs li:not(:first-child) {
         margin-left: 80px;
     }
