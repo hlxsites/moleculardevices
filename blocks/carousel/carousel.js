@@ -1,17 +1,9 @@
-const chevronLeft = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><
-  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-  stroke-width="25" d="M328 112L184 256l144 144"/>
-</svg>
-`;
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 
-const chevronRight = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><
-  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-  stroke-width="25" d="M184 112l144 144-144 144"/>
-</svg>
-`;
-
+/**
+ * Scroll the carousel to the next item
+ * @param {Element} block
+ */
 function nextItem(block) {
   const dotButtons = block.parentNode.querySelectorAll('.carousel-dot-button');
   const items = block.querySelectorAll('.carousel-item:not(.clone)');
@@ -43,6 +35,10 @@ function nextItem(block) {
   dotButtons[newIndex].classList.add('selected');
 }
 
+/**
+ * Scroll the carousel to the previous item
+ * @param {Element} block
+ */
 function prevItem(block) {
   const dotButtons = block.parentNode.querySelectorAll('.carousel-dot-button');
   const items = block.querySelectorAll('.carousel-item:not(.clone)');
@@ -74,6 +70,11 @@ function prevItem(block) {
   dotButtons[newIndex].classList.add('selected');
 }
 
+/**
+ * Clone a carousel item
+ * @param {Element} item carousel item to be cloned
+ * @returns the clone of the carousel item
+ */
 function createClone(item) {
   const clone = item.cloneNode(true);
   clone.classList.add('clone');
@@ -82,6 +83,11 @@ function createClone(item) {
   return clone;
 }
 
+/**
+ * Create clone items at the beginning and end of the carousel
+ * to give the appearance of infinite scrolling
+ * @param {Element} block
+ */
 function createClones(block) {
   if (block.children.length < 2) return;
 
@@ -94,16 +100,36 @@ function createClones(block) {
   block.firstChild.before(createClone(initialChildren[initialChildren.length - 2]));
 }
 
+/**
+ * Creates the decorated icon for the nav button
+ * @param {Element} button the nav button for which the icon needs to be cretated
+ * @param string direction 'left' or 'right'
+ */
+function createNavButtonIcon(button, direction) {
+  const icon = document.createElement('span');
+  icon.classList.add('icon');
+  icon.classList.add(`icon-chevron-${direction}`);
+  button.appendChild(icon);
+  decorateIcons(button);
+}
+
+/**
+ * Create left and right arrow navigation buttons
+ * @param {Element} block
+ * @param {ReturnType<typeof setInterval>} intervalId ID of the interval that autoscrolls
+ */
 function createNavButtons(block, intervalId) {
   const buttonLeft = document.createElement('button');
-  buttonLeft.innerHTML = chevronLeft;
+  buttonLeft.classList.add('carousel-nav-left');
+  createNavButtonIcon(buttonLeft, 'left');
   buttonLeft.addEventListener('click', () => {
     clearInterval(intervalId);
     prevItem(block);
   });
 
   const buttonRight = document.createElement('button');
-  buttonRight.innerHTML = chevronRight;
+  buttonRight.classList.add('carousel-nav-right');
+  createNavButtonIcon(buttonRight, 'right');
   buttonRight.addEventListener('click', () => {
     clearInterval(intervalId);
     nextItem(block);
@@ -111,14 +137,15 @@ function createNavButtons(block, intervalId) {
 
   [buttonLeft, buttonRight].forEach((navButton) => {
     navButton.classList.add('carousel-nav-button');
+    block.parentElement.append(navButton);
   });
-
-  buttonLeft.classList.add('carousel-nav-left');
-  buttonRight.classList.add('carousel-nav-right');
-  block.parentElement.append(buttonLeft);
-  block.parentElement.append(buttonRight);
 }
 
+/**
+ * Adds event listeners for touch UI swiping
+ * @param {Element} block
+ * @param {ReturnType<typeof setInterval>} intervalId ID of the interval that autoscrolls
+ */
 function addSwipeCapability(block, intervalId) {
   let touchstartX = 0;
   let touchendX = 0;
@@ -145,6 +172,7 @@ function addSwipeCapability(block, intervalId) {
 }
 
 export default function decorate(block) {
+  console.log(typeof block);
   // create autoscrolling animation
   const intervalId = setInterval(nextItem, 7000, block);
 

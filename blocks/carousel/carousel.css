@@ -71,8 +71,6 @@ main .carousel-item-text .button-container .secondary {
 main .carousel-nav-button {
   background-color: inherit;
   min-width: unset;
-  height: 38px;
-  width: 38px;
   padding: 0;
   border-radius: 50%;
   border: 1.5px solid #adb3b7;
@@ -83,6 +81,12 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+main .carousel-nav-button .icon {
+  height: 38px;
+  width: 38px;
+  stroke-width: 20;
 }
 
 main .carousel-nav-button:hover {
@@ -172,7 +176,7 @@ main .carousel-dot-button.selected {
     font-size: 12px;
   }
 
-  main .carousel-nav-button {
+  main .carousel-nav-button .icon {
     height: 26px;
     width: 26px;
   }
