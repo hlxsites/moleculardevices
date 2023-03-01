@@ -184,7 +184,11 @@ export default function decorate(block) {
     item.className = 'carousel-item';
 
     // create the carousel content
+    const columnContainer = document.createElement('div');
+    columnContainer.classList.add('carousel-item-columns-container');
+
     const columns = [document.createElement('div'), document.createElement('div')];
+
     const itemChildren = [...item.children];
     const classes = ['image', 'text'];
     classes.forEach((e, j) => {
@@ -195,8 +199,9 @@ export default function decorate(block) {
 
     columns.forEach((column) => {
       column.classList.add('carousel-item-column');
-      item.appendChild(column);
+      columnContainer.appendChild(column);
     });
+    item.appendChild(columnContainer);
 
     // ensure that links inside the carousel are correctly marked as buttons
     // first link -> primary button
