@@ -1,5 +1,7 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
+const AUTOSCROLL_INTERVAL = 7000;
+
 /**
  * Scroll the carousel to the next item
  * @param {Element} block
@@ -173,9 +175,44 @@ function addSwipeCapability(block, intervalId) {
   }, { passive: true });
 }
 
+function setInitialScrollingPosition(block) {
+  const scrollToSelectedItem = () => {
+    const item = block.querySelector('.carousel-item.selected');
+    item.parentNode.scrollTo({
+      top: 0,
+      left: item.offsetLeft - item.parentNode.offsetLeft,
+    });
+  }
+
+  let section = block.parentElement;
+  while (!section.classList.contains('section') && section.parentElement) {
+    section = section.parentElement;
+  }
+
+  let observer = new MutationObserver((mutationList) => {
+    for (const mutation of mutationList) {
+      if (mutation.type === 'attributes' &&
+        mutation.attributeName === 'data-section-status' &&
+        section.attributes.getNamedItem('data-section-status').value === 'loaded') {
+        scrollToSelectedItem();
+        observer.disconnect();
+      }
+    }
+  });
+
+  observer.observe(section, { attributes: true });
+
+  // just in case the mutation observer didn't work
+  setTimeout(scrollToSelectedItem, 700);
+
+  // ensure that we disconnect the observer
+  // if the animation has kicked in, we for sure no longer need it
+  setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
+}
+
 export default function decorate(block) {
   // create autoscrolling animation
-  const intervalId = setInterval(nextItem, 7000, block);
+  const intervalId = setInterval(nextItem, AUTOSCROLL_INTERVAL, block);
 
   // create dot buttons and add carousel classes
   const buttons = document.createElement('div');
@@ -241,15 +278,5 @@ export default function decorate(block) {
   createNavButtons(block, intervalId);
   createClones(block);
   addSwipeCapability(block, intervalId);
-
-  // Scroll to start element
-  // FIXME - Can this be done without set timeout?
-  window.setTimeout(() => {
-    block.querySelectorAll('.carousel-item.selected').forEach((item) => {
-      item.parentNode.scrollTo({
-        top: 0,
-        left: item.offsetLeft - item.parentNode.offsetLeft,
-      });
-    });
-  }, 500);
+  setInitialScrollingPosition(block);
 }
