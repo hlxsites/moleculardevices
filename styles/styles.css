@@ -92,6 +92,10 @@
   --nav-height: 64px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
