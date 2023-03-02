@@ -18,8 +18,24 @@ const RESOURCE_MAPPING = [
     template: 'Application Note',
   },
   {
+    match: ['/en/assets/tutorials-videos/'],
+    template: 'Videos & Webinars',
+  },
+  {
     match: ['/newsroom/in-the-news'],
     template: 'Publication',
+  },
+  {
+    match: ['/newsroom/news'],
+    template: 'News',
+  },
+  {
+    match: ['/events'],
+    template: 'Events',
+  },
+  {
+    match: ['/applications/cell-counting'],
+    template: 'Cell Counter',
   },
 ];
 
@@ -28,7 +44,10 @@ const createMetadata = (main, url, document) => {
 
   const title = document.querySelector('title');
   if (title) {
-    meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
+    meta.Title = title.innerHTML
+      .replace(/[\n\t]/gm, '')
+      .substring(0, title.innerHTML.lastIndexOf('|'))
+      .trim();
   }
 
   const desc = document.querySelector('[property="og:description"]');
@@ -43,8 +62,18 @@ const createMetadata = (main, url, document) => {
     meta.Image = el;
   }
 
+  // detect dates from content
+  // TODO can this be read from export?
+  const docDate = document.querySelector('.event-block > cite');
+  if (docDate && docDate.textContent) {
+    meta.PublicationDate = docDate.textContent.trim();
+    docDate.remove();
+  }
+
   // detect resource type
-  const resourceType = RESOURCE_MAPPING.find((e) => e.match.some((match) => url.includes(match)));
+  const resourceType = RESOURCE_MAPPING.find((e) =>
+    e.match.some((match) => url.includes(match)),
+  );
   if (resourceType) {
     meta.Template = resourceType.template;
   }
@@ -173,10 +202,11 @@ const transformResourcesCarousel = (block, document) => {
 };
 
 const transformButtons = (document) => {
+  // convert primary/secondary buttons
   document.querySelectorAll('a.btn').forEach((button) => {
     button.querySelectorAll('span').forEach((span) => span.remove());
     button.querySelectorAll('i.fa').forEach((icon) => {
-      button.textContent = button.textContent.concat(':', icon.classList[1], ':');
+      button.textContent = `${button.textContent} :${icon.classList[1]}:`;
       icon.remove();
     });
 
@@ -187,6 +217,17 @@ const transformButtons = (document) => {
       button.replaceWith(wrapper);
     }
   });
+
+  // convert links with icons
+  document.querySelectorAll('a.linkBtn').forEach((button) => {
+    button.querySelectorAll('i.icon-icon_link').forEach((icon) => {
+      const iconName = icon.classList[0].substring(5, icon.classList[0].lenght);
+      button.textContent = `${button.textContent} :${iconName}:`;
+      icon.remove();
+    });
+  });
+
+  // TODO convert & cleanup other buttons
 };
 
 const transformTables = (document) => {
@@ -212,6 +253,56 @@ const transformTables = (document) => {
     th.setAttribute('colspan', referenceNode.childElementCount);
     tr.append(th);
     referenceNode.parentElement.insertBefore(tr, referenceNode);
+  });
+};
+
+const transformColumns = (document) => {
+  document.querySelectorAll('.row > .col-sm-6:first-of-type').forEach((column) => {
+    const row = column.parentElement;
+    if (row.childElementCount > 1) {
+      const cells = [['Columns'], [...row.children]];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      row.replaceWith(table);
+    }
+  });
+};
+
+const transformImageCaption = (document) => {
+  document.querySelectorAll('p.text-caption').forEach((caption) => {
+    const captionWrapper = document.createElement('em');
+    captionWrapper.innerHTML = caption.innerHTML;
+    caption.replaceWith(captionWrapper);
+  });
+};
+
+// convert embed objects
+const transformEmbeds = (document) => {
+  // detect embed iframe in main content
+  document.querySelectorAll('.container iframe').forEach((iframe) => {
+    const iframeSrc = iframe.src;
+    if (iframeSrc) {
+      const cells = [['Embed']];
+      cells.push([iframeSrc]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      iframe.replaceWith(table);
+    }
+  });
+
+  // detect vidyard video player embeds
+  document.querySelectorAll('[onclick^="fn_vidyard"]').forEach((vidyard) => {
+    const vidyardId = vidyard
+      .getAttribute('onclick')
+      .match(/^fn_vidyard_(.*)\(/)[1];
+    if (vidyardId) {
+      const vidyardUrl = `https://share.vidyard.com/watch/${vidyardId}`;
+      const cells = [['Embed']];
+      const thumbnail = vidyard.querySelector('img');
+      const container = document.createElement('p');
+      container.append(thumbnail, document.createElement('br'), vidyardUrl);
+      cells.push([container]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      vidyard.replaceWith(table);
+    }
   });
 };
 
@@ -360,6 +451,7 @@ export default {
       '.skip-link',
       '.cart-store',
       '.procompare',
+      '.share-event',
       '.OneLinkShow_zh',
     ]);
 
@@ -372,6 +464,9 @@ export default {
       transformHero,
       transformTables,
       transformButtons,
+      transformColumns,
+      transformEmbeds,
+      transformImageCaption,
       transformTabsNav,
       transformTabsContent,
       transformProductOverview,
