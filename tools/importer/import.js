@@ -17,6 +17,10 @@ const RESOURCE_MAPPING = [
     match: ['/en/assets/app-note/'],
     template: 'Application Note',
   },
+  {
+    match: ['/newsroom/in-the-news'],
+    template: 'Publication',
+  },
 ];
 
 const createMetadata = (main, url, document) => {
@@ -49,6 +53,12 @@ const createMetadata = (main, url, document) => {
   main.append(block);
 
   return meta;
+};
+
+const cleanUp = (document) => {
+  document.querySelectorAll('table').forEach((table) => {
+    table.innerHTML = table.innerHTML.replace(/\\~/gm, '~');
+  });
 };
 
 const extractBackgroundImage = (content) => {
@@ -192,12 +202,16 @@ const transformTables = (document) => {
     });
 
     // create block table head row
+    const referenceNode =
+      table.firstChild.nodeName === 'TBODY'
+        ? table.firstChild.firstChild
+        : table.firstChild;
     const tr = document.createElement('tr');
     const th = document.createElement('th');
     th.textContent = 'Table';
-    th.setAttribute('colspan', firstRow.childElementCount);
+    th.setAttribute('colspan', referenceNode.childElementCount);
     tr.append(th);
-    table.insertBefore(tr, table.firstChild);
+    referenceNode.parentElement.insertBefore(tr, referenceNode);
   });
 };
 
@@ -354,6 +368,7 @@ export default {
 
     // convert all blocks
     [
+      cleanUp,
       transformHero,
       transformTables,
       transformButtons,
