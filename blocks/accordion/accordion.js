@@ -27,6 +27,21 @@ export default async function decorate(block) {
       titleDiv.remove();
       const tabContent = row.querySelector('div');
       tabContent.classList.add('accordion-tab-content', 'accordion-tab-pane-inside');
+      const button = document.createElement('button');
+      button.classList.add('accordion-tab-btn');
+      const icon = document.createElement('i');
+      icon.classList.add('fa', 'fa-plus');
+      button.append(icon);
+      button.textContent = title;
+      const learnMore = document.createElement('a');
+      learnMore.classList.add('gradiantBlueBtn', 'btn', 'mt-30');
+      learnMore.href = '/applications/3d-cell-models';
+      const span = document.createElement('span');
+      span.classList.add('btn_bdr');
+      learnMore.append(span);
+      learnMore.textContent = 'Learn More';
+      tabContent.prepend(button);
+      tabContent.append(learnMore);
       row.prepend(picture);
       viewsElementContainer.appendChild(row);
     }
