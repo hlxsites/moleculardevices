@@ -184,7 +184,7 @@ function setInitialScrollingPosition(block) {
     });
   };
 
-  let section = block.closest('.section');
+  const section = block.closest('.section');
 
   const observer = new MutationObserver((mutationList) => {
     mutationList.forEach((mutation) => {
