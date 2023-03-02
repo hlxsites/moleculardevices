@@ -182,22 +182,22 @@ function setInitialScrollingPosition(block) {
       top: 0,
       left: item.offsetLeft - item.parentNode.offsetLeft,
     });
-  }
+  };
 
   let section = block.parentElement;
   while (!section.classList.contains('section') && section.parentElement) {
     section = section.parentElement;
   }
 
-  let observer = new MutationObserver((mutationList) => {
-    for (const mutation of mutationList) {
-      if (mutation.type === 'attributes' &&
-        mutation.attributeName === 'data-section-status' &&
-        section.attributes.getNamedItem('data-section-status').value === 'loaded') {
+  const observer = new MutationObserver((mutationList) => {
+    mutationList.forEach((mutation) => {
+      if (mutation.type === 'attributes'
+        && mutation.attributeName === 'data-section-status'
+        && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
         scrollToSelectedItem();
         observer.disconnect();
       }
-    }
+    });
   });
 
   observer.observe(section, { attributes: true });
