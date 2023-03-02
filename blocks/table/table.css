@@ -20,3 +20,11 @@
   vertical-align: top;
   text-align: left;
 }
+
+.table table th.center, .table table td.center {
+    text-align: center;
+}
+
+.table table th.right, .table table td.right {
+    text-align: right;
+}

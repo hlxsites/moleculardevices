@@ -1,6 +1,7 @@
-function buildCell(rowIndex) {
+function buildCell(rowIndex, dataAlign) {
     const cell = rowIndex ? document.createElement('td') : document.createElement('th');
     if (!rowIndex) cell.setAttribute('scope', 'col');
+    if (dataAlign) cell.className = dataAlign;
     return cell;
   }
   
@@ -14,8 +15,8 @@ function buildCell(rowIndex) {
       if (i) tbody.append(row);
       else thead.append(row);
       [...child.children].forEach((col) => {
-        const cell = buildCell(i);
-        cell.innerHTML = col.innerHTML;
+        const cell = buildCell(i, col.getAttribute('data-align'));
+        cell.innerHTML += col.innerHTML;
         row.append(cell);
       });
     });
