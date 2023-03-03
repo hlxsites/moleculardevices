@@ -55,7 +55,7 @@ main .section>div.accordion-wrapper {
     font-weight: 600;
 }
 
-.accordion-tab-content .gradiant-blue-btn.btn {
+.accordion-tab-content a.button.secondary {
     background: transparent;
     border: 1px solid #fff;
     padding: 16px 30px;
@@ -64,7 +64,7 @@ main .section>div.accordion-wrapper {
     text-align: center;
 }
 
-.accordion-tab-content .gradiant-blue-btn.btn:hover {
+.accordion-tab-content a.button.secondary:hover {
     border-color: #008da9;
     background: #008da9;
     color: #fff;
