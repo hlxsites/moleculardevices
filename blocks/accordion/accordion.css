@@ -262,7 +262,6 @@ main .section>div.accordion-wrapper {
     .accordion-tab-content .gradiant-blue-btn.btn {
         padding: 16px 24px;
         font-size: 12px;
-        padding: 9px 12px 10px;
         width: 100%;
         max-width: 200px;
         text-align: center;
@@ -272,6 +271,20 @@ main .section>div.accordion-wrapper {
     .active .accordion-tab-pane-inside h3,
     .active .accordion-tab-pane-inside .gradiant-blue-btn.btn {
         display:block;
+    }
+
+    .accordion-tab-btn {
+        position: relative;
+        background: transparent;
+        padding: 0;
+        font-size: 18px;
+        margin: 0;
+        outline: 0;
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        color:#fff;
     }
 
     .active .accordion-tab-btn {
@@ -299,19 +312,5 @@ main .section>div.accordion-wrapper {
     .accordion-tab-main-content > .accordion-tab-pane > img,
     .accordion-tab-main-content > .accordion-tab-pane > picture img {
         opacity: 0.8;
-    }
-
-    .accordion-tab-btn {
-        position: relative;
-        background: transparent;
-        padding: 0;
-        font-size: 18px;
-        margin: 0;
-        outline: 0;
-        display: block;
-        width: 100%;
-        text-align: left;
-        border: 0;
-        color:#fff;
     }
 }
