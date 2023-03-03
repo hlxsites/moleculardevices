@@ -113,3 +113,58 @@ main .full-video-container .video-cover {
   object-position: right;
   overflow: hidden;
 }
+
+main .full-video-container .close-video {
+  position: absolute;
+  top: 56px;
+  right: 56px;
+  z-index: 9999;
+  cursor: pointer;
+  background-color: rgba(0,0,0,.5);
+  padding: 10px;
+  border-radius: 50%;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+main .full-video-container .close-video-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  -ms-transform: rotate(-90deg) scale(1);
+  transform: rotate(-90deg) scale(1);
+  -webkit-transform: rotate(-90deg) scale(1);
+  -webkit-transition: .6s -webkit-transform cubic-bezier(0.19,1,.22,1);
+  transition: .6s -webkit-transform cubic-bezier(0.19,1,.22,1);
+  -o-transition: .6s transform cubic-bezier(0.19,1,.22,1);
+  transition: .6s transform cubic-bezier(0.19,1,.22,1);
+  transition: .6s transform cubic-bezier(0.19,1,.22,1),.6s -webkit-transform cubic-bezier(0.19,1,.22,1);
+  -webkit-transition: .6s transform cubic-bezier(0.19,1,.22,1);
+  cursor: pointer;
+  z-index: 3;
+  display: block;
+}
+
+main .full-video-container .close-video:hover {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+main .full-video-container .play-pause-fullscreen-button {
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  z-index: 2;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+}

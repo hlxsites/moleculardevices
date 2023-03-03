@@ -33,7 +33,7 @@ function createIcons(target, iconNames) {
   iconNames.forEach((iconName) => {
     const icon = document.createElement('span');
     icon.classList.add('icon');
-    icon.classList.add(`${iconName}`);
+    icon.classList.add(`icon-${iconName}`);
 
     target.appendChild(icon);
   });
@@ -52,7 +52,7 @@ function decorateFullScreenVideo(fullScreenVideoLink, target) {
   });
 
   const closeVideoButton = document.createElement('div');
-  closeVideoButton.classList.add('');
+  closeVideoButton.classList.add('close-video');
   createIcons(closeVideoButton, ['close-video']);
   closeVideoButton.addEventListener('click', () => {
     video.pause();
@@ -62,6 +62,7 @@ function decorateFullScreenVideo(fullScreenVideoLink, target) {
   });
 
   const playPauseVideoButton = document.createElement('div');
+  playPauseVideoButton.classList.add('play-pause-fullscreen-button');
   createIcons(playPauseVideoButton, ['full-screen-play', 'full-screen-pause']);
 
   fullVideoContainer.appendChild(closeVideoButton);
