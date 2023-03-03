@@ -9,18 +9,18 @@ function buildCell(rowIndex, colspan, dataAlign, dataVAlign) {
 function getNumberOfColumns(block) {
   // get max children length for colspan
   let maxCols = 1;
-  [...block.children].forEach((child, i) => {
-    if (child.children.length > 1) maxCols = child.children.length
+  [...block.children].forEach((child) => {
+    if (child.children.length > maxCols) maxCols = child.children.length;
   });
   return maxCols;
 }
 
 function calculateColspan(colIndex, cols, maxCols) {
   // calculate how many columns have to be merged
-  let colspan = 0
-  if ((cols != maxCols) && (cols == colIndex + 1)) {
+  let colspan = 0;
+  if ((cols !== maxCols) && (cols === colIndex + 1)) {
     colspan = maxCols - colIndex;
-  };
+  }
   return colspan;
 }
 
@@ -33,8 +33,11 @@ function calculateColspan(colIndex, cols, maxCols) {
     let cols = getNumberOfColumns(block);
     [...block.children].forEach((child, i) => {
       const row = document.createElement('tr');
-      if (i) tbody.append(row);
-      else thead.append(row);
+      if (i) {
+        tbody.append(row);
+      } else {
+        thead.append(row);
+      }
       [...child.children].forEach((col, j) => {
         let colspan = calculateColspan(j, child.children.length, cols);
         let dataAlign = col.getAttribute('data-align');
