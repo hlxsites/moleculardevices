@@ -25,34 +25,42 @@ footer > div > div > div:nth-child(-n+4) {
   footer > div > div > div:nth-child(6){
       text-align: center;
   }
+
   footer > div > div > div:nth-child(n+5) ul li {
     float: none;
     display: inline-block;
     padding-top: 0;
   }
+
   footer > div > div > div:nth-child(1) ul {
     display:none;     
   }
+
   footer > div > div > div:nth-child(1) h3 {
     margin-top: 0;
     margin-bottom: 20px;
   }
+
   footer > div > div > div:nth-child(3) {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
   footer > div > div > div:nth-child(5) ul li {
     padding-right: 32px;
     font-size: 21px;
   }
+
   footer > div > div > div:nth-child(6) {
     padding-bottom: 25px;
   }
+
   .footer-newsletter-form {
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom:20px;
   }
+
   .footer-news-events {
     margin-top: 40px;
   }
@@ -62,29 +70,35 @@ footer > div > div > div:nth-child(-n+4) {
   footer {
     width: 750px;
   }
+
   footer > div > div > div:nth-child(-n+4) {
     float: left;
     width: calc(25% - 37px);
     margin-bottom: 28px;
   }
+
   footer > div > div > div:nth-child(3) {
     margin-top:-16px;
   }
+
   footer > div > div > div:nth-child(5) ul li {
     float:left;
     padding-right: 32px;
   }
+
   footer > div > div > div:nth-child(6) p{
     float: left;
     width: 41.6666%;
     margin-top: 5px;
   }
+
   footer > div > div > div:nth-child(6) ul{
     float: right;
     width: 58.3333%;
     margin-top: 5px;
     text-align: right;
   }
+
   footer > div > div > div:nth-child(5) {
     padding-bottom: 25px;
   }
