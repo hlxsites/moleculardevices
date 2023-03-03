@@ -38,7 +38,11 @@ export default async function decorate(block) {
 
   const titles = footer.querySelectorAll('.footer-news-events h3');
   [...titles].forEach((title, i) => {
-    title.innerHTML = `<a>${title.textContent}</a>`;
+    const a = document.createElement('a');
+    a.textContent = title.textContent;
+    a.setAttribute('aria-label', title.textContent);
+    title.textContent = '';
+    title.append(a);
     title.querySelector('a').addEventListener('click', () => {
       switchGroup(title, i + 1);
     });

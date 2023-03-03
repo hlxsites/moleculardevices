@@ -1,8 +1,10 @@
 footer {
   --footer-font-family: 'Proxima Nova Rg', sans-serif;
   --footer-text-color: #333;
+  --footer-text-color-label: #5f696b;
   --footer-blue-text-color: #008da9;
   --footer-font-size: 16px;
+  --footer-font-size-xs: 10px;
 
   position:relative;
   background-image: url("research-bg.png");
@@ -48,7 +50,6 @@ footer > div > div > div:nth-child(-n+4) {
 
   footer > div > div > div:nth-child(5) ul li {
     padding-right: 32px;
-    font-size: 21px;
   }
 
   footer > div > div > div:nth-child(6) {
@@ -177,8 +178,8 @@ footer > div > div > div:nth-child(3) {
 
 footer > div > div > div:nth-child(3) p {
   border: none;
-  color: #5f696b;
-  font-size: 10px;
+  color: var(--footer-color-label);
+  font-size: var(--footer-font-size-xs);
   font-weight: 400;
   line-height: 1.43;
 }
@@ -196,6 +197,10 @@ footer > div > div > div:nth-child(5) {
   float:none;
   clear: both;
   border-top: 1px solid #ccc;
+}
+
+footer > div > div > div:nth-child(5) ul li {
+  font-size: 21px;
 }
 
 footer ul li:has(picture) {
@@ -244,7 +249,7 @@ footer ul li picture {
 }
 
 footer .icon svg {
-  color: #34393d;
+  color: var(--text-color);
   height: 20px;
 }
 
@@ -255,3 +260,4 @@ footer .icon svg {
 .footer-news-events > div.on{
   display: block;
 }
+
