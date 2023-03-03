@@ -34,10 +34,10 @@ export default async function decorate(block) {
       button.append(icon);
       button.textContent = title;
       const learnMore = document.createElement('a');
-      learnMore.classList.add('gradiantBlueBtn', 'btn', 'mt-30');
+      learnMore.classList.add('gradiant-blue-btn', 'btn', 'mt-30');
       learnMore.href = '/applications/3d-cell-models';
       const span = document.createElement('span');
-      span.classList.add('btn_bdr');
+      span.classList.add('btn-bdr');
       learnMore.append(span);
       learnMore.textContent = 'Learn More';
       tabContent.prepend(button);

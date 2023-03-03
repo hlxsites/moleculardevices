@@ -1,6 +1,6 @@
 main .section>div.accordion-wrapper {
   width: 100% !important;
-  padding: 0 0;   
+  padding: 0;   
 }
 
 .accordion-tab-main-content,
@@ -55,7 +55,7 @@ main .section>div.accordion-wrapper {
     font-weight: 600;
 }
 
-.accordion-tab-content .gradiantBlueBtn.btn {
+.accordion-tab-content .gradiant-blue-btn.btn {
     background: transparent;
     border: 1px solid #fff;
     padding: 16px 30px;
@@ -63,17 +63,15 @@ main .section>div.accordion-wrapper {
     display: block;
     text-align: center;
 }
-.accordion-tab-content .gradiantBlueBtn.btn:hover {
+
+.accordion-tab-content .gradiant-blue-btn.btn:hover {
     border-color: #008da9;
     background: #008da9;
     color: #fff;
 }
-.accordion-tab-content .gradiantBlueBtn.btn:hover .btn_bdr {
-    display: none;
-}
 
-.accordion-tab-content .gradiantBlueBtn.btn {
-    padding: 16px 24px;
+.accordion-tab-content .gradiant-blue-btn.btn:hover .btn-bdr {
+    display: none;
 }
 
 .mt-30 {
@@ -242,48 +240,26 @@ main .section>div.accordion-wrapper {
     .accordion-tab-list {
         display: none;
     }
+
     .accordion-tab-content h3 {
         padding-top: 16px;
         margin-bottom: 16px;
         font-size: 24px;
     }
+
     .accordion-tab-pane-inside,
     .accordion-tab-content {
         position: relative;
         padding:24px;
     }
+
     .accordion-tab-pane .accordion-tab-pane-inside p,
     .accordion-tab-pane .accordion-tab-pane-inside h3,
-    .accordion-tab-pane .gradiantBlueBtn.btn{
+    .accordion-tab-pane .gradiant-blue-btn.btn{
         display:none;
     }
-    .active .accordion-tab-pane-inside p,
-    .active .accordion-tab-pane-inside h3,
-    .active .accordion-tab-pane-inside .gradiantBlueBtn.btn {
-        display:block;
-    }
-    .active .accordion-tab-btn {
-        color: #008da9;
-        display:block;
-    }
-    .accordion-tab-main-content > .accordion-tab-pane {
-        border-bottom: 1px solid #fff;
-    }
-    .accordion-tab-content {
-        padding-left: 30px;
-    }
-    .image-controller-carousel {
-        margin-bottom: 40px;
-    }
-    .play-pause-fullscreen-button svg {
-        width: 100px;
-        height: 100px;
-    }
-    .accordion-tab-main-content > .accordion-tab-pane > picture img,
-    .accordion-tab-main-content > .accordion-tab-pane > img {
-        opacity: 0.8;
-    }
-    .accordion-tab-content .gradiantBlueBtn.btn {
+
+    .accordion-tab-content .gradiant-blue-btn.btn {
         padding: 16px 24px;
         font-size: 12px;
         padding: 9px 12px 10px;
@@ -291,6 +267,40 @@ main .section>div.accordion-wrapper {
         max-width: 200px;
         text-align: center;
     }
+
+    .active .accordion-tab-pane-inside p,
+    .active .accordion-tab-pane-inside h3,
+    .active .accordion-tab-pane-inside .gradiant-blue-btn.btn {
+        display:block;
+    }
+
+    .active .accordion-tab-btn {
+        color: #008da9;
+        display:block;
+    }
+
+    .accordion-tab-main-content > .accordion-tab-pane {
+        border-bottom: 1px solid #fff;
+    }
+
+    .accordion-tab-content {
+        padding-left: 30px;
+    }
+
+    .image-controller-carousel {
+        margin-bottom: 40px;
+    }
+
+    .play-pause-fullscreen-button svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .accordion-tab-main-content > .accordion-tab-pane > img,
+    .accordion-tab-main-content > .accordion-tab-pane > picture img {
+        opacity: 0.8;
+    }
+
     .accordion-tab-btn {
         position: relative;
         background: transparent;
