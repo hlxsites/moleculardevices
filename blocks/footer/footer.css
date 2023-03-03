@@ -50,15 +50,31 @@ footer h3 {
   font-family: var(--footer-font-family);
 }
 
-footer ul {
-  list-style: none;
-  padding-left: 0;
+.footer-news-events h3,
+.footer-news-events h3.off{
+  margin-top:0;
+  padding: 0 10px 10px;
+  border-bottom: 2px solid #ccc;
+  color: #adb3b7;
+}
+
+.footer-news-events h3 a {
+    padding: 10px;
 }
 
 footer h3 a:any-link {
   position:relative;
   color: var(--footer-blue-text-color);
   text-decoration: none;
+}
+
+footer h3:first-of-type {
+  margin-top:0;
+}
+
+footer ul {
+  list-style: none;
+  padding-left: 0;
 }
 
 footer > div > div > div:first-child {
@@ -154,22 +170,6 @@ footer > div > div > div:nth-child(6) p{
 
 .footer-news-events p:last-of-type a:any-link {
     color: var(--button-bg-color);
-}
-
-.footer-news-events h3,
-.footer-news-events h3.off{
-  margin-top:0;
-  padding: 0 10px 10px;
-  border-bottom: 2px solid #ccc;
-  color: #adb3b7;
-}
-
-.footer-news-events h3 a {
-    padding: 10px;
-}
-
-footer h3:first-of-type {
-  margin-top:0;
 }
 
 .footer-news-events h3:first-of-type {
