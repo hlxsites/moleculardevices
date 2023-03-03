@@ -84,6 +84,32 @@ main .overlay .video-banner-btn:hover {
   background-color: #000;
 }
 
+/* TODO figure out why we have a ~1px difference */
+main .overlay .video-banner-btn .icon {
+  max-height: 30px;
+}
+
 main .overlay .video-banner-btn svg {
   margin-right: 8px;
+}
+
+main .full-video-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+main .full-video-container .video-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+  overflow: hidden;
 }
