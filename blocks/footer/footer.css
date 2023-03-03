@@ -3,6 +3,7 @@ footer {
   --footer-text-color: #333;
   --footer-blue-text-color: #008da9;
   --footer-font-size: 16px;
+
   position:relative;
   background-image: url("research-bg.png");
   background-size: cover;
