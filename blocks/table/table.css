@@ -1,6 +1,7 @@
 .table {
   width: 100%;
   overflow-x: auto;
+  margin-top: 1em;
 }
 
 .table table {
@@ -11,20 +12,36 @@
 }
 
 .table table th {
-  background: #f3f3f3;
+  background: var(--light-gray-background-color);
 }
 
 .table table th, .table table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--light-border-color-gray);
   padding: 8px 8px;
+  text-align: left;
   vertical-align: top;
+}
+
+table th.text-align-left, table td.text-align-left {
   text-align: left;
 }
-
-.table table th.center, .table table td.center {
-    text-align: center;
+  
+table th.text-align-center, table td.text-align-center {
+  text-align: center;
 }
 
-.table table th.right, .table table td.right {
-    text-align: right;
+table th.text-align-right, table td.text-align-right {
+  text-align: right;
+}
+
+table th.vertical-align-top, table td.vertical-align-bottom {
+  vertical-align: top;
+}
+
+table th.vertical-align-middle,table td.vertical-align-bottom {
+  vertical-align: middle;
+}
+
+table th.vertical-align-bottom, table td.vertical-align-bottom {
+  vertical-align: bottom;
 }
