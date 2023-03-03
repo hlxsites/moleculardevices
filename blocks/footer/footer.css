@@ -199,12 +199,12 @@ footer > div > div > div:nth-child(5) {
   border-top: 1px solid #ccc;
 }
 
-footer > div > div > div:nth-child(5) ul li {
-  font-size: 21px;
-}
-
 footer ul li:has(picture) {
   padding-left: 37px;
+}
+
+footer > div > div > div:nth-child(5) ul li {
+  font-size: 21px;
 }
 
 footer > div > div > div:nth-child(6) ul li {
