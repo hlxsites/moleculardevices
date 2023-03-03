@@ -1,188 +1,201 @@
 footer {
-    --footer-font-family: 'Proxima Nova Rg', sans-serif;
-    --footer-text-color: #333;
-    --footer-blue-text-color: #008da9;
-    
-    position:relative;
-    background-image: url("research-bg.png");
-    background-size: cover;
-    max-width: 1200px;
-    margin: auto;
-    font-family: var(--footer-font-family);
-    font-size: 15px;
-    color: var(--footer-text-color);
-    line-height: 1.33;
+  --footer-font-family: 'Proxima Nova Rg', sans-serif;
+  --footer-text-color: #333;
+  --footer-blue-text-color: #008da9;
+  --footer-font-size: 16px;
+  position:relative;
+  background-image: url("research-bg.png");
+  background-size: cover;
+  max-width: 1200px;
+  margin: auto;
+  font-family: var(--footer-font-family);
+  font-size: 15px;
+  color: var(--footer-text-color);
+  line-height: 1.33;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   footer {
-    padding: 0 32px;
-  }  
+    width: 750px;
+  }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 992px) {
   footer {
-    max-width: var(--main-max-width);
-    margin: auto;
+  width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  footer {
+    width: 1170px;
   }
 }
 
 footer a:any-link {
-    color: var(--footer-text-color);
-    text-decoration: none;
+  color: var(--footer-text-color);
+  text-decoration: none;
 }
 
 footer a:hover {
-    color: #0066a4;
+  color: var(--link-hover-color);
 }
 
 footer h3 {
-    font-size: 16px;
-    font-weight: 100;
-    color: var(--footer-blue-text-color);
-    margin-top: 30px;
-    margin-bottom:10px;
-    font-family: var(--footer-font-family);
+  font-size: var(--footer-font-size);
+  font-weight: 100;
+  color: var(--footer-blue-text-color);
+  margin-top: 30px;
+  margin-bottom:10px;
+  font-family: var(--footer-font-family);
 }
 
 footer ul {
-    list-style: none;
-    padding-left: 0;
+  list-style: none;
+  padding-left: 0;
 }
 
 footer h3 a:any-link {
-    position:relative;
-    color: var(--footer-blue-text-color);
-    text-decoration: none;
+  position:relative;
+  color: var(--footer-blue-text-color);
+  text-decoration: none;
 }
 
 footer > div > div > div:first-child {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 footer > div > div > div:nth-child(-n+4) {
-    float: left;
-    width: calc(25% - 37px);
-    margin-bottom: 28px;
-    padding-right: 15px;
-    padding-left: 15px;
+  float: left;
+  width: calc(25% - 37px);
+  margin-bottom: 28px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 footer > div > div > div:nth-child(6),
 footer > div > div > div:nth-child(6) a {
-    font-size: 12.3px;
+  font-size: 12.3px;
 }
 
 footer > div > div > div:nth-child(3) {
-    background-color: #f0eff1;
-    margin-top:-16px;
-    padding-top:16px;
+  background-color: #f0eff1;
+  margin-top:-16px;
+  padding-top:16px;
 }
 
 footer > div > div > div:nth-child(3) p {
-    border: none;
-    color: #5f696b;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.43;
+  border: none;
+  color: #5f696b;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.43;
 }
 
 footer > div > div > div:nth-child(3) ul {
-    line-height: 1.66;
+  line-height: 1.66;
 }
 
 footer > div > div > div:nth-child(3) ul li a {
-    color: var(--footer-blue-text-color);
-    font-weight: 100;
+  color: var(--footer-blue-text-color);
+  font-weight: 100;
 }
 
 footer > div > div > div:nth-child(5) {
-    float:none;
-    clear: both;
-    border-top: 1px solid #ccc;
-    padding-bottom: 25px;
+  float:none;
+  clear: both;
+  border-top: 1px solid #ccc;
+  padding-bottom: 25px;
 }
 
 footer ul li:has(picture) {
-    padding-left: 37px;
+  padding-left: 37px;
 }
 
 footer > div > div > div:nth-child(5) ul li {
-    float:left;
-    padding-right: 32px;
+  float:left;
+  padding-right: 32px;
 }
 
 footer > div > div > div:nth-child(6) ul{
-    float: right;
-    width: 58.3333%;
-    margin-top: 5px;
-    text-align: right;
+  float: right;
+  width: 58.3333%;
+  margin-top: 5px;
+  text-align: right;
 }
 
 footer > div > div > div:nth-child(6) ul li {
-    margin-left: 7px;
-    display: inline-block;
+  margin-left: 7px;
+  display: inline-block;
 }
 
 footer > div > div > div:nth-child(4) ul li:first-child {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ccc;
-    margin-top:-20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-top:-20px;
 }
 
 footer ul li picture {
-    position: relative;
-    left: -37px;
-    top: 27px;
+  position: relative;
+  left: -37px;
+  top: 27px;
 }
 
 footer > div > div > div:nth-child(6) p{
-    float: left;
-    width: 41.6666%;
-    margin-top: 5px;
+  float: left;
+  width: 41.6666%;
+  margin-top: 5px;
 }
 
 .footer-news-events p:not(:last-child) {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.footer-news-events p:last-of-type a:any-link {
+    color: var(--button-bg-color);
 }
 
 .footer-news-events h3,
 .footer-news-events h3.off{
-    margin-top:0;
-    padding: 0 10px 10px;
-    border-bottom: 2px solid #ccc;
-    color: #adb3b7;
+  margin-top:0;
+  padding: 0 10px 10px;
+  border-bottom: 2px solid #ccc;
+  color: #adb3b7;
+}
+
+.footer-news-events h3 a {
+    padding: 10px;
 }
 
 footer h3:first-of-type {
-    margin-top:0;
+  margin-top:0;
 }
 
 .footer-news-events h3:first-of-type {
-    border-right: 2px solid var(--footer-blue-text-color);
-    float:left;
+  border-right: 2px solid var(--footer-blue-text-color);
+  float:left;
 }
 
 .footer-news-events h3:first-of-type:not(.off),
 .footer-news-events h3.on{
-    border-bottom: 2px solid var(--footer-blue-text-color);
-    color: var(--footer-blue-text-color);
+  border-bottom: 2px solid var(--footer-blue-text-color);
+  color: var(--footer-blue-text-color);
 }
 
 .footer-news-events > div:not(:nth-child(-n+2)) {
-    display: none;
+  display: none;
 }
 
 footer .icon svg {
-    color: #34393d;
-    height: 20px;
+  color: #34393d;
+  height: 20px;
 }
 
 .footer-news-events > div.off {
-    display:none;
+  display:none;
 }
 
 .footer-news-events > div.on{
-    display: block;
+  display: block;
 }
