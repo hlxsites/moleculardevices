@@ -1,0 +1,89 @@
+main .hero-video-wrapper {
+  position: relative;
+  width: 100% !important;
+  margin: 0 0 115px !important;
+  padding: 0 !important;
+  max-width: unset;
+  padding: 0;
+  height: 750px;
+  min-height: auto;
+}
+
+main .hero-video {
+  width: 100%;
+}
+
+main .hero-video-banner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+main .teaser-video-container {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+main .teaser-video-container video {
+  width: 100%;
+}
+
+main .teaser-video-container picture {
+  width: 100%;
+  display: none;
+}
+
+main .teaser-video-container::before {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1;
+  position: absolute;
+}
+
+main .overlay {
+  text-align: center;
+  z-index: 1;
+}
+
+main .overlay h1 {
+  font-family: var(--ff-proxima-light);
+  width: 1170px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1;
+  font-weight: 100;
+}
+
+main .overlay .video-banner-btn {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 16px 32px;
+  display: inline-flex;
+  align-items: center;
+  outline: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+main .overlay .video-banner-btn:hover {
+  background-color: #000;
+}
+
+main .overlay .video-banner-btn svg {
+  margin-right: 8px;
+}
