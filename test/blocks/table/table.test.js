@@ -11,6 +11,7 @@ const sleep = async (time = 1000) => new Promise((resolve) => {
 });
 
 describe('Table block', () => {
+  // eslint-disable-next-line no-undef
   before(async () => {
     const { decorateBlock, loadBlock } = await import('../../../scripts/lib-franklin.js');
     document.body.innerHTML = await readFile({ path: './block.html' });
