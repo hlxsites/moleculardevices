@@ -15,27 +15,34 @@
 const RESOURCE_MAPPING = [
   {
     match: ['/en/assets/app-note/'],
-    template: 'Application Note',
+    Template: 'Application Note',
   },
   {
     match: ['/en/assets/tutorials-videos/'],
-    template: 'Videos & Webinars',
+    Template: 'Videos & Webinars',
   },
   {
     match: ['/newsroom/in-the-news'],
-    template: 'Publication',
+    Template: 'Resource',
+    Category: 'Publication',
   },
   {
     match: ['/newsroom/news'],
-    template: 'News',
+    Template: 'Resource',
+    Category: 'News',
   },
   {
     match: ['/events'],
-    template: 'Events',
+    Template: 'Resource',
+    Category: 'Events',
   },
   {
     match: ['/applications/cell-counting'],
-    template: 'Cell Counter',
+    Template: 'Cell Counter',
+  },
+  {
+    match: ['/en/assets/customer-breakthrough'],
+    Template: 'Customer Breakthrough',
   },
 ];
 
@@ -75,7 +82,8 @@ const createMetadata = (main, url, document) => {
     e.match.some((match) => url.includes(match)),
   );
   if (resourceType) {
-    meta.Template = resourceType.template;
+    Object.assign(meta, resourceType);
+    delete meta.match;
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -154,9 +162,71 @@ const transformHero = (document) => {
         mediaGallery.remove();
       }
 
+      const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
+      if (customerStoryHeader) {
+        customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
+          const h4 = document.createElement('h4');
+          h4.innerHTML = label.innerHTML;
+          label.replaceWith(h4);
+        });
+        cells[0] = ['Hero (Customer Story)'];
+        cells.push([customerStoryHeader]);
+      }
+
       const table = WebImporter.DOMUtils.createTable(cells, document);
       hero.replaceWith(table);
     });
+};
+
+// special handling for the curved wave c2a section
+// must be called before transformSections
+const transformCurvedWaveFragment = (document) => {
+  const FRAGMENT_PATH = '/default-wave-fragment';
+  document
+    .querySelectorAll('div.content-section.cover-bg.curv-footer-top-section')
+    .forEach((section) => {
+      const a = document.createElement('a');
+      a.href = FRAGMENT_PATH;
+      a.textContent = FRAGMENT_PATH;
+      const cells = [['Fragment'], [a]];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      section.replaceWith(table);
+    });
+};
+
+// we have different usages of sections - with <section></section>, <div></div>
+const transformSections = (document) => {
+  document.querySelectorAll('section * section').forEach((section, index) => {
+    if (index > 0) {
+      section.firstChild.before(document.createElement('hr'));
+    }
+    const cells = [['Section Metadata']];
+    const styles = [];
+    if (section.classList.contains('grey_molecules_bg_top')) {
+      styles.push('Grey Molecules');
+    }
+    if (section.classList.contains('franklin-horizontal')) {
+      styles.push('Horizontal');
+    }
+    if (section.classList.contains('cover-bg')) {
+      styles.push('White Text');
+      const bgImage = extractBackgroundImage(section);
+      if (bgImage) {
+        const img = document.createElement('img');
+        img.src = bgImage;
+        img.alt = 'Background Image';
+        cells.push(['background', img]);
+      }
+    }
+    if (styles.length > 0) {
+      cells.push(['style', styles.toString()]);
+    }
+
+    if (cells.length > 1) {
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      section.after(table);
+    }
+  });
 };
 
 const transformTabsNav = (document) => {
@@ -185,7 +255,9 @@ const transformProductFeatureList = (block, document) => {
   const features = block.querySelector('.overview-features');
   if (features) {
     const cells = [['Product Features']];
-    features.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
+    features
+      .querySelectorAll('li')
+      .forEach((item) => cells.push([...item.children]));
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
     features.replaceWith(table);
@@ -257,12 +329,67 @@ const transformTables = (document) => {
 };
 
 const transformColumns = (document) => {
-  document.querySelectorAll('.row > .col-sm-6:first-of-type').forEach((column) => {
-    const row = column.parentElement;
-    if (row.childElementCount > 1) {
-      const cells = [['Columns'], [...row.children]];
+  document
+    .querySelectorAll(
+      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type',
+    )
+    .forEach((column) => {
+      const row = column.parentElement;
+      if (row.childElementCount > 1) {
+        const cells = [['Columns'], [...row.children]];
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        row.replaceWith(table);
+      }
+    });
+};
+
+const transformReferenceToColumns = (document) => {
+  document.querySelectorAll('.reference-block').forEach((reference) => {
+    const cells = [['Columns'], [...reference.children]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    reference.replaceWith(table);
+  });
+};
+
+// special handling for products references in success story
+// must be called before transformSections
+const transformReferenceProducts = (document) => {
+  document
+    .querySelectorAll('.featured-applications-div')
+    .forEach((featuredProductsBlock) => {
+      const parentSection = featuredProductsBlock.closest('section');
+      parentSection.classList.add('franklin-horizontal');
+
+      const featuredProducts = featuredProductsBlock.querySelector(
+        '.view-customer-story-product',
+      );
+      const ul = document.createElement('ul');
+      featuredProducts
+        .querySelectorAll('.product-container')
+        .forEach((productDetails) => {
+          const li = document.createElement('li');
+          const a = productDetails.querySelector('a');
+          a.textContent = productDetails.querySelector('h3').textContent;
+          li.append(a);
+          ul.append(li);
+        });
+      const cells = [['Featured Products'], [ul]];
       const table = WebImporter.DOMUtils.createTable(cells, document);
-      row.replaceWith(table);
+      featuredProducts.replaceWith(table);
+    });
+};
+
+const transformQuote = (document) => {
+  document.querySelectorAll('.testimonials').forEach((quote) => {
+    const quoteText = quote.querySelector('em');
+    const blockquote = document.createElement('blockquote');
+    blockquote.innerHTML = quoteText.innerHTML;
+    quoteText.replaceWith(blockquote);
+    const quoteAuthor = quote.querySelector('label');
+    if (quoteAuthor) {
+      const em = document.createElement('em');
+      em.innerHTML = quoteAuthor.innerHTML;
+      quoteAuthor.replaceWith(em);
     }
   });
 };
@@ -272,6 +399,14 @@ const transformImageCaption = (document) => {
     const captionWrapper = document.createElement('em');
     captionWrapper.innerHTML = caption.innerHTML;
     caption.replaceWith(captionWrapper);
+  });
+};
+
+const transformShareStory = (document) => {
+  document.querySelectorAll('.share-story').forEach((share) => {
+    const cells = [['Share Story'], [share.querySelector('h3')]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    share.replaceWith(table);
   });
 };
 
@@ -323,13 +458,15 @@ const transformProductApplications = (document) => {
     const heading = div.querySelector('h2');
     const br = document.createElement('br');
     content.append(heading, br);
-    div.querySelectorAll('.view-product-resource-widyard .figure-container').forEach(application => {
-      const link = document.createElement('a');
-      link.textContent = application.querySelector('h2').textContent;
-      link.href = application.querySelector('a.linkBtn').href;
+    div
+      .querySelectorAll('.view-product-resource-widyard .figure-container')
+      .forEach((application) => {
+        const link = document.createElement('a');
+        link.textContent = application.querySelector('h2').textContent;
+        link.href = application.querySelector('a.linkBtn').href;
 
-      content.append(link, br.cloneNode());
-    });
+        content.append(link, br.cloneNode());
+      });
     const cells = [['Product Applications'], [content]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
@@ -452,7 +589,11 @@ export default {
       '.cart-store',
       '.procompare',
       '.share-event',
+      '.ins-nav-container',
       '.OneLinkShow_zh',
+      '.onetrust-consent-sdk',
+      '.drift-frame-chat',
+      '.drift-frame-controller',
     ]);
 
     // create the metadata block and append it to the main element
@@ -461,12 +602,18 @@ export default {
     // convert all blocks
     [
       cleanUp,
+      transformCurvedWaveFragment,
+      transformReferenceProducts,
+      transformSections,
       transformHero,
       transformTables,
       transformButtons,
       transformColumns,
+      transformReferenceToColumns,
       transformEmbeds,
+      transformQuote,
       transformImageCaption,
+      transformShareStory,
       transformTabsNav,
       transformTabsContent,
       transformProductOverview,
@@ -475,7 +622,7 @@ export default {
       transformRelatedProducts,
       transformResources,
       makeProxySrcs,
-      makeAbsoluteLinks
+      makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
 
     return main;
