@@ -75,7 +75,11 @@ const createMetadata = (main, url, document) => {
   if (docDate && docDate.textContent) {
     const date = new Date(docDate.textContent);
     if (date) {
-      meta['Publication Date'] = date.toLocaleDateString();
+      meta['Publication Date'] = date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
       docDate.remove();
     }
   }
