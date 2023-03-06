@@ -3,6 +3,8 @@ indices:
   default:
     include:
       - /**
+    exclude:
+      - '/drafts/**'
     target: /query-index.json
     properties:
       lastModified:
@@ -14,8 +16,14 @@ indices:
       image:
         select: head > meta[property="og:image"]
         value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      thumbnail:
+        select: main div.section:first-of-type img
+        value: attribute(el, "src")
       description:
         select: head > meta[name="description"]
+        value: attribute(el, "content")
+      type:
+        select: head > meta[name="template"]
         value: attribute(el, "content")
       category:
         select: head > meta[name="category"]
