@@ -92,7 +92,7 @@
   --nav-height: 64px;
 }
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -100,7 +100,7 @@ body {
   font-size: var(--body-font-size-m);
   margin: 0;
   font-family: var(--ff-proxima-regular);
-  line-height: 1.6;
+  line-height: 1.33;
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
@@ -118,7 +118,7 @@ h1, h2, h3,
 h4, h5, h6 {
   color: inherit;
   font-family: var(--heading-font-family);
-  line-height: 1;
+  line-height: 1.1;
   font-weight: 100;
   margin-top: 0;
   scroll-margin: calc(var(--nav-height) + 1em);
@@ -169,6 +169,7 @@ strong {
 /* buttons */
 a.button:any-link,
 button {
+  box-sizing: border-box;
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
   font-size: var(--body-font-size-m);
@@ -315,9 +316,7 @@ main .section>div {
 
   a.button:any-link, button {
     font-size: var(--body-font-size-xs);
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 8px;
+    padding: 8px 12px;
   }
 }
 
