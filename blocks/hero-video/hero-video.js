@@ -16,14 +16,14 @@ function decorateOverlayButton(block, overlay) {
   const initialButton = overlay.querySelector('a:last-of-type');
   const button = document.createElement('button');
   button.classList.add('video-banner-btn');
-  
+
   button.innerHTML = initialButton.innerHTML;
 
   button.addEventListener('click', () => {
     const fullVideoContainer = block.querySelector('.full-video-container');
     fullVideoContainer.style.display = 'block';
     fullVideoContainer.querySelector('video').play();
-  })
+  });
 
   overlay.appendChild(button);
   initialButton.remove();
@@ -41,15 +41,22 @@ function createIcons(target, iconNames) {
   decorateIcons(target);
 }
 
+function toggleVideoPlay(video) {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+}
+
 function decorateFullScreenVideo(fullScreenVideoLink, target) {
   const fullVideoContainer = document.createElement('div');
   fullVideoContainer.classList.add('full-video-container');
+
   const video = document.createElement('video');
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
-  video.addEventListener('click', () => {
-    video.paused ? video.play() : video.pause();
-  });
+  video.addEventListener('click', () => { toggleVideoPlay(video); });
 
   const closeVideoButton = document.createElement('div');
   closeVideoButton.classList.add('close-video');
@@ -64,6 +71,23 @@ function decorateFullScreenVideo(fullScreenVideoLink, target) {
   const playPauseVideoButton = document.createElement('div');
   playPauseVideoButton.classList.add('play-pause-fullscreen-button');
   createIcons(playPauseVideoButton, ['full-screen-play', 'full-screen-pause']);
+  playPauseVideoButton.addEventListener('click', () => { toggleVideoPlay(video); });
+
+  video.addEventListener('play', () => {
+    const [playIcon] = playPauseVideoButton.querySelectorAll('svg');
+    playIcon.style.opacity = 1;
+    setTimeout(() => {
+      playIcon.style.opacity = 0;
+    }, 400);
+  });
+
+  video.addEventListener('pause', () => {
+    const [, pauseIcon] = playPauseVideoButton.querySelectorAll('svg');
+    pauseIcon.style.opacity = 1;
+    setTimeout(() => {
+      pauseIcon.style.opacity = 0;
+    }, 400);
+  });
 
   fullVideoContainer.appendChild(closeVideoButton);
   fullVideoContainer.appendChild(playPauseVideoButton);
@@ -77,17 +101,17 @@ export default function decorate(block) {
 
   const heroContent = videoBanner.children[0];
   heroContent.classList.add('teaser-video-container');
-  
+
   const teaserVideoLink = heroContent.querySelector('a');
+  const placeholderPicture = heroContent.querySelector('img');
   decorateTeaserVideo(teaserVideoLink, heroContent);
 
-  const placeholderPicture = heroContent.querySelector('picture');
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
 
-  //TODO add checks
+  // TODO add checks
   const overlayLinks = overlay.querySelectorAll('a');
-  const fullScreenVideoLink = overlayLinks[overlayLinks.length -1];
+  const fullScreenVideoLink = overlayLinks[overlayLinks.length - 1];
   decorateOverlayButton(block, overlay);
   decorateFullScreenVideo(fullScreenVideoLink, videoBanner);
 }

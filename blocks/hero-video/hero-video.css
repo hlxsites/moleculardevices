@@ -35,9 +35,10 @@ main .teaser-video-container {
 
 main .teaser-video-container video {
   width: 100%;
+  display: none;
 }
 
-main .teaser-video-container picture {
+main .teaser-video-container img {
   width: 100%;
   display: none;
 }
@@ -167,4 +168,23 @@ main .full-video-container .play-pause-fullscreen-button {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%);
+}
+
+main .full-video-container .play-pause-fullscreen-button svg {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  display: none;
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  opacity: 0;
+  transition: .4s all linear;
 }
