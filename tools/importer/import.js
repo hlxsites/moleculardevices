@@ -69,6 +69,16 @@ const createMetadata = (main, url, document) => {
     meta.Image = el;
   }
 
+  // special handling for resource page images like news
+  // resource pages have two columns with image & text, we extract the image
+  // into meta data to keep the content clean
+  if (document.body.classList.contains('page-node-type-resources')) {
+    const docImage = document.querySelector('.marg-bt-15 .col-sm-4 img');
+    if (docImage) {
+      meta.Image = docImage;
+    }
+  }
+
   // detect dates from content
   // TODO can this be read from export?
   const docDate = document.querySelector('.event-block > cite');
@@ -230,16 +240,6 @@ const transformSections = (document) => {
       section.after(table);
     }
   });
-
-  // resource pages have two columns with image & text, we need a section after
-  // the image for the two column layout
-  // see https://www.moleculardevices.com/newsroom/news/hub-organoids-to-advance-automated-intestinal-organoid-screening-technology
-  if (document.body.classList.contains('page-node-type-resources')) {
-    const docImage = document.querySelector('.marg-bt-15 .col-sm-4 img');
-    if (docImage) {
-      docImage.parentElement.append(document.createElement('hr'));
-    }
-  }
 };
 
 const transformTabsNav = (document) => {
