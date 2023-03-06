@@ -81,15 +81,14 @@
   width: calc(100% - 56px)
 }
 
-.columns.contact > div ul li span.icon,
-.columns.contact > div ul li img {
+.columns.contact > div ul li span.icon{
   float: left;
   padding-right: 20px
 }
 
 .columns.contact > div ul li span.icon,
 .columns.contact > div > div > ul > li > i {
-  width: 36px
+  width: 56px
 }
 
 .columns.contact > div ul li span.icon svg,
@@ -98,9 +97,9 @@
   height: 32px;
   object-fit: contain;
   vertical-align: top;
-  width: 32px
 }
 
+.columns.contact > div ul li span.icon-spectra img,
 .columns.contact > div ul li span.icon-spectra svg {
   height: 40px
 }
