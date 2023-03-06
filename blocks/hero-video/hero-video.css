@@ -35,7 +35,6 @@ main .teaser-video-container {
 
 main .teaser-video-container video {
   width: 100%;
-  display: none;
 }
 
 main .teaser-video-container img {
