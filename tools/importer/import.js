@@ -73,8 +73,11 @@ const createMetadata = (main, url, document) => {
   // TODO can this be read from export?
   const docDate = document.querySelector('.event-block > cite');
   if (docDate && docDate.textContent) {
-    meta.PublicationDate = docDate.textContent.trim();
-    docDate.remove();
+    const date = new Date(docDate.textContent);
+    if (date) {
+      meta['Publication Date'] = date.toLocaleDateString();
+      docDate.remove();
+    }
   }
 
   // detect resource type
