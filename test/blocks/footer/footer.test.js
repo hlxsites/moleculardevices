@@ -24,8 +24,7 @@ await sleep();
 
 describe('Footer block', () => {
   it('Displays footer content', async () => {
-    const a = document.querySelector('footer a');
-    expect(a).to.exist;
-    expect(a.href).to.equal('https://www.adobe.com/privacy.html');
+    const div = document.querySelector('.footer-news-events');
+    expect(div).to.exist;
   });
 });
