@@ -130,8 +130,8 @@ regionalTabs.forEach((tab, index) => {
     /* eslint no-plusplus: "error" */
     for (let i = 0; i < grandParents.children.length; i += 1) {
       if (grandParents.children[i].id === country.toLowerCase()) {
-        [...tabParents.children].forEach((tabItem, index) =>{
-          if (index !== 0) {
+        [...tabParents.children].forEach((tabItem, ind) => {
+          if (ind !== 0) {
             grandParents.children[i].children[1].appendChild(tabItem);
             tabParents.remove();
           }
