@@ -33,7 +33,8 @@ function decorateTeaser(video, teaserPicture, target) {
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('title', video.title);
-  let mql = window.matchMedia('only screen and (max-width: 768px)');
+
+  const mql = window.matchMedia('only screen and (max-width: 768px)');
   if (mql.matches) {
     videoTag.setAttribute('preload', 'none');
   } else {
