@@ -1,31 +1,30 @@
-const liId = "li-of-";
+const liId = 'li-of-';
 
 function toggleTab(block, li) {
-    let isActive = false;
-    if (li.closest('.active')) {
-        isActive = true;
-    }
-    let active = block.querySelector('li.active');
+  let isActive = false;
+  if (li.closest('.active')) {
+    isActive = true;
+  }
+  let active = block.querySelector('li.active');
+  if (active) {
+    active.classList.remove('active');
+  }
+  active = block.querySelector('div.active');
+  if (active) {
+    active.classList.remove('active');
+  }
+  if (!isActive) {
+    active = block.querySelector(`#${li.id}`);
     if (active) {
-        active.classList.remove('active');
+      active.classList.add('active');
     }
-    active = block.querySelector('div.active');
+    const id = `${li.id.substr(liId.length)}`;
+    active = document.getElementById(`${li.id.substr(liId.length)}`);
     if (active) {
-        active.classList.remove('active');
+      active.parentElement.parentElement.parentElement.parentElement.classList.add('active');
     }
-    if (!isActive) {
-      active = block.querySelector(`#${li.id}`);
-      if (active) {
-        active.classList.add('active');
-      }
-      const id = `${li.id.substr(liId.length)}`;
-      active = document.getElementById(`${li.id.substr(liId.length)}`);
-      if (active) {
-        active.parentElement.parentElement.parentElement.parentElement.classList.add('active');
-      }
-    }
+  }
 }
-
 
 export default async function decorate(block) {
   block.classList.add('accordion-tab-wrapper');
@@ -37,9 +36,11 @@ export default async function decorate(block) {
   ul.classList.add('nav', 'nav-tabs');
   const viewsElementContainer = document.createElement('div');
   viewsElementContainer.classList.add('views-element-container', 'accordion-tab-main-content');
+
   [...block.children].forEach((row, i) => {
     if (i !== 0) {
-      const id = row.querySelector('h3').id;
+      const h3 = row.querySelector('h3');
+      const id = h3.id;
       const titleDiv = row.querySelector('div');
       const title = titleDiv.textContent;
       const li = document.createElement('li');
@@ -54,7 +55,6 @@ export default async function decorate(block) {
       li.appendChild(a);
       ul.appendChild(li);
       titleDiv.remove();
-        
       const button = document.createElement('button');
       button.classList.add('accordion-tab-btn');
       const icon = document.createElement('i');
@@ -83,10 +83,9 @@ export default async function decorate(block) {
         tabPane.classList.add('active');
       }
       viewsElementContainer.appendChild(tabPane);
-        
     }
   });
+
   viewContent.append(ul);
   block.appendChild(viewsElementContainer);
 }
-
