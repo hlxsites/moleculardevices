@@ -39,7 +39,7 @@ export default async function decorate(block) {
   [...block.children].forEach((row, i) => {
     if (i !== 0) {
       const h3 = row.querySelector('h3');
-      const {id} = h3;
+      const { id } = h3;
       const titleDiv = row.querySelector('div');
       const title = titleDiv.textContent;
       const li = document.createElement('li');
