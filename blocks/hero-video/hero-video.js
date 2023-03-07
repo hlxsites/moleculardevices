@@ -1,27 +1,46 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
-function decorateTeaserVideo(video, placeholderPicture, target) {
+function decorateTeaser(video, teaserPicture, target) {
+  if(!video && !teaserPicture) {
+    //nothing to decorate
+    return;
+  }
+
+  if (!video) {
+    // author didn't configure a teaser video
+    // we'll use the image as the hero content for all screen sizes
+    teaserPicture.style.setProperty('display', 'block', 'important');
+    teaserPicture.classList.add('video-cover');
+    return;
+  }
+
   const videoTag = document.createElement('video');
+  if (!teaserPicture) {
+    // author didn't configure a teaser picture
+    // we'll use the video for all screen sizes
+    videoTag.style.setProperty('display', 'block', 'important');
+  } else {
+    teaserPicture.classList.add('video-cover');
+    videoTag.setAttribute('poster', teaserPicture.currentSrc);
+  }
+
   videoTag.classList.add('video-cover');
-  placeholderPicture.classList.add('video-cover');
   videoTag.toggleAttribute('autoplay', true);
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('title', video.title);
   videoTag.setAttribute('preload', 'metadata');
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
-  videoTag.setAttribute('poster', placeholderPicture.currentSrc);
   target.appendChild(videoTag);
   videoTag.muted = true;
   video.remove();
 }
 
-function decorateOverlayButton(block, overlay) {
-  const initialButton = overlay.querySelector('a:last-of-type');
+function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
   const button = document.createElement('button');
   button.classList.add('video-banner-btn');
 
-  button.innerHTML = initialButton.innerHTML;
+  button.innerHTML = fullScreenVideoLink.innerHTML;
 
   button.addEventListener('click', () => {
     const fullVideoContainer = block.querySelector('.full-video-container');
@@ -30,7 +49,7 @@ function decorateOverlayButton(block, overlay) {
   });
 
   overlay.appendChild(button);
-  initialButton.remove();
+  fullScreenVideoLink.remove();
 }
 
 function createIcons(target, iconNames) {
@@ -53,7 +72,7 @@ function toggleVideoPlay(video) {
   }
 }
 
-async function decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, target) {
+async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, target) {
   const fullVideoContainer = document.createElement('div');
   fullVideoContainer.classList.add('full-video-container');
 
@@ -61,7 +80,7 @@ async function decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, 
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
   video.setAttribute('preload', 'metadata');
-  video.setAttribute('poster', placeholderPicture.currentSrc);
+  video.setAttribute('poster', teaserPicture.currentSrc);
 
   video.addEventListener('click', () => { toggleVideoPlay(video); });
 
@@ -110,15 +129,17 @@ export default function decorate(block) {
   heroContent.classList.add('teaser-video-container');
 
   const teaserVideoLink = heroContent.querySelector('a');
-  const placeholderPicture = heroContent.querySelector('img');
-  decorateTeaserVideo(teaserVideoLink, placeholderPicture, heroContent);
+  const teaserPicture = heroContent.querySelector('img');
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
 
-  // TODO add checks
-  const overlayLinks = overlay.querySelectorAll('a');
-  const fullScreenVideoLink = overlayLinks[overlayLinks.length - 1];
-  decorateOverlayButton(block, overlay);
-  decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, videoBanner);
+  const fullScreenVideoLink = overlay.querySelector('a:last-of-type');
+  if (!fullScreenVideoLink) {
+    return;
+  }
+  const fullScreenVideoLinkHref = fullScreenVideoLink.href;
+  decorateOverlayButton(fullScreenVideoLink, block, overlay);
+  decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
 }
