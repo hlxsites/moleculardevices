@@ -254,6 +254,7 @@ main .section>div.accordion-wrapper {
 
     .accordion-tab-content {
         display: none;
+        padding-left: 30px;
     }
 
     .active .accordion-tab-content {
@@ -295,10 +296,6 @@ main .section>div.accordion-wrapper {
 
     .accordion-tab-main-content > .accordion-tab-pane {
         border-bottom: 1px solid #fff;
-    }
-
-    .accordion-tab-content {
-        padding-left: 30px;
     }
 
     .image-controller-carousel {
