@@ -40,6 +40,10 @@ main .teaser-video-container img {
   display: none;
 }
 
+main .teaser-video-container p {
+  display: none !important;
+}
+
 main .teaser-video-container::before {
   content: "";
   top: 0;

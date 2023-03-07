@@ -1,8 +1,13 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
+function decorateTeaserPicture(teaserPicture, target) {
+  teaserPicture.classList.add('video-cover');
+  target.appendChild(teaserPicture.parentElement);
+}
+
 function decorateTeaser(video, teaserPicture, target) {
-  if(!video && !teaserPicture) {
-    //nothing to decorate
+  if (!video && !teaserPicture) {
+    // nothing to decorate
     return;
   }
 
@@ -10,7 +15,7 @@ function decorateTeaser(video, teaserPicture, target) {
     // author didn't configure a teaser video
     // we'll use the image as the hero content for all screen sizes
     teaserPicture.style.setProperty('display', 'block', 'important');
-    teaserPicture.classList.add('video-cover');
+    decorateTeaserPicture(teaserPicture, target);
     return;
   }
 
@@ -20,8 +25,8 @@ function decorateTeaser(video, teaserPicture, target) {
     // we'll use the video for all screen sizes
     videoTag.style.setProperty('display', 'block', 'important');
   } else {
-    teaserPicture.classList.add('video-cover');
     videoTag.setAttribute('poster', teaserPicture.currentSrc);
+    decorateTeaserPicture(teaserPicture, target);
   }
 
   videoTag.classList.add('video-cover');
