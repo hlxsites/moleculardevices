@@ -1,6 +1,10 @@
 const liId = "li-of-";
 
 function toggleTab(block, li) {
+    let isActive = false;
+    if (li.closest('.active')) {
+        isActive = true;
+    }
     let active = block.querySelector('li.active');
     if (active) {
         active.classList.remove('active');
@@ -9,14 +13,16 @@ function toggleTab(block, li) {
     if (active) {
         active.classList.remove('active');
     }
-    active = block.querySelector(`#${li.id}`);
-    if (active) {
+    if (!isActive) {
+      active = block.querySelector(`#${li.id}`);
+      if (active) {
         active.classList.add('active');
-    }
-    const id = `${li.id.substr(liId.length)}`;
-    active = document.getElementById(`${li.id.substr(liId.length)}`);
-    if (active) {
-        active.parentElement.parentElement.classList.add('active');
+      }
+      const id = `${li.id.substr(liId.length)}`;
+      active = document.getElementById(`${li.id.substr(liId.length)}`);
+      if (active) {
+        active.parentElement.parentElement.parentElement.parentElement.classList.add('active');
+      }
     }
 }
 
@@ -47,25 +53,37 @@ export default async function decorate(block) {
       });
       li.appendChild(a);
       ul.appendChild(li);
-      row.classList.add('accordion-tab-pane', 'tab-pane', 'fade');
-      if (i === 1) {
-        li.classList.add('active');
-        row.classList.add('in', 'active');
-      }
       titleDiv.remove();
-      const tabPaneInside = row.querySelector('div');
-      tabPaneInside.classList.add('accordion-tab-content', 'accordion-tab-pane-inside');
+        
       const button = document.createElement('button');
       button.classList.add('accordion-tab-btn');
       const icon = document.createElement('i');
       icon.classList.add('fa', 'fa-plus');
       button.append(icon);
       button.textContent = title;
-      const tabContent = document.createElement('div');
-      tabContent.classList.add('accordion-tab-content');
-      row.prepend(tabContent);
-      row.prepend(picture);
-      viewsElementContainer.appendChild(row);
+      button.addEventListener('click', () => {
+        toggleTab(block, li);
+      });
+      const tabPane = document.createElement('div');
+      tabPane.classList.add('accordion-tab-pane');
+      const tabPaneInside = document.createElement('div');
+      tabPaneInside.classList.add('accordion-tab-pane-inside');
+      if (window.innerWidth >= 768) {
+        tabPaneInside.style.width = `${Math.round(window.innerWidth * 0.55)}px`;
+      } else {
+        tabPaneInside.style.width = `${Math.round(window.innerWidth * 0.95)}px`;
+      }
+      row.classList.add('accordion-tab-content');
+      tabPane.prepend(picture);
+      tabPane.append(tabPaneInside);
+      tabPaneInside.prepend(button);
+      tabPaneInside.append(row);
+      if (i === 1) {
+        li.classList.add('active');
+        tabPane.classList.add('active');
+      }
+      viewsElementContainer.appendChild(tabPane);
+        
     }
   });
   viewContent.append(ul);

@@ -60,7 +60,6 @@ main .section>div.accordion-wrapper {
     border: 1px solid #fff;
     padding: 16px 30px;
     color: #fff;
-    display: block;
     text-align: center;
 }
 
@@ -253,12 +252,14 @@ main .section>div.accordion-wrapper {
         padding:24px;
     }
 
-    .accordion-tab-pane .accordion-tab-pane-inside p,
-    .accordion-tab-pane .accordion-tab-pane-inside h3,
-    .accordion-tab-pane .gradiant-blue-btn.btn{
-        display:none;
+    .accordion-tab-content {
+        display: none;
     }
 
+    .active .accordion-tab-content {
+        display: block;
+    }
+    
     .accordion-tab-content .gradiant-blue-btn.btn {
         padding: 16px 24px;
         font-size: 12px;
