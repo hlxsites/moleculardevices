@@ -1,4 +1,7 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import {
+  decorateIcons,
+  createOptimizedPicture,
+} from '../../scripts/lib-franklin.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
   teaserPicture.classList.add('video-cover');
@@ -147,6 +150,8 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
+  teaserPicture.closest('picture').replaceWith(createOptimizedPicture(teaserPicture.src, teaserPicture.alt, true));
+
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
   const overlay = videoBanner.children[1];
