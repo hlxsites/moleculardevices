@@ -49,6 +49,7 @@
   /* colors */
   --text-color: #34393d;
   --text-white: #fff;
+  --text-gray: #6a747c;
   --heading-color: #00758d;
   --text-green: #6eb43f;
   --link-color: #337ab7;
@@ -166,6 +167,20 @@ pre {
 
 strong {
   font-family: var(--ff-proxima-xbold);
+}
+
+em {
+  font-style: italic;
+  margin: 0 0 25px 0;
+  font-size:var(--body-font-size-xs);
+  display: block;
+  margin-top: 15px;
+  color: var(--text-gray);
+}
+
+em strong {
+  font-family: var(--ff-proxima-regular);
+  font-weight: 700;
 }
 
 /* buttons */
@@ -295,6 +310,13 @@ main img, main video {
   max-width: 100%;
   width: auto;
   height: auto;
+}
+
+main img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border: 0;
 }
 
 main .section>div {
