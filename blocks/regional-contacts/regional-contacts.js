@@ -7,7 +7,7 @@ function tabHandler(event) {
   const tabCount = this.parentElement.children.length;
 
   /* eslint no-plusplus: "error" */
-  for (let i = 0; i < tabCount; i = i + 1) {
+  for (let i = 0; i < tabCount; i += 1) {
     this.parentElement.children[i].classList.remove('active');
     if (tabContents[i].id === tabID) {
       tabContents[i].style.display = 'block';
@@ -39,24 +39,13 @@ function createTabButtons(tabWrapper, tabName, tabClassName, index) {
 /* ================ CREATE TAB BUTTONS ===================== */
 
 /* ================ Accordian HANDLER ===================== */
-function createAccordian(tab, plusIcon, index) {
-  if (index === 0) {
-    plusIcon.classList.remove('fa-plus');
-    plusIcon.classList.add('fa-minus');
-    tab.nextElementSibling.classList.add('active');
-  }
-
-  tab.appendChild(plusIcon);
-  tab.addEventListener('click', accordianHandler);
-}
-
 function accordianHandler() {
   const siblings = this.parentElement.parentElement.children;
   const siblingsCount = siblings.length;
 
   if (this.children[0].classList.contains('fa-plus')) {
     /* eslint no-plusplus: "error" */
-    for (let i = 0; i < siblingsCount; i = i + 1) {
+    for (let i = 0; i < siblingsCount; i += 1) {
       siblings[i].children[0].children[0].classList.add('fa-plus');
       siblings[i].children[0].children[0].classList.remove('fa-minus');
       siblings[i].children[1].classList.remove('active');
@@ -72,6 +61,19 @@ function accordianHandler() {
 }
 /* ================ Accordian HANDLER ===================== */
 
+/* ================ CREATE Accordian BUTTONS ===================== */
+function createAccordian(tab, plusIcon, index) {
+  if (index === 0) {
+    plusIcon.classList.remove('fa-plus');
+    plusIcon.classList.add('fa-minus');
+    tab.nextElementSibling.classList.add('active');
+  }
+
+  tab.appendChild(plusIcon);
+  tab.addEventListener('click', accordianHandler);
+}
+/* ================ CREATE Accordian BUTTONS ===================== */
+
 const parent = document.querySelector('.regional-contacts-wrapper');
 const nextChild = parent.querySelector('.regional-contacts');
 const regionalTabs = parent.querySelectorAll(
@@ -85,7 +87,7 @@ parent.insertBefore(tabWrapper, nextChild);
 
 const countryNames = [];
 
-regionalTabs.forEach(function (tab, index) {
+regionalTabs.forEach((tab, index) => {
   const country = tab.textContent;
   const tabParents = tab.parentElement;
   const grandParents = tab.parentElement.parentElement;
@@ -103,8 +105,8 @@ regionalTabs.forEach(function (tab, index) {
     tab.classList.add('accordian-btn');
     tab.parentElement.id = country.toLowerCase();
 
-    [...tabParents.children].forEach(function (tabItem, index) {
-      if (index !== 0) {
+    [...tabParents.children].forEach((tabItem, i) => {
+      if (i !== 0) {
         tabAccordianWrapper.appendChild(tabItem);
       }
     });
@@ -126,9 +128,9 @@ regionalTabs.forEach(function (tab, index) {
   } else {
     /* remove duplicate country data */
     /* eslint no-plusplus: "error" */
-    for (let i = 0; i < grandParents.children.length; i = i + 1) {
+    for (let i = 0; i < grandParents.children.length; i += 1) {
       if (grandParents.children[i].id === country.toLowerCase()) {
-        [...tabParents.children].forEach(function (tabItem, index) {
+        [...tabParents.children].forEach((tabItem, index) =>{
           if (index !== 0) {
             grandParents.children[i].children[1].appendChild(tabItem);
             tabParents.remove();
