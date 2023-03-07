@@ -310,6 +310,7 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        border-top: 1px solid var(--text-white);
     }
 
     .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper {

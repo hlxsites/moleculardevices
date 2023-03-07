@@ -1,20 +1,4 @@
 /* ================ TAB HANDLER ===================== */
-function createTabButtons(tabWrapper, tabName, tabClassName, index) {
-  const tabBtn = document.createElement('a');
-
-  tabBtn.textContent = tabName;
-  tabBtn.href = '#' + tabName.toLowerCase();
-  tabBtn.classList.add(tabClassName);
-
-  if (index === 0) {
-    tabBtn.classList.add('active');
-    document.getElementById(tabName.toLowerCase()).style.display = 'block';
-  }
-
-  tabBtn.addEventListener('click', tabHandler);
-  tabWrapper.appendChild(tabBtn);
-}
-
 function tabHandler(event) {
   event.preventDefault();
 
@@ -22,8 +6,8 @@ function tabHandler(event) {
   const tabContents = document.querySelectorAll('.tab-content');
   const tabCount = this.parentElement.children.length;
 
-  /*eslint no-plusplus: "error"*/
-  for (let i = 0; i < tabCount; i++) {
+  /* eslint no-plusplus: "error" */
+  for (let i = 0; i < tabCount; i = i + 1) {
     this.parentElement.children[i].classList.remove('active');
     if (tabContents[i].id === tabID) {
       tabContents[i].style.display = 'block';
@@ -36,44 +20,62 @@ function tabHandler(event) {
 }
 /* ================ TAB HANDLER ===================== */
 
+/* ================ CREATE TAB BUTTONS ===================== */
+function createTabButtons(tabWrapper, tabName, tabClassName, index) {
+  const tabBtn = document.createElement('a');
+
+  tabBtn.textContent = tabName;
+  tabBtn.href = `#${tabName.toLowerCase()}`;
+  tabBtn.classList.add(tabClassName);
+
+  if (index === 0) {
+    tabBtn.classList.add('active');
+    document.getElementById(tabName.toLowerCase()).style.display = 'block';
+  }
+
+  tabBtn.addEventListener('click', tabHandler);
+  tabWrapper.appendChild(tabBtn);
+}
+/* ================ CREATE TAB BUTTONS ===================== */
+
 /* ================ Accordian HANDLER ===================== */
 function createAccordian(tab, plusIcon, index) {
-    if (index === 0) {
-      plusIcon.classList.remove('fa-plus');
-      plusIcon.classList.add('fa-minus');
-      tab.nextElementSibling.classList.add('active');
-    }
+  if (index === 0) {
+    plusIcon.classList.remove('fa-plus');
+    plusIcon.classList.add('fa-minus');
+    tab.nextElementSibling.classList.add('active');
+  }
 
   tab.appendChild(plusIcon);
   tab.addEventListener('click', accordianHandler);
 }
 
 function accordianHandler() {
-    const tabSibling = this.nextElementSibling;
-//     const btnHeight = this.clientHeight;
-//   var height = tabSibling.clientHeight;
-//   console.log(btnHeight);
+  const siblings = this.parentElement.parentElement.children;
+  const siblingsCount = siblings.length;
 
   if (this.children[0].classList.contains('fa-plus')) {
-    tabSibling.classList.add('active');
-    // tabSibling.style.height = height + 'px';
+    /* eslint no-plusplus: "error" */
+    for (let i = 0; i < siblingsCount; i = i + 1) {
+      siblings[i].children[0].children[0].classList.add('fa-plus');
+      siblings[i].children[0].children[0].classList.remove('fa-minus');
+      siblings[i].children[1].classList.remove('active');
+    }
+    this.nextElementSibling.classList.add('active');
     this.children[0].classList.remove('fa-plus');
     this.children[0].classList.add('fa-minus');
   } else {
     this.children[0].classList.remove('fa-minus');
     this.children[0].classList.add('fa-plus');
-    // tabSibling.style.height = btnHeight + 'px';
-    tabSibling.classList.remove('active');
+    this.nextElementSibling.classList.remove('active');
   }
 }
 /* ================ Accordian HANDLER ===================== */
 
-const regionalTabs = document.querySelectorAll(
-  '.regional-contacts-wrapper .regional-contacts > div > div:first-child',
-);
 const parent = document.querySelector('.regional-contacts-wrapper');
-const nextChild = document.querySelector(
-  '.regional-contacts-wrapper .regional-contacts',
+const nextChild = parent.querySelector('.regional-contacts');
+const regionalTabs = parent.querySelectorAll(
+  '.regional-contacts > div > div:first-child',
 );
 
 /* create tab wrapper */
@@ -89,14 +91,9 @@ regionalTabs.forEach(function (tab, index) {
   const grandParents = tab.parentElement.parentElement;
 
   const tabAccordianWrapper = document.createElement('div');
-  const clearFloat = document.createElement('div');
   const plusIcon = document.createElement('i');
 
   tabAccordianWrapper.classList.add('tab-accordian-wrapper');
-
-  clearFloat.style.clear = 'both';
-  clearFloat.style.float = 'none';
-
   plusIcon.classList.add('fa', 'fa-plus');
 
   if (!countryNames.includes(country)) {
@@ -128,13 +125,11 @@ regionalTabs.forEach(function (tab, index) {
     }
   } else {
     /* remove duplicate country data */
-    /*eslint no-plusplus: "error"*/
-    for (let i = 0; i < grandParents.children.length; i++) {
+    /* eslint no-plusplus: "error" */
+    for (let i = 0; i < grandParents.children.length; i = i + 1) {
       if (grandParents.children[i].id === country.toLowerCase()) {
         [...tabParents.children].forEach(function (tabItem, index) {
           if (index !== 0) {
-            //   tabAccordianWrapper.appendChild(tabItem);
-            // grandParents.children[i].appendChild(clearFloat);
             grandParents.children[i].children[1].appendChild(tabItem);
             tabParents.remove();
           }
