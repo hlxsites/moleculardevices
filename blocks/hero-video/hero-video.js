@@ -1,7 +1,9 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
-function decorateTeaserVideo(video, target) {
+function decorateTeaserVideo(video, placeholderPicture, target) {
   const videoTag = document.createElement('video');
+  videoTag.classList.add('video-cover');
+  placeholderPicture.classList.add('video-cover');
   videoTag.toggleAttribute('autoplay', true);
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
@@ -56,6 +58,7 @@ function decorateFullScreenVideo(fullScreenVideoLink, target) {
   const video = document.createElement('video');
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
+  video.setAttribute('preload', 'none');
   video.addEventListener('click', () => { toggleVideoPlay(video); });
 
   const closeVideoButton = document.createElement('div');
@@ -104,7 +107,7 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const placeholderPicture = heroContent.querySelector('img');
-  decorateTeaserVideo(teaserVideoLink, heroContent);
+  decorateTeaserVideo(teaserVideoLink, placeholderPicture, heroContent);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';

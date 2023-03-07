@@ -4,13 +4,13 @@ main .hero-video-wrapper {
   margin: 0 0 115px !important;
   padding: 0 !important;
   max-width: unset;
-  padding: 0;
   height: 750px;
   min-height: auto;
 }
 
 main .hero-video {
   width: 100%;
+  min-height: 450px;
 }
 
 main .hero-video-banner {
@@ -23,7 +23,6 @@ main .hero-video-banner {
 }
 
 main .teaser-video-container {
-  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -34,11 +33,10 @@ main .teaser-video-container {
 }
 
 main .teaser-video-container video {
-  width: 100%;
+  display: block;
 }
 
 main .teaser-video-container img {
-  width: 100%;
   display: none;
 }
 
@@ -48,7 +46,7 @@ main .teaser-video-container::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0 0 0 / 50%);
   z-index: 1;
   position: absolute;
 }
@@ -56,11 +54,12 @@ main .teaser-video-container::before {
 main .overlay {
   text-align: center;
   z-index: 1;
+  width: 1170px;
+  padding: 15px;
 }
 
 main .overlay h1 {
   font-family: var(--ff-proxima-light);
-  width: 1170px;
   color: #fff;
   text-align: center;
   margin-bottom: 40px;
@@ -70,6 +69,7 @@ main .overlay h1 {
 
 main .overlay .video-banner-btn {
   background-color: transparent;
+  font-size: 18px;
   color: #fff;
   border: 1px solid #fff;
   padding: 16px 32px;
@@ -87,6 +87,7 @@ main .overlay .video-banner-btn:hover {
 /* TODO figure out why we have a ~1px difference */
 main .overlay .video-banner-btn .icon {
   max-height: 30px;
+  display: block;
 }
 
 main .overlay .video-banner-btn svg {
@@ -104,7 +105,7 @@ main .full-video-container {
   overflow: hidden;
 }
 
-main .full-video-container .video-cover {
+main .video-cover {
   position: relative;
   display: block;
   width: 100%;
@@ -120,14 +121,10 @@ main .full-video-container .close-video {
   right: 56px;
   z-index: 9999;
   cursor: pointer;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgb(0 0 0 / 50%);
   padding: 10px;
   border-radius: 50%;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
   transform: rotate(0deg);
-  -webkit-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
 
@@ -135,23 +132,14 @@ main .full-video-container .close-video-icon {
   position: relative;
   width: 20px;
   height: 20px;
-  -ms-transform: rotate(-90deg) scale(1);
   transform: rotate(-90deg) scale(1);
-  -webkit-transform: rotate(-90deg) scale(1);
-  -webkit-transition: .6s -webkit-transform cubic-bezier(0.19,1,.22,1);
-  transition: .6s -webkit-transform cubic-bezier(0.19,1,.22,1);
-  -o-transition: .6s transform cubic-bezier(0.19,1,.22,1);
   transition: .6s transform cubic-bezier(0.19,1,.22,1);
-  transition: .6s transform cubic-bezier(0.19,1,.22,1),.6s -webkit-transform cubic-bezier(0.19,1,.22,1);
-  -webkit-transition: .6s transform cubic-bezier(0.19,1,.22,1);
   cursor: pointer;
   z-index: 3;
   display: block;
 }
 
 main .full-video-container .close-video:hover {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
@@ -164,9 +152,7 @@ main .full-video-container .play-pause-fullscreen-button {
   left: 0;
   margin: 0 auto;
   z-index: 2;
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
 }
 
 main .full-video-container .play-pause-fullscreen-button svg {
@@ -177,13 +163,79 @@ main .full-video-container .play-pause-fullscreen-button svg {
   right: 0;
   bottom: 0;
   cursor: pointer;
-  -ms-transform: scale(0.9);
   transform: scale(0.9);
-  -webkit-transform: scale(0.9);
-  display: none;
   width: 150px;
   height: 150px;
   margin: auto;
   opacity: 0;
   transition: .4s all linear;
+}
+
+@media only screen and (max-width: 1200px) {
+  main .overlay {
+    width: 970px;
+  }
+
+  main .full-video-container {
+    background-color: #000;
+  }
+
+  main .full-video-container .video-cover {
+    object-fit: contain;
+  }
+
+  main .full-video-container .close-video {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  main .overlay {
+    width: 750px;
+  }
+}
+
+@media only screen and (max-width: 768px)  {
+  main .hero-video-wrapper {
+    height: unset;
+    min-height: 450px;
+  }
+
+  main .teaser-video-container video {
+    display: none;
+  }
+
+  main .teaser-video-container img {
+    display: block;
+  }
+
+  main .overlay {
+    margin-right: auto;
+    margin-left: auto;
+    width: unset;
+  }
+
+  main .full-video-container .play-pause-fullscreen-button svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  main .full-video-container .play-pause-fullscreen-button svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  main .overlay h1 {
+    font-size: 30px;
+  }
+
+  main .overlay .video-banner-btn {
+    white-space: unset;
+    line-height: 24px;
+  }
 }
