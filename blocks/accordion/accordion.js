@@ -18,7 +18,6 @@ function toggleTab(block, li) {
     if (active) {
       active.classList.add('active');
     }
-    const id = `${li.id.substr(liId.length)}`;
     active = document.getElementById(`${li.id.substr(liId.length)}`);
     if (active) {
       active.parentElement.parentElement.parentElement.parentElement.classList.add('active');
@@ -40,7 +39,7 @@ export default async function decorate(block) {
   [...block.children].forEach((row, i) => {
     if (i !== 0) {
       const h3 = row.querySelector('h3');
-      const id = h3.id;
+      const {id} = h3;
       const titleDiv = row.querySelector('div');
       const title = titleDiv.textContent;
       const li = document.createElement('li');
