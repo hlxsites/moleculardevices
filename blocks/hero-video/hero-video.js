@@ -30,11 +30,22 @@ function decorateTeaser(video, teaserPicture, target) {
   }
 
   videoTag.classList.add('video-cover');
-  videoTag.toggleAttribute('autoplay', true);
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('title', video.title);
-  videoTag.setAttribute('preload', 'metadata');
+  let mql = window.matchMedia('only screen and (max-width: 768px)');
+  if (mql.matches) {
+    videoTag.setAttribute('preload', 'none');
+  } else {
+    videoTag.toggleAttribute('autoplay', true);
+  }
+  mql.onchange = (e) => {
+    if (!e.matches) {
+      videoTag.toggleAttribute('autoplay', true);
+      videoTag.play();
+    }
+  };
+
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
   target.appendChild(videoTag);
   videoTag.muted = true;
@@ -84,7 +95,7 @@ async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, targe
   const video = document.createElement('video');
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
-  video.setAttribute('preload', 'metadata');
+  video.setAttribute('preload', 'none');
   video.setAttribute('poster', teaserPicture.currentSrc);
 
   video.addEventListener('click', () => { toggleVideoPlay(video); });
