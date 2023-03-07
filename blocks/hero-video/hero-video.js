@@ -10,7 +10,7 @@ function decorateTeaserVideo(video, placeholderPicture, target) {
   videoTag.setAttribute('title', video.title);
   videoTag.setAttribute('preload', 'metadata');
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
-  videoTag.setAttribute('poster', placeholderPicture.src);
+  videoTag.setAttribute('poster', placeholderPicture.currentSrc);
   target.appendChild(videoTag);
   videoTag.muted = true;
   video.remove();
@@ -61,7 +61,7 @@ async function decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, 
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
   video.setAttribute('preload', 'metadata');
-  video.setAttribute('poster', placeholderPicture.src);
+  video.setAttribute('poster', placeholderPicture.currentSrc);
 
   video.addEventListener('click', () => { toggleVideoPlay(video); });
 
