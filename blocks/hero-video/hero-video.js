@@ -8,7 +8,9 @@ function decorateTeaserVideo(video, placeholderPicture, target) {
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('title', video.title);
+  videoTag.setAttribute('preload', 'metadata');
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
+  videoTag.setAttribute('poster', placeholderPicture.src);
   target.appendChild(videoTag);
   videoTag.muted = true;
   video.remove();
@@ -51,14 +53,16 @@ function toggleVideoPlay(video) {
   }
 }
 
-function decorateFullScreenVideo(fullScreenVideoLink, target) {
+async function decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, target) {
   const fullVideoContainer = document.createElement('div');
   fullVideoContainer.classList.add('full-video-container');
 
   const video = document.createElement('video');
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
-  video.setAttribute('preload', 'none');
+  video.setAttribute('preload', 'metadata');
+  video.setAttribute('poster', placeholderPicture.src);
+
   video.addEventListener('click', () => { toggleVideoPlay(video); });
 
   const closeVideoButton = document.createElement('div');
@@ -116,5 +120,5 @@ export default function decorate(block) {
   const overlayLinks = overlay.querySelectorAll('a');
   const fullScreenVideoLink = overlayLinks[overlayLinks.length - 1];
   decorateOverlayButton(block, overlay);
-  decorateFullScreenVideo(fullScreenVideoLink, videoBanner);
+  decorateFullScreenVideo(fullScreenVideoLink, placeholderPicture, videoBanner);
 }
