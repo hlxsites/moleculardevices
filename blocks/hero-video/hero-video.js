@@ -149,8 +149,9 @@ export default function decorate(block) {
   heroContent.classList.add('teaser-video-container');
 
   const teaserVideoLink = heroContent.querySelector('a');
-  const teaserPicture = heroContent.querySelector('img');
+  let teaserPicture = heroContent.querySelector('img');
   teaserPicture.closest('picture').replaceWith(createOptimizedPicture(teaserPicture.src, teaserPicture.alt, true));
+  teaserPicture = heroContent.querySelector('img');
 
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
