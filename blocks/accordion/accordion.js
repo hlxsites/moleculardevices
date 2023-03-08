@@ -2,6 +2,8 @@ const liId = 'li-of-';
 
 function toggleTab(block, li) {
   let isActive = false;
+  let activeContent;
+  let activeContainer;
   if (li.closest('.active')) {
     isActive = true;
   }
@@ -9,9 +11,15 @@ function toggleTab(block, li) {
   if (active) {
     active.classList.remove('active');
   }
-  active = block.querySelector('div.active');
-  if (active) {
-    active.classList.remove('active');
+  const activeDiv = block.querySelector('div.active');
+  if (activeDiv) {
+    const activeTabContent = activeDiv.querySelector('.accordion-tab-content');
+    activeTabContent.style.height = '0px';
+    activeTabContent.addEventListener('transitionend', function () {
+      activeDiv.classList.remove('active');
+        }, {
+          once: true
+    });
   }
   if (!isActive) {
     active = block.querySelector(`#${li.id}`);
@@ -20,7 +28,15 @@ function toggleTab(block, li) {
     }
     active = document.getElementById(`${li.id.substr(liId.length)}`);
     if (active) {
-      active.parentElement.parentElement.parentElement.parentElement.classList.add('active');
+      activeContent = active.parentElement.parentElement;
+      activeContainer = activeContent.parentElement.parentElement;
+      activeContainer.classList.add('active');
+      activeContent.style.height = 'auto';
+      const height = (activeContent.clientHeight + 20) + 'px';
+      activeContent.style.height = '0px';
+      setTimeout(function () {
+         activeContent.style.height = height;
+      }, 0);
     }
   }
 }
@@ -80,6 +96,7 @@ export default async function decorate(block) {
       if (i === 1) {
         li.classList.add('active');
         tabPane.classList.add('active');
+        row.style.height = '261px';
       }
       viewsElementContainer.appendChild(tabPane);
     }

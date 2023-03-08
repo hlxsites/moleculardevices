@@ -246,8 +246,7 @@ main .section>div.accordion-wrapper {
         font-size: 24px;
     }
 
-    .accordion-tab-pane-inside,
-    .accordion-tab-content {
+    .accordion-tab-pane-inside {
         position: relative;
         padding:24px;
     }
@@ -255,10 +254,14 @@ main .section>div.accordion-wrapper {
     .accordion-tab-content {
         display: none;
         padding-left: 30px;
+        transition: height 0.5s ease-in-out;
+        position: relative;
+        padding: 0px 24px;
     }
 
     .active .accordion-tab-content {
         display: block;
+        overflow: hidden;
     }
     
     .accordion-tab-content .gradiant-blue-btn.btn {
@@ -310,5 +313,8 @@ main .section>div.accordion-wrapper {
     .accordion-tab-main-content > .accordion-tab-pane > img,
     .accordion-tab-main-content > .accordion-tab-pane > picture img {
         opacity: 0.8;
+    }
+    .button-container {
+        margin-top:30px;
     }
 }
