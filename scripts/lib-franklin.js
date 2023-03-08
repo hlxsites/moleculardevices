@@ -373,8 +373,6 @@ export async function loadBlock(block) {
           } catch (error) {
             // eslint-disable-next-line no-console
             console.log(`failed to load module for ${blockName}`, error);
-            // eslint-disable-next-line no-console
-            console.error(error);
           }
           resolve();
         })();
