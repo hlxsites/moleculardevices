@@ -14,15 +14,15 @@ function toggleTab(block, li) {
   const activeDiv = block.querySelector('div.active');
   if (activeDiv) {
     if (window.innerWidth <= 767) {
-    const activeTabContent = activeDiv.querySelector('.accordion-tab-content');
-    activeTabContent.style.height = '0px';
-    activeTabContent.addEventListener('transitionend', function () {
-      activeDiv.classList.remove('active');
-        }, {
-          once: true
-    });
-    } else {
+      const activeTabContent = activeDiv.querySelector('.accordion-tab-content');
+      activeTabContent.style.height = '0px';
+      activeTabContent.addEventListener('transitionend', function () {
         activeDiv.classList.remove('active');
+      }, {
+          once: true
+      });
+    } else {
+      activeDiv.classList.remove('active');
     }
   }
   if (!isActive) {
@@ -36,10 +36,10 @@ function toggleTab(block, li) {
       activeContainer = activeContent.parentElement.parentElement;
       activeContainer.classList.add('active');
       activeContent.style.height = 'auto';
-      const height = (activeContent.clientHeight + 20) + 'px';
+      const height = `${(activeContent.clientHeight + 20)}px`;
       activeContent.style.height = '0px';
       setTimeout(function () {
-         activeContent.style.height = height;
+        activeContent.style.height = height;
       }, 0);
     }
   }
