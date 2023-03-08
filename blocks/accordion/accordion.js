@@ -13,6 +13,7 @@ function toggleTab(block, li) {
   }
   const activeDiv = block.querySelector('div.active');
   if (activeDiv) {
+    if (window.innerWidth <= 767) {
     const activeTabContent = activeDiv.querySelector('.accordion-tab-content');
     activeTabContent.style.height = '0px';
     activeTabContent.addEventListener('transitionend', function () {
@@ -20,6 +21,9 @@ function toggleTab(block, li) {
         }, {
           once: true
     });
+    } else {
+        activeDiv.classList.remove('active');
+    }
   }
   if (!isActive) {
     active = block.querySelector(`#${li.id}`);
@@ -96,7 +100,7 @@ export default async function decorate(block) {
       if (i === 1) {
         li.classList.add('active');
         tabPane.classList.add('active');
-        row.style.height = '261px';
+        row.style.height = '260px';
       }
       viewsElementContainer.appendChild(tabPane);
     }
