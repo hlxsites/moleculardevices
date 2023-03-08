@@ -1,7 +1,7 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
-  teaserPicture.classList.add('video-cover');
+  teaserPicture.parentElement.classList.add('video-cover');
   target.appendChild(teaserPicture.parentElement);
 }
 
@@ -35,20 +35,21 @@ function decorateTeaser(video, teaserPicture, target) {
   videoTag.setAttribute('title', video.title);
 
   const mql = window.matchMedia('only screen and (max-width: 768px)');
-  if (mql.matches) {
-    videoTag.setAttribute('preload', 'none');
+  if (mql.matches && teaserPicture) {
+    videoTag.setAttribute('preload', 'metadata');
   } else {
     videoTag.toggleAttribute('autoplay', true);
   }
+
   mql.onchange = (e) => {
-    if (!e.matches) {
+    if (!e.matches && !videoTag.hasAttribute('autoplay')) {
       videoTag.toggleAttribute('autoplay', true);
       videoTag.play();
     }
   };
 
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
-  target.appendChild(videoTag);
+  target.prepend(videoTag);
   videoTag.muted = true;
   video.remove();
 }
@@ -96,7 +97,7 @@ async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, targe
   const video = document.createElement('video');
   video.classList.add('video-cover');
   video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
-  video.setAttribute('preload', 'none');
+  video.setAttribute('preload', 'metadata');
   video.setAttribute('poster', teaserPicture.currentSrc);
 
   video.addEventListener('click', () => { toggleVideoPlay(video); });
