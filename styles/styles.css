@@ -171,6 +171,9 @@ strong {
 
 em {
   font-style: italic;
+}
+
+.text-caption {
   margin: 0 0 25px;
   font-size:var(--body-font-size-xs);
   display: block;
