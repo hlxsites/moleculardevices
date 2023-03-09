@@ -170,7 +170,7 @@
   }
 
   .columns.contact > div > div > ul > li > i {
-    font-size: var(--heading-font-size-xxl);
+    font-size: 36px;
   }
 }
 
