@@ -15,6 +15,7 @@ footer {
   font-size: 15px;
   color: var(--footer-text-color);
   line-height: 1.33;
+  padding-top: 50px;
 }
 
 footer > div > div > div:nth-child(-n+4) {
