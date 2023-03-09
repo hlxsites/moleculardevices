@@ -179,11 +179,6 @@
     margin-bottom: 30px;
   }
 
-  .columns.contact > div > div > ul > li > i,
-  .columns.contact > div ul li span.icon {
-    width: 24px;
-  }
-
   .columns.contact > div > div > ul > li:not(:last-child)::after {
     width: calc(100% - 44px);
   }
