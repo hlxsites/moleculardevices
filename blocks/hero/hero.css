@@ -12,10 +12,7 @@ main .hero {
     position: relative;
     padding: 32px;
     min-height: 300px;
-}
-
-main .hero {
-  color: var(--text-white);
+    color: var(--text-white);
 }
 
 main .hero p {
