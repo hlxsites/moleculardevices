@@ -21,7 +21,6 @@ function toggleTab(block, li) {
 
   activeDiv = block.querySelector('div.active');
   if (activeDiv) {
-
     // switch toggle icon
     icon = activeDiv.querySelector('i');
     icon.classList.remove('fa-minus');
@@ -33,10 +32,9 @@ function toggleTab(block, li) {
       setTimeout(() => {
         activeDiv.classList.remove('active');
       }, 500);
-      } else {
-        activeDiv.classList.remove('active');
-      }
-
+    } else {
+      activeDiv.classList.remove('active');
+    }
   }
 
   // add active class to new active elements
@@ -84,10 +82,8 @@ export default async function decorate(block) {
 
   // manipulate block rows
   [...block.children].forEach((row, i) => {
-
     // first row is for list, content starts from second row
     if (i !== 0) {
-
       // build list item
       const h3 = row.querySelector('h3');
       const { id } = h3;
@@ -147,9 +143,7 @@ export default async function decorate(block) {
         icon.classList.add('fa-minus');
       }
       viewsElementContainer.appendChild(tabPane);
-
     }
-
   });
 
   viewContent.append(ul);
