@@ -1,9 +1,8 @@
 export default function decorate(block) {
-
   const container = document.createElement('div');
   container.classList.add('container');
 
-  [...block.children].forEach((div, index) => {
+  [...block.children].forEach((div) => {
     container.appendChild(div);
   });
 
@@ -11,5 +10,4 @@ export default function decorate(block) {
 
   const picture = block.querySelector('picture');
   block.prepend(picture.parentElement);
-
 }
