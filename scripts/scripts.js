@@ -37,7 +37,7 @@ function buildHeroBlock(main) {
  */
 async function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    // buildHeroBlock(main);
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
@@ -50,7 +50,6 @@ async function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
-  */
 }
 
 /**
