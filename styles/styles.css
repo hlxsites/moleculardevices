@@ -119,12 +119,20 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   color: inherit;
-  font-family: var(--heading-font-family);
   line-height: 1.1;
   font-weight: 100;
   margin-top: 0;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
+
+h1, h2 {
+  font-family: var(--ff-proxima-light);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--ff-proxima-regular);
+}
+
 
 h1 { font-size: var(--heading-font-size-xxl) }
 h2 { font-size: var(--heading-font-size-xl) }
@@ -351,6 +359,10 @@ main .section>div {
   color: var(--heading-color);
 }
 
+.homepage h2 {
+  margin-bottom: 30px;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -361,6 +373,10 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-.section.background-grey {
+main .section.background-grey {
   background-color: var(--grey-background-color);
+}
+
+main .section.center {
+  text-align: center;
 }
