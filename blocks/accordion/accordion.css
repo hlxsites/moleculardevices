@@ -81,6 +81,10 @@ main .section>div.accordion-wrapper {
     display:none;
 }
 
+.accordion-tab-btn i {
+    margin-right: 8px;
+}
+
 @media only screen and (min-width: 768px) {
     .accordion-tab-wrapper {
         display: -webkit-box;
