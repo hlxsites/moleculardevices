@@ -29,3 +29,24 @@
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
+.cards.leaders>ul>li>div.cards-card-body h2 {
+    font-size: 24px;
+    color: #34393d;
+    font-family: 'Proxima Nova Rg';
+    font-weight: bold;
+    margin-top: 0;
+}
+.cards.leaders>ul>li>div.cards-card-body h4 {
+    color: #34393d;
+    font-size: 14px;
+    line-height: 18px;
+    display: block;
+}
+.cards.leaders>ul>li>div.cards-card-body p {
+  
+    display: none;
+}
+.cards.leaders{
+    cursor: pointer;
+   
+}
