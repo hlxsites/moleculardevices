@@ -68,7 +68,6 @@ function toggleTab(block, li) {
 }
 
 export default async function decorate(block) {
-    
   // build the block structure
   block.classList.add('accordion-tab-wrapper');
   const accordionTabList = block.querySelector('div');
