@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -19,6 +18,7 @@ import TEMPLATE_LIST from '../templates/config.js';
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
+/*
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
@@ -29,6 +29,7 @@ function buildHeroBlock(main) {
     main.prepend(section);
   }
 }
+*/
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -49,6 +50,7 @@ async function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+  */
 }
 
 /**
@@ -82,12 +84,12 @@ async function loadEager(doc) {
  * Adds the favicon.
  * @param {string} href The favicon URL
  */
-export function addFavIcon(href) {
+export function addFavIcon(href, rel = 'icon') {
   const link = document.createElement('link');
-  link.rel = 'icon';
-  link.type = 'image/svg+xml';
+  link.rel = rel;
+  link.type = 'image/x-icon';
   link.href = href;
-  const existingLink = document.querySelector('head link[rel="icon"]');
+  const existingLink = document.querySelector(`head link[rel="${rel}"]`);
   if (existingLink) {
     existingLink.parentElement.replaceChild(link, existingLink);
   } else {
@@ -110,7 +112,8 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.svg`);
+  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
+  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'apple-touch-icon');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
