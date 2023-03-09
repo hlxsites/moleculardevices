@@ -137,13 +137,13 @@
     align-items: unset;
   }
 
+  .columns > div > div:first-of-type {
+    margin-left: unset;
+  }
+
   .columns.contact.columns-3-cols > div > div {
     flex-basis: 33.33%;
     width: 33.33%;
-  }
-
-  .columns > div > div:first-of-type {
-    margin-left: unset;
   }
 
   .columns.contact > div > div > p,
