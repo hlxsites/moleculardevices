@@ -88,8 +88,10 @@ main .section .hero-wrapper .hero .container > div:nth-child(2) .button-containe
     padding:15px;
   }
 
+  /* TODO fix heading vars in styles.css */
   main .hero h1 {
     margin-bottom:20px;
+    font-size: 36px;
   }
 
   main .section .hero-wrapper .hero .container > div:nth-child(1) > div > * {
@@ -103,11 +105,6 @@ main .section .hero-wrapper .hero .container > div:nth-child(2) .button-containe
 
   main .section .hero-wrapper .hero .container > div:nth-child(2) {
     border-top: 2px solid #fff;
-  }
-
-  /* TODO fix heading vars in styles.css */
-  main .hero h1 {
-    font-size: 36px;
   }
 }
 
