@@ -279,7 +279,15 @@ export function decorateSections(main) {
         if (key === 'style') {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
-        } else {
+        } else if (key === 'background') {
+          const { background } = meta;
+          if (background.startsWith('http')) {
+            section.style.backgroundImage = `url(${background})`;
+          } else {
+            section.style.background = background;
+          }
+        }
+        else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });

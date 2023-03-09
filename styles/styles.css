@@ -69,6 +69,8 @@
   --dark-gray-background-color: #5b6670;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
+  --orange--background-color: #ee7624;
+  --orange--text-color: #ee7624;
   --border-color-gray: #ababab;
 
   /* fonts */
@@ -363,4 +365,85 @@ main .section.highlight {
 
 .section.background-grey {
   background-color: var(--grey-background-color);
+}
+
+/* wave sections */
+main .section.wave {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 100% 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  overflow: visible;
+  padding: 100px 0;
+  margin-bottom: 90px;
+}
+
+main .section.wave.center {
+  text-align: center;
+}
+
+main .section.wave h2 {
+  font-size: 60px;
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+/* TODO different margins */
+main .section.wave p:not(.button-container) {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+}
+
+main .section.wave .button-container {
+  display: inline-block;
+  margin: 0;
+}
+
+main .section.wave .button {
+  height: 50px;
+  min-width: 200px;
+}
+
+main .section.wave .button {
+  height: 50px;
+  min-width: 200px;
+}
+
+main .section.wave .button.primary:link,
+main .section.wave .button.primary:visited {
+  color: var(--text-white);
+  background: var(--orange--background-color);
+  text-transform: none;
+}
+
+main .section.wave .button.primary:hover,
+main .section.wave .button.primary:active {
+  color: var(--orange--text-color);
+  background: var(--background-color);
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+main .section.wave .button.secondary:link,
+main .section.wave .button.secondary:visited {
+  color: var(--text-white);
+  background: transparent;
+  border: 2px solid #fff;
+  text-transform: none;
+  margin-left: 20px;
+}
+
+main .section.wave .button.secondary:hover,
+main .section.wave .button.secondary:active {
+  color: var(--orange--text-color);
+  background: var(--background-color);
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+main .section.wave .button.primary > .button-border {
+  display: none;
 }
