@@ -50,7 +50,7 @@
 @media (min-width: 768px) {
   .featured-posts {
     display: grid;
-    grid-template-columns: 50% 25% 25%;
+    grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: repeat(2, 50%);
     grid-gap: 20px;
     margin: 0 0 10px;
