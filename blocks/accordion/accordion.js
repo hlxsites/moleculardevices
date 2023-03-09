@@ -1,4 +1,5 @@
 const liId = 'li-of-';
+const mobileMaxWidth = 767;
 
 function toggleTab(block, li) {
   let isActive = false;
@@ -26,15 +27,16 @@ function toggleTab(block, li) {
     icon.classList.remove('fa-minus');
     icon.classList.add('fa-plus');
 
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= mobileMaxWidth) {
       const activeTabContent = activeDiv.querySelector('.accordion-tab-content');
       activeTabContent.style.height = '0px';
-      setTimeout(function () {
+      setTimeout(() => {
         activeDiv.classList.remove('active');
       }, 500);
-    } else {
-      activeDiv.classList.remove('active');
-    }
+      } else {
+        activeDiv.classList.remove('active');
+      }
+
   }
 
   // add active class to new active elements
@@ -60,12 +62,10 @@ function toggleTab(block, li) {
       activeContent.style.height = 'auto';
       const height = `${(activeContent.clientHeight + 20)}px`;
       activeContent.style.height = '0px';
-      setTimeout(function () {
+      setTimeout(() => {
         activeContent.style.height = height;
       }, 0);
-
     }
-
   }
 }
 
@@ -140,13 +140,14 @@ export default async function decorate(block) {
       if (i === 1) {
         li.classList.add('active');
         tabPane.classList.add('active');
-        setTimeout(function () {
+        setTimeout(() => {
           row.style.height = `${tabPaneInside.clientHeight - button.clientHeight - 48}px`;
         }, 0);
         icon.classList.remove('fa-plus');
         icon.classList.add('fa-minus');
       }
       viewsElementContainer.appendChild(tabPane);
+
     }
 
   });
