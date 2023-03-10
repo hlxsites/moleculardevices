@@ -178,7 +178,7 @@ em strong {
   font-weight: 700;
 }
 
-.text-caption {
+main.text-caption {
   margin: 15px 0 25px;
   font-size:var(--body-font-size-xs);
   display: block;
@@ -316,13 +316,6 @@ main img, main video {
   max-width: 100%;
   width: auto;
   height: auto;
-}
-
-main img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-  border: 0;
 }
 
 main .section>div {

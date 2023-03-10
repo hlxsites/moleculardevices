@@ -42,6 +42,7 @@ async function buildAutoBlocks(main) {
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
       const mod = await import(`../templates/${template}/${template}.js`);
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
       if (mod.default) {
         await mod.default(main);
       }
