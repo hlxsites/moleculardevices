@@ -122,6 +122,7 @@ main .section .hero-wrapper .hero .container > div:nth-child(2) .button-containe
     flex-wrap: wrap;
     height: auto;
   }
+
   main .section .hero-wrapper .hero .container > div {
     float:left;
   }
