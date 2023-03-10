@@ -60,9 +60,11 @@ main .section .hero-wrapper .hero > div {
 }
 
 main .section .hero-wrapper .hero .container {
-  display: block;
-  height: auto;
   overflow: auto;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  height: auto;
 }
 
 main .section .hero-wrapper .hero .container > div {
