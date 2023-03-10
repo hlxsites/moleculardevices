@@ -29,7 +29,7 @@
 
 .section.regional-contacts-container {
   background-color: var(--background-color);
-  background-image: url('https://www.moleculardevices.com/themes/moldev/images/regional-office-bg.jpg');
+  background-image: url('/themes/moldev/images/regional-office-bg.jpg');
   background-position: top center;
   background-repeat: no-repeat;
   overflow: hidden;
