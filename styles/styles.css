@@ -65,7 +65,6 @@
   --button-secondary-hover-color: #0066a4;
   --button-secondary-bg-color: #038296;
   --button-secondary-bg-hover-color: #fff;
-  --gray-heading-color: #666;
   --grey-background-color: #f0f1f2;
   --dark-gray-background-color: #5b6670;
   --light-gray-background-color: #f3f3f3;
@@ -117,50 +116,32 @@ header {
   height: var(--nav-height);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3,
+h4, h5, h6 {
   color: inherit;
-  font-family: var(--heading-font-family);
   line-height: 1.1;
   font-weight: 100;
   margin-top: 0;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 {
-  font-size: var(--heading-font-size-xxl)
+h1, h2 {
+  font-family: var(--ff-proxima-light);
 }
 
-h2 {
-  font-size: var(--heading-font-size-xl)
+h3, h4, h5, h6 {
+  font-family: var(--ff-proxima-regular);
 }
 
-h3 {
-  font-size: var(--heading-font-size-l)
-}
 
-h4 {
-  font-size: var(--heading-font-size-m)
-}
+h1 { font-size: var(--heading-font-size-xxl) }
+h2 { font-size: var(--heading-font-size-xl) }
+h3 { font-size: var(--heading-font-size-l) }
+h4 { font-size: var(--heading-font-size-m) }
+h5 { font-size: var(--heading-font-size-s) }
+h6 { font-size: var(--heading-font-size-xs) }
 
-h5 {
-  font-size: var(--heading-font-size-s)
-}
-
-h6 {
-  font-size: var(--heading-font-size-xs)
-}
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
+p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -178,15 +159,12 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-code,
-pre,
-samp {
+code, pre, samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code,
-samp {
+code, samp {
   padding: .125em;
 }
 
@@ -223,31 +201,24 @@ button {
   cursor: pointer;
 }
 
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
+a.button:hover, a.button:focus, button:hover, button:focus  {
   cursor: pointer;
   color: var(--link-hover-color);
 }
 
-button:disabled,
-button:disabled:hover {
+button:disabled, button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.primary,
-button.primary {
+a.button.primary, button.primary {
   color: var(--button-color);
   background-color: var(--button-bg-color);
   border: 0;
 }
 
-a.button.primary:hover,
-a.button.primary:focus,
-button.primary:hover,
-button.primary:focus {
+a.button.primary:hover, a.button.primary:focus,
+button.primary:hover, button.primary:focus {
   color: var(--button-hover-color);
   background-color: var(--button-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
@@ -265,17 +236,14 @@ a.button.primary:hover .button-border {
   bottom: -5px
 }
 
-a.button.secondary,
-button.secondary {
+a.button.secondary, button.secondary {
   font-style: normal;
   border: 2px solid var(--button-secondary-border-color);
   color: var(--button-secondary-color);
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus,
-button.secondary:hover,
-button.secondary:focus {
+a.button.secondary:hover,a.button.secondary:focus,
+button.secondary:hover, button.secondary:focus {
   color: var(--button-secondary-hover-color);
   background-color: var(--button-secondary-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
@@ -331,14 +299,13 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-main img,
-main video {
+main img, main video {
   max-width: 100%;
   width: auto;
   height: auto;
 }
 
-main .section > div {
+main .section>div {
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -357,8 +324,7 @@ main .section > div {
     --body-font-size-m: 14px;
   }
 
-  a.button:any-link,
-  button {
+  a.button:any-link, button {
     font-size: var(--body-font-size-xs);
     padding: 8px 12px;
   }
@@ -370,19 +336,19 @@ main .section > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section > div {
+  main .section>div {
     width: 750px
   }
 }
 
 @media (min-width: 992px) {
-  main .section > div {
+  main .section>div {
     width: 970px
   }
 }
 
 @media (min-width: 1200px) {
-  main .section > div {
+  main .section>div {
     width: 1170px
   }
 }
@@ -391,6 +357,10 @@ main .section > div {
 .homepage h1,
 .homepage h2 {
   color: var(--heading-color);
+}
+
+.homepage h2 {
+  margin-bottom: 30px;
 }
 
 /* progressive section appearance */
@@ -403,6 +373,10 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-.section.background-grey {
+main .section.background-grey {
   background-color: var(--grey-background-color);
+}
+
+main .section.center {
+  text-align: center;
 }
