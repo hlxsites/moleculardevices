@@ -1,8 +1,6 @@
 footer {
-  --footer-font-family: 'Proxima Nova Rg', sans-serif;
   --footer-text-color: #333;
   --footer-text-color-label: #5f696b;
-  --footer-blue-text-color: #008da9;
   --footer-font-size: 16px;
   --footer-font-size-xs: 10px;
 
@@ -11,7 +9,7 @@ footer {
   background-size: cover;
   max-width: 1200px;
   margin: auto;
-  font-family: var(--footer-font-family);
+  font-family: var(--ff-proxima-regular);
   font-size: 15px;
   color: var(--footer-text-color);
   line-height: 1.33;
@@ -130,10 +128,10 @@ footer a:hover {
 footer h3 {
   font-size: var(--footer-font-size);
   font-weight: 100;
-  color: var(--footer-blue-text-color);
+  color: var(--button-bg-color);
   margin-top: 30px;
   margin-bottom:10px;
-  font-family: var(--footer-font-family);
+  font-family: var(--ff-proxima-regular);
 }
 
 .footer-news-events h3,
@@ -150,7 +148,7 @@ footer h3 {
 
 footer h3 a:any-link {
   position:relative;
-  color: var(--footer-blue-text-color);
+  color: var(--button-bg-color);
   text-decoration: none;
 }
 
@@ -190,7 +188,7 @@ footer > div > div > div:nth-child(3) ul {
 }
 
 footer > div > div > div:nth-child(3) ul li a {
-  color: var(--footer-blue-text-color);
+  color: var(--button-bg-color);
   font-weight: 100;
 }
 
@@ -235,14 +233,14 @@ footer ul li picture {
 }
 
 .footer-news-events h3:first-of-type {
-  border-right: 2px solid var(--footer-blue-text-color);
+  border-right: 2px solid var(--button-bg-color);
   float:left;
 }
 
 .footer-news-events h3:first-of-type:not(.off),
 .footer-news-events h3.on{
-  border-bottom: 2px solid var(--footer-blue-text-color);
-  color: var(--footer-blue-text-color);
+  border-bottom: 2px solid var(--button-bg-color);
+  color: var(--button-bg-color);
 }
 
 .footer-news-events > div:not(:nth-child(-n+2)) {
