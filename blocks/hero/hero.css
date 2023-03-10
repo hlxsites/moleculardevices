@@ -33,6 +33,19 @@ main .hero h1 {
   color: white;
 }
 
+main .hero h6 {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+}
+
+main .hero h6:first-child {
+  margin-top: 0;
+}
+
 main .hero picture {
   position: absolute;
   z-index: -1;
@@ -40,7 +53,6 @@ main .hero picture {
   left: 0;
   bottom: 0;
   right: 0;
-  object-fit: cover;
   box-sizing: border-box;
 }
 
