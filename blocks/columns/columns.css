@@ -1,95 +1,95 @@
 .columns > div {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .columns img {
-  width: 100%
+  width: 100%;
 }
 
 .columns.contact {
-  padding: 80px 0
+  padding: 80px 0;
 }
 
 .columns.contact > div > div {
   background-color: var(--background-color);
-  width: 100%
+  width: 100%;
 }
 
 .columns.contact > div > div > ul,
 .columns.contact > div > div > ol {
   list-style: none;
-  padding-left: 0
+  padding-left: 0;
 }
 
 .columns.contact > div p,
 .columns.contact > div ul li {
-  font-size: var(--body-font-size-m)
+  font-size: var(--body-font-size-m);
 }
 
 .columns.contact > div > div > p,
 .columns.contact > div > div > ul,
 .columns.contact > div > div > ol {
-  padding: 0 24px
+  padding: 0 24px;
 }
 
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
+  font-size: var(--heading-font-size-m);
   font-weight: bold;
   margin: 0;
   padding: 16px 8px;
-  text-align: center
+  text-align: center;
 }
 
 .columns.contact > div > div > ul > li {
   margin-bottom: 16px;
   padding-top: 8px;
-  position: relative
+  position: relative;
 }
 
 .columns.contact > div ul li a {
-  color: inherit
+  color: inherit;
 }
 
 .columns.contact > div ul li a:hover {
-  color: var(--text-green)
+  color: var(--text-green);
 }
 
 .columns.contact > div > div > ul > li > i {
   color: var(--text-green);
   float: left;
-  font-size: 36px;
-  padding-right: 20px
+  font-size: var(--heading-font-size-l);
+  padding-right: 20px;
 }
 
 .columns.contact > div ul li::after,
 .columns.contact > div > div ul ul::before {
   clear: both;
-  content: "";
-  display: table
+  content: '';
+  display: table;
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
   background-color: var(--border-color-gray);
   bottom: -10px;
-  content: "";
+  content: '';
   display: block;
   height: 1px;
   position: absolute;
   right: 0;
-  width: calc(100% - 56px)
+  width: calc(100% - 56px);
 }
 
-.columns.contact > div ul li span.icon,
-.columns.contact > div ul li img {
+.columns.contact > div ul li span.icon {
   float: left;
-  padding-right: 20px
+  padding-right: 20px;
 }
 
 .columns.contact > div ul li span.icon,
 .columns.contact > div > div > ul > li > i {
-  width: 36px
+  width: 40px;
 }
 
 .columns.contact > div ul li span.icon svg,
@@ -98,68 +98,88 @@
   height: 32px;
   object-fit: contain;
   vertical-align: top;
-  width: 32px
 }
 
+.columns.contact > div ul li span.icon-spectra img,
 .columns.contact > div ul li span.icon-spectra svg {
-  height: 40px
+  height: 40px;
 }
 
 .columns.contact > div ul li span.icon:not(.icon-spectra) svg {
-  fill: var(--text-green)
+  fill: var(--text-green);
 }
 
 .columns.contact > div ul li span.icon-spectra ~ a {
   font-size: var(--body-font-size-l);
-  font-weight: bold
+  font-weight: bold;
 }
 
 .columns.contact > div > div ul ul {
   list-style: disc;
   margin-bottom: 0;
   margin-top: 8px;
-  padding-left: 70px
+  padding-left: 70px;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .columns > div {
     align-items: center;
     display: flex;
-    flex-direction: unset
+    flex-direction: unset;
   }
 
   .columns > div > div {
     flex: 1;
-    margin-left: 32px
+    margin-left: 32px;
   }
 
   .columns.contact > div {
-    align-items: unset
+    align-items: unset;
   }
 
   .columns > div > div:first-of-type {
-    margin-left: unset
+    margin-left: unset;
+  }
+
+  .columns.contact.columns-3-cols > div > div {
+    flex-basis: 33.33%;
+    width: 33.33%;
   }
 
   .columns.contact > div > div > p,
   .columns.contact > div > div > ul,
   .columns.contact > div > div > ol {
-    padding: 0 48px
+    padding: 0 15px;
   }
 }
 
-@media (max-width:767px) {
-  .columns.contact > div > div:not(:last-child) {
-    margin-bottom: 30px
+@media (min-width: 992px) {
+  .columns.contact > div h3 {
+    font-size: var(--heading-font-size-l);
   }
 
-  .columns.contact > div > div > ul > li > i,
-  .columns.contact > div ul li span.icon {
-    font-size: 24px;
-    width: 24px
+  .columns.contact > div > div > p,
+  .columns.contact > div > div > ul,
+  .columns.contact > div > div > ol {
+    padding: 0 48px;
+  }
+
+  .columns.contact > div ul li span.icon,
+  .columns.contact > div > div > ul > li > i {
+    width: 56px;
+  }
+
+  .columns.contact > div > div > ul > li > i {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .columns.contact > div > div:not(:last-child) {
+    margin-bottom: 30px;
   }
 
   .columns.contact > div > div > ul > li:not(:last-child)::after {
-    width: calc(100% - 44px)
+    width: calc(100% - 44px);
   }
 }
