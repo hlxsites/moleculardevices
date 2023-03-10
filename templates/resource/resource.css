@@ -1,0 +1,51 @@
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+h1, h2 {
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--ff-proxima-light);
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+strong {
+    font-family: inherit;
+    font-weight: 700;
+}
+
+p picture {
+
+  margin-bottom: 20px;
+}
+
+@media (max-width: 767px), (min-width: 768px) {
+  :root {
+    --heading-font-size-xxl: 36px;
+    --heading-font-size-xl: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  p {
+    padding: 0 15px;
+  }
+
+  p > picture {
+    float: left;
+    width: 33.33333333%;
+    min-height: 1px;
+    padding: 0 15px;
+  }
+}
