@@ -367,69 +367,107 @@ main .section.highlight {
   background-color: var(--grey-background-color);
 }
 
-/* wave sections */
+/* WAVE sections */
+/* Common */ 
 main .section.wave {
   background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 100% 100%;
-  min-height: 600px;
+  background-position: top center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-white);
   overflow: visible;
-  padding: 100px 0;
+  padding-bottom: 0;
   margin-bottom: 90px;
+  flex-wrap: wrap;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 45px;
 }
 
-main .section.wave.center {
-  text-align: center;
+main .section.wave::after {
+  background-image: url(/images/wave-footer-bg-top.webp), url(/images/wave-footer-bg-top.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 10.823% 0 0 0;
+  margin: 0 0 -1px 0;
+  background-position: bottom center;
+  display: block;
+  width: 100%;
+  content: "";
+  flex-basis: 100%;
+  align-self: self-end;
+}
+
+main .section.wave .default-content {
+  padding: 0 15px;
 }
 
 main .section.wave h2 {
-  font-size: 60px;
+  margin-top: 100px;
+  font-size: 65px;
   margin-bottom: 30px;
   line-height: 1;
 }
 
-/* TODO different margins */
-main .section.wave p:not(.button-container) {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-bottom: 20px;
-}
-
-main .section.wave .button-container {
-  display: inline-block;
+main .section.wave p {
   margin: 0;
 }
+main .section.wave p:first-of-type {
+  padding: 0 20px 20px 20px;
+  margin-bottom: 10px;
+}
 
-main .section.wave .button {
+/* WAVE sections variants */
+/* BlueGreen Variant */
+main .section.wave.bluegreen {
+  background-size: 100% 100%;
+  padding-bottom: 100px
+}
+
+main .section.wave.bluegreen::after {
+  content: none;
+}
+
+@media only screen and (max-width: 768px) {
+  main .section.bluegreen {
+    background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%) !important;
+    background-image: none;
+  }
+}
+
+/* Service Support Variant */
+main .section.wave.bg-support-service {
+  background-position: 100% 30%;
+}
+
+/* Orange Buttons */
+main .orange-buttons p.button-container {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+main .orange-buttons .button {
   height: 50px;
   min-width: 200px;
 }
 
-main .section.wave .button {
-  height: 50px;
-  min-width: 200px;
-}
-
-main .section.wave .button.primary:link,
-main .section.wave .button.primary:visited {
+main .orange-buttons .button.primary:link,
+main .orange-buttons .button.primary:visited {
   color: var(--text-white);
   background: var(--orange--background-color);
   text-transform: none;
 }
 
-main .section.wave .button.primary:hover,
-main .section.wave .button.primary:active {
+main .orange-buttons .button.primary:hover,
+main .orange-buttons .button.primary:active {
   color: var(--orange--text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .section.wave .button.secondary:link,
-main .section.wave .button.secondary:visited {
+main .orange-buttons .button.secondary:link,
+main .orange-buttons .button.secondary:visited {
   color: var(--text-white);
   background: transparent;
   border: 2px solid #fff;
@@ -437,13 +475,39 @@ main .section.wave .button.secondary:visited {
   margin-left: 20px;
 }
 
-main .section.wave .button.secondary:hover,
-main .section.wave .button.secondary:active {
+main .orange-buttons .button.secondary:hover,
+main .orange-buttons .button.secondary:active {
   color: var(--orange--text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .section.wave .button.primary > .button-border {
+main .orange-buttons .button.primary > .button-border {
   display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  main .orange-buttons p.button-container {
+    display: block;
+  }
+
+  main .orange-buttons .button {
+    min-width: 140px;
+    max-width: 200px;
+    width: 100%;
+    font-size: 12px;
+    padding: 9px 12px 10px;
+    height: 37px;
+  }
+
+  main .orange-buttons .button.secondary:link,
+  main .orange-buttons .button.secondary:visited {
+    margin-left: unset;
+    margin-top: 20px;
+  }
+/* ------ */
+
+  main .section.wave h2 {
+    font-size: 40px;
+  }
 }

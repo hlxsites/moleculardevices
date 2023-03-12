@@ -233,7 +233,7 @@ export function readBlockConfig(block) {
           if (imgs.length === 1) {
             value = imgs[0].src;
           } else {
-            value = imgs.map((img) => img.src);
+            value = imgs.F((img) => img.src);
           }
         } else if (col.querySelector('p')) {
           const ps = [...col.querySelectorAll('p')];
@@ -255,6 +255,8 @@ export function readBlockConfig(block) {
  * @param {Element} $main The container element
  */
 export function decorateSections(main) {
+  const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
+
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
@@ -282,7 +284,16 @@ export function decorateSections(main) {
         } else if (key === 'background') {
           const { background } = meta;
           if (background.startsWith('http')) {
-            section.style.backgroundImage = `url(${background})`;
+            const url = new URL(background, window.location.href);
+            const { pathname } = url;
+            const backgroundImages = [];
+            const exts = ['webply' , pathname.substring(pathname.lastIndexOf('.') + 1)];
+            if (imageMediaQuery.matches) {
+              exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));       
+            } else {
+              exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=750&format=${ext}&optimize=medium)`));    
+            }
+            section.style.backgroundImage = backgroundImages.join(', ');
           } else {
             section.style.background = background;
           }
