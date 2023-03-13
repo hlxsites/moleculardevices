@@ -45,6 +45,10 @@ export default function decorate(block) {
 
     } else {
 
+      row.classList.add('accordion-tab-pane');
+      if(i === 1) {
+        row.classList.add('active');
+      }
       viewContent.appendChild(row);
 
     }
