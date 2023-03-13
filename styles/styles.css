@@ -485,11 +485,33 @@ main .section.wave.bluegreen::after {
     background: linear-gradient(90deg,rgb(21 145 164 / 100%) 0,rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
     background-image: none;
   }
+
+  main .section.blue {
+    background: #116da7 !important;
+    background-image: none;
+  }
 }
 
 /* Service Support Variant */
 main .section.wave.bg-support-service {
   background-position: 100% 30%;
+}
+
+/* Carousel Variant */ 
+main .section.wave.wavecarousel::after {
+  content: none;
+}
+
+main .section.wave.wavecarousel {
+  min-height: 550px;
+  background-size: 100% 100%;
+}
+
+@media only screen and (max-width: 767px) {
+  main .section.wave.wavecarousel {
+    min-height: 100%;
+    margin-top: 240px;
+  }
 }
 
 /* Orange Buttons */
