@@ -1,89 +1,31 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
+function buildToolsSection() {
+  const companyLinks = document.createElement('div');
+  companyLinks.innerHTML = `<div class="companyLinks"><ul class="mdtopmenu">
+  <li><em><i class="fa-briefcase" aria-hidden="true">&nbsp;</i></em><a href="https://jobs.danaher.com/global/en/molecular-devices" class="ext" data-extlink="" target="_blank" rel="noopener noreferrer">Careers</a></li>
+  <li class="dropdown"><em><i class="fa-globe" aria-hidden="true">&nbsp;</i></em><a class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Language &nbsp;</a></li>
+  </ul></div>`
+  return companyLinks;
 }
 
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
+function buildRequestQuote() {
+  const requestQuote = document.createElement('li');
+  requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq" data-level="0" data-element-type="we-mega-menu-li" 
+  description="" data-id="38d3dbfb-400b-4a1a-8c62-23dfc88ea15d" data-submenu="0" data-group="0" data-class="header-rfq">
+  <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`
+  return requestQuote;
 }
 
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
+// function buildSearchTool() {
+//   const searchTool = document.createElement('li');
+//   searchTool.innerHTML = `<li class="we-mega-menu-li searchlink fa fa-search dropdown-menu" data-level="0" data-element-type="we-mega-menu-li" 
+//   description="" data-id="e05dda8b-289a-4c7a-a502-2aeb6c782b1c" data-submenu="1" 
+//   data-group="0" data-class="searchlink fa fa-search">
+//   <a href="#" data-drupal-link-system-path="<front>" class="we-megamenu-nolink">Search</a></li>`
+// }
 
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
-function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    section.setAttribute('aria-expanded', expanded);
-  });
-}
-
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
-  const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
-  if (isDesktop.matches) {
-    navDrops.forEach((drop) => {
-      if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('role', 'button');
-        drop.setAttribute('tabindex', 0);
-        drop.addEventListener('focus', focusNavSection);
-      }
-    });
-  } else {
-    navDrops.forEach((drop) => {
-      drop.removeAttribute('role');
-      drop.removeAttribute('tabindex');
-      drop.removeEventListener('focus', focusNavSection);
-    });
-  }
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-  }
-}
 
 /**
  * decorates the header, mainly the nav
@@ -93,54 +35,62 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/nav';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
+  const navPath = getMetadata('nav') || '/drafts/josec/nav12';
+  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/drafts/josec/nav12') ? { cache: 'reload' } : {});
+  if (!resp.ok) return;
 
-  if (resp.ok) {
-    const html = await resp.text();
+  const html = await resp.text();
 
-    // decorate nav DOM
-    const nav = document.createElement('nav');
-    nav.id = 'nav';
-    nav.innerHTML = html;
+  const logo = document.createElement('div');
+  logo.setAttribute('id', 'header-logo');
+  const logoSrc = "/images/moldev-logo.webp"
+  logo.innerHTML = `<div class="logo1"><a href="${navPath}"><img src="${logoSrc}" alt="Moleculardevices"/></a></div>`;
 
-    const classes = ['brand', 'sections', 'tools'];
-    classes.forEach((c, i) => {
-      const section = nav.children[i];
-      if (section) section.classList.add(`nav-${c}`);
-    });
+  // decorate nav DOM
+  const nav = document.createElement('nav');
+  nav.id = 'nav';
+  nav.innerHTML = html;
 
-    const navSections = nav.querySelector('.nav-sections');
-    if (navSections) {
-      navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
-          if (isDesktop.matches) {
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          }
-        });
-      });
-    }
+  // Create wrapper for logo header part
+  const navbarHeader = document.createElement('div');
+  navbarHeader.classList.add('navbar-header');
+  navbarHeader.append(logo);
+  navbarHeader.append(buildToolsSection());
 
-    // hamburger for mobile
-    const hamburger = document.createElement('div');
-    hamburger.classList.add('nav-hamburger');
-    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-        <span class="nav-hamburger-icon"></span>
-      </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-    nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    // prevent mobile nav behavior on window resize
-    toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+  const headerWrapper = document.createElement('div');
+  headerWrapper.classList.add('container', 'top-header');
+  headerWrapper.append(navbarHeader);
 
-    decorateIcons(nav);
-    const navWrapper = document.createElement('div');
-    navWrapper.className = 'nav-wrapper';
-    navWrapper.append(nav);
-    block.append(navWrapper);
+  // ------ Nav ------
+  // Create wrapper for nav
+  const mainMenuWrapper = document.createElement('div');
+  mainMenuWrapper.classList.add('mainmenu-wrapper');
+
+  const container = document.createElement('div');
+  container.classList.add('container');
+
+  container.append(nav);
+  mainMenuWrapper.append(container);
+
+  // link section
+  const navMenuUl = document.createElement('ul');
+  navMenuUl.classList.add('nav-tabs');
+  const menus = [...nav.querySelectorAll('.nav-menu > div')];
+  for (let i = 0; i < menus.length - 1; i += 2) {
+    const li = document.createElement('li');
+    const menuTitle = menus[i];
+    menuTitle.classList.add('menu-nav-category');
+
+    li.append(menuTitle);
+
+    navMenuUl.append(li);
   }
+
+  navMenuUl.append(buildRequestQuote());
+
+  nav.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
+
+  decorateIcons(nav);
+
+  block.append(headerWrapper, mainMenuWrapper);
 }
