@@ -487,6 +487,16 @@ main .section.wave.bg-support-service {
   background-position: 100% 30%;
 }
 
+/* Carousel Variant */ 
+main .section.wave.wavecarousel::after {
+  content: none;
+}
+
+main .section.wave.wavecarousel {
+  min-height: 550px;
+  background-size: 100% 100%;
+}
+
 /* Orange Buttons */
 main .orange-buttons p.button-container {
   display: inline-block;

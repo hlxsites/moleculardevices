@@ -10,31 +10,52 @@ main .carousel-wrapper {
   max-width: unset;
 }
 
+main .wavecarousel .carousel-wrapper {
+  width: 1170px !important;
+}
+
 main .carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
+
 main .carousel {
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
-  width: 100%;
   display: flex;
   overflow: hidden;
   margin: auto;
-  padding-left: 200px;
-  padding-right: 200px;
+  width: 100%;          /* default - same as .products */
+  padding-left: 200px;  /* default - same as .products */
+  padding-right: 200px; /* default - same as .products */
+}
+
+main .carousel.wave {
+  padding: 0;
 }
 
 main .carousel-item {
   scroll-snap-align: center;
   box-sizing: border-box;
   width: 100%;
-  padding: 50px 80px;
   margin-right: 30px;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 50px 80px;     /* default - same as .products */
+}
+
+main .carousel.wave .carousel-item-columns-container {
+  gap: 2em;
+}
+
+main .carousel.wave .carousel-item  {
+  padding: 20px 15px;
+  height: 100%;
+}
+
+main .carousel.products .carousel-item {
   border: 3px solid #efefef;
 }
 
@@ -45,28 +66,72 @@ main .grey .carousel-item {
 
 main .carousel-item-columns-container {
   max-width: 1140px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 main .carousel-item-column {
-  box-sizing: border-box;
   width: 50%;
   padding: 0 15px;
 }
 
+main .carousel.wave .carousel-item-column {
+  width: unset;
+  padding: 0;
+}
+
 main .carousel-item-image img {
-  width: 100%;
   display: block;
   object-fit: contain;
-  max-height: 400px;
+  width: 100%;       /* default - same as .products */
+  max-height: 400px; /* default - same as .products */
+}
+
+main .carousel.wave .carousel-item-image img {
+  height: 353px;
+  width: 330px;
 }
 
 main .carousel-item-text h3 {
   font-size: 32px;
   font-weight: lighter;
+}
+
+main .carousel.wave .carousel-item-text {
+  margin-top: 13%;
+  max-width: 597px;
+  padding-right: 15px;
+  text-align: center;
+  position: relative;
+}
+
+main .carousel.testimonials .carousel-item-text::before,
+main .carousel.testimonials .carousel-item-text::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: 100px;
+  background-repeat: no-repeat;
+}
+
+main .carousel.testimonials .carousel-item-text::before {
+  background-image: url('/images/qoute-left.png');
+  left: -79px;
+  top: -89px;
+}
+
+main .carousel.testimonials .carousel-item-text::after {
+  background-image: url('/images/qoute-right.png');
+  right: 0;
+  bottom: -60px;
+}
+
+main .carousel.wave .carousel-item-text p {
+  color: #fff;
+  font-size: 27px;
 }
 
 main .carousel-item-text .button-container {
@@ -75,6 +140,13 @@ main .carousel-item-text .button-container {
 
 main .carousel-item-text .button-container .secondary {
   margin-left: 15px;
+}
+
+main .carousel.wave .carousel-item-text .button-container a.secondary,
+main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
+  background-color: transparent;
+  color: var(--text-white);
+  border: 1.5px solid var(--text-white);
 }
 
 main .carousel-nav-button {
@@ -92,16 +164,16 @@ main .carousel-nav-button {
   align-items: center;
 }
 
-main .carousel-nav-button .icon {
-  height: 38px;
-  width: 38px;
-  stroke-width: 20;
-}
-
 main .carousel-nav-button:hover {
   background-color: #adb3b7;
   color: #fff;
   border: 1.5px solid #fff;
+}
+
+main .carousel-nav-button .icon {
+  height: 38px;
+  width: 38px;
+  stroke-width: 20;
 }
 
 main .carousel-nav-left {
@@ -130,8 +202,22 @@ main .carousel-dot-button {
   padding: 0;
 }
 
+main .carousel-wrapper.wave .carousel-dot-button {
+  background-color: #fff;
+}
+
+
 main .carousel-dot-button.selected {
   background-color: #cacaca;
+  border: 0;
+}
+
+main .carousel-wrapper.wave.blue .carousel-dot-button.selected {
+  background-color: #23bfd9;
+}
+
+main .carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
+  background-color: #86c440;
 }
 
 
