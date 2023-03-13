@@ -68,8 +68,8 @@
   --dark-gray-background-color: #5b6670;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
-  --orange--background-color: #ee7624;
-  --orange--text-color: #ee7624;
+  --orange-background-color: #ee7624;
+  --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
 
   /* fonts */
@@ -407,6 +407,7 @@ main .section.center {
 }
 
 /* WAVE sections */
+
 /* Common */ 
 main .section.wave {
   background-repeat: no-repeat;
@@ -424,11 +425,11 @@ main .section.wave {
 }
 
 main .section.wave::after {
-  background-image: url(/images/wave-footer-bg-top.webp), url(/images/wave-footer-bg-top.png);
+  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  padding: 10.823% 0 0 0;
-  margin: 0 0 -1px 0;
+  padding: 10.823% 0 0;
+  margin: 0 0 -1px;
   background-position: bottom center;
   display: block;
   width: 100%;
@@ -453,12 +454,14 @@ main .section.wave h2 {
 main .section.wave p {
   margin: 0;
 }
+
 main .section.wave p:first-of-type {
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 20px;
   margin-bottom: 10px;
 }
 
 /* WAVE sections variants */
+
 /* BlueGreen Variant */
 main .section.wave.bluegreen {
   background-size: 100% 100%;
@@ -474,7 +477,7 @@ main .section.wave.bluegreen::after {
 
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%) !important;
+    background: linear-gradient(90deg,rgb(21 145 164 / 100%) 0,rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
     background-image: none;
   }
 }
@@ -498,13 +501,13 @@ main .orange-buttons .button {
 main .orange-buttons .button.primary:link,
 main .orange-buttons .button.primary:visited {
   color: var(--text-white);
-  background: var(--orange--background-color);
+  background: var(--orange-background-color);
   text-transform: none;
 }
 
 main .orange-buttons .button.primary:hover,
 main .orange-buttons .button.primary:active {
-  color: var(--orange--text-color);
+  color: var(--orange-text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
@@ -520,7 +523,7 @@ main .orange-buttons .button.secondary:visited {
 
 main .orange-buttons .button.secondary:hover,
 main .orange-buttons .button.secondary:active {
-  color: var(--orange--text-color);
+  color: var(--orange-text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
@@ -548,6 +551,7 @@ main .orange-buttons .button.primary > .button-border {
     margin-left: unset;
     margin-top: 20px;
   }
+
 /* ------ */
 
   main .section.wave h2 {
