@@ -15,38 +15,79 @@
 const RESOURCE_MAPPING = [
   {
     match: ['/en/assets/app-note/'],
-    Template: 'Application Note',
+    Template: 'Resource',
   },
   {
     match: ['/en/assets/tutorials-videos/'],
-    Template: 'Videos & Webinars',
+    Template: 'Resource',
   },
   {
     match: ['/newsroom/in-the-news'],
     Template: 'Resource',
-    Category: 'Publication',
   },
   {
     match: ['/newsroom/news'],
     Template: 'Resource',
-    Category: 'News',
   },
   {
     match: ['/events'],
     Template: 'Resource',
-    Category: 'Events',
   },
   {
     match: ['/applications/cell-counting'],
-    Template: 'Cell Counter',
+    Template: 'Resource',
   },
   {
     match: ['/en/assets/customer-breakthrough'],
-    Template: 'Customer Breakthrough',
+    Template: 'Resource',
   },
 ];
 
-const createMetadata = (main, url, document) => {
+/**
+ * Special handling for resource document meta data.
+ */
+const loadResourceMetaAttributes = (url, params, document, meta) => {
+  let resourceMetadata = {};
+  // we use old XMLHttpRequest as fetch seams to have problems in bulk import
+  const request = new XMLHttpRequest();
+  request.open(
+    'GET',
+    'http://localhost:3001/export/moldev-resources-sheet-03132023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page',
+    false,
+  );
+  request.overrideMimeType('text/json; UTF-8');
+  request.send(null);
+  if (request.status === 200) {
+    resourceMetadata = JSON.parse(request.responseText).data;
+  }
+
+  const resource = resourceMetadata.find((n) => n.URL === params.originalURL);
+  if (resource) {
+    meta.Type = resource['Asset Type'];
+    if (resource['Tagged to Products']) {
+      meta['Related Products'] = resource['Tagged to Products'];
+    }
+    if (resource['Tagged to Technology']) {
+      meta['Related Technologies'] = resource['Tagged to Technology'];
+    }
+    if (resource['Tagged to Applications']) {
+      meta['Related Applications'] = resource['Tagged to Applications'];
+    }
+
+    const publishDate = new Date(resource['Created On']);
+    if (publishDate) {
+      meta['Publication Date'] = publishDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+    }
+  } else {
+    console.warn('Resource item for %s not found', params.originalURL);
+  }
+};
+
+const createMetadata = (url, document) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -69,21 +110,6 @@ const createMetadata = (main, url, document) => {
     meta.Image = el;
   }
 
-  // detect dates from content
-  // TODO can this be read from export?
-  const docDate = document.querySelector('.event-block > cite');
-  if (docDate && docDate.textContent) {
-    const date = new Date(docDate.textContent);
-    if (date) {
-      meta['Publication Date'] = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      });
-      docDate.remove();
-    }
-  }
-
   // detect resource type
   const resourceType = RESOURCE_MAPPING.find((e) =>
     e.match.some((match) => url.includes(match)),
@@ -92,9 +118,6 @@ const createMetadata = (main, url, document) => {
     Object.assign(meta, resourceType);
     delete meta.match;
   }
-
-  const block = WebImporter.Blocks.getMetadataBlock(document, meta);
-  main.append(block);
 
   return meta;
 };
@@ -117,7 +140,9 @@ const transformHero = (document) => {
     .querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new')
     .forEach((hero) => {
       const cells = [['Hero']];
-      const heroContent = hero.querySelector('.row, .bannerInnerPages');
+      const heroContent = hero.classList.contains('blog-details')
+        ? hero.querySelector('.hero-desc')
+        : hero.querySelector('.row, .bannerInnerPages');
 
       // some cleanups
       const invisible = heroContent.querySelector('.visible-xs-block');
@@ -169,13 +194,17 @@ const transformHero = (document) => {
         mediaGallery.remove();
       }
 
-      const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
+      const customerStoryHeader = hero.parentElement.querySelector(
+        '.customer-story-section',
+      );
       if (customerStoryHeader) {
-        customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
-          const h4 = document.createElement('h4');
-          h4.innerHTML = label.innerHTML;
-          label.replaceWith(h4);
-        });
+        customerStoryHeader
+          .querySelectorAll('.customer-info > label')
+          .forEach((label) => {
+            const h6 = document.createElement('h6');
+            h6.innerHTML = label.innerHTML;
+            label.replaceWith(h6);
+          });
         cells[0] = ['Hero (Customer Story)'];
         cells.push([customerStoryHeader]);
       }
@@ -596,6 +625,9 @@ export default {
       '.cart-store',
       '.procompare',
       '.share-event',
+      '.sticky-social-list',
+      '.back-labnote',
+      '.recent-posts',
       '.ins-nav-container',
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
@@ -604,7 +636,11 @@ export default {
     ]);
 
     // create the metadata block and append it to the main element
-    createMetadata(main, url, document);
+    const meta = createMetadata(url, document);
+    loadResourceMetaAttributes(url, params, document, meta);
+
+    const block = WebImporter.Blocks.getMetadataBlock(document, meta);
+    main.append(block);
 
     // convert all blocks
     [
