@@ -107,6 +107,10 @@ body {
   display: none;
 }
 
+head:has(meta[name="theme"][content="Background Gray"]) ~ body {
+  background-color: var(--grey-background-color)
+}
+
 body.appear {
   display: unset;
 }

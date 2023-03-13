@@ -1,3 +1,9 @@
+main img {
+  display: block;
+  margin: 0 auto;
+  border: 0;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 10px;
@@ -16,8 +22,13 @@ strong {
     font-weight: 700;
 }
 
-p picture {
+.picture-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
 
+.text-wrapper {
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -38,14 +49,26 @@ p picture {
 
 @media (min-width: 768px) {
 
-  p {
-    padding: 0 15px;
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  p > picture {
+  .picture-wrapper:has(p > picture) {
+    float:left;
+    flex: 33.33333333%;
+    padding-right: 15px;
+  }
+  
+  .picture-wrapper:not(p > picture), .picture-wrapper:not(:has(p > picture)) ~ .text-wrapper {
+    padding-left: 0px;
+  }
+  
+  .text-wrapper {
     float: left;
-    width: 33.33333333%;
-    min-height: 1px;
-    padding: 0 15px;
+    flex: 66.66666667%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 15px;
   }
 }
