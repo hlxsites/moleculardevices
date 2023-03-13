@@ -40,6 +40,7 @@ export default async function decorate(block) {
     if (fragmentSection) {
       const section = block.closest('.section');
       section.classList.add(...fragmentSection.classList);
+      section.style.background = fragmentSection.style.background;
       section.style.backgroundImage = fragmentSection.style.backgroundImage;
       block.closest('.fragment-wrapper').replaceWith(...fragmentSection.childNodes);
     }
