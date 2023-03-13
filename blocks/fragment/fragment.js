@@ -38,7 +38,9 @@ export default async function decorate(block) {
   if (fragment) {
     const fragmentSection = fragment.querySelector(':scope .section');
     if (fragmentSection) {
-      block.closest('.section').classList.add(...fragmentSection.classList);
+      const section = block.closest('.section');
+      section.classList.add(...fragmentSection.classList);
+      section.style.backgroundImage = fragmentSection.style.backgroundImage;
       block.closest('.fragment-wrapper').replaceWith(...fragmentSection.childNodes);
     }
   }
