@@ -67,7 +67,7 @@ header .navbar-header {
 }
 
 .company-links i.fa-briefcase {
-  background-image: "url(/images/fa-briefcase.png)";
+  background-image: url("/images/fa-briefcase.png");
 }
 
 .company-links i.fa-briefcase::before {
@@ -75,7 +75,7 @@ header .navbar-header {
 }
 
 .company-links i.fa-globe {
-  background-image: "url(/images/fa-globe.png)";
+  background-image: url("/images/fa-globe.png");
 }
 
 .company-links i.fa-globe::before {

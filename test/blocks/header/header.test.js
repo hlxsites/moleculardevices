@@ -26,25 +26,25 @@ decorateBlock(headerBlock);
 await loadBlock(headerBlock);
 await sleep();
 
-describe('Header block', () => {
-  // it('Hamburger shows and hides nav', async () => {
-  //   const hamburger = document.querySelector('.header .nav-hamburger');
-  //   const nav = document.querySelector('.header nav');
-  //   expect(hamburger).to.exist;
-  //   expect(nav).to.exist;
-  //   hamburger.click();
-  //   expect(nav.getAttribute('aria-expanded')).to.equal('true');
-  //   hamburger.click();
-  //   expect(nav.getAttribute('aria-expanded')).to.equal('false');
-  // });
+describe.skip('Header block', () => {
+  it('Hamburger shows and hides nav', async () => {
+    const hamburger = document.querySelector('.header .nav-hamburger');
+    const nav = document.querySelector('.header nav');
+    expect(hamburger).to.exist;
+    expect(nav).to.exist;
+    hamburger.click();
+    expect(nav.getAttribute('aria-expanded')).to.equal('true');
+    hamburger.click();
+    expect(nav.getAttribute('aria-expanded')).to.equal('false');
+  });
 
-  // it('Section title shows and hides section on desktop', async () => {
-  //   await setViewport({ width: 900, height: 640 });
-  //   const sections = document.querySelector('.mainmenu-wrapper');
-  //   const title = sections.querySelector(':scope li');
-  //   title.click();
-  //   expect(title.getAttribute('aria-expanded')).to.equal('true');
-  //   title.click();
-  //   expect(title.getAttribute('aria-expanded')).to.equal('false');
-  // });
+  it('Section title shows and hides section on desktop', async () => {
+    await setViewport({ width: 900, height: 640 });
+    const sections = document.querySelector('.header .nav-sections');
+    const title = sections.querySelector(':scope li');
+    title.click();
+    expect(title.getAttribute('aria-expanded')).to.equal('true');
+    title.click();
+    expect(title.getAttribute('aria-expanded')).to.equal('false');
+  });
 });
