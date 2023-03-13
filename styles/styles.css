@@ -378,7 +378,6 @@ main .section.wave {
   justify-content: center;
   overflow: visible;
   padding-bottom: 0;
-  margin-bottom: 90px;
   flex-wrap: wrap;
   color: var(--text-white);
   text-align: center;
@@ -399,12 +398,14 @@ main .section.wave::after {
   align-self: self-end;
 }
 
-main .section.wave .default-content {
-  padding: 0 15px;
+main .section.wave .default-content-wrapper {
+  margin-top: 100px;
+  margin-bottom: 55px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 main .section.wave h2 {
-  margin-top: 100px;
   font-size: 65px;
   margin-bottom: 30px;
   line-height: 1;
@@ -422,7 +423,10 @@ main .section.wave p:first-of-type {
 /* BlueGreen Variant */
 main .section.wave.bluegreen {
   background-size: 100% 100%;
-  padding-bottom: 100px
+}
+
+main .section.wave.bluegreen .default-content-wrapper {
+  margin-bottom: 100px;
 }
 
 main .section.wave.bluegreen::after {
