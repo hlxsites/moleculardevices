@@ -1,12 +1,11 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
-
 function buildToolsSection() {
   const companyLinks = document.createElement('div');
-  companyLinks.innerHTML = `<div class="companyLinks"><ul class="mdtopmenu">
+  companyLinks.innerHTML = `<div class="company-links"><ul class="mdtopmenu">
   <li><em><i class="fa-briefcase" aria-hidden="true">&nbsp;</i></em><a href="https://jobs.danaher.com/global/en/molecular-devices" class="ext" data-extlink="" target="_blank" rel="noopener noreferrer">Careers</a></li>
   <li class="dropdown"><em><i class="fa-globe" aria-hidden="true">&nbsp;</i></em><a class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Language &nbsp;</a></li>
-  </ul></div>`
+  </ul></div>`;
   return companyLinks;
 }
 
@@ -14,18 +13,19 @@ function buildRequestQuote() {
   const requestQuote = document.createElement('li');
   requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq" data-level="0" data-element-type="we-mega-menu-li" 
   description="" data-id="38d3dbfb-400b-4a1a-8c62-23dfc88ea15d" data-submenu="0" data-group="0" data-class="header-rfq">
-  <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`
+  <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`;
   return requestQuote;
 }
 
 // function buildSearchTool() {
 //   const searchTool = document.createElement('li');
-//   searchTool.innerHTML = `<li class="we-mega-menu-li searchlink fa fa-search dropdown-menu" data-level="0" data-element-type="we-mega-menu-li" 
-//   description="" data-id="e05dda8b-289a-4c7a-a502-2aeb6c782b1c" data-submenu="1" 
+// searchTool.innerHTML = `<li class="we-mega-menu-li searchlink fa
+// fa-search dropdown-menu" data-level="0"
+// data-element-type="we-mega-menu-li"
+//   description="" data-id="e05dda8b-289a-4c7a-a502-2aeb6c782b1c" data-submenu="1"
 //   data-group="0" data-class="searchlink fa fa-search">
 //   <a href="#" data-drupal-link-system-path="<front>" class="we-megamenu-nolink">Search</a></li>`
 // }
-
 
 /**
  * decorates the header, mainly the nav
@@ -43,7 +43,7 @@ export default async function decorate(block) {
 
   const logo = document.createElement('div');
   logo.setAttribute('id', 'header-logo');
-  const logoSrc = "/images/moldev-logo.webp"
+  const logoSrc = '/images/moldev-logo.webp';
   logo.innerHTML = `<div class="logo1"><a href="${navPath}"><img src="${logoSrc}" alt="Moleculardevices"/></a></div>`;
 
   // decorate nav DOM
