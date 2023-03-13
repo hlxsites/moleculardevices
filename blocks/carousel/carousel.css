@@ -118,13 +118,13 @@ main .carousel.testimonials .carousel-item-text::after {
 }
 
 main .carousel.testimonials .carousel-item-text::before {
-  background-image: url('/images/qoute-left.png');
+  background-image: url('/images/quote-left.png');
   left: -79px;
   top: -89px;
 }
 
 main .carousel.testimonials .carousel-item-text::after {
-  background-image: url('/images/qoute-right.png');
+  background-image: url('/images/quote-right.png');
   right: 0;
   bottom: -60px;
 }
