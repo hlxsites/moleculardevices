@@ -16,7 +16,7 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ul);
 
-  /* ================ Leadership Modal ================ */
+  /* ================ Leadership Block ================ */
   /* HELPER */
   function removeActiveClassFromArr(arr, className) {
     [...arr].forEach((carouselItem) => {
@@ -36,17 +36,16 @@ export default function decorate(block) {
   /* HELPER */
 
   function createLeadershipModalHTML() {
-    const body = document.body;
-    const modal = document.createElement('div');
-    const modalWrapper = document.createElement('div');
-    const modalHeader = document.createElement('div');
-    const modalBody = document.createElement('div');
-    const modalFooter = document.createElement('div');
-    const modalOverlay = document.createElement('div');
-    const closeIcon = document.createElement('button');
+    const body = document.body,
+      modal = document.createElement('div'),
+      modalWrapper = document.createElement('div'),
+      modalHeader = document.createElement('div'),
+      modalBody = document.createElement('div'),
+      modalFooter = document.createElement('div'),
+      modalOverlay = document.createElement('div'),
+      closeIcon = document.createElement('button');
 
     closeIcon.innerHTML = '&times;';
-    // closeIcon.innerHTML = '<i class=\'fa fa-times\'></i>';
 
     modal.classList.add('leadership-modal');
     modalWrapper.classList.add('leadership-modal-wrapper');
@@ -64,40 +63,24 @@ export default function decorate(block) {
     body.appendChild(modal);
     body.appendChild(modalOverlay);
 
-    modalOverlay.addEventListener(
-      'click',
-      removeClassFromElement.bind(null, modal, 'show'),
-      false
-    );
-    modalOverlay.addEventListener(
-      'click',
-      removeClassFromElement.bind(null, modalOverlay, 'show'),
-      false
-    );
+    modalOverlay.addEventListener('click', removeClassFromElement.bind(null, modal, 'show'), false);
+    modalOverlay.addEventListener('click', removeClassFromElement.bind(null, modalOverlay, 'show'), false);
 
-    closeIcon.addEventListener(
-      'click',
-      removeClassFromElement.bind(null, modal, 'show'),
-      false
-    );
-    closeIcon.addEventListener(
-      'click',
-      removeClassFromElement.bind(null, modalOverlay, 'show'),
-      false
-    );
+    closeIcon.addEventListener('click', removeClassFromElement.bind(null, modal, 'show'), false);
+    closeIcon.addEventListener('click', removeClassFromElement.bind(null, modalOverlay, 'show'), false);
   }
   createLeadershipModalHTML();
 
   function createModalCarousel(leaderCardItems, modalFooterContent) {
-    const modal = document.querySelector('.leadership-modal');
-    // const modalHeader = modal.querySelector('.leadership-modal-header');
-    const modalBody = modal.querySelector('.leadership-modal-body');
-    const modalFooter = modal.querySelector('.leadership-modal-footer');
+    const modal = document.querySelector('.leadership-modal'),
+      // modalHeader = modal.querySelector('.leadership-modal-header'),
+      modalBody = modal.querySelector('.leadership-modal-body'),
+      modalFooter = modal.querySelector('.leadership-modal-footer');
 
     leaderCardItems.forEach((leaderCard, index) => {
-      const { prev, next } = updatePrevNextBtn(index);
-      const cardContent = document.createElement('div');
-      const cardWrapper = document.createElement('div');
+      const { prev, next } = updatePrevNextBtn(index),
+        cardContent = document.createElement('div'),
+        cardWrapper = document.createElement('div');
 
       cardContent.classList.add('leadership-modal-carousel-content');
       cardWrapper.classList.add('leadership-modal-carousel-item');
@@ -121,41 +104,11 @@ export default function decorate(block) {
     modalFooter.innerHTML = modalFooterContent;
   }
 
-  const leaderCardItems = document.querySelectorAll('.leaders ul li');
-  const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
-  const itemsLength = Number(leaderCardItems.length - 1);
-
-  const modalFooterContent = `
-    <div class="leadership-modal-carousel-nav">
-      <div class="prev-item">
-        <a href="javascript:void(0)"><i class="fa fa-chevron-circle-left"></i></a>
-      </div>
-      <div class="next-item">
-        <a href="javascript:void(0)"><i class="fa fa-chevron-circle-right"></i></a>
-      </div>
-    </div>
-    `;
-
-  createModalCarousel(leaderCardItems, modalFooterContent);
-
-  document
-    .querySelector('.leadership-modal-pagination .prev-item > a')
-    .addEventListener('click', prevCarouselHandler, false);
-  document
-    .querySelector('.leadership-modal-pagination .next-item > a')
-    .addEventListener('click', nextCarouselHandler, false);
-
-  document
-    .querySelector('.leadership-modal-carousel-nav .prev-item > a')
-    .addEventListener('click', prevCarouselHandler, false);
-  document
-    .querySelector('.leadership-modal-carousel-nav .next-item > a')
-    .addEventListener('click', nextCarouselHandler, false);
 
   function updatePrevNextBtn(ind) {
-    const navValue = { prev: '', next: '' };
-    const startPoint = 0;
-    const endPoint = Number(leaderCardItems.length - 1);
+    const navValue = { prev: '', next: '' },
+      startPoint = 0,
+      endPoint = Number(leaderCardItems.length - 1);
 
     if (ind === startPoint) {
       navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
@@ -172,8 +125,8 @@ export default function decorate(block) {
   }
 
   function showModalCard(index) {
-    const modal = document.querySelector('.leadership-modal');
-    const modalOverlay = document.querySelector('.leadership-modal-overlay');
+    const modal = document.querySelector('.leadership-modal'),
+      modalOverlay = document.querySelector('.leadership-modal-overlay');
 
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = '17px';
@@ -182,19 +135,8 @@ export default function decorate(block) {
     document.getElementById(index).classList.add('active');
   }
 
-  leaderCardItems.forEach((leaderCard, index) => {
-    leaderCard.onclick = function () {
-      removeActiveClassFromArr(modalCarouselItems, 'active');
-      showModalCard(index);
-    };
-  });
-
   function prevCarouselHandler() {
-    const activeID = Number(
-      this.parentElement.parentElement.parentElement.previousElementSibling.querySelector(
-        '.active'
-      ).id
-    );
+    const activeID = Number(this.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.active').id);
     removeActiveClassFromArr(modalCarouselItems, 'active');
 
     if (activeID === 0) {
@@ -205,11 +147,7 @@ export default function decorate(block) {
   }
 
   function nextCarouselHandler() {
-    const activeID = Number(
-      this.parentElement.parentElement.parentElement.previousElementSibling.querySelector(
-        '.active'
-      ).id
-    );
+    const activeID = Number(this.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.active').id);
     removeActiveClassFromArr(modalCarouselItems, 'active');
 
     if (activeID === itemsLength) {
@@ -218,5 +156,33 @@ export default function decorate(block) {
       document.getElementById(activeID + 1).classList.add('active');
     }
   }
-  /* ================ Leadership Modal ================ */
+
+  const leaderCardItems = document.querySelectorAll('.leaders ul li'),
+    modalCarouselItems = document.querySelector('.leadership-modal-body').children,
+    modalFooterContent = `
+    <div class="leadership-modal-carousel-nav">
+      <div class="prev-item">
+        <a href="javascript:void(0)"><i class="fa fa-chevron-circle-left"></i></a>
+      </div>
+      <div class="next-item">
+        <a href="javascript:void(0)"><i class="fa fa-chevron-circle-right"></i></a>
+      </div>
+    </div>
+    `;
+
+  createModalCarousel(leaderCardItems, modalFooterContent);
+
+  // document.querySelector(".leadership-modal-pagination .prev-item > a").addEventListener("click", prevCarouselHandler, false);
+  // document.querySelector(".leadership-modal-pagination .next-item > a").addEventListener("click", nextCarouselHandler, false);
+
+  document.querySelector(".leadership-modal-carousel-nav .prev-item > a").addEventListener("click", prevCarouselHandler, false);
+  document.querySelector(".leadership-modal-carousel-nav .next-item > a").addEventListener("click", nextCarouselHandler, false);
+
+  leaderCardItems.forEach((leaderCard, index) => {
+    leaderCard.onclick = function () {
+      removeActiveClassFromArr(modalCarouselItems, 'active');
+      showModalCard(index);
+    };
+  });
+  /* ================ Leadership Block ================ */
 }
