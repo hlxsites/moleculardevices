@@ -346,6 +346,8 @@ const transformColumns = (document) => {
     },
   ];
 
+  // col-sm-5
+
   document.querySelectorAll('.row .swap, .row .not-swap').forEach((div) => {
     const row = div.parentElement;
     row.classList.add(div.className);
@@ -354,9 +356,7 @@ const transformColumns = (document) => {
   });
 
   document
-    .querySelectorAll(
-      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type, .row > .col-md-4:first-of-type, .row > .col-sm-4:first-of-type, .row > .col-sm-3:first-of-type, .row > .col-md-8:first-of-type',
-    )
+    .querySelectorAll('.row [class*="col-"]:first-of-type')
     .forEach((column) => {
       const row = column.parentElement;
       if (row.childElementCount > 1) {
@@ -425,6 +425,9 @@ const transformQuotes = (document) => {
   document.querySelectorAll('.quots-part').forEach((quote) => {
     const cells = [['Quote']];
     cells.push([quote.querySelector('.quots-text')]);
+    if (quote.querySelector('.author')) {
+      cells.push([quote.querySelector('.author')]);
+    }
     const table = WebImporter.DOMUtils.createTable(cells, document);
     quote.replaceWith(table);
   });
@@ -639,13 +642,15 @@ export default {
 
     // prepare vidyard script URLs before their are filtered
     document.querySelectorAll('.video script').forEach((vidyard) => {
-      const videoDiv = vidyard.parentElement;
-      videoDiv.classList.add('vidyard-player-embed');
-      const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
-      const params = new URLSearchParams(vidyard.src);
-      videoDiv.setAttribute('data-url', vidyard.src);
-      videoDiv.setAttribute('data-uuid', uuid);
-      videoDiv.setAttribute('data-type', params.get('type'));
+      if (vidyard.src.indexOf('ceros') < 0) {
+        const videoDiv = vidyard.parentElement;
+        videoDiv.classList.add('vidyard-player-embed');
+        const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
+        const params = new URLSearchParams(vidyard.src);
+        videoDiv.setAttribute('data-url', vidyard.src);
+        videoDiv.setAttribute('data-uuid', uuid);
+        videoDiv.setAttribute('data-type', params.get('type'));
+      }
     });
   },
 
