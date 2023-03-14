@@ -12,37 +12,6 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-const RESOURCE_MAPPING = [
-  {
-    match: ['/en/assets/app-note/'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/en/assets/tutorials-videos/'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/newsroom/in-the-news'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/newsroom/news'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/events'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/applications/cell-counting'],
-    Template: 'Resource',
-  },
-  {
-    match: ['/en/assets/customer-breakthrough'],
-    Template: 'Resource',
-  },
-];
-
 /**
  * Special handling for resource document meta data.
  */
@@ -63,7 +32,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
 
   const resource = resourceMetadata.find((n) => n.URL === params.originalURL);
   if (resource) {
-    meta.Type = resource['Asset Type'];
+    // meta.Type = resource['Asset Type'];
     if (resource['Tagged to Products']) {
       meta['Related Products'] = resource['Tagged to Products'];
     }
@@ -94,7 +63,7 @@ const createMetadata = (url, document) => {
   if (title) {
     meta.Title = title.innerHTML
       .replace(/[\n\t]/gm, '')
-      .substring(0, title.innerHTML.lastIndexOf('|'))
+      .replace(/\|.*/, '')
       .trim();
   }
 
@@ -110,13 +79,11 @@ const createMetadata = (url, document) => {
     meta.Image = el;
   }
 
-  // detect resource type
-  const resourceType = RESOURCE_MAPPING.find((e) =>
-    e.match.some((match) => url.includes(match)),
-  );
-  if (resourceType) {
-    Object.assign(meta, resourceType);
-    delete meta.match;
+  // extract author for lab notes blog
+  const blogDetails = document.querySelector('.blog-details .hero-desc ul');
+  if (blogDetails) {
+    meta.Author = blogDetails.querySelector('.blog-author').textContent.trim();
+    blogDetails.remove();
   }
 
   return meta;
@@ -139,21 +106,11 @@ const transformHero = (document) => {
   document
     .querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new')
     .forEach((hero) => {
-      const cells = [['Hero']];
-      const heroContent = hero.classList.contains('blog-details')
+      const isBlog = hero.classList.contains('blog-details');
+      const cells = [[isBlog ? 'Hero (lab-notes)' : 'Hero']];
+      const heroContent = isBlog
         ? hero.querySelector('.hero-desc')
         : hero.querySelector('.row, .bannerInnerPages');
-
-      // some cleanups
-      const invisible = heroContent.querySelector('.visible-xs-block');
-      if (invisible) {
-        invisible.remove();
-      }
-
-      const galleryButton = heroContent.querySelector('a#openMediaGallery');
-      if (galleryButton) {
-        galleryButton.remove();
-      }
 
       const backgroundUrl = extractBackgroundImage(hero);
       if (backgroundUrl) {
@@ -217,7 +174,7 @@ const transformHero = (document) => {
 // special handling for the curved wave c2a section
 // must be called before transformSections
 const transformCurvedWaveFragment = (document) => {
-  const FRAGMENT_PATH = '/default-wave-fragment';
+  const FRAGMENT_PATH = '/en/fragments/customer-breakthrough-wave';
   document
     .querySelectorAll('div.content-section.cover-bg.curv-footer-top-section')
     .forEach((section) => {
@@ -232,37 +189,39 @@ const transformCurvedWaveFragment = (document) => {
 
 // we have different usages of sections - with <section></section>, <div></div>
 const transformSections = (document) => {
-  document.querySelectorAll('section * section').forEach((section, index) => {
-    if (index > 0) {
-      section.firstChild.before(document.createElement('hr'));
-    }
-    const cells = [['Section Metadata']];
-    const styles = [];
-    if (section.classList.contains('grey_molecules_bg_top')) {
-      styles.push('Grey Molecules');
-    }
-    if (section.classList.contains('franklin-horizontal')) {
-      styles.push('Horizontal');
-    }
-    if (section.classList.contains('cover-bg')) {
-      styles.push('White Text');
-      const bgImage = extractBackgroundImage(section);
-      if (bgImage) {
-        const img = document.createElement('img');
-        img.src = bgImage;
-        img.alt = 'Background Image';
-        cells.push(['background', img]);
+  document
+    .querySelectorAll('section * section:not(.blogsPage)')
+    .forEach((section, index) => {
+      if (index > 0) {
+        section.firstChild.before(document.createElement('hr'));
       }
-    }
-    if (styles.length > 0) {
-      cells.push(['style', styles.toString()]);
-    }
+      const cells = [['Section Metadata']];
+      const styles = [];
+      if (section.classList.contains('grey_molecules_bg_top')) {
+        styles.push('Grey Molecules');
+      }
+      if (section.classList.contains('franklin-horizontal')) {
+        styles.push('Horizontal');
+      }
+      if (section.classList.contains('cover-bg')) {
+        styles.push('White Text');
+        const bgImage = extractBackgroundImage(section);
+        if (bgImage) {
+          const img = document.createElement('img');
+          img.src = bgImage;
+          img.alt = 'Background Image';
+          cells.push(['background', img]);
+        }
+      }
+      if (styles.length > 0) {
+        cells.push(['style', styles.toString()]);
+      }
 
-    if (cells.length > 1) {
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      section.after(table);
-    }
-  });
+      if (cells.length > 1) {
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        section.after(table);
+      }
+    });
 };
 
 const transformTabsNav = (document) => {
@@ -427,6 +386,21 @@ const transformQuote = (document) => {
       em.innerHTML = quoteAuthor.innerHTML;
       quoteAuthor.replaceWith(em);
     }
+  });
+};
+
+const transformFAQAccordion = (document) => {
+  document.querySelectorAll('.faq_accordion').forEach((accordion) => {
+    const cells = [['Accordion (FAQ)']];
+
+    accordion.querySelectorAll('.faqfield-question').forEach((tab) => {
+      const entryWrapper = document.createElement('div');
+      entryWrapper.append(tab, tab.nextElementSibling);
+      cells.push([entryWrapper]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    accordion.replaceWith(table);
   });
 };
 
@@ -597,6 +571,25 @@ function makeAbsoluteLinks(main) {
 
 export default {
   /**
+   * Apply DOM pre processing
+   * @param {HTMLDocument} document The document
+   */
+  preprocess: ({ document }) => {
+    // try to fix malformed URLs
+    document.querySelectorAll('a').forEach((a) => {
+      const { href } = a;
+      try {
+        decodeURI(href);
+      } catch (error) {
+        console.warn(`Invalid link in the page: ${href}`, error);
+        // TODO
+        //a.href = new URL(href).toString();
+        a.href = '';
+      }
+    });
+  },
+
+  /**
    * Apply DOM operations to the provided document and return
    * the root element to be then transformed to Markdown.
    * @param {HTMLDocument} document The document
@@ -628,6 +621,9 @@ export default {
       '.sticky-social-list',
       '.back-labnote',
       '.recent-posts',
+      '.event-block cite',
+      '.herobanner_wrap .visible-xs-block',
+      '.herobanner_wrap a#openMediaGallery',
       '.ins-nav-container',
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
@@ -655,6 +651,7 @@ export default {
       transformReferenceToColumns,
       transformEmbeds,
       transformQuote,
+      transformFAQAccordion,
       transformImageCaption,
       transformShareStory,
       transformTabsNav,
