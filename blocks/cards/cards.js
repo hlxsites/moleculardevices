@@ -71,6 +71,25 @@ export default function decorate(block) {
   }
   createLeadershipModalHTML();
 
+  function updatePrevNextBtn(ind, leaderCardItems) {
+    const navValue = { prev: '', next: '' },
+      startPoint = 0,
+      endPoint = Number(leaderCardItems.length - 1);
+
+    if (ind === startPoint) {
+      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
+      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
+    } else if (ind === endPoint) {
+      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
+      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', startPoint);
+    } else {
+      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
+      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
+    }
+
+    return navValue;
+  }
+
   function createModalCarousel(leaderCardItems, modalFooterContent) {
     const modal = document.querySelector('.leadership-modal'),
       // modalHeader = modal.querySelector('.leadership-modal-header'),
@@ -78,7 +97,7 @@ export default function decorate(block) {
       modalFooter = modal.querySelector('.leadership-modal-footer');
 
     leaderCardItems.forEach((leaderCard, index) => {
-      const { prev, next } = updatePrevNextBtn(index),
+      const { prev, next } = updatePrevNextBtn(index, leaderCardItems),
         cardContent = document.createElement('div'),
         cardWrapper = document.createElement('div');
 
@@ -102,26 +121,6 @@ export default function decorate(block) {
       modalBody.appendChild(cardWrapper);
     });
     modalFooter.innerHTML = modalFooterContent;
-  }
-
-
-  function updatePrevNextBtn(ind) {
-    const navValue = { prev: '', next: '' },
-      startPoint = 0,
-      endPoint = Number(leaderCardItems.length - 1);
-
-    if (ind === startPoint) {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
-    } else if (ind === endPoint) {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', startPoint);
-    } else {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
-    }
-
-    return navValue;
   }
 
   function showModalCard(index) {
@@ -159,6 +158,7 @@ export default function decorate(block) {
 
   const leaderCardItems = document.querySelectorAll('.leaders ul li'),
     modalCarouselItems = document.querySelector('.leadership-modal-body').children,
+    itemsLength = Number(leaderCardItems.length - 1),
     modalFooterContent = `
     <div class="leadership-modal-carousel-nav">
       <div class="prev-item">
