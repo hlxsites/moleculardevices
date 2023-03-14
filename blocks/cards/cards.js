@@ -97,7 +97,7 @@ export default function decorate(block) {
     const modalFooter = modal.querySelector('.leadership-modal-footer');
 
     leaderCardItems.forEach((leaderCard, index) => {
-      const navValue = updatePrevNextBtn(index, leaderCardItems);
+      const { prev: prev, next: next } = updatePrevNextBtn(index, leaderCardItems);
       const cardContent = document.createElement('div');
       const cardWrapper = document.createElement('div');
 
@@ -108,10 +108,10 @@ export default function decorate(block) {
       cardWrapper.innerHTML += `
       <div class="leadership-modal-pagination">
       <div class="prev-item">
-        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${navValue[prev]}</span></a>
+        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${prev}</span></a>
       </div>
       <div class="next-item">
-        <a href="javascript:void(0)"><span>${navValue[next]}</span> <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="javascript:void(0)"><span>${next}</span> <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
       `;
@@ -186,14 +186,6 @@ export default function decorate(block) {
       document.getElementById(activeID + 1).classList.add('active');
     }
   }
-
-  // document
-  //   .querySelector('.leadership-modal-pagination .prev-item > a')
-  //   .addEventListener('click', prevCarouselHandler, false);
-  // document
-  //   .querySelector('.leadership-modal-pagination .next-item > a')
-  //   .addEventListener('click', nextCarouselHandler, false);
-
   document
     .querySelector('.leadership-modal-carousel-nav .prev-item > a')
     .addEventListener('click', prevCarouselHandler, false);
