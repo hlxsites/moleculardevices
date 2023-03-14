@@ -36,7 +36,6 @@ export default function decorate(block) {
   /* HELPER */
 
   function createLeadershipModalHTML() {
-    const body = document.body;
     const modal = document.createElement('div');
     const modalWrapper = document.createElement('div');
     const modalHeader = document.createElement('div');
@@ -60,8 +59,8 @@ export default function decorate(block) {
     modalWrapper.appendChild(modalHeader);
     modalWrapper.appendChild(modalBody);
     modalWrapper.appendChild(modalFooter);
-    body.appendChild(modal);
-    body.appendChild(modalOverlay);
+    document.body.appendChild(modal);
+    document.body.appendChild(modalOverlay);
 
     modalOverlay.addEventListener('click', removeClassFromElement.bind(null, modal, 'show'), false);
     modalOverlay.addEventListener('click', removeClassFromElement.bind(null, modalOverlay, 'show'), false);
@@ -76,10 +75,10 @@ export default function decorate(block) {
     const modalBody = modal.querySelector('.leadership-modal-body');
     const modalFooter = modal.querySelector('.leadership-modal-footer');
 
-    let prevText, nextText;
+    let prevText;
+    let nextText;
     const startPoint = 0;
     const endPoint = Number(leaderCardItems.length - 1);
-
 
     leaderCardItems.forEach((leaderCard, index) => {
       const cardContent = document.createElement('div');
@@ -168,6 +167,7 @@ export default function decorate(block) {
   }
 
   function nextCarouselHandler() {
+    console.log(this.closest('.leadership-modal-wrapper').querySelector('.active').id);
     const activeID = Number(
       this.parentElement.parentElement.parentElement.previousElementSibling.querySelector(
         '.active',
