@@ -71,35 +71,30 @@ export default function decorate(block) {
   }
   createLeadershipModalHTML();
 
-  function updatePrevNextBtn(ind, leaderCardItems) {
-    const navValue = { prev: '', next: '' };
-    const startPoint = 0;
-    const endPoint = Number(leaderCardItems.length - 1);
-
-    if (ind === startPoint) {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
-    } else if (ind === endPoint) {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', startPoint);
-    } else {
-      navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', ind - 1);
-      navValue.next = getTextFromArrTag(leaderCardItems, 'h2', ind + 1);
-    }
-
-    return navValue;
-  }
-
   function createModalCarousel(leaderCardItems, modalFooterContent) {
     const modal = document.querySelector('.leadership-modal');
-    // const modalHeader = modal.querySelector('.leadership-modal-header');
     const modalBody = modal.querySelector('.leadership-modal-body');
     const modalFooter = modal.querySelector('.leadership-modal-footer');
 
+    let prevText, nextText;
+    const startPoint = 0;
+    const endPoint = Number(leaderCardItems.length - 1);
+
+
     leaderCardItems.forEach((leaderCard, index) => {
-      const { prev: prev, next: next } = updatePrevNextBtn(index, leaderCardItems);
       const cardContent = document.createElement('div');
       const cardWrapper = document.createElement('div');
+
+      if (index === startPoint) {
+        prevText = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
+        nextText = getTextFromArrTag(leaderCardItems, 'h2', index + 1);
+      } else if (index === endPoint) {
+        prevText = getTextFromArrTag(leaderCardItems, 'h2', index - 1);
+        nextText = getTextFromArrTag(leaderCardItems, 'h2', startPoint);
+      } else {
+        prevText = getTextFromArrTag(leaderCardItems, 'h2', index - 1);
+        nextText = getTextFromArrTag(leaderCardItems, 'h2', index + 1);
+      }
 
       cardContent.classList.add('leadership-modal-carousel-content');
       cardWrapper.classList.add('leadership-modal-carousel-item');
@@ -108,10 +103,10 @@ export default function decorate(block) {
       cardWrapper.innerHTML += `
       <div class="leadership-modal-pagination">
       <div class="prev-item">
-        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${prev}</span></a>
+        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${prevText}</span></a>
       </div>
       <div class="next-item">
-        <a href="javascript:void(0)"><span>${next}</span> <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="javascript:void(0)"><span>${nextText}</span> <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
       `;
@@ -186,11 +181,13 @@ export default function decorate(block) {
       document.getElementById(activeID + 1).classList.add('active');
     }
   }
+
   document
     .querySelector('.leadership-modal-carousel-nav .prev-item > a')
     .addEventListener('click', prevCarouselHandler, false);
   document
     .querySelector('.leadership-modal-carousel-nav .next-item > a')
     .addEventListener('click', nextCarouselHandler, false);
+
   /* ================ Leadership Block ================ */
 }
