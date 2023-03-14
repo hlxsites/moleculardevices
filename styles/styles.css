@@ -107,6 +107,10 @@ body {
   display: none;
 }
 
+body.background-gray {
+  background-color: var(--grey-background-color)
+}
+
 body.appear {
   display: unset;
 }
@@ -184,7 +188,7 @@ em strong {
   font-weight: 700;
 }
 
-main.text-caption {
+.text-caption {
   margin: 15px 0 25px;
   font-size:var(--body-font-size-xs);
   display: block;

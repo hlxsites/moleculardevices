@@ -1,0 +1,84 @@
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+h1, h2 {
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--ff-proxima-light);
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+strong {
+    font-family: inherit;
+    font-weight: 700;
+}
+.event-wrapper {
+  margin-top: 10px;
+}
+
+.event-wrapper cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding: 0 0 15px 0;
+}
+
+.content-wrapper {
+  margin-top: 10px;
+}
+
+.picture-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.text-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 767px), (min-width: 768px) {
+  :root {
+    --heading-font-size-xxl: 36px;
+    --heading-font-size-xl: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .picture-wrapper:has(p > picture) {
+    float:left;
+    flex: 33.33333333%;
+    padding-right: 15px;
+  }
+  
+  .picture-wrapper:not(p > picture), .picture-wrapper:not(:has(p > picture)) ~ .text-wrapper {
+    padding-left: 0px;
+  }
+  
+  .text-wrapper {
+    float: left;
+    flex: 66.66666667%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 15px;
+  }
+}
