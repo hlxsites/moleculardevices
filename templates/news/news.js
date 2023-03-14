@@ -1,16 +1,4 @@
-function styleCaption(elems) {
-  elems.forEach((elem) => {
-    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
-    if (checkEm) {
-      const ems = checkEm.parentElement.children;
-      [...ems].forEach((em) => {
-        em.classList.add('text-caption');
-      });
-    }
-  });
-}
-
-function decorateNews(content) {
+export function decorateAutoBlock(content) {
   if (!content) {
     return;
   }
@@ -37,12 +25,6 @@ function decorateNews(content) {
 }
 
 export default function buildAutoBlocks() {
-  const main = document.querySelector('.hero-container');
-  if (main) {
-    styleCaption(main.querySelectorAll('p > picture'));
-    styleCaption(main.querySelectorAll('div.table'));
-  }
-
   const content = document.querySelector('.section > .default-content-wrapper');
-  decorateNews(content);
+  decorateAutoBlock(content);
 }
