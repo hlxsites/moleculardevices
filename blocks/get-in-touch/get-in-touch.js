@@ -1,11 +1,10 @@
-const hubspot_url = document.querySelector('.get-in-touch-wrapper > div > div > div:first-of-type [href*="https://info.moleculardevices.com"]');
-const hubspot_iframe_wrapper = document.createElement('div');
-const hubspot_iframe = document.createElement('iframe');
-hubspot_iframe_wrapper.className = "hubspot-iframe-wrapper";
-hubspot_iframe.src = hubspot_url.href;
-hubspot_iframe_wrapper.appendChild(hubspot_iframe);
-hubspot_url.parentNode.replaceChild(hubspot_iframe_wrapper, hubspot_url);
-
+const hubspotUrl = document.querySelector('.get-in-touch-wrapper > div > div > div:first-of-type [href*="https://info.moleculardevices.com"]');
+const hubspotIframeWrapper = document.createElement('div');
+const hubspotIframe = document.createElement('iframe');
+hubspotIframeWrapper.className = 'hubspot-iframe-wrapper';
+hubspotIframe.src = hubspotUrl.href;
+hubspotIframeWrapper.appendChild(hubspotIframe);
+hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
 
 const map_url = document.querySelector('.get-in-touch-wrapper > div > div > div:last-of-type [href*="https://maps.google.com"]');
 const map_iframe = document.createElement('iframe');
