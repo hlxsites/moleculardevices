@@ -285,6 +285,13 @@ const transformButtons = (document) => {
     }
   });
 
+  // convert special blog post buttons
+  document.querySelectorAll('a.gradiantTealreverse').forEach((button) => {
+    const wrapper = document.createElement('em');
+    wrapper.innerHTML = button.outerHTML;
+    button.replaceWith(wrapper);
+  });
+
   // convert links with icons
   document.querySelectorAll('a.linkBtn').forEach((button) => {
     button.querySelectorAll('i.icon-icon_link').forEach((icon) => {
@@ -326,12 +333,16 @@ const transformTables = (document) => {
 const transformColumns = (document) => {
   const COLUMN_STYLES = [
     {
-      match: ['col-sm-4', 'col-md-4', 'col-lg-3'],
+      match: ['col-sm-4', 'col-lg-4'],
       blockName: 'Columns (layout 33 66)',
     },
     {
-      match: ['col-sm-3', 'col-md-3', 'col-lg-4'],
+      match: ['col-sm-3', 'col-md-3', 'col-lg-3'],
       blockName: 'Columns (layout 25 75)',
+    },
+    {
+      match: ['col-sm-8', 'col-md-8', 'col-lg-8'],
+      blockName: 'Columns (layout 66 33)',
     },
   ];
 
@@ -344,13 +355,13 @@ const transformColumns = (document) => {
 
   document
     .querySelectorAll(
-      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type, .row > .col-sm-4:first-of-type, .row > .col-sm-3:first-of-type',
+      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type, .row > .col-md-4:first-of-type, .row > .col-sm-4:first-of-type, .row > .col-sm-3:first-of-type, .row > .col-md-8:first-of-type',
     )
     .forEach((column) => {
       const row = column.parentElement;
       if (row.childElementCount > 1) {
         [...row.children].forEach((col) => {
-          if (col.className.indexOf('-12') > 0) {
+          if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
             row.after(col);
           }
         });
@@ -452,6 +463,31 @@ const transformShareStory = (document) => {
 
 // convert embed objects
 const transformEmbeds = (document) => {
+  // detect ceros embeds
+  document.querySelectorAll('.ceros-overview').forEach((ceros) => {
+    const cerosUrl = ceros.getAttribute('data-url');
+    if (cerosUrl) {
+      const wrapper = document.createElement('div');
+      wrapper.append(
+        ceros.previousSibling,
+        document.createElement('br'),
+        cerosUrl,
+      );
+      const cells = [[`Ceros`], [wrapper]];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      ceros.replaceWith(table);
+    }
+  });
+
+  // detect vidyard video player embeds
+  document.querySelectorAll('.vidyard-player-embed').forEach((vidyard) => {
+    const type = vidyard.getAttribute('data-type');
+    const videoId = vidyard.getAttribute('data-uuid');
+    const cells = [[`Vidyard (${type})`], [videoId]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    vidyard.replaceWith(table);
+  });
+
   // detect embed iframe in main content
   document.querySelectorAll('.container iframe').forEach((iframe) => {
     const iframeSrc = iframe.src;
@@ -460,17 +496,6 @@ const transformEmbeds = (document) => {
       cells.push([iframeSrc]);
       const table = WebImporter.DOMUtils.createTable(cells, document);
       iframe.replaceWith(table);
-    }
-  });
-
-  // detect vidyard video player embeds
-  document.querySelectorAll('[onclick^="fn_vidyard"]').forEach((vidyard) => {
-    const vidyardId = vidyard
-      .getAttribute('onclick')
-      .match(/^fn_vidyard_(.*)\(/)[1];
-    if (vidyardId) {
-      const vidyardUrl = `https://share.vidyard.com/watch/${vidyardId}`;
-      vidyard.replaceWith(vidyardUrl);
     }
   });
 };
@@ -610,6 +635,17 @@ export default {
         //a.href = new URL(href).toString();
         a.href = '';
       }
+    });
+
+    // prepare vidyard script URLs before their are filtered
+    document.querySelectorAll('.video script').forEach((vidyard) => {
+      const videoDiv = vidyard.parentElement;
+      videoDiv.classList.add('vidyard-player-embed');
+      const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
+      const params = new URLSearchParams(vidyard.src);
+      videoDiv.setAttribute('data-url', vidyard.src);
+      videoDiv.setAttribute('data-uuid', uuid);
+      videoDiv.setAttribute('data-type', params.get('type'));
     });
   },
 
