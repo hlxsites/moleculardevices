@@ -108,10 +108,10 @@ export default function decorate(block) {
       cardWrapper.innerHTML += `
       <div class="leadership-modal-pagination">
       <div class="prev-item">
-        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${navValue.prev}</span></a>
+        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${navValue[prev]}</span></a>
       </div>
       <div class="next-item">
-        <a href="javascript:void(0)"><span>${navValue.next}</span> <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="javascript:void(0)"><span>${navValue[next]}</span> <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
       `;
@@ -151,7 +151,7 @@ export default function decorate(block) {
   createModalCarousel(leaderCardItems, modalFooterContent);
 
   leaderCardItems.forEach((leaderCard, index) => {
-    leaderCard.onclick = function () {
+    leaderCard.onclick = () => {
       removeActiveClassFromArr(modalCarouselItems, 'active');
       showModalCard(index);
     };
@@ -187,10 +187,18 @@ export default function decorate(block) {
     }
   }
 
-  // document.querySelector('.leadership-modal-pagination .prev-item > a').addEventListener('click', prevCarouselHandler, false);
-  // document.querySelector('.leadership-modal-pagination .next-item > a').addEventListener('click', nextCarouselHandler, false);
+  // document
+  //   .querySelector('.leadership-modal-pagination .prev-item > a')
+  //   .addEventListener('click', prevCarouselHandler, false);
+  // document
+  //   .querySelector('.leadership-modal-pagination .next-item > a')
+  //   .addEventListener('click', nextCarouselHandler, false);
 
-  document.querySelector('.leadership-modal-carousel-nav .prev-item > a').addEventListener('click', prevCarouselHandler, false);
-  document.querySelector('.leadership-modal-carousel-nav .next-item > a').addEventListener('click', nextCarouselHandler, false);
+  document
+    .querySelector('.leadership-modal-carousel-nav .prev-item > a')
+    .addEventListener('click', prevCarouselHandler, false);
+  document
+    .querySelector('.leadership-modal-carousel-nav .next-item > a')
+    .addEventListener('click', nextCarouselHandler, false);
   /* ================ Leadership Block ================ */
 }
