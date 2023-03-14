@@ -1,0 +1,76 @@
+.get-in-touch > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.get-in-touch > div > div p {
+  margin-top: 0;
+}
+
+.get-in-touch > div > div h5 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 600;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.hubspot-iframe-wrapper iframe {
+  height: 710px;
+}
+
+.hubspot-iframe-wrapper {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.get-in-touch > div > div iframe {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+  background: #fff;
+  padding-top: 10px;
+}
+
+.get-in-touch > div > div:last-child iframe {
+  height: 450px;
+}
+
+.get-in-touch > div > div .fa {
+  color: var(--text-green);
+  font-size: 36px;
+  padding-right: 20px;
+  float: left;
+  line-height: 25px;
+}
+
+.get-in-touch > div > div a {
+  color: inherit;
+}
+
+@media only screen and (min-width: 992px) {
+  .get-in-touch > div > div {
+    flex-basis: 50%;
+  }
+
+  .get-in-touch > div > div:last-child {
+    padding-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .get-in-touch > div {
+    flex-direction: column;
+  }
+
+  .get-in-touch > div > div:last-child iframe {
+    height: 400px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .hubspot-iframe-wrapper iframe {
+    height: 800px;
+  }
+}
