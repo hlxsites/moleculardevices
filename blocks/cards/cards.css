@@ -30,22 +30,22 @@
   width: 100%;
 }
 
-/* MODAL */
-.modal,
-.modal-overlay {
+/* LEADERSHIP MODAL */
+.leadership-modal,
+.leadership-modal-overlay {
   opacity: 0;
   transition: all .3s ease-in-out;
   visibility: hidden;
 }
 
-.modal.show,
-.modal-overlay.show {
+.leadership-modal.show,
+.leadership-modal-overlay.show {
   margin-top: 0;
   opacity: 1;
   visibility: visible;
 }
 
-.modal {
+.leadership-modal {
   left: 0;
   margin: auto;
   margin-top: -40px;
@@ -58,7 +58,7 @@
   z-index: 9;
 }
 
-.modal-overlay {
+.leadership-modal-overlay {
   background-color: rgb(0 0 0/ 80%);
   bottom: 0;
   cursor: pointer;
@@ -71,7 +71,7 @@
   z-index: 2;
 }
 
-.modal-close {
+.leadership-modal-close {
   background: transparent;
   border: 1px solid;
   border-radius: 50%;
@@ -87,95 +87,69 @@
   width: 48px;
 }
 
-.modal-close:hover {
+.leadership-modal-close:hover {
   color: var(--text-white);
 }
 
-.modal-wrapper::-webkit-scrollbar {
+.leadership-modal-body .leadership-modal-carousel-content::-webkit-scrollbar {
   display: none;
 }
 
-.modal-wrapper {
+.leadership-modal-body .leadership-modal-carousel-content {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.modal-body {
-  background-color: #fff;
-  background-image: url(images/grey_molecules_tp.png), url(images/grey_molecules.png);
+.leadership-modal-body .leadership-modal-carousel-content {
+  background-color: var(--background-color);
+  background-image: url('images/grey_molecules_tp.png'), url('images/grey_molecules.png');
   background-position: center top, center bottom;
   background-repeat: no-repeat;
   background-size: 140% auto, 100% auto;
-  min-height: 100%;
-  padding: 86px 50px 46px;
+  padding: 86px 50px 70px;
+  height: calc(100% - 60px);
+  overflow-y: auto;
 }
 
-.modal-body .cards-card-image img {
+.leadership-modal-body .cards-card-image img {
   height: auto;
   display: block;
   max-width: 100%;
   margin: auto;
 }
 
-.modal-body .cards-card-body,
-.modal-body .cards-card-body p {
+.leadership-modal-body .cards-card-body,
+.leadership-modal-body .cards-card-body p {
   font-size: var(--body-font-size-xs);
 }
 
-.modal-body .cards-card-body h2 {
+.leadership-modal-body .cards-card-body h2 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 0;
 }
 
-.modal-body .cards-card-body h4 {
+.leadership-modal-body .cards-card-body h4 {
   font-weight: 600;
   padding-bottom: 10px;
   padding-top: 5px;
 }
 
-.modal-body .cards-card-body p:first-child {
+.leadership-modal-body .cards-card-body p:first-child {
   margin-top: 0;
 }
 
-.modal-carousel-item {
+.leadership-modal-carousel-item {
   display: none;
-  /* -webkit-transition: .6s ease-in-out left;
-  -o-transition: .6s ease-in-out left;
-  transition: .6s ease-in-out left; */
-  /* transform: translateX(100%); */
-  /* -webkit-transition: -webkit-transform .6s ease-in-out;
-  -o-transition: -o-transform .6s ease-in-out;
-  transition: transform .6s ease-in-out; */
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
+  height: 100%;
 }
 
-.modal-carousel-item.active {
+.leadership-modal-carousel-item.active {
   display: block;
-  /* transform: translateX(0);
-  animation: nextSlide 1s ease; */
-  /* left: 0; */
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
 }
 
-.modal-footer .modal-pagination {
-  background: var(--button-secondary-hover-color);
-  position: absolute;
-  left: 0;
-  bottom: -40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 20px 50px;
-}
-
-.modal-footer a {
+.leadership-modal-footer a {
   color: var(--text-white);
   font-weight: bold;
   font-size: var(--body-font-size-s);
@@ -183,33 +157,49 @@
   align-items: center;
 }
 
-.modal-footer .modal-pagination .prev-item a > i {
+.leadership-modal-pagination {
+  background: var(--button-secondary-hover-color);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 50px;
+}
+
+.leadership-modal-pagination a {
+  color: var(--text-white);
+}
+
+.leadership-modal-pagination .prev-item a > i {
   margin-right: 10px;
 }
 
-.modal-footer .modal-pagination .next-item a > i {
+.leadership-modal-pagination .next-item a > i {
   margin-left: 10px;
 }
 
-.modal-footer .modal-carousel-nav > div {
+.leadership-modal-carousel-nav > div {
   position: absolute;
   top: 55%;
   transform: translateY(-50%);
 }
 
-.modal-footer .modal-carousel-nav > .prev-item {
+.leadership-modal-carousel-nav > .prev-item {
   left: -40px;
 }
 
-.modal-footer .modal-carousel-nav > .next-item {
+.leadership-modal-carousel-nav > .next-item {
   right: -40px;
 }
 
-.modal-footer .modal-carousel-nav > div a {
+.leadership-modal-carousel-nav > div a {
   font-size: 36px;
 }
 
-/* MODAL */
+/* LEADERSHIP MODAL */
 
 /* ANIMATION */
 @keyframes nextSlide {
@@ -223,13 +213,7 @@
 }
 
 
-/* ================ Leadership Page ================ */
-h1#leadership {
-  font-family: var(--ff-proxima-light);
-  margin-bottom: 40px;
-  text-align: center;
-}
-
+/* ================ Leadership Module ================ */
 .cards.leaders {
   padding: 50px 0;
 }
@@ -293,12 +277,18 @@ h1#leadership {
 }
 
 @media only screen and (min-width: 768px) {
-  .modal-wrapper {
+
+  .leadership-modal-wrapper,
+  .leadership-modal-body {
+    height: 500px;
+  }
+
+  .leadership-modal-wrapper {
     height: 500px;
     overflow-y: auto;
   }
 
-  .modal-body .cards-card-image {
+  .leadership-modal-body .cards-card-image {
     float: right;
     margin-left: 50px;
     max-width: 300px;
@@ -314,42 +304,43 @@ h1#leadership {
 @media only screen and (max-width: 991px) {}
 
 @media only screen and (max-width: 767px) {
-  .modal {
+  .leadership-modal {
     padding: 10px;
   }
 
-  .modal-close {
+  .leadership-modal-close {
     font-size: 40px;
     height: 40px;
     width: 40px;
     line-height: 40px;
   }
 
-  .modal-wrapper {
+  .leadership-modal-wrapper {
     height: 80vh;
     overflow-y: auto;
   }
 
-  .modal-body {
+  .leadership-modal-body .leadership-modal-carousel-content {
     padding: 50px 10px 40px;
   }
 
-  .modal-body .cards-card-image {
+  .leadership-modal-body .cards-card-image {
     margin-bottom: 30px;
   }
 
-  .modal-footer a {
+  .leadership-modal-footer a {
     font-size: var(--body-font-size-xs);
   }
 
-  .modal-footer .modal-pagination {
+  .leadership-modal-footer .leadership-modal-pagination {
     width: calc(100% - 20px);
     padding: 20px 10px;
     margin: 0 10px;
   }
 
-  .modal-footer .modal-carousel-nav {
+  .leadership-modal-footer .leadership-modal-carousel-nav {
     display: none;
   }
 }
-/* ================ Leadership Page ================ */
+
+/* ================ Leadership Module ================ */
