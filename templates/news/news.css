@@ -15,6 +15,22 @@ strong {
     font-family: inherit;
     font-weight: 700;
 }
+.event-wrapper {
+  margin-top: 10px;
+}
+
+.event-wrapper cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding: 0 0 15px 0;
+}
+
+.content-wrapper {
+  margin-top: 10px;
+}
 
 .picture-wrapper {
   width: 100%;

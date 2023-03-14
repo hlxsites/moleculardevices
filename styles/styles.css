@@ -107,7 +107,7 @@ body {
   display: none;
 }
 
-head:has(meta[name="theme"][content="Background Gray"]) ~ body {
+body.background-gray {
   background-color: var(--grey-background-color)
 }
 
