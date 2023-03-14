@@ -6,7 +6,7 @@ hubspotIframe.src = hubspotUrl.href;
 hubspotIframeWrapper.appendChild(hubspotIframe);
 hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
 
-const map_url = document.querySelector('.get-in-touch-wrapper > div > div > div:last-of-type [href*="https://maps.google.com"]');
-const map_iframe = document.createElement('iframe');
-map_iframe.src = map_url.href;
-map_url.parentNode.replaceChild(map_iframe, map_url);
+const mapUrl = document.querySelector('.get-in-touch-wrapper > div > div > div:last-of-type [href*="https://maps.google.com"]');
+const mapIframe = document.createElement('iframe');
+mapIframe.src = mapUrl.href;
+mapUrl.parentNode.replaceChild(mapIframe, mapUrl);
