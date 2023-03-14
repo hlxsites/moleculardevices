@@ -1,40 +1,150 @@
 /* block specific CSS goes here */
 
 main .hero-container > div {
-    max-width: unset;
+  max-width: unset;
 }
-  
+
 main .hero-container {
-    padding: 0;
+  padding: 0;
 }
-  
+
 main .hero {
-    position: relative;
-    padding: 32px;
-    min-height: 300px;
+  position: relative;
+  padding: 32px;
+  min-height: 300px;
+  color: var(--text-white);
+}
+
+main .hero p {
+  margin: 0 0 10px;
+}
+
+main .button-container a {
+  color: var(--font-white);
+}
+
+main .hero li {
+  margin-bottom: 15px;
 }
 
 main .hero h1 {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    color: white;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: white;
 }
 
+main .hero h6 {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+}
+
+main .hero h6:first-child {
+  margin-top: 0;
+}
 
 main .hero picture {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    object-fit: cover;
-    box-sizing: border-box;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  box-sizing: border-box;
 }
 
 main .hero img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+main .section .hero-wrapper {
+  width: 100%;
+  padding: 0;
+}
+
+main .section .hero-wrapper .hero > div {
+  margin:auto;
+}
+
+main .section .hero-wrapper .hero .container > div {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .section .hero-wrapper .hero .container > div:nth-child(2) {
+  padding-left: 30px;
+  padding-bottom: 40px;
+  padding-top: 45px;
+  font-size: var(--body-font-size-xs);
+}
+
+main .section .hero-wrapper .hero .container > div:nth-child(2) .button-container {
+  font-size: var(--body-font-size-s);
+  margin-top: 5px;
+  color: var(--text-white);
+}
+
+@media (max-width: 767px) {
+  main .hero {
+    padding:15px;
+  }
+
+  /* TODO fix heading vars in styles.css */
+  main .hero h1 {
+    margin-bottom:20px;
+    font-size: 36px;
+  }
+
+  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > * {
+    display: none;
+  }
+
+  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > p.button-container,
+  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > h1 {
+    display: block;
+  }
+
+  main .section .hero-wrapper .hero .container > div:nth-child(2) {
+    border-top: 2px solid #fff;
+  }
+}
+
+@media (min-width: 768px) {
+  main .section .hero-wrapper .hero .container {
+    overflow: auto;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  main .section .hero-wrapper .hero .container > div {
+    float:left;
+  }
+
+  main .section .hero-wrapper .hero .container > div:nth-child(1) {
+    width: 66%
+  }
+
+  main .section .hero-wrapper .hero .container > div:nth-child(2) {
+    width: 33%;
+    border-left: 2px solid #fff;
+  }
+}
+
+@media (min-width: 992px) {
+  main .section .hero-wrapper .hero > div {
+    width: 970px
+  }
+}
+
+@media (min-width: 1200px) {
+  main .section .hero-wrapper .hero > div {
+    width: 1170px
+  }
 }

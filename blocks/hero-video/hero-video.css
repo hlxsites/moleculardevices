@@ -1,0 +1,251 @@
+main .hero-video-wrapper {
+  position: relative;
+  width: 100% !important;
+  margin: 0 0 115px !important;
+  padding: 0 !important;
+  max-width: unset;
+  height: 750px;
+  min-height: auto;
+}
+
+main .hero-video {
+  width: 100%;
+  min-height: 450px;
+}
+
+main .hero-video-banner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+main .teaser-video-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+main .teaser-video-container video {
+  display: block;
+}
+
+main .teaser-video-container img {
+  display: none;
+}
+
+main .teaser-video-container p {
+  display: none !important;
+}
+
+main .teaser-video-container::before {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0 0 0 / 50%);
+  z-index: 1;
+  position: absolute;
+}
+
+main .overlay {
+  text-align: center;
+  z-index: 1;
+  width: 1170px;
+  padding: 15px;
+}
+
+main .overlay h1 {
+  font-family: var(--ff-proxima-light);
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1;
+  font-weight: 100;
+}
+
+main .overlay .video-banner-btn {
+  background-color: transparent;
+  font-size: 18px;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 16px 32px;
+  display: inline-flex;
+  align-items: center;
+  outline: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+main .overlay .video-banner-btn:hover {
+  background-color: #000;
+}
+
+/* TODO figure out why we have a ~1px difference */
+main .overlay .video-banner-btn .icon {
+  max-height: 30px;
+  display: block;
+}
+
+main .overlay .video-banner-btn svg {
+  margin-right: 8px;
+}
+
+main .full-video-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+main .video-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+  overflow: hidden;
+}
+
+main .video-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main .full-video-container .close-video {
+  position: absolute;
+  top: 56px;
+  right: 56px;
+  z-index: 9999;
+  cursor: pointer;
+  background-color: rgb(0 0 0 / 50%);
+  padding: 10px;
+  border-radius: 50%;
+  transform: rotate(0deg);
+  transition: all .3s ease-in-out;
+}
+
+main .full-video-container .close-video-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  transform: rotate(-90deg) scale(1);
+  transition: .6s transform cubic-bezier(0.19,1,.22,1);
+  cursor: pointer;
+  z-index: 3;
+  display: block;
+}
+
+main .full-video-container .close-video:hover {
+    transform: rotate(90deg);
+}
+
+main .full-video-container .play-pause-fullscreen-button {
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+main .full-video-container .play-pause-fullscreen-button svg {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  transform: scale(0.9);
+  width: 150px;
+  height: 150px;
+  margin: auto;
+  opacity: 0;
+  transition: .4s all linear;
+}
+
+@media only screen and (max-width: 1200px) {
+  main .overlay {
+    width: 970px;
+  }
+
+  main .full-video-container {
+    background-color: #000;
+  }
+
+  main .full-video-container .video-cover {
+    object-fit: contain;
+  }
+
+  main .full-video-container .close-video {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  main .overlay {
+    width: 750px;
+  }
+}
+
+@media only screen and (max-width: 768px)  {
+  main .hero-video-wrapper {
+    height: unset;
+    min-height: 450px;
+  }
+
+  main .teaser-video-container video {
+    display: none;
+  }
+
+  main .teaser-video-container img {
+    display: block;
+  }
+
+  main .overlay {
+    margin-right: auto;
+    margin-left: auto;
+    width: unset;
+  }
+
+  main .full-video-container .play-pause-fullscreen-button svg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  main .full-video-container .play-pause-fullscreen-button svg {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  main .overlay h1 {
+    font-size: 30px;
+  }
+
+  main .overlay .video-banner-btn {
+    white-space: unset;
+    line-height: 24px;
+  }
+}
