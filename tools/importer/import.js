@@ -107,7 +107,7 @@ const transformHero = (document) => {
     .querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new')
     .forEach((hero) => {
       const isBlog = hero.classList.contains('blog-details');
-      const cells = [[isBlog ? 'Hero (lab-notes)' : 'Hero']];
+      const cells = [[isBlog ? 'Hero (Blog)' : 'Hero']];
       const heroContent = isBlog
         ? hero.querySelector('.hero-desc')
         : hero.querySelector('.row, .bannerInnerPages');
@@ -324,14 +324,50 @@ const transformTables = (document) => {
 };
 
 const transformColumns = (document) => {
+  const COLUMN_STYLES = [
+    {
+      match: ['col-sm-4', 'col-md-4', 'col-lg-3'],
+      blockName: 'Columns (layout 33 66)',
+    },
+    {
+      match: ['col-sm-3', 'col-md-3', 'col-lg-4'],
+      blockName: 'Columns (layout 25 75)',
+    },
+  ];
+
+  document.querySelectorAll('.row .swap, .row .not-swap').forEach((div) => {
+    const row = div.parentElement;
+    row.classList.add(div.className);
+    row.append(...div.children);
+    div.remove();
+  });
+
   document
     .querySelectorAll(
-      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type',
+      '.row > .col-sm-6:first-of-type, .row > .col-md-6:first-of-type, .row > .col-sm-4:first-of-type, .row > .col-sm-3:first-of-type',
     )
     .forEach((column) => {
       const row = column.parentElement;
       if (row.childElementCount > 1) {
-        const cells = [['Columns'], [...row.children]];
+        [...row.children].forEach((col) => {
+          if (col.className.indexOf('-12') > 0) {
+            row.after(col);
+          }
+        });
+        let children = [...row.children];
+        if (row.classList.contains('swap')) {
+          children = children.reverse();
+        }
+
+        let blockName = 'Columns';
+        const styleMatch = COLUMN_STYLES.find((e) =>
+          e.match.some((match) => column.classList.contains(match)),
+        );
+        if (styleMatch) {
+          blockName = styleMatch.blockName;
+        }
+
+        const cells = [[blockName], children];
         const table = WebImporter.DOMUtils.createTable(cells, document);
         row.replaceWith(table);
       }
@@ -374,18 +410,12 @@ const transformReferenceProducts = (document) => {
     });
 };
 
-const transformQuote = (document) => {
-  document.querySelectorAll('.testimonials').forEach((quote) => {
-    const quoteText = quote.querySelector('em');
-    const blockquote = document.createElement('blockquote');
-    blockquote.innerHTML = quoteText.innerHTML;
-    quoteText.replaceWith(blockquote);
-    const quoteAuthor = quote.querySelector('label');
-    if (quoteAuthor) {
-      const em = document.createElement('em');
-      em.innerHTML = quoteAuthor.innerHTML;
-      quoteAuthor.replaceWith(em);
-    }
+const transformQuotes = (document) => {
+  document.querySelectorAll('.quots-part').forEach((quote) => {
+    const cells = [['Quote']];
+    cells.push([quote.querySelector('.quots-text')]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    quote.replaceWith(table);
   });
 };
 
@@ -440,13 +470,7 @@ const transformEmbeds = (document) => {
       .match(/^fn_vidyard_(.*)\(/)[1];
     if (vidyardId) {
       const vidyardUrl = `https://share.vidyard.com/watch/${vidyardId}`;
-      const cells = [['Embed']];
-      const thumbnail = vidyard.querySelector('img');
-      const container = document.createElement('p');
-      container.append(thumbnail, document.createElement('br'), vidyardUrl);
-      cells.push([container]);
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      vidyard.replaceWith(table);
+      vidyard.replaceWith(vidyardUrl);
     }
   });
 };
@@ -650,7 +674,7 @@ export default {
       transformColumns,
       transformReferenceToColumns,
       transformEmbeds,
-      transformQuote,
+      transformQuotes,
       transformFAQAccordion,
       transformImageCaption,
       transformShareStory,
