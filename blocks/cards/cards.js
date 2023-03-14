@@ -36,14 +36,14 @@ export default function decorate(block) {
   /* HELPER */
 
   function createLeadershipModalHTML() {
-    const body = document.body,
-      modal = document.createElement('div'),
-      modalWrapper = document.createElement('div'),
-      modalHeader = document.createElement('div'),
-      modalBody = document.createElement('div'),
-      modalFooter = document.createElement('div'),
-      modalOverlay = document.createElement('div'),
-      closeIcon = document.createElement('button');
+    const body = document.body;
+    const modal = document.createElement('div');
+    const modalWrapper = document.createElement('div');
+    const modalHeader = document.createElement('div');
+    const modalBody = document.createElement('div');
+    const modalFooter = document.createElement('div');
+    const modalOverlay = document.createElement('div');
+    const closeIcon = document.createElement('button');
 
     closeIcon.innerHTML = '&times;';
 
@@ -72,9 +72,9 @@ export default function decorate(block) {
   createLeadershipModalHTML();
 
   function updatePrevNextBtn(ind, leaderCardItems) {
-    const navValue = { prev: '', next: '' },
-      startPoint = 0,
-      endPoint = Number(leaderCardItems.length - 1);
+    const navValue = { prev: '', next: '' };
+    const startPoint = 0;
+    const endPoint = Number(leaderCardItems.length - 1);
 
     if (ind === startPoint) {
       navValue.prev = getTextFromArrTag(leaderCardItems, 'h2', endPoint);
@@ -91,15 +91,15 @@ export default function decorate(block) {
   }
 
   function createModalCarousel(leaderCardItems, modalFooterContent) {
-    const modal = document.querySelector('.leadership-modal'),
-      // modalHeader = modal.querySelector('.leadership-modal-header'),
-      modalBody = modal.querySelector('.leadership-modal-body'),
-      modalFooter = modal.querySelector('.leadership-modal-footer');
+    const modal = document.querySelector('.leadership-modal');
+    // const modalHeader = modal.querySelector('.leadership-modal-header');
+    const modalBody = modal.querySelector('.leadership-modal-body');
+    const modalFooter = modal.querySelector('.leadership-modal-footer');
 
     leaderCardItems.forEach((leaderCard, index) => {
-      const { prev, next } = updatePrevNextBtn(index, leaderCardItems),
-        cardContent = document.createElement('div'),
-        cardWrapper = document.createElement('div');
+      const navValue = updatePrevNextBtn(index, leaderCardItems);
+      const cardContent = document.createElement('div');
+      const cardWrapper = document.createElement('div');
 
       cardContent.classList.add('leadership-modal-carousel-content');
       cardWrapper.classList.add('leadership-modal-carousel-item');
@@ -108,10 +108,10 @@ export default function decorate(block) {
       cardWrapper.innerHTML += `
       <div class="leadership-modal-pagination">
       <div class="prev-item">
-        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${prev}</span></a>
+        <a href="javascript:void(0)"><i class="fa fa-arrow-circle-left"></i> <span>${navValue.prev}</span></a>
       </div>
       <div class="next-item">
-        <a href="javascript:void(0)"><span>${next}</span> <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="javascript:void(0)"><span>${navValue.next}</span> <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
       `;
@@ -124,8 +124,8 @@ export default function decorate(block) {
   }
 
   function showModalCard(index) {
-    const modal = document.querySelector('.leadership-modal'),
-      modalOverlay = document.querySelector('.leadership-modal-overlay');
+    const modal = document.querySelector('.leadership-modal');
+    const modalOverlay = document.querySelector('.leadership-modal-overlay');
 
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = '17px';
@@ -134,32 +134,10 @@ export default function decorate(block) {
     document.getElementById(index).classList.add('active');
   }
 
-  function prevCarouselHandler() {
-    const activeID = Number(this.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.active').id);
-    removeActiveClassFromArr(modalCarouselItems, 'active');
-
-    if (activeID === 0) {
-      document.getElementById(itemsLength).classList.add('active');
-    } else {
-      document.getElementById(activeID - 1).classList.add('active');
-    }
-  }
-
-  function nextCarouselHandler() {
-    const activeID = Number(this.parentElement.parentElement.parentElement.previousElementSibling.querySelector('.active').id);
-    removeActiveClassFromArr(modalCarouselItems, 'active');
-
-    if (activeID === itemsLength) {
-      document.getElementById(0).classList.add('active');
-    } else {
-      document.getElementById(activeID + 1).classList.add('active');
-    }
-  }
-
-  const leaderCardItems = document.querySelectorAll('.leaders ul li'),
-    modalCarouselItems = document.querySelector('.leadership-modal-body').children,
-    itemsLength = Number(leaderCardItems.length - 1),
-    modalFooterContent = `
+  const leaderCardItems = document.querySelectorAll('.leaders ul li');
+  const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
+  const itemsLength = Number(leaderCardItems.length - 1);
+  const modalFooterContent = `
     <div class="leadership-modal-carousel-nav">
       <div class="prev-item">
         <a href="javascript:void(0)"><i class="fa fa-chevron-circle-left"></i></a>
@@ -172,17 +150,47 @@ export default function decorate(block) {
 
   createModalCarousel(leaderCardItems, modalFooterContent);
 
-  // document.querySelector(".leadership-modal-pagination .prev-item > a").addEventListener("click", prevCarouselHandler, false);
-  // document.querySelector(".leadership-modal-pagination .next-item > a").addEventListener("click", nextCarouselHandler, false);
-
-  document.querySelector(".leadership-modal-carousel-nav .prev-item > a").addEventListener("click", prevCarouselHandler, false);
-  document.querySelector(".leadership-modal-carousel-nav .next-item > a").addEventListener("click", nextCarouselHandler, false);
-
   leaderCardItems.forEach((leaderCard, index) => {
     leaderCard.onclick = function () {
       removeActiveClassFromArr(modalCarouselItems, 'active');
       showModalCard(index);
     };
   });
+
+  function prevCarouselHandler() {
+    const activeID = Number(
+      this.parentElement.parentElement.parentElement.previousElementSibling.querySelector(
+        '.active',
+      ).id,
+    );
+    removeActiveClassFromArr(modalCarouselItems, 'active');
+
+    if (activeID === 0) {
+      document.getElementById(itemsLength).classList.add('active');
+    } else {
+      document.getElementById(activeID - 1).classList.add('active');
+    }
+  }
+
+  function nextCarouselHandler() {
+    const activeID = Number(
+      this.parentElement.parentElement.parentElement.previousElementSibling.querySelector(
+        '.active',
+      ).id,
+    );
+    removeActiveClassFromArr(modalCarouselItems, 'active');
+
+    if (activeID === itemsLength) {
+      document.getElementById(0).classList.add('active');
+    } else {
+      document.getElementById(activeID + 1).classList.add('active');
+    }
+  }
+
+  // document.querySelector('.leadership-modal-pagination .prev-item > a').addEventListener('click', prevCarouselHandler, false);
+  // document.querySelector('.leadership-modal-pagination .next-item > a').addEventListener('click', nextCarouselHandler, false);
+
+  document.querySelector('.leadership-modal-carousel-nav .prev-item > a').addEventListener('click', prevCarouselHandler, false);
+  document.querySelector('.leadership-modal-carousel-nav .next-item > a').addEventListener('click', nextCarouselHandler, false);
   /* ================ Leadership Block ================ */
 }
