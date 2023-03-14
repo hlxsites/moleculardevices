@@ -30,7 +30,7 @@
   width: 100%;
 }
 
-/* LEADERSHIP Block */
+/* LEADERSHIP MODAL */
 .leadership-modal,
 .leadership-modal-overlay {
   opacity: 0;
@@ -53,7 +53,6 @@
   position: fixed;
   right: 0;
   top: 20px;
-  /* transform: translateY(-50%); */
   width: 100%;
   z-index: 9;
 }
@@ -98,9 +97,6 @@
 .leadership-modal-body .leadership-modal-carousel-content {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-.leadership-modal-body .leadership-modal-carousel-content {
   background-color: var(--background-color);
   background-image: url('images/grey_molecules_tp.png'), url('images/grey_molecules.png');
   background-position: center top, center bottom;
@@ -201,18 +197,6 @@
 
 /* LEADERSHIP MODAL */
 
-/* ANIMATION */
-@keyframes nextSlide {
-  0% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-
 /* ================ Leadership Block ================ */
 .cards.leaders {
   padding: 50px 0;
@@ -277,7 +261,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-
   .leadership-modal-wrapper,
   .leadership-modal-body {
     height: 500px;
@@ -300,8 +283,6 @@
     flex-basis: calc(33.33% - 30px);
   }
 }
-
-@media only screen and (max-width: 991px) {}
 
 @media only screen and (max-width: 767px) {
   .leadership-modal {
