@@ -36,6 +36,10 @@
   line-height: 25px;
 }
 
+.hubspot-iframe-wrapper iframe {
+  height: 710px;
+}
+
 .get-in-touch > div > div a {
   color: inherit;
 }
@@ -43,10 +47,6 @@
 .hubspot-iframe-wrapper {
   margin-left: -15px;
   margin-right: -15px;
-}
-
-.hubspot-iframe-wrapper iframe {
-  height: 710px;
 }
 
 @media only screen and (min-width: 992px) {
