@@ -64,14 +64,10 @@ strong {
     flex-wrap: wrap;
   }
 
-  .picture-wrapper:has(p > picture) {
+  .picture-wrapper {
     float:left;
     flex: 33.33333333%;
     padding-right: 15px;
-  }
-  
-  .picture-wrapper:not(p > picture), .picture-wrapper:not(:has(p > picture)) ~ .text-wrapper {
-    padding-left: 0px;
   }
   
   .text-wrapper {
@@ -79,6 +75,9 @@ strong {
     flex: 66.66666667%;
     flex-direction: column;
     flex-wrap: wrap;
+  }
+
+  .picture-wrapper + .text-wrapper {
     padding-left: 15px;
   }
 }
