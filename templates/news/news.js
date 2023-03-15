@@ -22,24 +22,19 @@ export function decorateAutoBlock(content) {
     content.append(cite);
   }
 
-  const row = document.createElement('div');
-  row.classList.add('content-2col');
+  const picture = content.querySelector('p').firstElementChild;
+  if (picture) {
+    picture.parentElement.classList.add('left-col');
+  }
 
   const txt = document.createElement('div');
   txt.classList.add('right-col');
 
-  row.append(txt);
-  content.append(row);
-
-  const picture = content.querySelector('p').firstElementChild;
-  if (picture) {
-    console.log(picture);
-    picture.parentElement.classList.add('left-col');
-  }
+  content.append(txt);
 
   [...content.children].forEach((child) => {
     if (child.matches('p') && child.querySelector('picture')) {
-      row.insertBefore(child, txt);
+      content.insertBefore(child, txt);
     } else if (child.matches('p')) {
       txt.append(child);
     }

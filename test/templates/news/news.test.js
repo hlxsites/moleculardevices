@@ -34,10 +34,10 @@ describe('News Template', () => {
     const evnt = document.querySelector('.default-content-wrapper > cite');
     expect(evnt.innerHTML.trim()).to.equal('Jan 04, 2023');
 
-    const picture = document.querySelector('.default-content-wrapper > .content-2col > .left-col');
+    const picture = document.querySelector('.default-content-wrapper > .left-col');
     expect(picture.innerHTML.trim()).to.equal('<picture><img></picture>');
 
-    const textWrapper = document.querySelector('.default-content-wrapper > .content-2col > .right-col');
+    const textWrapper = document.querySelector('.default-content-wrapper > .right-col');
     expect(textWrapper.innerHTML.trim()).to.equal('<p><em>text 1</em></p><p>text 2</p><p>text 3</p>');
   });
 });

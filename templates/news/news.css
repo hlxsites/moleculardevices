@@ -56,22 +56,15 @@ cite {
 
 @media (min-width: 768px) {
 
-  .content-2col {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .left-col {
     float:left;
-    flex: 33.33333333%;
+    width: 33.33333333%;
     padding-right: 15px;
   }
   
   .right-col {
     float: left;
-    flex: 66.66666667%;
-    flex-direction: column;
-    flex-wrap: wrap;
+    width: 66.66666667%;
   }
 
   .left-col + .right-col {
