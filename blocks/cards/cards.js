@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
 /* ================ Leadership Block Handler================ */
@@ -135,7 +135,7 @@ function modalNavHandler(maxSlide, slideItem) {
   const activeID = Number(document.querySelector('.leadership-modal-wrapper').querySelector('.active').id);
   removeActiveClassFromArr(modalCarouselItems, 'active');
 
-  if (direction === "prev") {
+  if (direction === 'prev') {
     if (activeID === 0) {
       document.getElementById(maxSlide).classList.add('active');
     } else {
@@ -160,8 +160,8 @@ function modalNavHandler(maxSlide, slideItem) {
     }
   }
 
-  [...modalCarouselItems].forEach((slideItem, indx) => {
-    slideItem.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+  [...modalCarouselItems].forEach((carouselItems, indx) => {
+    carouselItems.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
   });
 }
 /* ================ Leadership Block Handler ================ */
