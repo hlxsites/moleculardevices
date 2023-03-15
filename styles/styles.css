@@ -406,3 +406,40 @@ nav {
   display: block;
 }
 
+.news, .publication {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+}
+
+@media (max-width: 767px) {
+  .news, .publication {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+.news p, .publication p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.news h1, .publication h1 {
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+.news strong, .publication strong {
+    font-weight: 700;
+}
+
+.news cite, .publication cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding: 0 0 30px 0;
+}
+
