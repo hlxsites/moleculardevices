@@ -53,7 +53,7 @@ export function decorateAutoBlock(content) {
   }
 
   [...content.children].forEach((child) => {
-    if (child.matches('p:has(picture)')) {
+    if (child.matches('p') && child.querySelector('picture')) {
       pic.append(child);
     } else if (child.matches('p')) {
       txt.append(child);
