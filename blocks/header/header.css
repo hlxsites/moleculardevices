@@ -54,6 +54,10 @@ header .navbar-header {
   margin-right: 30px;
 }
 
+.company-links a {
+  color: #6a747c;
+}
+
 .company-links img {
   background-repeat: no-repeat;
   background-size: 15px 15px;
