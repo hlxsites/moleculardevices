@@ -193,19 +193,6 @@ main.text-caption {
   color: var(--text-gray);
 }
 
-.fa {
-  display: inline-block;
-  font: normal normal normal 14px/1;
-  font-family: FontAwesome, sans-serif;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
-
-.fa-search::before {
-  content: "\f002";
-}
-
 /* buttons */
 a.button:any-link,
 button {
