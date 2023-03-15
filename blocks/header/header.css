@@ -145,10 +145,11 @@ header nav .nav-sections {
 }
 
 
-header .header-logo {
+header #header-logo img {
   display: block;
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
 }
 
 /* request quote */
@@ -204,6 +205,21 @@ header nav .nav-tools {
   header nav[aria-expanded=true] {
     min-height: 0;
     overflow: visible;
+  }
+}
+
+@media (max-width: 991px) {
+  header .navbar-header {
+    position: relative;
+    padding: 20px 15px;
+    width: 100%;
+    margin: 0;
+  }
+
+  header #header-logo img {
+    max-width: 100px;
+    max-height: 22px;
+    height: auto;
   }
 }
 

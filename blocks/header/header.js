@@ -1,5 +1,14 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
+function buildBrandLogo(content) {
+  const logoWrapper = document.createElement('div');
+  logoWrapper.setAttribute('id', 'header-logo');
+  const logoImg = content.querySelector('.nav-brand > div > div > picture > img');
+  logoImg.classList = 'logo1';
+  logoWrapper.innerHTML = logoImg.outerHTML;
+  return logoWrapper;
+}
+
 function buildToolsSection() {
   const companyLinks = document.createElement('div');
   companyLinks.innerHTML = `<div class="company-links"><ul class="mdtopmenu">
@@ -11,21 +20,10 @@ function buildToolsSection() {
 
 function buildRequestQuote() {
   const requestQuote = document.createElement('li');
-  requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq" data-level="0" data-element-type="we-mega-menu-li" 
-  description="" data-id="38d3dbfb-400b-4a1a-8c62-23dfc88ea15d" data-submenu="0" data-group="0" data-class="header-rfq">
+  requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq">
   <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`;
   return requestQuote;
 }
-
-// function buildSearchTool() {
-//   const searchTool = document.createElement('li');
-// searchTool.innerHTML = `<li class="we-mega-menu-li searchlink fa
-// fa-search dropdown-menu" data-level="0"
-// data-element-type="we-mega-menu-li"
-//   description="" data-id="e05dda8b-289a-4c7a-a502-2aeb6c782b1c" data-submenu="1"
-//   data-group="0" data-class="searchlink fa fa-search">
-//   <a href="#" data-drupal-link-system-path="<front>" class="we-megamenu-nolink">Search</a></li>`
-// }
 
 /**
  * decorates the header, mainly the nav
@@ -41,20 +39,14 @@ export default async function decorate(block) {
 
   const html = await resp.text();
 
-  const logo = document.createElement('div');
-  logo.setAttribute('id', 'header-logo');
-  const logoSrc = '/images/moldev-logo.webp';
-  logo.innerHTML = `<div class="logo1"><a href="${navPath}"><img src="${logoSrc}" alt="Moleculardevices"/></a></div>`;
-
   // decorate nav DOM
-  const nav = document.createElement('nav');
-  nav.id = 'nav';
-  nav.innerHTML = html;
+  const content = document.createElement('div');
+  content.innerHTML = html;
 
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
-  navbarHeader.append(logo);
+  navbarHeader.append(buildBrandLogo(content));
   navbarHeader.append(buildToolsSection());
 
   const headerWrapper = document.createElement('div');
@@ -68,14 +60,18 @@ export default async function decorate(block) {
 
   const container = document.createElement('div');
   container.classList.add('container');
+  const newNav = document.createElement('nav');
+  newNav.setAttribute('id', 'nav');
 
-  container.append(nav);
+  const navTabs = content.querySelector('.nav-menu');
+  newNav.innerHTML = navTabs.outerHTML;
+  container.append(newNav);
   mainMenuWrapper.append(container);
 
   // link section
   const navMenuUl = document.createElement('ul');
   navMenuUl.classList.add('nav-tabs');
-  const menus = [...nav.querySelectorAll('.nav-menu > div')];
+  const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
   for (let i = 0; i < menus.length - 1; i += 2) {
     const li = document.createElement('li');
     const menuTitle = menus[i];
@@ -88,9 +84,9 @@ export default async function decorate(block) {
 
   navMenuUl.append(buildRequestQuote());
 
-  nav.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
+  mainMenuWrapper.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
 
-  decorateIcons(nav);
+  decorateIcons(mainMenuWrapper);
 
   block.append(headerWrapper, mainMenuWrapper);
 }
