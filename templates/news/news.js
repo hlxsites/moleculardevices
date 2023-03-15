@@ -15,34 +15,31 @@ export function decorateAutoBlock(content) {
   if (!content) {
     return;
   }
-  const evnt = document.createElement('div');
-  evnt.classList.add('event-wrapper');
-
-  const row = document.createElement('div');
-  row.classList.add('content-wrapper');
-
-  const pic = document.createElement('div');
-  pic.classList.add('picture-wrapper');
-
-  const txt = document.createElement('div');
-  txt.classList.add('text-wrapper');
-
-  row.append(pic);
-  row.append(txt);
-
-  content.append(evnt);
-  content.append(row);
-
   const dt = getPublicationDateFromMetaData();
   if (dt) {
     const cite = document.createElement('cite');
     cite.innerHTML = dt;
-    evnt.append(cite);
+    content.append(cite);
+  }
+
+  const row = document.createElement('div');
+  row.classList.add('content-2col');
+
+  const txt = document.createElement('div');
+  txt.classList.add('right-col');
+
+  row.append(txt);
+  content.append(row);
+
+  const picture = content.querySelector('p').firstElementChild;
+  if (picture) {
+    console.log(picture);
+    picture.parentElement.classList.add('left-col');
   }
 
   [...content.children].forEach((child) => {
     if (child.matches('p') && child.querySelector('picture')) {
-      pic.append(child);
+      row.insertBefore(child, txt);
     } else if (child.matches('p')) {
       txt.append(child);
     }

@@ -5,21 +5,18 @@ p {
 }
 
 h1, h2 {
-  font-size: var(--heading-font-size-xxl);
-  font-family: var(--ff-proxima-light);
   font-weight: 100;
   margin-bottom: 20px;
 }
 
 strong {
-    font-family: inherit;
     font-weight: 700;
 }
-.event-wrapper {
+cite {
   margin-top: 10px;
 }
 
-.event-wrapper cite {
+cite {
   font-size: var(--body-font-size-xs);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
@@ -28,16 +25,16 @@ strong {
   padding: 0 0 15px 0;
 }
 
-.content-wrapper {
+.content-2col {
   margin-top: 10px;
 }
 
-.picture-wrapper {
+.left-col {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.text-wrapper {
+.right-col {
   width: 100%;
   margin-bottom: 20px;
 }
@@ -59,25 +56,25 @@ strong {
 
 @media (min-width: 768px) {
 
-  .content-wrapper {
+  .content-2col {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .picture-wrapper {
+  .left-col {
     float:left;
     flex: 33.33333333%;
     padding-right: 15px;
   }
   
-  .text-wrapper {
+  .right-col {
     float: left;
     flex: 66.66666667%;
     flex-direction: column;
     flex-wrap: wrap;
   }
 
-  .picture-wrapper + .text-wrapper {
+  .left-col + .right-col {
     padding-left: 15px;
   }
 }
