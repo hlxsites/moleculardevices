@@ -10,7 +10,7 @@ const sleep = async (time = 1000) => new Promise((resolve) => {
   }, time);
 });
 
-describe('News Template', () => {
+describe('Publication Template', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     document.head.innerHTML = await readFile({ path: './document.html' });
