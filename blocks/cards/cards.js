@@ -1,76 +1,7 @@
+/*jshint esversion: 6 */
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
-export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    li.innerHTML = row.innerHTML;
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
-    });
-    ul.append(li);
-  });
-  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  block.textContent = '';
-  block.append(ul);
-
-  /* ================ Leadership Block ================ */
-  const leaderCardItems = document.querySelectorAll('.leaders ul li');
-  const modalFooterContent = `
-    <div class="leadership-modal-carousel-nav">
-      <div class="prev-item">
-        <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-chevron-circle-left"></i></a>
-      </div>
-      <div class="next-item">
-        <a href="javascript:void(0)" data-slide="next"><i class="fa fa-chevron-circle-right"></i></a>
-      </div>
-    </div>
-    `;
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      createLeadershipModalHTML();
-      createModalCarousel(leaderCardItems, modalFooterContent);
-    }
-  });
-  observer.observe(document.body);
-
-  const modalObserver = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      modalObserver.disconnect();
-      entries.forEach((entry, index) => {
-        entry.target.addEventListener('click', () => {
-          showModalCard(index);
-        });
-      });
-    }
-  });
-  leaderCardItems.forEach(item => modalObserver.observe(item));
-
-  const modalNavObserver = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
-      let maxSlide = modalCarouselItems.length - 1;
-      modalNavObserver.disconnect();
-      entries.forEach((entry) => {
-        entry.target.addEventListener('click', () => {
-          modalNavHandler(maxSlide, entry.target);
-        });
-      });
-    }
-  });
-
-  setTimeout(() => {
-    const modalSlides = document.querySelectorAll("[data-slide]");
-    modalSlides.forEach(item => modalNavObserver.observe(item));
-  }, 100);
-
-  /* ================ Leadership Block ================ */
-}
-
-/* ================ Leadership Block ================ */
+/* ================ Leadership Block Handler================ */
 function removeActiveClassFromArr(arr, className) {
   [...arr].forEach((carouselItem) => {
     carouselItem.classList.remove(className);
@@ -201,7 +132,7 @@ function showModalCard(index) {
 function modalNavHandler(maxSlide, slideItem) {
   const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
   const direction = slideItem.dataset.slide;
-  const activeID = parseInt(document.querySelector('.leadership-modal-wrapper').querySelector('.active').id);
+  const activeID = Number(document.querySelector('.leadership-modal-wrapper').querySelector('.active').id);
   removeActiveClassFromArr(modalCarouselItems, 'active');
 
   if (direction === "prev") {
@@ -213,10 +144,10 @@ function modalNavHandler(maxSlide, slideItem) {
     if (curSlide === 0) {
       curSlide = maxSlide;
     } else {
-      curSlide--;
+      curSlide -= 1;
     }
   }
-  if(direction === 'next') {
+  if (direction === 'next') {
     if (activeID === maxSlide) {
       document.getElementById(0).classList.add('active');
     } else {
@@ -225,7 +156,7 @@ function modalNavHandler(maxSlide, slideItem) {
     if (curSlide === maxSlide) {
       curSlide = 0;
     } else {
-      curSlide++;
+      curSlide += 1;
     }
   }
 
@@ -233,4 +164,74 @@ function modalNavHandler(maxSlide, slideItem) {
     slideItem.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
   });
 }
-/* ================ Leadership Block ================ */
+/* ================ Leadership Block Handler ================ */
+
+export default function decorate(block) {
+  /* change to ul, li */
+  const ul = document.createElement('ul');
+  [...block.children].forEach((row) => {
+    const li = document.createElement('li');
+    li.innerHTML = row.innerHTML;
+    [...li.children].forEach((div) => {
+      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
+      else div.className = 'cards-card-body';
+    });
+    ul.append(li);
+  });
+  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+  block.textContent = '';
+  block.append(ul);
+
+  /* ================ Leadership Block ================ */
+  const leaderCardItems = document.querySelectorAll('.leaders ul li');
+  const modalFooterContent = `
+    <div class="leadership-modal-carousel-nav">
+      <div class="prev-item">
+        <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-chevron-circle-left"></i></a>
+      </div>
+      <div class="next-item">
+        <a href="javascript:void(0)" data-slide="next"><i class="fa fa-chevron-circle-right"></i></a>
+      </div>
+    </div>
+    `;
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      createLeadershipModalHTML();
+      createModalCarousel(leaderCardItems, modalFooterContent);
+    }
+  });
+  observer.observe(document.body);
+
+  const modalObserver = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      modalObserver.disconnect();
+      entries.forEach((entry, index) => {
+        entry.target.addEventListener('click', () => {
+          showModalCard(index);
+        });
+      });
+    }
+  });
+  leaderCardItems.forEach((item) => modalObserver.observe(item));
+
+  const modalNavObserver = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
+      const maxSlide = modalCarouselItems.length - 1;
+      modalNavObserver.disconnect();
+      entries.forEach((entry) => {
+        entry.target.addEventListener('click', () => {
+          modalNavHandler(maxSlide, entry.target);
+        });
+      });
+    }
+  });
+
+  setTimeout(() => {
+    const modalSlides = document.querySelectorAll('[data-slide]');
+    modalSlides.forEach((item) => modalNavObserver.observe(item));
+  }, 100);
+
+  /* ================ Leadership Block ================ */
+}
