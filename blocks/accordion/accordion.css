@@ -1,6 +1,7 @@
 main .accordion-container .accordion-wrapper {
   width: 100%;
   max-width: unset;
+  padding: 0;
 }
 
 .accordion-tab-list {
@@ -126,6 +127,14 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-main-content .accordion-tab-pane.active {
     width: 100%;
   }
+
+  .accordion-tab-pane-inside {
+    position:relative;
+  }
+
+  .accordion-tab-btn {
+    display:none;
+  }
 }
 
 @media (min-width: 992px) {
@@ -134,9 +143,13 @@ main .accordion-container .accordion-wrapper {
   }
 
   .accordion-tab-list,
-  .accordian-tab-pane-inside {
+  .accordion-tab-pane-inside {
     padding: 100px 32px;
   }
+
+  .accordion-tab-content {
+    max-width: 45%;
+}
 }
 
 @media (min-width: 1200px) {

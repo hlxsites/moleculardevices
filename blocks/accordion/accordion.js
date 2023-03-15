@@ -24,8 +24,25 @@ export default function decorate(block) {
 
   [...block.children].forEach((row, i) => {
     if (i) {
-      row.classList.add('accordion-tab-pane');
-      tabMainContent.appendChild(row);
+      const tabPane = document.createElement('div');
+      tabPane.classList.add('accordion-tab-pane');
+
+      const picture = row.querySelector('picture');
+      tabPane.appendChild(picture);
+
+      row.classList.add('accordion-tab-pane-inside');
+      row.style.width = '1168px';
+      tabPane.appendChild(row);
+
+      let div = row.querySelector('div');
+      const button = document.createElement('button');
+      button.classList.add('accordion-tab-btn');
+      button.innerHTML = `<i class='fa fa-plus'></i>${div.textContent}`;
+      div.remove();
+      row.prepend(button);
+
+      row.querySelector('div').classList.add('accordion-tab-content');
+      tabMainContent.appendChild(tabPane);
     }
   });
 
