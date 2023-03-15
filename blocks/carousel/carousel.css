@@ -214,6 +214,21 @@ main .carousel-dot-button.selected {
   }
 }
 
+@media only screen and (max-width: 420px) {
+  main .carousel-item-text .button-container {
+    max-width: unset !important;
+    display: block;
+  }
+
+  main .carousel-item-text .button-container .button {
+    max-width: unset !important;
+  }
+
+  main .carousel a.button {
+    display: block;
+  }
+}
+
 /* WAVE carousel variant */
 main div.carousel-wrapper.wave {
   width: 1170px;
@@ -327,7 +342,7 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
 
   main .carousel.wave .carousel-item {
     position: relative;
-    padding: 0 20px;
+    padding: 0 30px;
     max-width: 90%;
   }
 
