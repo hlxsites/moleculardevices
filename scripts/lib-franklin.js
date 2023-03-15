@@ -287,7 +287,7 @@ export function decorateSections(main) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
             const backgroundImages = [];
-            const exts = ['webply', pathname.substring(pathname.lastIndexOf('.') + 1)];
+        const exts = ['webply' /*, pathname.substring(pathname.lastIndexOf('.') + 1) */];
             if (imageMediaQuery.matches) {
               exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));
             } else {
