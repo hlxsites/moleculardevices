@@ -14,11 +14,11 @@
   margin-top: 0;
 }
 
-.hubspot-iframe-wrapper iframe {
+.get-in-touch .hubspot-iframe-wrapper iframe {
   height: 710px;
 }
 
-.hubspot-iframe-wrapper {
+.get-in-touch .hubspot-iframe-wrapper {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -70,7 +70,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .hubspot-iframe-wrapper iframe {
+  .get-in-touch .hubspot-iframe-wrapper iframe {
     height: 800px;
   }
 }
