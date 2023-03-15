@@ -12,6 +12,17 @@ header .block {
   padding-bottom: 46px;
 }
 
+.nav-tabs li {
+  float: left;
+  border: 0;
+  position: static;
+  display: block;
+  min-width: inherit !important;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
@@ -139,22 +150,10 @@ header #header-logo img {
   vertical-align: middle;
 }
 
-.nav-tabs li {
-  float: left;
-  border: 0;
-  position: static;
-  display: block;
-  min-width: inherit !important;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-}
-
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
 }
-
 
 @media (min-width: 768) {
   .container {
@@ -243,7 +242,7 @@ header nav .nav-tools {
     position: relative;
   }
 
-  .nav-tabs > li.fa-search:before {
+  .nav-tabs > li.fa-search::before {
     background-color: #fff;
     padding: 9px;
     border-radius: 50%;
