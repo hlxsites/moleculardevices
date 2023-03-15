@@ -90,6 +90,11 @@
   color: var(--text-white);
 }
 
+.leadership-modal-body {
+  position: relative;
+  overflow: hidden;
+}
+
 .leadership-modal-body .leadership-modal-carousel-content::-webkit-scrollbar {
   display: none;
 }
@@ -137,12 +142,11 @@
 }
 
 .leadership-modal-carousel-item {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-}
-
-.leadership-modal-carousel-item.active {
-  display: block;
 }
 
 .leadership-modal-footer a {
@@ -196,6 +200,10 @@
 }
 
 /* LEADERSHIP MODAL */
+
+.tranform-transition{
+  transition: transform 1s ease;
+}
 
 /* ================ Leadership Block ================ */
 .cards.leaders {
@@ -261,6 +269,7 @@
 }
 
 @media only screen and (min-width: 768px) {
+
   .leadership-modal-wrapper,
   .leadership-modal-body {
     height: 500px;
