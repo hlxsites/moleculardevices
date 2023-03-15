@@ -233,7 +233,7 @@ header nav .nav-tools {
     min-height: 90px;
     width: 100%;
     display: flex;
-    margin: 10px 0;
+    margin: 10px 0 20px;
   }
 
   .navbar-header > div > .company-links {
