@@ -9,13 +9,12 @@ function buildBrandLogo(content) {
   return logoWrapper;
 }
 
-function buildToolsSection() {
-  const companyLinks = document.createElement('div');
-  companyLinks.innerHTML = `<div class="company-links"><ul class="mdtopmenu">
-  <li><em><i class="fa-briefcase" aria-hidden="true">&nbsp;</i></em><a href="https://jobs.danaher.com/global/en/molecular-devices" class="ext" data-extlink="" target="_blank" rel="noopener noreferrer">Careers</a></li>
-  <li class="dropdown"><em><i class="fa-globe" aria-hidden="true">&nbsp;</i></em><a class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Language &nbsp;</a></li>
-  </ul></div>`;
-  return companyLinks;
+function buildTools(content) {
+  const toolsList = content.querySelector('div:nth-child(2)');
+  const toolsWrapper = document.createElement('div');
+  toolsWrapper.classList = ('company-links');
+  toolsWrapper.innerHTML = toolsList.innerHTML;
+  return toolsWrapper;
 }
 
 function buildRequestQuote() {
@@ -47,7 +46,7 @@ export default async function decorate(block) {
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
   navbarHeader.append(buildBrandLogo(content));
-  navbarHeader.append(buildToolsSection());
+  navbarHeader.append(buildTools(content));
 
   const headerWrapper = document.createElement('div');
   headerWrapper.classList.add('container', 'top-header');

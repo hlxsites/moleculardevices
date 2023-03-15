@@ -32,7 +32,7 @@ header .navbar-header {
 }
 
 /* Company Links (carrers/languages/...) */
-.navbar-header > div > .company-links {
+.navbar-header > .company-links {
   position: absolute;
   top: 34px;
   right: -26px;
@@ -54,7 +54,7 @@ header .navbar-header {
   margin-right: 30px;
 }
 
-.company-links i {
+.company-links img {
   background-repeat: no-repeat;
   background-size: 15px 15px;
   height: 15px;
@@ -62,24 +62,8 @@ header .navbar-header {
   background-position: center;
   display: inline-block;
   margin-right: 5px;
-  vertical-align: text-top;
+  vertical-align: center;
   font-style: italic;
-}
-
-.company-links i.fa-briefcase {
-  background-image: url("/images/fa-briefcase.png");
-}
-
-.company-links i.fa-briefcase::before {
-  content: "";
-}
-
-.company-links i.fa-globe {
-  background-image: url("/images/fa-globe.png");
-}
-
-.company-links i.fa-globe::before {
-  content: "";
 }
 
 header .nav-tabs>li {
@@ -99,12 +83,11 @@ header .nav-tabs>li {
   margin-right: 0;
 }
 
-.company-links ul li a {
+.company-links ul li {
   font-size: 10px;
   color: #6a747c;
   text-transform: uppercase;
   text-decoration: none;
-  cursor: pointer;
 }
 
 /* Nav */
@@ -236,10 +219,9 @@ header nav .nav-tools {
     margin: 10px 0 20px;
   }
 
-  .navbar-header > div > .company-links {
+  .navbar-header > .company-links {
     display: block;
   }
-
 
   header .mainmenu-wrapper {
     box-shadow: 1px 3px 26px -4px rgb(0 0 0 / 75%);
