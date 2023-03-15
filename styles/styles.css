@@ -88,10 +88,17 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
+
+  /* nav height */
+  --nav-height: 156px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+header {
+  height: var(--nav-height);
 }
 
 body {
