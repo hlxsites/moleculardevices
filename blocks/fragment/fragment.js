@@ -4,13 +4,9 @@
  * https://www.hlx.live/developer/block-collection/fragment
  */
 
-import {
-  decorateMain,
-} from '../../scripts/scripts.js';
+import { decorateMain } from '../../scripts/scripts.js';
 
-import {
-  loadBlocks,
-} from '../../scripts/lib-franklin.js';
+import { loadBlocks } from '../../scripts/lib-franklin.js';
 
 /**
  * Loads a fragment.

@@ -233,7 +233,7 @@ export function readBlockConfig(block) {
           if (imgs.length === 1) {
             value = imgs[0].src;
           } else {
-            value = imgs.F((img) => img.src);
+            value = imgs.map((img) => img.src);
           }
         } else if (col.querySelector('p')) {
           const ps = [...col.querySelectorAll('p')];
@@ -283,7 +283,7 @@ export function decorateSections(main) {
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'background') {
           const { background } = meta;
-          if (background.startsWith('http')) {
+          if (background.startsWith('https://')) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
             const backgroundImages = [];
