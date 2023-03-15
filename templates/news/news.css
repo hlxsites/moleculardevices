@@ -4,14 +4,15 @@ p {
   padding: 0;
 }
 
-h1, h2 {
+/*h1, h2 {
   font-weight: 100;
   margin-bottom: 20px;
-}
+}*/
 
 strong {
     font-weight: 700;
 }
+
 cite {
   margin-top: 10px;
 }
@@ -25,10 +26,6 @@ cite {
   padding: 0 0 15px 0;
 }
 
-.content-2col {
-  margin-top: 10px;
-}
-
 .left-col {
   width: 100%;
   margin-bottom: 20px;
@@ -39,11 +36,9 @@ cite {
   margin-bottom: 20px;
 }
 
-@media (max-width: 767px), (min-width: 768px) {
-  :root {
-    --heading-font-size-xxl: 36px;
-    --heading-font-size-xl: 30px;
-  }
+/*:root {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
 }
 
 @media (max-width: 767px) {
@@ -52,7 +47,7 @@ cite {
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
   }
-}
+}*/
 
 @media (min-width: 768px) {
 
