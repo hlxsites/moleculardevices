@@ -334,19 +334,17 @@ const transformColumns = (document) => {
   const COLUMN_STYLES = [
     {
       match: ['col-sm-4', 'col-lg-4'],
-      blockName: 'Columns (layout 33 66)',
+      blockStyle: 'layout 33 66',
     },
     {
       match: ['col-sm-3', 'col-md-3', 'col-lg-3'],
-      blockName: 'Columns (layout 25 75)',
+      blockStyle: 'layout 25 75',
     },
     {
       match: ['col-sm-8', 'col-md-8', 'col-lg-8'],
-      blockName: 'Columns (layout 66 33)',
+      blockStyle: 'layout 66 33',
     },
   ];
-
-  // col-sm-5
 
   document.querySelectorAll('.row .swap, .row .not-swap').forEach((div) => {
     const row = div.parentElement;
@@ -356,28 +354,34 @@ const transformColumns = (document) => {
   });
 
   document
-    .querySelectorAll('.row [class*="col-"]:first-of-type')
+    .querySelectorAll('.row > [class*="col-"]:first-of-type')
     .forEach((column) => {
       const row = column.parentElement;
       if (row.childElementCount > 1) {
+        let blockName = 'Columns';
+        const blockOptions = [];
         [...row.children].forEach((col) => {
           if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
             row.after(col);
           }
         });
+        // check swap / reverse order tables
         let children = [...row.children];
         if (row.classList.contains('swap')) {
           children = children.reverse();
+          blockOptions.push('swap');
         }
-
-        let blockName = 'Columns';
+        // match column width layouts
         const styleMatch = COLUMN_STYLES.find((e) =>
           e.match.some((match) => column.classList.contains(match)),
         );
         if (styleMatch) {
-          blockName = styleMatch.blockName;
+          blockOptions.push(styleMatch.blockStyle);
         }
 
+        if (blockOptions.length > 0) {
+          blockName = `Columns (${blockOptions.join(', ')})`;
+        }
         const cells = [[blockName], children];
         const table = WebImporter.DOMUtils.createTable(cells, document);
         row.replaceWith(table);
@@ -453,6 +457,26 @@ const transformImageCaption = (document) => {
     const captionWrapper = document.createElement('em');
     captionWrapper.innerHTML = caption.innerHTML;
     caption.replaceWith(captionWrapper);
+  });
+};
+
+const transformBlogRecentPosts = (document) => {
+  document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
+    recentPostsContainer.before(document.createElement('hr'));
+    const carousel = recentPostsContainer.querySelector(
+      '.views-element-container',
+    );
+    const cells = [['Recent Blogs Carousel']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    carousel.replaceWith(table);
+
+    const viewAll = document.createElement('a');
+    viewAll.href = '/lab-notes/blog';
+    viewAll.textContent = 'View All Posts';
+
+    const metaCells = [['Section Metadata'], [['style'], ['Blog Heading']]];
+    const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
+    recentPostsContainer.append(viewAll, metaTable);
   });
 };
 
@@ -685,7 +709,7 @@ export default {
       '.share-event',
       '.sticky-social-list',
       '.back-labnote',
-      '.recent-posts',
+      '.recent-posts .overview-page',
       '.event-block cite',
       '.herobanner_wrap .visible-xs-block',
       '.herobanner_wrap a#openMediaGallery',
@@ -717,6 +741,7 @@ export default {
       transformEmbeds,
       transformQuotes,
       transformFAQAccordion,
+      transformBlogRecentPosts,
       transformImageCaption,
       transformShareStory,
       transformTabsNav,
