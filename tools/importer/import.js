@@ -306,6 +306,22 @@ const transformButtons = (document) => {
 
 const transformTables = (document) => {
   document.querySelectorAll('.table-responsive table').forEach((table) => {
+    // clean up <br> tags
+    table.querySelectorAll('td').forEach((td) => {
+      if (td.querySelector('br')) {
+        [...td.childNodes].forEach((c) => {
+          if (c.nodeType === Node.TEXT_NODE) {
+            const p = document.createElement('p');
+            p.textContent = c.textContent;
+            c.replaceWith(p);
+          }
+          if (c.nodeName === 'BR') {
+            c.remove();
+          }
+        });
+      }
+    });
+
     // convert first row th > td
     const firstRow = table.querySelector('tr');
     [...firstRow.children].forEach((item) => {
@@ -666,7 +682,7 @@ export default {
 
     // prepare vidyard script URLs before their are filtered
     document.querySelectorAll('.video script').forEach((vidyard) => {
-      if (vidyard.src.indexOf('ceros') < 0) {
+      if (vidyard.src && vidyard.src.indexOf('ceros') < 0) {
         const videoDiv = vidyard.parentElement;
         videoDiv.classList.add('vidyard-player-embed');
         const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
@@ -702,6 +718,7 @@ export default {
       'header',
       'footer',
       'nav#block-mobilenavigation',
+      'div#resources .tabbingContainer', // TODO should be replaced with some block, not removed
       '.breadcrumb',
       '.skip-link',
       '.cart-store',
