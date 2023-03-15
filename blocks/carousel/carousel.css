@@ -391,16 +391,16 @@ main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
 }
 
 /* Testimonials Variant */
-main .carousel.testimonials .carousel-item-text::before {
-  background-image: url('/images/quote-left.png');
-  left: -50px;
-  top: -89px;
+main .carousel .carousel-item-text blockquote {
+  margin: 0;
 }
 
-main .carousel.testimonials .carousel-item-text::after {
-  background-image: url('/images/quote-right.png');
-  right: -1.5em;
-  bottom: -60px;
+main .carousel .carousel-item-text blockquote ~ p,
+main .carousel .carousel-item-text blockquote > p {
+  padding: 0;
+  font-style: normal;
+  font-size: 23px !important;
+  line-height: 28px;
 }
 
 main .carousel.testimonials .carousel-item-text p {
@@ -409,6 +409,8 @@ main .carousel.testimonials .carousel-item-text p {
   line-height: 28px;
 }
 
+main .carousel blockquote::before,
+main .carousel blockquote::after,
 main .carousel.testimonials .carousel-item-text::before,
 main .carousel.testimonials .carousel-item-text::after {
   content: "";
@@ -420,7 +422,23 @@ main .carousel.testimonials .carousel-item-text::after {
   background-repeat: no-repeat;
 }
 
+main .carousel blockquote::before,
+main .carousel.testimonials .carousel-item-text::before {
+  background-image: url('/images/quote-left.png');
+  left: -50px;
+  top: -89px;
+}
+
+main .carousel blockquote::after,
+main .carousel.testimonials .carousel-item-text::after {
+  background-image: url('/images/quote-right.png');
+  right: -1.5em;
+  bottom: -60px;
+}
+
 @media only screen and (max-width: 992px) {
+  main .carousel blockquote::before,
+  main .carousel blockquote::after,
   main .carousel.testimonials .carousel-item-text::before,
   main .carousel.testimonials .carousel-item-text::after {
     width: 33px;
@@ -428,11 +446,13 @@ main .carousel.testimonials .carousel-item-text::after {
     background-size: 33px;
   }
 
+  main .carousel blockquote::before,
   main .carousel.testimonials .carousel-item-text::before {
     left: -8px;
     top: -35px;
   }
 
+  main .carousel blockquote::after,
   main .carousel.testimonials .carousel-item-text::after {
     right: 0;
     bottom: 0;
@@ -440,11 +460,11 @@ main .carousel.testimonials .carousel-item-text::after {
 }
 
 @media only screen and (max-width: 767px) {
-  main .carousel.testimonials .carousel-item-text > p:first-of-type {
+  main .carousel.testimonials .carousel-item-text blockquote > p {
     font-size: 16px;
   }
 
-  main .carousel.testimonials .carousel-item-text > p:last-of-type {
+  main .carousel.testimonials .carousel-item-text blockquote + p {
     font-size: 18px;
   }
 }
