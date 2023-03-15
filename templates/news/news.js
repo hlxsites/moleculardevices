@@ -21,8 +21,17 @@ export function decorateAutoBlock(content) {
   const row = document.createElement('div');
   row.classList.add('content-wrapper');
 
+  const pic = document.createElement('div');
+  pic.classList.add('picture-wrapper');
+
   const txt = document.createElement('div');
   txt.classList.add('text-wrapper');
+
+  row.append(pic);
+  row.append(txt);
+
+  content.append(evnt);
+  content.append(row);
 
   const dt = getPublicationDateFromMetaData();
   if (dt) {
@@ -33,19 +42,11 @@ export function decorateAutoBlock(content) {
 
   [...content.children].forEach((child) => {
     if (child.matches('p') && child.querySelector('picture')) {
-      const pic = document.createElement('div');
-      pic.classList.add('picture-wrapper');
       pic.append(child);
-      row.append(pic);
     } else if (child.matches('p')) {
       txt.append(child);
     }
   });
-
-  row.append(txt);
-
-  content.append(evnt);
-  content.append(row);
 }
 
 export default function buildAutoBlocks() {
