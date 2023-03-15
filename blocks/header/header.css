@@ -139,32 +139,15 @@ header #header-logo img {
   vertical-align: middle;
 }
 
-/* request quote */
-.nav-tabs > li.header-rfq {
-  height: 72px;
-  box-sizing: border-box;
-  padding-left: 20px;
-  position: relative;
-  margin-left: 5px;
-  overflow: hidden;
-}
-
-.nav-tabs > li.header-rfq > a {
-  padding: 24px 35px 15px;
-  text-transform: uppercase;
-  color: #fff !important;
-  text-align: center;
-  border-radius: 100%;
-  height: 161px;
-  width: 135px;
-  margin-top: -99px;
-  display: flex;
-  align-items: flex-end;
-  box-shadow: -8px 4px rgb(238 118 36 / 30%);
-  z-index: 9999 !important;
-  position: relative;
-  background: #ee7624;
-  font-size: 15px;
+.nav-tabs li {
+  float: left;
+  border: 0;
+  position: static;
+  display: block;
+  min-width: inherit !important;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 /* tools */
@@ -246,6 +229,64 @@ header nav .nav-tools {
 
   header .nav-tabs>li>div {
     font-size: 14px;
+  }
+
+  .nav-tabs > li.header-search {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .nav-tabs > li.fa-search {
+    color: #34393d;
+    display: block;
+    padding: 15px 0 15px 13px;
+    position: relative;
+  }
+
+  .nav-tabs > li.fa-search:before {
+    background-color: #fff;
+    padding: 9px;
+    border-radius: 50%;
+    border: 2px solid #ee7624;
+    color: #ee7624;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    transform: translate(-3px,-12px);
+    line-height: 18px;
+  }
+
+  .nav-tabs > li.searchlink>a {
+    display: none;
+    font-size: 12px;
+  }
+
+  .nav-tabs > li.header-rfq > a {
+    padding: 24px 35px 15px;
+    text-transform: uppercase;
+    color: #fff !important;
+    text-align: center;
+    border-radius: 100%;
+    height: 161px;
+    width: 135px;
+    margin-top: -99px;
+    display: flex;
+    align-items: flex-end;
+    box-shadow: -8px 4px rgb(238 118 36 / 30%);
+    z-index: 9999 !important;
+    position: relative;
+    background: #ee7624;
+    font-size: 15px;
+  }
+
+  /* request quote */
+  .nav-tabs > li.header-rfq {
+    height: 72px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    position: relative;
+    margin-left: 5px;
+    overflow: hidden;
   }
 
   nav .nav-menu {

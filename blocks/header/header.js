@@ -19,9 +19,16 @@ function buildTools(content) {
 
 function buildRequestQuote() {
   const requestQuote = document.createElement('li');
-  requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq">
-  <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`;
+  requestQuote.classList.add('we-menu-li', 'header-rfq');
+  requestQuote.innerHTML = '<a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a>';
   return requestQuote;
+}
+
+function buildSearch() {
+  const search = document.createElement('li');
+  search.classList.add('we-menu-li', 'searchlink', 'header-search', 'fa', 'fa-search');
+  search.innerHTML = '<a class="we-mega-menu-li" title="" href="#" target="">Search</a>';
+  return search;
 }
 
 /**
@@ -81,6 +88,7 @@ export default async function decorate(block) {
     navMenuUl.append(li);
   }
 
+  navMenuUl.append(buildSearch());
   navMenuUl.append(buildRequestQuote());
 
   mainMenuWrapper.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
