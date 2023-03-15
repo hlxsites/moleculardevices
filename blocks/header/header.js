@@ -32,8 +32,8 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/drafts/josec/nav12';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/drafts/josec/nav12') ? { cache: 'reload' } : {});
+  const navPath = getMetadata('nav') || '/nav';
+  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
   if (!resp.ok) return;
 
   const html = await resp.text();
