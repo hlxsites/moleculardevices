@@ -88,9 +88,6 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
-
-  /* nav height */
-  --nav-height: 64px;
 }
 
 * {
@@ -113,10 +110,6 @@ body.background-gray {
 
 body.appear {
   display: unset;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 h1, h2, h3,
@@ -406,4 +399,9 @@ main .section.background-grey {
 
 main .section.center {
   text-align: center;
+}
+
+/* nav */
+nav {
+  display: block;
 }
