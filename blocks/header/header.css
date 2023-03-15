@@ -79,15 +79,15 @@ header .nav-tabs>li {
   box-shadow: none;
 }
 
-.company-links > ul > li:last-child {
-  margin-right: 0;
-}
-
 .company-links ul li {
   font-size: 10px;
   color: #6a747c;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.company-links > ul > li:last-child {
+  margin-right: 0;
 }
 
 /* Nav */
