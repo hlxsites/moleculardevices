@@ -94,10 +94,6 @@
   box-sizing: border-box;
 }
 
-header {
-  height: 156px;
-}
-
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
