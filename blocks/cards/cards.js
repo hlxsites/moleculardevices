@@ -1,6 +1,7 @@
+/* jshint esversion: 6 */
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
-/* ================ Leadership Block HANDLERS ================ */
+/* ================ Leadership Block Handler================ */
 function removeActiveClassFromArr(arr, className) {
   [...arr].forEach((carouselItem) => {
     carouselItem.classList.remove(className);
@@ -89,15 +90,15 @@ function createModalCarousel(leaderCardItems, modalFooterContent) {
 
     cardContent.innerHTML = leaderCard.innerHTML;
     cardWrapper.innerHTML += `
-    <div class="leadership-modal-pagination">
-    <div class="prev-item">
-      <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-arrow-circle-left"></i> <span>${prevText}</span></a>
+      <div class="leadership-modal-pagination">
+      <div class="prev-item">
+        <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-arrow-circle-left"></i> <span>${prevText}</span></a>
+      </div>
+      <div class="next-item">
+        <a href="javascript:void(0)" data-slide="next"><span>${nextText}</span> <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
     </div>
-    <div class="next-item">
-      <a href="javascript:void(0)" data-slide="next"><span>${nextText}</span> <i class="fa fa-arrow-circle-right"></i></a>
-    </div>
-  </div>
-    `;
+      `;
     cardWrapper.id = index;
 
     cardWrapper.appendChild(cardContent);
@@ -107,8 +108,9 @@ function createModalCarousel(leaderCardItems, modalFooterContent) {
 }
 
 let curSlide = 0;
-function showModalCard(index, modalCarouselItems) {
+function showModalCard(index) {
   const modal = document.querySelector('.leadership-modal');
+  const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
   const modalOverlay = document.querySelector('.leadership-modal-overlay');
 
   curSlide = index;
@@ -126,10 +128,10 @@ function showModalCard(index, modalCarouselItems) {
   document.getElementById(index).classList.add('active');
 }
 
-function modalNavHandler(slide, maxSlide, modalCarouselItems) {
-  const direction = slide.dataset.slide;
-  const parentDiv = document.querySelector('.leadership-modal-wrapper');
-  const activeID = Number(parentDiv.querySelector('.active').id);
+function modalNavHandler(maxSlide, slideItem) {
+  const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
+  const direction = slideItem.dataset.slide;
+  const activeID = Number(document.querySelector('.leadership-modal-wrapper').querySelector('.active').id);
   removeActiveClassFromArr(modalCarouselItems, 'active');
 
   if (direction === 'prev') {
@@ -143,7 +145,8 @@ function modalNavHandler(slide, maxSlide, modalCarouselItems) {
     } else {
       curSlide -= 1;
     }
-  } else {
+  }
+  if (direction === 'next') {
     if (activeID === maxSlide) {
       document.getElementById(0).classList.add('active');
     } else {
@@ -156,11 +159,11 @@ function modalNavHandler(slide, maxSlide, modalCarouselItems) {
     }
   }
 
-  [...modalCarouselItems].forEach((slideItm, indx) => {
-    slideItm.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
+  [...modalCarouselItems].forEach((carouselItems, indx) => {
+    carouselItems.style.transform = `translateX(${100 * (indx - curSlide)}%)`;
   });
 }
-/* ================ Leadership Block HANDLERS ================ */
+/* ================ Leadership Block Handler ================ */
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -179,23 +182,26 @@ export default function decorate(block) {
   block.append(ul);
 
   /* ================ Leadership Block ================ */
-  createLeadershipModalHTML();
 
   /* set default height/width */
-  setTimeout(() => {
-    const allImages = document.querySelectorAll('.cards-card-image img');
-    allImages.forEach((image) => {
-      const parentEl = image.parentElement;
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const parentEl = entry.target.parentElement;
       if (parentEl.tagName === 'PICTURE') {
-        image.width = image.clientWidth;
-        image.height = image.clientHeight;
+        entry.target.width = parentEl.clientWidth;
+        entry.target.height = parentEl.clientHeight;
       }
     });
-  }, 500);
+  });
+  imgObserver.observe(document.body);
+  const allImages = document.querySelectorAll('main img');
+  allImages.forEach((image) => {
+    imgObserver.observe(image);
+    // imgObserver.unobserve(image);
+  });
   /* set default height/width */
 
   const leaderCardItems = document.querySelectorAll('.leaders ul li');
-  const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
   const modalFooterContent = `
     <div class="leadership-modal-carousel-nav">
       <div class="prev-item">
@@ -206,30 +212,44 @@ export default function decorate(block) {
       </div>
     </div>
     `;
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      createLeadershipModalHTML();
+      createModalCarousel(leaderCardItems, modalFooterContent);
+    }
+  });
+  observer.observe(document.body);
 
-  createModalCarousel(leaderCardItems, modalFooterContent);
+  const modalObserver = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      modalObserver.disconnect();
+      entries.forEach((entry, index) => {
+        entry.target.addEventListener('click', () => {
+          showModalCard(index);
+        });
+      });
+    }
+  });
+  leaderCardItems.forEach((item) => modalObserver.observe(item));
 
-  [...modalCarouselItems].forEach((slide, indx) => {
-    slide.style.transform = `translateX(${indx * 100}%)`;
+  const modalNavObserver = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
+      const maxSlide = modalCarouselItems.length - 1;
+      modalNavObserver.disconnect();
+      entries.forEach((entry) => {
+        entry.target.addEventListener('click', () => {
+          modalNavHandler(maxSlide, entry.target);
+        });
+      });
+    }
   });
 
-  leaderCardItems.forEach((leaderCard, index) => {
-    leaderCard.setAttribute('data-card-index', index);
-    leaderCard.onclick = () => {
-      removeActiveClassFromArr(modalCarouselItems, 'active');
-      showModalCard(index, modalCarouselItems);
-    };
-  });
-
-  const maxSlide = modalCarouselItems.length - 1;
-  const modalSlides = document.querySelectorAll('[data-slide]');
-  modalSlides.forEach((slide) => {
-    slide.addEventListener(
-      'click',
-      modalNavHandler.bind(null, slide, maxSlide, modalCarouselItems),
-      false,
-    );
-  });
+  setTimeout(() => {
+    const modalSlides = document.querySelectorAll('[data-slide]');
+    modalSlides.forEach((item) => modalNavObserver.observe(item));
+  }, 100);
 
   /* ================ Leadership Block ================ */
 }
