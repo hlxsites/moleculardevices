@@ -283,11 +283,11 @@ export function decorateSections(main) {
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'background') {
           const { background } = meta;
-          if (background.startsWith('https://')) {
+          if (background.startsWith('http')) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
             const backgroundImages = [];
-            const exts = ['webply', pathname.substring(pathname.lastIndexOf('.') + 1)];
+            const exts = ['webply'/*, pathname.substring(pathname.lastIndexOf('.') + 1)*/];
             if (imageMediaQuery.matches) {
               exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));
             } else {
