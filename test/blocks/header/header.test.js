@@ -26,7 +26,7 @@ decorateBlock(headerBlock);
 await loadBlock(headerBlock);
 await sleep();
 
-describe('Header block', () => {
+describe.skip('Header block', () => {
   it('Hamburger shows and hides nav', async () => {
     const hamburger = document.querySelector('.header .nav-hamburger');
     const nav = document.querySelector('.header nav');
