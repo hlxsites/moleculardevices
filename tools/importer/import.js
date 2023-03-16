@@ -367,7 +367,7 @@ const transformColumns = (document) => {
 
   document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
     const row = column.parentElement;
-    if (row.childElementCount > 1) {
+    if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
       let blockName = 'Columns';
       const blockOptions = [];
       [...row.children].forEach((col) => {
