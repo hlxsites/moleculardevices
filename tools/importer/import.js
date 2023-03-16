@@ -42,6 +42,11 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Tagged to Applications']) {
       meta['Related Applications'] = resource['Tagged to Applications'];
     }
+    if (resource['Gated/Ungated'] === 'Yes') {
+      meta.Gated = 'Yes';
+      const gatedUrl = resource['Gated URL'];
+      meta['Gated URL'] = gatedUrl.startsWith('http') ? gatedUrl : `https://www.moleculardevices.com${gatedUrl}`;
+    }
 
     const publishDate = new Date(resource['Created On']);
     if (publishDate) {
@@ -320,7 +325,9 @@ const transformTables = (document) => {
         if (item.nodeName === 'TH') {
           const newTd = document.createElement('td');
           newTd.innerHTML = item.innerHTML;
-          newTd.setAttribute('colspan', item.getAttribute('colspan'));
+          if (item.hasAttribute('colspan')) {
+            newTd.setAttribute('colspan', item.getAttribute('colspan'));
+          }
           item.replaceWith(newTd);
         }
       });
