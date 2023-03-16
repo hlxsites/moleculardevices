@@ -365,6 +365,10 @@ const transformColumns = (document) => {
     div.remove();
   });
 
+  document
+    .querySelectorAll('.row > [class^="col-"][class$="-12"]')
+    .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
+
   document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
     const row = column.parentElement;
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
