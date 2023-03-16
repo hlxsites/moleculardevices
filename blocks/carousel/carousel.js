@@ -207,8 +207,10 @@ function setInitialScrollingPosition(block) {
   setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
 }
 
-export default function decorate(block) {
-  block.parentElement.classList.add(...[...block.classList].filter((item) => item !== 'carousel'));
+export default function createCarousel(block) {
+  block.parentElement.classList.add(...[...block.classList].filter((item, idx) => idx !== 0));
+  block.parentElement.classList.add('carousel-wrapper');
+  block.classList.add('carousel');
   // create autoscrolling animation
   const intervalId = setInterval(nextItem, AUTOSCROLL_INTERVAL, block);
 
