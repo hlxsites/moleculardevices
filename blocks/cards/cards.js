@@ -181,6 +181,19 @@ export default function decorate(block) {
   /* ================ Leadership Block ================ */
   createLeadershipModalHTML();
 
+  /* set default height/width */
+  setTimeout(() => {
+    const allImages = document.querySelectorAll('.cards-card-image img');
+    allImages.forEach((image) => {
+      const parentEl = image.parentElement;
+      if (parentEl.tagName === 'PICTURE') {
+        image.width = image.clientWidth;
+        image.height = image.clientHeight;
+      }
+    });
+  }, 500);
+  /* set default height/width */
+
   const leaderCardItems = document.querySelectorAll('.leaders ul li');
   const modalCarouselItems = document.querySelector('.leadership-modal-body').children;
   const modalFooterContent = `
@@ -217,19 +230,6 @@ export default function decorate(block) {
       false,
     );
   });
-
-  /* set default height/width */
-  setTimeout(() => {
-    const allImages = document.querySelectorAll('.cards-card-image img');
-    allImages.forEach((image) => {
-      const parentEl = image.parentElement;
-      if (parentEl.tagName === 'PICTURE') {
-        image.width = image.clientWidth;
-        image.height = image.clientHeight;
-      }
-    });
-  }, 200);
-  /* set default height/width */
 
   /* ================ Leadership Block ================ */
 }

@@ -289,11 +289,25 @@
     margin-left: 50px;
     max-width: 300px;
   }
+
+  .cards.leaders > ul > li > div.cards-card-image{
+    min-height: 343px;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   .cards.leaders > ul > li {
     flex-basis: calc(33.33% - 30px);
+  }
+
+  .cards.leaders > ul > li > div.cards-card-image{
+    min-height: 291px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .cards.leaders > ul > li > div.cards-card-image{
+    min-height: 358px;
   }
 }
 
