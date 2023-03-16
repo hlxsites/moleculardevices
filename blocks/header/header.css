@@ -12,7 +12,7 @@ header .block {
   padding-bottom: 46px;
 }
 
-.nav-tabs li {
+header .nav-tabs li {
   float: left;
   border: 0;
   position: static;
@@ -30,7 +30,7 @@ header .nav-wrapper {
   position: fixed;
 }
 
-.container {
+header .container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -43,14 +43,14 @@ header .navbar-header {
 }
 
 /* Company Links (carrers/languages/...) */
-.navbar-header > .company-links {
+header .navbar-header > .company-links {
   position: absolute;
   top: 34px;
   right: -26px;
   display: none;
 }
 
-.company-links > ul {
+header .company-links > ul {
   list-style: none;
   padding-left: 30px;
   margin-bottom: 0;
@@ -58,18 +58,18 @@ header .navbar-header {
   margin-top: 0;
 }
 
-.company-links > ul > li {
+header .company-links > ul > li {
   float: left;
   position: relative;
   list-style: none;
   margin-right: 30px;
 }
 
-.company-links a {
+header .company-links a {
   color: #6a747c;
 }
 
-.company-links img {
+header .company-links img {
   background-repeat: no-repeat;
   background-size: 15px 15px;
   height: 15px;
@@ -94,19 +94,19 @@ header .nav-tabs>li {
   box-shadow: none;
 }
 
-.company-links ul li {
+header .company-links ul li {
   font-size: 10px;
   color: #6a747c;
   text-transform: uppercase;
   text-decoration: none;
 }
 
-.company-links > ul > li:last-child {
+header .company-links > ul > li:last-child {
   margin-right: 0;
 }
 
 /* Nav */
-.mainmenu-wrapper {
+header .mainmenu-wrapper {
   display: none;
 }
 
@@ -156,7 +156,7 @@ header nav .nav-tools {
 }
 
 @media (min-width: 768) {
-  .container {
+  header .container {
     width: 750px;
   }
 
@@ -193,7 +193,7 @@ header nav .nav-tools {
 }
 
 @media (min-width: 992px) {
-  .container {
+  header .container {
     width: 970px;
   }
 
@@ -205,7 +205,7 @@ header nav .nav-tools {
     margin: 10px 0 20px;
   }
 
-  .navbar-header > .company-links {
+  header .navbar-header > .company-links {
     display: block;
   }
 
@@ -222,7 +222,7 @@ header nav .nav-tools {
     display: block;
   }
 
-  .mainmenu-wrapper>nav {
+  header .mainmenu-wrapper>nav {
     width: 100%;
   }
 
@@ -230,19 +230,19 @@ header nav .nav-tools {
     font-size: 14px;
   }
 
-  .nav-tabs > li.header-search {
+  header .nav-tabs > li.header-search {
     margin-top: 0;
     text-align: center;
   }
 
-  .nav-tabs > li.fa-search {
+  header .nav-tabs > li.fa-search {
     color: var(--text-color);
     display: block;
     padding: 15px 0 15px 13px;
     position: relative;
   }
 
-  .nav-tabs > li.fa-search::before {
+  header .nav-tabs > li.fa-search::before {
     background-color: #fff;
     padding: 9px;
     border-radius: 50%;
@@ -255,12 +255,12 @@ header nav .nav-tools {
     line-height: 18px;
   }
 
-  .nav-tabs > li.searchlink>a {
+  header .nav-tabs > li.searchlink>a {
     display: none;
     font-size: 12px;
   }
 
-  .nav-tabs > li.header-rfq > a {
+  header .nav-tabs > li.header-rfq > a {
     padding: 24px 35px 15px;
     text-transform: uppercase;
     color: #fff !important;
@@ -279,7 +279,7 @@ header nav .nav-tools {
   }
 
   /* request quote */
-  .nav-tabs > li.header-rfq {
+  header .nav-tabs > li.header-rfq {
     height: 72px;
     box-sizing: border-box;
     padding-left: 20px;
@@ -288,7 +288,7 @@ header nav .nav-tools {
     overflow: hidden;
   }
 
-  nav .nav-menu {
+  header nav .nav-menu {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -298,7 +298,7 @@ header nav .nav-tools {
 }
 
 @media (min-width: 1200px) {
-  .container {
+  header .container {
     width: 1170px;
   }
 
