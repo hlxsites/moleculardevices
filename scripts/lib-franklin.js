@@ -283,7 +283,7 @@ export function decorateSections(main) {
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'background') {
           const { background } = meta;
-          if (background.startsWith('https://')) {
+          if (background.startsWith('http')) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
             const backgroundImages = [];

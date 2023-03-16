@@ -208,6 +208,7 @@ function setInitialScrollingPosition(block) {
 }
 
 export default function decorate(block) {
+  block.parentElement.classList.add(...[...block.classList].filter((item) => item !== 'carousel'));
   // create autoscrolling animation
   const intervalId = setInterval(nextItem, AUTOSCROLL_INTERVAL, block);
 
@@ -224,11 +225,13 @@ export default function decorate(block) {
     const columns = [document.createElement('div'), document.createElement('div')];
 
     const itemChildren = [...item.children];
-    const classes = ['image', 'text'];
-    classes.forEach((e, j) => {
-      itemChildren[j].classList.add(`carousel-item-${e}`);
-      item.removeChild(itemChildren[j]);
-      columns[j].appendChild(itemChildren[j]);
+    itemChildren.forEach((itemChild, idx) => {
+      if (itemChild.querySelector('img')) {
+        itemChild.classList.add('carousel-item-image');
+      } else {
+        itemChild.classList.add('carousel-item-text');
+      }
+      columns[idx].appendChild(itemChild);
     });
 
     columns.forEach((column) => {
