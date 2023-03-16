@@ -58,6 +58,19 @@ header .company-links > ul {
   margin-top: 0;
 }
 
+header .nav-tabs>li {
+  height: 46px;
+  flex-grow: 1;
+  float: left;
+  border: 0;
+  position: static;
+  display: block;
+  min-width: inherit !important;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
 header .company-links > ul > li {
   float: left;
   position: relative;
@@ -79,19 +92,6 @@ header .company-links img {
   margin-right: 5px;
   vertical-align: center;
   font-style: italic;
-}
-
-header .nav-tabs>li {
-  height: 46px;
-  flex-grow: 1;
-  float: left;
-  border: 0;
-  position: static;
-  display: block;
-  min-width: inherit !important;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
 }
 
 header .company-links ul li {
