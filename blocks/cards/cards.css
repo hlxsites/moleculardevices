@@ -35,20 +35,6 @@
 }
 
 /* LEADERSHIP MODAL */
-.leadership-modal,
-.leadership-modal-overlay {
-  opacity: 0;
-  transition: all .3s ease-in-out;
-  visibility: hidden;
-}
-
-.leadership-modal.show,
-.leadership-modal-overlay.show {
-  margin-top: 0;
-  opacity: 1;
-  visibility: visible;
-}
-
 .leadership-modal {
   left: 0;
   margin: auto;
@@ -58,7 +44,6 @@
   right: 0;
   top: 20px;
   width: 100%;
-  z-index: 9;
 }
 
 .leadership-modal-overlay {
@@ -71,6 +56,28 @@
   right: 0;
   top: 0;
   width: 100%;
+}
+
+.leadership-modal,
+.leadership-modal-overlay {
+  opacity: 0;
+  transition: all .3s ease-in-out;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.leadership-modal.show,
+.leadership-modal-overlay.show {
+  margin-top: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+.leadership-modal.show{
+  z-index: 9;
+}
+
+.leadership-modal-overlay.show {
   z-index: 2;
 }
 
