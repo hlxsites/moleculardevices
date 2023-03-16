@@ -21,7 +21,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   const request = new XMLHttpRequest();
   request.open(
     'GET',
-    'http://localhost:3001/export/moldev-resources-sheet-03132023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page',
+    'http://localhost:3001/export/moldev-resources-sheet-16032023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -411,17 +411,9 @@ const transformReferenceProducts = (document) => {
   document.querySelectorAll('.featured-applications-div').forEach((featuredProductsBlock) => {
     const parentSection = featuredProductsBlock.closest('section');
     parentSection.classList.add('franklin-horizontal');
-
     const featuredProducts = featuredProductsBlock.querySelector('.view-customer-story-product');
-    const ul = document.createElement('ul');
-    featuredProducts.querySelectorAll('.product-container').forEach((productDetails) => {
-      const li = document.createElement('li');
-      const a = productDetails.querySelector('a');
-      a.textContent = productDetails.querySelector('h3').textContent;
-      li.append(a);
-      ul.append(li);
-    });
-    const cells = [['Featured Products'], [ul]];
+    const cells = [['Featured Products Carousel (mini)']];
+    featuredProducts.querySelectorAll('.product-container').forEach((p) => cells.push([...p.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
     featuredProducts.replaceWith(table);
   });
