@@ -96,132 +96,113 @@ const cleanUp = (document) => {
 };
 
 const extractBackgroundImage = (content) => {
-  const backgroundUrl = content
-    .getAttribute('style')
-    .match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
+  const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
   return backgroundUrl ? backgroundUrl.trim() : null;
 };
 
 const transformHero = (document) => {
-  document
-    .querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new')
-    .forEach((hero) => {
-      const isBlog = hero.classList.contains('blog-details');
-      const cells = [[isBlog ? 'Hero (Blog)' : 'Hero']];
-      const heroContent = isBlog
-        ? hero.querySelector('.hero-desc')
-        : hero.querySelector('.row, .bannerInnerPages');
+  document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
+    const isBlog = hero.classList.contains('blog-details');
+    const cells = [[isBlog ? 'Hero (Blog)' : 'Hero']];
+    const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.row, .bannerInnerPages');
 
-      const backgroundUrl = extractBackgroundImage(hero);
-      if (backgroundUrl) {
-        const img = document.createElement('img');
-        img.src = backgroundUrl;
-        heroContent.insertBefore(img, heroContent.firstChild);
+    const backgroundUrl = extractBackgroundImage(hero);
+    if (backgroundUrl) {
+      const img = document.createElement('img');
+      img.src = backgroundUrl;
+      heroContent.insertBefore(img, heroContent.firstChild);
+    }
+    cells.push([heroContent]);
+
+    const videoOverlay = heroContent.querySelector('.video-container');
+    if (videoOverlay) {
+      const videoLink = videoOverlay.querySelector('a.lightboxlaunch').getAttribute('onclick');
+      const videoId = videoLink.match(/launchLightbox\('(.*)'\)/)[1];
+      if (videoId) {
+        cells.push(['video', videoId]);
       }
-      cells.push([heroContent]);
+      videoOverlay.remove();
+    }
 
-      const videoOverlay = heroContent.querySelector('.video-container');
-      if (videoOverlay) {
-        const videoLink = videoOverlay
-          .querySelector('a.lightboxlaunch')
-          .getAttribute('onclick');
-        const videoId = videoLink.match(/launchLightbox\('(.*)'\)/)[1];
-        if (videoId) {
-          cells.push(['video', videoId]);
-        }
-        videoOverlay.remove();
-      }
+    const mediaGallery = hero.parentElement.querySelector('#mediaGallary');
+    if (mediaGallery) {
+      const itemList = document.createElement('ul');
+      mediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
+        const entry = document.createElement('li');
+        const entryVideoLink = document.createElement('a');
+        entryVideoLink.href = div.querySelector('iframe').getAttribute('data-url');
+        entryVideoLink.textContent = div.querySelector('.slide-desc').textContent;
+        entry.append(entryVideoLink);
+        itemList.append(entry);
+      });
 
-      const mediaGallery = hero.parentElement.querySelector('#mediaGallary');
-      if (mediaGallery) {
-        const itemList = document.createElement('ul');
-        mediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
-          const entry = document.createElement('li');
-          const entryVideoLink = document.createElement('a');
-          entryVideoLink.href = div
-            .querySelector('iframe')
-            .getAttribute('data-url');
-          entryVideoLink.textContent =
-            div.querySelector('.slide-desc').textContent;
-          entry.append(entryVideoLink);
-          itemList.append(entry);
-        });
+      cells.push(['media gallery', itemList]);
+      mediaGallery.remove();
+    }
 
-        cells.push(['media gallery', itemList]);
-        mediaGallery.remove();
-      }
+    const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
+    if (customerStoryHeader) {
+      customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
+        const h6 = document.createElement('h6');
+        h6.innerHTML = label.innerHTML;
+        label.replaceWith(h6);
+      });
+      cells[0] = ['Hero (Customer Story)'];
+      cells.push([customerStoryHeader]);
+    }
 
-      const customerStoryHeader = hero.parentElement.querySelector(
-        '.customer-story-section',
-      );
-      if (customerStoryHeader) {
-        customerStoryHeader
-          .querySelectorAll('.customer-info > label')
-          .forEach((label) => {
-            const h6 = document.createElement('h6');
-            h6.innerHTML = label.innerHTML;
-            label.replaceWith(h6);
-          });
-        cells[0] = ['Hero (Customer Story)'];
-        cells.push([customerStoryHeader]);
-      }
-
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      hero.replaceWith(table);
-    });
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    hero.replaceWith(table);
+  });
 };
 
 // special handling for the curved wave c2a section
 // must be called before transformSections
 const transformCurvedWaveFragment = (document) => {
   const FRAGMENT_PATH = '/en/fragments/customer-breakthrough-wave';
-  document
-    .querySelectorAll('div.content-section.cover-bg.curv-footer-top-section')
-    .forEach((section) => {
-      const a = document.createElement('a');
-      a.href = FRAGMENT_PATH;
-      a.textContent = FRAGMENT_PATH;
-      const cells = [['Fragment'], [a]];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      section.replaceWith(table);
-    });
+  document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((section) => {
+    const a = document.createElement('a');
+    a.href = FRAGMENT_PATH;
+    a.textContent = FRAGMENT_PATH;
+    const cells = [['Fragment'], [a]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    section.replaceWith(table);
+  });
 };
 
 // we have different usages of sections - with <section></section>, <div></div>
 const transformSections = (document) => {
-  document
-    .querySelectorAll('section * section:not(.blogsPage)')
-    .forEach((section, index) => {
-      if (index > 0) {
-        section.firstChild.before(document.createElement('hr'));
+  document.querySelectorAll('section * section:not(.blogsPage)').forEach((section, index) => {
+    if (index > 0) {
+      section.firstChild.before(document.createElement('hr'));
+    }
+    const cells = [['Section Metadata']];
+    const styles = [];
+    if (section.classList.contains('grey_molecules_bg_top')) {
+      styles.push('Grey Molecules');
+    }
+    if (section.classList.contains('franklin-horizontal')) {
+      styles.push('Horizontal');
+    }
+    if (section.classList.contains('cover-bg')) {
+      styles.push('White Text');
+      const bgImage = extractBackgroundImage(section);
+      if (bgImage) {
+        const img = document.createElement('img');
+        img.src = bgImage;
+        img.alt = 'Background Image';
+        cells.push(['background', img]);
       }
-      const cells = [['Section Metadata']];
-      const styles = [];
-      if (section.classList.contains('grey_molecules_bg_top')) {
-        styles.push('Grey Molecules');
-      }
-      if (section.classList.contains('franklin-horizontal')) {
-        styles.push('Horizontal');
-      }
-      if (section.classList.contains('cover-bg')) {
-        styles.push('White Text');
-        const bgImage = extractBackgroundImage(section);
-        if (bgImage) {
-          const img = document.createElement('img');
-          img.src = bgImage;
-          img.alt = 'Background Image';
-          cells.push(['background', img]);
-        }
-      }
-      if (styles.length > 0) {
-        cells.push(['style', styles.toString()]);
-      }
+    }
+    if (styles.length > 0) {
+      cells.push(['style', styles.toString()]);
+    }
 
-      if (cells.length > 1) {
-        const table = WebImporter.DOMUtils.createTable(cells, document);
-        section.after(table);
-      }
-    });
+    if (cells.length > 1) {
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      section.after(table);
+    }
+  });
 };
 
 const transformTabsNav = (document) => {
@@ -250,9 +231,7 @@ const transformProductFeatureList = (block, document) => {
   const features = block.querySelector('.overview-features');
   if (features) {
     const cells = [['Product Features']];
-    features
-      .querySelectorAll('li')
-      .forEach((item) => cells.push([...item.children]));
+    features.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
     features.replaceWith(table);
@@ -307,7 +286,7 @@ const transformButtons = (document) => {
 const transformTables = (document) => {
   document.querySelectorAll('.table-responsive table').forEach((table) => {
     // clean up <br> tags
-    table.querySelectorAll('td').forEach((td) => {
+    table.querySelectorAll('td, th').forEach((td) => {
       if (td.querySelector('br')) {
         [...td.childNodes].forEach((c) => {
           if (c.nodeType === Node.TEXT_NODE) {
@@ -322,27 +301,37 @@ const transformTables = (document) => {
       }
     });
 
-    // convert first row th > td
-    const firstRow = table.querySelector('tr');
-    [...firstRow.children].forEach((item) => {
-      if (item.nodeName === 'TH') {
-        const newTd = document.createElement('td');
-        newTd.innerHTML = item.innerHTML;
-        item.replaceWith(newTd);
-      }
+    // get number of columns
+    const numCols = table.rows[0] ? [...table.rows[0].cells].reduce((cols, cell) => cols + cell.colSpan, 0) : 0;
+
+    // convert caption into header row
+    table.querySelectorAll('caption').forEach((caption) => {
+      const tr = table.insertRow(0);
+      const th = document.createElement('th');
+      th.textContent = caption.textContent;
+      th.setAttribute('colspan', numCols);
+      tr.append(th);
+      table.deleteCaption();
+    });
+
+    // convert rows th > td
+    table.querySelectorAll('tr').forEach((row) => {
+      [...row.children].forEach((item) => {
+        if (item.nodeName === 'TH') {
+          const newTd = document.createElement('td');
+          newTd.innerHTML = item.innerHTML;
+          newTd.setAttribute('colspan', item.getAttribute('colspan'));
+          item.replaceWith(newTd);
+        }
+      });
     });
 
     // create block table head row
-    const referenceNode =
-      table.firstChild.nodeName === 'TBODY'
-        ? table.firstChild.firstChild
-        : table.firstChild;
-    const tr = document.createElement('tr');
+    const tr = table.insertRow(0);
     const th = document.createElement('th');
     th.textContent = 'Table';
-    th.setAttribute('colspan', referenceNode.childElementCount);
+    th.setAttribute('colspan', numCols);
     tr.append(th);
-    referenceNode.parentElement.insertBefore(tr, referenceNode);
   });
 };
 
@@ -369,40 +358,36 @@ const transformColumns = (document) => {
     div.remove();
   });
 
-  document
-    .querySelectorAll('.row > [class*="col-"]:first-of-type')
-    .forEach((column) => {
-      const row = column.parentElement;
-      if (row.childElementCount > 1) {
-        let blockName = 'Columns';
-        const blockOptions = [];
-        [...row.children].forEach((col) => {
-          if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
-            row.after(col);
-          }
-        });
-        // check swap / reverse order tables
-        let children = [...row.children];
-        if (row.classList.contains('swap')) {
-          children = children.reverse();
-          blockOptions.push('swap');
+  document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
+    const row = column.parentElement;
+    if (row.childElementCount > 1) {
+      let blockName = 'Columns';
+      const blockOptions = [];
+      [...row.children].forEach((col) => {
+        if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
+          row.after(col);
         }
-        // match column width layouts
-        const styleMatch = COLUMN_STYLES.find((e) =>
-          e.match.some((match) => column.classList.contains(match)),
-        );
-        if (styleMatch) {
-          blockOptions.push(styleMatch.blockStyle);
-        }
-
-        if (blockOptions.length > 0) {
-          blockName = `Columns (${blockOptions.join(', ')})`;
-        }
-        const cells = [[blockName], children];
-        const table = WebImporter.DOMUtils.createTable(cells, document);
-        row.replaceWith(table);
+      });
+      // check swap / reverse order tables
+      let children = [...row.children];
+      if (row.classList.contains('swap')) {
+        children = children.reverse();
+        blockOptions.push('swap');
       }
-    });
+      // match column width layouts
+      const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
+      if (styleMatch) {
+        blockOptions.push(styleMatch.blockStyle);
+      }
+
+      if (blockOptions.length > 0) {
+        blockName = `Columns (${blockOptions.join(', ')})`;
+      }
+      const cells = [[blockName], children];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      row.replaceWith(table);
+    }
+  });
 };
 
 const transformReferenceToColumns = (document) => {
@@ -416,29 +401,23 @@ const transformReferenceToColumns = (document) => {
 // special handling for products references in success story
 // must be called before transformSections
 const transformReferenceProducts = (document) => {
-  document
-    .querySelectorAll('.featured-applications-div')
-    .forEach((featuredProductsBlock) => {
-      const parentSection = featuredProductsBlock.closest('section');
-      parentSection.classList.add('franklin-horizontal');
+  document.querySelectorAll('.featured-applications-div').forEach((featuredProductsBlock) => {
+    const parentSection = featuredProductsBlock.closest('section');
+    parentSection.classList.add('franklin-horizontal');
 
-      const featuredProducts = featuredProductsBlock.querySelector(
-        '.view-customer-story-product',
-      );
-      const ul = document.createElement('ul');
-      featuredProducts
-        .querySelectorAll('.product-container')
-        .forEach((productDetails) => {
-          const li = document.createElement('li');
-          const a = productDetails.querySelector('a');
-          a.textContent = productDetails.querySelector('h3').textContent;
-          li.append(a);
-          ul.append(li);
-        });
-      const cells = [['Featured Products'], [ul]];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      featuredProducts.replaceWith(table);
+    const featuredProducts = featuredProductsBlock.querySelector('.view-customer-story-product');
+    const ul = document.createElement('ul');
+    featuredProducts.querySelectorAll('.product-container').forEach((productDetails) => {
+      const li = document.createElement('li');
+      const a = productDetails.querySelector('a');
+      a.textContent = productDetails.querySelector('h3').textContent;
+      li.append(a);
+      ul.append(li);
     });
+    const cells = [['Featured Products'], [ul]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    featuredProducts.replaceWith(table);
+  });
 };
 
 const transformQuotes = (document) => {
@@ -479,9 +458,7 @@ const transformImageCaption = (document) => {
 const transformBlogRecentPosts = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
     recentPostsContainer.before(document.createElement('hr'));
-    const carousel = recentPostsContainer.querySelector(
-      '.views-element-container',
-    );
+    const carousel = recentPostsContainer.querySelector('.views-element-container');
     const cells = [['Recent Blogs Carousel']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     carousel.replaceWith(table);
@@ -511,12 +488,8 @@ const transformEmbeds = (document) => {
     const cerosUrl = ceros.getAttribute('data-url');
     if (cerosUrl) {
       const wrapper = document.createElement('div');
-      wrapper.append(
-        ceros.previousSibling,
-        document.createElement('br'),
-        cerosUrl,
-      );
-      const cells = [[`Ceros`], [wrapper]];
+      wrapper.append(ceros.previousSibling, document.createElement('br'), cerosUrl);
+      const cells = [['Ceros'], [wrapper]];
       const table = WebImporter.DOMUtils.createTable(cells, document);
       ceros.replaceWith(table);
     }
@@ -544,9 +517,7 @@ const transformEmbeds = (document) => {
 };
 
 const transformProductOverview = (document) => {
-  const div = document.querySelector(
-    'div.tab-pane#Overview, div.tab-pane#overview',
-  );
+  const div = document.querySelector('div.tab-pane#Overview, div.tab-pane#overview');
   if (div) {
     transformProductFeatureList(div, document);
     transformResourcesCarousel(div, document);
@@ -560,15 +531,13 @@ const transformProductApplications = (document) => {
     const heading = div.querySelector('h2');
     const br = document.createElement('br');
     content.append(heading, br);
-    div
-      .querySelectorAll('.view-product-resource-widyard .figure-container')
-      .forEach((application) => {
-        const link = document.createElement('a');
-        link.textContent = application.querySelector('h2').textContent;
-        link.href = application.querySelector('a.linkBtn').href;
+    div.querySelectorAll('.view-product-resource-widyard .figure-container').forEach((application) => {
+      const link = document.createElement('a');
+      link.textContent = application.querySelector('h2').textContent;
+      link.href = application.querySelector('a.linkBtn').href;
 
-        content.append(link, br.cloneNode());
-      });
+      content.append(link, br.cloneNode());
+    });
     const cells = [['Product Applications'], [content]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
@@ -576,9 +545,7 @@ const transformProductApplications = (document) => {
 };
 
 const transformResources = (document) => {
-  const div = document.querySelector(
-    'div.tab-pane#Resources, div.tab-pane#resources',
-  );
+  const div = document.querySelector('div.tab-pane#Resources, div.tab-pane#resources');
 
   if (div) {
     const resources = div.querySelectorAll('.views-element-container')[1];
@@ -610,9 +577,7 @@ const transformProductCitations = (document) => {
 };
 
 const transformRelatedProducts = (document) => {
-  const div = document.querySelector(
-    'div.tab-pane#RelatedProducts, div.tab-pane#relatedproducts',
-  );
+  const div = document.querySelector('div.tab-pane#RelatedProducts, div.tab-pane#relatedproducts');
   if (div) {
     const cells = [['Related Products']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -642,10 +607,7 @@ function makeAbsoluteLinks(main) {
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('/')) {
       const ori = a.href;
-      const u = new URL(
-        a.href,
-        'https://main--moleculardevices--hlxsites.hlx.page/',
-      );
+      const u = new URL(a.href, 'https://main--moleculardevices--hlxsites.hlx.page/');
 
       // Remove .html extension
       if (u.pathname.endsWith('.html')) {
@@ -790,8 +752,5 @@ export default {
     url,
     html,
     params,
-  }) =>
-    WebImporter.FileUtils.sanitizePath(
-      new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, ''),
-    ),
+  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
 };
