@@ -236,7 +236,7 @@ header nav .nav-tools {
   }
 
   .nav-tabs > li.fa-search {
-    color: #34393d;
+    color: var(--text-color);
     display: block;
     padding: 15px 0 15px 13px;
     position: relative;
@@ -246,7 +246,7 @@ header nav .nav-tools {
     background-color: #fff;
     padding: 9px;
     border-radius: 50%;
-    border: 2px solid #ee7624;
+    border: 2px solid var(--header-color-orange);
     color: #ee7624;
     width: 18px;
     height: 18px;
@@ -274,7 +274,7 @@ header nav .nav-tools {
     box-shadow: -8px 4px rgb(238 118 36 / 30%);
     z-index: 9999 !important;
     position: relative;
-    background: #ee7624;
+    background: var(--header-color-orange);
     font-size: 15px;
   }
 

@@ -19,15 +19,15 @@ function buildTools(content) {
 
 function buildRequestQuote() {
   const requestQuote = document.createElement('li');
-  requestQuote.classList.add('we-menu-li', 'header-rfq');
-  requestQuote.innerHTML = '<a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a>';
+  requestQuote.classList.add('header-rfq');
+  requestQuote.innerHTML = '<a title="" href="/quote-request?cid=12" target="">Request<br>Quote</a>';
   return requestQuote;
 }
 
 function buildSearch() {
   const search = document.createElement('li');
-  search.classList.add('we-menu-li', 'searchlink', 'header-search', 'fa', 'fa-search');
-  search.innerHTML = '<a class="we-mega-menu-li" title="" href="#" target="">Search</a>';
+  search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
+  search.innerHTML = '<a title="" href="#" target="">Search</a>';
   return search;
 }
 
@@ -56,7 +56,7 @@ export default async function decorate(block) {
   navbarHeader.append(buildTools(content));
 
   const headerWrapper = document.createElement('div');
-  headerWrapper.classList.add('container', 'top-header');
+  headerWrapper.classList.add('container');
   headerWrapper.append(navbarHeader);
 
   // ------ Nav ------
