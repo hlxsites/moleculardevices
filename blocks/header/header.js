@@ -82,6 +82,8 @@ export default async function decorate(block) {
     const li = document.createElement('li');
     const menuTitle = menus[i];
     menuTitle.classList.add('menu-nav-category');
+    const textDiv = menuTitle.querySelector('div');
+    menuTitle.innerHTML = textDiv.innerHTML;
 
     li.append(menuTitle);
 
