@@ -63,6 +63,7 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-main-content {
     float: right;
     width: 65%;
+    display: flex;
   }
   
   .accordion-tab-list,
@@ -79,6 +80,10 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-list,
   .accordion-tab-pane-inside {
     padding: 54px 24px;
+  }
+
+  .accordion-tab-pane-inside {
+    width: 500px;
   }
 
   .accordion-tab-list picture img {
@@ -168,6 +173,10 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-list,
   .accordion-tab-pane-inside {
     padding: 100px 32px;
+  }
+
+  .accordion-tab-pane-inside {
+    width: 950px;
   }
 
   .accordion-tab-content {

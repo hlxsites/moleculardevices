@@ -73,7 +73,7 @@ export default function decorate(block) {
 
       row.classList.add('accordion-tab-pane-inside');
       // todo remove fixed width
-      row.style.width = '936px';
+      // row.style.width = '936px';
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
