@@ -122,6 +122,7 @@ main .accordion-container .accordion-wrapper {
     display: block;
     margin-right: 0;
     padding: 15px;
+    cursor: pointer;
   }
 
   .accordion-tab-list .nav-tabs li:not(:first-child) a {
@@ -139,6 +140,7 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-list .nav-tabs li.active a {
     font-family: var(--ff-proxima-xbold);
+    cursor: unset;
   }
 
   .accordion-tab-main-content .accordion-tab-pane {
