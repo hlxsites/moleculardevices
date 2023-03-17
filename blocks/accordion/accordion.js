@@ -72,11 +72,8 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
-      // const rowWidth = (tabList.clientWidth / 35) * (100 - 35);
-      // row.style.width = `${rowWidth}px`;
-      setTimeout(() => {
-        row.style.width = `${(tabList.clientWidth / 35) * (100 - 35)}px`;
-      }, 0);
+      // TODO remove fixed width
+      row.style.width = `936px`;
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
