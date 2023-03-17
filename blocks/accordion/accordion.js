@@ -3,11 +3,37 @@ function getNav(block) {
   const titles = block.querySelectorAll('div:not(:first-child) > div:first-child');
 
   [...titles].forEach((title, i) => {
-    ul.insertAdjacentHTML('beforeend', `<li><a aria-label='${title.textContent}'>${title.textContent}</a></li>`);
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = title.textContent;
+    a.setAttribute('aria-label', title.textContent);
+    a.addEventListener('click', () => {
+      toggleActives(block, i);
+    });
+    li.appendChild(a);
+    ul.appendChild(li);
   });
 
   ul.querySelector('li').classList.add('active');
   return(ul);
+}
+
+function toggleActives(block, i) {
+  const actives = block.querySelectorAll('.active');
+  [...actives].forEach((active) => {
+    active.classList.remove('active');
+    let icon = active.querySelector('i');
+    if (icon) {
+      icon.classList.remove('fa-minus');
+      icon.classList.add('fa-plus');
+    }
+    active = active.parentElement.children[i];
+    active.classList.add('active');
+    icon = active.querySelector('i');
+    if (icon) {
+      icon.classList.add('fa-minus');
+    }
+  });
 }
 
 export default function decorate(block) {
@@ -31,6 +57,7 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
+      // TODO remove fix width
       row.style.width = '1168px';
       tabPane.appendChild(row);
 
@@ -38,6 +65,9 @@ export default function decorate(block) {
       const button = document.createElement('button');
       button.classList.add('accordion-tab-btn');
       button.innerHTML = `<i class='fa fa-plus'></i>${div.textContent}`;
+      button.addEventListener('click', () => {
+        toggleActives(block, i - 1);
+      });
       div.remove();
       row.prepend(button);
 
@@ -46,6 +76,11 @@ export default function decorate(block) {
     }
   });
 
-  tabMainContent.querySelector('.accordion-tab-pane').classList.add('active');
+  const firstTabPane = tabMainContent.querySelector('.accordion-tab-pane');
+  firstTabPane.classList.add('active');
+  const firstI = firstTabPane.querySelector('i');
+  firstI.classList.remove('fa-plus');
+  firstI.classList.add('fa-minus');
+
   block.appendChild(tabMainContent);
 }

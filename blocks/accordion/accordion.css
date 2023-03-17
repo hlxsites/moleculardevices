@@ -1,24 +1,12 @@
+main .accordion-container {
+  --accordion-heading-font-size-xl: 36px;
+  --accordion-heading-font-size-l: 24px
+}
+
 main .accordion-container .accordion-wrapper {
   width: 100%;
   max-width: unset;
   padding: 0;
-}
-
-.accordion-tab-list {
-  float: left;
-  width: 35%;
-  border-right: 3px solid #fff;
-}
-
-.accordion-tab-main-content {
-  float: right;
-  width: 65%;
-}
-
-.accordion-tab-list,
-.accordion-tab-main-content {
-  min-height: 500px;
-  max-height: 800px;
 }
 
 .accordion-tab-list,
@@ -28,7 +16,7 @@ main .accordion-container .accordion-wrapper {
 
 .accordion-tab-main-content {
     background-color: #000;
-    color: #fff;
+    color: var(--text-white);
 }
 
 .accordion-tab-main-content p {
@@ -36,9 +24,21 @@ main .accordion-container .accordion-wrapper {
 }
 
 .accordion-tab-main-content h3 {
-    /* todo: fix styles.css heading size vars */
-    font-size: 36px;/*var(--heading-font-size-l);*/
+    font-size: var(--accordion-heading-font-size-xl);
     padding-top: 16px;
+}
+
+.accordion-tab-main-content .button.secondary {
+  border: 1px solid #fff;
+  color: var(--text-white);
+  padding: 16px 30px;
+  margin-top: 30px;
+}
+
+.accordion-tab-main-content .button.secondary:hover {
+  background-color: var(--button-bg-color);
+  border-color: var(--button-bg-color);
+  color: var(--text-white);
 }
 
 .accordion-tab-main-content > .accordion-tab-pane > picture img {
@@ -53,6 +53,23 @@ main .accordion-container .accordion-wrapper {
 }
 
 @media (min-width: 768px) {
+  .accordion-tab-list {
+    float: left;
+    width: 35%;
+    border-right: 3px solid #fff;
+  }
+  
+  .accordion-tab-main-content {
+    float: right;
+    width: 65%;
+  }
+  
+  .accordion-tab-list,
+  .accordion-tab-main-content {
+    min-height: 500px;
+    max-height: 800px;
+  }
+
   .accordion {
     display: -webkit-box;
     display: flex;
@@ -122,6 +139,7 @@ main .accordion-container .accordion-wrapper {
     width: 0;
     height: auto;
     visibility: visible;
+    float:left;
   }
 
   .accordion-tab-main-content .accordion-tab-pane.active {
@@ -159,5 +177,65 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-list .nav-tabs li:not(:first-child) {
     margin-left: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .accordion-tab-list {
+    display: none;
+  }
+
+  .accordion-tab-pane {
+    border-bottom: 1px solid #fff;
+  }
+
+  .accordion-tab-content {
+    position:relative;
+    display: block;
+    min-height: 0;
+    height: 0;
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+    padding-left: 30px;
+  }
+
+  .accordion-tab-pane.active .accordion-tab-content {
+    height: 100%;
+  }
+
+  .accordion-tab-btn {
+    position: relative;
+    background: transparent;
+    padding: 0;
+    font-size: 18px;
+    margin: 0;
+    outline: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    cursor: pointer;
+    color: var(--text-white);
+  }
+
+  .accordion-tab-pane.active .accordion-tab-btn {
+    color: var(--button-bg-color);
+  }
+
+  .accordion-tab-btn i {
+    margin-right: 8px;
+  }
+
+  .accordion-tab-pane-inside {
+    padding: 24px;
+  }
+
+  .accordion-tab-main-content h3 {
+    font-size: var(--accordion-heading-font-size-l);
+    padding-top: 16px;
+    margin-bottom: 16px;
+  }
+  .accordion-tab-main-content .button.secondary {
+    padding: 16px 24px;
   }
 }
