@@ -213,7 +213,7 @@
 
 /* LEADERSHIP MODAL */
 
-.tranform-transition {
+.leadership-transition {
   transition: transform 1s ease;
 }
 
@@ -296,33 +296,15 @@
     margin-left: 50px;
     max-width: 300px;
   }
-
-  .cards.leaders > ul > li > div.cards-card-image {
-    min-height: 343px;
-  }
 }
 
 @media only screen and (min-width: 992px) {
   .cards.leaders > ul > li {
     flex-basis: calc(33.33% - 30px);
   }
-
-  .cards.leaders > ul > li > div.cards-card-image {
-    min-height: 291px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  .cards.leaders > ul > li > div.cards-card-image {
-    min-height: 358px;
-  }
 }
 
 @media only screen and (max-width: 767px) {
-  .cards.leaders > ul > li > div.cards-card-image {
-    min-height: 300px;
-  }
-
   .leadership-modal {
     padding: 10px;
   }
@@ -359,12 +341,6 @@
 
   .leadership-modal-footer .leadership-modal-carousel-nav {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .cards.leaders > ul > li > div.cards-card-image {
-    min-height: 200px;
   }
 }
 
