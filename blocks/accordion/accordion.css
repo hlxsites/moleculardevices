@@ -205,16 +205,16 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-content {
     position:relative;
     display: block;
-    max-height: 0;
-    transition-property: max-height;
+    /* height: 0; */
+    transition-property: height;
     transition-timing-function: ease-in-out;
-    transition-duration: 0.8s;
+    transition-duration: 0.5s;
     overflow: hidden;
     padding-left: 30px;
   }
 
   .accordion-tab-pane.active .accordion-tab-content {
-    max-height: 400px;
+    height: 100%;
   }
 
   .accordion-tab-btn {

@@ -7,9 +7,24 @@ function toggleItem(item, on) {
     const icon = item.querySelector('i');
     if (on) {
       item.classList.add(classActive);
+      const tabContent = item.querySelector('.accordion-tab-content');
+      if (tabContent) {
+        tabContent.style.height = 'auto';
+        const height = `${(item.clientHeight - 67)}px`;
+        tabContent.style.height = '0px';
+        setTimeout(() => {
+          tabContent.style.height = height;
+        }, 0);
+      }
       if (icon) icon.classList.replace(iconPlus, iconMinus);
     } else {
       item.classList.remove(classActive);
+      const tabContent = item.querySelector('.accordion-tab-content');
+      if (tabContent) {
+        setTimeout(() => {
+          tabContent.style.height = '0px';
+        }, 0);
+      }
       if (icon) icon.classList.replace(iconMinus, iconPlus);
     }
   }
@@ -72,8 +87,6 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
-      // todo remove fixed width
-      // row.style.width = '936px';
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
@@ -86,7 +99,16 @@ export default function decorate(block) {
       div.remove();
       row.prepend(button);
 
-      row.querySelector('div').classList.add('accordion-tab-content');
+      const tabContent = row.querySelector('div');
+      tabContent.classList.add('accordion-tab-content');
+      if (i === 1) {
+        setTimeout(() => {
+          const height = `${(tabContent.clientHeight)}px`;
+          tabContent.style.height = height;
+        }, 0);
+      } else {
+        tabContent.style.height = '0px';
+      }
       tabMainContent.appendChild(tabPane);
     }
   });
@@ -96,6 +118,12 @@ export default function decorate(block) {
   const firstI = firstTabPane.querySelector('i');
   firstI.classList.remove(iconPlus);
   firstI.classList.add(iconMinus);
+  const firstTabContent = firstTabPane.querySelector('.accordion-tab-content');
+  firstTabContent.style.height = 'auto';
+  const height = `${(firstTabPane.clientHeight - 67)}px`;
+  setTimeout(() => {
+    firstTabContent.style.height = height;
+  }, 0);
 
   block.appendChild(tabMainContent);
 }
