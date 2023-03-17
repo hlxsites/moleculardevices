@@ -7,10 +7,10 @@ function toggleItem(item, on) {
     const icon = item.querySelector('i');
     if (on) {
       item.classList.add(classActive);
-      icon && icon.classList.replace(iconPlus, iconMinus);
+      if (icon) icon.classList.replace(iconPlus, iconMinus);
     } else {
       item.classList.remove(classActive);
-      icon && icon.classList.replace(iconMinus, iconPlus);
+      if (icon) icon.classList.replace(iconMinus, iconPlus);
     }
   }
 }
@@ -21,10 +21,10 @@ function toggleNav(target, i) {
 
   if (actives.length) {
     [...actives].forEach((active) => {
-      const target = active.parentElement.children[i];
+      const newActive = active.parentElement.children[i];
       toggleItem(active, false);
-      if (active !== target) {
-        toggleItem(target, true);
+      if (active !== newActive) {
+        toggleItem(newActive, true);
       }
     });
   } else {
@@ -49,7 +49,7 @@ function buildNav(block) {
   });
 
   ul.querySelector('li').classList.add(classActive);
-  return(ul);
+  return (ul);
 }
 
 export default function decorate(block) {
@@ -76,7 +76,7 @@ export default function decorate(block) {
       // row.style.width = '1168px';
       tabPane.appendChild(row);
 
-      let div = row.querySelector('div');
+      const div = row.querySelector('div');
       const button = document.createElement('button');
       button.classList.add('accordion-tab-btn');
       button.innerHTML = `<i class='fa ${iconPlus}'></i>${div.textContent}`;
