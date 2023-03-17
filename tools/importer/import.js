@@ -21,7 +21,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   const request = new XMLHttpRequest();
   request.open(
     'GET',
-    'http://localhost:3001/export/moldev-resources-sheet-16032023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
+    'http://localhost:3001/export/moldev-resources-sheet-03172023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -98,6 +98,9 @@ const cleanUp = (document) => {
   document.querySelectorAll('table').forEach((table) => {
     table.innerHTML = table.innerHTML.replace(/\\~/gm, '~');
   });
+  document
+    .querySelectorAll('.row > [class^="col-"][class$="-12"]')
+    .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
 };
 
 const extractBackgroundImage = (content) => {
@@ -166,6 +169,7 @@ const transformHero = (document) => {
 const transformCurvedWaveFragment = (document) => {
   const FRAGMENT_PATH = '/en/fragments/customer-breakthrough-wave';
   document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((section) => {
+    section.before(document.createElement('hr'));
     const a = document.createElement('a');
     a.href = FRAGMENT_PATH;
     a.textContent = FRAGMENT_PATH;
@@ -365,10 +369,6 @@ const transformColumns = (document) => {
     div.remove();
   });
 
-  document
-    .querySelectorAll('.row > [class^="col-"][class$="-12"]')
-    .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
-
   document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
     const row = column.parentElement;
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
@@ -476,11 +476,25 @@ const transformBlogRecentPosts = (document) => {
   });
 };
 
-const transformShareStory = (document) => {
+const transformCustomerBreakthroughShareStory = (document) => {
   document.querySelectorAll('.share-story').forEach((share) => {
     const cells = [['Share Story'], [share.querySelector('h3')]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     share.replaceWith(table);
+  });
+};
+
+// convert Citations doc styles and remove columns here,
+// hence should be called before column transformation
+const transformCitations = (document) => {
+  document.querySelectorAll('.editor_citations').forEach((citation) => {
+    citation.querySelectorAll('.row').forEach((row) => row.classList.remove('row'));
+
+    citation.querySelectorAll('.brand-blue').forEach((label) => {
+      const em = document.createElement('em');
+      em.textContent = label.textContent;
+      label.replaceWith(em);
+    });
   });
 };
 
@@ -718,6 +732,7 @@ export default {
       transformHero,
       transformTables,
       transformButtons,
+      transformCitations,
       transformColumns,
       transformReferenceToColumns,
       transformEmbeds,
@@ -725,7 +740,7 @@ export default {
       transformFAQAccordion,
       transformBlogRecentPosts,
       transformImageCaption,
-      transformShareStory,
+      transformCustomerBreakthroughShareStory,
       transformTabsNav,
       transformTabsContent,
       transformProductOverview,
