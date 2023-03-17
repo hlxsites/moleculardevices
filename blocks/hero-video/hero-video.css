@@ -230,6 +230,11 @@ main .full-video-container .play-pause-fullscreen-button svg {
     width: 100px;
     height: 100px;
   }
+
+  main .overlay .video-banner-btn {
+    width: unset;
+    max-width: unset;
+  }
 }
 
 @media only screen and (max-width: 575px) {
@@ -245,7 +250,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   }
 
   main .overlay .video-banner-btn {
-    white-space: unset;
     line-height: 24px;
+    white-space: unset;
   }
 }

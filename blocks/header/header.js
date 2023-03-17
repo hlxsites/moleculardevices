@@ -19,9 +19,16 @@ function buildTools(content) {
 
 function buildRequestQuote() {
   const requestQuote = document.createElement('li');
-  requestQuote.innerHTML = `<li class="we-mega-menu-li header-rfq">
-  <a class="we-mega-menu-li" title="" href="/quote-request?cid=12" target="">Request<br>Quote</a></li>`;
+  requestQuote.classList.add('header-rfq');
+  requestQuote.innerHTML = '<a title="" href="/quote-request?cid=12" target="">Request<br>Quote</a>';
   return requestQuote;
+}
+
+function buildSearch() {
+  const search = document.createElement('li');
+  search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
+  search.innerHTML = '<a title="" href="#" target="">Search</a>';
+  return search;
 }
 
 /**
@@ -49,7 +56,7 @@ export default async function decorate(block) {
   navbarHeader.append(buildTools(content));
 
   const headerWrapper = document.createElement('div');
-  headerWrapper.classList.add('container', 'top-header');
+  headerWrapper.classList.add('container');
   headerWrapper.append(navbarHeader);
 
   // ------ Nav ------
@@ -75,12 +82,15 @@ export default async function decorate(block) {
     const li = document.createElement('li');
     const menuTitle = menus[i];
     menuTitle.classList.add('menu-nav-category');
+    const textDiv = menuTitle.querySelector('div');
+    menuTitle.innerHTML = textDiv.innerHTML;
 
     li.append(menuTitle);
 
     navMenuUl.append(li);
   }
 
+  navMenuUl.append(buildSearch());
   navMenuUl.append(buildRequestQuote());
 
   mainMenuWrapper.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
