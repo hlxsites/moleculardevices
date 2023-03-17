@@ -43,15 +43,6 @@ main .carousel-item {
   padding: 50px 80px;     /* default - same as .products */
 }
 
-main .grey .carousel-item {
-  background-color: #f2f2f2;
-  border: 0;
-}
-
-main .carousel.products .carousel-item {
-  border: 3px solid #efefef;
-}
-
 main .carousel-item-columns-container {
   max-width: 1140px;
   display: flex;
