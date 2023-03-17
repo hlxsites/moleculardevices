@@ -84,6 +84,7 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane-inside {
     width: 500px;
+    position:relative;
   }
 
   .accordion-tab-list picture img {
@@ -154,10 +155,6 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-main-content .accordion-tab-pane.active {
     width: 100%;
-  }
-
-  .accordion-tab-pane-inside {
-    position:relative;
   }
 
   .accordion-tab-btn {
