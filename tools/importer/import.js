@@ -488,13 +488,34 @@ const transformCustomerBreakthroughShareStory = (document) => {
 // hence should be called before column transformation
 const transformCitations = (document) => {
   document.querySelectorAll('.editor_citations').forEach((citation) => {
-    citation.querySelectorAll('.row').forEach((row) => row.classList.remove('row'));
+    citation.querySelectorAll('.row').forEach((div) => div.classList.remove('row'));
+    citation.querySelectorAll('.faq_accordion').forEach((div) => div.classList.remove('faq_accordion'));
 
     citation.querySelectorAll('.brand-blue').forEach((label) => {
       const em = document.createElement('em');
-      em.textContent = label.textContent;
+      em.textContent = label.textContent.trim();
+      em.after('&nbsp;');
       label.replaceWith(em);
+      em.parentElement.lastChild.textContent = ` ${em.parentElement.lastChild.textContent}`;
     });
+
+    const cells = [['Citations']];
+
+    const multiple = citation.querySelector('#citation-accordian');
+    if (multiple) {
+      // transform multiple citations
+      multiple.querySelectorAll('.description-part, .show-less, .img-ico').forEach((div) => div.remove());
+      [...multiple.children].forEach((div) => {
+        cells.push([div]);
+      });
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      multiple.replaceWith(table);
+    } else {
+      // transform single citations
+      cells.push([citation.querySelector('.citations_detail').parentElement]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      citation.replaceWith(table);
+    }
   });
 };
 
