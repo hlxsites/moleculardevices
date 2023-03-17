@@ -205,7 +205,6 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-content {
     position:relative;
     display: block;
-    /* height: 0; */
     transition-property: height;
     transition-timing-function: ease-in-out;
     transition-duration: 0.5s;
