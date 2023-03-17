@@ -71,7 +71,7 @@ function renderItem(item) {
   newsCaptionCTA.appendChild(newsCaptionButton);
 
   newsCaption.appendChild(newsCaptionText);
-  newsCaption.appendChild(newsCaptionButton);
+  newsCaption.appendChild(newsCaptionCTA);
   newsItem.appendChild(newsCaption);
 
   return newsItem;

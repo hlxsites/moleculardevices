@@ -1,16 +1,22 @@
 
+main .carousel.news-carousel {
+  padding-left: 270px;
+  padding-right: 270px;
+}
 
 main .news-carousel .carousel-item {
-  height: 100%;
-  width: 330px;
+  width: 360px;
   padding: 0;
+  margin-right: 20px;
 }
 
 main .news-carousel .news-carousel-item {
-  position: relative;
   height: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-items: stretch;
+  flex-grow: 1;
 }
 
 main .news-carousel .news-carousel-item-thumb {
@@ -40,4 +46,18 @@ main .news-carousel .news-carousel-caption {
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
+}
+
+main .news-carousel .news-carousel-caption-text {
+  height: 100%;
+}
+
+main .news-carousel .news-carousel-caption-cta a {
+  font-size: 0;
+  border: 0 !important;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 100%;
 }
