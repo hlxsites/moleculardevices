@@ -17,6 +17,7 @@ main .accordion-container .accordion-wrapper {
 .accordion-tab-main-content {
     background-color: #000;
     color: var(--text-white);
+    text-align: left;
 }
 
 .accordion-tab-main-content p {
@@ -128,6 +129,10 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-list .nav-tabs li:hover a,
   .accordion-tab-list .nav-tabs li.active a {
     background-color: rgba(255 255 255 / 30%);
+  }
+
+  .accordion-tab-list .nav-tabs li.active a {
+    font-family: var(--ff-proxima-xbold);
   }
 
   .accordion-tab-main-content .accordion-tab-pane {
