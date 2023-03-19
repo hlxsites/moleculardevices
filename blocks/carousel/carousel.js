@@ -328,9 +328,9 @@ export default async function createCarousel({ block, data, renderItem = default
   data.forEach((item, i) => {
     const itemContainer = document.createElement('div');
     itemContainer.className = 'carousel-item';
-    // if (i === 0) {
-    //   itemContainer.classList.add('selected');
-    // }
+    if (i === 0) {
+      itemContainer.classList.add('selected');
+    }
 
     let renderedItem = renderItem(item);
     renderedItem =  Array.isArray(renderedItem) ? renderedItem : [renderedItem];
