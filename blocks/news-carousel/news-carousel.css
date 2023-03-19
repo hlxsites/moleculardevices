@@ -5,7 +5,7 @@ main .carousel.news-carousel {
 }
 
 main .news-carousel .carousel-item {
-  width: 360px;
+  width: 33%;
   padding: 0;
   margin-right: 20px;
 }
@@ -17,6 +17,10 @@ main .news-carousel .news-carousel-item {
   flex-direction: column;
   justify-items: stretch;
   flex-grow: 1;
+}
+
+main .news-carousel .news-carousel-item:hover .news-carousel-item-thumb img {
+  transform: scale(1.15);
 }
 
 main .news-carousel .news-carousel-item-thumb {
@@ -31,10 +35,6 @@ main .news-carousel .news-carousel-item-thumb img {
   display: block;
   width: 100%;
   height: 220px;
-}
-
-main .news-carousel .news-carousel-item-thumb img:hover {
-  transform: scale(1.15);
 }
 
 main .news-carousel .news-carousel-caption {
@@ -58,6 +58,9 @@ main .news-carousel .news-carousel-caption-cta a {
   position: absolute;
   left: 0;
   width: 100%;
-  top: 0;
   height: 100%;
+  top: 0;
+  padding: 13px 18px 14px;
+  background-color: transparent;
+  text-decoration: none;
 }
