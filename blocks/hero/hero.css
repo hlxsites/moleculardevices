@@ -67,23 +67,23 @@ main .section .hero-wrapper {
   padding: 0;
 }
 
-main .section .hero-wrapper .hero > div {
+main .hero > div {
   margin:auto;
 }
 
-main .section .hero-wrapper .hero .container > div {
+main .hero .container > div {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-main .section .hero-wrapper .hero .container > div:nth-child(2) {
+main .hero .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 40px;
   padding-top: 45px;
   font-size: var(--body-font-size-xs);
 }
 
-main .section .hero-wrapper .hero .container > div:nth-child(2) .button-container {
+main .hero .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
   color: var(--text-white);
@@ -100,22 +100,22 @@ main .section .hero-wrapper .hero .container > div:nth-child(2) .button-containe
     font-size: 36px;
   }
 
-  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > * {
+  main .hero .container > div:nth-child(1) > div > * {
     display: none;
   }
 
-  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > p.button-container,
-  main .section .hero-wrapper .hero .container > div:nth-child(1) > div > h1 {
+  main .hero .container > div:nth-child(1) > div > p.button-container,
+  main .hero .container > div:nth-child(1) > div > h1 {
     display: block;
   }
 
-  main .section .hero-wrapper .hero .container > div:nth-child(2) {
+  main .hero .container > div:nth-child(2) {
     border-top: 2px solid #fff;
   }
 }
 
 @media (min-width: 768px) {
-  main .section .hero-wrapper .hero .container {
+  main .hero .container {
     overflow: auto;
     display: flex;
     align-items: stretch;
@@ -123,28 +123,28 @@ main .section .hero-wrapper .hero .container > div:nth-child(2) .button-containe
     height: auto;
   }
 
-  main .section .hero-wrapper .hero .container > div {
+  main .hero .container > div {
     float:left;
   }
 
-  main .section .hero-wrapper .hero .container > div:nth-child(1) {
+  main .hero .container.two-column > div:nth-child(1) {
     width: 66%
   }
 
-  main .section .hero-wrapper .hero .container > div:nth-child(2) {
+  main .hero .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
   }
 }
 
 @media (min-width: 992px) {
-  main .section .hero-wrapper .hero > div {
+  main .hero > div {
     width: 970px
   }
 }
 
 @media (min-width: 1200px) {
-  main .section .hero-wrapper .hero > div {
+  main .hero > div {
     width: 1170px
   }
 }
