@@ -68,6 +68,7 @@
   --dark-gray-background-color: #5b6670;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
+  --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
@@ -114,8 +115,8 @@ body {
   display: none;
 }
 
-body.background-gray {
-  background-color: var(--grey-background-color)
+.background-gray main {
+  background-color: var(--grey-background-color);
 }
 
 body.appear {
@@ -416,6 +417,46 @@ nav {
   display: block;
 }
 
+/* news and publication */
+.news .section .default-content-wrapper, .publication .section .default-content-wrapper {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+}
+
+@media (max-width: 767px) {
+  .news .section .default-content-wrapper p, .publication .section .default-content-wrapper p {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+.news .section .default-content-wrapper p, .publication .section .default-content-wrapper p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.news .section .default-content-wrapper h1, .publication .section .default-content-wrapper h1 {
+  font-weight: 100;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--dark-border-color-gray);
+}
+
+.news .section .default-content-wrapper strong, .publication .section .default-content-wrapper strong {
+    font-weight: 700;
+}
+
+.news .section .default-content-wrapper cite, .publication .section .default-content-wrapper cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding-bottom: 30px;
+}
+
 /* WAVE sections */
 
 /* Common */ 
@@ -589,43 +630,5 @@ main .orange-buttons .button.primary > .button-border {
   main .section.wave h2 {
     font-size: 40px;
   }
-}
-
-
-.news, .publication {
-  --heading-font-size-xxl: 36px;
-  --heading-font-size-xl: 30px;
-}
-
-@media (max-width: 767px) {
-  .news, .publication {
-    --body-font-size-m: 14px;
-    --body-font-size-s: 13px;
-    --body-font-size-xs: 12px;
-  }
-}
-
-.news p, .publication p {
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding: 0;
-}
-
-.news h1, .publication h1 {
-  font-weight: 100;
-  margin-bottom: 20px;
-}
-
-.news strong, .publication strong {
-    font-weight: 700;
-}
-
-.news cite, .publication cite {
-  font-size: var(--body-font-size-xs);
-  font-family: var(--ff-proxima-light);
-  font-weight: 600;
-  font-style: normal;
-  display: block;
-  padding: 0 0 30px;
 }
 

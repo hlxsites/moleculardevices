@@ -97,6 +97,20 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
+export function formatDate(dateStr) {
+  const parts = dateStr.split('/');
+  const date = new Date(parts[2], parts[0] - 1, parts[1]);
+
+  if (date) {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+    });
+  }
+  return dateStr;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
