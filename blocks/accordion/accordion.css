@@ -27,8 +27,7 @@ main .accordion-container .accordion-wrapper {
 }
 
 .accordion-tab-main-content h3 {
-    font-size: var(--accordion-heading-font-size-xl);
-    padding-top: 16px;
+  font-family: var(--ff-proxima-light);
 }
 
 .accordion-tab-main-content .button.secondary {
@@ -140,6 +139,17 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-list .nav-tabs li.active a {
     font-family: var(--ff-proxima-xbold);
     cursor: unset;
+  }
+
+  .accordion-tab-main-content h3 {
+    font-size: var(--accordion-heading-font-size-xl);
+    padding-top: 16px;
+    margin-bottom: 24px;
+  }
+
+  .accordion-tab-main-content p {
+    line-height: 1.5;
+    margin-top: 0;
   }
 
   .accordion-tab-main-content .accordion-tab-pane {
