@@ -1,7 +1,8 @@
 const iconPlus = 'fa-plus';
 const iconMinus = 'fa-minus';
 const classActive = 'active';
-const mobileMaxWidth = 768;
+const mediaQ1 = 768;
+const mediaQ2 = 992;
 
 function getEmptyHeight(tabPane) {
   const tabPaneInside = tabPane.querySelector('.accordion-tab-pane-inside');
@@ -14,7 +15,7 @@ function getEmptyHeight(tabPane) {
 function setHeights(block) {
   const tabPanes = block.querySelectorAll('.accordion-tab-pane');
   [...tabPanes].forEach((tabPane) => {
-    if (window.innerWidth < mobileMaxWidth) {
+    if (window.innerWidth < mediaQ1) {
       const emptyHeight = getEmptyHeight(tabPane);
       if (tabPane.classList.contains('active')) {
         const height = `${(tabPane.querySelector('.accordion-tab-content').offsetHeight + emptyHeight)}px`;
@@ -98,6 +99,15 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
+      // row width needs to be absolute for transition effect. setting inline proportional to window
+      // TODO make it relative to container
+      if (window.innerWidth >= mediaQ1) {
+        if (window.innerWidth >= mediaQ2) {
+          row.style.width = `${(Math.round(window.innerWidth * 0.65))}px`;
+        } else {
+          row.style.width = `${(Math.round(window.innerWidth * 0.70))}px`;
+        }
+      }
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
