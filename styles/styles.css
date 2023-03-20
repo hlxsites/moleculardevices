@@ -118,8 +118,12 @@ body.appear {
   display: unset;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: inherit;
   line-height: 1.1;
   font-weight: 100;
@@ -127,23 +131,48 @@ h4, h5, h6 {
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: var(--ff-proxima-light);
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--ff-proxima-regular);
 }
 
+h1 {
+  font-size: var(--heading-font-size-xxl)
+}
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h2 {
+  font-size: var(--heading-font-size-xl)
+}
 
-p, dl, ol, ul, pre, blockquote {
+h3 {
+  font-size: var(--heading-font-size-l)
+}
+
+h4 {
+  font-size: var(--heading-font-size-m)
+}
+
+h5 {
+  font-size: var(--heading-font-size-s)
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs)
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -161,12 +190,15 @@ a:hover {
   color: var(--link-hover-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
+code,
+samp {
   padding: .125em;
 }
 
@@ -189,7 +221,7 @@ em strong {
 
 main.text-caption {
   margin: 15px 0 25px;
-  font-size:var(--body-font-size-xs);
+  font-size: var(--body-font-size-xs);
   display: block;
   color: var(--text-gray);
 }
@@ -223,24 +255,31 @@ a.button .fa {
   padding: 0 0.25rem;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
   cursor: pointer;
   color: var(--link-hover-color);
 }
 
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.primary, button.primary {
+a.button.primary,
+button.primary {
   color: var(--button-color);
   background-color: var(--button-bg-color);
   border: 0;
 }
 
-a.button.primary:hover, a.button.primary:focus,
-button.primary:hover, button.primary:focus {
+a.button.primary:hover,
+a.button.primary:focus,
+button.primary:hover,
+button.primary:focus {
   color: var(--button-hover-color);
   background-color: var(--button-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
@@ -258,14 +297,17 @@ a.button.primary:hover .button-border {
   bottom: -5px;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   font-style: normal;
   border: 2px solid var(--button-secondary-border-color);
   color: var(--button-secondary-color);
 }
 
-a.button.secondary:hover,a.button.secondary:focus,
-button.secondary:hover, button.secondary:focus {
+a.button.secondary:hover,
+a.button.secondary:focus,
+button.secondary:hover,
+button.secondary:focus {
   color: var(--button-secondary-hover-color);
   background-color: var(--button-secondary-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
@@ -321,7 +363,8 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-main img, main video {
+main img,
+main video {
   max-width: 100%;
   width: auto;
   height: auto;
@@ -348,7 +391,8 @@ main .section>div {
     --body-font-size-xs: 12px;
   }
 
-  a.button:any-link, button {
+  a.button:any-link,
+  button {
     font-size: var(--body-font-size-xs);
     padding: 8px 12px;
     width: 100%;
@@ -389,6 +433,10 @@ main .section>div {
   margin-bottom: 30px;
 }
 
+main .section .default-content-wrapper {
+  padding: 90px 0 100px;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -407,6 +455,19 @@ main .section.center {
   text-align: center;
 }
 
+main .section.background-molecules div:nth-of-type(2) {
+  background-image: url("/images/grey_molecules.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 90px;
+}
+
+@media(max-width: 991px) {
+  main .section .default-content-wrapper {
+    padding: 67px 0 70px;
+  }
+}
+
 /* nav */
 nav {
   display: block;
@@ -414,7 +475,7 @@ nav {
 
 /* WAVE sections */
 
-/* Common */ 
+/* Common */
 main .section.wave {
   background-repeat: no-repeat;
   background-position: top center;
@@ -483,7 +544,7 @@ main .section.wave.bluegreen::after {
 
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,rgb(21 145 164 / 100%) 0,rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
     background-image: none;
   }
 
@@ -498,7 +559,7 @@ main .section.wave.bg-support-service {
   background-position: 100% 30%;
 }
 
-/* Carousel Variant */ 
+/* Carousel Variant */
 main .section.wave.wavecarousel::after {
   content: none;
 }
@@ -556,11 +617,20 @@ main .orange-buttons .button.secondary:active {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .orange-buttons .button.primary > .button-border {
+main .orange-buttons .button.primary>.button-border {
   display: none;
 }
 
 @media only screen and (max-width: 768px) {
+  main .section .default-content-wrapper {
+    padding: 30px 0;
+    overflow: hidden;
+  }
+
+  main .section.background-molecules div:nth-of-type(2) {
+    background-size: auto 50px;
+  }
+
   main .orange-buttons p.button-container {
     display: block;
   }
@@ -580,7 +650,7 @@ main .orange-buttons .button.primary > .button-border {
     margin-top: 20px;
   }
 
-/* ------ */
+  /* ------ */
 
   main .section.wave h2 {
     font-size: 40px;
