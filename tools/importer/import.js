@@ -167,7 +167,7 @@ const transformHero = (document) => {
 // special handling for the curved wave c2a section
 // must be called before transformSections
 const transformCurvedWaveFragment = (document) => {
-  const FRAGMENT_PATH = '/en/fragments/customer-breakthrough-wave';
+  const FRAGMENT_PATH = '/fragments/next-big-discovery';
   document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((section) => {
     section.before(document.createElement('hr'));
     const a = document.createElement('a');
@@ -188,7 +188,7 @@ const transformSections = (document) => {
     const cells = [['Section Metadata']];
     const styles = [];
     if (section.classList.contains('grey_molecules_bg_top')) {
-      styles.push('Grey Molecules');
+      styles.push('Background Molecules');
     }
     if (section.classList.contains('franklin-horizontal')) {
       styles.push('Horizontal');
