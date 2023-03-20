@@ -147,7 +147,11 @@ main .accordion-container .accordion-wrapper {
     opacity: 1;
     display: block;
     overflow: hidden;
-    transition: width 0.5s ease-in-out;
+    /* transition: width 0.5s ease-in-out; */
+    transition-property: width;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.5s;
+    transition-delay: 0.2s;
     min-width: 0;
     width: 0;
     height: auto;
@@ -214,9 +218,6 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-content {
     position:relative;
     display: block;
-    transition-property: height;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.8s;
     overflow: hidden;
     padding-left: 30px;
     margin-top: 5px;
