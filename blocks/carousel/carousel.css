@@ -10,7 +10,7 @@ main .carousel-container {
 main div.carousel-wrapper {
   width: 100%;
   margin: 0 0 115px !important;
-  padding: 0 !important;
+  padding: 0;
   position: relative;
   max-width: unset;
 }

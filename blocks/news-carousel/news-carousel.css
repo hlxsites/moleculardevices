@@ -1,3 +1,7 @@
+main div.carousel-wrapper.news-carousel-wrapper {
+  padding-top: 100px;
+  padding-bottom: 75px;
+}
 
 main .carousel.news-carousel {
   padding-left: 270px;
@@ -5,7 +9,7 @@ main .carousel.news-carousel {
 }
 
 main .news-carousel .carousel-item {
-  width: 33%;
+  width: 366px;
   padding: 0;
   margin-right: 20px;
 }
@@ -15,7 +19,6 @@ main .news-carousel .news-carousel-item {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-items: stretch;
   flex-grow: 1;
 }
 
@@ -52,9 +55,20 @@ main .news-carousel .news-carousel-caption-text {
   height: 100%;
 }
 
+
+main .news-carousel .news-carousel-caption-text p {
+  margin: 0;
+}
+
+main .news-carousel .news-carousel-caption-text p:first-child {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 75%;
+}
+
 main .news-carousel .news-carousel-caption-cta a {
   font-size: 0;
-  border: 0 !important;
+  border: 0;
   position: absolute;
   left: 0;
   width: 100%;
@@ -63,4 +77,63 @@ main .news-carousel .news-carousel-caption-cta a {
   padding: 13px 18px 14px;
   background-color: transparent;
   text-decoration: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  main .news-carousel .news-carousel-item-thumb {
+    height: 280px;
+  }
+
+  main .news-carousel .news-carousel-item-thumb img {
+    height: 280px;
+  }
+
+  main .news-carousel .news-carousel-item .news-carousel-caption {
+    height: calc(100% - 280px);
+    padding: 24px;
+  }
+
+  main .news-carousel .carousel-item {
+    width: 460px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  main .news-carousel .carousel-item {
+    width: 350px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  main div.carousel-wrapper.news-carousel-wrapper {
+    padding-top: 50px;
+    padding-bottom: 75px;
+  }
+
+  main .carousel.news-carousel {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  main .news-carousel .carousel-item {
+    padding: 0;
+    width: 100%;
+  }
+
+  main .news-carousel .news-carousel-item-thumb {
+    height: unset;
+  }
+
+  main .news-carousel .news-carousel-item-thumb picture {
+    height: 50%;
+  }
+
+  main .news-carousel .news-carousel-item-thumb img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  main .news-carousel .news-carousel-item .news-carousel-caption {
+    height: 50%;
+  }
 }
