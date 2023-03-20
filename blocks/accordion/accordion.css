@@ -1,6 +1,8 @@
 main .accordion-container {
   --accordion-heading-font-size-xl: 36px;
-  --accordion-heading-font-size-l: 24px
+  --accordion-heading-font-size-l: 24px;
+  --accordion-heading-font-size-m: 18px;
+  --accordion-background-color: #000;
 }
 
 main .accordion-container .accordion-wrapper {
@@ -15,7 +17,7 @@ main .accordion-container .accordion-wrapper {
 }
 
 .accordion-tab-main-content {
-    background-color: #000;
+    background-color: var(--accordion-background-color);
     color: var(--text-white);
     text-align: left;
 }
@@ -116,7 +118,7 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-list .nav-tabs li a,
   .accordion-tab-list .nav-tabs li a:focus {
-    color: #fff;
+    color: var(--text-white);
     background: transparent;
     border: 0;
     display: block;
@@ -130,7 +132,7 @@ main .accordion-container .accordion-wrapper {
   }
 
   .accordion-tab-list .nav-tabs li:first-child a {
-    font-size: 24px;
+    font-size: var(--accordion-heading-font-size-l);
   }
 
   .accordion-tab-list .nav-tabs li:hover a,
@@ -147,11 +149,7 @@ main .accordion-container .accordion-wrapper {
     opacity: 1;
     display: block;
     overflow: hidden;
-    /* transition: width 0.5s ease-in-out; */
-    transition-property: width;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.5s;
-    transition-delay: 0.2s;
+    transition: width 0.5s ease-in-out 0.2s;
     min-width: 0;
     width: 0;
     height: auto;
@@ -204,9 +202,7 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane {
     border-bottom: 1px solid #fff;
-    transition-property: height;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.8s;
+    transition: height 0.8s ease-in-out;
     overflow: hidden;
     height: 67px;
   }
@@ -231,7 +227,7 @@ main .accordion-container .accordion-wrapper {
     position: relative;
     background: transparent;
     padding: 0;
-    font-size: 18px;
+    font-size: var(--accordion-heading-font-size-m);
     margin: 0;
     outline: 0;
     display: block;
