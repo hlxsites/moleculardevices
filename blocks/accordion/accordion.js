@@ -125,8 +125,8 @@ export default function decorate(block) {
   block.appendChild(tabMainContent);
 
   // mobile view needs inline heights for transition
-  window.onresize = (event) => {
-    setHeights(block);
-  };
+  // window.onresize = (event) => {
+  //   setHeights(block);
+  // };
 }
 
