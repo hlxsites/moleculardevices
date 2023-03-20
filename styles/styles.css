@@ -434,7 +434,7 @@ main .section>div {
 }
 
 main .section .default-content-wrapper {
-  padding: 90px 0 100px;
+  padding: 0 0 100px;
 }
 
 /* progressive section appearance */
@@ -455,7 +455,10 @@ main .section.center {
   text-align: center;
 }
 
-main .section.background-molecules div:nth-of-type(2) {
+main .section.background-molecules .hero-wrapper::after {
+  content: '';
+  display: block;
+  height: 90px;
   background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
   background-position: center top;
@@ -464,7 +467,7 @@ main .section.background-molecules div:nth-of-type(2) {
 
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
-    padding: 67px 0 70px;
+    padding: 0 0 70px;
   }
 }
 
@@ -623,12 +626,13 @@ main .orange-buttons .button.primary>.button-border {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding: 30px 0;
+    padding: 0;
     overflow: hidden;
   }
 
-  main .section.background-molecules div:nth-of-type(2) {
+  main .section.background-molecules .hero-wrapper::after {
     background-size: auto 50px;
+    height: 50px;
   }
 
   main .orange-buttons p.button-container {
