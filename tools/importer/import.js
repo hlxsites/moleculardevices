@@ -21,7 +21,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   const request = new XMLHttpRequest();
   request.open(
     'GET',
-    'http://localhost:3001/export/moldev-resources-sheet-03172023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
+    'http://localhost:3001/export/moldev-resources-sheet-03202023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -293,7 +293,7 @@ const transformButtons = (document) => {
 };
 
 const transformTables = (document) => {
-  document.querySelectorAll('.table-responsive table').forEach((table) => {
+  document.querySelectorAll('.table-responsive table, table.table').forEach((table) => {
     // clean up <br> tags
     table.querySelectorAll('td, th').forEach((td) => {
       if (td.querySelector('br')) {
