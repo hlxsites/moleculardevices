@@ -18,6 +18,21 @@ import TEMPLATE_LIST from '../templates/config.js';
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
+export function loadScript(url, callback, type, async) {
+  const head = document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  if (async) {
+    script.async = true;
+  }
+  if (type) {
+    script.setAttribute('type', type);
+  }
+  script.onload = callback;
+  head.append(script);
+  return script;
+}
+
 /*
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
