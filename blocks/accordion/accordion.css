@@ -81,9 +81,6 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane-inside {
     padding: 54px 24px;
-  }
-
-  .accordion-tab-pane-inside {
     width: 500px;
     position:relative;
   }
@@ -177,9 +174,6 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane-inside {
     padding: 100px 32px;
-  }
-
-  .accordion-tab-pane-inside {
     width: 950px;
   }
 
