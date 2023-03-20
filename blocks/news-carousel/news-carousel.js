@@ -2,7 +2,6 @@ import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import createCarousel from '../carousel/carousel.js';
 
-
 /* 
 {
   "path": "/newsroom/news/mds-analytical-technologies-launches-molecular-devices-spectramax-m3-and-m4-multi-mode",
