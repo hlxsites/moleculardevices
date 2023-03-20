@@ -13,5 +13,5 @@ export default function decorate(block) {
   loadScript('https://play.vidyard.com/embed/v4.js');
   const videoId = block.textContent.trim();
 
-  block.innerHTML = getVidYardImg(videoId);
+  block.innerHTML = getVidYardImg(videoId, block.classList.contains('lightbox') ? 'lightbox' : 'inline');
 }
