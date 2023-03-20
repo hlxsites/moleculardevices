@@ -7,7 +7,7 @@ function getEmptyHeight(tabPane) {
   const tabPaneInside = tabPane.querySelector('.accordion-tab-pane-inside');
   const tabPaneInsideCS = window.getComputedStyle(tabPaneInside);
   const tabBtn = tabPane.querySelector('.accordion-tab-btn');
-  const emptyHeight = parseInt(tabPaneInsideCS.paddingTop) + parseInt(tabPaneInsideCS.paddingBottom) + tabBtn.offsetHeight;
+  const emptyHeight = (parseInt(tabPaneInsideCS.paddingTop, 10) * 2) + tabBtn.offsetHeight;
   return emptyHeight;
 }
 
@@ -123,10 +123,4 @@ export default function decorate(block) {
   firstI.classList.add(iconMinus);
 
   block.appendChild(tabMainContent);
-
-  // mobile view needs inline heights for transition
-  // window.onresize = (event) => {
-  //   setHeights(block);
-  // };
 }
-
