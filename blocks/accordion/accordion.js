@@ -1,6 +1,32 @@
 const iconPlus = 'fa-plus';
 const iconMinus = 'fa-minus';
 const classActive = 'active';
+const mobileMaxWidth = 768;
+
+function getEmptyHeight(tabPane) {
+  const tabPaneInside = tabPane.querySelector('.accordion-tab-pane-inside');
+  const tabPaneInsideCS = window.getComputedStyle(tabPaneInside);
+  const tabBtn = tabPane.querySelector('.accordion-tab-btn');
+  const emptyHeight = parseInt(tabPaneInsideCS.paddingTop) + parseInt(tabPaneInsideCS.paddingBottom) + tabBtn.offsetHeight;
+  return emptyHeight;
+}
+
+function setHeights(block) {
+  const tabPanes = block.querySelectorAll('.accordion-tab-pane');
+  [...tabPanes].forEach((tabPane) => {
+    if (window.innerWidth < mobileMaxWidth) {
+      const emptyHeight = getEmptyHeight(tabPane);
+      if (tabPane.classList.contains('active')) {
+        const height = `${(tabPane.querySelector('.accordion-tab-content').offsetHeight + emptyHeight)}px`;
+        tabPane.style.height = height;
+      } else {
+        tabPane.style.height = `${emptyHeight}px`;
+      }
+    } else {
+      tabPane.style.removeProperty('height');
+    }
+  });
+}
 
 function toggleItem(item, on) {
   if (item) {
@@ -13,12 +39,11 @@ function toggleItem(item, on) {
       if (icon) icon.classList.replace(iconMinus, iconPlus);
     }
   }
+  setHeights(item.closest('.accordion.block'));
 }
 
-function toggleNav(target, i) {
-  const block = target.closest('.accordion.block');
+function toggleNav(block, target, i) {
   const actives = block.querySelectorAll(`.${classActive}`);
-
   if (actives.length) {
     [...actives].forEach((active) => {
       const newActive = active.parentElement.children[i];
@@ -42,7 +67,7 @@ function buildNav(block) {
     a.textContent = title.textContent;
     a.setAttribute('aria-label', title.textContent);
     a.addEventListener('click', (e) => {
-      toggleNav(e.target, i);
+      toggleNav(block, e.target, i);
     });
     li.appendChild(a);
     ul.appendChild(li);
@@ -64,6 +89,7 @@ export default function decorate(block) {
   tabMainContent.classList.add('accordion-tab-main-content');
 
   [...block.children].forEach((row, i) => {
+    // first row is for navigation, start from second row
     if (i) {
       const tabPane = document.createElement('div');
       tabPane.classList.add('accordion-tab-pane');
@@ -72,8 +98,6 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
-      // todo remove fixed width
-      // row.style.width = '936px';
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
@@ -81,7 +105,7 @@ export default function decorate(block) {
       button.classList.add('accordion-tab-btn');
       button.innerHTML = `<i class='fa ${iconPlus}'></i>${div.textContent}`;
       button.addEventListener('click', (e) => {
-        toggleNav(e.target, i - 1);
+        toggleNav(block, e.target, i - 1);
       });
       div.remove();
       row.prepend(button);
@@ -91,6 +115,7 @@ export default function decorate(block) {
     }
   });
 
+  // set first tab active
   const firstTabPane = tabMainContent.querySelector('.accordion-tab-pane');
   firstTabPane.classList.add(classActive);
   const firstI = firstTabPane.querySelector('i');
@@ -98,4 +123,10 @@ export default function decorate(block) {
   firstI.classList.add(iconMinus);
 
   block.appendChild(tabMainContent);
+
+  // mobile view needs inline heights for transition
+  window.onresize = (event) => {
+    setHeights(block);
+  };
 }
+

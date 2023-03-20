@@ -200,9 +200,18 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane {
     border-bottom: 1px solid #fff;
+    transition-property: height;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.8s;
+    overflow: hidden;
+    height: 67px;
   }
 
-  .accordion-tab-content {
+  .accordion-tab-pane.active {
+    height: auto;
+  }
+
+  /* .accordion-tab-content {
     position:relative;
     display: block;
     max-height: 0;
@@ -215,6 +224,22 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-pane.active .accordion-tab-content {
     max-height: 400px;
+  } */
+
+  .accordion-tab-content {
+    position:relative;
+    display: block;
+    /* height: 0; */
+    transition-property: height;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.8s;
+    overflow: hidden;
+    padding-left: 30px;
+    margin-top: 5px;
+  }
+
+  .accordion-tab-pane.active .accordion-tab-content {
+    height: auto;
   }
 
   .accordion-tab-btn {
