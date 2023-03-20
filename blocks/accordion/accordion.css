@@ -211,21 +211,6 @@ main .accordion-container .accordion-wrapper {
     height: auto;
   }
 
-  /* .accordion-tab-content {
-    position:relative;
-    display: block;
-    max-height: 0;
-    transition-property: max-height;
-    transition-timing-function: ease-in-out;
-    transition-duration: 0.8s;
-    overflow: hidden;
-    padding-left: 30px;
-  }
-
-  .accordion-tab-pane.active .accordion-tab-content {
-    max-height: 400px;
-  } */
-
   .accordion-tab-content {
     position:relative;
     display: block;
