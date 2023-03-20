@@ -58,20 +58,20 @@ main .accordion-container .accordion-wrapper {
 @media (min-width: 768px) {
   .accordion-tab-list {
     float: left;
-    width: 35%;
+    min-width: 30%;
     border-right: 3px solid #fff;
+    padding: 54px 0 54px 24px;
   }
   
   .accordion-tab-main-content {
     float: right;
-    width: 65%;
+    min-width: 70%;
     display: flex;
   }
   
   .accordion-tab-list,
   .accordion-tab-main-content {
     min-height: 500px;
-    max-height: 800px;
   }
 
   .accordion {
@@ -79,7 +79,6 @@ main .accordion-container .accordion-wrapper {
     display: flex;
   }
 
-  .accordion-tab-list,
   .accordion-tab-pane-inside {
     padding: 54px 24px;
   }
@@ -114,6 +113,7 @@ main .accordion-container .accordion-wrapper {
     text-align: left;
     list-style: none;
     margin:0;
+    padding-left: 0;
   }
 
   .accordion-tab-list .nav-tabs li a,
@@ -171,7 +171,10 @@ main .accordion-container .accordion-wrapper {
     padding-left: 40px;
   }
 
-  .accordion-tab-list,
+  .accordion-tab-list {
+    padding: 100px 0 100px 32px;
+  }
+
   .accordion-tab-pane-inside {
     padding: 100px 32px;
   }
@@ -186,8 +189,20 @@ main .accordion-container .accordion-wrapper {
 }
 
 @media (min-width: 1200px) {
+  .accordion-tab-list {
+    min-width: 35%;
+  }
+  
+  .accordion-tab-main-content {
+    min-width: 65%;
+  }
+
   .accordion-tab-list .nav-tabs {
     padding-left: 90px;
+  }
+
+  .accordion-tab-pane-inside {
+    width: 1175px;
   }
 
   .accordion-tab-list .nav-tabs li:not(:first-child) {
