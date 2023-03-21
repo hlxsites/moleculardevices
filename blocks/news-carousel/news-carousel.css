@@ -1,6 +1,6 @@
 :root {
-  --item-width: 366px;
-  --items: 3;
+  --news-item-width: 366px;
+  --news-items: 3;
 }
 
 main div.carousel-wrapper.news-carousel-wrapper {
@@ -9,11 +9,11 @@ main div.carousel-wrapper.news-carousel-wrapper {
 }
 
 main .carousel.news-carousel {
-  padding: 0 calc((100vw - var(--items) * var(--item-width) - ((var(--items) - 1) * 20px)) / 2);
+  padding: 0 calc((100vw - var(--news-items) * var(--news-item-width) - ((var(--news-items) - 1) * 20px)) / 2);
 }
 
 main .news-carousel .carousel-item {
-  width: var(--item-width);
+  width: var(--news-item-width);
   padding: 0;
   margin-right: 20px;
 }
@@ -26,15 +26,6 @@ main .news-carousel .news-carousel-item {
   flex-grow: 1;
 }
 
-main .news-carousel .news-carousel-item:hover .news-carousel-item-thumb img {
-  transform: scale(1.15);
-}
-
-main .news-carousel .news-carousel-item-thumb {
-  height: 220px;
-  overflow: hidden;
-}
-
 main .news-carousel .news-carousel-item-thumb img {
   object-fit: cover;
   transform: scale(1);
@@ -42,6 +33,15 @@ main .news-carousel .news-carousel-item-thumb img {
   display: block;
   width: 100%;
   height: 220px;
+}
+
+main .news-carousel .news-carousel-item:hover .news-carousel-item-thumb img {
+  transform: scale(1.15);
+}
+
+main .news-carousel .news-carousel-item-thumb {
+  height: 220px;
+  overflow: hidden;
 }
 
 main .news-carousel .news-carousel-caption {
@@ -84,8 +84,8 @@ main .news-carousel .news-carousel-caption-cta a {
 
 @media only screen and (max-width: 1200px) {
   :root {
-    --items: 2;
-    --item-width: 460px;
+    --news-items: 2;
+    --news-item-width: 460px;
   }
 
   main .news-carousel .news-carousel-item-thumb {
@@ -104,7 +104,7 @@ main .news-carousel .news-carousel-caption-cta a {
 
 @media only screen and (max-width: 991px) {
   :root {
-    --item-width: 350px;
+    --news-item-width: 350px;
   }
 }
 
