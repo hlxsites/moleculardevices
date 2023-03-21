@@ -2,26 +2,8 @@ import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import createCarousel from '../carousel/carousel.js';
 
-/* 
-{
-  "path": "/newsroom/news/mds-analytical-technologies-launches-molecular-devices-spectramax-m3-and-m4-multi-mode",
-  "title": "MDS Analytical Technologies launches Molecular Devices SpectraMax M3 and M4 multi-mode microplate readers",
-  "image": "/default-meta-image.png?width=1200&format=pjpg&optimize=medium",
-  "description": "SUNNYVALE, CA, December 16, 2009 - MDS Analytical Technologies, a leader in innovative solutions for drug discovery and life-sciences research, today announced the launch of ...",
-  "type": "News",
-  "relatedProducts": "0",
-  "relatedTechnologies": "0",
-  "relatedApplications": "0",
-  "gated": "0",
-  "gatedURL": "0",
-  "date": "1260921600",
-  "lastModified": "1679044315",
-  "robots": "0"
-}
-*/
-
 function formatDate(newsDate) {
-  newsDate += '000'; //TODO
+  newsDate += '000'; // TODO
   const months = [
     'Jan',
     'Feb',
@@ -34,11 +16,11 @@ function formatDate(newsDate) {
     'Sep',
     'Oct',
     'Nov',
-    'Dec'
+    'Dec',
   ];
 
   const dateObj = new Date(+newsDate);
-  return `${months[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`
+  return `${months[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`;
 }
 
 function renderItem(item) {
@@ -59,14 +41,14 @@ function renderItem(item) {
   newsCaptionText.innerHTML = `
     <p>${formatDate(item.date)}</p>
     <p>${item.title}</p>
-  `
+  `;
 
   const newsCaptionCTA = document.createElement('div');
   newsCaptionCTA.classList.add('news-carousel-caption-cta');
 
   const newsCaptionButton = document.createElement('a');
   newsCaptionButton.href = item.path;
-  newsCaptionButton.innerHTML = '&nbsp;'
+  newsCaptionButton.innerHTML = '&nbsp;';
   newsCaptionCTA.appendChild(newsCaptionButton);
 
   newsCaption.appendChild(newsCaptionText);
@@ -83,15 +65,16 @@ export default async function decorate(block) {
     .limit(5)
     .all();
 
-
-  createCarousel(block, newsItems,
+  createCarousel(
+    block,
+    newsItems,
     {
       navButtons: true,
       dotButtons: false,
       infiniteScroll: false,
       autoScroll: false,
       visibleItems: 3,
-      renderItem
+      renderItem,
     }
   );
 }

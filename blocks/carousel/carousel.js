@@ -1,5 +1,5 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { loadCSS } from '../../scripts/lib-franklin.js';
+/* eslint-disable no-unused-expressions */
+import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -37,9 +37,10 @@ class Carousel {
     this.navButtons = true;
     this.infiniteScroll = true;
     this.autoScroll = true; // only available with infinite scroll
-    this.autoScrollInterval = AUTOSCROLL_INTERVAL,
-    this.visibleItems = 1; // this is primarily controlled by CSS, but we need to know 
-                           // then intention for scrolling pourposes
+    this.autoScrollInterval = AUTOSCROLL_INTERVAL;
+    // this is primarily controlled by CSS,
+    // but we need to know then intention for scrolling pourposes
+    this.visibleItems = 1;
 
     // Set information
     this.block = block;
@@ -70,10 +71,10 @@ class Carousel {
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
     const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
-  
+
     let index = [...items].indexOf(selectedItem);
-    index = index != -1 ? index : 0;
-  
+    index = index !== -1 ? index : 0;
+
     const newIndex = (index + 1) % items.length;
     const newSelectedItem = items[newIndex];
     if (newIndex === 0 && !this.infiniteScroll) {
@@ -83,7 +84,7 @@ class Carousel {
     if (newIndex === items.length - this.visibleItems && !this.infiniteScroll) {
       this.navButtonRight.classList.add('disabled');
     }
-  
+
     if (newIndex === 0) {
       // create the ilusion of infinite scrolling
       newSelectedItem.parentNode.scrollTo({
@@ -99,7 +100,7 @@ class Carousel {
       left: newSelectedItem.offsetLeft - this.getBlockPadding(),
       behavior: 'smooth',
     });
-  
+
     items.forEach((item) => item.classList.remove('selected'));
     dotButtons.forEach((item) => item.classList.remove('selected'));
     newSelectedItem.classList.add('selected');
@@ -118,12 +119,12 @@ class Carousel {
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
     const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
-  
+
     let index = [...items].indexOf(selectedItem);
-    index = index != -1 ? index : 0;
+    index = index !== -1 ? index : 0;
     const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
     const newSelectedItem = items[newIndex];
-  
+
     if (newIndex === items.length - 1 && !this.infiniteScroll) {
       return;
     }
@@ -131,7 +132,7 @@ class Carousel {
     if (newIndex === 0 && !this.infiniteScroll) {
       this.navButtonLeft.classList.add('disabled');
     }
-  
+
     if (newIndex === items.length - 1) {
       // create the ilusion of infinite scrolling
       newSelectedItem.parentNode.scrollTo({
@@ -141,13 +142,13 @@ class Carousel {
         ),
       });
     }
-  
+
     newSelectedItem.parentNode.scrollTo({
       top: 0,
       left: newSelectedItem.offsetLeft - this.getBlockPadding(),
       behavior: 'smooth',
     });
-  
+
     items.forEach((item) => item.classList.remove('selected'));
     dotButtons.forEach((item) => item.classList.remove('selected'));
     newSelectedItem.classList.add('selected');
@@ -244,9 +245,9 @@ class Carousel {
         left: item.offsetLeft - this.getBlockPadding(),
       });
     };
-  
+
     const section = this.block.closest('.section');
-  
+
     const observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes'
@@ -257,30 +258,30 @@ class Carousel {
         }
       });
     });
-  
+
     observer.observe(section, { attributes: true });
-  
+
     // just in case the mutation observer didn't work
     setTimeout(scrollToSelectedItem, 700);
-  
+
     // ensure that we disconnect the observer
     // if the animation has kicked in, we for sure no longer need it
     setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
   }
-  
+
   createDotButtons() {
     const buttons = document.createElement('div');
     buttons.className = 'carousel-dot-buttons';
     const items = [...this.block.children];
-  
+
     items.forEach((item, i) => {
       const button = document.createElement('button');
       button.ariaLabel = `Scroll to item ${i + 1}`;
       button.classList.add('carousel-dot-button');
       if (i === 0) {
         button.classList.add('selected');
-      } 
-  
+      }
+
       button.addEventListener('click', () => {
         clearInterval(this.intervalId);
         this.block.scrollTo({
@@ -298,9 +299,11 @@ class Carousel {
     this.block.parentElement.append(buttons);
   }
 
-  /* 
-  Changing the default rendering may break carousels that rely on it (e.g. CSS might not match anymore) 
+  /*
+  * Changing the default rendering may break carousels that rely on it
+  * (e.g. CSS might not match anymore)
   */
+  // eslint-disable-next-line class-methods-use-this
   renderItem(item) {
     // create the carousel content
     const columnContainer = document.createElement('div');
@@ -326,9 +329,9 @@ class Carousel {
   }
 
   async render() {
-    // copy carousel styles to the wrapper too  
+    // copy carousel styles to the wrapper too
     this.block.parentElement.classList.add(
-      ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block')
+      ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
 
     let defaultCSSPromise;
@@ -350,7 +353,7 @@ class Carousel {
       }
 
       let renderedItem = this.renderItem(item);
-      renderedItem =  Array.isArray(renderedItem) ? renderedItem : [renderedItem];
+      renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
       renderedItem.forEach((renderedItemElement) => {
         itemContainer.appendChild(renderedItemElement);
       });
@@ -358,7 +361,8 @@ class Carousel {
     });
 
     // create autoscrolling animation
-    this.autoScroll && this.infiniteScroll && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
+    this.autoScroll && this.infiniteScroll
+      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
     this.dotButtons && this.createDotButtons();
     this.navButtons && this.createNavButtons();
     this.infiniteScroll && this.createClones();
@@ -369,12 +373,14 @@ class Carousel {
 }
 
 /**
- * Create and render default carousel. 
+ * Create and render default carousel.
  * Best practice: Create a new block and call the function, instead using or modifying this.
  * @param {Element}  block        required - target block
- * @param {Array}    data         optional - a list of data elements. either a list of objects or a list of divs. 
+ * @param {Array}    data         optional - a list of data elements.
+ *  either a list of objects or a list of divs.
  *  if not provided: the div children of the block are used
- * @param {Object}   config       optional - config object for customizing the rendering and behaviour
+ * @param {Object}   config       optional - config object for
+ * customizing the rendering and behaviour
  */
 export default async function createCarousel(block, data, config) {
   const carousel = new Carousel(block, data, config);
