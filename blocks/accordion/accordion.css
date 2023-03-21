@@ -228,7 +228,7 @@ main .accordion-container .accordion-wrapper {
     border-bottom: 1px solid #fff;
     transition: height 0.8s ease-in-out;
     overflow: hidden;
-    height: 67px;
+    height: 72px;
   }
 
   .accordion-tab-pane.active {
@@ -260,6 +260,7 @@ main .accordion-container .accordion-wrapper {
     border: 0;
     cursor: pointer;
     color: var(--text-white);
+    line-height: inherit;
   }
 
   .accordion-tab-pane.active .accordion-tab-btn {
@@ -267,11 +268,20 @@ main .accordion-container .accordion-wrapper {
   }
 
   .accordion-tab-btn i {
-    margin-right: 8px;
+    margin-right: 12px;
   }
 
   .accordion-tab-pane-inside {
     padding: 24px;
+  }
+
+  .accordion-tab-main-content p {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  .accordion-tab-main-content p.button-container {
+    margin-top: 0;
   }
 
   .accordion-tab-main-content h3 {
@@ -282,5 +292,6 @@ main .accordion-container .accordion-wrapper {
 
   .accordion-tab-main-content .button.secondary {
     padding: 16px 24px;
+    margin-top: 40px;
   }
 }
