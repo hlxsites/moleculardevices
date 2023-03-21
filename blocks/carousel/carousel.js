@@ -3,7 +3,6 @@ import { loadCSS } from '../../scripts/lib-franklin.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
-
 /**
  * Clone a carousel item
  * @param {Element} item carousel item to be cloned
@@ -39,19 +38,35 @@ class Carousel {
     this.infiniteScroll = true;
     this.autoScroll = true; // only available with infinite scroll
     this.autoScrollInterval = AUTOSCROLL_INTERVAL,
+    this.visibleItems = 1; // this is primarily controlled by CSS, but we need to know 
+                           // then intention for scrolling pourposes
 
     // Set information
     this.block = block;
     this.data = data || [...block.children];
 
+    // Will be replaced after rendering, if available
+    this.navButtonLeft = null;
+    this.navButtonRight = null;
+
     // Apply overwrites
     Object.assign(this, config);
+  }
+
+  getBlockPadding() {
+    if (!this.blockStyle) {
+      this.blockStyle = window.getComputedStyle(this.block);
+    }
+    return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
   }
 
   /**
   * Scroll the carousel to the next item
   */
   nextItem() {
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
     const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
@@ -64,20 +79,24 @@ class Carousel {
     if (newIndex === 0 && !this.infiniteScroll) {
       return;
     }
+
+    if (newIndex === items.length - this.visibleItems && !this.infiniteScroll) {
+      this.navButtonRight.classList.add('disabled');
+    }
   
     if (newIndex === 0) {
       // create the ilusion of infinite scrolling
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.previousElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
+          newSelectedItem.previousElementSibling.offsetLeft - this.getBlockPadding()
         ),
       });
     }
-  
+
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
       behavior: 'smooth',
     });
   
@@ -93,6 +112,9 @@ class Carousel {
   * Scroll the carousel to the previous item
   */
   prevItem() {
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
     const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
@@ -105,20 +127,24 @@ class Carousel {
     if (newIndex === items.length - 1 && !this.infiniteScroll) {
       return;
     }
+
+    if (newIndex === 0 && !this.infiniteScroll) {
+      this.navButtonLeft.classList.add('disabled');
+    }
   
     if (newIndex === items.length - 1) {
       // create the ilusion of infinite scrolling
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.nextElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
+          newSelectedItem.nextElementSibling.offsetLeft - this.getBlockPadding()
         ),
       });
     }
   
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
       behavior: 'smooth',
     });
   
@@ -159,6 +185,10 @@ class Carousel {
       this.prevItem();
     });
 
+    if (!this.infiniteScroll) {
+      buttonLeft.classList.add('disabled');
+    }
+
     const buttonRight = document.createElement('button');
     buttonRight.classList.add('carousel-nav-right');
     buttonRight.ariaLabel = 'Scroll to next item';
@@ -172,6 +202,9 @@ class Carousel {
       navButton.classList.add('carousel-nav-button');
       this.block.parentElement.append(navButton);
     });
+
+    this.navButtonLeft = buttonLeft;
+    this.navButtonRight = buttonRight;
   }
 
   /**
@@ -208,7 +241,7 @@ class Carousel {
       const item = this.block.querySelector('.carousel-item.selected');
       item.parentNode.scrollTo({
         top: 0,
-        left: item.offsetLeft - item.parentNode.offsetLeft,
+        left: item.offsetLeft - this.getBlockPadding(),
       });
     };
   
@@ -252,7 +285,7 @@ class Carousel {
         clearInterval(this.intervalId);
         this.block.scrollTo({
           top: 0,
-          left: item.offsetLeft - item.parentNode.offsetLeft,
+          left: item.offsetLeft - this.getBlockPadding(),
           behavior: 'smooth',
         });
         [...buttons.children].forEach((r) => r.classList.remove('selected'));
@@ -336,7 +369,8 @@ class Carousel {
 }
 
 /**
- * Adds event listeners for touch UI swiping
+ * Create and render default carousel. 
+ * Best practice: Create a new block and call the function, instead using or modifying this.
  * @param {Element}  block        required - target block
  * @param {Array}    data         optional - a list of data elements. either a list of objects or a list of divs. 
  *  if not provided: the div children of the block are used

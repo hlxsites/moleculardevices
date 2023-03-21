@@ -19,9 +19,8 @@ main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
-
 main .carousel {
-  scroll-snap-type: x mandatory;
+  /* scroll-snap-type: x mandatory; */
   box-sizing: border-box;
   display: flex;
   overflow: hidden;
@@ -32,7 +31,7 @@ main .carousel {
 }
 
 main .carousel-item {
-  scroll-snap-align: center;
+  /* scroll-snap-align: center; */
   box-sizing: border-box;
   width: 100%;
   margin-right: 30px;
@@ -90,6 +89,10 @@ main .carousel-nav-button {
   color: #adb3b7;               /* default - same as .products */
   border: 1.5px solid #adb3b7;  /* default - same as .products */
   background-color: inherit;      /* default - same as .products */
+}
+
+main .carousel-nav-button.disabled {
+  display: none;
 }
 
 main .carousel-nav-button:hover {

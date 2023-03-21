@@ -90,6 +90,7 @@ export default async function decorate(block) {
       dotButtons: false,
       infiniteScroll: false,
       autoScroll: false,
+      visibleItems: 3,
       renderItem
     }
   );
