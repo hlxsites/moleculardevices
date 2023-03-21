@@ -1,3 +1,5 @@
+import { getIdFromString } from '../../scripts/scripts.js';
+
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function buildBrandLogo(content) {
@@ -6,6 +8,11 @@ function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
   logoWrapper.innerHTML = logoImg.outerHTML;
   return logoWrapper;
+}
+
+function getSubmenuBackgroundImg(content) {
+  const backgroundImg = content.querySelector('.submenu-background img');
+  return backgroundImg;
 }
 
 function buildTools(content) {
@@ -28,6 +35,23 @@ function buildSearch() {
   search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
   search.innerHTML = '<a title="" href="#" target="">Search</a>';
   return search;
+}
+
+function buildProductsMegaMenu(navContent, submenuContent) {
+  const backgroundImg = getSubmenuBackgroundImg(navContent);
+  submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
+}
+
+function createSubmenuBuildersMap() {
+  // create map of submenu name to function
+  const submenus = new Map();
+  submenus.set('products', buildProductsMegaMenu);
+  submenus.set('applications', () => { });
+  submenus.set('resources', () => { });
+  submenus.set('service-support', () => { });
+  submenus.set('company', () => { });
+  submenus.set('contact-us', () => { });
+  return submenus;
 }
 
 /**
@@ -73,10 +97,28 @@ export default async function decorate(block) {
   container.append(newNav);
   mainMenuWrapper.append(container);
 
+  // ------ Submenus ------
+  const submenuBuildersMap = createSubmenuBuildersMap();
+
   // link section
   const navMenuUl = document.createElement('ul');
   navMenuUl.classList.add('nav-tabs');
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
+
+  // Fetch all submenu content concurrently
+  const submenuFetchPromises = [];
+  for (let i = 0; i < menus.length - 1; i += 2) {
+    const textDiv = menus[i].querySelector('div');
+    const submenuId = getIdFromString(textDiv.textContent);
+    const submenuPath = getMetadata(`${submenuId}-submenu`) || `/drafts/josec/mega-menu-submenus/${submenuId}`;
+    submenuFetchPromises.push(
+      fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
+    );
+  }
+
+  // Process all submenu responses
+  const submenuResponses = await Promise.all(submenuFetchPromises);
+
   for (let i = 0; i < menus.length - 1; i += 2) {
     const li = document.createElement('li');
     const menuTitle = menus[i];
@@ -86,7 +128,23 @@ export default async function decorate(block) {
 
     li.append(menuTitle);
 
-    navMenuUl.append(li);
+    // Get submenu content
+    const submenuContentResp = submenuResponses[i / 2];
+    if (submenuContentResp.ok) {
+      // eslint-disable-next-line no-await-in-loop
+      const submenuHtml = await submenuContentResp.text();
+      const submenuContent = document.createElement('div');
+      submenuContent.classList.add('menu-nav-submenu');
+      submenuContent.innerHTML = submenuHtml;
+
+      // Get submenu builder, and build submenu
+      const submenuId = getIdFromString(textDiv.textContent);
+      const submenuBuilder = submenuBuildersMap.get(getIdFromString(submenuId));
+      submenuBuilder(content, submenuContent);
+      li.append(submenuContent);
+
+      navMenuUl.append(li);
+    }
   }
 
   navMenuUl.append(buildSearch());

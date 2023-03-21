@@ -113,6 +113,26 @@ export function addFavIcon(href, rel = 'icon') {
 }
 
 /**
+ * Takes a string as an input, converts it to lowercase,
+ * replaces special characters with hyphens,
+ * and removes any trailing or leading hyphens.
+ * @param {*} inputString
+ * @returns string
+ */
+export function getIdFromString(inputString) {
+  // Convert to lowercase
+  const lowercaseString = inputString.toLowerCase();
+
+  // Replace special characters and spaces with hyphens
+  const hyphenatedString = lowercaseString.replace(/[^a-z0-9]+/g, '-');
+
+  // Remove trailing and leading hyphens if any
+  const cleanedString = hyphenatedString.replace(/^-|-$/g, '');
+
+  return cleanedString;
+}
+
+/**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {

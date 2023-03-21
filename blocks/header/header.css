@@ -122,7 +122,7 @@ header .nav-tabs {
   margin-top: 0;
 }
 
-header .nav-tabs>li>div {
+header .nav-tabs .menu-nav-category {
   padding: 11px 0;
   text-transform: uppercase;
   text-align: left;
@@ -158,7 +158,22 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
-@media (min-width: 768px) {
+/* submenus */
+header .nav-tabs .menu-nav-submenu {
+  left: 0;
+  right: 0;
+  border: 0;
+  width: 100% !important;
+  padding: 0;
+  overflow: hidden;
+  z-index: 0;
+  margin: 0 !important;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 768) {
   header .container {
     width: 750px;
   }
@@ -299,6 +314,26 @@ header nav .nav-tools {
     justify-content: flex-end;
     position: static;
   }
+
+  header .nav-tabs .menu-nav-submenu {
+    min-height: 782px !important;
+    padding-bottom: 9.4%;
+    -webkit-box-shadow: inset 0 19px 33px -28px rgba(51,51,51,1) !important;
+    -moz-box-shadow: inset 0 19px 33px -28px rgba(51,51,51,1) !important;
+    box-shadow: inset 0 19px 33px -28px rgba(51,51,51,1) !important;
+    background-image: url(/themes/moldev/images/mega-menu-bg-flipped.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+  }
+
+  header .nav-tabs li.hover > .menu-nav-submenu {
+    display: block;
+  }
+  
+  header .nav-tabs li .menu-nav-submenu {
+    display: none;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -306,7 +341,7 @@ header nav .nav-tools {
     width: 1170px;
   }
 
-  header .nav-tabs>li>div {
-    font-size: 14px;
+  header .nav-tabs .menu-nav-category {
+    font-size: 16px;
   }
 }
