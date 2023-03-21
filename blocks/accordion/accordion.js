@@ -1,8 +1,7 @@
 const iconPlus = 'fa-plus';
 const iconMinus = 'fa-minus';
 const classActive = 'active';
-const mediaQ1 = 768;
-const mediaQ2 = 992;
+const verticalMediaQuery = '(max-width: 768px)';
 
 function getEmptyHeight(tabPane) {
   const tabPaneInside = tabPane.querySelector('.accordion-tab-pane-inside');
@@ -15,7 +14,7 @@ function getEmptyHeight(tabPane) {
 function setHeights(block) {
   const tabPanes = block.querySelectorAll('.accordion-tab-pane');
   [...tabPanes].forEach((tabPane) => {
-    if (window.innerWidth < mediaQ1) {
+    if (window.matchMedia(verticalMediaQuery).matches) {
       const emptyHeight = getEmptyHeight(tabPane);
       if (tabPane.classList.contains('active')) {
         const height = `${(tabPane.querySelector('.accordion-tab-content').offsetHeight + emptyHeight)}px`;
