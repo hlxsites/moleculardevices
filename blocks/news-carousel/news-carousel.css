@@ -1,15 +1,19 @@
+:root {
+  --item-width: 366px;
+  --items: 3;
+}
+
 main div.carousel-wrapper.news-carousel-wrapper {
   padding-top: 100px;
   padding-bottom: 75px;
 }
 
 main .carousel.news-carousel {
-  padding-left: 270px;
-  padding-right: 270px;
+  padding: 0 calc((100vw - var(--items) * var(--item-width) - ((var(--items) - 1) * 20px)) / 2);
 }
 
 main .news-carousel .carousel-item {
-  width: 366px;
+  width: var(--item-width);
   padding: 0;
   margin-right: 20px;
 }
@@ -55,7 +59,6 @@ main .news-carousel .news-carousel-caption-text {
   height: 100%;
 }
 
-
 main .news-carousel .news-carousel-caption-text p {
   margin: 0;
 }
@@ -80,6 +83,11 @@ main .news-carousel .news-carousel-caption-cta a {
 }
 
 @media only screen and (max-width: 1200px) {
+  :root {
+    --items: 2;
+    --item-width: 460px;
+  }
+
   main .news-carousel .news-carousel-item-thumb {
     height: 280px;
   }
@@ -92,15 +100,11 @@ main .news-carousel .news-carousel-caption-cta a {
     height: calc(100% - 280px);
     padding: 24px;
   }
-
-  main .news-carousel .carousel-item {
-    width: 460px;
-  }
 }
 
 @media only screen and (max-width: 991px) {
-  main .news-carousel .carousel-item {
-    width: 350px;
+  :root {
+    --item-width: 350px;
   }
 }
 
