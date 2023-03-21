@@ -43,7 +43,7 @@ describe('Publication Template', () => {
 
   it('Tests Social Share area ', async () => {
     const socialShare = await readFile({ path: './social-share.html' });
-    const shareEvent = document.querySelector('.content-wrapper .share-event');
+    const shareEvent = document.querySelector('.content-wrapper .social-share');
     expect(shareEvent.innerHTML.trim()).to.equal(socialShare);
   });
 });
