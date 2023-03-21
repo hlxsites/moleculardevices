@@ -121,6 +121,7 @@ main .accordion-container .accordion-wrapper {
     margin-right: 0;
     padding: 15px;
     cursor: pointer;
+    line-height: 1.43;
   }
 
   .accordion-tab-list .nav-tabs li:not(:first-child) a {
@@ -150,6 +151,11 @@ main .accordion-container .accordion-wrapper {
   .accordion-tab-main-content p {
     line-height: 1.5;
     margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .accordion-tab-main-content p.button-container {
+    margin-bottom: 0;
   }
 
   .accordion-tab-main-content .accordion-tab-pane {
