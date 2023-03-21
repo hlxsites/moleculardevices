@@ -84,12 +84,13 @@ export default async function decorate(block) {
     .all();
 
 
-  createCarousel({ block, data: newsItems, renderItem, 
-    config: {
+  createCarousel(block, newsItems,
+    {
       navButtons: true,
       dotButtons: false,
       infiniteScroll: false,
-      autoScroll: false
+      autoScroll: false,
+      renderItem
     }
-  });
+  );
 }
