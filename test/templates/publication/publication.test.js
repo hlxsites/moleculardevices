@@ -40,4 +40,10 @@ describe('Publication Template', () => {
     const textWrapper = document.querySelector('.default-content-wrapper > .content-wrapper > .right-col');
     expect(textWrapper.innerHTML.trim()).to.equal('<p>text 1</p><p><em>text 2</em></p><p><picture><img></picture></p><p class="text-caption"><em>text 3</em></p><p>text 4</p>');
   });
+
+  it('Tests Social Share area ', async () => {
+    const socialShare = await readFile({ path: './social-share.html' });
+    const shareEvent = document.querySelector('.content-wrapper .share-event');
+    expect(shareEvent.innerHTML.trim()).to.equal(socialShare);
+  });
 });
