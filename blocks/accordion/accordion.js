@@ -99,15 +99,6 @@ export default function decorate(block) {
       tabPane.appendChild(picture);
 
       row.classList.add('accordion-tab-pane-inside');
-      // row width needs to be absolute for transition effect. setting inline proportional to window
-      // TODO make it relative to container
-      if (window.innerWidth >= mediaQ1) {
-        if (window.innerWidth >= mediaQ2) {
-          row.style.width = `${(Math.round(window.innerWidth * 0.65))}px`;
-        } else {
-          row.style.width = `${(Math.round(window.innerWidth * 0.70))}px`;
-        }
-      }
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
