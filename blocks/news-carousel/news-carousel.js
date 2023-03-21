@@ -73,8 +73,19 @@ export default async function decorate(block) {
       dotButtons: false,
       infiniteScroll: false,
       autoScroll: false,
-      visibleItems: 3,
+      visibleItems: [
+        {
+          items: 1,
+          condition: () => window.screen.width < 768,
+        },
+        {
+          items: 2,
+          condition: () => window.screen.width < 1200,
+        }, {
+          items: 3,
+        },
+      ],
       renderItem,
-    }
+    },
   );
 }

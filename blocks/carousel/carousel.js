@@ -40,7 +40,12 @@ class Carousel {
     this.autoScrollInterval = AUTOSCROLL_INTERVAL;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
-    this.visibleItems = 1;
+    this.visibleItems = [
+      {
+        items: 1,
+        condition: () => true,
+      },
+    ];
 
     // Set information
     this.block = block;
@@ -81,7 +86,9 @@ class Carousel {
       return;
     }
 
-    if (newIndex === items.length - this.visibleItems && !this.infiniteScroll) {
+    const currentVisibleItems = this.visibleItems
+      .filter((e) => !e.condition || e.condition())[0].items;
+    if (newIndex === items.length - currentVisibleItems && !this.infiniteScroll) {
       this.navButtonRight.classList.add('disabled');
     }
 
