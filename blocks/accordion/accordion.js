@@ -43,17 +43,19 @@ function toggleItem(item, on) {
 }
 
 function toggleNav(block, target, i) {
-  const actives = block.querySelectorAll(`.${classActive}`);
-  if (actives.length) {
-    [...actives].forEach((active) => {
-      const newActive = active.parentElement.children[i];
-      toggleItem(active, false);
-      if (active !== newActive) {
-        toggleItem(newActive, true);
-      }
-    });
-  } else {
-    toggleItem(target.closest('.accordion-tab-pane'), true);
+  if (!(target.closest('.accordion-tab-list') && target.closest('.active'))) {
+    const actives = block.querySelectorAll(`.${classActive}`);
+    if (actives.length) {
+      [...actives].forEach((active) => {
+        const newActive = active.parentElement.children[i];
+        toggleItem(active, false);
+        if (active !== newActive) {
+          toggleItem(newActive, true);
+        }
+      });
+    } else {
+      toggleItem(target.closest('.accordion-tab-pane'), true);
+    }
   }
 }
 
