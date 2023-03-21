@@ -143,7 +143,7 @@ header nav .nav-sections {
 }
 
 
-header #header-logo img {
+header #header-logo picture {
   display: block;
   max-width: 100%;
   height: auto;
@@ -185,7 +185,7 @@ header nav .nav-tools {
     margin: 0;
   }
 
-  header #header-logo img {
+  header #header-logo picture {
     max-width: 100px;
     max-height: 22px;
     height: auto;
