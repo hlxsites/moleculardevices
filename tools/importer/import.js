@@ -99,16 +99,23 @@ const cleanUp = (document) => {
     table.innerHTML = table.innerHTML.replace(/\\~/gm, '~');
   });
   document
-    .querySelectorAll('.row > [class^="col-"][class$="-12"]')
+    .querySelectorAll('.row > [class*="col-"][class*="-12"]')
     .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
 };
 
 const extractBackgroundImage = (content) => {
+  const { backgroundImage } = content.style;
+  if (backgroundImage) {
+    return backgroundImage.match(/url\((.*?)\)/)[1].trim();
+  }
+
+  // fallback and check on attributes
   const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
   return backgroundUrl ? backgroundUrl.trim() : null;
 };
 
 const transformHero = (document) => {
+  // detect the default hero styles
   document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
     const isBlog = hero.classList.contains('blog-details');
     const cells = [[isBlog ? 'Hero (Blog)' : 'Hero']];
@@ -159,6 +166,21 @@ const transformHero = (document) => {
       cells.push([customerStoryHeader]);
     }
 
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    hero.replaceWith(table);
+  });
+
+  // detect the waved "ebook" style hero used on most gates pages plus some others
+  document.querySelectorAll('.ebook-banner.wave').forEach((hero) => {
+    const cells = [['Hero (wave)']];
+    const heroContent = hero.querySelector('.mol-content');
+    const backgroundUrl = extractBackgroundImage(hero);
+    if (backgroundUrl) {
+      const img = document.createElement('img');
+      img.src = backgroundUrl;
+      heroContent.insertBefore(img, heroContent.firstChild);
+    }
+    cells.push([heroContent]);
     const table = WebImporter.DOMUtils.createTable(cells, document);
     hero.replaceWith(table);
   });
@@ -533,11 +555,14 @@ const transformEmbeds = (document) => {
     }
   });
 
-  // detect vidyard video player embeds
+  // detect vidyard video player embeds using v4 code
   document.querySelectorAll('.vidyard-player-embed').forEach((vidyard) => {
-    const type = vidyard.getAttribute('data-type');
     const videoId = vidyard.getAttribute('data-uuid');
-    const cells = [[`Vidyard (${type})`], [videoId]];
+    const type = vidyard.getAttribute('data-type');
+    const cells = [
+      [type !== 'inline' ? `Vidyard (${type})` : 'Vidyard'],
+      [`https://share.vidyard.com/watch/${videoId}`],
+    ];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     vidyard.replaceWith(table);
   });
@@ -682,7 +707,8 @@ export default {
 
     // prepare vidyard script URLs before their are filtered
     document.querySelectorAll('.video script').forEach((vidyard) => {
-      if (vidyard.src && vidyard.src.indexOf('ceros') < 0) {
+      const scriptsToTest = ['ceros', 'embed/v4.js'];
+      if (vidyard.src && !scriptsToTest.some((script) => vidyard.src.includes(script))) {
         const videoDiv = vidyard.parentElement;
         videoDiv.classList.add('vidyard-player-embed');
         const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
