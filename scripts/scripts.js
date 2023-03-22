@@ -18,16 +18,6 @@ import TEMPLATE_LIST from '../templates/config.js';
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
-/**
- * Converts an excel date to human readable date
- *
- * @param {excelDate} the Excel style date
- * @returns the converted date
- */
-export function convertDate(excelDate) {
-  return new Date(Math.round((+excelDate - (1 + 25567 + 1)) * 86400 * 1000)); // excel date
-}
-
 /*
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');

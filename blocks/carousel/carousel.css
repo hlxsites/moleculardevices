@@ -95,8 +95,8 @@ main .carousel-nav-button.disabled {
 
 main .carousel-nav-button:hover {
   background-color: #adb3b7;
-  color: #fff;
-  border: 1.5px solid #fff;
+  color: var(--text-white);
+  border: 1.5px solid var(--background-color);
 }
 
 main .carousel-nav-button .icon {
@@ -258,7 +258,7 @@ main .carousel.wave .carousel-item-text {
 }
 
 main .carousel.wave .carousel-item-text p {
-  color: #fff;
+  color: var(--text-white);
   font-size: 27px;
 }
 
@@ -274,7 +274,7 @@ main .carousel-wrapper.wave .carousel-dot-buttons {
 }
 
 main .carousel-wrapper.wave .carousel-dot-button {
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
