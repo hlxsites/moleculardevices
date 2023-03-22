@@ -14,7 +14,6 @@ describe('Social Share block', () => {
   // eslint-disable-next-line no-undef
   before(async () => {
     const { decorateBlock, loadBlock } = await import('../../../scripts/lib-franklin.js');
-    document.head.innerHTML = await readFile({ path: './head.html' });
     document.body.innerHTML = await readFile({ path: './block.html' });
     const socialShare = document.querySelector('div.social-share');
     await decorateBlock(socialShare);
@@ -22,9 +21,15 @@ describe('Social Share block', () => {
     await sleep();
   });
 
-  it('Tests basic', async () => {
-    const socialShare = await readFile({ path: './social-share.html' });
+  it('Tests Social Shares', async () => {
     const shareEvent = document.querySelector('.social-share');
-    expect(shareEvent.innerHTML.trim()).to.equal(socialShare);
+    const socialsExpected = ['facebook', 'linkedin', 'twitter', 'envelope'];
+    const socialsActual = shareEvent.querySelector('.button-container');
+    socialsExpected.forEach((social) => {
+      expect(
+        socialsActual.querySelector(`li[data-type=${social}]`) !== null,
+        `Did not find social share for ${social}`,
+      ).to.be.true;
+    });
   });
 });

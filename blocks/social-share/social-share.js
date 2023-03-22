@@ -1,66 +1,68 @@
-function getURLFromMetaData() {
-  let url = '';
-  const metaElem = document.querySelector('head meta[property="hlx:proxyUrl"]');
-  if (metaElem) {
-    url = metaElem.getAttribute('content');
-  }
-  return url;
+function getURL() {
+  return encodeURIComponent(window.location.href);
 }
 
-function createSocialIcon(iconClassesArray, url) {
-  const item = document.createElement('li');
-  const icon = document.createElement('i');
+function getTitle() {
+  const h1 = document.querySelector('h1');
+  return h1 ? encodeURIComponent(h1.textContent) : '';
+}
 
-  iconClassesArray.forEach((iconClass) => {
-    icon.classList.add('fa', iconClass);
-  });
-
+function decorateLink(social, icon, url) {
   if (url) {
     const link = document.createElement('a');
     link.setAttribute('href', url);
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
     link.append(icon);
-    item.append(link);
-  } else {
-    item.append(icon);
+    social.append(link);
   }
-  return item;
 }
 
-export default async function decorate(block) {
-  const url = getURLFromMetaData();
+function decorateIcons(element) {
+  const url = getURL();
+  const title = getTitle();
 
-  const shareEvent = document.createElement('div');
-  shareEvent.classList.add('share-event');
-  const shareTitle = document.createElement('h4');
-  shareTitle.innerHTML = block.querySelector('.social-share p').innerHTML;
+  element.querySelectorAll('li').forEach((social) => {
+    const type = social.getAttribute('data-type');
+    const icon = social.querySelector('i');
+    switch (type) {
+      case 'facebook':
+        decorateLink(social, icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+        break;
+      case 'linkedin':
+        decorateLink(social, icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
+        break;
+      case 'twitter':
+        decorateLink(social, icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        break;
+      case 'envelope':
+        icon.classList.add('addthis-share-button');
+        icon.setAttribute('data-service', 'email');
+        break;
+      default:
+        break;
+    }
+  });
+}
 
-  const socialLinks = document.createElement('div');
-  socialLinks.classList.add('social-links', 'blue-ico');
-  const icons = document.createElement('ul');
+export default function decorate(block) {
+  const title = block.querySelector('.social-share p').innerHTML;
 
-  const facebookIconClasses = ['fa', 'fa-facebook'];
-  const facebook = createSocialIcon(facebookIconClasses, `https://www.facebook.com/share.php?u=${url}`);
-  icons.append(facebook);
+  block.innerHTML = `
+    <div class="share-event">
+      <p>${title}</p>
+      <div class="social-links blue-ico">
+        <ul class="button-container"></ul>
+      </div>
+    </div>`;
+  const socials = ['facebook', 'linkedin', 'twitter', 'envelope'];
+  socials.forEach((social) => {
+    const li = document.createElement('li');
+    li.className = `share-${social}`;
+    li.innerHTML = `<i class="fa fa-${social}"></i>`;
+    li.setAttribute('data-type', social);
+    block.querySelector('.social-links .button-container').append(li);
+  });
 
-  const linkedInIconClasses = ['fa', 'fa-linkedin'];
-  const linkedIn = createSocialIcon(linkedInIconClasses, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=`);
-  icons.append(facebook, linkedIn);
-
-  const twitterIconClasses = ['fa', 'fa-twitter'];
-  const twitter = createSocialIcon(twitterIconClasses, `https://twitter.com/intent/tweet?text=&url=${url}`);
-  icons.append(twitter);
-
-  const googleIconClasses = ['fa', 'fa-envelope', 'addthis-share-button'];
-  const google = createSocialIcon(googleIconClasses);
-  google.setAttribute('data-service', 'email');
-  icons.append(google);
-
-  shareEvent.append(shareTitle);
-  shareEvent.append(socialLinks);
-  socialLinks.append(icons);
-
-  block.innerHTML = '';
-  block.append(shareEvent);
+  decorateIcons(block);
 }

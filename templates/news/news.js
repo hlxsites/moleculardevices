@@ -13,7 +13,7 @@ function getPublicationDateFromMetaData() {
   return dateStr;
 }
 
-function styleCite(parentElem) {
+function decorateCite(parentElem) {
   const dt = getPublicationDateFromMetaData();
   if (dt) {
     const cite = document.createElement('cite');
@@ -22,7 +22,7 @@ function styleCite(parentElem) {
   }
 }
 
-function styleStrong(elems) {
+function decorateStrong(elems) {
   elems.forEach((elem) => {
     const parent = elem.parentElement;
     if (parent.children.length === 1) {
@@ -31,7 +31,7 @@ function styleStrong(elems) {
   });
 }
 
-function styleCaption(elems) {
+function decorateCaption(elems) {
   elems.forEach((elem) => {
     const parent = elem.parentElement;
     const next = parent.nextElementSibling;
@@ -41,7 +41,7 @@ function styleCaption(elems) {
   });
 }
 
-function styleReadMore(linkElem) {
+function decorateReadMore(linkElem) {
   if (linkElem) {
     linkElem.classList.add('ext');
     linkElem.setAttribute('target', '_blank');
@@ -67,7 +67,7 @@ export function decorateAutoBlock(content) {
     return;
   }
 
-  styleCite(content);
+  decorateCite(content);
 
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('content-wrapper');
@@ -95,11 +95,11 @@ export function decorateAutoBlock(content) {
   content.append(contentWrapper);
   contentWrapper.append(txt);
 
-  styleStrong(content.querySelectorAll('.right-col p > strong'));
-  styleCaption(content.querySelectorAll('.left-col p > picture'));
-  styleCaption(content.querySelectorAll('.right-col p > picture'));
+  decorateStrong(content.querySelectorAll('.right-col p > strong'));
+  decorateCaption(content.querySelectorAll('.left-col p > picture'));
+  decorateCaption(content.querySelectorAll('.right-col p > picture'));
 
-  styleReadMore(contentWrapper.querySelector('.button-container a'));
+  decorateReadMore(contentWrapper.querySelector('.button-container a'));
 
   addSocialShare(content.querySelector('.content-wrapper'), '<p>Share this news</p>');
 }
