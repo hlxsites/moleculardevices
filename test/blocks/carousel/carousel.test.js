@@ -30,7 +30,7 @@ describe('Carousel Base Block', () => {
     expect(items).to.exist;
     expect(items.length).to.equal(3);
     expect(block.querySelector('.carousel-item.selected')).to.equal(items[0]);
-    
+
     // check clones
     expect(block.querySelectorAll('.carousel-item.clone').length).to.equal(4);
 
@@ -60,7 +60,7 @@ describe('Carousel Base Block', () => {
 
     const items = block.querySelectorAll('.carousel-item:not(.clone)');
     expect(block.querySelector('.carousel-item.selected')).to.equal(items[0]);
-    
+
     const dotButtons = blockWrapper.querySelectorAll('.carousel-dot-button');
     dotButtons[2].click();
     await sleep(300);
@@ -86,7 +86,7 @@ describe('Carousel Base Block', () => {
     expect(items).to.exist;
     expect(items.length).to.equal(3);
     expect(block.querySelector('.carousel-item.selected')).to.equal(items[0]);
-    
+
     const rightNavButton = blockWrapper.querySelector('.carousel-nav-right');
     rightNavButton.click();
     await sleep(300);
@@ -112,7 +112,7 @@ describe('Carousel Base Block', () => {
     expect(items).to.exist;
     expect(items.length).to.equal(3);
     expect(block.querySelector('.carousel-item.selected')).to.equal(items[0]);
-    
+
     const leftNavButton = blockWrapper.querySelector('.carousel-nav-left');
     leftNavButton.click();
     await sleep(300);
