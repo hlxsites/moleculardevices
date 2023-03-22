@@ -2,6 +2,7 @@ import {
   readBlockConfig,
   toClassName,
 } from '../../scripts/lib-franklin.js';
+import ffetch from '../../scripts/ffetch.js';
 import createList from '../../scripts/list.js';
 
 function linkPicture(picture) {
@@ -47,49 +48,16 @@ export function decorateLinkedPictures(block) {
 }
 
 /**
- * Converts an excel date to human readable date
- *
- * @param {excelDate} the Excel style date
- * @returns the converted date
- */
-function convertDate(excelDate) {
-  return new Date(Math.round((+excelDate - (1 + 25567 + 1)) * 86400 * 1000)); // excel date
-}
-
-async function getIndex(index, indexUrl) {
-  window.pageIndex = window.pageIndex || {};
-  if (!window.pageIndex[index]) {
-    const resp = await fetch(indexUrl);
-    if (!resp.ok) {
-      // eslint-disable-next-line no-console
-      console.error('loading index', resp);
-      return []; // do not cache in case of error
-    }
-    const json = await resp.json();
-    window.pageIndex[index] = json.data;
-  }
-  return window.pageIndex[index];
-}
-
-/**
  * Get the list of press release news from the query index.
  *
  * @param {number} limit the number of entries to return
  * @returns the posts as an array
  */
-async function getNews(limit) {
-  const indexUrl = new URL(
-    '/newstermine/query-index-news.json',
-    window.location.origin,
-  );
-  indexUrl.searchParams.set('sheet', 'news');
-  let index = 'news';
-  if (limit) {
-    indexUrl.searchParams.set('limit', limit);
-    index = index.concat(`-${limit}`);
-  }
-
-  const newsEntries = await getIndex(index, indexUrl.toString());
+async function getNews() {
+  const newsEntries = await ffetch('/query-index.json')
+    .sheet('news')
+    .all();
+  newsEntries.sort((a, b) => b.date - a.date);
   return newsEntries;
 }
 
@@ -107,30 +75,46 @@ function createFilters(news, activeFilters, createDropdown) {
   const date = Array.from(new Set(news.map((n) => n.filterDate)));
 
   return [
-    createDropdown(date, activeFilters.date, 'date', 'Termine'),
+    createDropdown(date, activeFilters.date, 'date', 'Select Year'),
   ];
+}
+
+function formatDate(newsDate) {
+  const dateObj = new Date(0);
+  dateObj.setUTCSeconds(newsDate);
+
+  return dateObj.toLocaleDateString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  });
+}
+
+function formatDateFullYear(newsDate) {
+  const dateObj = new Date(0);
+  dateObj.setUTCSeconds(newsDate);
+
+  return dateObj.toLocaleDateString('en-US', {
+    year: 'numeric',
+  });
 }
 
 function createNewsOverview(news, block) {
   const config = readBlockConfig(block);
+  // eslint-disable-next-line radix
   const limit = parseInt(config.limit, 10) || 10;
   block.innerHTML = '';
 
-  // prepare custom "Month Year" date field
+  // prepare custom date fields
   news.forEach((n) => {
-    n.filterDate = convertDate(n.publishDate).toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: 'long',
-    });
-    n.filterCategory = n.categories.split(',').shift();
+    n.newsDate = formatDate(n.date);
+    n.filterDate = formatDateFullYear(n.date);
   });
 
   createList(news, filterNews, createFilters, limit, block);
 }
 
 export default async function decorate(block) {
-  const limit = 10;
-
-  const news = await getNews(limit);
+  const news = await getNews();
   createNewsOverview(news, block);
 }

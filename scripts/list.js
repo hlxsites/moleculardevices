@@ -35,7 +35,7 @@ export function renderPagination(entries, page, limit) {
     const list = document.createElement('ol');
     listPageLinks.append(list);
     if (page > 1) {
-      list.append(createPaginationLink(page - 1, 'Vorherige'));
+      list.append(createPaginationLink(page - 1, 'Prev'));
       list.append(createPaginationLink(1));
     }
     if (page > 3) {
@@ -68,7 +68,7 @@ export function renderPagination(entries, page, limit) {
     }
     if (page < maxPages) {
       list.append(createPaginationLink(maxPages));
-      list.append(createPaginationLink(page + 1, 'Nächste'));
+      list.append(createPaginationLink(page + 1, 'Next'));
     }
 
     listPagination.append(listSize, listPageLinks);
@@ -88,7 +88,7 @@ function getActiveFilters() {
 }
 
 function renderListItem({
-  path, title, teaser, image,
+  path, title, description, image, newsDate,
 }) {
   const imageElement = createOptimizedPicture(image, title, false, [
     { width: '500' },
@@ -103,8 +103,9 @@ function renderListItem({
         </a>
       </div>    
       <div class="content">
+        <p>${newsDate}</p>
         <h3><a title="${title}" href="${path}">${title}</a></h3>
-        <p>${teaser}</p>
+        <p>${description}</p>
       </div>
       <div class="details">
         <a href="${path}">Details</a>
