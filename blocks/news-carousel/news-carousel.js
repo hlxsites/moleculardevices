@@ -3,24 +3,14 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import createCarousel from '../carousel/carousel.js';
 
 function formatDate(newsDate) {
-  newsDate += '000'; // TODO
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const dateObj = new Date(0);
+  dateObj.setUTCSeconds(newsDate);
 
-  const dateObj = new Date(+newsDate);
-  return `${months[dateObj.getMonth()]} ${dateObj.getDay()}, ${dateObj.getFullYear()}`;
+  return dateObj.toLocaleDateString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  });
 }
 
 function renderItem(item) {
