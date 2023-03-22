@@ -7,10 +7,12 @@ function getTitle() {
   return h1 ? encodeURIComponent(h1.textContent) : '';
 }
 
-function decorateLink(social, icon, url) {
+function decorateLink(social, type, icon, url) {
+  icon.setAttribute('aria-label', type);
   if (url) {
     const link = document.createElement('a');
     link.setAttribute('href', url);
+    link.setAttribute('aria-label', `Share to ${type}`);
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
     link.append(icon);
@@ -27,15 +29,16 @@ function decorateIcons(element) {
     const icon = social.querySelector('i');
     switch (type) {
       case 'facebook':
-        decorateLink(social, icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+        decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
         break;
       case 'linkedin':
-        decorateLink(social, icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
+        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
-        decorateLink(social, icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        decorateLink(social, 'Twitter', icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
         break;
       case 'envelope':
+        decorateLink(social, 'Google', icon);
         icon.classList.add('addthis-share-button');
         icon.setAttribute('data-service', 'email');
         break;
