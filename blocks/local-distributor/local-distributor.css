@@ -180,6 +180,7 @@
 
   .local-distributor > div.search-result > div {
     flex-basis: 50%;
+    max-width: 50%;
     -ms-flex-preferred-size: 50%;
     padding-left: 100px;
     padding-right: 70px;
