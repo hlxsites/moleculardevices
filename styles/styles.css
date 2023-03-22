@@ -95,6 +95,7 @@
 
   /* nav height */
   --nav-height: 156px;
+  --nav-height-mobile: 70px;
 }
 
 * {
@@ -104,6 +105,13 @@
 header {
   height: var(--nav-height);
 }
+
+@media (max-width: 991px) {
+  header {
+    height: var(--nav-height-mobile);
+  }
+}
+  
 
 body {
   font-size: var(--body-font-size-m);

@@ -4,7 +4,6 @@ function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
   logoWrapper.setAttribute('id', 'header-logo');
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
-  logoImg.classList = 'logo1';
   logoWrapper.innerHTML = logoImg.outerHTML;
   return logoWrapper;
 }

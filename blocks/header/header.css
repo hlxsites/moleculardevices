@@ -179,13 +179,20 @@ header nav .nav-tools {
 
 @media (max-width: 991px) {
   header .navbar-header {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  header .navbar-header {
     position: relative;
     padding: 20px 15px;
     width: 100%;
     margin: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 
-  header #header-logo picture {
+  header #header-logo img {
     max-width: 100px;
     max-height: 22px;
     height: auto;
