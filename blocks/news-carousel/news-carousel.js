@@ -30,7 +30,7 @@ function renderItem(item) {
   const newsThumb = document.createElement('div');
   newsThumb.classList.add('news-carousel-item-thumb');
   // TODO optimise image sizes
-  newsThumb.append(createOptimizedPicture(item.image, item.title, 'lazy'));
+  newsThumb.append(createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]));
   newsItem.appendChild(newsThumb);
 
   const newsCaption = document.createElement('div');
