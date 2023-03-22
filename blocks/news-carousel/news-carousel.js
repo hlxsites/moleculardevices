@@ -49,7 +49,6 @@ function renderItem(item) {
 
 export default async function decorate(block) {
   const newsItems = await ffetch('/query-index.json')
-    .withFetch(fetch)
     .sheet('news')
     .limit(5)
     .all();
