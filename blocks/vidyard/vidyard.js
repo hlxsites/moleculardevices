@@ -1,24 +1,32 @@
 import { loadScript } from '../../scripts/scripts.js';
 
-const getVidYardImg = (id, thumbnail, type = 'lightbox') => `<img
-    style="width: 100%; margin: auto; display: block;"
-    class="vidyard-player-embed"
-    src="${thumbnail ? thumbnail : 'https://play.vidyard.com/' + id + '.jpg'}"
-    data-uuid="${id}"
-    data-v="4"
-    data-type="${type}"
-  />`;
-
 export default function decorate(block) {
-  loadScript('https://play.vidyard.com/embed/v4.js');
-
-  const videoUrl = block.querySelector('a').href;
-  const videoId = videoUrl.substring(videoUrl.lastIndexOf('/') + 1);
-  const thumbnail = block.querySelector('img');
-
-  block.innerHTML = getVidYardImg(
-    videoId,
-    thumbnail ? thumbnail.src : null,
-    block.classList.contains('lightbox') ? 'lightbox' : 'inline',
-  );
+  const videoUrl = block.querySelector('a');
+  if (videoUrl) {
+    const videoId = videoUrl.href.substring(videoUrl.href.lastIndexOf('/') + 1);
+    const thumbnail = block.querySelector('img');
+    if (thumbnail) {
+      loadScript('https://play.vidyard.com/embed/v4.js');
+      thumbnail.style = 'width: 100%; margin: auto; display: block;';
+      thumbnail.classList.add('vidyard-player-embed');
+      thumbnail.setAttribute('data-uuid', videoId);
+      thumbnail.setAttribute('data-v', '4');
+      thumbnail.setAttribute('data-type', block.classList.contains('lightbox') ? 'lightbox' : 'inline');
+      videoUrl.remove();
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadScript('https://play.vidyard.com/embed/v4.js');
+          block.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+            class="vidyard-player-embed"
+            src="https://play.vidyard.com/${videoId}.jpg"
+            data-uuid="${videoId}"
+            data-v="4"
+            data-type="${block.classList.contains('lightbox') ? 'lightbox' : 'inline'}" />`;
+        }
+      });
+      observer.observe(block);
+    }
+  }
 }
