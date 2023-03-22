@@ -10,7 +10,7 @@ main .carousel-container {
 main div.carousel-wrapper {
   width: 100%;
   margin: 0 0 115px !important;
-  padding: 0 !important;
+  padding: 0;
   position: relative;
   max-width: unset;
 }
@@ -19,9 +19,7 @@ main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
-
 main .carousel {
-  scroll-snap-type: x mandatory;
   box-sizing: border-box;
   display: flex;
   overflow: hidden;
@@ -32,7 +30,6 @@ main .carousel {
 }
 
 main .carousel-item {
-  scroll-snap-align: center;
   box-sizing: border-box;
   width: 100%;
   margin-right: 30px;
@@ -92,10 +89,14 @@ main .carousel-nav-button {
   background-color: inherit;      /* default - same as .products */
 }
 
+main .carousel-nav-button.disabled {
+  display: none;
+}
+
 main .carousel-nav-button:hover {
   background-color: #adb3b7;
-  color: #fff;
-  border: 1.5px solid #fff;
+  color: var(--text-white);
+  border: 1.5px solid var(--background-color);
 }
 
 main .carousel-nav-button .icon {
@@ -257,7 +258,7 @@ main .carousel.wave .carousel-item-text {
 }
 
 main .carousel.wave .carousel-item-text p {
-  color: #fff;
+  color: var(--text-white);
   font-size: 27px;
 }
 
@@ -273,7 +274,7 @@ main .carousel-wrapper.wave .carousel-dot-buttons {
 }
 
 main .carousel-wrapper.wave .carousel-dot-button {
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
