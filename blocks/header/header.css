@@ -179,11 +179,6 @@ header nav .nav-tools {
 
 @media (max-width: 991px) {
   header .navbar-header {
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-
-  header .navbar-header {
     position: relative;
     padding: 20px 15px;
     width: 100%;
