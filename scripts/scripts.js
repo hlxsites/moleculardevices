@@ -102,10 +102,8 @@ export function addFavIcon(href, rel = 'icon') {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-
-  const blocksPromise = loadBlocks(main);
   loadHeader(doc.querySelector('header'));
-  await blocksPromise;
+  await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
