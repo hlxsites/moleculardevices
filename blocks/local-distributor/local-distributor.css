@@ -66,6 +66,13 @@
   margin-bottom: 30px;
 }
 
+.local-distributor > div.search-result > h3:only-child {
+  margin-bottom: 0;
+  text-align: center;
+  font-family: var(--ff-family-bold);
+  font-weight: bold;
+}
+
 .local-distributor > div.search-result .search-result-content .type {
   font-family: var(--ff-proxima-light);
   font-size: var(--body-font-size-m);
