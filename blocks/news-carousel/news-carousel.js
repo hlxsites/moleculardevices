@@ -36,11 +36,7 @@ function renderItem(item) {
     <p>${item.title}</p>
   `;
 
-  const newsCaptionCTA = document.createElement('div');
-  newsCaptionCTA.classList.add('news-carousel-caption-cta');
-
   newsCaption.appendChild(newsCaptionText);
-  newsCaption.appendChild(newsCaptionCTA);
   newsItemLink.appendChild(newsCaption);
 
   return newsItem;
