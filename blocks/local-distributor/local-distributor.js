@@ -39,8 +39,8 @@ function replaceHTMLTag(element, replaceWith) {
 export default async function decorate(block) {
   const distributors = await ffetch('/local-distibutors.json').withFetch(fetch).all();
 
-  const productFamilyList = await ffetch('/local-distibutors.json?sheet=PF')
-    .withFetch(fetch)
+  const productFamilyList = await ffetch('/local-distibutors.json')
+    .sheet('PF')
     .map(({ PrimaryProducts }) => PrimaryProducts)
     .all();
 
