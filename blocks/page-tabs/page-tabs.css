@@ -1,0 +1,74 @@
+main .section>div.page-tabs-wrapper {
+  width: 100%;
+  padding: 0;
+  background-image: url(/images/tabLinksBg.jpg);
+  background-size: cover;
+  background-position: right center;
+}
+
+.page-tabs {
+  margin: 0 auto;
+  width: 1170px;
+  padding: 0 15px;
+}
+
+.page-tabs ul {
+  margin: 0;
+  padding: 0;
+  touch-action: auto;
+  list-style: none;
+}
+
+.page-tabs li {
+  position: relative;
+  margin: 0 25px;
+  text-align: center;
+  display: inline-block;
+}
+
+.page-tabs li:first-of-type {
+  margin-left: 0;
+}
+
+.page-tabs li:last-of-type {
+  margin-right: 0;
+}
+
+.page-tabs li a {
+  color: var(--text-white);
+  background: none;
+  border: 0;
+  font-family: var(--ff-proxima-light);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 100px;
+  margin: 0;
+}
+
+.page-tabs li[aria-selected="true"]::before {
+  position: absolute;
+  content: "";
+  /* bottom: -10px; */
+  background: #fff;
+  width: 2px;
+  height: 35px;
+  margin-top: 65px;
+  left: 50%;
+}
+
+.page-tabs li[aria-selected="true"]::after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 65px;
+  margin-left: -4px;
+  left: 50%;
+}
+
+.page-tabs li[aria-selected="true"] a {
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+}
