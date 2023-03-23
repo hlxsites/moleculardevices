@@ -88,7 +88,7 @@ export default async function decorate(block) {
       });
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
-      if ((row.PrimaryProducts.length && row.Address.length) === 0) {
+      if ((row.PrimaryProducts.length && row.Address.trim().length) === 0) {
         resultHeading.textContent = 'NO RESULT FOUND';
       } else {
         resultHeading.textContent = row.Country;
