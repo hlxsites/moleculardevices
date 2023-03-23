@@ -17,10 +17,14 @@ function renderItem(item) {
   const newsItem = document.createElement('div');
   newsItem.classList.add('news-carousel-item');
 
+  const newsItemLink = document.createElement('a');
+  newsItemLink.href = item.path;
+  newsItem.append(newsItemLink);
+
   const newsThumb = document.createElement('div');
   newsThumb.classList.add('news-carousel-item-thumb');
   newsThumb.append(createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]));
-  newsItem.appendChild(newsThumb);
+  newsItemLink.appendChild(newsThumb);
 
   const newsCaption = document.createElement('div');
   newsCaption.classList.add('news-carousel-caption');
@@ -35,14 +39,9 @@ function renderItem(item) {
   const newsCaptionCTA = document.createElement('div');
   newsCaptionCTA.classList.add('news-carousel-caption-cta');
 
-  const newsCaptionButton = document.createElement('a');
-  newsCaptionButton.href = item.path;
-  newsCaptionButton.innerHTML = '&nbsp;';
-  newsCaptionCTA.appendChild(newsCaptionButton);
-
   newsCaption.appendChild(newsCaptionText);
   newsCaption.appendChild(newsCaptionCTA);
-  newsItem.appendChild(newsCaption);
+  newsItemLink.appendChild(newsCaption);
 
   return newsItem;
 }
