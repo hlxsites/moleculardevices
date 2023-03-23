@@ -101,6 +101,7 @@ const cleanUp = (document) => {
   document
     .querySelectorAll('.row > [class*="col-"][class*="-12"]')
     .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
+  document.querySelectorAll('.herobanner_wrap .row > [class*="col-"]').forEach((col) => col.removeAttribute('class'));
 };
 
 const extractBackgroundImage = (content) => {
@@ -239,7 +240,7 @@ const transformSections = (document) => {
 const transformTabsNav = (document) => {
   const tabNav = document.querySelector('.nav.nav-tabs');
   if (tabNav) {
-    const cells = [['Tabs']];
+    const cells = [['Page Tabs']];
     const tabs = document.createElement('ul');
     tabNav.querySelectorAll('li').forEach((item) => tabs.append(item));
 
@@ -261,7 +262,7 @@ const transformTabsContent = (document) => {
 const transformProductFeatureList = (block, document) => {
   const features = block.querySelector('.overview-features');
   if (features) {
-    const cells = [['Product Features']];
+    const cells = [['Features']];
     features.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -272,7 +273,16 @@ const transformProductFeatureList = (block, document) => {
 const transformResourcesCarousel = (block, document) => {
   const div = block.querySelector('.apps-recent-res');
   if (div) {
-    const cells = [['Latest Resources']];
+    const cells = [['Resources Carousel']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
+const transformFeaturedApplicationsCarousel = (block, document) => {
+  const div = document.querySelector('.view.view-product-featured-carousel');
+  if (div) {
+    const cells = [['Applications Carousel']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   }
@@ -584,6 +594,7 @@ const transformProductOverview = (document) => {
   if (div) {
     transformProductFeatureList(div, document);
     transformResourcesCarousel(div, document);
+    transformFeaturedApplicationsCarousel(div, document);
   }
 };
 
@@ -594,13 +605,6 @@ const transformProductApplications = (document) => {
     const heading = div.querySelector('h2');
     const br = document.createElement('br');
     content.append(heading, br);
-    div.querySelectorAll('.view-product-resource-widyard .figure-container').forEach((application) => {
-      const link = document.createElement('a');
-      link.textContent = application.querySelector('h2').textContent;
-      link.href = application.querySelector('a.linkBtn').href;
-
-      content.append(link, br.cloneNode());
-    });
     const cells = [['Product Applications'], [content]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
