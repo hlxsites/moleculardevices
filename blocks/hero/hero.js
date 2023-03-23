@@ -5,7 +5,7 @@ function breadcrumb() {
   div.classList.add('breadcrumb');
   div.appendChild(ol);
 
-  ol.innerHTML = "<li><a>Home</a></li><li class='active'>Applications</li>"
+  ol.innerHTML = "<li><a>Home</a></li><li class='active'>Applications</li>";
   return div;
 }
 
