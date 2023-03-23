@@ -1,76 +1,7 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+/* eslint-disable no-unused-expressions */
+import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
-
-/**
- * Scroll the carousel to the next item
- * @param {Element} block
- */
-function nextItem(block) {
-  const dotButtons = block.parentNode.querySelectorAll('.carousel-dot-button');
-  const items = block.querySelectorAll('.carousel-item:not(.clone)');
-  const selectedItem = block.querySelector('.carousel-item.selected');
-
-  const index = [...items].indexOf(selectedItem);
-  const newIndex = (index + 1) % items.length;
-  const newSelectedItem = items[newIndex];
-
-  if (newIndex === 0) {
-    // create the ilusion of infinite scrolling
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: (
-        newSelectedItem.previousElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
-      ),
-    });
-  }
-
-  newSelectedItem.parentNode.scrollTo({
-    top: 0,
-    left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
-    behavior: 'smooth',
-  });
-
-  items.forEach((item) => item.classList.remove('selected'));
-  dotButtons.forEach((item) => item.classList.remove('selected'));
-  newSelectedItem.classList.add('selected');
-  dotButtons[newIndex].classList.add('selected');
-}
-
-/**
- * Scroll the carousel to the previous item
- * @param {Element} block
- */
-function prevItem(block) {
-  const dotButtons = block.parentNode.querySelectorAll('.carousel-dot-button');
-  const items = block.querySelectorAll('.carousel-item:not(.clone)');
-  const selectedItem = block.querySelector('.carousel-item.selected');
-
-  const index = [...items].indexOf(selectedItem);
-  const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
-  const newSelectedItem = items[newIndex];
-
-  if (newIndex === items.length - 1) {
-    // create the ilusion of infinite scrolling
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: (
-        newSelectedItem.nextElementSibling.offsetLeft - newSelectedItem.parentNode.offsetLeft
-      ),
-    });
-  }
-
-  newSelectedItem.parentNode.scrollTo({
-    top: 0,
-    left: newSelectedItem.offsetLeft - newSelectedItem.parentNode.offsetLeft,
-    behavior: 'smooth',
-  });
-
-  items.forEach((item) => item.classList.remove('selected'));
-  dotButtons.forEach((item) => item.classList.remove('selected'));
-  newSelectedItem.classList.add('selected');
-  dotButtons[newIndex].classList.add('selected');
-}
 
 /**
  * Clone a carousel item
@@ -86,23 +17,6 @@ function createClone(item) {
 }
 
 /**
- * Create clone items at the beginning and end of the carousel
- * to give the appearance of infinite scrolling
- * @param {Element} block
- */
-function createClones(block) {
-  if (block.children.length < 2) return;
-
-  const initialChildren = [...block.children];
-
-  block.lastChild.after(createClone(initialChildren[0]));
-  block.lastChild.after(createClone(initialChildren[1]));
-
-  block.firstChild.before(createClone(initialChildren[initialChildren.length - 1]));
-  block.firstChild.before(createClone(initialChildren[initialChildren.length - 2]));
-}
-
-/**
  * Creates the decorated icon for the nav button
  * @param {Element} button the nav button for which the icon needs to be cretated
  * @param string direction 'left' or 'right'
@@ -115,111 +29,289 @@ function createNavButtonIcon(button, direction) {
   decorateIcons(button);
 }
 
-/**
- * Create left and right arrow navigation buttons
- * @param {Element} block
- * @param {ReturnType<typeof setInterval>} intervalId ID of the interval that autoscrolls
- */
-function createNavButtons(block, intervalId) {
-  const buttonLeft = document.createElement('button');
-  buttonLeft.classList.add('carousel-nav-left');
-  buttonLeft.ariaLabel = 'Scroll to previous item';
-  createNavButtonIcon(buttonLeft, 'left');
-  buttonLeft.addEventListener('click', () => {
-    clearInterval(intervalId);
-    prevItem(block);
-  });
+class Carousel {
+  constructor(block, data, config) {
+    // Set defaults
+    this.defaultStyling = true;
+    this.dotButtons = true;
+    this.navButtons = true;
+    this.infiniteScroll = true;
+    this.autoScroll = true; // only available with infinite scroll
+    this.autoScrollInterval = AUTOSCROLL_INTERVAL;
+    // this is primarily controlled by CSS,
+    // but we need to know then intention for scrolling pourposes
+    this.visibleItems = [
+      {
+        items: 1,
+        condition: () => true,
+      },
+    ];
 
-  const buttonRight = document.createElement('button');
-  buttonRight.classList.add('carousel-nav-right');
-  buttonRight.ariaLabel = 'Scroll to next item';
-  createNavButtonIcon(buttonRight, 'right');
-  buttonRight.addEventListener('click', () => {
-    clearInterval(intervalId);
-    nextItem(block);
-  });
+    // Set information
+    this.block = block;
+    this.data = data || [...block.children];
 
-  [buttonLeft, buttonRight].forEach((navButton) => {
-    navButton.classList.add('carousel-nav-button');
-    block.parentElement.append(navButton);
-  });
-}
+    // Will be replaced after rendering, if available
+    this.navButtonLeft = null;
+    this.navButtonRight = null;
 
-/**
- * Adds event listeners for touch UI swiping
- * @param {Element} block
- * @param {ReturnType<typeof setInterval>} intervalId ID of the interval that autoscrolls
- */
-function addSwipeCapability(block, intervalId) {
-  let touchstartX = 0;
-  let touchendX = 0;
+    // Apply overwrites
+    Object.assign(this, config);
+  }
 
-  block.addEventListener('touchstart', (e) => {
-    touchstartX = e.changedTouches[0].screenX;
-  }, { passive: true });
+  getBlockPadding() {
+    if (!this.blockStyle) {
+      this.blockStyle = window.getComputedStyle(this.block);
+    }
+    return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
+  }
 
-  block.addEventListener('touchend', (e) => {
-    touchendX = e.changedTouches[0].screenX;
-    if (Math.abs(touchendX - touchstartX) < 10) {
+  /**
+  * Scroll the carousel to the next item
+  */
+  nextItem() {
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+
+    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+    const selectedItem = this.block.querySelector('.carousel-item.selected');
+
+    let index = [...items].indexOf(selectedItem);
+    index = index !== -1 ? index : 0;
+
+    const newIndex = (index + 1) % items.length;
+    const newSelectedItem = items[newIndex];
+    if (newIndex === 0 && !this.infiniteScroll) {
       return;
     }
 
-    if (touchendX < touchstartX) {
-      clearInterval(intervalId);
-      nextItem(block);
+    const currentVisibleItems = this.visibleItems
+      .filter((e) => !e.condition || e.condition())[0].items;
+    if (newIndex === items.length - currentVisibleItems && !this.infiniteScroll) {
+      this.navButtonRight.classList.add('disabled');
     }
-    if (touchendX > touchstartX) {
-      clearInterval(intervalId);
-      prevItem(block);
-    }
-  }, { passive: true });
-}
 
-function setInitialScrollingPosition(block) {
-  const scrollToSelectedItem = () => {
-    const item = block.querySelector('.carousel-item.selected');
-    item.parentNode.scrollTo({
+    if (newIndex === 0) {
+      // create the ilusion of infinite scrolling
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: (
+          newSelectedItem.previousElementSibling.offsetLeft - this.getBlockPadding()
+        ),
+      });
+    }
+
+    newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: item.offsetLeft - item.parentNode.offsetLeft,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
+      behavior: 'smooth',
     });
-  };
 
-  const section = block.closest('.section');
+    items.forEach((item) => item.classList.remove('selected'));
+    dotButtons.forEach((item) => item.classList.remove('selected'));
+    newSelectedItem.classList.add('selected');
+    if (dotButtons && dotButtons.length !== 0) {
+      dotButtons[newIndex].classList.add('selected');
+    }
+  }
 
-  const observer = new MutationObserver((mutationList) => {
-    mutationList.forEach((mutation) => {
-      if (mutation.type === 'attributes'
-        && mutation.attributeName === 'data-section-status'
-        && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
-        scrollToSelectedItem();
-        observer.disconnect();
+  /**
+  * Scroll the carousel to the previous item
+  */
+  prevItem() {
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+
+    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+    const selectedItem = this.block.querySelector('.carousel-item.selected');
+
+    let index = [...items].indexOf(selectedItem);
+    index = index !== -1 ? index : 0;
+    const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
+    const newSelectedItem = items[newIndex];
+
+    if (newIndex === items.length - 1 && !this.infiniteScroll) {
+      return;
+    }
+
+    if (newIndex === 0 && !this.infiniteScroll) {
+      this.navButtonLeft.classList.add('disabled');
+    }
+
+    if (newIndex === items.length - 1) {
+      // create the ilusion of infinite scrolling
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: (
+          newSelectedItem.nextElementSibling.offsetLeft - this.getBlockPadding()
+        ),
+      });
+    }
+
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
+      behavior: 'smooth',
+    });
+
+    items.forEach((item) => item.classList.remove('selected'));
+    dotButtons.forEach((item) => item.classList.remove('selected'));
+    newSelectedItem.classList.add('selected');
+    if (dotButtons && dotButtons.length !== 0) {
+      dotButtons[newIndex].classList.add('selected');
+    }
+  }
+
+  /**
+  * Create clone items at the beginning and end of the carousel
+  * to give the appearance of infinite scrolling
+  */
+  createClones() {
+    if (this.block.children.length < 2) return;
+
+    const initialChildren = [...this.block.children];
+
+    this.block.lastChild.after(createClone(initialChildren[0]));
+    this.block.lastChild.after(createClone(initialChildren[1]));
+
+    this.block.firstChild.before(createClone(initialChildren[initialChildren.length - 1]));
+    this.block.firstChild.before(createClone(initialChildren[initialChildren.length - 2]));
+  }
+
+  /**
+  * Create left and right arrow navigation buttons
+  */
+  createNavButtons() {
+    const buttonLeft = document.createElement('button');
+    buttonLeft.classList.add('carousel-nav-left');
+    buttonLeft.ariaLabel = 'Scroll to previous item';
+    createNavButtonIcon(buttonLeft, 'left');
+    buttonLeft.addEventListener('click', () => {
+      clearInterval(this.intervalId);
+      this.prevItem();
+    });
+
+    if (!this.infiniteScroll) {
+      buttonLeft.classList.add('disabled');
+    }
+
+    const buttonRight = document.createElement('button');
+    buttonRight.classList.add('carousel-nav-right');
+    buttonRight.ariaLabel = 'Scroll to next item';
+    createNavButtonIcon(buttonRight, 'right');
+    buttonRight.addEventListener('click', () => {
+      clearInterval(this.intervalId);
+      this.nextItem();
+    });
+
+    [buttonLeft, buttonRight].forEach((navButton) => {
+      navButton.classList.add('carousel-nav-button');
+      this.block.parentElement.append(navButton);
+    });
+
+    this.navButtonLeft = buttonLeft;
+    this.navButtonRight = buttonRight;
+  }
+
+  /**
+  * Adds event listeners for touch UI swiping
+  */
+  addSwipeCapability() {
+    let touchstartX = 0;
+    let touchendX = 0;
+
+    this.block.addEventListener('touchstart', (e) => {
+      touchstartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    this.block.addEventListener('touchend', (e) => {
+      touchendX = e.changedTouches[0].screenX;
+      if (Math.abs(touchendX - touchstartX) < 10) {
+        return;
       }
+
+      if (touchendX < touchstartX) {
+        clearInterval(this.intervalId);
+        this.nextItem();
+      }
+
+      if (touchendX > touchstartX) {
+        clearInterval(this.intervalId);
+        this.prevItem();
+      }
+    }, { passive: true });
+  }
+
+  setInitialScrollingPosition() {
+    const scrollToSelectedItem = () => {
+      const item = this.block.querySelector('.carousel-item.selected');
+      item.parentNode.scrollTo({
+        top: 0,
+        left: item.offsetLeft - this.getBlockPadding(),
+      });
+    };
+
+    const section = this.block.closest('.section');
+
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.type === 'attributes'
+          && mutation.attributeName === 'data-section-status'
+          && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
+          scrollToSelectedItem();
+          observer.disconnect();
+        }
+      });
     });
-  });
 
-  observer.observe(section, { attributes: true });
+    observer.observe(section, { attributes: true });
 
-  // just in case the mutation observer didn't work
-  setTimeout(scrollToSelectedItem, 700);
+    // just in case the mutation observer didn't work
+    setTimeout(scrollToSelectedItem, 700);
 
-  // ensure that we disconnect the observer
-  // if the animation has kicked in, we for sure no longer need it
-  setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
-}
+    // ensure that we disconnect the observer
+    // if the animation has kicked in, we for sure no longer need it
+    setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
+  }
 
-export default function createCarousel(block) {
-  block.parentElement.classList.add(...[...block.classList].filter((item, idx) => idx !== 0));
-  block.parentElement.classList.add('carousel-wrapper');
-  block.classList.add('carousel');
-  // create autoscrolling animation
-  const intervalId = setInterval(nextItem, AUTOSCROLL_INTERVAL, block);
+  createDotButtons() {
+    const buttons = document.createElement('div');
+    buttons.className = 'carousel-dot-buttons';
+    const items = [...this.block.children];
 
-  // create dot buttons and add carousel classes
-  const buttons = document.createElement('div');
-  buttons.className = 'carousel-dot-buttons';
-  [...block.children].forEach((item, i) => {
-    item.className = 'carousel-item';
+    items.forEach((item, i) => {
+      const button = document.createElement('button');
+      button.ariaLabel = `Scroll to item ${i + 1}`;
+      button.classList.add('carousel-dot-button');
+      if (i === 0) {
+        button.classList.add('selected');
+      }
 
+      button.addEventListener('click', () => {
+        clearInterval(this.intervalId);
+        this.block.scrollTo({
+          top: 0,
+          left: item.offsetLeft - this.getBlockPadding(),
+          behavior: 'smooth',
+        });
+        [...buttons.children].forEach((r) => r.classList.remove('selected'));
+        items.forEach((r) => r.classList.remove('selected'));
+        button.classList.add('selected');
+        item.classList.add('selected');
+      });
+      buttons.append(button);
+    });
+    this.block.parentElement.append(buttons);
+  }
+
+  /*
+  * Changing the default rendering may break carousels that rely on it
+  * (e.g. CSS might not match anymore)
+  */
+  // eslint-disable-next-line class-methods-use-this
+  renderItem(item) {
     // create the carousel content
     const columnContainer = document.createElement('div');
     columnContainer.classList.add('carousel-item-columns-container');
@@ -240,45 +332,65 @@ export default function createCarousel(block) {
       column.classList.add('carousel-item-column');
       columnContainer.appendChild(column);
     });
-    item.appendChild(columnContainer);
+    return columnContainer;
+  }
 
-    // ensure that links inside the carousel are correctly marked as buttons
-    // first link -> primary button
-    // all the other links -> secondary buttons
-    item.querySelectorAll('.button-container a').forEach((button, j) => {
-      button.classList.add('button');
-      if (j === 0) {
-        button.classList.add('primary');
-      } else {
-        button.classList.add('secondary');
-      }
-    });
+  async render() {
+    // copy carousel styles to the wrapper too
+    this.block.parentElement.classList.add(
+      ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
+    );
 
-    const button = document.createElement('button');
-    button.ariaLabel = `Scroll to item ${i + 1}`;
-    button.classList.add('carousel-dot-button');
-    if (i === 0) {
-      item.classList.add('selected');
-      button.classList.add('selected');
+    let defaultCSSPromise;
+    if (this.defaultStyling) {
+      // add default carousel classes to apply default CSS
+      defaultCSSPromise = new Promise((resolve) => {
+        loadCSS('/blocks/carousel/carousel.css', (e) => resolve(e));
+      });
+      this.block.parentElement.classList.add('carousel-wrapper');
+      this.block.classList.add('carousel');
     }
 
-    button.addEventListener('click', () => {
-      clearInterval(intervalId);
-      block.scrollTo({
-        top: 0,
-        left: item.offsetLeft - item.parentNode.offsetLeft,
-        behavior: 'smooth',
+    this.block.innerHTML = '';
+    this.data.forEach((item, i) => {
+      const itemContainer = document.createElement('div');
+      itemContainer.className = 'carousel-item';
+      if (i === 0) {
+        itemContainer.classList.add('selected');
+      }
+
+      let renderedItem = this.renderItem(item);
+      renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
+      renderedItem.forEach((renderedItemElement) => {
+        itemContainer.appendChild(renderedItemElement);
       });
-      [...buttons.children].forEach((r) => r.classList.remove('selected'));
-      button.classList.add('selected');
+      this.block.appendChild(itemContainer);
     });
 
-    buttons.append(button);
-  });
-  block.parentElement.append(buttons);
+    // create autoscrolling animation
+    this.autoScroll && this.infiniteScroll
+      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
+    this.dotButtons && this.createDotButtons();
+    this.navButtons && this.createNavButtons();
+    this.infiniteScroll && this.createClones();
+    this.addSwipeCapability();
+    this.infiniteScroll && this.setInitialScrollingPosition();
+    this.defaultStyling && (await defaultCSSPromise);
+  }
+}
 
-  createNavButtons(block, intervalId);
-  createClones(block);
-  addSwipeCapability(block, intervalId);
-  setInitialScrollingPosition(block);
+/**
+ * Create and render default carousel.
+ * Best practice: Create a new block and call the function, instead using or modifying this.
+ * @param {Element}  block        required - target block
+ * @param {Array}    data         optional - a list of data elements.
+ *  either a list of objects or a list of divs.
+ *  if not provided: the div children of the block are used
+ * @param {Object}   config       optional - config object for
+ * customizing the rendering and behaviour
+ */
+export default async function createCarousel(block, data, config) {
+  const carousel = new Carousel(block, data, config);
+  await carousel.render();
+  return carousel;
 }
