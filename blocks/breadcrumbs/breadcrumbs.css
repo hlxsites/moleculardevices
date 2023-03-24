@@ -1,8 +1,5 @@
 .breadcrumbs {
   --breadcrumbs-font-size: 12px;
-}
-
-.breadcrumbs {
   padding-top: 40px;
   padding-bottom: 42.5px;
 }
@@ -19,7 +16,7 @@
   vertical-align: middle;
 }
 
-.breadcrumbs li+li:before {
+.breadcrumbs li+li::before {
   content: ">\00a0";
   padding: 0 2px 0 7px;
 }

@@ -1,16 +1,14 @@
-@import url(../breadcrumbs/breadcrumbs.css);
+@import url('../breadcrumbs/breadcrumbs.css');
 
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
+
   margin-top: -10px;
+  padding: 0;
 }
 
 main .hero-container > div {
   max-width: unset;
-}
-
-main .hero-container {
-  padding: 0;
 }
 
 main .hero {
@@ -102,7 +100,7 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--text-white);
 }
 
-.hero .breadcrumbs li+li:before {
+.hero .breadcrumbs li+li::before {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
