@@ -1,4 +1,4 @@
-import { createBreadcrumbs } from '../breadcrumbs/breadcrumbs-create.js';
+import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 
 export default async function decorate(block) {
   const container = document.createElement('div');
