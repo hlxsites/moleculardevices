@@ -4,11 +4,11 @@ function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
-export async function createBreadcrumbs(container) {
+export default async function createBreadcrumbs(container) {
   const newsUrls = [window.location.pathname];
   const newsItems = await ffetch('/query-index.json')
-  .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
-  .all();
+    .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
+    .all();
   const urlForIndex = (index) => prependSlash(window.location.pathname.split('/').slice(1, index + 2).join('/'));
   const breadcrumbs = [
     // Home link
