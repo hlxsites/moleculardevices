@@ -5,18 +5,17 @@ function prependSlash(path) {
 }
 
 export default async function createBreadcrumbs(container) {
-  const newsUrls = [window.location.pathname];
-  const newsItems = await ffetch('/query-index.json')
-    .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
-    .all();
-  const urlForIndex = (index) => prependSlash(window.location.pathname.split('/').slice(1, index + 2).join('/'));
+  const currentPath = window.location.pathname;
+  const pageIndex = await ffetch('/query-index.json').all();
+
+  const urlForIndex = (index) => prependSlash(currentPath.split('/').slice(1, index + 2).join('/'));
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...window.location.pathname.split('/').slice(1, -1).map((part, index) => ({
-      name: newsItems.find((page) => page.path === urlForIndex(index))?.title ?? part,
+    ...currentPath.split('/').slice(1, -1).map((part, index) => ({
+      name: pageIndex.find((page) => page.path === urlForIndex(index))?.title ?? part,
       url_path: urlForIndex(index),
     })),
     { name: document.title },
