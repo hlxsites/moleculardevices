@@ -15,6 +15,7 @@
   display: inline;
   font-size: var(--breadcrumbs-font-size);
   vertical-align: middle;
+  font-family: var(--ff-proxima-xbold);
 }
 
 .breadcrumbs li+li::before {
@@ -22,9 +23,10 @@
   padding: 0 2px 0 7px;
 }
 
-.breadcrumbs a {
+.breadcrumbs li a {
   cursor: pointer;
   color: var(--text-color);
+  font-family: var(--ff-proxima-regular);
 }
 
 .breadcrumbs li.active {
