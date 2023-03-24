@@ -1,15 +1,6 @@
-function breadcrumb() {
-  const div = document.createElement('div');
-  const ol = document.createElement('ol');
+import { createBreadcrumbs } from '../breadcrumbs/breadcrumbs-create.js';
 
-  div.classList.add('breadcrumb');
-  div.appendChild(ol);
-
-  ol.innerHTML = "<li><a>Home</a></li><li class='active'>Applications</li>";
-  return div;
-}
-
-export default function decorate(block) {
+export default async function decorate(block) {
   const container = document.createElement('div');
   container.classList.add('container');
   if (block.childElementCount > 1) {
@@ -20,7 +11,10 @@ export default function decorate(block) {
     container.appendChild(div);
   });
 
-  block.appendChild(breadcrumb());
+  const breadcrumbs = document.createElement('div');
+  breadcrumbs.classList.add('breadcrumbs');
+  await createBreadcrumbs(breadcrumbs);
+  block.appendChild(breadcrumbs);
   block.appendChild(container);
 
   const picture = block.querySelector('picture');

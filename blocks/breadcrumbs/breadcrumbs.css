@@ -1,0 +1,40 @@
+.breadcrumbs {
+  --breadcrumbs-font-size: 12px;
+}
+
+.breadcrumbs {
+  padding-top: 40px;
+  padding-bottom: 42.5px;
+}
+
+.breadcrumbs ol {
+  padding: 0 15px;
+  margin: 0;
+  line-height: 0.75;
+}
+
+.breadcrumbs li {
+  display: inline;
+  font-size: var(--breadcrumbs-font-size);
+  vertical-align: middle;
+}
+
+.breadcrumbs li+li:before {
+  content: ">\00a0";
+  padding: 0 2px 0 7px;
+}
+
+.breadcrumbs a {
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.breadcrumbs li.active {
+  font-family: var(--ff-proxima-xbold);
+}
+
+@media (max-width: 767px) {
+.breadcrumb {
+    display: none;
+  }
+}

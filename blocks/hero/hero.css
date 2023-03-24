@@ -1,8 +1,7 @@
-/* block specific CSS goes here */
+@import url(../breadcrumbs/breadcrumbs.css);
 
 main .hero-container {
-  --breadcrumb-font-size: 12px;
-  --breadcrumb-separator-color: #ccc;
+  --hero-breadcrumbs-separator-color: #ccc;
   margin-top: -10px;
 }
 
@@ -38,38 +37,6 @@ main .hero ul {
 
 main .hero li {
   margin-bottom: 15px;
-}
-
-.breadcrumb {
-  padding-top: 40px;
-  padding-bottom: 42.5px;
-}
-
-.breadcrumb ol {
-  padding: 0 15px;
-  margin: 0;
-  line-height: 0.75;
-}
-
-.breadcrumb li {
-  display: inline;
-  font-size: var(--breadcrumb-font-size);
-  vertical-align: middle;
-}
-
-.breadcrumb li+li:before {
-  content: ">\00a0";
-  padding: 0 2px 0 7px;
-  color: var(--breadcrumb-separator-color);
-}
-
-.breadcrumb a {
-  cursor: pointer;
-  color: var(--text-white);
-}
-
-.breadcrumb li.active {
-  font-family: var(--ff-proxima-xbold);
 }
 
 main .hero h1 {
@@ -135,6 +102,10 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--text-white);
 }
 
+.hero .breadcrumbs li+li:before {
+  color: var(--hero-breadcrumbs-separator-color);
+}
+
 @media (max-width: 767px) {
   main .hero {
     padding: 50px 0 55px;
@@ -148,10 +119,6 @@ main .hero .container > div:nth-child(2) .button-container {
 
   main .hero h4 {
     margin-bottom: 10px;;
-  }
-
-  main .hero .breadcrumb {
-    display: none;
   }
 
   main .hero .container > div:nth-child(1) > div > * {
