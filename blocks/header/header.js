@@ -2,6 +2,59 @@ import { getIdFromString } from '../../scripts/scripts.js';
 
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 
+let elementsWithEventListener = [];
+const mql = window.matchMedia('only screen and (min-width: 1024px)');
+
+function collapseAllSubmenus(menu) {
+  menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
+}
+
+function addEventListenersDesktop() {
+  function expandMenu(element) {
+    const expanded = element.getAttribute('aria-expanded') === 'true';
+    collapseAllSubmenus(element.closest('ul'));
+    element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  }
+
+  document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
+    elementsWithEventListener.push(linkElement);
+    linkElement.setAttribute('tabindex', '0');
+
+    // Add click event listener for desktop devices
+    linkElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      expandMenu(linkElement);
+    });
+  });
+}
+
+function addEventListenersMobile() {
+  function toggleMenu(element) {
+    const expanded = element.getAttribute('aria-expanded') === 'true';
+    collapseAllSubmenus(element.closest('ul'));
+    element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  }
+
+  document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
+    elementsWithEventListener.push(linkElement);
+
+    linkElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu(linkElement);
+    });
+  });
+}
+
+function reAttachEventListeners() {
+  if (mql.matches) {
+    addEventListenersDesktop();
+  } else {
+    addEventListenersMobile();
+  }
+}
+
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
   logoWrapper.setAttribute('id', 'header-logo');
@@ -38,6 +91,37 @@ function buildSearch() {
 }
 
 function buildProductsMegaMenu(navContent, submenuContent) {
+  const productsSubmenu = document.createElement('div');
+
+  // get H1 title
+  const h1 = submenuContent.querySelector('h1');
+  productsSubmenu.append(h1);
+
+  // get all H2s and create a list of them
+  const h2s = [...submenuContent.querySelectorAll('h2')];
+  const h2List = document.createElement('ul');
+  h2List.classList.add('menu-nav-submenu-sections');
+
+  // add H2s to list
+  h2s.forEach((h2) => {
+    const h2ListItem = document.createElement('li');
+    h2ListItem.classList.add('menu-nav-submenu-section');
+
+    // create link and insert H2 text
+    const h2Link = document.createElement('a');
+    h2Link.setAttribute('href', `#${getIdFromString(h2.textContent)}`);
+    h2Link.textContent = h2.textContent;
+
+    // insert link into list item
+    h2ListItem.innerHTML = h2Link.outerHTML;
+    h2List.append(h2ListItem);
+  });
+
+  productsSubmenu.append(h2List);
+
+  // set inside of submenu to the productsSubmenu
+  submenuContent.innerHTML = productsSubmenu.outerHTML;
+  
   const backgroundImg = getSubmenuBackgroundImg(navContent);
   submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
 }
@@ -121,6 +205,9 @@ export default async function decorate(block) {
 
   for (let i = 0; i < menus.length - 1; i += 2) {
     const li = document.createElement('li');
+    li.classList.add('menu-expandable');
+    li.setAttribute('aria-expanded', 'false');
+
     const menuTitle = menus[i];
     menuTitle.classList.add('menu-nav-category');
     const textDiv = menuTitle.querySelector('div');
@@ -141,8 +228,8 @@ export default async function decorate(block) {
       const submenuId = getIdFromString(textDiv.textContent);
       const submenuBuilder = submenuBuildersMap.get(getIdFromString(submenuId));
       submenuBuilder(content, submenuContent);
-      li.append(submenuContent);
 
+      li.append(submenuContent);
       navMenuUl.append(li);
     }
   }
@@ -155,4 +242,22 @@ export default async function decorate(block) {
   decorateIcons(mainMenuWrapper);
 
   block.append(headerWrapper, mainMenuWrapper);
+
+  // Handle different event listeners for mobile/desktop on window resize
+  const removeAllEventListeners = () => {
+    elementsWithEventListener.forEach((el) => {
+      el.replaceWith(el.cloneNode(true));
+    });
+    elementsWithEventListener = [];
+  };
+
+  mql.onchange = () => {
+    mainMenuWrapper.setAttribute('aria-expanded', 'false');
+    document.querySelector('main').style.visibility = '';
+    removeAllEventListeners();
+    collapseAllSubmenus(block);
+    reAttachEventListeners();
+  };
+
+  reAttachEventListeners();
 }
