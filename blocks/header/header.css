@@ -203,7 +203,7 @@ header nav .nav-tools {
   }
 
   header .navbar-header {
-    padding: 30px 0 20px;
+    padding: 30px 0 21px;
     min-height: 90px;
     width: 100%;
     display: flex;
@@ -231,7 +231,7 @@ header nav .nav-tools {
   }
 
   header .nav-tabs>li>div {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   header .nav-tabs > li.header-search {
@@ -307,6 +307,6 @@ header nav .nav-tools {
   }
 
   header .nav-tabs>li>div {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
