@@ -142,6 +142,9 @@ header nav .nav-sections {
   white-space: nowrap;
 }
 
+#header-logo {
+  height:73px;
+}
 
 header #header-logo picture {
   display: block;
@@ -161,8 +164,8 @@ header nav .nav-tools {
   }
 
   header .navbar-header {
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    padding:30px 0 20px 0;
   }
 }
 
@@ -200,11 +203,10 @@ header nav .nav-tools {
   }
 
   header .navbar-header {
-    padding: 20px 0 10px;
+    padding: 30px 0 20px;
     min-height: 90px;
     width: 100%;
     display: flex;
-    margin: 10px 0 20px;
   }
 
   header .navbar-header > .company-links {
