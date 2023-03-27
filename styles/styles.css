@@ -114,8 +114,8 @@ header {
   }
 }
 
-.breadcrumbs-wrapper {
-  height: var(--breadcrumbs-height);
+main > .section:first-child > .default-content-wrapper:first-child {
+  margin-top: 113.5px;
 }
   
 
