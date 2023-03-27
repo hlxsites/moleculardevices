@@ -12,6 +12,9 @@ import {
   toClassName,
   getMetadata,
   loadCSS,
+  loadBlock,
+  decorateBlock,
+  buildBlock,
 } from './lib-franklin.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
@@ -30,6 +33,22 @@ function buildHeroBlock(main) {
   }
 }
 */
+
+/**
+ * If configured in Metadata, load breadcrumbs block at the top of the first section
+ */
+async function loadBreadcrumbs(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const block = buildBlock('breadcrumbs', '');
+    const blockWrapper = document.createElement('div');
+    blockWrapper.append(block);
+    decorateBlock(block);
+    await loadBlock(block);
+    main.querySelector('.section').prepend(blockWrapper);
+  } else {
+    return;
+  }
+}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -110,6 +129,7 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
