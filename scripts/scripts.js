@@ -50,7 +50,7 @@ function buildHeroBlock(main) {
 */
 
 /**
- * If configured in Metadata, load breadcrumbs block at the top of the first section
+ * If configured in  Metadata, load breadcrumbs block at the top of the first section
  */
 async function loadBreadcrumbs(main, mode) {
   if (getMetadata('breadcrumbs') === 'auto') {
