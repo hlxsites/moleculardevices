@@ -45,8 +45,8 @@ header .navbar-header {
 /* Company Links (carrers/languages/...) */
 header .navbar-header > .company-links {
   position: absolute;
-  top: 34px;
-  right: -26px;
+  top: 45px;
+  right: -1px;
   display: none;
 }
 
@@ -89,8 +89,8 @@ header .company-links img {
   width: 15px;
   background-position: center;
   display: inline-block;
-  margin-right: 5px;
-  vertical-align: center;
+  margin-right: 2px;
+  vertical-align: bottom;
   font-style: italic;
 }
 
@@ -158,7 +158,7 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
-@media (min-width: 768) {
+@media (min-width: 768px) {
   header .container {
     width: 750px;
   }
