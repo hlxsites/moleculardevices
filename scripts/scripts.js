@@ -50,7 +50,8 @@ function buildHeroBlock(main) {
 */
 
 /**
- * If configured in  Metadata, first create space for CLS, then load breadcrumbs block at the top of the first section
+ * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
+ * Breadcrumb block created at the top of first section
  */
 async function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
