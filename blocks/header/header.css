@@ -199,7 +199,7 @@ header .nav-tabs .menu-nav-submenu div {
   padding-top: 30px;
 }
 
-header .nav-tabs .menu-nav-submenu-sections li a {
+header .nav-tabs .menu-nav-submenu-sections li h2 {
   border-bottom: 0;
   color: #FFFF !important;
   font-size: 18px;
@@ -217,7 +217,7 @@ header .nav-tabs .menu-nav-submenu-sections li a {
   margin: 20px 2px 0 0;
 }
 
-.header .nav-tabs .menu-nav-submenu > div > h1 > a {
+.header .nav-tabs .menu-nav-submenu a {
   color: inherit;
 }
 
@@ -430,7 +430,7 @@ header .nav-tabs .menu-nav-submenu-sections {
     width: 970px;
   }
 
-  .header .nav-tabs .menu-nav-submenu > div > a {
+  .header .nav-tabs .menu-nav-submenu > div > h2 {
     transform: perspective(500px) translate3d(0,0,0);
     position: relative;
     font-weight: 300;

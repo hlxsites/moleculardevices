@@ -100,13 +100,7 @@ function buildMegaMenuLeftMenus(submenuContent) {
   h2s.forEach((h2) => {
     const h2ListItem = document.createElement('li');
     h2ListItem.classList.add('menu-nav-submenu-section');
-
-    // get the link from a p inside the parent div containing the H2
-    const h2Link = h2.parentElement.querySelector('p > a');
-    h2Link.textContent = h2.textContent;
-
-    // insert link into list item
-    h2ListItem.innerHTML = h2Link.outerHTML;
+    h2ListItem.innerHTML = h2.outerHTML;
     h2List.append(h2ListItem);
   });
   return h2List;
