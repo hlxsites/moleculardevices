@@ -42,7 +42,7 @@ export default function decorate(block) {
   const sections = main.querySelectorAll('div.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
   const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : 'overview';
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].id;
 
   sections.forEach((section) => {
     if (active === section.getAttribute('aria-labelledby')) {
