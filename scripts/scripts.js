@@ -64,6 +64,7 @@ async function buildAutoBlocks(main) {
         await mod.default(main);
       }
     }
+    loadBreadcrumbs(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -127,7 +128,6 @@ async function loadLazy(doc) {
 
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
-  loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
