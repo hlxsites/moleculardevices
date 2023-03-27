@@ -85,17 +85,12 @@ function buildSearch() {
   return search;
 }
 
-function buildProductsMegaMenu(navContent, submenuContent) {
-  const productsSubmenu = document.createElement('div');
+function insertMegaMenuBackgroundImage(navContent, submenuContent) {
+  const backgroundImg = navContent.querySelector('.submenu-background img');
+  submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
+}
 
-  // get H1 title
-  const h1 = submenuContent.querySelector('h1');
-  // get link from submenuContent. It lives in an a tag inside a p tag in the first div
-  const titleLink = submenuContent.querySelector('div > p > a');
-  // put the h1 in the link
-  titleLink.textContent = h1.textContent;
-  productsSubmenu.append(titleLink);
-
+function buildMegaMenuLeftMenus(submenuContent) {
   // get all H2s and create a list of them
   const h2s = [...submenuContent.querySelectorAll('h2')];
   const h2List = document.createElement('ul');
@@ -114,24 +109,35 @@ function buildProductsMegaMenu(navContent, submenuContent) {
     h2ListItem.innerHTML = h2Link.outerHTML;
     h2List.append(h2ListItem);
   });
+  return h2List;
+}
 
-  productsSubmenu.append(h2List);
+function buildMegaMenuHead(submenuContent) {
+  // get H1 title
+  const h1 = submenuContent.querySelector('h1');
+  // get link from submenuContent. It lives in an a tag inside a p tag in the first div
+  const titleWithLink = submenuContent.querySelector('div > p > a');
+  // put the h1 in the link
+  titleWithLink.textContent = h1.textContent;
+  return titleWithLink;
+}
 
-  // set inside of submenu to the productsSubmenu
+function buildMegaMenu(navContent, submenuContent) {
+  const productsSubmenu = document.createElement('div');
+  productsSubmenu.append(buildMegaMenuHead(submenuContent));
+  productsSubmenu.append(buildMegaMenuLeftMenus(submenuContent));
   submenuContent.innerHTML = productsSubmenu.outerHTML;
-
-  const backgroundImg = navContent.querySelector('.submenu-background img');
-  submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
+  insertMegaMenuBackgroundImage(navContent, submenuContent);
 }
 
 function createSubmenuBuildersMap() {
   // create map of submenu name to function
   const submenus = new Map();
-  submenus.set('products', buildProductsMegaMenu);
-  submenus.set('applications', () => { });
-  submenus.set('resources', () => { });
-  submenus.set('service-support', () => { });
-  submenus.set('company', () => { });
+  submenus.set('products', buildMegaMenu);
+  submenus.set('applications', buildMegaMenu);
+  submenus.set('resources', buildMegaMenu);
+  submenus.set('service-support', buildMegaMenu);
+  submenus.set('company', buildMegaMenu);
   submenus.set('contact-us', () => { });
   return submenus;
 }
