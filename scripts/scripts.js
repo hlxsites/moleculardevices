@@ -50,21 +50,22 @@ function buildHeroBlock(main) {
 */
 
 /**
- * If configured in  Metadata, load breadcrumbs block at the top of the first section
+ * If configured in  Metadata, first create space for CLS, then load breadcrumbs block at the top of the first section
  */
-async function loadBreadcrumbs(main, mode) {
+async function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
-    if (mode === 'eager') {
-      const blockWrapper = document.createElement('div');
-      blockWrapper.classList.add('breadcrumbs-wrapper');
-      main.querySelector('.section').prepend(blockWrapper);
-    } else {
-      const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
-      const block = buildBlock('breadcrumbs', '');
-      blockWrapper.append(block);
-      decorateBlock(block);
-      await loadBlock(block);
-    }
+    const blockWrapper = document.createElement('div');
+    blockWrapper.classList.add('breadcrumbs-wrapper');
+    main.querySelector('.section').prepend(blockWrapper);
+  }
+}
+async function loadBreadcrumbs(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
+    const block = buildBlock('breadcrumbs', '');
+    blockWrapper.append(block);
+    decorateBlock(block);
+    await loadBlock(block);
   }
 }
 
@@ -113,7 +114,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    loadBreadcrumbs(main, 'eager');
+    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
@@ -148,7 +149,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadFooter(doc.querySelector('footer'));
-  loadBreadcrumbs(main, 'lazy');
+  loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
