@@ -45,8 +45,6 @@ async function loadBreadcrumbs(main) {
     decorateBlock(block);
     await loadBlock(block);
     main.querySelector('.section').prepend(blockWrapper);
-  } else {
-    return;
   }
 }
 
