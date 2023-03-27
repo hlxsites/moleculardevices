@@ -112,19 +112,9 @@ function buildMegaMenuLeftMenus(submenuContent) {
   return h2List;
 }
 
-function buildMegaMenuHead(submenuContent) {
-  // get H1 title
-  const h1 = submenuContent.querySelector('h1');
-  // get link from submenuContent. It lives in an a tag inside a p tag in the first div
-  const titleWithLink = submenuContent.querySelector('div > p > a');
-  // put the h1 in the link
-  titleWithLink.textContent = h1.textContent;
-  return titleWithLink;
-}
-
 function buildMegaMenu(navContent, submenuContent) {
   const productsSubmenu = document.createElement('div');
-  productsSubmenu.append(buildMegaMenuHead(submenuContent));
+  productsSubmenu.append(submenuContent.querySelector('h1'));
   productsSubmenu.append(buildMegaMenuLeftMenus(submenuContent));
   submenuContent.innerHTML = productsSubmenu.outerHTML;
   insertMegaMenuBackgroundImage(navContent, submenuContent);

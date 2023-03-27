@@ -208,13 +208,17 @@ header .nav-tabs .menu-nav-submenu-sections li a {
   margin: 0 2px 0 0;
 }
 
-.header .nav-tabs .menu-nav-submenu > div > a {
+.header .nav-tabs .menu-nav-submenu > div > h1 {
   font-size: 36px;
   font-family: 'Proxima Nova Light', sans-serif;
   color: #FFFFFFB2 !important;
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: 20px 2px 0 0;
+}
+
+.header .nav-tabs .menu-nav-submenu > div > h1 > a {
+  color: inherit;
 }
 
 .header .nav-tabs .menu-nav-submenu-head {
