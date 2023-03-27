@@ -59,7 +59,7 @@ function decoratePageNav(main) {
     sections.forEach((section) => {
       if (index < namedSections.length) {
         section.classList.add('tabs');
-        section.setAttribute('aria-labelledby', namedSections[index].id);
+        section.setAttribute('aria-labelledby', namedSections[index].getAttribute('data-name'));
         if (section.hasAttribute('data-name')) {
           index += 1;
         }

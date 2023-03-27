@@ -22,12 +22,12 @@ function createTabList(sections, active) {
   sections.forEach((section) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.href = `#${section.id}`;
-    a.id = section.id;
-    a.textContent = section.getAttribute('data-name');
+    a.href = `#${section.getAttribute('data-name')}`;
+    a.id = section.getAttribute('data-name');
+    a.textContent = section.title;
     a.addEventListener('click', openTab);
     li.append(a);
-    if (section.id === active) {
+    if (section.getAttribute('data-name') === active) {
       li.setAttribute('aria-selected', true);
     } else {
       li.setAttribute('aria-selected', false);
@@ -43,7 +43,7 @@ export default function decorate(block) {
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
     const activeHash = window.location.hash;
-    const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].id;
+    const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
 
     sections.forEach((section) => {
       if (active === section.getAttribute('aria-labelledby')) {

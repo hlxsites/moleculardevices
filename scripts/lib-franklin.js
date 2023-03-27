@@ -298,8 +298,9 @@ export function decorateSections(main) {
             section.style.background = background;
           }
         } else if (key === 'name') {
-          section.id = toClassName(meta[key]);
-          section.dataset[toCamelCase(key)] = meta[key];
+          // section.id = toClassName(meta[key]);
+          section.dataset[toCamelCase(key)] = toClassName(meta[key]);
+          section.title = meta[key];
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
