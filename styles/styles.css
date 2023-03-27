@@ -111,6 +111,10 @@ header {
     height: var(--nav-height-mobile);
   }
 }
+
+.breadcrumbs-wrapper {
+  height: var(--breadcrumbs-height);
+}
   
 
 body {
