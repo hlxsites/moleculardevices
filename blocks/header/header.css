@@ -181,6 +181,10 @@ header nav .nav-tools {
 }
 
 @media (max-width: 991px) {
+  header .block {
+    padding: 0;
+  }
+
   header .navbar-header {
     position: relative;
     padding: 20px 15px;
@@ -188,6 +192,10 @@ header nav .nav-tools {
     margin: 0;
     margin-right: -15px;
     margin-left: -15px;
+  }
+
+  #header-logo {
+    height: auto;
   }
 
   header #header-logo img {
