@@ -16,6 +16,15 @@ main .hero {
   color: var(--text-white);
 }
 
+main .hero .breadcrumbs {
+  padding-top: 40px;
+  padding-bottom: 42.5px;
+}
+
+main .hero .breadcrumbs ol {
+  padding: 0 15px;
+}
+
 main .hero p {
   margin: 0 0 10px;
 }

@@ -1,12 +1,12 @@
 .breadcrumbs {
   --breadcrumbs-font-size: 12px;
 
-  padding-top: 40px;
-  padding-bottom: 42.5px;
+  padding-top: 70px;
+  padding-bottom: 30px;
 }
 
 .breadcrumbs ol {
-  padding: 0 15px;
+  padding: 0;
   margin: 0;
   line-height: 0.75;
 }
