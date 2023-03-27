@@ -172,6 +172,14 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
+  /* This was the only way found to keep both the backgrounds
+   * and mimic the same behavior as the original.
+   * TODO: Fix URL
+  */
+  background: #fff url(/themes/moldev/css/../images/mm-bg.jpg) no-repeat right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+; background-color: transparent;
 }
 
 header .nav-tabs .menu-nav-submenu div {
@@ -179,9 +187,11 @@ header .nav-tabs .menu-nav-submenu div {
   margin: 0 auto;
   display: block;
   position: relative;
+  padding-top: 30px;
 }
 
-.header .nav-tabs .menu-nav-submenu h1 {
+
+.header .nav-tabs .menu-nav-submenu > div > a {
   font-size: 36px;
   font-family: Proxima Nova Light;
   color: rgba(255,255,255,.7) !important;
@@ -190,6 +200,32 @@ header .nav-tabs .menu-nav-submenu div {
   border-bottom: 0;
   padding: 9px 20px 6px 20px;
   margin: 20px 2px 0 0;
+}
+
+.header .nav-tabs .menu-nav-submenu-head {
+  background: transparent;
+  box-shadow: none !important;
+  position: absolute;
+  right: 0;
+  top: 75px;
+  transform: translateX(370px);
+  width: calc(100vh - 370px) !important;
+}
+
+.header .nav-tabs .head-submenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .nav-tabs .head-submenu > div {
+  background-size: 250px;
+  color: #fff;
+  height: 350px;
+  background-position: 110% 154%;
+  background-color: #161e2d;
+  position: relative;
+  padding-top: 20px;
+  width: 50%;
 }
 
 header .nav-tabs .menu-nav-submenu ul {
@@ -388,10 +424,15 @@ header .nav-tabs .menu-nav-submenu-sections li a {
     width: 970px;
   }
 
-  .header .nav-tabs .menu-nav-submenu h1 {
+  .header .nav-tabs .menu-nav-submenu > div > a {
     transform: perspective(500px) translate3d(0,0,0);
     position: relative;
     font-weight: 300;
+  }
+
+  .header .nav-tabs .menu-nav-submenu-head {
+    /* visibility: hidden; */
+    /* opacity: 0; */
   }
 
   header .nav-tabs .menu-nav-submenu-section {
@@ -425,5 +466,9 @@ header .nav-tabs .menu-nav-submenu-sections li a {
 
   header .nav-tabs .menu-nav-category {
     font-size: 16px;
+  }
+
+  header .nav-tabs .menu-nav-submenu > div {
+    width: 1170px;
   }
 }

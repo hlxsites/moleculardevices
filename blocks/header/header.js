@@ -63,11 +63,6 @@ function buildBrandLogo(content) {
   return logoWrapper;
 }
 
-function getSubmenuBackgroundImg(content) {
-  const backgroundImg = content.querySelector('.submenu-background img');
-  return backgroundImg;
-}
-
 function buildTools(content) {
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = document.createElement('div');
@@ -90,12 +85,26 @@ function buildSearch() {
   return search;
 }
 
+function buildHeadSubmenu(submenuContent) {
+  const headSubmenu = document.createElement('div');
+  headSubmenu.classList.add('menu-nav-submenu-head');
+  // headSubmenu.innerHTML = submenuContent.querySelector('.head-submenu').outerHTML;
+  return headSubmenu;
+}
+
 function buildProductsMegaMenu(navContent, submenuContent) {
   const productsSubmenu = document.createElement('div');
 
   // get H1 title
   const h1 = submenuContent.querySelector('h1');
-  productsSubmenu.append(h1);
+  // get link from submenuContent. It lives in an a tag inside a p tag in the first div
+  const titleLink = submenuContent.querySelector('div > p > a');
+  // put the h1 in the link
+  titleLink.textContent = h1.textContent;
+  productsSubmenu.append(titleLink);
+
+  // append head submenu
+  productsSubmenu.append(buildHeadSubmenu(submenuContent));
 
   // get all H2s and create a list of them
   const h2s = [...submenuContent.querySelectorAll('h2')];
@@ -107,9 +116,8 @@ function buildProductsMegaMenu(navContent, submenuContent) {
     const h2ListItem = document.createElement('li');
     h2ListItem.classList.add('menu-nav-submenu-section');
 
-    // create link and insert H2 text
-    const h2Link = document.createElement('a');
-    h2Link.setAttribute('href', `#${getIdFromString(h2.textContent)}`);
+    // get the link from a p inside the parent div containing the H2
+    const h2Link = h2.parentElement.querySelector('p > a');
     h2Link.textContent = h2.textContent;
 
     // insert link into list item
@@ -121,8 +129,8 @@ function buildProductsMegaMenu(navContent, submenuContent) {
 
   // set inside of submenu to the productsSubmenu
   submenuContent.innerHTML = productsSubmenu.outerHTML;
-  
-  const backgroundImg = getSubmenuBackgroundImg(navContent);
+
+  const backgroundImg = navContent.querySelector('.submenu-background img');
   submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
 }
 
