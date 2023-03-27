@@ -52,14 +52,19 @@ function buildHeroBlock(main) {
 /**
  * If configured in  Metadata, load breadcrumbs block at the top of the first section
  */
-async function loadBreadcrumbs(main) {
+async function loadBreadcrumbs(main, mode) {
   if (getMetadata('breadcrumbs') === 'auto') {
-    const blockWrapper = document.createElement('div');
-    const block = buildBlock('breadcrumbs', '');
-    blockWrapper.append(block);
-    main.querySelector('.section').prepend(blockWrapper);
-    decorateBlock(block);
-    await loadBlock(block);
+    if (mode === 'eager') {
+      const blockWrapper = document.createElement('div');
+      blockWrapper.classList.add('breadcrumbs-wrapper');
+      main.querySelector('.section').prepend(blockWrapper);
+    } else {
+      const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
+      const block = buildBlock('breadcrumbs', '');
+      blockWrapper.append(block);
+      decorateBlock(block);
+      await loadBlock(block);
+    }
   }
 }
 
@@ -108,6 +113,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    loadBreadcrumbs(main, 'eager');
     await waitForLCP(LCP_BLOCKS);
   }
 }
@@ -142,7 +148,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadFooter(doc.querySelector('footer'));
-  loadBreadcrumbs(main);
+  loadBreadcrumbs(main, 'lazy');
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
