@@ -1,6 +1,4 @@
-import { getIdFromString } from '../../scripts/scripts.js';
-
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
 
 let elementsWithEventListener = [];
 const mql = window.matchMedia('only screen and (min-width: 1024px)');
@@ -181,7 +179,7 @@ export default async function decorate(block) {
   const submenuFetchPromises = [];
   for (let i = 0; i < menus.length - 1; i += 2) {
     const textDiv = menus[i].querySelector('div');
-    const submenuId = getIdFromString(textDiv.textContent);
+    const submenuId = toClassName(textDiv.textContent);
     const submenuPath = getMetadata(`${submenuId}-submenu`) || `/drafts/josec/mega-menu-submenus/${submenuId}`;
     submenuFetchPromises.push(
       fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
@@ -213,8 +211,8 @@ export default async function decorate(block) {
       submenuContent.innerHTML = submenuHtml;
 
       // Get submenu builder, and build submenu
-      const submenuId = getIdFromString(textDiv.textContent);
-      const submenuBuilder = submenuBuildersMap.get(getIdFromString(submenuId));
+      const submenuId = toClassName(textDiv.textContent);
+      const submenuBuilder = submenuBuildersMap.get(toClassName(submenuId));
       submenuBuilder(content, submenuContent);
 
       li.append(submenuContent);
