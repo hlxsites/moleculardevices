@@ -8,9 +8,10 @@ main .section>div.page-tabs-wrapper {
 
 main .page-tabs {
   margin: 0 auto;
-  width: 1170px;
+  width: 100%;
   padding: 0 15px;
   height: 60px;
+  white-space: nowrap;
 }
 
 main .page-tabs ul {
