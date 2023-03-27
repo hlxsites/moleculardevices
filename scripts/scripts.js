@@ -103,6 +103,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  createBreadcrumbsSpace(main);
 }
 
 /**
@@ -114,7 +115,6 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
