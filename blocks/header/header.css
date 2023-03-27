@@ -185,7 +185,7 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: #fff url('/themes/moldev/css/../images/mm-bg.jpg') no-repeat right bottom;
+  background: #fff url('/images/header-background-filler.jpg') no-repeat right bottom;
   background-repeat: no-repeat;
   background-size: cover;
 ; background-color: transparent;
