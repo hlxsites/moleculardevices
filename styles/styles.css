@@ -96,6 +96,8 @@
   /* nav height */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
+
+  --breadcrumbs-height: 113.5px;
 }
 
 * {

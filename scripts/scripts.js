@@ -54,7 +54,6 @@ function buildHeroBlock(main) {
  */
 async function loadBreadcrumbs(main, mode) {
   if (getMetadata('breadcrumbs') === 'auto') {
-    alert(mode);
     if (mode === 'eager') {
       const blockWrapper = document.createElement('div');
       blockWrapper.classList.add('breadcrumbs-wrapper');
