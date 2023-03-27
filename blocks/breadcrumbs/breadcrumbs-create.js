@@ -4,6 +4,19 @@ function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
+function createBreadcrumbListItem(crumb) {
+  const li = document.createElement('li');
+  if (crumb.url_path) {
+    const a = document.createElement('a');
+    a.textContent = crumb.name;
+    a.href = crumb.url_path;
+    li.appendChild(a);
+  } else {
+    li.textContent = crumb.name;
+  }
+  return li;
+}
+
 export default async function createBreadcrumbs(container) {
   const currentPath = window.location.pathname;
   const pageIndex = await ffetch('/query-index.json').all();
@@ -23,16 +36,7 @@ export default async function createBreadcrumbs(container) {
 
   const ol = document.createElement('ol');
   breadcrumbs.forEach((crumb) => {
-    const li = document.createElement('li');
-    if (crumb.url_path) {
-      const a = document.createElement('a');
-      a.textContent = crumb.name;
-      a.href = crumb.url_path;
-      li.appendChild(a);
-    } else {
-      li.textContent = crumb.name;
-    }
-    ol.appendChild(li);
+    ol.appendChild(createBreadcrumbListItem(crumb));
   });
   container.appendChild(ol);
 }
