@@ -85,13 +85,6 @@ function buildSearch() {
   return search;
 }
 
-function buildHeadSubmenu(submenuContent) {
-  const headSubmenu = document.createElement('div');
-  headSubmenu.classList.add('menu-nav-submenu-head');
-  // headSubmenu.innerHTML = submenuContent.querySelector('.head-submenu').outerHTML;
-  return headSubmenu;
-}
-
 function buildProductsMegaMenu(navContent, submenuContent) {
   const productsSubmenu = document.createElement('div');
 
@@ -102,9 +95,6 @@ function buildProductsMegaMenu(navContent, submenuContent) {
   // put the h1 in the link
   titleLink.textContent = h1.textContent;
   productsSubmenu.append(titleLink);
-
-  // append head submenu
-  productsSubmenu.append(buildHeadSubmenu(submenuContent));
 
   // get all H2s and create a list of them
   const h2s = [...submenuContent.querySelectorAll('h2')];
