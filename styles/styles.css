@@ -66,6 +66,7 @@
   --button-secondary-bg-hover-color: #fff;
   --grey-background-color: #f0f1f2;
   --dark-gray-background-color: #5b6670;
+  --black-background-color: #000;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
   --orange-background-color: #ee7624;
@@ -93,7 +94,8 @@
   --body-font-size-xs: 14px;
 
   /* nav height */
-  --nav-height: 156px;
+  --nav-height: 170px;
+  --nav-height-mobile: 70px;
 }
 
 * {
@@ -103,6 +105,13 @@
 header {
   height: var(--nav-height);
 }
+
+@media (max-width: 991px) {
+  header {
+    height: var(--nav-height-mobile);
+  }
+}
+  
 
 body {
   font-size: var(--body-font-size-m);

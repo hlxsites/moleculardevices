@@ -3,8 +3,7 @@ import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
   logoWrapper.setAttribute('id', 'header-logo');
-  const logoImg = content.querySelector('.nav-brand > div > div > picture > img');
-  logoImg.classList = 'logo1';
+  const logoImg = content.querySelector('.nav-brand > div > div > picture');
   logoWrapper.innerHTML = logoImg.outerHTML;
   return logoWrapper;
 }
