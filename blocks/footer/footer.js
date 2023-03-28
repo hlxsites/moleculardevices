@@ -64,6 +64,6 @@ export default async function decorate(block) {
   const footerNewsEvents = block.querySelector('.footer-news-events');
   buildNewsEvents(footerNewsEvents);
 
-  await decorateIcons(footer);
   block.append(footer);
+  await decorateIcons(block);
 }
