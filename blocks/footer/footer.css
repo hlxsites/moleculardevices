@@ -1,12 +1,20 @@
 .footer.block {
   margin: auto;
   font-size: 15px;
-  margin-top: 4%;
+  margin-top: 25px;
   padding-bottom: 15px;
 }
 
 .footer-wrap > div {
   padding: 15px;
+}
+
+.footer-bottom {
+  margin-top: 38px;
+}
+
+.footer-bottom > div:first-child {
+  border-top: 1px solid var(--border-color-gray);
 }
 
 .footer ul {
@@ -33,6 +41,10 @@
 .footer-news-events h3 {
   margin: 0;
   padding: 0 15px 7px;
+}
+
+.footer-news-events .toggle:not(.on) h3 {
+  color: var(--border-color-gray);
 }
 
 .footer-newsletter-form h3 {
@@ -73,14 +85,29 @@
   flex-grow: 1;
 }
 
+.footer-news-events > div:nth-child(1) > div:nth-child(1) {
+  text-align: right;
+}
+
+.footer-news-events > div:first-of-type > div {
+  border-bottom: 2px solid var(--border-color-gray);
+}
+
 .footer-news-events > div:first-of-type > div:first-of-type {
   text-align: right;
   border-right: 2px solid var(--button-bg-color);
-  border-bottom: 2px solid var(--button-bg-color);
 }
 
-.footer-news-events > div:nth-child(2) > div:nth-child(2) {
+.footer-news-events > div:first-of-type > div.toggle.on {
+  border-color: var(--button-bg-color);
+}
+
+.footer-news-events > div:nth-child(2) > div.toggle {
   display: none;
+}
+
+.footer-news-events > div:nth-child(2) > div.toggle.on {
+  display: block;
 }
 
 .footer-newsletter-form {
@@ -146,7 +173,6 @@
 @media (min-width: 768px) {
   .footer.block {
     width: 750px;
-    padding: 15px;
   }
 
   .footer-wrap {
