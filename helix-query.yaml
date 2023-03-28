@@ -6,6 +6,7 @@ indices:
     exclude:
       - '/drafts/**'
       - '/fragments/**'
+      - '/sites/default/files/**'
     target: /query-index.json
     properties:
       title:
