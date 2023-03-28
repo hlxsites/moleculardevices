@@ -493,6 +493,10 @@ main .section.features-section .default-content-wrapper {
   margin-bottom: 30px;
 }
 
+main .section.features-section h2 {
+  margin-bottom: 0;
+}
+
 main .section.features-section .default-content-wrapper::after {
   content: "";
   clear: both;
