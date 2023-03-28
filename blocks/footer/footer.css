@@ -136,14 +136,11 @@
   max-width: 162px;
 }
 
-.footer-newsletter-form li a i {
-  float: right;
-}
-
 .row-6 ul {
   display: flex;
   flex-wrap: wrap;
   font-family: var(--ff-proxima-light);
+  margin-bottom: 28px;
 }
 
 .row-4 picture {
@@ -157,10 +154,6 @@
   font-size:21px;
   margin: 0;
   padding: 12px 0 5px;
-}
-
-.row-6 ul {
-  margin-bottom: 28px;
 }
 
 .row-4 ul:first-of-type {
@@ -195,6 +188,10 @@
 
 .row-6 ul li i {
   margin-left: 3px;
+}
+
+.footer-newsletter-form li a i {
+  float: right;
 }
 
 @media (max-width: 767px) {
