@@ -481,10 +481,10 @@ nav {
 main .section.features-section {
   padding-top: 45px;
   padding-bottom: 30px;
-  background: url(/images/molecules-left.webp) left bottom,
-    url(/images/molecules-right.webp) right top,
-    url(/images/molecules-left.png) left bottom,
-    url(/images/molecules-right.png) right top;
+  background: url('/images/molecules-left.webp') left bottom,
+    url('/images/molecules-right.webp') right top,
+    url('/images/molecules-left.png') left bottom,
+    url('/images/molecules-right.png') right top;
   background-repeat: no-repeat;
   background-color: #f2f2f2;
 }
