@@ -1,3 +1,5 @@
+import { toClassName } from '../../scripts/lib-franklin.js';
+
 /*
  * Copyright 2023 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -16,6 +18,7 @@
  * Special handling for resource document meta data.
  */
 const loadResourceMetaAttributes = (url, params, document, meta) => {
+  const FRAGMENT_TYPES = ['Applications', 'Assay Data'];
   let resourceMetadata = {};
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
@@ -46,6 +49,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       meta.Gated = 'Yes';
       const gatedUrl = resource['Gated URL'];
       meta['Gated URL'] = gatedUrl.startsWith('http') ? gatedUrl : `https://www.moleculardevices.com${gatedUrl}`;
+    }
+    if (FRAGMENT_TYPES.find((type) => type === resource['Asset Type'])) {
+      meta.Type = resource['Asset Type'];
     }
 
     const publishDate = new Date(resource['Created On']);
@@ -235,6 +241,26 @@ const transformSections = (document) => {
       section.after(table);
     }
   });
+};
+
+const transformFragmentDocuments = (document) => {
+  const isFragment = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type') ? true : false;
+  if (isFragment) {
+    document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
+      const headline = hero.querySelector('h1');
+      hero.before(headline);
+      const img = hero.querySelector('img');
+      if (img) {
+        hero.before(img);
+      }
+      const description = hero.querySelector('.hero-desc');
+      if (description) {
+        hero.before(description);
+      }
+      hero.remove();
+    });
+    document.querySelectorAll('.editor_discription .row').forEach((row) => row.classList.remove('row'));
+  }
 };
 
 const transformTabsNav = (document) => {
@@ -780,6 +806,7 @@ export default {
       transformCurvedWaveFragment,
       transformReferenceProducts,
       transformSections,
+      transformFragmentDocuments,
       transformHero,
       transformTables,
       transformButtons,
@@ -821,5 +848,24 @@ export default {
     url,
     html,
     params,
-  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
+  }) => {
+    let fileURL = url;
+    const { originalURL } = params;
+    const typeRow = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type').parentElement;
+    if (typeRow) {
+      let filename = originalURL.substring(originalURL.lastIndexOf('/') + 1);
+      if (params.originalURL.indexOf('/node/') > -1) {
+        filename = toClassName(
+          document
+            .querySelector('title')
+            .innerHTML.replace(/[\n\t]/gm, '')
+            .split('|')[0]
+            .trim(),
+        );
+      }
+      const type = toClassName(typeRow.lastChild.textContent);
+      fileURL = `http://localhost:3001/fragments/${type}/${filename}`;
+    }
+    return WebImporter.FileUtils.sanitizePath(new URL(fileURL).pathname.replace(/\.html$/, '').replace(/\/$/, ''));
+  },
 };
