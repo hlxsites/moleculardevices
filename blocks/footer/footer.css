@@ -68,7 +68,7 @@
 }
 
 .footer-news-events p {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color-gray);
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
