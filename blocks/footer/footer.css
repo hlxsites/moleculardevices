@@ -2,6 +2,7 @@
   margin: auto;
   font-size: 15px;
   margin-top: 4%;
+  padding-bottom: 15px;
 }
 
 .footer-wrap > div {
@@ -113,6 +114,10 @@
   left: -36px;
 }
 
+.row-6 {
+  font-size: 12.3px;
+}
+
 .row-6 ul {
   display: flex;
   flex-wrap: wrap;
@@ -153,14 +158,22 @@
     width: 25%;
   }
 
+  .footer-bottom {
+    padding:15px;
+  }
+
   .row-6 {
     display: flex;
     flex-direction: row-reverse;
-    font-size: 12.3px;
+  }
+
+  .row-6 ul {
+    justify-content: right;
   }
   
   .row-6 p {
     margin: 0;
+    flex-grow: 3;
   }
 }
 
