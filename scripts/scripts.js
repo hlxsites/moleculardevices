@@ -123,7 +123,7 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
 
   // Fetch and style the megamenus in the background
-  await fetchAndStyleHeaderMegamenus(doc.querySelector('header'));
+  fetchAndStyleHeaderMegamenus(doc.querySelector('header'));
 
   await loadBlocks(main);
 
