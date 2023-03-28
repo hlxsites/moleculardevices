@@ -477,6 +477,22 @@ nav {
   display: block;
 }
 
+/* Features Section */
+main .section.features-section {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+main .section.features-section .default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.features-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 /* WAVE sections */
 
 /* Common */
@@ -661,3 +677,4 @@ main .orange-buttons .button.primary>.button-border {
     font-size: 40px;
   }
 }
+

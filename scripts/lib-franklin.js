@@ -282,21 +282,24 @@ export function decorateSections(main) {
           const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'background') {
-          const { background } = meta;
-          if (background.startsWith('http')) {
-            const url = new URL(background, window.location.href);
-            const { pathname } = url;
-            const backgroundImages = [];
-            const exts = ['webply', pathname.substring(pathname.lastIndexOf('.') + 1)];
-            if (imageMediaQuery.matches) {
-              exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));
+          let { background } = meta;
+          background = Array.isArray(background) ? background : [background];
+          background.forEach((backgroundItem) => {
+            if (backgroundItem.startsWith('http')) {
+              const url = new URL(backgroundItem, window.location.href);
+              const { pathname } = url;
+              const backgroundImages = [];
+              const exts = ['webply', pathname.substring(pathname.lastIndexOf('.') + 1)];
+              if (imageMediaQuery.matches) {
+                exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));
+              } else {
+                exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=750&format=${ext}&optimize=medium)`));
+              }
+              section.style.backgroundImage = backgroundImages.join(', ');
             } else {
-              exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=750&format=${ext}&optimize=medium)`));
+              section.style.background = backgroundItem;
             }
-            section.style.backgroundImage = backgroundImages.join(', ');
-          } else {
-            section.style.background = background;
-          }
+          });
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }

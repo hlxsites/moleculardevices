@@ -1,0 +1,30 @@
+.features.block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+}
+
+.features.block > div {
+  display: flex;
+  flex: 0 0 100%;
+  gap: 18px;
+}
+
+.features.block img {
+  width: 60px;
+  height: 60px;
+  max-width: unset;
+}
+
+.features.block h3 {
+  font-family: var(--ff-proxima-xbold);
+  margin: 0;
+  padding: 15px 0 17px;
+  font-weight: 100;
+}
+
+.features.block p {
+  color: #292e32;
+  line-height: 1.2;
+  margin: 0;
+}
