@@ -21,6 +21,9 @@ indices:
       type:
         select: head > meta[name="template"]
         value: attribute(el, "content")
+      publisher:
+        select: head > meta[name="publisher"]
+        value: attribute(el, "content")
       relatedProducts:
         select: head > meta[name="related-products"]
         value: attribute(el, "content")
