@@ -22,9 +22,13 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   let resourceMetadata = {};
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
+  let sheet = 'resources';
+  if (params.originalURL.indexOf('/newsroom/in-the-news/')) {
+    sheet = 'publications';
+  }
   request.open(
     'GET',
-    'http://localhost:3001/export/moldev-resources-sheet-03202023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000',
+    `http://localhost:3001/export/moldev-resources-sheet-03282023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -50,6 +54,10 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       const gatedUrl = resource['Gated URL'];
       meta['Gated URL'] = gatedUrl.startsWith('http') ? gatedUrl : `https://www.moleculardevices.com${gatedUrl}`;
     }
+    if (resource.Publisher) {
+      meta.Publisher = resource.Publisher;
+    }
+
     if (FRAGMENT_TYPES.find((type) => type === resource['Asset Type'])) {
       meta.Type = resource['Asset Type'];
     }
@@ -853,8 +861,9 @@ export default {
   }) => {
     let fileURL = url;
     const { originalURL } = params;
-    const typeRow = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type').parentElement;
-    if (typeRow) {
+    const typeCell = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type');
+    if (typeCell) {
+      const typeRow = typeCell.parentElement;
       let filename = originalURL.substring(originalURL.lastIndexOf('/') + 1);
       if (params.originalURL.indexOf('/node/') > -1) {
         filename = toClassName(
