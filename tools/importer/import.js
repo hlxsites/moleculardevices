@@ -607,8 +607,10 @@ const transformEmbeds = (document) => {
   document.querySelectorAll('.container iframe').forEach((iframe) => {
     const iframeSrc = iframe.src;
     if (iframeSrc) {
-      const cells = [['Embed']];
-      cells.push([iframeSrc]);
+      const link = document.createElement('a');
+      link.href = iframeSrc;
+      link.textContent = iframeSrc;
+      const cells = [['Embed'], [link]];
       const table = WebImporter.DOMUtils.createTable(cells, document);
       iframe.replaceWith(table);
     }
