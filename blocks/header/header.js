@@ -1,57 +1,8 @@
+import {
+  reAttachEventListeners,
+  handleViewportChanges,
+} from './header-events.js';
 import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
-
-let elementsWithEventListener = [];
-const mql = window.matchMedia('only screen and (min-width: 1024px)');
-
-function collapseAllSubmenus(menu) {
-  menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-}
-
-function addEventListenersDesktop() {
-  function expandMenu(element) {
-    const expanded = element.getAttribute('aria-expanded') === 'true';
-    collapseAllSubmenus(element.closest('ul'));
-    element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  }
-
-  document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
-    elementsWithEventListener.push(linkElement);
-    linkElement.setAttribute('tabindex', '0');
-
-    // Add click event listener for desktop devices
-    linkElement.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      expandMenu(linkElement);
-    });
-  });
-}
-
-function addEventListenersMobile() {
-  function toggleMenu(element) {
-    const expanded = element.getAttribute('aria-expanded') === 'true';
-    collapseAllSubmenus(element.closest('ul'));
-    element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  }
-
-  document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
-    elementsWithEventListener.push(linkElement);
-
-    linkElement.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleMenu(linkElement);
-    });
-  });
-}
-
-function reAttachEventListeners() {
-  if (mql.matches) {
-    addEventListenersDesktop();
-  } else {
-    addEventListenersMobile();
-  }
-}
 
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
@@ -83,45 +34,16 @@ function buildSearch() {
   return search;
 }
 
-function insertMegaMenuBackgroundImage(navContent, submenuContent) {
-  const backgroundImg = navContent.querySelector('.submenu-background img');
-  submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
-}
+export async function fetchHeaderContent() {
+  const navPath = getMetadata('nav') || '/nav';
+  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
+  if (!resp.ok) return {};
 
-function buildMegaMenuLeftMenus(submenuContent) {
-  // get all H2s and create a list of them
-  const h2s = [...submenuContent.querySelectorAll('h2')];
-  const h2List = document.createElement('ul');
-  h2List.classList.add('menu-nav-submenu-sections');
+  const html = await resp.text();
 
-  // add H2s to list
-  h2s.forEach((h2) => {
-    const h2ListItem = document.createElement('li');
-    h2ListItem.classList.add('menu-nav-submenu-section');
-    h2ListItem.innerHTML = h2.outerHTML;
-    h2List.append(h2ListItem);
-  });
-  return h2List;
-}
-
-function buildMegaMenu(navContent, submenuContent) {
-  const productsSubmenu = document.createElement('div');
-  productsSubmenu.append(submenuContent.querySelector('h1'));
-  productsSubmenu.append(buildMegaMenuLeftMenus(submenuContent));
-  submenuContent.innerHTML = productsSubmenu.outerHTML;
-  insertMegaMenuBackgroundImage(navContent, submenuContent);
-}
-
-function createSubmenuBuildersMap() {
-  // create map of submenu name to function
-  const submenus = new Map();
-  submenus.set('products', buildMegaMenu);
-  submenus.set('applications', buildMegaMenu);
-  submenus.set('resources', buildMegaMenu);
-  submenus.set('service-support', buildMegaMenu);
-  submenus.set('company', buildMegaMenu);
-  submenus.set('contact-us', () => { });
-  return submenus;
+  const content = document.createElement('div');
+  content.innerHTML = html;
+  return content;
 }
 
 /**
@@ -132,15 +54,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/nav';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
-  if (!resp.ok) return;
-
-  const html = await resp.text();
-
-  // decorate nav DOM
-  const content = document.createElement('div');
-  content.innerHTML = html;
+  const content = await fetchHeaderContent();
 
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
@@ -167,27 +81,10 @@ export default async function decorate(block) {
   container.append(newNav);
   mainMenuWrapper.append(container);
 
-  // ------ Submenus ------
-  const submenuBuildersMap = createSubmenuBuildersMap();
-
   // link section
   const navMenuUl = document.createElement('ul');
   navMenuUl.classList.add('nav-tabs');
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
-
-  // Fetch all submenu content concurrently
-  const submenuFetchPromises = [];
-  for (let i = 0; i < menus.length - 1; i += 2) {
-    const textDiv = menus[i].querySelector('div');
-    const submenuId = toClassName(textDiv.textContent);
-    const submenuPath = getMetadata(`${submenuId}-submenu`) || `/drafts/josec/mega-menu-submenus/${submenuId}`;
-    submenuFetchPromises.push(
-      fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
-    );
-  }
-
-  // Process all submenu responses
-  const submenuResponses = await Promise.all(submenuFetchPromises);
 
   for (let i = 0; i < menus.length - 1; i += 2) {
     const li = document.createElement('li');
@@ -195,29 +92,13 @@ export default async function decorate(block) {
     li.setAttribute('aria-expanded', 'false');
 
     const menuTitle = menus[i];
-    menuTitle.classList.add('menu-nav-category');
     const textDiv = menuTitle.querySelector('div');
     menuTitle.innerHTML = textDiv.innerHTML;
+    menuTitle.classList.add('menu-nav-category');
+    menuTitle.setAttribute('menu-id', toClassName(menuTitle.textContent));
 
-    li.append(menuTitle);
-
-    // Get submenu content
-    const submenuContentResp = submenuResponses[i / 2];
-    if (submenuContentResp.ok) {
-      // eslint-disable-next-line no-await-in-loop
-      const submenuHtml = await submenuContentResp.text();
-      const submenuContent = document.createElement('div');
-      submenuContent.classList.add('menu-nav-submenu');
-      submenuContent.innerHTML = submenuHtml;
-
-      // Get submenu builder, and build submenu
-      const submenuId = toClassName(textDiv.textContent);
-      const submenuBuilder = submenuBuildersMap.get(toClassName(submenuId));
-      submenuBuilder(content, submenuContent);
-
-      li.append(submenuContent);
-      navMenuUl.append(li);
-    }
+    li.innerHTML = menuTitle.outerHTML;
+    navMenuUl.append(li);
   }
 
   navMenuUl.append(buildSearch());
@@ -229,21 +110,7 @@ export default async function decorate(block) {
 
   block.append(headerWrapper, mainMenuWrapper);
 
-  // Handle different event listeners for mobile/desktop on window resize
-  const removeAllEventListeners = () => {
-    elementsWithEventListener.forEach((el) => {
-      el.replaceWith(el.cloneNode(true));
-    });
-    elementsWithEventListener = [];
-  };
-
-  mql.onchange = () => {
-    mainMenuWrapper.setAttribute('aria-expanded', 'false');
-    document.querySelector('main').style.visibility = '';
-    removeAllEventListeners();
-    collapseAllSubmenus(block);
-    reAttachEventListeners();
-  };
+  handleViewportChanges(block);
 
   reAttachEventListeners();
 }

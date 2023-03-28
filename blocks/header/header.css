@@ -431,11 +431,6 @@ header .nav-tabs .menu-nav-submenu-sections {
     font-weight: 300;
   }
 
-  /* .header .nav-tabs .menu-nav-submenu-head {
-    visibility: hidden;
-    opacity: 0;
-  } */
-
   header .nav-tabs .menu-nav-submenu-section {
     height: 45px;
     margin-top: 10px;
