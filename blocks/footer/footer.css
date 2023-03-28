@@ -46,7 +46,7 @@
   margin-left: 5px;
 }
 
-.footer .row-5 i {
+.row-5 i {
   margin: 0;
 }
 
@@ -151,12 +151,7 @@
   margin-bottom: 28px;
 }
 
-.row-4 ul:first-of-type {
-  border-bottom: 1px solid #ccc;
-  margin: 5px 0 25px;
-}
-
-.row-4 ul li {
+.row-4 li {
   margin-top: -5px;
   position:relative;
   top: -30px;
@@ -174,6 +169,11 @@
   font-size:21px;
   margin: 0;
   padding: 12px 0 5px;
+}
+
+.row-4 ul:first-of-type {
+  border-bottom: 1px solid #ccc;
+  margin: 5px 0 25px;
 }
 
 .row-5 li {
