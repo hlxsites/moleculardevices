@@ -13,6 +13,10 @@
   display: flex;
 }
 
+.footer-news-events > div > div {
+  flex-grow: 1;
+}
+
 .footer-bottom {
   margin-top: 38px;
 }
@@ -79,10 +83,6 @@
 
 .footer-news-events p:last-of-type a {
   color: var(--button-bg-color);
-}
-
-.footer-news-events > div > div {
-  flex-grow: 1;
 }
 
 .footer-news-events > div:first-of-type > div {
