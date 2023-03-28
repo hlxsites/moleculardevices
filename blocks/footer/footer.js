@@ -1,14 +1,5 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
-function addEventListeners(container) {
-  const h3s = container.querySelectorAll('h3');
-  [...h3s].forEach((h3) => {
-    h3.addEventListener('click', (e) => {
-      toggleNewsEvents(container, e.target);
-    });
-  })
-}
-
 function toggleNewsEvents(container, target) {
   if (!target.parentElement.classList.contains('on')) {
     const items = container.querySelectorAll('.toggle');
@@ -18,11 +9,20 @@ function toggleNewsEvents(container, target) {
   }
 }
 
+function addEventListeners(container) {
+  const h3s = container.querySelectorAll('h3');
+  [...h3s].forEach((h3) => {
+    h3.addEventListener('click', (e) => {
+      toggleNewsEvents(container, e.target);
+    });
+  });
+}
+
 function buildNewsEvents(container) {
-  [...container.children].forEach((row, y) => {
-    [...row.children].forEach((column, x) => {
+  [...container.children].forEach((row) => {
+    [...row.children].forEach((column, i) => {
       column.classList.add('toggle');
-      if (x === 0) {
+      if (i === 0) {
         column.classList.add('on');
       }
     });
