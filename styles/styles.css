@@ -489,11 +489,28 @@ main .section.features-section {
 main .section.features-section .default-content-wrapper {
   padding-top: 0;
   padding-bottom: 0;
-}
-
-main .section.features-section h2 {
   text-align: center;
   margin-bottom: 30px;
+}
+
+main .section.features-section .default-content-wrapper::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+main .section.features-section .default-content-wrapper em {
+  margin-top: 30px;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+  width: 50%;
+}
+
+main .section.features-section .button-container {
+  margin-top: 50px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -509,6 +526,11 @@ main .section.features-section h2 {
 
   .section.features-section h2 {
     font-size: 36px;
+  }
+
+  main .section.features-section .default-content-wrapper em {
+    width: 100%;
+    padding: 0 15px;
   }
 }
 
