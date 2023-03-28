@@ -1,8 +1,11 @@
+.footer-wrapper {
+  background-image: url("research-bg.png");
+}
+
 .footer.block {
   margin: auto;
   font-size: 15px;
   margin-top: 25px;
-  padding-bottom: 15px;
 }
 
 .footer-wrap > div {
@@ -13,16 +16,20 @@
   display: flex;
 }
 
+.footer-news-events > div:first-of-type {
+  margin-bottom: 5px;
+}
+
 .footer-news-events > div > div {
   flex-grow: 1;
 }
 
 .footer-bottom {
-  margin-top: 38px;
+  margin-top: 18px;
 }
 
 .footer-bottom > div:first-child {
-  border-top: 1px solid var(--border-color-gray);
+  border-top: 1px solid var(--highlight-background-color);
 }
 
 .footer ul {
@@ -31,8 +38,20 @@
   margin: 0 0 30px;
 }
 
+.footer .row-6 ul {
+  margin-bottom: 28px;
+}
+
 .footer a {
   color: var(--text-color);
+}
+
+.footer i {
+  margin-left: 5px;
+}
+
+.footer .row-5 i {
+  margin: 0;
 }
 
 .row-3 a,
@@ -48,7 +67,7 @@
 
 .footer-news-events h3 {
   margin: 0;
-  padding: 0 15px 7px;
+  padding: 0 15px 6px;
 }
 
 .footer-newsletter-form h3 {
@@ -68,8 +87,9 @@
 }
 
 .footer-news-events p {
-  border-bottom: 1px solid var(--border-color-gray);
-  padding-bottom: 10px;
+  border-bottom: 1px solid var(--highlight-background-color);
+  padding-bottom: 11px;
+  margin-top: 6px;
   margin-bottom: 10px;
 }
 
@@ -86,7 +106,7 @@
 }
 
 .footer-news-events > div:first-of-type > div {
-  border-bottom: 2px solid var(--border-color-gray);
+  border-bottom: 2px solid var(--highlight-background-color);
 }
 
 .footer-news-events > div:nth-child(1) > div:nth-child(1) {
@@ -99,7 +119,7 @@
 }
 
 .footer-news-events > div:first-of-type > div.toggle.on {
-  border-color: var(--button-bg-color);
+  border-bottom: 3px solid var(--button-bg-color);
 }
 
 .footer-news-events > div:nth-child(2) > div.toggle {
@@ -120,7 +140,12 @@
 }
 
 .footer-newsletter-form li {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  max-width: 162px;
+}
+
+.footer-newsletter-form li a i {
+  float: right;
 }
 
 .row-6 ul {
@@ -147,13 +172,29 @@
   left: -36px;
 }
 
+.row-5 ul {
+  display: flex;
+  font-size:21px;
+  margin: 0;
+  padding: 12px 0 5px;
+}
+
+.row-5 li {
+  padding-right:32px;
+}
+
 .row-6 {
   font-size: 12.3px;
 }
 
 .row-6 ul li {
   flex-shrink: 0;
-  margin-left: 15px;
+  margin-left: 12px;
+  margin-bottom: 7px;
+}
+
+.row-6 ul li i {
+  margin-left: 3px;
 }
 
 @media (max-width: 767px) {
@@ -185,7 +226,7 @@
   }
 
   .footer-bottom {
-    padding:15px;
+    padding: 15px;
   }
 
   .row-6 {
