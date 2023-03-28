@@ -53,7 +53,7 @@ export default async function fetchAndStyleMegamenus(headerBlock) {
   const submenuFetchPromises = [];
   for (let i = 0; i < submenuKeys.length - 1; i += 1) {
     const submenuId = submenuKeys[i];
-    const submenuPath = getMetadata(`${submenuId}-submenu`) || `/drafts/josec/mega-menu-submenus/${submenuId}`;
+    const submenuPath = getMetadata(`${submenuId}-submenu`) || `/fragments/menu/${submenuId}`;
     submenuFetchPromises.push(
       fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
     );
