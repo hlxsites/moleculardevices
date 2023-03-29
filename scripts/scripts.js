@@ -12,11 +12,29 @@ import {
   toClassName,
   getMetadata,
   loadCSS,
+  loadBlock,
+  decorateBlock,
+  buildBlock,
 } from './lib-franklin.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+
+export function loadScript(url, callback, type, async) {
+  const head = document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  if (async) {
+    script.async = true;
+  }
+  if (type) {
+    script.setAttribute('type', type);
+  }
+  script.onload = callback;
+  head.append(script);
+  return script;
+}
 
 /*
 function buildHeroBlock(main) {
@@ -30,6 +48,27 @@ function buildHeroBlock(main) {
   }
 }
 */
+
+/**
+ * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
+ * Breadcrumb block created at the top of first section
+ */
+async function createBreadcrumbsSpace(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const blockWrapper = document.createElement('div');
+    blockWrapper.classList.add('breadcrumbs-wrapper');
+    main.querySelector('.section').prepend(blockWrapper);
+  }
+}
+async function loadBreadcrumbs(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
+    const block = buildBlock('breadcrumbs', '');
+    blockWrapper.append(block);
+    decorateBlock(block);
+    await loadBlock(block);
+  }
+}
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -65,6 +104,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  createBreadcrumbsSpace(main);
 }
 
 /**
@@ -97,19 +137,34 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
+export function formatDate(dateStr) {
+  const parts = dateStr.split('/');
+  const date = new Date(parts[2], parts[0] - 1, parts[1]);
+
+  if (date) {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+    });
+  }
+  return dateStr;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+  loadHeader(doc.querySelector('header'));
   await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
+  loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');

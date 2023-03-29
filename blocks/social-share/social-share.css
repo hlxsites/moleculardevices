@@ -1,0 +1,36 @@
+/* share event */
+.share-event {
+    float: left;
+    padding: 15px 0 0;
+  }
+  
+.share-event p {
+  margin: 0 0 15px;
+  text-transform: uppercase;
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.social-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.social-links li {
+  float: left;
+  padding-right: 25px;
+}
+
+.social-links li a i {
+  display: inline-block;
+  font-size: 21px;
+}
+
+.social-links.blue-ico ul li a i, .social-links ul li i.addthis-share-button {
+  color: var(--button-bg-color);
+  line-height: 28px;
+  cursor: pointer;
+}

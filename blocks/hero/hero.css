@@ -1,26 +1,45 @@
-/* block specific CSS goes here */
+@import url('../breadcrumbs/breadcrumbs.css');
+
+main .hero-container {
+  --hero-breadcrumbs-separator-color: #ccc;
+
+  margin-top: -10px;
+  padding: 0;
+}
 
 main .hero-container > div {
   max-width: unset;
 }
 
-main .hero-container {
-  padding: 0;
-}
-
 main .hero {
   position: relative;
-  padding: 32px;
-  min-height: 300px;
   color: var(--text-white);
+}
+
+main .hero .breadcrumbs {
+  padding-top: 40px;
+  padding-bottom: 42.5px;
+}
+
+main .hero .breadcrumbs ol {
+  padding: 0 15px;
 }
 
 main .hero p {
   margin: 0 0 10px;
 }
 
-main .button-container a {
-  color: var(--font-white);
+main .hero a:any-link {
+  color: var(--text-white);
+}
+
+main .hero p.button-container {
+  margin: 0;
+}
+
+main .hero ul {
+  margin: 0;
+  padding-top: 5px;
 }
 
 main .hero li {
@@ -31,6 +50,7 @@ main .hero h1 {
   margin-top: 20px;
   margin-bottom: 40px;
   color: white;
+  line-height: 1;
 }
 
 main .hero h6 {
@@ -89,15 +109,23 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--text-white);
 }
 
+.hero .breadcrumbs li+li::before {
+  color: var(--hero-breadcrumbs-separator-color);
+}
+
 @media (max-width: 767px) {
   main .hero {
-    padding:15px;
+    padding: 50px 0 55px;
   }
 
   /* TODO fix heading vars in styles.css */
   main .hero h1 {
-    margin-bottom:20px;
+    margin-bottom:10px;
     font-size: 36px;
+  }
+
+  main .hero h4 {
+    margin-bottom: 10px;;
   }
 
   main .hero .container > div:nth-child(1) > div > * {
@@ -110,17 +138,36 @@ main .hero .container > div:nth-child(2) .button-container {
   }
 
   main .hero .container > div:nth-child(2) {
+    font-size: var(--body-font-size-m);
+  }
+
+  main .hero .container.two-column > div:nth-child(2) {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+
+  main .hero .container.two-column > div:nth-child(2) > div {
     border-top: 2px solid #fff;
+    padding-top:30px;
+  }
+
+  main .hero .button-container a {
+    padding: 9px 12px 10px;
   }
 }
 
 @media (min-width: 768px) {
+  main .hero {
+    min-height: 300px;
+  }
+
   main .hero .container {
     overflow: auto;
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
+    padding: 0 0 45px;
   }
 
   main .hero .container > div {
@@ -134,6 +181,10 @@ main .hero .container > div:nth-child(2) .button-container {
   main .hero .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
+  }
+
+  main .hero .container > div:nth-child(1) .button-container {
+    margin-top: 30px;
   }
 }
 

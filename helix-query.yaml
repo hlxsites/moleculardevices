@@ -5,7 +5,8 @@ indices:
       - /**
     exclude:
       - '/drafts/**'
-      - '/en/fragments/**'
+      - '/fragments/**'
+      - '/sites/default/files/**'
     target: /query-index.json
     properties:
       title:
@@ -19,6 +20,9 @@ indices:
         value: attribute(el, "content")
       type:
         select: head > meta[name="template"]
+        value: attribute(el, "content")
+      publisher:
+        select: head > meta[name="publisher"]
         value: attribute(el, "content")
       relatedProducts:
         select: head > meta[name="related-products"]
@@ -37,6 +41,23 @@ indices:
         value: attribute(el, "content")       
       robots:
         select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="publication-date"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+  fragments:
+    include:
+      - '/fragments/**'
+    target: /fragments/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      type:
+        select: head > meta[name="type"]
         value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]
