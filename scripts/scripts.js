@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  loadHeader,
   loadFooter,
   decorateButtons,
   decorateIcons,
@@ -16,6 +15,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
+import loadHeader from './header-utils.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -178,7 +178,9 @@ export function formatDate(dateStr) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+
   loadHeader(doc.querySelector('header'));
+
   await loadBlocks(main);
 
   const { hash } = window.location;

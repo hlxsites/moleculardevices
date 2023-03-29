@@ -74,6 +74,8 @@
   --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
   --header-color-orange: #ee7624;
+  --header-mega-menu-border-color: #FFFFFF80;
+  --header-mega-menu-font-color: #FFFFFFB2;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
