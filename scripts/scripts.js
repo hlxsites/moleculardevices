@@ -12,6 +12,9 @@ import {
   toClassName,
   getMetadata,
   loadCSS,
+  loadBlock,
+  decorateBlock,
+  buildBlock,
 } from './lib-franklin.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
@@ -47,7 +50,28 @@ function buildHeroBlock(main) {
 */
 
 /**
- * Run named sections for in page navigation.
+ * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
+ * Breadcrumb block created at the top of first section
+ */
+async function createBreadcrumbsSpace(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const blockWrapper = document.createElement('div');
+    blockWrapper.classList.add('breadcrumbs-wrapper');
+    main.querySelector('.section').prepend(blockWrapper);
+  }
+}
+async function loadBreadcrumbs(main) {
+  if (getMetadata('breadcrumbs') === 'auto') {
+    const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
+    const block = buildBlock('breadcrumbs', '');
+    blockWrapper.append(block);
+    decorateBlock(block);
+    await loadBlock(block);
+  }
+}
+
+/**
+ * Decroate named sections for in page navigation.
  * @param {Element} main The container element
  */
 function decoratePageNav(main) {
@@ -102,6 +126,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  createBreadcrumbsSpace(main);
 }
 
 /**
@@ -134,6 +159,20 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
+export function formatDate(dateStr) {
+  const parts = dateStr.split('/');
+  const date = new Date(parts[2], parts[0] - 1, parts[1]);
+
+  if (date) {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+    });
+  }
+  return dateStr;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -147,6 +186,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadFooter(doc.querySelector('footer'));
+  loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
