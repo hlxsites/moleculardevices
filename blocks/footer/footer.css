@@ -194,6 +194,11 @@
   margin-left: 3px;
 }
 
+.fa-external-link {
+  position: relative;
+  bottom: 5px;
+}
+
 @media (max-width: 767px) {
   .footer h3+h3 {
     margin-top: 20px;
