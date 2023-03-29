@@ -201,15 +201,15 @@
 }
 
 @media (max-width: 767px) {
+  .columns.mobile-swap > div {
+    flex-direction: column-reverse;
+  }
+
   .columns.contact > div > div:not(:last-child) {
     margin-bottom: 30px;
   }
 
   .columns.contact > div > div > ul > li:not(:last-child)::after {
     width: calc(100% - 44px);
-  }
-
-  .columns.mobile-swap > div {
-    flex-direction: column-reverse;
   }
 }
