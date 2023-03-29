@@ -495,7 +495,7 @@ nav {
   display: block;
 }
 
-/* news and publication */
+  /* news and publication */
 .news .section .default-content-wrapper, .publication .section .default-content-wrapper {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
@@ -548,6 +548,70 @@ nav {
   top: -7px;
   font-size: 13px;
   margin-left: 2px;
+}
+
+/* Features Section */
+main .section.features-section {
+  padding-top: 45px;
+  padding-bottom: 30px;
+  background: url('/images/molecules-left.webp') left bottom,
+    url('/images/molecules-right.webp') right top,
+    url('/images/molecules-left.png') left bottom,
+    url('/images/molecules-right.png') right top;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+}
+
+main .section.features-section .default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main .section.features-section h2 {
+  margin-bottom: 0;
+}
+
+main .section.features-section .default-content-wrapper::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+main .section.features-section .default-content-wrapper em {
+  margin-top: 30px;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+  width: 50%;
+}
+
+main .section.features-section .button-container {
+  margin-top: 50px;
+}
+
+@media only screen and (max-width: 991px) {
+  .section.features-section h2 {
+    font-size: 45px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  main .section.features-section {
+    padding-top: 30px;
+  }
+
+  .section.features-section h2 {
+    font-size: 36px;
+  }
+
+  main .section.features-section .default-content-wrapper em {
+    width: 100%;
+    padding: 0 15px;
+  }
 }
 
 /* WAVE sections */
