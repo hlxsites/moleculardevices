@@ -100,6 +100,38 @@ header .company-links ul li {
   text-decoration: none;
 }
 
+
+header .large-card ul > li {
+  display: list-item;
+  float: left;
+  border: 0;
+  position: static;
+  min-width: inherit !important;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: 8px;
+  color: var(--background-color);
+}
+
+header .large-card h3 {
+  border: 0;
+  color: var(--background-color);
+  padding: 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-family: "Proxima Nova Regular", sans-serif;
+  margin-top: 0;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+header .large-card h3 a {
+  color: var(--header-mega-menu-green);
+  text-decoration: none;
+  text-transform: initial;
+}
+
 header .nav-tabs .menu-nav-submenu-sections li {
   float: none;
   border: 0;
@@ -261,6 +293,20 @@ header .nav-tabs .menu-nav-submenu-head {
   width: 50%;
 }
 
+header .large-card ul {
+  padding: 0;
+  width: 45%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  font-family: Quicksand, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+  list-style-type: circle;
+}
+
 header .nav-tabs .menu-nav-submenu ul {
   float: none;
 }
@@ -317,52 +363,6 @@ header .large-card {
   width: 60%;
   float: left;
   height: 470px;
-}
-
-header .large-card ul {
-  padding: 0;
-  width: 45%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 20px;
-  margin-bottom: 40px;
-  font-family: "Quicksand",sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  text-align: left;
-  list-style-type: circle;
-}
-
-header .large-card ul > li {
-  display: list-item;
-  position: relative;
-  float: left;
-  border: 0;
-  position: static;
-  min-width: inherit !important;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-  margin-bottom: 8px;
-  color: var(--background-color);
-}
-
-header .large-card h3 {
-  border: 0;
-  color: var(--background-color);
-  padding: 0;
-  padding-bottom: 10px;
-  font-size: 18px;
-  font-family: "Proxima Nova Regular", sans-serif;
-  margin-top: 0;
-  font-weight: 300;
-  margin-bottom: 10px;
-}
-
-header .large-card h3 a {
-  color: var(--header-mega-menu-green);
-  text-decoration: none;
-  text-transform: initial;
 }
 
 header .large-card img {
