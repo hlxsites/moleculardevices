@@ -1,0 +1,108 @@
+main .section>div.page-tabs-wrapper {
+  width: 100%;
+  padding: 0;
+  background-image: url("/images/tabLinksBg.jpg");
+  background-size: cover;
+  background-position: right center;
+}
+
+main .page-tabs {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 15px;
+  height: 60px;
+  white-space: nowrap;
+}
+
+main .page-tabs ul {
+  margin: 0;
+  padding: 0;
+  touch-action: auto;
+  list-style: none;
+}
+
+main .page-tabs li {
+  position: relative;
+  margin: 0 25px;
+  text-align: center;
+  display: inline-block;
+}
+
+main .page-tabs li:first-of-type {
+  margin-left: 0;
+}
+
+main .page-tabs li:last-of-type {
+  margin-right: 0;
+}
+
+
+main .page-tabs li a {
+  color: var(--text-white);
+  background: none;
+  border: 0;
+  font-family: var(--ff-proxima-light);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 60px;
+  margin: 0;
+}
+
+main .page-tabs li[aria-selected="true"]::before {
+  position: absolute;
+  content: "";
+  background: #fff;
+  width: 2px;
+  height: 10px;
+  margin-top: 50px;
+  left: 50%;
+}
+
+main .page-tabs li[aria-selected="true"]::after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 40px;
+  margin-left: -4px;
+  left: 50%;
+}
+
+main .page-tabs li[aria-selected="true"] a {
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+  main .page-tabs {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .page-tabs {
+    width: 970px;
+    height: 100px;
+  }
+
+  main .page-tabs li a {
+    line-height: 100px;
+  }
+
+  main .page-tabs li[aria-selected="true"]::before {
+    height: 35px;
+    margin-top: 65px;
+  }
+
+  main .page-tabs li[aria-selected="true"]::after {
+    margin-top: 65px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .page-tabs {
+    width: 1170px
+  }
+}
