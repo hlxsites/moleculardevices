@@ -69,6 +69,7 @@
   --black-background-color: #000;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
+  --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
@@ -126,6 +127,10 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+}
+
+.background-gray main {
+  background-color: var(--grey-background-color);
 }
 
 body.appear {
@@ -233,7 +238,7 @@ em strong {
   font-weight: 700;
 }
 
-main.text-caption {
+.text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
@@ -490,6 +495,61 @@ nav {
   display: block;
 }
 
+/* news and publication */
+.news .section .default-content-wrapper, .publication .section .default-content-wrapper {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+
+  padding: 0 15px;
+}
+
+@media (max-width: 767px) {
+  .news .section p, .publication .section p {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+.news .section p, .publication .section p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.news .section h1, .publication .section h1 {
+  line-height: 1;
+  font-weight: 100;
+  padding-top: 40px;
+  border-bottom: 1px solid var(--dark-border-color-gray);
+  padding-bottom: 20px;
+}
+
+.news .section strong, .publication .section strong {
+  font-weight: 700;
+}
+
+.news .section .text-strong, .publication .section .text-strong {
+  padding-top: 15px;
+
+}
+
+.news .section cite, .publication .section cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding-bottom: 30px;
+}
+
+.news .section i.fa.fa-external-link, .publication .section i.fa.fa-external-link {
+  position: relative;
+  top: -7px;
+  font-size: 13px;
+  margin-left: 2px;
+}
+
 /* WAVE sections */
 
 /* Common */
@@ -674,3 +734,4 @@ main .orange-buttons .button.primary>.button-border {
     font-size: 40px;
   }
 }
+
