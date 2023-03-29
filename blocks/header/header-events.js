@@ -14,20 +14,29 @@ function removeAllEventListeners() {
 
 function addEventListenersDesktop() {
   function expandMenu(element) {
-    const expanded = element.getAttribute('aria-expanded') === 'true';
     collapseAllSubmenus(element.closest('ul'));
-    element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    element.setAttribute('aria-expanded', 'true');
   }
 
   document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
     elementsWithEventListener.push(linkElement);
-    linkElement.setAttribute('tabindex', '0');
 
     // Add click event listener for desktop devices
     linkElement.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       expandMenu(linkElement);
+    });
+  });
+
+  document.querySelectorAll('.menu-nav-submenu-close').forEach((linkElement) => {
+    elementsWithEventListener.push(linkElement);
+
+    // Add click event listener for desktop devices
+    linkElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      collapseAllSubmenus(linkElement.closest('ul'));
     });
   });
 }
@@ -50,7 +59,7 @@ function addEventListenersMobile() {
   });
 }
 
-export function reAttachEventListeners() {
+function reAttachEventListeners() {
   if (mediaQueryList.matches) {
     addEventListenersDesktop();
   } else {
@@ -58,11 +67,12 @@ export function reAttachEventListeners() {
   }
 }
 
-export function handleViewportChanges(block) {
+export default function handleViewportChanges(block) {
   mediaQueryList.onchange = () => {
     document.querySelector('main').style.visibility = '';
     removeAllEventListeners();
     collapseAllSubmenus(block);
     reAttachEventListeners();
   };
+  reAttachEventListeners();
 }

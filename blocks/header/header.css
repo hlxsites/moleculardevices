@@ -171,6 +171,19 @@ header nav .nav-tools {
 }
 
 /* submenus */
+header .nav-tabs .menu-nav-submenu-close {
+  background: url('../../icons/close-dropdown.svg') no-repeat center/contain;
+  top: 60px;
+  right: 20px;
+  border-radius: 100%;
+  padding: 8px;
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+}
+
 header .nav-tabs .menu-nav-submenu {
   top: 100;
   left: 0;
@@ -416,7 +429,15 @@ header .nav-tabs .menu-nav-submenu-sections {
     display: none;
   }
 
+  header .nav-tabs > li .menu-nav-submenu-close {
+    display: none;
+  }
+
   header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu {
+    display: initial;
+  }
+
+  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu-close {
     display: initial;
   }
 

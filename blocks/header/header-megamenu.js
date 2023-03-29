@@ -1,3 +1,4 @@
+import handleViewportChanges from './header-events.js';
 import { fetchHeaderContent } from './header.js';
 import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 
@@ -69,6 +70,9 @@ export default async function fetchAndStyleMegamenus(headerBlock) {
   for (let i = 0; i < submenuResponses.length; i += 1) {
     const submenuResponse = submenuResponses[i];
     if (submenuResponse.ok) {
+      const closeButton = document.createElement('div');
+      closeButton.classList.add('menu-nav-submenu-close');
+
       const submenuId = submenuKeys[i];
       // eslint-disable-next-line no-await-in-loop
       const submenuHtml = await submenuResponse.text();
@@ -83,7 +87,10 @@ export default async function fetchAndStyleMegamenus(headerBlock) {
       // Get the list item in the header block that contains a div with attribute menu-id
       // that matches the submenuId
       const li = headerBlock.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
+      li.append(closeButton);
       li.append(submenuContent);
     }
   }
+
+  handleViewportChanges(headerBlock);
 }

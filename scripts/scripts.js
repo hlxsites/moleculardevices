@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  loadHeader,
   loadFooter,
   decorateButtons,
   decorateIcons,
@@ -13,9 +12,8 @@ import {
   getMetadata,
   loadCSS,
 } from './lib-franklin.js';
+import loadHeader from './header-utils.js';
 import TEMPLATE_LIST from '../templates/config.js';
-
-import fetchAndStyleHeaderMegamenus from '../blocks/header/header-megamenu.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
@@ -121,9 +119,6 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   loadHeader(doc.querySelector('header'));
-
-  // Fetch and style the megamenus in the background
-  fetchAndStyleHeaderMegamenus(doc.querySelector('header'));
 
   await loadBlocks(main);
 

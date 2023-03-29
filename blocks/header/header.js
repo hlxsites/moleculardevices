@@ -1,7 +1,4 @@
-import {
-  reAttachEventListeners,
-  handleViewportChanges,
-} from './header-events.js';
+import handleViewportChanges from './header-events.js';
 import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
 
 function buildBrandLogo(content) {
@@ -111,6 +108,4 @@ export default async function decorate(block) {
   block.append(headerWrapper, mainMenuWrapper);
 
   handleViewportChanges(block);
-
-  reAttachEventListeners();
 }
