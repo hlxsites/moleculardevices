@@ -76,6 +76,8 @@
   --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #FFFFFF80;
   --header-mega-menu-font-color: #FFFFFFB2;
+  --header-mega-menu-product-cards-background-color: #161e2d;
+  --header-mega-menu-green: #6eb43f;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
