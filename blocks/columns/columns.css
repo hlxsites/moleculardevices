@@ -158,6 +158,14 @@
     grid-template-columns: 75fr 25fr;
   }
 
+  .columns.layout-40-60 > div {
+    grid-template-columns: 40fr 60fr;
+  }
+
+  .columns.layout-60-40 > div {
+    grid-template-columns: 60fr 40fr;
+  }
+
   .columns[class*='layout-'] > div > div {
     padding: 0 15px;
     margin: 0;
