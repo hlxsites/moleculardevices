@@ -1,5 +1,3 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
-
 /*
  * Copyright 2023 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -18,7 +16,6 @@ import { toClassName } from '../../scripts/lib-franklin.js';
  * Special handling for resource document meta data.
  */
 const loadResourceMetaAttributes = (url, params, document, meta) => {
-  const FRAGMENT_TYPES = ['Applications', 'Assay Data'];
   let resourceMetadata = {};
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
@@ -26,6 +23,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   if (params.originalURL.indexOf('/newsroom/in-the-news/')) {
     sheet = 'publications';
   }
+  if (params.originalURL.indexOf('/products/')) {
+    sheet = 'products-applications';
+  }  
   request.open(
     'GET',
     `http://localhost:3001/export/moldev-resources-sheet-03282023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
@@ -58,10 +58,6 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       meta.Publisher = resource.Publisher;
     }
 
-    if (FRAGMENT_TYPES.find((type) => type === resource['Asset Type'])) {
-      meta.Type = resource['Asset Type'];
-    }
-
     const publishDate = new Date(resource['Created On']);
     if (publishDate) {
       meta['Publication Date'] = publishDate.toLocaleDateString('en-US', {
@@ -74,6 +70,24 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     console.warn('Resource item for %s not found', params.originalURL);
   }
 };
+
+const loadFragmentIndex = (type, ref) => {
+  const request = new XMLHttpRequest();
+  request.open(
+    'GET',
+    'http://localhost:3001/fragments/query-index.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=1000',
+    false,
+  );
+  request.overrideMimeType('text/json; UTF-8');
+  request.send(null);
+  let fragments = {};
+  if (request.status === 200) {
+    fragments = JSON.parse(request.responseText).data;
+  }
+
+  const fragment = fragments.find((n) => n.title.trim().toLowerCase() === ref.trim().toLowerCase() && n.type === type);
+  return fragment;
+}
 
 const createMetadata = (url, document) => {
   const meta = {};
@@ -108,6 +122,17 @@ const createMetadata = (url, document) => {
   return meta;
 };
 
+/**
+ * Sanitizes a name for use as class name.
+ * @param {string} name The unsanitized name
+ * @returns {string} The class name
+ */
+export function toClassName(name) {
+  return typeof name === 'string'
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    : '';
+}
+
 const cleanUp = (document) => {
   document.querySelectorAll('table').forEach((table) => {
     table.innerHTML = table.innerHTML.replace(/\\~/gm, '~');
@@ -116,6 +141,11 @@ const cleanUp = (document) => {
     .querySelectorAll('.row > [class*="col-"][class*="-12"]')
     .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
   document.querySelectorAll('.herobanner_wrap .row > [class*="col-"]').forEach((col) => col.removeAttribute('class'));
+  document.querySelectorAll('.content-section .listing-image.ico-list').forEach((div) => {
+    if (div.textContent.trim() === '') {
+      div.remove();
+    }
+  });
 };
 
 const extractBackgroundImage = (content) => {
@@ -125,15 +155,27 @@ const extractBackgroundImage = (content) => {
   }
 
   // fallback and check on attributes
-  const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
-  return backgroundUrl ? backgroundUrl.trim() : null;
+  if (content.hasAttribute('style')) {
+    const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
+    return backgroundUrl ? backgroundUrl.trim() : null;
+  }
+  return null;
 };
 
 const transformHero = (document) => {
   // detect the default hero styles
   document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
+    const cells = [['Hero']];
+
     const isBlog = hero.classList.contains('blog-details');
-    const cells = [[isBlog ? 'Hero (Blog)' : 'Hero']];
+    if (isBlog) {
+      cells[0] = ['Hero (Blog)'];
+    }
+    const isOrangeStyle = hero.querySelector('a.orangeBlueBtn');
+    if (isOrangeStyle) {
+      cells[0] = ['Hero (Orange Buttons)'];
+    }
+
     const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.row, .bannerInnerPages');
 
     const backgroundUrl = extractBackgroundImage(hero);
@@ -212,6 +254,7 @@ const transformCurvedWaveFragment = (document) => {
     a.textContent = FRAGMENT_PATH;
     const cells = [['Fragment'], [a]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
+    table.id = 'defaultWave';
     section.replaceWith(table);
   });
 };
@@ -230,15 +273,8 @@ const transformSections = (document) => {
     if (section.classList.contains('franklin-horizontal')) {
       styles.push('Horizontal');
     }
-    if (section.classList.contains('cover-bg')) {
-      styles.push('White Text');
-      const bgImage = extractBackgroundImage(section);
-      if (bgImage) {
-        const img = document.createElement('img');
-        img.src = bgImage;
-        img.alt = 'Background Image';
-        cells.push(['background', img]);
-      }
+    if (section.classList.contains('greyBg')) {
+      styles.push('Background Grey');
     }
     if (styles.length > 0) {
       cells.push(['style', styles.toString()]);
@@ -275,41 +311,113 @@ const transformTabsNav = (document) => {
   const tabNav = document.querySelector('.nav.nav-tabs');
   if (tabNav) {
     const cells = [['Page Tabs']];
-    const tabs = document.createElement('ul');
-    tabNav.querySelectorAll('li').forEach((item) => tabs.append(item));
-
-    cells.push([tabs]);
     const table = WebImporter.DOMUtils.createTable(cells, document);
     tabNav.replaceWith(table);
   }
 };
 
 const transformTabsContent = (document) => {
+  const overviewWaveContent = document.getElementById('overviewTabContent');
+  const overviewTab = document.querySelector('.tab-content .tab-pane#Overview');
+  const defaultWave = document.querySelector('table#defaultWave');
+  if (overviewTab) {
+    if (overviewWaveContent && overviewWaveContent.classList.contains('cover-bg-no-cover')) {
+      overviewTab.append(document.createElement('hr'), overviewWaveContent);
+    } else if (defaultWave) {
+      overviewTab.append(document.createElement('hr'), defaultWave.cloneNode(true));
+      if (overviewWaveContent) {
+        overviewWaveContent.remove();
+      }
+    }
+  }
+
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
+    const isOverviewTab = tab.id === 'Overview';
     tab.before(document.createElement('hr'));
     const cells = [['Section Metadata'], ['name', tab.id]];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    tab.after(table);
+    if (isOverviewTab) {
+      const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
+      if (waveSection) {
+        cells.push(['style', 'Wave, Orange Buttons']);
+        const bgImage = extractBackgroundImage(waveSection);
+        if (bgImage) {
+          const img = document.createElement('img');
+          img.src = bgImage;
+          img.alt = 'Background Image';
+          cells.push(['background', img]);
+        }
+      }
+    }
+    const sectionMetaData = WebImporter.DOMUtils.createTable(cells, document);
+    tab.after(sectionMetaData);
+    if (defaultWave && !isOverviewTab) {
+      tab.after(document.createElement('hr'), defaultWave.cloneNode(true));
+    }
+  });
+
+  if (defaultWave) {
+    defaultWave.remove();
+  }
+};
+
+const transformProductOverviewHeadlines = (block, document) => {
+  document.querySelectorAll('.views-element-container p.result-header').forEach((heading) => {
+    const h3 = document.createElement('h3');
+    h3.textContent = heading.textContent;
+    heading.replaceWith(h3);
   });
 };
 
-const transformProductFeatureList = (block, document) => {
-  const features = block.querySelector('.overview-features');
-  if (features) {
+const transformFeatureList = (block, document) => {
+  block.querySelectorAll('.listing-image.overview-features').forEach((featureList) => {
     const cells = [['Features']];
-    features.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
-
+    featureList.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
-    features.replaceWith(table);
+    featureList.replaceWith(table);
+  });
+};
+
+const transformFeatureSection = (block, document) => {
+  const featuresSection = block.querySelector('.featuredSection');
+  if (featuresSection) {
+    featuresSection.before(document.createElement('hr'));
+    const sectionMetaData = WebImporter.DOMUtils.createTable([['Section Metadata'], ['style', 'Features Section']], document);
+    featuresSection.after(sectionMetaData, document.createElement('hr'));
   }
 };
 
 const transformResourcesCarousel = (block, document) => {
-  const div = block.querySelector('.apps-recent-res');
-  if (div) {
+  const recentResources = block.querySelector('.apps-recent-res');
+  if (recentResources) {
+    recentResources.before(document.createElement('hr'));
     const cells = [['Resources Carousel']];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
+    const carousel = recentResources.querySelector('.view-content');
+    if (carousel) {
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      carousel.replaceWith(table);
+    }
+    if (recentResources.classList.contains('greyBg')) {
+      const sectionMetaData = WebImporter.DOMUtils.createTable([['Section Metadata'], ['style', 'Background Grey']], document);
+      recentResources.after(sectionMetaData);
+    }
+  }
+};
+
+const transformImageGallery = (block, document) => {
+  const imageGallery = block.querySelector('.images-gallery1');
+  if (imageGallery) {
+    imageGallery.querySelectorAll('.row .fst-set').forEach((div) => div.remove());
+    const imageContainer = imageGallery.querySelector('#cellmediaGallary');
+    if (imageContainer) {
+      const cells = [['Image Gallery']];
+      const entries = imageContainer.querySelectorAll('.carousel .item');
+      entries.forEach((entry) => {
+        cells.push([[...entry.children].reverse()]);
+      });
+
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      imageContainer.replaceWith(table);
+    }
   }
 };
 
@@ -317,6 +425,38 @@ const transformFeaturedApplicationsCarousel = (block, document) => {
   const div = document.querySelector('.view.view-product-featured-carousel');
   if (div) {
     const cells = [['Applications Carousel']];
+
+    const applications = div.querySelectorAll('.pro-container h3');
+    if (applications) {
+      const list = document.createElement('ul');
+      applications.forEach((heading) => {
+        const title = heading.textContent.trim();
+        const fragment = loadFragmentIndex('Applications', title);
+        if (fragment) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = fragment.path;
+          link.textContent = fragment.path;
+          li.append(link);
+          list.append(li);
+        }
+      });
+      cells.push([list]);
+    }
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
+const transformCustomerStory = (block, document) => {
+  const div = document.querySelector('.view.view-product-custom-story');
+  if (div) {
+    const cells = [['Customer Story']];
+    const img = div.querySelector('img');
+    const content = div.querySelector('.pro-page-detail');
+    cells.push([img, content]);
+
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   }
@@ -331,8 +471,8 @@ const transformButtons = (document) => {
       icon.remove();
     });
 
-    const buttonClass = button.className.trim();
-    if (buttonClass.indexOf('gradiantBlueBtn') > -1) {
+    const buttonClasses = button.classList;
+    if (buttonClasses.contains('btn-info') || buttonClasses.contains('gradiantBlueBtn') || buttonClasses.contains('orangeBlueBtn')) {
       const wrapper = document.createElement('strong');
       wrapper.innerHTML = button.outerHTML;
       button.replaceWith(wrapper);
@@ -354,8 +494,6 @@ const transformButtons = (document) => {
       icon.remove();
     });
   });
-
-  // TODO convert & cleanup other buttons
 };
 
 const transformTables = (document) => {
@@ -628,23 +766,113 @@ const transformEmbeds = (document) => {
 const transformProductOverview = (document) => {
   const div = document.querySelector('div.tab-pane#Overview, div.tab-pane#overview');
   if (div) {
-    transformProductFeatureList(div, document);
+    transformProductOverviewHeadlines(div, document);
+    transformFeatureList(div, document);
+    transformFeatureSection(div, document);
     transformResourcesCarousel(div, document);
+    transformImageGallery(div, document);
     transformFeaturedApplicationsCarousel(div, document);
+    transformCustomerStory(div, document);
+  }
+};
+
+const transformProductOptions = (document) => {
+  const div = document.querySelector('div.tab-pane#options');
+  if (div) {
+    transformProductOverviewHeadlines(div, document);
+    transformFeatureList(div, document);
+    transformFeatureSection(div, document);
+    transformResourcesCarousel(div, document);
+    transformImageGallery(div, document);
   }
 };
 
 const transformProductApplications = (document) => {
-  const div = document.querySelector('div.tab-pane#Applications');
+  const div = document.querySelector('div.tab-pane#Applications, div.tab-pane#Technology');
   if (div) {
-    const content = document.createElement('div');
     const heading = div.querySelector('h2');
-    const br = document.createElement('br');
-    content.append(heading, br);
-    const cells = [['Product Applications'], [content]];
+    div.before(heading);
+    const cells = [['Related Applications']];
+
+    const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
+    if (applications) {
+      const list = document.createElement('ul');
+
+      applications.forEach((h2) => {
+        const title = h2.textContent.trim();
+        const fragment = loadFragmentIndex('Applications', title);
+        if (fragment) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = fragment.path;
+          link.textContent = fragment.path;
+          li.append(link);
+          list.append(li);
+        }
+      });
+      cells.push([list]);
+    }
+
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   }
+};
+
+const transformProductAssayData = (document) => {
+  const div = document.querySelector('div.tab-pane#Data');
+  if (div) {
+    const heading = div.querySelector('h2');
+    div.before(heading);
+    const cells = [['Related Assay Data']];
+
+    const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
+    if (applications) {
+      const list = document.createElement('ul');
+
+      applications.forEach((h2) => {
+        const title = h2.textContent.trim();
+        const fragment = loadFragmentIndex('Assay Data', title);
+        if (fragment) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = fragment.path;
+          link.textContent = fragment.path;
+          li.append(link);
+          list.append(li);
+        }
+      });
+      cells.push([list]);
+    }
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
+const transformProductTab = (document, tabConfig) => {
+  const div = document.querySelector(`div.tab-pane#${tabConfig.id}`);
+  if (div) {
+    const heading = div.querySelector('h2');
+    div.before(heading);
+    const cells = [[tabConfig.blockName]];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
+const transformProductTabs = (document) => {
+  const TABS = [
+    { id: 'Resources', blockName: 'Related Resources' },
+    { id: 'Orderingoptions', blockName: 'Product Ordering Options' },
+    { id: 'Order', blockName: 'Product Order' },
+    { id: 'CompatibleProducts', blockName: 'Product Compatible Products' },
+    { id: 'Citations', blockName: 'Product Citations' },
+    { id: 'RelatedProducts', blockName: 'Related Products' },
+    { id: 'relatedproducts', blockName: 'Related Products' },
+    { id: 'specs', blockName: 'Product Specifications' },
+  ];
+
+  TABS.forEach((tab) => transformProductTab(document, tab));
 };
 
 const transformResources = (document) => {
@@ -667,24 +895,6 @@ const transformResources = (document) => {
       const table = WebImporter.DOMUtils.createTable(cells, document);
       videoResources.replaceWith(table);
     }
-  }
-};
-
-const transformProductCitations = (document) => {
-  const div = document.querySelector('div.tab-pane#Citations');
-  if (div) {
-    const cells = [['Product Citations']];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
-  }
-};
-
-const transformRelatedProducts = (document) => {
-  const div = document.querySelector('div.tab-pane#RelatedProducts, div.tab-pane#relatedproducts');
-  if (div) {
-    const cells = [['Related Products']];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
   }
 };
 
@@ -758,6 +968,9 @@ export default {
         videoDiv.setAttribute('data-type', params.get('type'));
       }
     });
+
+    // rewrite all links with spans before they get cleaned up
+    document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
   },
 
   /**
@@ -801,6 +1014,7 @@ export default {
       '.onetrust-consent-sdk',
       '.drift-frame-chat',
       '.drift-frame-controller',
+      '.modal.bs-example-modal-lg.mediaPopup', // TODO contains the hero media gallery links, must be added to the hero block
     ]);
 
     // create the metadata block and append it to the main element
@@ -832,9 +1046,10 @@ export default {
       transformTabsNav,
       transformTabsContent,
       transformProductOverview,
+      transformProductOptions,
       transformProductApplications,
-      transformProductCitations,
-      transformRelatedProducts,
+      transformProductAssayData,
+      transformProductTabs,
       transformResources,
       makeProxySrcs,
       makeAbsoluteLinks,
@@ -858,25 +1073,5 @@ export default {
     url,
     html,
     params,
-  }) => {
-    let fileURL = url;
-    const { originalURL } = params;
-    const typeCell = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type');
-    if (typeCell) {
-      const typeRow = typeCell.parentElement;
-      let filename = originalURL.substring(originalURL.lastIndexOf('/') + 1);
-      if (params.originalURL.indexOf('/node/') > -1) {
-        filename = toClassName(
-          document
-            .querySelector('title')
-            .innerHTML.replace(/[\n\t]/gm, '')
-            .split('|')[0]
-            .trim(),
-        );
-      }
-      const type = toClassName(typeRow.lastChild.textContent);
-      fileURL = `http://localhost:3001/fragments/${type}/${filename}`;
-    }
-    return WebImporter.FileUtils.sanitizePath(new URL(fileURL).pathname.replace(/\.html$/, '').replace(/\/$/, ''));
-  },
+  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
 };
