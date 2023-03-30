@@ -99,7 +99,8 @@
   /* nav height */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
-  --breadcrumbs-height: 113.5px;
+  --breadcrumbs-height: 86px;
+  --breadcrumbs-height-mobile: 30px;
 }
 
 * {
@@ -427,6 +428,10 @@ main .section>div {
     padding: 8px 12px;
     width: 100%;
     max-width: 200px;
+  }
+
+  main .breadcrumbs-wrapper {
+    height: var(--breadcrumbs-height-mobile);
   }
 }
 
