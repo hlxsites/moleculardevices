@@ -1,0 +1,52 @@
+
+.blog .quote-wrapper {
+  padding: 0 15px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog .quote {
+  position: relative;
+  max-width: 587px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.blog .quote .quote-text,
+.blog .quote .quote-author {
+  color: #61b249;
+  font-size: 20px;
+}
+
+.blog .quote .quote-text {
+  padding: 30px 0;
+  position: relative;
+}
+
+.blog .quote .quote-author {
+  margin-top: 26px;
+}
+
+.blog .quote .quote-text:before,
+.blog .quote .quote-text:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+  height: 4px;
+  width: 366px;
+}
+
+.blog .quote .quote-text:before {
+  top: 0;
+  bottom: auto;
+}
+
+.blog .quote .quote-text:after {
+  top: auto;
+  bottom: 0;
+}

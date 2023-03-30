@@ -1,0 +1,31 @@
+.blog {
+  overflow-x: hidden; /* Could be removed after the soundcloud player is implemented */
+  font-family: var(--ff-proxima-regular);
+}
+
+.blog .section .default-content-wrapper {
+  padding: 0 0 30px;
+}
+
+.blog strong {
+  font-family: var(--ff-proxima-regular);
+}
+
+.blog p, ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.blog h3 {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.blog .section > div:not(.hero-wrapper) {
+  max-width: 800px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
