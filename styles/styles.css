@@ -99,8 +99,6 @@
   /* nav height */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
-  --breadcrumbs-height: 86px;
-  --breadcrumbs-height-mobile: 30px;
 }
 
 * {
@@ -398,7 +396,7 @@ main video {
 }
 
 main .breadcrumbs-wrapper {
-  height: var(--breadcrumbs-height);
+  height: 86px;
 }
 
 main .section>div {
@@ -431,7 +429,7 @@ main .section>div {
   }
 
   main .breadcrumbs-wrapper {
-    height: var(--breadcrumbs-height-mobile);
+    height: 30px;
   }
 }
 
