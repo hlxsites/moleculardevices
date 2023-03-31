@@ -27,23 +27,32 @@ export default async function decorate(block) {
   }
 
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
-    if (path) {
-      const fragmentHtml = await getFragmentHtml(path);
+    const fragmentHtml = await getFragmentHtml(path);
+    if (fragmentHtml) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
       const h1 = fragmentElement.querySelector('h1');
       return { id: h1.id, title: h1.textContent, html: fragmentElement };
     }
+    return null;
   }));
 
-  fragments.sort((a, b) => a.title > b.title);
+  const sortedFragments = fragments.filter((item) => !!item).sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
 
   const apps = document.createElement('div');
   apps.classList.add('related-applications-container');
   const links = document.createElement('ul');
   links.classList.add('related-links-container');
 
-  fragments.forEach(fragment => {
+  sortedFragments.forEach((fragment) => {
     const linkFragment = document.createElement('li');
     linkFragment.innerHTML = `<a href="#${fragment.id}">${fragment.title}</a>`;
     renderFragment(linkFragment, links, 'related-link');
