@@ -138,15 +138,22 @@ header .nav-tabs .menu-nav-submenu-sections li {
   position: static;
   display: block;
   min-width: inherit !important;
-  margin: 0;
+  margin-bottom: 1px;
   padding: 0;
   box-shadow: none;
-  margin-top: 10px;
   margin-left: -40px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
 }
 
 header .company-links > ul > li:last-child {
   margin-right: 0;
+}
+
+header .nav-tabs .menu-nav-submenu-sections li:hover {
+  background-color: rgba(255 255 255 / 30%);
+  cursor: pointer;
 }
 
 /* Nav */
@@ -243,7 +250,7 @@ header .nav-tabs .menu-nav-submenu-sections li h2 {
   border-bottom: 0;
   color: var(--background-color);
   font-size: 18px;
-  padding: 9px 20px 6px;
+  padding: 12px 20px 6px;
   font-family:'Proxima Nova Light', sans-serif;
   margin: 0 2px 0 0;
 }
@@ -255,6 +262,14 @@ header .nav-tabs .menu-nav-submenu h1 {
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
+  width: 330px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+header .nav-tabs .menu-nav-submenu h1:hover {
+  background-color: rgba(255 255 255 / 30%);
+  cursor: pointer;
 }
 
 header .menu-nav-submenu h1 > a {
@@ -333,6 +348,7 @@ header .nav-tabs .right-submenu {
   overflow: hidden;
   z-index: 0;
   margin: 0 !important;
+  display: none;
 }
 
 header .nav-tabs .right-submenu-row {
@@ -595,6 +611,10 @@ header .large-card img:hover {
     display: initial;
   }
 
+  header .right-submenu[aria-expanded="true"] {
+    display: initial;
+  }
+
   header .nav-tabs .menu-nav-submenu > div {
     min-height: auto !important;
     width: 970px;
@@ -608,7 +628,7 @@ header .large-card img:hover {
 
   header .nav-tabs .menu-nav-submenu-section {
     height: 45px;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   header .nav-tabs li.hover > .menu-nav-submenu {
