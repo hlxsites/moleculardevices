@@ -3,12 +3,13 @@ async function getFragmentHtml(path) {
   if (!response.ok) {
     // eslint-disable-next-line no-console
     console.error('error loading fragment details', response);
-    return '';
+    return null;
   }
   const text = await response.text();
   if (!text) {
     // eslint-disable-next-line no-console
     console.error('fragment details empty');
+    return null
   }
   return text;
 }
