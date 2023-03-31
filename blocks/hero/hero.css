@@ -113,6 +113,60 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
+/* Blog Variant */
+.blog main .hero-wrapper {
+  margin-bottom: 60px;
+}
+
+main .hero.blog {
+  height: calc(100vh - var(--nav-height) + 10px);
+  overflow: hidden;
+}
+
+main .hero.blog h1 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 48px;
+}
+
+main .hero.blog .sticker picture {
+  right: 15px;
+  position: absolute;
+  left: auto;
+  top: 46px;
+}
+
+main .hero.blog .sticker img {
+  object-fit: none;
+  width: unset;
+  height: unset;
+}
+
+main .hero.blog .breadcrumbs {
+  position: relative;
+}
+
+main .hero.blog .container {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  max-width: 700px;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+}
+
+main .hero.blog .container > div {
+  padding: 0;
+}
+
+main .hero.blog .container .metadata {
+  clear: both;
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+}
+
 @media (max-width: 767px) {
   main .hero {
     padding: 50px 0 55px;
