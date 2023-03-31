@@ -414,12 +414,12 @@ header .image-center img {
   margin-left: 30px;
 }
 
-header .axis-robotic-arm {
-  background-image: url('../../images/header-menus/BAB400-6-axis-robotic-arm-bg.png');
+header .green-blue-circle {
+  background-image: url('../../images/header-menus/green-blue-circle.png');
 }
 
-header .dispencell {
-  background-image: url('../../images/header-menus/dispencell-single-cell-dispenser-bg.png');
+header .cutted-green-blue-circle {
+  background-image: url('../../images/header-menus/cutted-green-blue-circle.png');
 }
 
 header .large-card img:hover {
@@ -645,11 +645,12 @@ header .large-card img:hover {
     height: 360px;
   }
 
-  header .dispencell img {
+  header .cutted-green-blue-circle img {
     bottom: -30px;
   }
 
-  header .axis-robotic-arm img  {
+  header .green-blue-circle img  {
+
     bottom: -10px;
   }
 

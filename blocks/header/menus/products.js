@@ -1,6 +1,13 @@
 import buildMegaMenuLeftMenus from './left-submenus.js';
 
-function buildProductsMegamenuHead(submenuContent) {
+function wrapLinkAroundComponent(link, component) {
+  const linkCopy = document.createElement('a');
+  linkCopy.href = link.href;
+  linkCopy.innerHTML = component.outerHTML;
+  component.outerHTML = linkCopy.outerHTML;
+}
+
+function buildProductsMegaMenuHead(submenuContent) {
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const productsMegaMenuHeadWrapper = document.createElement('div');
   productsMegaMenuHeadWrapper.classList.add('right-submenu');
@@ -12,6 +19,10 @@ function buildProductsMegamenuHead(submenuContent) {
   // get all large-card divs
   const largeCards = [...submenuContent.querySelectorAll('.large-card')];
   largeCards.forEach((card) => {
+    // set the link in the card images too
+    const link = card.querySelector('a');
+    const img = card.querySelector('picture');
+    wrapLinkAroundComponent(link, img);
     productsMegaMenuHead.appendChild(card);
   });
 
@@ -24,7 +35,7 @@ export default function buildProductsMegaMenu(navContent, submenuContent) {
   productsSubmenu.append(submenuContent.querySelector('h1'));
 
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
-  productsSubmenu.append(buildProductsMegamenuHead(submenuContent));
+  productsSubmenu.append(buildProductsMegaMenuHead(submenuContent));
 
   productsSubmenu.append(buildMegaMenuLeftMenus(submenuContent));
 
