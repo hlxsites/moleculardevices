@@ -52,17 +52,14 @@ function addEventListenersDesktop() {
   addListeners('.menu-nav-submenu h1', 'mouseover', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const rightMenuClass = `${toClassName(e.currentTarget.textContent)}-right-submenu`;
-    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
+    const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
     showRightSubmenu(rightMenu);
   });
 
-  addListeners('.menu-nav-submenu-sections li', 'mouseover', (e) => {
+  addListeners('.menu-nav-submenu-sections .menu-nav-submenu-section', 'mouseover', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const submenuTitle = e.currentTarget.querySelector('a').textContent;
-    const rightMenuClass = `${toClassName(submenuTitle)}-right-submenu`;
-    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
+    const rightMenu = e.currentTarget.querySelector('.right-submenu');
     showRightSubmenu(rightMenu);
   });
 }
