@@ -18,14 +18,14 @@ function addEventListenersDesktop() {
     element.setAttribute('aria-expanded', 'true');
   }
 
-  document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
+  document.querySelectorAll('.menu-nav-category').forEach((linkElement) => {
     elementsWithEventListener.push(linkElement);
 
     // Add click event listener for desktop devices
     linkElement.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      expandMenu(linkElement);
+      expandMenu(linkElement.parentElement);
     });
   });
 
