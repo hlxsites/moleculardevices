@@ -1,3 +1,5 @@
+import { toClassName } from '../../scripts/lib-franklin.js';
+
 let elementsWithEventListener = [];
 const mediaQueryList = window.matchMedia('only screen and (min-width: 1024px)');
 
@@ -12,32 +14,56 @@ function removeAllEventListeners() {
   elementsWithEventListener = [];
 }
 
+function addListeners(selector, eventType, callback) {
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach((element) => {
+    elementsWithEventListener.push(element);
+    element.addEventListener(eventType, callback);
+  });
+}
+
 function addEventListenersDesktop() {
   function expandMenu(element) {
     collapseAllSubmenus(element.closest('ul'));
     element.setAttribute('aria-expanded', 'true');
   }
 
-  document.querySelectorAll('.menu-nav-category').forEach((linkElement) => {
-    elementsWithEventListener.push(linkElement);
+  function showRightSubmenu(element) {
+    document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
+    element.setAttribute('aria-expanded', 'true');
+  }
 
-    // Add click event listener for desktop devices
-    linkElement.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      expandMenu(linkElement.parentElement);
-    });
+  addListeners('.menu-nav-category', 'mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    expandMenu(e.currentTarget.parentElement);
+    const rightMenuClass = `${toClassName(e.currentTarget.textContent)}-right-submenu`;
+    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
+    showRightSubmenu(rightMenu);
   });
 
-  document.querySelectorAll('.menu-nav-submenu-close').forEach((linkElement) => {
-    elementsWithEventListener.push(linkElement);
+  addListeners('.menu-nav-submenu-close', 'mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    collapseAllSubmenus(e.currentTarget.closest('ul'));
+  });
 
-    // Add click event listener for desktop devices
-    linkElement.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      collapseAllSubmenus(linkElement.closest('ul'));
-    });
+  addListeners('.menu-nav-submenu h1', 'mouseover', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const rightMenuClass = `${toClassName(e.currentTarget.textContent)}-right-submenu`;
+    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
+    showRightSubmenu(rightMenu);
+  });
+
+  addListeners('.menu-nav-submenu-sections li', 'mouseover', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const submenuTitle = e.currentTarget.querySelector('a').textContent;
+    const rightMenuClass = `${toClassName(submenuTitle)}-right-submenu`;
+    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
+    showRightSubmenu(rightMenu);
   });
 }
 
