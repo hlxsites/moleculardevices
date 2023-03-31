@@ -16,12 +16,10 @@ async function getFragmentHtml(path) {
 }
 
 async function renderFragment(fragment, block, className) {
-  const element = document.createElement('div');
-  element.classList.add(className);
-  element.innerHTML = fragment;
+  fragment.classList.add(className);
   // decorateLinkedPictures(element);
   // await customDecorateIcons(element);
-  block.append(element);
+  block.append(fragment);
 }
 
 export default async function decorate(block) {
@@ -35,30 +33,32 @@ export default async function decorate(block) {
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     if (path) {
       const fragmentHtml = await getFragmentHtml(path);
-      const h1 = fragmentHtml.querySelector('h1');
-      return { id: h1.id, title: h1.textContent, html: fragmentHtml }
+      const fragmentElement = document.createElement('div');
+      fragmentElement.innerHTML = fragmentHtml;
+      console.log(fragmentElement)
+      const h1 = fragmentElement.querySelector('h1');
+      console.log(h1)
+      return { id: h1.id, title: h1.textContent, html: fragmentElement }
     }
   }));
 
-  // fragments.sort((a, b) => a.title > b.title);
+  fragments.sort((a, b) => a.title > b.title);
   console.log(fragments)
 
   const apps = document.createElement('div');
-  apps.classList.add('related-applications-fragments');
+  apps.classList.add('related-applications-container');
   const links = document.createElement('ul');
+  links.classList.add('related-links-container');
 
   fragments.forEach(fragment => {
-    const linkFragment = `<li><a href="#${fragment.id}">${fragment.title}</a></li>
-    `
-    renderFragment(linkFragment, links, 'related-application-link')
-    renderFragment(fragment, apps, 'related-application')
+    const linkFragment = document.createElement('li');
+    linkFragment.innerHTML = `<a href="#${fragment.id}">${fragment.title}</a>`;
+    renderFragment(linkFragment, links, 'related-link');
+    renderFragment(fragment.html, apps, 'related-application');
   });
 
-  const linksSection = document.createElement('div');
-  linksSection.classList.add('related-applications-links');
-  linksSection.appendChild(links);
-  block.appendChild(linksSection);
-  block.appendChild(apps);
+  block.append(links);
+  block.append(apps);
 
   console.log(block)
   return block;
