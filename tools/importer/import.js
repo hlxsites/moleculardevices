@@ -12,6 +12,17 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
+const TABS_MAPPING = [
+  { id: 'Resources', blockName: 'Related Resources' },
+  { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
+  { id: 'Order', blockName: 'Product Order' },
+  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', blockName: 'Product Compatible Products' },
+  { id: 'Citations', blockName: 'Product Citations' },
+  { id: 'RelatedProducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
+  { id: 'relatedproducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
+  { id: 'specs', sectionName: 'Specifications & Options', blockName: 'Product Specifications' },
+];
+
 /**
  * Special handling for resource document meta data.
  */
@@ -20,10 +31,10 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
   let sheet = 'resources';
-  if (params.originalURL.indexOf('/newsroom/in-the-news/')) {
+  if (params.originalURL.indexOf('/newsroom/in-the-news/') > 0) {
     sheet = 'publications';
   }
-  if (params.originalURL.indexOf('/products/')) {
+  if (params.originalURL.indexOf('/products/') > 0) {
     sheet = 'products-applications';
   }
   request.open(
@@ -316,7 +327,7 @@ const transformTabsNav = (document) => {
   }
 };
 
-const transformTabsContent = (document) => {
+const transformTabsSections = (document) => {
   const overviewWaveContent = document.getElementById('overviewTabContent');
   const overviewTab = document.querySelector('.tab-content .tab-pane#Overview');
   const defaultWave = document.querySelector('table#defaultWave');
@@ -333,8 +344,11 @@ const transformTabsContent = (document) => {
 
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
     const isOverviewTab = tab.id === 'Overview';
+    const tabConfig = TABS_MAPPING.find((m) => m.id === tab.id);
     tab.before(document.createElement('hr'));
-    const cells = [['Section Metadata'], ['name', tab.id]];
+
+    // eslint-disable-next-line no-nested-ternary
+    const cells = [['Section Metadata'], ['name', tabConfig ? ('sectionName' in tabConfig ? tabConfig.sectionName : tabConfig.id) : tab.id]];
     if (isOverviewTab) {
       const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
       if (waveSection) {
@@ -861,18 +875,7 @@ const transformProductTab = (document, tabConfig) => {
 };
 
 const transformProductTabs = (document) => {
-  const TABS = [
-    { id: 'Resources', blockName: 'Related Resources' },
-    { id: 'Orderingoptions', blockName: 'Product Ordering Options' },
-    { id: 'Order', blockName: 'Product Order' },
-    { id: 'CompatibleProducts', blockName: 'Product Compatible Products' },
-    { id: 'Citations', blockName: 'Product Citations' },
-    { id: 'RelatedProducts', blockName: 'Related Products' },
-    { id: 'relatedproducts', blockName: 'Related Products' },
-    { id: 'specs', blockName: 'Product Specifications' },
-  ];
-
-  TABS.forEach((tab) => transformProductTab(document, tab));
+  TABS_MAPPING.forEach((tab) => transformProductTab(document, tab));
 };
 
 const transformResources = (document) => {
@@ -1045,7 +1048,7 @@ export default {
       transformImageCaption,
       transformCustomerBreakthroughShareStory,
       transformTabsNav,
-      transformTabsContent,
+      transformTabsSections,
       transformProductOverview,
       transformProductOptions,
       transformProductApplications,
