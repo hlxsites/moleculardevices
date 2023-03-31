@@ -25,7 +25,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   }
   if (params.originalURL.indexOf('/products/')) {
     sheet = 'products-applications';
-  }  
+  }
   request.open(
     'GET',
     `http://localhost:3001/export/moldev-resources-sheet-03282023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
@@ -87,7 +87,7 @@ const loadFragmentIndex = (type, ref) => {
 
   const fragment = fragments.find((n) => n.title.trim().toLowerCase() === ref.trim().toLowerCase() && n.type === type);
   return fragment;
-}
+};
 
 const createMetadata = (url, document) => {
   const meta = {};
@@ -288,7 +288,7 @@ const transformSections = (document) => {
 };
 
 const transformFragmentDocuments = (document) => {
-  const isFragment = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type') ? true : false;
+  const isFragment = !![...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type');
   if (isFragment) {
     document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
       const headline = hero.querySelector('h1');
@@ -470,17 +470,17 @@ const transformButtons = (document) => {
       button.textContent = `${button.textContent} :${icon.classList[1]}:`;
       icon.remove();
     });
-
-    const buttonClasses = button.classList;
-    if (buttonClasses.contains('btn-info') || buttonClasses.contains('gradiantBlueBtn') || buttonClasses.contains('orangeBlueBtn')) {
-      const wrapper = document.createElement('strong');
-      wrapper.innerHTML = button.outerHTML;
-      button.replaceWith(wrapper);
-    }
   });
 
-  // convert special blog post buttons
-  document.querySelectorAll('a.gradiantTealreverse').forEach((button) => {
+  // convert primary buttons
+  document.querySelectorAll('a.btn-info, a.gradiantBlueBtn, a.orangeBlueBtn').forEach((button) => {
+    const wrapper = document.createElement('strong');
+    wrapper.innerHTML = button.outerHTML;
+    button.replaceWith(wrapper);
+  });
+
+  // convert secondary buttons
+  document.querySelectorAll('a.gradiantTealreverse, a.whiteBtn, a.banner_btn.bluebdr-mb').forEach((button) => {
     const wrapper = document.createElement('em');
     wrapper.innerHTML = button.outerHTML;
     button.replaceWith(wrapper);
@@ -950,7 +950,7 @@ export default {
       } catch (error) {
         console.warn(`Invalid link in the page: ${href}`, error);
         // TODO
-        //a.href = new URL(href).toString();
+        // a.href = new URL(href).toString();
         a.href = '';
       }
     });
@@ -971,6 +971,7 @@ export default {
 
     // rewrite all links with spans before they get cleaned up
     document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
+    document.querySelectorAll('a strong').forEach((strong) => strong.replaceWith(strong.textContent));
   },
 
   /**

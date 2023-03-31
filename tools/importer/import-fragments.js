@@ -135,20 +135,6 @@ const cleanUp = (document) => {
   });
 };
 
-const extractBackgroundImage = (content) => {
-  const { backgroundImage } = content.style;
-  if (backgroundImage) {
-    return backgroundImage.match(/url\((.*?)\)/)[1].trim();
-  }
-
-  // fallback and check on attributes
-  if (content.hasAttribute('style')) {
-    const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
-    return backgroundUrl ? backgroundUrl.trim() : null;
-  }
-  return null;
-};
-
 // we have different usages of sections - with <section></section>, <div></div>
 const transformSections = (document) => {
   document.querySelectorAll('section * section:not(.blogsPage)').forEach((section, index) => {
@@ -178,7 +164,7 @@ const transformSections = (document) => {
 };
 
 const transformFragmentDocuments = (document) => {
-  const isFragment = [...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type') ? true : false;
+  const isFragment = !![...document.querySelectorAll('table td')].find((td) => td.textContent === 'Type');
   if (isFragment) {
     document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
       const headline = hero.querySelector('h1');
@@ -196,7 +182,6 @@ const transformFragmentDocuments = (document) => {
     document.querySelectorAll('.editor_discription .row').forEach((row) => row.classList.remove('row'));
   }
 };
-
 
 const transformButtons = (document) => {
   // convert primary/secondary buttons
@@ -231,7 +216,6 @@ const transformButtons = (document) => {
     });
   });
 };
-
 
 const transformColumns = (document) => {
   const COLUMN_STYLES = [
@@ -340,7 +324,7 @@ export default {
       } catch (error) {
         console.warn(`Invalid link in the page: ${href}`, error);
         // TODO
-        //a.href = new URL(href).toString();
+        // a.href = new URL(href).toString();
         a.href = '';
       }
     });
