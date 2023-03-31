@@ -9,7 +9,7 @@ async function getFragmentHtml(path) {
   if (!text) {
     // eslint-disable-next-line no-console
     console.error('fragment details empty');
-    return null
+    return null;
   }
   return text;
 }
