@@ -47,38 +47,6 @@ export function decorateLinkedPictures(block) {
   });
 }
 
-/**
- * Get the list of press release news from the query index.
- *
- * @param {number} limit the number of entries to return
- * @returns the posts as an array
- */
-async function getNews() {
-  const newsEntries = await ffetch('/query-index.json')
-    .sheet('news')
-    .all();
-  newsEntries.sort((a, b) => b.date - a.date);
-  return newsEntries;
-}
-
-function filterNews(news, activeFilters) {
-  let filteredNews = news;
-
-  if (activeFilters.date) {
-    filteredNews = filteredNews
-      .filter((n) => toClassName(n.filterDate).includes(activeFilters.date));
-  }
-  return filteredNews;
-}
-
-function createFilters(news, activeFilters, createDropdown) {
-  const date = Array.from(new Set(news.map((n) => n.filterDate)));
-
-  return [
-    createDropdown(date, activeFilters.date, 'date', 'Select Year'),
-  ];
-}
-
 function formatDate(newsDate) {
   const dateObj = new Date(0);
   dateObj.setUTCSeconds(newsDate);
@@ -99,22 +67,48 @@ function formatDateFullYear(newsDate) {
   });
 }
 
-function createNewsOverview(news, block) {
-  const config = readBlockConfig(block);
-  // eslint-disable-next-line radix
-  const limit = parseInt(config.limit, 10) || 10;
-  block.innerHTML = '';
+async function fetchNews() {
+  const newsEntries = await ffetch('/query-index.json')
+    .sheet('news')
+    .all();
+  return newsEntries;
+}
 
+function filterNews(news, activeFilters) {
+  let filteredNews = news;
+
+  if (activeFilters.year) {
+    filteredNews = filteredNews
+      .filter((n) => toClassName(n.filterDate).includes(activeFilters.year));
+  }
+  return filteredNews;
+}
+
+function createFilters(news, activeFilters, createDropdown) {
+  const date = Array.from(new Set(news.map((n) => n.filterDate)));
+
+  return [
+    createDropdown(date, activeFilters.year, 'select-year', 'Select Year'),
+  ];
+}
+
+function createNewsOverview(block, news, limit, paginationLimit) {
+  block.innerHTML = '';
   // prepare custom date fields
   news.forEach((n) => {
     n.newsDate = formatDate(n.date);
     n.filterDate = formatDateFullYear(n.date);
   });
 
-  createList(news, filterNews, createFilters, limit, block);
+  const panelTitle = 'Filter By :';
+  createList(news, filterNews, createFilters, limit, paginationLimit, block, panelTitle);
 }
 
 export default async function decorate(block) {
-  const news = await getNews();
-  createNewsOverview(news, block);
+  const config = readBlockConfig(block);
+  const limit = parseInt(config.limit, 10) || 10;
+  const paginationLimit = parseInt(config.paginationLimit, 9) || 9;
+  const news = await fetchNews();
+  // console.log(`found ${news.length} news`);
+  createNewsOverview(block, news, limit, paginationLimit);
 }

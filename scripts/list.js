@@ -1,77 +1,71 @@
 import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
 
+const classPanelTitle = 'panel-title';
+const classListFilter = 'list-filter';
+const classFilterOpen = 'open';
+const classFilterSelect = 'filter-select';
+const classDropdownToggle = 'dropdown-toggle';
+const classDropdownMenu = 'dropdown-menu';
+
 function getSelectionFromUrl(field) {
   return (
     toClassName(new URLSearchParams(window.location.search).get(field)) || ''
   );
 }
 
-function createPaginationLink(page, label) {
-  const newUrl = new URL(window.location);
+function createPaginationLink(page, current, label) {
   const listElement = document.createElement('li');
-  const link = document.createElement('a');
-  newUrl.searchParams.set('page', page);
-  link.href = newUrl.toString();
-  link.innerText = label || page;
-  listElement.append(link);
+  listElement.classList.add('pager-item');
+  if (page === current) {
+    listElement.classList.add('current');
+    listElement.innerText = page;
+  } else {
+    const newUrl = new URL(window.location);
+    const link = document.createElement('a');
+    newUrl.searchParams.set('page', page);
+    link.href = newUrl.toString();
+    link.innerText = label || page;
+    listElement.append(link);
+  }
   return listElement;
 }
 
-export function renderPagination(entries, page, limit) {
+export function renderPagination(entries, page, limit, limitForPagination) {
   const listPagination = document.createElement('div');
-  listPagination.className = 'pagination';
+  listPagination.className = 'list-pagination';
+
+  const navPagination = document.createElement('nav');
+  navPagination.className = 'nav-pagination';
 
   if (entries.length > limit) {
     const maxPages = Math.ceil(entries.length / limit);
+    let startIdx = Math.min(page, (maxPages - limitForPagination + 1));
+    if (startIdx < 0) startIdx = 1;
 
-    const listSize = document.createElement('div');
-    listSize.classList.add('size');
-    if (entries.length > 10) {
-      listSize.textContent = `Seite ${page} von ${maxPages}`;
+    let endIdx = maxPages;
+    if ((startIdx + limitForPagination) <= (maxPages)) {
+      endIdx = (startIdx + limitForPagination - 1);
     }
 
-    const listPageLinks = document.createElement('div');
-    listPageLinks.classList.add('pages');
     const list = document.createElement('ol');
-    listPageLinks.append(list);
+    list.classList.add('pagination');
     if (page > 1) {
-      list.append(createPaginationLink(page - 1, 'Prev'));
-      list.append(createPaginationLink(1));
+      list.append(createPaginationLink(1, page, '«'));
+      list.append(createPaginationLink(page - 1, page, '‹'));
     }
-    if (page > 3) {
-      const dots = document.createElement('li');
-      dots.innerText = '...';
-      list.append(dots);
-    }
-    if (page === maxPages) {
-      list.append(createPaginationLink(page - 2));
-    }
-    if (page > 2) {
-      list.append(createPaginationLink(page - 1));
-    }
-
-    const currentPage = document.createElement('li');
-    currentPage.classList.add('current');
-    currentPage.innerText = page;
-    list.append(currentPage);
-
-    if (page < maxPages - 1) {
-      list.append(createPaginationLink(page + 1));
-    }
-    if (page === 1) {
-      list.append(createPaginationLink(page + 2));
-    }
-    if (page + 2 < maxPages) {
-      const dots = document.createElement('li');
-      dots.innerText = '...';
-      list.append(dots);
+    // eslint-disable-next-line no-plusplus
+    for (let i = startIdx; i <= endIdx; i++) {
+      list.append(createPaginationLink(i, page));
     }
     if (page < maxPages) {
-      list.append(createPaginationLink(maxPages));
-      list.append(createPaginationLink(page + 1, 'Next'));
+      list.append(createPaginationLink(page + 1, page, '›'));
+    }
+    if (page < maxPages) {
+      list.append(createPaginationLink(maxPages, page, '»'));
     }
 
-    listPagination.append(listSize, listPageLinks);
+    navPagination.append(list);
+    listPagination.append(navPagination);
   }
   return listPagination;
 }
@@ -88,27 +82,27 @@ function getActiveFilters() {
 }
 
 function renderListItem({
-  path, title, description, image, newsDate,
+  path, title, image, newsDate,
 }) {
-  const imageElement = createOptimizedPicture(image, title, false, [
-    { width: '500' },
-  ]);
-
   const listItemElement = document.createElement('article');
   listItemElement.classList.add('list-item');
-  listItemElement.innerHTML = `
+
+  const hasImage = (!image.startsWith('/default-meta-image.png'));
+  if (hasImage) {
+    const imageElement = createOptimizedPicture(image, title, false, [
+      { width: '500' },
+    ]);
+    listItemElement.innerHTML = `
       <div class="image">
         <a href="${path}" title="${title}">
           ${imageElement.outerHTML}
         </a>
-      </div>    
+      </div>`;
+  }
+  listItemElement.innerHTML += `
       <div class="content">
-        <p>${newsDate}</p>
+        <cite>${newsDate}</cite>  
         <h3><a title="${title}" href="${path}">${title}</a></h3>
-        <p>${description}</p>
-      </div>
-      <div class="details">
-        <a href="${path}">Details</a>
       </div>
     `;
   return listItemElement;
@@ -124,65 +118,82 @@ function addItemsToList(data, customListItemRenderer, container) {
   });
 }
 
-function createButton(label) {
-  const container = document.createElement('div');
-  const buttons = document.createElement('p');
-  buttons.classList.add('button-container');
-  const button = document.createElement('button');
-  button.type = 'submit';
-  button.innerText = label;
-  button.className = 'button primary';
-  buttons.append(button);
-  container.append(buttons);
-  return container;
+function toggleFilter(event) {
+  const filterSelected = event.target.closest(`.${classFilterSelect}`);
+  const filterIsOpen = filterSelected.classList.contains(classFilterOpen);
+  const menu = filterSelected.querySelector(`.${classDropdownMenu}`);
+  if (filterIsOpen) {
+    filterSelected.classList.remove(classFilterOpen);
+    menu.classList.remove(classFilterOpen);
+  } else {
+    filterSelected.classList.add(classFilterOpen);
+    menu.classList.add(classFilterOpen);
+  }
 }
 
 function createDropdown(options, selected, name, placeholder) {
   const container = document.createElement('div');
-  const input = document.createElement('select');
-  input.name = name;
+  container.classList.add(classFilterSelect);
+  if (name) {
+    container.setAttribute('name', name);
+  }
   if (placeholder) {
-    const optionTag = document.createElement('option');
-    optionTag.innerText = placeholder;
-    optionTag.value = '';
-    if (!selected) {
-      optionTag.selected = true;
-    }
-    input.append(optionTag);
+    const btn = document.createElement('button');
+    btn.classList.add(classDropdownToggle);
+    btn.innerText = selected || placeholder;
+    btn.value = '';
+    btn.setAttribute('type', 'button');
+    btn.setAttribute('data-toggle', 'dropdown');
+    btn.setAttribute('aria-haspopup', true);
+    btn.setAttribute('aria-expanded', false);
+
+    btn.addEventListener('click', toggleFilter, false);
+
+    container.append(btn);
+
+    options.unshift(placeholder);
   }
 
+  const dropDown = document.createElement('div');
+  dropDown.classList.add(classDropdownMenu);
+
+  const newUrl = new URL(window.location);
+
   options.forEach((option) => {
-    const optionTag = document.createElement('option');
+    const optionTag = document.createElement('p');
     optionTag.innerText = option;
     optionTag.value = toClassName(option);
-    if (optionTag.value === selected) {
-      optionTag.selected = true;
+    const link = document.createElement('a');
+    if (option === placeholder) {
+      // reset all filters
+      [...newUrl.searchParams.keys()].forEach((key) => newUrl.searchParams.delete(key));
+    } else {
+      newUrl.searchParams.set('year', option);
     }
-    input.append(optionTag);
+    link.href = newUrl.toString();
+    link.append(optionTag);
+    dropDown.append(link);
   });
-  container.append(input);
+  container.append(dropDown);
   return container;
 }
 
-function renderFilters(data, createFilters) {
-  // render filters
+function renderFilters(container, data, createFilters, panelTitle) {
   const filter = document.createElement('div');
-  filter.className = 'list-filter';
-  const form = document.createElement('form');
-  form.method = 'get';
-  form.name = 'list-filter';
-  const formFieldSet = document.createElement('fieldset');
+  filter.className = classListFilter;
 
   const filters = createFilters(data, getActiveFilters(), createDropdown);
-
-  formFieldSet.append(
-    ...filters,
-  );
-
   if (filters.length > 0) {
-    formFieldSet.append(createButton('Suche starten'));
-    form.append(formFieldSet);
-    filter.append(form);
+    if (panelTitle) {
+      const header = document.createElement('h3');
+      header.className = classPanelTitle;
+      header.innerHTML = panelTitle;
+      container.append(header);
+    }
+
+    filter.append(
+      ...filters,
+    );
     return filter;
   }
 
@@ -194,7 +205,9 @@ export default function createList(
   filter,
   createFilters,
   limitPerPage,
+  limitForPagination,
   root,
+  panelTitle,
   customListItemRenderer,
 ) {
   loadCSS('../styles/list.css', () => {});
@@ -211,11 +224,11 @@ export default function createList(
   if (dataToDisplay) {
     const container = document.createElement('div');
     container.className = 'list';
-    const filterElements = renderFilters(data, createFilters);
-    const paginationElements = renderPagination(filteredData, page, limitPerPage);
-    container.append(filterElements, paginationElements);
+    const filterElements = renderFilters(container, data, createFilters, panelTitle);
+    container.append(filterElements);
     addItemsToList(dataToDisplay, customListItemRenderer, container);
-    container.append(paginationElements.cloneNode(true));
+    const pagination = renderPagination(filteredData, page, limitPerPage, limitForPagination);
+    container.append(pagination);
     root.append(container);
   }
 }

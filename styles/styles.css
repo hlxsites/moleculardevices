@@ -48,6 +48,8 @@
   --text-color: #34393d;
   --text-white: #fff;
   --text-gray: #6a747c;
+  --text-light-gray: #adb3b7;
+  --text-dark-gray: #333å;
   --heading-color: #00758d;
   --text-green: #6eb43f;
   --link-color: #337ab7;
@@ -91,6 +93,7 @@
   --body-font-size-m: 18px;
   --body-font-size-s: 16px;
   --body-font-size-xs: 14px;
+  --list-font-size-m: 20px;
 
   /* nav height */
   --nav-height: 156px;
