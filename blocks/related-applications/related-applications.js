@@ -1,5 +1,3 @@
-// import { customDecorateIcons, decorateLinkedPictures } from '../../scripts/scripts.js';
-
 async function getFragmentHtml(path) {
   const response = await fetch(`${path}.plain.html`);
   if (!response.ok) {
@@ -17,8 +15,6 @@ async function getFragmentHtml(path) {
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
-  // decorateLinkedPictures(element);
-  // await customDecorateIcons(element);
   block.append(fragment);
 }
 
@@ -35,15 +31,12 @@ export default async function decorate(block) {
       const fragmentHtml = await getFragmentHtml(path);
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
-      console.log(fragmentElement)
       const h1 = fragmentElement.querySelector('h1');
-      console.log(h1)
-      return { id: h1.id, title: h1.textContent, html: fragmentElement }
+      return { id: h1.id, title: h1.textContent, html: fragmentElement };
     }
   }));
 
   fragments.sort((a, b) => a.title > b.title);
-  console.log(fragments)
 
   const apps = document.createElement('div');
   apps.classList.add('related-applications-container');
@@ -60,6 +53,5 @@ export default async function decorate(block) {
   block.append(links);
   block.append(apps);
 
-  console.log(block)
   return block;
 }

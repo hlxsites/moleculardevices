@@ -1,8 +1,3 @@
-.related-link ul li {
-  line-height: 21px;
-  margin-bottom: 10px;
-}
-
 .related-applications-container {
   display: flex;
   flex-wrap: wrap;
@@ -46,4 +41,9 @@
   object-fit: cover;
   height: auto;
   width: 100%;
+}
+
+.related-link ul li {
+  line-height: 21px;
+  margin-bottom: 10px;
 }
