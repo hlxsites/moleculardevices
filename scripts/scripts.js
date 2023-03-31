@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  loadHeader,
   loadFooter,
   decorateButtons,
   decorateIcons,
@@ -16,6 +15,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
+import loadHeader from './header-utils.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -73,6 +73,7 @@ async function loadBreadcrumbs(main) {
 /**
  * Builds all synthetic blocks in a container element.
  * Run named sections for in page navigation.
+ * Decroate named sections for in page navigation.
  * @param {Element} main The container element
  */
 function decoratePageNav(main) {
@@ -160,12 +161,28 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
+export function formatDate(dateStr) {
+  const parts = dateStr.split('/');
+  const date = new Date(parts[2], parts[0] - 1, parts[1]);
+
+  if (date) {
+    return date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+    });
+  }
+  return dateStr;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
+
   loadHeader(doc.querySelector('header'));
+
   await loadBlocks(main);
 
   const { hash } = window.location;

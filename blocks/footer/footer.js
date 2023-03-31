@@ -1,24 +1,33 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 
-function switchGroup(selectionTitle, position) {
-  [...selectionTitle.parentElement.children].forEach((h3) => {
-    if (h3 !== selectionTitle) {
-      h3.classList.add('off');
-      h3.classList.remove('on');
-    } else {
-      h3.classList.add('on');
-      h3.classList.remove('off');
-    }
+function toggleNewsEvents(container, target) {
+  if (!target.parentElement.classList.contains('on')) {
+    const items = container.querySelectorAll('.toggle');
+    [...items].forEach((item) => {
+      item.classList.toggle('on');
+    });
+  }
+}
+
+function addEventListeners(container) {
+  const h3s = container.querySelectorAll('h3');
+  [...h3s].forEach((h3) => {
+    h3.addEventListener('click', (e) => {
+      toggleNewsEvents(container, e.target);
+    });
   });
-  const blockDiv = selectionTitle.closest('.footer-news-events');
-  [...blockDiv.children].forEach((div) => {
-    div.classList.add('off');
-    div.classList.remove('on');
+}
+
+function buildNewsEvents(container) {
+  [...container.children].forEach((row) => {
+    [...row.children].forEach((column, i) => {
+      column.classList.add('toggle');
+      if (i === 0) {
+        column.classList.add('on');
+      }
+    });
   });
-  blockDiv.children[0].classList.add('on');
-  blockDiv.children[0].classList.remove('off');
-  blockDiv.children[position].classList.add('on');
-  blockDiv.children[position].classList.remove('off');
+  addEventListeners(container);
 }
 
 /**
@@ -36,28 +45,25 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
 
-  const titles = footer.querySelectorAll('.footer-news-events h3');
-  [...titles].forEach((title, i) => {
-    const a = document.createElement('a');
-    a.textContent = title.textContent;
-    a.setAttribute('aria-label', title.textContent);
-    title.textContent = '';
-    title.append(a);
-    title.querySelector('a').addEventListener('click', () => {
-      switchGroup(title, i + 1);
-    });
-  });
+  const footerWrap = document.createElement('div');
+  const footerBottom = document.createElement('div');
+  footerWrap.classList.add('footer-wrap');
+  footerBottom.classList.add('footer-bottom');
+  block.appendChild(footerWrap);
+  block.appendChild(footerBottom);
 
-  const blockDiv = footer.querySelector('.footer-news-events');
-  [...blockDiv.children].forEach((div) => {
-    const pars = div.querySelectorAll('p');
-    const par = pars.item(pars.length - 1);
-    if (par) {
-      par.innerHTML
-        += "<span class='icon-icon_link'></span>";
+  [...footer.children].forEach((row, i) => {
+    row.classList.add(`row-${i + 1}`);
+    if (i <= 3) {
+      footerWrap.appendChild(row);
+    } else {
+      footerBottom.appendChild(row);
     }
   });
 
-  await decorateIcons(footer);
+  const footerNewsEvents = block.querySelector('.footer-news-events');
+  buildNewsEvents(footerNewsEvents);
+
   block.append(footer);
+  await decorateIcons(block);
 }

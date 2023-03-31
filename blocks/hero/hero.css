@@ -7,7 +7,7 @@ main .hero-container {
   padding: 0;
 }
 
-main .hero-container > div {
+main .hero-wrapper {
   max-width: unset;
 }
 
