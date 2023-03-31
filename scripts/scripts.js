@@ -72,11 +72,33 @@ async function loadBreadcrumbs(main) {
 
 /**
  * Builds all synthetic blocks in a container element.
+ * Run named sections for in page navigation.
  * @param {Element} main The container element
  */
-async function buildAutoBlocks(main) {
+function decoratePageNav(main) {
+  const sections = [...main.querySelectorAll('div.section')].slice(1);
+  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
+
+  if (namedSections) {
+    let index = 0;
+    sections.forEach((section) => {
+      if (index < namedSections.length) {
+        section.classList.add('tabs');
+        section.setAttribute('aria-labelledby', namedSections[index].getAttribute('data-name'));
+        if (section.hasAttribute('data-name')) {
+          index += 1;
+        }
+      }
+    });
+  }
+}
+
+/**
+ * Run template specific decoration code.
+ * @param {Element} main The container element
+ */
+async function decorateTemplates(main) {
   try {
-    // buildHeroBlock(main);
     const template = toClassName(getMetadata('template'));
     const templates = TEMPLATE_LIST;
     if (templates.includes(template)) {
@@ -101,8 +123,9 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
+  decorateTemplates(main);
   decorateSections(main);
+  decoratePageNav(main);
   decorateBlocks(main);
   createBreadcrumbsSpace(main);
 }
