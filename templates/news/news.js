@@ -1,23 +1,14 @@
 import { formatDate } from '../../scripts/scripts.js';
 
-const { buildBlock, decorateBlock, loadBlock } = await import('../../scripts/lib-franklin.js');
-
-function getPublicationDateFromMetaData() {
-  let dateStr = '';
-  const dtElem = document.querySelector('head meta[name="publication-date"]');
-  if (dtElem) {
-    if (dtElem.getAttribute('content')) {
-      dateStr = formatDate(dtElem.getAttribute('content'));
-    }
-  }
-  return dateStr;
-}
+const {
+  getMetadata, buildBlock, decorateBlock, loadBlock,
+} = await import('../../scripts/lib-franklin.js');
 
 function decorateCite(parentElem) {
-  const dt = getPublicationDateFromMetaData();
+  const dt = getMetadata('publication-date');
   if (dt) {
     const cite = document.createElement('cite');
-    cite.innerHTML = dt;
+    cite.innerHTML = formatDate(dt);
     parentElem.append(cite);
   }
 }
@@ -72,7 +63,7 @@ export function decorateAutoBlock(content) {
   const contentWrapper = document.createElement('div');
   contentWrapper.classList.add('content-wrapper');
 
-  const hasLeftCol = document.querySelector('main .section > .default-content-wrapper :nth-child(2) picture');
+  const hasLeftCol = content.querySelector(':first-child p > picture');
   const pic = document.createElement('div');
   if (hasLeftCol) {
     pic.classList.add('left-col');
@@ -105,6 +96,6 @@ export function decorateAutoBlock(content) {
 }
 
 export default function buildAutoBlocks() {
-  const content = document.querySelector('main .section > .default-content-wrapper');
+  const content = document.querySelector('main div');
   decorateAutoBlock(content);
 }

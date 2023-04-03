@@ -28,16 +28,16 @@ describe('News Template', () => {
   });
 
   it('Tests decorating of elements', async () => {
-    const title = document.querySelector('.default-content-wrapper > h1');
+    const title = document.querySelector('h1');
     expect(title.innerHTML.trim()).to.equal('Title');
 
-    const evnt = document.querySelector('.default-content-wrapper > cite');
+    const evnt = document.querySelector('cite');
     expect(evnt.innerHTML.trim()).to.equal('Jan 04, 2023');
 
-    const picture = document.querySelector('.default-content-wrapper > .content-wrapper > .left-col');
+    const picture = document.querySelector('.content-wrapper > .left-col');
     expect(picture.innerHTML.trim()).to.equal('<p><picture><img></picture></p>');
 
-    const textWrapper = document.querySelector('.default-content-wrapper > .content-wrapper > .right-col');
+    const textWrapper = document.querySelector('.content-wrapper > .right-col');
     expect(textWrapper.innerHTML.trim()).to.equal('<p>text 1</p><p><em>text 2</em></p><p><picture><img></picture></p><p class="text-caption"><em>text 3</em></p><p>text 4</p>');
   });
 
