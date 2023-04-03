@@ -3,7 +3,7 @@
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
-  margin-top: -10px;
+  /* margin-top: -10px; */
   padding: 0;
 }
 
@@ -66,7 +66,7 @@ main .hero h6:first-child {
   margin-top: 0;
 }
 
-main .hero picture {
+main .hero .hero-background {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -116,55 +116,73 @@ main .hero .container > div:nth-child(2) .button-container {
 /* Blog Variant */
 .blog main .hero-wrapper {
   margin-bottom: 60px;
+  position: relative;
 }
 
 main .hero.blog {
-  height: calc(100vh - var(--nav-height) + 10px);
+  padding: 0 0 40% 0;
+  height: 555px;
   overflow: hidden;
+  background-image: linear-gradient(to bottom,rgba(255,255,255,0) 55%,rgba(0,0,0,.9));
 }
 
-main .hero.blog h1 {
+.blog main .hero-wrapper h1 {
   font-family: var(--ff-proxima-regular);
   font-size: 48px;
+  line-height: 1;
+  margin-top: 20px;
+  margin-bottom: 35px;
 }
 
-main .hero.blog .sticker picture {
-  right: 15px;
+main .hero.blog .sticker {
+  width: auto;
   position: absolute;
-  left: auto;
-  top: 46px;
+  right: 15px;
+  bottom: 15px;
 }
 
 main .hero.blog .sticker img {
-  object-fit: none;
-  width: unset;
-  height: unset;
+  width: auto;
+  height: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  main .hero.blog .sticker img {
+    width: 130px;
+  }
 }
 
 main .hero.blog .breadcrumbs {
   position: relative;
 }
 
-main .hero.blog .container {
+main .hero.blog .breadcrumbs > ol {
+  position: absolute;
+}
+
+.blog main .hero-wrapper {
+  color: white;
+}
+
+.blog main .hero-wrapper .container {
   position: absolute;
   bottom: 35px;
   left: 50%;
   transform: translate(-50%, 0);
-  max-width: 700px;
+  width: 700px;
   justify-content: center;
   text-align: center;
   padding: 0;
 }
 
-main .hero.blog .container > div {
-  padding: 0;
-}
-
-main .hero.blog .container .metadata {
+.blog main .hero-wrapper .container .metadata {
   clear: both;
   display: flex;
+  justify-content: center;
   gap: 15px;
   font-size: 14px;
+  margin-bottom: 10px;
+  padding: 2.5px 0;
 }
 
 @media (max-width: 767px) {
@@ -207,6 +225,52 @@ main .hero.blog .container .metadata {
 
   main .hero .button-container a {
     padding: 9px 12px 10px;
+  }
+
+  .blog main .hero-wrapper {
+    color: inherit;
+    margin-bottom: 90px;
+  }
+
+  .blog main .hero-wrapper .container {
+    width: 100%;
+    position: static;
+    transform: none;
+    padding: 0 15px;
+    margin-top: 83px;
+  }
+
+  .blog main .hero-wrapper .container .metadata {
+    flex-direction: column;
+    gap: 0
+  }
+
+  .blog main .hero-wrapper .container .metadata > div {
+    padding: 6px;
+  }
+
+  .blog main .hero-wrapper .container .metadata i {
+    margin-right: 20px;
+  }
+
+  .blog main .hero-wrapper h1 {
+    font-family: var(--ff-proxima-light);
+    font-size: 36px;
+    line-height: 1;
+    margin-top: 20px;
+    margin-bottom: 33px;
+  }
+
+  main .hero.blog {
+    background-image: none;
+    min-height: 398px;
+    padding: 0;
+    height: unset;
+  }
+
+  main .hero.blog .sticker {
+    top: 86px;
+    right: 15px;
   }
 }
 
