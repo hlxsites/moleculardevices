@@ -1,3 +1,8 @@
+function tabQueryString(tabID) {
+  const newurl = `${window.location.origin}${window.location.pathname}?region=${tabID}`;
+  window.history.pushState({ path: newurl }, '', newurl);
+}
+
 /* ================ TAB HANDLER ===================== */
 function tabHandler(event) {
   event.preventDefault();
@@ -5,6 +10,8 @@ function tabHandler(event) {
   const tabID = this.href.split('#')[1];
   const tabContents = document.querySelectorAll('.tab-content');
   const tabCount = this.parentElement.children.length;
+
+  tabQueryString(tabID);
 
   /* eslint no-plusplus: "error" */
   for (let i = 0; i < tabCount; i += 1) {
@@ -76,9 +83,7 @@ function createAccordian(tab, plusIcon, index) {
 
 const parent = document.querySelector('.regional-contacts-wrapper');
 const nextChild = parent.querySelector('.regional-contacts');
-const regionalTabs = parent.querySelectorAll(
-  '.regional-contacts > div > div:first-child',
-);
+const regionalTabs = parent.querySelectorAll('.regional-contacts > div > div:first-child');
 
 /* create tab wrapper */
 const tabWrapper = document.createElement('div');
@@ -140,4 +145,23 @@ regionalTabs.forEach((tab, index) => {
     }
   }
 });
+
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+const tabID = params.region ? params.region : 'americas';
+document.querySelector(`a[href="#${tabID}"]`).click();
+tabQueryString(tabID);
+
+const localTeamText = document.querySelectorAll('.tab-accordian-wrapper div:nth-child(odd) li');
+const txt = 'Contact Local Team';
+
+/* eslint operator-linebreak: ["error", "after"] */
+const updatedTxt =
+  '<a href="javascript:void(0);" title="Contact Local Team">Contact Local Team</a>';
+
+/* eslint no-return-assign: "error" */
+localTeamText.forEach(
+  (localText) => (localText.innerHTML = localText.innerHTML.replaceAll(txt, updatedTxt)),
+);
 /* ================ TAB HANDLER ===================== */
