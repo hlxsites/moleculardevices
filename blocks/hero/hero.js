@@ -15,7 +15,7 @@ function addMetadata(container) {
   publishDateContainer.innerHTML = `
     <i class="fa fa-calendar"></i>
     <span class="blog-publish-date">${publishDate}</span>
-  `
+  `;
   metadataContainer.appendChild(publishDateContainer);
 
   const author = getMetadata('author');
@@ -24,7 +24,7 @@ function addMetadata(container) {
     authorContainer.innerHTML = `
       <i class="fa fa-user"></i>
       <span class="blog-author">${author}</span>
-    `
+    `;
     metadataContainer.appendChild(authorContainer);
   }
 
@@ -35,7 +35,7 @@ function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
-  sticker.href = "/lab-notes";
+  sticker.href = '/lab-notes';
 
   const stickerPicture = document.createElement('picture');
   stickerPicture.innerHTML = `

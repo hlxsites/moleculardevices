@@ -3,7 +3,7 @@
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
-  /* margin-top: -10px; */
+  margin-top: -10px;
   padding: 0;
 }
 
@@ -113,17 +113,19 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-/* Blog Variant */
+/* Blog Variant - Desktop -- Start */
 .blog main .hero-wrapper {
+  margin-top: 0;
   margin-bottom: 60px;
   position: relative;
+  color: var(--text-white);
 }
 
 main .hero.blog {
-  padding: 0 0 40% 0;
+  padding: 0 0 40%;
   height: 555px;
   overflow: hidden;
-  background-image: linear-gradient(to bottom,rgba(255,255,255,0) 55%,rgba(0,0,0,.9));
+  background-image: linear-gradient(to bottom,rgba(255 255 255 / 0%) 55%,rgba(0 0 0 / 90%));
 }
 
 .blog main .hero-wrapper h1 {
@@ -146,12 +148,6 @@ main .hero.blog .sticker img {
   height: auto;
 }
 
-@media only screen and (max-width: 1200px) {
-  main .hero.blog .sticker img {
-    width: 130px;
-  }
-}
-
 main .hero.blog .breadcrumbs {
   position: relative;
 }
@@ -160,17 +156,12 @@ main .hero.blog .breadcrumbs > ol {
   position: absolute;
 }
 
-.blog main .hero-wrapper {
-  color: white;
-}
-
 .blog main .hero-wrapper .container {
   position: absolute;
   bottom: 35px;
   left: 50%;
   transform: translate(-50%, 0);
   width: 700px;
-  justify-content: center;
   text-align: center;
   padding: 0;
 }
@@ -184,6 +175,14 @@ main .hero.blog .breadcrumbs > ol {
   margin-bottom: 10px;
   padding: 2.5px 0;
 }
+
+@media only screen and (max-width: 1200px) {
+  main .hero.blog .sticker img {
+    width: 130px;
+  }
+}
+
+/* Blog Variant - Desktop -- End */
 
 @media (max-width: 767px) {
   main .hero {
@@ -227,6 +226,7 @@ main .hero.blog .breadcrumbs > ol {
     padding: 9px 12px 10px;
   }
 
+  /* Blog Variant - Mobile -- Start */
   .blog main .hero-wrapper {
     color: inherit;
     margin-bottom: 60px;
@@ -252,6 +252,7 @@ main .hero.blog .breadcrumbs > ol {
     gap: 0
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
     padding: 6px;
@@ -261,6 +262,7 @@ main .hero.blog .breadcrumbs > ol {
     margin-right: 20px;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper h1 {
     font-family: var(--ff-proxima-light);
     font-size: 36px;
@@ -280,6 +282,8 @@ main .hero.blog .breadcrumbs > ol {
     top: 86px;
     right: 15px;
   }
+
+  /* Blog Variant - Mobile -- End */
 }
 
 @media (min-width: 768px) {
