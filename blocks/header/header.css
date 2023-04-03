@@ -473,7 +473,7 @@ header .cards-submenu p {
   margin-top: 0;
 }
 
-header .cards-submenu p:has(img) {
+header .cards-submenu p:has(picture) {
   background-color: var(--text-white);
   min-height: 114px;
   overflow: hidden;
