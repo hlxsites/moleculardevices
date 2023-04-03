@@ -20,7 +20,8 @@ async function renderFragment(fragment, block, className) {
 }
 
 export default async function decorate(block) {
-  const fragmentPaths = [...block.querySelectorAll('ul li a')].map((a) => a.href);
+  const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
+  const hasTOC = block.classList.contains('toc');
   block.innerHTML = '';
 
   if (fragmentPaths.length === 0) {
@@ -54,9 +55,11 @@ export default async function decorate(block) {
   links.classList.add('related-links-container');
 
   sortedFragments.forEach((fragment) => {
-    const linkFragment = document.createElement('li');
-    linkFragment.innerHTML = `<a href="#${fragment.id}">${fragment.title}</a>`;
-    renderFragment(linkFragment, links, 'related-link');
+    if (hasTOC) {
+      const linkFragment = document.createElement('li');
+      linkFragment.innerHTML = `<a href="#${fragment.id}">${fragment.title}</a>`;
+      renderFragment(linkFragment, links, 'related-link');
+    }
     renderFragment(fragment.html, apps, 'related-application');
   });
 
