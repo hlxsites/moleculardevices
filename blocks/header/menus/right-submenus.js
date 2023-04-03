@@ -48,10 +48,7 @@ function buildCardsMenu(cardContent) {
 }
 
 function buildTextSubmenu(textContent) {
-  const textSubmenu = document.createElement('div');
-  textSubmenu.classList.add('right-submenu-content');
-  textSubmenu.innerHTML = textContent.innerHTML;
-  return textSubmenu;
+  return textContent;
 }
 
 function getRightSubmenuBuilder(className) {
