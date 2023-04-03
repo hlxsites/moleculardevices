@@ -8,6 +8,13 @@ function wrapLinkAroundComponent(link, component) {
   return linkCopy;
 }
 
+function buildLargeCardsMenu(cardContent) {
+  const link = cardContent.querySelector('a');
+  const img = cardContent.querySelector('picture');
+  wrapLinkAroundComponent(link, img);
+  return cardContent;
+}
+
 function buildCardsMenu(cardContent) {
   // remove all <div><ul><li></li></ul></div> from cardContent
   // sharepoint is generating empty lists in some elements, so we need to remove them
@@ -55,10 +62,11 @@ function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
   map.set('text-submenu', buildTextSubmenu);
+  map.set('large-card-submenu', buildLargeCardsMenu);
   return map.get(className);
 }
 
-export default function buildRightSubmenu(h2) {
+export default function buildRightSubmenu(contentHeader) {
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const rightSubmenuWrapper = document.createElement('div');
   rightSubmenuWrapper.classList.add('right-submenu');
@@ -67,10 +75,10 @@ export default function buildRightSubmenu(h2) {
   const rightSubmenuRow = document.createElement('div');
   rightSubmenuRow.classList.add('right-submenu-row', 'flex-space-between');
 
-  // get div in the parent of the H2
-  const h2ParentDiv = h2.parentElement;
+  // get div in the parent of the H2/H1 header
+  const headerParentDiv = contentHeader.parentElement;
   // get all divs with a class right-submenu
-  const rightSubmenus = [...h2ParentDiv.querySelectorAll('.right-submenu-content')];
+  const rightSubmenus = [...headerParentDiv.querySelectorAll('.right-submenu-content')];
 
   // add all right-submenu divs to the H2
   rightSubmenus.forEach((rightSubmenu) => {

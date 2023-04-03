@@ -124,7 +124,7 @@ header .company-links ul li {
 }
 
 
-header .large-card ul > li {
+header .large-card-submenu ul > li {
   display: list-item;
   float: left;
   border: 0;
@@ -137,7 +137,7 @@ header .large-card ul > li {
   color: var(--background-color);
 }
 
-header .large-card h3 {
+header .large-card-submenu h3 {
   border: 0;
   color: var(--background-color);
   padding: 0;
@@ -149,7 +149,7 @@ header .large-card h3 {
   margin-bottom: 10px;
 }
 
-header .large-card h3 a {
+header .large-card-submenu h3 a {
   color: var(--header-mega-menu-green);
   text-decoration: none;
   text-transform: initial;
@@ -397,7 +397,7 @@ header .nav-tabs .menu-nav-submenu-head {
   width: 50%;
 }
 
-header .large-card ul {
+header .large-card-submenu ul {
   padding: 0;
   width: 45%;
   position: relative;
@@ -454,7 +454,7 @@ header .flex-space-between {
   justify-content: space-between;
 }
 
-header .large-card {
+header .large-card-submenu {
   background-size: 250px;
   color: var(--background-color);
   background-position: 110% 154%;
@@ -470,7 +470,7 @@ header .large-card {
   height: 470px;
 }
 
-header .large-card img {
+header .large-card-submenu img {
   right: 0;
   width: 50%;
   max-height: 250px;
@@ -511,7 +511,7 @@ header .cutted-green-blue-circle {
   background-image: url('../../images/header-menus/cutted-green-blue-circle.png');
 }
 
-header .large-card img:hover {
+header .large-card-submenu img:hover {
   cursor: pointer;
   transform: scale(1.2);
 }
@@ -808,7 +808,7 @@ header .text-submenu ul > li > a:hover {
     font-size: 12px;
   }
 
-  header .large-card {
+  header .large-card-submenu {
     height: 360px;
   }
 
