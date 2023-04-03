@@ -121,6 +121,19 @@
   padding-left: 70px;
 }
 
+.columns.columns-3-cols {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.columns.columns-3-cols > div {
+  padding: 0 20px 20px;
+}
+
+.columns.columns-3-cols > div > div {
+  margin-left: 0;
+}
+
 @media (min-width: 768px) {
   .columns > div {
     align-items: center;
@@ -150,6 +163,15 @@
   .columns.contact > div > div > ul,
   .columns.contact > div > div > ol {
     padding: 0 15px;
+  }
+
+  .columns-3-cols {
+    display: flex;
+  }
+
+  .columns.columns-3-cols > div {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
   }
 }
 
@@ -235,3 +257,37 @@
 }
 
 /* MEDIA COLUMN */
+
+.section.columns-container .columns > div {
+  align-items: flex-start;
+}
+
+.section.columns-container .columns > div h3 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+.section .columns.collaboration > div {
+  display: block;
+  text-align: center;
+}
+
+.section .columns.collaboration > div picture,
+.section .columns.collaboration > div img {
+  display: block;
+  margin: auto;
+}
+
+.section .columns.collaboration > div img {
+  width: auto;
+}
+
+.section .columns.collaboration > div h3 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-green);
+  font-family: inherit;
+}
+
+.section .columns.collaboration > div h3 strong{
+  font-family: inherit;
+}
