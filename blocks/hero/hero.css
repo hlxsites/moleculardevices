@@ -114,6 +114,10 @@ main .hero .container > div:nth-child(2) .button-container {
 }
 
 /* Blog Variant - Desktop -- Start */
+.blog main .hero-container {
+  margin-top: 0;
+}
+
 .blog main .hero-wrapper {
   margin-top: 0;
   margin-bottom: 60px;
