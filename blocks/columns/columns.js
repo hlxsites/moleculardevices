@@ -30,6 +30,6 @@ export default function decorate(block) {
   if (vidUrl) {
     const vidParent = vidUrl.closest('div');
     let vidId = vidUrl.href.split('/').pop();
-    createVidyardHtml('inline', vidId, vidParent);
+    createVidyardHtml('lightbox', vidId, vidParent);
   }
 }
