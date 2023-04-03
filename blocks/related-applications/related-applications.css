@@ -7,7 +7,7 @@
   column-count: 2;
 }
 
-.related-links-container.cols-3 {
+.cols-3 {
   column-count: 3;
 }
 
@@ -18,15 +18,18 @@
 }
 
 .related-link  {
-  padding: 5px;
+  line-height: 21px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 992px) {
   .related-app {
     flex-basis: 100%;
   }
+}
 
-  .related-links-container {
+@media (max-width: 767px) {
+  .related-links-container, .related-links-container.cols-3 {
     column-count: 1;
   }
 }
@@ -45,9 +48,4 @@
   object-fit: cover;
   height: auto;
   width: 100%;
-}
-
-.related-link ul li {
-  line-height: 21px;
-  margin-bottom: 10px;
 }
