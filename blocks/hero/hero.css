@@ -229,7 +229,7 @@ main .hero.blog .breadcrumbs > ol {
 
   .blog main .hero-wrapper {
     color: inherit;
-    margin-bottom: 90px;
+    margin-bottom: 60px;
   }
 
   .blog main .hero-wrapper .container {
@@ -241,11 +241,19 @@ main .hero.blog .breadcrumbs > ol {
   }
 
   .blog main .hero-wrapper .container .metadata {
+    padding-left: 40px;
+    text-align: left;
+    max-width: 236px;
     flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin: 0 auto;
+    line-height: 1.2;
     gap: 0
   }
 
   .blog main .hero-wrapper .container .metadata > div {
+    display: flex;
     padding: 6px;
   }
 
@@ -257,7 +265,7 @@ main .hero.blog .breadcrumbs > ol {
     font-family: var(--ff-proxima-light);
     font-size: 36px;
     line-height: 1;
-    margin-top: 20px;
+    margin-top: 0;
     margin-bottom: 33px;
   }
 
