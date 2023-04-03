@@ -3,7 +3,7 @@ header {
   position: relative;
   z-index: 500;
   top: 0;
-  background: #fff;
+  background: var(--background-color);
   width: 100%;
 }
 
@@ -12,7 +12,8 @@ header .block {
   padding-bottom: 46px;
 }
 
-header .nav-tabs li {
+header .nav-tabs>li {
+  flex-grow: 1;
   float: left;
   border: 0;
   position: static;
@@ -45,9 +46,14 @@ header .navbar-header {
 /* Company Links (carrers/languages/...) */
 header .navbar-header > .company-links {
   position: absolute;
-  top: 34px;
-  right: -26px;
+  top: 45px;
+  right: -1px;
   display: none;
+}
+
+header .cards-submenu ul li {
+  float: none;
+  list-style: none;
 }
 
 header .company-links > ul {
@@ -56,19 +62,6 @@ header .company-links > ul {
   margin-bottom: 0;
   display: inline-block;
   margin-top: 0;
-}
-
-header .nav-tabs>li {
-  height: 46px;
-  flex-grow: 1;
-  float: left;
-  border: 0;
-  position: static;
-  display: block;
-  min-width: inherit !important;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
 }
 
 header .company-links > ul > li {
@@ -89,8 +82,8 @@ header .company-links img {
   width: 15px;
   background-position: center;
   display: inline-block;
-  margin-right: 5px;
-  vertical-align: center;
+  margin-right: 2px;
+  vertical-align: bottom;
   font-style: italic;
 }
 
@@ -101,8 +94,60 @@ header .company-links ul li {
   text-decoration: none;
 }
 
+
+header .large-card ul > li {
+  display: list-item;
+  float: left;
+  border: 0;
+  position: static;
+  min-width: inherit !important;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: 8px;
+  color: var(--background-color);
+}
+
+header .large-card h3 {
+  border: 0;
+  color: var(--background-color);
+  padding: 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-family: "Proxima Nova Regular", sans-serif;
+  margin-top: 0;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+header .large-card h3 a {
+  color: var(--header-mega-menu-green);
+  text-decoration: none;
+  text-transform: initial;
+}
+
+header .nav-tabs .menu-nav-submenu-section {
+  float: none;
+  border: 0;
+  position: static;
+  display: block;
+  min-width: inherit !important;
+  margin-bottom: 1px;
+  padding: 0;
+  box-shadow: none;
+  margin-left: -40px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
 header .company-links > ul > li:last-child {
   margin-right: 0;
+}
+
+header .nav-tabs .menu-nav-submenu-section:hover {
+  background-color: rgba(255 255 255 / 30%);
+  cursor: pointer;
 }
 
 /* Nav */
@@ -122,7 +167,7 @@ header .nav-tabs {
   margin-top: 0;
 }
 
-header .nav-tabs>li>div {
+header .nav-tabs .menu-nav-category {
   padding: 11px 0;
   text-transform: uppercase;
   text-align: left;
@@ -142,6 +187,9 @@ header nav .nav-sections {
   white-space: nowrap;
 }
 
+#header-logo {
+  height:73px;
+}
 
 header #header-logo picture {
   display: block;
@@ -155,14 +203,320 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
+/* submenus */
+header .nav-tabs .menu-nav-submenu-close {
+  background: url('../../icons/close-dropdown.svg') no-repeat center/contain;
+  top: 60px;
+  right: 20px;
+  border-radius: 100%;
+  padding: 8px;
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+}
+
+header .nav-tabs .menu-nav-submenu {
+  top: 100;
+  left: 0;
+  right: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: 0;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  position: absolute;
+  background: var(--background-color) url('/images/header-background-filler.jpg') no-repeat right bottom;
+}
+
+header .cards-submenu > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+header .cards-submenu > div > div {
+  margin: 0 10px 20px 0;
+  overflow: hidden;
+}
+
+header .cards-submenu img {
+  max-height: 114px;
+  margin: 0 auto;
+  padding: 12px 0;
+  width: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+header .col-4 > div > div {
+  flex-basis: calc(25% - 10px); /* 25% for 4 columns, minus 10px for margin */
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+header .cards-submenu ul {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+header .menu-nav-submenu h1 > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header .cards-submenu ul li a {
+  color: var(--text-white);
+  font-family: 'Proxima Nova Regular', sans-serif;
+  font-weight: 300;
+  line-height: 15px;
+  padding: 1px 5px;
+  display: block;
+  text-transform: none;
+}
+
+header .nav-tabs .menu-nav-submenu > div {
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  padding-top: 30px;
+}
+
+header .nav-tabs .menu-nav-submenu-section h2 {
+  border-bottom: 0;
+  color: var(--background-color);
+  font-size: 18px;
+  padding: 12px 20px 6px;
+  font-family:'Proxima Nova Light', sans-serif;
+  margin: 0 2px 0 0;
+}
+
+header .nav-tabs .menu-nav-submenu h1 {
+  font-size: 36px;
+  font-family: 'Proxima Nova Light', sans-serif;
+  color: var(--header-mega-menu-font-color);
+  border-bottom: 0;
+  padding: 9px 20px 6px;
+  margin: -10px 2px 0 0;
+  width: 330px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+header .nav-tabs .menu-nav-submenu h1:hover {
+  background-color: rgba(255 255 255 / 30%);
+  cursor: pointer;
+}
+
+header .nav-tabs .menu-nav-submenu-section > h2 > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header .nav-tabs .menu-nav-submenu-head {
+  background: transparent;
+  box-shadow: none !important;
+  position: absolute;
+  right: 0;
+  top: 75px;
+  transform: translateX(370px);
+  width: calc(100vh - 370px) !important;
+}
+
+.header .nav-tabs .head-submenu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .nav-tabs .head-submenu > div {
+  background-size: 250px;
+  color: var(--background-color);
+  height: 350px;
+  background-position: 110% 154%;
+  background-color: #161e2d;
+  position: relative;
+  padding-top: 20px;
+  width: 50%;
+}
+
+header .large-card ul {
+  padding: 0;
+  width: 45%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  font-family: Quicksand, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+  list-style-type: circle;
+}
+
+header .nav-tabs .menu-nav-submenu ul {
+  float: none;
+}
+
+header .nav-tabs .menu-nav-submenu-sections {
+  display: block;
+  border-right: 1px solid var(--header-mega-menu-border-color);
+  border-top: 1px solid var(--header-mega-menu-border-color);
+  width: 330px;
+  margin-top: 0;
+}
+
+header .nav-tabs .right-submenu {
+  background: transparent;
+  box-shadow: none !important;
+  position: absolute;
+  top: 75px;
+  transform: translateX(370px);
+  width: calc(100% - 370px) !important;
+  left: 0;
+  right: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: 0;
+  margin: 0 !important;
+  display: none;
+}
+
+header .nav-tabs .right-submenu-row {
+  width: 100%;
+  position: static;
+  min-height: 500px;
+  margin-left: 0;
+  margin-right: 0;
+  float: left;
+}
+
+header .flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+header .large-card {
+  background-size: 250px;
+  color: var(--background-color);
+  background-position: 110% 154%;
+  background-color: var(--header-mega-menu-product-cards-background-color);
+  background-repeat: no-repeat;
+  position: relative;
+  padding-top: 20px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 20px;
+  width: 60%;
+  float: left;
+  height: 470px;
+}
+
+header .large-card img {
+  right: 0;
+  width: 50%;
+  max-height: 250px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  transition: all .2s;
+}
+
+header .image-right {
+  background-position: 110% 154%;
+}
+
+header .image-right img {
+  position: absolute; 
+  bottom: -60px;
+}
+
+header .image-center  {
+  background-position: 50% 390%;
+  background-size: 80%;
+}
+
+header .image-center img {
+  transform: scale(1);
+  position: relative;
+  width: 185px;
+  bottom: -100px;
+  min-height: 200px;
+  margin-left: 30px;
+}
+
+header .green-blue-circle {
+  background-image: url('../../images/header-menus/green-blue-circle.png');
+}
+
+header .cutted-green-blue-circle {
+  background-image: url('../../images/header-menus/cutted-green-blue-circle.png');
+}
+
+header .large-card img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+header .right-submenu-content {
+  width: 100%;
+}
+
+header .cards-submenu p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+header .cards-submenu p:nth-child(1) {
+  background-color: var(--text-white);
+  min-height: 114px;
+  overflow: hidden;
+}
+
+header .cards-submenu p:nth-child(2) a {
+  color: var(--text-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: var(--text-gray);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 2px 5px;
+}
+
+header .white-background p:nth-child(2) a {
+  background-color: var(--text-white);
+  color: var(--text-gray);
+}
+
+header .cards-submenu .expanded-image img {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+header .cards-submenu ul li a:hover {
+  color: var(--text-white);
+  text-decoration: underline;
+}
+
 @media (min-width: 768) {
   header .container {
     width: 750px;
   }
 
   header .navbar-header {
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    padding:30px 0 20px;
   }
 }
 
@@ -170,22 +524,27 @@ header nav .nav-tools {
   header nav {
     justify-content: space-between;
   }
-
-  header nav[aria-expanded=true] {
-    min-height: 0;
-    overflow: visible;
-  }
 }
 
 @media (max-width: 991px) {
+  header .block {
+    padding: 0;
+  }
+
   header .navbar-header {
     position: relative;
     padding: 20px 15px;
     width: 100%;
     margin: 0;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 
-  header #header-logo picture {
+  #header-logo {
+    height: auto;
+  }
+
+  header #header-logo img {
     max-width: 100px;
     max-height: 22px;
     height: auto;
@@ -198,15 +557,34 @@ header nav .nav-tools {
   }
 
   header .navbar-header {
-    padding: 20px 0 10px;
+    padding: 30px 0 21px;
     min-height: 90px;
     width: 100%;
     display: flex;
-    margin: 10px 0 20px;
   }
 
   header .navbar-header > .company-links {
     display: block;
+  }
+
+  header .nav-tabs li > a {
+    padding: 11px 0;
+    text-transform: uppercase;
+    text-align: left;
+    margin-top: 4px;
+    margin-bottom: -1px;
+    border: 0;
+    margin-right: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  header .cards-submenu ul li a {
+    font-size: 11px;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 11px;
   }
 
   header .mainmenu-wrapper {
@@ -227,7 +605,7 @@ header nav .nav-tools {
   }
 
   header .nav-tabs>li>div {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   header .nav-tabs > li.header-search {
@@ -243,7 +621,7 @@ header nav .nav-tools {
   }
 
   header .nav-tabs > li.fa-search::before {
-    background-color: #fff;
+    background-color: var(--background-color);
     padding: 9px;
     border-radius: 50%;
     border: 2px solid var(--header-color-orange);
@@ -263,7 +641,7 @@ header nav .nav-tools {
   header .nav-tabs > li.header-rfq > a {
     padding: 24px 35px 15px;
     text-transform: uppercase;
-    color: #fff !important;
+    color: var(--background-color);
     text-align: center;
     border-radius: 100%;
     height: 161px;
@@ -295,6 +673,61 @@ header nav .nav-tools {
     justify-content: flex-end;
     position: static;
   }
+
+  header .nav-tabs .menu-nav-submenu {
+    min-height: 782px;
+    padding-bottom: 9.4%;
+    box-shadow: inset 0 19px 33px -28px #333F;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    transition: all .1s ease;
+    min-width: 12.5rem;
+  }
+    
+  header .nav-tabs li .menu-nav-submenu {
+    display: none;
+  }
+
+  header .nav-tabs > li .menu-nav-submenu-close {
+    display: none;
+  }
+
+  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu {
+    display: initial;
+  }
+
+  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu-close {
+    display: initial;
+  }
+
+  header .right-submenu[aria-expanded="true"] {
+    display: initial;
+  }
+
+  header .right-submenu-content[aria-expanded="true"] {
+    display: initial;
+  }
+
+  header .nav-tabs .menu-nav-submenu > div {
+    min-height: auto !important;
+    width: 970px;
+  }
+
+  .header .nav-tabs .menu-nav-submenu > div > h2 {
+    transform: perspective(500px) translate3d(0,0,0);
+    position: relative;
+    font-weight: 300;
+  }
+
+  header .nav-tabs .menu-nav-submenu-section {
+    height: 45px;
+    margin-top: 5px;
+  }
+
+  header .nav-tabs li.hover > .menu-nav-submenu {
+    display: block;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -302,7 +735,36 @@ header nav .nav-tools {
     width: 1170px;
   }
 
-  header .nav-tabs>li>div {
-    font-size: 16px;
+  header .cards-submenu ul li a {
+    font-size: 13px;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 12px;
+  }
+
+  header .large-card {
+    height: 360px;
+  }
+
+  header .cutted-green-blue-circle img {
+    bottom: -30px;
+  }
+
+  header .green-blue-circle img  {
+    bottom: -10px;
+  }
+
+  header .image-center img {
+    bottom: -10px;
+    margin-left: 70px;
+  }
+
+  header .nav-tabs .menu-nav-category {
+    font-size: 14px;
+  }
+
+  header .nav-tabs .menu-nav-submenu > div {
+    width: 1170px;
   }
 }

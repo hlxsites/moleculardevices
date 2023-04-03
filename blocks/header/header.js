@@ -1,10 +1,10 @@
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import handleViewportChanges from './header-events.js';
+import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
 
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
   logoWrapper.setAttribute('id', 'header-logo');
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
-  logoImg.classList = 'logo1';
   logoWrapper.innerHTML = logoImg.outerHTML;
   return logoWrapper;
 }
@@ -31,6 +31,18 @@ function buildSearch() {
   return search;
 }
 
+export async function fetchHeaderContent() {
+  const navPath = getMetadata('nav') || '/nav';
+  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
+  if (!resp.ok) return {};
+
+  const html = await resp.text();
+
+  const content = document.createElement('div');
+  content.innerHTML = html;
+  return content;
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -39,15 +51,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/nav';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
-  if (!resp.ok) return;
-
-  const html = await resp.text();
-
-  // decorate nav DOM
-  const content = document.createElement('div');
-  content.innerHTML = html;
+  const content = await fetchHeaderContent();
 
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
@@ -78,15 +82,19 @@ export default async function decorate(block) {
   const navMenuUl = document.createElement('ul');
   navMenuUl.classList.add('nav-tabs');
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
+
   for (let i = 0; i < menus.length - 1; i += 2) {
     const li = document.createElement('li');
+    li.classList.add('menu-expandable');
+    li.setAttribute('aria-expanded', 'false');
+
     const menuTitle = menus[i];
-    menuTitle.classList.add('menu-nav-category');
     const textDiv = menuTitle.querySelector('div');
     menuTitle.innerHTML = textDiv.innerHTML;
+    menuTitle.classList.add('menu-nav-category');
+    menuTitle.setAttribute('menu-id', toClassName(menuTitle.textContent));
 
-    li.append(menuTitle);
-
+    li.innerHTML = menuTitle.outerHTML;
     navMenuUl.append(li);
   }
 
@@ -98,4 +106,6 @@ export default async function decorate(block) {
   decorateIcons(mainMenuWrapper);
 
   block.append(headerWrapper, mainMenuWrapper);
+
+  handleViewportChanges(block);
 }
