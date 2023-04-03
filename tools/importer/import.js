@@ -97,8 +97,23 @@ const loadFragmentIndex = (type, ref) => {
     fragments = JSON.parse(request.responseText).data;
   }
 
+  // eslint-disable-next-line max-len
   const fragment = fragments.find((n) => n.title.trim().toLowerCase() === ref.trim().toLowerCase() && n.type === type);
   return fragment;
+};
+
+const createFragmentList = (document, type, fragmentNames) => {
+  const linkList = [];
+  fragmentNames.forEach((fragmentName) => {
+    const fragment = loadFragmentIndex(type, fragmentName);
+    if (fragment) {
+      const link = document.createElement('a');
+      link.href = fragment.path;
+      link.textContent = fragment.path;
+      linkList.push(link);
+    }
+  });
+  return linkList;
 };
 
 const createMetadata = (url, document) => {
@@ -443,22 +458,10 @@ const transformFeaturedApplicationsCarousel = (block, document) => {
 
     const applications = div.querySelectorAll('.pro-container h3');
     if (applications) {
-      const list = document.createElement('ul');
-      applications.forEach((heading) => {
-        const title = heading.textContent.trim();
-        const fragment = loadFragmentIndex('Applications', title);
-        if (fragment) {
-          const li = document.createElement('li');
-          const link = document.createElement('a');
-          link.href = fragment.path;
-          link.textContent = fragment.path;
-          li.append(link);
-          list.append(li);
-        }
-      });
-      cells.push([list]);
+      // eslint-disable-next-line max-len
+      const linkList = createFragmentList(document, 'Applications', [...applications].map((h3) => h3.textContent.trim()));
+      cells.push([linkList]);
     }
-
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   }
@@ -530,6 +533,7 @@ const transformTables = (document) => {
     });
 
     // get number of columns
+    // eslint-disable-next-line max-len
     const numCols = table.rows[0] ? [...table.rows[0].cells].reduce((cols, cell) => cols + cell.colSpan, 0) : 0;
 
     // convert caption into header row
@@ -605,6 +609,7 @@ const transformColumns = (document) => {
         blockOptions.push('swap');
       }
       // match column width layouts
+      // eslint-disable-next-line max-len
       const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
       if (styleMatch) {
         blockOptions.push(styleMatch.blockStyle);
@@ -808,24 +813,15 @@ const transformProductApplications = (document) => {
     const heading = div.querySelector('h2');
     div.before(heading);
     const cells = [['Related Applications']];
+    const hasTOC = div.querySelector('.view-application-resources');
+    if (hasTOC) {
+      cells[0] = ['Related Applications (TOC)'];
+    }
 
     const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
     if (applications) {
-      const list = document.createElement('ul');
-
-      applications.forEach((h2) => {
-        const title = h2.textContent.trim();
-        const fragment = loadFragmentIndex('Applications', title);
-        if (fragment) {
-          const li = document.createElement('li');
-          const link = document.createElement('a');
-          link.href = fragment.path;
-          link.textContent = fragment.path;
-          li.append(link);
-          list.append(li);
-        }
-      });
-      cells.push([list]);
+      const linkList = createFragmentList(document, 'Applications', [...applications].map((h2) => h2.textContent.trim()));
+      cells.push([linkList]);
     }
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -842,21 +838,9 @@ const transformProductAssayData = (document) => {
 
     const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
     if (applications) {
-      const list = document.createElement('ul');
-
-      applications.forEach((h2) => {
-        const title = h2.textContent.trim();
-        const fragment = loadFragmentIndex('Assay Data', title);
-        if (fragment) {
-          const li = document.createElement('li');
-          const link = document.createElement('a');
-          link.href = fragment.path;
-          link.textContent = fragment.path;
-          li.append(link);
-          list.append(li);
-        }
-      });
-      cells.push([list]);
+      // eslint-disable-next-line max-len
+      const linkList = createFragmentList(document, 'Assay Data', [...applications].map((h2) => h2.textContent.trim()));
+      cells.push([linkList]);
     }
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
