@@ -1,7 +1,7 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 
 let elementsWithEventListener = [];
-const mediaQueryList = window.matchMedia('only screen and (min-width: 1024px)');
+const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
 
 function collapseAllSubmenus(menu) {
   menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
