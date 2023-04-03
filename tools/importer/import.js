@@ -16,6 +16,7 @@ const TABS_MAPPING = [
   { id: 'Resources', blockName: 'Related Resources' },
   { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
   { id: 'Order', blockName: 'Product Order' },
+  { id: 'options', sectionName: 'Options' },
   { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', blockName: 'Product Compatible Products' },
   { id: 'Citations', blockName: 'Product Citations' },
   { id: 'RelatedProducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
@@ -865,7 +866,7 @@ const transformProductAssayData = (document) => {
 
 const transformProductTab = (document, tabConfig) => {
   const div = document.querySelector(`div.tab-pane#${tabConfig.id}`);
-  if (div) {
+  if (div && tabConfig.blockName) {
     const heading = div.querySelector('h2');
     div.before(heading);
     const cells = [[tabConfig.blockName]];
