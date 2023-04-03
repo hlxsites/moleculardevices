@@ -271,7 +271,6 @@ header .menu-nav-submenu h1 > a {
 }
 
 header .cards-submenu ul li a {
-  font-size: 13px;
   color: var(--text-white);
   font-family: 'Proxima Nova Regular', sans-serif;
   font-weight: 300;
@@ -483,7 +482,6 @@ header .cards-submenu p:has(img) {
 header .cards-submenu p:nth-child(2) a {
   color: var(--text-white);
   text-decoration: none;
-  font-size: 12px;
   text-transform: uppercase;
   background-color: var(--text-gray);
   text-align: center;
@@ -567,6 +565,14 @@ header .cards-submenu ul li a:hover {
 
   header .navbar-header > .company-links {
     display: block;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 11px;
+  }
+
+  header .cards-submenu ul li a {
+      font-size: 11px;
   }
 
   header .mainmenu-wrapper {
@@ -727,6 +733,14 @@ header .cards-submenu ul li a:hover {
 @media (min-width: 1200px) {
   header .container {
     width: 1170px;
+  }
+
+  header .cards-submenu ul li a {
+    font-size: 13px;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 12px;
   }
 
   header .large-card {
