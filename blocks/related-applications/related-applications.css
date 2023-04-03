@@ -7,6 +7,10 @@
   column-count: 2;
 }
 
+.related-links-container.cols-3 {
+  column-count: 3;
+}
+
 .related-app {
   flex-basis: calc(50% - 30px);
   min-height: 1px;

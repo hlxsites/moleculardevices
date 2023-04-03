@@ -53,6 +53,9 @@ export default async function decorate(block) {
   apps.classList.add('related-apps-container');
   const links = document.createElement('ul');
   links.classList.add('related-links-container');
+  if (sortedFragments.length > 10) {
+    links.classList.add('cols-3');
+  }
 
   sortedFragments.forEach((fragment) => {
     if (hasTOC) {
@@ -63,7 +66,9 @@ export default async function decorate(block) {
     renderFragment(fragment.html, apps, 'related-app');
   });
 
-  block.append(links);
+  if (hasTOC) {
+    block.append(links);
+  }
   block.append(apps);
 
   return block;
