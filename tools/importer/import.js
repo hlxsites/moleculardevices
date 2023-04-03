@@ -218,7 +218,7 @@ const transformHero = (document) => {
       const videoLink = videoOverlay.querySelector('a.lightboxlaunch').getAttribute('onclick');
       const videoId = videoLink.match(/launchLightbox\('(.*)'\)/)[1];
       if (videoId) {
-        cells.push(['video', videoId]);
+        cells.push(['video', `https://share.vidyard.com/watch/${videoId}`]);
       }
       videoOverlay.remove();
     }
@@ -298,7 +298,7 @@ const transformSections = (document) => {
       styles.push('Background Molecules');
     }
     if (section.classList.contains('franklin-horizontal')) {
-      styles.push('Horizontal');
+      styles.push('Columns 2');
     }
     if (section.classList.contains('greyBg')) {
       styles.push('Background Grey');
@@ -399,7 +399,7 @@ const transformProductOverviewHeadlines = (block, document) => {
 };
 
 const transformFeatureList = (block, document) => {
-  block.querySelectorAll('.listing-image.overview-features').forEach((featureList) => {
+  block.querySelectorAll('.listing-image').forEach((featureList) => {
     const cells = [['Features']];
     featureList.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -594,33 +594,41 @@ const transformColumns = (document) => {
 
   document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
     const row = column.parentElement;
+    const sectionStyle = row.classList.contains('section');
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
-      let blockName = 'Columns';
-      const blockOptions = [];
-      [...row.children].forEach((col) => {
-        if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
-          row.after(col);
+      if (sectionStyle) { 
+        row.before(document.createElement('hr'));
+        const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
+        const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
+        row.append(metaTable);
+      } else {
+        const cells = [['Columns']];
+        const blockOptions = [];
+        [...row.children].forEach((col) => {
+          if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
+            row.after(col);
+          }
+        });
+        // check swap / reverse order tables
+        let children = [...row.children];
+        if (row.classList.contains('swap')) {
+          children = children.reverse();
+          blockOptions.push('swap');
         }
-      });
-      // check swap / reverse order tables
-      let children = [...row.children];
-      if (row.classList.contains('swap')) {
-        children = children.reverse();
-        blockOptions.push('swap');
-      }
-      // match column width layouts
-      // eslint-disable-next-line max-len
-      const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
-      if (styleMatch) {
-        blockOptions.push(styleMatch.blockStyle);
-      }
+        // match column width layouts
+        // eslint-disable-next-line max-len
+        const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
+        if (styleMatch) {
+          blockOptions.push(styleMatch.blockStyle);
+        }
 
-      if (blockOptions.length > 0) {
-        blockName = `Columns (${blockOptions.join(', ')})`;
+        if (blockOptions.length > 0) {
+          cells[0] = [`Columns (${blockOptions.join(', ')})`];
+        }
+        cells.push(children);
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        row.replaceWith(table);
       }
-      const cells = [[blockName], children];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      row.replaceWith(table);
     }
   });
 };
@@ -633,8 +641,9 @@ const transformReferenceToColumns = (document) => {
   });
 };
 
-// special handling for products references in success story
-// must be called before transformSections
+/* special handling for products references in success story,
+ * must be called before transformSections
+ */
 const transformReferenceProducts = (document) => {
   document.querySelectorAll('.featured-applications-div').forEach((featuredProductsBlock) => {
     const parentSection = featuredProductsBlock.closest('section');
@@ -790,6 +799,13 @@ const transformEmbeds = (document) => {
 const transformProductOverview = (document) => {
   const div = document.querySelector('div.tab-pane#Overview, div.tab-pane#overview');
   if (div) {
+    // special handling for nested columns with blocks to use a section instead of column block
+    div.querySelectorAll('.row').forEach((row) => {
+      if (row.querySelector('table')) {
+        row.classList.add('section');
+      }
+    });
+
     transformProductOverviewHeadlines(div, document);
     transformFeatureList(div, document);
     transformFeatureSection(div, document);
@@ -1028,7 +1044,6 @@ export default {
       transformTables,
       transformButtons,
       transformCitations,
-      transformColumns,
       transformReferenceToColumns,
       transformEmbeds,
       transformQuotes,
@@ -1044,6 +1059,7 @@ export default {
       transformProductAssayData,
       transformProductTabs,
       transformResources,
+      transformColumns,
       makeProxySrcs,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
