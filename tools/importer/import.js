@@ -747,13 +747,17 @@ const transformCitations = (document) => {
 const transformEmbeds = (document) => {
   // detect ceros embeds
   document.querySelectorAll('.ceros-overview').forEach((ceros) => {
+    const container = ceros.closest('.video-container');
     const cerosUrl = ceros.getAttribute('data-url');
-    if (cerosUrl) {
+    if (container && cerosUrl) {
+      container.querySelectorAll('.modal#cerospop_overview').forEach((m) => m.remove());
+      const img = container.querySelector('img');
+      const title = container.querySelector('p');
       const wrapper = document.createElement('div');
-      wrapper.append(ceros.previousSibling, document.createElement('br'), cerosUrl);
+      wrapper.append(img, cerosUrl, title);
       const cells = [['Ceros'], [wrapper]];
       const table = WebImporter.DOMUtils.createTable(cells, document);
-      ceros.replaceWith(table);
+      container.replaceWith(table);
     }
   });
 
