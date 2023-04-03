@@ -1,3 +1,5 @@
+import buildRightSubmenu from './right-submenus.js';
+
 export default function buildMegaMenuLeftMenus(submenuContent) {
   // get all H2s and create a list of them
   const h2s = [...submenuContent.querySelectorAll('h2')];
@@ -9,7 +11,11 @@ export default function buildMegaMenuLeftMenus(submenuContent) {
     const h2ListItem = document.createElement('li');
     h2ListItem.classList.add('menu-nav-submenu-section');
     h2ListItem.innerHTML = h2.outerHTML;
+
+    h2ListItem.append(buildRightSubmenu(h2));
+
     h2List.append(h2ListItem);
   });
+
   return h2List;
 }

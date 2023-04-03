@@ -12,7 +12,8 @@ header .block {
   padding-bottom: 46px;
 }
 
-header .nav-tabs li {
+header .nav-tabs>li {
+  flex-grow: 1;
   float: left;
   border: 0;
   position: static;
@@ -50,24 +51,17 @@ header .navbar-header > .company-links {
   display: none;
 }
 
+header .cards-submenu ul li {
+  float: none;
+  list-style: none;
+}
+
 header .company-links > ul {
   list-style: none;
   padding-left: 30px;
   margin-bottom: 0;
   display: inline-block;
   margin-top: 0;
-}
-
-header .nav-tabs>li {
-  flex-grow: 1;
-  float: left;
-  border: 0;
-  position: static;
-  display: block;
-  min-width: inherit !important;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
 }
 
 header .company-links > ul > li {
@@ -132,7 +126,7 @@ header .large-card h3 a {
   text-transform: initial;
 }
 
-header .nav-tabs .menu-nav-submenu-sections li {
+header .nav-tabs .menu-nav-submenu-section {
   float: none;
   border: 0;
   position: static;
@@ -151,7 +145,7 @@ header .company-links > ul > li:last-child {
   margin-right: 0;
 }
 
-header .nav-tabs .menu-nav-submenu-sections li:hover {
+header .nav-tabs .menu-nav-submenu-section:hover {
   background-color: rgba(255 255 255 / 30%);
   cursor: pointer;
 }
@@ -238,6 +232,54 @@ header .nav-tabs .menu-nav-submenu {
   background: var(--background-color) url('/images/header-background-filler.jpg') no-repeat right bottom;
 }
 
+header .cards-submenu > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+header .cards-submenu > div > div {
+  margin: 0 10px 20px 0;
+  overflow: hidden;
+}
+
+header .cards-submenu img {
+  max-height: 114px;
+  margin: 0 auto;
+  padding: 12px 0;
+  width: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+header .col-4 > div > div {
+  flex-basis: calc(25% - 10px); /* 25% for 4 columns, minus 10px for margin */
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+header .cards-submenu ul {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+header .menu-nav-submenu h1 > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header .cards-submenu ul li a {
+  color: var(--text-white);
+  font-family: 'Proxima Nova Regular', sans-serif;
+  font-weight: 300;
+  line-height: 15px;
+  padding: 1px 5px;
+  display: block;
+  text-transform: none;
+}
+
 header .nav-tabs .menu-nav-submenu > div {
   padding: 0;
   margin: 0 auto;
@@ -246,7 +288,7 @@ header .nav-tabs .menu-nav-submenu > div {
   padding-top: 30px;
 }
 
-header .nav-tabs .menu-nav-submenu-sections li h2 {
+header .nav-tabs .menu-nav-submenu-section h2 {
   border-bottom: 0;
   color: var(--background-color);
   font-size: 18px;
@@ -272,12 +314,7 @@ header .nav-tabs .menu-nav-submenu h1:hover {
   cursor: pointer;
 }
 
-header .menu-nav-submenu h1 > a {
-  color: inherit;
-  text-decoration: none;
-}
-
-header .nav-tabs .menu-nav-submenu-sections a {
+header .nav-tabs .menu-nav-submenu-section > h2 > a {
   color: inherit;
   text-decoration: none;
 }
@@ -427,6 +464,51 @@ header .large-card img:hover {
   transform: scale(1.2);
 }
 
+header .right-submenu-content {
+  width: 100%;
+}
+
+header .cards-submenu p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+header .cards-submenu p:nth-child(1) {
+  background-color: var(--text-white);
+  min-height: 114px;
+  overflow: hidden;
+}
+
+header .cards-submenu p:nth-child(2) a {
+  color: var(--text-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: var(--text-gray);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 2px 5px;
+}
+
+header .white-background p:nth-child(2) a {
+  background-color: var(--text-white);
+  color: var(--text-gray);
+}
+
+header .cards-submenu .expanded-image img {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+}
+
+header .cards-submenu ul li a:hover {
+  color: var(--text-white);
+  text-decoration: underline;
+}
+
 @media (min-width: 768) {
   header .container {
     width: 750px;
@@ -485,6 +567,26 @@ header .large-card img:hover {
     display: block;
   }
 
+  header .nav-tabs li > a {
+    padding: 11px 0;
+    text-transform: uppercase;
+    text-align: left;
+    margin-top: 4px;
+    margin-bottom: -1px;
+    border: 0;
+    margin-right: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  header .cards-submenu ul li a {
+    font-size: 11px;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 11px;
+  }
+
   header .mainmenu-wrapper {
     box-shadow: 1px 3px 26px -4px rgb(0 0 0 / 75%);
     height: 100%;
@@ -529,18 +631,6 @@ header .large-card img:hover {
     position: absolute;
     transform: translate(-3px,-12px);
     line-height: 18px;
-  }
-
-  header .nav-tabs li > a {
-    padding: 11px 0;
-    text-transform: uppercase;
-    text-align: left;
-    margin-top: 4px;
-    margin-bottom: -1px;
-    border: 0;
-    margin-right: 0;
-    color: inherit;
-    text-decoration: none;
   }
 
   header .nav-tabs > li.searchlink>a {
@@ -615,6 +705,10 @@ header .large-card img:hover {
     display: initial;
   }
 
+  header .right-submenu-content[aria-expanded="true"] {
+    display: initial;
+  }
+
   header .nav-tabs .menu-nav-submenu > div {
     min-height: auto !important;
     width: 970px;
@@ -639,6 +733,14 @@ header .large-card img:hover {
 @media (min-width: 1200px) {
   header .container {
     width: 1170px;
+  }
+
+  header .cards-submenu ul li a {
+    font-size: 13px;
+  }
+
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 12px;
   }
 
   header .large-card {
