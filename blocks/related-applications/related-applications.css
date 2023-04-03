@@ -1,4 +1,4 @@
-.related-applications-container {
+.related-apps-container {
   display: flex;
   flex-wrap: wrap;
 }
@@ -7,7 +7,7 @@
   column-count: 2;
 }
 
-.related-application {
+.related-app {
   flex-basis: calc(50% - 30px);
   min-height: 1px;
   padding: 15px;
@@ -18,7 +18,7 @@
 }
 
 @media (max-width: 992px) {
-  .related-application {
+  .related-app {
     flex-basis: 100%;
   }
 
@@ -27,16 +27,16 @@
   }
 }
 
-.related-application h1 {
+.related-app h1 {
   font-size: 36px;
   margin-top: 0;
 }
 
-.related-application p {
+.related-app p {
   margin-top: 40px;
 }
 
-.related-application img {
+.related-app img {
   max-height: 100%;
   object-fit: cover;
   height: auto;

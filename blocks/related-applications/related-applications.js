@@ -50,7 +50,7 @@ export default async function decorate(block) {
   });
 
   const apps = document.createElement('div');
-  apps.classList.add('related-applications-container');
+  apps.classList.add('related-apps-container');
   const links = document.createElement('ul');
   links.classList.add('related-links-container');
 
@@ -60,7 +60,7 @@ export default async function decorate(block) {
       linkFragment.innerHTML = `<a href="#${fragment.id}">${fragment.title}</a>`;
       renderFragment(linkFragment, links, 'related-link');
     }
-    renderFragment(fragment.html, apps, 'related-application');
+    renderFragment(fragment.html, apps, 'related-app');
   });
 
   block.append(links);
