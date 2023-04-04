@@ -51,7 +51,6 @@ function buildVideo(block, div, videoId) {
       const videoIcon = document.createElement('div');
       const thumbnail = document.createElement('img');
       videoIcon.append(thumbnail);
-
       videoIcon.classList.add('video-icon');
       thumbnail.src = '/images/play_icon.png';
 
