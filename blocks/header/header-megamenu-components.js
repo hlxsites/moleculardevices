@@ -70,12 +70,17 @@ function buildActionableCardSubmenu(actionableCardContent) {
   return actionableCardContent;
 }
 
+function buildImageWithTextSubmenu(imageWithTextContent) {
+  return imageWithTextContent;
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
   map.set('text-submenu', buildTextSubmenu);
   map.set('large-card-submenu', buildLargeCardsMenu);
   map.set('actionable-card-submenu', buildActionableCardSubmenu);
+  map.set('image-with-text-submenu', buildImageWithTextSubmenu);
   return map.get(className);
 }
 
