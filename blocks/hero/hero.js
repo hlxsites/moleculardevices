@@ -1,15 +1,12 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
+import { formatDate } from '../../scripts/scripts.js';
 import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
   metadataContainer.classList.add('metadata');
 
-  const publishDate = new Date(getMetadata('publication-date')).toLocaleDateString('en-US', {
-    month: 'long',
-    day: '2-digit',
-    year: 'numeric',
-  });
+  const publishDate = formatDate(getMetadata('publication-date'), { month: 'long' });
 
   const publishDateContainer = document.createElement('div');
   publishDateContainer.innerHTML = `
