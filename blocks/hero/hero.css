@@ -103,6 +103,11 @@ main .hero .container > div:nth-child(2) {
   font-size: var(--body-font-size-xs);
 }
 
+main .hero .container > div:nth-child(2).video-column {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 main .hero .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
@@ -119,7 +124,7 @@ main .hero .container > div:nth-child(2) .button-container {
   height: 320px;
 }
 
-.video_icon a {
+main .hero .video_icon img {
   height: 91px;
   width: 90px;
   position: absolute;
@@ -132,7 +137,7 @@ main .hero .container > div:nth-child(2) .button-container {
   transition: all ease .3s;
 }
 
-.video_icon a:hover {
+main .hero .video_icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
 }
@@ -146,6 +151,15 @@ main .hero .container > div:nth-child(2) .button-container {
   background-size: 100% auto;
   cursor: pointer;
   border-radius: 50%;
+}
+
+#sample {
+display: none;
+}
+
+#vidyard-popbox {
+  max-height: 400px;
+  max-width: 700px;
 }
 
 @media (max-width: 767px) {
@@ -216,6 +230,10 @@ main .hero .container > div:nth-child(2) .button-container {
   main .hero .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
+  }
+
+  main .hero .container.two-column > div:nth-child(2).video-column {
+    border: none;
   }
 
   main .hero .container > div:nth-child(1) .button-container {
