@@ -3,7 +3,7 @@ import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 
 function isValidUrl(string) {
   try {
-    let url = new URL(string);
+    const url = new URL(string);
     return true;
   } catch (err) {
     return false;
@@ -60,8 +60,9 @@ function buildVideo(block, div, videoId) {
       div.appendChild(videoIcon);
 
       thumbnail.addEventListener('click', () => {
-        let players = VidyardV4.api.getPlayersByUUID(videoId);
-        let player = players[0];
+        // eslint-disable-next-line
+        const players = VidyardV4.api.getPlayersByUUID(videoId);
+        const player = players[0];
         player.showLightbox();
       });
     }
