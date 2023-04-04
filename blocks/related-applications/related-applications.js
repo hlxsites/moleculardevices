@@ -1,3 +1,5 @@
+import { addLinkIcon } from '../../scripts/scripts.js';
+
 async function getFragmentHtml(path) {
   const response = await fetch(`${path}.plain.html`);
   if (!response.ok) {
@@ -16,6 +18,10 @@ async function getFragmentHtml(path) {
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
+  const actionLink = fragment.querySelector('p:last-of-type a');
+  if (actionLink) {
+    addLinkIcon(actionLink);
+  }
   block.append(fragment);
 }
 

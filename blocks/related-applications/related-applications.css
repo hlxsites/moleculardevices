@@ -53,3 +53,7 @@ li.related-link::marker {
   height: auto;
   width: 100%;
 }
+
+.related-app a .fa {
+  margin-left: 5px;
+}
