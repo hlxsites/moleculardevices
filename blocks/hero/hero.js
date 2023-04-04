@@ -3,7 +3,7 @@ import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 
 function isValidUrl(string) {
   try {
-    new URL(string);
+    let url = new URL(string);
     return true;
   } catch (err) {
     return false;
@@ -11,12 +11,11 @@ function isValidUrl(string) {
 }
 
 function getUrls(text) {
-  const match = text.match(/\b((https?|ftp|file):\/\/|(www|ftp)\.)[-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/ig);
+  const match = text.match(/\b((https?|ftp|file):\/\/|(www|ftp)\.)[-A-Z0-9+&@#/%?=~_|$!:,.;]*[A-Z0-9+&@#/%=~_|$]/ig);
   if (match) return match;
   return null;
 }
 
-// get the first valid video url
 function getVideoUrl(text) {
   let videoUrl = null;
   if (getUrls(text)) {
@@ -27,7 +26,7 @@ function getVideoUrl(text) {
           if (url.includes(hostname)) {
             videoUrl = url;
           }
-        });   
+        });
       }
     });
   }
@@ -57,12 +56,12 @@ function buildVideo(block, div, videoId) {
 
       div.innerHTML = `<div id="sample">
         <div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox"></div>
-      </div>`
+      </div>`;
       div.appendChild(videoIcon);
 
       thumbnail.addEventListener('click', () => {
-        var players = VidyardV4.api.getPlayersByUUID(videoId);
-        var player = players[0];
+        let players = VidyardV4.api.getPlayersByUUID(videoId);
+        let player = players[0];
         player.showLightbox();
       });
     }
