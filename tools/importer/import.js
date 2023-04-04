@@ -17,6 +17,7 @@ const TABS_MAPPING = [
   { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
   { id: 'Order', blockName: 'Product Order' },
   { id: 'options', sectionName: 'Options' },
+  { id: 'workflow', sectionName: 'Workflow' },
   { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', blockName: 'Product Compatible Products' },
   { id: 'Citations', blockName: 'Product Citations' },
   { id: 'RelatedProducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
@@ -360,7 +361,7 @@ const transformTabsSections = (document) => {
 
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
     const isOverviewTab = tab.id === 'Overview';
-    const tabConfig = TABS_MAPPING.find((m) => m.id === tab.id);
+    const tabConfig = TABS_MAPPING.find((m) => m.id.toLowerCase() === tab.id.toLowerCase());
     tab.before(document.createElement('hr'));
 
     // eslint-disable-next-line no-nested-ternary
@@ -601,6 +602,7 @@ const transformColumns = (document) => {
         const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
         const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
         row.append(metaTable);
+        row.after(document.createElement('hr'));
       } else {
         const cells = [['Columns']];
         const blockOptions = [];
@@ -774,12 +776,16 @@ const transformEmbeds = (document) => {
   document.querySelectorAll('.vidyard-player-embed').forEach((vidyard) => {
     const videoId = vidyard.getAttribute('data-uuid');
     const type = vidyard.getAttribute('data-type');
-    const cells = [
-      [type !== 'inline' ? `Vidyard (${type})` : 'Vidyard'],
-      [`https://share.vidyard.com/watch/${videoId}`],
-    ];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    vidyard.replaceWith(table);
+    if (vidyard.closest('table')) {
+      vidyard.replaceWith(`https://share.vidyard.com/watch/${videoId}`);
+    } else {
+      const cells = [
+        [type !== 'inline' ? `Vidyard (${type})` : 'Vidyard'],
+        [`https://share.vidyard.com/watch/${videoId}`],
+      ];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      vidyard.replaceWith(table);
+    }
   });
 
   // detect embed iframe in main content
@@ -904,6 +910,72 @@ const transformResources = (document) => {
       videoResources.replaceWith(table);
     }
   }
+};
+
+const transformTechnologyApplications = (document) => {
+  document
+    .querySelectorAll(
+      '.views-element-container .fortebiocls.view-application-resources, .technology-section.fortebiocls.view-product-resource-widyard'
+    )
+    .forEach((div) => {
+      if (div.childElementCount > 0) {
+        div.querySelectorAll('.modal.fade').forEach((modals) => modals.remove());
+        const cells = [['Related Applications (TOC)']];
+        const applications = div.querySelectorAll('li h2');
+        if (applications) {
+          const linkList = createFragmentList(
+            document,
+            'Applications',
+            [...applications].map((h2) => h2.textContent.trim())
+          );
+          cells.push([linkList]);
+        }
+
+        let parentContainer = div.closest('.container');
+        if (parentContainer.closest('.tabbingContainer')) {
+          parentContainer = parentContainer.closest('.tabbingContainer');
+        }
+        parentContainer
+          .querySelectorAll(
+            '.views-element-container .metax-apps.view-application-resources, .tabbingContainer .container.greyBg'
+          )
+          .forEach((div) => div.remove());
+
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        const container = div.closest('ul');
+        if (container) {
+          container.replaceWith(table);
+        } else {
+          div.replaceWith(table);
+        }
+      }
+    });
+};
+
+const transformOtherResourcesList = (document) => {
+  document.querySelectorAll('.application-other-resources').forEach((div) => {
+    const cells = [['Related Resources']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  });
+};
+
+const transformElisaWorkflow = (document) => {
+  document.querySelectorAll('.workflow_elisa').forEach((div) => {
+    const cells = [['Elias Workflow']];
+
+    const heading = div.querySelector('.timeline-start');
+    const h2 = document.createElement('h2');
+    h2.textContent = heading.textContent;
+    cells.push([h2]);
+
+    div.querySelectorAll('.conference-timeline-content .timeline-article').forEach((entry) => {
+      cells.push([entry.querySelector('.content-left-container')], [entry.querySelector('.content-right-container')]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  });
 };
 
 function makeProxySrcs(document) {
@@ -1044,6 +1116,7 @@ export default {
       transformTables,
       transformButtons,
       transformCitations,
+      transformElisaWorkflow,
       transformReferenceToColumns,
       transformEmbeds,
       transformQuotes,
@@ -1058,6 +1131,8 @@ export default {
       transformProductApplications,
       transformProductAssayData,
       transformProductTabs,
+      transformOtherResourcesList,
+      transformTechnologyApplications,
       transformResources,
       transformColumns,
       makeProxySrcs,
