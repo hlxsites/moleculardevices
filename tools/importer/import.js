@@ -216,27 +216,26 @@ const transformHero = (document) => {
 
     const videoOverlay = heroContent.querySelector('.video-container');
     if (videoOverlay) {
-      const videoLink = videoOverlay.querySelector('a.lightboxlaunch').getAttribute('onclick');
-      const videoId = videoLink.match(/launchLightbox\('(.*)'\)/)[1];
-      if (videoId) {
-        cells.push(['video', `https://share.vidyard.com/watch/${videoId}`]);
+      const videoLink = videoOverlay.querySelector('a[onclick]').getAttribute('onclick');
+
+      const regex = /launchLightbox\('(.*)'\)|fn_vidyard_(.*)\(\)/;
+      let m;
+      // eslint-disable-next-line no-cond-assign
+      if ((m = regex.exec(videoLink)) !== null) {
+        const videoId = m[1] || m[2];
+        if (videoId) {
+          cells.push(['video', `https://share.vidyard.com/watch/${videoId}`]);
+        }
       }
+
       videoOverlay.remove();
     }
 
-    const mediaGallery = hero.parentElement.querySelector('#mediaGallary');
+    const mediaGallery = hero.querySelector('.gallery');
     if (mediaGallery) {
-      const itemList = document.createElement('ul');
-      mediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
-        const entry = document.createElement('li');
-        const entryVideoLink = document.createElement('a');
-        entryVideoLink.href = div.querySelector('iframe').getAttribute('data-url');
-        entryVideoLink.textContent = div.querySelector('.slide-desc').textContent;
-        entry.append(entryVideoLink);
-        itemList.append(entry);
+      [...mediaGallery.children].forEach((div) => {
+        cells.push(['media gallery', div]);
       });
-
-      cells.push(['media gallery', itemList]);
       mediaGallery.remove();
     }
 
@@ -670,7 +669,7 @@ const transformQuotes = (document) => {
   });
 };
 
-const transformFAQAccordion = (document) => {
+const transformAccordions = (document) => {
   document.querySelectorAll('.faq_accordion').forEach((accordion) => {
     const cells = [['Accordion (FAQ)']];
 
@@ -678,6 +677,17 @@ const transformFAQAccordion = (document) => {
       const entryWrapper = document.createElement('div');
       entryWrapper.append(tab, tab.nextElementSibling);
       cells.push([entryWrapper]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    accordion.replaceWith(table);
+  });
+
+  document.querySelectorAll('.accordian-list-part .accordion').forEach((accordion) => {
+    const cells = [['Accordion (FAQ)']];
+
+    accordion.querySelectorAll('.card').forEach((tab) => {
+      cells.push([tab]);
     });
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -913,10 +923,7 @@ const transformResources = (document) => {
 };
 
 const transformTechnologyApplications = (document) => {
-  document
-    .querySelectorAll(
-      '.views-element-container .fortebiocls.view-application-resources, .technology-section.fortebiocls.view-product-resource-widyard'
-    )
+  document.querySelectorAll('.views-element-container .fortebiocls.view-application-resources, .technology-section.fortebiocls.view-product-resource-widyard')
     .forEach((div) => {
       if (div.childElementCount > 0) {
         div.querySelectorAll('.modal.fade').forEach((modals) => modals.remove());
@@ -935,11 +942,8 @@ const transformTechnologyApplications = (document) => {
         if (parentContainer.closest('.tabbingContainer')) {
           parentContainer = parentContainer.closest('.tabbingContainer');
         }
-        parentContainer
-          .querySelectorAll(
-            '.views-element-container .metax-apps.view-application-resources, .tabbingContainer .container.greyBg'
-          )
-          .forEach((div) => div.remove());
+        parentContainer.querySelectorAll('.views-element-container .metax-apps.view-application-resources, .tabbingContainer .container.greyBg')
+          .forEach((toc) => toc.remove());
 
         const table = WebImporter.DOMUtils.createTable(cells, document);
         const container = div.closest('ul');
@@ -954,7 +958,26 @@ const transformTechnologyApplications = (document) => {
 
 const transformOtherResourcesList = (document) => {
   document.querySelectorAll('.application-other-resources').forEach((div) => {
-    const cells = [['Related Resources']];
+    const cells = [['More Resources']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  });
+};
+
+const transformFeaturedResources = (document) => {
+  document.querySelectorAll('.related-news-part').forEach((div) => {
+    const cells = [['Featured News']];
+
+    const headline = div.querySelector('h2');
+    if (headline) {
+      div.before(headline);
+    }
+
+    div.querySelectorAll('.inside-2-col').forEach((row) => {
+      const image = row.querySelector('img');
+      const content = row.querySelector('.col-sm-8');
+      cells.push([image, content]);
+    });
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   });
@@ -1049,6 +1072,23 @@ export default {
       }
     });
 
+    // prepare hero media gallery content
+    const heroMediaGallery = document.getElementById('mediaGallary');
+    const heroWrapper = document.querySelector('.herobanner_wrap .section-image.cover-bg');
+    if (heroMediaGallery && heroWrapper) {
+      const items = document.createElement('div');
+      items.classList.add('gallery');
+      heroMediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
+        const iframe = div.querySelector('.mediagalVid iframe');
+        if (iframe) {
+          iframe.replaceWith(iframe.getAttribute('data-url'));
+        }
+        items.append(div);
+      });
+      heroWrapper.append(items);
+      heroMediaGallery.remove();
+    }
+
     // rewrite all links with spans before they get cleaned up
     document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
     document.querySelectorAll('a strong').forEach((strong) => strong.replaceWith(strong.textContent));
@@ -1094,8 +1134,7 @@ export default {
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
       '.drift-frame-chat',
-      '.drift-frame-controller',
-      '.modal.bs-example-modal-lg.mediaPopup', // TODO contains the hero media gallery links, must be added to the hero block
+      '.drift-frame-controller'
     ]);
 
     // create the metadata block and append it to the main element
@@ -1120,7 +1159,7 @@ export default {
       transformReferenceToColumns,
       transformEmbeds,
       transformQuotes,
-      transformFAQAccordion,
+      transformAccordions,
       transformBlogRecentPosts,
       transformImageCaption,
       transformCustomerBreakthroughShareStory,
@@ -1132,6 +1171,7 @@ export default {
       transformProductAssayData,
       transformProductTabs,
       transformOtherResourcesList,
+      transformFeaturedResources,
       transformTechnologyApplications,
       transformResources,
       transformColumns,
