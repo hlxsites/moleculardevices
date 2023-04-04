@@ -81,7 +81,7 @@ export default function decorate(block) {
   });
   observer.observe(block);
 
-  const inquiryLinks = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team'];
+  const inquiryLinks = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
     if (inquiryLinks.includes(link.getAttribute('title'))) {
