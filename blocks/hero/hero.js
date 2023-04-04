@@ -61,6 +61,7 @@ function buildVideo(block, div, videoId) {
       div.appendChild(videoIcon);
 
       thumbnail.addEventListener('click', () => {
+        // eslint-disable-next-line no-undef
         const players = VidyardV4.api.getPlayersByUUID(videoId);
         const player = players[0];
         player.showLightbox();
