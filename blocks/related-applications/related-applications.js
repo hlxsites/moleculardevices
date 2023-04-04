@@ -18,7 +18,7 @@ async function getFragmentHtml(path) {
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
-  const actionLink = fragment.querySelector('p:last-of-type a');
+  const actionLink = fragment.querySelector('p:last-of-type a:only-child');
   if (actionLink) {
     addLinkIcon(actionLink);
   }
