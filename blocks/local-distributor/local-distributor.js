@@ -77,19 +77,18 @@ function scrollToForm() {
 }
 
 function hideResult() {
-  if (location.pathname != '/contact-search') {
+  if (window.location.pathname !== '/contact-search') {
     document.querySelector('.search-result').style.display = 'none';
   }
 }
 
 function redirectToContactSearch() {
-  let countryName = document.getElementById('country').value;
-  let primeProduct = document.getElementById('product_family').value;
-  window.open('/contact-search?country=' + countryName + '&product_family=' + primeProduct, '_blank');
+  const countryName = document.getElementById('country').value;
+  const primeProduct = document.getElementById('product_family').value;
+  window.open(`/contact-search?country=${countryName}&product_family=${primeProduct}`, '_blank');
   Event.preventDefault();
 }
 export default async function decorate(block) {
-
   const params = queryString();
 
   const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
@@ -99,10 +98,14 @@ export default async function decorate(block) {
     .all();
 
   let countryList = '';
-  if (location.pathname == '/contact') {
-    countryList = [...new Set(distributors
-      .filter(({ Region }) => Region.toLowerCase().includes(params.region.toLowerCase()) > 0)
-      .map(({ Country }) => Country))]
+  if (window.location.pathname === '/contact') {
+    countryList = [
+      ...new Set(
+        distributors
+          .filter(({ Region }) => Region.toLowerCase().includes(params.region.toLowerCase()) > 0)
+          .map(({ Country }) => Country),
+      ),
+    ];
   } else {
     countryList = [...new Set(distributors.map(({ Country }) => Country))];
   }
@@ -111,13 +114,19 @@ export default async function decorate(block) {
 
   if (searchButtdon) {
     searchButtdon.addEventListener('click', () => {
-      const params = queryString();
-      let countryList = [...new Set(distributors
-        .filter(({ Region }) => Region.toLowerCase().includes(params.region.toLowerCase()) > 0)
-        .map(({ Country }) => Country))]
-      const formWrapper = getSelectOptions(countryList);
-      document.getElementById("country").innerHTML = `<option value="">Select Region/Country</option>`+formWrapper;
-
+      const params2 = queryString();
+      const countryList2 = [
+        ...new Set(
+          distributors
+            .filter(({ Region }) => Region.toLowerCase().includes(params2.region.toLowerCase()) > 0)
+            .map(({ Country }) => Country),
+        ),
+      ];
+      const formWrapper = getSelectOptions(countryList2);
+      /* eslint operator-linebreak: ["error", "before"] */
+      document.getElementById(
+        'country',
+      ).innerHTML = `<option value="">Select Region/Country</option>${formWrapper}`;
     });
   }
   const renderAddress = () => {
@@ -191,8 +200,6 @@ export default async function decorate(block) {
     localLinks.forEach((link) => link.addEventListener('click', scrollToForm));
   };
 
-
-
   const heading = block.querySelector('h5');
   const cloneHeading = heading.cloneNode(true);
   heading.remove();
@@ -206,7 +213,8 @@ export default async function decorate(block) {
   const searchButton = document.getElementById('searchButton');
 
   searchButton.addEventListener('click', () => {
-    location.pathname == '/contact' ? redirectToContactSearch() : renderAddress();
+    // eslint-disable-next-line no-unused-expressions
+    window.location.pathname === '/contact' ? redirectToContactSearch() : renderAddress();
   });
 
   hideResult();
