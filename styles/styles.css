@@ -470,7 +470,7 @@ main .section>div {
 }
 
 main .section .default-content-wrapper {
-  padding: 0 0 100px;
+  padding-bottom: 100px;
 }
 
 /* progressive section appearance */

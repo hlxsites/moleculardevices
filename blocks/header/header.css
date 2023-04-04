@@ -76,7 +76,6 @@ header .text-submenu p {
   padding-left: 0;
   text-transform: uppercase;
   font-size: 15px;
-  font-family: "Proxima Nova Regular", sans-serif;
   font-weight: bold;
   margin: 0;
 }
@@ -370,7 +369,6 @@ header .text-submenu ul > li > a {
   font-size: 11px;
   color: #fff;
   border-bottom: 0;
-  font-family: "Proxima Nova Regular", sans-serif;
   line-height: 15px;
   padding-left: 0;
   padding-top: 0;
@@ -904,6 +902,14 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     font-size: 13px;
   }
 
+  header .cards-submenu p:nth-child(2) a {
+    font-size: 12px;
+  }
+
+  header .large-card-submenu {
+    height: 360px;
+  }
+
   header .cutted-green-blue-circle img {
     bottom: -30px;
   }
@@ -920,14 +926,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     max-width: 350px;
     max-height: 177px;
-  }
-
-  header .cards-submenu p:nth-child(2) a {
-    font-size: 12px;
-  }
-
-  header .large-card-submenu {
-    height: 360px;
   }
 
   header .nav-tabs .menu-nav-category {
