@@ -62,8 +62,10 @@ export default async function decorate(block) {
   block.appendChild(container);
 
   const picture = block.querySelector('picture');
-  picture.classList.add('hero-background');
-  block.prepend(picture.parentElement);
+  if (picture) {
+    picture.classList.add('hero-background');
+    block.prepend(picture.parentElement);
+  }
 
   if (block.classList.contains('blog')) {
     addBlockSticker(block);
