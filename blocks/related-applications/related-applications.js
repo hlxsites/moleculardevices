@@ -37,8 +37,9 @@ export default async function decorate(block) {
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await getFragmentHtml(path);
     if (fragmentHtml) {
-      const fragmentElement = document.createElement('div');
-      fragmentElement.innerHTML = fragmentHtml;
+      const tempFragmentElement = document.createElement('div');
+      tempFragmentElement.innerHTML = fragmentHtml;
+      const fragmentElement = tempFragmentElement.firstElementChild;
       const h1 = fragmentElement.querySelector('h1');
       return { id: h1.id, title: h1.textContent, html: fragmentElement };
     }
