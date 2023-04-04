@@ -12,7 +12,7 @@
 }
 
 .related-app {
-  flex-basis: calc(50% - 30px);
+  flex-basis: 50%;
   min-height: 1px;
   padding: 15px;
 }
@@ -20,6 +20,10 @@
 .related-link  {
   line-height: 21px;
   margin-bottom: 10px;
+}
+
+li.related-link::marker {
+  color: #337ab7;;
 }
 
 @media (max-width: 992px) {
