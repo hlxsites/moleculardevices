@@ -14,16 +14,16 @@
 
 const TABS_MAPPING = [
   { id: 'overview', sectionName: 'Overview' },
-  { id: 'Resources', fragment: '/fragments/hhjkhj' },
+  { id: 'Resources', fragment: '/fragments/relatated-resources' },
   { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
   { id: 'Order', blockName: 'Product Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
-  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', fragment: '/fragments/hhjkhj' },
+  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', fragment: '/fragments/compatible-products' },
   { id: 'Citations', blockName: 'Product Citations' },
-  { id: 'RelatedProducts', sectionName: 'Related Products & Services', fragment: '/fragments/hhjkhj' },
-  { id: 'relatedproducts', sectionName: 'Related Products & Services', fragment: '/fragments/hhjkhj' },
-  { id: 'specs', sectionName: 'Specifications & Options', fragment: '/fragments/hhjkhj' },
+  { id: 'RelatedProducts', sectionName: 'Related Products & Services', fragment: '/fragments/products-related' },
+  { id: 'relatedproducts', sectionName: 'Related Products & Services', fragment: '/fragments/products-related' },
+  { id: 'specs', sectionName: 'Specifications & Options', fragment: '/fragments/product-specifications' },
 ];
 
 /**
@@ -345,6 +345,15 @@ const transformTabsNav = (document) => {
 };
 
 const transformTabsSections = (document) => {
+  // move the wave section visible on the overview tab into the tab div
+  const overviewWaveContent = document.getElementById('overviewTabContent');
+  const overviewTab = document.querySelector('.tab-content .tab-pane#Overview');
+  if (overviewTab) {
+    if (overviewWaveContent && overviewWaveContent.classList.contains('cover-bg-no-cover')) {
+      overviewTab.append(document.createElement('hr'), overviewWaveContent);
+    }
+  }
+
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
     const hasContent = tab.textContent.trim() !== '';
     if (hasContent) {
@@ -354,6 +363,21 @@ const transformTabsSections = (document) => {
       const metadataCells = [['Section Metadata']];
       // eslint-disable-next-line no-nested-ternary
       metadataCells.push(['name', tabConfig ? ('sectionName' in tabConfig ? tabConfig.sectionName : tabConfig.id) : tab.id]);
+
+      const isOverviewTab = tab.id === 'Overview';
+      if (isOverviewTab) {
+        const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
+        if (waveSection) {
+          metadataCells.push(['style', 'Wave, Text White, Orange Buttons']);
+          const bgImage = extractBackgroundImage(waveSection);
+          if (bgImage) {
+            const img = document.createElement('img');
+            img.src = bgImage;
+            img.alt = 'Background Image';
+            metadataCells.push(['background', img]);
+          }
+        }
+      }
       const sectionMetaData = WebImporter.DOMUtils.createTable(metadataCells, document);
 
       // entire tab is loaded from a fragment?
@@ -361,7 +385,10 @@ const transformTabsSections = (document) => {
         const heading = tab.querySelector('h2');
         tab.before(heading);
 
-        const cells = [['Fragment'], [tabConfig.fragment]];
+        const a = document.createElement('a');
+        a.href = tabConfig.fragment;
+        a.textContent = tabConfig.fragment;
+        const cells = [['Fragment'], [a]];
         const table = WebImporter.DOMUtils.createTable(cells, document);
         tab.replaceWith(table);
         table.after(sectionMetaData);
@@ -689,18 +716,19 @@ const transformImageCaption = (document) => {
 const transformBlogRecentPosts = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
     recentPostsContainer.before(document.createElement('hr'));
+    const viewAll = document.createElement('a');
+    viewAll.href = '/lab-notes/blog';
+    viewAll.textContent = ':view-all-posts:';
+
     const carousel = recentPostsContainer.querySelector('.views-element-container');
+    carousel.before(viewAll);
     const cells = [['Recent Blogs Carousel']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     carousel.replaceWith(table);
 
-    const viewAll = document.createElement('a');
-    viewAll.href = '/lab-notes/blog';
-    viewAll.textContent = 'View All Posts';
-
     const metaCells = [['Section Metadata'], [['style'], ['Blog Heading']]];
     const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
-    recentPostsContainer.append(viewAll, metaTable);
+    recentPostsContainer.append(metaTable);
   });
 };
 
