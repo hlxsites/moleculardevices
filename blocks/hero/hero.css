@@ -118,13 +118,13 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-.video_icon {
+.video-icon {
   position: relative;
   display: block;
   height: 320px;
 }
 
-main .hero .video_icon img {
+main .hero .video-icon img {
   height: 91px;
   width: 90px;
   position: absolute;
@@ -137,20 +137,9 @@ main .hero .video_icon img {
   transition: all ease .3s;
 }
 
-main .hero .video_icon img:hover {
+main .hero .video-icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
-}
-
-.hero .video_icon a::before {
-  width: 100%;
-  height: 100%;
-  content: "";
-  display: block;
-  background: url(../../images/play_icon.png) no-repeat center center;
-  background-size: 100% auto;
-  cursor: pointer;
-  border-radius: 50%;
 }
 
 #sample {
