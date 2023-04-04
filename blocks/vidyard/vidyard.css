@@ -2,3 +2,15 @@ main .vidyard {
   margin: 40px auto;
   max-width: 700px;
 }
+
+.section.columns-2.vidyard-container:not([aria-hidden='true']) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width: 768px) {
+  .section.columns-2.vidyard-container > div:not(.default-content-wrapper:first-child) {
+    flex-basis: 50%;
+    width: 50%;
+  }
+}
