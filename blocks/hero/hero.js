@@ -12,47 +12,27 @@ function isValidUrl(string) {
 
 function getUrls(text) {
   const match = text.match(/\b((https?|ftp|file):\/\/|(www|ftp)\.)[-A-Z0-9+&@#\/%?=~_|$!:,.;]*[A-Z0-9+&@#\/%=~_|$]/ig);
-  // console.error(match);
-  // if (match) console.error(match.length);
   if (match) return match;
   return null;
-  // return match ? match.join("\n") : null;
 }
 
 // get the first valid video url
 function getVideoUrl(text) {
   let videoUrl = null;
   if (getUrls(text)) {
-    // console.error(getUrls(text).length);
     const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
     [...getUrls(text)].forEach((url) => {
-      // console.error((url));
       if (isValidUrl(url)) {
-        // console.error(url);
         [...hostnames].forEach((hostname) => {
-          // console.error(hostname);
           if (url.includes(hostname)) {
-            // console.error(`returning url: ${url}`)
             videoUrl = url;
           }
         });   
       }
     });
   }
-  // console.error('null');
   return videoUrl;
 }
-
-// function isVideoDomain(text) {
-//   let isVideo = false;
-//   if (isValidUrl(text)) {
-//     const domains = ['vids.moleculardevices.com', 'share.vidyard.com'];
-//     [...domains].forEach((domain) => {
-//       if (text.includes(domain)) isVideo = true;
-//     })
-//   }
-//   return isVideo;
-// }
 
 function getVideoId(text) {
   if (getVideoUrl(text)) {
@@ -61,14 +41,6 @@ function getVideoId(text) {
   }
   return null;
 }
-
-// function getVideoId(text) {
-//   if (isVideoDomain(text)) {
-//     const parts = text.split('/');
-//     return parts.at(-1).trim();
-//   }
-//   return null;
-// }
 
 function buildVideo(block, div, videoId) {
   const observer = new IntersectionObserver((entries) => {
