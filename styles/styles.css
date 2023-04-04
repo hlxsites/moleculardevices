@@ -69,10 +69,15 @@
   --black-background-color: #000;
   --light-gray-background-color: #f3f3f3;
   --light-border-color-gray: #ddd;
+  --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
   --header-color-orange: #ee7624;
+  --header-mega-menu-border-color: #ffffff80;
+  --header-mega-menu-font-color: #ffffffb2;
+  --header-mega-menu-product-cards-background-color: #161e2d;
+  --header-mega-menu-green: #6eb43f;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
@@ -97,7 +102,7 @@
   --body-font-size-xs: 14px;
 
   /* nav height */
-  --nav-height: 156px;
+  --nav-height: 170px;
   --nav-height-mobile: 70px;
 }
 
@@ -133,6 +138,10 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+}
+
+.background-gray main {
+  background-color: var(--grey-background-color);
 }
 
 body.appear {
@@ -240,7 +249,7 @@ em strong {
   font-weight: 700;
 }
 
-main.text-caption {
+.text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
@@ -391,13 +400,17 @@ main video {
   height: auto;
 }
 
-main .section:not(:empty) {
+main .breadcrumbs-wrapper {
+  height: 86px;
+}
+
+main .section:not(:empty):not([class*='hero']) {
   padding: 40px 0;
 }
 
-main .section:not([class*='background-grey']) + .section:not([class*='background-grey']) {
+/* main .section:not([class*='background-']):not([class*='hero']) + .section:not([class*='background-']) {
   padding-top: 0;
-}
+} */
 
 main .section > div {
   margin: 0 auto;
@@ -427,6 +440,10 @@ main .section > div {
     width: 100%;
     max-width: 200px;
   }
+
+  main .breadcrumbs-wrapper {
+    height: 30px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -435,26 +452,34 @@ main .section > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section:not(:empty) {
+  main .section:not(:empty):not([class*='hero']) {
     padding: 70px 0;
   }
+
+  /* main .section:not([class*='background-']):not([class*='hero']) + .section:not([class*='background-']) {
+    padding-top: 0;
+  } */
 
   main .section > div {
     width: 750px;
   }
 }
 
-@media only screen and (min-width: 992px) {
-  main .section:not(:empty) {
+@media (min-width: 992px) {
+  main .section:not(:empty):not([class*='hero']) {
     padding: 100px 0;
   }
+
+  /* main .section:not([class*='background-']):not([class*='hero']) + .section:not([class*='background-']) {
+    padding-top: 0;
+  } */
 
   main .section > div {
     width: 970px;
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   main .section > div {
     width: 1170px;
   }
@@ -468,6 +493,54 @@ main .section > div {
 
 .homepage h2 {
   margin-bottom: 30px;
+}
+
+main .section.wave h2 {
+  font-size: 65px;
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+main .section .default-content-wrapper h2 {
+  text-align: center;
+}
+
+main .section.features-section h2,
+main .section .default-content-wrapper h2:only-child {
+  margin-bottom: 0;
+}
+
+body:not(.homepage) main .section .default-content-wrapper h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+main .section .default-content-wrapper:not(:last-child) {
+  padding-bottom: 100px;
+}
+
+main .section .default-content-wrapper:not(:first-child) {
+  padding-top: 100px;
+}
+
+.news .section .default-content-wrapper,
+.publication .section .default-content-wrapper {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+
+  padding: 0 15px;
+}
+
+.news .section p,
+.publication .section p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+main .section .default-content-wrapper h3,
+main .section .default-content-wrapper p {
+  margin-top: 0;
 }
 
 /* progressive section appearance */
@@ -501,6 +574,10 @@ main .section.background-molecules .hero-wrapper::after {
 @media (max-width: 991px) {
   main .section .default-content-wrapper {
     padding-bottom: 70px;
+  }
+
+  main .section .default-content-wrapper:not(:first-child) {
+    padding-top: 70px;
   }
 }
 
@@ -541,18 +618,13 @@ main .section.wave::after {
   align-self: self-end;
 }
 
-main .section.wave h2 {
-  font-size: 65px;
-  margin-bottom: 30px;
-  line-height: 1;
-}
-
 main .section.wave p {
   margin: 0;
 }
 
-main .section .default-content-wrapper {
-  padding-bottom: 100px;
+main .section.wave p:first-of-type {
+  padding: 0 20px 20px;
+  margin-bottom: 10px;
 }
 
 main .section.wave .default-content-wrapper {
@@ -566,30 +638,110 @@ main .section .default-content-wrapper:first-child {
   padding-bottom: 45px;
 }
 
-main .section .default-content-wrapper h2 {
+@media (max-width: 767px) {
+  .news .section p,
+  .publication .section p {
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
+  }
+}
+
+.news .section h1,
+.publication .section h1 {
+  line-height: 1;
+  font-weight: 100;
+  padding-top: 40px;
+  border-bottom: 1px solid var(--dark-border-color-gray);
+  padding-bottom: 20px;
+}
+
+.news .section strong,
+.publication .section strong {
+  font-weight: 700;
+}
+
+.news .section .text-strong,
+.publication .section .text-strong {
+  padding-top: 15px;
+}
+
+.news .section cite,
+.publication .section cite {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  padding-bottom: 30px;
+}
+
+.news .section i.fa.fa-external-link,
+.publication .section i.fa.fa-external-link {
+  position: relative;
+  top: -7px;
+  font-size: 13px;
+  margin-left: 2px;
+}
+
+/* Features Section */
+main .section.features-section {
+  padding-top: 45px;
+  padding-bottom: 30px;
+  background: url('/images/molecules-left.webp') left bottom,
+    url('/images/molecules-right.webp') right top, url('/images/molecules-left.png') left bottom,
+    url('/images/molecules-right.png') right top;
+  background-repeat: no-repeat;
+  background-color: #f2f2f2;
+}
+
+main .section.features-section .default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-main .section .default-content-wrapper h2:only-child {
-  margin-bottom: 0;
+main .section.features-section .default-content-wrapper::after {
+  content: '';
+  clear: both;
+  display: block;
 }
 
-main .section .default-content-wrapper h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
+main .section.features-section .default-content-wrapper em {
+  margin-top: 30px;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+  width: 50%;
 }
 
-main .section .default-content-wrapper h3,
-main .section .default-content-wrapper p {
-  margin-top: 0;
+main .section.features-section .button-container {
+  margin-top: 50px;
 }
 
-main .section.wave p:first-of-type {
-  padding: 0 20px 20px;
-  margin-bottom: 10px;
+@media only screen and (max-width: 991px) {
+  .section.features-section h2 {
+    font-size: 45px;
+  }
 }
 
-/* WAVE sections variants */
+@media only screen and (max-width: 768px) {
+  main .section.features-section {
+    padding-top: 30px;
+  }
+
+  .section.features-section h2 {
+    font-size: 36px;
+  }
+
+  main .section.features-section .default-content-wrapper em {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
 
 /* BlueGreen Variant */
 main .section.wave.bluegreen {
@@ -606,10 +758,12 @@ main .section.wave.bluegreen::after {
 
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,
-        rgb(21 145 164 / 100%) 0,
-        rgb(46 159 121 / 100%) 50%,
-        rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(
+      90deg,
+      rgb(21 145 164 / 100%) 0,
+      rgb(46 159 121 / 100%) 50%,
+      rgb(97 178 73 / 100%) 100%
+    ) !important;
     background-image: none;
   }
 
@@ -686,9 +840,8 @@ main .orange-buttons .button.primary > .button-border {
   display: none;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding-top: 0;
     padding-bottom: 0;
     overflow: hidden;
   }
