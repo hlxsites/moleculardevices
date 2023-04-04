@@ -63,7 +63,6 @@ header .text-submenu p {
   padding-left: 0;
   text-transform: uppercase;
   font-size: 15px;
-  font-family: "Proxima Nova Regular", sans-serif;
   font-weight: bold;
   margin: 0;
 }
@@ -356,7 +355,6 @@ header .text-submenu ul > li > a {
   font-size: 11px;
   color: #fff;
   border-bottom: 0;
-  font-family: "Proxima Nova Regular", sans-serif;
   line-height: 15px;
   padding-left: 0;
   padding-top: 0;
