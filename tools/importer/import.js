@@ -13,16 +13,17 @@
 /* eslint-disable no-console, class-methods-use-this */
 
 const TABS_MAPPING = [
-  { id: 'Resources', blockName: 'Related Resources' },
+  { id: 'overview', sectionName: 'Overview' },
+  { id: 'Resources', fragment: '/fragments/hhjkhj' },
   { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
   { id: 'Order', blockName: 'Product Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
-  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', blockName: 'Product Compatible Products' },
+  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', fragment: '/fragments/hhjkhj' },
   { id: 'Citations', blockName: 'Product Citations' },
-  { id: 'RelatedProducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
-  { id: 'relatedproducts', sectionName: 'Related Products & Services', blockName: 'Related Products' },
-  { id: 'specs', sectionName: 'Specifications & Options', blockName: 'Product Specifications' },
+  { id: 'RelatedProducts', sectionName: 'Related Products & Services', fragment: '/fragments/hhjkhj' },
+  { id: 'relatedproducts', sectionName: 'Related Products & Services', fragment: '/fragments/hhjkhj' },
+  { id: 'specs', sectionName: 'Specifications & Options', fragment: '/fragments/hhjkhj' },
 ];
 
 /**
@@ -224,7 +225,7 @@ const transformHero = (document) => {
       if ((m = regex.exec(videoLink)) !== null) {
         const videoId = m[1] || m[2];
         if (videoId) {
-          cells.push(['video', `https://share.vidyard.com/watch/${videoId}`]);
+          cells.push([`https://share.vidyard.com/watch/${videoId}`]);
         }
       }
 
@@ -234,7 +235,7 @@ const transformHero = (document) => {
     const mediaGallery = hero.querySelector('.gallery');
     if (mediaGallery) {
       [...mediaGallery.children].forEach((div) => {
-        cells.push(['media gallery', div]);
+        cells.push([div]);
       });
       mediaGallery.remove();
     }
@@ -344,50 +345,32 @@ const transformTabsNav = (document) => {
 };
 
 const transformTabsSections = (document) => {
-  const overviewWaveContent = document.getElementById('overviewTabContent');
-  const overviewTab = document.querySelector('.tab-content .tab-pane#Overview');
-  const defaultWave = document.querySelector('table#defaultWave');
-  if (overviewTab) {
-    if (overviewWaveContent && overviewWaveContent.classList.contains('cover-bg-no-cover')) {
-      overviewTab.append(document.createElement('hr'), overviewWaveContent);
-    } else if (defaultWave) {
-      overviewTab.append(document.createElement('hr'), defaultWave.cloneNode(true));
-      if (overviewWaveContent) {
-        overviewWaveContent.remove();
-      }
-    }
-  }
-
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
-    const isOverviewTab = tab.id === 'Overview';
-    const tabConfig = TABS_MAPPING.find((m) => m.id.toLowerCase() === tab.id.toLowerCase());
-    tab.before(document.createElement('hr'));
+    const hasContent = tab.textContent.trim() !== '';
+    if (hasContent) {
+      const tabConfig = TABS_MAPPING.find((m) => m.id.toLowerCase() === tab.id.toLowerCase());
+      tab.before(document.createElement('hr'));
 
-    // eslint-disable-next-line no-nested-ternary
-    const cells = [['Section Metadata'], ['name', tabConfig ? ('sectionName' in tabConfig ? tabConfig.sectionName : tabConfig.id) : tab.id]];
-    if (isOverviewTab) {
-      const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
-      if (waveSection) {
-        cells.push(['style', 'Wave, Orange Buttons']);
-        const bgImage = extractBackgroundImage(waveSection);
-        if (bgImage) {
-          const img = document.createElement('img');
-          img.src = bgImage;
-          img.alt = 'Background Image';
-          cells.push(['background', img]);
-        }
+      const metadataCells = [['Section Metadata']];
+      // eslint-disable-next-line no-nested-ternary
+      metadataCells.push(['name', tabConfig ? ('sectionName' in tabConfig ? tabConfig.sectionName : tabConfig.id) : tab.id]);
+      const sectionMetaData = WebImporter.DOMUtils.createTable(metadataCells, document);
+
+      // entire tab is loaded from a fragment?
+      if (tabConfig && tabConfig.fragment) {
+        const heading = tab.querySelector('h2');
+        tab.before(heading);
+
+        const cells = [['Fragment'], [tabConfig.fragment]];
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        tab.replaceWith(table);
+        table.after(sectionMetaData);
+        sectionMetaData.after(document.createElement('hr'));
+      } else {
+        tab.after(sectionMetaData);
       }
-    }
-    const sectionMetaData = WebImporter.DOMUtils.createTable(cells, document);
-    tab.after(sectionMetaData);
-    if (defaultWave && !isOverviewTab) {
-      tab.after(document.createElement('hr'), defaultWave.cloneNode(true));
     }
   });
-
-  if (defaultWave) {
-    defaultWave.remove();
-  }
 };
 
 const transformProductOverviewHeadlines = (block, document) => {
@@ -596,7 +579,7 @@ const transformColumns = (document) => {
     const row = column.parentElement;
     const sectionStyle = row.classList.contains('section');
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
-      if (sectionStyle) { 
+      if (sectionStyle) {
         row.before(document.createElement('hr'));
         const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
         const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
@@ -1079,9 +1062,20 @@ export default {
       const items = document.createElement('div');
       items.classList.add('gallery');
       heroMediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
+        const title = div.querySelector('.slide-desc');
+        if (title) {
+          const heading = document.createElement('h3');
+          heading.textContent = title.textContent;
+          title.replaceWith(heading);
+        }
         const iframe = div.querySelector('.mediagalVid iframe');
         if (iframe) {
-          iframe.replaceWith(iframe.getAttribute('data-url'));
+          let src = iframe.getAttribute('data-url');
+          if (iframe.classList.contains('vidyard_iframe')) {
+            const videoId = src.match(/.*com\/(.*)\.html/)[1];
+            src = `https://share.vidyard.com/watch/${videoId}`;
+          }
+          iframe.replaceWith(src);
         }
         items.append(div);
       });
@@ -1147,7 +1141,6 @@ export default {
     // convert all blocks
     [
       cleanUp,
-      transformCurvedWaveFragment,
       transformReferenceProducts,
       transformSections,
       transformFragmentDocuments,
@@ -1174,6 +1167,7 @@ export default {
       transformFeaturedResources,
       transformTechnologyApplications,
       transformResources,
+      transformCurvedWaveFragment,
       transformColumns,
       makeProxySrcs,
       makeAbsoluteLinks,
