@@ -47,9 +47,14 @@ function buildCardsMenu(cardContent) {
   return cardContent;
 }
 
+function buildTextSubmenu(textContent) {
+  return textContent;
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
+  map.set('text-submenu', buildTextSubmenu);
   return map.get(className);
 }
 
