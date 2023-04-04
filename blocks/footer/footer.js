@@ -30,6 +30,12 @@ function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
+function decorateSocialMediaLinks(socialIconsContainer) {
+  socialIconsContainer.querySelectorAll('a').forEach((iconLink) => {
+    iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
+  });
+}
+
 /**
  * loads and decorates the footer
  * @param {Element} block The header block element
@@ -58,6 +64,10 @@ export default async function decorate(block) {
       footerWrap.appendChild(row);
     } else {
       footerBottom.appendChild(row);
+    }
+
+    if (i === 4) {
+      decorateSocialMediaLinks(row);
     }
   });
 
