@@ -1,10 +1,15 @@
-function wrapLinkAroundComponent(link, component) {
+function wrapLinkAroundComponent(link, component, removeLink = false) {
   const linkCopy = document.createElement('a');
   linkCopy.href = link.href;
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
   // Move the existing div inside the new div
   linkCopy.appendChild(component);
+
+  if (removeLink) {
+    link.remove();
+  }
+
   return linkCopy;
 }
 
@@ -58,11 +63,19 @@ function buildTextSubmenu(textContent) {
   return textContent;
 }
 
+function buildActionableCardSubmenu(actionableCardContent) {
+  const link = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > a');
+  const picture = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > picture');
+  wrapLinkAroundComponent(link, picture, true);
+  return actionableCardContent;
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
   map.set('text-submenu', buildTextSubmenu);
   map.set('large-card-submenu', buildLargeCardsMenu);
+  map.set('actionable-card-submenu', buildActionableCardSubmenu);
   return map.get(className);
 }
 
