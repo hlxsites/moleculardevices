@@ -666,7 +666,7 @@ main .section.wave::after {
 main .section.wave .default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 55px;
-  padding-left: 15px;
+  padding: 0 15px;
   padding-right: 15px;
 }
 
