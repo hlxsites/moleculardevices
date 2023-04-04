@@ -3,7 +3,8 @@ import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 
 function isValidUrl(string) {
   try {
-    const url = new URL(string);
+    // eslint-disable-next-line no-new
+    new URL(string);
     return true;
   } catch (err) {
     return false;
@@ -60,7 +61,6 @@ function buildVideo(block, div, videoId) {
       div.appendChild(videoIcon);
 
       thumbnail.addEventListener('click', () => {
-        // eslint-disable-next-line
         const players = VidyardV4.api.getPlayersByUUID(videoId);
         const player = players[0];
         player.showLightbox();
