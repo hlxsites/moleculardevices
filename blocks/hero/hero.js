@@ -73,16 +73,20 @@ function buildVideo(block, div, videoId) {
 export default async function decorate(block) {
   const container = document.createElement('div');
   container.classList.add('container');
-  if (block.childElementCount > 1) {
-    container.classList.add('two-column');
-  }
 
-  [...block.children].forEach((div) => {
-    if (getVideoId(div.textContent)) {
-      div.classList.add('video-column');
-      buildVideo(block, div, getVideoId(div.textContent));
+  [...block.children].forEach((row, i) => {
+    if (i == 0 && row.childElementCount > 1) {
+      container.classList.add('two-column');
+      [...row.children].forEach((column, y) => {
+        if (getVideoId(column.textContent)) {
+          column.classList.add('video-column');
+          buildVideo(block, column, getVideoId(column.textContent));
+        }
+        container.appendChild(column);
+      })
+    } else {
+      container.appendChild(row);
     }
-    container.appendChild(div);
   });
 
   const breadcrumbs = document.createElement('div');

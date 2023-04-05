@@ -48,7 +48,7 @@ main .hero li {
 
 main .hero h1 {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: white;
   line-height: 1;
 }
@@ -205,20 +205,7 @@ display: none;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
-    padding: 0 0 45px;
-  }
-
-  main .hero .container > div {
-    float:left;
-  }
-
-  main .hero .container.two-column > div:nth-child(1) {
-    width: 66%
-  }
-
-  main .hero .container.two-column > div:nth-child(2) {
-    width: 33%;
-    border-left: 2px solid #fff;
+    padding: 0 0 120px;
   }
 
   main .hero .container.two-column > div:nth-child(2).video-column {
@@ -226,13 +213,26 @@ display: none;
   }
 
   main .hero .container > div:nth-child(1) .button-container {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 }
 
 @media (min-width: 992px) {
   main .hero > div {
     width: 970px
+  }
+
+  main .hero .container > div {
+    float:left;
+  }
+
+  main .hero .container > div:nth-child(1) {
+    width: 66%
+  }
+
+  main .hero .container.two-column > div:nth-child(2) {
+    width: 33%;
+    border-left: 2px solid #fff;
   }
 }
 
