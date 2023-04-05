@@ -1,7 +1,3 @@
-main .section.wave .customer-story p {
-  padding: 0;
-}
-
 .customer-story > div {
   display: flex;
 }
@@ -45,4 +41,8 @@ main .section.wave .customer-story p {
 
 .customer-story i {
   margin-left: 5px;
+}
+
+main .section.wave .customer-story p {
+  padding: 0;
 }
