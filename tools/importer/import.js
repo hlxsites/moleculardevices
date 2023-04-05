@@ -207,15 +207,15 @@ const transformHero = (document) => {
 
     const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.row, .bannerInnerPages');
 
+    // setup the background image
     const backgroundUrl = extractBackgroundImage(hero);
     if (backgroundUrl) {
       const img = document.createElement('img');
       img.src = backgroundUrl;
       heroContent.insertBefore(img, heroContent.firstChild);
     }
-    cells.push([heroContent]);
-
     const videoOverlay = heroContent.querySelector('.video-container');
+    const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
     if (videoOverlay) {
       const videoLink = videoOverlay.querySelector('a[onclick]').getAttribute('onclick');
 
@@ -225,30 +225,20 @@ const transformHero = (document) => {
       if ((m = regex.exec(videoLink)) !== null) {
         const videoId = m[1] || m[2];
         if (videoId) {
-          cells.push([`https://share.vidyard.com/watch/${videoId}`]);
+          cells.push([heroContent, `https://share.vidyard.com/watch/${videoId}`]);
         }
       }
-
       videoOverlay.remove();
-    }
-
-    const mediaGallery = hero.querySelector('.gallery');
-    if (mediaGallery) {
-      [...mediaGallery.children].forEach((div) => {
-        cells.push([div]);
-      });
-      mediaGallery.remove();
-    }
-
-    const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
-    if (customerStoryHeader) {
+    } else if (customerStoryHeader) {
       customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
         const h6 = document.createElement('h6');
         h6.innerHTML = label.innerHTML;
         label.replaceWith(h6);
       });
       cells[0] = ['Hero (Customer Story)'];
-      cells.push([customerStoryHeader]);
+      cells.push([heroContent, customerStoryHeader]);
+    } else {
+      cells.push([heroContent]);
     }
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -257,7 +247,7 @@ const transformHero = (document) => {
 
   // detect the waved "ebook" style hero used on most gates pages plus some others
   document.querySelectorAll('.ebook-banner.wave').forEach((hero) => {
-    const cells = [['Hero (wave)']];
+    const cells = [['Hero wave']];
     const heroContent = hero.querySelector('.mol-content');
     const backgroundUrl = extractBackgroundImage(hero);
     if (backgroundUrl) {
@@ -443,11 +433,11 @@ const transformResourcesCarousel = (block, document) => {
   }
 };
 
-const transformImageGallery = (block, document) => {
-  const imageGallery = block.querySelector('.images-gallery1');
+const transformImageGallery = (document) => {
+  const imageGallery = document.querySelector('.images-gallery1, .images-gallery');
   if (imageGallery) {
     imageGallery.querySelectorAll('.row .fst-set').forEach((div) => div.remove());
-    const imageContainer = imageGallery.querySelector('#cellmediaGallary');
+    const imageContainer = imageGallery.querySelector('.modal .carousel');
     if (imageContainer) {
       const cells = [['Image Gallery']];
       const entries = imageContainer.querySelectorAll('.carousel .item');
@@ -837,7 +827,6 @@ const transformProductOverview = (document) => {
     transformFeatureList(div, document);
     transformFeatureSection(div, document);
     transformResourcesCarousel(div, document);
-    transformImageGallery(div, document);
     transformFeaturedApplicationsCarousel(div, document);
     transformCustomerStory(div, document);
   }
@@ -850,7 +839,6 @@ const transformProductOptions = (document) => {
     transformFeatureList(div, document);
     transformFeatureSection(div, document);
     transformResourcesCarousel(div, document);
-    transformImageGallery(div, document);
   }
 };
 
@@ -1055,7 +1043,7 @@ export default {
    * Apply DOM pre processing
    * @param {HTMLDocument} document The document
    */
-  preprocess: ({ document }) => {
+  preprocess: ({ document, url, html, params }) => {
     // try to fix malformed URLs
     document.querySelectorAll('a').forEach((a) => {
       const { href } = a;
@@ -1075,41 +1063,48 @@ export default {
       if (vidyard.src && !scriptsToTest.some((script) => vidyard.src.includes(script))) {
         const videoDiv = vidyard.parentElement;
         videoDiv.classList.add('vidyard-player-embed');
-        const uuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
-        const params = new URLSearchParams(vidyard.src);
+        const videoUuid = vidyard.src.match(/.*com\/(.*)\.js/)[1];
+        const videoParams = new URLSearchParams(vidyard.src);
         videoDiv.setAttribute('data-url', vidyard.src);
-        videoDiv.setAttribute('data-uuid', uuid);
-        videoDiv.setAttribute('data-type', params.get('type'));
+        videoDiv.setAttribute('data-uuid', videoUuid);
+        videoDiv.setAttribute('data-type', videoParams.get('type'));
       }
     });
 
-    // prepare hero media gallery content
-    const heroMediaGallery = document.getElementById('mediaGallary');
-    const heroWrapper = document.querySelector('.herobanner_wrap .section-image.cover-bg');
-    if (heroMediaGallery && heroWrapper) {
-      const items = document.createElement('div');
-      items.classList.add('gallery');
-      heroMediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
-        const title = div.querySelector('.slide-desc');
-        if (title) {
-          const heading = document.createElement('h3');
-          heading.textContent = title.textContent;
-          title.replaceWith(heading);
-        }
-        const iframe = div.querySelector('.mediagalVid iframe');
-        if (iframe) {
-          let src = iframe.getAttribute('data-url');
-          if (iframe.classList.contains('vidyard_iframe')) {
-            const videoId = src.match(/.*com\/(.*)\.html/)[1];
-            src = `https://share.vidyard.com/watch/${videoId}`;
-          }
-          iframe.replaceWith(src);
-        }
-        items.append(div);
-      });
-      heroWrapper.append(items);
-      heroMediaGallery.remove();
+    // rewrite media gallery link if present and remove galley items
+    const heroMediaGalleryLink = document.getElementById('openMediaGallery');
+    if (heroMediaGalleryLink) {
+      heroMediaGalleryLink.href = `${params.originalURL.substring(params.originalURL.indexOf('.com/') + 4, params.originalURL.lenght)}-media-gallery`;
     }
+
+
+    // // prepare hero media gallery content
+    // const heroMediaGallery = document.getElementById('mediaGallary');
+    // const heroWrapper = document.querySelector('.herobanner_wrap .section-image.cover-bg');
+    // if (heroMediaGallery && heroWrapper) {
+    //   const items = document.createElement('div');
+    //   items.classList.add('gallery');
+    //   heroMediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
+    //     const title = div.querySelector('.slide-desc');
+    //     if (title) {
+    //       const heading = document.createElement('h3');
+    //       heading.textContent = title.textContent;
+    //       title.replaceWith(heading);
+    //     }
+    //     const iframe = div.querySelector('.mediagalVid iframe');
+    //     if (iframe) {
+    //       let src = iframe.getAttribute('data-url');
+    //       if (iframe.classList.contains('vidyard_iframe')) {
+    //         const videoId = src.match(/.*com\/(.*)\.html/)[1];
+    //         src = `https://share.vidyard.com/watch/${videoId}`;
+    //       }
+    //       iframe.replaceWith(src);
+    //     }
+    //     items.append(div);
+    //   });
+    //   heroWrapper.append(items);
+    //   heroMediaGallery.remove();
+    // }
 
     // rewrite all links with spans before they get cleaned up
     document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
@@ -1141,6 +1136,7 @@ export default {
       'footer',
       'nav#block-mobilenavigation',
       'div#resources .tabbingContainer', // TODO should be replaced with some block, not removed
+      'body > #mediaGallary', // remove the hero media gallery only
       '.breadcrumb',
       '.skip-link',
       '.cart-store',
@@ -1151,12 +1147,11 @@ export default {
       '.recent-posts .overview-page',
       '.event-block cite',
       '.herobanner_wrap .visible-xs-block',
-      '.herobanner_wrap a#openMediaGallery',
       '.ins-nav-container',
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
       '.drift-frame-chat',
-      '.drift-frame-controller'
+      '.drift-frame-controller',
     ]);
 
     // create the metadata block and append it to the main element
@@ -1176,6 +1171,7 @@ export default {
       transformTables,
       transformButtons,
       transformCitations,
+      transformImageGallery,
       transformElisaWorkflow,
       transformReferenceToColumns,
       transformEmbeds,
