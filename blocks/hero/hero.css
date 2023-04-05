@@ -121,11 +121,6 @@ main .hero .container > div:nth-child(2) .button-container {
 main .hero .video-icon img {
   height: 91px;
   width: 90px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: auto;
   border-radius: 50%;
   transition: all ease .3s;
@@ -194,6 +189,10 @@ display: none;
   main .hero .button-container a {
     padding: 9px 12px 10px;
   }
+
+  .video-icon {
+    text-align: center;
+  }
 }
 
 @media (max-width: 991px) {
@@ -213,6 +212,14 @@ display: none;
     flex-wrap: wrap;
     height: auto;
     padding: 0 0 120px;
+  }
+
+  main .hero .video-icon img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   main .hero .container.two-column > div:nth-child(2).video-column {
