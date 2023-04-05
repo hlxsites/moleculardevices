@@ -29,7 +29,6 @@ main .carousel.recent-blogs-carousel .blog-carousel-item {
   /* box-shadow: 0 1px 10px rgba(0,0,0,.2); */
   transition: all .3s;
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
   align-content: stretch;
   width: 100%;
@@ -70,6 +69,7 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .blog-description {
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption .button-container {
   text-align: center;
+  margin-top: auto;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {

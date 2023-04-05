@@ -1,34 +1,27 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { a, div, h3, p } from '../../scripts/dom-helpers.js';
 import createCarousel from '../carousel/carousel.js';
 
 function renderItem(item) {
-  const newsItem = document.createElement('div');
-  newsItem.classList.add('blog-carousel-item');
-
-  const newsItemLink = document.createElement('a');
-  newsItemLink.href = item.path;
-  newsItem.append(newsItemLink);
-
-  const newsThumb = document.createElement('div');
-  newsThumb.classList.add('blog-carousel-thumb');
-  newsThumb.append(createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]));
-  newsItemLink.appendChild(newsThumb);
-
-  const newsCaption = document.createElement('div');
-  newsCaption.classList.add('blog-carousel-caption');
-
-  newsCaption.innerHTML = `
-    <h3>${item.title}</h3>
-    <p class="blog-description">${item.description}</p>
-    <p class="button-container">
-      <a href=${item.path} aria-label="Read More" class="button primary">Read More</a>
-    </p>
-  `;
-
-  newsItemLink.appendChild(newsCaption);
-
-  return newsItem;
+  return (
+    div({ class: 'blog-carousel-item' },
+      div({ class: 'blog-carousel-thumb' },
+        a({ href: item.path },
+          createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]),
+        )
+      ),
+      div({ class: 'blog-carousel-caption' },
+        a({ href: item.path },
+          h3(item.title),
+        ),
+        p({ class: 'blog-description' }, item.description),
+        p({ class: 'button-container' },
+          a({ href: item.path, 'aria-label': 'Read More', class: 'button primary' }, 'Read More'),
+        ),
+      ),
+    )
+  );
 }
 
 export default async function decorate(block) {
