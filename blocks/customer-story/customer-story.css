@@ -3,7 +3,7 @@
 }
 
 .customer-story > div > div {
-  width: 50%;
+  flex-basis: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,4 +45,18 @@
 
 main .section.wave .customer-story p {
   padding: 0;
+}
+
+@media (max-width: 767px) {
+  .customer-story > div {
+    flex-direction: column;
+  }
+
+  .customer-story h3 {
+    font-size: 25px;
+  }
+
+  .customer-story p {
+    font-size: var(--body-font-size-m);
+  }
 }
