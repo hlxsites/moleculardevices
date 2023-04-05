@@ -16,7 +16,7 @@ indices:
         select: head > meta[property="og:image"]
         value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
       thumbnail:
-        select: main div.section:first-of-type img
+        select: main div:first-of-type img
         value: attribute(el, "src")
       description:
         select: head > meta[name="description"]
