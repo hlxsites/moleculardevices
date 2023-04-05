@@ -1,11 +1,23 @@
-function wrapLinkAroundComponent(link, component) {
+function wrapLinkAroundComponent(link, component, removeLink = false) {
   const linkCopy = document.createElement('a');
   linkCopy.href = link.href;
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
   // Move the existing div inside the new div
   linkCopy.appendChild(component);
+
+  if (removeLink) {
+    link.remove();
+  }
+
   return linkCopy;
+}
+
+function buildLargeCardsMenu(cardContent) {
+  const link = cardContent.querySelector('a');
+  const img = cardContent.querySelector('picture');
+  wrapLinkAroundComponent(link, img);
+  return cardContent;
 }
 
 function buildCardsMenu(cardContent) {
@@ -51,14 +63,28 @@ function buildTextSubmenu(textContent) {
   return textContent;
 }
 
+function buildActionableCardSubmenu(actionableCardContent) {
+  const link = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > a');
+  const picture = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > picture');
+  wrapLinkAroundComponent(link, picture, true);
+  return actionableCardContent;
+}
+
+function buildImageWithTextSubmenu(imageWithTextContent) {
+  return imageWithTextContent;
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
   map.set('text-submenu', buildTextSubmenu);
+  map.set('large-card-submenu', buildLargeCardsMenu);
+  map.set('actionable-card-submenu', buildActionableCardSubmenu);
+  map.set('image-with-text-submenu', buildImageWithTextSubmenu);
   return map.get(className);
 }
 
-export default function buildRightSubmenu(h2) {
+export default function buildRightSubmenu(contentHeader) {
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const rightSubmenuWrapper = document.createElement('div');
   rightSubmenuWrapper.classList.add('right-submenu');
@@ -67,10 +93,10 @@ export default function buildRightSubmenu(h2) {
   const rightSubmenuRow = document.createElement('div');
   rightSubmenuRow.classList.add('right-submenu-row', 'flex-space-between');
 
-  // get div in the parent of the H2
-  const h2ParentDiv = h2.parentElement;
+  // get div in the parent of the H2/H1 header
+  const headerParentDiv = contentHeader.parentElement;
   // get all divs with a class right-submenu
-  const rightSubmenus = [...h2ParentDiv.querySelectorAll('.right-submenu-content')];
+  const rightSubmenus = [...headerParentDiv.querySelectorAll('.right-submenu-content')];
 
   // add all right-submenu divs to the H2
   rightSubmenus.forEach((rightSubmenu) => {

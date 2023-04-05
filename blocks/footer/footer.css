@@ -1,5 +1,6 @@
 .footer-wrapper {
   background-image: url("../../images/research-bg.png");
+  overflow-x: hidden;
 }
 
 .footer.block {
