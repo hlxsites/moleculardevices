@@ -169,7 +169,6 @@ const cleanUp = (document) => {
   document
     .querySelectorAll('.row > [class*="col-"][class*="-12"]')
     .forEach((col) => col.classList.remove('col-xs-12', 'col-sm-12', 'col-md-12', 'col-lg-12'));
-  document.querySelectorAll('.herobanner_wrap .row > [class*="col-"]').forEach((col) => col.removeAttribute('class'));
   document.querySelectorAll('.content-section .listing-image.ico-list').forEach((div) => {
     if (div.textContent.trim() === '') {
       div.remove();
@@ -194,6 +193,7 @@ const extractBackgroundImage = (content) => {
 const transformHero = (document) => {
   // detect the default hero styles
   document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
+    hero.querySelectorAll('.row > [class*="col-"]').forEach((col) => col.removeAttribute('class'));
     const cells = [['Hero']];
 
     const isBlog = hero.classList.contains('blog-details');
@@ -965,13 +965,11 @@ const transformOtherResourcesList = (document) => {
 
 const transformFeaturedResources = (document) => {
   document.querySelectorAll('.related-news-part').forEach((div) => {
-    const cells = [['Featured News']];
-
+    const cells = [['Columns']];
     const headline = div.querySelector('h2');
     if (headline) {
       div.before(headline);
     }
-
     div.querySelectorAll('.inside-2-col').forEach((row) => {
       const image = row.querySelector('img');
       const content = row.querySelector('.col-sm-8');
