@@ -173,6 +173,13 @@ export function formatDate(dateStr) {
   return dateStr;
 }
 
+export function addLinkIcon(elem) {
+  const linkIcon = document.createElement('i');
+  linkIcon.className = 'fa fa-chevron-circle-right';
+  linkIcon.ariaHidden = true;
+  elem.append(linkIcon);
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */

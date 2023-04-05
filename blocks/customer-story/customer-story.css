@@ -1,0 +1,48 @@
+main .section.wave .customer-story p {
+  padding: 0;
+}
+
+.customer-story > div {
+  display: flex;
+}
+
+.customer-story > div > div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  padding: 0 15px;
+}
+
+.customer-story img {
+  border-radius: 50%;
+}
+
+.customer-story p {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+}
+
+.customer-story p a {
+  font-size: var(--body-font-size-m);
+  font-family: var(--ff-proxima-regular);
+  font-weight: initial;
+  color: #fff;
+}
+
+.customer-story h3 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-light);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.customer-story .button-container {
+  margin: 0;
+}
+
+.customer-story i {
+  margin-left: 5px;
+}
