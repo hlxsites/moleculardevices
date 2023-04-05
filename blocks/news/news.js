@@ -3,6 +3,7 @@ import {
   toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
+import { formatDate } from '../../scripts/scripts.js';
 import createList from '../../scripts/list.js';
 
 function linkPicture(picture) {
@@ -47,68 +48,70 @@ export function decorateLinkedPictures(block) {
   });
 }
 
-function formatDate(newsDate) {
-  const dateObj = new Date(0);
-  dateObj.setUTCSeconds(newsDate);
+function unixToDate(unixDateString) {
+  const date = new Date(0);
+  date.setUTCSeconds(unixDateString);
+  return date;
+}
 
-  return dateObj.toLocaleDateString('en-US', {
-    month: 'short',
-    day: '2-digit',
+function unixDateToString(unixDateString) {
+  const date = unixToDate(unixDateString);
+  const day = (date.getDate()).toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+}
+
+function formatDateFullYear(unixDateString) {
+  const date = unixToDate(unixDateString);
+  return date.toLocaleDateString('en-US', {
     year: 'numeric',
   });
 }
 
-function formatDateFullYear(newsDate) {
-  const dateObj = new Date(0);
-  dateObj.setUTCSeconds(newsDate);
-
-  return dateObj.toLocaleDateString('en-US', {
-    year: 'numeric',
-  });
-}
-
-async function fetchNews() {
-  const newsEntries = await ffetch('/query-index.json')
-    .sheet('news')
-    .all();
-  return newsEntries;
-}
-
-function filterNews(news, activeFilters) {
-  let filteredNews = news;
-
+function filterEntries(entries, activeFilters) {
+  let filteredEntries = entries;
   if (activeFilters.year) {
-    filteredNews = filteredNews
+    filteredEntries = filteredEntries
       .filter((n) => toClassName(n.filterDate).includes(activeFilters.year));
   }
-  return filteredNews;
+  return filteredEntries;
 }
 
-function createFilters(news, activeFilters, createDropdown) {
-  const date = Array.from(new Set(news.map((n) => n.filterDate)));
-
+function createFilters(entries, activeFilters, createDropdown) {
+  const date = Array.from(new Set(entries.map((n) => n.filterDate)));
   return [
     createDropdown(date, activeFilters.year, 'select-year', 'Select Year'),
   ];
 }
 
-function createNewsOverview(block, news, limit, paginationLimit) {
+export function createOverview(block, entries, limit, paginationLimit, showDescription) {
   block.innerHTML = '';
-  // prepare custom date fields
-  news.forEach((n) => {
-    n.newsDate = formatDate(n.date);
+  entries.forEach((n) => {
     n.filterDate = formatDateFullYear(n.date);
+    n.date = formatDate(unixDateToString(n.date));
+    if (!showDescription) {
+      n.description = '';
+    }
   });
 
   const panelTitle = 'Filter By :';
-  createList(news, filterNews, createFilters, limit, paginationLimit, block, panelTitle);
+  createList(entries, filterEntries, createFilters, limit, paginationLimit, block, panelTitle);
+}
+
+export async function fetchEntries(type) {
+  const entries = await ffetch('/query-index.json')
+    .sheet(type)
+    .all();
+  return entries;
 }
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   const limit = parseInt(config.limit, 10) || 10;
   const paginationLimit = parseInt(config.paginationLimit, 9) || 9;
-  const news = await fetchNews();
-  // console.log(`found ${news.length} news`);
-  createNewsOverview(block, news, limit, paginationLimit);
+  const entries = await fetchEntries('news');
+  const showDescription = false;
+  // console.log(`found ${entries.length} entries`);
+  createOverview(block, entries, limit, paginationLimit, showDescription);
 }

@@ -1,5 +1,8 @@
 .list {
   padding-top: 70px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .list a {
@@ -8,22 +11,22 @@
 }
 
 /* entries */
-.list .list-item {
+.list .item {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   border-bottom: 2px solid var(--light-border-color-gray);
   padding: 37px 0 40px;
 }
 
-.list .list-item:last-of-type {
+.list .item:last-of-type {
   padding-bottom: 22px;
 }
 
-.list .list-item > div {
+.list .items > div {
   width: 100%;
 }
 
-.list .list-item h3 {
+.list .item h3 {
   font-size: var(--list-font-size-m);
   font-weight: bold;
   line-height: 1.1;
@@ -38,15 +41,21 @@
   color: var(--text-dark-gray);
 }
 
-.list .list-item .image {
+.list .item .image {
   padding-right: 15px;
+  width: 33.33%;
 }
 
-.list .list-item .image img {
+.list .item .image img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
   border: 0;
+}
+
+.list .item .content {
+  width: 66.67%;
+  padding-left: 15px;
 }
 
 /* panel */
@@ -58,16 +67,16 @@
 }
 
 /* filters */
-.list .list-filter h3, .list .list-filter button {
+.list .filter h3, .list .lfilter button {
   font-size: var(--heading-font-size-m);
 }
 
-.list .list-filter .filter-select {
+.list .filter .select {
   border-bottom: 1px solid var(--border-color-gray);
   padding: 10px 0 16px;
 }
 
-.list .list-filter .filter-select button {
+.list .filter .select button {
   text-align: left;
   height: 56px;
   width: 100%;
@@ -78,7 +87,7 @@
   transition-duration: 0.3s;
 }
 
-.list .list-filter .filter-select button::before {
+.list .filter .select button::before {
   font-size: 12px;
   right: 21px;
   display: inline-block;
@@ -89,15 +98,15 @@
   margin-top: -9px;
 }
 
-.list .list-filter .filter-select.open button::before {
+.list .filter .select.open button::before {
   transform: rotate(180deg);
 }
 
-.list .list-filter .filter-select button:hover {
+.list .filter .select button:hover {
   color: var(--text-light-gray);
 }
 
-.list .list-filter .filter-select.open .dropdown-menu.open {
+.list .filter .select.open .dropdown-menu.open {
   visibility: visible;
   height: auto;
   max-height: 200px;
@@ -107,12 +116,12 @@
   box-shadow: none;
 }
 
-.list .list-filter .filter-select .dropdown-menu {
+.list .filter .select .dropdown-menu {
   visibility: hidden;
   height: 0;
 }
 
-.list .list-filter .filter-select .dropdown-menu p {
+.list .filter .select .dropdown-menu p {
   height: 41px;
   line-height: 41px;
   margin: 0;
@@ -122,20 +131,21 @@
 
 /* pagination */
 .list nav {
+  flex: 100%;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.list ol.pagination {
+.list ol.pages {
   padding: 0;
 }
 
-.list ol.pagination li.current {
+.list ol.pages li.current {
   color: unset;
 }
 
-.list ol.pagination li {
+.list ol.pages li {
   display: inline-block;
   list-style-type: none;
   width: 55px;
@@ -150,36 +160,37 @@
   margin: 4px;
 }
 
-.list ol.pagination li + li, .list ol.pagination li:first-child {
+.list ol.pages li + li, .list ol.pages li:first-child {
   margin-right: 20px;
 }
 
-@media (max-width: 767px) {
-  .list .list-item {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .list .list-item .image {
+@media (max-width: 991px) {
+  .list .item .image {
     width: unset;
     margin-bottom: 20px;
   }
 }
 
-@media (min-width: 768px) {
-  .list .list-item {
+@media (min-width: 992px) {
+  .list .items {
+    width: 75%;
+  }
+
+  .list .filter {
+    width: 25%;
+  }
+
+  .list .item {
     flex-direction: row;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
-  .list .list-item .image {
-    width: 50%;
-  }
-
-  .list .list-item .content {
+  .list .item .content {
     padding-left: 15px;
   }
 
-  .list .list-filter .filter-select {
+  .list .filter .select {
     width: 259px;
   }
 }

@@ -1,11 +1,20 @@
 import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
 
+const paramPage = 'page';
+const paramYear = 'year';
+const classListItems = 'items';
+const classListItem = 'item';
 const classPanelTitle = 'panel-title';
-const classListFilter = 'list-filter';
+const classListFilter = 'filter';
 const classFilterOpen = 'open';
-const classFilterSelect = 'filter-select';
+const classFilterSelect = 'select';
 const classDropdownToggle = 'dropdown-toggle';
 const classDropdownMenu = 'dropdown-menu';
+const classPagination = 'pagination';
+const classPagerList = 'pages';
+const classPagerItem = 'pager-item';
+const classPageCurrent = 'current';
+const defaultImage = '/default-meta-image.png';
 
 function getSelectionFromUrl(field) {
   return (
@@ -15,14 +24,14 @@ function getSelectionFromUrl(field) {
 
 function createPaginationLink(page, current, label) {
   const listElement = document.createElement('li');
-  listElement.classList.add('pager-item');
+  listElement.classList.add(classPagerItem);
   if (page === current) {
-    listElement.classList.add('current');
+    listElement.classList.add(classPageCurrent);
     listElement.innerText = page;
   } else {
     const newUrl = new URL(window.location);
     const link = document.createElement('a');
-    newUrl.searchParams.set('page', page);
+    newUrl.searchParams.set(paramPage, page);
     link.href = newUrl.toString();
     link.innerText = label || page;
     listElement.append(link);
@@ -31,11 +40,8 @@ function createPaginationLink(page, current, label) {
 }
 
 export function renderPagination(entries, page, limit, limitForPagination) {
-  const listPagination = document.createElement('div');
-  listPagination.className = 'list-pagination';
-
-  const navPagination = document.createElement('nav');
-  navPagination.className = 'nav-pagination';
+  const nav = document.createElement('nav');
+  nav.className = classPagination;
 
   if (entries.length > limit) {
     const maxPages = Math.ceil(entries.length / limit);
@@ -48,7 +54,7 @@ export function renderPagination(entries, page, limit, limitForPagination) {
     }
 
     const list = document.createElement('ol');
-    list.classList.add('pagination');
+    list.classList.add(classPagerList);
     if (page > 1) {
       list.append(createPaginationLink(1, page, '«'));
       list.append(createPaginationLink(page - 1, page, '‹'));
@@ -64,10 +70,9 @@ export function renderPagination(entries, page, limit, limitForPagination) {
       list.append(createPaginationLink(maxPages, page, '»'));
     }
 
-    navPagination.append(list);
-    listPagination.append(navPagination);
+    nav.append(list);
   }
-  return listPagination;
+  return nav;
 }
 
 function getActiveFilters() {
@@ -82,12 +87,12 @@ function getActiveFilters() {
 }
 
 function renderListItem({
-  path, title, image, newsDate,
+  path, title, description, image, date, publisher,
 }) {
   const listItemElement = document.createElement('article');
-  listItemElement.classList.add('list-item');
+  listItemElement.classList.add(classListItem);
 
-  const hasImage = (!image.startsWith('/default-meta-image.png'));
+  const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
     const imageElement = createOptimizedPicture(image, title, false, [
       { width: '500' },
@@ -99,23 +104,28 @@ function renderListItem({
         </a>
       </div>`;
   }
+  const citation = (publisher) ? `${date} | ${publisher}` : date;
   listItemElement.innerHTML += `
-      <div class="content">
-        <cite>${newsDate}</cite>  
-        <h3><a title="${title}" href="${path}">${title}</a></h3>
-      </div>
-    `;
+  <div class="content">
+    <cite>${citation}</cite>  
+    <h3><a title="${title}" href="${path}">${title}</a></h3>
+    ${description}
+  </div>
+`;
   return listItemElement;
 }
 
-function addItemsToList(data, customListItemRenderer, container) {
+function createListItems(data, customListItemRenderer) {
+  const items = document.createElement('div');
+  items.classList.add(classListItems);
   data.forEach((item) => {
     const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
       ? customListItemRenderer(item, renderListItem)
       : renderListItem(item);
 
-    container.appendChild(listItemElement);
+    items.appendChild(listItemElement);
   });
+  return items;
 }
 
 function toggleFilter(event) {
@@ -168,7 +178,7 @@ function createDropdown(options, selected, name, placeholder) {
       // reset all filters
       [...newUrl.searchParams.keys()].forEach((key) => newUrl.searchParams.delete(key));
     } else {
-      newUrl.searchParams.set('year', option);
+      newUrl.searchParams.set(paramYear, option);
     }
     link.href = newUrl.toString();
     link.append(optionTag);
@@ -178,7 +188,7 @@ function createDropdown(options, selected, name, placeholder) {
   return container;
 }
 
-function renderFilters(container, data, createFilters, panelTitle) {
+function renderFilters(data, createFilters, panelTitle) {
   const filter = document.createElement('div');
   filter.className = classListFilter;
 
@@ -188,7 +198,7 @@ function renderFilters(container, data, createFilters, panelTitle) {
       const header = document.createElement('h3');
       header.className = classPanelTitle;
       header.innerHTML = panelTitle;
-      container.append(header);
+      filter.append(header);
     }
 
     filter.append(
@@ -214,7 +224,7 @@ export default function createList(
 
   const filteredData = filter(data, getActiveFilters());
 
-  let page = parseInt(getSelectionFromUrl('page'), 10);
+  let page = parseInt(getSelectionFromUrl(paramPage), 10);
   page = Number.isNaN(page) ? 1 : page;
 
   // get data for display
@@ -224,9 +234,10 @@ export default function createList(
   if (dataToDisplay) {
     const container = document.createElement('div');
     container.className = 'list';
-    const filterElements = renderFilters(container, data, createFilters, panelTitle);
+    const filterElements = renderFilters(data, createFilters, panelTitle);
     container.append(filterElements);
-    addItemsToList(dataToDisplay, customListItemRenderer, container);
+    const listItems = createListItems(dataToDisplay, customListItemRenderer);
+    container.append(listItems);
     const pagination = renderPagination(filteredData, page, limitPerPage, limitForPagination);
     container.append(pagination);
     root.append(container);
