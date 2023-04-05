@@ -17,7 +17,7 @@ indices:
         value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
       thumbnail:
         select: head > meta[name="thumbnail"]
-        value:  attribute(el, "content")
+        value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
         value: attribute(el, "content")
