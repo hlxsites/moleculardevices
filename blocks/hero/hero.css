@@ -118,12 +118,6 @@ main .hero .container > div:nth-child(2) .button-container {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-.video-icon {
-  position: relative;
-  display: block;
-  height: 320px;
-}
-
 main .hero .video-icon img {
   height: 91px;
   width: 90px;
@@ -162,6 +156,10 @@ display: none;
     font-size: 36px;
   }
 
+  main .hero .two-column h1 {
+    font-size: 28px;
+  }
+
   main .hero h4 {
     margin-bottom: 10px;;
   }
@@ -189,8 +187,18 @@ display: none;
     padding-top:30px;
   }
 
+  main .hero .container.two-column > div.video-column > div {
+    border: none;
+  }
+
   main .hero .button-container a {
     padding: 9px 12px 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  main .hero h1 {
+    font-size: 45px;
   }
 }
 
@@ -201,7 +209,6 @@ display: none;
 
   main .hero .container {
     overflow: auto;
-    display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
@@ -215,11 +222,22 @@ display: none;
   main .hero .container > div:nth-child(1) .button-container {
     margin-top: 20px;
   }
+  
+  .video-icon {
+    position: relative;
+    display: block;
+    height: 125px;
+  }
 }
 
 @media (min-width: 992px) {
   main .hero > div {
     width: 970px
+  }
+
+  main .hero .container {
+    display: flex;
+    padding: 0 0 120px;
   }
 
   main .hero .container > div {
@@ -233,6 +251,10 @@ display: none;
   main .hero .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
+  }
+
+  .video-icon {
+    height: 320px;
   }
 }
 
