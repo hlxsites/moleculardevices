@@ -436,7 +436,7 @@ const transformResourcesCarousel = (block, document) => {
 const transformImageGallery = (document) => {
   const imageGallery = document.querySelector('.images-gallery1, .images-gallery');
   if (imageGallery) {
-    imageGallery.querySelectorAll('.row .fst-set').forEach((div) => div.remove());
+    imageGallery.querySelectorAll('.row .fst-set, .row.snd-set').forEach((div) => div.remove());
     const imageContainer = imageGallery.querySelector('.modal .carousel');
     if (imageContainer) {
       const cells = [['Image Gallery']];
