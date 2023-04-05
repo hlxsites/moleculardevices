@@ -544,6 +544,17 @@ header .cutted-green-blue-circle {
   background-image: url('../../images/header-menus/cutted-green-blue-circle.png');
 }
 
+header .image-with-text-submenu img {
+  width: 800px;
+  height: 390px;
+  margin-top: 40px;
+  margin-left: -30px;
+}
+
+header .no-margin img {
+  margin-top: 0;
+}
+
 header .large-card-submenu img:hover {
   cursor: pointer;
   transform: scale(1.2);
