@@ -10,6 +10,12 @@ let blockUtils;
 document.body.innerHTML = await readFile({ path: './dummy.html' });
 document.head.innerHTML = await readFile({ path: './head.html' });
 
+const sleep = async (time = 1000) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(true);
+  }, time);
+});
+
 describe('Utils methods', () => {
   before(async () => {
     blockUtils = await import('../../scripts/lib-franklin.js');
@@ -97,6 +103,7 @@ describe('Sections and blocks', () => {
 
   it('Loads blocks', async () => {
     await blockUtils.loadBlocks(document.querySelector('main'));
+    await sleep(100);
     document.querySelectorAll('main .block').forEach(($block) => {
       expect($block.dataset.blockStatus).to.equal('loaded');
     });

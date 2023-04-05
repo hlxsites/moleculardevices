@@ -1,0 +1,59 @@
+.related-apps-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.related-links-container {
+  column-count: 2;
+}
+
+.cols-3 {
+  column-count: 3;
+}
+
+.related-app {
+  flex-basis: 50%;
+  min-height: 1px;
+  padding: 15px;
+}
+
+.related-link  {
+  line-height: 21px;
+  margin-bottom: 10px;
+}
+
+li.related-link::marker {
+  color: #337ab7;;
+}
+
+@media (max-width: 992px) {
+  .related-app {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .related-links-container, .related-links-container.cols-3 {
+    column-count: 1;
+  }
+}
+
+.related-app h1 {
+  font-size: 36px;
+  margin-top: 0;
+}
+
+.related-app p {
+  margin-top: 40px;
+}
+
+.related-app img {
+  max-height: 100%;
+  object-fit: cover;
+  height: auto;
+  width: 100%;
+}
+
+.related-app a .fa {
+  margin-left: 5px;
+}

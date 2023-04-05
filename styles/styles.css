@@ -78,6 +78,7 @@
   --header-mega-menu-font-color: #FFFFFFB2;
   --header-mega-menu-product-cards-background-color: #161e2d;
   --header-mega-menu-green: #6eb43f;
+  --header-actionable-submenu-text-color: #e6e6e6;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
@@ -469,7 +470,7 @@ main .section>div {
 }
 
 main .section .default-content-wrapper {
-  padding: 0 0 100px;
+  padding-bottom: 100px;
 }
 
 /* progressive section appearance */
@@ -665,7 +666,7 @@ main .section.wave::after {
 main .section.wave .default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 55px;
-  padding-left: 15px;
+  padding: 0 15px;
   padding-right: 15px;
 }
 

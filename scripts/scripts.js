@@ -118,11 +118,10 @@ async function decorateTemplates(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  decorateTemplates(main);
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
@@ -137,7 +136,8 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    await decorateTemplates(main);
+    await decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
@@ -159,7 +159,7 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
-export function formatDate(dateStr) {
+export function formatDate(dateStr, options = {}) {
   const parts = dateStr.split('/');
   const date = new Date(parts[2], parts[0] - 1, parts[1]);
 
@@ -168,6 +168,7 @@ export function formatDate(dateStr) {
       month: 'short',
       day: '2-digit',
       year: 'numeric',
+      ...options,
     });
   }
   return dateStr;
