@@ -1075,35 +1075,6 @@ export default {
       heroMediaGalleryLink.href = `${params.originalURL.substring(params.originalURL.indexOf('.com/') + 4, params.originalURL.lenght)}-media-gallery`;
     }
 
-
-    // // prepare hero media gallery content
-    // const heroMediaGallery = document.getElementById('mediaGallary');
-    // const heroWrapper = document.querySelector('.herobanner_wrap .section-image.cover-bg');
-    // if (heroMediaGallery && heroWrapper) {
-    //   const items = document.createElement('div');
-    //   items.classList.add('gallery');
-    //   heroMediaGallery.querySelectorAll('#mediaGalSlid .item').forEach((div) => {
-    //     const title = div.querySelector('.slide-desc');
-    //     if (title) {
-    //       const heading = document.createElement('h3');
-    //       heading.textContent = title.textContent;
-    //       title.replaceWith(heading);
-    //     }
-    //     const iframe = div.querySelector('.mediagalVid iframe');
-    //     if (iframe) {
-    //       let src = iframe.getAttribute('data-url');
-    //       if (iframe.classList.contains('vidyard_iframe')) {
-    //         const videoId = src.match(/.*com\/(.*)\.html/)[1];
-    //         src = `https://share.vidyard.com/watch/${videoId}`;
-    //       }
-    //       iframe.replaceWith(src);
-    //     }
-    //     items.append(div);
-    //   });
-    //   heroWrapper.append(items);
-    //   heroMediaGallery.remove();
-    // }
-
     // rewrite all links with spans before they get cleaned up
     document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
     document.querySelectorAll('a strong').forEach((strong) => strong.replaceWith(strong.textContent));
