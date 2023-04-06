@@ -214,5 +214,5 @@ async function getCoveoToken() {
 
 export default async function decorate() {
   document.querySelector('.coveo-search > div').innerHTML =  searchForm();
-  getCoveoToken();
+  setTimeout(getCoveoToken, 500);
 }
