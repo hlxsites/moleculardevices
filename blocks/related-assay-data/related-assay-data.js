@@ -1,5 +1,5 @@
 import { fetchFragment } from '../../scripts/scripts.js';
-import { div, h3 } from '../../scripts/dom-helpers.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
@@ -20,8 +20,8 @@ export default async function decorate(block) {
       fragments[path] = {
         headerBlock,
         pictureBlock,
-        otherChildren
-      }
+        otherChildren,
+      };
     }
   }));
 
