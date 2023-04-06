@@ -168,7 +168,9 @@ const transformFragmentDocuments = (document) => {
   if (isFragment) {
     document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
       const headline = hero.querySelector('h1');
-      hero.before(headline);
+      const h3 = document.createElement('h3');
+      h3.textContent = headline.textContent;
+      hero.before(h3);
       const img = hero.querySelector('img');
       if (img) {
         hero.before(img);

@@ -42,7 +42,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   }
   request.open(
     'GET',
-    `http://localhost:3001/export/moldev-resources-sheet-03282023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
+    `http://localhost:3001/export/moldev-resources-sheet-04062023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -70,6 +70,17 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
     if (resource.Publisher) {
       meta.Publisher = resource.Publisher;
+    }
+    if (resource['Resource Author']) {
+      meta.Author = resource['Resource Author'];
+    }
+    if (resource['Card CTA']) {
+      meta['Card C2A '] = resource['Card CTA'];
+    }
+    if (resource.Thumbnail) {
+      const el = document.createElement('img');
+      el.src = resource.Thumbnail;
+      meta.Thumbnail = el;
     }
 
     const publishDate = new Date(resource['Created On']);
@@ -141,13 +152,6 @@ const createMetadata = (url, document) => {
     meta.Image = el;
   }
 
-  // extract author for lab notes blog
-  const blogDetails = document.querySelector('.blog-details .hero-desc ul');
-  if (blogDetails) {
-    meta.Author = blogDetails.querySelector('.blog-author').textContent.trim();
-    blogDetails.remove();
-  }
-
   return meta;
 };
 
@@ -193,7 +197,7 @@ const extractBackgroundImage = (content) => {
 const transformHero = (document) => {
   // detect the default hero styles
   document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
-    hero.querySelectorAll('.row > [class*="col-"]').forEach((col) => col.removeAttribute('class'));
+    hero.querySelectorAll('.row').forEach((row) => row.removeAttribute('class'));
     const cells = [['Hero']];
 
     const isBlog = hero.classList.contains('blog-details');
@@ -287,6 +291,9 @@ const transformSections = (document) => {
     const styles = [];
     if (section.classList.contains('grey_molecules_bg_top')) {
       styles.push('Background Molecules');
+    }
+    if (section.classList.contains('parallax-container1')) {
+      styles.push('Background Parallax');
     }
     if (section.classList.contains('franklin-horizontal')) {
       styles.push('Columns 2');
@@ -1072,7 +1079,10 @@ export default {
     // rewrite media gallery link if present and remove galley items
     const heroMediaGalleryLink = document.getElementById('openMediaGallery');
     if (heroMediaGalleryLink) {
-      heroMediaGalleryLink.href = `${params.originalURL.substring(params.originalURL.indexOf('.com/') + 4, params.originalURL.lenght)}-media-gallery`;
+      const pageUrl = WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')).substring(1);
+      const pageType = pageUrl.substring(0, pageUrl.indexOf('/'));
+      const pageFilename = pageUrl.substring(pageUrl.lastIndexOf('/') + 1);
+      heroMediaGalleryLink.href = `/fragments/media-gallery/${pageType}/${pageFilename}`;
     }
 
     // rewrite all links with spans before they get cleaned up
@@ -1106,6 +1116,7 @@ export default {
       'nav#block-mobilenavigation',
       'div#resources .tabbingContainer', // TODO should be replaced with some block, not removed
       'body > #mediaGallary', // remove the hero media gallery only
+      '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
       '.skip-link',
       '.cart-store',
