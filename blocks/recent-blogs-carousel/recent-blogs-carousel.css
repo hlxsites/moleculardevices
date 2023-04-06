@@ -58,7 +58,6 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption {
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption h3 {
-  color: #12141f;
   font-size: 20px;
   line-height: 24.1px;
   font-weight: normal;
@@ -67,6 +66,11 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption h3 {
   margin-top: 14px;
   margin-bottom: 20px;
 }
+
+main .carousel.recent-blogs-carousel .blog-carousel-caption h3 a {
+  color: inherit;
+}
+
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption .blog-description {
   font-size: 16px;

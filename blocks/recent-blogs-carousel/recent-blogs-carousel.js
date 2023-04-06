@@ -27,8 +27,8 @@ function renderItem(item) {
         )
       ),
       div({ class: 'blog-carousel-caption' },
-        a({ href: item.path },
-          h3(item.title),
+        h3(
+          a({ href: item.path }, item.title),
         ),
         p({ class: 'blog-description' }, summariseDescription(item.description)),
         p({ class: 'button-container' },
