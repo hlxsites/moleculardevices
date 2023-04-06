@@ -30,7 +30,7 @@
 
 .list cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-m);
   font-style: normal;
   font-weight: 600;
   color: var(--text-dark-gray);
