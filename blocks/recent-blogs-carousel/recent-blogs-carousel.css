@@ -1,4 +1,5 @@
 :root {
+  --blog-card-text-color: 
   --news-item-width: 366px;
   --news-items: 3;
 }
@@ -36,6 +37,12 @@ main .carousel.recent-blogs-carousel .blog-carousel-item {
   justify-content: space-between;
 }
 
+main .carousel.recent-blogs-carousel .blog-carousel-thumb {
+  height: 200px;
+  min-height: 200px;
+  overflow: hidden;
+}
+
 main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
   min-height: 200px;
   display: block;
@@ -51,6 +58,7 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption {
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption h3 {
+  color: #12141f;
   font-size: 20px;
   line-height: 24.1px;
   font-weight: normal;
