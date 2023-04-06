@@ -206,7 +206,7 @@ async function getCoveoToken() {
     .then((response) => response.text())
     .then((responseData) => {
       coveoSearchInitiation(organizationId, JSON.parse(responseData).token);
-    })
+    });
 }
 
 export default async function decorate() {
