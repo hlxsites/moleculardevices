@@ -220,6 +220,20 @@
   margin-top: 10px;
 }
 
+.coveo-result-frame .coveo-result-cell:not(:first-child) {
+  padding-left: 16px;
+}
+
+.coveo-result-frame .coveo-result-cell .coveo-result-row:not(:first-child) {
+  margin-top: 10px;
+}
+
+.coveo-result-frame .coveo-result-cell > .coveo-result-row:first-child .coveo-result-cell:last-child {
+  width: 120px;
+  text-align: right;
+  font-size: 12px;
+}
+
 @media only screen and (min-width: 768px) {
   .section.cover-banner-wrapper {
     min-height: 440px;
@@ -227,6 +241,10 @@
 
   .cover-banner-content {
     padding-top: 100px;
+  }
+
+  .mdcoveo .coveo-main-section-wrapper .coveo-facet-column {
+    width: 254.062px;
   }
 
   .coveo-main-section > .coveo-facet-column > div {

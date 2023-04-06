@@ -46,7 +46,7 @@ function searchForm() {
             <div class="section coveo-main-section-wrapper">
               <div class="coveo-main-section">
                 <p class='coveoMainTitle coveo-main-title'></p>
-                <div class="coveo-facet-column" style="width:254.062px">
+                <div class="coveo-facet-column">
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Country" data-field="@md_country" data-tab="SDS" data-id="Country" data-number-of-values="" data-enable-facet-search="false"></div>
                   <div class="CoveoDynamicHierarchicalFacet" data-enable-facet-search="false" data-delimiting-character="|" data-title="Products" data-field="@mdproductsdatacategory" data-tab="Products, All, Resources, KBArticles, Videos" data-number-of-values="8" data-enable-collapse="true" data-enable-scroll-to-top="false" data-filter-facet-count="false"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Languages" data-field="@md_lang" data-tab="SDS" data-number-of-values="" data-depends-on="Country"></div>
@@ -83,33 +83,33 @@ function searchForm() {
                   <div class="CoveoErrorReport" data-pop-up="false"></div>
                   <div class="CoveoResultList coveo-result-list" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="false">
                     <script id="SalesforceKnowledgeArticle" class="result-template" type="text/html" data-field-sfknowledgearticleid="">
-                          <div class="coveo-result-frame" style="padding: 0 16px 16px 0;">
-                            <div class="coveo-result-cell" style="width:100px">
+                          <div class="coveo-result-frame">
+                            <div class="coveo-result-cell">
                               <span class="CoveoIcon" data-small="true"></span>
                             </div>
-                            <div class="coveo-result-cell" style="vertical-align: top; padding-left: 16px;">
-                              <div class="coveo-result-row" style="margin-top: 0;">
-                                <div class="coveo-result-cell" style="vertical-align: top; font-size: 16px;">
+                            <div class="coveo-result-cell">
+                              <div class="coveo-result-row">
+                                <div class="coveo-result-cell">
                                   <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/" target="_blank"> </a>
                                 </div>
-                                <div class="coveo-result-cell" style="width: 120px; text-align: right; font-size: 12px;">
+                                <div class="coveo-result-cell">
                                   <div class="coveo-result-row">
                                     <span class="CoveoFieldValue" data-field="@sflastmodifieddate" data-helper="date"></span>
                                   </div>
                                 </div>
                               </div>
                               <div class="CoveoConditionalRendering" id="ExcerptConditionalRendering">
-                          <div class="coveo-result-row" style="margin-top:1px;">
+                          <div class="coveo-result-row">
                           <div class="coveo-result-cell">
                           <span class="CoveoFieldValue" data-helper="shorten" data-helper-options-length="200" data-field="@sfquestion__c" data-html-value="true"></span>
                           <span class="CoveoExcerpt coveo-excerpt"></span>
                           </div>
                           </div>
                           </div>
-                              <div class="coveo-result-row" style="margin-top: 8px;">
-                                <div class="coveo-result-cell" style="line-height: 1.5em;">
-                                  <span class="CoveoFieldValue" data-field="@sfownername" data-text-caption="Owner" style="margin-right: 30px;"></span>
-                                  <span class="CoveoFieldValue" data-field="@sfarticletype" data-text-caption="Type" style="margin-right: 30px;"></span>
+                              <div class="coveo-result-row">
+                                <div class="coveo-result-cell">
+                                  <span class="CoveoFieldValue" data-field="@sfownername" data-text-caption="Owner"></span>
+                                  <span class="CoveoFieldValue" data-field="@sfarticletype" data-text-caption="Type"></span>
                                 </div>
                               </div>
                             </div>
@@ -119,32 +119,32 @@ function searchForm() {
                     <script id="Default" class="result-template" type="text/html" data-layout="list">
                           <div class="coveo-result-frame">
                             <div class="coveo-result-cell" >
-                              <span class="CoveoIcon" data-small="true"  data-with-label="false" data-field="@md_img"  data-condition-field-not-md_img=""></span>
+                              <span class="CoveoIcon" data-small="true" data-with-label="false" data-field="@md_img" data-condition-field-not-md_img=""></span>
                               <table class="CoveoFieldTable" data-expanded-title="Type"></table>
                               <span class="CoveoFieldValue product_img product-img" data-field="@md_img" data-helper="image" data-html-value="true"></span>
                             </div>
-                            <div class="coveo-result-cell" style="vertical-align: top;padding-left: 16px;">
-                              <div class="coveo-result-row" style="margin-top:0;">
-                                <div class="coveo-result-cell" style="vertical-align:top;font-size:16px;" role="heading" aria-level="2">
+                            <div class="coveo-result-cell">
+                              <div class="coveo-result-row">
+                                <div class="coveo-result-cell" role="heading" aria-level="2">
                                   <a class="CoveoResultLink coveo-result-link" target="_blank"><span class="CoveoFieldValue" data-field="@md_title"> <span class="CoveoFieldValue" data-field="@title" data-condition-field-not-md_title=""></span></span></a>
                                 </div>
-                                <div class="coveo-result-cell" style="width:120px;text-align:right;font-size:12px">
+                                <div class="coveo-result-cell">
                                   <div class="coveo-result-row">
                                     <span class="CoveoFieldValue" data-field="@date" data-helper="date"></span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="coveo-result-row" style="margin-top:10px;">
+                              <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
                                   <span class="CoveoExcerpt coveo-excerpt"></span>
                                 </div>
                               </div>
-                              <div class="coveo-result-row" style="margin-top:10px;">
+                              <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
                                   <span class="CoveoFieldValue" data-field="@md_rfq" data-html-value="true" data-helper="anchor" data-text-caption="" data-helper-options-text="Request Quote"></span>
                                 </div>
                               </div>
-                              <div class="coveo-result-row" style="margin-top:10px;">
+                              <div class="coveo-result-row">
                               </div>
                               <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
@@ -156,7 +156,6 @@ function searchForm() {
                       </script>
                   </div>
                   <div class="CoveoPager"></div>
-                  <div class="CoveoLogo" style="display: none;"></div>
                   <div class="CoveoResultsPerPage"></div>
                 </div>
               </div>
@@ -211,5 +210,5 @@ async function getCoveoToken() {
 
 export default async function decorate() {
   document.querySelector('.coveo-search > div').innerHTML = searchForm();
-  setTimeout(getCoveoToken, 500);
+  setTimeout(getCoveoToken, 1000);
 }
