@@ -68,11 +68,11 @@ main .carousel.recent-blogs-carousel .blog-carousel-thumb a {
   display: block;
 }
 
-
 main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
   height: 200px;
   width: auto;
   min-width: auto;
+  object-fit: cover;
   transition: all .5s ease-in-out;
 }
 
