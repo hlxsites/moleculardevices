@@ -166,7 +166,7 @@ function searchForm() {
 }
 
 async function coveoSearchInitiation(organizationID, accessToken) {
-  if (typeof Coveo !== 'undefined') {
+  /*global Coveo */
     Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
     Coveo.init(document.getElementById('search'), {
       ExcerptConditionalRendering: {
@@ -174,7 +174,6 @@ async function coveoSearchInitiation(organizationID, accessToken) {
         compareValue: '{{ cp_cookie }}',
       },
     });
-  }
 }
 
 async function getCoveoToken() {
@@ -208,7 +207,6 @@ async function getCoveoToken() {
     .then((responseData) => {
       coveoSearchInitiation(organizationId, JSON.parse(responseData).token);
     })
-    .catch((error) => console.warn(error));
 }
 
 export default async function decorate() {
