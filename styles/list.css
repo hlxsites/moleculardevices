@@ -30,7 +30,7 @@
 
 .list cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   font-style: normal;
   font-weight: 600;
   color: var(--text-dark-gray);
@@ -63,6 +63,10 @@
 .list .filter .select {
   border-bottom: 1px solid var(--border-color-gray);
   padding: 10px 0 16px;
+}
+
+.list .filter .select>* {
+  font-size: var(--list-font-size-m);
 }
 
 .list .filter .select button {
@@ -154,6 +158,10 @@
 }
 
 @media (max-width: 768px) {
+  .list .items .image {
+    padding-left: 15px;
+  }
+
   .list .items .content {
     margin-top: 15px;
   }
