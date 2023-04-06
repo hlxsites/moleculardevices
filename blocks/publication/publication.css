@@ -1,5 +1,14 @@
-.hero h1#news {
+main .hero {
+  min-height: 440px;
+}
+
+main .hero > div {
+  width: 750px;
+}
+
+main .hero h1 {
     font-size: 55px;
+    margin-top: 0;
 }
 
 @media (max-width: 767px) {

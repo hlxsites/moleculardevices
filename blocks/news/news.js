@@ -85,13 +85,23 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
-export function createOverview(block, entries, limit, paginationLimit, showDescription) {
+export function createOverview(
+  block,
+  entries,
+  limit,
+  paginationLimit,
+  showDescription,
+  viewMoreText,
+) {
   block.innerHTML = '';
   entries.forEach((n) => {
     n.filterDate = formatDateFullYear(n.date);
     n.date = formatDate(unixDateToString(n.date));
     if (!showDescription) {
       n.description = '';
+    }
+    if (viewMoreText) {
+      n.viewMoreText = viewMoreText;
     }
   });
 
@@ -112,6 +122,7 @@ export default async function decorate(block) {
   const paginationLimit = parseInt(config.paginationLimit, 9) || 9;
   const entries = await fetchEntries('news');
   const showDescription = false;
+  const viewMoreText = '';
   // console.log(`found ${entries.length} entries`);
-  createOverview(block, entries, limit, paginationLimit, showDescription);
+  createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
 }

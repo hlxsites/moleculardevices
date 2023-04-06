@@ -61,7 +61,9 @@ export function renderPagination(entries, page, limit, limitForPagination) {
     }
     // eslint-disable-next-line no-plusplus
     for (let i = startIdx; i <= endIdx; i++) {
-      list.append(createPaginationLink(i, page));
+      if (i > 0) {
+        list.append(createPaginationLink(i, page));
+      }
     }
     if (page < maxPages) {
       list.append(createPaginationLink(page + 1, page, '›'));
@@ -87,7 +89,7 @@ function getActiveFilters() {
 }
 
 function renderListItem({
-  path, title, description, image, date, publisher,
+  path, title, description, viewMoreText, image, date, publisher,
 }) {
   const listItemElement = document.createElement('article');
   listItemElement.classList.add(classListItem);
@@ -105,11 +107,13 @@ function renderListItem({
       </div>`;
   }
   const citation = (publisher) ? `${date} | ${publisher}` : date;
+  const viewMoreLnk = (viewMoreText) ? `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>` : '';
   listItemElement.innerHTML += `
   <div class="content">
-    <cite>${citation}</cite>  
+    <cite>${citation} </cite>  
     <h3><a title="${title}" href="${path}">${title}</a></h3>
     ${description}
+    ${viewMoreLnk}
   </div>
 `;
   return listItemElement;

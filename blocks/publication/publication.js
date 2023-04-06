@@ -8,6 +8,7 @@ export default async function decorate(block) {
   const paginationLimit = parseInt(config.paginationLimit, 9) || 9;
   const entries = await fetchEntries('publications');
   const showDescription = true;
+  const viewMoreText = 'learn more';
   // console.log(`found ${entries.length} entries`);
-  createOverview(block, entries, limit, paginationLimit, showDescription);
+  createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
 }
