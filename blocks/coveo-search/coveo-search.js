@@ -166,7 +166,6 @@ function searchForm() {
 }
 
 async function coveoSearchInitiation(organizationID, accessToken) {
-
   if (typeof Coveo !== 'undefined') {
     Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
     Coveo.init(document.getElementById('search'), {
@@ -213,6 +212,6 @@ async function getCoveoToken() {
 }
 
 export default async function decorate() {
-  document.querySelector('.coveo-search > div').innerHTML =  searchForm();
+  document.querySelector('.coveo-search > div').innerHTML = searchForm();
   setTimeout(getCoveoToken, 500);
 }
