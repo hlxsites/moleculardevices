@@ -14,6 +14,7 @@
   font-family: 'Proxima Nova Regular Fallback';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local('Arial');
   ascent-override: 79.64%;
   descent-override: 21.17%;
@@ -25,6 +26,7 @@
   font-family: 'Proxima Nova ExtraBold Fallback';
   font-style: normal;
   font-weight: 800;
+  font-display: swap;
   src: local('Arial');
   ascent-override: 75.77%;
   descent-override: 20.14%;
@@ -36,6 +38,7 @@
   font-family: 'Proxima Nova Light Fallback';
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: local('Arial');
   ascent-override: 80.85%;
   descent-override: 21.49%;
