@@ -515,55 +515,61 @@ nav {
   display: block;
 }
 
-  /* news and publication */
-.news .section .default-content-wrapper, .publication .section .default-content-wrapper {
+/* news and publication */
+main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
-
+  
   padding: 0 15px;
 }
 
+main .event-container::after {
+  width: 100%;
+}
+
 @media (max-width: 767px) {
-  .news .section p, .publication .section p {
+  main .event-container p {
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
   }
 }
 
-.news .section p, .publication .section p {
+main .event-container p {
   margin-top: 0;
   margin-bottom: 10px;
   padding: 0;
 }
 
-.news .section h1, .publication .section h1 {
+main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
   padding-top: 40px;
   border-bottom: 1px solid var(--dark-border-color-gray);
   padding-bottom: 20px;
+  width: 100%;
 }
 
-.news .section strong, .publication .section strong {
+main .event-container strong {
   font-weight: 700;
 }
 
-.news .section .text-strong, .publication .section .text-strong {
+main .event-container .text-strong {
   padding-top: 15px;
 
 }
 
-.news .section cite, .publication .section cite {
+main .event-container .event-date {
   font-size: var(--body-font-size-xs);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
   font-style: normal;
   display: block;
   padding-bottom: 30px;
+  width: 100%;
 }
 
-.news .section i.fa.fa-external-link, .publication .section i.fa.fa-external-link {
+main .event-container i.fa.fa-external-link {
   position: relative;
   top: -7px;
   font-size: 13px;
