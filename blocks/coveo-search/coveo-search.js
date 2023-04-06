@@ -166,14 +166,14 @@ function searchForm() {
 }
 
 async function coveoSearchInitiation(organizationID, accessToken) {
-  /*global Coveo */
-    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
-    Coveo.init(document.getElementById('search'), {
-      ExcerptConditionalRendering: {
-        values: ['public'],
-        compareValue: '{{ cp_cookie }}',
-      },
-    });
+  /* global Coveo */
+  Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
+  Coveo.init(document.getElementById('search'), {
+    ExcerptConditionalRendering: {
+      values: ['public'],
+      compareValue: '{{ cp_cookie }}',
+    },
+  });
 }
 
 async function getCoveoToken() {
