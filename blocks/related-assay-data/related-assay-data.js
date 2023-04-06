@@ -1,5 +1,5 @@
 import { fetchFragment } from '../../scripts/scripts.js';
-import { div, h2, p } from '../../scripts/dom-helpers.js';
+import { div, h2 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
@@ -14,12 +14,13 @@ export default async function decorate(block) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
       const h1 = fragmentElement.querySelector('h1');
-      const id = h1.id;
+      const { id } = h1;
       const title = h1.textContent;
       const pictureBlock = fragmentElement.querySelector('picture');
       const otherChildren = fragmentElement.querySelectorAll('p:not(:has(picture))');
-      console.log(otherChildren)
-      return { id, title, pictureBlock, otherChildren };
+      return {
+        id, title, pictureBlock, otherChildren,
+      };
     }
     return null;
   }));
@@ -27,16 +28,16 @@ export default async function decorate(block) {
 
   fragments.forEach((fragment) => {
     block.append(
-      div({class: 'assay'},
-        div({class: 'assay-content'},
-          h2({class: 'assay-title', id: fragment.id}, fragment.title),
-          ...fragment.otherChildren
+      div({ class: 'assay' },
+        div({ class: 'assay-content' },
+          h2({ class: 'assay-title', id: fragment.id }, fragment.title),
+          ...fragment.otherChildren,
         ),
-        div({class: 'assay-picture'},
-          fragment.pictureBlock
-        )
-      )
-    )
+        div({ class: 'assay-picture' },
+          fragment.pictureBlock,
+        ),
+      ),
+    );
   });
 
   return block;
