@@ -106,7 +106,7 @@ function renderListItem({
         </a>
       </div>`;
   }
-  const citation = (publisher) ? `${date} | ${publisher}` : date;
+  const citation = (publisher !== '0') ? `${date} | ${publisher}` : date;
   const viewMoreLnk = (viewMoreText) ? `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>` : '';
   listItemElement.innerHTML += `
   <div class="content">
