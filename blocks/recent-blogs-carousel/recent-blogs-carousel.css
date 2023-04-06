@@ -1,7 +1,4 @@
 :root {
-  --blog-card-text-color: 
-  --news-item-width: 366px;
-  --news-items: 3;
 }
 
 main div.recent-blogs-carousel-container {
@@ -10,13 +7,30 @@ main div.recent-blogs-carousel-container {
   margin: 0 auto;
 }
 
+main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-button:hover {
+  color: #adb3b7;
+  border: 1.5px solid #adb3b7;
+  background-color: inherit;
+}
+
+main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-left {
+  left: -60px;
+}
+
+main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-right {
+  right: -60px;
+}
+
 main .carousel.recent-blogs-carousel {
   padding: 0;
 }
 
 main .carousel.recent-blogs-carousel .carousel-item {
   display: block;
-  padding: 20px 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   width: 370px;
   margin: 0;
 } 
@@ -35,6 +49,13 @@ main .carousel.recent-blogs-carousel .blog-carousel-item {
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+main .carousel.recent-blogs-carousel .blog-carousel-item:hover {
+  z-index: 1;
+  transform: scale(1.07);
+  transition: all .3s;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-thumb {
@@ -43,9 +64,20 @@ main .carousel.recent-blogs-carousel .blog-carousel-thumb {
   overflow: hidden;
 }
 
-main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
-  min-height: 200px;
+main .carousel.recent-blogs-carousel .blog-carousel-thumb a {
   display: block;
+}
+
+
+main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
+  height: 200px;
+  width: auto;
+  min-width: auto;
+  transition: all .5s ease-in-out;
+}
+
+main .carousel.recent-blogs-carousel .blog-carousel-thumb:hover img {
+  transform: scale(1.1);
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption {
@@ -70,7 +102,6 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption h3 {
 main .carousel.recent-blogs-carousel .blog-carousel-caption h3 a {
   color: inherit;
 }
-
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption .blog-description {
   font-size: 16px;

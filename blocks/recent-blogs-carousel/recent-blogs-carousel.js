@@ -40,12 +40,11 @@ function renderItem(item) {
 }
 
 export default async function decorate(block) {
-  const blogs = await ffetch('/query-index.json')
+  let blogs = await ffetch('/query-index.json')
     .sheet('blog')
     .limit(6)
     .all();
-
-  console.log(blogs);
+  blogs = blogs.filter((blog) => blog.path !== window.location.pathname).slice(0, 5);
 
   createCarousel(
     block,
