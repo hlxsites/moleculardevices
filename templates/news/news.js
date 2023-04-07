@@ -1,23 +1,22 @@
 import { formatDate } from '../../scripts/scripts.js';
 
-const { buildBlock, decorateBlock, loadBlock } = await import('../../scripts/lib-franklin.js');
+import {
+  getMetadata, buildBlock,
+} from '../../scripts/lib-franklin.js';
 
-function getPublicationDateFromMetaData() {
-  let dateStr = '';
-  const dtElem = document.querySelector('head meta[name="publication-date"]');
-  if (dtElem) {
-    if (dtElem.getAttribute('content')) {
-      dateStr = formatDate(dtElem.getAttribute('content'));
-    }
+function decorateTitle(parentElem, titleElem) {
+  titleElem.classList.add('event-title');
+  if (titleElem) {
+    parentElem.append(titleElem);
   }
-  return dateStr;
 }
 
 function decorateCite(parentElem) {
-  const dt = getPublicationDateFromMetaData();
+  const dt = getMetadata('publication-date');
   if (dt) {
     const cite = document.createElement('cite');
-    cite.innerHTML = dt;
+    cite.classList.add('event-date');
+    cite.innerHTML = formatDate(dt);
     parentElem.append(cite);
   }
 }
@@ -55,24 +54,18 @@ function decorateReadMore(linkElem) {
   }
 }
 
-function addSocialShare(contentWrapper, content) {
-  const socialShare = buildBlock('social-share', content);
-  contentWrapper.append(socialShare);
-  decorateBlock(socialShare);
-  loadBlock(socialShare);
-}
-
 export function decorateAutoBlock(content) {
   if (!content) {
     return;
   }
 
-  decorateCite(content);
+  const contentWrapper = document.createElement('span');
+  contentWrapper.classList.add('event-container');
 
-  const contentWrapper = document.createElement('div');
-  contentWrapper.classList.add('content-wrapper');
+  decorateTitle(contentWrapper, content.querySelector('h1'));
+  decorateCite(contentWrapper);
 
-  const hasLeftCol = document.querySelector('main .section > .default-content-wrapper :nth-child(2) picture');
+  const hasLeftCol = content.querySelector('p:first-child picture');
   const pic = document.createElement('div');
   if (hasLeftCol) {
     pic.classList.add('left-col');
@@ -92,19 +85,18 @@ export function decorateAutoBlock(content) {
     }
   });
 
-  content.append(contentWrapper);
   contentWrapper.append(txt);
+  content.append(contentWrapper);
 
-  decorateStrong(content.querySelectorAll('.right-col p > strong'));
-  decorateCaption(content.querySelectorAll('.left-col p > picture'));
-  decorateCaption(content.querySelectorAll('.right-col p > picture'));
+  decorateStrong(contentWrapper.querySelectorAll('.right-col p > strong'));
+  decorateCaption(contentWrapper.querySelectorAll('.left-col p > picture'));
+  decorateCaption(contentWrapper.querySelectorAll('.right-col p > picture'));
 
-  decorateReadMore(contentWrapper.querySelector('.button-container a'));
-
-  addSocialShare(content.querySelector('.content-wrapper'), '<p>Share this news</p>');
+  decorateReadMore(contentWrapper.querySelector('p:last-child a'));
 }
 
 export default function buildAutoBlocks() {
-  const content = document.querySelector('main .section > .default-content-wrapper');
-  decorateAutoBlock(content);
+  const container = document.querySelector('main div');
+  decorateAutoBlock(container);
+  container.append(buildBlock('social-share', '<p>Share this news</p>'));
 }
