@@ -96,7 +96,7 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption h3 {
   text-align: left;
   min-height: 49px;
   margin-top: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption h3 a {
@@ -113,6 +113,7 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .blog-description {
 main .carousel.recent-blogs-carousel .blog-carousel-caption .button-container {
   text-align: center;
   margin-top: auto;
+  margin-bottom: 0;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
