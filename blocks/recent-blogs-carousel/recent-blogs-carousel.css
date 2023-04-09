@@ -28,10 +28,7 @@ main .carousel.recent-blogs-carousel {
 
 main .carousel.recent-blogs-carousel .carousel-item {
   display: block;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding: 20px 15px 40px;
   width: 370px;
   margin: 0;
 } 
