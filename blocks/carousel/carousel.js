@@ -97,7 +97,9 @@ class Carousel {
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.previousElementSibling.offsetLeft - this.getBlockPadding() - this.block.offsetLeft
+          newSelectedItem.previousElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft
         ),
       });
     }
@@ -145,7 +147,9 @@ class Carousel {
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.nextElementSibling.offsetLeft - this.getBlockPadding() - this.block.offsetLeft
+          newSelectedItem.nextElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft
         ),
       });
     }

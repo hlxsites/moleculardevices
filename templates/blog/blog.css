@@ -30,6 +30,10 @@
   padding-right: 15px;
 }
 
+.blog .section.blog-heading {
+  margin-top: 60px;
+}
+
 .blog .section.blog-heading > div {
   max-width: unset;
   width: unset;
@@ -40,7 +44,7 @@
   display: flex;
   justify-content: space-between;
   position: relative;
-  margin: 0 30px 50px;
+  margin: 0 15px 50px;
   padding: 0;
 }
 
@@ -69,4 +73,14 @@
 .blog .section.blog-heading .icon-view-all-posts img {
   display: block;
   width: 178px;
+}
+
+@media only screen and (max-width: 767px) {
+  .blog .section.blog-heading > div:first-of-type {
+    overflow: visible;
+  }
+
+  .blog .section.blog-heading .icon-view-all-posts img {
+    width: 120px;
+  }
 }

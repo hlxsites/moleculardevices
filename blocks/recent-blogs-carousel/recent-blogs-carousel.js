@@ -1,5 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+// eslint-disable-next-line object-curly-newline
 import { a, div, h3, p } from '../../scripts/dom-helpers.js';
 import createCarousel from '../carousel/carousel.js';
 
@@ -12,11 +13,11 @@ function summariseDescription(description) {
       result = result.substring(0, lastSpaceIndex);
     }
   }
-  return result + '…';
+  return `${result}…'`;
 }
 
 function renderItem(item) {
-  const itemImage  = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
+  const itemImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
   const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : 'Read More';
 
   return (
@@ -24,7 +25,7 @@ function renderItem(item) {
       div({ class: 'blog-carousel-thumb' },
         a({ href: item.path },
           createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]),
-        )
+        ),
       ),
       div({ class: 'blog-carousel-caption' },
         h3(
