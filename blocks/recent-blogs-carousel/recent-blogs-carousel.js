@@ -47,7 +47,7 @@ export default async function decorate(block) {
     .all();
   blogs = blogs.filter((blog) => blog.path !== window.location.pathname).slice(0, 5);
 
-  createCarousel(
+  await createCarousel(
     block,
     blogs,
     {
