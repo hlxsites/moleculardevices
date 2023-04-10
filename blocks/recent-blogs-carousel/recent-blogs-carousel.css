@@ -67,10 +67,15 @@ main .carousel.recent-blogs-carousel .blog-carousel-thumb a {
 
 main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
   height: 200px;
-  width: auto;
+  width: 100%;
   min-width: auto;
   object-fit: cover;
+  object-position: left;
   transition: all .5s ease-in-out;
+}
+
+main .carousel.recent-blogs-carousel .blog-carousel-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
+  object-position: right;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-thumb:hover img {
@@ -120,6 +125,11 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
   padding-top: 11px;
   background: none;
   border-radius: 0;
+  font-size: 18px;
+  max-width: unset;
+  width: unset;
+  white-space: break-spaces;
+  word-break: break-word;
 }
 
 
