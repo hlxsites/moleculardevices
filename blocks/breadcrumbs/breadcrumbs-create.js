@@ -29,21 +29,21 @@ export default async function createBreadcrumbs(container) {
   const pageIndex = await ffetch('/query-index.json').all();
   const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
 
-  const breadcrumbs = [
-    {
-      name: 'Home',
-      url_path: '/',
-    },
-    ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
-      url_path: urlForIndex(index),
-    })),
-    { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
-  ];
+  // const breadcrumbs = [
+  //   {
+  //     name: 'Home',
+  //     url_path: '/',
+  //   },
+  //   ...pathSplit.slice(1, -1).map((part, index) => ({
+  //     name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
+  //     url_path: urlForIndex(index),
+  //   })),
+  //   { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
+  // ];
 
-  const ol = document.createElement('ol');
-  breadcrumbs.forEach((crumb) => {
-    ol.appendChild(createBreadcrumbListItem(crumb));
-  });
-  container.appendChild(ol);
+  // const ol = document.createElement('ol');
+  // breadcrumbs.forEach((crumb) => {
+  //   ol.appendChild(createBreadcrumbListItem(crumb));
+  // });
+  // container.appendChild(ol);
 }
