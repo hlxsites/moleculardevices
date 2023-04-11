@@ -153,17 +153,12 @@ function createDropdown(options, selected, name, placeholder) {
     container.setAttribute('name', name);
   }
   if (placeholder) {
-    const btn = document.createElement('button');
+    const btn = document.createElement('div');
     btn.classList.add(classDropdownToggle);
     btn.innerText = selected || placeholder;
     btn.value = '';
     btn.setAttribute('type', 'button');
-    btn.setAttribute('data-toggle', 'dropdown');
-    btn.setAttribute('aria-haspopup', true);
-    btn.setAttribute('aria-expanded', false);
-
     btn.addEventListener('click', toggleFilter, false);
-
     container.append(btn);
 
     options.unshift(placeholder);

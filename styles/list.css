@@ -6,6 +6,7 @@
 .list .item {
   border-bottom: 2px solid var(--light-border-color-gray);
   padding: 37px 0 40px;
+  margin-left: 6px;
 }
 
 .list .item:last-of-type {
@@ -72,32 +73,34 @@
   font-size: var(--list-font-size-m);
 }
 
-.list .filter .select button {
+.list .filter .select .dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+  height: auto;
+  padding: 15px 35px 16px;
   text-align: left;
   height: 56px;
   width: 100%;
   max-width: unset;
-  padding: 6px 35px 6px 0;
   background: none;
   color: unset;
   transition-duration: 0.3s;
 }
 
-.list .filter .select button::before {
-  right: 21px;
+.list .filter .select .dropdown-toggle::before {
+  right: 6px;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
+  font-size: 12px;
   content: "\f107";
   position: absolute;
-  top: 50%;
-  margin-top: -9px;
 }
 
-.list .filter .select.open button::before {
+.list .filter .select.open .dropdown-toggle::before {
   transform: rotate(180deg);
 }
 
-.list .filter .select button:hover {
+.list .filter .select .dropdown-toggle:hover {
   color: var(--text-light-gray);
 }
 
