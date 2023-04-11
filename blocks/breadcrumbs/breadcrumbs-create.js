@@ -28,10 +28,10 @@ export default async function createBreadcrumbs(container) {
       url_path: '/',
     },
     ...currentPath.split('/').slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.title ?? part,
+      name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
       url_path: urlForIndex(index),
     })),
-    { name: document.title },
+    { name: pageIndex.find((page) => page.path === currentPath)?.breadcrumbTitle ?? document.title},
   ];
 
   const ol = document.createElement('ol');
