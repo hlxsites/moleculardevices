@@ -40,7 +40,8 @@ export function domEl(tag, ...items) {
       if (!key.startsWith('on')) {
         element.setAttribute(key, Array.isArray(value) ? value.join(' ') : value);
       } else {
-        element.addEventListener(key.substring(2), value);
+        console.log(`Setting ${key.substring(2).toLowerCase()}: ${value}`);
+        element.addEventListener(key.substring(2).toLowerCase(), value);
       }
     });
   }

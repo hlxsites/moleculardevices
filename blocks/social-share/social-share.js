@@ -11,6 +11,14 @@ function getTitle() {
   return h1 ? encodeURIComponent(h1.textContent) : '';
 }
 
+function onSocialShareClick(event) {
+  console.log('here');
+  event.preventDefault();
+  const href = event.target.getAttribute('href');
+  if (!href) return;
+  window.open(href, 'popup', 'width=800,height=700,scrollbars=no,resizable=no');
+}
+
 function decorateLink(social, type, icon, url) {
   icon.setAttribute('aria-label', type);
   if (!url) return;
@@ -21,6 +29,7 @@ function decorateLink(social, type, icon, url) {
       'aria-label': `Share to ${type}`,
       target: '_blank',
       rel: 'noopener noreferrer',
+      onClick: onSocialShareClick,
     },
     icon,
     ),
