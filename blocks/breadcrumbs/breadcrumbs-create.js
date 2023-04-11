@@ -17,17 +17,24 @@ function createBreadcrumbListItem(crumb) {
   return li;
 }
 
+function skipParts(pathSplit) {
+  const partsToSkip = ['en', 'assets', 'br', 'img'];
+  return pathSplit.filter( item => !partsToSkip.includes(item) )
+}
+
 export default async function createBreadcrumbs(container) {
   const currentPath = window.location.pathname;
-  const pageIndex = await ffetch('/query-index.json').all();
+  let currentPathSplit = skipParts(currentPath.split('/'));
 
-  const urlForIndex = (index) => prependSlash(currentPath.split('/').slice(1, index + 2).join('/'));
+  const pageIndex = await ffetch('/query-index.json').all();
+  const urlForIndex = (index) => prependSlash(currentPathSplit.slice(1, index + 2).join('/'));
+
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...currentPath.split('/').slice(1, -1).map((part, index) => ({
+    ...currentPathSplit.slice(1, -1).map((part, index) => ({
       name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
       url_path: urlForIndex(index),
     })),
