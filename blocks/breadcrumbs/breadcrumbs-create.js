@@ -23,22 +23,22 @@ function skipParts(pathSplit) {
 }
 
 export default async function createBreadcrumbs(container) {
-  const currentPath = window.location.pathname;
-  const currentPathSplit = skipParts(currentPath.split('/'));
+  const path = window.location.pathname;
+  const pathSplit = skipParts(path.split('/'));
 
   const pageIndex = await ffetch('/query-index.json').all();
-  const urlForIndex = (index) => prependSlash(currentPathSplit.slice(1, index + 2).join('/'));
+  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
 
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...currentPathSplit.slice(1, -1).map((part, index) => ({
+    ...pathSplit.slice(1, -1).map((part, index) => ({
       name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
       url_path: urlForIndex(index),
     })),
-    { name: pageIndex.find((page) => page.path === currentPath)?.breadcrumbTitle ?? document.title },
+    { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
   ];
 
   const ol = document.createElement('ol');
