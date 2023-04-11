@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-@font-face {
+ @font-face {
   font-family: 'Proxima Nova Regular Fallback';
   font-style: normal;
   font-weight: 400;
@@ -408,13 +408,22 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section:not([class*='hero']) {
+main .section {
   padding: 40px 0;
 }
 
-main .section.page-tabs-container + .section:not([class*='background-']),
-main .section:not([class*='background-'], [class*='hero']) + .section:not([class*='background-']){
+main .section[class*='hero'] {
+  padding: 0;
+}
+
+main .section + .section {
   padding-top: 0;
+}
+
+main .section + .section[class*='background-'],
+main .section[class*='background-'] + .section,
+main .section[class*='hero'] + .section[class*='background-'] {
+  padding-top: 40px;
 }
 
 main .section > div {
@@ -457,8 +466,14 @@ main .section > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section:not([class*='hero']) {
+  main .section {
     padding: 70px 0;
+  }
+
+  main .section + .section[class*='background-'],
+  main .section[class*='background-'] + .section,
+  main .section[class*='hero'] + .section[class*='background-'] {
+    padding-top: 70px;
   }
 
   main .section > div {
@@ -467,8 +482,14 @@ main .section > div {
 }
 
 @media (min-width: 992px) {
-  main .section:not([class*='hero']) {
+  main .section {
     padding: 100px 0;
+  }
+
+  main .section + .section[class*='background-'],
+  main .section[class*='background-'] + .section,
+  main .section[class*='hero'] + .section[class*='background-'] {
+    padding-top: 100px;
   }
 
   main .section > div {
@@ -878,4 +899,3 @@ main .section[aria-hidden='true'] {
   display: none;
   visibility: hidden;
 }
-

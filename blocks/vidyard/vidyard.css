@@ -43,6 +43,11 @@ main .vidyard {
   padding-top: 0;
 }
 
+#vidyard-popbox-constraint.landscape {
+  height: auto !important;
+  max-height: 343px;
+}
+
 @media only screen and (min-width: 768px) {
   .section.columns-2.tabs.vidyard-container {
     max-width: 750px;
