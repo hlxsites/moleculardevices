@@ -159,7 +159,7 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
-export function formatDate(dateStr) {
+export function formatDate(dateStr, options = {}) {
   const parts = dateStr.split('/');
   const date = new Date(parts[2], parts[0] - 1, parts[1]);
 
@@ -168,6 +168,7 @@ export function formatDate(dateStr) {
       month: 'short',
       day: '2-digit',
       year: 'numeric',
+      ...options,
     });
   }
   return dateStr;

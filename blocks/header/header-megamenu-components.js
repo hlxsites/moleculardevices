@@ -66,8 +66,14 @@ function buildTextSubmenu(textContent) {
 function buildActionableCardSubmenu(actionableCardContent) {
   const link = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > a');
   const picture = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > picture');
-  wrapLinkAroundComponent(link, picture, true);
+  if (link && picture) {
+    wrapLinkAroundComponent(link, picture, true);
+  }
   return actionableCardContent;
+}
+
+function buildImageWithTextSubmenu(imageWithTextContent) {
+  return imageWithTextContent;
 }
 
 function getRightSubmenuBuilder(className) {
@@ -76,6 +82,7 @@ function getRightSubmenuBuilder(className) {
   map.set('text-submenu', buildTextSubmenu);
   map.set('large-card-submenu', buildLargeCardsMenu);
   map.set('actionable-card-submenu', buildActionableCardSubmenu);
+  map.set('image-with-text-submenu', buildImageWithTextSubmenu);
   return map.get(className);
 }
 
