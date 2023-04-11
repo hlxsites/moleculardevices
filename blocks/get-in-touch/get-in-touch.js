@@ -26,8 +26,8 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
-    let readQuery = queryString(paramName);
-    let queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
+    const readQuery = queryString(paramName);
+    const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
     searchParams.set(paramName, queryStringParam);
   }
 
