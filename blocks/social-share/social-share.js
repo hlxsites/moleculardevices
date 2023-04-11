@@ -12,7 +12,6 @@ function getTitle() {
 }
 
 function onSocialShareClick(event) {
-  console.log('here');
   event.preventDefault();
   const href = event.target.getAttribute('href');
   if (!href) return;
