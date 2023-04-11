@@ -211,7 +211,7 @@ function loadDelayed() {
 /**
  * Read query string from url
  */
-export function queryString() {
+export function getQueryParameter() {
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });

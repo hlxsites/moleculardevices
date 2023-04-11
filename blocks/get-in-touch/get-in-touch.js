@@ -1,4 +1,4 @@
-import { queryString } from '../../scripts/scripts.js';
+import { getQueryParameter } from '../../scripts/scripts.js';
 
 function createFormRoot(hubspotUrl, mapUrl) {
   const hubspotIframeWrapper = document.createElement('div');
@@ -26,7 +26,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
-    const readQuery = queryString(paramName);
+    const readQuery = getQueryParameter(paramName);
     const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
     searchParams.set(paramName, queryStringParam);
   }
