@@ -40,13 +40,6 @@
   vertical-align: middle;
 }
 
-.section.regional-contacts-container h2 {
-  color: var(--gray-heading-color);
-  font-size: 42px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
 main .section>div.regional-contacts-wrapper {
     margin-top: 40px;
 }
