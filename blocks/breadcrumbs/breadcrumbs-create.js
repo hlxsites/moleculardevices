@@ -22,6 +22,16 @@ function skipParts(pathSplit) {
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
+function getCustomUrl(part) {
+  const customUrls = [
+    ['app-note', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D'],
+    ['ebook', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D']
+  ];
+  const y = customUrls.findIndex(row => row.includes(part));
+  if (customUrls[y]) return customUrls[y][1];
+  return null;
+}
+
 export default async function createBreadcrumbs(container) {
   const path = window.location.pathname;
   const pathSplit = skipParts(path.split('/'));
@@ -36,7 +46,7 @@ export default async function createBreadcrumbs(container) {
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
       name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
-      url_path: urlForIndex(index),
+      url_path: getCustomUrl(part) ? getCustomUrl(part) : urlForIndex(index),
     })),
     { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
   ];
