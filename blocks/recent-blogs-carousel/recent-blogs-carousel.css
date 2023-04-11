@@ -74,12 +74,12 @@ main .carousel.recent-blogs-carousel .blog-carousel-thumb img {
   transition: all .5s ease-in-out;
 }
 
-main .carousel.recent-blogs-carousel .blog-carousel-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
-  object-position: right;
-}
-
 main .carousel.recent-blogs-carousel .blog-carousel-thumb:hover img {
   transform: scale(1.1);
+}
+
+main .carousel.recent-blogs-carousel .blog-carousel-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
+  object-position: right;
 }
 
 main .carousel.recent-blogs-carousel .blog-carousel-caption {
