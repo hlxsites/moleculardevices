@@ -39,8 +39,8 @@ export default async function decorate(block) {
     if (fragmentHtml) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
-      const h1 = fragmentElement.querySelector('h1');
-      return { id: h1.id, title: h1.textContent, html: fragmentElement };
+      const h3 = fragmentElement.querySelector('h3');
+      return { id: h3.id, title: h3.textContent, html: fragmentElement };
     }
     return null;
   }));
