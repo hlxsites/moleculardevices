@@ -76,7 +76,6 @@
 .list .filter .select .dropdown-toggle {
   cursor: pointer;
   position: relative;
-  height: auto;
   padding: 15px 35px 16px;
   text-align: left;
   height: 56px;
