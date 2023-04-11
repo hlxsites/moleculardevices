@@ -469,6 +469,7 @@ main .section>div {
   main .section[class*='hero'] + .section[class*='background-'] {
     padding-top: 70px;
   }
+  
   main .section>div {
     width: 750px
   }
@@ -484,6 +485,7 @@ main .section>div {
   main .section[class*='hero'] + .section[class*='background-'] {
     padding-top: 100px;
   }
+  
   main .section>div {
     width: 970px
   }
