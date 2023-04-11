@@ -181,6 +181,22 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
+export async function fetchFragment(path) {
+  const response = await fetch(`${path}.plain.html`);
+  if (!response.ok) {
+    // eslint-disable-next-line no-console
+    console.error('error loading fragment details', response);
+    return null;
+  }
+  const text = await response.text();
+  if (!text) {
+    // eslint-disable-next-line no-console
+    console.error('fragment details empty');
+    return null;
+  }
+  return text;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */

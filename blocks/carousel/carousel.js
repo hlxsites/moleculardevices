@@ -398,3 +398,15 @@ export default async function createCarousel(block, data, config) {
   await carousel.render();
   return carousel;
 }
+
+export function summariseDescription(description) {
+  let result = description;
+  if (result.length > 75) {
+    result = result.substring(0, 75);
+    const lastSpaceIndex = result.lastIndexOf(' ');
+    if (lastSpaceIndex !== -1) {
+      result = result.substring(0, lastSpaceIndex);
+    }
+  }
+  return `${result}…'`;
+}
