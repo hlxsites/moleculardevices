@@ -101,8 +101,8 @@
   color: var(--text-light-gray);
 }
 
-.list .filter .select.open .dropdown-menu.open {
-  visibility: visible;
+.list .filter .select .dropdown-menu.open {
+  display: block;
   height: auto;
   max-height: 200px;
   position: static;
@@ -113,8 +113,7 @@
 }
 
 .list .filter .select .dropdown-menu {
-  visibility: hidden;
-  height: 0;
+  display: none;
 }
 
 .list .filter .select .dropdown-menu p {
