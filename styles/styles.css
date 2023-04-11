@@ -511,6 +511,18 @@ main .section .default-content-wrapper {
   padding-bottom: 100px;
 }
 
+main .section .default-content-wrapper:first-child {
+  padding-bottom: 0;
+}
+
+main .section .default-content-wrapper h2 {
+  text-align: center;
+}
+
+main .section .default-content-wrapper h2:only-child {
+  margin-bottom: 0;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -541,7 +553,7 @@ main .section.background-molecules .hero-wrapper::after {
 
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
-    padding: 0 0 70px;
+    padding-bottom: 70px;
   }
 }
 
@@ -825,7 +837,7 @@ main .orange-buttons .button.primary>.button-border {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding: 0;
+    padding-bottom: 0;
     overflow: hidden;
   }
 
