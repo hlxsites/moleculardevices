@@ -68,3 +68,6 @@ export function h3(...items) { return domEl('h3', ...items); }
 export function h4(...items) { return domEl('h4', ...items); }
 export function h5(...items) { return domEl('h5', ...items); }
 export function h6(...items) { return domEl('h6', ...items); }
+export function ul(...items) { return domEl('ul', ...items); }
+export function li(...items) { return domEl('li', ...items); }
+export function i(...items) { return domEl('i', ...items); }
