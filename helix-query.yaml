@@ -16,8 +16,8 @@ indices:
         select: head > meta[property="og:image"]
         value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
       thumbnail:
-        select: main div.section:first-of-type img
-        value: attribute(el, "src")
+        select: head > meta[name="thumbnail"]
+        value: attribute(el, "content")
       description:
         select: head > meta[name="description"]
         value: attribute(el, "content")
@@ -41,7 +41,10 @@ indices:
         value: attribute(el, "content")
       gatedURL:
         select: head > meta[name="gated-url"]
-        value: attribute(el, "content")       
+        value: attribute(el, "content")
+      cardC2A:
+        select: head > meta[name="card-c2a"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
