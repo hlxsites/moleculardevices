@@ -19,12 +19,12 @@ function createBreadcrumbListItem(crumb) {
 
 function skipParts(pathSplit) {
   const partsToSkip = ['en', 'assets', 'br', 'img'];
-  return pathSplit.filter( item => !partsToSkip.includes(item) )
+  return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
 export default async function createBreadcrumbs(container) {
   const currentPath = window.location.pathname;
-  let currentPathSplit = skipParts(currentPath.split('/'));
+  const currentPathSplit = skipParts(currentPath.split('/'));
 
   const pageIndex = await ffetch('/query-index.json').all();
   const urlForIndex = (index) => prependSlash(currentPathSplit.slice(1, index + 2).join('/'));
@@ -38,7 +38,7 @@ export default async function createBreadcrumbs(container) {
       name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
       url_path: urlForIndex(index),
     })),
-    { name: pageIndex.find((page) => page.path === currentPath)?.breadcrumbTitle ?? document.title},
+    { name: pageIndex.find((page) => page.path === currentPath)?.breadcrumbTitle ?? document.title },
   ];
 
   const ol = document.createElement('ol');
