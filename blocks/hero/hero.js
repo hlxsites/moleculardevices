@@ -55,7 +55,7 @@ function buildVideo(block, div, videoId) {
       thumbnail.src = '/images/play_icon.png';
 
       div.innerHTML = `<div id="sample">
-        <div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox"></div>
+        <div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>
       </div>`;
       div.appendChild(videoIcon);
 
