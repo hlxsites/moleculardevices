@@ -16,21 +16,22 @@
   width: 100%;
 }
 
-.list .item h3 {
-  font-size: var(--list-font-size-m);
+.list .item .item-title {
+  font-size: var(--list-font-size-l);
   font-weight: bold;
   line-height: 1.1;
   margin-top: 15px;
+  margin-bottom:12px;
 }
 
-.list .item h3 > a {
+.list .item .item-title > a {
   color: unset;
   text-decoration: none;
 }
 
 .list cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-s);
+  font-size: var(--list-font-size-s);
   font-style: normal;
   font-weight: 600;
   color: var(--text-dark-gray);
@@ -53,6 +54,8 @@
 
 /* panel */
 .list .panel-title {
+  font-size: var(--heading-font-size-l);
+  font-family: var(--ff-proxima-regular);
   margin: 0;
   padding: 8px 0 22px;
   font-weight: bold;

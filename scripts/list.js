@@ -4,6 +4,7 @@ const paramPage = 'page';
 const paramYear = 'year';
 const classListItems = 'items';
 const classListItem = 'item';
+const classItemTitle = 'item-title';
 const classPanelTitle = 'panel-title';
 const classListFilter = 'filter';
 const classFilterOpen = 'open';
@@ -111,7 +112,7 @@ function renderListItem({
   listItemElement.innerHTML += `
   <div class="content">
     <cite>${citation} </cite>  
-    <h3><a title="${title}" href="${path}">${title}</a></h3>
+    <div class="${classItemTitle}"><a title="${title}" href="${path}">${title}</a></div>
     ${description}
     ${viewMoreLnk}
   </div>
@@ -199,7 +200,7 @@ function renderFilters(data, createFilters, panelTitle) {
   const filters = createFilters(data, getActiveFilters(), createDropdown);
   if (filters.length > 0) {
     if (panelTitle) {
-      const header = document.createElement('h3');
+      const header = document.createElement('div');
       header.className = classPanelTitle;
       header.innerHTML = panelTitle;
       filter.append(header);
