@@ -41,9 +41,9 @@ export default async function createBreadcrumbs(container) {
     { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
   ];
 
-  // const ol = document.createElement('ol');
-  // breadcrumbs.forEach((crumb) => {
-  //   ol.appendChild(createBreadcrumbListItem(crumb));
-  // });
-  // container.appendChild(ol);
+  const ol = document.createElement('ol');
+  breadcrumbs.forEach((crumb) => {
+    ol.appendChild(createBreadcrumbListItem(crumb));
+  });
+  container.appendChild(ol);
 }
