@@ -1,15 +1,10 @@
 import ffetch from '../../scripts/ffetch.js';
+import { queryString } from '../../scripts/scripts.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);
 }
 
-function queryString() {
-  const params = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-  });
-  return params;
-}
 function searchDistributorForm(countryList, productFamilyList) {
   return `
             <div class="form">

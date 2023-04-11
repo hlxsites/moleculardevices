@@ -140,10 +140,6 @@ body {
   display: none;
 }
 
-.background-gray main {
-  background-color: var(--grey-background-color);
-}
-
 body.appear {
   display: unset;
 }
@@ -343,6 +339,14 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
+main {
+  overflow-x: hidden;
+}
+
+.background-gray main {
+  background-color: var(--grey-background-color);
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -404,11 +408,12 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section:not(:empty) {
+main .section:not([class*='hero']) {
   padding: 40px 0;
 }
 
-main .section:not([class*='background-grey']) + .section:not([class*='background-grey']) {
+main .section.page-tabs-container + .section:not([class*='background-']),
+main .section:not([class*='background-'], [class*='hero']) + .section:not([class*='background-']){
   padding-top: 0;
 }
 
@@ -452,7 +457,7 @@ main .section > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section:not(:empty) {
+  main .section:not([class*='hero']) {
     padding: 70px 0;
   }
 
@@ -462,7 +467,7 @@ main .section > div {
 }
 
 @media (min-width: 992px) {
-  main .section:not(:empty) {
+  main .section:not([class*='hero']) {
     padding: 100px 0;
   }
 
@@ -497,29 +502,9 @@ main .section .default-content-wrapper h2 {
   text-align: center;
 }
 
-main .section.features-section h2 {
-  margin-bottom: 0;
-}
-
+main .section.features-section h2,
 main .section .default-content-wrapper h2:only-child {
   margin-bottom: 0;
-}
-
-main .section .default-content-wrapper h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-main .section .default-content-wrapper {
-  padding-bottom: 100px;
-}
-
-.news .section .default-content-wrapper,
-.publication .section .default-content-wrapper {
-  --heading-font-size-xxl: 36px;
-  --heading-font-size-xl: 30px;
-
-  padding: 0 15px;
 }
 
 .news .section p,
@@ -532,6 +517,27 @@ main .section .default-content-wrapper {
 main .section .default-content-wrapper h3,
 main .section .default-content-wrapper p {
   margin-top: 0;
+}
+
+body:not(.homepage) main .section .default-content-wrapper h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.news .section .default-content-wrapper,
+.publication .section .default-content-wrapper {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+
+  padding: 0 15px;
+}
+
+main .section .default-content-wrapper:not(:last-child) {
+  padding-bottom: 100px;
+}
+
+main .section .default-content-wrapper:not(:first-child) {
+  padding-top: 100px;
 }
 
 /* progressive section appearance */
@@ -564,7 +570,11 @@ main .section.background-molecules .hero-wrapper::after {
 
 @media (max-width: 991px) {
   main .section .default-content-wrapper {
-    padding: 0 0 70px;
+    padding-bottom: 70px;
+  }
+
+  main .section .default-content-wrapper:not(:first-child) {
+    padding-top: 70px;
   }
 }
 
@@ -619,10 +629,6 @@ main .section.wave .default-content-wrapper {
   margin-bottom: 55px;
   padding-left: 15px;
   padding-right: 15px;
-}
-
-main .section .default-content-wrapper:first-child {
-  padding-bottom: 45px;
 }
 
 @media (max-width: 767px) {
@@ -687,6 +693,10 @@ main .section.features-section .default-content-wrapper {
   padding-bottom: 0;
   text-align: center;
   margin-bottom: 30px;
+}
+
+main .section .default-content-wrapper:first-child:not(:only-child){
+  padding-bottom: 45px;
 }
 
 main .section.features-section .default-content-wrapper::after {
@@ -829,7 +839,7 @@ main .orange-buttons .button.primary > .button-border {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding: 0;
+    padding-bottom: 0;
     overflow: hidden;
   }
 

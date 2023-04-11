@@ -1,3 +1,5 @@
+import { queryString } from '../../scripts/scripts.js';
+
 function createFormRoot(hubspotUrl, mapUrl) {
   const hubspotIframeWrapper = document.createElement('div');
   const hubspotIframe = document.createElement('iframe');
@@ -17,13 +19,6 @@ function createFormRoot(hubspotUrl, mapUrl) {
   mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
 }
 
-function readQueryString(paramName) {
-  const params = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-  });
-  return params[paramName] ? params[paramName] : '';
-}
-
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const hubSearch = new URLSearchParams(hubUrl);
@@ -31,7 +26,9 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
-    searchParams.set(paramName, readQueryString(paramName));
+    let readQuery = queryString(paramName);
+    let queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
+    searchParams.set(paramName, queryStringParam);
   }
 
   hubSearch.set('return_url', searchParams.toString());
