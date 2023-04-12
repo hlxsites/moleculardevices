@@ -1,56 +1,5 @@
 .list {
-  padding-top: 70px;
-}
-
-/* entries */
-.list .item {
-  border-bottom: 2px solid var(--light-border-color-gray);
-  padding: 37px 0 40px;
-  margin-left: 6px;
-}
-
-.list .item:last-of-type {
-  padding-bottom: 22px;
-}
-
-.list .items > div {
-  width: 100%;
-}
-
-.list .item .item-title {
-  font-size: var(--list-font-size-l);
-  font-weight: bold;
-  line-height: 1.1;
-  margin-top: 15px;
-  margin-bottom:12px;
-}
-
-.list .item .item-title > a {
-  color: unset;
-  text-decoration: none;
-}
-
-.list cite {
-  font-family: var(--ff-proxima-light);
-  font-size: var(--list-font-size-s);
-  font-style: normal;
-  font-weight: 600;
-  color: var(--text-dark-gray);
-}
-
-.list .item .image {
-  padding-right: 15px;
-}
-
-.list .item .image img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
-  border: 0;
-}
-
-.list .item .content {
-  padding-left: 15px;
+  padding-top: 30px;
 }
 
 /* panel */
@@ -64,7 +13,7 @@
 }
 
 /* filters */
-.list .filter a:any-link {
+/*.list .filter a:any-link {
   color: unset;
   text-decoration: none;
 }
@@ -129,7 +78,58 @@
   margin: 0;
   padding: 0 12px;
   cursor: pointer;
+}*/
+
+/* entries */
+/*.list .item {
+  border-bottom: 2px solid var(--light-border-color-gray);
+  padding: 37px 0 40px;
+  margin-left: 6px;
 }
+
+.list .item:last-of-type {
+  padding-bottom: 22px;
+}
+
+.list .items > div {
+  width: 100%;
+}
+
+.list .item .item-title {
+  font-size: var(--list-font-size-l);
+  font-weight: bold;
+  line-height: 1.1;
+  margin-top: 15px;
+  margin-bottom:12px;
+}
+
+.list .item .item-title > a {
+  color: unset;
+  text-decoration: none;
+}
+
+.list cite {
+  font-family: var(--ff-proxima-light);
+  font-size: var(--list-font-size-s);
+  font-style: normal;
+  font-weight: 600;
+  color: var(--text-dark-gray);
+}
+
+.list .item .image {
+  padding-right: 15px;
+}
+
+.list .item .image img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+.list .item .content {
+  padding-left: 15px;
+}*/
 
 /* pagination */
 .list nav {
@@ -166,7 +166,7 @@
   margin-right: 20px;
 }
 
-@media only screen and (max-width: 767px) {
+/*@media only screen and (max-width: 767px) {
   .list .items .image {
     padding-left: 15px;
   }
@@ -235,4 +235,4 @@
     width: 66.67%;
     padding-left: 15px;
   }
-}
+}*/
