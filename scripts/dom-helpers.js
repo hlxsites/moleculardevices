@@ -22,7 +22,7 @@
 
 /**
  * Helper for more concisely generating DOM Elements with attributes and children
- * @param {*} tag HTML tag of the desired element
+ * @param {string} tag HTML tag of the desired element
  * @param  {[Object?, ...Element]} items: First item can optionally be an object of attributes,
  *  everything else is a child element
  * @returns {Element} The constructred DOM Element

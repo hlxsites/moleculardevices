@@ -13,7 +13,7 @@ function getTitle() {
 
 function onSocialShareClick(event) {
   event.preventDefault();
-  const href = event.target.getAttribute('href');
+  const href = event.currentTarget.getAttribute('href');
   if (!href) return;
   window.open(href, 'popup', 'width=800,height=700,scrollbars=no,resizable=no');
 }
@@ -28,7 +28,7 @@ function decorateLink(social, type, icon, url) {
       'aria-label': `Share to ${type}`,
       target: '_blank',
       rel: 'noopener noreferrer',
-      onClick: onSocialShareClick,
+      onclick: onSocialShareClick,
     },
     icon,
     ),
@@ -55,11 +55,6 @@ function decorateIcons(element) {
         break;
       case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
-        break;
-      case 'envelope':
-        decorateLink(social, 'Google', icon);
-        icon.classList.add('addthis-share-button');
-        icon.setAttribute('data-service', 'email');
         break;
       default:
         break;
@@ -91,7 +86,7 @@ export default function decorate(block) {
 
   const socials = template === 'blog'
     ? ['linkedin', 'facebook', 'twitter', 'youtube-play']
-    : ['facebook', 'linkedin', 'twitter', 'envelope'];
+    : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
   block.innerHTML = '';
   block.appendChild(
