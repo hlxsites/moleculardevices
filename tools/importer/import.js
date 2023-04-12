@@ -713,6 +713,16 @@ const transformImageCaption = (document) => {
   });
 };
 
+const transformListCaption = (document) => {
+  document.querySelectorAll('ol.text-caption').forEach((caption) => {
+    caption.children.forEach((li) => {
+      const liEm = document.createElement('em');
+      liEm.innerHTML = li.innerHTML;
+      li.appendChild(liEm);
+    });
+  })
+}
+
 const transformBlogRecentPosts = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
     recentPostsContainer.before(document.createElement('hr'));
@@ -1162,6 +1172,7 @@ export default {
       transformAccordions,
       transformBlogRecentPosts,
       transformImageCaption,
+      transformListCaption,
       transformCustomerBreakthroughShareStory,
       transformTabsNav,
       transformTabsSections,
