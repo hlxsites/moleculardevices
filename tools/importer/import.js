@@ -703,7 +703,10 @@ const transformAccordions = (document) => {
 };
 
 const transformImageCaption = (document) => {
-  document.querySelectorAll('p.text-caption').forEach((caption) => {
+  [
+    ...document.querySelectorAll('p.text-caption'),
+    ...document.querySelectorAll('p.caption'),
+  ].forEach((caption) => {
     const captionWrapper = document.createElement('em');
     captionWrapper.innerHTML = caption.innerHTML;
     caption.replaceWith(captionWrapper);
