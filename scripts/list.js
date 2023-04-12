@@ -1,4 +1,4 @@
-import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
+import { createOptimizedPicture, /* loadCSS, */toClassName } from './lib-franklin.js';
 
 const paramPage = 'page';
 const paramYear = 'year';
@@ -110,8 +110,8 @@ function renderListItem({
   listItemElement.innerHTML += `
   <div class="content">
     <p class="${classItemCite}">${citation}</p>
-    <a class="${classItemTitle}" title="${title}" href="${path}">${title}</a>
-    ${description}${viewMoreLnk}
+    <p><a class="${classItemTitle}" title="${title}" href="${path}">${title}</a></p>
+    ${description} ${viewMoreLnk}
   </div>
 `;
   return listItemElement;
@@ -217,7 +217,7 @@ export default function createList(
   panelTitle,
   customListItemRenderer,
 ) {
-  loadCSS('../styles/list.css', () => {});
+  /* loadCSS('../styles/list.css', () => {}); */
 
   const filteredData = filter(data, getActiveFilters());
 

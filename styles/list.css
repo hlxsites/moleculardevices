@@ -96,7 +96,7 @@
   padding-left: 15px;
 }
 
-.list > .items > .item > .content > .title {
+.list > .items > .item > .content > p > .title {
   font-size: var(--list-font-size-l);
   font-weight: bold;
   line-height: 1.1;
@@ -120,7 +120,7 @@
 
 .list > .items > .item > .image img {
   max-width: 100%;
-  height: 100%;
+  height: auto;
   vertical-align: middle;
   border: 0;
 }
@@ -221,6 +221,10 @@
   .list > .items > .item > .content {
     width: 66.67%;
     padding-left: 15px;
+  }
+
+  .list > .items > .item > .content > .cite {
+    margin-top: 0px;
   }
 
   .list > .items > .item > image {
