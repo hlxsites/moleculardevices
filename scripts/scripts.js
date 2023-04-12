@@ -136,8 +136,10 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    await decorateTemplates(main);
-    await decorateMain(main);
+    // await decorateTemplates(main);
+    // await decorateMain(main);
+    // await waitForLCP(LCP_BLOCKS);
+    decorateMain(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
