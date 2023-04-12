@@ -224,7 +224,7 @@
   }
 
   .list > .items > .item > .content > .cite {
-    margin-top: 0px;
+    margin-top: 1px;
   }
 
   .list > .items > .item > image {

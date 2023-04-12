@@ -1,4 +1,4 @@
-import { createOptimizedPicture, /* loadCSS, */toClassName } from './lib-franklin.js';
+import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
 
 const paramPage = 'page';
 const paramYear = 'year';
@@ -217,7 +217,7 @@ export default function createList(
   panelTitle,
   customListItemRenderer,
 ) {
-  /* loadCSS('../styles/list.css', () => {}); */
+  loadCSS('../styles/list.css', () => {});
 
   const filteredData = filter(data, getActiveFilters());
 
