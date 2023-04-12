@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- @font-face {
+@font-face {
   font-family: 'Proxima Nova Regular Fallback';
   font-style: normal;
   font-weight: 400;
@@ -557,7 +557,8 @@ main .section .default-content-wrapper:not(:last-child) {
   padding-bottom: 100px;
 }
 
-main .section .default-content-wrapper:not(:first-child) {
+main .section .default-content-wrapper:not(:first-child),
+main .section + .section .default-content-wrapper {
   padding-top: 100px;
 }
 
@@ -716,7 +717,7 @@ main .section.features-section .default-content-wrapper {
   margin-bottom: 30px;
 }
 
-main .section .default-content-wrapper:first-child:not(:only-child){
+main .section .default-content-wrapper:first-child:not(:only-child) {
   padding-bottom: 45px;
 }
 
