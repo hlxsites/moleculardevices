@@ -1,7 +1,7 @@
 main div.recent-blogs-carousel-container {
   width: 1140px;
   padding: 0 15px;
-  margin: 0 auto;
+  margin: 60px auto 0;
 }
 
 main div.carousel-wrapper.recent-blogs-carousel-wrapper {
@@ -175,6 +175,7 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
   main div.recent-blogs-carousel-container {
     width: 100%;
     padding: 0 30px;
+    margin-top: 50px;
   }
 
   main .carousel.recent-blogs-carousel .carousel-item {

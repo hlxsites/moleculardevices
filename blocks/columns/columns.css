@@ -238,6 +238,10 @@
     display: flex;
     flex-direction: unset;
   }
+  
+  .blog .columns > div {
+    align-items: unset;
+  }
 
   .columns > div > div {
     flex: 1;
@@ -249,8 +253,13 @@
   }
 
   .columns[class*='layout-'] > div {
+    gap: 30px;
     display: grid;
     align-items: unset;
+  }
+
+  .columns[class*='layout-'] h3 {
+    margin-top: 0;
   }
 
   .columns.layout-20-80 > div {
@@ -282,7 +291,7 @@
   }
 
   .columns[class*='layout-'] > div > div {
-    padding: 0 15px;
+    padding: 0;
     margin: 0;
   }
 
