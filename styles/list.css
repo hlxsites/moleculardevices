@@ -13,7 +13,7 @@
 }
 
 /* filters */
-.list .filter a:any-link {
+/* .list .filter a:any-link {
   color: unset;
   text-decoration: none;
 }
@@ -78,7 +78,7 @@
   margin: 0;
   padding: 0 12px;
   cursor: pointer;
-}
+} */
 
 /* entries */
 .list .item {
@@ -199,20 +199,20 @@
     margin-bottom: 20px;
   }
 
-  .list .filter {
+  /*.list .filter {
     width: 100%;
   }
 
   .list .filter .select {
     width: 259px;
-  }
+  }*/
 }
 
 @media (min-width: 992px) {
-  .list .filter {
+  /*.list .filter {
     width: 25%;
     padding-right: 15px;
-  }
+  }*/
 
   .list .items {
     width: 75%;
