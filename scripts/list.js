@@ -1,4 +1,4 @@
-/* import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
+import { createOptimizedPicture, /* loadCSS, */ toClassName } from './lib-franklin.js';
 
 const paramPage = 'page';
 const paramYear = 'year';
@@ -108,9 +108,9 @@ function renderListItem({
       </div>`;
   }
   const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
-  const viewMoreLnk = '';
-  if (viewMoreText) {
-    viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
+  let viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
+  if (!viewMoreText) {
+    viewMoreLnk = '';
   }
   listItemElement.innerHTML += `
   <div class="content">
@@ -222,7 +222,7 @@ export default function createList(
   panelTitle,
   customListItemRenderer,
 ) {
-  loadCSS('../styles/list.css', () => {});
+  // loadCSS('../styles/list.css', () => {});
 
   const filteredData = filter(data, getActiveFilters());
 
@@ -244,4 +244,4 @@ export default function createList(
     container.append(pagination);
     root.append(container);
   }
-} */
+}

@@ -34,10 +34,10 @@ describe('News block', () => {
     const filters = document.querySelector('.news > .list > .filter > .select');
     expect(filters, 'Filter selection is missing.').to.exist;
 
-    const toggle = document.querySelector('.news > .list > .filter > .select > button.dropdown-toggle');
+    const toggle = document.querySelector('.news > .list > .filter > .select > .dropdown-toggle');
     expect(toggle, 'Filter dropdown-toggle is missing.').to.exist;
 
-    const menu = document.querySelector('.news > .list > .filter  > .select > div.dropdown-menu');
+    const menu = document.querySelector('.news > .list > .filter  > .select > .dropdown-menu');
     expect(menu, 'Filter menu is missing.').to.exist;
 
     const item = document.querySelectorAll('.news > .list > items > .item');

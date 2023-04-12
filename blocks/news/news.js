@@ -1,4 +1,4 @@
-/* import {
+import {
   readBlockConfig,
   toClassName,
 } from '../../scripts/lib-franklin.js';
@@ -125,4 +125,4 @@ export default async function decorate(block) {
   const viewMoreText = '';
   // console.log(`found ${entries.length} entries`);
   createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
-} */
+}
