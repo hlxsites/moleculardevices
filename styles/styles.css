@@ -832,3 +832,8 @@ main .section[aria-hidden="true"] {
   display: none;
   visibility: hidden;
 }
+
+.list > .filter > .select:not(.open) > .dropdown-menu {
+  display: none;
+  visibility: hidden;
+}

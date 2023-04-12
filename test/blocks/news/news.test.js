@@ -54,7 +54,7 @@ describe('News block', () => {
     const pagination = document.querySelector('.news > .list > .pagination');
     expect(pagination, 'Pagination is missing.').to.exist;
 
-    const pages = document.querySelectorAll('.news > .list > .pagination > .pages > .pager-item');
+    const pages = document.querySelectorAll('.news > .list > .pagination > .pager-item');
     expect(pages, 'Pager items are missing.').to.exist;
   });
 });

@@ -4,7 +4,8 @@ const paramPage = 'page';
 const paramYear = 'year';
 const classListItems = 'items';
 const classListItem = 'item';
-const classItemTitle = 'item-title';
+const classItemCite = 'cite';
+const classItemTitle = 'title';
 const classPanelTitle = 'panel-title';
 const classListFilter = 'filter';
 const classFilterOpen = 'open';
@@ -12,7 +13,6 @@ const classFilterSelect = 'select';
 const classDropdownToggle = 'dropdown-toggle';
 const classDropdownMenu = 'dropdown-menu';
 const classPagination = 'pagination';
-const classPagerList = 'pages';
 const classPagerItem = 'pager-item';
 const classPageCurrent = 'current';
 const defaultImage = '/default-meta-image.png';
@@ -24,18 +24,17 @@ function getSelectionFromUrl(field) {
 }
 
 function createPaginationLink(page, current, label) {
-  const listElement = document.createElement('li');
+  const tag = (page === current) ? 'p' : 'a';
+  const listElement = document.createElement(tag);
   listElement.classList.add(classPagerItem);
   if (page === current) {
     listElement.classList.add(classPageCurrent);
     listElement.innerText = page;
   } else {
     const newUrl = new URL(window.location);
-    const link = document.createElement('a');
     newUrl.searchParams.set(paramPage, page);
-    link.href = newUrl.toString();
-    link.innerText = label || page;
-    listElement.append(link);
+    listElement.href = newUrl.toString();
+    listElement.innerText = label || page;
   }
   return listElement;
 }
@@ -54,26 +53,22 @@ export function renderPagination(entries, page, limit, limitForPagination) {
       endIdx = (startIdx + limitForPagination - 1);
     }
 
-    const list = document.createElement('ol');
-    list.classList.add(classPagerList);
     if (page > 1) {
-      list.append(createPaginationLink(1, page, '«'));
-      list.append(createPaginationLink(page - 1, page, '‹'));
+      nav.append(createPaginationLink(1, page, '«'));
+      nav.append(createPaginationLink(page - 1, page, '‹'));
     }
     // eslint-disable-next-line no-plusplus
     for (let i = startIdx; i <= endIdx; i++) {
       if (i > 0) {
-        list.append(createPaginationLink(i, page));
+        nav.append(createPaginationLink(i, page));
       }
     }
     if (page < maxPages) {
-      list.append(createPaginationLink(page + 1, page, '›'));
+      nav.append(createPaginationLink(page + 1, page, '›'));
     }
     if (page < maxPages) {
-      list.append(createPaginationLink(maxPages, page, '»'));
+      nav.append(createPaginationLink(maxPages, page, '»'));
     }
-
-    nav.append(list);
   }
   return nav;
 }
@@ -114,8 +109,8 @@ function renderListItem({
   }
   listItemElement.innerHTML += `
   <div class="content">
-    <cite>${citation} </cite>
-    <p class="${classItemTitle}"><a title="${title}" href="${path}">${title}</a></div>
+    <p class="${classItemCite}">${citation}</p>
+    <a class="${classItemTitle}" title="${title}" href="${path}">${title}</a>
     ${description}${viewMoreLnk}
   </div>
 `;
