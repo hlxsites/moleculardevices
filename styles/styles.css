@@ -416,7 +416,7 @@ main .section[class*='hero'] {
   padding: 0;
 }
 
-main .section + .section {
+main .section + .section{
   padding-top: 0;
 }
 
@@ -562,6 +562,35 @@ main .section + .section .default-content-wrapper {
   padding-top: 100px;
 }
 
+main .section.wave .default-content-wrapper {
+  margin-top: 100px;
+  margin-bottom: 55px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .section.features-section .default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main .section .default-content-wrapper:first-child:not(:only-child) {
+  padding-bottom: 45px;
+}
+
+main .section.wave.bluegreen .default-content-wrapper {
+  margin-bottom: 100px;
+}
+
+main .section + .section .default-content-wrapper:only-child,
+main .section + .section[class*='background-'] .default-content-wrapper,
+main .section[class*='background-'] + .section .default-content-wrapper,
+main .section[class*='hero'] + .section[class*='background-'] .default-content-wrapper{
+  padding-top: 0;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -646,13 +675,6 @@ main .section.wave p:first-of-type {
   margin-bottom: 10px;
 }
 
-main .section.wave .default-content-wrapper {
-  margin-top: 100px;
-  margin-bottom: 55px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 @media (max-width: 767px) {
   .news .section p,
   .publication .section p {
@@ -710,17 +732,6 @@ main .section.features-section {
   background-color: #f2f2f2;
 }
 
-main .section.features-section .default-content-wrapper {
-  padding-top: 0;
-  padding-bottom: 0;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-main .section .default-content-wrapper:first-child:not(:only-child) {
-  padding-bottom: 45px;
-}
-
 main .section.features-section .default-content-wrapper::after {
   content: '';
   clear: both;
@@ -765,10 +776,6 @@ main .section.features-section .button-container {
 /* BlueGreen Variant */
 main .section.wave.bluegreen {
   background-size: 100% 100%;
-}
-
-main .section.wave.bluegreen .default-content-wrapper {
-  margin-bottom: 100px;
 }
 
 main .section.wave.bluegreen::after {
