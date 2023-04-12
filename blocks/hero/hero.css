@@ -78,6 +78,7 @@ main .hero .hero-background {
 
 main .hero img {
   object-fit: cover;
+  object-position: center top;
   width: 100%;
   height: 100%;
 }
@@ -292,7 +293,7 @@ main .hero.blog .breadcrumbs > ol {
 
 @media (min-width: 768px) {
   main .hero {
-    min-height: 300px;
+    min-height: 440px;
   }
 
   main .hero .container {
