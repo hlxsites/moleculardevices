@@ -25,9 +25,9 @@ function skipParts(pathSplit) {
 function getCustomUrl(part) {
   const customUrls = [
     ['app-note', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D'],
-    ['ebook', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D']
+    ['ebook', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D'],
   ];
-  const y = customUrls.findIndex(row => row.includes(part));
+  const y = customUrls.findIndex((row) => row.includes(part));
   if (customUrls[y]) return customUrls[y][1];
   return null;
 }
