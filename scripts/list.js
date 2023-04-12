@@ -1,4 +1,4 @@
-import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
+/* import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
 
 const paramPage = 'page';
 const paramYear = 'year';
@@ -108,13 +108,15 @@ function renderListItem({
       </div>`;
   }
   const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
-  const viewMoreLnk = (viewMoreText) ? `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>` : '';
+  const viewMoreLnk = '';
+  if (viewMoreText) {
+    viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
+  }
   listItemElement.innerHTML += `
   <div class="content">
-    <cite>${citation} </cite>  
-    <div class="${classItemTitle}"><a title="${title}" href="${path}">${title}</a></div>
-    ${description}
-    ${viewMoreLnk}
+    <cite>${citation} </cite>
+    <p class="${classItemTitle}"><a title="${title}" href="${path}">${title}</a></div>
+    ${description}${viewMoreLnk}
   </div>
 `;
   return listItemElement;
@@ -170,9 +172,6 @@ function createDropdown(options, selected, name, placeholder) {
   const newUrl = new URL(window.location);
 
   options.forEach((option) => {
-    const optionTag = document.createElement('p');
-    optionTag.innerText = option;
-    optionTag.value = toClassName(option);
     const link = document.createElement('a');
     if (option === placeholder) {
       // reset all filters
@@ -181,8 +180,11 @@ function createDropdown(options, selected, name, placeholder) {
       newUrl.searchParams.set(paramYear, option);
     }
     link.href = newUrl.toString();
-    link.append(optionTag);
-    dropDown.append(link);
+    const optionTag = document.createElement('p');
+    link.innerText = option;
+    link.value = toClassName(option);
+    optionTag.append(link);
+    dropDown.append(optionTag);
   });
   container.append(dropDown);
   return container;
@@ -195,7 +197,7 @@ function renderFilters(data, createFilters, panelTitle) {
   const filters = createFilters(data, getActiveFilters(), createDropdown);
   if (filters.length > 0) {
     if (panelTitle) {
-      const header = document.createElement('div');
+      const header = document.createElement('p');
       header.className = classPanelTitle;
       header.innerHTML = panelTitle;
       filter.append(header);
@@ -242,4 +244,4 @@ export default function createList(
     container.append(pagination);
     root.append(container);
   }
-}
+} */

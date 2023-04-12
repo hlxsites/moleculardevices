@@ -64,6 +64,11 @@
 }
 
 /* filters */
+.list .filter a:any-link {
+  color: unset;
+  text-decoration: none;
+}
+
 .list .filter .select {
   border-bottom: 1px solid var(--border-color-gray);
   padding: 10px 0 16px;
@@ -76,7 +81,7 @@
 .list .filter .select .dropdown-toggle {
   cursor: pointer;
   position: relative;
-  padding: 15px 35px 16px;
+  padding: 15px 35px 16px 1px;
   text-align: left;
   height: 56px;
   width: 100%;
@@ -103,6 +108,10 @@
   color: var(--text-light-gray);
 }
 
+.list .filter .select .dropdown-menu {
+  display: none;
+}
+
 .list .filter .select .dropdown-menu.open {
   display: block;
   height: auto;
@@ -112,10 +121,6 @@
   background-color: transparent;
   box-shadow: none;
   flex-flow: wrap;
-}
-
-.list .filter .select .dropdown-menu {
-  display: none;
 }
 
 .list .filter .select .dropdown-menu p {
