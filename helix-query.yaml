@@ -54,7 +54,7 @@ indices:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
-      breadcrumbsTitle:
+      h1:
         select: h1
         value: textContent(el)
   fragments:
