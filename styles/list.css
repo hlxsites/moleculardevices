@@ -13,7 +13,7 @@
 }
 
 /* filters */
-/*.list .filter a:any-link {
+.list .filter a:any-link {
   color: unset;
   text-decoration: none;
 }
@@ -78,10 +78,10 @@
   margin: 0;
   padding: 0 12px;
   cursor: pointer;
-}*/
+}
 
 /* entries */
-/*.list .item {
+.list .item {
   border-bottom: 2px solid var(--light-border-color-gray);
   padding: 37px 0 40px;
   margin-left: 6px;
@@ -91,7 +91,7 @@
   padding-bottom: 22px;
 }
 
-.list .items > div {
+.list .items > .image, .list .items > .content {
   width: 100%;
 }
 
@@ -122,32 +122,28 @@
 
 .list .item .image img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   vertical-align: middle;
   border: 0;
 }
 
 .list .item .content {
   padding-left: 15px;
-}*/
+}
 
 /* pagination */
-.list nav {
+.list .pagination {
   flex: 100%;
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.list ol.pages {
+.list .pages {
   padding: 0;
 }
 
-.list ol.pages li.current {
-  color: unset;
-}
-
-.list ol.pages li {
+.list .pages .pager-item {
   display: inline-block;
   list-style-type: none;
   width: 55px;
@@ -162,11 +158,15 @@
   margin: 4px;
 }
 
-.list ol.pages li + li, .list ol.pages li:first-child {
+.list .pages .pager-item.current {
+  color: unset;
+}
+
+.list .pages .pager-item + .pager-item, .list .pages .pager-item:first-child {
   margin-right: 20px;
 }
 
-/*@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .list .items .image {
     padding-left: 15px;
   }
@@ -235,4 +235,4 @@
     width: 66.67%;
     padding-left: 15px;
   }
-}*/
+}
