@@ -45,10 +45,10 @@ export default async function createBreadcrumbs(container) {
       url_path: '/',
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbTitle ?? part,
+      name: pageIndex.find((page) => page.path === urlForIndex(index))?.h1 ?? part,
       url_path: getCustomUrl(part) ? getCustomUrl(part) : urlForIndex(index),
     })),
-    { name: pageIndex.find((page) => page.path === path)?.breadcrumbTitle ?? document.title },
+    { name: pageIndex.find((page) => page.path === path)?.h1 ?? document.title },
   ];
 
   const ol = document.createElement('ol');
