@@ -45,6 +45,9 @@ function addBlockSticker(container) {
 }
 
 export default async function decorate(block) {
+  const lcpCandidate = block.querySelector('img');
+  lcpCandidate.setAttribute('loading', 'eager');
+  
   const container = document.createElement('div');
   container.classList.add('container');
   if (block.childElementCount > 1) {
