@@ -27,14 +27,17 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
-async function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterDate = formatDateFullYear(entry.date);
-  if (!showDescription) {
-    entry.description = '';
-  }
-  if (viewMoreText) {
-    entry.viewMoreText = viewMoreText;
-  }
+function prepareEntry(entry, showDescription, viewMoreText) {
+  return new Promise((resolve) => {
+    entry.filterDate = formatDateFullYear(entry.date);
+    if (!showDescription) {
+      entry.description = '';
+    }
+    if (viewMoreText) {
+      entry.viewMoreText = viewMoreText;
+    }
+    resolve();
+  });
 }
 
 export async function createOverview(
