@@ -207,7 +207,7 @@ function renderFilters(data, createFilters, panelTitle) {
   return null;
 }
 
-export default function createList(
+export default async function createList(
   data,
   filter,
   createFilters,
@@ -217,7 +217,9 @@ export default function createList(
   panelTitle,
   customListItemRenderer,
 ) {
-  loadCSS('../styles/list.css', () => {});
+  const listCSSPromise = new Promise((resolve) => {
+    loadCSS('../styles/list.css', (e) => resolve(e));
+  });
 
   const filteredData = filter(data, getActiveFilters());
 
@@ -239,4 +241,5 @@ export default function createList(
     container.append(pagination);
     root.append(container);
   }
+  await listCSSPromise;
 }

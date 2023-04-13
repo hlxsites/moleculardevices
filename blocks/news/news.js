@@ -85,7 +85,7 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
-export function createOverview(
+export async function createOverview(
   block,
   entries,
   limit,
@@ -106,7 +106,14 @@ export function createOverview(
   });
 
   const panelTitle = 'Filter By :';
-  createList(entries, filterEntries, createFilters, limit, paginationLimit, block, panelTitle);
+  await createList(
+    entries,
+    filterEntries,
+    createFilters,
+    limit,
+    paginationLimit,
+    block,
+    panelTitle);
 }
 
 export async function fetchEntries(type) {
@@ -124,5 +131,5 @@ export default async function decorate(block) {
   const showDescription = false;
   const viewMoreText = '';
   // console.log(`found ${entries.length} entries`);
-  createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
+  await createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
 }

@@ -185,6 +185,10 @@
     margin-bottom: 20px;
   }
 
+  .list > .items > .item > .content > .cite {
+    margin-top: 1px;
+  }
+
   .list > .items > .item > .image {
     flex: 33.33%;
     margin-bottom: 20px;
@@ -221,10 +225,6 @@
   .list > .items > .item > .content {
     width: 66.67%;
     padding-left: 15px;
-  }
-
-  .list > .items > .item > .content > .cite {
-    margin-top: 1px;
   }
 
   .list > .items > .item > image {
