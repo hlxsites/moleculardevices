@@ -90,7 +90,7 @@ function renderListItem({
   const listItemElement = document.createElement('article');
   listItemElement.classList.add(classListItem);
 
-  const hasImage = (!image.startsWith(defaultImage));
+  /* const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
     const imageElement = createOptimizedPicture(image, title, false, [
       { width: '500' },
@@ -101,7 +101,7 @@ function renderListItem({
           ${imageElement.outerHTML}
         </a>
       </div>`;
-  }
+  } */
   const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
   let viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
   if (!viewMoreText) {
