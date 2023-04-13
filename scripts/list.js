@@ -120,7 +120,7 @@ function renderListItem({
   return listItemElement;
 }
 
-async function createListItems(data, customListItemRenderer) {
+function createListItems(data, customListItemRenderer) {
   const items = document.createElement('div');
   items.classList.add(classListItems);
   data.forEach((item) => {
@@ -238,7 +238,8 @@ export default async function createList(
     container.className = 'list';
     const filterElements = renderFilters(data, createFilters, panelTitle);
     container.append(filterElements);
-    container.append(await createListItems(dataToDisplay, customListItemRenderer));
+    const listItems = createListItems(dataToDisplay, customListItemRenderer);
+    container.append(listItems);
     const pagination = renderPagination(filteredData, page, limitPerPage, limitForPagination);
     container.append(pagination);
     root.append(container);
