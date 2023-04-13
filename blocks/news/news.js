@@ -53,8 +53,8 @@ export async function createOverview(
 ) {
   block.innerHTML = '';
   entries.forEach((n) => {
-    n.filterDate = formatDateFullYear(n.date);
-    n.date = formatDate(unixDateToString(n.date));
+    n.filterDate = n.date; // formatDateFullYear(n.date);
+    // n.date = formatDate(unixDateToString(n.date));
     if (!showDescription) {
       n.description = '';
     }
