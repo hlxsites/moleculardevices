@@ -32,12 +32,6 @@ function unixDateToString(unixDateString) {
   return `${month}/${day}/${year}`;
 }
 
-function setImageDimensions(event) {
-  const image = event.target;
-  image.width = image.clientWidth;
-  image.height = image.clientHeight;
-}
-
 function createPaginationLink(page, current, label) {
   const tag = (page === current) ? 'p' : 'a';
   const listElement = document.createElement(tag);
@@ -255,10 +249,4 @@ export default async function createList(
     root.append(container);
   }
   await listCSSPromise;
-
-  const images = document.querySelectorAll('.list > .items > .item > .image img');
-  images.forEach((image) => {
-    image.addEventListener('load', setImageDimensions);
-    image.addEventListener('error', setImageDimensions);
-  });
 }
