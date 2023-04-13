@@ -3,26 +3,10 @@ import {
   toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import { formatDate } from '../../scripts/scripts.js';
 import createList from '../../scripts/list.js';
 
-function unixToDate(unixDateString) {
-  const date = new Date(0);
-  date.setUTCSeconds(unixDateString);
-  return date;
-}
-
-function unixDateToString(unixDateString) {
-  const date = unixToDate(unixDateString);
-  const day = (date.getDate()).toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
-}
-
-function formatDateFullYear(unixDateString) {
-  const date = unixToDate(unixDateString);
-  return date.toLocaleDateString('en-US', {
+export function formatDateFullYear(unixDateString) {
+  return new Date(unixDateString * 1000).toLocaleDateString('en-US', {
     year: 'numeric',
   });
 }
@@ -53,8 +37,7 @@ export async function createOverview(
 ) {
   block.innerHTML = '';
   entries.forEach((n) => {
-    n.filterDate = n.date; // formatDateFullYear(n.date);
-    // n.date = formatDate(unixDateToString(n.date));
+    n.filterDate = formatDateFullYear(n.date);
     if (!showDescription) {
       n.description = '';
     }

@@ -1,4 +1,5 @@
 import { createOptimizedPicture, loadCSS, toClassName } from './lib-franklin.js';
+import { formatDate } from './scripts.js';
 
 const paramPage = 'page';
 const paramYear = 'year';
@@ -21,6 +22,14 @@ function getSelectionFromUrl(field) {
   return (
     toClassName(new URLSearchParams(window.location.search).get(field)) || ''
   );
+}
+
+function unixDateToString(unixDateString) {
+  const date = new Date(unixDateString * 1000);
+  const day = (date.getDate()).toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 function setImageDimensions(event) {
@@ -108,7 +117,8 @@ function renderListItem({
         </a>
       </div>`;
   }
-  const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
+  const dt = formatDate(unixDateToString(date));
+  const citation = (publisher && publisher !== '0') ? `${dt} | ${publisher}` : dt;
   const viewMoreLnk = (viewMoreText) ? `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>` : '';
   listItemElement.innerHTML += `
   <div class="content">
