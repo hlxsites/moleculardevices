@@ -5,10 +5,8 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import createList from '../../scripts/list.js';
 
-export function formatDateFullYear(unixDateString) {
-  return new Date(unixDateString * 1000).toLocaleDateString('en-US', {
-    year: 'numeric',
-  });
+function formatDateFullYear(unixDateString) {
+  return new Date(unixDateString * 1000).getFullYear();
 }
 
 function filterEntries(entries, activeFilters) {
