@@ -108,18 +108,16 @@ function renderListItem({
         </a>
       </div>`;
   }
+  /*
   const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
-  let viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
-  if (!viewMoreText) {
-    viewMoreLnk = '';
-  }
+  const viewMoreLnk = (viewMoreText) ? `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>` : '';
   listItemElement.innerHTML += `
   <div class="content">
     <p class="${classItemCite}">${citation}</p>
     <p><a class="${classItemTitle}" title="${title}" href="${path}">${title}</a></p>
     ${description} ${viewMoreLnk}
   </div>
-`;
+`; */
   return listItemElement;
 }
 
