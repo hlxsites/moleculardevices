@@ -10,5 +10,5 @@ export default async function decorate(block) {
   const showDescription = true;
   const viewMoreText = 'learn more';
   // console.log(`found ${entries.length} entries`);
-  createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
+  await createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
 }
