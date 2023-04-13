@@ -28,16 +28,13 @@ function createFilters(entries, activeFilters, createDropdown) {
 }
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  return new Promise((resolve) => {
-    entry.filterDate = formatDateFullYear(entry.date);
-    if (!showDescription) {
-      entry.description = '';
-    }
-    if (viewMoreText) {
-      entry.viewMoreText = viewMoreText;
-    }
-    resolve();
-  });
+  entry.filterDate = formatDateFullYear(entry.date);
+  if (!showDescription) {
+    entry.description = '';
+  }
+  if (viewMoreText) {
+    entry.viewMoreText = viewMoreText;
+  }
 }
 
 export async function createOverview(
@@ -50,7 +47,7 @@ export async function createOverview(
 ) {
   block.innerHTML = '';
 
-  await Promise.all(entries.map((entry) => prepareEntry(entry, showDescription, viewMoreText)));
+  entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
 
   const panelTitle = 'Filter By :';
   await createList(
