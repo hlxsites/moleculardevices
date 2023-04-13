@@ -78,6 +78,8 @@
 
 /* entries */
 .list > .items > .item {
+  height: auto;
+  max-width: 100%;
   border-bottom: 2px solid var(--light-border-color-gray);
   padding: 37px 0 40px;
   margin-left: 6px;
