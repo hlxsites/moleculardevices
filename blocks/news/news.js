@@ -27,6 +27,16 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
+async function prepareEntry(entry, showDescription, viewMoreText) {
+  entry.filterDate = formatDateFullYear(entry.date);
+  if (!showDescription) {
+    entry.description = '';
+  }
+  if (viewMoreText) {
+    entry.viewMoreText = viewMoreText;
+  }
+}
+
 export async function createOverview(
   block,
   entries,
@@ -36,15 +46,8 @@ export async function createOverview(
   viewMoreText,
 ) {
   block.innerHTML = '';
-  entries.forEach((n) => {
-    n.filterDate = formatDateFullYear(n.date);
-    if (!showDescription) {
-      n.description = '';
-    }
-    if (viewMoreText) {
-      n.viewMoreText = viewMoreText;
-    }
-  });
+
+  await Promise.all(entries.map((entry) => prepareEntry(entry, showDescription, viewMoreText)));
 
   const panelTitle = 'Filter By :';
   await createList(
