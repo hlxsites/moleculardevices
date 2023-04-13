@@ -23,6 +23,12 @@ function getSelectionFromUrl(field) {
   );
 }
 
+function setImageDimensions(event) {
+  const image = event.target;
+  image.width = image.clientWidth;
+  image.height = image.clientHeight;
+}
+
 function createPaginationLink(page, current, label) {
   const tag = (page === current) ? 'p' : 'a';
   const listElement = document.createElement(tag);
@@ -90,7 +96,7 @@ function renderListItem({
   const listItemElement = document.createElement('article');
   listItemElement.classList.add(classListItem);
 
-  /* const hasImage = (!image.startsWith(defaultImage));
+  const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
     const imageElement = createOptimizedPicture(image, title, false, [
       { width: '500' },
@@ -101,7 +107,7 @@ function renderListItem({
           ${imageElement.outerHTML}
         </a>
       </div>`;
-  } */
+  }
   const citation = (publisher && publisher !== '0') ? `${date} | ${publisher}` : date;
   let viewMoreLnk = `<a class='view-more' title="${viewMoreText}" href="${path}">${viewMoreText}</a>`;
   if (!viewMoreText) {
@@ -242,4 +248,10 @@ export default async function createList(
     root.append(container);
   }
   await listCSSPromise;
+
+  const images = document.querySelectorAll('.list > .items > .item > .image img');
+  images.forEach((image) => {
+    image.addEventListener('load', setImageDimensions);
+    image.addEventListener('error', setImageDimensions);
+  });
 }
