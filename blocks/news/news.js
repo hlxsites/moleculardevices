@@ -6,48 +6,6 @@ import ffetch from '../../scripts/ffetch.js';
 import { formatDate } from '../../scripts/scripts.js';
 import createList from '../../scripts/list.js';
 
-function linkPicture(picture) {
-  const checkAndAppendLink = (anchor) => {
-    if (anchor && anchor.textContent.trim().startsWith('https://')) {
-      anchor.innerHTML = '';
-      anchor.className = '';
-      anchor.appendChild(picture);
-    }
-  };
-
-  // Handle case where link is directly after image, or with a <br> between.
-  let nextSib = picture.nextElementSibling;
-  if (nextSib?.tagName === 'BR') {
-    const br = nextSib;
-    nextSib = nextSib.nextElementSibling;
-    br.remove();
-  }
-
-  if (nextSib?.tagName === 'A') {
-    checkAndAppendLink(nextSib);
-    return;
-  }
-
-  // Handle case where link is in a separate paragraph
-  const parent = picture.parentElement;
-  const parentSibling = parent.nextElementSibling;
-  if (parent.tagName === 'P' && parentSibling?.tagName === 'P') {
-    const maybeA = parentSibling.children?.[0];
-    if (parentSibling.children?.length === 1 && maybeA?.tagName === 'A') {
-      checkAndAppendLink(maybeA);
-      if (parent.children.length === 0) {
-        parent.remove();
-      }
-    }
-  }
-}
-
-export function decorateLinkedPictures(block) {
-  block.querySelectorAll('picture').forEach((picture) => {
-    linkPicture(picture);
-  });
-}
-
 function unixToDate(unixDateString) {
   const date = new Date(0);
   date.setUTCSeconds(unixDateString);
