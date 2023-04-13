@@ -106,7 +106,8 @@
   margin: auto;
 }
 
-.section .columns.collaboration > div img {
+.section .columns.collaboration > div img,
+.columns.layout-20-80.partners-list-columns ul li img {
   width: auto;
 }
 
@@ -217,7 +218,7 @@
 .columns.layout-20-80.partners-list-columns ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 60px 0 0;
 }
 
 .columns.layout-20-80.partners-list-columns ul li {
@@ -227,7 +228,7 @@
 }
 
 .columns.layout-20-80.partners-list-columns ul li picture {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   padding: 0 20px;
 }
 
@@ -316,6 +317,11 @@
 
   .columns-3-cols {
     display: flex;
+  }
+
+  .columns.layout-20-80.partners-list-columns ul li picture{
+    max-width: 25%;
+    flex-basis: 25%;
   }
 }
 

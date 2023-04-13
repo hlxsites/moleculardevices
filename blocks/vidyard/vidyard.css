@@ -3,7 +3,8 @@ main .vidyard {
   max-width: 700px;
 }
 
-.section.vidyard-container .vidyard {
+main .vidyard.vidyard-full,
+.section.columns-2.vidyard-container .vidyard {
   margin-top: 0;
   margin-bottom: 0;
   max-width: 100%;
