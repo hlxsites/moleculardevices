@@ -1,8 +1,14 @@
 import ffetch from '../../scripts/ffetch.js';
-import { getQueryParameter } from '../../scripts/scripts.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);
+}
+
+function queryString() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  return params;
 }
 
 function searchDistributorForm(countryList, productFamilyList) {
@@ -65,9 +71,9 @@ function replaceHTMLTag(add) {
 
 function scrollToForm() {
   const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
-  const hubspotIframeParent = hubspotIframe.closest('.get-in-touch-container');
+  const getInTouchBlock = document.querySelector('.get-in-touch');
   window.scroll({
-    top: hubspotIframeParent,
+    top: getInTouchBlock.offsetTop,
     behavior: 'smooth',
   });
 }
@@ -84,8 +90,9 @@ function redirectToContactSearch() {
   window.open(`/contact-search?country=${countryName}&product_family=${primeProduct}`, '_blank');
   Event.preventDefault();
 }
+
 export default async function decorate(block) {
-  const params = getQueryParameter();
+  const params = queryString();
 
   const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
   const productFamilyList = await ffetch('/contact/local-distibutors.json')
@@ -110,7 +117,7 @@ export default async function decorate(block) {
 
   if (searchButtdon) {
     searchButtdon.addEventListener('click', () => {
-      const params2 = getQueryParameter();
+      const params2 = queryString();
       const countryList2 = [
         ...new Set(
           distributors
