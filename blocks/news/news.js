@@ -13,7 +13,7 @@ function filterEntries(entries, activeFilters) {
   let filteredEntries = entries;
   if (activeFilters.year) {
     filteredEntries = filteredEntries
-      .filter((n) => toClassName(n.filterDate).includes(activeFilters.year));
+      .filter((n) => toClassName(n.filterDate.toString()).includes(activeFilters.year));
   }
   return filteredEntries;
 }
