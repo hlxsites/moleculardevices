@@ -3,7 +3,7 @@ import { loadScript } from '../../scripts/scripts.js';
 
 const coveoAdminId = 'kapil.dhiman@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
-const coveoToken = 'xxb1966cc1-fee3-4df3-99bf-11fe2b4e1c74';
+const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
 
 function searchFormHeader() {
   return `
@@ -209,9 +209,10 @@ export default async function decorate(block) {
   const backgroundImage = block.querySelector('picture');
   block.children[0].innerHTML = searchFormHeader();
   block.children[0].querySelector('.cover-banner-wrapper').prepend(backgroundImage);
-  const contentFrag = document.createRange().createContextualFragment(searchMainSection());
-  Promise(() => {
-    block.children[0].children[0].appendChild(contentFrag);
+  const cRange = document.createRange();
+  /* eslint-disable no-new */
+  new Promise(() => {
+    block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
     loadCSS('https://static.cloud.coveo.com/searchui/v2.10104/css/CoveoFullSearch.min.css');
   });
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', null, null, true);
