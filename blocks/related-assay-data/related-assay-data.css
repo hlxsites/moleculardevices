@@ -6,7 +6,6 @@
 }
 
 .assay-picture img {
-  /* width: 100%; */
   height: 100%;
 }
 
@@ -16,6 +15,10 @@
   line-height: 1;
   font-weight: 100;
   margin: 0;
+}
+
+.assay-content p {
+  margin-top: 10px;
 }
 
 @media (min-width: 992px) {

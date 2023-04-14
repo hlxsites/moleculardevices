@@ -191,7 +191,7 @@ export async function fetchFragment(path) {
   const text = await response.text();
   if (!text) {
     // eslint-disable-next-line no-console
-    console.error('fragment details empty');
+    console.error('fragment details empty', path);
     return null;
   }
   return text;
