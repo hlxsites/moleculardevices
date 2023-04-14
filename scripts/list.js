@@ -98,13 +98,13 @@ function getActiveFilters() {
 
 function renderListItem({
   path, title, description, viewMoreText, image, date, publisher,
-}) {
+}, idx) {
   const listItemElement = document.createElement('article');
   listItemElement.classList.add(classListItem);
 
   const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
-    const imageElement = createOptimizedPicture(image, title, false, [
+    const imageElement = createOptimizedPicture(image, title, idx === 0, [
       { width: '500' },
     ]);
     listItemElement.innerHTML = `
@@ -130,10 +130,10 @@ function renderListItem({
 function createListItems(data, customListItemRenderer) {
   const items = document.createElement('div');
   items.classList.add(classListItems);
-  data.forEach((item) => {
+  data.forEach((item, idx) => {
     const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
       ? customListItemRenderer(item, renderListItem)
-      : renderListItem(item);
+      : renderListItem(item, idx);
 
     items.appendChild(listItemElement);
   });
