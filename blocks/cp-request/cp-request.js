@@ -14,7 +14,7 @@ function setCookie(cname, cvalue, exdays) {
   if (nDomain === true) {
     cHostName = 'domain=.moleculardevices.com;';
   }
-  document.cookie = `${cname}=${cvalue};${secure};${cHostName}${expires};path=/`;
+  document.cookie = cname + "=" + cvalue + ";secure;" + cHostName + expires + ";path=/";
   //document.cookie = cname + '=' + cvalue + ';secure;' + expires + ';path=/'; 
 }
 
