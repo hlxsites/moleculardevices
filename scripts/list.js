@@ -127,15 +127,11 @@ function renderListItem({
   return listItemElement;
 }
 
-function createListItems(data, customListItemRenderer) {
+function createListItems(data) {
   const items = document.createElement('div');
   items.classList.add(classListItems);
   data.forEach((item, idx) => {
-    const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
-      ? customListItemRenderer(item, renderListItem)
-      : renderListItem(item, idx);
-
-    items.appendChild(listItemElement);
+    items.appendChild(renderListItem(item, idx));
   });
   return items;
 }
@@ -225,7 +221,6 @@ export default async function createList(
   limitForPagination,
   root,
   panelTitle,
-  customListItemRenderer,
 ) {
   const listCSSPromise = new Promise((resolve) => {
     loadCSS('../styles/list.css', (e) => resolve(e));
@@ -245,7 +240,7 @@ export default async function createList(
     container.className = 'list';
     const filterElements = renderFilters(data, createFilters, panelTitle);
     container.append(filterElements);
-    const listItems = createListItems(dataToDisplay, customListItemRenderer);
+    const listItems = createListItems(dataToDisplay);
     container.append(listItems);
     root.append(container);
     renderPagination(filteredData, page, limitPerPage, limitForPagination, container);
