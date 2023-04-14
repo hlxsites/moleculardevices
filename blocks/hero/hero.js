@@ -3,7 +3,7 @@ import { formatDate } from '../../scripts/scripts.js';
 import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
-function addMetadata(container) {
+async function addMetadata(container) {
   const metadataContainer = document.createElement('div');
   metadataContainer.classList.add('metadata');
 
@@ -29,7 +29,7 @@ function addMetadata(container) {
   container.appendChild(metadataContainer);
 }
 
-function addBlockSticker(container) {
+async function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
