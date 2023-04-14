@@ -101,7 +101,7 @@ function renderListItem({
 
   const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
-    const imageElement = createOptimizedPicture(image, title, false, [
+    const imageElement = createOptimizedPicture(image, title, true, [
       { width: '500' },
     ]);
     listItemElement.innerHTML = `
