@@ -234,18 +234,18 @@
 
 @media (min-width: 768px) {
   .columns > div {
-    align-items: center;
     display: flex;
     flex-direction: unset;
-  }
-  
-  .blog .columns > div {
-    align-items: unset;
+    align-items: center;
   }
 
   .columns > div > div {
     flex: 1;
     margin-left: 32px;
+  }
+
+  .blog .columns > div {
+    align-items: unset;
   }
 
   .columns.contact > div {

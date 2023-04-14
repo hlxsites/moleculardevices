@@ -1,4 +1,4 @@
-import { styleCaption } from '../../scripts/scripts.js'
+import { styleCaption } from '../../scripts/scripts.js';
 
 export default function buildAutoBlocks() {
   const main = document.querySelector('main');

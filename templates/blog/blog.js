@@ -1,4 +1,4 @@
-import { styleCaption } from '../../scripts/scripts.js'
+import { styleCaption } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 export default function buildAutoBlocks() {
@@ -25,7 +25,7 @@ export default function buildAutoBlocks() {
 
   main.querySelectorAll('.vidyard', '.columns').forEach((item) => {
     if (!item.nextElementSibling.tagName === 'P') {
-      return
+      return;
     }
 
     const paragraph = item.nextElementSibling;
@@ -44,5 +44,5 @@ export default function buildAutoBlocks() {
         ),
       ),
     ),
-  )
+  );
 }
