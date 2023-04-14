@@ -190,7 +190,7 @@ main .hero.blog .breadcrumbs > ol {
 
 @media (max-width: 767px) {
   main .hero {
-    min-height: 250px;
+    min-height: 180px;
     padding-top: 34%;
     padding-bottom: 41px;
   }
