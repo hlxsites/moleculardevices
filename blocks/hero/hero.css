@@ -3,7 +3,6 @@
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
-  margin-top: -10px;
   padding: 0;
 }
 
