@@ -3,7 +3,7 @@ import { loadScript } from '../../scripts/scripts.js';
 
 const coveoAdminId = 'kapil.dhiman@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
-const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
+const coveoToken = 'xxb1966cc1-fee3-4df3-99bf-11fe2b4e1c74';
 
 function getCookie(cname) {
   /* eslint-disable no-param-reassign */
@@ -24,11 +24,11 @@ function getCookie(cname) {
 }
 
 function getCategoriesBasedOnProfile(userProfile) {
-  const CUSTOMER_ACCESS_LEVEL_CATEGORY = 'Customer';
-  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = 'Distributor';
-  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = 'System_Integrator';
-  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Sales';
-  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Tech';
+  const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
+  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = '"Distributor"';
+  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = '"System_Integrator"';
+  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Sales"';
+  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Tech"';
   let categoryAccessLevel;
 
   switch (userProfile) {

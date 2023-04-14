@@ -24,7 +24,6 @@
 }
 
 .cover-banner-wrapper {
-  /* background-image: url('images/coveo-banner.jpg'); */
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -39,6 +38,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cover-banner-wrapper picture img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cover-banner-content {
