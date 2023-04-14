@@ -48,7 +48,7 @@ export default async function decorate(block) {
     .limit(5)
     .all();
 
-  createCarousel(
+  await createCarousel(
     block,
     newsItems,
     {
