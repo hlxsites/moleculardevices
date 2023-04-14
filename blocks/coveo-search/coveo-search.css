@@ -1,5 +1,5 @@
 .section.background-grey.coveo-search-container {
-  background-color: var(--background-color);
+  background-color: transparent;
   position: relative;
 }
 
@@ -24,13 +24,21 @@
 }
 
 .cover-banner-wrapper {
-  background-image: url('images/coveo-banner.jpg');
+  /* background-image: url('images/coveo-banner.jpg'); */
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 250px;
   padding-bottom: 50px;
   position: relative;
+}
+
+.cover-banner-wrapper picture {
+  z-index: -1;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .cover-banner-content {
