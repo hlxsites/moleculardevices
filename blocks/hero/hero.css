@@ -190,8 +190,9 @@ main .hero.blog .breadcrumbs > ol {
 
 @media (max-width: 767px) {
   main .hero {
-    padding: 50px 0 55px;
     min-height: 250px;
+    padding-top: 34%;
+    padding-bottom: 41px;
   }
 
   /* TODO fix heading vars in styles.css */
