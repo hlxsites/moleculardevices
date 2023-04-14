@@ -6,23 +6,23 @@ const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
 
 function getCookie(cname) {
-  const name = cname + "=";
+  cname = cname + '=';
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
+  /* eslint-disable-next-line no-plusplus */
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
+    if (c.indexOf(cname) === 0) {
+      return c.substring(cname.length, c.length);
     }
   }
-  return "";
+  return '';
 }
 
 function getCategoriesBasedOnProfile(userProfile) {
-
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = 'Customer';
   const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = 'Distributor';
   const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = 'System_Integrator';
@@ -30,6 +30,7 @@ function getCategoriesBasedOnProfile(userProfile) {
   const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Tech';
   let categoryAccessLevel;
 
+  // eslint-disable-next-line no-useless-concat
   switch (userProfile) {
     case 'ADMIN':
       categoryAccessLevel = '';
@@ -51,9 +52,7 @@ function getCategoriesBasedOnProfile(userProfile) {
     default:
       categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY;
   }
-
   return categoryAccessLevel;
-
 }
 
 function getUserProfile() {
@@ -65,7 +64,7 @@ function getFilter() {
 
   let filter;
 
-  if (userProfile == 'ADMIN') {
+  if (userProfile === 'ADMIN') {
     filter = ``;
   } else {
     filter = `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
@@ -230,7 +229,6 @@ function searchMainSection() {
 }
 
 async function coveoSearchInitiation(organizationID, accessToken) {
-
   const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
   /* global Coveo */
   Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
