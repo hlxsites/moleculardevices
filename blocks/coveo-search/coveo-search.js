@@ -6,6 +6,7 @@ const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
 
 function getCookie(cname) {
+  /* eslint-disable no-param-reassign */
   cname += '=';
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
@@ -34,18 +35,17 @@ function getCategoriesBasedOnProfile(userProfile) {
     case 'ADMIN':
       categoryAccessLevel = '';
       break;
-    // eslint-disable-next-line no-useless-concat
     case 'DISTRIBUTOR':
-      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY;
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY}`;
       break;
     case 'INTEGRATOR':
-      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY;
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY}`;
       break;
     case 'SALES':
-      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_SALES_ACCESS_LEVEL_CATEGORY;
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY} + ',' +${ MOLDEV_SALES_ACCESS_LEVEL_CATEGORY}`;
       break;
     case 'TECH':
-      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_SALES_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_TECH_ACCESS_LEVEL_CATEGORY;
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY}`;
       break;
 
     default:
