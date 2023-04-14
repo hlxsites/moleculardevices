@@ -48,9 +48,12 @@ function createPaginationLink(page, current, label) {
   return listElement;
 }
 
-export function renderPagination(entries, page, limit, limitForPagination) {
+export async function renderPagination(entries, page, limit, limitForPagination, container) {
   const nav = document.createElement('nav');
   nav.className = classPagination;
+  if (container) {
+    container.appendChild(nav);
+  }
 
   if (entries.length > limit) {
     const maxPages = Math.ceil(entries.length / limit);
@@ -244,9 +247,8 @@ export default async function createList(
     container.append(filterElements);
     const listItems = createListItems(dataToDisplay, customListItemRenderer);
     container.append(listItems);
-    const pagination = renderPagination(filteredData, page, limitPerPage, limitForPagination);
-    container.append(pagination);
     root.append(container);
+    renderPagination(filteredData, page, limitPerPage, limitForPagination, container);
   }
   await listCSSPromise;
 }
