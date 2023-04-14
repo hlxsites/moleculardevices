@@ -1,1 +1,4 @@
-/* publication specific styles */
+main .section .publication-wrapper {
+  background-color: var(--grey-background-color);
+}
+    

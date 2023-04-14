@@ -1,5 +1,5 @@
 .list {
-  padding-top: 30px;
+  padding-top: 67px;
 }
 
 .list > * {
@@ -35,7 +35,7 @@
 }
 
 .list  > .filter > .select > .dropdown-toggle::before {
-  right: 6px;
+  right: 21px;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
   font-size: 12px;
@@ -82,7 +82,6 @@
   max-width: 100%;
   border-bottom: 2px solid var(--light-border-color-gray);
   padding: 37px 0 40px;
-  margin-left: 6px;
 }
 
 .list > .items > .item:last-of-type {
@@ -202,7 +201,7 @@
   }
 
   .list > .filter > .select {
-    width: 259px;
+    max-width: 259px;
   }
 }
 
@@ -217,8 +216,7 @@
   }
 
   .list > .items > .item {
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: 6px;
   }
 
   .list > .items > .item:first-of-type {
@@ -232,5 +230,9 @@
 
   .list > .items > .item > image {
     width: 33.33%;
+  }
+
+  .list > .filter > .panel-title {
+    max-width: 259px;
   }
 }

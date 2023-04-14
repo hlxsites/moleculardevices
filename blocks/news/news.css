@@ -1,1 +1,4 @@
-/* news specific styles */
+main .section .news-wrapper {
+  background-color: var(--grey-background-color);
+}
+  
