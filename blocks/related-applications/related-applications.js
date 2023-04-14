@@ -1,20 +1,4 @@
-import { addLinkIcon } from '../../scripts/scripts.js';
-
-async function getFragmentHtml(path) {
-  const response = await fetch(`${path}.plain.html`);
-  if (!response.ok) {
-    // eslint-disable-next-line no-console
-    console.error('error loading fragment details', response);
-    return null;
-  }
-  const text = await response.text();
-  if (!text) {
-    // eslint-disable-next-line no-console
-    console.error('fragment details empty');
-    return null;
-  }
-  return text;
-}
+import { addLinkIcon, fetchFragment } from '../../scripts/scripts.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
@@ -35,12 +19,12 @@ export default async function decorate(block) {
   }
 
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
-    const fragmentHtml = await getFragmentHtml(path);
+    const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
-      const h1 = fragmentElement.querySelector('h1');
-      return { id: h1.id, title: h1.textContent, html: fragmentElement };
+      const h3 = fragmentElement.querySelector('h3');
+      return { id: h3.id, title: h3.textContent, html: fragmentElement };
     }
     return null;
   }));

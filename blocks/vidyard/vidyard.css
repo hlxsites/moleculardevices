@@ -2,3 +2,76 @@ main .vidyard {
   margin: 40px auto;
   max-width: 700px;
 }
+
+main .vidyard.vidyard-full,
+.section.columns-2.vidyard-container .vidyard {
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+.section.columns-2.tabs.vidyard-container[aria-hidden="false"] {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.section.columns-2.background-grey.tabs.vidyard-container::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background-color: inherit;
+  top: 0;
+  left: -50%;
+  z-index: -1;
+}
+
+.section.columns-2.vidyard-container > div {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.section.columns-2.vidyard-container.vidyard-right .vidyard-wrapper {
+  order: 2;
+}
+
+.section.columns-2.vidyard-container > .default-content-wrapper:not(:first-child) {
+  padding-bottom: 0;
+}
+
+.section.columns-2.vidyard-container > .default-content-wrapper:first-child > h2:only-child {
+  margin-bottom: 0;
+}
+
+#vidyard-popbox-constraint.landscape {
+  height: auto !important;
+  max-height: 343px;
+}
+
+@media only screen and (min-width: 768px) {
+  .section.columns-2.tabs.vidyard-container {
+    max-width: 750px;
+  }
+
+  .section.columns-2.vidyard-container > div:not(.default-content-wrapper:first-child) {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .section.columns-2.tabs.vidyard-container {
+    max-width: 970px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .section.columns-2.tabs.vidyard-container {
+    max-width: 1170px;
+  }
+}

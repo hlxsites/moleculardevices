@@ -136,6 +136,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  overflow-x: hidden;
 }
 
 .background-gray main {
@@ -516,7 +517,7 @@ nav {
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
-  
+
   padding: 0 15px;
 }
 
@@ -645,11 +646,11 @@ main .section.wave {
   background-position: top center;
   background-size: cover;
   display: flex;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   overflow: visible;
   padding-bottom: 0;
-  flex-wrap: wrap;
   color: var(--text-white);
   text-align: center;
   margin-bottom: 45px;

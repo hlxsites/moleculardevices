@@ -1,3 +1,7 @@
+import { getMetadata } from '../../scripts/lib-franklin.js';
+// eslint-disable-next-line object-curly-newline
+import { a, div, i, li, p, ul } from '../../scripts/dom-helpers.js';
+
 function getURL() {
   return encodeURIComponent(window.location.href);
 }
@@ -7,17 +11,28 @@ function getTitle() {
   return h1 ? encodeURIComponent(h1.textContent) : '';
 }
 
+function onSocialShareClick(event) {
+  event.preventDefault();
+  const href = event.currentTarget.getAttribute('href');
+  if (!href) return;
+  window.open(href, 'popup', 'width=800,height=700,scrollbars=no,resizable=no');
+}
+
 function decorateLink(social, type, icon, url) {
   icon.setAttribute('aria-label', type);
-  if (url) {
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('aria-label', `Share to ${type}`);
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-    link.append(icon);
-    social.append(link);
-  }
+  if (!url) return;
+
+  social.append(
+    a({
+      href: url,
+      'aria-label': `Share to ${type}`,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      onclick: onSocialShareClick,
+    },
+    icon,
+    ),
+  );
 }
 
 function decorateIcons(element) {
@@ -27,6 +42,7 @@ function decorateIcons(element) {
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
+
     switch (type) {
       case 'facebook':
         decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
@@ -37,10 +53,8 @@ function decorateIcons(element) {
       case 'twitter':
         decorateLink(social, 'Twitter', icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
         break;
-      case 'envelope':
-        decorateLink(social, 'Google', icon);
-        icon.classList.add('addthis-share-button');
-        icon.setAttribute('data-service', 'email');
+      case 'youtube-play':
+        decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
       default:
         break;
@@ -48,24 +62,52 @@ function decorateIcons(element) {
   });
 }
 
-export default function decorate(block) {
-  const title = block.querySelector('.social-share p').innerHTML;
+function blogHideSocialShareOnHero(block) {
+  const heroBlock = document.querySelector('div.hero');
+  block.classList.add('social-share-hidden');
+  if (!heroBlock) return;
 
-  block.innerHTML = `
-    <div class="share-event">
-      <p>${title}</p>
-      <div class="social-links blue-ico">
-        <ul class="button-container"></ul>
-      </div>
-    </div>`;
-  const socials = ['facebook', 'linkedin', 'twitter', 'envelope'];
-  socials.forEach((social) => {
-    const li = document.createElement('li');
-    li.className = `share-${social}`;
-    li.innerHTML = `<i class="fa fa-${social}"></i>`;
-    li.setAttribute('data-type', social);
-    block.querySelector('.social-links .button-container').append(li);
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      block.classList.add('social-share-hidden');
+    } else {
+      block.classList.remove('social-share-hidden');
+    }
   });
+  observer.observe(heroBlock);
+}
+
+export default function decorate(block) {
+  const template = getMetadata('template').toLowerCase();
+
+  let title = '';
+  if (block.querySelector('.social-share p')) {
+    title = block.querySelector('.social-share p').innerHTML;
+  }
+
+  const socials = template === 'blog'
+    ? ['linkedin', 'facebook', 'twitter', 'youtube-play']
+    : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
+
+  block.innerHTML = '';
+  block.appendChild(
+    div({ class: 'share-event' },
+      p(title),
+      div({ class: 'social-links' },
+        ul({ class: 'button-container' },
+          ...socials.map((social) =>
+            // eslint-disable-next-line implicit-arrow-linebreak
+            li({ class: `share-${social}`, 'data-type': social },
+              i({ class: `fa fa-${social}` }),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 
   decorateIcons(block);
+  if (template === 'blog') {
+    blogHideSocialShareOnHero(block);
+  }
 }
