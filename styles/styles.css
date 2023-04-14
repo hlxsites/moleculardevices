@@ -402,24 +402,6 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section {
-  padding: 40px 0;
-}
-
-main .section[class*='hero'] {
-  padding: 0;
-}
-
-main .section + .section {
-  padding-top: 0;
-}
-
-main .section + .section[class*='background-'],
-main .section[class*='background-'] + .section,
-main .section[class*='hero'] + .section[class*='background-'] {
-  padding-top: 40px;
-}
-
 main .section>div {
   margin: 0 auto;
   padding: 0 15px;
@@ -460,32 +442,12 @@ main .section>div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section {
-    padding: 70px 0;
-  }
-
-  main .section + .section[class*='background-'],
-  main .section[class*='background-'] + .section,
-  main .section[class*='hero'] + .section[class*='background-'] {
-    padding-top: 70px;
-  }
-  
   main .section>div {
     width: 750px
   }
 }
 
 @media (min-width: 992px) {
-  main .section {
-    padding: 100px 0;
-  }
-
-  main .section + .section[class*='background-'],
-  main .section[class*='background-'] + .section,
-  main .section[class*='hero'] + .section[class*='background-'] {
-    padding-top: 100px;
-  }
-  
   main .section>div {
     width: 970px
   }
@@ -509,28 +471,6 @@ main .section>div {
 
 main .section .default-content-wrapper {
   padding-bottom: 100px;
-}
-
-main .section .default-content-wrapper:first-child {
-  padding-bottom: 0;
-}
-
-main .section .default-content-wrapper h2 {
-  text-align: center;
-}
-
-main .section.features-section h2 {
-  margin-bottom: 0;
-}
-
-main .section.wave h2 {
-  font-size: 65px;
-  margin-bottom: 30px;
-  line-height: 1;
-}
-
-main .section .default-content-wrapper h2:only-child {
-  margin-bottom: 0;
 }
 
 /* progressive section appearance */
@@ -563,7 +503,7 @@ main .section.background-molecules .hero-wrapper::after {
 
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
-    padding-bottom: 70px;
+    padding: 0 0 70px;
   }
 }
 
@@ -652,6 +592,10 @@ main .section.features-section .default-content-wrapper {
   margin-bottom: 30px;
 }
 
+main .section.features-section h2 {
+  margin-bottom: 0;
+}
+
 main .section.features-section .default-content-wrapper::after {
   content: "";
   clear: both;
@@ -730,6 +674,12 @@ main .section.wave .default-content-wrapper {
   margin-bottom: 55px;
   padding: 0 15px;
   padding-right: 15px;
+}
+
+main .section.wave h2 {
+  font-size: 65px;
+  margin-bottom: 30px;
+  line-height: 1;
 }
 
 main .section.wave p {
@@ -837,7 +787,7 @@ main .orange-buttons .button.primary>.button-border {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding-bottom: 0;
+    padding: 0;
     overflow: hidden;
   }
 
