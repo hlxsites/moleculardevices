@@ -1,0 +1,44 @@
+.assay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.assay-picture img {
+  height: 100%;
+}
+
+.assay-content h3 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+  line-height: 1;
+  font-weight: 100;
+  margin: 0;
+}
+
+.assay-content p {
+  margin-top: 10px;
+}
+
+@media (min-width: 992px) {
+  .assay-content {
+    width: 41.5%;
+    margin-right: 8.5%;
+    margin-left: 0;
+  }
+  
+  .assay-picture {
+    width: 50%;
+  }
+  
+  .assay:nth-child(odd) .assay-content {
+    order: 2;
+    margin-right: 0;
+    margin-left: 8.5%;
+  }
+  
+  .assay:nth-child(odd) .assay-picture {
+    order: 1;
+  }
+}
