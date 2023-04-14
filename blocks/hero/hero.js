@@ -1,6 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
+import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -47,12 +48,20 @@ function addBlockSticker(container) {
 export default async function decorate(block) {
   const container = document.createElement('div');
   container.classList.add('container');
-  if (block.childElementCount > 1) {
-    container.classList.add('two-column');
-  }
 
-  [...block.children].forEach((div) => {
-    container.appendChild(div);
+  [...block.children].forEach((row, i) => {
+    if (i === 0 && row.childElementCount > 1) {
+      container.classList.add('two-column');
+      [...row.children].forEach((column) => {
+        if (getVideoId(column.textContent)) {
+          column.classList.add('video-column');
+          buildVideo(block, column, getVideoId(column.textContent));
+        }
+        container.appendChild(column);
+      });
+    } else {
+      container.appendChild(row);
+    }
   });
 
   const breadcrumbs = document.createElement('div');

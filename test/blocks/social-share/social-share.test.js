@@ -23,7 +23,7 @@ describe('Social Share block', () => {
 
   it('Tests Social Shares', async () => {
     const shareEvent = document.querySelector('.social-share');
-    const socialsExpected = ['facebook', 'linkedin', 'twitter', 'envelope'];
+    const socialsExpected = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
     const socialsActual = shareEvent.querySelector('.button-container');
     socialsExpected.forEach((social) => {
       expect(

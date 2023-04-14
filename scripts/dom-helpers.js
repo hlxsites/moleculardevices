@@ -22,7 +22,7 @@
 
 /**
  * Helper for more concisely generating DOM Elements with attributes and children
- * @param {*} tag HTML tag of the desired element
+ * @param {string} tag HTML tag of the desired element
  * @param  {[Object?, ...Element]} items: First item can optionally be an object of attributes,
  *  everything else is a child element
  * @returns {Element} The constructred DOM Element
@@ -40,7 +40,7 @@ export function domEl(tag, ...items) {
       if (!key.startsWith('on')) {
         element.setAttribute(key, Array.isArray(value) ? value.join(' ') : value);
       } else {
-        element.addEventListener(key.substring(2), value);
+        element.addEventListener(key.substring(2).toLowerCase(), value);
       }
     });
   }
@@ -68,3 +68,6 @@ export function h3(...items) { return domEl('h3', ...items); }
 export function h4(...items) { return domEl('h4', ...items); }
 export function h5(...items) { return domEl('h5', ...items); }
 export function h6(...items) { return domEl('h6', ...items); }
+export function ul(...items) { return domEl('ul', ...items); }
+export function li(...items) { return domEl('li', ...items); }
+export function i(...items) { return domEl('i', ...items); }

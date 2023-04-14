@@ -71,6 +71,8 @@ async function loadBreadcrumbs(main) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * Run named sections for in page navigation.
  * Decroate named sections for in page navigation.
  * @param {Element} main The container element
  */
@@ -181,6 +183,22 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
+export async function fetchFragment(path) {
+  const response = await fetch(`${path}.plain.html`);
+  if (!response.ok) {
+    // eslint-disable-next-line no-console
+    console.error('error loading fragment details', response);
+    return null;
+  }
+  const text = await response.text();
+  if (!text) {
+    // eslint-disable-next-line no-console
+    console.error('fragment details empty', path);
+    return null;
+  }
+  return text;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -214,6 +232,16 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+}
+
+/**
+ * Read query string from url
+ */
+export function getQueryParameter() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  return params;
 }
 
 async function loadPage() {

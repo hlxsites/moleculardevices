@@ -66,7 +66,9 @@ function buildTextSubmenu(textContent) {
 function buildActionableCardSubmenu(actionableCardContent) {
   const link = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > a');
   const picture = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > picture');
-  wrapLinkAroundComponent(link, picture, true);
+  if (link && picture) {
+    wrapLinkAroundComponent(link, picture, true);
+  }
   return actionableCardContent;
 }
 

@@ -97,14 +97,16 @@ class Carousel {
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.previousElementSibling.offsetLeft - this.getBlockPadding()
+          newSelectedItem.previousElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft
         ),
       });
     }
 
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
       behavior: 'smooth',
     });
 
@@ -145,14 +147,16 @@ class Carousel {
       newSelectedItem.parentNode.scrollTo({
         top: 0,
         left: (
-          newSelectedItem.nextElementSibling.offsetLeft - this.getBlockPadding()
+          newSelectedItem.nextElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft
         ),
       });
     }
 
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding(),
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
       behavior: 'smooth',
     });
 
@@ -249,7 +253,7 @@ class Carousel {
       const item = this.block.querySelector('.carousel-item.selected');
       item.parentNode.scrollTo({
         top: 0,
-        left: item.offsetLeft - this.getBlockPadding(),
+        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
       });
     };
 

@@ -48,7 +48,7 @@ main .hero li {
 
 main .hero h1 {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: white;
   line-height: 1;
 }
@@ -103,6 +103,11 @@ main .hero .container > div:nth-child(2) {
   font-size: var(--body-font-size-xs);
 }
 
+main .hero .container > div:nth-child(2).video-column {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 main .hero .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
@@ -111,6 +116,28 @@ main .hero .container > div:nth-child(2) .button-container {
 
 .hero .breadcrumbs li+li::before {
   color: var(--hero-breadcrumbs-separator-color);
+}
+
+main .hero .video-icon img {
+  height: 91px;
+  width: 90px;
+  margin: auto;
+  border-radius: 50%;
+  transition: all ease .3s;
+}
+
+main .hero .video-icon img:hover {
+  transform: scale(1.1);
+  transition: all ease .3s;
+}
+
+#sample {
+display: none;
+}
+
+#vidyard-popbox {
+  max-height: 400px;
+  max-width: 700px;
 }
 
 /* Blog Variant - Desktop -- Start */
@@ -199,6 +226,10 @@ main .hero.blog .breadcrumbs > ol {
     font-size: 36px;
   }
 
+  main .hero .two-column h1 {
+    font-size: 28px;
+  }
+
   main .hero h4 {
     margin-bottom: 10px;;
   }
@@ -226,8 +257,22 @@ main .hero.blog .breadcrumbs > ol {
     padding-top:30px;
   }
 
+  main .hero .container.two-column > div.video-column > div {
+    border: none;
+  }
+
   main .hero .button-container a {
     padding: 9px 12px 10px;
+  }
+
+  .video-icon {
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  main .hero h1 {
+    font-size: 45px;
   }
 
   /* Blog Variant - Mobile -- Start */
@@ -297,18 +342,50 @@ main .hero.blog .breadcrumbs > ol {
 
   main .hero .container {
     overflow: auto;
-    display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
-    padding: 0 0 45px;
+    padding: 0 0 120px;
+  }
+
+  main .hero .video-icon img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  main .hero .container.two-column > div:nth-child(2).video-column {
+    border: none;
+  }
+
+  main .hero .container > div:nth-child(1) .button-container {
+    margin-top: 20px;
+  }
+  
+  .video-icon {
+    position: relative;
+    display: block;
+    height: 125px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .hero > div {
+    width: 970px
+  }
+
+  main .hero .container {
+    display: flex;
+    padding: 0 0 120px;
   }
 
   main .hero .container > div {
     float:left;
   }
 
-  main .hero .container.two-column > div:nth-child(1) {
+  main .hero .container > div:nth-child(1) {
     width: 66%
   }
 
@@ -317,14 +394,8 @@ main .hero.blog .breadcrumbs > ol {
     border-left: 2px solid #fff;
   }
 
-  main .hero .container > div:nth-child(1) .button-container {
-    margin-top: 30px;
-  }
-}
-
-@media (min-width: 992px) {
-  main .hero > div {
-    width: 970px
+  .video-icon {
+    height: 320px;
   }
 }
 
