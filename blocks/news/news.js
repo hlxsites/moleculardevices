@@ -26,7 +26,7 @@ function createFilters(entries, activeFilters, createDropdown) {
 }
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterDate = 2023; // formatDateFullYear(entry.date);
+  entry.filterDate = formatDateFullYear(entry.date);
   if (!showDescription) {
     entry.description = '';
   }
