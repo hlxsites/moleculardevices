@@ -14,15 +14,15 @@ function setCookie(cname, cvalue, exdays) {
   if (nDomain === true) {
     cHostName = 'domain=.moleculardevices.com;';
   }
+  /* eslint-disable no-trailing-spaces */
   document.cookie = `${cname}=${cvalue};secure;${cHostName}${expires};path=/`;
-  //document.cookie = cname + '=' + cvalue + ';secure;' + expires + ';path=/'; 
 }
 
 const paramName = 'STYXKEY_PortalUserRole';
 const readQuery = getQueryParameter();
 const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
 
-if (queryStringParam == 'cplogout') {
+if (queryStringParam === 'cplogout') {
   setCookie('STYXKEY_PortalUserRole', '', -1);
 } else {
   setCookie('STYXKEY_PortalUserRole', queryStringParam, 0);
