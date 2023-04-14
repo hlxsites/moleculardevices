@@ -25,7 +25,7 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
-function prepareEntry(entry, showDescription, viewMoreText) {
+async function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterDate = formatDateFullYear(entry.date);
   if (!showDescription) {
     entry.description = '';
@@ -45,7 +45,7 @@ export async function createOverview(
 ) {
   block.innerHTML = '';
 
-  entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
+  await entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
 
   const panelTitle = 'Filter By :';
   await createList(
