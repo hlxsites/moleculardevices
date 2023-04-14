@@ -40,8 +40,12 @@ main .vidyard.vidyard-full,
   order: 2;
 }
 
-.section.columns-2.vidyard-container .vidyard-wrapper + .default-content-wrapper {
-  padding-top: 0;
+.section.columns-2.vidyard-container > .default-content-wrapper:not(:first-child) {
+  padding-bottom: 0;
+}
+
+.section.columns-2.vidyard-container > .default-content-wrapper:first-child > h2:only-child {
+  margin-bottom: 0;
 }
 
 #vidyard-popbox-constraint.landscape {

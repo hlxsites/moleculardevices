@@ -17,7 +17,7 @@
   src: local('Arial');
   ascent-override: 79.64%;
   descent-override: 21.17%;
-  line-gap-override: 0%;
+  line-gap-override: 0.00%;
   size-adjust: 99.19%;
 }
 
@@ -28,7 +28,7 @@
   src: local('Arial');
   ascent-override: 75.77%;
   descent-override: 20.14%;
-  line-gap-override: 0%;
+  line-gap-override: 0.00%;
   size-adjust: 104.26%;
 }
 
@@ -39,7 +39,7 @@
   src: local('Arial');
   ascent-override: 80.85%;
   descent-override: 21.49%;
-  line-gap-override: 0%;
+  line-gap-override: 0.00%;
   size-adjust: 97.72%;
 }
 
@@ -74,19 +74,17 @@
   --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
   --header-color-orange: #ee7624;
-  --header-mega-menu-border-color: #ffffff80;
-  --header-mega-menu-font-color: #ffffffb2;
+  --header-mega-menu-border-color: #FFFFFF80;
+  --header-mega-menu-font-color: #FFFFFFB2;
   --header-mega-menu-product-cards-background-color: #161e2d;
   --header-mega-menu-green: #6eb43f;
+  --header-actionable-submenu-text-color: #e6e6e6;
 
   /* fonts */
-  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
-  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
-  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
-  --fixed-font-family: menlo, monaco, consolas, 'courier new', monospace;
+  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'helvetica neue', helvetica, arial, sans-serif;
+  --fixed-font-family: menlo, monaco, consolas, "courier new", monospace;
 
   /* font size */
   --heading-font-size-xxl: 36px;
@@ -138,6 +136,11 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  overflow-x: hidden;
+}
+
+.background-gray main {
+  background-color: var(--grey-background-color);
 }
 
 body.appear {
@@ -170,27 +173,27 @@ h6 {
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--heading-font-size-xxl)
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-xl)
 }
 
 h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--heading-font-size-l)
 }
 
 h4 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-font-size-m)
 }
 
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-font-size-s)
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--heading-font-size-xs)
 }
 
 p,
@@ -225,7 +228,7 @@ samp {
 
 code,
 samp {
-  padding: 0.125em;
+  padding: .125em;
 }
 
 pre {
@@ -264,7 +267,7 @@ button {
   display: inline-block;
   border: 0;
   border-radius: 0;
-  transition: all 0.2s;
+  transition: all .2s;
   min-width: 140px;
   position: relative;
   height: auto;
@@ -339,14 +342,6 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main {
-  overflow-x: hidden;
-}
-
-.background-gray main {
-  background-color: var(--grey-background-color);
-}
-
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -368,7 +363,7 @@ main input:hover {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: 0.25em;
+  border-radius: .25em;
   overflow-x: auto;
   white-space: pre;
 }
@@ -381,12 +376,12 @@ main blockquote {
 }
 
 main blockquote p::before {
-  content: '“';
+  content: "“";
   line-height: 0;
 }
 
 main blockquote p::after {
-  content: '”';
+  content: "”";
   line-height: 0;
 }
 
@@ -408,25 +403,7 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section {
-  padding: 40px 0;
-}
-
-main .section[class*='hero'] {
-  padding: 0;
-}
-
-main .section + .section{
-  padding-top: 0;
-}
-
-main .section + .section[class*='background-'],
-main .section[class*='background-'] + .section,
-main .section[class*='hero'] + .section[class*='background-'] {
-  padding-top: 40px;
-}
-
-main .section > div {
+main .section>div {
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -466,40 +443,20 @@ main .section > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section {
-    padding: 70px 0;
-  }
-
-  main .section + .section[class*='background-'],
-  main .section[class*='background-'] + .section,
-  main .section[class*='hero'] + .section[class*='background-'] {
-    padding-top: 70px;
-  }
-
-  main .section > div {
-    width: 750px;
+  main .section>div {
+    width: 750px
   }
 }
 
 @media (min-width: 992px) {
-  main .section {
-    padding: 100px 0;
-  }
-
-  main .section + .section[class*='background-'],
-  main .section[class*='background-'] + .section,
-  main .section[class*='hero'] + .section[class*='background-'] {
-    padding-top: 100px;
-  }
-
-  main .section > div {
-    width: 970px;
+  main .section>div {
+    width: 970px
   }
 }
 
 @media (min-width: 1200px) {
-  main .section > div {
-    width: 1170px;
+  main .section>div {
+    width: 1170px
   }
 }
 
@@ -513,82 +470,8 @@ main .section > div {
   margin-bottom: 30px;
 }
 
-main .section.wave h2 {
-  font-size: 65px;
-  margin-bottom: 30px;
-  line-height: 1;
-}
-
-main .section .default-content-wrapper h2 {
-  text-align: center;
-}
-
-main .section.features-section h2,
-main .section .default-content-wrapper h2:only-child {
-  margin-bottom: 0;
-}
-
-.news .section p,
-.publication .section p {
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding: 0;
-}
-
-main .section .default-content-wrapper h3,
-main .section .default-content-wrapper p {
-  margin-top: 0;
-}
-
-body:not(.homepage) main .section .default-content-wrapper h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.news .section .default-content-wrapper,
-.publication .section .default-content-wrapper {
-  --heading-font-size-xxl: 36px;
-  --heading-font-size-xl: 30px;
-
-  padding: 0 15px;
-}
-
-main .section .default-content-wrapper:not(:last-child) {
+main .section .default-content-wrapper {
   padding-bottom: 100px;
-}
-
-main .section .default-content-wrapper:not(:first-child),
-main .section + .section .default-content-wrapper {
-  padding-top: 100px;
-}
-
-main .section.wave .default-content-wrapper {
-  margin-top: 100px;
-  margin-bottom: 55px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-main .section.features-section .default-content-wrapper {
-  padding-top: 0;
-  padding-bottom: 0;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-main .section .default-content-wrapper:first-child:not(:only-child) {
-  padding-bottom: 45px;
-}
-
-main .section.wave.bluegreen .default-content-wrapper {
-  margin-bottom: 100px;
-}
-
-main .section + .section .default-content-wrapper:only-child,
-main .section + .section[class*='background-'] .default-content-wrapper,
-main .section[class*='background-'] + .section .default-content-wrapper,
-main .section[class*='hero'] + .section[class*='background-'] .default-content-wrapper{
-  padding-top: 0;
 }
 
 /* progressive section appearance */
@@ -613,19 +496,15 @@ main .section.background-molecules .hero-wrapper::after {
   content: '';
   display: block;
   height: 90px;
-  background-image: url('/images/grey_molecules.png');
+  background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: auto 90px;
 }
 
-@media (max-width: 991px) {
+@media(max-width: 991px) {
   main .section .default-content-wrapper {
-    padding-bottom: 70px;
-  }
-
-  main .section .default-content-wrapper:not(:first-child) {
-    padding-top: 70px;
+    padding: 0 0 70px;
   }
 }
 
@@ -634,87 +513,61 @@ nav {
   display: block;
 }
 
-/* WAVE sections */
+/* news and publication */
+main .event-container {
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
 
-/* Common */
-main .section.wave {
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  padding-bottom: 0;
-  flex-wrap: wrap;
-  color: var(--text-white);
-  text-align: center;
-  margin-bottom: 45px;
+  padding: 0 15px;
 }
 
-main .section.wave::after {
-  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
-  background-repeat: no-repeat;
-  background-size: 100%;
-  padding: 10.823% 0 0;
-  margin: 0 0 -1px;
-  background-position: bottom center;
-  display: block;
+main .event-container::after {
   width: 100%;
-  content: '';
-  flex-basis: 100%;
-  align-self: self-end;
-}
-
-main .section.wave p {
-  margin: 0;
-}
-
-main .section.wave p:first-of-type {
-  padding: 0 20px 20px;
-  margin-bottom: 10px;
 }
 
 @media (max-width: 767px) {
-  .news .section p,
-  .publication .section p {
+  main .event-container p {
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
   }
 }
 
-.news .section h1,
-.publication .section h1 {
+main .event-container p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
   padding-top: 40px;
   border-bottom: 1px solid var(--dark-border-color-gray);
   padding-bottom: 20px;
+  width: 100%;
 }
 
-.news .section strong,
-.publication .section strong {
+main .event-container strong {
   font-weight: 700;
 }
 
-.news .section .text-strong,
-.publication .section .text-strong {
+main .event-container .text-strong {
   padding-top: 15px;
+
 }
 
-.news .section cite,
-.publication .section cite {
+main .event-container .event-date {
   font-size: var(--body-font-size-xs);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
   font-style: normal;
   display: block;
   padding-bottom: 30px;
+  width: 100%;
 }
 
-.news .section i.fa.fa-external-link,
-.publication .section i.fa.fa-external-link {
+main .event-container i.fa.fa-external-link {
   position: relative;
   top: -7px;
   font-size: 13px;
@@ -726,14 +579,26 @@ main .section.features-section {
   padding-top: 45px;
   padding-bottom: 30px;
   background: url('/images/molecules-left.webp') left bottom,
-    url('/images/molecules-right.webp') right top, url('/images/molecules-left.png') left bottom,
+    url('/images/molecules-right.webp') right top,
+    url('/images/molecules-left.png') left bottom,
     url('/images/molecules-right.png') right top;
   background-repeat: no-repeat;
   background-color: #f2f2f2;
 }
 
+main .section.features-section .default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main .section.features-section h2 {
+  margin-bottom: 0;
+}
+
 main .section.features-section .default-content-wrapper::after {
-  content: '';
+  content: "";
   clear: both;
   display: block;
 }
@@ -773,9 +638,69 @@ main .section.features-section .button-container {
   }
 }
 
+/* WAVE sections */
+
+/* Common */
+main .section.wave {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding-bottom: 0;
+  flex-wrap: wrap;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+main .section.wave::after {
+  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 10.823% 0 0;
+  margin: 0 0 -1px;
+  background-position: bottom center;
+  display: block;
+  width: 100%;
+  content: "";
+  flex-basis: 100%;
+  align-self: self-end;
+}
+
+main .section.wave .default-content-wrapper {
+  margin-top: 100px;
+  margin-bottom: 55px;
+  padding: 0 15px;
+  padding-right: 15px;
+}
+
+main .section.wave h2 {
+  font-size: 65px;
+  margin-bottom: 30px;
+  line-height: 1;
+}
+
+main .section.wave p {
+  margin: 0;
+}
+
+main .section.wave p:first-of-type {
+  padding: 0 20px 20px;
+  margin-bottom: 10px;
+}
+
+/* WAVE sections variants */
+
 /* BlueGreen Variant */
 main .section.wave.bluegreen {
   background-size: 100% 100%;
+}
+
+main .section.wave.bluegreen .default-content-wrapper {
+  margin-bottom: 100px;
 }
 
 main .section.wave.bluegreen::after {
@@ -784,12 +709,7 @@ main .section.wave.bluegreen::after {
 
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
-    background: linear-gradient(
-      90deg,
-      rgb(21 145 164 / 100%) 0,
-      rgb(46 159 121 / 100%) 50%,
-      rgb(97 178 73 / 100%) 100%
-    ) !important;
+    background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
     background-image: none;
   }
 
@@ -862,13 +782,13 @@ main .orange-buttons .button.secondary:active {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .orange-buttons .button.primary > .button-border {
+main .orange-buttons .button.primary>.button-border {
   display: none;
 }
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding-bottom: 0;
+    padding: 0;
     overflow: hidden;
   }
 
@@ -903,7 +823,7 @@ main .orange-buttons .button.primary > .button-border {
   }
 }
 
-main .section[aria-hidden='true'] {
+main .section[aria-hidden="true"] {
   display: none;
   visibility: hidden;
 }
