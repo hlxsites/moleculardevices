@@ -234,6 +234,16 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+/**
+ * Read query string from url
+ */
+export function getQueryParameter() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  return params;
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
