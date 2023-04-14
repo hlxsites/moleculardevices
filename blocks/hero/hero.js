@@ -50,15 +50,15 @@ export default async function decorate(block) {
   container.classList.add('container');
 
   [...block.children].forEach((row, i) => {
-    if (i == 0 && row.childElementCount > 1) {
+    if (i === 0 && row.childElementCount > 1) {
       container.classList.add('two-column');
-      [...row.children].forEach((column, y) => {
+      [...row.children].forEach((column) => {
         if (getVideoId(column.textContent)) {
           column.classList.add('video-column');
           buildVideo(block, column, getVideoId(column.textContent));
         }
         container.appendChild(column);
-      })
+      });
     } else {
       container.appendChild(row);
     }
