@@ -5,6 +5,85 @@ const coveoAdminId = 'kapil.dhiman@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  var c_host_name = '';
+  var n_domain = '';
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  var expires = "expires=" + d.toUTCString();
+  n_domain = window.location.hostname.endsWith(".moleculardevices.com");
+  if (n_domain == true) {
+    c_host_name = 'domain=.moleculardevices.com;';
+  }
+  //document.cookie = cname + "=" + cvalue + ";secure;" + c_host_name + expires + ";path=/";
+  document.cookie = cname + "=" + cvalue + ";secure;" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function getCategoriesBasedOnProfile(userProfile) {
+
+  const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
+  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = '"Distributor"';
+  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = '"System_Integrator"';
+  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Sales"';
+  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Tech"';
+  let categoryAccessLevel;
+
+  switch (userProfile) {
+    case 'ADMIN':
+      categoryAccessLevel = '';
+      break;
+
+    case 'DISTRIBUTOR':
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY;
+      break;
+    case 'INTEGRATOR':
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY;
+      break;
+    case 'SALES':
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_SALES_ACCESS_LEVEL_CATEGORY;
+      break;
+    case 'TECH':
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY + ',' + SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_SALES_ACCESS_LEVEL_CATEGORY + ',' + MOLDEV_TECH_ACCESS_LEVEL_CATEGORY;
+      break;
+
+    default:
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY;
+  }
+
+  return categoryAccessLevel;
+
+}
+
+function getFilter() {
+  const userProfile = (getCookie('STYXKEY_PortalUserRole')) ? getCookie('STYXKEY_PortalUserRole') : '';
+  const accessLevel = getCategoriesBasedOnProfile(userProfile);
+  const pCookie = (!userProfile) ? 'Logged-in' : 'public';
+  let filter;
+
+  if (userProfile == 'ADMIN') {
+    filter = ``;
+  } else {
+    filter = `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
+  }
+  return filter;
+}
+
 function searchFormHeader() {
   return `
           <div id="search" class="CoveoSearchInterface mdcoveo" data-enable-history="true" data-excerpt-length="350">
@@ -185,7 +264,7 @@ async function getCoveoToken() {
         provider: 'Email Security Provider',
       },
     ],
-    filter: '',
+    filter: getFilter(),
   });
 
   const requestOptions = {
