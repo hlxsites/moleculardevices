@@ -127,16 +127,28 @@ function renderListItem({
   return listItemElement;
 }
 
+async function createListItemsLazy(data, customListItemRenderer, items) {
+  data.slice(1).forEach((item, idx) => {
+    const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
+      ? customListItemRenderer(item, renderListItem)
+      : renderListItem(item, idx + 1);
+
+    items.appendChild(listItemElement);
+  });
+}
+
 function createListItems(data, customListItemRenderer) {
   const items = document.createElement('div');
   items.classList.add(classListItems);
-  data.forEach((item, idx) => {
+  data.slice(0, 1).forEach((item, idx) => {
     const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
       ? customListItemRenderer(item, renderListItem)
       : renderListItem(item, idx);
 
     items.appendChild(listItemElement);
   });
+
+  createListItemsLazy(data, customListItemRenderer, items)
   return items;
 }
 
