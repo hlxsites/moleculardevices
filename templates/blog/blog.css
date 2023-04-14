@@ -1,0 +1,86 @@
+.blog {
+  overflow-x: hidden; /* Could be removed after the soundcloud player is implemented */
+  font-family: var(--ff-proxima-regular);
+}
+
+.blog .section .default-content-wrapper {
+  padding: 0 0 30px;
+}
+
+.blog strong {
+  font-family: var(--ff-proxima-regular);
+}
+
+.blog p, ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.blog h3 {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.blog .section > div:not(.hero-wrapper) {
+  max-width: 800px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.blog .section.blog-heading {
+  margin-top: 60px;
+}
+
+.blog .section.blog-heading > div {
+  max-width: unset;
+  width: unset;
+  margin: 0;
+}
+
+.blog .section.blog-heading > div:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 15px 50px;
+  padding: 0;
+}
+
+.blog .section.blog-heading > div:first-of-type::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #61b249;
+  background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+}
+
+.blog .section.blog-heading > div:first-of-type p {
+  margin: 0;
+}
+
+.blog .section.blog-heading h4 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.blog .section.blog-heading .icon-view-all-posts img {
+  display: block;
+  width: 178px;
+}
+
+@media only screen and (max-width: 767px) {
+  .blog .section.blog-heading > div:first-of-type {
+    overflow: visible;
+  }
+
+  .blog .section.blog-heading .icon-view-all-posts img {
+    width: 120px;
+  }
+}

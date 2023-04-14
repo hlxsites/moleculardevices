@@ -34,7 +34,7 @@
 }
 
 @media (max-width: 767px) {
-.breadcrumb {
+.breadcrumbs {
     display: none;
   }
 }
