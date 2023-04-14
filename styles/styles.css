@@ -136,6 +136,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  overflow-x: hidden;
 }
 
 .background-gray main {
@@ -516,7 +517,7 @@ nav {
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
-  
+
   padding: 0 15px;
 }
 

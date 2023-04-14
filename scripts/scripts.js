@@ -71,6 +71,8 @@ async function loadBreadcrumbs(main) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * Run named sections for in page navigation.
  * Decroate named sections for in page navigation.
  * @param {Element} main The container element
  */
