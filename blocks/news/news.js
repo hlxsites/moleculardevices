@@ -25,7 +25,7 @@ function createFilters(entries, activeFilters, createDropdown) {
   ];
 }
 
-async function prepareEntry(entry, showDescription, viewMoreText) {
+function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterDate = 2023; // formatDateFullYear(entry.date);
   if (!showDescription) {
     entry.description = '';
@@ -45,7 +45,7 @@ export async function createOverview(
 ) {
   block.innerHTML = '';
 
-  await entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
+  entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
 
   const panelTitle = 'Filter By :';
   await createList(

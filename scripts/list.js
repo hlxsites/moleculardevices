@@ -48,7 +48,7 @@ function createPaginationLink(page, current, label) {
   return listElement;
 }
 
-export function renderPagination(entries, page, limit, limitForPagination) {
+export async function renderPagination(container, entries, page, limit, limitForPagination) {
   const nav = document.createElement('nav');
   nav.className = classPagination;
 
@@ -79,6 +79,7 @@ export function renderPagination(entries, page, limit, limitForPagination) {
       nav.append(createPaginationLink(maxPages, page, '»'));
     }
   }
+  container.append(nav);
   return nav;
 }
 
@@ -95,13 +96,13 @@ function getActiveFilters() {
 
 function renderListItem({
   path, title, description, viewMoreText, image, date, publisher,
-}) {
+}, idx) {
   const listItemElement = document.createElement('article');
   listItemElement.classList.add(classListItem);
 
   const hasImage = (!image.startsWith(defaultImage));
   if (hasImage) {
-    const imageElement = createOptimizedPicture(image, title, true, [
+    const imageElement = createOptimizedPicture(image, title, (idx === 0), [
       { width: '500' },
     ]);
     listItemElement.innerHTML = `
@@ -124,13 +125,11 @@ function renderListItem({
   return listItemElement;
 }
 
-function createListItems(data, customListItemRenderer) {
+function createListItems(data) {
   const items = document.createElement('div');
   items.classList.add(classListItems);
-  data.forEach((item) => {
-    const listItemElement = customListItemRenderer && typeof customListItemRenderer === 'function'
-      ? customListItemRenderer(item, renderListItem)
-      : renderListItem(item);
+  data.forEach((item, idx) => {
+    const listItemElement = renderListItem(item, idx);
 
     items.appendChild(listItemElement);
   });
@@ -244,8 +243,7 @@ export default async function createList(
     container.append(filterElements);
     const listItems = createListItems(dataToDisplay, customListItemRenderer);
     container.append(listItems);
-    const pagination = renderPagination(filteredData, page, limitPerPage, limitForPagination);
-    container.append(pagination);
+    renderPagination(container, filteredData, page, limitPerPage, limitForPagination);
     root.append(container);
   }
   await listCSSPromise;
