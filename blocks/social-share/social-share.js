@@ -64,6 +64,7 @@ function decorateIcons(element) {
 
 function blogHideSocialShareOnHero(block) {
   const heroBlock = document.querySelector('div.hero');
+  block.classList.add('social-share-hidden');
   if (!heroBlock) return;
 
   const observer = new IntersectionObserver((entries) => {

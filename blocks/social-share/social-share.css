@@ -59,6 +59,15 @@
   transform: translateY(-50%);
   z-index: 1;
   transition: all .3s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  margin-top: 0;
+}
+
+.blog .social-share-hidden .share-event ul.button-container {
+  visibility: hidden;
+  opacity: 0;
+  margin-top: 20px;
 }
 
 .blog .share-event ul.button-container li {
@@ -101,8 +110,4 @@
     justify-content: center;
     transform: none;
   }
-}
-
-.social-share-hidden {
-  display: none !important;
 }
