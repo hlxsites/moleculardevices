@@ -6,7 +6,7 @@ const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xx7ccd389f-e787-4ff7-ac4a-33d62f7a74af';
 
 function getCookie(cname) {
-  cname = cname + '=';
+  cname += '=';
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
   /* eslint-disable-next-line no-plusplus */
@@ -30,12 +30,11 @@ function getCategoriesBasedOnProfile(userProfile) {
   const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Tech';
   let categoryAccessLevel;
 
-  // eslint-disable-next-line no-useless-concat
   switch (userProfile) {
     case 'ADMIN':
       categoryAccessLevel = '';
       break;
-
+    // eslint-disable-next-line no-useless-concat
     case 'DISTRIBUTOR':
       categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY + ',' + DISTRIBUTOR_ACCESS_LEVEL_CATEGORY;
       break;
@@ -65,7 +64,7 @@ function getFilter() {
   let filter;
 
   if (userProfile === 'ADMIN') {
-    filter = ``;
+    filter = '';
   } else {
     filter = `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
   }
