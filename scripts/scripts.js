@@ -18,7 +18,7 @@ import {
 import loadHeader from './header-utils.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 
 export function loadScript(url, callback, type, async) {
