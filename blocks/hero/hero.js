@@ -77,7 +77,7 @@ export default async function decorate(block) {
   }
 
   if (block.classList.contains('blog')) {
-    addBlockSticker(block);
+    addBlockSticker(breadcrumbs);
     addMetadata(container);
     block.parentElement.appendChild(container);
   }
