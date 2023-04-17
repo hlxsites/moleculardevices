@@ -36,7 +36,7 @@ function getName(pageIndex, path) {
   const pg = pageIndex.find((page) => page.path === path);
   // eslint-disable-next-line no-nested-ternary
   const name = (pg && pg.h1 && pg.h1 !== '0') ? pg.h1
-      : (pg && pg.title && pg.title !== '0') ? pg.title
+    : (pg && pg.title && pg.title !== '0') ? pg.title
       : path.split('/').at(-1);
   return name;
 }
