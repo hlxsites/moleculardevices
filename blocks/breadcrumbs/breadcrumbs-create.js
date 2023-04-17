@@ -18,6 +18,9 @@ function createBreadcrumbListItem(crumb) {
 }
 
 export default async function createBreadcrumbs(container) {
+  const breadCrumbsCSS = new Promise((resolve) => {
+    loadCSS('breadcrumbs.css', (e) => resolve(e));
+  });
   const currentPath = window.location.pathname;
   const pageIndex = await ffetch('/query-index.json').all();
 
@@ -39,4 +42,5 @@ export default async function createBreadcrumbs(container) {
     ol.appendChild(createBreadcrumbListItem(crumb));
   });
   container.appendChild(ol);
+  await breadCrumbsCSS;
 }
