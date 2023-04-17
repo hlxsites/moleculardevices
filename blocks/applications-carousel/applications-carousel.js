@@ -1,6 +1,8 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import createCarousel, { summariseDescription } from '../carousel/carousel.js';
-import { div, a, p, i, h3 } from '../../scripts/dom-helpers.js';
+import {
+  div, a, p, i, h3,
+} from '../../scripts/dom-helpers.js';
 
 function onReadMoreClick(e) {
   e.preventDefault();
@@ -22,14 +24,14 @@ function renderItem(item) {
       div({ class: 'app-carousel-actions' },
         p({ class: 'button-container' },
           a({
-              href: `#applications`,
-              'aria-label': buttonText,
-              onclick: onReadMoreClick,
-              target: '_blank',
-              rel: 'noopener noreferrer',
-            },
-            buttonText,
-            i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }),
+            href: '#applications',
+            'aria-label': buttonText,
+            onclick: onReadMoreClick,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          },
+          buttonText,
+          i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }),
           ),
         ),
       ),
@@ -40,8 +42,8 @@ function renderItem(item) {
 function getDescription(element) {
   const pElements = element.querySelectorAll('div p');
   let firstPWithText = '';
-  for (let i = 0; i < pElements.length; i++) {
-    const textContent = pElements[i].textContent.trim();
+  for (let index = 0; index < pElements.length; index += 1) {
+    const textContent = pElements[index].textContent.trim();
     if (textContent !== '') {
       firstPWithText = textContent;
       break;
@@ -51,24 +53,26 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
-  const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.textContent);
+  const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.textContent);
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
-      const h3 = fragmentElement.querySelector('h3');
+      const h3Block = fragmentElement.querySelector('h3');
       const pictureBlock = fragmentElement.querySelector('picture');
       const description = getDescription(fragmentElement);
-      return { id: h3.id, title: h3.textContent, pictureBlock, description};
+      return {
+        id: h3Block.id, title: h3Block.textContent, pictureBlock, description,
+      };
     }
     return null;
   }));
-  const sortedFragments = fragments.filter((item) => !!item).sort((a, b) => {
-    if (a.title < b.title) {
+  const sortedFragments = fragments.filter((item) => !!item).sort((x, y) => {
+    if (x.title < y.title) {
       return -1;
     }
-    if (a.title > b.title) {
+    if (x.title > y.title) {
       return 1;
     }
     return 0;
