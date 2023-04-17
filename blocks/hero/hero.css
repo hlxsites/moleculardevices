@@ -168,8 +168,8 @@ main .hero.blog {
 main .hero.blog .sticker {
   width: auto;
   position: absolute;
+  top: 46px;
   right: 15px;
-  bottom: 15px;
 }
 
 main .hero.blog .sticker img {
@@ -203,12 +203,6 @@ main .hero.blog .breadcrumbs > ol {
   font-size: 14px;
   margin-bottom: 10px;
   padding: 2.5px 0;
-}
-
-@media only screen and (max-width: 1200px) {
-  main .hero.blog .sticker img {
-    width: 130px;
-  }
 }
 
 /* Blog Variant - Desktop -- End */
@@ -270,7 +264,7 @@ main .hero.blog .breadcrumbs > ol {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   main .hero h1 {
     font-size: 45px;
   }
@@ -327,9 +321,21 @@ main .hero.blog .breadcrumbs > ol {
     height: unset;
   }
 
+  .blog main .hero .breadcrumbs {
+    display: block;
+  }
+
+  .blog main .hero .breadcrumbs ol {
+    display: none;
+  }
+
   main .hero.blog .sticker {
-    top: 86px;
+    top: 75px;
     right: 15px;
+  }
+
+  main .hero.blog .sticker img {
+    width: 130px;
   }
 
   /* Blog Variant - Mobile -- End */
