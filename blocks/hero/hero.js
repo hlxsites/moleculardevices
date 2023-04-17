@@ -66,7 +66,7 @@ export default async function decorate(block) {
 
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
-  await createBreadcrumbs(breadcrumbs);
+  createBreadcrumbs(breadcrumbs);
   block.appendChild(breadcrumbs);
   block.appendChild(container);
 
