@@ -1,7 +1,5 @@
 import { buildBlock, decorateBlock, loadBlock } from './lib-franklin.js';
 
-import fetchAndStyleHeaderMegamenus from '../blocks/header/header-megamenu.js';
-
 /**
  * loads a block named 'header' into header
  */
