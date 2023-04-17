@@ -144,7 +144,7 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // optimiseHeroBlock(main);
+  optimiseHeroBlock(main);
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
