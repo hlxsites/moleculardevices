@@ -32,12 +32,13 @@ function getCustomUrl(part) {
   return null;
 }
 
-function getName(pageIndex, path) {
+function getName(pageIndex, path, current) {
   const pg = pageIndex.find((page) => page.path === path);
   // eslint-disable-next-line no-nested-ternary
   const name = (pg && pg.h1 && pg.h1 !== '0') ? pg.h1
     : (pg && pg.title && pg.title !== '0') ? pg.title
-      : path.split('/').at(-1);
+      : (current) ? document.title
+        : path.split('/').at(-1);
   return name;
 }
 
@@ -54,10 +55,10 @@ export default async function createBreadcrumbs(container) {
       url_path: '/',
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: getName(pageIndex, urlForIndex(index)),
+      name: getName(pageIndex, urlForIndex(index), false),
       url_path: getCustomUrl(part) || urlForIndex(index),
     })),
-    { name: getName(pageIndex, path) },
+    { name: getName(pageIndex, path, true) },
   ];
 
   const ol = document.createElement('ol');
