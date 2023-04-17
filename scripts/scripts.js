@@ -61,7 +61,7 @@ export function styleCaption(elems) {
 * If we have a hero block, move it into its own section, so it can be displayed faster
 */
 function optimiseHeroBlock(main) {
-  const heroBlock = main.querySelector('hero');
+  const heroBlock = main.querySelector('.hero');
   if (!heroBlock) return;
 
   const heroSection = document.createElement('div');
