@@ -33,10 +33,11 @@ function getCustomUrl(part) {
 }
 
 function getName(pageIndex, path) {
-  const page = pageIndex.find((page) => page.path === path);
-  const name = (page && page.h1 && page.h1 !== '0') ? page.h1 
-    : (page && page.title && page.title !== '0') ? page.title 
-    : path.split('/').at(-1);
+  const pg = pageIndex.find((page) => page.path === path);
+  // eslint-disable-next-line no-nested-ternary
+  const name = (pg && pg.h1 && pg.h1 !== '0') ? pg.h1
+      : (pg && pg.title && pg.title !== '0') ? pg.title
+      : path.split('/').at(-1);
   return name;
 }
 
