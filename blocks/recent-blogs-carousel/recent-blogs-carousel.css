@@ -155,11 +155,11 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
   }
 
   main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-left {
-    left: 0px;
+    left: 0;
   }
 
   main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-right {
-    right: 0px;
+    right: 0;
   }
 
   main .carousel.recent-blogs-carousel {
