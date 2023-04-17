@@ -36,6 +36,23 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
+/**
+ * Will add the 'text-caption' class to the empasised elements from
+ * the next sibling to mark them as captions
+ * @param {NodeListOf<Element>} elems Elements which are presumed to have a caption attached.
+ */
+export function styleCaption(elems) {
+  elems.forEach((elem) => {
+    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
+    if (checkEm) {
+      const ems = checkEm.parentElement.children;
+      [...ems].forEach((em) => {
+        em.classList.add('text-caption');
+      });
+    }
+  });
+}
+
 /*
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');

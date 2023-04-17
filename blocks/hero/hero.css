@@ -3,7 +3,6 @@
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
-  margin-top: -10px;
   padding: 0;
 }
 
@@ -78,6 +77,7 @@ main .hero .hero-background {
 
 main .hero img {
   object-fit: cover;
+  object-position: center top;
   width: 100%;
   height: 100%;
 }
@@ -170,8 +170,8 @@ main .hero.blog {
 main .hero.blog .sticker {
   width: auto;
   position: absolute;
+  top: 46px;
   right: 15px;
-  bottom: 15px;
 }
 
 main .hero.blog .sticker img {
@@ -207,17 +207,13 @@ main .hero.blog .breadcrumbs > ol {
   padding: 2.5px 0;
 }
 
-@media only screen and (max-width: 1200px) {
-  main .hero.blog .sticker img {
-    width: 130px;
-  }
-}
-
 /* Blog Variant - Desktop -- End */
 
 @media (max-width: 767px) {
   main .hero {
-    padding: 50px 0 55px;
+    min-height: 180px;
+    padding-top: 34%;
+    padding-bottom: 41px;
   }
 
   /* TODO fix heading vars in styles.css */
@@ -270,7 +266,7 @@ main .hero.blog .breadcrumbs > ol {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   main .hero h1 {
     font-size: 45px;
   }
@@ -327,9 +323,21 @@ main .hero.blog .breadcrumbs > ol {
     height: unset;
   }
 
+  .blog main .hero .breadcrumbs {
+    display: block;
+  }
+
+  .blog main .hero .breadcrumbs ol {
+    display: none;
+  }
+
   main .hero.blog .sticker {
-    top: 86px;
+    top: 75px;
     right: 15px;
+  }
+
+  main .hero.blog .sticker img {
+    width: 130px;
   }
 
   /* Blog Variant - Mobile -- End */
@@ -337,7 +345,7 @@ main .hero.blog .breadcrumbs > ol {
 
 @media (min-width: 768px) {
   main .hero {
-    min-height: 300px;
+    min-height: 440px;
   }
 
   main .hero .container {

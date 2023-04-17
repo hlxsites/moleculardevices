@@ -1,17 +1,7 @@
-function styleCaption(elems) {
-  elems.forEach((elem) => {
-    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
-    if (checkEm) {
-      const ems = checkEm.parentElement.children;
-      [...ems].forEach((em) => {
-        em.classList.add('text-caption');
-      });
-    }
-  });
-}
+import { styleCaption } from '../../scripts/scripts.js';
 
 export default function buildAutoBlocks() {
-  const main = document.querySelector('.hero-container');
+  const main = document.querySelector('main');
   styleCaption(main.querySelectorAll('p > picture'));
   styleCaption(main.querySelectorAll('div.table'));
 }
