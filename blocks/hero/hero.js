@@ -79,7 +79,7 @@ export default async function decorate(block) {
       true,
       [
         { media: '(min-width: 600px)', width: '2000' },
-        { width: '1200' }
+        { width: '1200' },
       ],
     );
 
