@@ -1,4 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
+import loadCSS from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
