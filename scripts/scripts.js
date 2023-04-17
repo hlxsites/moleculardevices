@@ -226,7 +226,8 @@ export async function fetchFragment(path) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
-  // const headerBlock = loadHeader(doc.querySelector('header'));
+  // eslint-disable-next-line no-unused-vars
+  const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
