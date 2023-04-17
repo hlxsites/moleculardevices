@@ -82,7 +82,7 @@ export default async function decorate(block) {
 
   if (block.classList.contains('blog')) {
     addMetadata(container);
-    addBlockSticker(block);
+    addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
 
