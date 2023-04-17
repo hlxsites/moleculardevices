@@ -32,6 +32,14 @@ function getCustomUrl(part) {
   return null;
 }
 
+function getName(pageIndex, path) {
+  const page = pageIndex.find((page) => page.path === path);
+  const name = (page && page.h1 && page.h1 !== '0') ? page.h1 
+    : (page && page.title && page.title !== '0') ? page.title 
+    : path.split('/').at(-1);
+  return name;
+}
+
 export default async function createBreadcrumbs(container) {
   const path = window.location.pathname;
   const pathSplit = skipParts(path.split('/'));
@@ -45,10 +53,10 @@ export default async function createBreadcrumbs(container) {
       url_path: '/',
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.h1 ?? part,
+      name: getName(pageIndex, urlForIndex(index)),
       url_path: getCustomUrl(part) || urlForIndex(index),
     })),
-    { name: pageIndex.find((page) => page.path === path)?.h1 ?? document.title },
+    { name: getName(pageIndex, path) },
   ];
 
   const ol = document.createElement('ol');
