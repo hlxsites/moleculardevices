@@ -105,4 +105,12 @@ main .app-carousel-actions p.button-container {
   .applications-carousel .carousel-item {
     width: 100%;
   }
+
+  main .carousel.applications-carousel {
+    width: 100%;
+  }
+
+  main .applications-carousel-wrapper .carousel-nav-button {
+    display: none;
+  }
 }
