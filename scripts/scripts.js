@@ -12,10 +12,10 @@ import {
   getMetadata,
   loadCSS,
   loadBlock,
+  loadHeader,
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import loadHeader from './header-utils.js';
 import TEMPLATE_LIST from '../templates/config.js';
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
