@@ -10,5 +10,5 @@ export default function loadHeader(header) {
   header.append(headerBlock);
   decorateBlock(headerBlock);
   loadBlock(headerBlock);
-  return fetchAndStyleHeaderMegamenus(headerBlock);
+  return headerBlock;
 }
