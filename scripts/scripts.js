@@ -66,7 +66,7 @@ function optimiseHeroBlock(main) {
 
   const heroSection = document.createElement('div');
   heroSection.appendChild(heroBlock);
-  main.appendChild(heroSection);
+  main.prepend(heroSection);
 }
 
 /**
