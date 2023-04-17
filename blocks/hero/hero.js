@@ -28,7 +28,7 @@ function addMetadata(container) {
   container.appendChild(metadataContainer);
 }
 
-function addBlockSticker(container) {
+async function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
@@ -81,8 +81,8 @@ export default async function decorate(block) {
   }
 
   if (block.classList.contains('blog')) {
-    addBlockSticker(block);
     addMetadata(container);
+    addBlockSticker(block);
     block.parentElement.appendChild(container);
   }
 
