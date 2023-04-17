@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import loadCSS from '../../scripts/lib-franklin.js';
+import { loadCSS } from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
@@ -20,7 +20,7 @@ function createBreadcrumbListItem(crumb) {
 
 export default async function createBreadcrumbs(container) {
   const breadCrumbsCSS = new Promise((resolve) => {
-    loadCSS('breadcrumbs.css', (e) => resolve(e));
+    loadCSS('/blocks/breadcrumbs/breadcrumbs.css', (e) => resolve(e));
   });
   const currentPath = window.location.pathname;
   const pageIndex = await ffetch('/query-index.json').all();
