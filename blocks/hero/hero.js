@@ -86,4 +86,5 @@ export default async function decorate(block) {
     block.parentElement.appendChild(container);
   }
 
+  loadBreadcrumbs(breadcrumbs);
 }
