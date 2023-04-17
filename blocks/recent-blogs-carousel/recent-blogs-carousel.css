@@ -155,11 +155,11 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
   }
 
   main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-left {
-    left: -10px;
+    left: 0px;
   }
 
   main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-right {
-    right: -10px;
+    right: 0px;
   }
 
   main .carousel.recent-blogs-carousel {
@@ -180,5 +180,10 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
 
   main .carousel.recent-blogs-carousel .carousel-item {
     width: 100%;
+  }
+
+  main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-button .icon {
+    height: 38px;
+    width: 38px;
   }
 }
