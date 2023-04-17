@@ -2,6 +2,13 @@ import { fetchFragment } from '../../scripts/scripts.js';
 import createCarousel, { summariseDescription } from '../carousel/carousel.js';
 import { div, a, p, i, h3 } from '../../scripts/dom-helpers.js';
 
+function onReadMoreClick(e) {
+  e.preventDefault();
+  const appsLink = document.querySelector('.page-tabs li > a[href="#applications"]');
+  appsLink.click();
+  window.scroll(0, 0);
+}
+
 function renderItem(item) {
   const buttonText = 'Read More';
 
@@ -14,7 +21,13 @@ function renderItem(item) {
       ),
       div({ class: 'app-carousel-actions' },
         p({ class: 'button-container' },
-          a({ href: '#applications', 'aria-label': buttonText },
+          a({
+              href: `#applications`,
+              'aria-label': buttonText,
+              onclick: onReadMoreClick,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+            },
             buttonText,
             i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }),
           ),
