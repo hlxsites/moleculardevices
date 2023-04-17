@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
@@ -70,8 +70,21 @@ export default async function decorate(block) {
   block.appendChild(breadcrumbs);
   block.appendChild(container);
 
-  const picture = block.querySelector('picture');
+  let picture = block.querySelector('picture');
   if (picture) {
+    const originalHeroBg = picture.lastElementChild;
+    const optimizedHeroBg = createOptimizedPicture(
+      originalHeroBg.src,
+      originalHeroBg.getAttribute('alt'),
+      true,
+      [
+        { media: '(min-width: 600px)', width: '2000' },
+        { width: '1200' }
+      ],
+    );
+
+    picture.replaceWith(optimizedHeroBg);
+    picture = optimizedHeroBg;
     picture.classList.add('hero-background');
     block.prepend(picture.parentElement);
   }
