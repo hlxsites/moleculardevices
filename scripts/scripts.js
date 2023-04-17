@@ -16,7 +16,11 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import TEMPLATE_LIST from '../templates/config.js';
+
+/**
+ * to add/remove a template, just add/remove it in the list below
+ */
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
