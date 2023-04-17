@@ -58,17 +58,16 @@ export function styleCaption(elems) {
 }
 
 /*
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
+* If we have a hero block, move it into its own section, so it can be displayed faster
 */
+function optimiseHeroBlock(main) {
+  const heroBlock = main.querySelector('hero');
+  if (!heroBlock) return;
+
+  const heroSection = document.createElement('div');
+  heroSection.appendChild(heroBlock);
+  main.appendChild(heroSection);
+}
 
 /**
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
@@ -145,6 +144,7 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  optimiseHeroBlock(main);
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
