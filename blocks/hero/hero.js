@@ -1,6 +1,5 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
@@ -45,6 +44,11 @@ function addBlockSticker(container) {
   container.appendChild(stickerContainer);
 }
 
+async function loadBreadcrumbs(breadcrumbsContainer) {
+  const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
+  breadCrumbsModule.default(breadcrumbsContainer);
+}
+
 export default async function decorate(block) {
   const container = document.createElement('div');
   container.classList.add('container');
@@ -82,5 +86,4 @@ export default async function decorate(block) {
     block.parentElement.appendChild(container);
   }
 
-  createBreadcrumbs(breadcrumbs);
 }
