@@ -226,7 +226,7 @@ export async function fetchFragment(path) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
-  const headerBlock = loadHeader(doc.querySelector('header'));
+  // const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
