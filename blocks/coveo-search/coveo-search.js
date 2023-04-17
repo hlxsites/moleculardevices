@@ -1,27 +1,9 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, getCookie } from '../../scripts/scripts.js';
 
 const coveoAdminId = 'kapil.dhiman@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxb1966cc1-fee3-4df3-99bf-11fe2b4e1c74';
-
-function getCookie(cname) {
-  /* eslint-disable no-param-reassign */
-  cname += '=';
-  const decodedCookie = decodeURIComponent(document.cookie);
-  const ca = decodedCookie.split(';');
-  /* eslint-disable-next-line no-plusplus */
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(cname) === 0) {
-      return c.substring(cname.length, c.length);
-    }
-  }
-  return '';
-}
 
 function getCategoriesBasedOnProfile(userProfile) {
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';

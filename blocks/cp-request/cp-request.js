@@ -1,29 +1,13 @@
-import { getQueryParameter } from '../../scripts/scripts.js';
-
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  let cHostName = '';
-  let nDomain = '';
-  let expires = '';
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  if (exdays !== 0) {
-    expires = `expires=${d.toUTCString()}`;
-  }
-
-  nDomain = window.location.hostname.endsWith('.moleculardevices.com');
-  if (nDomain === true) {
-    cHostName = 'domain=.moleculardevices.com;';
-  }
-  /* eslint-disable no-trailing-spaces */
-  document.cookie = `${cname}=${cvalue};secure;${cHostName}${expires};path=/`;
-}
+import { getQueryParameter, setCookie } from '../../scripts/scripts.js';
 
 const paramName = 'STYXKEY_PortalUserRole';
 const readQuery = getQueryParameter();
 const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
 
-if (queryStringParam === 'cplogout') {
-  setCookie('STYXKEY_PortalUserRole', '', -1);
-} else {
-  setCookie('STYXKEY_PortalUserRole', queryStringParam, 0);
+if (queryStringParam && (document.referrer.includes('.moleculardevices.com') || document.referrer.includes('hlxsites.hlx.') || document.referrer.includes('localhost:3000'))) {
+  if (queryStringParam === 'cplogout') {
+    setCookie('STYXKEY_PortalUserRole', '', -1);
+  } else {
+    setCookie('STYXKEY_PortalUserRole', queryStringParam, 0);
+  }
 }
