@@ -703,12 +703,25 @@ const transformAccordions = (document) => {
 };
 
 const transformImageCaption = (document) => {
-  document.querySelectorAll('p.text-caption').forEach((caption) => {
+  [
+    ...document.querySelectorAll('p.text-caption'),
+    ...document.querySelectorAll('p.caption'),
+  ].forEach((caption) => {
     const captionWrapper = document.createElement('em');
     captionWrapper.innerHTML = caption.innerHTML;
     caption.replaceWith(captionWrapper);
   });
 };
+
+const transformListCaption = (document) => {
+  document.querySelectorAll('ol.text-caption').forEach((caption) => {
+    caption.children.forEach((li) => {
+      const liEm = document.createElement('em');
+      liEm.innerHTML = li.innerHTML;
+      li.appendChild(liEm);
+    });
+  })
+}
 
 const transformBlogRecentPosts = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
@@ -1159,6 +1172,7 @@ export default {
       transformAccordions,
       transformBlogRecentPosts,
       transformImageCaption,
+      transformListCaption,
       transformCustomerBreakthroughShareStory,
       transformTabsNav,
       transformTabsSections,
