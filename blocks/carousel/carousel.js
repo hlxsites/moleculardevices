@@ -399,14 +399,14 @@ export default async function createCarousel(block, data, config) {
   return carousel;
 }
 
-export function summariseDescription(description) {
+export function summariseDescription(description, charCount) {
   let result = description;
-  if (result.length > 75) {
-    result = result.substring(0, 75);
+  if (result.length > charCount) {
+    result = result.substring(0, charCount);
     const lastSpaceIndex = result.lastIndexOf(' ');
     if (lastSpaceIndex !== -1) {
       result = result.substring(0, lastSpaceIndex);
     }
   }
-  return `${result}…'`;
+  return `${result}…`;
 }

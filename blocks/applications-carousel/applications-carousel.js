@@ -1,68 +1,52 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import createCarousel, { summariseDescription } from '../carousel/carousel.js';
-import { div, a, p, h3 } from '../../scripts/dom-helpers.js';
+import { div, a, p, i, h3 } from '../../scripts/dom-helpers.js';
 
 function renderItem(item) {
-  // const itemImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
-  // const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : 'Read More';
+  const buttonText = 'Read More';
 
   return (
     div({ class: 'app-carousel-item' },
-      div({ class: 'app-carousel-thumb' },
-        a({ href: item.path },
-          item.pictureBlock,
-        ),
+      div({ class: 'app-carousel-thumb' }, item.pictureBlock),
+      div({ class: 'app-carousel-details' },
+        h3(item.title),
+        p({ class: 'app-description' }, summariseDescription(item.description, 100)),
       ),
-      div({ class: 'app-carousel-caption' },
-        h3(
-          a({ href: item.path }, item.title),
+      div({ class: 'app-carousel-actions' },
+        p({ class: 'button-container' },
+          a({ href: '#applications', 'aria-label': buttonText },
+            buttonText,
+            i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }),
+          ),
         ),
-        p({ class: 'app-description' }, summariseDescription(item.description)),
       ),
     )
   );
 }
 
-// function renderItem(item) {
-//   const appItem = document.createElement('div');
-//   appItem.classList.add('app-carousel-item');
-
-//   // const appThumb = document.createElement('div');
-//   // appThumb.classList.add('app-carousel-item-thumb');
-//   // appThumb.innerHTML = item.pictureBlock;
-//   appItem.append(item.pictureBlock);
-
-//   const appCaption = document.createElement('div');
-//   appCaption.classList.add('app-carousel-caption');
-//   appCaption.innerHTML = `<h3>${item.title}</h3>`;
-//   console.log(item.description)
-//   appCaption.append(item.description);
-//   appItem.append(appCaption);
-
-//   // const appCaptionText = document.createElement('div');
-//   // appCaptionText.classList.add('app-carousel-caption-text');
-//   // appCaptionText.innerHTML = item.description;
-
-//   const appItemLink = document.createElement('div');
-//   appItemLink.classList.add('app-carousel-link');
-//   appItemLink.innerHTML = '<a href="#applications">Read More <i class="fa fa-chevron-circle-right"></i></a>';
-//   appItem.append(appItemLink);
-
-//   return appItem;
-// }
+function getDescription(element) {
+  const pElements = element.querySelectorAll('div p');
+  let firstPWithText = '';
+  for (let i = 0; i < pElements.length; i++) {
+    const textContent = pElements[i].textContent.trim();
+    if (textContent !== '') {
+      firstPWithText = textContent;
+      break;
+    }
+  }
+  return firstPWithText;
+}
 
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.textContent);
-  console.log(fragmentPaths)
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
-      console.log(fragmentElement)
       const h3 = fragmentElement.querySelector('h3');
       const pictureBlock = fragmentElement.querySelector('picture');
-      const description = fragmentElement.querySelector('div > p:not(:empty)');
+      const description = getDescription(fragmentElement);
       return { id: h3.id, title: h3.textContent, pictureBlock, description};
     }
     return null;
