@@ -34,6 +34,7 @@ main .carousel.applications-carousel {
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
+  text-align: left;
 }
 
 .carousel.applications-carousel .app-carousel-item:hover {
