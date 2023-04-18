@@ -1,6 +1,5 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
@@ -29,7 +28,7 @@ function addMetadata(container) {
   container.appendChild(metadataContainer);
 }
 
-function addBlockSticker(container) {
+async function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
@@ -43,6 +42,11 @@ function addBlockSticker(container) {
   sticker.appendChild(stickerPicture);
   stickerContainer.appendChild(sticker);
   container.appendChild(stickerContainer);
+}
+
+async function loadBreadcrumbs(breadcrumbsContainer) {
+  const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
+  breadCrumbsModule.default(breadcrumbsContainer);
 }
 
 export default async function decorate(block) {
@@ -66,7 +70,7 @@ export default async function decorate(block) {
 
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
-  await createBreadcrumbs(breadcrumbs);
+
   block.appendChild(breadcrumbs);
   block.appendChild(container);
 
@@ -90,8 +94,10 @@ export default async function decorate(block) {
   }
 
   if (block.classList.contains('blog')) {
-    addBlockSticker(breadcrumbs);
     addMetadata(container);
+    addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
+
+  loadBreadcrumbs(breadcrumbs);
 }
