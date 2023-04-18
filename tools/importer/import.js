@@ -99,14 +99,19 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Card CTA']) {
       meta['Card C2A'] = resource['Card CTA'];
     }
-    if (resource['Citation Number']) {
-      meta['Citation Number'] = resource['Citation Number'];
+    if (params.originalURL.indexOf('/resources/citations/') > 0) {
+      if (resource['Citation Number']) {
+        meta['Citation Number'] = resource['Citation Number'];
+      }
+      meta.Title = resource.Title;
     }
-    if (resource['Event Type']) {
-      meta['Event Type'] = resource['Event Type'];
-    }
-    if (resource.Region) {
-      meta['Event Region'] = resource.Region;
+    if (params.originalURL.indexOf('/events/') > 0) {
+      if (resource['Event Type']) {
+        meta['Event Type'] = resource['Event Type'];
+      }
+      if (resource.Region) {
+        meta['Event Region'] = resource.Region;
+      }
     }
     if (resource.Thumbnail) {
       const el = document.createElement('img');
