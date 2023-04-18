@@ -62,6 +62,20 @@ function addEventListenersDesktop() {
     const rightMenu = e.currentTarget.querySelector('.right-submenu');
     showRightSubmenu(rightMenu);
   });
+
+  addListeners('.searchlink', 'mousedown', (e) => {
+    // get the tag of the parent element
+    const parentTag = e.currentTarget.parentElement.tagName;
+    console.log(parentTag);
+    // if the parent element is a form, return
+    if (parentTag === 'FORM') {
+      return;
+    }
+
+    e.preventDefault();
+    e.stopPropagation();
+    expandMenu(e.currentTarget);
+  });
 }
 
 function addEventListenersMobile() {

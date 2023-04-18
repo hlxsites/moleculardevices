@@ -290,6 +290,11 @@ header .nav-tabs .menu-nav-category {
   font-size: 12px;
   background-color: transparent;
   font-weight: 300;
+  cursor: default;
+}
+
+header .nav-tabs .menu-nav-category:hover {
+  color: var(--link-color);
 }
 
 header .nav-tabs .menu-nav-category:hover {
@@ -338,7 +343,7 @@ header .mainmenu-wrapper.sticky .menu-nav-submenu-close {
 }
 
 header .nav-tabs .menu-nav-submenu {
-  top: 100;
+  margin-top: 2px;
   left: 0;
   right: 0;
   border: 0;
@@ -842,6 +847,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 }
 
+header .searchlink > div {
+  display: none;
+}
+
 @media (min-width: 992px) {
   header .container {
     width: 970px;
@@ -962,6 +971,77 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     font-size: 12px;
   }
 
+  header .header-search > div {
+    margin-top: 31px;
+    left: 0;
+    right: 0;
+    border: 0;
+    padding: 60px 100px;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 1;
+    visibility: visible;
+    position: fixed;
+    height: 100%;
+    padding-bottom: 9.4%;
+    min-width: 12.5rem;
+    background-color: #008DA9;
+    box-shadow: inset 0 19px 33px -28px #333F;
+  }
+
+  header .header-search .menu-nav-search-view {
+    display: flex;
+  }
+
+  header .menu-nav-search-view > div {
+    flex-basis: calc(50% - 10px);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  header .menu-nav-search-bar h3 {
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  header .header-search form {
+    text-align: right;
+    max-width: 485px;
+  }
+
+  header .header-search .form-control {
+    background-color: var(--text-white);
+    width: 100%;
+    height: 35px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    font-size: 16px;
+    padding-right: 70px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  header .header-search form button {
+    color: var(--text-white);
+    font-size: 13px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    min-width: 152px;
+    padding: 5px 0;
+    border: 2px solid;
+    background-color: transparent;
+    text-transform: uppercase;
+    line-height: 29px;
+    margin-top: 15px;
+  }
+
+  header .header-search img {
+    width: 363px;
+    height: 389px;
+  }
+
   header .nav-tabs > li.header-rfq > a {
     padding: 24px 35px 15px;
     text-transform: uppercase;
@@ -1032,6 +1112,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 
   header .right-submenu-content[aria-expanded="true"] {
+    display: initial;
+  }
+
+  header .searchlink[aria-expanded="true"] > div {
     display: initial;
   }
 

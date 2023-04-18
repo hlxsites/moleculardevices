@@ -25,10 +25,40 @@ function buildRequestQuote() {
   return requestQuote;
 }
 
-function buildSearch() {
+function buildSearch(content) {
   const search = document.createElement('li');
   search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
-  search.innerHTML = '<a title="" href="#" target="">Search</a>';
+  search.setAttribute('aria-expanded', 'false');
+
+  const flexContainer = document.createElement('div');
+
+  const searchView = document.createElement('div');
+  searchView.classList.add('menu-nav-search-view');
+
+  // get div with class Robot Image with Speach from navContent
+  const robotDiv = content.querySelector('.robot-image-with-speech');
+  searchView.append(robotDiv);
+
+  const searchBar = document.createElement('div');
+  searchBar.classList.add('menu-nav-search-bar');
+  searchBar.innerHTML = '<h3>Search</h3>';
+
+  searchBar.innerHTML += `<div class="search-form-group">
+    <form action="/search-results" method="GET">
+      <input id="search_keyword_search1" class="form-control" type="text" placeholder="moleculardevices.com" name="search" />
+      <button class="transparentBtn btn searchbutton" type="submit">Search</button>
+    </form>
+  </div>
+  `;
+  searchView.append(searchBar);
+
+  flexContainer.append(searchView);
+
+  const closeButton = document.createElement('div');
+  closeButton.classList.add('menu-nav-submenu-close');
+  flexContainer.append(closeButton);
+
+  search.append(flexContainer);
   return search;
 }
 
@@ -101,7 +131,7 @@ export default async function decorate(block) {
     navMenuUl.append(li);
   }
 
-  navMenuUl.append(buildSearch());
+  navMenuUl.append(buildSearch(content));
   navMenuUl.append(buildRequestQuote());
 
   mainMenuWrapper.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
