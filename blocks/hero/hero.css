@@ -207,6 +207,7 @@ main .hero.blog .breadcrumbs > ol {
   font-size: 14px;
   margin-bottom: 10px;
   padding: 2.5px 0;
+  width: 100%;
 }
 
 /* Blog Variant - Desktop -- End */
