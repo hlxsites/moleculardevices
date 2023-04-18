@@ -835,3 +835,51 @@ main .section[aria-hidden="true"] {
   display: none;
   visibility: hidden;
 }
+
+/* citations */
+main .citations-container {
+  --heading-font-size-l: 36px;
+
+  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom center;
+  padding: 90px 50px 200px;
+}
+
+main .citations-container > .default-content-wrapper {
+  padding: 0;
+  width: auto;
+  padding-left: 90px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.citation h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.citation em {
+  color: var(--text-green);
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  main .citations-container > .default-content-wrapper {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .citations-container > .default-content-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .citations-container > .default-content-wrapper{
+    width: 1170px;
+  }
+}
