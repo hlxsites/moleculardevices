@@ -16,7 +16,7 @@
  * Special handling for resource document meta data.
  */
 const loadResourceMetaAttributes = (url, params, document, meta) => {
-  const FRAGMENT_TYPES = ['Applications', 'Assay Data'];
+  const FRAGMENT_TYPES = ['Applications', 'Assay Data', 'Citation'];
   let resourceMetadata = {};
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
@@ -27,9 +27,12 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   if (params.originalURL.indexOf('/products/') > 0) {
     sheet = 'products-applications';
   }
+  if (params.originalURL.indexOf('/resources/citations/') > 0) {
+    sheet = 'citations';
+  }
   request.open(
     'GET',
-    `http://localhost:3001/export/moldev-resources-sheet-03282023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
+    `http://localhost:3001/export/moldev-resources-sheet-041720223.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -58,18 +61,19 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource.Publisher) {
       meta.Publisher = resource.Publisher;
     }
-
     if (FRAGMENT_TYPES.find((type) => type === resource['Asset Type'])) {
       meta.Type = resource['Asset Type'];
     }
 
-    const publishDate = new Date(resource['Created On']);
-    if (publishDate) {
-      meta['Publication Date'] = publishDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      });
+    if (resource['Created On']) {
+      const publishDate = new Date(resource['Created On']);
+      if (publishDate) {
+        meta['Publication Date'] = publishDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        });
+      }
     }
   } else {
     console.warn('Resource item for %s not found', params.originalURL);
@@ -161,6 +165,16 @@ const transformSections = (document) => {
       section.after(table);
     }
   });
+};
+
+const transformCitationLabels = (document) => {
+  if (document.querySelector('.citations_detail')) {
+    document.querySelectorAll('span.brand-blue').forEach((span) => {
+      const em = document.createElement('em');
+      em.textContent = span.textContent.trim();
+      span.replaceWith(em);
+    });
+  }
 };
 
 const transformFragmentDocuments = (document) => {
@@ -404,6 +418,7 @@ export default {
     [
       cleanUp,
       transformSections,
+      transformCitationLabels,
       transformFragmentDocuments,
       transformButtons,
       transformColumns,

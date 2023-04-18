@@ -19,11 +19,27 @@ const TABS_MAPPING = [
   { id: 'Order', blockName: 'Product Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
-  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services', fragment: '/fragments/compatible-products' },
+  {
+    id: 'CompatibleProducts',
+    sectionName: 'Compatible Products & Services',
+    fragment: '/fragments/compatible-products',
+  },
   { id: 'Citations', blockName: 'Product Citations' },
-  { id: 'RelatedProducts', sectionName: 'Related Products & Services', fragment: '/fragments/products-related' },
-  { id: 'relatedproducts', sectionName: 'Related Products & Services', fragment: '/fragments/products-related' },
-  { id: 'specs', sectionName: 'Specifications & Options', fragment: '/fragments/product-specifications' },
+  {
+    id: 'RelatedProducts',
+    sectionName: 'Related Products & Services',
+    fragment: '/fragments/products-related',
+  },
+  {
+    id: 'relatedproducts',
+    sectionName: 'Related Products & Services',
+    fragment: '/fragments/products-related',
+  },
+  {
+    id: 'specs',
+    sectionName: 'Specifications & Options',
+    fragment: '/fragments/product-specifications',
+  },
 ];
 
 /**
@@ -40,10 +56,16 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   if (params.originalURL.indexOf('/products/') > 0) {
     sheet = 'products-applications';
   }
+  if (params.originalURL.indexOf('/events/') > 0) {
+    sheet = 'events';
+  }
+  if (params.originalURL.indexOf('/resources/citations/') > 0) {
+    sheet = 'citations';
+  }
   request.open(
     'GET',
-    `http://localhost:3001/export/moldev-resources-sheet-04062023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
-    false,
+    `http://localhost:3001/export/moldev-resources-sheet-041720223.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
+    false
   );
   request.overrideMimeType('text/json; UTF-8');
   request.send(null);
@@ -75,12 +97,27 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       meta.Author = resource['Resource Author'];
     }
     if (resource['Card CTA']) {
-      meta['Card C2A '] = resource['Card CTA'];
+      meta['Card C2A'] = resource['Card CTA'];
+    }
+    if (resource['Citation Number']) {
+      meta['Citation Number'] = resource['Citation Number'];
+    }
+    if (resource['Event Type']) {
+      meta['Event Type'] = resource['Event Type'];
+    }
+    if (resource.Region) {
+      meta['Event Region'] = resource.Region;
     }
     if (resource.Thumbnail) {
       const el = document.createElement('img');
       el.src = resource.Thumbnail;
-      meta.Thumbnail = el;
+      if (params.originalURL.indexOf('/events/') > 0) {
+        if (!meta.Image) {
+          meta.Image = el;
+        }
+      } else {
+        meta.Thumbnail = el;
+      }
     }
 
     const publishDate = new Date(resource['Created On']);
@@ -112,6 +149,9 @@ const loadFragmentIndex = (type, ref) => {
 
   // eslint-disable-next-line max-len
   const fragment = fragments.find((n) => n.title.trim().toLowerCase() === ref.trim().toLowerCase() && n.type === type);
+  if (fragment && fragment.path.startsWith('/')) {
+    fragment.path = `https://main--moleculardevices--hlxsites.hlx.page${fragment.path}`;
+  }
   return fragment;
 };
 
@@ -148,7 +188,11 @@ const createMetadata = (url, document) => {
   const img = document.querySelector('[property="og:image"]');
   if (img && img.content) {
     const el = document.createElement('img');
-    el.src = img.content;
+    let imgUrl = img.content;
+    if (imgUrl.startsWith('/')) {
+      imgUrl = `https://www.moleculardevices.com${imgUrl}`;
+    }
+    el.src = imgUrl;
     meta.Image = el;
   }
 
@@ -720,8 +764,8 @@ const transformListCaption = (document) => {
       liEm.innerHTML = li.innerHTML;
       li.appendChild(liEm);
     });
-  })
-}
+  });
+};
 
 const transformBlogRecentPosts = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
@@ -753,36 +797,51 @@ const transformCustomerBreakthroughShareStory = (document) => {
 // convert Citations doc styles and remove columns here,
 // hence should be called before column transformation
 const transformCitations = (document) => {
-  document.querySelectorAll('.editor_citations').forEach((citation) => {
-    citation.querySelectorAll('.row').forEach((div) => div.classList.remove('row'));
-    citation.querySelectorAll('.faq_accordion').forEach((div) => div.classList.remove('faq_accordion'));
-
-    citation.querySelectorAll('.brand-blue').forEach((label) => {
-      const em = document.createElement('em');
-      em.textContent = label.textContent.trim();
-      em.after('&nbsp;');
-      label.replaceWith(em);
-      em.parentElement.lastChild.textContent = ` ${em.parentElement.lastChild.textContent}`;
-    });
-
+  document.querySelectorAll('.editor_citations .citations .views-element-container').forEach((citation) => {
     const cells = [['Citations']];
-
-    const multiple = citation.querySelector('#citation-accordian');
-    if (multiple) {
-      // transform multiple citations
-      multiple.querySelectorAll('.description-part, .show-less, .img-ico').forEach((div) => div.remove());
-      [...multiple.children].forEach((div) => {
-        cells.push([div]);
-      });
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      multiple.replaceWith(table);
-    } else {
-      // transform single citations
-      cells.push([citation.querySelector('.citations_detail').parentElement]);
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      citation.replaceWith(table);
-    }
+    const linkList = createFragmentList(document, 'Citation', [...citation.querySelectorAll('#citation-accordian .views-row h2')].map((h2) => h2.textContent.trim()));
+    cells.push([linkList]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    citation.replaceWith(table);
   });
+};
+
+const transformEventDetails = (document) => {
+  if (document.querySelector('body.page-node-type-events')) {
+    const eventDetails = document.querySelector('.event-block');
+    if (eventDetails) {
+      const cells = [
+        ['Event'],
+        [eventDetails.querySelector('cite')],
+        [eventDetails.querySelector('h3')],
+        [eventDetails.querySelector('ul')],
+      ];
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      eventDetails.replaceWith(table);
+    }
+
+    const relatedProducts = document.querySelector('.pro_car_wrap');
+    if (relatedProducts) {
+      const cells = [['Cards (Products, Quote)']];
+      cells.push([[...relatedProducts.querySelectorAll('.item h3 a')]]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      relatedProducts.replaceWith(table);
+    }
+
+    const relatedResources = document.querySelector('.products-container-area');
+    if (relatedResources) {
+      const cells = [['Resources Carousel']];
+      const links = [...relatedResources.querySelectorAll('.scroll-item .pro-container h3')]
+        .map((h3) => {
+          const a = h3.closest('a');
+          a.textContent = h3.textContent;
+          return a;
+        });
+      cells.push([links]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      relatedResources.replaceWith(table);
+    }
+  }
 };
 
 // convert embed objects
@@ -1053,6 +1112,12 @@ function makeAbsoluteLinks(main) {
         a.textContent = a.href;
       }
     }
+    if (a.href.startsWith('http://localhost:3001')) {
+      a.href = a.href.replaceAll(
+        'http://localhost:3001',
+        'https://main--moleculardevices--hlxsites.hlx.page'
+      );
+    }
   });
 }
 
@@ -1138,13 +1203,13 @@ export default {
       '.sticky-social-list',
       '.back-labnote',
       '.recent-posts .overview-page',
-      '.event-block cite',
       '.herobanner_wrap .visible-xs-block',
       '.ins-nav-container',
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
       '.drift-frame-chat',
       '.drift-frame-controller',
+      '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
     ]);
 
     // create the metadata block and append it to the main element
@@ -1164,6 +1229,7 @@ export default {
       transformTables,
       transformButtons,
       transformCitations,
+      transformEventDetails,
       transformImageGallery,
       transformElisaWorkflow,
       transformReferenceToColumns,
@@ -1209,5 +1275,8 @@ export default {
     url,
     html,
     params,
-  }) => WebImporter.FileUtils.sanitizePath(new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')),
+  }) =>
+    WebImporter.FileUtils.sanitizePath(
+      new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, '')
+    ),
 };
