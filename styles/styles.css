@@ -695,7 +695,7 @@ main .section.wave p {
   margin: 0;
 }
 
-main .section.wave p:first-of-type {
+main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
 }
