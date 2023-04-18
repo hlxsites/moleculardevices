@@ -15,7 +15,15 @@
   margin-left: 20px;
 }
 
-.citations .citation-header > p:nth-child(1), p:nth-child(2) {
+.citations .citation-short-description > p:nth-child(1),
+.citations .citation-long-description > p:nth-child(1),
+.citations .citation-long-description > p:nth-child(2) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.citations .citation-header > p:nth-child(1),
+.citations .citation-header > p:nth-child(2) {
   font-size: 18px;
   margin: 0;
 }
@@ -54,11 +62,6 @@
   max-height: 1000px; /* adjust the value to a large enough value to accommodate the content */
 }
 
-.citations .citation-short-description,.citation-long-description > p:nth-child(1) {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .citations .fa.fa-external-link {
   position: relative;
   top: -7px;
@@ -68,7 +71,8 @@
 }
 
 @media (max-width: 767px) {
-  .citations .citation-header > p:nth-child(1), p:nth-child(2) {
+  .citations .citation-header > p:nth-child(1),
+  .citations .citation-header > p:nth-child(2) {
     font-size: 14px;
     margin: 0;
   }
