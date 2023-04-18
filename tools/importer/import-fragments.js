@@ -167,13 +167,35 @@ const transformSections = (document) => {
   });
 };
 
-const transformCitationLabels = (document) => {
+const transformCitationDocuments = (document) => {
   if (document.querySelector('.citations_detail')) {
+    // transform labels
     document.querySelectorAll('span.brand-blue').forEach((span) => {
       const em = document.createElement('em');
       em.textContent = span.textContent.trim();
       span.replaceWith(em);
     });
+
+    // rearrange content to align with citation structure
+    const details = document.querySelector('.citations_detail');
+    const headline = document.querySelector('h3');
+    const extLink = document.querySelector('.citation_body a:last-of-type');
+    const extUrl = extLink.href;
+    extLink.remove();
+    document.querySelector('.citation_body br').remove();
+    const headlineLink = document.createElement('a');
+    headlineLink.href = extUrl;
+    const newHeadline = document.createElement('h2');
+    newHeadline.textContent = headline.textContent;
+    headlineLink.append(newHeadline);
+
+    headline.parentNode.insertBefore(headlineLink, headline);
+    headline.remove();
+    headlineLink.before(details);
+    const readMoreLink = document.createElement('a');
+    readMoreLink.href = extLink;
+    readMoreLink.textContent = 'Go to article';
+    document.querySelector('.citation_body').after(readMoreLink);
   }
 };
 
@@ -418,8 +440,8 @@ export default {
     [
       cleanUp,
       transformSections,
-      transformCitationLabels,
       transformFragmentDocuments,
+      transformCitationDocuments,
       transformButtons,
       transformColumns,
       makeProxySrcs,
