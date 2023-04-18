@@ -1,5 +1,3 @@
-@import url('../breadcrumbs/breadcrumbs.css');
-
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
@@ -210,6 +208,11 @@ main .hero.blog .breadcrumbs > ol {
 /* Blog Variant - Desktop -- End */
 
 @media (max-width: 767px) {
+  /* duplicated from breadcrumbs.css for performance reasons */
+  .breadcrumbs {
+    display: none;
+  }
+
   main .hero {
     min-height: 180px;
     padding-top: 34%;

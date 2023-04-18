@@ -1,6 +1,5 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
@@ -29,7 +28,7 @@ function addMetadata(container) {
   container.appendChild(metadataContainer);
 }
 
-function addBlockSticker(container) {
+async function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
@@ -43,6 +42,11 @@ function addBlockSticker(container) {
   sticker.appendChild(stickerPicture);
   stickerContainer.appendChild(sticker);
   container.appendChild(stickerContainer);
+}
+
+async function loadBreadcrumbs(breadcrumbsContainer) {
+  const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
+  breadCrumbsModule.default(breadcrumbsContainer);
 }
 
 export default async function decorate(block) {
@@ -66,19 +70,34 @@ export default async function decorate(block) {
 
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
-  await createBreadcrumbs(breadcrumbs);
+
   block.appendChild(breadcrumbs);
   block.appendChild(container);
 
-  const picture = block.querySelector('picture');
+  let picture = block.querySelector('picture');
   if (picture) {
+    const originalHeroBg = picture.lastElementChild;
+    const optimizedHeroBg = createOptimizedPicture(
+      originalHeroBg.src,
+      originalHeroBg.getAttribute('alt'),
+      true,
+      [
+        { media: '(min-width: 600px)', width: '2000' },
+        { width: '1200' },
+      ],
+    );
+
+    picture.replaceWith(optimizedHeroBg);
+    picture = optimizedHeroBg;
     picture.classList.add('hero-background');
     block.prepend(picture.parentElement);
   }
 
   if (block.classList.contains('blog')) {
-    addBlockSticker(breadcrumbs);
     addMetadata(container);
+    addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
+
+  loadBreadcrumbs(breadcrumbs);
 }

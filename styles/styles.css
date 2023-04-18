@@ -206,6 +206,10 @@ blockquote {
   margin-bottom: 1em;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -446,6 +450,10 @@ main .section>div {
 
   main .section>div {
     width: 750px
+  }
+
+  main .section.background-molecules .columns.columns-2-cols > div {
+    align-items: flex-start;
   }
 }
 
