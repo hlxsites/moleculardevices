@@ -1,6 +1,5 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -49,7 +48,9 @@ async function loadBreadcrumbs(breadcrumbsContainer) {
   breadCrumbsModule.default(breadcrumbsContainer);
 }
 
-export default async function decorate(block) {
+export function buildHero(block) {
+  const inner = document.createElement('div');
+  inner.classList.add('hero-inner');
   const container = document.createElement('div');
   container.classList.add('container');
 
@@ -57,10 +58,6 @@ export default async function decorate(block) {
     if (i === 0 && row.childElementCount > 1) {
       container.classList.add('two-column');
       [...row.children].forEach((column) => {
-        if (getVideoId(column.textContent)) {
-          column.classList.add('video-column');
-          buildVideo(block, column, getVideoId(column.textContent));
-        }
         container.appendChild(column);
       });
     } else {
@@ -71,8 +68,9 @@ export default async function decorate(block) {
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
 
-  block.appendChild(breadcrumbs);
-  block.appendChild(container);
+  block.appendChild(inner);
+  inner.appendChild(breadcrumbs);
+  inner.appendChild(container);
 
   let picture = block.querySelector('picture');
   if (picture) {
@@ -90,14 +88,17 @@ export default async function decorate(block) {
     picture.replaceWith(optimizedHeroBg);
     picture = optimizedHeroBg;
     picture.classList.add('hero-background');
-    block.prepend(picture.parentElement);
+    inner.prepend(picture.parentElement);
   }
 
   if (block.classList.contains('blog')) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
-    block.parentElement.appendChild(container);
   }
 
   loadBreadcrumbs(breadcrumbs);
+}
+
+export default async function decorate(block) {
+  buildHero(block);
 }

@@ -1,56 +1,59 @@
-main .hero-container {
+main .hero-container,
+main .hero-advanced-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
   padding: 0;
 }
 
-main .hero-wrapper {
+main .hero-wrapper,
+main .hero-advanced-wrapper {
   max-width: unset;
 }
 
-main .hero {
+main .hero,
+main .hero-inner {
   position: relative;
   color: var(--text-white);
 }
 
-main .hero .breadcrumbs {
+main .hero-inner .breadcrumbs {
   padding-top: 40px;
   padding-bottom: 42.5px;
 }
 
-main .hero .breadcrumbs ol {
+main .hero-inner .breadcrumbs ol {
   padding: 0 15px;
 }
 
-main .hero p {
+main .hero-inner p {
   margin: 0 0 10px;
 }
 
-main .hero a:any-link {
+main .hero-inner a:any-link {
   color: var(--text-white);
 }
 
-main .hero p.button-container {
+main .hero-inner p.button-container {
   margin: 0;
 }
 
-main .hero ul {
+main .hero-inner ul {
   margin: 0;
   padding-top: 5px;
 }
 
-main .hero li {
+main .hero-inner li {
   margin-bottom: 15px;
 }
 
-main .hero h1 {
+main .hero-inner h1 {
   margin-top: 20px;
   margin-bottom: 30px;
   color: white;
   line-height: 1;
 }
 
-main .hero h6 {
+main .hero-inner h6 {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
@@ -59,11 +62,11 @@ main .hero h6 {
   font-size: var(--heading-font-size-m);
 }
 
-main .hero h6:first-child {
+main .hero-inner h6:first-child {
   margin-top: 0;
 }
 
-main .hero .hero-background {
+main .hero-inner .hero-background {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -73,50 +76,51 @@ main .hero .hero-background {
   box-sizing: border-box;
 }
 
-main .hero img {
+main .hero-inner img {
   object-fit: cover;
   object-position: center top;
   width: 100%;
   height: 100%;
 }
 
-main .section .hero-wrapper {
+main .section .hero-wrapper,
+main .section .hero-advanced-wrapper {
   width: 100%;
   padding: 0;
 }
 
-main .hero > div {
+main .hero-inner > div {
   margin:auto;
 }
 
-main .hero .container > div {
+main .hero-inner .container > div {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-main .hero .container > div:nth-child(2) {
+main .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 40px;
   padding-top: 45px;
   font-size: var(--body-font-size-xs);
 }
 
-main .hero .container > div:nth-child(2).video-column {
+main .hero-inner .container > div:nth-child(2).video-column {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-main .hero .container > div:nth-child(2) .button-container {
+main .hero-inner .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
   color: var(--text-white);
 }
 
-.hero .breadcrumbs li+li::before {
+.hero-inner .breadcrumbs li+li::before {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-main .hero .video-icon img {
+main .hero-inner .video-icon img {
   height: 91px;
   width: 90px;
   margin: auto;
@@ -124,7 +128,7 @@ main .hero .video-icon img {
   transition: all ease .3s;
 }
 
-main .hero .video-icon img:hover {
+main .hero-inner .video-icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
 }
@@ -150,7 +154,7 @@ display: none;
   color: var(--text-white);
 }
 
-main .hero.blog {
+main .hero.blog .hero-inner {
   padding: 0 0 40%;
   height: 555px;
   overflow: hidden;
@@ -213,54 +217,54 @@ main .hero.blog .breadcrumbs > ol {
     display: none;
   }
 
-  main .hero {
+  main .hero-inner {
     min-height: 180px;
     padding-top: 34%;
     padding-bottom: 41px;
   }
 
   /* TODO fix heading vars in styles.css */
-  main .hero h1 {
+  main .hero-inner h1 {
     margin-bottom:10px;
     font-size: 36px;
   }
 
-  main .hero .two-column h1 {
+  main .hero-inner .two-column h1 {
     font-size: 28px;
   }
 
-  main .hero h4 {
+  main .hero-inner h4 {
     margin-bottom: 10px;;
   }
 
-  main .hero .container > div:nth-child(1) > div > * {
+  main .hero-inner .container > div:nth-child(1) > div > * {
     display: none;
   }
 
-  main .hero .container > div:nth-child(1) > div > p.button-container,
-  main .hero .container > div:nth-child(1) > div > h1 {
+  main .hero-inner .container > div:nth-child(1) > div > p.button-container,
+  main .hero-inner .container > div:nth-child(1) > div > h1 {
     display: block;
   }
 
-  main .hero .container > div:nth-child(2) {
+  main .hero-inner .container > div:nth-child(2) {
     font-size: var(--body-font-size-m);
   }
 
-  main .hero .container.two-column > div:nth-child(2) {
+  main .hero-inner .container.two-column > div:nth-child(2) {
     padding-top: 15px;
     padding-left: 15px;
   }
 
-  main .hero .container.two-column > div:nth-child(2) > div {
+  main .hero-inner .container.two-column > div:nth-child(2) > div {
     border-top: 2px solid #fff;
     padding-top:30px;
   }
 
-  main .hero .container.two-column > div.video-column > div {
+  main .hero-inner .container.two-column > div.video-column > div {
     border: none;
   }
 
-  main .hero .button-container a {
+  main .hero-inner .button-container a {
     padding: 9px 12px 10px;
   }
 
@@ -270,7 +274,7 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (max-width: 768px) {
-  main .hero h1 {
+  main .hero-inner h1 {
     font-size: 45px;
   }
 
@@ -326,11 +330,11 @@ main .hero.blog .breadcrumbs > ol {
     height: unset;
   }
 
-  .blog main .hero .breadcrumbs {
+  .blog main .hero-inner .breadcrumbs {
     display: block;
   }
 
-  .blog main .hero .breadcrumbs ol {
+  .blog main .hero-inner .breadcrumbs ol {
     display: none;
   }
 
@@ -347,11 +351,11 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 768px) {
-  main .hero {
+  main .hero-inner {
     min-height: 440px;
   }
 
-  main .hero .container {
+  main .hero-inner .container {
     overflow: auto;
     align-items: stretch;
     flex-wrap: wrap;
@@ -359,7 +363,7 @@ main .hero.blog .breadcrumbs > ol {
     padding: 0 0 120px;
   }
 
-  main .hero .video-icon img {
+  main .hero-inner .video-icon img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -367,11 +371,11 @@ main .hero.blog .breadcrumbs > ol {
     right: 0;
   }
 
-  main .hero .container.two-column > div:nth-child(2).video-column {
+  main .hero-inner .container.two-column > div:nth-child(2).video-column {
     border: none;
   }
 
-  main .hero .container > div:nth-child(1) .button-container {
+  main .hero-inner .container > div:nth-child(1) .button-container {
     margin-top: 20px;
   }
   
@@ -383,24 +387,28 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 992px) {
-  main .hero > div {
+  main .hero-inner > div {
     width: 970px
   }
 
-  main .hero .container {
+  main .hero-inner .container {
     display: flex;
     padding: 0 0 120px;
   }
 
-  main .hero .container > div {
+  main .hero-inner .container > div {
     float:left;
   }
 
-  main .hero .container > div:nth-child(1) {
+  main .hero-inner .container > div:nth-child(1) {
     width: 66%
   }
 
-  main .hero .container.two-column > div:nth-child(2) {
+  main .hero.blog .container > div:nth-child(1) {
+    width: unset;
+  }
+
+  main .hero-inner .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
   }
@@ -411,7 +419,7 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 1200px) {
-  main .hero > div {
+  main .hero-inner > div {
     width: 1170px
   }
 }

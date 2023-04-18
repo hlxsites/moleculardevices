@@ -1,0 +1,5 @@
+@import url("../hero/hero.css");
+
+.hero-advanced .container picture {
+  display: none;
+}
