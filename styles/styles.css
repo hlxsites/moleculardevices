@@ -447,6 +447,10 @@ main .section>div {
   main .section>div {
     width: 750px
   }
+
+  main .section.background-molecules .columns.columns-2-cols > div {
+    align-items: flex-start;
+  }
 }
 
 @media (min-width: 992px) {
