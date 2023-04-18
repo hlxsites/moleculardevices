@@ -23,8 +23,7 @@ async function parseCitationFragments(fragmentPaths) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
 
-      // TODO: replace by h2 when import fixed
-      const titleBlock = fragmentElement.querySelector('h3');
+      const titleBlock = fragmentElement.querySelector('h2');
       // remove the 'Citations : ' prefix from the title
       if (titleBlock) {
         const link = titleBlock.querySelector('a');
@@ -73,20 +72,13 @@ function buildCitation(fragment) {
 
   const viewMoreBlock = div({ class: 'view-change view-more' });
   viewMoreBlock.innerHTML = `
-    <a href="javascript:void(0)">View more <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+    View more <i class="fa fa-angle-down" aria-hidden="true"></i>
   `;
 
   const viewLessBlock = div({ class: 'view-change view-less' });
   viewLessBlock.innerHTML = `
-    <a href="javascript:void(0)">View less <i class="fa fa-angle-up" aria-hidden="true"></i></a>
+    View less <i class="fa fa-angle-up" aria-hidden="true"></i>
   `;
-
-  // add external link icons
-  const goToBlockATag = gotToBlock.querySelector('a');
-  goToBlockATag.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
-
-  const titleBlockATag = titleBlock.querySelector('a');
-  titleBlockATag.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
 
   const citation = div(
     { class: 'citation' },
@@ -116,6 +108,11 @@ function buildCitation(fragment) {
       ),
     ),
   );
+
+  const links = citation.querySelectorAll('a');
+  links.forEach((link) => {
+    link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
+  });
 
   return citation;
 }
