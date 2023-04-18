@@ -53,7 +53,7 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
-  const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.textContent);
+  const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
