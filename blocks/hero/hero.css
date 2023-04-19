@@ -231,13 +231,13 @@ main .hero.blog .breadcrumbs > ol {
   /* Citation Variant - Mobile -- Start */
   .citation main .hero {
     min-height: 120px;
-    height: 120px;
     padding-top: 0;
     padding-bottom: 0;
   }
 
   .citation main .hero .container {
     margin-top: 40px;
+    padding: 0 0 40px;
   }
 
   /* Citation Variant - Mobile -- End */
@@ -370,14 +370,6 @@ main .hero.blog .breadcrumbs > ol {
     min-height: 440px;
   }
 
-  /* Citation Variant - Mobile -- Start */
-  .citation main .hero {
-    min-height: 220px;
-    height: 220px;
-  }
-
-  /* Citation Variant - Mobile -- End */
-
   main .hero .container {
     overflow: auto;
     align-items: stretch;
@@ -385,6 +377,17 @@ main .hero.blog .breadcrumbs > ol {
     height: auto;
     padding: 0 0 120px;
   }
+
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero {
+    min-height: 220px;
+  }
+
+  .citation main .hero .container {
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */
 
   main .hero .video-icon img {
     position: absolute;
@@ -412,7 +415,7 @@ main .hero.blog .breadcrumbs > ol {
 @media (min-width: 992px) {
   main .hero > div {
     width: 970px
-  }
+  }  
 
   main .hero .container {
     display: flex;
@@ -430,6 +433,10 @@ main .hero.blog .breadcrumbs > ol {
   /* Citation Variant - Mobile -- Start */
   .citation main .hero .container > div:nth-child(1) {
     width: 80%
+  }
+
+  .citation main .hero .container {
+    padding: 0 0 40px;
   }
 
   /* Citation Variant - Mobile -- End */  
