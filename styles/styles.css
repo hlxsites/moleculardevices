@@ -419,24 +419,6 @@ main .section.columns-2>div {
   padding: 0 15px;
 }
 
-main .section.background-parallax {
-  background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
-  background-position: center top;
-  background-size: cover;
-  color: var(--text-white);
-}
-
-main .section.background-parallax .default-content-wrapper .button-container {
-  margin: 60px 30px;
-}
-
-main .section.background-parallax .default-content-wrapper .button-container>a {
-  color: var(--text-white);
-  border-radius: 0;
-  padding: 18px 18px 16px;
-  border: 1px solid #cbdce8;
-}
-
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -549,10 +531,6 @@ main .section.background-molecules .hero-wrapper::after {
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
     padding: 0 0 70px;
-  }
-
-  main .section.background-parallax .default-content-wrapper .button-container {
-    margin-left: 0;
   }
 }
 
@@ -763,6 +741,32 @@ main .section.wave.bluegreen::after {
   main .section.blue {
     background: #116da7 !important;
     background-image: none;
+  }
+}
+
+/* Parallax section */
+
+main .section.background-parallax {
+  background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
+  background-position: center top;
+  background-size: cover;
+  color: var(--text-white);
+}
+
+main .section.background-parallax .default-content-wrapper .button-container {
+  margin: 60px 30px;
+}
+
+main .section.background-parallax .default-content-wrapper .button-container>a {
+  color: var(--text-white);
+  border-radius: 0;
+  padding: 18px 18px 16px;
+  border: 1px solid #cbdce8;
+}
+
+@media only screen and (max-width: 991px) {
+  main .section.background-parallax .default-content-wrapper .button-container {
+    margin-left: 0;
   }
 }
 
