@@ -452,7 +452,7 @@ main .section.columns-2>div {
   }
 
   main .section.columns-2 {
-    padding: 30px auto;
+    padding: 30px 0;
   }
 }
 
