@@ -530,7 +530,7 @@ main .citations-container {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: bottom center;
-  padding: 90px 50px 200px;
+  padding: 90px 50px 15vw;
 }
 
 main .citations-container > .default-content-wrapper {
