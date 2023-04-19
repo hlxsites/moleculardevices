@@ -206,6 +206,10 @@ blockquote {
   margin-bottom: 1em;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -462,6 +466,10 @@ main .section.columns-2>div {
     grid-template-columns: 1fr;
     padding: 40px calc((100vw - 750px) / 2);
   }
+
+  main .section.background-molecules .columns.columns-2-cols > div {
+    align-items: flex-start;
+  }
 }
 
 @media (min-width: 992px) {
@@ -537,6 +545,50 @@ main .section.background-molecules .hero-wrapper::after {
 /* nav */
 nav {
   display: block;
+}
+
+/* citations */
+main .citations-container {
+  --heading-font-size-l: 36px;
+
+  padding: 90px 50px 50px;
+}
+
+main .citations-container > .default-content-wrapper {
+  padding: 0;
+  width: auto;
+  padding-left: 90px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.citation h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.citation em {
+  color: var(--text-green);
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  main .citations-container > .default-content-wrapper {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .citations-container > .default-content-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .citations-container > .default-content-wrapper{
+    width: 1170px;
+  }
 }
 
 /* news and publication */
@@ -712,7 +764,7 @@ main .section.wave p {
   margin: 0;
 }
 
-main .section.wave p:first-of-type {
+main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
 }

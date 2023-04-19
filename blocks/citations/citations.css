@@ -1,0 +1,101 @@
+.citations .citation {
+  margin-bottom: 40px;
+}
+
+.citations .citation-icon {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.citations .citation-info {
+  display: inline-block;
+  width: 91%;
+  margin-left: 20px;
+}
+
+.citations .citation-short-description > p:nth-child(1),
+.citations .citation-long-description > p:nth-child(1),
+.citations .citation-long-description > p:nth-child(2) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.citations .citation-header > p:nth-child(1),
+.citations .citation-header > p:nth-child(2) {
+  font-size: 18px;
+  margin: 0;
+}
+
+.citations em {
+  color: var(--text-green);
+  font-style: normal;
+}
+
+.citations h2 {
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.citations h2 > a {
+  color: inherit;
+}
+
+.citations .view-change {
+  position: relative;
+  text-align: right;
+  float: right;
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.citations .view-more {
+  margin-top: 5px;
+}
+
+.citations .view-less {
+  margin-top: -50px;
+}
+
+.citations .citation-long-description {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.citations .citation-long-description.show {
+  max-height: 1000px; /* adjust the value to a large enough value to accommodate the content */
+}
+
+.citations .fa.fa-external-link {
+  position: relative;
+  top: -7px;
+  font-size: 13px;
+  margin-left: 2px;
+  color: var(--link-color);
+}
+
+@media (max-width: 767px) {
+  .citations .citation-header > p:nth-child(1),
+  .citations .citation-header > p:nth-child(2) {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .citations .citation-icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .citations .citation-info {
+    display: inline-block;
+    width: 80%;
+    margin-left: 10px;
+  }
+}
