@@ -54,24 +54,6 @@ export function buildHero(block) {
   const container = document.createElement('div');
   container.classList.add('container');
 
-  [...block.children].forEach((row, i) => {
-    if (i === 0 && row.childElementCount > 1) {
-      container.classList.add('two-column');
-      [...row.children].forEach((column) => {
-        container.appendChild(column);
-      });
-    } else {
-      container.appendChild(row);
-    }
-  });
-
-  const breadcrumbs = document.createElement('div');
-  breadcrumbs.classList.add('breadcrumbs');
-
-  block.appendChild(inner);
-  inner.appendChild(breadcrumbs);
-  inner.appendChild(container);
-
   let picture = block.querySelector('picture');
   if (picture) {
     const originalHeroBg = picture.lastElementChild;
@@ -90,6 +72,29 @@ export function buildHero(block) {
     picture.classList.add('hero-background');
     inner.prepend(picture.parentElement);
   }
+
+  const rows = block.children.length;
+  [...block.children].forEach((row, i) => {
+    if (i === (rows - 1)) {
+      if (row.childElementCount > 1) {
+        container.classList.add('two-column');
+        [...row.children].forEach((column) => {
+          container.appendChild(column);
+        });
+      } else {
+        container.appendChild(row);
+      }
+    } else {
+      row.remove();
+    }
+  });
+
+  const breadcrumbs = document.createElement('div');
+  breadcrumbs.classList.add('breadcrumbs');
+
+  block.appendChild(inner);
+  inner.appendChild(breadcrumbs);
+  inner.appendChild(container);
 
   if (block.classList.contains('blog')) {
     addMetadata(container);
