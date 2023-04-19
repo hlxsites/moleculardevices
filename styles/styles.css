@@ -409,6 +409,34 @@ main .section>div {
   padding: 0 15px;
 }
 
+main .section.columns-2 {
+  display: grid;
+  margin: 0 auto;
+}
+
+main .section.columns-2>div {
+  width: auto;
+  padding: 0 15px;
+}
+
+main .section.background-parallax {
+  background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
+  background-position: center top;
+  background-size: cover;
+  color: var(--text-white);
+}
+
+main .section.background-parallax .default-content-wrapper .button-container {
+  margin: 60px 30px;
+}
+
+main .section.background-parallax .default-content-wrapper .button-container>a {
+  color: var(--text-white);
+  border-radius: 0;
+  padding: 18px 18px 16px;
+  border: 1px solid #cbdce8;
+}
+
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -445,19 +473,34 @@ main .section>div {
   }
 
   main .section>div {
-    width: 750px
+    width: 750px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr;
+    padding: 40px calc((100vw - 750px) / 2);
   }
 }
 
 @media (min-width: 992px) {
   main .section>div {
-    width: 970px
+    width: 970px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr 1fr;
+    padding: 70px calc((100vw - 970px) / 2);
   }
 }
 
 @media (min-width: 1200px) {
   main .section>div {
-    width: 1170px
+    width: 1170px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr 1fr;
+    padding: 100px calc((100vw - 1170px) / 2);
   }
 }
 
@@ -506,6 +549,10 @@ main .section.background-molecules .hero-wrapper::after {
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
     padding: 0 0 70px;
+  }
+
+  main .section.background-parallax .default-content-wrapper .button-container {
+    margin-left: 0;
   }
 }
 
