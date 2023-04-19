@@ -48,9 +48,16 @@
   position: relative;
   text-align: right;
   float: right;
-  margin-top: -10px;
   color: var(--link-color);
   cursor: pointer;
+}
+
+.citations .view-more {
+  margin-top: 5px;
+}
+
+.citations .view-less {
+  margin-top: -50px;
 }
 
 .citations .citation-long-description {

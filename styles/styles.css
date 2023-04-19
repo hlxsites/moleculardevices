@@ -526,11 +526,7 @@ nav {
 main .citations-container {
   --heading-font-size-l: 36px;
 
-  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: bottom center;
-  padding: 90px 50px 15vw;
+  padding: 90px 50px 50px;
 }
 
 main .citations-container > .default-content-wrapper {
