@@ -103,10 +103,9 @@ function decoratePageNav(main) {
   const pageTabSection = pageTabsBlock.closest('div.section');
   let sections = [...main.querySelectorAll('div.section')];
   sections = sections.slice(sections.indexOf(pageTabSection) + 1);
-  
+
   const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
-
     let index = 0;
     sections.forEach((section) => {
       if (index < namedSections.length) {
