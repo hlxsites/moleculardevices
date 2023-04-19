@@ -132,6 +132,9 @@ main .carousel.recent-blogs-carousel .blog-carousel-caption .button.primary {
   word-break: break-word;
 }
 
+main .blog-card-thumb:hover img {
+  transform: scale(1.1);
+}
 
 @media only screen and (max-width: 1200px) {
   main div.recent-blogs-carousel-container {

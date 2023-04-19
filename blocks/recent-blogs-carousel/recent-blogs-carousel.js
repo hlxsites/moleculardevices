@@ -21,17 +21,17 @@ function renderItem(item) {
   const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : 'Read More';
 
   return (
-    div({ class: 'blog-carousel-item' },
-      div({ class: 'blog-carousel-thumb' },
+    div({ class: 'blog-card' },
+      div({ class: 'blog-card-thumb' },
         a({ href: item.path },
           createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]),
         ),
       ),
-      div({ class: 'blog-carousel-caption' },
+      div({ class: 'blog-card-caption' },
         h3(
           a({ href: item.path }, item.title),
         ),
-        p({ class: 'blog-description' }, summariseDescription(item.description)),
+        p({ class: 'blog-card-description' }, summariseDescription(item.description)),
         p({ class: 'button-container' },
           a({ href: item.path, 'aria-label': buttonText, class: 'button primary' }, buttonText),
         ),
