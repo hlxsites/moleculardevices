@@ -24,7 +24,7 @@ const TABS_MAPPING = [
     sectionName: 'Compatible Products & Services',
     fragment: '/fragments/compatible-products',
   },
-  { id: 'Citations', blockName: 'Product Citations' },
+  { id: 'Citations' },
   {
     id: 'RelatedProducts',
     sectionName: 'Related Products & Services',
@@ -258,7 +258,7 @@ const transformHero = (document) => {
       cells[0] = ['Hero (Orange Buttons)'];
     }
 
-    const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.row, .bannerInnerPages');
+    const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.container');
 
     // setup the background image
     const backgroundUrl = extractBackgroundImage(hero);
@@ -332,7 +332,7 @@ const transformCurvedWaveFragment = (document) => {
 
 // we have different usages of sections - with <section></section>, <div></div>
 const transformSections = (document) => {
-  document.querySelectorAll('section * section:not(.blogsPage)').forEach((section, index) => {
+  document.querySelectorAll('section * section:not(.blogsPage), .category-page-section').forEach((section, index) => {
     if (index > 0) {
       section.firstChild.before(document.createElement('hr'));
     }
@@ -356,7 +356,7 @@ const transformSections = (document) => {
 
     if (cells.length > 1) {
       const table = WebImporter.DOMUtils.createTable(cells, document);
-      section.after(table);
+      section.after(table, document.createElement('hr'));
     }
   });
 };
@@ -454,9 +454,9 @@ const transformProductOverviewHeadlines = (block, document) => {
   });
 };
 
-const transformFeatureList = (block, document) => {
-  block.querySelectorAll('.listing-image').forEach((featureList) => {
-    const cells = [['Features']];
+const transformImageList = (document) => {
+  document.querySelectorAll('.listing-image').forEach((featureList) => {
+    const cells = [['Image List']];
     featureList.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
     featureList.replaceWith(table);
@@ -772,7 +772,7 @@ const transformListCaption = (document) => {
   });
 };
 
-const transformBlogRecentPosts = (document) => {
+const transformBlogRecentPostsCarousel = (document) => {
   document.querySelectorAll('.recent-posts').forEach((recentPostsContainer) => {
     recentPostsContainer.before(document.createElement('hr'));
     const viewAll = document.createElement('a');
@@ -791,6 +791,46 @@ const transformBlogRecentPosts = (document) => {
   });
 };
 
+const transformCustomerBreakthroughCarousel = (document) => {
+  document.querySelectorAll('.brk-through-slider').forEach((container) => {
+    let style = null;
+    if (container.classList.contains('left-breakthrough')) {
+      style = 'Green';
+    }
+    if (container.classList.contains('right-breakthrough')) {
+      style = 'Blue';
+    }
+    const metaDataCells = [['Section Metadata'], ['style', 'Wave, WaveCarousel']];
+    if (style) {
+      metaDataCells[1] = ['style', `Wave, WaveCarousel, ${style}`];
+    }
+    const sectionMetaData = WebImporter.DOMUtils.createTable(metaDataCells, document);
+    container.before(document.createElement('hr'));
+    container.after(sectionMetaData, document.createElement('hr'));
+
+    const cells = [['Carousel (Wave)']];
+    if (style) {
+      cells[0] = [`Carousel (Wave, ${style})`];
+    }
+    // convert bg images to img tag
+    container.querySelectorAll('.item > div.image-part').forEach((div) => {
+      const bgImg = extractBackgroundImage(div);
+      if (bgImg) {
+        const img = document.createElement('img');
+        img.src = bgImg;
+        div.append(img);
+      }
+    });
+
+    container.querySelectorAll('.owl-carousel .item').forEach((item) => {
+      cells.push([...item.children]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    container.replaceWith(table);
+  });
+};
+
 const transformCustomerBreakthroughShareStory = (document) => {
   document.querySelectorAll('.share-story').forEach((share) => {
     const cells = [['Share Story'], [share.querySelector('h3')]];
@@ -799,16 +839,53 @@ const transformCustomerBreakthroughShareStory = (document) => {
   });
 };
 
+const transformLinkedCardCarousel = (document) => {
+  document.querySelectorAll('.products-container-area .owl-carousel').forEach((container) => {
+    const parent = container.closest('.products-container-area');
+    const cells = [['Carousel (Cards)']];
+
+    container.querySelectorAll('.owl-carousel .item').forEach((item) => {
+      const image = item.querySelector('img');
+
+      const content = document.createElement('div');
+      content.append(item.querySelector('.pro-details'), item.querySelector('.compare-box a'));
+
+      cells.push([image, content]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    parent.replaceWith(table);
+  });
+};
+
 // convert Citations doc styles and remove columns here,
 // hence should be called before column transformation
 const transformCitations = (document) => {
-  document.querySelectorAll('.editor_citations .citations .views-element-container').forEach((citation) => {
-    const cells = [['Citations']];
-    const linkList = createFragmentList(document, 'Citation', [...citation.querySelectorAll('#citation-accordian .views-row h2')].map((h2) => h2.textContent.trim()));
-    cells.push([linkList]);
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    citation.replaceWith(table);
-  });
+  if (document.querySelector('.citations')) {
+    // unify summary structure
+    const summary = document.querySelector('.citations .citation-title-part');
+
+    // transform labels
+    summary.querySelectorAll('span.brand-blue').forEach((span) => {
+      const em = document.createElement('em');
+      em.textContent = span.textContent.trim();
+      span.replaceWith(em);
+    });
+
+    // check for summary parent container on product pages and remove it
+    const parentContainer = summary.closest('.views-element-container');
+    if (parentContainer) {
+      parentContainer.replaceWith(summary);
+    }
+
+    document.querySelectorAll('.citations .views-element-container').forEach((citation) => {
+      const cells = [['Citations']];
+      const linkList = createFragmentList(document, 'Citation', [...citation.querySelectorAll('#citation-accordian .views-row h2, .cell-match-height .citation-tab-list h2')].map((h2) => h2.textContent.trim()));
+      cells.push([linkList]);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      citation.replaceWith(table);
+    });
+  }
 };
 
 const transformEventDetails = (document) => {
@@ -908,7 +985,6 @@ const transformProductOverview = (document) => {
     });
 
     transformProductOverviewHeadlines(div, document);
-    transformFeatureList(div, document);
     transformFeatureSection(div, document);
     transformResourcesCarousel(div, document);
     transformFeaturedApplicationsCarousel(div, document);
@@ -920,7 +996,6 @@ const transformProductOptions = (document) => {
   const div = document.querySelector('div.tab-pane#options');
   if (div) {
     transformProductOverviewHeadlines(div, document);
-    transformFeatureList(div, document);
     transformFeatureSection(div, document);
     transformResourcesCarousel(div, document);
   }
@@ -1037,6 +1112,20 @@ const transformTechnologyApplications = (document) => {
         }
       }
     });
+};
+
+const transformProductCompareTable = (document) => {
+  document.querySelectorAll('#platereadertbllink').forEach((div) => {
+    div.querySelectorAll('.fixt-part').forEach((table) => table.remove());
+    const cells = [['Product Comparsion']];
+
+    div.querySelectorAll('#productcomparison th .comp-tbl-lbl a').forEach((productLink) => {
+      cells.push([productLink]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  });
 };
 
 const transformOtherResourcesList = (document) => {
@@ -1241,10 +1330,12 @@ export default {
       transformEmbeds,
       transformQuotes,
       transformAccordions,
-      transformBlogRecentPosts,
+      transformImageList,
+      transformBlogRecentPostsCarousel,
       transformImageCaption,
       transformListCaption,
       transformCustomerBreakthroughShareStory,
+      transformCustomerBreakthroughCarousel,
       transformTabsNav,
       transformTabsSections,
       transformProductOverview,
@@ -1252,9 +1343,11 @@ export default {
       transformProductApplications,
       transformProductAssayData,
       transformProductTabs,
+      transformProductCompareTable,
       transformOtherResourcesList,
       transformFeaturedResources,
       transformTechnologyApplications,
+      transformLinkedCardCarousel,
       transformResources,
       transformCurvedWaveFragment,
       transformColumns,
