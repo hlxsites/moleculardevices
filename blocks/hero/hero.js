@@ -94,6 +94,7 @@ export function buildHero(block) {
   if (block.classList.contains('blog')) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
+    block.parentElement.appendChild(container);
   }
 
   loadBreadcrumbs(breadcrumbs);
