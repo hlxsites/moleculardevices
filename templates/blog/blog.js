@@ -1,6 +1,6 @@
 import { styleCaption } from '../../scripts/scripts.js';
-import { 
-  a, div, h3, p 
+import {
+  a, div, h3, p,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 

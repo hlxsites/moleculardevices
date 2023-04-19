@@ -29,7 +29,7 @@ export default async function decorate(block) {
           items: 3,
         },
       ],
-      renderBlogCard,
+      renderItem: renderBlogCard,
     },
   );
 }
