@@ -1,0 +1,192 @@
+main .citation-list-container {
+  background-image: url(/images/grey_molecules.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 90px;
+  padding-top: 150px;
+}
+
+main .citation-list-container .default-content-wrapper {
+  padding-bottom: 45px;
+}
+
+main .citation-list-container .default-content-wrapper h2 {
+  margin-bottom: 0;
+}
+
+main .citation-list-container .default-content-wrapper p {
+  text-align: left;
+}
+
+.citation-list .topics-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.citation-list .flex-item {
+  width: 32%;
+  padding: 20px 15px 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.citation-list .card {
+  background: #fff;
+  margin: 0;
+  position: relative;
+  box-shadow: 0 1px 10px rgba(0,0,0,.2);
+  transition: all .3s;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: stretch;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  flex-direction: row;
+}
+
+.citation-list .card-title {
+  padding: 20px;
+  text-align: left;
+  color: #34393d;
+  font-size: 24px;
+  line-height: 28px;
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+}
+
+.citation-list .card-body {
+  padding-left: 80px;
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-right: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  flex-direction: column-reverse;
+  width: 100%;
+  border: 0;
+  margin-top: 20px;
+}
+
+.citation-list .card-data {
+  color: #0066a4;
+  position: relative;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.citation-list .card-data img {
+  position: absolute;
+  left: -65px;
+  top: 0;
+}
+
+.citation-list .card-data h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--ff-proxima-xbold);
+  font-size: 70px;
+}
+
+.citation-list .card-data h3 {
+  margin-top: 0;
+  font-family: var(--ff-proxima-xbold);
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.citation-list .card-data-label {
+  margin-bottom: 35px;
+}
+
+.citation-list .card-body p {
+  color: #34393d;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  flex-direction: column;
+  position: absolute;
+  bottom: 10px;
+  text-align: left;
+}
+
+.citation-list .card-body p a {
+  font-size: 18px;
+}
+
+.citation-list .card-body i {
+  margin-left: 5px;
+  font-size: 17px;
+  color: var(--dark-border-color-gray);
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .citation-list .card-data h2 {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .citation-list .card-data h2 {
+    font-size: 35px;
+  }
+
+  .citation-list .card-body p a {
+    width: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .citation-list {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .citation-list .topics-list-container {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .citation-list .flex-item {
+    flex: 1 0 calc(100% - 50px);
+    display: flex;
+  }
+
+  .citation-list .card-body {
+    margin-top: 0;
+  }
+
+  .citation-list .card-data img {
+    left: -38px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .citation-list .card-data h2 {
+    font-size: 36px;
+  }
+
+  .citation-list .card-body p a {
+    font-size: 14px;
+  }
+}
