@@ -502,8 +502,6 @@ main .section.center {
 }
 
 main .section.background-molecules {
-  content: '';
-  display: block;
   padding-top: 90px;
   background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
