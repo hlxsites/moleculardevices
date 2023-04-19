@@ -450,6 +450,10 @@ main .section.columns-2>div {
   main .breadcrumbs-wrapper {
     height: 30px;
   }
+
+  main .section.columns-2 {
+    padding: 30px auto;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -464,7 +468,7 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr;
-    padding: 40px calc((100vw - 750px) / 2);
+    padding: 67px calc((100vw - 750px) / 2);
   }
 
   main .section.background-molecules .columns.columns-2-cols > div {
@@ -479,7 +483,7 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr 1fr;
-    padding: 70px calc((100vw - 970px) / 2);
+    padding: 100px calc((100vw - 970px) / 2);
   }
 }
 
