@@ -2,11 +2,25 @@
 main div.blog-list-wrapper {
   width: 1170px;
   max-width: unset !important;
-  padding: 0 30px !important;
+  padding: 0 15px !important;
 }
 
-main .blog-list {
+/* main .blog-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+} */
+
+
+main .blog-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+main .blog-list .blog-card-wrapper {
+  width: 32%;
+  padding: 20px 15px 40px;
 }
