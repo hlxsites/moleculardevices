@@ -1,5 +1,5 @@
 main .citation-list-container {
-  background-image: url(/images/grey_molecules.png);
+  background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: auto 90px;
@@ -8,6 +8,27 @@ main .citation-list-container {
 
 main .citation-list-container .default-content-wrapper {
   padding-bottom: 45px;
+}
+
+.citation-list .card-data h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--ff-proxima-xbold);
+  font-size: 70px;
+}
+
+.citation-list .card-body p {
+  color: #34393d;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  flex-flow: column wrap;
+  position: absolute;
+  bottom: 10px;
+  text-align: left;
 }
 
 main .citation-list-container .default-content-wrapper h2 {
@@ -40,17 +61,15 @@ main .citation-list-container .default-content-wrapper p {
   background: #fff;
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgba(0,0,0,.2);
+  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
   transition: all .3s;
   display: flex;
-  flex-wrap: wrap;
   align-items: stretch;
   align-content: stretch;
   width: 100%;
-  flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
 .citation-list .card-title {
@@ -65,23 +84,19 @@ main .citation-list-container .default-content-wrapper p {
 }
 
 .citation-list .card-body {
-  padding-left: 80px;
-  padding-bottom: 0;
-  padding-top: 0;
-  padding-right: 5px;
+  padding: 0 5px 0 80px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: stretch;
   align-content: stretch;
-  flex-direction: column-reverse;
+  flex-flow: column-reverse wrap;
   width: 100%;
   border: 0;
   margin-top: 20px;
 }
 
 .citation-list .card-data {
-  color: #0066a4;
+  color: var(--link-hover-color);
   position: relative;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -95,13 +110,6 @@ main .citation-list-container .default-content-wrapper p {
   top: 0;
 }
 
-.citation-list .card-data h2 {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: var(--ff-proxima-xbold);
-  font-size: 70px;
-}
-
 .citation-list .card-data h3 {
   margin-top: 0;
   font-family: var(--ff-proxima-xbold);
@@ -111,21 +119,6 @@ main .citation-list-container .default-content-wrapper p {
 
 .citation-list .card-data-label {
   margin-bottom: 35px;
-}
-
-.citation-list .card-body p {
-  color: #34393d;
-  font-size: 24px;
-  line-height: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: stretch;
-  flex-direction: column;
-  position: absolute;
-  bottom: 10px;
-  text-align: left;
 }
 
 .citation-list .card-body p a {
