@@ -1,12 +1,12 @@
 .image-list.block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 30px;
+  display: block;
   margin-bottom: 30px;
 }
 
-.image-list.row.block {
-  display: block;
+.image-list.features.block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
 }
 
 .image-list.block > div {
