@@ -567,7 +567,8 @@ export function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
-  return loadBlock(headerBlock);
+  loadBlock(headerBlock);
+  return headerBlock;
 }
 
 /**

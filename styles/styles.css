@@ -206,6 +206,10 @@ blockquote {
   margin-bottom: 1em;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -253,6 +257,7 @@ em strong {
   font-size: var(--body-font-size-xs);
   display: block;
   color: var(--text-gray);
+  font-style: italic;
 }
 
 /* buttons */
@@ -445,6 +450,10 @@ main .section>div {
 
   main .section>div {
     width: 750px
+  }
+
+  main .section.background-molecules .columns.columns-2-cols > div {
+    align-items: flex-start;
   }
 }
 
@@ -653,7 +662,6 @@ main .section.wave {
   padding-bottom: 0;
   color: var(--text-white);
   text-align: center;
-  margin-bottom: 45px;
 }
 
 main .section.wave::after {
@@ -687,7 +695,7 @@ main .section.wave p {
   margin: 0;
 }
 
-main .section.wave p:first-of-type {
+main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
 }

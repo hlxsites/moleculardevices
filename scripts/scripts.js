@@ -12,14 +12,18 @@ import {
   getMetadata,
   loadCSS,
   loadBlock,
+  loadHeader,
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import loadHeader from './header-utils.js';
-import TEMPLATE_LIST from '../templates/config.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
-window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+/**
+ * to add/remove a template, just add/remove it in the list below
+ */
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
+
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
@@ -36,18 +40,34 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
-/*
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
+/**
+ * Will add the 'text-caption' class to the empasised elements from
+ * the next sibling to mark them as captions
+ * @param {NodeListOf<Element>} elems Elements which are presumed to have a caption attached.
+ */
+export function styleCaption(elems) {
+  elems.forEach((elem) => {
+    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
+    if (checkEm) {
+      const ems = checkEm.parentElement.children;
+      [...ems].forEach((em) => {
+        em.classList.add('text-caption');
+      });
+    }
+  });
 }
+
+/*
+* If we have a hero block, move it into its own section, so it can be displayed faster
 */
+function optimiseHeroBlock(main) {
+  const heroBlock = main.querySelector('.hero');
+  if (!heroBlock) return;
+
+  const heroSection = document.createElement('div');
+  heroSection.appendChild(heroBlock);
+  main.prepend(heroSection);
+}
 
 /**
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
@@ -124,6 +144,7 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  optimiseHeroBlock(main);
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
@@ -205,7 +226,8 @@ export async function fetchFragment(path) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
-  loadHeader(doc.querySelector('header'));
+  // eslint-disable-next-line no-unused-vars
+  const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
@@ -213,6 +235,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
+  const megaMenuModule = await import('../blocks/header/header-megamenu.js');
+  megaMenuModule.default(headerBlock);
   loadFooter(doc.querySelector('footer'));
   loadBreadcrumbs(main);
 
