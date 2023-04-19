@@ -501,10 +501,8 @@ main .section.center {
   text-align: center;
 }
 
-main .section.background-molecules .hero-wrapper::after {
-  content: '';
-  display: block;
-  height: 90px;
+main .section.background-molecules {
+  padding-top: 90px;
   background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
   background-position: center top;
