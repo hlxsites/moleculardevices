@@ -97,10 +97,16 @@ async function loadBreadcrumbs(main) {
  * @param {Element} main The container element
  */
 function decoratePageNav(main) {
-  const sections = [...main.querySelectorAll('div.section')].slice(1);
-  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
+  const pageTabsBlock = main.querySelector('.page-tabs');
+  if (!pageTabsBlock) return;
 
+  const pageTabSection = pageTabsBlock.closest('div.section');
+  let sections = [...main.querySelectorAll('div.section')];
+  sections = sections.slice(sections.indexOf(pageTabSection) + 1);
+  
+  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
+
     let index = 0;
     sections.forEach((section) => {
       if (index < namedSections.length) {
