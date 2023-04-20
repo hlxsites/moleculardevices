@@ -4,6 +4,10 @@
   .hero-inner h1 + div picture {
     display: none;
   }
+
+  .hero-inner h1 {
+    margin-bottom: 30px;
+  }
 }
 
 @media (max-width: 767px) {

@@ -10,50 +10,54 @@ main .hero-advanced-wrapper {
   max-width: unset;
 }
 
+.hero {
+  margin-top: -10px;
+}
+
 .hero,
 .hero-inner {
   position: relative;
   color: var(--text-white);
 }
 
-main .hero-inner .breadcrumbs {
+.hero-inner .breadcrumbs {
   padding-top: 40px;
   padding-bottom: 42.5px;
 }
 
-main .hero-inner .breadcrumbs ol {
+.hero-inner .breadcrumbs ol {
   padding: 0 15px;
 }
 
-main .hero-inner p {
+.hero-inner p {
   margin: 0 0 10px;
 }
 
-main .hero-inner a:any-link {
+.hero-inner a:any-link {
   color: var(--text-white);
 }
 
-main .hero-inner p.button-container {
+.hero-inner p.button-container {
   margin: 0;
 }
 
-main .hero-inner ul {
+.hero-inner ul {
   margin: 0;
   padding-top: 5px;
 }
 
-main .hero-inner li {
+.hero-inner li {
   margin-bottom: 15px;
 }
 
 .hero-inner h1 {
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: white;
   line-height: 1;
 }
 
-main .hero-inner h6 {
+.hero-inner h6 {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
@@ -62,11 +66,11 @@ main .hero-inner h6 {
   font-size: var(--heading-font-size-m);
 }
 
-main .hero-inner h6:first-child {
+.hero-inner h6:first-child {
   margin-top: 0;
 }
 
-main .hero-inner .hero-background {
+.hero-inner .hero-background {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -76,7 +80,7 @@ main .hero-inner .hero-background {
   box-sizing: border-box;
 }
 
-main .hero-inner img {
+.hero-inner img {
   object-fit: cover;
   object-position: center top;
   width: 100%;
@@ -89,32 +93,32 @@ main .section .hero-advanced-wrapper {
   padding: 0;
 }
 
-main .hero-inner > div {
+.hero-inner > div {
   margin:auto;
 }
 
 .hero-inner .container {
-  font-size: var(--body-font-size-l);
+  font-size: var(--body-font-size-m);
 }
 
-main .hero-inner .container > div {
+.hero-inner .container > div {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-main .hero-inner .container > div:nth-child(2) {
+.hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 40px;
   padding-top: 45px;
   font-size: var(--body-font-size-xs);
 }
 
-main .hero-inner .container > div:nth-child(2).video-column {
+.hero-inner .container > div:nth-child(2).video-column {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-main .hero-inner .container > div:nth-child(2) .button-container {
+.hero-inner .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
   color: var(--text-white);
@@ -124,7 +128,7 @@ main .hero-inner .container > div:nth-child(2) .button-container {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-main .hero-inner .video-icon img {
+.hero-inner .video-icon img {
   height: 91px;
   width: 90px;
   margin: auto;
@@ -132,7 +136,7 @@ main .hero-inner .video-icon img {
   transition: all ease .3s;
 }
 
-main .hero-inner .video-icon img:hover {
+.hero-inner .video-icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
 }
@@ -159,7 +163,7 @@ display: none;
 }
 
 main .hero.blog .hero-inner {
-  padding: 0 0 40%;
+  padding: 0 0 46.5%;
   height: 555px;
   overflow: hidden;
   background-image: linear-gradient(to bottom,rgba(255 255 255 / 0%) 55%,rgba(0 0 0 / 90%));
@@ -224,48 +228,57 @@ main .hero.blog .breadcrumbs > ol {
 
   .hero-inner {
     min-height: 180px;
-    padding-top: 34%;
-    padding-bottom: 41px;
+    padding-top: 40px;
+    padding-bottom: 45px;
   }
 
   /* TODO fix heading vars in styles.css */
-  main .hero-inner h1 {
-    margin-bottom:10px;
-    font-size: 36px;
+  .hero-inner h1 {
+    margin-bottom: 10px;
+    font-size: var(--heading-font-size-l);
   }
 
-  main .hero-inner .two-column h1 {
-    font-size: 28px;
+  .hero-inner .container div div:nth-child(1) * {
+    display: none;
   }
 
-  main .hero-inner h4 {
-    margin-bottom: 10px;;
-  }
-
-  main .hero-inner .container > div:nth-child(1) > div > p.button-container,
-  main .hero-inner .container > div:nth-child(1) > div > h1 {
+  .hero-inner .container div div:nth-child(1) h1,
+  .hero-inner .container div div:nth-child(1) .button-container * {
     display: block;
   }
 
-  main .hero-inner .container > div:nth-child(2) {
+  .hero-inner .two-column h1 {
+    font-size: 28px;
+  }
+
+  .hero-inner h4 {
+    margin-bottom: 10px;;
+  }
+
+  .hero-inner .container > div:nth-child(1) > div > p.button-container,
+  .hero-inner .container > div:nth-child(1) > div > h1 {
+    display: block;
+  }
+
+  .hero-inner .container > div:nth-child(2) {
     font-size: var(--body-font-size-m);
   }
 
-  main .hero-inner .container.two-column > div:nth-child(2) {
+  .hero-inner .container.two-column > div:nth-child(2) {
     padding-top: 15px;
     padding-left: 15px;
   }
 
-  main .hero-inner .container.two-column > div:nth-child(2) > div {
+  .hero-inner .container.two-column > div:nth-child(2) > div {
     border-top: 2px solid #fff;
     padding-top:30px;
   }
 
-  main .hero-inner .container.two-column > div.video-column > div {
+  .hero-inner .container.two-column > div.video-column > div {
     border: none;
   }
 
-  main .hero-inner .button-container a {
+  .hero-inner .button-container a {
     padding: 9px 12px 10px;
   }
 
@@ -274,10 +287,7 @@ main .hero.blog .breadcrumbs > ol {
   }
 }
 
-@media (max-width: 768px) {
-  main .hero-inner h1 {
-    font-size: 45px;
-  }
+@media (max-width: 767px) {
 
   /* Blog Variant - Mobile -- Start */
   .blog main .hero-wrapper {
@@ -331,11 +341,11 @@ main .hero.blog .breadcrumbs > ol {
     height: unset;
   }
 
-  .blog main .hero-inner .breadcrumbs {
+  .blog .hero-inner .breadcrumbs {
     display: block;
   }
 
-  .blog main .hero-inner .breadcrumbs ol {
+  .blog .hero-inner .breadcrumbs ol {
     display: none;
   }
 
@@ -352,19 +362,20 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 768px) {
-  main .hero-inner {
+  .hero-inner {
     min-height: 440px;
   }
 
-  main .hero-inner .container {
+  .hero-inner .container {
     overflow: auto;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
-    padding: 0 0 120px;
+    display: flex;
+    padding-bottom: 45px;
   }
 
-  main .hero-inner .video-icon img {
+  .hero-inner .video-icon img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -372,12 +383,12 @@ main .hero.blog .breadcrumbs > ol {
     right: 0;
   }
 
-  main .hero-inner .container.two-column > div:nth-child(2).video-column {
+  .hero-inner .container.two-column > div:nth-child(2).video-column {
     border: none;
   }
 
-  main .hero-inner .container > div:nth-child(1) .button-container {
-    margin-top: 20px;
+  .hero-inner .container > div:nth-child(1) .button-container {
+    margin-top: 30px;
   }
   
   .video-icon {
@@ -388,28 +399,23 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 992px) {
-  main .hero-inner > div {
+  .hero-inner > div {
     width: 970px
   }
 
-  main .hero-inner .container {
-    display: flex;
-    padding: 0 0 120px;
-  }
-
-  main .hero-inner .container > div {
+  .hero-inner .container > div {
     float:left;
   }
 
-  main .hero-inner .container > div:nth-child(1) {
-    width: 66%
+  .hero-inner .container > div:nth-child(1) {
+    width: 67%
   }
 
   main .hero.blog .container > div:nth-child(1) {
     width: unset;
   }
 
-  main .hero-inner .container.two-column > div:nth-child(2) {
+  .hero-inner .container.two-column > div:nth-child(2) {
     width: 33%;
     border-left: 2px solid #fff;
   }
@@ -420,7 +426,7 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 1200px) {
-  main .hero-inner > div {
+  .hero-inner > div {
     width: 1170px
   }
 }
