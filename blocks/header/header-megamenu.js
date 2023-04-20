@@ -78,7 +78,7 @@ export default async function fetchAndStyleMegamenus(headerBlock) {
   }
 
   // Process all submenu responses
-  await Promise.all(submenuProcessingPromises);
+  Promise.all(submenuProcessingPromises);
 
   handleViewportChanges(headerBlock);
 }
