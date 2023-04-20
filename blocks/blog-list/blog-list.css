@@ -20,7 +20,37 @@ main .blog-list {
   align-content: stretch;
 }
 
-main .blog-list .blog-card-wrapper {
+main .blog-list .carousel-item {
   width: 32%;
   padding: 20px 15px 40px;
+}
+
+main .blog-list .carousel-item.clone {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  main div.blog-list-wrapper {
+    width: 100%;
+    max-width: unset !important;
+  }
+
+  main .blog-list {
+    justify-content: start;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0 10%;
+  }
+
+  main .blog-list .carousel-item {
+    flex: 1 0 100%;
+    width: 100%;
+    padding: 20px 15px 40px;
+  }
+
+  main .blog-list .carousel-item.clone {
+    display: block;
+  }
 }

@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { renderBlogCard } from '../../templates/blog/blog.js';
-import { div } from '../../scripts/dom-helpers.js';
+import createCarousel from '../carousel/carousel.js';
 
 const BLOGS = new Map();
 const viewAllCategory = 'viewall';
@@ -10,11 +10,9 @@ function getCurrentCategory() {
   return activeHash ? activeHash.substring(1).toLowerCase() : viewAllCategory;
 }
 
-function filterChanged(block) {
-  block.innerHTML = '';
-  BLOGS.get(getCurrentCategory()).forEach((item) => {
-    block.appendChild(item);
-  });
+function filterChanged(carousel) {
+  carousel.data = BLOGS.get(getCurrentCategory());
+  carousel.render();
 }
 
 export default async function decorate(block) {
@@ -23,24 +21,32 @@ export default async function decorate(block) {
     .all();
 
   BLOGS.set(viewAllCategory, []);
-  const currentCategory = getCurrentCategory();
-
   blogs.forEach((item) => {
     const itemCategory = item.path.split('/')[2];
+    if (!itemCategory || itemCategory === 'blog') return;
 
     if (!BLOGS.has(itemCategory)) {
       BLOGS.set(itemCategory, []);
     }
 
-    const renderedItem = div({ class: 'blog-card-wrapper' }, renderBlogCard(item));
+    const renderedItem = renderBlogCard(item);
 
     BLOGS.get(itemCategory).push(renderedItem);
     BLOGS.get(viewAllCategory).push(renderedItem);
-
-    if (currentCategory === viewAllCategory || itemCategory === currentCategory) {
-      block.appendChild(renderedItem);
-    }
   });
 
-  window.addEventListener('hashchange', () => { filterChanged(block); });
+  const carousel = await createCarousel(
+    block,
+    BLOGS.get(getCurrentCategory()),
+    {
+      infiniteScroll: true,
+      navButtons: false,
+      dotButtons: false,
+      autoScroll: false,
+      defaultStyling: false,
+      renderItem: (item) => item,
+    },
+  );
+
+  window.addEventListener('hashchange', () => { filterChanged(carousel); });
 }
