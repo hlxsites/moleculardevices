@@ -1,5 +1,41 @@
 @import url("../hero/hero.css");
 
-.hero-advanced .container picture {
-  display: none;
+@media (min-width: 768px) {
+  .hero-inner h1 + div picture {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-inner {
+    background-color: var(--grey-background-color);
+    color: var(--text-color);
+    padding-top: 30px;
+  }
+
+  .hero-inner .container {
+    position: relative;
+  }
+
+  .hero-inner h1 {
+    color: var(--text-color);
+    font-family: var(--ff-proxima-light);
+  }
+
+  .hero-inner .two-column h1+div {
+    text-align: center;
+  }
+
+  .hero-inner h1 + div picture img {
+    width: 300px;
+    height: unset;
+    margin-top: 20px;
+    margin-bottom: 32px;
+  }
+  
+  .hero-inner .video-column {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+  }
 }

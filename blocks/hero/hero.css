@@ -10,8 +10,8 @@ main .hero-advanced-wrapper {
   max-width: unset;
 }
 
-main .hero,
-main .hero-inner {
+.hero,
+.hero-inner {
   position: relative;
   color: var(--text-white);
 }
@@ -46,7 +46,7 @@ main .hero-inner li {
   margin-bottom: 15px;
 }
 
-main .hero-inner h1 {
+.hero-inner h1 {
   margin-top: 20px;
   margin-bottom: 30px;
   color: white;
@@ -91,6 +91,10 @@ main .section .hero-advanced-wrapper {
 
 main .hero-inner > div {
   margin:auto;
+}
+
+.hero-inner .container {
+  font-size: var(--body-font-size-l);
 }
 
 main .hero-inner .container > div {
@@ -218,7 +222,7 @@ main .hero.blog .breadcrumbs > ol {
     display: none;
   }
 
-  main .hero-inner {
+  .hero-inner {
     min-height: 180px;
     padding-top: 34%;
     padding-bottom: 41px;
@@ -236,10 +240,6 @@ main .hero.blog .breadcrumbs > ol {
 
   main .hero-inner h4 {
     margin-bottom: 10px;;
-  }
-
-  main .hero-inner .container > div:nth-child(1) > div > * {
-    display: none;
   }
 
   main .hero-inner .container > div:nth-child(1) > div > p.button-container,
