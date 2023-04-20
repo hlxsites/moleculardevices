@@ -75,6 +75,7 @@ export default async function decorate(block) {
 
   const navTabs = content.querySelector('.nav-menu');
   newNav.innerHTML = navTabs.outerHTML;
+  container.append(buildBrandLogo(content));
   container.append(newNav);
   mainMenuWrapper.append(container);
 
