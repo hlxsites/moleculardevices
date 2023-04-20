@@ -1,8 +1,8 @@
-
-main div.blog-list-wrapper {
+/* Desktop - Style like a list */
+.blog .section div.blog-list-wrapper {
   width: 1170px;
-  max-width: unset !important;
-  padding: 0 15px !important;
+  max-width: unset;
+  padding: 0 15px;
 }
 
 main .blog-list {
@@ -22,10 +22,26 @@ main .blog-list .carousel-item.clone {
   display: none;
 }
 
+@media only screen and (max-width: 1200px) {
+  .blog .section div.blog-list-wrapper {
+    width: 970px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .blog .section div.blog-list-wrapper {
+    width: 750px;
+  }
+
+  main .blog-list .carousel-item {
+    width: 45%;
+  }
+}
+
+/* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  main div.blog-list-wrapper {
+  .blog .section div.blog-list-wrapper {
     width: 100%;
-    max-width: unset !important;
   }
 
   main .blog-list {
