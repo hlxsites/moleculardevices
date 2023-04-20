@@ -66,7 +66,7 @@ export default async function decorate(block) {
   // ------ Nav ------
   // Create wrapper for nav
   const mainMenuWrapper = document.createElement('div');
-  mainMenuWrapper.classList.add('mainmenu-wrapper');
+  mainMenuWrapper.classList.add('mainmenu-wrapper', 'sticky-element');
 
   const container = document.createElement('div');
   container.classList.add('container');

@@ -55,4 +55,7 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
+
+  const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
+  pageTabsBlock.classList.add('sticky-element');
 }
