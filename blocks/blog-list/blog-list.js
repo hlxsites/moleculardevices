@@ -7,7 +7,8 @@ const viewAllCategory = 'viewall';
 
 function getCurrentCategory() {
   const activeHash = window.location.hash;
-  return activeHash ? activeHash.substring(1).toLowerCase() : viewAllCategory;
+  const currentFilter = activeHash ? activeHash.substring(1).toLowerCase() : viewAllCategory;
+  return BLOGS.has(currentFilter) ? currentFilter : viewAllCategory;
 }
 
 function filterChanged(carousel) {
