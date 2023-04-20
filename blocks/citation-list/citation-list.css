@@ -6,6 +6,23 @@ main .citation-list-container .default-content-wrapper {
   padding-bottom: 45px;
 }
 
+main .citation-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+main .citation-list .carousel-item {
+  width: 32%;
+  padding: 20px 15px 40px;
+}
+
+main .citation-list .carousel-item.clone {
+  display: none;
+}
+
 .citation-list .card-data h2 {
   margin-top: 0;
   margin-bottom: 0;
@@ -39,16 +56,6 @@ main .citation-list-container .default-content-wrapper p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
-  align-content: stretch;
-}
-
-.citation-list .flex-item {
-  width: 32%;
-  padding: 20px 15px 40px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: stretch;
   align-items: stretch;
   align-content: stretch;
 }
@@ -133,6 +140,12 @@ main .citation-list-container .default-content-wrapper p {
   }
 }
 
+@media only screen and (max-width: 992px) {
+  main .citation-list .carousel-item {
+    width: 45%;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .citation-list .card-data h2 {
     font-size: 35px;
@@ -144,9 +157,23 @@ main .citation-list-container .default-content-wrapper p {
 }
 
 @media (max-width: 767px) {
-  .citation-list {
-    overflow-x: hidden;
+  main .citation-list {
+    justify-content: start;
+    flex-wrap: nowrap;
+    overflow: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0 10%;
+  }
+
+  main .citation-list .carousel-item {
+    flex: 1 0 100%;
+    width: 100%;
+    padding: 20px 15px 40px;
+  }
+
+  main .citation-list .carousel-item.clone {
+    display: block;
   }
 
   .citation-list .topics-list-container {
@@ -154,11 +181,6 @@ main .citation-list-container .default-content-wrapper p {
     justify-content: flex-start;
     padding: 20px;
     transition: transform 0.3s ease-in-out;
-  }
-
-  .citation-list .flex-item {
-    flex: 1 0 calc(100% - 50px);
-    display: flex;
   }
 
   .citation-list .card-body {
