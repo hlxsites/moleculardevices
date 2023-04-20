@@ -106,6 +106,22 @@ function swapData(options) {
   document.querySelector(`.${classList}`).scrollIntoView();
 }
 
+function getPaginationStart(options) {
+  const page = options.activeFilters.get('page');
+  let startIdx = Math.min(page, (options.maxPages - options.limitForPagination + 1));
+  if (startIdx === page) startIdx = page - 1;
+  if (startIdx < 1) startIdx = 1;
+  return startIdx;
+}
+
+function getPaginationEnd(startIdx, options) {
+  let endIdx = options.maxPages;
+  if ((startIdx + options.limitForPagination) <= (options.maxPages)) {
+    endIdx = (startIdx + options.limitForPagination - 1);
+  }
+  return endIdx;
+}
+
 async function switchPage(event, options) {
   const elem = event.target;
 
@@ -117,15 +133,28 @@ async function switchPage(event, options) {
 
   const selected = options.activeFilters.get('page');
   const { maxPages } = options;
+
+  const pagerItem = pagination.querySelectorAll(`.${classPagerItem}`);
+  const startIdx = getPaginationStart(options);
+  const endIdx = getPaginationEnd(startIdx, options);
+  pagerItem.forEach((item) => {
+    item.classList.remove(`${classHidden}`);
+    const pager = parseInt(item.getAttribute('name'), 10);
+    if (pager < startIdx || pager > endIdx) {
+      item.classList.add(`${classHidden}`);
+    }
+  });
+
   const pagerNav = pagination.querySelectorAll(`.${classPagerNav}`);
   pagerNav[1].setAttribute('name', Math.max(selected - 1, 1));
   pagerNav[2].setAttribute('name', Math.min(selected + 1, maxPages));
   pagerNav.forEach((item, idx) => {
     item.classList.remove(`${classHidden}`);
-    if ((idx < 2 && selected === 1) || (idx > 1 && selected === maxPages)) {
+    if ((idx < 2 && selected < startIdx) || (idx > 1 && selected > endIdx)) {
       item.classList.add(`${classHidden}`);
     }
   });
+
   pagination.querySelector(`.${classPagerItem}[name="${selected}"]:not(.${classPagerNav})`).classList.add(classActive);
 
   swapData(options);
@@ -193,13 +222,8 @@ export async function renderPagination(container, options, ajaxCall) {
   nav.className = classPagination;
 
   if (options.maxPages > 1) {
-    let startIdx = Math.min(page, (options.maxPages - options.limitForPagination + 1));
-    if (startIdx < 0) startIdx = 1;
-
-    let endIdx = options.maxPages;
-    if ((startIdx + options.limitForPagination) <= (options.maxPages)) {
-      endIdx = (startIdx + options.limitForPagination - 1);
-    }
+    const startIdx = getPaginationStart(options);
+    const endIdx = getPaginationEnd(startIdx, options);
 
     nav.append(createPaginationItem(1, page, '«', page === 1));
     nav.append(createPaginationItem(page - 1, page, '‹', page === 1));
@@ -208,6 +232,12 @@ export async function renderPagination(container, options, ajaxCall) {
     for (let i = startIdx; i <= endIdx; i++) {
       if (i > 0) {
         nav.append(createPaginationItem(i, page, '', false));
+      }
+    }
+    // eslint-disable-next-line no-plusplus
+    for (let j = endIdx + 1; j <= options.maxPages; j++) {
+      if (j > 0) {
+        nav.append(createPaginationItem(j, page, '', true));
       }
     }
     nav.append(createPaginationItem(page + 1, page, '›', page === options.maxPages));
