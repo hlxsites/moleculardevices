@@ -288,8 +288,7 @@ export function setCookie(cname, cvalue, exdays) {
   if (domain === true) {
     hostName = 'domain=.moleculardevices.com;';
   }
-  /* eslint-disable no-trailing-spaces */
-  document.cookie = `${cname}=${cvalue};secure;${hostName}${expires};path=/`;
+  document.cookie = `${cname}=${cvalue};secure;${hostName}${expires};path=\/`;
 }
 
 /**
@@ -297,8 +296,7 @@ export function setCookie(cname, cvalue, exdays) {
  * @param cname the name of the cookie
  */
 export function getCookie(cname) {
-  /* eslint-disable no-param-reassign */
-  cname += '=';
+  const cName = "${cname}=";
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
   /* eslint-disable-next-line no-plusplus */
@@ -307,8 +305,8 @@ export function getCookie(cname) {
     while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(cname) === 0) {
-      return c.substring(cname.length, c.length);
+    if (c.indexOf(cName) === 0) {
+      return c.substring(cName.length, c.length);
     }
   }
   return '';
