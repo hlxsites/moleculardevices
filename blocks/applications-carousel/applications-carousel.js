@@ -1,5 +1,5 @@
-import { fetchFragment } from '../../scripts/scripts.js';
-import createCarousel, { summariseDescription } from '../carousel/carousel.js';
+import { fetchFragment, summariseDescription } from '../../scripts/scripts.js';
+import createCarousel from '../carousel/carousel.js';
 import {
   div, a, p, i, h3,
 } from '../../scripts/dom-helpers.js';

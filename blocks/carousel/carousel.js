@@ -223,6 +223,10 @@ class Carousel {
   * Adds event listeners for touch UI swiping
   */
   addSwipeCapability() {
+    if (this.block.swipeCapabilityAdded) {
+      return;
+    }
+
     let touchstartX = 0;
     let touchendX = 0;
 
@@ -246,6 +250,7 @@ class Carousel {
         this.prevItem();
       }
     }, { passive: true });
+    this.block.swipeCapabilityAdded = true;
   }
 
   setInitialScrollingPosition() {
@@ -397,16 +402,4 @@ export default async function createCarousel(block, data, config) {
   const carousel = new Carousel(block, data, config);
   await carousel.render();
   return carousel;
-}
-
-export function summariseDescription(description, charCount) {
-  let result = description;
-  if (result.length > charCount) {
-    result = result.substring(0, charCount);
-    const lastSpaceIndex = result.lastIndexOf(' ');
-    if (lastSpaceIndex !== -1) {
-      result = result.substring(0, lastSpaceIndex);
-    }
-  }
-  return `${result}…`;
 }
