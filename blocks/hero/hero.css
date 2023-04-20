@@ -92,8 +92,8 @@ main .hero-advanced-wrapper {
 }
 
 .hero-inner .two-column p {
-  margin: 0 0 20px;
-  line-height: 1.33;
+  margin: 0 0 25px;
+  line-height: 1.5;
 }
 
 main .section .hero-wrapper,
@@ -117,8 +117,8 @@ main .section .hero-advanced-wrapper {
 
 .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
-  padding-bottom: 40px;
-  padding-top: 35px;
+  padding-bottom: 30px;
+  padding-top: 45px;
   font-size: var(--body-font-size-xs);
 }
 
@@ -417,7 +417,7 @@ main .hero.blog .breadcrumbs > ol {
   }
 
   .hero-inner .container > div:nth-child(1) {
-    width: 67%
+    width: 66.5%
   }
 
   main .hero.blog .container > div:nth-child(1) {
