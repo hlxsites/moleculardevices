@@ -16,7 +16,6 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import enableStickyElements from './sticky-elements.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -25,6 +24,8 @@ const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
 
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
+
+let LAST_SCROLL_POSITION = 0;
 
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
@@ -242,6 +243,42 @@ export async function fetchFragment(path) {
     return null;
   }
   return text;
+}
+
+/**
+ * Enable sticky components
+ *
+ */
+function enableStickyElements() {
+  const stickyElements = document.querySelectorAll('.sticky-element');
+  const offsets = [];
+
+  stickyElements.forEach((element, index) => {
+    offsets[index] = element.offsetTop;
+  });
+
+  window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.pageYOffset;
+    let stackedHeight = 0;
+    stickyElements.forEach((element, index) => {
+      if (currentScrollPosition > offsets[index] - stackedHeight) {
+        element.classList.add('sticky');
+        element.style.top = `${stackedHeight}px`;
+        stackedHeight += element.offsetHeight;
+      } else {
+        element.classList.remove('sticky');
+        element.style.top = '';
+      }
+
+      if (currentScrollPosition < LAST_SCROLL_POSITION && currentScrollPosition <= offsets[index]) {
+        element.style.top = `${Math.max(offsets[index] - currentScrollPosition, stackedHeight - element.offsetHeight)}px`;
+      } else {
+        element.style.top = `${stackedHeight - element.offsetHeight}px`;
+      }
+    });
+
+    LAST_SCROLL_POSITION = currentScrollPosition;
+  });
 }
 
 /**
