@@ -288,7 +288,7 @@ export function setCookie(cname, cvalue, exdays) {
   if (domain === true) {
     hostName = 'domain=.moleculardevices.com;';
   }
-  document.cookie = `${cname}=${cvalue};secure;${hostName}${expires};path=\/`;
+  document.cookie = `${cname}=${cvalue};secure;${hostName}${expires};path=/`;
 }
 
 /**
@@ -296,7 +296,7 @@ export function setCookie(cname, cvalue, exdays) {
  * @param cname the name of the cookie
  */
 export function getCookie(cname) {
-  const cName = "${cname}=";
+  const cName = `${cname}=`;
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
   /* eslint-disable-next-line no-plusplus */
