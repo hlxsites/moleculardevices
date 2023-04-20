@@ -4,6 +4,7 @@ main .section>div.page-tabs-wrapper {
   background-image: url("/images/tabLinksBg.jpg");
   background-size: cover;
   background-position: right center;
+  z-index: 99;
 }
 
 main .page-tabs {

@@ -260,7 +260,6 @@ function enableStickyElements() {
   window.addEventListener('scroll', () => {
     const currentScrollPosition = window.pageYOffset;
     let stackedHeight = 0;
-
     stickyElements.forEach((element, index) => {
       if (currentScrollPosition > offsets[index] - stackedHeight) {
         element.classList.add('sticky');
@@ -290,9 +289,10 @@ async function loadLazy(doc) {
 
   // eslint-disable-next-line no-unused-vars
   const headerBlock = loadHeader(doc.querySelector('header'));
+  // we run this twice to ensure that the sticky elements are enabled as soon as the header appears
+  enableStickyElements();
 
   await loadBlocks(main);
-
   enableStickyElements();
 
   const { hash } = window.location;
