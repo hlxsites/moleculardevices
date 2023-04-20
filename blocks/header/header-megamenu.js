@@ -40,49 +40,45 @@ function getSubmenus() {
 }
 
 export default async function fetchAndStyleMegamenus(headerBlock) {
+  // fetch the header content, we need it to be able to get the background image
+  const headerContent = await fetchHeaderContent();
+
   // ------ Submenus ------
   const submenusList = getSubmenus();
 
   // Fetch all submenu content concurrently
-  const submenuFetchPromises = [];
+  const submenuProcessingPromises = [];
   for (let i = 0; i < submenusList.length - 1; i += 1) {
     const submenuId = submenusList[i];
     const submenuPath = getMetadata(`${submenuId}-submenu`) || `/fragments/menu/${submenuId}`;
-    submenuFetchPromises.push(
-      fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
-    );
+
+    const processingPromise = fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {})
+      .then(async (submenuResponse) => {
+        if (submenuResponse.ok) {
+          const closeButton = document.createElement('div');
+          closeButton.classList.add('menu-nav-submenu-close');
+
+          const submenuHtml = await submenuResponse.text();
+          const submenuContent = document.createElement('div');
+          submenuContent.classList.add('menu-nav-submenu');
+          submenuContent.innerHTML = submenuHtml;
+
+          // Get submenu builder, and build submenu
+          buildMegaMenu(headerContent, submenuContent);
+
+          // Get the list item in the header block that contains a div with attribute menu-id
+          // that matches the submenuId
+          const li = headerBlock.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
+          li.append(closeButton);
+          li.append(submenuContent);
+        }
+      });
+
+    submenuProcessingPromises.push(processingPromise);
   }
 
   // Process all submenu responses
-  const submenuResponses = await Promise.all(submenuFetchPromises);
-
-  // fetch the header content, we need it to be able to get the background image
-  const headerContent = await fetchHeaderContent();
-
-  // iterate over all submenu responses
-  for (let i = 0; i < submenuResponses.length; i += 1) {
-    const submenuResponse = submenuResponses[i];
-    if (submenuResponse.ok) {
-      const closeButton = document.createElement('div');
-      closeButton.classList.add('menu-nav-submenu-close');
-
-      const submenuId = submenusList[i];
-      // eslint-disable-next-line no-await-in-loop
-      const submenuHtml = await submenuResponse.text();
-      const submenuContent = document.createElement('div');
-      submenuContent.classList.add('menu-nav-submenu');
-      submenuContent.innerHTML = submenuHtml;
-
-      // Get submenu builder, and build submenu
-      buildMegaMenu(headerContent, submenuContent);
-
-      // Get the list item in the header block that contains a div with attribute menu-id
-      // that matches the submenuId
-      const li = headerBlock.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
-      li.append(closeButton);
-      li.append(submenuContent);
-    }
-  }
+  await Promise.all(submenuProcessingPromises);
 
   handleViewportChanges(headerBlock);
 }
