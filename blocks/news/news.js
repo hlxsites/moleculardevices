@@ -1,6 +1,5 @@
 import {
   readBlockConfig,
-  toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import createList from '../../scripts/list.js';
@@ -9,24 +8,15 @@ function formatDateFullYear(unixDateString) {
   return new Date(unixDateString * 1000).getFullYear();
 }
 
-function filterEntries(entries, activeFilters) {
-  let filteredEntries = entries;
-  if (activeFilters.year) {
-    filteredEntries = filteredEntries
-      .filter((n) => toClassName(n.filterDate.toString()).includes(activeFilters.year));
-  }
-  return filteredEntries;
-}
-
-function createFilters(entries, activeFilters, createDropdown) {
-  const date = Array.from(new Set(entries.map((n) => n.filterDate)));
+function createFilters(options, createDropdown) {
+  const date = Array.from(new Set(options.data.map((n) => n.filterYear)));
   return [
-    createDropdown(date, activeFilters.year, 'select-year', 'Select Year'),
+    createDropdown(date, options.activeFilters.year, 'year', 'Select Year'),
   ];
 }
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterDate = formatDateFullYear(entry.date);
+  entry.filterYear = formatDateFullYear(entry.date);
   if (!showDescription) {
     entry.description = '';
   }
@@ -37,41 +27,41 @@ function prepareEntry(entry, showDescription, viewMoreText) {
 
 export async function createOverview(
   block,
-  entries,
-  limit,
-  paginationLimit,
-  showDescription,
-  viewMoreText,
+  options,
 ) {
   block.innerHTML = '';
-
-  entries.forEach((entry) => prepareEntry(entry, showDescription, viewMoreText));
-
-  const panelTitle = 'Filter By :';
+  options.data.forEach(
+    (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
+  );
   await createList(
-    entries,
-    filterEntries,
     createFilters,
-    limit,
-    paginationLimit,
-    block,
-    panelTitle);
+    options,
+    block);
 }
 
-export async function fetchEntries(type) {
-  const entries = await ffetch('/query-index.json')
+export async function fetchData(type) {
+  const data = await ffetch('/query-index.json')
     .sheet(type)
     .all();
-  return entries;
+  return data;
 }
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  const limit = parseInt(config.limit, 10) || 10;
-  const paginationLimit = parseInt(config.paginationLimit, 9) || 9;
-  const entries = await fetchEntries('news');
-  const showDescription = false;
-  const viewMoreText = '';
-  // console.log(`found ${entries.length} entries`);
-  await createOverview(block, entries, limit, paginationLimit, showDescription, viewMoreText);
+  const options = {
+    limitPerPage: parseInt(config.limitPerPage, 10) || 10,
+    limitForPagination: parseInt(config.limitForPagination, 9) || 9,
+    showDescription: false,
+    viewMoreText: '',
+    panelTitle: 'Filter By :',
+  };
+  options.activeFilters = new Map();
+  options.activeFilters.set('year', '');
+  options.activeFilters.set('page', 1);
+
+  options.data = await fetchData('news');
+  // console.log(`found ${data.length} entries`);
+  await createOverview(
+    block,
+    options);
 }

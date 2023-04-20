@@ -139,6 +139,7 @@
   display: inline-block;
   color: var(--text-light-gray);
   text-decoration: none;
+  min-width: 55px;
   width: 55px;
   height: 55px;
   border: 1px solid var(--text-light-gray);
@@ -150,8 +151,13 @@
   margin: 4px;
 }
 
-.list > .pagination > .pager-item.current {
-  color: unset
+.list > .pagination > .pager-item.active, .list > .pagination > .pager-item:hover {
+  color: unset;
+  border-color: unset;
+}
+
+.list > .pagination > .pager-item.hidden {
+  display: none;
 }
 
 .list > .pagination > .pager-item + .pager-item, 
