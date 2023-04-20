@@ -784,6 +784,14 @@ main .section.wave.wavecarousel {
   background-size: 100% 100%;
 }
 
+main .section.wave.wavecarousel.blue {
+  background-image: url("/images/wave-background-blue.webp");
+}
+
+main .section.wave.wavecarousel.bluegreen {
+  background-image: url("/images/wave-background-blue-green.webp");
+}
+
 @media only screen and (max-width: 767px) {
   main .section.wave.wavecarousel {
     min-height: 100%;
