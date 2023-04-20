@@ -4,12 +4,11 @@
 import { readFile } from '@web/test-runner-commands';
 import { expect } from '@esm-bundle/chai';
 
-const sleep = async (time = 1000) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
+const sleep = async (time = 1000) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(true);
+  }, time);
+});
 
 describe('Carousel Base Block', () => {
   // eslint-disable-next-line no-undef
