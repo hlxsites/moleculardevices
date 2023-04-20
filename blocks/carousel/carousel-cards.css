@@ -1,0 +1,106 @@
+/* 
+  Cards Carousel specific styling. 
+*/
+
+.carousel-wrapper.cards {
+  width: 1020px;
+  margin: 0 auto;
+}
+
+.carousel-wrapper.cards .carousel-nav-button:hover {
+  color: #adb3b7;
+  border: 1.5px solid #adb3b7;
+  background-color: inherit;
+}
+
+.carousel-wrapper.cards .carousel-nav-left {
+  left: -50px;
+}
+
+.carousel-wrapper.cards .carousel-nav-right {
+  right: -50px;
+}
+
+.carousel.cards {
+  padding: 0;
+}
+
+.carousel.cards .carousel-item {
+  display: block;
+  padding: 20px 15px 40px;
+  width: 340px;
+  margin: 0;
+}
+
+.carousel.cards .carousel-item:hover {
+  z-index: 1;
+  transform: scale(1.07);
+  transition: all 0.3s;
+}
+
+.carousel.cards .carousel-item .card {
+  height: 100%;
+  background: #fff;
+  margin: 0;
+  position: relative;
+  box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
+  transition: all 0.3s;
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.carousel.cards .carousel-item h3 {
+  font-size: var(--heading-font-size-l);
+  margin-bottom: 8px;
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+.carousel.cards .carousel-item p {
+  font-size: var(--body-font-size-xs);
+  margin: 0;
+  color: var(--text-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.carousel.cards .carousel-item .button-container {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.carousel.cards .carousel-item a {
+  font-size: 18px;
+  color: #008ca8;
+}
+
+.carousel.cards .carousel-item a span {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.carousel.cards .carousel-item a span svg {
+  height: 18px;
+  width: 18px;
+}
+
+.carousel.cards .carousel-item .card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  color: #12141f;
+  height: 100%;
+  min-height: auto;
+}
+
+.carousel.cards .carousel-item-columns-container {
+  flex-direction: column;
+}

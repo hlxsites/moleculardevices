@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
+import { span } from '../../scripts/dom-helpers.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -14,19 +15,6 @@ function createClone(item) {
   clone.classList.remove('selected');
 
   return clone;
-}
-
-/**
- * Creates the decorated icon for the nav button
- * @param {Element} button the nav button for which the icon needs to be cretated
- * @param string direction 'left' or 'right'
- */
-function createNavButtonIcon(button, direction) {
-  const icon = document.createElement('span');
-  icon.classList.add('icon');
-  icon.classList.add(`icon-chevron-${direction}`);
-  button.appendChild(icon);
-  decorateIcons(button);
 }
 
 class Carousel {
@@ -191,7 +179,7 @@ class Carousel {
     const buttonLeft = document.createElement('button');
     buttonLeft.classList.add('carousel-nav-left');
     buttonLeft.ariaLabel = 'Scroll to previous item';
-    createNavButtonIcon(buttonLeft, 'left');
+    buttonLeft.append(span({ class: 'icon icon-chevron-left' }));
     buttonLeft.addEventListener('click', () => {
       clearInterval(this.intervalId);
       this.prevItem();
@@ -204,7 +192,7 @@ class Carousel {
     const buttonRight = document.createElement('button');
     buttonRight.classList.add('carousel-nav-right');
     buttonRight.ariaLabel = 'Scroll to next item';
-    createNavButtonIcon(buttonRight, 'right');
+    buttonRight.append(span({ class: 'icon icon-chevron-right' }));
     buttonRight.addEventListener('click', () => {
       clearInterval(this.intervalId);
       this.nextItem();
@@ -215,6 +203,8 @@ class Carousel {
       this.block.parentElement.append(navButton);
     });
 
+    decorateIcons(buttonLeft);
+    decorateIcons(buttonRight);
     this.navButtonLeft = buttonLeft;
     this.navButtonRight = buttonRight;
   }
@@ -398,8 +388,50 @@ class Carousel {
  * @param {Object}   config       optional - config object for
  * customizing the rendering and behaviour
  */
-export default async function createCarousel(block, data, config) {
+export async function createCarousel(block, data, config) {
   const carousel = new Carousel(block, data, config);
   await carousel.render();
   return carousel;
+}
+
+/**
+ * Custom card style rendering of carousel items.
+ */
+function renderCardItem(item) {
+  item.classList.add('card');
+  item
+    .querySelectorAll('.button-container a')
+    .forEach((a) => a.append(span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true })));
+  decorateIcons(item);
+  return item;
+}
+
+export default async function decorate(block) {
+  // cards style carousel
+  const useCardsStyle = block.classList.contains('cards');
+  if (useCardsStyle) {
+    await createCarousel(block, [...block.children], {
+      navButtons: true,
+      dotButtons: false,
+      infiniteScroll: true,
+      autoScroll: false,
+      visibleItems: [
+        {
+          items: 1,
+          condition: () => window.screen.width < 768,
+        },
+        {
+          items: 2,
+          condition: () => window.screen.width < 1200,
+        }, {
+          items: 3,
+        },
+      ],
+      renderItem: renderCardItem,
+    });
+    return;
+  }
+
+  // use the default carousel
+  await createCarousel(block);
 }

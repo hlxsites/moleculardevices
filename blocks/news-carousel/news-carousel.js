@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 
 function formatDate(newsDate) {
   const dateObj = new Date(0);
