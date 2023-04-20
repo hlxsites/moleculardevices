@@ -785,11 +785,11 @@ main .section.wave.wavecarousel {
 }
 
 main .section.wave.wavecarousel.blue {
-  background-image: url("/images/wave-background-blue.webp");
+  background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
 }
 
 main .section.wave.wavecarousel.bluegreen {
-  background-image: url("/images/wave-background-blue-green.webp");
+  background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
 }
 
 @media only screen and (max-width: 767px) {
