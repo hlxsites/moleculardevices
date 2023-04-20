@@ -1,7 +1,7 @@
 
 .blog .quote-wrapper {
   padding: 0 15px;
-  margin: 10px auto 40px;
+  margin: 40px auto ;
 }
 
 .blog .quote {
@@ -46,4 +46,11 @@
 .blog .quote .quote-text::after {
   top: auto;
   bottom: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .blog .quote .quote-text::before,
+  .blog .quote .quote-text::after {
+    width: 100%;
+  }
 }

@@ -1,9 +1,6 @@
-@import url('../breadcrumbs/breadcrumbs.css');
-
 main .hero-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
-  margin-top: -10px;
   padding: 0;
 }
 
@@ -48,7 +45,7 @@ main .hero li {
 
 main .hero h1 {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: white;
   line-height: 1;
 }
@@ -78,6 +75,7 @@ main .hero .hero-background {
 
 main .hero img {
   object-fit: cover;
+  object-position: center top;
   width: 100%;
   height: 100%;
 }
@@ -103,6 +101,11 @@ main .hero .container > div:nth-child(2) {
   font-size: var(--body-font-size-xs);
 }
 
+main .hero .container > div:nth-child(2).video-column {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 main .hero .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
@@ -111,6 +114,37 @@ main .hero .container > div:nth-child(2) .button-container {
 
 .hero .breadcrumbs li+li::before {
   color: var(--hero-breadcrumbs-separator-color);
+}
+
+main .hero .video-icon img {
+  height: 91px;
+  width: 90px;
+  margin: auto;
+  border-radius: 50%;
+  transition: all ease .3s;
+}
+
+main .hero .video-icon img:hover {
+  transform: scale(1.1);
+  transition: all ease .3s;
+}
+
+#sample {
+display: none;
+}
+
+#vidyard-popbox {
+  max-height: 400px;
+  max-width: 700px;
+}
+
+/* Citation Variant - Desktop -- Start */
+.citation main .hero {
+  overflow: hidden 
+}
+
+.citation main .hero-wrapper h1 {
+  margin-top: 0;
 }
 
 /* Blog Variant - Desktop -- Start */
@@ -143,8 +177,8 @@ main .hero.blog {
 main .hero.blog .sticker {
   width: auto;
   position: absolute;
+  top: 46px;
   right: 15px;
-  bottom: 15px;
 }
 
 main .hero.blog .sticker img {
@@ -180,23 +214,42 @@ main .hero.blog .breadcrumbs > ol {
   padding: 2.5px 0;
 }
 
-@media only screen and (max-width: 1200px) {
-  main .hero.blog .sticker img {
-    width: 130px;
-  }
-}
-
 /* Blog Variant - Desktop -- End */
 
 @media (max-width: 767px) {
-  main .hero {
-    padding: 50px 0 55px;
+  /* duplicated from breadcrumbs.css for performance reasons */
+  .breadcrumbs {
+    display: none;
   }
+
+  main .hero {
+    min-height: 180px;
+    padding-top: 34%;
+    padding-bottom: 41px;
+  }
+
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero {
+    min-height: 120px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .citation main .hero .container {
+    margin-top: 40px;
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */
 
   /* TODO fix heading vars in styles.css */
   main .hero h1 {
     margin-bottom:10px;
     font-size: 36px;
+  }
+
+  main .hero .two-column h1 {
+    font-size: 28px;
   }
 
   main .hero h4 {
@@ -226,10 +279,20 @@ main .hero.blog .breadcrumbs > ol {
     padding-top:30px;
   }
 
+  main .hero .container.two-column > div.video-column > div {
+    border: none;
+  }
+
   main .hero .button-container a {
     padding: 9px 12px 10px;
   }
 
+  .video-icon {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
   /* Blog Variant - Mobile -- Start */
   .blog main .hero-wrapper {
     color: inherit;
@@ -282,9 +345,21 @@ main .hero.blog .breadcrumbs > ol {
     height: unset;
   }
 
+  .blog main .hero .breadcrumbs {
+    display: block;
+  }
+
+  .blog main .hero .breadcrumbs ol {
+    display: none;
+  }
+
   main .hero.blog .sticker {
-    top: 86px;
+    top: 75px;
     right: 15px;
+  }
+
+  main .hero.blog .sticker img {
+    width: 130px;
   }
 
   /* Blog Variant - Mobile -- End */
@@ -292,39 +367,87 @@ main .hero.blog .breadcrumbs > ol {
 
 @media (min-width: 768px) {
   main .hero {
-    min-height: 300px;
+    min-height: 440px;
   }
 
   main .hero .container {
     overflow: auto;
-    display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
-    padding: 0 0 45px;
+    padding: 0 0 120px;
   }
 
-  main .hero .container > div {
-    float:left;
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero {
+    min-height: 220px;
   }
 
-  main .hero .container.two-column > div:nth-child(1) {
-    width: 66%
+  .citation main .hero .container {
+    padding: 0 0 40px;
   }
 
-  main .hero .container.two-column > div:nth-child(2) {
-    width: 33%;
-    border-left: 2px solid #fff;
+  /* Citation Variant - Mobile -- End */
+
+  main .hero .video-icon img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  main .hero .container.two-column > div:nth-child(2).video-column {
+    border: none;
   }
 
   main .hero .container > div:nth-child(1) .button-container {
-    margin-top: 30px;
+    margin-top: 20px;
+  }
+  
+  .video-icon {
+    position: relative;
+    display: block;
+    height: 125px;
   }
 }
 
 @media (min-width: 992px) {
   main .hero > div {
     width: 970px
+  }  
+
+  main .hero .container {
+    display: flex;
+    padding: 0 0 120px;
+  }
+
+  main .hero .container > div {
+    float:left;
+  }
+
+  main .hero .container > div:nth-child(1) {
+    width: 66%
+  }
+
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero .container > div:nth-child(1) {
+    width: 80%
+  }
+
+  .citation main .hero .container {
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */  
+
+  main .hero .container.two-column > div:nth-child(2) {
+    width: 33%;
+    border-left: 2px solid #fff;
+  }
+
+  .video-icon {
+    height: 320px;
   }
 }
 

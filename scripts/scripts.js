@@ -12,14 +12,18 @@ import {
   getMetadata,
   loadCSS,
   loadBlock,
+  loadHeader,
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import loadHeader from './header-utils.js';
-import TEMPLATE_LIST from '../templates/config.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
-window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
+/**
+ * to add/remove a template, just add/remove it in the list below
+ */
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
+
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
@@ -36,18 +40,52 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
-/*
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
+/**
+ * Summarises the description to maximum character count without cutting words.
+ * @param {string} description Description to be summarised
+ * @param {number} charCount Max character count
+ * @returns summarised string
+ */
+export function summariseDescription(description, charCount) {
+  let result = description;
+  if (result.length > charCount) {
+    result = result.substring(0, charCount);
+    const lastSpaceIndex = result.lastIndexOf(' ');
+    if (lastSpaceIndex !== -1) {
+      result = result.substring(0, lastSpaceIndex);
+    }
   }
+  return `${result}…`;
 }
+
+/**
+ * Will add the 'text-caption' class to the empasised elements from
+ * the next sibling to mark them as captions
+ * @param {NodeListOf<Element>} elems Elements which are presumed to have a caption attached.
+ */
+export function styleCaption(elems) {
+  elems.forEach((elem) => {
+    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
+    if (checkEm) {
+      const ems = checkEm.parentElement.children;
+      [...ems].forEach((em) => {
+        em.classList.add('text-caption');
+      });
+    }
+  });
+}
+
+/*
+* If we have a hero block, move it into its own section, so it can be displayed faster
 */
+function optimiseHeroBlock(main) {
+  const heroBlock = main.querySelector('.hero');
+  if (!heroBlock) return;
+
+  const heroSection = document.createElement('div');
+  heroSection.appendChild(heroBlock);
+  main.prepend(heroSection);
+}
 
 /**
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
@@ -71,13 +109,20 @@ async function loadBreadcrumbs(main) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * Run named sections for in page navigation.
  * Decroate named sections for in page navigation.
  * @param {Element} main The container element
  */
 function decoratePageNav(main) {
-  const sections = [...main.querySelectorAll('div.section')].slice(1);
-  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
+  const pageTabsBlock = main.querySelector('.page-tabs');
+  if (!pageTabsBlock) return;
 
+  const pageTabSection = pageTabsBlock.closest('div.section');
+  let sections = [...main.querySelectorAll('div.section')];
+  sections = sections.slice(sections.indexOf(pageTabSection) + 1);
+
+  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
     let index = 0;
     sections.forEach((section) => {
@@ -122,6 +167,7 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  optimiseHeroBlock(main);
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
@@ -181,13 +227,30 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
+export async function fetchFragment(path) {
+  const response = await fetch(`${path}.plain.html`);
+  if (!response.ok) {
+    // eslint-disable-next-line no-console
+    console.error('error loading fragment details', response);
+    return null;
+  }
+  const text = await response.text();
+  if (!text) {
+    // eslint-disable-next-line no-console
+    console.error('fragment details empty', path);
+    return null;
+  }
+  return text;
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
-  loadHeader(doc.querySelector('header'));
+  // eslint-disable-next-line no-unused-vars
+  const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
@@ -195,6 +258,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
+  const megaMenuModule = await import('../blocks/header/header-megamenu.js');
+  megaMenuModule.default(headerBlock);
   loadFooter(doc.querySelector('footer'));
   loadBreadcrumbs(main);
 
@@ -214,6 +279,16 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+}
+
+/**
+ * Read query string from url
+ */
+export function getQueryParameter() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  return params;
 }
 
 async function loadPage() {

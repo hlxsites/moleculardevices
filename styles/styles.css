@@ -142,6 +142,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  overflow-x: hidden;
 }
 
 .background-gray main {
@@ -211,6 +212,10 @@ blockquote {
   margin-bottom: 1em;
 }
 
+p:first-child {
+  margin-top: 0;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -258,6 +263,7 @@ em strong {
   font-size: var(--body-font-size-xs);
   display: block;
   color: var(--text-gray);
+  font-style: italic;
 }
 
 /* buttons */
@@ -413,6 +419,16 @@ main .section>div {
   padding: 0 15px;
 }
 
+main .section.columns-2 {
+  display: grid;
+  margin: 0 auto;
+}
+
+main .section.columns-2>div {
+  width: auto;
+  padding: 0 15px;
+}
+
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -440,6 +456,10 @@ main .section>div {
   main .breadcrumbs-wrapper {
     height: 30px;
   }
+
+  main .section.columns-2 {
+    padding: 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -449,19 +469,38 @@ main .section>div {
   }
 
   main .section>div {
-    width: 750px
+    width: 750px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr;
+    padding: 0 calc((100vw - 750px) / 2);
+  }
+
+  main .section.background-molecules .columns.columns-2-cols > div {
+    align-items: flex-start;
   }
 }
 
 @media (min-width: 992px) {
   main .section>div {
-    width: 970px
+    width: 970px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 calc((100vw - 970px) / 2);
   }
 }
 
 @media (min-width: 1200px) {
   main .section>div {
-    width: 1170px
+    width: 1170px;
+  }
+
+  main .section.columns-2 {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 calc((100vw - 1170px) / 2);
   }
 }
 
@@ -491,16 +530,16 @@ main .section.highlight {
 
 main .section.background-grey {
   background-color: var(--grey-background-color);
+  padding-top: 90px;
+  padding-bottom: 100px;
 }
 
 main .section.center {
   text-align: center;
 }
 
-main .section.background-molecules .hero-wrapper::after {
-  content: '';
-  display: block;
-  height: 90px;
+main .section.background-molecules {
+  padding-top: 90px;
   background-image: url("/images/grey_molecules.png");
   background-repeat: no-repeat;
   background-position: center top;
@@ -508,8 +547,20 @@ main .section.background-molecules .hero-wrapper::after {
 }
 
 @media(max-width: 991px) {
+  main .section.background-grey {
+    padding-top: 67px;
+    padding-bottom: 67px;
+  }
+
   main .section .default-content-wrapper {
     padding: 0 0 70px;
+  }
+}
+
+@media(max-width: 767px) {
+  main .section.background-grey {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
 
@@ -518,11 +569,55 @@ nav {
   display: block;
 }
 
+/* citations */
+main .citations-container {
+  --heading-font-size-l: 36px;
+
+  padding: 90px 50px 50px;
+}
+
+main .citations-container > .default-content-wrapper {
+  padding: 0;
+  width: auto;
+  padding-left: 90px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.citation h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.citation em {
+  color: var(--text-green);
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+  main .citations-container > .default-content-wrapper {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .citations-container > .default-content-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .citations-container > .default-content-wrapper{
+    width: 1170px;
+  }
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
-  
+
   padding: 0 15px;
 }
 
@@ -651,14 +746,13 @@ main .section.wave {
   background-position: top center;
   background-size: cover;
   display: flex;
+  flex-flow: column wrap;
   align-items: center;
   justify-content: center;
   overflow: visible;
   padding-bottom: 0;
-  flex-wrap: wrap;
   color: var(--text-white);
   text-align: center;
-  margin-bottom: 45px;
 }
 
 main .section.wave::after {
@@ -692,7 +786,7 @@ main .section.wave p {
   margin: 0;
 }
 
-main .section.wave p:first-of-type {
+main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
 }
@@ -724,6 +818,50 @@ main .section.wave.bluegreen::after {
   }
 }
 
+/* Parallax section */
+
+main .section.background-parallax {
+  background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
+  background-position: center top;
+  background-size: cover;
+  color: var(--text-white);
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+
+main .section.background-parallax a {
+  color: var(--text-white);
+}
+
+main .section.background-parallax .default-content-wrapper .button-container {
+  margin: 60px 30px;
+}
+
+main .section.background-parallax .default-content-wrapper .button-container>a {
+  color: var(--text-white);
+  border-radius: 0;
+  padding: 18px 18px 16px;
+  border: 1px solid #cbdce8;
+}
+
+@media only screen and (max-width: 991px) {
+  main .section.background-parallax {
+    padding-top: 67px;
+    padding-bottom: 67px;
+  }
+
+  main .section.background-parallax .default-content-wrapper .button-container {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .section.background-parallax {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+
 /* Service Support Variant */
 main .section.wave.bg-support-service {
   background-position: 100% 30%;
@@ -737,6 +875,14 @@ main .section.wave.wavecarousel::after {
 main .section.wave.wavecarousel {
   min-height: 550px;
   background-size: 100% 100%;
+}
+
+main .section.wave.wavecarousel.blue {
+  background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
+}
+
+main .section.wave.wavecarousel.bluegreen {
+  background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
 }
 
 @media only screen and (max-width: 767px) {

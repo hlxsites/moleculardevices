@@ -1,4 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
+import { loadCSS } from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
@@ -17,21 +18,57 @@ function createBreadcrumbListItem(crumb) {
   return li;
 }
 
-export default async function createBreadcrumbs(container) {
-  const currentPath = window.location.pathname;
-  const pageIndex = await ffetch('/query-index.json').all();
+function skipParts(pathSplit) {
+  const partsToSkip = ['en', 'assets', 'br', 'img'];
+  return pathSplit.filter((item) => !partsToSkip.includes(item));
+}
 
-  const urlForIndex = (index) => prependSlash(currentPath.split('/').slice(1, index + 2).join('/'));
+function getCustomUrl(part) {
+  const customUrls = [
+    ['app-note', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D'],
+    ['ebook', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D'],
+  ];
+  const y = customUrls.findIndex((row) => row.includes(part));
+  if (customUrls[y]) return customUrls[y][1];
+  return null;
+}
+
+function getName(pageIndex, path, current) {
+  const pg = pageIndex.find((page) => page.path === path);
+  let name;
+  if (pg && pg.h1 && pg.h1 !== '0') {
+    name = pg.h1;
+  } else if (pg && pg.title && pg.title !== '0') {
+    name = pg.title;
+  } else if (current) {
+    name = document.title;
+  } else {
+    name = path.split('/').at(-1);
+  }
+  return name;
+}
+
+export default async function createBreadcrumbs(container) {
+  const breadCrumbsCSS = new Promise((resolve) => {
+    loadCSS('/blocks/breadcrumbs/breadcrumbs.css', (e) => resolve(e));
+  });
+
+  const path = window.location.pathname;
+  const pathSplit = skipParts(path.split('/'));
+
+  const pageIndex = await ffetch('/query-index.json').all();
+  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
+
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...currentPath.split('/').slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.title ?? part,
-      url_path: urlForIndex(index),
+    ...pathSplit.slice(1, -1).map((part, index) => ({
+      name: getName(pageIndex, urlForIndex(index), false),
+      url_path: getCustomUrl(part) || urlForIndex(index),
     })),
-    { name: document.title },
+    { name: getName(pageIndex, path, true) },
   ];
 
   const ol = document.createElement('ol');
@@ -39,4 +76,5 @@ export default async function createBreadcrumbs(container) {
     ol.appendChild(createBreadcrumbListItem(crumb));
   });
   container.appendChild(ol);
+  await breadCrumbsCSS;
 }

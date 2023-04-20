@@ -1,6 +1,6 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import createBreadcrumbs from '../breadcrumbs/breadcrumbs-create.js';
+import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -28,7 +28,7 @@ function addMetadata(container) {
   container.appendChild(metadataContainer);
 }
 
-function addBlockSticker(container) {
+async function addBlockSticker(container) {
   const stickerContainer = document.createElement('div');
   stickerContainer.classList.add('sticker');
   const sticker = document.createElement('a');
@@ -44,32 +44,60 @@ function addBlockSticker(container) {
   container.appendChild(stickerContainer);
 }
 
+async function loadBreadcrumbs(breadcrumbsContainer) {
+  const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
+  breadCrumbsModule.default(breadcrumbsContainer);
+}
+
 export default async function decorate(block) {
   const container = document.createElement('div');
   container.classList.add('container');
-  if (block.childElementCount > 1) {
-    container.classList.add('two-column');
-  }
 
-  [...block.children].forEach((div) => {
-    container.appendChild(div);
+  [...block.children].forEach((row, i) => {
+    if (i === 0 && row.childElementCount > 1) {
+      container.classList.add('two-column');
+      [...row.children].forEach((column) => {
+        if (getVideoId(column.textContent)) {
+          column.classList.add('video-column');
+          buildVideo(block, column, getVideoId(column.textContent));
+        }
+        container.appendChild(column);
+      });
+    } else {
+      container.appendChild(row);
+    }
   });
 
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
-  await createBreadcrumbs(breadcrumbs);
+
   block.appendChild(breadcrumbs);
   block.appendChild(container);
 
-  const picture = block.querySelector('picture');
+  let picture = block.querySelector('picture');
   if (picture) {
+    const originalHeroBg = picture.lastElementChild;
+    const optimizedHeroBg = createOptimizedPicture(
+      originalHeroBg.src,
+      originalHeroBg.getAttribute('alt'),
+      true,
+      [
+        { media: '(min-width: 600px)', width: '2000' },
+        { width: '1200' },
+      ],
+    );
+
+    picture.replaceWith(optimizedHeroBg);
+    picture = optimizedHeroBg;
     picture.classList.add('hero-background');
     block.prepend(picture.parentElement);
   }
 
   if (block.classList.contains('blog')) {
-    addBlockSticker(block);
     addMetadata(container);
+    addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
+
+  loadBreadcrumbs(breadcrumbs);
 }

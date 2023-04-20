@@ -100,6 +100,23 @@
   vertical-align: top;
 }
 
+.section .columns.collaboration > div picture,
+.section .columns.collaboration > div img {
+  display: block;
+  margin: auto;
+}
+
+.section .columns.collaboration > div img,
+.columns.layout-20-80.partners-list-columns ul li img {
+  width: auto;
+}
+
+.columns.layout-20-80.partners-list-columns ul li picture,
+.columns.layout-20-80.partners-list-columns ul li img {
+  display: block;
+  margin: 0 auto;
+}
+
 .columns.contact > div ul li span.icon-spectra img,
 .columns.contact > div ul li span.icon-spectra svg {
   height: 40px;
@@ -121,11 +138,105 @@
   padding-left: 70px;
 }
 
+.columns.collaboration.columns-3-cols {
+  justify-content: center;
+}
+
+.columns.columns-3-cols {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.columns.columns-3-cols > div:not(:only-child) {
+  padding: 0 15px 20px;
+}
+
+.columns.layout-20-80.extended-width:not(.green-separator) {
+  margin-bottom: 80px;
+}
+
+.section .columns.collaboration > div {
+  display: block;
+  text-align: center;
+}
+
+.columns.columns-3-cols > div:not(:only-child) > div {
+  margin-left: 0;
+}
+
+.columns.layout-20-80.extended-width > div > div:first-child {
+  flex-basis: 20%;
+  max-width: 152px;
+  padding: 0;
+}
+
+.columns.layout-20-80.extended-width > div > div:last-child {
+  flex-basis: 80%;
+  padding: 0;
+}
+
+.columns.layout-20-80.extended-width.green-separator > div:not(:last-child){
+  margin-bottom: 45px;
+}
+
+.columns.layout-20-80.extended-width.green-separator > div > div:last-child{
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--text-green);
+}
+
+.columns.layout-20-80.extended-width.green-separator > div:last-child > div:last-child {
+  border: none;
+  padding-bottom: 0;
+}
+
+.section .columns.collaboration > div h3 {
+  font-size: var(--heading-font-size-l);
+  color: var(--text-green);
+  font-family: inherit;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.columns.layout-20-80.extended-width > div > div h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.section.columns-container .columns.columns-2-cols > div h3 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
+.columns.layout-20-80.extended-width.green-separator > div > div h3{
+  margin-bottom: 10px;
+}
+
+.columns.layout-20-80.extended-width.green-separator > div > div p{
+  margin-top: 0;
+}
+
+.columns.layout-20-80.partners-list-columns ul {
+  list-style: none;
+  padding: 0;
+  margin: 60px 0 0;
+}
+
+.columns.layout-20-80.partners-list-columns ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.columns.layout-20-80.partners-list-columns ul li picture {
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
 @media (min-width: 768px) {
   .columns > div {
-    align-items: center;
     display: flex;
     flex-direction: unset;
+    align-items: center;
   }
 
   .columns > div > div {
@@ -133,13 +244,26 @@
     margin-left: 32px;
   }
 
+  .blog .columns > div {
+    align-items: unset;
+  }
+
   .columns.contact > div {
     align-items: unset;
   }
 
   .columns[class*='layout-'] > div {
+    gap: 30px;
     display: grid;
     align-items: unset;
+  }
+
+  .columns[class*='layout-'] h3 {
+    margin-top: 0;
+  }
+
+  .columns.layout-20-80 > div {
+    grid-template-columns: 20fr 80fr;
   }
 
   .columns.layout-33-66 > div {
@@ -167,7 +291,7 @@
   }
 
   .columns[class*='layout-'] > div > div {
-    padding: 0 15px;
+    padding: 0;
     margin: 0;
   }
 
@@ -175,15 +299,38 @@
     margin-left: unset;
   }
 
+  .columns.layout-20-80.extended-width > div{
+    display: flex;
+  }
+
+  .columns.columns-3-cols > div:not(:only-child),
   .columns.contact.columns-3-cols > div > div {
     flex-basis: 33.33%;
     width: 33.33%;
+  }
+
+  .columns.columns-3-cols.collaboration > div:not(:only-child) {
+    flex-basis: 25%;
+    width: 25%;
+  }
+
+  .columns.layout-20-80.extended-width > div > div:last-child {
+    margin-left: 40px;
   }
 
   .columns.contact > div > div > p,
   .columns.contact > div > div > ul,
   .columns.contact > div > div > ol {
     padding: 0 15px;
+  }
+
+  .columns-3-cols {
+    display: flex;
+  }
+
+  .columns.layout-20-80.partners-list-columns ul li picture{
+    max-width: 25%;
+    flex-basis: 25%;
   }
 }
 
@@ -217,7 +364,15 @@
     margin-bottom: 30px;
   }
 
+  .cards.who-we-are > ul > li {
+    margin-bottom: 30px;
+  }
+
   .columns.contact > div > div > ul > li:not(:last-child)::after {
     width: calc(100% - 44px);
   }
+}
+
+.section .columns.collaboration > div h3 strong {
+  font-family: inherit;
 }

@@ -12,6 +12,8 @@ main .page-tabs {
   padding: 0 15px;
   height: 60px;
   white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 main .page-tabs ul {

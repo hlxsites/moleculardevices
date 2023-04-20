@@ -4,16 +4,56 @@
 }
 
 .blog .section .default-content-wrapper {
-  padding: 0 0 30px;
+  padding: 0;
+}
+
+.blog .section .default-content-wrapper > p:last-child {
+  margin-bottom: 0;
 }
 
 .blog strong {
   font-family: var(--ff-proxima-regular);
 }
 
-.blog p, ul {
+.blog p {
   margin-top: 0;
   margin-bottom: 10px;
+}
+
+.blog ul,
+.blog ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.blog ul ul {
+  margin-bottom: 0;
+}
+
+.blog ol.text-caption {
+  margin-top: 40px;
+  position: relative;
+}
+
+.blog ol.text-caption::before {
+  content: "";
+  top: -21px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: #eee;
+  position: absolute;
+}
+
+.blog h2 {
+  font-size: 54px;
+  color: #008da9;
+  font-family: inherit;
+  line-height: 1;
+  font-weight: 100;;
+  margin-top: 43px;
+  margin-bottom: 20px;
 }
 
 .blog h3 {
@@ -30,8 +70,8 @@
   padding-right: 15px;
 }
 
-.blog .section.blog-heading {
-  margin-top: 60px;
+.blog .columns-wrapper:has(h3) { /* ?? */
+  margin-top: 30px;
 }
 
 .blog .section.blog-heading > div {
@@ -83,4 +123,100 @@
   .blog .section.blog-heading .icon-view-all-posts img {
     width: 120px;
   }
+}
+
+
+main .blog-card {
+  height: 100%;
+  background: #fff;
+  margin: 0;
+  position: relative;
+  box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
+  transition: all .3s;
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+main .blog-card:hover {
+  z-index: 1;
+  transform: scale(1.07);
+  transition: all .3s;
+}
+
+main .blog-card-thumb {
+  height: 200px;
+  min-height: 200px;
+  overflow: hidden;
+}
+
+main .blog-card-thumb a {
+  display: block;
+}
+
+main .blog-card-thumb img {
+  height: 200px;
+  width: 100%;
+  min-width: auto;
+  object-fit: cover;
+  object-position: left;
+  transition: all .5s ease-in-out;
+}
+
+main .blog-card-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
+  object-position: right;
+}
+
+main .blog-card-caption {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 20px;
+  color: #12141f;
+  height: 100%;
+  min-height: auto;
+}
+
+main .blog-card-caption h3 {
+  font-size: 20px;
+  line-height: 24.1px;
+  font-weight: normal;
+  text-align: left;
+  min-height: 49px;
+  margin-top: 14px;
+  margin-bottom: 15px;
+}
+
+main .blog-card-caption h3 a {
+  color: inherit;
+}
+
+main .blog-card-caption .blog-card-description {
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+main .blog-card-caption .button-container {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+main .blog-card-caption .button.primary {
+  border: 1px solid #6eb43f;
+  color: #000;
+  padding-bottom: 10px;
+  padding-top: 11px;
+  background: none;
+  border-radius: 0;
+  font-size: 18px;
+  max-width: unset;
+  width: unset;
+  white-space: break-spaces;
+  word-break: break-word;
 }

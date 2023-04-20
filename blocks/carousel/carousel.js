@@ -223,6 +223,10 @@ class Carousel {
   * Adds event listeners for touch UI swiping
   */
   addSwipeCapability() {
+    if (this.block.swipeCapabilityAdded) {
+      return;
+    }
+
     let touchstartX = 0;
     let touchendX = 0;
 
@@ -246,6 +250,7 @@ class Carousel {
         this.prevItem();
       }
     }, { passive: true });
+    this.block.swipeCapabilityAdded = true;
   }
 
   setInitialScrollingPosition() {

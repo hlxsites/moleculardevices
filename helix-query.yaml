@@ -54,6 +54,43 @@ indices:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      h1:
+        select: h1
+        value: textContent(el)
+  events:
+    include:
+      - '/events/**'
+    target: /events/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      type:
+        select: head > meta[name="event-type"]
+        value: attribute(el, "content")
+      region:
+        select: head > meta[name="event-region"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="publication-date"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+  citations:
+    include:
+      - '/resources/citations/**'
+    target: /resources/citations/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      count:
+        select: head > meta[name="citation-number"]
+        value: attribute(el, "content")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
   fragments:
     include:
       - '/fragments/**'
