@@ -831,7 +831,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     float: left;
     width: 19%;
     vertical-align: middle;
-    display: block;
     margin-right: 9px;
     padding: 5px 0;
     display: none;
