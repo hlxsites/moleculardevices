@@ -171,11 +171,15 @@ display: none;
   color: var(--text-white);
 }
 
-main .hero.blog .hero-inner {
+.hero.blog .hero-inner {
   padding: 0 0 46.5%;
   height: 555px;
   overflow: hidden;
   background-image: linear-gradient(to bottom,rgba(255 255 255 / 0%) 55%,rgba(0 0 0 / 90%));
+}
+
+.hero.blog .hero-inner img {
+  object-position: center center;
 }
 
 .blog main .hero-wrapper h1 {
@@ -193,16 +197,16 @@ main .hero.blog .sticker {
   right: 15px;
 }
 
-main .hero.blog .sticker img {
+.hero.blog .sticker img {
   width: auto;
   height: auto;
 }
 
-main .hero.blog .breadcrumbs {
+.hero.blog .breadcrumbs {
   position: relative;
 }
 
-main .hero.blog .breadcrumbs > ol {
+.hero.blog .breadcrumbs > ol {
   position: absolute;
 }
 
@@ -343,7 +347,7 @@ main .hero.blog .breadcrumbs > ol {
     margin-bottom: 33px;
   }
 
-  main .hero.blog {
+  .hero.blog {
     background-image: none;
     min-height: 398px;
     padding: 0;
@@ -358,12 +362,12 @@ main .hero.blog .breadcrumbs > ol {
     display: none;
   }
 
-  main .hero.blog .sticker {
+  .hero.blog .sticker {
     top: 75px;
     right: 15px;
   }
 
-  main .hero.blog .sticker img {
+  .hero.blog .sticker img {
     width: 130px;
   }
 
@@ -420,7 +424,7 @@ main .hero.blog .breadcrumbs > ol {
     width: 66.5%
   }
 
-  main .hero.blog .container > div:nth-child(1) {
+  .hero.blog .container > div:nth-child(1) {
     width: unset;
   }
 
