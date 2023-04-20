@@ -49,4 +49,9 @@ export default async function decorate(block) {
   );
 
   window.addEventListener('hashchange', () => { filterChanged(carousel); });
+  window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
+    if (e.matches) {
+      carousel.setInitialScrollingPosition();
+    }
+  };
 }

@@ -5,13 +5,6 @@ main div.blog-list-wrapper {
   padding: 0 15px !important;
 }
 
-/* main .blog-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-} */
-
-
 main .blog-list {
   display: flex;
   flex-wrap: wrap;
