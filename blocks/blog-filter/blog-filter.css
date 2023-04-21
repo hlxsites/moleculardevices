@@ -6,20 +6,20 @@
 .blog .section div.blog-filter-wrapper {
   width: 100%;
   max-width: unset;
-  background-color: rgba(0,0,0,.5);
+  padding: 0;
+  position: relative;
 }
 
 .blog-filter {
-  /* TODO figure out how to not overlap with the molecules background */
-  /* margin-top: -56px; */
-
-  /* 56px + 90 molecules section padding */
-  margin-top: -146px;
-  margin-bottom: 130px;
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  width: 100%;
+  bottom: 90px;
 }
 
 .blog-filter .active-filter {
   display: none; /* mobile only */
+  margin-bottom: 8px;
 }
 
 .blog-filter ul {
@@ -28,6 +28,8 @@
   flex-wrap: wrap;
   list-style: none;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .blog-filter ul li:first-child a:before {
@@ -61,21 +63,20 @@
 
 @media only screen and (max-width: 991px) {
   .blog-filter {
-    margin-top: -106px;
+    bottom: 50px;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .blog .section div.blog-filter-wrapper {
-    background-color: transparent;
-  }
-
   .blog-filter {
     display: block;
+    background-color: transparent;
     text-align: left;
     margin: 0 auto;
     width: 250px;
     padding-bottom: 0;
+    position: static;
+    margin-top: 32px;
   }
 
   .blog-filter .active-filter {
@@ -112,7 +113,6 @@
     display: block;
     max-width: unset;
     padding: 0;
-    padding-top: 32px;
   }
 
   .blog-filter .active-filter .icon {

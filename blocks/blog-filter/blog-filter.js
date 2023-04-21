@@ -39,6 +39,9 @@ export default function decorate(block) {
   );
   decorateIcons(block);
   
+  // on mobile we always start with the list of filters hidden
+  block.querySelector('ul').classList.add('hide');
+
   const filters = [...block.querySelectorAll('a')];
   filters.forEach((link) => {
     link.addEventListener('click', (e) => {
