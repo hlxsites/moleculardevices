@@ -20,7 +20,7 @@ function createClone(item) {
 class Carousel {
   constructor(block, data, config) {
     // Set defaults
-    this.defaultStyling = true;
+    this.cssFiles = ['/blocks/carousel/carousel.css'];
     this.dotButtons = true;
     this.navButtons = true;
     this.infiniteScroll = true;
@@ -341,10 +341,12 @@ class Carousel {
     );
 
     let defaultCSSPromise;
-    if (this.defaultStyling) {
+    if (this.cssFiles) {
       // add default carousel classes to apply default CSS
       defaultCSSPromise = new Promise((resolve) => {
-        loadCSS('/blocks/carousel/carousel.css', (e) => resolve(e));
+        this.cssFiles.forEach((cssFile) => {
+          loadCSS(cssFile, (e) => resolve(e));
+        });
       });
       this.block.parentElement.classList.add('carousel-wrapper');
       this.block.classList.add('carousel');
@@ -374,7 +376,7 @@ class Carousel {
     this.infiniteScroll && this.createClones();
     this.addSwipeCapability();
     this.infiniteScroll && this.setInitialScrollingPosition();
-    this.defaultStyling && (await defaultCSSPromise);
+    this.cssFiles && (await defaultCSSPromise);
   }
 }
 
@@ -395,7 +397,7 @@ export async function createCarousel(block, data, config) {
 }
 
 /**
- * Custom card style rendering of carousel items.
+ * Custom card style config and rendering of carousel items.
  */
 function renderCardItem(item) {
   item.classList.add('card');
@@ -406,29 +408,32 @@ function renderCardItem(item) {
   return item;
 }
 
+const cardStyleConfig = {
+  cssFiles: ['/blocks/carousel/carousel.css', '/blocks/carousel/carousel-cards.css'],
+  navButtons: true,
+  dotButtons: false,
+  infiniteScroll: true,
+  autoScroll: false,
+  visibleItems: [
+    {
+      items: 1,
+      condition: () => window.screen.width < 768,
+    },
+    {
+      items: 2,
+      condition: () => window.screen.width < 1200,
+    }, {
+      items: 3,
+    },
+  ],
+  renderItem: renderCardItem,
+};
+
 export default async function decorate(block) {
   // cards style carousel
   const useCardsStyle = block.classList.contains('cards');
   if (useCardsStyle) {
-    await createCarousel(block, [...block.children], {
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
-      ],
-      renderItem: renderCardItem,
-    });
+    await createCarousel(block, [...block.children], cardStyleConfig);
     return;
   }
 
