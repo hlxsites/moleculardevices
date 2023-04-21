@@ -57,5 +57,5 @@ export default function decorate(block) {
   }
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
-  pageTabsBlock.classList.add('sticky-element');
+  pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
 }

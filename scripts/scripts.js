@@ -26,6 +26,8 @@ const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
+let STICKY_ELEMENTS;
+const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
@@ -245,22 +247,32 @@ export async function fetchFragment(path) {
   return text;
 }
 
+function getStickyElements() {
+  if (mobileDevice.matches) {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-mobile');
+  } else {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-desktop');
+  }
+}
+
 /**
  * Enable sticky components
  *
  */
 function enableStickyElements() {
-  const stickyElements = document.querySelectorAll('.sticky-element');
+  getStickyElements();
+  mobileDevice.addEventListener('change', getStickyElements);
+
   const offsets = [];
 
-  stickyElements.forEach((element, index) => {
+  STICKY_ELEMENTS.forEach((element, index) => {
     offsets[index] = element.offsetTop;
   });
 
   window.addEventListener('scroll', () => {
     const currentScrollPosition = window.pageYOffset;
     let stackedHeight = 0;
-    stickyElements.forEach((element, index) => {
+    STICKY_ELEMENTS.forEach((element, index) => {
       if (currentScrollPosition > offsets[index] - stackedHeight) {
         element.classList.add('sticky');
         element.style.top = `${stackedHeight}px`;

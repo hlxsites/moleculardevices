@@ -38,6 +38,10 @@ header .container {
   padding-right: 15px;
 }
 
+header .nav-wrapper .container {
+  background: var(--background-color);
+}
+
 header .navbar-header {
   position: relative;
   z-index: 99999;
