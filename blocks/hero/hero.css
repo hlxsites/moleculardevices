@@ -278,13 +278,13 @@ main .hero.blog .sticker {
     display: none;
   }
 
+  .hero-inner .two-column h1 {
+    font-size: 28px;
+  }
+
   .hero-inner .container div div:nth-child(1) h1,
   .hero-inner .container div div:nth-child(1) .button-container * {
     display: block;
-  }
-
-  .hero-inner .two-column h1 {
-    font-size: 28px;
   }
 
   .hero-inner h4 {
@@ -461,6 +461,11 @@ main .hero.blog .sticker {
     width: unset;
   }
 
+  .hero-inner .container.two-column > div:nth-child(2) {
+    width: 33%;
+    border-left: 2px solid #fff;
+  }
+
   /* Citation Variant - Mobile -- Start */
   .citation main .hero .container > div:nth-child(1) {
     width: 80%
@@ -471,11 +476,6 @@ main .hero.blog .sticker {
   }
 
   /* Citation Variant - Mobile -- End */  
-
-  .hero-inner .container.two-column > div:nth-child(2) {
-    width: 33%;
-    border-left: 2px solid #fff;
-  }
 
   .video-icon {
     height: 320px;
