@@ -1,5 +1,5 @@
-import { 
-  button, div, span 
+import {
+  button, div, span,
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
@@ -11,9 +11,9 @@ function setActiveFilter(block) {
   const filterLink = block.querySelector(`a[href*="#${activeHash}"`);
   if (!filterLink) {
     const viewAllLink = block.querySelector(`a[href*="#${viewAllCategory}"`);
-    view.classList.add('active');
+    viewAllLink.classList.add('active');
     block.querySelector('.active-filter .filter-title').innerText = viewAllLink.innerText;
-  } else { 
+  } else {
     block.querySelector('.active-filter .filter-title').innerText = filterLink.innerText;
     filterLink.classList.add('active');
   }
@@ -38,7 +38,7 @@ export default function decorate(block) {
     ),
   );
   decorateIcons(block);
-  
+
   // on mobile we always start with the list of filters hidden
   block.querySelector('ul').classList.add('hide');
 

@@ -11,7 +11,7 @@
 }
 
 .blog-filter {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0 0 0 / 50%);
   position: absolute;
   width: 100%;
   bottom: 90px;
@@ -32,7 +32,7 @@
   padding: 0;
 }
 
-.blog-filter ul li:first-child a:before {
+.blog-filter ul li:first-child a::before {
   content: "|";
   position: absolute;
   right: 0;
@@ -103,7 +103,7 @@
     font-family: var(--ff-proxima-light);
   }
 
-  .blog-filter ul li:first-child a:before {
+  .blog-filter ul li:first-child a::before {
     content: none;
   }
 
