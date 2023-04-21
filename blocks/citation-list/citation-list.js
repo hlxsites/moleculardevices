@@ -1,4 +1,4 @@
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   div,
