@@ -71,9 +71,9 @@ export default function decorate(block) {
   const modalContent = div({ class: 'submit-story-modal-wrapper' },
     iframe({
       src: 'https://info.moleculardevices.com/submit-your-story',
+      loading: 'lazy',
       width: '100%',
       height: '100%',
-      loading: 'lazy',
     }),
   );
   modal.append(modalCloseButton);
