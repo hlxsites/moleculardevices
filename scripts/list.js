@@ -103,7 +103,6 @@ function createListItems(options) {
 function swapData(options) {
   const items = document.querySelector(`.${classListItems}`);
   items.innerHTML = createListItems(options).innerHTML;
-  document.querySelector(`.${classList}`).scrollIntoView();
 }
 
 function getPaginationStart(options) {
@@ -158,6 +157,7 @@ async function switchPage(event, options) {
   pagination.querySelector(`.${classPagerItem}[name="${selected}"]:not(.${classPagerNav})`).classList.add(classActive);
 
   swapData(options);
+  document.querySelector(`.${classList}`).scrollIntoView();
 }
 
 function createDropdown(options, selected, name, placeholder) {
