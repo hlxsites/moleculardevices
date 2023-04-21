@@ -69,12 +69,12 @@ export default function decorate(block) {
   });
   modalCloseButton.innerHTML = '&times;';
   const modalContent = div({ class: 'submit-story-modal-wrapper' },
-    iframe({
+    /*iframe({
       src: 'https://info.moleculardevices.com/submit-your-story',
       loading: 'lazy',
       width: '100%',
       height: '100%',
-    }),
+    }),*/
   );
   modal.append(modalCloseButton);
   modal.append(modalContent);
