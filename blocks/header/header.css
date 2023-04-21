@@ -330,7 +330,11 @@ header .nav-tabs .menu-nav-submenu-close {
 }
 
 header .mainmenu-wrapper.sticky .menu-nav-submenu-close {
-  top: 60px;
+  top: 55px;
+}
+
+header .mainmenu-wrapper.sticky .header-search .menu-nav-submenu-close {
+  top: 10px;
 }
 
 header .nav-tabs .menu-nav-submenu {
