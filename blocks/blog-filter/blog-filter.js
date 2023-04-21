@@ -57,6 +57,9 @@ export default function decorate(block) {
     setActiveFilter(block);
   } else {
     // we are on different page
-    // TODO
+    const currentPageLink = block.querySelector(`a[href="${window.location.pathname}"`);
+    if (currentPageLink) {
+      currentPageLink.classList.add('active');
+    }
   }
 }
