@@ -64,7 +64,7 @@ function buildCitation(fragment) {
   // create short description which limits the description to 50 words
   let shortDescriptionBlock = null;
   if (descriptionBlock) {
-    const shortDescription = descriptionBlock.innerText.split(' ').slice(0, 50).join(' ');
+    const shortDescription = descriptionBlock.innerText.split(' ').slice(0, 40).join(' ');
     shortDescriptionBlock = document.createElement('p');
     // append ... to the end of the short description
     shortDescriptionBlock.innerText = `${shortDescription}...`;

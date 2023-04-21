@@ -41,6 +41,24 @@ export function loadScript(url, callback, type, async) {
 }
 
 /**
+ * Summarises the description to maximum character count without cutting words.
+ * @param {string} description Description to be summarised
+ * @param {number} charCount Max character count
+ * @returns summarised string
+ */
+export function summariseDescription(description, charCount) {
+  let result = description;
+  if (result.length > charCount) {
+    result = result.substring(0, charCount);
+    const lastSpaceIndex = result.lastIndexOf(' ');
+    if (lastSpaceIndex !== -1) {
+      result = result.substring(0, lastSpaceIndex);
+    }
+  }
+  return `${result}…`;
+}
+
+/**
  * Will add the 'text-caption' class to the empasised elements from
  * the next sibling to mark them as captions
  * @param {NodeListOf<Element>} elems Elements which are presumed to have a caption attached.
@@ -97,9 +115,14 @@ async function loadBreadcrumbs(main) {
  * @param {Element} main The container element
  */
 function decoratePageNav(main) {
-  const sections = [...main.querySelectorAll('div.section')].slice(1);
-  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
+  const pageTabsBlock = main.querySelector('.page-tabs');
+  if (!pageTabsBlock) return;
 
+  const pageTabSection = pageTabsBlock.closest('div.section');
+  let sections = [...main.querySelectorAll('div.section')];
+  sections = sections.slice(sections.indexOf(pageTabSection) + 1);
+
+  const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
     let index = 0;
     sections.forEach((section) => {
