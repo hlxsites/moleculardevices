@@ -942,7 +942,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     left: 0;
     right: 0;
     border: 0;
-    padding: 50px 50px 60px 100px;
+    padding: 47px 50px 60px 100px;
     overflow: hidden;
     z-index: 0;
     opacity: 1;
@@ -1016,7 +1016,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     font-size: 20px;
     font-family: 'Proxima Nova Light', sans-serif;
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 11px;
   }
 
   header .header-search form {
