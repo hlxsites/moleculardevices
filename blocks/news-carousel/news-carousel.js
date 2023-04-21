@@ -52,7 +52,7 @@ export default async function decorate(block) {
     block,
     newsItems,
     {
-      cssFiles: ['/blocks/carousel/carousel.css'],
+      defaultStyling: true,
       navButtons: true,
       dotButtons: false,
       infiniteScroll: false,
