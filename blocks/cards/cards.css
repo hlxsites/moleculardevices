@@ -375,11 +375,6 @@
   transition: all .2s;
 }
 
-.cards.gallery ul > li:hover > .cards-card-body:not(:empty) {
-  opacity: 1;
-  visibility: visible;
-}
-
 .cards.gallery.hover-gradient ul > li > .cards-card-body {
   background: linear-gradient(
     to left,
@@ -388,6 +383,12 @@
     rgb(97 178 73 / 80%) 100%
   );
 }
+
+.cards.gallery ul > li:hover > .cards-card-body:not(:empty) {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 .cards.gallery ul > li > .cards-card-image picture img {
   aspect-ratio: unset;
