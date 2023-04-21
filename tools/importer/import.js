@@ -414,7 +414,7 @@ const transformTabsSections = (document) => {
       if (isOverviewTab) {
         const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
         if (waveSection) {
-          metadataCells.push(['style', 'Wave, Text White, Orange Buttons']);
+          metadataCells.push(['style', 'Wave, Orange Buttons']);
           const bgImage = extractBackgroundImage(waveSection);
           if (bgImage) {
             const img = document.createElement('img');
@@ -456,7 +456,7 @@ const transformProductOverviewHeadlines = (block, document) => {
 
 const transformImageList = (document) => {
   document.querySelectorAll('.listing-image').forEach((featureList) => {
-    const cells = [['Image List']];
+    const cells = [[featureList.classList.contains('overview-features') ? 'Image List (Features)' : 'Image List']];
     featureList.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
     featureList.replaceWith(table);
