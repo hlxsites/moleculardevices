@@ -64,17 +64,12 @@ function addEventListenersDesktop() {
   });
 
   addListeners('.searchlink', 'mousedown', (e) => {
-    // get the tag of the parent element
-    const parentTag = e.currentTarget.parentElement.tagName;
-    console.log(parentTag);
-    // if the parent element is a form, return
-    if (parentTag === 'FORM') {
-      return;
+    if (e.target === e.currentTarget) {
+      // get the tag of the parent element
+      e.preventDefault();
+      e.stopPropagation();
+      expandMenu(e.currentTarget);
     }
-
-    e.preventDefault();
-    e.stopPropagation();
-    expandMenu(e.currentTarget);
   });
 }
 
