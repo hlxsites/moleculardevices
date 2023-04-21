@@ -83,7 +83,7 @@ export default async function decorate(block) {
   navMenuUl.classList.add('nav-tabs');
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
 
-  for (let i = 0; i < menus.length - 1; i += 2) {
+  for (let i = 0; i < menus.length; i += 1) {
     const li = document.createElement('li');
     li.classList.add('menu-expandable');
     li.setAttribute('aria-expanded', 'false');

@@ -3,6 +3,24 @@ import { fetchHeaderContent } from './header.js';
 import buildRightSubmenu from './header-megamenu-components.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
+function reverseElementLinkTagRelation(element) {
+  const linkElement = element.querySelector('a');
+  if (linkElement) {
+    element.removeChild(linkElement);
+
+    const newLinkElement = document.createElement('a');
+    newLinkElement.href = linkElement.href;
+
+    element.innerHTML = linkElement.innerHTML;
+    element.parentNode.replaceChild(newLinkElement, element);
+
+    newLinkElement.appendChild(element);
+    return newLinkElement;
+  }
+
+  return element;
+}
+
 function buildMegaMenu(navContent, submenuContent) {
   const productsSubmenu = document.createElement('div');
   const title = submenuContent.querySelector('h1');
@@ -19,11 +37,13 @@ function buildMegaMenu(navContent, submenuContent) {
 
   // add H2s to list
   h2s.forEach((h2) => {
+    const element = reverseElementLinkTagRelation(h2);
+
     const h2ListItem = document.createElement('li');
     h2ListItem.classList.add('menu-nav-submenu-section');
-    h2ListItem.innerHTML = h2.outerHTML;
+    h2ListItem.innerHTML = element.outerHTML;
 
-    h2ListItem.append(buildRightSubmenu(h2));
+    h2ListItem.append(buildRightSubmenu(element));
 
     h2List.append(h2ListItem);
   });
