@@ -73,6 +73,7 @@ export default function decorate(block) {
       src: 'https://info.moleculardevices.com/submit-your-story',
       width: '100%',
       height: '100%',
+      loading: 'lazy',
     }),
   );
   modal.append(modalCloseButton);
