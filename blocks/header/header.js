@@ -4,6 +4,10 @@ import { buildHamburger } from './menus/mobile-menu.js';
 import {
   div,
   li,
+  h3,
+  form,
+  input,
+  button,
 } from '../../scripts/dom-helpers.js';
 
 function buildBrandLogo(content) {
@@ -33,18 +37,6 @@ function buildSearch(content) {
   // get div with class Robot Image with Speach from navContent
   const robotDiv = content.querySelector('.robot-image-with-speech');
 
-  const searchBar = document.createElement('div');
-  searchBar.classList.add('menu-nav-search-bar');
-  searchBar.innerHTML = '<h3>Search</h3>';
-
-  searchBar.innerHTML += `<div class="search-form-group">
-    <form action="/search-results" method="GET">
-      <input id="search_keyword_search1" class="form-control" type="text" placeholder="moleculardevices.com" name="search" />
-      <button class="transparentBtn btn searchbutton" type="submit">Search</button>
-    </form>
-  </div>
-  `;
-
   const search = li(
     { class: 'searchlink header-search fa fa-search', 'aria-expanded': 'false' },
     div(
@@ -52,7 +44,27 @@ function buildSearch(content) {
       div(
         { class: 'menu-nav-search-view' },
         robotDiv,
-        searchBar,
+        div(
+          { class: 'menu-nav-search-bar' },
+          h3(
+            'Search',
+          ),
+          div(
+            { class: 'search-form-group' },
+            form(
+              { action: '/search-results', method: 'GET' },
+              input(
+                {
+                  id: 'search_keyword_search1', class: 'form-control', type: 'text', placeholder: 'moleculardevices.com', name: 'search',
+                },
+              ),
+              button(
+                { class: 'transparentBtn btn searchbutton', type: 'submit' },
+                'Search',
+              ),
+            ),
+          ),
+        ),
       ),
       div(
         { class: 'menu-nav-submenu-close' },
