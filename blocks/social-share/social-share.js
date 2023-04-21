@@ -35,7 +35,7 @@ function decorateLink(social, type, icon, url) {
   );
 }
 
-function decorateIcons(element) {
+export function decorateIcons(element) {
   const url = getURL();
   const title = getTitle();
 
