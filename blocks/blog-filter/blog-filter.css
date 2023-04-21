@@ -1,0 +1,52 @@
+/* Cancel any margin below that the hero might have */
+.hero-wrapper, .hero {
+  margin-bottom: 0 !important;
+}
+
+.blog .section div.blog-filter-wrapper {
+  width: 100%;
+  max-width: unset;
+  background-color: rgba(0,0,0,.5);
+}
+
+.blog-filter {
+  margin-top: -56px;
+  position: relative;
+}
+
+.blog-filter ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+}
+
+.blog-filter ul li:first-child a:before {
+  content: "|";
+  position: absolute;
+  right: 0;
+  top: -7px;
+  bottom: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  min-height: 12px;
+  color: #61a60e;
+}
+
+.blog-filter ul li a:link,
+.blog-filter ul li a:visited {
+  position: relative;
+  display: block;
+  padding: 16px 24px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: var(--text-white);
+}
+
+.blog-filter ul li a:hover,
+.blog-filter ul li a:active,
+.blog-filter ul li a.active {
+  color: #61a60e;
+}
+
