@@ -3,11 +3,18 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../social-share/social-share.js';
 
+const SUBMIT_STORY_IFRAME_URL = 'https://info.moleculardevices.com/submit-your-story';
+
 function showSubmitStoryModal(e) {
   e.preventDefault();
   document.getElementById('submit-story-modal').classList.add('show');
   document.getElementById('submit-story-modal-overlay').classList.add('show');
   document.body.classList.add('modal-open');
+  // only load iframe on first modal display
+  const submitStoryFrame = document.getElementById('submit-story-iframe');
+  if (submitStoryFrame.src !== SUBMIT_STORY_IFRAME_URL) {
+    submitStoryFrame.src = SUBMIT_STORY_IFRAME_URL;
+  }
 }
 
 function hideSubmitStoryModal(e) {
@@ -60,7 +67,7 @@ export default function decorate(block) {
   block.append(shareMessageBlock);
   block.append(shareButtonBlock);
 
-  // hubspot modal
+  // submit story modal
   const modal = div({ class: 'submit-story-modal', id: 'submit-story-modal' });
   const modalCloseButton = button({
     class: 'submit-story-modal-close',
@@ -70,10 +77,9 @@ export default function decorate(block) {
   modalCloseButton.innerHTML = '&times;';
   const modalContent = div({ class: 'submit-story-modal-wrapper' },
     iframe({
-      src: 'https://info.moleculardevices.com/submit-your-story',
+      id: 'submit-story-iframe',
+      src: '',
       loading: 'lazy',
-      width: '100%',
-      height: '100%',
     }),
   );
   modal.append(modalCloseButton);
