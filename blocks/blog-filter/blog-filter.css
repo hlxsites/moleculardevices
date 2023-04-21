@@ -10,11 +10,20 @@
 }
 
 .blog-filter {
-  margin-top: -56px;
-  position: relative;
+  /* TODO figure out how to not overlap with the molecules background */
+  /* margin-top: -56px; */
+
+  /* 56px + 90 molecules section padding */
+  margin-top: -146px;
+  margin-bottom: 130px;
+}
+
+.blog-filter .active-filter {
+  display: none; /* mobile only */
 }
 
 .blog-filter ul {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -48,5 +57,81 @@
 .blog-filter ul li a:active,
 .blog-filter ul li a.active {
   color: #61a60e;
+}
+
+@media only screen and (max-width: 991px) {
+  .blog-filter {
+    margin-top: -106px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .blog .section div.blog-filter-wrapper {
+    background-color: transparent;
+  }
+
+  .blog-filter {
+    display: block;
+    text-align: left;
+    margin: 0 auto;
+    width: 250px;
+    padding-bottom: 0;
+  }
+
+  .blog-filter .active-filter {
+    display: block;
+  }
+
+  .blog-filter ul {
+    display: block;
+    padding: 0;
+  }
+
+  .blog-filter ul.hide {
+    display: none;
+  }
+
+  .blog-filter ul li a:link,
+  .blog-filter ul li a:visited,
+  .blog-filter .active-filter span {
+    color: #34393d;
+    padding: 5px 0;
+    text-align: left;
+    text-transform: none;
+    font-size: 15px;
+    font-family: var(--ff-proxima-light);
+  }
+
+  .blog-filter ul li:first-child a:before {
+    content: none;
+  }
+
+  .blog-filter .active-filter button {
+    background-color: transparent;
+    text-align: inherit;
+    display: block;
+    max-width: unset;
+    padding: 0;
+    padding-top: 32px;
+  }
+
+  .blog-filter .active-filter .icon {
+    display: block;
+    height: 20px;
+    width: 20px;
+    float: right;
+    padding: 0;
+    transform: rotate(90deg);
+    margin-left: 10px;
+  }
+
+  .blog-filter .active-filter .icon svg path {
+    stroke-width: 15;
+  }
+
+  .blog-filter ul li a.active {
+    font-weight: bold;
+    font-family: var(--ff-proxima-regular);
+  }
 }
 

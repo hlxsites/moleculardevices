@@ -509,6 +509,13 @@ main .section.background-molecules {
   background-size: auto 90px;
 }
 
+@media only screen and (max-width: 991px) {
+  main .section.background-molecules {
+    background-size: auto 50px;
+    padding-top: 50px;
+  }
+}
+
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
     padding: 0 0 70px;

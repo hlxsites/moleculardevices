@@ -1,3 +1,8 @@
+import { 
+  button, div, span 
+} from '../../scripts/dom-helpers.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
+
 const viewAllCategory = 'viewall';
 
 function setActiveFilter(block) {
@@ -5,8 +10,11 @@ function setActiveFilter(block) {
   activeHash = activeHash ? activeHash.substring(1) : viewAllCategory;
   const filterLink = block.querySelector(`a[href*="#${activeHash}"`);
   if (!filterLink) {
-    block.querySelector(`a[href*="#${viewAllCategory}"`).classList.add('active');
+    const viewAllLink = block.querySelector(`a[href*="#${viewAllCategory}"`);
+    view.classList.add('active');
+    block.querySelector('.active-filter .filter-title').innerText = viewAllLink.innerText;
   } else { 
+    block.querySelector('.active-filter .filter-title').innerText = filterLink.innerText;
     filterLink.classList.add('active');
   }
 }
@@ -16,9 +24,22 @@ function filterChangedViaHash(block, filters) {
   setActiveFilter(block);
 }
 
-export default function decorate(block) {
-  const filters = [...block.querySelectorAll('a')];
+function showHideAllFilters(block) {
+  block.querySelector('ul').classList.toggle('hide');
+}
 
+export default function decorate(block) {
+  block.prepend(
+    div({ class: 'active-filter' },
+      button({ class: 'show-hide-filters', onclick: () => { showHideAllFilters(block); } },
+        span({ class: 'filter-title' }),
+        span({ class: 'icon icon-chevron-right-outline' }),
+      ),
+    ),
+  );
+  decorateIcons(block);
+  
+  const filters = [...block.querySelectorAll('a')];
   filters.forEach((link) => {
     link.addEventListener('click', (e) => {
       filters.forEach((r) => r.classList.remove('active'));
