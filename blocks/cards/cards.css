@@ -358,11 +358,6 @@
   background: rgb(0 117 141 / 80%);
 }
 
-.cards.gallery ul > li:hover > .cards-card-body {
-  opacity: 1;
-  visibility: visible;
-}
-
 .cards.gallery ul > li > .cards-card-body:not(:empty) {
   position: absolute;
   left: 0;
@@ -378,6 +373,11 @@
   opacity: 0;
   visibility: hidden;
   transition: all .2s;
+}
+
+.cards.gallery ul > li:hover > .cards-card-body:not(:empty) {
+  opacity: 1;
+  visibility: visible;
 }
 
 .cards.gallery.hover-gradient ul > li > .cards-card-body {
