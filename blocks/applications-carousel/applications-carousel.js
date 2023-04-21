@@ -82,6 +82,7 @@ export default async function decorate(block) {
     block,
     sortedFragments,
     {
+      defaultStyling: true,
       navButtons: true,
       dotButtons: false,
       infiniteScroll: true,

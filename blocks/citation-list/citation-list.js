@@ -60,7 +60,6 @@ export default async function decorate(block) {
       navButtons: false,
       dotButtons: false,
       autoScroll: false,
-      defaultStyling: false,
       renderItem: (item) => item,
     },
   );

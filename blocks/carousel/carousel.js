@@ -20,7 +20,8 @@ function createClone(item) {
 class Carousel {
   constructor(block, data, config) {
     // Set defaults
-    this.cssFiles = ['/blocks/carousel/carousel.css'];
+    this.cssFiles = [];
+    this.defaultStyling = false;
     this.dotButtons = true;
     this.navButtons = true;
     this.infiniteScroll = true;
@@ -45,6 +46,10 @@ class Carousel {
 
     // Apply overwrites
     Object.assign(this, config);
+
+    if (this.defaultStyling) {
+      this.cssFiles.push('/blocks/carousel/carousel.css');
+    }
   }
 
   getBlockPadding() {
@@ -341,7 +346,7 @@ class Carousel {
     );
 
     let defaultCSSPromise;
-    if (this.cssFiles) {
+    if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       // add default carousel classes to apply default CSS
       defaultCSSPromise = new Promise((resolve) => {
         this.cssFiles.forEach((cssFile) => {
@@ -409,7 +414,7 @@ function renderCardItem(item) {
 }
 
 const cardStyleConfig = {
-  cssFiles: ['/blocks/carousel/carousel.css', '/blocks/carousel/carousel-cards.css'],
+  cssFiles: ['/blocks/carousel/carousel-cards.css'],
   navButtons: true,
   dotButtons: false,
   infiniteScroll: true,
