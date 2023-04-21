@@ -60,7 +60,7 @@ export default function decorate(block) {
     const currentPageLink = block.querySelector(`a[href="${window.location.pathname}"`);
     if (currentPageLink) {
       currentPageLink.classList.add('active');
-      block.querySelector('.active-filter .filter-title').innerText = currentPageLink;
+      block.querySelector('.active-filter .filter-title').innerText = currentPageLink.innerText;
     }
   }
 }
