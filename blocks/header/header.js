@@ -1,6 +1,10 @@
 import handleViewportChanges from './header-events.js';
 import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
 import { buildHamburger } from './menus/mobile-menu.js';
+import {
+  div,
+  li,
+} from '../../scripts/dom-helpers.js';
 
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
@@ -26,18 +30,8 @@ function buildRequestQuote() {
 }
 
 function buildSearch(content) {
-  const search = document.createElement('li');
-  search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
-  search.setAttribute('aria-expanded', 'false');
-
-  const flexContainer = document.createElement('div');
-
-  const searchView = document.createElement('div');
-  searchView.classList.add('menu-nav-search-view');
-
   // get div with class Robot Image with Speach from navContent
   const robotDiv = content.querySelector('.robot-image-with-speech');
-  searchView.append(robotDiv);
 
   const searchBar = document.createElement('div');
   searchBar.classList.add('menu-nav-search-bar');
@@ -50,15 +44,22 @@ function buildSearch(content) {
     </form>
   </div>
   `;
-  searchView.append(searchBar);
 
-  flexContainer.append(searchView);
+  const search = li(
+    { class: 'searchlink header-search fa fa-search', 'aria-expanded': 'false' },
+    div(
+      { class: 'menu-nav-search-flex' },
+      div(
+        { class: 'menu-nav-search-view' },
+        robotDiv,
+        searchBar,
+      ),
+      div(
+        { class: 'menu-nav-submenu-close' },
+      ),
+    ),
+  );
 
-  const closeButton = document.createElement('div');
-  closeButton.classList.add('menu-nav-submenu-close');
-  flexContainer.append(closeButton);
-
-  search.append(flexContainer);
   return search;
 }
 
@@ -117,9 +118,9 @@ export default async function decorate(block) {
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
 
   for (let i = 0; i < menus.length; i += 1) {
-    const li = document.createElement('li');
-    li.classList.add('menu-expandable');
-    li.setAttribute('aria-expanded', 'false');
+    const item = document.createElement('li');
+    item.classList.add('menu-expandable');
+    item.setAttribute('aria-expanded', 'false');
 
     const menuTitle = menus[i];
     const textDiv = menuTitle.querySelector('div');
@@ -127,8 +128,8 @@ export default async function decorate(block) {
     menuTitle.classList.add('menu-nav-category');
     menuTitle.setAttribute('menu-id', toClassName(menuTitle.textContent));
 
-    li.innerHTML = menuTitle.outerHTML;
-    navMenuUl.append(li);
+    item.innerHTML = menuTitle.outerHTML;
+    navMenuUl.append(item);
   }
 
   navMenuUl.append(buildSearch(content));
