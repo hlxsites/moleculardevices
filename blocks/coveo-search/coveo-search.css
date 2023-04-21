@@ -254,6 +254,11 @@
     min-height: 440px;
   }
 
+  .coveo-main-section-wrapper .coveo-main-section{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .cover-banner-content {
     padding-top: 100px;
   }
@@ -264,6 +269,12 @@
 
   .coveo-main-section > .coveo-facet-column > div {
     background-color: transparent;
+  }
+}
+
+@media only screen and (min-width: 1240px) {
+  .coveo-main-section-wrapper .coveo-main-section{
+    width: 1200px;
   }
 }
 
