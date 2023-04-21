@@ -60,13 +60,13 @@ export default async function decorate(block) {
   navbarHeader.append(buildTools(content));
 
   const headerWrapper = document.createElement('div');
-  headerWrapper.classList.add('container');
+  headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
   headerWrapper.append(navbarHeader);
 
   // ------ Nav ------
   // Create wrapper for nav
   const mainMenuWrapper = document.createElement('div');
-  mainMenuWrapper.classList.add('mainmenu-wrapper');
+  mainMenuWrapper.classList.add('mainmenu-wrapper', 'sticky-element', 'sticky-desktop');
 
   const container = document.createElement('div');
   container.classList.add('container');
@@ -75,6 +75,7 @@ export default async function decorate(block) {
 
   const navTabs = content.querySelector('.nav-menu');
   newNav.innerHTML = navTabs.outerHTML;
+  container.append(buildBrandLogo(content));
   container.append(newNav);
   mainMenuWrapper.append(container);
 

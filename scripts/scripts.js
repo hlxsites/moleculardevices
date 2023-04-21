@@ -25,6 +25,10 @@ const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
 const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
+let LAST_SCROLL_POSITION = 0;
+let STICKY_ELEMENTS;
+const mobileDevice = window.matchMedia('(max-width: 991px)');
+
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
   const script = document.createElement('script');
@@ -243,6 +247,52 @@ export async function fetchFragment(path) {
   return text;
 }
 
+function getStickyElements() {
+  if (mobileDevice.matches) {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-mobile');
+  } else {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-desktop');
+  }
+}
+
+/**
+ * Enable sticky components
+ *
+ */
+function enableStickyElements() {
+  getStickyElements();
+  mobileDevice.addEventListener('change', getStickyElements);
+
+  const offsets = [];
+
+  STICKY_ELEMENTS.forEach((element, index) => {
+    offsets[index] = element.offsetTop;
+  });
+
+  window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.pageYOffset;
+    let stackedHeight = 0;
+    STICKY_ELEMENTS.forEach((element, index) => {
+      if (currentScrollPosition > offsets[index] - stackedHeight) {
+        element.classList.add('sticky');
+        element.style.top = `${stackedHeight}px`;
+        stackedHeight += element.offsetHeight;
+      } else {
+        element.classList.remove('sticky');
+        element.style.top = '';
+      }
+
+      if (currentScrollPosition < LAST_SCROLL_POSITION && currentScrollPosition <= offsets[index]) {
+        element.style.top = `${Math.max(offsets[index] - currentScrollPosition, stackedHeight - element.offsetHeight)}px`;
+      } else {
+        element.style.top = `${stackedHeight - element.offsetHeight}px`;
+      }
+    });
+
+    LAST_SCROLL_POSITION = currentScrollPosition;
+  });
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -253,6 +303,8 @@ async function loadLazy(doc) {
   const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
+
+  enableStickyElements();
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
