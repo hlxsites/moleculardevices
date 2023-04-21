@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 import { renderBlogCard } from '../../templates/blog/blog.js';
 
 export default async function decorate(block) {

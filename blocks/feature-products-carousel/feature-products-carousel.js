@@ -1,5 +1,7 @@
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 
 export default async function decorate(block) {
-  createCarousel(block);
+  createCarousel(block, [...block.children], {
+    defaultStyling: true,
+  });
 }

@@ -1,4 +1,4 @@
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   div,
@@ -60,7 +60,6 @@ export default async function decorate(block) {
       navButtons: false,
       dotButtons: false,
       autoScroll: false,
-      defaultStyling: false,
       renderItem: (item) => item,
     },
   );
