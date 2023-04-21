@@ -22,7 +22,7 @@ import {
  */
 const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
 
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 export function loadScript(url, callback, type, async) {
@@ -61,7 +61,7 @@ export function styleCaption(elems) {
 * If we have a hero block, move it into its own section, so it can be displayed faster
 */
 function optimiseHeroBlock(main) {
-  const heroBlock = main.querySelector('.hero');
+  const heroBlock = main.querySelector('.hero, .hero-advanced');
   if (!heroBlock) return;
 
   const heroSection = document.createElement('div');
