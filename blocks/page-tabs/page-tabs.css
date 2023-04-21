@@ -4,6 +4,7 @@ main .section>div.page-tabs-wrapper {
   background-image: url("/images/tabLinksBg.jpg");
   background-size: cover;
   background-position: right center;
+  z-index: 99;
 }
 
 main .page-tabs {
@@ -16,8 +17,13 @@ main .page-tabs {
   overflow-y: hidden;
 }
 
+main .page-tabs-wrapper.sticky .page-tabs {
+  height: 60px;
+}
+
 main .page-tabs ul {
   margin: 0;
+  height: 100%;
   padding: 0;
   touch-action: auto;
   list-style: none;
@@ -25,6 +31,7 @@ main .page-tabs ul {
 
 main .page-tabs li {
   position: relative;
+  height: 100%;
   margin: 0 25px;
   text-align: center;
   display: inline-block;
@@ -50,6 +57,15 @@ main .page-tabs li a {
   margin: 0;
 }
 
+main .page-tabs li[aria-selected="true"] a {
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+}
+
+main .page-tabs-wrapper.sticky .page-tabs li a {
+  line-height: 60px;
+}
+
 main .page-tabs li[aria-selected="true"]::before {
   position: absolute;
   content: "";
@@ -58,6 +74,10 @@ main .page-tabs li[aria-selected="true"]::before {
   height: 10px;
   margin-top: 50px;
   left: 50%;
+}
+
+main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
+  margin-top: 43px;
 }
 
 main .page-tabs li[aria-selected="true"]::after {
@@ -72,9 +92,8 @@ main .page-tabs li[aria-selected="true"]::after {
   left: 50%;
 }
 
-main .page-tabs li[aria-selected="true"] a {
-  font-family: var(--ff-proxima-regular);
-  font-weight: bold;
+main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
+  margin-top: 43px;
 }
 
 @media only screen and (min-width: 768px) {
