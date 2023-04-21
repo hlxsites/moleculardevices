@@ -524,8 +524,6 @@ main .section.highlight {
 
 main .section.background-grey {
   background-color: var(--grey-background-color);
-  padding-top: 90px;
-  padding-bottom: 100px;
 }
 
 main .section.center {
@@ -541,20 +539,8 @@ main .section.background-molecules {
 }
 
 @media(max-width: 991px) {
-  main .section.background-grey {
-    padding-top: 67px;
-    padding-bottom: 67px;
-  }
-
   main .section .default-content-wrapper {
     padding: 0 0 70px;
-  }
-}
-
-@media(max-width: 767px) {
-  main .section.background-grey {
-    padding-top: 30px;
-    padding-bottom: 30px;
   }
 }
 
