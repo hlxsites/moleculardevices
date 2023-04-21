@@ -159,6 +159,15 @@ display: none;
   max-width: 700px;
 }
 
+/* Citation Variant - Desktop -- Start */
+.citation main .hero {
+  overflow: hidden 
+}
+
+.citation main .hero-wrapper h1 {
+  margin-top: 0;
+}
+
 /* Blog Variant - Desktop -- Start */
 .blog main .hero-container {
   margin-top: 0;
@@ -245,6 +254,20 @@ main .hero.blog .sticker {
     padding-bottom: 45px;
   }
 
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero {
+    min-height: 120px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .citation main .hero .container {
+    margin-top: 40px;
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */
+
   /* TODO fix heading vars in styles.css */
   .hero-inner h1 {
     margin-bottom: 10px;
@@ -301,7 +324,6 @@ main .hero.blog .sticker {
 }
 
 @media (max-width: 767px) {
-
   /* Blog Variant - Mobile -- Start */
   .blog main .hero-wrapper {
     color: inherit;
@@ -388,6 +410,17 @@ main .hero.blog .sticker {
     padding-bottom: 45px;
   }
 
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero {
+    min-height: 220px;
+  }
+
+  .citation main .hero .container {
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */
+
   .hero-inner .video-icon img {
     position: absolute;
     top: 0;
@@ -414,7 +447,7 @@ main .hero.blog .sticker {
 @media (min-width: 992px) {
   .hero-inner > div {
     width: 970px
-  }
+  }  
 
   .hero-inner .container > div {
     float:left;
@@ -427,6 +460,17 @@ main .hero.blog .sticker {
   .hero.blog .container > div:nth-child(1) {
     width: unset;
   }
+
+  /* Citation Variant - Mobile -- Start */
+  .citation main .hero .container > div:nth-child(1) {
+    width: 80%
+  }
+
+  .citation main .hero .container {
+    padding: 0 0 40px;
+  }
+
+  /* Citation Variant - Mobile -- End */  
 
   .hero-inner .container.two-column > div:nth-child(2) {
     width: 33%;
