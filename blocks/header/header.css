@@ -34,8 +34,6 @@ header .nav-wrapper {
 header .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 header .nav-wrapper .container {
@@ -844,10 +842,23 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     width: 158px;
     max-height: 36px;
     height: auto;
+    opacity: 0;
+    max-width: 0;
   }
 
   header .mainmenu-wrapper.sticky #header-logo {
     display: block;
+  }
+
+  header .mainmenu-wrapper.sticky #header-logo img {
+    opacity: 1;
+    transition: opacity 0.5s;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  header .mainmenu-wrapper.sticky .menu-nav-category {
+    transition: all 0.3s ease-in-out;
   }
 
   header .mainmenu-wrapper>nav {
@@ -904,6 +915,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     position: relative;
     background: var(--header-color-orange);
     font-size: 15px;
+    transition: all .3s;
   }
 
   /* request quote */
@@ -921,6 +933,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     flex-wrap: wrap;
     justify-content: flex-end;
     position: static;
+    transition: all 0.3s ease-in-out;
   }
 
   header .nav-tabs .menu-nav-submenu {
@@ -981,7 +994,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
 @media (min-width: 1200px) {
   header .container {
-    width: 1170px;
+    width: 1140px;
   }
 
   header .cards-submenu ul li a {
@@ -1023,6 +1036,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 
   header .nav-tabs .menu-nav-submenu > div {
-    width: 1170px;
+    width: 1140px;
   }
 }
