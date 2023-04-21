@@ -57,6 +57,11 @@ main .page-tabs li a {
   margin: 0;
 }
 
+main .page-tabs li[aria-selected="true"] a {
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+}
+
 main .page-tabs-wrapper.sticky .page-tabs li a {
   line-height: 60px;
 }
@@ -89,11 +94,6 @@ main .page-tabs li[aria-selected="true"]::after {
 
 main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
   margin-top: 43px;
-}
-
-main .page-tabs li[aria-selected="true"] a {
-  font-family: var(--ff-proxima-regular);
-  font-weight: bold;
 }
 
 @media only screen and (min-width: 768px) {
