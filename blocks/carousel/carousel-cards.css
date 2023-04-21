@@ -104,3 +104,19 @@
 .carousel.cards .carousel-item-columns-container {
   flex-direction: column;
 }
+
+@media only screen and (max-width: 1200px) {
+  .carousel-wrapper.cards {
+    width: 940px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .carousel-wrapper.cards {
+    width: 100%;
+  }
+
+  .carousel-wrapper.cards .carousel-nav-button {
+    display: none;
+  }
+}
