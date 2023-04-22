@@ -1,0 +1,31 @@
+.event-date, .event-keywords {
+  padding-bottom: 15px;
+}
+
+.event-subtitle {
+  margin-bottom: 12px;
+}
+
+.event-keywords {
+  margin-bottom: 35px;
+}
+
+.event-keywords ul.keyword-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-keywords ul.keyword-list li {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.event-keywords ul.keyword-list li:not(:last-of-type)::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 10px;
+}

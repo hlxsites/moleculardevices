@@ -71,6 +71,9 @@ indices:
       region:
         select: head > meta[name="event-region"]
         value: attribute(el, "content")
+      city:
+        select: head > meta[name="event-city"]
+        value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
