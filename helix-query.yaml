@@ -65,6 +65,18 @@ indices:
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
+      startDate:
+        select: head > meta[property="start-date"]
+        value: parseTimestamp(attribute(el, "content"), "YYYYMMDD")
+      endDate:
+        select: head > meta[property="end-date"]
+        value: parseTimestamp(attribute(el, "content"), "YYYYMMDD")
+      startTime:
+        select: head > meta[property="startTime"]
+        value: attribute(el, "content")
+      endTime:
+        select: head > meta[property="endTime"]
+        value: attribute(el, "content")
       type:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
