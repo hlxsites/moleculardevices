@@ -3,7 +3,17 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
-function renderAddCalendar(evt) {
+async function renderAddCalendar(container) {
+  const evt = {};
+  evt.startDate = getMetadata('event-start-date');
+  evt.endDate = getMetadata('event-end-date');
+  evt.startTime = getMetadata('event-start-time');
+  evt.endTime = getMetadata('event-end-time');
+  evt.title = getMetadata('og:title');
+  evt.eventType = getMetadata('event-type');
+  evt.eventRegion = getMetadata('event-region');
+  evt.eventAddress = getMetadata('event-city');
+
   const href = '/add/event'
   + `?startDate=${evt.startDate}`
   + `&endDate=${evt.endDate}`
@@ -14,7 +24,7 @@ function renderAddCalendar(evt) {
   + `&event_region=${evt.eventRegion}`
   + `&event_address=${evt.eventAddress}`;
 
-  return (
+  const cal = (
     p({ class: 'add-to-calendar' },
       a({
         class: 'button',
@@ -25,6 +35,8 @@ function renderAddCalendar(evt) {
       ),
     )
   );
+
+  container.append(cal);
 }
 
 export default function buildAutoBlocks() {
@@ -37,16 +49,6 @@ export default function buildAutoBlocks() {
     const par = moreBtn.closest('p');
     par.classList.add('find-out-more');
 
-    const evt = {};
-    evt.startDate = '20230218';
-    evt.endDate = '20230222';
-    evt.startTime = '0000';
-    evt.endTime = '0832';
-    evt.title = getMetadata('og:title');
-    evt.eventType = getMetadata('event-type');
-    evt.eventRegion = getMetadata('event-region');
-    evt.eventAddress = getMetadata('event-city');
-
-    par.parentElement.append(renderAddCalendar(evt));
+    renderAddCalendar(par.parentElement);
   }
 }
