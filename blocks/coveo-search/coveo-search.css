@@ -4,15 +4,6 @@
 }
 
 .section.background-grey.coveo-search-container::after {
-  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
-  background-repeat: no-repeat;
-  background-size: 100%;
-  padding: 10.823% 0 0;
-  margin: 0 0 -1px;
-  background-position: bottom center;
-  display: block;
-  width: 100%;
-  content: '';
   flex-basis: 100%;
   align-self: self-end;
 }
