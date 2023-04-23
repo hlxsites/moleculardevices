@@ -14,7 +14,7 @@ async function renderAddCalendar(container) {
   evt.eventRegion = getMetadata('event-region');
   evt.eventAddress = getMetadata('event-city');
 
-  const href = '/add/event'
+  const href = 'https://www.moleculardevices.com/add/event'
   + `?startDate=${evt.startDate}`
   + `&endDate=${evt.endDate}`
   + `&startTime=${evt.startTime}`
@@ -36,7 +36,7 @@ async function renderAddCalendar(container) {
     )
   );
 
-  container.append(cal);
+  container.parentNode.insertBefore(cal, container.nextSibling);
 }
 
 export default function buildAutoBlocks() {
@@ -49,6 +49,6 @@ export default function buildAutoBlocks() {
     const par = moreBtn.closest('p');
     par.classList.add('find-out-more');
 
-    renderAddCalendar(par.parentElement);
+    renderAddCalendar(par);
   }
 }

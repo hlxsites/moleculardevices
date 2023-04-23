@@ -983,12 +983,13 @@ main .section[aria-hidden="true"] {
   z-index: 999;
 }
 
+.coveo-search-container::after,
 .news-container::after,
 .news .social-share-container::after,
 .publication-container::after,
 .publication .social-share-container::after,
 .event main .event-container::after {
-  background-image: url("/images/fat-footer-bg-withour-mol--top.png");
+  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
   padding: 10.823% 0 0;
@@ -998,3 +999,4 @@ main .section[aria-hidden="true"] {
   width: 100%;
   content: "";
 }
+
