@@ -407,13 +407,12 @@ export function getCookie(cname) {
 }
 
 /**
- * Set a cmp session cookie if cmp exits in query string
+ * Set a cookie from query string parameters
  */
-function setCmpCookie() {
+function setCookieFromQueryParameters(paramName, exdays) {
   const readQuery = getQueryParameter();
-  const paramName = 'cmp';
   if (readQuery[paramName]) {
-    setCookie(paramName, readQuery[paramName], 0);
+    setCookie(paramName, readQuery[paramName], exdays);
   }
 }
 
@@ -423,5 +422,5 @@ async function loadPage() {
   loadDelayed();
 }
 
-setCmpCookie();
+setCookieFromQueryParameters('cmp', 0);
 loadPage();
