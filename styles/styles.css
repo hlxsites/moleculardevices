@@ -525,13 +525,6 @@ main .section .default-content-wrapper {
   padding-bottom: 50px;
 }
 
-main .section .default-content-wrapper h2:only-child,
-main .section:not(.tabs) .default-content-wrapper:first-child {
-  margin-top: 0px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -1017,4 +1010,11 @@ main .section[aria-hidden="true"] {
   display: block;
   width: 100%;
   content: "";
+}
+
+main .section .default-content-wrapper h2:only-child,
+main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
