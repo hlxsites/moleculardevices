@@ -1202,10 +1202,11 @@ function makeProxySrcs(document) {
 }
 
 function makeAbsoluteLinks(main) {
+  const HOST = 'https://main--moleculardevices--hlxsites.hlx.page/';
   main.querySelectorAll('a').forEach((a) => {
     if (a.href.startsWith('/')) {
       const ori = a.href;
-      const u = new URL(a.href, 'https://main--moleculardevices--hlxsites.hlx.page/');
+      const u = new URL(a.href, HOST);
 
       // Remove .html extension
       if (u.pathname.endsWith('.html')) {
@@ -1219,10 +1220,11 @@ function makeAbsoluteLinks(main) {
       }
     }
     if (a.href.startsWith('http://localhost:3001')) {
-      a.href = a.href.replaceAll(
-        'http://localhost:3001',
-        'https://main--moleculardevices--hlxsites.hlx.page'
-      );
+      const localURL = a.href;
+      a.href = a.href.replaceAll('http://localhost:3001/', HOST);
+      if (localURL.endsWith(a.textContent.trim())) {
+        a.textContent = a.href;
+      }
     }
   });
 }
