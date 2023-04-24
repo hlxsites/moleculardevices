@@ -58,6 +58,7 @@ header button.hamburger {
   top: 7px;
   cursor: pointer;
   min-width: 37px;
+  width: 37px;
   height: 37px;
   margin-top: 8px;
   border: 1px solid transparent;
