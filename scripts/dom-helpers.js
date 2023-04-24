@@ -74,3 +74,4 @@ export function i(...items) { return domEl('i', ...items); }
 export function img(...items) { return domEl('img', ...items); }
 export function span(...items) { return domEl('span', ...items); }
 export function button(...items) { return domEl('button', ...items); }
+export function iframe(...items) { return domEl('iframe', ...items); }
