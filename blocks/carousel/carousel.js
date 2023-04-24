@@ -65,7 +65,7 @@ class Carousel {
 
   updateCounterText(newIndex = this.currentIndex) {
     this.currentIndex = newIndex;
-    if(this.counter) {
+    if (this.counter) {
       const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
       const counterTextBlock = this.block.parentElement.querySelector('.carousel-counter .carousel-counter-text p');
       const pageCounter = `${this.currentIndex + 1} / ${items.length}`;
@@ -332,10 +332,10 @@ class Carousel {
   createCounter() {
     const counter = div({ class: 'carousel-counter' },
       div({ class: 'carousel-counter-text' },
-        p('')
-      )
+        p(''),
+      ),
     );
-    if(this.counterNavButtons) {
+    if (this.counterNavButtons) {
       this.createNavButtons(counter);
     }
     this.block.parentElement.append(counter);

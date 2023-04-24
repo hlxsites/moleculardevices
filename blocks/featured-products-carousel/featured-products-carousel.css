@@ -33,7 +33,7 @@ main .featured-products-carousel.mini .carousel-item {
 
 main .featured-products-carousel.mini .carousel-item-column {
   width: 100%;
-  padding: 0 0 30px 0;
+  padding: 0 0 30px;
 }
 
 main .featured-products-carousel.mini .carousel-item-image {
@@ -50,7 +50,7 @@ main .featured-products-carousel.mini .carousel-item-image picture {
 }
 
 main .featured-products-carousel.mini .carousel-item-text {
-  padding: 0 20px 0 20px;
+  padding: 0 20px;
 }
 
 main .featured-products-carousel.mini .carousel-item-text h3 {
