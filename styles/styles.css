@@ -990,3 +990,19 @@ main .section[aria-hidden="true"] {
   right: 0;
   z-index: 999;
 }
+
+.coveo-search-container::after,
+.news-container::after,
+.news .social-share-container::after,
+.publication-container::after,
+.publication .social-share-container::after {
+  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 10.823% 0 0;
+  margin: 0 0 -1px;
+  background-position: bottom center;
+  display: block;
+  width: 100%;
+  content: "";
+}
