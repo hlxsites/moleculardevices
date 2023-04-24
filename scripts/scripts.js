@@ -411,8 +411,8 @@ export function getCookie(cname) {
  */
 function setCmpCookie() {
   const readQuery = getQueryParameter();
-  readQuery['cmp'] ? setCookie('cmp', readQuery['cmp'], 0) : '';
-  ;
+  const paramName = 'cmp';
+  readQuery[paramName] ? setCookie(paramName, readQuery[paramName], 0) : '';
 }
 
 async function loadPage() {
