@@ -62,7 +62,7 @@ export function decorateIcons(element) {
   });
 }
 
-export function socialShareBlock (title, socials) {
+export function socialShareBlock(title, socials) {
   return div({ class: 'share-event' },
     p(title),
     div({ class: 'social-links' },
@@ -75,7 +75,7 @@ export function socialShareBlock (title, socials) {
         ),
       ),
     ),
-  )
+  );
 }
 
 function blogHideSocialShareOnHero(block) {

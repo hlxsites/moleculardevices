@@ -1,5 +1,5 @@
 import {
-  div, a, p, ul, li, i, h3, span, button, iframe,
+  div, a, p, h3, span, button, iframe,
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
