@@ -75,7 +75,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
 
   const resource = resourceMetadata.find((n) => n.URL === params.originalURL);
   if (resource) {
-    // meta.Type = resource['Asset Type'];
+    if (resource['Asset Type']) {
+      document.type = resource['Asset Type'];
+    }
     if (resource['Tagged to Products']) {
       meta['Related Products'] = resource['Tagged to Products'];
     }
@@ -174,6 +176,9 @@ const createFragmentList = (document, type, fragmentNames) => {
   return linkList;
 };
 
+/**
+ * Meta data extraction form the original page
+ */
 const createMetadata = (url, document) => {
   const meta = {};
 
@@ -185,9 +190,16 @@ const createMetadata = (url, document) => {
       .trim();
   }
 
-  const desc = document.querySelector('[property="og:description"]');
+  const desc = document.querySelector('meta[name="description"]');
+  const ogDesc = document.querySelector('[property="og:description"]');
   if (desc) {
     meta.Description = desc.content;
+    if (ogDesc) {
+      meta['og:description'] = ogDesc.content;
+      meta['twitter:description'] = ogDesc.content;
+    }
+  } else if (ogDesc) {
+    meta.Description = ogDesc.content;
   }
 
   const img = document.querySelector('[property="og:image"]');
@@ -333,9 +345,9 @@ const transformCurvedWaveFragment = (document) => {
 // we have different usages of sections - with <section></section>, <div></div>
 const transformSections = (document) => {
   document.querySelectorAll('section * section:not(.blogsPage), .category-page-section').forEach((section, index) => {
-    if (index > 0) {
-      section.firstChild.before(document.createElement('hr'));
-    }
+    // if (index > 0) {
+    // section.firstChild.before(document.createElement('hr'));
+    // }
     const cells = [['Section Metadata']];
     const styles = [];
     if (section.classList.contains('grey_molecules_bg_top')) {
@@ -653,11 +665,11 @@ const transformColumns = (document) => {
     const sectionStyle = row.classList.contains('section');
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
       if (sectionStyle) {
-        row.before(document.createElement('hr'));
+        //row.before(document.createElement('hr'));
         const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
         const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
         row.append(metaTable);
-        row.after(document.createElement('hr'));
+        //row.after(document.createElement('hr'));
       } else {
         const cells = [['Columns']];
         const blockOptions = [];
