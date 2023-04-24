@@ -27,6 +27,7 @@ window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation info
 
 let LAST_SCROLL_POSITION = 0;
 let STICKY_ELEMENTS;
+let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
@@ -248,10 +249,28 @@ export async function fetchFragment(path) {
 }
 
 function getStickyElements() {
+  PREV_STICKY_ELEMENTS = STICKY_ELEMENTS;
   if (mobileDevice.matches) {
     STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-mobile');
   } else {
     STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-desktop');
+  }
+
+  // remove sticky class from elements that are no longer sticky
+  if (PREV_STICKY_ELEMENTS) {
+    PREV_STICKY_ELEMENTS.forEach((element) => {
+      let keepSticky = false;
+      STICKY_ELEMENTS.forEach((stickyElement) => {
+        if (element === stickyElement) {
+          keepSticky = true;
+        }
+      });
+
+      if (!keepSticky) {
+        element.classList.remove('sticky');
+        element.style.top = '';
+      }
+    });
   }
 }
 
