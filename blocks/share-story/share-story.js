@@ -1,7 +1,7 @@
 import {
   div, a, p, ul, li, i, h3, span, button, iframe,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons } from '../social-share/social-share.js';
+import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
 const SUBMIT_STORY_IFRAME_URL = 'https://info.moleculardevices.com/submit-your-story';
 
@@ -29,20 +29,7 @@ export default function decorate(block) {
   block.innerHTML = '';
 
   const socials = ['facebook', 'linkedin', 'twitter'];
-
-  const shareSocialBlock = div({ class: 'share-event' },
-    p('share this story'),
-    div({ class: 'social-links' },
-      ul({ class: 'button-container' },
-        ...socials.map((social) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-          li({ class: `share-${social}`, 'data-type': social },
-            i({ class: `fa fa-${social}` }),
-          ),
-        ),
-      ),
-    ),
-  );
+  const shareSocialBlock = socialShareBlock('share this story', socials);
   decorateIcons(shareSocialBlock);
   const shareMessageBlock = div({ class: 'share-message' },
     h3(shareMessage),

@@ -62,6 +62,22 @@ export function decorateIcons(element) {
   });
 }
 
+export function socialShareBlock (title, socials) {
+  return div({ class: 'share-event' },
+    p(title),
+    div({ class: 'social-links' },
+      ul({ class: 'button-container' },
+        ...socials.map((social) =>
+          // eslint-disable-next-line implicit-arrow-linebreak
+          li({ class: `share-${social}`, 'data-type': social },
+            i({ class: `fa fa-${social}` }),
+          ),
+        ),
+      ),
+    ),
+  )
+}
+
 function blogHideSocialShareOnHero(block) {
   const heroBlock = document.querySelector('div.hero');
   block.classList.add('social-share-hidden');
@@ -90,21 +106,7 @@ export default function decorate(block) {
     : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
   block.innerHTML = '';
-  block.appendChild(
-    div({ class: 'share-event' },
-      p(title),
-      div({ class: 'social-links' },
-        ul({ class: 'button-container' },
-          ...socials.map((social) =>
-            // eslint-disable-next-line implicit-arrow-linebreak
-            li({ class: `share-${social}`, 'data-type': social },
-              i({ class: `fa fa-${social}` }),
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
+  block.appendChild(socialShareBlock(title, socials));
 
   decorateIcons(block);
   if (template === 'blog') {
