@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { renderBlogCard } from '../../templates/blog/blog.js';
-import createCarousel from '../carousel/carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 
 const BLOGS = new Map();
 const viewAllCategory = 'viewall';
@@ -44,7 +44,6 @@ export default async function decorate(block) {
       navButtons: false,
       dotButtons: false,
       autoScroll: false,
-      defaultStyling: false,
       renderItem: (item) => item,
     },
   );

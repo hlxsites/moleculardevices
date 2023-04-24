@@ -1,0 +1,9 @@
+
+main .featured-products-carousel .carousel-item {
+  border: 3px solid #efefef;
+}
+
+main .featured-products-carousel.grey .carousel-item {
+  background-color: #f2f2f2;
+  border: 0;
+}

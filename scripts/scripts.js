@@ -22,8 +22,12 @@ import {
  */
 const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
 
-const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
+
+let LAST_SCROLL_POSITION = 0;
+let STICKY_ELEMENTS;
+const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
   const head = document.querySelector('head');
@@ -79,7 +83,7 @@ export function styleCaption(elems) {
 * If we have a hero block, move it into its own section, so it can be displayed faster
 */
 function optimiseHeroBlock(main) {
-  const heroBlock = main.querySelector('.hero');
+  const heroBlock = main.querySelector('.hero, .hero-advanced');
   if (!heroBlock) return;
 
   const heroSection = document.createElement('div');
@@ -243,6 +247,52 @@ export async function fetchFragment(path) {
   return text;
 }
 
+function getStickyElements() {
+  if (mobileDevice.matches) {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-mobile');
+  } else {
+    STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-desktop');
+  }
+}
+
+/**
+ * Enable sticky components
+ *
+ */
+function enableStickyElements() {
+  getStickyElements();
+  mobileDevice.addEventListener('change', getStickyElements);
+
+  const offsets = [];
+
+  STICKY_ELEMENTS.forEach((element, index) => {
+    offsets[index] = element.offsetTop;
+  });
+
+  window.addEventListener('scroll', () => {
+    const currentScrollPosition = window.pageYOffset;
+    let stackedHeight = 0;
+    STICKY_ELEMENTS.forEach((element, index) => {
+      if (currentScrollPosition > offsets[index] - stackedHeight) {
+        element.classList.add('sticky');
+        element.style.top = `${stackedHeight}px`;
+        stackedHeight += element.offsetHeight;
+      } else {
+        element.classList.remove('sticky');
+        element.style.top = '';
+      }
+
+      if (currentScrollPosition < LAST_SCROLL_POSITION && currentScrollPosition <= offsets[index]) {
+        element.style.top = `${Math.max(offsets[index] - currentScrollPosition, stackedHeight - element.offsetHeight)}px`;
+      } else {
+        element.style.top = `${stackedHeight - element.offsetHeight}px`;
+      }
+    });
+
+    LAST_SCROLL_POSITION = currentScrollPosition;
+  });
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -253,6 +303,8 @@ async function loadLazy(doc) {
   const headerBlock = loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
+
+  enableStickyElements();
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -289,6 +341,50 @@ export function getQueryParameter() {
     get: (searchParams, prop) => searchParams.get(prop),
   });
   return params;
+}
+
+/**
+ * Set a cookie
+ * @param cname the name of the cookie
+ * @param cvalue the value of the cookie
+ * @param exdays the expiration days of a cookie
+ */
+export function setCookie(cname, cvalue, exdays) {
+  const date = new Date();
+  let hostName = '';
+  let domain = '';
+  let expires = '';
+  date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  if (exdays !== 0) {
+    expires = `expires=${date.toUTCString()}`;
+  }
+
+  domain = window.location.hostname.endsWith('.moleculardevices.com');
+  if (domain === true) {
+    hostName = 'domain=.moleculardevices.com;';
+  }
+  document.cookie = `${cname}=${cvalue};secure;${hostName}${expires};path=/`;
+}
+
+/**
+ * Get a cookie
+ * @param cname the name of the cookie
+ */
+export function getCookie(cname) {
+  const cName = `${cname}=`;
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
+  /* eslint-disable-next-line no-plusplus */
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(cName) === 0) {
+      return c.substring(cName.length, c.length);
+    }
+  }
+  return '';
 }
 
 async function loadPage() {

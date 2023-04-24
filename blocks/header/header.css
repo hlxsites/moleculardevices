@@ -34,8 +34,10 @@ header .nav-wrapper {
 header .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+}
+
+header .nav-wrapper .container {
+  background: var(--background-color);
 }
 
 header .navbar-header {
@@ -229,9 +231,13 @@ header .nav-tabs .menu-nav-category {
   border: 0;
   margin-right: 0;
   font-size: 12px;
-  cursor: pointer !important;
   background-color: transparent;
   font-weight: 300;
+}
+
+header .nav-tabs .menu-nav-category:hover {
+  color: var(--link-color);
+  cursor: default;
 }
 
 header nav .nav-sections {
@@ -259,7 +265,7 @@ header nav .nav-tools {
 /* submenus */
 header .nav-tabs .menu-nav-submenu-close {
   background: url('../../icons/close-dropdown.svg') no-repeat center/contain;
-  top: 60px;
+  top: 180px;
   right: 20px;
   border-radius: 100%;
   padding: 8px;
@@ -268,6 +274,10 @@ header .nav-tabs .menu-nav-submenu-close {
   position: absolute;
   cursor: pointer;
   z-index: 1;
+}
+
+header .mainmenu-wrapper.sticky .menu-nav-submenu-close {
+  top: 60px;
 }
 
 header .nav-tabs .menu-nav-submenu {
@@ -811,15 +821,44 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
   header .mainmenu-wrapper {
     box-shadow: 1px 3px 26px -4px rgb(0 0 0 / 75%);
+    background-color: var(--background-color);
     height: 100%;
     max-height: 46px;
     min-height: 46px;
-    position: absolute;
-    left: 0;
-    right: 0;
     bottom: 0;
-    transition: all .5s;
     display: block;
+  }
+
+  header .mainmenu-wrapper #header-logo {
+    float: left;
+    width: 19%;
+    vertical-align: middle;
+    margin-right: 9px;
+    padding: 5px 0;
+    display: none;
+  }
+
+  header .mainmenu-wrapper #header-logo img {
+    width: 158px;
+    max-height: 36px;
+    height: auto;
+    opacity: 0;
+    max-width: 0;
+  }
+
+  header .mainmenu-wrapper.sticky #header-logo {
+    display: block;
+  }
+
+  header .mainmenu-wrapper.sticky #header-logo img {
+    opacity: 1;
+    transition: opacity 0.5s;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  header .mainmenu-wrapper.sticky .menu-nav-category {
+    transition: all 0.3s ease-in-out;
   }
 
   header .mainmenu-wrapper>nav {
@@ -838,7 +877,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .nav-tabs > li.fa-search {
     color: var(--text-color);
     display: block;
-    padding: 15px 0 15px 13px;
+    padding: 15px 10px 15px 13px;
     position: relative;
   }
 
@@ -876,6 +915,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     position: relative;
     background: var(--header-color-orange);
     font-size: 15px;
+    transition: all .3s;
   }
 
   /* request quote */
@@ -890,10 +930,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
   header nav .nav-menu {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
     justify-content: flex-end;
     position: static;
+    transition: all 0.3s ease-in-out;
   }
 
   header .nav-tabs .menu-nav-submenu {
@@ -954,7 +994,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
 @media (min-width: 1200px) {
   header .container {
-    width: 1170px;
+    width: 1140px;
   }
 
   header .cards-submenu ul li a {
@@ -996,6 +1036,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 
   header .nav-tabs .menu-nav-submenu > div {
-    width: 1170px;
+    width: 1140px;
   }
 }

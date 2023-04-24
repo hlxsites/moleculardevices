@@ -1,4 +1,4 @@
-import addCarouselForMobile from './citation-list-carousel.js';
+import { createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   div,
@@ -45,21 +45,28 @@ export default async function decorate(block) {
   const topicItems = await ffetch('/resources/citations/query-index.json')
     .all();
 
-  const topicsListContainer = div({ class: 'topics-list-container' });
+  const topicsList = [];
 
   topicItems.forEach((topic) => {
     const card = buildTopicCard(topic);
-
-    const flexItem = div({ class: 'flex-item' });
-    flexItem.append(card);
-
-    topicsListContainer.append(flexItem);
+    topicsList.push(card);
   });
 
-  // Add carousel functionality for mobile devices
-  addCarouselForMobile(topicsListContainer);
+  const carousel = await createCarousel(
+    block,
+    topicsList,
+    {
+      infiniteScroll: true,
+      navButtons: false,
+      dotButtons: false,
+      autoScroll: false,
+      renderItem: (item) => item,
+    },
+  );
 
-  block.append(topicsListContainer);
-
-  return block;
+  window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
+    if (e.matches) {
+      carousel.setInitialScrollingPosition();
+    }
+  };
 }
