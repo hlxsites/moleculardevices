@@ -406,10 +406,20 @@ export function getCookie(cname) {
   return '';
 }
 
+/**
+ * Set a cmp session cookie if cmp exits in query string
+ */
+function setCmpCookie() {
+  const readQuery = getQueryParameter();
+  readQuery['cmp'] ? setCookie('cmp', readQuery['cmp'], 0) : '';
+  ;
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
 
+setCmpCookie();
 loadPage();
