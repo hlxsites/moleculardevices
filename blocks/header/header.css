@@ -34,15 +34,20 @@ header .nav-wrapper {
 header .container {
   margin-right: auto;
   margin-left: auto;
+  background: var(--background-color);
 }
 
 header .nav-wrapper .container {
   background: var(--background-color);
 }
 
+header nav {
+  height: 40px;
+}
+
 header .navbar-header {
   position: relative;
-  z-index: 99999;
+  z-index: 99;
 }
 
 /* Company Links (carrers/languages/...) */
@@ -934,6 +939,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     justify-content: flex-end;
     position: static;
     transition: all 0.3s ease-in-out;
+    height: inherit;
   }
 
   header .nav-tabs .menu-nav-submenu {
