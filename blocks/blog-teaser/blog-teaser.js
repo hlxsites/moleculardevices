@@ -2,6 +2,7 @@ import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { formatDate } from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
   return (
@@ -11,12 +12,14 @@ function renderBlockTeaser(blogData) {
           createOptimizedPicture(blogData.thumbnail, blogData.header),
         ),
       ),
-      div({ class: 'blog-teser-caption' },
+      div({ class: 'blog-teaser-caption' },
         h3(blogData.header),
         div({ class: 'metadata' },
           div(
             i({ class: 'fa fa-calendar' }),
-            span({ class: 'blog-publish-date' }, blogData.publicationDate),
+            span({ class: 'blog-publish-date' },
+              formatDate(blogData.publicationDate, { month : 'long' }),
+            ),
           ),
           div(
             i({ class: 'fa fa-user' }),
