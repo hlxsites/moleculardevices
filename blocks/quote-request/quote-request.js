@@ -88,7 +88,7 @@ function createBackBtn(stepNum) {
 }
 
 function loadIframeForm(stepNum, tab) {
-  loadScript('/blocks/quote-request/iframeResizer.min.js');
+  loadScript('/blocks/quote-request/iframeResizer.min.js');// eslint-disable-line
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
@@ -106,20 +106,19 @@ function loadIframeForm(stepNum, tab) {
     'A team member will contact you within 24-business hours regarding your product inquiry for : <br>';
   productName.innerHTML = `<strong>${tab}</strong>`;
 
-  const cmp = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
   const hubSpotQuery = {
     product_family__c: tab,
     product_selection__c: tab,
     product_primary_application__c: tab,
-    cmp: cmp,
+    cmp: cmpValue,
     google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
-    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmp}&requested_qdc_discussion__c=Quote`
+    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}&requested_qdc_discussion__c=Quote`,
   };
-  
   iframe.src = `${formUrl}?${new URLSearchParams(hubSpotQuery).toString()}`;
 
   description.appendChild(productName);
