@@ -406,10 +406,21 @@ export function getCookie(cname) {
   return '';
 }
 
+/**
+ * Set a cookie from query string parameters
+ */
+function setCookieFromQueryParameters(paramName, exdays) {
+  const readQuery = getQueryParameter();
+  if (readQuery[paramName]) {
+    setCookie(paramName, readQuery[paramName], exdays);
+  }
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
 
+setCookieFromQueryParameters('cmp', 0);
 loadPage();
