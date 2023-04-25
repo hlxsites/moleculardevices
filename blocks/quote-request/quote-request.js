@@ -130,7 +130,7 @@ function loadIframeForm(stepNum, tab) {
   root.querySelector('iframe').addEventListener('load', () => {
     if (formUrl) {
       /* global iFrameResize */
-      iFrameResize({ log: true }, '#contactQuoteRequest');
+      iFrameResize({ log: false }, '#contactQuoteRequest');
     }
   });
 }
@@ -208,17 +208,10 @@ function stepTwo(e) {
   prevRoot.style.display = 'none';
 }
 
-export default async function decorate(block) {
-  const Observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      entries.forEach((entry) => {
-        entry.target.innerHTML = `
-          <div id="step-1" class="rfq-product-wrapper"></div>
-          <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
-          <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
-        stepOne(stepTwo);
-      });
-    }
-  });
-  Observer.observe(block);
+export default async function decorate() {
+  document.querySelector('.quote-request').innerHTML = `
+  <div id="step-1" class="rfq-product-wrapper"></div>
+  <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
+  <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
+  stepOne(stepTwo);
 }
