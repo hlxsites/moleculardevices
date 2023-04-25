@@ -106,16 +106,16 @@ function loadIframeForm(stepNum, tab) {
     'A team member will contact you within 24-business hours regarding your product inquiry for : <br>';
   productName.innerHTML = `<strong>${tab}</strong>`;
 
-  const cmp = getCookie('cmp')?getCookie('cmp'):'70170000000hlRa';
+  const cmp = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
   const hubSpotQuery = {
     'product_family__c': tab,
     'product_selection__c': tab,
     'product_primary_application__c': tab,
     'cmp': cmp,
-    'google_analytics_medium__c': getCookie('utm_medium')?getCookie('utm_medium'):'',
-    'google_analytics_source__c': getCookie('utm_source')?getCookie('utm_source'):'',
-    'keyword_ppc__c': getCookie('utm_keyword')?getCookie('utm_keyword'):'',
-    'gclid__c': getCookie('gclid')?getCookie('gclid'):'',
+    'google_analytics_medium__c': getCookie('utm_medium') ? getCookie('utm_medium') : '',
+    'google_analytics_source__c': getCookie('utm_source') ? getCookie('utm_source') : '',
+    'keyword_ppc__c': getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
+    'gclid__c': getCookie('gclid') ? getCookie('gclid') : '',
     'product_image': 'NA',
     'return_url': `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmp}&requested_qdc_discussion__c=Quote`
   };
@@ -213,11 +213,11 @@ export default async function decorate(block) {
   const Observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       entries.forEach((entry) => {
-          entry.target.innerHTML = `
+        entry.target.innerHTML = `
           <div id="step-1" class="rfq-product-wrapper"></div>
           <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
           <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
-          stepOne(stepTwo);
+        stepOne(stepTwo);
       });
     }
   });
