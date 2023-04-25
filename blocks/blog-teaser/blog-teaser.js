@@ -18,7 +18,7 @@ function renderBlockTeaser(blogData) {
           div(
             i({ class: 'fa fa-calendar' }),
             span({ class: 'blog-publish-date' },
-              formatDate(blogData.publicationDate, { month : 'long' }),
+              formatDate(blogData.publicationDate, { month: 'long' }),
             ),
           ),
           div(

@@ -72,10 +72,8 @@
   font-family: var(--ff-proxima-regular);
   font-size: 18px;
   line-height: 18px;
-  padding-left: 18px;
-  padding-right: 18px;
-  padding-bottom: 16px;
-  padding-top: 15px;
-  background-color: #61b249;
-  background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+  padding-top: 15px 18px 16px;
+  
+  /* background-color: #61b249; */
+  background: linear-gradient(90deg,rgb(21 145 164) 0,rgb(46 159 121) 50%,rgb(97 178 73) 100%);
 }
