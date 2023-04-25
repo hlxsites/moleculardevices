@@ -1,42 +1,41 @@
 import {
-  a, div, h3, i, p, span
+  a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-
 
 function renderBlockTeaser(blogData) {
   return (
     div({ class: 'blog-teaser-item' },
       div({ class: 'blog-teaser-thumb' },
         a({ href: blogData.path },
-            createOptimizedPicture(blogData.thumbnail, blogData.header),
+          createOptimizedPicture(blogData.thumbnail, blogData.header),
         ),
       ),
       div({ class: 'blog-teser-caption' },
         h3(blogData.header),
         div({ class: 'metadata' },
           div(
-            i({ class: 'fa fa-calendar'}),
+            i({ class: 'fa fa-calendar' }),
             span({ class: 'blog-publish-date' }, blogData.publicationDate),
           ),
           div(
-            i({ class: 'fa fa-user'}),
+            i({ class: 'fa fa-user' }),
             span({ class: 'blog-author' }, blogData.author),
           ),
         ),
         p(blogData.description),
         p({ class: 'button-container' },
-          a(
-            { href: blogData.path,
-              'aria-label': blogData.c2aButtonText,
-              class: 'button primary'
-            },
-            blogData.c2aButtonText
+          a({
+            href: blogData.path,
+            'aria-label': blogData.c2aButtonText,
+            class: 'button primary',
+          },
+          blogData.c2aButtonText,
           ),
         ),
       ),
     )
-  )
+  );
 }
 
 async function fetchBlog(path) {
@@ -58,9 +57,8 @@ async function fetchBlog(path) {
 export default async function decorate(block) {
   const blogPostLinks = [...block.querySelectorAll('a')];
 
-  const blogPosts = {}
+  const blogPosts = {};
   await Promise.all(blogPostLinks.map(async (blogPostLink) => {
-    console.log(`fetching ${blogPostLink.href}`);
     const fragmentHtml = await fetchBlog(blogPostLink.href);
     if (fragmentHtml) {
       const fragmentElement = div();
@@ -89,7 +87,7 @@ export default async function decorate(block) {
     }
   }));
 
-  blogPostLinks.forEach(blogPostLink => {
+  blogPostLinks.forEach((blogPostLink) => {
     blogPostLink.replaceWith(
       renderBlockTeaser(blogPosts[blogPostLink.href]),
     );
