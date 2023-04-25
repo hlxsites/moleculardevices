@@ -421,10 +421,10 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
-const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid']; 
 cookieParams.forEach(function(param) {
-    setCookieFromQueryParameters(param, 0);
+  setCookieFromQueryParameters(param, 0);
 });
 
 loadPage();
