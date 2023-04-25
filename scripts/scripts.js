@@ -422,5 +422,9 @@ async function loadPage() {
   loadDelayed();
 }
 
-setCookieFromQueryParameters('cmp', 0);
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid']; 
+cookieParams.forEach(function(param) {
+    setCookieFromQueryParameters(param, 0);
+});
+
 loadPage();
