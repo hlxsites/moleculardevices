@@ -88,7 +88,7 @@ function createBackBtn(stepNum) {
 }
 
 function loadIframeForm(stepNum, tab) {
-  loadScript('/blocks/quote-request/iframeResizer.min.js');// eslint-disable-line
+  loadScript('/blocks/quote-request/iframeResizer.min.js');
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
