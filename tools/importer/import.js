@@ -42,6 +42,16 @@ const TABS_MAPPING = [
   },
 ];
 
+const formatDate = (date, includeTime = false) => {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  if (includeTime) {
+    options.hour = '2-digit';
+    options.minute = '2-digit';
+    return date.toLocaleString('en-US', options);
+  }
+  return date.toLocaleDateString('en-US', options);
+};
+
 /**
  * Special handling for resource document meta data.
  */
@@ -64,7 +74,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   }
   request.open(
     'GET',
-    `http://localhost:3001/export/moldev-resources-sheet-041720223.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
+    `http://localhost:3001/export/moldev-resources-sheet-04252023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
     false
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -114,6 +124,20 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       if (resource.Region) {
         meta['Event Region'] = resource.Region;
       }
+      if (resource['Event Address']) {
+        meta['Event Address'] = resource['Event Address'];
+      }
+      const startDate = new Date(resource['START DATE']);
+      if (startDate) {
+        meta['Start Date'] = formatDate(startDate, true);
+      }
+      const endDate = new Date(resource['END DATE']);
+      if (endDate) {
+        meta['End Date'] = formatDate(endDate, true);
+      }
+      if (resource['']) {
+        meta['End Date'] = resource['Event Address'];
+      }
     }
     if (resource.Thumbnail) {
       const el = document.createElement('img');
@@ -129,11 +153,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
 
     const publishDate = new Date(resource['Created On']);
     if (publishDate) {
-      meta['Publication Date'] = publishDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      });
+      meta['Publication Date'] = formatDate(publishDate);
     }
   } else {
     console.warn('Resource item for %s not found', params.originalURL);
