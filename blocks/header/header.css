@@ -50,6 +50,57 @@ header .navbar-header {
   z-index: 99;
 }
 
+/* Hamburger menu */
+header button.hamburger {
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  cursor: pointer;
+  min-width: 37px;
+  width: 37px;
+  height: 37px;
+  margin-top: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+header .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+header .hamburger .icon-bar {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: #008296;
+  width: 35px;
+  line-height: 1;
+}
+
+header .hamburger.hamburger-close .icon-bar {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 17px;
+}
+
+header .hamburger > .icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+header .hamburger.hamburger-close > .icon-bar + .icon-bar {
+  transform: rotate(-45deg);
+  top: 12px;
+}
+
 /* Company Links (carrers/languages/...) */
 header .navbar-header > .company-links {
   position: absolute;
@@ -774,8 +825,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     padding: 20px 15px;
     width: 100%;
     margin: 0;
-    margin-right: -15px;
-    margin-left: -15px;
+  }
+
+  header .hamburger {
+    display: initial;
   }
 
   header #header-logo {
@@ -792,6 +845,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 @media (min-width: 992px) {
   header .container {
     width: 970px;
+  }
+
+  header .hamburger {
+    display: none;
   }
 
   header .navbar-header {

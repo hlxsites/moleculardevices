@@ -1,5 +1,6 @@
 import handleViewportChanges from './header-events.js';
 import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
+import { buildHamburger } from './menus/mobile-menu.js';
 
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
@@ -58,6 +59,7 @@ export default async function decorate(block) {
   navbarHeader.classList.add('navbar-header');
   navbarHeader.append(buildBrandLogo(content));
   navbarHeader.append(buildTools(content));
+  navbarHeader.append(buildHamburger());
 
   const headerWrapper = document.createElement('div');
   headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
