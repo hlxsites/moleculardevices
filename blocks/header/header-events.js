@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
+import { submitSearchForm } from './menus/search.js';
 
 let elementsWithEventListener = [];
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
@@ -70,6 +71,12 @@ function addEventListenersDesktop() {
       e.stopPropagation();
       expandMenu(e.currentTarget);
     }
+  });
+
+  addListeners('.search-form', 'submit', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    submitSearchForm(e);
   });
 }
 
