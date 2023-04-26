@@ -922,17 +922,7 @@ const transformCitations = (document) => {
 
 const transformEventDetails = (document) => {
   if (document.querySelector('body.page-node-type-events')) {
-    const eventDetails = document.querySelector('.event-block');
-    if (eventDetails) {
-      const cells = [
-        ['Event'],
-        [eventDetails.querySelector('cite')],
-        [eventDetails.querySelector('h3')],
-        [eventDetails.querySelector('ul')],
-      ];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      eventDetails.replaceWith(table);
-    }
+    document.querySelectorAll('.event-block').forEach((div) => div.remove());
 
     const relatedProducts = document.querySelector('.pro_car_wrap');
     if (relatedProducts) {
