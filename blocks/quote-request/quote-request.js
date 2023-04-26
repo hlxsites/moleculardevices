@@ -1,6 +1,10 @@
 import ffetch from '../../scripts/ffetch.js';
 import { loadScript, getCookie } from '../../scripts/scripts.js';
 
+const url = '/quote-request/global-rfq.json';
+const rfqTypes = await ffetch(url).sheet('types').all();
+const rfqCategories = await ffetch(url).sheet('categories').all();
+
 /* CREATE RFQ LIST BOX */
 function createRFQListBox(listArr, checkStep, callback) {
   const list = document.createElement('ul');
@@ -106,11 +110,15 @@ function loadIframeForm(stepNum, tab) {
     'A team member will contact you within 24-business hours regarding your product inquiry for : <br>';
   productName.innerHTML = `<strong>${tab}</strong>`;
 
+  const productFamily = rfqCategories
+    .filter(({ Category }) => Category.includes(tab) > 0);
+  const sfdcProductFamily = productFamily[0].ProductFamily;
+
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
   const hubSpotQuery = {
-    product_family__c: tab,
-    product_selection__c: tab,
-    product_primary_application__c: tab,
+    product_family__c: sfdcProductFamily,
+    product_selection__c: sfdcProductFamily,
+    product_primary_application__c: sfdcProductFamily,
     cmp: cmpValue,
     google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
@@ -135,10 +143,7 @@ function loadIframeForm(stepNum, tab) {
   });
 }
 
-const url = '/quote-request/global-rfq.json';
-
 /* step one */
-const rfqTypes = await ffetch(url).sheet('types').all();
 function stepOne(callback) {
   const stepNum = 'step-1';
   const root = document.getElementById(stepNum);
@@ -176,7 +181,6 @@ function stepThree(e) {
 }
 
 /* step two */
-const rfqCategories = await ffetch(url).sheet('categories').all();
 function stepTwo(e) {
   e.preventDefault();
 
