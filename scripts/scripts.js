@@ -232,8 +232,8 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
-export async function fetchFragment(path) {
-  const response = await fetch(`${path}.plain.html`);
+export async function fetchFragment(path, plain = true) {
+  const response = await fetch(path + (plain ? '.plain.html' : ''));
   if (!response.ok) {
     // eslint-disable-next-line no-console
     console.error('error loading fragment details', response);
@@ -329,8 +329,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  const megaMenuModule = await import('../blocks/header/header-megamenu.js');
-  megaMenuModule.default(headerBlock);
+  // const megaMenuModule = await import('../blocks/header/header-megamenu.js');
+  // megaMenuModule.default(headerBlock);
   loadFooter(doc.querySelector('footer'));
   loadBreadcrumbs(main);
 
