@@ -4,7 +4,6 @@
 
 .blog-teaser-item {
   box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
-
   margin-top: 50px;
 }
 
@@ -85,7 +84,6 @@
 }
 
 @media (max-width: 991px) {
-
   .blog-teaser-item .blog-teaser-caption .metadata {
     max-width: 236px;
     margin: 0 auto;
