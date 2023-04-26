@@ -2,7 +2,7 @@ import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { formatDate } from '../../scripts/scripts.js';
+import { fetchFragment, formatDate } from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
   return (
@@ -41,28 +41,12 @@ function renderBlockTeaser(blogData) {
   );
 }
 
-async function fetchBlog(path) {
-  const response = await fetch(path);
-  if (!response.ok) {
-    // eslint-disable-next-line no-console
-    console.error('error loading blog', response);
-    return null;
-  }
-  const text = await response.text();
-  if (!text) {
-    // eslint-disable-next-line no-console
-    console.error('blog empty', path);
-    return null;
-  }
-  return text;
-}
-
 export default async function decorate(block) {
   const blogPostLinks = [...block.querySelectorAll('a')];
 
   const blogPosts = {};
   await Promise.all(blogPostLinks.map(async (blogPostLink) => {
-    const fragmentHtml = await fetchBlog(blogPostLink.href);
+    const fragmentHtml = await fetchFragment(blogPostLink.href, false);
     if (fragmentHtml) {
       const fragmentElement = div();
       fragmentElement.innerHTML = fragmentHtml;
