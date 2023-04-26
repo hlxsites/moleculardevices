@@ -1033,7 +1033,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    color: var(--input-grey-text);
+    color: #555;
   }
 
   header .header-search .form-control:focus {
