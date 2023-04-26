@@ -11,7 +11,7 @@ export function submitSearchForm(event) {
   event.preventDefault();
   const searchQuery = document.getElementById('searchQuery').value;
   const encodedQuery = encodeURIComponent(searchQuery);
-  const searchUrl = `https://www.moleculardevices.com/search-results#q=${encodedQuery}&t=All&sort=relevancy`;
+  const searchUrl = `/search-results#q=${encodedQuery}&t=All&sort=relevancy`;
   window.location.href = searchUrl;
 }
 
