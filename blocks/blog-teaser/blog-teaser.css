@@ -4,8 +4,7 @@
 
 .blog-teaser-item {
   box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
-  display: flex;
-  flex-direction: column;
+
   margin-top: 50px;
 }
 

@@ -91,7 +91,7 @@ export default async function decorate(block) {
   }));
 
   blogPostLinks.forEach((blogPostLink) => {
-    blogPostLink.replaceWith(
+    blogPostLink.parentElement.parentElement.replaceWith(
       renderBlockTeaser(blogPosts[blogPostLink.href]),
     );
   });
