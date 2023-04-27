@@ -5,6 +5,14 @@ const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
 
+const newsItems = await ffetch('/query-index.json')
+    .sheet('news')
+    .filter(({ path }) => path.includes('/newsroom/news/hub-organoids-to-advance-automated-intestinal-organoid-screening-technology'))
+    .all();
+
+
+    console.table(newsItems);
+
 /* CREATE RFQ LIST BOX */
 function createRFQListBox(listArr, checkStep, callback) {
   const list = document.createElement('ul');
@@ -125,7 +133,8 @@ function loadIframeForm(stepNum, tab) {
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
-    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}&requested_qdc_discussion__c=Quote`,
+    requested_qdc_discussion__c: 'Quote',
+    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
   };
   iframe.src = `${formUrl}?${new URLSearchParams(hubSpotQuery).toString()}`;
 
