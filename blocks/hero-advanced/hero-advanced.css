@@ -40,6 +40,25 @@
   align-items: flex-end;
 }
 
+main .overlay-carousel .embed {
+  max-width: unset;
+}
+
+main .overlay-carousel .section>div {
+  width: unset;
+}
+
+main .overlay-carousel .section .default-content-wrapper {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.overlay-content h3 {
+  text-align: center;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
 .overlay-content a {
   position:absolute;
   background-color: unset;

@@ -1,40 +1,28 @@
-import { buildHero } from '../hero/hero.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
-import { loadFragment } from '../fragment/fragment.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { i } from '../../scripts/dom-helpers.js';
-
-function newElement(tagName, className) {
-  const element = document.createElement(tagName);
-  element.classList.add(className);
-  return element;
-}
+import { i, div, a } from '../../scripts/dom-helpers.js';
+import { loadFragment } from '../fragment/fragment.js';
+import { getVideoId, buildVideo } from '../vidyard/video-create.js';
+import { buildHero } from '../hero/hero.js';
 
 async function openMediaGallery(overlay) {
-  const content = newElement('div', 'overlay-content');
+  const content = div({ class: 'overlay-content' });
+  const carousel = div({ class: 'overlay-carousel' });
   overlay.appendChild(content);
-  const carousel = newElement('div', 'overlay-carousel');
   content.appendChild(carousel);
 
-  const closeButton = newElement('a', 'close');
-  closeButton.append(i({ class: 'icon icon-close-video' }));
-  closeButton.addEventListener('click', () => {
+  const close = a({ class: 'close' }, (i({ class: 'fa fa-close' })));
+  close.addEventListener('click', () => {
     overlay.classList.remove('open');
   });
-
-  const right = newElement('a', 'right');
-  right.append(i({ class: 'fa fa-chevron-circle-right' }));
+  const right = a({ class: 'right' }, (i({ class: 'fa fa-chevron-circle-right' })));
   right.addEventListener('click', () => {
-    carousel.scrollTo({top: 0, left: carousel.parentElement.offsetWidth, behavior: 'smooth'});
+    carousel.scrollTo({top: 0, left: carousel.scrollLeft + carousel.parentElement.offsetWidth, behavior: 'smooth'});
   })
-
-  const left = newElement('a', 'left');
-  left.append(i({ class: 'fa fa-chevron-circle-left' }));
+  const left = a({ class: 'left' }, (i({ class: 'fa fa-chevron-circle-left' })));
   left.addEventListener('click', () => {
-    carousel.scrollTo({top: 0, left: -carousel.parentElement.offsetWidth, behavior: 'smooth'});
+    carousel.scrollTo({top: 0, left: carousel.scrollLeft - carousel.parentElement.offsetWidth, behavior: 'smooth'});
   })
-
-  content.append(closeButton, right, left);
+  content.append(close, right, left);
   decorateIcons(content);
 
   const fragment = await loadFragment('/fragments/media-gallery/products/spectramax-i3x-readers');
@@ -72,6 +60,6 @@ export default async function decorate(block) {
     mg.addEventListener('click', (event) => {
       openMediaGallery(overlay);
     });
-    mg.removeAttribute('href');
+    mg.href = "#";
   });
 }
