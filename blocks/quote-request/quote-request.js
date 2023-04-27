@@ -82,7 +82,6 @@ function iframeResizehandler(formUrl, id, root) {
 }
 
 function loadIframeForm(stepNum, tab) {
-
   loadScript('/blocks/quote-request/iframeResizer.min.js');
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
