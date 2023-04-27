@@ -82,19 +82,19 @@ function iframeResizehandler(formUrl, id, root) {
 }
 
 function loadIframeForm(stepNum, tab) {
+
   loadScript('/blocks/quote-request/iframeResizer.min.js');
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
   const formUrl = 'https://info.moleculardevices.com/rfq';
 
-  let hubSpotQuery = '';
-  if (stepNum !== 'step-3') {
     const productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
     const sfdcProductFamily = productFamily[0].ProductFamily;
 
     const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
-    hubSpotQuery = {
+
+    const hubSpotQuery = {
       product_family__c: sfdcProductFamily,
       product_selection__c: sfdcProductFamily,
       product_primary_application__c: sfdcProductFamily,
@@ -107,7 +107,6 @@ function loadIframeForm(stepNum, tab) {
       requested_qdc_discussion__c: 'Quote',
       return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
     };
-  }
 
   root.appendChild(
     div(
