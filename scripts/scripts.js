@@ -148,7 +148,6 @@ function decoratePageNav(main) {
  */
 function decorateImageLinks(container) {
   [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
-    const parent = a.parentElement;
     const br = a.previousElementSibling;
     let picture = br.previousElementSibling;
     if (br.tagName === 'PICTURE') {
@@ -156,7 +155,7 @@ function decorateImageLinks(container) {
     }
     if (a.textContent.includes(a.getAttribute('href'))) {
       a.innerHTML = picture.outerHTML;
-      parent.replaceWith(a);
+      a.parentElement.innerHTML = a.outerHTML;
     }
   });
 }
