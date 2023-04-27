@@ -96,7 +96,7 @@ function optimiseHeroBlock(main) {
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
  * Breadcrumb block created at the top of first section
  */
-async function createBreadcrumbsSpace(main) {
+function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = document.createElement('div');
     blockWrapper.classList.add('breadcrumbs-wrapper');
@@ -143,6 +143,25 @@ function decoratePageNav(main) {
 }
 
 /**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function decorateImageLinks(container) {
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
+    const parent = a.parentElement;
+    const br = a.previousElementSibling;
+    let picture = br.previousElementSibling;
+    if (br.tagName === 'PICTURE') {
+      picture = br;
+    }
+    if (a.textContent.includes(a.getAttribute('href'))) {
+      a.innerHTML = picture.outerHTML;
+      parent.replaceWith(a);
+    }
+  });
+}
+
+/**
  * Run template specific decoration code.
  * @param {Element} main The container element
  */
@@ -176,6 +195,7 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  decorateImageLinks(main);
   createBreadcrumbsSpace(main);
 }
 
