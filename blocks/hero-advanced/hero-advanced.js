@@ -16,12 +16,12 @@ async function openMediaGallery(overlay) {
   });
   const right = a({ class: 'right' }, (i({ class: 'fa fa-chevron-circle-right' })));
   right.addEventListener('click', () => {
-    carousel.scrollTo({top: 0, left: carousel.scrollLeft + carousel.parentElement.offsetWidth, behavior: 'smooth'});
-  })
+    carousel.scrollTo({ top: 0, left: carousel.scrollLeft + carousel.parentElement.offsetWidth, behavior: 'smooth' });
+  });
   const left = a({ class: 'left' }, (i({ class: 'fa fa-chevron-circle-left' })));
   left.addEventListener('click', () => {
-    carousel.scrollTo({top: 0, left: carousel.scrollLeft - carousel.parentElement.offsetWidth, behavior: 'smooth'});
-  })
+    carousel.scrollTo({ top: 0, left: carousel.scrollLeft - carousel.parentElement.offsetWidth, behavior: 'smooth' });
+  });
   content.append(close, right, left);
   decorateIcons(content);
 
@@ -57,9 +57,9 @@ export default async function decorate(block) {
     const overlay = document.createElement('div');
     overlay.classList.add('overlay');
     mg.parentElement.appendChild(overlay);
-    mg.addEventListener('click', (event) => {
+    mg.addEventListener('click', () => {
       openMediaGallery(overlay);
     });
-    mg.href = "#";
+    mg.href = '#';
   });
 }
