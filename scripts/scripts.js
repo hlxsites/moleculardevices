@@ -421,6 +421,10 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
-setCookieFromQueryParameters('cmp', 0);
+cookieParams.forEach((param) => {
+  setCookieFromQueryParameters(param, 0);
+});
+
 loadPage();
