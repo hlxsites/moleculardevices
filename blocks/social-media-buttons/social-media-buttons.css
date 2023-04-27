@@ -1,0 +1,10 @@
+.social-media-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.social-media-buttons > div {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
