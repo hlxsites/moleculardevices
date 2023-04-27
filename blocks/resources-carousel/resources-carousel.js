@@ -4,9 +4,9 @@ import { renderBlogCard } from '../../templates/blog/blog.js';
 import { createCarousel } from '../carousel/carousel.js';
 
 const relatedResourcesHeaders = {
-  'Product': 'relatedProducts',
-  'Technology': 'relatedTechnologies',
-  'Application': 'relatedApplications',
+  Product: 'relatedProducts',
+  Technology: 'relatedTechnologies',
+  Application: 'relatedApplications',
 };
 const relatedResourcesExcludedTypes = ['Interactive Demo'];
 
@@ -17,9 +17,10 @@ export default async function decorate(block) {
   let resources = await ffetch('/query-index.json')
     .sheet('resources')
     .all();
-  resources = resources.filter((resource) => resource[relatedResourcesHeaders[template]].includes(title) && !relatedResourcesExcludedTypes.includes(resource.type)).sort((x, y) => {
-    parseInt(x.date) - parseInt(y.date);
-  }).slice(0, 9);
+  resources = resources.filter(
+    (resource) => resource[relatedResourcesHeaders[template]].includes(title)
+      && !relatedResourcesExcludedTypes.includes(resource.type))
+    .sort((x, y) => parseInt(x.date, 10) - parseInt(y.date, 10)).slice(0, 9);
 
   await createCarousel(
     block,
