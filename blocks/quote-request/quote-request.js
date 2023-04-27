@@ -89,24 +89,24 @@ function loadIframeForm(stepNum, tab) {
 
   const formUrl = 'https://info.moleculardevices.com/rfq';
 
-    const productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
-    const sfdcProductFamily = productFamily[0].ProductFamily;
+  const productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
+  const sfdcProductFamily = productFamily[0].ProductFamily;
 
-    const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
 
-    const hubSpotQuery = {
-      product_family__c: sfdcProductFamily,
-      product_selection__c: sfdcProductFamily,
-      product_primary_application__c: sfdcProductFamily,
-      cmp: cmpValue,
-      google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
-      google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
-      keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
-      gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-      product_image: 'NA',
-      requested_qdc_discussion__c: 'Quote',
-      return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
-    };
+  const hubSpotQuery = {
+    product_family__c: sfdcProductFamily,
+    product_selection__c: sfdcProductFamily,
+    product_primary_application__c: sfdcProductFamily,
+    cmp: cmpValue,
+    google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
+    google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
+    keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
+    gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
+    product_image: 'NA',
+    requested_qdc_discussion__c: 'Quote',
+    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
+  };
 
   root.appendChild(
     div(
