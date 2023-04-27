@@ -5,14 +5,6 @@ const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
 
-const newsItems = await ffetch('/query-index.json')
-    .sheet('news')
-    .filter(({ path }) => path.includes('/newsroom/news/hub-organoids-to-advance-automated-intestinal-organoid-screening-technology'))
-    .all();
-
-
-    console.table(newsItems);
-
 /* CREATE RFQ LIST BOX */
 function createRFQListBox(listArr, checkStep, callback) {
   const list = document.createElement('ul');
