@@ -115,6 +115,10 @@
   width: 178px;
 }
 
+.blog .blog-card-type {
+  display: none;
+}
+
 @media only screen and (max-width: 767px) {
   .blog .section.blog-heading > div:first-of-type {
     overflow: visible;

@@ -1,0 +1,63 @@
+.resources-carousel-container {
+  text-align: center;
+  padding-top: 90px;
+}
+
+main .carousel-wrapper.resources-carousel-wrapper {
+  width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+main .carousel.resources-carousel {
+  width: 88%;
+  padding: 0 0 50px;
+}
+
+main .resources-carousel .carousel-item {
+  display: block;
+  width: 33.33%;
+  padding: 20px 15px;
+  margin: 0;
+}
+
+.resources-carousel .blog-card-type {
+  text-align: left;
+  text-transform: uppercase;
+  color: #6eb43f;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 1199px) {
+  main .carousel-wrapper.resources-carousel-wrapper {
+    width: 940px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .resources-carousel-container {
+    padding-top: 30px;
+  }
+
+  main .carousel-wrapper.resources-carousel-wrapper {
+    width: 100%;
+  }
+
+  main .resources-carousel .carousel-item {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .carousel.resources-carousel {
+    width: 100%;
+  }
+
+  main .resources-carousel .carousel-item {
+    width: 100%;
+  }
+
+  main .resources-carousel-wrapper .carousel-nav-button {
+    display: none;
+  }
+}

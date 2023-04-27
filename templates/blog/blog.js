@@ -62,6 +62,7 @@ export function renderBlogCard(item) {
         ),
       ),
       div({ class: 'blog-card-caption' },
+        p({ class: 'blog-card-type' }, item.type),
         h3(
           a({ href: item.path }, item.title),
         ),

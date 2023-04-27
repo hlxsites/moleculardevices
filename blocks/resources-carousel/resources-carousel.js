@@ -1,0 +1,48 @@
+import ffetch from '../../scripts/ffetch.js';
+import { getMetadata } from '../../scripts/lib-franklin.js';
+import { renderBlogCard } from '../../templates/blog/blog.js';
+import { createCarousel } from '../carousel/carousel.js';
+
+const relatedResourcesHeaders = {
+  'Product': 'relatedProducts',
+  'Technology': 'relatedTechnologies',
+  'Application': 'relatedApplications',
+};
+const relatedResourcesExcludedTypes = ['Interactive Demo'];
+
+export default async function decorate(block) {
+  const template = getMetadata('template');
+  const title = document.querySelector('.hero .container h1').textContent;
+
+  let resources = await ffetch('/query-index.json')
+    .sheet('resources')
+    .all();
+  resources = resources.filter((resource) => resource[relatedResourcesHeaders[template]].includes(title) && !relatedResourcesExcludedTypes.includes(resource.type)).sort((x, y) => {
+    parseInt(x.date) - parseInt(y.date);
+  }).slice(0, 9);
+
+  await createCarousel(
+    block,
+    resources,
+    {
+      cssFiles: ['/templates/blog/blog.css'],
+      navButtons: true,
+      dotButtons: false,
+      infiniteScroll: true,
+      autoScroll: false,
+      visibleItems: [
+        {
+          items: 1,
+          condition: () => window.screen.width < 768,
+        },
+        {
+          items: 2,
+          condition: () => window.screen.width < 1200,
+        }, {
+          items: 3,
+        },
+      ],
+      renderItem: renderBlogCard,
+    },
+  );
+}
