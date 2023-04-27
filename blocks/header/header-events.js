@@ -76,7 +76,13 @@ function addEventListenersDesktop() {
   addListeners('.search-form', 'submit', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    submitSearchForm(e);
+    submitSearchForm(e, 'searchQuery');
+  });
+
+  addListeners('.mobile-menu .search-form', 'submit', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    submitSearchForm(e, 'mobileSearchQuery');
   });
 }
 
