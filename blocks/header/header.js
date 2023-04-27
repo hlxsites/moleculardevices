@@ -1,5 +1,7 @@
 import handleViewportChanges from './header-events.js';
 import { getMetadata, decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
+import { buildHamburger } from './menus/mobile-menu.js';
+import buildSearch from './menus/search.js';
 
 function buildBrandLogo(content) {
   const logoWrapper = document.createElement('div');
@@ -22,13 +24,6 @@ function buildRequestQuote() {
   requestQuote.classList.add('header-rfq');
   requestQuote.innerHTML = '<a title="" href="/quote-request?cid=12" target="">Request<br>Quote</a>';
   return requestQuote;
-}
-
-function buildSearch() {
-  const search = document.createElement('li');
-  search.classList.add('searchlink', 'header-search', 'fa', 'fa-search');
-  search.innerHTML = '<a title="" href="#" target="">Search</a>';
-  return search;
 }
 
 export async function fetchHeaderContent() {
@@ -58,6 +53,7 @@ export default async function decorate(block) {
   navbarHeader.classList.add('navbar-header');
   navbarHeader.append(buildBrandLogo(content));
   navbarHeader.append(buildTools(content));
+  navbarHeader.append(buildHamburger());
 
   const headerWrapper = document.createElement('div');
   headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
@@ -85,9 +81,9 @@ export default async function decorate(block) {
   const menus = [...mainMenuWrapper.querySelectorAll('.nav-menu > div')];
 
   for (let i = 0; i < menus.length; i += 1) {
-    const li = document.createElement('li');
-    li.classList.add('menu-expandable');
-    li.setAttribute('aria-expanded', 'false');
+    const item = document.createElement('li');
+    item.classList.add('menu-expandable');
+    item.setAttribute('aria-expanded', 'false');
 
     const menuTitle = menus[i];
     const textDiv = menuTitle.querySelector('div');
@@ -95,11 +91,11 @@ export default async function decorate(block) {
     menuTitle.classList.add('menu-nav-category');
     menuTitle.setAttribute('menu-id', toClassName(menuTitle.textContent));
 
-    li.innerHTML = menuTitle.outerHTML;
-    navMenuUl.append(li);
+    item.innerHTML = menuTitle.outerHTML;
+    navMenuUl.append(item);
   }
 
-  navMenuUl.append(buildSearch());
+  navMenuUl.append(buildSearch(content));
   navMenuUl.append(buildRequestQuote());
 
   mainMenuWrapper.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;

@@ -232,8 +232,8 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
-export async function fetchFragment(path) {
-  const response = await fetch(`${path}.plain.html`);
+export async function fetchFragment(path, plain = true) {
+  const response = await fetch(path + (plain ? '.plain.html' : ''));
   if (!response.ok) {
     // eslint-disable-next-line no-console
     console.error('error loading fragment details', response);
@@ -406,10 +406,25 @@ export function getCookie(cname) {
   return '';
 }
 
+/**
+ * Set a cookie from query string parameters
+ */
+function setCookieFromQueryParameters(paramName, exdays) {
+  const readQuery = getQueryParameter();
+  if (readQuery[paramName]) {
+    setCookie(paramName, readQuery[paramName], exdays);
+  }
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
+
+cookieParams.forEach((param) => {
+  setCookieFromQueryParameters(param, 0);
+});
 
 loadPage();
