@@ -17,6 +17,26 @@ const embedSoundcloud = (url) => {
   return embedHTML;
 };
 
+
+const embedTwitterFeed = (url) => {
+  const embedHTML =  `<div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;">
+    <iframe
+      id="twitter-feed"
+      scrolling="no"
+      frameborder="0"
+      allowtransparency="true"
+      allowfullscreen="true"
+      class=""
+      style="position: static; visibility: visible; width: 390px; height: 1210px; display: block; flex-grow: 1;"
+      title="Twitter Timeline"
+      src="${url.href}"
+    ></iframe>
+  </div>
+  `
+  return embedHTML;
+};
+
+
 const loadEmbed = (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -27,6 +47,10 @@ const loadEmbed = (block, link, autoplay) => {
       match: ['soundcloud'],
       embed: embedSoundcloud,
     },
+    {
+      match: ['twitter'],
+      embed: embedTwitterFeed,
+    }
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
