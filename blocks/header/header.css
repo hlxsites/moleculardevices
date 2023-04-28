@@ -120,6 +120,7 @@ header .actionable-card-submenu li {
 header .mobile-menu li {
   float: none;
   position: relative;
+  color: #34393d;
 }
 
 header .text-submenu > div {
@@ -270,6 +271,11 @@ header .mobile-menu .company-links li picture {
   display: block;
   margin: 0 auto;
   margin-bottom: 15px;
+}
+
+header .mobile-menu li:hover {
+  color: var(--link-color);
+  background: #f0f1f2;
 }
 
 header .company-links > ul > li:last-child {
@@ -503,7 +509,7 @@ header .mobile-menu li a {
   text-transform: uppercase;
   margin-bottom: 0;
   line-height: 20px;
-  color: #34393d;
+  color: inherit;
   text-decoration: none;
 }
 
