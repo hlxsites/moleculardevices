@@ -159,8 +159,8 @@ function detectSidebar(main) {
     // By default the sidebar will start with the first section,
     // but can be configured in the document differently
     const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
-    if (sidebarOffset && Number.parseInt(sidebarOffset)) {
-      const offset = Number.parseInt(sidebarOffset);
+    if (sidebarOffset && Number.parseInt(sidebarOffset, 10)) {
+      const offset = Number.parseInt(sidebarOffset, 10);
       sidebar.style = `grid-row: ${offset} / infinite;`;
     }
   }

@@ -226,37 +226,39 @@ main .blog-card-caption .button.primary {
   word-break: break-word;
 }
 
-  /* Sidebar for Pages */
+
 main.sidebar {
   display: grid;
   grid-template-columns: auto 780px 390px auto;
 }
 
-main.sidebar div.section.hero-container {
-  grid-column: 1 / -1;
+/* put all content that's not in the sidebar in second column */
+main.sidebar > *:not(.section.sidebar) {
+  grid-column: 2;
 }
 
+/*
+  put sidebar in column 3
+  sidebar starts hardcoded from third row, because we only have it on /lab-notes
+  sidebar ends before the last section, as last section is wave
+*/
 main.sidebar .section.sidebar {
   grid-column: 3;
   grid-row: 3 / -2;
 }
 
-main.sidebar .section.sidebar {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: start;
-}
-
-main.sidebar > *:not(.section.sidebar) {
-  grid-column: 2;
-}
-
+/* full width sections */
+main.sidebar div.section.hero-container,
+main.sidebar .section.wave,
 main.sidebar > .section.full-width-no-sidebar {
   grid-column: 1 / -1;
 }
 
-main.sidebar .section.wave {
-  grid-column: 1 / -1;
+/* sidebar content styling */
+main.sidebar .section.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
 }
 
 main .section.sidebar h4 {
