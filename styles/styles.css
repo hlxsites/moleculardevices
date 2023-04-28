@@ -184,14 +184,17 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
 
 h3 {
   font-size: var(--heading-font-size-l)
+}
+
+h2, h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 h4 {
@@ -520,10 +523,6 @@ main .section.columns-2>div {
   margin-bottom: 30px;
 }
 
-main .section .default-content-wrapper {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
@@ -676,7 +675,7 @@ main .event-container i.fa.fa-external-link {
 
 /* Features Section */
 main .section.features-section {
-  padding-top: 45px;
+  padding-top: 50px;
   padding-bottom: 30px;
   background: url('/images/molecules-left.webp') left bottom,
     url('/images/molecules-right.webp') right top,
@@ -694,6 +693,7 @@ main .section.features-section .default-content-wrapper {
 }
 
 main .section.features-section h2 {
+  font-size: var(--heading-font-size-xl);
   margin-bottom: 0;
 }
 
@@ -753,6 +753,10 @@ main .section.wave {
   padding-bottom: 0;
   color: var(--text-white);
   text-align: center;
+}
+
+main .section.wave:last-child {
+  margin-top: 45px;
 }
 
 main .section.wave::after {
@@ -1012,9 +1016,53 @@ main .section[aria-hidden="true"] {
   content: "";
 }
 
+.section div + .default-content-wrapper,
+.section.tabs {
+  padding: 90px 0 45px;
+}
+
 main .section .default-content-wrapper h2:only-child,
 main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
   margin-top: 0;
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 10px;
+}
+
+.product h2 {
+  font-size: 36px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div h3 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul li {
+  margin-bottom: 10px;
+  line-height: 20px;
+}
+
+@media (max-width: 991px) {
+  h2 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .section div + .default-content-wrapper,
+  .section.tabs {
+    padding: 30px 0 15px;
+  }
+
+  main .section .default-content-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
