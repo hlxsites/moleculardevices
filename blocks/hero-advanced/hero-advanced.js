@@ -1,5 +1,5 @@
 import { buildHero } from '../hero/hero.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
+import { isVideo, buildVideo } from '../vidyard/video-create.js';
 
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');
@@ -12,11 +12,13 @@ export default async function decorate(block) {
   h1.parentNode.insertBefore(mobile.querySelector('div:nth-child(2)'), h1.nextSibling);
   mobile.remove();
 
-  const rightCol = block.querySelector('div > div:nth-child(2)');
-  if (getVideoId(rightCol.textContent)) {
-    rightCol.classList.add('video-column');
-    buildVideo(block, rightCol, getVideoId(rightCol.textContent));
-  }
+  const links = block.querySelectorAll('a');
+  [...links].forEach((link) => {
+    const url = new URL(link);
+    if (isVideo(url)) {
+      buildVideo(block, link.parentNode, url);
+    }
+  }); 
 
   buildHero(block);
 }

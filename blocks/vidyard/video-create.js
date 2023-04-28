@@ -1,52 +1,23 @@
 import { loadScript } from '../../scripts/scripts.js';
 
-function isValidUrl(string) {
-  try {
-    // eslint-disable-next-line no-new
-    new URL(string);
-    return true;
-  } catch (err) {
-    return false;
-  }
+export function isVideo(url) {
+  let isVideo = false;
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  [...hostnames].forEach((hostname) => {
+    if (url.hostname.includes(hostname)) {
+      isVideo = true;
+    }
+  });
+  return isVideo;
 }
 
-function getUrls(text) {
-  const match = text.match(/\b((https?|ftp|file):\/\/|(www|ftp)\.)[-A-Z0-9+&@#/%?=~_|$!:,.;]*[A-Z0-9+&@#/%=~_|$]/ig);
-  if (match) return match;
-  return null;
-}
-
-function getVideoUrl(text) {
-  let videoUrl = null;
-  if (getUrls(text)) {
-    const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
-    [...getUrls(text)].forEach((url) => {
-      if (isValidUrl(url)) {
-        [...hostnames].forEach((hostname) => {
-          if (url.includes(hostname)) {
-            videoUrl = url;
-          }
-        });
-      }
-    });
-  }
-  return videoUrl;
-}
-
-export function getVideoId(text) {
-  if (getVideoUrl(text)) {
-    const parts = getVideoUrl(text).split('/');
-    return parts.at(-1).trim();
-  }
-  return null;
-}
-
-export function buildVideo(block, div, videoId) {
+export function buildVideo(block, div, url) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
 
+      const videoId = url.pathname.split('/').at(-1).trim();
       const videoIcon = document.createElement('div');
       const thumbnail = document.createElement('img');
       videoIcon.append(thumbnail);
