@@ -26,7 +26,7 @@ export default async function decorate(block) {
       videoButton(container, thumbnail, url);
       link.remove();
     }
-  }); 
+  });
 
   buildHero(block);
 }

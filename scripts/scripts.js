@@ -117,14 +117,14 @@ async function loadBreadcrumbs(main) {
  * Parse video links and build the markup
  */
 export function isVideo(url) {
-  let isVideo = false;
+  let isV = false;
   const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
-      isVideo = true;
+      isV = true;
     }
   });
-  return isVideo;
+  return isV;
 }
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
