@@ -221,7 +221,7 @@ main .blog-card-caption .button.primary {
   word-break: break-word;
 }
 
-.blog .sidebar {
+/* .blog .sidebar {
   display: flex;
   flex-wrap: wrap;
   width: 33.33333333%;
@@ -229,4 +229,27 @@ main .blog-card-caption .button.primary {
 
 .blog .sidebar > div {
   flex: 1 1 auto;
+} */
+
+  /* Sidebar for Pages */
+main.sidebar {
+  display: grid;
+  grid-template-columns: auto 30%;
+}
+
+main.sidebar div.section.hero-container {
+  grid-column: 1 / -1;
+}
+
+main.sidebar .section.sidebar {
+  grid-column: 2;
+  grid-row: 3 / infinite;
+}
+
+main.sidebar > *:not(.section.sidebar) {
+  grid-column: 1;
+}
+
+main.sidebar > .section.full-width-no-sidebar {
+  grid-column: 1 / -1;
 }

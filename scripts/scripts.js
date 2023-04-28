@@ -143,6 +143,30 @@ function decoratePageNav(main) {
 }
 
 /**
+ * Detects if a sidebar section is present and transforms main into a CSS grid
+ * @param {Element} main
+ */
+function detectSidebar(main) {
+  const sidebar = main.querySelector('.section.sidebar');
+  if (sidebar) {
+    main.classList.add('sidebar');
+
+    // Create a CSS grid with the number of rows the number of children
+    // minus - 1 (the sidebar section)
+    const numSections = main.children.length - 1;
+    main.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    // By default the sidebar will start with the first section,
+    // but can be configured in the document differently
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+    if (sidebarOffset && Number.parseInt(sidebarOffset)) {
+      const offset = Number.parseInt(sidebarOffset);
+      sidebar.style = `grid-row: ${offset} / infinite;`;
+    }
+  }
+}
+
+/**
  * Run template specific decoration code.
  * @param {Element} main The container element
  */
@@ -176,6 +200,7 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  detectSidebar(main);
   createBreadcrumbsSpace(main);
 }
 
