@@ -195,7 +195,6 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
-  //decorateImageLinks(main);
   decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
 }
