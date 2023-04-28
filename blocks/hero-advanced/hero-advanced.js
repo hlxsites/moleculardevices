@@ -1,5 +1,5 @@
+import { isVideo, buildVideo } from '../../scripts/scripts.js';
 import { buildHero } from '../hero/hero.js';
-import { isVideo, buildVideo } from '../vidyard/video-create.js';
 
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');
