@@ -17,6 +17,7 @@ export default async function decorate(block) {
       dotButtons: false,
       infiniteScroll: true,
       autoScroll: false,
+      defaultStyling: true,
       visibleItems: [
         {
           items: 1,

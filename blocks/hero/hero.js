@@ -1,6 +1,5 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -49,30 +48,11 @@ async function loadBreadcrumbs(breadcrumbsContainer) {
   breadCrumbsModule.default(breadcrumbsContainer);
 }
 
-export default async function decorate(block) {
+export function buildHero(block) {
+  const inner = document.createElement('div');
+  inner.classList.add('hero-inner');
   const container = document.createElement('div');
   container.classList.add('container');
-
-  [...block.children].forEach((row, i) => {
-    if (i === 0 && row.childElementCount > 1) {
-      container.classList.add('two-column');
-      [...row.children].forEach((column) => {
-        if (getVideoId(column.textContent)) {
-          column.classList.add('video-column');
-          buildVideo(block, column, getVideoId(column.textContent));
-        }
-        container.appendChild(column);
-      });
-    } else {
-      container.appendChild(row);
-    }
-  });
-
-  const breadcrumbs = document.createElement('div');
-  breadcrumbs.classList.add('breadcrumbs');
-
-  block.appendChild(breadcrumbs);
-  block.appendChild(container);
 
   let picture = block.querySelector('picture');
   if (picture) {
@@ -90,8 +70,31 @@ export default async function decorate(block) {
     picture.replaceWith(optimizedHeroBg);
     picture = optimizedHeroBg;
     picture.classList.add('hero-background');
-    block.prepend(picture.parentElement);
+    inner.prepend(picture.parentElement);
   }
+
+  const rows = block.children.length;
+  [...block.children].forEach((row, i) => {
+    if (i === (rows - 1)) {
+      if (row.childElementCount > 1) {
+        container.classList.add('two-column');
+        [...row.children].forEach((column) => {
+          container.appendChild(column);
+        });
+      } else {
+        container.appendChild(row);
+      }
+    } else {
+      row.remove();
+    }
+  });
+
+  const breadcrumbs = document.createElement('div');
+  breadcrumbs.classList.add('breadcrumbs');
+
+  block.appendChild(inner);
+  inner.appendChild(breadcrumbs);
+  inner.appendChild(container);
 
   if (block.classList.contains('blog')) {
     addMetadata(container);
@@ -100,4 +103,8 @@ export default async function decorate(block) {
   }
 
   loadBreadcrumbs(breadcrumbs);
+}
+
+export default async function decorate(block) {
+  buildHero(block);
 }

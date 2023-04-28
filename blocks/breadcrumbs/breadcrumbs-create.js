@@ -23,29 +23,72 @@ function skipParts(pathSplit) {
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
-function getCustomUrl(part) {
-  const customUrls = [
-    ['app-note', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D'],
-    ['ebook', 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D'],
-  ];
-  const y = customUrls.findIndex((row) => row.includes(part));
-  if (customUrls[y]) return customUrls[y][1];
+const customBreadcrumbs = {
+  'app-note': {
+    name: 'App Note',
+    url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D',
+  },
+  ebook: {
+    name: 'EBook',
+    url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D',
+  },
+  'lab-notes': {
+    name: 'Lab Notes',
+    url_path: '/lab-notes',
+  },
+  '/lab-notes/general': {
+    name: 'General',
+    url_path: '/lab-notes/blog#General',
+  },
+  '/lab-notes/clone-screening': {
+    name: 'Clone Screening',
+    url_path: '/lab-notes/blog#Clone-Screening',
+  },
+  '/lab-notes/cellular-imaging-systems': {
+    name: 'Cellular Imaging Systems',
+    url_path: '/lab-notes/blog#Cellular-Imaging-Systems',
+  },
+  '/lab-notes/microplate-readers': {
+    name: 'Microplate Readers',
+    url_path: '/lab-notes/blog#Microplate-Readers',
+  },
+};
+
+function getCustomUrl(path, part) {
+  if (customBreadcrumbs[part]) {
+    return customBreadcrumbs[part].url_path;
+  }
+
+  if (customBreadcrumbs[path]) {
+    return customBreadcrumbs[path].url_path;
+  }
+
   return null;
 }
 
-function getName(pageIndex, path, current) {
-  const pg = pageIndex.find((page) => page.path === path);
-  let name;
-  if (pg && pg.h1 && pg.h1 !== '0') {
-    name = pg.h1;
-  } else if (pg && pg.title && pg.title !== '0') {
-    name = pg.title;
-  } else if (current) {
-    name = document.title;
-  } else {
-    name = path.split('/').at(-1);
+function getName(pageIndex, path, part, current) {
+  if (customBreadcrumbs[part]) {
+    return customBreadcrumbs[part].name;
   }
-  return name;
+
+  if (customBreadcrumbs[path]) {
+    return customBreadcrumbs[path].name;
+  }
+
+  const pg = pageIndex.find((page) => page.path === path);
+  if (pg && pg.h1 && pg.h1 !== '0') {
+    return pg.h1;
+  }
+
+  if (pg && pg.title && pg.title !== '0') {
+    return pg.title;
+  }
+
+  if (current) {
+    return document.title;
+  }
+
+  return part;
 }
 
 export default async function createBreadcrumbs(container) {
@@ -64,11 +107,14 @@ export default async function createBreadcrumbs(container) {
       name: 'Home',
       url_path: '/',
     },
-    ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: getName(pageIndex, urlForIndex(index), false),
-      url_path: getCustomUrl(part) || urlForIndex(index),
-    })),
-    { name: getName(pageIndex, path, true) },
+    ...pathSplit.slice(1, -1).map((part, index) => {
+      const url = urlForIndex(index);
+      return {
+        name: getName(pageIndex, url, part, false),
+        url_path: getCustomUrl(url, part) || url,
+      };
+    }),
+    { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
   ];
 
   const ol = document.createElement('ol');

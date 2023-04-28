@@ -1,56 +1,63 @@
-main .hero-container {
+main .hero-container,
+main .hero-advanced-container {
   --hero-breadcrumbs-separator-color: #ccc;
 
   padding: 0;
 }
 
-main .hero-wrapper {
+main .hero-wrapper,
+main .hero-advanced-wrapper {
   max-width: unset;
 }
 
-main .hero {
+.hero {
+  margin-top: -10px;
+}
+
+.hero,
+.hero-inner {
   position: relative;
   color: var(--text-white);
 }
 
-main .hero .breadcrumbs {
+.hero-inner .breadcrumbs {
   padding-top: 40px;
   padding-bottom: 42.5px;
 }
 
-main .hero .breadcrumbs ol {
+.hero-inner .breadcrumbs ol {
   padding: 0 15px;
 }
 
-main .hero p {
+.hero-inner p {
   margin: 0 0 10px;
 }
 
-main .hero a:any-link {
+.hero-inner a:any-link {
   color: var(--text-white);
 }
 
-main .hero p.button-container {
+.hero-inner p.button-container {
   margin: 0;
 }
 
-main .hero ul {
+.hero-inner ul {
   margin: 0;
   padding-top: 5px;
 }
 
-main .hero li {
+.hero-inner li {
   margin-bottom: 15px;
 }
 
-main .hero h1 {
+.hero-inner h1 {
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: white;
   line-height: 1;
 }
 
-main .hero h6 {
+.hero-inner h6 {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
@@ -59,11 +66,11 @@ main .hero h6 {
   font-size: var(--heading-font-size-m);
 }
 
-main .hero h6:first-child {
+.hero-inner h6:first-child {
   margin-top: 0;
 }
 
-main .hero .hero-background {
+.hero-inner .hero-background {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -73,50 +80,64 @@ main .hero .hero-background {
   box-sizing: border-box;
 }
 
-main .hero img {
+.hero-inner img {
   object-fit: cover;
-  object-position: center top;
+  object-position: 100% 30%;
   width: 100%;
   height: 100%;
 }
 
-main .section .hero-wrapper {
+.hero-inner .two-column h4 {
+  margin-bottom: 10px;
+}
+
+.hero-inner .two-column p {
+  margin: 0 0 25px;
+  line-height: 1.5;
+}
+
+main .section .hero-wrapper,
+main .section .hero-advanced-wrapper {
   width: 100%;
   padding: 0;
 }
 
-main .hero > div {
+.hero-inner > div {
   margin:auto;
 }
 
-main .hero .container > div {
+.hero-inner .container {
+  font-size: var(--body-font-size-m);
+}
+
+.hero-inner .container > div {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-main .hero .container > div:nth-child(2) {
+.hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   padding-top: 45px;
   font-size: var(--body-font-size-xs);
 }
 
-main .hero .container > div:nth-child(2).video-column {
+.hero-inner .container > div:nth-child(2).video-column {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-main .hero .container > div:nth-child(2) .button-container {
+.hero-inner .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
   color: var(--text-white);
 }
 
-.hero .breadcrumbs li+li::before {
+.hero-inner .breadcrumbs li+li::before {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
-main .hero .video-icon img {
+.hero-inner .video-icon img {
   height: 91px;
   width: 90px;
   margin: auto;
@@ -124,7 +145,7 @@ main .hero .video-icon img {
   transition: all ease .3s;
 }
 
-main .hero .video-icon img:hover {
+.hero-inner .video-icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
 }
@@ -159,11 +180,25 @@ display: none;
   color: var(--text-white);
 }
 
-main .hero.blog {
-  padding: 0 0 40%;
+.hero.blog-overview .hero-inner {
+  padding: 0 0 calc(41.2% - 96px);
+}
+
+.hero.blog,
+.hero.blog-overview {
+  margin-top: 0;
+}
+
+.hero.blog .hero-inner {
+  padding: 0 0 41.2%;
   height: 555px;
   overflow: hidden;
   background-image: linear-gradient(to bottom,rgba(255 255 255 / 0%) 55%,rgba(0 0 0 / 90%));
+}
+
+.hero.blog .hero-inner img,
+.hero.blog-overview .hero-inner img {
+  object-position: center center;
 }
 
 .blog main .hero-wrapper h1 {
@@ -181,16 +216,16 @@ main .hero.blog .sticker {
   right: 15px;
 }
 
-main .hero.blog .sticker img {
+.hero.blog .sticker img {
   width: auto;
   height: auto;
 }
 
-main .hero.blog .breadcrumbs {
+.hero.blog .breadcrumbs {
   position: relative;
 }
 
-main .hero.blog .breadcrumbs > ol {
+.hero.blog .breadcrumbs > ol {
   position: absolute;
 }
 
@@ -212,6 +247,7 @@ main .hero.blog .breadcrumbs > ol {
   font-size: 14px;
   margin-bottom: 10px;
   padding: 2.5px 0;
+  width: 100%;
 }
 
 /* Blog Variant - Desktop -- End */
@@ -222,10 +258,10 @@ main .hero.blog .breadcrumbs > ol {
     display: none;
   }
 
-  main .hero {
+  .hero-inner {
     min-height: 180px;
-    padding-top: 34%;
-    padding-bottom: 41px;
+    padding-top: 40px;
+    padding-bottom: 45px;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -243,47 +279,52 @@ main .hero.blog .breadcrumbs > ol {
   /* Citation Variant - Mobile -- End */
 
   /* TODO fix heading vars in styles.css */
-  main .hero h1 {
-    margin-bottom:10px;
-    font-size: 36px;
+  .hero-inner h1 {
+    margin-bottom: 10px;
+    font-size: var(--heading-font-size-l);
   }
 
-  main .hero .two-column h1 {
-    font-size: 28px;
-  }
-
-  main .hero h4 {
-    margin-bottom: 10px;;
-  }
-
-  main .hero .container > div:nth-child(1) > div > * {
+  .hero-inner .container div div:nth-child(1) * {
     display: none;
   }
 
-  main .hero .container > div:nth-child(1) > div > p.button-container,
-  main .hero .container > div:nth-child(1) > div > h1 {
+  .hero-inner .two-column h1 {
+    font-size: 28px;
+  }
+
+  .hero-inner .container div div:nth-child(1) h1,
+  .hero-inner .container div div:nth-child(1) .button-container * {
     display: block;
   }
 
-  main .hero .container > div:nth-child(2) {
+  .hero-inner h4 {
+    margin-bottom: 10px;;
+  }
+
+  .hero-inner .container > div:nth-child(1) > div > p.button-container,
+  .hero-inner .container > div:nth-child(1) > div > h1 {
+    display: block;
+  }
+
+  .hero-inner .container > div:nth-child(2) {
     font-size: var(--body-font-size-m);
   }
 
-  main .hero .container.two-column > div:nth-child(2) {
+  .hero-inner .container.two-column > div:nth-child(2) {
     padding-top: 15px;
     padding-left: 15px;
   }
 
-  main .hero .container.two-column > div:nth-child(2) > div {
+  .hero-inner .container.two-column > div:nth-child(2) > div {
     border-top: 2px solid #fff;
     padding-top:30px;
   }
 
-  main .hero .container.two-column > div.video-column > div {
+  .hero-inner .container.two-column > div.video-column > div {
     border: none;
   }
 
-  main .hero .button-container a {
+  .hero-inner .button-container a {
     padding: 9px 12px 10px;
   }
 
@@ -292,7 +333,7 @@ main .hero.blog .breadcrumbs > ol {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   /* Blog Variant - Mobile -- Start */
   .blog main .hero-wrapper {
     color: inherit;
@@ -338,44 +379,54 @@ main .hero.blog .breadcrumbs > ol {
     margin-bottom: 33px;
   }
 
-  main .hero.blog {
+  .hero.blog {
     background-image: none;
     min-height: 398px;
     padding: 0;
     height: unset;
   }
 
-  .blog main .hero .breadcrumbs {
+  .blog .hero-inner .breadcrumbs {
     display: block;
   }
 
-  .blog main .hero .breadcrumbs ol {
+  .blog .hero-inner .breadcrumbs ol {
     display: none;
   }
 
-  main .hero.blog .sticker {
+  .hero.blog .sticker {
     top: 75px;
     right: 15px;
   }
 
-  main .hero.blog .sticker img {
+  .hero.blog .sticker img {
     width: 130px;
+  }
+
+  .hero.blog-overview .hero-inner {
+    margin: 0;
+    padding: 0 0 calc(41.2% - 82.5px);
+  }
+
+  .hero.blog-overview .hero-inner .container {
+    margin: 0;
   }
 
   /* Blog Variant - Mobile -- End */
 }
 
 @media (min-width: 768px) {
-  main .hero {
+  .hero-inner {
     min-height: 440px;
   }
 
-  main .hero .container {
+  .hero-inner .container {
     overflow: auto;
     align-items: stretch;
     flex-wrap: wrap;
     height: auto;
-    padding: 0 0 120px;
+    display: flex;
+    padding-bottom: 45px;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -389,7 +440,7 @@ main .hero.blog .breadcrumbs > ol {
 
   /* Citation Variant - Mobile -- End */
 
-  main .hero .video-icon img {
+  .hero-inner .video-icon img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -397,12 +448,12 @@ main .hero.blog .breadcrumbs > ol {
     right: 0;
   }
 
-  main .hero .container.two-column > div:nth-child(2).video-column {
+  .hero-inner .container.two-column > div:nth-child(2).video-column {
     border: none;
   }
 
-  main .hero .container > div:nth-child(1) .button-container {
-    margin-top: 20px;
+  .hero-inner .container > div:nth-child(1) .button-container {
+    margin-top: 30px;
   }
   
   .video-icon {
@@ -413,21 +464,25 @@ main .hero.blog .breadcrumbs > ol {
 }
 
 @media (min-width: 992px) {
-  main .hero > div {
+  .hero-inner > div {
     width: 970px
   }  
 
-  main .hero .container {
-    display: flex;
-    padding: 0 0 120px;
-  }
-
-  main .hero .container > div {
+  .hero-inner .container > div {
     float:left;
   }
 
-  main .hero .container > div:nth-child(1) {
-    width: 66%
+  .hero-inner .container > div:nth-child(1) {
+    width: 66.5%
+  }
+
+  .hero.blog .container > div:nth-child(1) {
+    width: unset;
+  }
+
+  .hero-inner .container.two-column > div:nth-child(2) {
+    width: 33%;
+    border-left: 2px solid #fff;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -441,18 +496,13 @@ main .hero.blog .breadcrumbs > ol {
 
   /* Citation Variant - Mobile -- End */  
 
-  main .hero .container.two-column > div:nth-child(2) {
-    width: 33%;
-    border-left: 2px solid #fff;
-  }
-
   .video-icon {
     height: 320px;
   }
 }
 
 @media (min-width: 1200px) {
-  main .hero > div {
+  .hero-inner > div {
     width: 1170px
   }
 }
