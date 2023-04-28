@@ -64,7 +64,7 @@ export default async function decorate(block) {
 
   const mg = block.querySelector('a[href*="/media-gallery"]');
   if (mg) {
-    // buildMediaGallery(mg);
+    buildMediaGallery(mg);
     mg.addEventListener('click', () => {
       openMediaGallery(mg);
     });
