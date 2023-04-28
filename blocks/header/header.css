@@ -279,6 +279,12 @@ header .mobile-menu li:hover {
   background: #f0f1f2;
 }
 
+header .mobile-menu .mobile-menu-items li {
+  line-height: 1.4286;
+  font-size: 18px;
+  border-bottom: 1px solid #f1f2f3;
+}
+
 header .company-links > ul > li:last-child {
   margin-right: 0;
 }
@@ -423,10 +429,6 @@ header .mobile-menu {
   height: calc(100% - 63px);
   top: 63px;
   overflow: hidden;
-  -webkit-transform: translate(-100%,0);
-  -moz-transform: translate(-100%,0);
-  -ms-transform: translate(-100%,0);
-  -o-transform: translate(-100%,0);
   transform: translate(-100%,0);
   transition: transform .4s ease;
   z-index: -9;
@@ -496,18 +498,6 @@ header .mobile-menu .searchbutton {
   font-family: inherit;
 }
 
-header .mobile-menu-item {
-  border-bottom: 1px solid #f1f2f3;
-  float: none;
-  border-top: 0;
-  position: relative;
-  font-size: 18px;
-  color: #34393d;
-  font-family: 'Proxima Nova Light', sans-serif;
-  font-weight: 300;
-  text-shadow: none;
-}
-
 header .mobile-menu li a {
   position: relative;
   white-space: nowrap;
@@ -521,12 +511,32 @@ header .mobile-menu li a {
   text-decoration: none;
 }
 
-header .mobile-menu-item.submenu-open .mobile-menu-subcategories {
-  -webkit-transform: translate(0%,0);
-  -moz-transform: translate(0%,0);
-  -ms-transform: translate(0%,0);
-  -o-transform: translate(0%,0);
-  transform: translate(0%,0);
+header .menu-nav-submenu h1 > a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header .cards-submenu ul li a {
+  color: var(--text-white);
+  font-family: 'Proxima Nova Regular', sans-serif;
+  font-weight: 300;
+  line-height: 15px;
+  padding: 1px 5px;
+  display: block;
+  text-transform: none;
+}
+
+header .mobile-menu-item {
+  border-bottom: 1px solid #f1f2f3;
+  float: none;
+  border-top: 0;
+  position: relative;
+  font-size: 18px;
+  color: #34393d;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
 }
 
 header .mobile-menu-subcategories {
@@ -548,15 +558,14 @@ header .mobile-menu-subcategories {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  -webkit-transform: translate(100%,0);
-  -moz-transform: translate(100%,0);
-  -ms-transform: translate(100%,0);
-  -o-transform: translate(100%,0);
   transform: translate(100%,0);
 }
 
+header .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+  transform: translate(0%,0);
+}
+
 header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
-  right: inherit;
   left: 15px;
   transform: rotate(180deg);
   content: "\f105";
@@ -571,13 +580,54 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   color: #34393d;
   top: 50%;
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
+  font-family: FontAwesome, sans-serif;
   margin-top: -15px;
 }
 
-header .mobile-menu .mobile-menu-subcategory-item:hover a {
-  color: var(--link-color);
-  background: #fff;
+header .text-submenu ul > li > a {
+  font-size: 11px;
+  color: #fff;
+  border-bottom: 0;
+  line-height: 15px;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 8px;
+  font-weight: 300;
+  display: block;
+  text-transform: none;
+}
+
+header .mobile-menu .back-to-parent a {
+  padding-left: 55px;
+}
+
+header .mobile-menu .mobile-menu-subcategory-item > a {
+  background: var(--grey-background-color);
+  position: relative;
+  white-space: nowrap;
+  display: block;
+  padding: 24px 70px 19px 15px;
+  color: #34393d;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+header .mobile-menu .request-quote a {
+  line-height: 20px;
+  background: #f8a100;
+  font-size: 18px;
+  padding: 18px 50px 18px 15px;
+  text-shadow: none;
+  color: #fff;
+  font-family: 'Proxima Nova Regular', sans-serif;
+  text-align: center;
+  display: block;
+  text-transform: inherit;
 }
 
 header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
@@ -587,34 +637,8 @@ header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
   position: relative;
 }
 
-header .mobile-menu .back-to-parent a {
-  padding-left: 55px;
-}
-
 header .mobile-menu .back-to-parent:hover {
-  background: #fff;
-}
-
-header .mobile-menu .mobile-menu-items li {
-  line-height: 1.42857143;
-  font-size: 18px;
-  border-bottom: 1px solid #f1f2f3;
-}
-
-header .mobile-menu .mobile-menu-subcategory-item > a {
-  background: #f0f1f2;
-  position: relative;
-  white-space: nowrap;
-  display: block;
-  padding: 24px 70px 19px 15px;
-  color: #34393d;
-  text-align: left;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  font-family: 'Proxima Nova Light';
-  font-weight: 300;
-  text-shadow: none;
-  text-decoration: none;
+  background: var(--background-color);
 }
 
 header .mobile-menu .mobile-menu-item.submenu-open .mobile-menu-subcategories {
@@ -651,48 +675,6 @@ header .mobile-menu .caret::before {
   display: inline-block;
   font-family: FontAwesome, sans-serif;
   margin-top: -15px;
-}
-
-header .menu-nav-submenu h1 > a {
-  color: inherit;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-header .cards-submenu ul li a {
-  color: var(--text-white);
-  font-family: 'Proxima Nova Regular', sans-serif;
-  font-weight: 300;
-  line-height: 15px;
-  padding: 1px 5px;
-  display: block;
-  text-transform: none;
-}
-
-header .text-submenu ul > li > a {
-  font-size: 11px;
-  color: #fff;
-  border-bottom: 0;
-  line-height: 15px;
-  padding-left: 0;
-  padding-top: 0;
-  padding-bottom: 8px;
-  font-weight: 300;
-  display: block;
-  text-transform: none;
-}
-
-header .mobile-menu .request-quote a {
-  line-height: 20px;
-  background: #f8a100;
-  font-size: 18px;
-  padding: 18px 50px 18px 15px;
-  text-shadow: none;
-  color: #fff;
-  font-family: 'Proxima Nova Regular', sans-serif;
-  text-align: center;
-  display: block;
-  text-transform: inherit;
 }
 
 header .mobile-menu .company-links {
@@ -1027,6 +1009,11 @@ header .actionable-card-submenu {
   height: 100%;
 }
 
+header .mobile-menu .mobile-menu-subcategory-item:hover a {
+  color: var(--link-color);
+  background: var(--background-color);
+}
+
 header .actionable-card-submenu h3 {
   font-size: 18px;
   margin: 0 0 24px;
@@ -1146,10 +1133,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 
   .openmenu .mobile-menu {
-    -webkit-transform: translate(0,0);
-    -moz-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    -o-transform: translate(0,0);
     transform: translate(0,0);
     z-index: 99;
 }
