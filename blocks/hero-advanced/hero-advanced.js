@@ -35,7 +35,8 @@ async function buildMediaGallery(mg) {
   decorateIcons(content);
 
   // fragment
-  const fragment = await loadFragment('/fragments/media-gallery/products/spectramax-i3x-readers');
+  const url = new URL(mg.href);
+  const fragment = await loadFragment(url.pathname);
   [...fragment.children].forEach((section) => {
     carousel.appendChild(section);
   });
