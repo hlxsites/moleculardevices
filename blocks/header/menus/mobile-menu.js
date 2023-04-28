@@ -1,5 +1,6 @@
 import { reverseElementLinkTagRelation } from '../helpers.js';
 import {
+  h2,
   ul,
   li,
   a,
@@ -9,6 +10,38 @@ import {
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 
+function addHamburgerListener(hamburger) {
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const body = document.querySelector('body');
+    if (hamburger.classList.contains('hamburger-open')) {
+      // if hamburger is open, close it
+      hamburger.classList.remove('hamburger-open');
+      hamburger.classList.add('hamburger-close');
+      mobileMenu.classList.toggle('mobile-menu-open');
+      body.classList.toggle('openmenu');
+    } else {
+      // if hamburger is closed, open it
+      hamburger.classList.remove('hamburger-close');
+      hamburger.classList.add('hamburger-open');
+      mobileMenu.classList.toggle('mobile-menu-open');
+      body.classList.toggle('openmenu');
+    }
+  });
+}
+
+function openSubMenu(menuItem) {
+  menuItem.classList.add('submenu-open');
+}
+
+function closeSubMenu(menuItem) {
+  // get parent that has class mobile-menu-item
+  const parentMenuItem = menuItem.closest('.mobile-menu-item');
+  parentMenuItem.classList.remove('submenu-open');
+}
+
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
 export function buildMobileMenuItem(itemContent, menuId) {
@@ -17,9 +50,10 @@ export function buildMobileMenuItem(itemContent, menuId) {
 
   // create first menu item which when clicked will show the other subcategories
   const titleLink = itemContent.querySelector('h1 a');
-  menuItem.append(titleLink, span({ class: 'caret' }));
+  const linkClone = titleLink.cloneNode(true);
+  menuItem.append(linkClone, span({ class: 'caret' }));
 
-  const h2s = [...itemContent.querySelectorAll('h2')];
+  const subcategoriesContent = [...itemContent.querySelectorAll('h2')];
   const subCategories = ul({ class: 'mobile-menu-subcategories', 'menu-id': menuId });
 
   // add back to parent button
@@ -35,24 +69,43 @@ export function buildMobileMenuItem(itemContent, menuId) {
   // add button to parent directly
   const parentItem = li(
     { class: 'mobile-menu-subcategory-item' },
-    titleLink.textContent,
+    a(
+      { href: titleLink.href },
+      h2(
+        titleLink.textContent,
+      ),
+    ),
   );
   subCategories.append(parentItem);
 
   // add H2s to list
-  h2s.forEach((h2) => {
-    const element = reverseElementLinkTagRelation(h2);
+  subcategoriesContent.forEach((subcategoryContent) => {
+    const element = reverseElementLinkTagRelation(subcategoryContent);
     element.append(span({ class: 'caret' }));
 
-    const h2ListItem = li(
+    const subcategory = li(
       { class: 'mobile-menu-subcategory-item' },
       element,
     );
 
-    subCategories.append(h2ListItem);
+    subCategories.append(subcategory);
   });
 
   menuItem.append(subCategories);
+
+  const menuItemLink = menuItem.querySelector('a');
+  // add listener to toggle subcategories
+  menuItemLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    openSubMenu(menuItem);
+  });
+
+  // add listener to close subcategories
+  backToParentMenuItem.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeSubMenu(menuItem);
+  });
 
   const mobileMenuItems = document.querySelector('.mobile-menu-items');
   mobileMenuItems.append(menuItem);
@@ -122,20 +175,7 @@ export function buildHamburger() {
   );
 
   // add listener to toggle hamburger
-  hamburger.addEventListener('click', () => {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (hamburger.classList.contains('hamburger-open')) {
-      // if hamburger is open, close it
-      hamburger.classList.remove('hamburger-open');
-      hamburger.classList.add('hamburger-close');
-      mobileMenu.classList.toggle('mobile-menu-open');
-    } else {
-      // if hamburger is closed, open it
-      hamburger.classList.remove('hamburger-close');
-      hamburger.classList.add('hamburger-open');
-      mobileMenu.classList.toggle('mobile-menu-open');
-    }
-  });
+  addHamburgerListener(hamburger);
 
   return hamburger;
 }

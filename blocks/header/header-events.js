@@ -79,7 +79,7 @@ function addEventListenersDesktop() {
     submitSearchForm(e, 'searchQuery');
   });
 
-  addListeners('.mobile-menu .search-form', 'submit', (e) => {
+  addListeners('.mobile-search-form', 'submit', (e) => {
     e.preventDefault();
     e.stopPropagation();
     submitSearchForm(e, 'mobileSearchQuery');

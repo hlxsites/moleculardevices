@@ -261,10 +261,11 @@ header .mobile-menu .company-links li {
 header .mobile-menu li h1,
 header .mobile-menu li h2 {
   font-size: 18px;
-  color: #34393d;
   font-family: 'Proxima Nova Light', sans-serif;
   font-weight: 300;
   text-shadow: none;
+  margin-bottom: 0;
+  color: inherit;
 }
 
 header .mobile-menu .company-links li picture {
@@ -417,11 +418,18 @@ header .mobile-menu {
   position: fixed;
   left: 0;
   width: 100%;
+  max-width: 100%;
   background: #fff;
   height: calc(100% - 63px);
   top: 63px;
   overflow: hidden;
-  display: none;
+  -webkit-transform: translate(-100%,0);
+  -moz-transform: translate(-100%,0);
+  -ms-transform: translate(-100%,0);
+  -o-transform: translate(-100%,0);
+  transform: translate(-100%,0);
+  transition: transform .4s ease;
+  z-index: -9;
 }
 
 header .mobile-menu > ul {
@@ -436,7 +444,7 @@ header .mobile-menu > ul {
 header .mobile-menu .headersearch {
   position: static;
   background: #f0f1f2;
-  padding: 25px 15px;
+  padding: 25px 22px;
   height: auto;
   display: block;
   width: 100%;
@@ -513,8 +521,104 @@ header .mobile-menu li a {
   text-decoration: none;
 }
 
+header .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+  -webkit-transform: translate(0%,0);
+  -moz-transform: translate(0%,0);
+  -ms-transform: translate(0%,0);
+  -o-transform: translate(0%,0);
+  transform: translate(0%,0);
+}
+
 header .mobile-menu-subcategories {
-  display: none;
+  float: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  box-shadow: none;
+  position: fixed;
+  padding: 0;
+  border: 0;
+  transition: transform .4s ease;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 1000;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  -webkit-transform: translate(100%,0);
+  -moz-transform: translate(100%,0);
+  -ms-transform: translate(100%,0);
+  -o-transform: translate(100%,0);
+  transform: translate(100%,0);
+}
+
+header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
+  right: inherit;
+  left: 15px;
+  transform: rotate(180deg);
+  content: "\f105";
+  font-size: 25px !important;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  border-radius: 100%;
+  border: 1px solid #c4ccda;
+  color: #34393d;
+  top: 50%;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  margin-top: -15px;
+}
+
+header .mobile-menu .mobile-menu-subcategory-item:hover a {
+  color: var(--link-color);
+  background: #fff;
+}
+
+header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
+  text-align: center;
+  float: none;
+  border-top: 0;
+  position: relative;
+}
+
+header .mobile-menu .back-to-parent a {
+  padding-left: 55px;
+}
+
+header .mobile-menu .back-to-parent:hover {
+  background: #fff;
+}
+
+header .mobile-menu .mobile-menu-items li {
+  line-height: 1.42857143;
+  font-size: 18px;
+  border-bottom: 1px solid #f1f2f3;
+}
+
+header .mobile-menu .mobile-menu-subcategory-item > a {
+  background: #f0f1f2;
+  position: relative;
+  white-space: nowrap;
+  display: block;
+  padding: 24px 70px 19px 15px;
+  color: #34393d;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-family: 'Proxima Nova Light';
+  font-weight: 300;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+header .mobile-menu .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+  display: block;
 }
 
 header .mobile-menu .caret {
@@ -1037,6 +1141,19 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 }
 
 @media (max-width: 991px) {
+  .openmenu {
+      overflow-y: hidden;
+  }
+
+  .openmenu .mobile-menu {
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0);
+    z-index: 99;
+}
+
   header .block {
     padding: 0;
   }
