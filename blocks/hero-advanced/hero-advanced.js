@@ -1,5 +1,6 @@
+// eslint-disable-next-line object-curly-newline
+import { div, a, span } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { i, div, a, span } from '../../scripts/dom-helpers.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 import { buildHero } from '../hero/hero.js';
