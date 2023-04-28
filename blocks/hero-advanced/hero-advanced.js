@@ -1,5 +1,6 @@
-import { isVideo, buildVideo } from '../../scripts/scripts.js';
+import { isVideo, videoButton } from '../../scripts/scripts.js';
 import { buildHero } from '../hero/hero.js';
+import { div, img } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');
@@ -16,7 +17,12 @@ export default async function decorate(block) {
   [...links].forEach((link) => {
     const url = new URL(link);
     if (isVideo(url)) {
-      buildVideo(link.parentNode, url);
+      const videoIcon = div({ class: 'video-icon' });
+      const thumbnail = img({ src: '/images/play_icon.png' });
+      videoIcon.append(thumbnail);
+      link.parentNode.appendChild(videoIcon);
+      videoButton(link.parentElement, thumbnail, url);
+      link.remove();
     }
   }); 
 

@@ -126,25 +126,19 @@ export function isVideo(url) {
   });
   return isVideo;
 }
-export function buildVideo(container, url) {
+export function videoButton(container, button, url) {
+  const videoId = url.pathname.split('/').at(-1).trim();
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
 
-      const videoId = url.pathname.split('/').at(-1).trim();
-      const videoIcon = document.createElement('div');
-      const thumbnail = document.createElement('img');
-      videoIcon.append(thumbnail);
-      videoIcon.classList.add('video-icon');
-      thumbnail.src = '/images/play_icon.png';
+      const overlay = document.createElement('div');
+      overlay.id = 'sample';
+      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      container.prepend(overlay);
 
-      container.innerHTML = `<div id="sample">
-        <div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>
-      </div>`;
-      container.appendChild(videoIcon);
-
-      thumbnail.addEventListener('click', () => {
+      button.addEventListener('click', () => {
         // eslint-disable-next-line no-undef
         const players = VidyardV4.api.getPlayersByUUID(videoId);
         const player = players[0];
