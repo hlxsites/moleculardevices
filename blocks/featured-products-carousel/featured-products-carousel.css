@@ -29,6 +29,7 @@ main .featured-products-carousel.mini .carousel-item {
   background-color: var(--background-color);
   color: var(--text-color);
   padding: 0;
+  margin: 0;
 }
 
 main .featured-products-carousel.mini .carousel-item-column {
@@ -59,7 +60,7 @@ main .featured-products-carousel.mini .carousel-item-text h3 {
 }
 
 main .featured-products-carousel.mini .carousel-item-text a {
-  color: var(--link-color)
+  color: #008ca8;
 }
 
 main .featured-products-carousel.mini .carousel-item-text a .fa {
