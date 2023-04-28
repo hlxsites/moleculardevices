@@ -17,9 +17,8 @@ const embedSoundcloud = (url) => {
   return embedHTML;
 };
 
-
 const embedTwitterFeed = (url) => {
-  const embedHTML =  `<div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;">
+  const embedHTML = `<div class="twitter-timeline twitter-timeline-rendered" style="display: flex; max-width: 100%; margin-top: 0px; margin-bottom: 0px;">
     <iframe
       id="twitter-feed"
       scrolling="no"
@@ -32,10 +31,9 @@ const embedTwitterFeed = (url) => {
       src="${url.href}"
     ></iframe>
   </div>
-  `
+  `;
   return embedHTML;
 };
-
 
 const loadEmbed = (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
@@ -50,7 +48,7 @@ const loadEmbed = (block, link, autoplay) => {
     {
       match: ['twitter'],
       embed: embedTwitterFeed,
-    }
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
