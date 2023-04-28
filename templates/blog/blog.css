@@ -221,16 +221,6 @@ main .blog-card-caption .button.primary {
   word-break: break-word;
 }
 
-/* .blog .sidebar {
-  display: flex;
-  flex-wrap: wrap;
-  width: 33.33333333%;
-}
-
-.blog .sidebar > div {
-  flex: 1 1 auto;
-} */
-
   /* Sidebar for Pages */
 main.sidebar {
   display: grid;
@@ -243,7 +233,13 @@ main.sidebar div.section.hero-container {
 
 main.sidebar .section.sidebar {
   grid-column: 2;
-  grid-row: 3 / infinite;
+  grid-row: 3 / -2;
+}
+
+main.sidebar .section.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
 }
 
 main.sidebar > *:not(.section.sidebar) {
@@ -251,5 +247,9 @@ main.sidebar > *:not(.section.sidebar) {
 }
 
 main.sidebar > .section.full-width-no-sidebar {
+  grid-column: 1 / -1;
+}
+
+main.sidebar .section.wave {
   grid-column: 1 / -1;
 }
