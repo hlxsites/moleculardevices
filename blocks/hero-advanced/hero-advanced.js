@@ -4,12 +4,21 @@ import { loadFragment } from '../fragment/fragment.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 import { buildHero } from '../hero/hero.js';
 
-async function openMediaGallery(overlay) {
+async function openMediaGallery(mg) {
+  const overlay = mg.parentElement.querySelector('.overlay');
+  if (overlay) overlay.classList.add('open');
+}
+
+async function buildMediaGallery(mg) {
+  // container
+  const overlay = div({ class: 'overlay' });
   const content = div({ class: 'overlay-content' });
   const carousel = div({ class: 'overlay-carousel' });
+  mg.after(overlay);
   overlay.appendChild(content);
   content.appendChild(carousel);
 
+  // buttons
   const close = a({ class: 'close' }, (i({ class: 'fa fa-close' })));
   close.addEventListener('click', () => {
     overlay.classList.remove('open');
@@ -25,12 +34,11 @@ async function openMediaGallery(overlay) {
   content.append(close, right, left);
   decorateIcons(content);
 
+  // fragment
   const fragment = await loadFragment('/fragments/media-gallery/products/spectramax-i3x-readers');
   [...fragment.children].forEach((section) => {
     carousel.appendChild(section);
   });
-
-  overlay.classList.add('open');
 }
 
 export default async function decorate(block) {
@@ -54,11 +62,9 @@ export default async function decorate(block) {
 
   const mgs = block.querySelectorAll('a[href*="/media-gallery"]');
   [...mgs].forEach((mg) => {
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    mg.parentElement.appendChild(overlay);
+    buildMediaGallery(mg);
     mg.addEventListener('click', () => {
-      openMediaGallery(overlay);
+      openMediaGallery(mg);
     });
     mg.href = '#';
   });
