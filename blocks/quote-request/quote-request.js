@@ -109,7 +109,7 @@ function loadIframeForm(stepNum, tab) {
 
   root.appendChild(
     div(
-      h3('Got it. Now, let\'s get in touch.'),
+      h3("Got it. Now, let's get in touch."),
       p(
         'A team member will contact you within 24-business hours regarding your product inquiry for: ',
         span({ style: 'display: block;font-weight: bold;' }, tab),
@@ -192,6 +192,11 @@ function stepTwo(e) {
 export default async function decorate(block) {
   const isThankyouPage = block.classList.contains('thankyou');
   if (isThankyouPage) {
+    const htmlContentRoot = block.children[0].children[0].children[0];
+    const parentSection = block.parentElement.parentElement;
+    parentSection.prepend(htmlContentRoot.children[0]);
+    htmlContentRoot.remove();
+
     const htmlContent = block.children[0].children[0].innerHTML.trim();
     block.innerHTML = `<div class="rfq-product-wrapper">
                         <div class="rfq-thankyou-msg">${htmlContent}</div>
