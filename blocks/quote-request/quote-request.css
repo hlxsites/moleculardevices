@@ -83,6 +83,54 @@
 	filter: brightness(0) invert(1);
 }
 
+.rfq-thankyou-msg {
+	max-width: 606px;
+	margin: 0 auto;
+	width: 100%;
+	color: #fff;
+}
+
+.rfq-thankyou-msg h2 {
+	font-size: 40px;
+	font-weight: 100;
+	padding-bottom: 25px;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
+.rfq-thankyou-msg p {
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.rfq-thankyou-msg a{
+  color: var(--button-secondary-color);
+}
+
+.rfq-thankyou-msg picture {
+	display: block;
+	width: 110px;
+	margin: auto;
+}
+
+.rfq-thankyou-msg p:last-child {
+	font-size: 13px;
+	margin-top: 10px;
+	font-weight: 100;
+}
+
+.thankyou .rfq-product-wrapper {
+	width: 100%;
+	background: rgb(0 0 0 / 70%);
+	border-radius: 25px;
+	border: 1px solid var(--heading-color);
+	padding: 30px 0 50px;
+	max-width: 840px;
+	margin: 0 auto;
+}
+
 .back-step-btn {
 	background: rgb(0 116 141 / 30%);
 	bottom: 20px;
@@ -106,8 +154,8 @@
 	position: absolute;
 }
 
-.hide-back-btn .back-step-btn{
-  display: none;
+.hide-back-btn .back-step-btn {
+	display: none;
 }
 
 .contact-quote-request {
