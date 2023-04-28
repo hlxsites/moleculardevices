@@ -133,7 +133,7 @@ main .overlay-carousel .section>div {
 
   .hero-inner a.button.secondary {
    border: 2px solid #fff;
-   padding: 13px 18px 13px;
+   padding: 13px 18px;
   }
 
 }
@@ -198,7 +198,7 @@ main .overlay-carousel .section>div {
   .hero-inner a.button.secondary {
     border: 2px solid var(--button-bg-color);
     color: var(--button-bg-color);
-    padding: 8px 12px 8px;
+    padding: 8px 12px;
   }
 
   .hero-inner p.button-container {
