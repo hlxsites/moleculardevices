@@ -1,5 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { i, div, a } from '../../scripts/dom-helpers.js';
+import { i, div, a, span } from '../../scripts/dom-helpers.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 import { buildHero } from '../hero/hero.js';
@@ -19,15 +19,15 @@ async function buildMediaGallery(mg) {
   content.appendChild(carousel);
 
   // buttons
-  const close = a({ class: 'close' }, (i({ class: 'fa fa-close' })));
+  const close = a({ class: 'close' }, (span({ class: 'icon icon-close-video' })));
   close.addEventListener('click', () => {
     overlay.classList.remove('open');
   });
-  const right = a({ class: 'right' }, (i({ class: 'fa fa-chevron-circle-right' })));
+  const right = a({ class: 'right' }, (span({ class: 'icon icon-chevron-right' })));
   right.addEventListener('click', () => {
     carousel.scrollTo({ top: 0, left: carousel.scrollLeft + carousel.parentElement.offsetWidth, behavior: 'smooth' });
   });
-  const left = a({ class: 'left' }, (i({ class: 'fa fa-chevron-circle-left' })));
+  const left = a({ class: 'left' }, (span({ class: 'icon icon-chevron-left' })));
   left.addEventListener('click', () => {
     carousel.scrollTo({ top: 0, left: carousel.scrollLeft - carousel.parentElement.offsetWidth, behavior: 'smooth' });
   });
