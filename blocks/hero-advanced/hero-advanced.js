@@ -62,12 +62,12 @@ export default async function decorate(block) {
 
   buildHero(block);
 
-  const mgs = block.querySelectorAll('a[href*="/media-gallery"]');
-  [...mgs].forEach((mg) => {
+  const mg = block.querySelector('a[href*="/media-gallery"]');
+  if (mg) {
     buildMediaGallery(mg);
     mg.addEventListener('click', () => {
       openMediaGallery(mg);
     });
     mg.href = '#';
-  });
+  }
 }
