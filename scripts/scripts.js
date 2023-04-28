@@ -126,7 +126,7 @@ export function isVideo(url) {
   });
   return isVideo;
 }
-export function buildVideo(block, div, url) {
+export function buildVideo(container, url) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
@@ -139,10 +139,10 @@ export function buildVideo(block, div, url) {
       videoIcon.classList.add('video-icon');
       thumbnail.src = '/images/play_icon.png';
 
-      div.innerHTML = `<div id="sample">
+      container.innerHTML = `<div id="sample">
         <div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>
       </div>`;
-      div.appendChild(videoIcon);
+      container.appendChild(videoIcon);
 
       thumbnail.addEventListener('click', () => {
         // eslint-disable-next-line no-undef
@@ -152,7 +152,7 @@ export function buildVideo(block, div, url) {
       });
     }
   });
-  observer.observe(block);
+  observer.observe(container);
 }
 
 /**

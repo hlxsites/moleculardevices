@@ -16,7 +16,7 @@ export default async function decorate(block) {
   [...links].forEach((link) => {
     const url = new URL(link);
     if (isVideo(url)) {
-      buildVideo(block, link.parentNode, url);
+      buildVideo(link.parentNode, url);
     }
   }); 
 
