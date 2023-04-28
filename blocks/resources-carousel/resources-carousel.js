@@ -16,11 +16,10 @@ export default async function decorate(block) {
 
   let resources = await ffetch('/query-index.json')
     .sheet('resources')
+    .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
+        && !relatedResourcesExcludedTypes.includes(resource.type))
+    .limit(9)
     .all();
-  resources = resources.filter(
-    (resource) => resource[relatedResourcesHeaders[template]].includes(title)
-      && !relatedResourcesExcludedTypes.includes(resource.type))
-    .sort((x, y) => parseInt(x.date, 10) - parseInt(y.date, 10)).slice(0, 9);
 
   await createCarousel(
     block,
