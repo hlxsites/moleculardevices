@@ -146,7 +146,7 @@ function decoratePageNav(main) {
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
-function decorateImageLinks(container) {
+function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
     const br = a.previousElementSibling;
     let picture = br.previousElementSibling;
@@ -154,8 +154,9 @@ function decorateImageLinks(container) {
       picture = br;
     }
     if (a.textContent.includes(a.getAttribute('href'))) {
-      a.innerHTML = picture.outerHTML;
-      a.parentElement.innerHTML = a.outerHTML;
+      a.innerHTML = '';
+      a.className = '';
+      a.appendChild(picture);
     }
   });
 }
@@ -194,7 +195,8 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
-  decorateImageLinks(main);
+  //decorateImageLinks(main);
+  decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
 }
 
