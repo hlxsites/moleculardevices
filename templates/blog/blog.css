@@ -1,3 +1,7 @@
+:root {
+  --blog-underline-gradient: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+}
+
 .blog {
   overflow-x: hidden; /* Could be removed after the soundcloud player is implemented */
   font-family: var(--ff-proxima-regular);
@@ -96,13 +100,14 @@
   height: 4px;
   width: 100%;
   background-color: #61b249;
-  background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+  background: var(--blog-underline-gradient);
 }
 
 .blog .section.blog-heading > div:first-of-type p {
   margin: 0;
 }
 
+main .section.sidebar h4,
 .blog .section.blog-heading h4 {
   font-size: 30px;
   font-weight: bold;
@@ -224,7 +229,7 @@ main .blog-card-caption .button.primary {
   /* Sidebar for Pages */
 main.sidebar {
   display: grid;
-  grid-template-columns: auto 30%;
+  grid-template-columns: auto 780px 390px auto;
 }
 
 main.sidebar div.section.hero-container {
@@ -232,7 +237,7 @@ main.sidebar div.section.hero-container {
 }
 
 main.sidebar .section.sidebar {
-  grid-column: 2;
+  grid-column: 3;
   grid-row: 3 / -2;
 }
 
@@ -243,7 +248,7 @@ main.sidebar .section.sidebar {
 }
 
 main.sidebar > *:not(.section.sidebar) {
-  grid-column: 1;
+  grid-column: 2;
 }
 
 main.sidebar > .section.full-width-no-sidebar {
@@ -252,4 +257,24 @@ main.sidebar > .section.full-width-no-sidebar {
 
 main.sidebar .section.wave {
   grid-column: 1 / -1;
+}
+
+main .section.sidebar h4 {
+  margin-bottom: 50px;
+  position: relative;
+}
+
+main .section.sidebar h4::after {
+  content: "";
+  position: absolute;
+  bottom: -33px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #61b249;
+  background: var(--blog-underline-gradient);
+}
+
+.blog main .section.sidebar .embed-twitter {
+  margin-top: 0;
 }
