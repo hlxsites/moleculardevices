@@ -1,13 +1,15 @@
-.event-date, .event-keywords {
-  padding-bottom: 15px;
+.event-date {
+  font-size: 14px;
 }
 
 .event-subtitle {
+  font-size: 20px;
   margin-bottom: 12px;
 }
 
 .event-keywords {
-  margin-bottom: 35px;
+  font-size: 18px;
+  margin-bottom: 45px;
 }
 
 .event-keywords ul.keyword-list {

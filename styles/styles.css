@@ -553,12 +553,6 @@ main .section.background-molecules {
   }
 }
 
-@media(max-width: 991px) {
-  main .section .default-content-wrapper {
-    padding: 0 0 70px;
-  }
-}
-
 /* nav */
 nav {
   display: block;
@@ -635,6 +629,7 @@ main .event-container p {
   padding: 0;
 }
 
+main .event-title,
 main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
