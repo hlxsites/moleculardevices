@@ -17,11 +17,13 @@ export default async function decorate(block) {
   [...links].forEach((link) => {
     const url = new URL(link);
     if (isVideo(url)) {
+      const container = link.parentElement;
+      container.classList.add('video-column');
       const videoIcon = div({ class: 'video-icon' });
       const thumbnail = img({ src: '/images/play_icon.png' });
       videoIcon.append(thumbnail);
-      link.parentNode.appendChild(videoIcon);
-      videoButton(link.parentElement, thumbnail, url);
+      container.appendChild(videoIcon);
+      videoButton(container, thumbnail, url);
       link.remove();
     }
   }); 
