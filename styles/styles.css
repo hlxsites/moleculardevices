@@ -673,6 +673,17 @@ main .event-container i.fa.fa-external-link {
   margin-left: 2px;
 }
 
+.section div + .default-content-wrapper,
+.section.tabs {
+  padding: 90px 0 45px;
+}
+
+.product h2 {
+  font-size: 36px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* Features Section */
 main .section.features-section {
   padding-top: 50px;
@@ -1016,22 +1027,11 @@ main .section[aria-hidden="true"] {
   content: "";
 }
 
-.section div + .default-content-wrapper,
-.section.tabs {
-  padding: 90px 0 45px;
-}
-
 main .section .default-content-wrapper h2:only-child,
 main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
   margin-top: 0;
   padding-top: 0;
   padding-bottom: 10px;
-}
-
-.product h2 {
-  font-size: 36px;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .product .section.columns-container .columns.columns-2-cols > div h3 {
