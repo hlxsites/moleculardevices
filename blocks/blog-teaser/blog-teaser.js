@@ -13,7 +13,9 @@ function renderBlockTeaser(blogData) {
         ),
       ),
       div({ class: 'blog-teaser-caption' },
-        h3(blogData.header),
+        h3(
+          a({ href: blogData.path }, blogData.header),
+        ),
         div({ class: 'metadata' },
           div(
             i({ class: 'fa fa-calendar' }),

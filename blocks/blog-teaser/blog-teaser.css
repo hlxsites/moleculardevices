@@ -51,6 +51,11 @@
   margin-bottom: 30px;
   min-height: 49px;
   font-weight: bold;
+  line-height: 1.1;
+}
+
+.blog-teaser-item .blog-teaser-caption h3 a {
+  color: inherit;
 }
 
 .blog-teaser-item .blog-teaser-caption .metadata {
