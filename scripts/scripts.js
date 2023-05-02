@@ -114,6 +114,42 @@ async function loadBreadcrumbs(main) {
 }
 
 /**
+ * Parse video links and build the markup
+ */
+export function isVideo(url) {
+  let isV = false;
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  [...hostnames].forEach((hostname) => {
+    if (url.hostname.includes(hostname)) {
+      isV = true;
+    }
+  });
+  return isV;
+}
+export function videoButton(container, button, url) {
+  const videoId = url.pathname.split('/').at(-1).trim();
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+
+      const overlay = document.createElement('div');
+      overlay.id = 'sample';
+      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      container.prepend(overlay);
+
+      button.addEventListener('click', () => {
+        // eslint-disable-next-line no-undef
+        const players = VidyardV4.api.getPlayersByUUID(videoId);
+        const player = players[0];
+        player.showLightbox();
+      });
+    }
+  });
+  observer.observe(container);
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * Run named sections for in page navigation.
  * Decroate named sections for in page navigation.
