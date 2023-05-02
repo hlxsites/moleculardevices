@@ -51,7 +51,14 @@ export default function buildAutoBlocks() {
 }
 
 export function renderBlogCard(item) {
-  const itemImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
+  let itemImage = '/images/default-card-thumbnail.webp';
+  if (item.type === 'Citation') {
+    itemImage = '/images/citations-card-thumbnail.webp';
+  } else if (item.thumbnail && item.thumbnail !== '0') {
+    itemImage = item.thumbnail;
+  } else if (item.image && item.image !== '0') {
+    itemImage = item.image;
+  }
   const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : 'Read More';
 
   return (
@@ -66,7 +73,7 @@ export function renderBlogCard(item) {
         h3(
           a({ href: item.path }, item.title),
         ),
-        p({ class: 'blog-card-description' }, summariseDescription(item.description, 75)),
+        item.description && item.description !== '0' ? p({ class: 'blog-card-description' }, summariseDescription(item.description, 75)) : '',
         p({ class: 'button-container' },
           a({ href: item.path, 'aria-label': buttonText, class: 'button primary' }, buttonText),
         ),

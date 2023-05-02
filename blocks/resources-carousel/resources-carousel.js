@@ -14,7 +14,7 @@ export default async function decorate(block) {
   const template = getMetadata('template');
   const title = document.querySelector('.hero .container h1').textContent;
 
-  let resources = await ffetch('/query-index.json')
+  const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
         && !relatedResourcesExcludedTypes.includes(resource.type))

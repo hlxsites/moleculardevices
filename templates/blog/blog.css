@@ -167,7 +167,6 @@ main .blog-card-thumb img {
   width: 100%;
   min-width: auto;
   object-fit: cover;
-  object-position: left;
   transition: all .5s ease-in-out;
 }
 
