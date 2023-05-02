@@ -266,6 +266,17 @@ em strong {
   font-style: italic;
 }
 
+p.video-title {
+  font-size: 24px;
+  color: #34393d;
+  font-family: var(--ff-proxima-xbold);
+  margin-bottom: 20px;
+  margin-top: 15px;
+  background-color: var(--background-color);
+  font-weight: 400;
+  text-align: center;
+}
+
 /* buttons */
 a.button:any-link,
 button {

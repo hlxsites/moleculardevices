@@ -16,6 +16,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
+import { div, p, img } from '../../scripts/dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -118,7 +119,7 @@ async function loadBreadcrumbs(main) {
  */
 export function isVideo(url) {
   let isV = false;
-  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com', 'video.vidyard.com'];
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
       isV = true;
@@ -126,27 +127,48 @@ export function isVideo(url) {
   });
   return isV;
 }
-export function videoButton(container, button, url) {
-  const videoId = url.pathname.split('/').at(-1).trim();
+
+export function embedVideo(link, url, type, thumbnail) {
+  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+  if (!thumbnail) {
+    thumbnail = img({ src: `https://play.vidyard.com/${videoId}.jpg`});
+    link.parentElement.appendChild(thumbnail);
+  }
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
-
-      const overlay = document.createElement('div');
-      overlay.id = 'sample';
-      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
-      container.prepend(overlay);
-
-      button.addEventListener('click', () => {
-        // eslint-disable-next-line no-undef
-        const players = VidyardV4.api.getPlayersByUUID(videoId);
-        const player = players[0];
-        player.showLightbox();
-      });
+      thumbnail.style = 'width: 100%; margin: auto; display: block;';
+      thumbnail.classList.add('vidyard-player-embed');
+      thumbnail.setAttribute('data-uuid', videoId);
+      thumbnail.setAttribute('data-v', '4');
+      thumbnail.setAttribute('data-width', (type === 'lightbox') ? '700' : '');
+      thumbnail.setAttribute('data-height', (type === 'lightbox') ? '394' : '');
+      thumbnail.setAttribute('data-autoplay', (type === 'lightbox') ? '1' : '0');
+      thumbnail.setAttribute('data-type', (type === 'lightbox') ? 'lightbox' : 'inline');
+      link.remove();
     }
   });
-  observer.observe(container);
+  observer.observe(thumbnail);
+}
+
+function decorateEmbedLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const url = new URL(a.href);
+    if (isVideo(url) && !a.closest('.block.hero-advanced')) {
+      const up = a.parentElement;
+      const isInlineBlock = (a.closest('.block.vidyard') && !a.closest('.block.vidyard').classList.contains('lightbox'));
+      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+      const wrapper = div({ class: 'video-wrapper' });
+      up.appendChild(wrapper);
+      const container = div({ class: 'video-container' });
+      wrapper.appendChild(container);
+      container.appendChild(a);
+      const title = (a.href !== a.textContent) ? a.textContent : null;
+      if (title) wrapper.append(p({ class: 'video-title'}, title));
+      embedVideo(a, url, type, null);
+    }
+  });
 }
 
 /**
@@ -233,6 +255,7 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
+  decorateEmbedLinks(main);
 }
 
 /**
