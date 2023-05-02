@@ -232,6 +232,12 @@ main.sidebar {
   grid-template-columns: auto 780px 390px auto;
 }
 
+@media only screen and (max-width: 1200px) {
+  main.sidebar {
+    grid-template-columns: auto 646px 323px auto;
+  }
+}
+
 /* put all content that's not in the sidebar in second column */
 main.sidebar > *:not(.section.sidebar) {
   grid-column: 2;
@@ -277,6 +283,23 @@ main .section.sidebar h4::after {
   background: var(--blog-underline-gradient);
 }
 
+.blog main .section.sidebar .embed-wrapper {
+  padding: 0;
+}
+
 .blog main .section.sidebar .embed-twitter {
   margin-top: 0;
 }
+
+@media only screen and (max-width: 991px) {
+  main.sidebar {
+    grid-template-columns: auto 750px auto;
+  }
+
+  main.sidebar .section.sidebar {
+    grid-column: 2;
+    grid-row: unset;
+    display: block;
+  }
+}
+
