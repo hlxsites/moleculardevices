@@ -117,6 +117,10 @@ main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
     margin-top: 65px;
   }
 
+  main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
+    height: 17px;
+  }
+
   main .page-tabs li[aria-selected="true"]::after {
     margin-top: 65px;
   }

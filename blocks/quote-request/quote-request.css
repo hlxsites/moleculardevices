@@ -1,0 +1,246 @@
+.quote-request-container {
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 80px 0;
+  position: relative;
+}
+
+.quote-request-container > picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.quote-request-container > picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rfq-product-wrapper {
+  background: rgb(0 0 0 / 70%);
+  border: 1px solid var(--heading-color);
+  border-radius: 25px;
+  color: var(--text-white);
+  margin: auto;
+  max-width: 90%;
+  padding: 30px 50px 100px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.rfq-product-wrapper.request-quote-form {
+  padding-bottom: 0;
+}
+
+.quote-request h3 {
+  color: var(--text-white);
+  font-family: var(--ff-proxima-light);
+  font-size: 35px;
+  margin-bottom: 35px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.rfq-icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rfq-icon-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+.rfq-icon-link {
+  background: var(--text-white);
+  box-shadow: 0 0 24px rgb(0 0 0 / 20%);
+  color: var(--heading-color);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ff-proxima-light);
+  font-size: 15px;
+  font-weight: 700;
+  justify-content: flex-start;
+  padding: 10px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.rfq-icon-link:hover {
+  background: url("images/hover-bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-white);
+}
+
+.rfq-icon-link .rfq-icon-img {
+  display: inline-block;
+  height: 100px;
+  margin: 12px auto;
+  max-width: 65%;
+  width: 100px;
+}
+
+.rfq-icon-link:hover .rfq-icon-img {
+  filter: brightness(0) invert(1);
+}
+
+.rfq-thankyou-msg {
+  max-width: 606px;
+  margin: 0 auto;
+  width: 100%;
+  color: var(--text-white);
+}
+
+.rfq-thankyou-msg h2 {
+  font-size: 40px;
+  font-weight: 100;
+  padding-bottom: 25px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.rfq-thankyou-msg h2:nth-of-type(2) {
+  margin-top: 30px;
+}
+
+.rfq-thankyou-msg p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.rfq-thankyou-msg a {
+  color: var(--button-secondary-color);
+}
+
+.rfq-thankyou-msg picture {
+  display: block;
+  width: 110px;
+  margin: auto;
+}
+
+.rfq-thankyou-msg p:last-child {
+  font-size: 13px;
+  margin-top: 10px;
+  font-weight: 100;
+}
+
+.thankyou .rfq-product-wrapper {
+  width: 100%;
+  background: rgb(0 0 0 / 70%);
+  border-radius: 25px;
+  border: 1px solid var(--heading-color);
+  padding: 30px 0 50px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.back-step-btn {
+  background: rgb(0 116 141 / 30%);
+  bottom: 20px;
+  color: var(--text-white);
+  height: 60px;
+  left: 20px;
+  line-height: 60px;
+  min-height: auto;
+  min-width: auto;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  width: 60px;
+}
+
+.back-step-btn .fa {
+  color: var(--text-white);
+  font-size: 80px;
+  left: 13px;
+  line-height: 0;
+  position: absolute;
+}
+
+.hide-back-btn .back-step-btn {
+  display: none;
+}
+
+.contact-quote-request {
+  border: none;
+  width: 100%;
+}
+
+.progress-wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 57%;
+}
+
+.progress-bullet {
+  background: var(--heading-color);
+  border-radius: 50%;
+  display: inline-block;
+  height: 20px;
+  left: 50%;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 20px;
+  z-index: 99;
+}
+
+.progress-bar {
+  background-color: #020302;
+  border-radius: 20px;
+  box-shadow: inset 7px 0 58px #716f6f;
+  height: 50px;
+  margin: 55px auto 0;
+  position: relative;
+  width: 100%;
+}
+
+.progress {
+  background-image: url("images/progress-bar_resized.png");
+  background-size: contain;
+  border: 0;
+  border-radius: 20px !important;
+  height: 50px;
+  transition: width 0.4s ease;
+  width: 0;
+}
+
+@media only screen and (min-width: 992px) {
+  .rfq-icon-item {
+    width: 25%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .rfq-product-wrapper {
+    padding: 30px 20px 100px;
+  }
+
+  .rfq-product-wrapper.request-quote-form {
+    padding-bottom: 50px;
+  }
+
+  .rfq-thankyou-msg h2 {
+    font-size: 25px;
+  }
+
+  .rfq-thankyou-msg {
+    padding: 0 20px;
+  }
+}

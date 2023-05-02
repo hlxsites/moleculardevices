@@ -546,6 +546,13 @@ main .section.background-molecules {
   background-size: auto 90px;
 }
 
+@media only screen and (max-width: 991px) {
+  main .section.background-molecules {
+    background-size: auto 50px;
+    padding-top: 50px;
+  }
+}
+
 @media(max-width: 991px) {
   main .section .default-content-wrapper {
     padding: 0 0 70px;
@@ -982,4 +989,20 @@ main .section[aria-hidden="true"] {
   left: 0;
   right: 0;
   z-index: 999;
+}
+
+.coveo-search-container::after,
+.news-container::after,
+.news .social-share-container::after,
+.publication-container::after,
+.publication .social-share-container::after {
+  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 10.823% 0 0;
+  margin: 0 0 -1px;
+  background-position: bottom center;
+  display: block;
+  width: 100%;
+  content: "";
 }

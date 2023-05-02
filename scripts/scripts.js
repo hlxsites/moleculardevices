@@ -27,6 +27,7 @@ window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation info
 
 let LAST_SCROLL_POSITION = 0;
 let STICKY_ELEMENTS;
+let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
@@ -95,7 +96,7 @@ function optimiseHeroBlock(main) {
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
  * Breadcrumb block created at the top of first section
  */
-async function createBreadcrumbsSpace(main) {
+function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = document.createElement('div');
     blockWrapper.classList.add('breadcrumbs-wrapper');
@@ -110,6 +111,42 @@ async function loadBreadcrumbs(main) {
     decorateBlock(block);
     await loadBlock(block);
   }
+}
+
+/**
+ * Parse video links and build the markup
+ */
+export function isVideo(url) {
+  let isV = false;
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  [...hostnames].forEach((hostname) => {
+    if (url.hostname.includes(hostname)) {
+      isV = true;
+    }
+  });
+  return isV;
+}
+export function videoButton(container, button, url) {
+  const videoId = url.pathname.split('/').at(-1).trim();
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+
+      const overlay = document.createElement('div');
+      overlay.id = 'sample';
+      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      container.prepend(overlay);
+
+      button.addEventListener('click', () => {
+        // eslint-disable-next-line no-undef
+        const players = VidyardV4.api.getPlayersByUUID(videoId);
+        const player = players[0];
+        player.showLightbox();
+      });
+    }
+  });
+  observer.observe(container);
 }
 
 /**
@@ -139,6 +176,25 @@ function decoratePageNav(main) {
       }
     });
   }
+}
+
+/**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function decorateLinkedPictures(container) {
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
+    const br = a.previousElementSibling;
+    let picture = br.previousElementSibling;
+    if (br.tagName === 'PICTURE') {
+      picture = br;
+    }
+    if (a.textContent.includes(a.getAttribute('href'))) {
+      a.innerHTML = '';
+      a.className = '';
+      a.appendChild(picture);
+    }
+  });
 }
 
 /**
@@ -175,6 +231,7 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
 }
 
@@ -231,8 +288,8 @@ export function addLinkIcon(elem) {
   elem.append(linkIcon);
 }
 
-export async function fetchFragment(path) {
-  const response = await fetch(`${path}.plain.html`);
+export async function fetchFragment(path, plain = true) {
+  const response = await fetch(path + (plain ? '.plain.html' : ''));
   if (!response.ok) {
     // eslint-disable-next-line no-console
     console.error('error loading fragment details', response);
@@ -248,10 +305,28 @@ export async function fetchFragment(path) {
 }
 
 function getStickyElements() {
+  PREV_STICKY_ELEMENTS = STICKY_ELEMENTS;
   if (mobileDevice.matches) {
     STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-mobile');
   } else {
     STICKY_ELEMENTS = document.querySelectorAll('.sticky-element.sticky-desktop');
+  }
+
+  // remove sticky class from elements that are no longer sticky
+  if (PREV_STICKY_ELEMENTS) {
+    PREV_STICKY_ELEMENTS.forEach((element) => {
+      let keepSticky = false;
+      STICKY_ELEMENTS.forEach((stickyElement) => {
+        if (element === stickyElement) {
+          keepSticky = true;
+        }
+      });
+
+      if (!keepSticky) {
+        element.classList.remove('sticky');
+        element.style.top = '';
+      }
+    });
   }
 }
 
@@ -387,10 +462,25 @@ export function getCookie(cname) {
   return '';
 }
 
+/**
+ * Set a cookie from query string parameters
+ */
+function setCookieFromQueryParameters(paramName, exdays) {
+  const readQuery = getQueryParameter();
+  if (readQuery[paramName]) {
+    setCookie(paramName, readQuery[paramName], exdays);
+  }
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
+
+cookieParams.forEach((param) => {
+  setCookieFromQueryParameters(param, 0);
+});
 
 loadPage();

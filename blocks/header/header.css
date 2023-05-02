@@ -7,11 +7,6 @@ header {
   width: 100%;
 }
 
-header .block {
-  position: relative;
-  padding-bottom: 46px;
-}
-
 header .nav-tabs>li {
   flex-grow: 1;
   float: left;
@@ -34,15 +29,71 @@ header .nav-wrapper {
 header .container {
   margin-right: auto;
   margin-left: auto;
+  background: var(--background-color);
 }
 
 header .nav-wrapper .container {
   background: var(--background-color);
 }
 
+header nav {
+  height: 40px;
+}
+
 header .navbar-header {
   position: relative;
-  z-index: 99999;
+  z-index: 99;
+}
+
+/* Hamburger menu */
+header button.hamburger {
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  cursor: pointer;
+  min-width: 37px;
+  width: 37px;
+  height: 37px;
+  margin-top: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+header .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+header .hamburger .icon-bar {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: #008296;
+  width: 35px;
+  line-height: 1;
+}
+
+header .hamburger.hamburger-close .icon-bar {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 17px;
+}
+
+header .hamburger > .icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+header .hamburger.hamburger-close > .icon-bar + .icon-bar {
+  transform: rotate(-45deg);
+  top: 12px;
 }
 
 /* Company Links (carrers/languages/...) */
@@ -64,6 +115,12 @@ header .actionable-card-submenu li {
   font-family: Quicksand, sans-serif;
   font-weight: 100;
   margin-bottom: 10px;
+}
+
+header .mobile-menu li {
+  float: none;
+  position: relative;
+  color: #34393d;
 }
 
 header .text-submenu > div {
@@ -188,6 +245,39 @@ header .nav-tabs .menu-nav-submenu-section:hover {
   background-color: rgba(255 255 255 / 30%);
 }
 
+header .mobile-menu .company-links li {
+  border-bottom: 1px solid #f1f2f3;
+  float: none;
+  border-top: 0;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 17px !important;
+  color: #6a747c;
+  width: 35%;
+  margin-top: 15px;
+}
+
+
+header .mobile-menu li h1,
+header .mobile-menu li h2 {
+  font-size: 18px;
+  color: #34393d;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+}
+
+header .mobile-menu .company-links li picture {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+header .mobile-menu li:hover {
+  color: var(--link-color);
+  background: #f0f1f2;
+}
+
 header .company-links > ul > li:last-child {
   margin-right: 0;
 }
@@ -218,6 +308,7 @@ header .nav-tabs {
   list-style: none;
   padding: 0;
   position: static !important;
+  height: auto;
   border: 0;
   margin-top: 0;
 }
@@ -233,6 +324,7 @@ header .nav-tabs .menu-nav-category {
   font-size: 12px;
   background-color: transparent;
   font-weight: 300;
+  cursor: default;
 }
 
 header .nav-tabs .menu-nav-category:hover {
@@ -277,11 +369,15 @@ header .nav-tabs .menu-nav-submenu-close {
 }
 
 header .mainmenu-wrapper.sticky .menu-nav-submenu-close {
-  top: 60px;
+  top: 55px;
+}
+
+header .mainmenu-wrapper.sticky .header-search .menu-nav-submenu-close {
+  top: 10px;
 }
 
 header .nav-tabs .menu-nav-submenu {
-  top: 100;
+  margin-top: 2px;
   left: 0;
   right: 0;
   border: 0;
@@ -316,6 +412,237 @@ header .cards-submenu img {
   height: auto;
 }
 
+/* Mobile Menu */
+header .mobile-menu {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  height: calc(100% - 63px);
+  top: 63px;
+  overflow: hidden;
+  display: none;
+}
+
+header .mobile-menu > ul {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  float: left;
+  list-style-type: none;
+  padding-inline-start: 0;
+}
+
+header .mobile-menu .headersearch {
+  position: static;
+  background: #f0f1f2;
+  padding: 25px 15px;
+  height: auto;
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+header .mobile-menu .search {
+  padding-right: 30px;
+  position: relative;
+}
+
+header .mobile-menu .search > form {
+  border: 0;
+  border-bottom: 1px solid #6a747c;
+  margin: 0;
+  padding: 0;
+}
+
+header .form-control:focus {
+  outline: none;
+}
+
+header .mobile-menu .form-control {
+  border-bottom: 0;
+  height: 25px;
+  font-size: 17px;
+  margin-left: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  color: #34393d;
+  background: none;
+  font-family: 'Proxima Nova Regular', sans-serif;
+  width: 100%;
+}
+
+header .mobile-menu .searchbutton {
+  bottom: -15px;
+  width: 25px;
+  min-width: 10px;
+  font-size: 25px;
+  color: #34393d;
+  background: none;
+  border: 0;
+  outline: 0;
+  position: absolute;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+header .mobile-menu-item {
+  border-bottom: 1px solid #f1f2f3;
+  float: none;
+  border-top: 0;
+  position: relative;
+  font-size: 18px;
+  color: #34393d;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+}
+
+header .mobile-menu li a {
+  position: relative;
+  white-space: nowrap;
+  display: block;
+  padding: 18px 70px 19px 15px;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+header .mobile-menu-subcategories {
+  display: none;
+}
+
+header .mobile-menu .caret {
+  padding: 18px 50px 18px 15px;
+  position: absolute;
+  top: 0;
+  right: 20px;
+  bottom: 0;
+  height: 100%;
+  width: 45px;
+  border: 0;
+  cursor: pointer;
+  z-index: 1;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+header .mobile-menu .caret::before {
+  content: "\f105";
+  font-size: 25px !important;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  border-radius: 100%;
+  border: 1px solid #c4ccda;
+  color: #34393d;
+  top: 50%;
+  display: inline-block;
+  font-family: FontAwesome, sans-serif;
+  margin-top: -15px;
+}
+
+header .menu-nav-submenu h1 > a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header .cards-submenu ul li a {
+  color: var(--text-white);
+  font-family: 'Proxima Nova Regular', sans-serif;
+  font-weight: 300;
+  line-height: 15px;
+  padding: 1px 5px;
+  display: block;
+  text-transform: none;
+}
+
+header .text-submenu ul > li > a {
+  font-size: 11px;
+  color: #fff;
+  border-bottom: 0;
+  line-height: 15px;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 8px;
+  font-weight: 300;
+  display: block;
+  text-transform: none;
+}
+
+header .mobile-menu .request-quote a {
+  line-height: 20px;
+  background: #f8a100;
+  font-size: 18px;
+  padding: 18px 50px 18px 15px;
+  text-shadow: none;
+  color: #fff;
+  font-family: 'Proxima Nova Regular', sans-serif;
+  text-align: center;
+  display: block;
+  text-transform: inherit;
+}
+
+header .mobile-menu .company-links {
+  background: #f0f1f2;
+  padding: 4px 15px 10px;
+  position: relative;
+  top: auto;
+  right: auto;
+}
+
+header .cards-submenu ul {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+header .large-card-submenu ul {
+  padding: 0;
+  width: 45%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  font-family: Quicksand, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  text-align: left;
+  list-style-type: disc;
+}
+
+header .mobile-menu .company-links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+header .mobile-menu .company-links li a {
+  padding: 0 0 11px;
+  line-height: 1.4286;
+  text-transform: inherit;
+  text-align: inherit;
+}
+
+header .mobile-menu .company-links li:nth-child(2) {
+  padding: 0 0 11px;
+  line-height: 1.4286;
+  text-transform: inherit;
+}
+
+/* Mobile Menu - END */
+
 header .col-1 {
   flex-basis: calc(100% - 10px);
   box-sizing: border-box;
@@ -338,28 +665,6 @@ header .col-4 > div > div {
   flex-basis: calc(25% - 10px);
   box-sizing: border-box;
   max-width: 100%;
-}
-
-header .cards-submenu ul {
-  padding: 0;
-  margin: 0;
-  margin-top: 10px;
-}
-
-header .menu-nav-submenu h1 > a {
-  color: inherit;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-header .cards-submenu ul li a {
-  color: var(--text-white);
-  font-family: 'Proxima Nova Regular', sans-serif;
-  font-weight: 300;
-  line-height: 15px;
-  padding: 1px 5px;
-  display: block;
-  text-transform: none;
 }
 
 header .nav-tabs .menu-nav-submenu > div {
@@ -385,19 +690,6 @@ header .nav-tabs .menu-nav-submenu h1 {
 header .nav-tabs .menu-nav-submenu h1:hover {
   background-color: rgba(255 255 255 / 30%);
   cursor: pointer;
-}
-
-header .text-submenu ul > li > a {
-  font-size: 11px;
-  color: #fff;
-  border-bottom: 0;
-  line-height: 15px;
-  padding-left: 0;
-  padding-top: 0;
-  padding-bottom: 8px;
-  font-weight: 300;
-  display: block;
-  text-transform: none;
 }
 
 header .actionable-card-submenu > div:nth-child(2) {
@@ -448,20 +740,6 @@ header .nav-tabs .menu-nav-submenu-head {
   position: relative;
   padding-top: 20px;
   width: 50%;
-}
-
-header .large-card-submenu ul {
-  padding: 0;
-  width: 45%;
-  position: relative;
-  min-height: 1px;
-  padding-left: 20px;
-  margin-bottom: 40px;
-  font-family: Quicksand, sans-serif;
-  font-weight: 200;
-  font-size: 14px;
-  text-align: left;
-  list-style-type: disc;
 }
 
 header .nav-tabs .menu-nav-submenu ul {
@@ -768,8 +1046,14 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     padding: 20px 15px;
     width: 100%;
     margin: 0;
-    margin-right: -15px;
-    margin-left: -15px;
+  }
+
+  header .hamburger {
+    display: initial;
+  }
+
+  header .mobile-menu.mobile-menu-open {
+    display: initial;
   }
 
   header #header-logo {
@@ -786,6 +1070,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 @media (min-width: 992px) {
   header .container {
     width: 970px;
+  }
+
+  header .hamburger {
+    display: none;
   }
 
   header .navbar-header {
@@ -838,6 +1126,11 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     display: none;
   }
 
+  header .header-search img {
+    width: 363px;
+    height: 389px;
+  }
+
   header .mainmenu-wrapper #header-logo img {
     width: 158px;
     max-height: 36px;
@@ -865,6 +1158,33 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     width: 100%;
   }
 
+  header .searchlink > div {
+    display: none;
+  }
+
+  header .header-search > div {
+    margin-top: 31px;
+    left: 0;
+    right: 0;
+    border: 0;
+    padding: 47px 50px 60px 100px;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 1;
+    visibility: visible;
+    position: absolute;
+    height: 2000px;
+    padding-bottom: 9.4%;
+    background-color: #008DA9;
+    box-shadow: inset 0 19px 33px -28px #333F;
+  }
+
+  header .menu-nav-search-view > div {
+    flex-basis: calc(50% - 30px);
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
   header .nav-tabs>li>div {
     font-size: 12px;
   }
@@ -878,7 +1198,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     color: var(--text-color);
     display: block;
     padding: 15px 10px 15px 13px;
-    position: relative;
+    position: static;
   }
 
   header .nav-tabs > li.fa-search::before {
@@ -897,6 +1217,61 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .nav-tabs > li.searchlink>a {
     display: none;
     font-size: 12px;
+  }
+
+  header .header-search .menu-nav-submenu-close {
+    top: 10px;
+  }
+
+  header .header-search .menu-nav-search-view {
+    display: flex;
+  }
+
+  header .menu-nav-search-view picture {
+    float: right;
+    margin-right: 50px;
+  }
+
+  header .menu-nav-search-bar {
+    padding: 0 20px;
+  }
+
+  header .menu-nav-search-bar h3 {
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    color: white;
+    margin-bottom: 11px;
+  }
+
+  header .header-search form {
+    text-align: right;
+    max-width: 450px;
+  }
+
+  header .header-search .form-control {
+    background-color: var(--text-white);
+    width: 100%;
+    height: 35px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    font-size: 16px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #555;
+  }
+
+  header .header-search form button {
+    color: var(--text-white);
+    font-size: 13px;
+    font-family: 'Proxima Nova Light', sans-serif;
+    min-width: 152px;
+    padding: 5px 0;
+    border: 2px solid;
+    background-color: transparent;
+    text-transform: uppercase;
+    line-height: 29px;
+    margin-top: 15px;
   }
 
   header .nav-tabs > li.header-rfq > a {
@@ -934,6 +1309,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     justify-content: flex-end;
     position: static;
     transition: all 0.3s ease-in-out;
+    height: inherit;
   }
 
   header .nav-tabs .menu-nav-submenu {
@@ -968,6 +1344,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   }
 
   header .right-submenu-content[aria-expanded="true"] {
+    display: initial;
+  }
+
+  header .searchlink[aria-expanded="true"] > div {
     display: initial;
   }
 
