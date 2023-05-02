@@ -128,28 +128,24 @@ export function isVideo(url) {
   return isV;
 }
 
-export function embedVideo(link, url, type, thumbnail) {
+export function embedVideo(link, url, type) {
   const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
-  if (!thumbnail) {
-    thumbnail = img({ src: `https://play.vidyard.com/${videoId}.jpg`});
-    link.parentElement.appendChild(thumbnail);
-  }
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
-      thumbnail.style = 'width: 100%; margin: auto; display: block;';
-      thumbnail.classList.add('vidyard-player-embed');
-      thumbnail.setAttribute('data-uuid', videoId);
-      thumbnail.setAttribute('data-v', '4');
-      thumbnail.setAttribute('data-width', (type === 'lightbox') ? '700' : '');
-      thumbnail.setAttribute('data-height', (type === 'lightbox') ? '394' : '');
-      thumbnail.setAttribute('data-autoplay', (type === 'lightbox') ? '1' : '0');
-      thumbnail.setAttribute('data-type', (type === 'lightbox') ? 'lightbox' : 'inline');
-      link.remove();
+      link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+      class="vidyard-player-embed"
+      src="https://play.vidyard.com/${videoId}.jpg"
+      data-uuid="${videoId}"
+      data-v="4"
+      data-width="${(type === 'lightbox') ? '700' : ''}"
+      data-height="${(type === 'lightbox') ? '394' : ''}"
+      data-autoplay="${(type === 'lightbox') ? '1' : '0'}"
+      data-type="${(type === 'lightbox') ? 'lightbox' : 'inline'}"/>`;
     }
   });
-  observer.observe(thumbnail);
+  observer.observe(link.parentElement);
 }
 
 function decorateEmbedLinks(main) {
@@ -166,7 +162,7 @@ function decorateEmbedLinks(main) {
       container.appendChild(a);
       const title = (a.href !== a.textContent) ? a.textContent : null;
       if (title) wrapper.append(p({ class: 'video-title'}, title));
-      embedVideo(a, url, type, null);
+      embedVideo(a, url, type);
     }
   });
 }
