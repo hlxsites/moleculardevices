@@ -232,6 +232,32 @@
   padding: 0 20px;
 }
 
+.columns.large-numbers > div > div:first-child > p:first-child {
+  display: block;
+  font-size: 42px;
+  color: #008da9;
+  border: 1px solid #008da9;
+  border-radius: 50%;
+  padding: 2px 16px;
+  display: block;
+  width: 60px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.columns.large-numbers > div > div:last-child {
+  text-align: center;
+}
+
+.columns.large-numbers img {
+  width: unset;
+  max-width: 100%;
+}
+
+.columns.columns.large-numbers {
+  margin-top: 30px;
+}
+
 @media (min-width: 768px) {
   .columns > div {
     display: flex;
