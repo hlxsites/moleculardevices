@@ -303,3 +303,9 @@ main .section.sidebar h4::after {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  main.sidebar {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
