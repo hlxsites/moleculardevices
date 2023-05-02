@@ -38,7 +38,9 @@ async function buildMediaGallery(mg) {
   // fragment
   const url = new URL(mg.href);
   const fragment = await loadFragment(url.pathname);
-  [...fragment.children].forEach((section) => {
+  [...fragment.children].forEach((section, i) => {
+    const h3 = section.querySelector('h3');
+    if (h3) h3.textContent = `${i + 1} of ${i + fragment.childElementCount} ${h3.textContent}`;
     carousel.appendChild(section);
   });
 }
