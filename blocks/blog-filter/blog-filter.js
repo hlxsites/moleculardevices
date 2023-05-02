@@ -28,7 +28,6 @@ function showHideAllFilters(block) {
   block.querySelector('ul').classList.toggle('hide');
 }
 
-
 function scrollBlockIntoView(block) {
   const section = block.closest('.section');
 
@@ -81,7 +80,6 @@ export default function decorate(block) {
     if (window.location.hash && window.matchMedia('only screen and (min-width: 767px)').matches) {
       scrollBlockIntoView(block);
     }
-
   } else {
     // we are on different page
     const currentPageLink = block.querySelector(`a[href="${window.location.pathname}"`);
