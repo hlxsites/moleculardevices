@@ -10,7 +10,7 @@ export function videoButton(container, button, url) {
       loadScript('https://play.vidyard.com/embed/v4.js');
 
       const overlay = document.createElement('div');
-      overlay.id = 'sample';
+      overlay.id = 'overlay';
       overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
       container.prepend(overlay);
 
