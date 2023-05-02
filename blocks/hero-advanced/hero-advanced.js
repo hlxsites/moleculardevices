@@ -8,17 +8,10 @@ export function videoButton(container, button, url) {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
-
-      const overlay = document.createElement('div');
-      overlay.id = 'overlay';
-      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      const overlay = div({ id: 'overlay' }, div({ class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2' }));
       container.prepend(overlay);
-
       button.addEventListener('click', () => {
-        // eslint-disable-next-line no-undef
-        const players = VidyardV4.api.getPlayersByUUID(videoId);
-        const player = players[0];
-        player.showLightbox();
+        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
       });
     }
   });
@@ -27,15 +20,12 @@ export function videoButton(container, button, url) {
 
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');
-
   const desktop = block.querySelector('div');
   h1.parentNode.insertBefore(desktop.querySelector('div:nth-child(2)'), h1);
   desktop.remove();
-
   const mobile = block.querySelector('div');
   h1.parentNode.insertBefore(mobile.querySelector('div:nth-child(2)'), h1.nextSibling);
   mobile.remove();
-
   const links = block.querySelectorAll('a');
   [...links].forEach((link) => {
     const url = new URL(link);
@@ -50,6 +40,5 @@ export default async function decorate(block) {
       link.remove();
     }
   });
-
   buildHero(block);
 }
