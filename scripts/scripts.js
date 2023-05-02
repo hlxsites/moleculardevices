@@ -200,6 +200,7 @@ function detectSidebar(main) {
       sidebar.style = `grid-row: ${offset} / infinite;`;
     }
   }
+}
 
 /**
  * Wraps images followed by links within a matching <a> tag.
