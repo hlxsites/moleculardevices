@@ -96,7 +96,7 @@ function optimiseHeroBlock(main) {
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
  * Breadcrumb block created at the top of first section
  */
-async function createBreadcrumbsSpace(main) {
+function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = document.createElement('div');
     blockWrapper.classList.add('breadcrumbs-wrapper');
@@ -111,6 +111,42 @@ async function loadBreadcrumbs(main) {
     decorateBlock(block);
     await loadBlock(block);
   }
+}
+
+/**
+ * Parse video links and build the markup
+ */
+export function isVideo(url) {
+  let isV = false;
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  [...hostnames].forEach((hostname) => {
+    if (url.hostname.includes(hostname)) {
+      isV = true;
+    }
+  });
+  return isV;
+}
+export function videoButton(container, button, url) {
+  const videoId = url.pathname.split('/').at(-1).trim();
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+
+      const overlay = document.createElement('div');
+      overlay.id = 'sample';
+      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      container.prepend(overlay);
+
+      button.addEventListener('click', () => {
+        // eslint-disable-next-line no-undef
+        const players = VidyardV4.api.getPlayersByUUID(videoId);
+        const player = players[0];
+        player.showLightbox();
+      });
+    }
+  });
+  observer.observe(container);
 }
 
 /**
@@ -164,6 +200,24 @@ function detectSidebar(main) {
       sidebar.style = `grid-row: ${offset} / infinite;`;
     }
   }
+
+/**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function decorateLinkedPictures(container) {
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
+    const br = a.previousElementSibling;
+    let picture = br.previousElementSibling;
+    if (br.tagName === 'PICTURE') {
+      picture = br;
+    }
+    if (a.textContent.includes(a.getAttribute('href'))) {
+      a.innerHTML = '';
+      a.className = '';
+      a.appendChild(picture);
+    }
+  });
 }
 
 /**
@@ -201,6 +255,7 @@ export async function decorateMain(main) {
   decoratePageNav(main);
   decorateBlocks(main);
   detectSidebar(main);
+  decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
 }
 
@@ -446,6 +501,10 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
+const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
-setCookieFromQueryParameters('cmp', 0);
+cookieParams.forEach((param) => {
+  setCookieFromQueryParameters(param, 0);
+});
+
 loadPage();

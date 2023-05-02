@@ -57,6 +57,9 @@ indices:
       h1:
         select: h1
         value: textContent(el)
+      productFamily:
+        select: head > meta[name="product-family"]
+        value: attribute(el, "content")
   events:
     include:
       - '/events/**'

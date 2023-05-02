@@ -1,5 +1,6 @@
+import { isVideo, videoButton } from '../../scripts/scripts.js';
 import { buildHero } from '../hero/hero.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
+import { div, img } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const h1 = block.querySelector('h1');
@@ -12,11 +13,20 @@ export default async function decorate(block) {
   h1.parentNode.insertBefore(mobile.querySelector('div:nth-child(2)'), h1.nextSibling);
   mobile.remove();
 
-  const rightCol = block.querySelector('div > div:nth-child(2)');
-  if (getVideoId(rightCol.textContent)) {
-    rightCol.classList.add('video-column');
-    buildVideo(block, rightCol, getVideoId(rightCol.textContent));
-  }
+  const links = block.querySelectorAll('a');
+  [...links].forEach((link) => {
+    const url = new URL(link);
+    if (isVideo(url)) {
+      const container = link.parentElement;
+      container.classList.add('video-column');
+      const videoIcon = div({ class: 'video-icon' });
+      const thumbnail = img({ src: '/images/play_icon.png' });
+      videoIcon.append(thumbnail);
+      container.appendChild(videoIcon);
+      videoButton(container, thumbnail, url);
+      link.remove();
+    }
+  });
 
   buildHero(block);
 }
