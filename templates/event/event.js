@@ -103,5 +103,5 @@ export default async function buildAutoBlocks() {
 
   renderDetails(title);
 
-  renderProducts();
+  await renderProducts();
 }
