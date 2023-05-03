@@ -109,7 +109,7 @@ function loadIframeForm(stepNum, data, type = 'Global') {
 
   if (type === 'Product') {
     tab = data.title;
-    sfdcProductFamily = data.productFamily ? data.productFamily : 'test';
+    sfdcProductFamily = data.productFamily;
     sfdcProductSelection = tab;
     sfdcPrimaryApplication = tab;
   } else {
