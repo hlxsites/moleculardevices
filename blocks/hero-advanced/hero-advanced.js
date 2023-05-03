@@ -11,9 +11,15 @@ async function openMediaGallery(mg) {
 }
 
 async function buildMediaGallery(mg) {
-  const overlay = div({ class: 'overlay' }, div({ class: 'overlay-content' }, div({ class: 'overlay-carousel' })));
+  const overlay = document.createElement('div');
+  overlay.classList.add('overlay');
+  const content = document.createElement('div');
+  content.classList.add('overlay-content');
+  const carousel = document.createElement('div');
+  carousel.classList.add('overlay-carousel');
+  overlay.appendChild(content);
+  content.appendChild(carousel);
   mg.after(overlay);
-  const carousel = overlay.querySelector('.overlay-carousel');
 
   const close = a({ class: 'close' }, (span({ class: 'icon icon-close-video' })));
   const right = a({ class: 'right' }, (span({ class: 'icon icon-chevron-right' })));
