@@ -1,9 +1,9 @@
 // eslint-disable-next-line object-curly-newline
-import { div, a, span } from '../../scripts/dom-helpers.js';
+import { div, a, span, img } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getVideoId, buildVideo } from '../vidyard/video-create.js';
 import { buildHero } from '../hero/hero.js';
+import { isVideo, videoButton } from '../../scripts/scripts.js';
 
 async function openMediaGallery(mg) {
   const overlay = mg.parentElement.querySelector('.overlay');
