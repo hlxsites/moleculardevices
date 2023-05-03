@@ -1,8 +1,8 @@
 .event main .section .default-content-wrapper {
-  padding-bottom: 0;
+  padding: 0 15px;
 }
 
-.event-title {
+.event .event-title {
   font-size: 36px;
 }
 

@@ -1,11 +1,16 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
+import { formatDate } from '../../scripts/scripts.js';
 import {
   div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  const startDate = getMetadata('start-date');
-  const endDate = getMetadata('end-date');
+  let startDate = getMetadata('start-date');
+  if (startDate) { startDate = formatDate(startDate); }
+  // eslint-disable-next-line prefer-destructuring
+  if (startDate) { startDate = startDate.split(',')[0]; }
+  let endDate = getMetadata('end-date');
+  if (endDate) { endDate = formatDate(endDate); }
   const title = getMetadata('og:title');
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
