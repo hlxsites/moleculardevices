@@ -37,11 +37,15 @@ function scrollBlockIntoView(block) {
         && mutation.attributeName === 'data-section-status'
         && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
         observer.disconnect();
-        window.scrollTo({
-          top: block.querySelector('a.active').getBoundingClientRect().top - 70,
-          left: 0,
-          behavior: 'smooth',
-        });
+        setTimeout(() => {
+            window.scrollTo({
+              top: block.querySelector('a.active').getBoundingClientRect().top - 70,
+              left: 0,
+              behavior: 'smooth',
+            })
+          },
+          1000,
+        );
       }
     });
   });
