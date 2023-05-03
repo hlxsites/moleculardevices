@@ -16,7 +16,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import { a, div, p } from '../../scripts/dom-helpers.js';
+import { a, div, p } from './scripts/dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -156,7 +156,7 @@ function decorateEmbedLinks(main) {
       const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
       const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
       const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title'}, link.textContent));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
     }
@@ -221,16 +221,16 @@ function detectSidebar(main) {
  * @param {Element} container The container element
  */
 function decorateLinkedPictures(container) {
-  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
-    const br = a.previousElementSibling;
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
+    const br = link.previousElementSibling;
     let picture = br.previousElementSibling;
     if (br.tagName === 'PICTURE') {
       picture = br;
     }
-    if (a.textContent.includes(a.getAttribute('href'))) {
-      a.innerHTML = '';
-      a.className = '';
-      a.appendChild(picture);
+    if (link.textContent.includes(link.getAttribute('href'))) {
+      link.innerHTML = '';
+      link.className = '';
+      link.appendChild(picture);
     }
   });
 }

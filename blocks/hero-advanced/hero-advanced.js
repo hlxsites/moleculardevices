@@ -51,10 +51,13 @@ export function videoButton(container, button, url) {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
-      const overlay = div({ id: 'overlay' }, div({ class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2' }));
+      const overlay = div({ id: 'overlay' }, div({
+        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2'
+      }));
       container.prepend(overlay);
       button.addEventListener('click', () => {
-        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
+        const players = VidyardV4.api.getPlayersByUUID(videoId);
+        players[0].showLightbox();
       });
     }
   });
