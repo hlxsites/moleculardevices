@@ -992,7 +992,7 @@ main .section[aria-hidden="true"] {
 .news .social-share-container::after,
 .publication-container::after,
 .publication .social-share-container::after,
-.event main .event-container::after {
+.event main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
