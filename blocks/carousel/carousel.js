@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
-import { span } from '../../scripts/dom-helpers.js';
+import { div, span, p } from '../../scripts/dom-helpers.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -24,9 +24,13 @@ class Carousel {
     this.defaultStyling = false;
     this.dotButtons = true;
     this.navButtons = true;
+    this.counter = false;
     this.infiniteScroll = true;
     this.autoScroll = true; // only available with infinite scroll
     this.autoScrollInterval = AUTOSCROLL_INTERVAL;
+    this.currentIndex = 0;
+    this.counterText = '';
+    this.counterNavButtons = true;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -57,6 +61,16 @@ class Carousel {
       this.blockStyle = window.getComputedStyle(this.block);
     }
     return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
+  }
+
+  updateCounterText(newIndex = this.currentIndex) {
+    this.currentIndex = newIndex;
+    if (this.counter) {
+      const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+      const counterTextBlock = this.block.parentElement.querySelector('.carousel-counter .carousel-counter-text p');
+      const pageCounter = `${this.currentIndex + 1} / ${items.length}`;
+      counterTextBlock.innerHTML = this.counterText ? `${this.counterText} ${pageCounter}` : pageCounter;
+    }
   }
 
   /**
@@ -109,6 +123,8 @@ class Carousel {
     if (dotButtons && dotButtons.length !== 0) {
       dotButtons[newIndex].classList.add('selected');
     }
+
+    this.updateCounterText(newIndex);
   }
 
   /**
@@ -159,6 +175,8 @@ class Carousel {
     if (dotButtons && dotButtons.length !== 0) {
       dotButtons[newIndex].classList.add('selected');
     }
+
+    this.updateCounterText(newIndex);
   }
 
   /**
@@ -180,7 +198,7 @@ class Carousel {
   /**
   * Create left and right arrow navigation buttons
   */
-  createNavButtons() {
+  createNavButtons(parentElement) {
     const buttonLeft = document.createElement('button');
     buttonLeft.classList.add('carousel-nav-left');
     buttonLeft.ariaLabel = 'Scroll to previous item';
@@ -205,7 +223,7 @@ class Carousel {
 
     [buttonLeft, buttonRight].forEach((navButton) => {
       navButton.classList.add('carousel-nav-button');
-      this.block.parentElement.append(navButton);
+      parentElement.append(navButton);
     });
 
     decorateIcons(buttonLeft);
@@ -289,7 +307,7 @@ class Carousel {
       const button = document.createElement('button');
       button.ariaLabel = `Scroll to item ${i + 1}`;
       button.classList.add('carousel-dot-button');
-      if (i === 0) {
+      if (i === this.currentIndex) {
         button.classList.add('selected');
       }
 
@@ -304,10 +322,24 @@ class Carousel {
         items.forEach((r) => r.classList.remove('selected'));
         button.classList.add('selected');
         item.classList.add('selected');
+        this.updateCounterText(i);
       });
       buttons.append(button);
     });
     this.block.parentElement.append(buttons);
+  }
+
+  createCounter() {
+    const counter = div({ class: 'carousel-counter' },
+      div({ class: 'carousel-counter-text' },
+        p(''),
+      ),
+    );
+    if (this.counterNavButtons) {
+      this.createNavButtons(counter);
+    }
+    this.block.parentElement.append(counter);
+    this.updateCounterText();
   }
 
   /*
@@ -361,7 +393,7 @@ class Carousel {
     this.data.forEach((item, i) => {
       const itemContainer = document.createElement('div');
       itemContainer.className = 'carousel-item';
-      if (i === 0) {
+      if (i === this.currentIndex) {
         itemContainer.classList.add('selected');
       }
 
@@ -377,7 +409,8 @@ class Carousel {
     this.autoScroll && this.infiniteScroll
       && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
     this.dotButtons && this.createDotButtons();
-    this.navButtons && this.createNavButtons();
+    this.counter && this.createCounter();
+    this.navButtons && this.createNavButtons(this.block.parentElement);
     this.infiniteScroll && this.createClones();
     this.addSwipeCapability();
     this.infiniteScroll && this.setInitialScrollingPosition();
@@ -404,7 +437,7 @@ export async function createCarousel(block, data, config) {
 /**
  * Custom card style config and rendering of carousel items.
  */
-function renderCardItem(item) {
+export function renderCardItem(item) {
   item.classList.add('card');
   item
     .querySelectorAll('.button-container a')
