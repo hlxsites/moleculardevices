@@ -278,54 +278,89 @@ const extractBackgroundImage = (content) => {
 const transformHero = (document) => {
   // detect the default hero styles
   document.querySelectorAll('.section-image.cover-bg, .section-image.cover-bg-new').forEach((hero) => {
+    // clean
     hero.querySelectorAll('.row').forEach((row) => row.removeAttribute('class'));
-    const cells = [['Hero']];
 
-    const isBlog = hero.classList.contains('blog-details');
-    if (isBlog) {
-      cells[0] = ['Hero (Blog)'];
-    }
-    const isOrangeStyle = hero.querySelector('a.orangeBlueBtn');
-    if (isOrangeStyle) {
-      cells[0] = ['Hero (Orange Buttons)'];
-    }
-
-    const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.container');
-
-    // setup the background image
+    // extract hero image
     const backgroundUrl = extractBackgroundImage(hero);
+    let backgroundImg = null;
     if (backgroundUrl) {
-      const img = document.createElement('img');
-      img.src = backgroundUrl;
-      heroContent.insertBefore(img, heroContent.firstChild);
+      backgroundImg = document.createElement('img');
+      backgroundImg.src = backgroundUrl;
     }
-    const videoOverlay = heroContent.querySelector('.video-container');
-    const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
-    if (videoOverlay) {
-      const videoLink = videoOverlay.querySelector('a[onclick]').getAttribute('onclick');
+
+    // extract mobile image
+    let mobileBackgroundImg = null;
+    if (hero.querySelector('div.visible-xs-block > img')) {
+      const mobileBackgroundDiv = hero.querySelector('div.visible-xs-block');
+      mobileBackgroundImg = mobileBackgroundDiv.querySelector('img');
+      mobileBackgroundDiv.remove();
+    }
+
+    // extract hero video
+    let videoLink = null;
+    if (hero.querySelector('.video-container')) {
+      const videoOverlay = hero.querySelector('.video-container');
+      const video = videoOverlay.querySelector('a[onclick]').getAttribute('onclick');
 
       const regex = /launchLightbox\('(.*)'\)|fn_vidyard_(.*)\(\)/;
       let m;
       // eslint-disable-next-line no-cond-assign
-      if ((m = regex.exec(videoLink)) !== null) {
+      if ((m = regex.exec(video)) !== null) {
         const videoId = m[1] || m[2];
         if (videoId) {
-          cells.push([heroContent, `https://share.vidyard.com/watch/${videoId}`]);
+          videoLink = `https://share.vidyard.com/watch/${videoId}`;
         }
       }
       videoOverlay.remove();
-    } else if (customerStoryHeader) {
-      customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
-        const h6 = document.createElement('h6');
-        h6.innerHTML = label.innerHTML;
-        label.replaceWith(h6);
-      });
-      cells[0] = ['Hero (Customer Story)'];
-      cells.push([heroContent, customerStoryHeader]);
-    } else {
-      cells.push([heroContent]);
     }
 
+    const cells = [['Hero']];
+    const isBlog = hero.classList.contains('blog-details');
+    const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.container');
+    const row = [heroContent];
+    // add video link
+    if (videoLink) {
+      row.push([videoLink]);
+    }
+
+    // handle product pages with advanced header
+    const isProduct = (document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products'));
+    if (isProduct) {
+      cells[0] = ['Hero Advanced'];
+      if (backgroundImg) {
+        cells.push(['Desktop', backgroundImg]);
+      }
+      if (mobileBackgroundImg) {
+        cells.push(['Mobile', mobileBackgroundImg]);
+      }
+    } else {
+      if (isBlog) {
+        cells[0] = ['Hero (Blog)'];
+      }
+      const isOrangeStyle = hero.querySelector('a.orangeBlueBtn');
+      if (isOrangeStyle) {
+        cells[0] = ['Hero (Orange Buttons)'];
+      }
+
+      if (backgroundImg) {
+        heroContent.insertBefore(backgroundImg, heroContent.firstChild);
+      }
+
+      // add second column for customer success story
+      const customerStoryHeader = hero.parentElement.querySelector('.customer-story-section');
+      if (customerStoryHeader) {
+        customerStoryHeader.querySelectorAll('.customer-info > label').forEach((label) => {
+          const h6 = document.createElement('h6');
+          h6.innerHTML = label.innerHTML;
+          label.replaceWith(h6);
+        });
+        cells[0] = ['Hero (Customer Story)'];
+        row.push([customerStoryHeader]);
+      }
+    }
+
+    cells.push(row);
     const table = WebImporter.DOMUtils.createTable(cells, document);
     hero.replaceWith(table);
   });
