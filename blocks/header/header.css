@@ -81,7 +81,7 @@ header .hamburger .icon-bar {
   line-height: 1;
 }
 
-header .hamburger.hamburger-close .icon-bar {
+body.openmenu header .hamburger .icon-bar {
   transform: rotate(45deg);
   position: absolute;
   top: 17px;
@@ -91,7 +91,7 @@ header .hamburger > .icon-bar + .icon-bar {
   margin-top: 5px;
 }
 
-header .hamburger.hamburger-close > .icon-bar + .icon-bar {
+body.openmenu header .hamburger > .icon-bar + .icon-bar {
   transform: rotate(-45deg);
   top: 12px;
 }
@@ -279,7 +279,7 @@ header .mobile-menu li:hover {
   background: #f0f1f2;
 }
 
-header .mobile-menu .mobile-menu-items li {
+header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
   line-height: 1.4286;
   font-size: 18px;
   border-bottom: 1px solid #f1f2f3;
@@ -1128,11 +1128,11 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 }
 
 @media (max-width: 991px) {
-  .openmenu {
+  body.openmenu {
       overflow-y: hidden;
   }
 
-  .openmenu .mobile-menu {
+  body.openmenu .mobile-menu {
     transform: translate(0,0);
     z-index: 99;
 }
@@ -1152,7 +1152,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     display: initial;
   }
 
-  header .mobile-menu.mobile-menu-open {
+  body:not(.openmenu) header .mobile-menu {
     display: initial;
   }
 

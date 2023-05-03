@@ -14,21 +14,8 @@ function addHamburgerListener(hamburger) {
   hamburger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const mobileMenu = document.querySelector('.mobile-menu');
     const body = document.querySelector('body');
-    if (hamburger.classList.contains('hamburger-open')) {
-      // if hamburger is open, close it
-      hamburger.classList.remove('hamburger-open');
-      hamburger.classList.add('hamburger-close');
-      mobileMenu.classList.toggle('mobile-menu-open');
-      body.classList.toggle('openmenu');
-    } else {
-      // if hamburger is closed, open it
-      hamburger.classList.remove('hamburger-close');
-      hamburger.classList.add('hamburger-open');
-      mobileMenu.classList.toggle('mobile-menu-open');
-      body.classList.toggle('openmenu');
-    }
+    body.classList.toggle('openmenu');
   });
 }
 
@@ -158,7 +145,7 @@ export function buildMobileMenu() {
 
 export function buildHamburger() {
   const hamburger = button(
-    { class: 'hamburger hamburger-open' },
+    { class: 'hamburger' },
     span(
       { class: 'sr-only' },
       'Toggle navigation',
