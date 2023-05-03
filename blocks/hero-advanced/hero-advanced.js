@@ -11,8 +11,7 @@ async function openMediaGallery(mg) {
 }
 
 async function buildMediaGallery(mg) {
-  // eslint-disable-next-line object-curly-spacing
-  const overlay = div({ class: 'overlay' }, div({class: 'overlay-content' }, div({ class: 'overlay-carousel' })));
+  const overlay = div({ class: 'overlay' }, div({ class: 'overlay-content' }, div({ class: 'overlay-carousel' })));
   mg.after(overlay);
   const carousel = overlay.querySelector('.overlay-carousel');
 
@@ -23,8 +22,8 @@ async function buildMediaGallery(mg) {
   decorateIcons(carousel.parentElement);
   const scroll = (leftScroll) => carousel.scrollTo({ top: 0, left: leftScroll, behavior: 'smooth' });
   close.addEventListener('click', () => { overlay.classList.remove('open'); });
-  right.addEventListener('click', () => { scroll(carousel.scrollLeft + carousel.parentElement.offsetWidth); });
-  left.addEventListener('click', () => { scroll(carousel.scrollLeft - carousel.parentElement.offsetWidth); });
+  right.addEventListener('click', () => { scroll(carousel.scrollLeft + carousel.parentElement.offsetWidth) });
+  left.addEventListener('click', () => { scroll(carousel.scrollLeft - carousel.parentElement.offsetWidth) });
 
   const url = new URL(mg.href);
   const fragment = await loadFragment(url.pathname);
