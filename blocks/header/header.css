@@ -1111,7 +1111,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   max-height: 127px;
 }
 
-@media (min-width: 768) {
+@media (min-width: 768px) {
   header .container {
     width: 750px;
   }
