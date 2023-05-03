@@ -6,9 +6,11 @@ import {
 
 export default async function decorate(block) {
   let startDate = getMetadata('start-date');
-  if (startDate) { startDate = formatDate(startDate); }
-  // eslint-disable-next-line prefer-destructuring
-  if (startDate) { startDate = startDate.split(',')[0]; }
+  if (startDate) {
+    startDate = formatDate(startDate);
+    // eslint-disable-next-line prefer-destructuring
+    startDate = startDate.split(',')[0];
+  }
   let endDate = getMetadata('end-date');
   if (endDate) { endDate = formatDate(endDate); }
   const title = getMetadata('og:title');
