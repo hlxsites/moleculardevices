@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { loadScript, getCookie } from '../../scripts/scripts.js';
+import { getQueryParameter, loadScript, getCookie } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
@@ -7,6 +7,20 @@ import {
 const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
+
+export async function rfqData() {
+  const pid = 'pid';
+  const readQuery = getQueryParameter(pid);
+  if (readQuery[pid]) {
+    const productLevelUrl = new URL(readQuery[pid]);
+    const productRfq = await ffetch('/query-index.json')
+      .withFetch(fetch)
+      .filter(({ path }) => path.includes(productLevelUrl.pathname))
+      .first();
+    return productRfq;
+  }
+  return false;
+}
 
 /* CREATE RFQ LIST BOX */
 function createRFQListBox(listArr, checkStep, callback) {
@@ -81,22 +95,37 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
-function loadIframeForm(stepNum, tab) {
+function loadIframeForm(stepNum, data, type = 'Global') {
   loadScript('/blocks/quote-request/iframeResizer.min.js');
+  const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
-  const formUrl = 'https://info.moleculardevices.com/rfq';
+  let tab = '';
+  let sfdcProductFamily = '';
+  let sfdcProductSelection = '';
+  let sfdcPrimaryApplication = '';
+  let productFamily = '';
 
-  const productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
-  const sfdcProductFamily = productFamily[0].ProductFamily;
+  if (type === 'Product') {
+    tab = data.title;
+    sfdcProductFamily = data.productFamily ? data.productFamily : 'test';
+    sfdcProductSelection = tab;
+    sfdcPrimaryApplication = tab;
+  } else {
+    tab = data;
+    productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
+    sfdcProductFamily = productFamily[0].ProductFamily;
+    sfdcProductSelection = sfdcProductFamily;
+    sfdcPrimaryApplication = sfdcProductFamily;
+  }
 
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
 
   const hubSpotQuery = {
     product_family__c: sfdcProductFamily,
-    product_selection__c: sfdcProductFamily,
-    product_primary_application__c: sfdcProductFamily,
+    product_selection__c: sfdcProductSelection,
+    product_primary_application__c: sfdcPrimaryApplication,
     cmp: cmpValue,
     google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
@@ -199,14 +228,21 @@ export default async function decorate(block) {
     htmlContentRoot.remove();
     const htmlContent = block.children[0].children[0].innerHTML.trim();
     block.innerHTML = `<div class="rfq-product-wrapper">
-    <div class="rfq-thankyou-msg">${htmlContent}</div>
-    </div>`;
+                       <div class="rfq-thankyou-msg">${htmlContent}</div>
+                       </div>`;
   } else {
+    const prfdData = await rfqData();
     parentSection.prepend(htmlContentRoot);
-    block.innerHTML = `
-    <div id="step-1" class="rfq-product-wrapper"></div>
-    <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
-    <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
-    stepOne(stepTwo);
+    if (prfdData) {
+      block.innerHTML = `
+      <div id="step-3" class="rfq-product-wrapper request-quote-form hide-back-btn"></div>`;
+      loadIframeForm('step-3', prfdData, 'Product');
+    } else {
+      block.innerHTML = `
+      <div id="step-1" class="rfq-product-wrapper"></div>
+      <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
+      <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
+      stepOne(stepTwo);
+    }
   }
 }
