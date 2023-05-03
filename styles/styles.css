@@ -266,6 +266,22 @@ em strong {
   font-style: italic;
 }
 
+.video-wrapper {
+    margin: 40px auto;
+    max-width: 700px;
+}
+
+p.video-title {
+  font-size: 24px;
+  color: #34393d;
+  font-family: var(--ff-proxima-xbold);
+  margin-bottom: 20px;
+  margin-top: 15px;
+  background-color: var(--background-color);
+  font-weight: 400;
+  text-align: center;
+}
+
 /* buttons */
 a.button:any-link,
 button {
@@ -425,7 +441,7 @@ main .section.columns-2 {
 }
 
 main .section.columns-2>div {
-  width: auto;
+  width: 100%;
   padding: 0 15px;
 }
 

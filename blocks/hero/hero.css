@@ -150,7 +150,7 @@ main .section .hero-advanced-wrapper {
   transition: all ease .3s;
 }
 
-#sample {
+#overlay {
 display: none;
 }
 
