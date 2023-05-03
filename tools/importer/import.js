@@ -1228,24 +1228,6 @@ const transformElisaWorkflow = (document) => {
   });
 };
 
-function makeProxySrcs(document) {
-  const host = 'https://www.moleculardevices.com/';
-  document.querySelectorAll('img').forEach((img) => {
-    if (img.src.startsWith('/')) {
-      // make absolute
-      const cu = new URL(host);
-      img.src = `${cu.origin}${img.src}`;
-    }
-    try {
-      const u = new URL(img.src);
-      u.searchParams.append('host', u.origin);
-      img.src = `http://localhost:3001${u.pathname}${u.search}`;
-    } catch (error) {
-      console.warn(`Unable to make proxy src for ${img.src}: ${error.message}`);
-    }
-  });
-}
-
 function makeAbsoluteLinks(main) {
   const HOST = 'https://main--moleculardevices--hlxsites.hlx.page/';
   main.querySelectorAll('a').forEach((a) => {
@@ -1410,7 +1392,6 @@ export default {
       transformResources,
       transformCurvedWaveFragment,
       transformColumns,
-      makeProxySrcs,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
 
