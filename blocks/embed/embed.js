@@ -1,3 +1,5 @@
+import { loadScript } from '../../scripts/scripts.js';
+
 const getDefaultEmbed = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -17,6 +19,20 @@ const embedSoundcloud = (url) => {
   return embedHTML;
 };
 
+const embedTwitterFeed = (url) => {
+  const embedHTML = `
+    <a
+      class="twitter-timeline"
+      data-chrome="nofooter noborders"
+      data-tweet-limit="3"
+      href="${url}">
+    </a>
+  `;
+  loadScript('https://platform.twitter.com/widgets.js', null, null, true);
+
+  return embedHTML;
+};
+
 const loadEmbed = (block, link, autoplay) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -26,6 +42,10 @@ const loadEmbed = (block, link, autoplay) => {
     {
       match: ['soundcloud'],
       embed: embedSoundcloud,
+    },
+    {
+      match: ['twitter'],
+      embed: embedTwitterFeed,
     },
   ];
 

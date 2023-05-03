@@ -179,6 +179,30 @@ function decoratePageNav(main) {
 }
 
 /**
+ * Detects if a sidebar section is present and transforms main into a CSS grid
+ * @param {Element} main
+ */
+function detectSidebar(main) {
+  const sidebar = main.querySelector('.section.sidebar');
+  if (sidebar) {
+    main.classList.add('sidebar');
+
+    // Create a CSS grid with the number of rows the number of children
+    // minus - 1 (the sidebar section)
+    const numSections = main.children.length - 1;
+    main.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    // By default the sidebar will start with the first section,
+    // but can be configured in the document differently
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+    if (sidebarOffset && Number.parseInt(sidebarOffset, 10)) {
+      const offset = Number.parseInt(sidebarOffset, 10);
+      sidebar.style = `grid-row: ${offset} / infinite;`;
+    }
+  }
+}
+
+/**
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
@@ -231,6 +255,7 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  detectSidebar(main);
   decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
 }
@@ -385,8 +410,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  const megaMenuModule = await import('../blocks/header/header-megamenu.js');
-  megaMenuModule.default(headerBlock);
+  // const megaMenuModule = await import('../blocks/header/header-megamenu.js');
+  // megaMenuModule.default(headerBlock);
   loadFooter(doc.querySelector('footer'));
   loadBreadcrumbs(main);
 
