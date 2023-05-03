@@ -245,13 +245,19 @@
   margin-bottom: 18px;
 }
 
+
 .columns.large-numbers > div > div:last-child {
   text-align: center;
+}
+
+.columns.large-numbers picture {
+  display: block;
 }
 
 .columns.large-numbers img {
   width: unset;
   max-width: 100%;
+  margin-bottom: 7px;
 }
 
 .columns.columns.large-numbers {
