@@ -436,7 +436,7 @@ main .section.columns-2 {
 }
 
 main .section.columns-2>div {
-  width: auto;
+  width: 100%;
   padding: 0 15px;
 }
 

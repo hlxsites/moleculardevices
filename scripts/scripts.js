@@ -16,7 +16,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import { div, p, img } from '../../scripts/dom-helpers.js';
+import { a, div, p } from '../../scripts/dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -149,20 +149,16 @@ export function embedVideo(link, url, type) {
 }
 
 function decorateEmbedLinks(main) {
-  main.querySelectorAll('a').forEach((a) => {
-    const url = new URL(a.href);
-    if (isVideo(url) && !a.closest('.block.hero-advanced')) {
-      const up = a.parentElement;
-      const isInlineBlock = (a.closest('.block.vidyard') && !a.closest('.block.vidyard').classList.contains('lightbox'));
+  main.querySelectorAll('a').forEach((link) => {
+    const url = new URL(link.href);
+    if (isVideo(url) && !link.closest('.block.hero-advanced')) {
+      const up = link.parentElement;
+      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
       const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-      const wrapper = div({ class: 'video-wrapper' });
-      up.appendChild(wrapper);
-      const container = div({ class: 'video-container' });
-      wrapper.appendChild(container);
-      container.appendChild(a);
-      const title = (a.href !== a.textContent) ? a.textContent : null;
-      if (title) wrapper.append(p({ class: 'video-title'}, title));
-      embedVideo(a, url, type);
+      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title'}, link.textContent));
+      up.innerHTML = wrapper.outerHTML;
+      embedVideo(up.querySelector('a'), url, type);
     }
   });
 }
