@@ -11,9 +11,7 @@ async function openMediaGallery(mg) {
 }
 
 async function buildMediaGallery(mg) {
-  const overlay = div({ class: 'overlay' }, div({ 
-    class: 'overlay-content' }, div({ class: 'overlay-carousel' 
-  })));
+  const overlay = div({ class: 'overlay' }, div({ class: 'overlay-content' }, div({ class: 'overlay-carousel' })));
   mg.after(overlay);
   const carousel = overlay.querySelector('.overlay-carousel');
 
