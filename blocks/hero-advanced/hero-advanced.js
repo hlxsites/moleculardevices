@@ -52,12 +52,12 @@ export function videoButton(container, button, url) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
       const overlay = div({ id: 'overlay' }, div({
-        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2'
+        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
       }));
       container.prepend(overlay);
       button.addEventListener('click', () => {
-        const players = VidyardV4.api.getPlayersByUUID(videoId);
-        players[0].showLightbox();
+        // eslint-disable-next-line no-undef
+        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
       });
     }
   });

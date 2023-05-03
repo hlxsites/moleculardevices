@@ -16,7 +16,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
-import { a, div, p } from './scripts/dom-helpers.js';
+import { a, div, p } from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
