@@ -38,13 +38,13 @@ function scrollBlockIntoView(block) {
         && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
         observer.disconnect();
         setTimeout(() => {
-            window.scrollTo({
-              top: block.querySelector('a.active').getBoundingClientRect().top - 70,
-              left: 0,
-              behavior: 'smooth',
-            })
-          },
-          1000,
+          window.scrollTo({
+            top: block.querySelector('a.active').getBoundingClientRect().top - 70,
+            left: 0,
+            behavior: 'smooth',
+          });
+        },
+        1000,
         );
       }
     });
