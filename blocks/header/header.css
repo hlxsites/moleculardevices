@@ -81,14 +81,14 @@ header .hamburger .icon-bar {
   line-height: 1;
 }
 
+header .hamburger > .icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
 body.openmenu header .hamburger .icon-bar {
   transform: rotate(45deg);
   position: absolute;
   top: 17px;
-}
-
-header .hamburger > .icon-bar + .icon-bar {
-  margin-top: 5px;
 }
 
 body.openmenu header .hamburger > .icon-bar + .icon-bar {
@@ -279,14 +279,14 @@ header .mobile-menu li:hover {
   background: #f0f1f2;
 }
 
-header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
-  line-height: 1.4286;
-  font-size: 18px;
-  border-bottom: 1px solid #f1f2f3;
-}
-
 header .company-links > ul > li:last-child {
   margin-right: 0;
+}
+
+header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
+  line-height: 29px;
+  font-size: 18px;
+  border-bottom: 1px solid #f1f2f3;
 }
 
 header .nav-tabs .menu-nav-submenu-section h2 {
@@ -615,6 +615,7 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   font-weight: 300;
   text-shadow: none;
   text-decoration: none;
+  line-height: 29px;
 }
 
 header .mobile-menu .request-quote a {
