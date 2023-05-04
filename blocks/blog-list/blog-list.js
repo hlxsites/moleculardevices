@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
-import { renderBlogCard } from '../../templates/blog/blog.js';
 import { createCarousel } from '../carousel/carousel.js';
+import { createCard } from '../card/card.js';
 
 const BLOGS = new Map();
 const viewAllCategory = 'viewall';
@@ -22,6 +22,7 @@ export default async function decorate(block) {
     .all();
 
   BLOGS.set(viewAllCategory, []);
+  const blogCard = await createCard();
   blogs.forEach((item) => {
     const itemCategory = item.path.split('/')[2];
     if (!itemCategory || itemCategory === 'blog') return;
@@ -30,7 +31,7 @@ export default async function decorate(block) {
       BLOGS.set(itemCategory, []);
     }
 
-    const renderedItem = renderBlogCard(item);
+    const renderedItem = blogCard.renderItem(item);
 
     BLOGS.get(itemCategory).push(renderedItem);
     BLOGS.get(viewAllCategory).push(renderedItem);
