@@ -1008,15 +1008,22 @@ const transformEmbeds = (document) => {
   document.querySelectorAll('.vidyard-player-embed').forEach((vidyard) => {
     const videoId = vidyard.getAttribute('data-uuid');
     const type = vidyard.getAttribute('data-type');
-    if (vidyard.closest('table')) {
-      vidyard.replaceWith(`https://share.vidyard.com/watch/${videoId}`);
+    const videoContainer = vidyard.closest('.video-container');
+
+    const videoLink = document.createElement('a');
+    videoLink.href = `https://share.vidyard.com/watch/${videoId}`;
+    if (videoContainer && videoContainer.querySelector('p')) {
+      videoLink.append(videoContainer.querySelector('p'));
     } else {
-      const cells = [
-        [type !== 'inline' ? `Vidyard (${type})` : 'Vidyard'],
-        [`https://share.vidyard.com/watch/${videoId}`],
-      ];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      vidyard.replaceWith(table);
+      videoLink.textContent = videoLink.href;
+    }
+
+    if (type === 'inline') {
+      const videoWrapper = document.createElement('em');
+      videoWrapper.append(videoLink);
+      vidyard.replaceWith(videoWrapper);
+    } else {
+      vidyard.replaceWith(videoLink);
     }
   });
 
@@ -1364,6 +1371,7 @@ export default {
       '.drift-frame-chat',
       '.drift-frame-controller',
       '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
+      '.video-container .video-ico',
     ]);
 
     // create the metadata block and append it to the main element
