@@ -46,6 +46,11 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
   vertical-align: bottom;
 }
 
+.table.order table {
+  font-size: 18px; /* Font size does not change for mobile views */
+  margin-bottom: 20px;
+}
+
 .table.order table td,
 .table.order table th {
   border: none;

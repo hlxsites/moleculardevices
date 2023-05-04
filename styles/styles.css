@@ -546,6 +546,19 @@ main .section.background-molecules {
   background-size: auto 90px;
 }
 
+main .section.tabs[aria-labelledby="order"] {
+  padding-bottom: 100px;
+}
+
+main .section.tabs[aria-labelledby="order"] strong {
+  font-family: var(--ff-proxima-regular);
+}
+
+main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
+  display: block;
+  margin: 0 auto;
+}
+
 @media only screen and (max-width: 991px) {
   main .section.background-molecules {
     background-size: auto 50px;
