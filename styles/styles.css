@@ -579,7 +579,7 @@ main .section.background-molecules {
 
 @media(max-width: 991px) {
   main .section:not(.tabs) .default-content-wrapper {
-    padding: 0 0 70px;
+    padding-bottom: 70px;
   }
 }
 
@@ -849,7 +849,8 @@ main .section .default-content-wrapper h2:only-child {
 
 main .section:not(.tabs) div + .default-content-wrapper,
 main .section.tabs .default-content-wrapper h2:first-child {
-  padding: 67px 0 15px;
+  padding-top: 67px;
+  padding-bottom: 15px;
 }
 
 /* WAVE sections variants */
