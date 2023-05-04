@@ -700,8 +700,20 @@ main .event-container i.fa.fa-external-link {
 
 .product h2 {
   font-size: 36px;
+  font-family: var(--ff-proxima-regular);
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.product h3 {
+  font-size: 24px;
+  font-family: var(--ff-proxima-xbold);
+  margin: 45px 15px 15px;
+}
+
+.product .tabs[aria-labelledby=overview] h3 + p {
+  font-size: 18px;
+  margin: 0px 15px;
 }
 
 /* Features Section */
