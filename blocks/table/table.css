@@ -45,3 +45,39 @@ table th.vertical-align-middle,table td.vertical-align-bottom {
 table th.vertical-align-bottom, table td.vertical-align-bottom {
   vertical-align: bottom;
 }
+
+.table.order table td,
+.table.order table th {
+  border: none;
+  padding: 8px;
+  line-height: 1.43;
+  vertical-align: top;
+  border-top: 1px solid var(--light-border-color-gray);
+}
+
+.table.order table p {
+  margin: 0;
+}
+
+.table.order table td:first-child {
+  padding: 8px 20px;
+}
+
+.table.order strong {
+  font-family: var(--ff-proxima-regular);
+}
+
+.table.order em > strong {
+  display: inline-block;
+  font-family: var(--ff-proxima-xbold);
+  padding-top: 20px;
+}
+
+.table.order table tr.apparent-heading th {
+  border: none;
+  background: none;
+}
+
+.table.order table tr.apparent-heading:not(:first-child) th {
+  padding-top: 50px;
+}
