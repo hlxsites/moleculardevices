@@ -723,7 +723,7 @@ const transformColumns = (document) => {
     const sectionStyle = row.classList.contains('section');
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
       if (sectionStyle) {
-        //row.before(document.createElement('hr'));
+        row.before(document.createElement('hr'));
         const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
         const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
         row.append(metaTable);
@@ -829,6 +829,16 @@ const transformImageCaption = (document) => {
     const captionWrapper = document.createElement('em');
     captionWrapper.innerHTML = caption.innerHTML;
     caption.replaceWith(captionWrapper);
+  });
+};
+
+const transformImageLinks = (document) => {
+  document.querySelectorAll('a img, a picture').forEach((image) => {
+    const link = image.closest('a');
+    link.before(image, document.createElement('br'));
+    if (link.textContent.trim() === '') {
+      link.textContent = link.href;
+    }
   });
 };
 
@@ -1420,6 +1430,7 @@ export default {
       transformLinkedCardCarousel,
       transformResources,
       transformColumns,
+      transformImageLinks,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
 
