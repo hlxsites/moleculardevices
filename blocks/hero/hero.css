@@ -159,6 +159,11 @@ display: none;
   max-width: 700px;
 }
 
+.hero-inner .wave-bottom {
+  width:100%;
+  transform: translateY(7px);
+}
+
 /* Citation Variant - Desktop -- Start */
 .citation main .hero {
   overflow: hidden 
