@@ -1354,7 +1354,7 @@ export default {
       'header',
       'footer',
       'nav#block-mobilenavigation',
-      'div#resources .tabbingContainer', // TODO should be replaced with some block, not removed
+      'div#resources .tabbingContainer',
       'body > #mediaGallary', // remove the hero media gallery only
       '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
@@ -1372,6 +1372,7 @@ export default {
       '.drift-frame-controller',
       '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
       '.video-container .video-ico',
+      '#product-image-modal', // TODO
     ]);
 
     // create the metadata block and append it to the main element
