@@ -635,18 +635,6 @@ main .event-container strong {
   font-weight: 700;
 }
 
-main .section.center {
-  text-align: center;
-}
-
-main .section.background-molecules {
-  padding-top: 90px;
-  background-image: url("/images/grey_molecules.png");
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: auto 90px;
-}
-
 main .section.tabs[aria-labelledby="order"] {
   padding-bottom: 100px;
 }
@@ -943,6 +931,18 @@ main .orange-buttons .button.secondary:active {
 
 main .orange-buttons .button.primary>.button-border {
   display: none;
+}
+
+main .section.center {
+  text-align: center;
+}
+
+main .section.background-molecules {
+  padding-top: 90px;
+  background-image: url("/images/grey_molecules.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 90px;
 }
 
 @media only screen and (max-width: 768px) {
