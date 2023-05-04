@@ -80,7 +80,7 @@ indices:
       region:
         select: head > meta[name="event-region"]
         value: attribute(el, "content")
-      city:
+      address:
         select: head > meta[name="event-address"]
         value: attribute(el, "content")
       date:
