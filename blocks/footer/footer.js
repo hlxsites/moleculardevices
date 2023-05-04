@@ -48,6 +48,18 @@ function renderMoreLink(text, link) {
   );
 }
 
+async function renderEvents(container) {
+  const events = await ffetch('/query-index.json')
+    .filter(({ type }) => (type === 'Event'))
+    .slice(0, 3)
+    .all();
+  container.innerHTML = '';
+  events.forEach(
+    (item) => container.append(renderEntry(item)),
+  );
+  container.append(renderMoreLink('More Events', '/events'));
+}
+
 async function renderNews(container) {
   const news = await ffetch('/query-index.json')
     .sheet('news')
@@ -76,6 +88,7 @@ async function buildNewsEvents(container) {
   });
 
   renderNews(container.querySelector('.news-list'));
+  renderEvents(container.querySelector('.events-list'));
 
   addEventListeners(container);
 }
