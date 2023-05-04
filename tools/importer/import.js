@@ -1188,6 +1188,14 @@ const transformProductCompareTable = (document) => {
   });
 };
 
+const transformProductProvenComplicateFragment = (document) => {
+  document.querySelectorAll('.proven-xp-section').forEach((div) => {
+    const container = div.closest('.content-section');
+    const table = createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance');
+    container.replaceWith(table);
+  });
+};
+
 const transformOtherResourcesList = (document) => {
   document.querySelectorAll('.application-other-resources').forEach((div) => {
     const cells = [['More Resources']];
@@ -1396,6 +1404,7 @@ export default {
       transformProductAssayData,
       transformProductTabs,
       transformProductCompareTable,
+      transformProductProvenComplicateFragment,
       transformOtherResourcesList,
       transformFeaturedResources,
       transformTechnologyApplications,
