@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
-import { renderBlogCard } from '../../templates/blog/blog.js';
+import { createCard } from '../card/card.js';
 
 export default async function decorate(block) {
   let blogs = await ffetch('/query-index.json')
@@ -8,6 +8,7 @@ export default async function decorate(block) {
     .limit(6)
     .all();
   blogs = blogs.filter((blog) => blog.path !== window.location.pathname).slice(0, 5);
+  const blogCard = await createCard();
 
   await createCarousel(
     block,
@@ -30,7 +31,7 @@ export default async function decorate(block) {
           items: 3,
         },
       ],
-      renderItem: renderBlogCard,
+      cardRenderer: blogCard,
     },
   );
 }
