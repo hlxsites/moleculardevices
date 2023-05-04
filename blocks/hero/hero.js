@@ -1,7 +1,5 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-// eslint-disable-next-line object-curly-newline
-import { div, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -105,7 +103,12 @@ export function buildHero(block) {
   }
 
   if (block.classList.contains('wave')) {
-    inner.appendChild(div({ class: 'wave-bottom' }, img({ src: '/images/curve.png' })));
+    const waveBottom = document.createElement('div');
+    waveBottom.classList.add('wave-bottom');
+    const waveImg = document.createElement('img');
+    waveImg.src = '/images/curve.png';
+    waveBottom.appendChild(waveImg);
+    inner.appendChild(waveBottom);
   }
 
   loadBreadcrumbs(breadcrumbs);
