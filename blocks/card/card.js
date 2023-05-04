@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable import/prefer-default-export */
+
 import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
@@ -83,11 +86,10 @@ class Card {
 
 /**
  * Create and render default card.
- * @param {Object}  item          required - rendered item in JSON
- * @param {Object}   config       optional - config object for
+ * @param {Object}  item     required - rendered item in JSON
+ * @param {Object}  config   optional - config object for
  * customizing the rendering and behaviour
  */
-// eslint-disable import/prefer-default-export
 export async function createCard(config) {
   const card = new Card(config);
   await card.loadCSSFiles();
