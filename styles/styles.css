@@ -569,12 +569,6 @@ main .section.background-molecules {
   }
 }
 
-@media(max-width: 991px) {
-  main .section .default-content-wrapper {
-    padding: 0 0 70px;
-  }
-}
-
 /* nav */
 nav {
   display: block;
@@ -628,6 +622,7 @@ main .citations-container > .default-content-wrapper {
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
+  --heading-font-size-l: 20px;
 
   padding: 0 15px;
 }
@@ -650,6 +645,7 @@ main .event-container p {
   padding: 0;
 }
 
+main .event-title,
 main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
@@ -1011,7 +1007,8 @@ main .section[aria-hidden="true"] {
 .news-container::after,
 .news .social-share-container::after,
 .publication-container::after,
-.publication .social-share-container::after {
+.publication .social-share-container::after,
+.event main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
