@@ -227,7 +227,7 @@ p:last-child {
   margin-bottom: 0;
 }
 
-main .section .default-content-wrapper :not(.button-container):last-child:not(.button-container) {
+main .section .default-content-wrapper :not(.button-container):last-child {
   margin-bottom: 1em;
 }
 
@@ -578,7 +578,7 @@ main .section.background-molecules {
 }
 
 @media(max-width: 991px) {
-  main .section .default-content-wrapper {
+  main .section:not(.tabs) .default-content-wrapper {
     padding: 0 0 70px;
   }
 }
@@ -693,19 +693,21 @@ main .event-container i.fa.fa-external-link {
   margin-left: 2px;
 }
 
-.section div + .default-content-wrapper,
-.section.tabs {
+.section:not(.tabs) div + .default-content-wrapper {
   padding: 90px 0 45px;
 }
 
-.product h2 {
-  font-size: 36px;
-  font-family: var(--ff-proxima-regular);
-  margin-top: 0;
-  margin-bottom: 0;
+.section:not(tabs) div + .default-content-wrapper,
+.section.tabs {
+  padding: 67px 0 15px;
 }
 
-.product h3 {
+.product .tabs h2 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+}
+
+.product .tabs h3 {
   font-size: 24px;
   font-family: var(--ff-proxima-xbold);
   margin: 45px 15px 15px;
@@ -1062,6 +1064,7 @@ main .section[aria-hidden="true"] {
 main .section .default-content-wrapper h2:only-child,
 main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
   margin-top: 0;
+  margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 10px;
 }
@@ -1086,11 +1089,6 @@ main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
     font-size: 36px;
     margin-top: 0;
     margin-bottom: 0;
-  }
-
-  .section div + .default-content-wrapper,
-  .section.tabs {
-    padding: 30px 0 15px;
   }
 
   main .section .default-content-wrapper {
