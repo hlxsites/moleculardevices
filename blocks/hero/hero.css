@@ -20,8 +20,18 @@ main .hero-advanced-wrapper {
   color: var(--text-white);
 }
 
+.hero-inner.white-bg {
+  background: #f0f1f2;
+}
+
+.hero-inner.white-bg,
+.hero-inner.white-bg h1,
+.hero-inner.white-bg a:any-link {
+  color: #34393d;
+}
+
 .hero-inner .breadcrumbs {
-  padding-top: 40px;
+  padding-top: 50px;
   padding-bottom: 42.5px;
 }
 
@@ -52,7 +62,7 @@ main .hero-advanced-wrapper {
 
 .hero-inner h1 {
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   color: white;
   line-height: 1;
 }
@@ -107,12 +117,16 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .container {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-l);
 }
 
 .hero-inner .container > div {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.hero-inner.white-bg .container > div:nth-child(1) {
+  width: 100%;
 }
 
 .hero-inner .container > div:nth-child(2) {
@@ -261,7 +275,7 @@ main .hero.blog .sticker {
   .hero-inner {
     min-height: 180px;
     padding-top: 40px;
-    padding-bottom: 45px;
+    padding-bottom: 65px;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -280,12 +294,16 @@ main .hero.blog .sticker {
 
   /* TODO fix heading vars in styles.css */
   .hero-inner h1 {
-    margin-bottom: 10px;
-    font-size: var(--heading-font-size-l);
+    margin-bottom: 50px;
+    font-size: var(--heading-font-size-m);
   }
 
   .hero-inner .container > div > div:nth-child(1) * {
     display: none;
+  }
+
+  .hero-inner.white-bg .container > div > div:nth-child(1) * {
+    display: block;
   }
 
   .hero-inner .two-column h1 {
