@@ -1,0 +1,6 @@
+sitemaps:
+  netcentric:
+    origin: https://main--moleculardevices--hlxsites.hlx.page
+    source: /query-index.json
+    destination: /sitemap.xml
+    lastmod: YYYY-MM-DD
