@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
+import { submitSearchForm } from './menus/search.js';
 
 let elementsWithEventListener = [];
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
@@ -61,6 +62,27 @@ function addEventListenersDesktop() {
     e.stopPropagation();
     const rightMenu = e.currentTarget.querySelector('.right-submenu');
     showRightSubmenu(rightMenu);
+  });
+
+  addListeners('.searchlink', 'mousedown', (e) => {
+    if (e.target === e.currentTarget) {
+      // get the tag of the parent element
+      e.preventDefault();
+      e.stopPropagation();
+      expandMenu(e.currentTarget);
+    }
+  });
+
+  addListeners('.search-form', 'submit', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    submitSearchForm(e, 'searchQuery');
+  });
+
+  addListeners('.mobile-search-form', 'submit', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    submitSearchForm(e, 'mobileSearchQuery');
   });
 }
 

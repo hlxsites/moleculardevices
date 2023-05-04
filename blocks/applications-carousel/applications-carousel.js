@@ -1,42 +1,12 @@
-import { fetchFragment, summariseDescription } from '../../scripts/scripts.js';
+import { fetchFragment } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
-import {
-  div, a, p, i, h3,
-} from '../../scripts/dom-helpers.js';
+import { createCard } from '../card/card.js';
 
 function onReadMoreClick(e) {
   e.preventDefault();
   const appsLink = document.querySelector('.page-tabs li > a[href="#applications"]');
   appsLink.click();
   window.scroll(0, 0);
-}
-
-function renderItem(item) {
-  const buttonText = 'Read More';
-
-  return (
-    div({ class: 'app-carousel-item' },
-      div({ class: 'app-carousel-thumb' }, item.pictureBlock),
-      div({ class: 'app-carousel-details' },
-        h3(item.title),
-        p({ class: 'app-description' }, summariseDescription(item.description, 100)),
-      ),
-      div({ class: 'app-carousel-actions' },
-        p({ class: 'button-container' },
-          a({
-            href: '#applications',
-            'aria-label': buttonText,
-            onclick: onReadMoreClick,
-            target: '_blank',
-            rel: 'noopener noreferrer',
-          },
-          buttonText,
-          i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }),
-          ),
-        ),
-      ),
-    )
-  );
 }
 
 function getDescription(element) {
@@ -60,10 +30,10 @@ export default async function decorate(block) {
       const fragmentElement = document.createElement('div');
       fragmentElement.innerHTML = fragmentHtml;
       const h3Block = fragmentElement.querySelector('h3');
-      const pictureBlock = fragmentElement.querySelector('picture');
+      const imageBlock = fragmentElement.querySelector('picture');
       const description = getDescription(fragmentElement);
       return {
-        id: h3Block.id, title: h3Block.textContent, pictureBlock, description,
+        id: h3Block.id, title: h3Block.textContent, imageBlock, description,
       };
     }
     return null;
@@ -76,6 +46,21 @@ export default async function decorate(block) {
       return 1;
     }
     return 0;
+  });
+
+  const cardRenderer = await createCard({
+    titleLink: false,
+    thumbnailLink: false,
+    descriptionLength: 100,
+    imageBlockReady: true,
+    c2aLinkConfig: {
+      href: '#applications',
+      'aria-label': 'Read More',
+      onclick: onReadMoreClick,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
+    c2aLinkStyle: true,
   });
 
   await createCarousel(
@@ -99,7 +84,7 @@ export default async function decorate(block) {
           items: 3,
         },
       ],
-      renderItem,
+      cardRenderer,
     },
   );
 }

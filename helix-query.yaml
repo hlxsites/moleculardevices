@@ -57,6 +57,9 @@ indices:
       h1:
         select: h1
         value: textContent(el)
+      productFamily:
+        select: head > meta[name="product-family"]
+        value: attribute(el, "content")
   events:
     include:
       - '/events/**'
@@ -65,11 +68,20 @@ indices:
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
+      startDate:
+        select: head > meta[property="start-date"]
+        value: parseTimestamp(attribute(el, "content"), "YYYYMMDD")
+      endDate:
+        select: head > meta[property="end-date"]
+        value: attribute(el, "content")
       type:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
       region:
         select: head > meta[name="event-region"]
+        value: attribute(el, "content")
+      address:
+        select: head > meta[name="event-address"]
         value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]

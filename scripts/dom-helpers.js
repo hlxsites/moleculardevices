@@ -73,5 +73,9 @@ export function li(...items) { return domEl('li', ...items); }
 export function i(...items) { return domEl('i', ...items); }
 export function img(...items) { return domEl('img', ...items); }
 export function span(...items) { return domEl('span', ...items); }
+export function form(...items) { return domEl('form', ...items); }
+export function input(...items) { return domEl('input', ...items); }
 export function button(...items) { return domEl('button', ...items); }
 export function iframe(...items) { return domEl('iframe', ...items); }
+export function nav(...items) { return domEl('nav', ...items); }
+export function fieldset(...items) { return domEl('fieldset', ...items); }

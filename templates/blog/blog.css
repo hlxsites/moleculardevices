@@ -1,3 +1,7 @@
+:root {
+  --blog-underline-gradient: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+}
+
 .blog {
   overflow-x: hidden; /* Could be removed after the soundcloud player is implemented */
   font-family: var(--ff-proxima-regular);
@@ -96,13 +100,14 @@
   height: 4px;
   width: 100%;
   background-color: #61b249;
-  background: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+  background: var(--blog-underline-gradient);
 }
 
 .blog .section.blog-heading > div:first-of-type p {
   margin: 0;
 }
 
+main .section.sidebar h4,
 .blog .section.blog-heading h4 {
   font-size: 30px;
   font-weight: bold;
@@ -115,10 +120,6 @@
   width: 178px;
 }
 
-.blog .blog-card-type {
-  display: none;
-}
-
 @media only screen and (max-width: 767px) {
   .blog .section.blog-heading > div:first-of-type {
     overflow: visible;
@@ -129,97 +130,84 @@
   }
 }
 
+main.sidebar {
+  display: grid;
+  grid-template-columns: auto 780px 390px auto;
+}
 
-main .blog-card {
-  height: 100%;
-  background: #fff;
-  margin: 0;
+@media only screen and (max-width: 1200px) {
+  main.sidebar {
+    grid-template-columns: auto 646px 323px auto;
+  }
+}
+
+/* put all content that's not in the sidebar in second column */
+main.sidebar > *:not(.section.sidebar) {
+  grid-column: 2;
+}
+
+/*
+  put sidebar in column 3
+  sidebar starts hardcoded from third row, because we only have it on /lab-notes
+  sidebar ends before the last section, as last section is wave
+*/
+main.sidebar .section.sidebar {
+  grid-column: 3;
+  grid-row: 3 / -2;
+}
+
+/* full width sections */
+main.sidebar div.section.hero-container,
+main.sidebar .section.wave,
+main.sidebar > .section.full-width-no-sidebar {
+  grid-column: 1 / -1;
+}
+
+/* sidebar content styling */
+main.sidebar .section.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+}
+
+main .section.sidebar h4 {
+  margin-bottom: 50px;
   position: relative;
-  box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
-  transition: all .3s;
-  display: flex;
-  align-items: stretch;
-  align-content: stretch;
+}
+
+main .section.sidebar h4::after {
+  content: "";
+  position: absolute;
+  bottom: -33px;
+  left: 0;
+  height: 4px;
   width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  background-color: #61b249;
+  background: var(--blog-underline-gradient);
 }
 
-main .blog-card:hover {
-  z-index: 1;
-  transform: scale(1.07);
-  transition: all .3s;
+.blog main .section.sidebar .embed-wrapper {
+  padding: 0;
 }
 
-main .blog-card-thumb {
-  height: 200px;
-  min-height: 200px;
-  overflow: hidden;
-}
-
-main .blog-card-thumb a {
-  display: block;
-}
-
-main .blog-card-thumb img {
-  height: 200px;
-  width: 100%;
-  min-width: auto;
-  object-fit: cover;
-  transition: all .5s ease-in-out;
-}
-
-main .blog-card-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
-  object-position: right;
-}
-
-main .blog-card-caption {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px 20px;
-  color: #12141f;
-  height: 100%;
-  min-height: auto;
-}
-
-main .blog-card-caption h3 {
-  font-size: 20px;
-  line-height: 24.1px;
-  font-weight: normal;
-  text-align: left;
-  min-height: 49px;
-  margin-top: 14px;
-  margin-bottom: 15px;
-}
-
-main .blog-card-caption h3 a {
-  color: inherit;
-}
-
-main .blog-card-caption .blog-card-description {
-  font-size: 16px;
-  text-align: left;
-  margin-bottom: 10px;
+.blog main .section.sidebar .embed-twitter {
   margin-top: 0;
 }
 
-main .blog-card-caption .button-container {
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: 0;
+@media only screen and (max-width: 991px) {
+  main.sidebar {
+    grid-template-columns: auto 750px auto;
+  }
+
+  main.sidebar .section.sidebar {
+    grid-column: 2;
+    grid-row: unset;
+    display: block;
+  }
 }
 
-main .blog-card-caption .button.primary {
-  border: 1px solid #6eb43f;
-  color: #000;
-  padding-bottom: 10px;
-  padding-top: 11px;
-  background: none;
-  border-radius: 0;
-  font-size: 18px;
-  max-width: unset;
-  width: unset;
-  white-space: break-spaces;
-  word-break: break-word;
+@media only screen and (max-width: 767px) {
+  main.sidebar {
+    grid-template-columns: repeat(3, auto);
+  }
 }

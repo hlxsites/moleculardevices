@@ -1,28 +1,33 @@
 import handleViewportChanges from './header-events.js';
-import { fetchHeaderContent } from './header.js';
 import buildRightSubmenu from './header-megamenu-components.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName, decorateIcons } from '../../scripts/lib-franklin.js';
+import buildSearch from './menus/search.js';
+import {
+  div,
+  li,
+  nav,
+  a,
+  ul,
+} from '../../scripts/dom-helpers.js';
+import {
+  reverseElementLinkTagRelation,
+  buildBrandLogo,
+  fetchHeaderContent,
+} from './helpers.js';
+import { buildMobileMenuItem, buildMobileMenuTools } from './menus/mobile-menu.js';
 
-function reverseElementLinkTagRelation(element) {
-  const linkElement = element.querySelector('a');
-  if (linkElement) {
-    element.removeChild(linkElement);
-
-    const newLinkElement = document.createElement('a');
-    newLinkElement.href = linkElement.href;
-
-    element.innerHTML = linkElement.innerHTML;
-    element.parentNode.replaceChild(newLinkElement, element);
-
-    newLinkElement.appendChild(element);
-    return newLinkElement;
-  }
-
-  return element;
+function buildRequestQuote() {
+  return li(
+    { class: 'header-rfq' },
+    a(
+      { href: '/quote-request?cid=12' },
+      'Request Quote',
+    ),
+  );
 }
 
-function buildMegaMenu(navContent, submenuContent) {
-  const productsSubmenu = document.createElement('div');
+function buildMegaMenu(block, content, submenuContent, submenuId) {
+  const productsSubmenu = div();
   const title = submenuContent.querySelector('h1');
   productsSubmenu.append(title.cloneNode(true));
 
@@ -32,31 +37,76 @@ function buildMegaMenu(navContent, submenuContent) {
 
   // get all H2s and create a list of them
   const h2s = [...submenuContent.querySelectorAll('h2')];
-  const h2List = document.createElement('ul');
-  h2List.classList.add('menu-nav-submenu-sections');
+  const h2List = ul({ class: 'menu-nav-submenu-sections' });
 
   // add H2s to list
   h2s.forEach((h2) => {
     const element = reverseElementLinkTagRelation(h2);
 
-    const h2ListItem = document.createElement('li');
-    h2ListItem.classList.add('menu-nav-submenu-section');
+    const h2ListItem = li({ class: 'menu-nav-submenu-section' });
     h2ListItem.innerHTML = element.outerHTML;
 
     h2ListItem.append(buildRightSubmenu(element));
-
     h2List.append(h2ListItem);
   });
 
   productsSubmenu.append(h2List);
 
   submenuContent.innerHTML = productsSubmenu.outerHTML;
-  const backgroundImg = navContent.querySelector('.submenu-background img');
+  const backgroundImg = content.querySelector('.submenu-background img');
   submenuContent.style.backgroundImage = `url(${backgroundImg.src})`;
+
+  // Get the list item in the header block that contains a div with attribute menu-id
+  // that matches the submenuId
+  const item = block.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
+
+  const closeButton = div({ class: 'menu-nav-submenu-close' });
+  item.append(closeButton);
+  item.append(submenuContent);
 }
 
 function getSubmenus() {
   return ['products', 'applications', 'resources', 'service-support', 'company', 'contact-us'];
+}
+
+export function buildNavbar(content) {
+  const megaMenu = div({ class: 'mainmenu-wrapper sticky-element sticky-desktop' });
+  const container = div({ class: 'container' });
+  const newNav = nav({ id: 'nav' });
+
+  const navTabs = content.querySelector('.nav-menu');
+
+  newNav.innerHTML = navTabs.outerHTML;
+
+  container.append(buildBrandLogo(content));
+  container.append(newNav);
+  megaMenu.append(container);
+
+  // link section
+  const navMenuUl = ul({ class: 'nav-tabs' });
+  const menus = [...megaMenu.querySelectorAll('.nav-menu > div')];
+
+  for (let i = 0; i < menus.length; i += 1) {
+    const item = li({ class: 'menu-expandable', 'aria-expanded': 'false' });
+
+    const menuTitle = menus[i];
+    const textDiv = menuTitle.querySelector('div');
+    menuTitle.innerHTML = textDiv.innerHTML;
+    menuTitle.classList.add('menu-nav-category');
+    menuTitle.setAttribute('menu-id', toClassName(menuTitle.textContent));
+
+    item.innerHTML = menuTitle.outerHTML;
+    navMenuUl.append(item);
+  }
+
+  navMenuUl.append(buildSearch(content));
+  navMenuUl.append(buildRequestQuote());
+
+  megaMenu.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
+
+  decorateIcons(megaMenu);
+
+  return megaMenu;
 }
 
 export default async function fetchAndStyleMegamenus(headerBlock) {
@@ -83,26 +133,24 @@ export default async function fetchAndStyleMegamenus(headerBlock) {
   for (let i = 0; i < submenuResponses.length; i += 1) {
     const submenuResponse = submenuResponses[i];
     if (submenuResponse.ok) {
-      const closeButton = document.createElement('div');
-      closeButton.classList.add('menu-nav-submenu-close');
-
       const submenuId = submenusList[i];
+
       // eslint-disable-next-line no-await-in-loop
       const submenuHtml = await submenuResponse.text();
-      const submenuContent = document.createElement('div');
-      submenuContent.classList.add('menu-nav-submenu');
+      const submenuContent = div({ class: 'menu-nav-submenu' });
       submenuContent.innerHTML = submenuHtml;
 
-      // Get submenu builder, and build submenu
-      buildMegaMenu(headerContent, submenuContent);
+      // clone the submenu content to the mobile menu
+      const mobileSubmenuContent = submenuContent.cloneNode(true);
 
-      // Get the list item in the header block that contains a div with attribute menu-id
-      // that matches the submenuId
-      const li = headerBlock.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
-      li.append(closeButton);
-      li.append(submenuContent);
+      // Get submenu builder, and build submenu
+      buildMegaMenu(headerBlock, headerContent, submenuContent, submenuId);
+
+      buildMobileMenuItem(mobileSubmenuContent, submenuId);
     }
   }
+
+  buildMobileMenuTools(headerContent);
 
   handleViewportChanges(headerBlock);
 }
