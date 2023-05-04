@@ -33,8 +33,8 @@ class Card {
     } else if (item.image && item.image !== '0') {
       itemImage = item.image;
     }
-    const thumbnailBlock = this.imageBlockReady ?
-      item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
+    const thumbnailBlock = this.imageBlockReady
+      ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
     let c2aBlock = a({ href: item.path, 'aria-label': buttonText, class: 'button primary' }, buttonText);
@@ -45,21 +45,21 @@ class Card {
       c2aBlock.append(i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }));
       decorateIcons(c2aBlock);
     }
-  
+
     return (
       div({ class: 'card' },
         this.showImageThumbnail ? div({ class: 'card-thumb' },
           this.thumbnailLink ? a({ href: item.path },
             thumbnailBlock,
           ) : thumbnailBlock,
-        ): '',
+        ) : '',
         item.type ? div({ class: 'card-type' }, item.type) : '',
         div({ class: 'card-caption' },
           h3(
             this.titleLink ? a({ href: item.path }, item.title) : item.title,
           ),
-          item.description && item.description !== '0' ?
-            p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
+          item.description && item.description !== '0'
+            ? p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
           p({ class: 'button-container' },
             c2aBlock,
           ),
@@ -68,7 +68,7 @@ class Card {
     );
   }
 
-  loadCSSFiles () {
+  async loadCSSFiles() {
     let defaultCSSPromise;
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       defaultCSSPromise = new Promise((resolve) => {
@@ -77,6 +77,7 @@ class Card {
         });
       });
     }
+    this.cssFiles && (await defaultCSSPromise);
   }
 }
 
@@ -86,8 +87,9 @@ class Card {
  * @param {Object}   config       optional - config object for
  * customizing the rendering and behaviour
  */
+// eslint-disable import/prefer-default-export
 export async function createCard(config) {
   const card = new Card(config);
-  card.loadCSSFiles();
+  await card.loadCSSFiles();
   return card;
 }

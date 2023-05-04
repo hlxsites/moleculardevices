@@ -87,3 +87,7 @@ main .card-caption .button.primary {
   white-space: break-spaces;
   word-break: break-word;
 }
+
+main .card-type {
+  display: none;
+}
