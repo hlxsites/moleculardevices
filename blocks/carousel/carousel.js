@@ -31,6 +31,7 @@ class Carousel {
     this.currentIndex = 0;
     this.counterText = '';
     this.counterNavButtons = true;
+    this.cardRenderer = this;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -397,7 +398,7 @@ class Carousel {
         itemContainer.classList.add('selected');
       }
 
-      let renderedItem = this.renderItem(item);
+      let renderedItem = this.cardRenderer.renderItem(item);
       renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
       renderedItem.forEach((renderedItemElement) => {
         itemContainer.appendChild(renderedItemElement);
