@@ -21,7 +21,8 @@ main .resources-carousel .carousel-item {
   margin: 0;
 }
 
-.resources-carousel .blog-card-type {
+main .resources-carousel .card .card-type {
+  display: block;
   text-align: left;
   text-transform: uppercase;
   color: #6eb43f;

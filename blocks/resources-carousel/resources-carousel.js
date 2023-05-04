@@ -1,7 +1,7 @@
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
-import { renderBlogCard } from '../../templates/blog/blog.js';
 import { createCarousel } from '../carousel/carousel.js';
+import { createCard } from '../card/card.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
@@ -20,12 +20,13 @@ export default async function decorate(block) {
         && !relatedResourcesExcludedTypes.includes(resource.type))
     .limit(9)
     .all();
-
+  
+  const resourceCard = await createCard();
   await createCarousel(
     block,
     resources,
     {
-      cssFiles: ['/templates/blog/blog.css'],
+      defaultStyling: true,
       navButtons: true,
       dotButtons: false,
       infiniteScroll: true,
@@ -42,7 +43,7 @@ export default async function decorate(block) {
           items: 3,
         },
       ],
-      renderItem: renderBlogCard,
+      cardRenderer: resourceCard,
     },
   );
 }
