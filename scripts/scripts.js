@@ -322,6 +322,14 @@ export function formatDate(dateStr, options = {}) {
   return dateStr;
 }
 
+export function unixDateToString(unixDateString) {
+  const date = new Date(unixDateString * 1000);
+  const day = (date.getDate()).toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+}
+
 export function addLinkIcon(elem) {
   const linkIcon = document.createElement('i');
   linkIcon.className = 'fa fa-chevron-circle-right';
