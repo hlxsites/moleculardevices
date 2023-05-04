@@ -16,7 +16,7 @@ const TABS_MAPPING = [
   { id: 'overview', sectionName: 'Overview' },
   { id: 'Resources', fragment: '/fragments/relatated-resources' },
   { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
-  { id: 'Order', blockName: 'Product Order' },
+  { id: 'Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
   {
@@ -52,6 +52,10 @@ const formatDate = (date, includeTime = false) => {
   return date.toLocaleDateString('en-US', options);
 };
 
+const isProduct = (document) => {
+  return document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
+}
+
 /**
  * Special handling for resource document meta data.
  */
@@ -74,7 +78,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   }
   request.open(
     'GET',
-    `http://localhost:3001/export/moldev-resources-sheet-04252023.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=10000&sheet=${sheet}`,
+    `https://main--moleculardevices--hlxsites.hlx.page/export/moldev-resources-sheet-04252023.json?limit=10000&sheet=${sheet}`,
     false
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -164,7 +168,7 @@ const loadFragmentIndex = (type, ref) => {
   const request = new XMLHttpRequest();
   request.open(
     'GET',
-    'http://localhost:3001/fragments/query-index.json?host=https%3A%2F%2Fmain--moleculardevices--hlxsites.hlx.page&limit=1000',
+    'https://main--moleculardevices--hlxsites.hlx.page/fragments/query-index.json?limit=1000',
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -196,6 +200,14 @@ const createFragmentList = (document, type, fragmentNames) => {
   return linkList;
 };
 
+const createFragmentTable = (document, url) => {
+  const a = document.createElement('a');
+  a.href = url;
+  a.textContent = a.href;
+  const cells = [['Fragment'], [a]];
+  return WebImporter.DOMUtils.createTable(cells, document);
+}
+
 /**
  * Meta data extraction form the original page
  */
@@ -207,6 +219,7 @@ const createMetadata = (url, document) => {
     meta.Title = title.innerHTML
       .replace(/[\n\t]/gm, '')
       .replace(/\|.*/, '')
+      .replace(/&amp;/, '&')
       .trim();
   }
 
@@ -259,6 +272,11 @@ const cleanUp = (document) => {
       div.remove();
     }
   });
+
+  // remove green default wave from pages as we are going to inject the fragment into every tab
+  if (isProduct(document)) {
+    document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((wave) => wave.remove());
+  }
 };
 
 const extractBackgroundImage = (content) => {
@@ -325,8 +343,7 @@ const transformHero = (document) => {
     }
 
     // handle product pages with advanced header
-    const isProduct = (document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products'));
-    if (isProduct) {
+    if (isProduct(document)) {
       cells[0] = ['Hero Advanced'];
       if (backgroundImg) {
         cells.push(['Desktop', backgroundImg]);
@@ -378,22 +395,6 @@ const transformHero = (document) => {
     cells.push([heroContent]);
     const table = WebImporter.DOMUtils.createTable(cells, document);
     hero.replaceWith(table);
-  });
-};
-
-// special handling for the curved wave c2a section
-// must be called before transformSections
-const transformCurvedWaveFragment = (document) => {
-  const FRAGMENT_PATH = '/fragments/next-big-discovery';
-  document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((section) => {
-    section.before(document.createElement('hr'));
-    const a = document.createElement('a');
-    a.href = FRAGMENT_PATH;
-    a.textContent = FRAGMENT_PATH;
-    const cells = [['Fragment'], [a]];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    table.id = 'defaultWave';
-    section.replaceWith(table);
   });
 };
 
@@ -479,6 +480,7 @@ const transformTabsSections = (document) => {
 
       const isOverviewTab = tab.id === 'Overview';
       if (isOverviewTab) {
+        // add overview tab wave section
         const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
         if (waveSection) {
           metadataCells.push(['style', 'Wave, Orange Buttons']);
@@ -498,16 +500,17 @@ const transformTabsSections = (document) => {
         const heading = tab.querySelector('h2');
         tab.before(heading);
 
-        const a = document.createElement('a');
-        a.href = tabConfig.fragment;
-        a.textContent = tabConfig.fragment;
-        const cells = [['Fragment'], [a]];
-        const table = WebImporter.DOMUtils.createTable(cells, document);
-        tab.replaceWith(table);
-        table.after(sectionMetaData);
-        sectionMetaData.after(document.createElement('hr'));
+        const container = document.createElement('div');
+        container.append(createFragmentTable(document, tabConfig.fragment));
+        container.append(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
+        container.append(sectionMetaData);
+
+        tab.replaceWith(container);
       } else {
         tab.after(sectionMetaData);
+        if (!isOverviewTab) {
+          tab.after(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
+        }
       }
     }
   });
@@ -686,7 +689,7 @@ const transformTables = (document) => {
     // create block table head row
     const tr = table.insertRow(0);
     const th = document.createElement('th');
-    th.textContent = 'Table';
+    th.textContent = table.closest('#Order') ? 'Table (Order)' : 'Table';
     th.setAttribute('colspan', numCols);
     tr.append(th);
   });
@@ -1298,6 +1301,15 @@ export default {
       heroMediaGalleryLink.href = `/fragments/media-gallery/${pageType}/${pageFilename}`;
     }
 
+    // rewrite picture tags to img only
+    document.querySelectorAll('picture').forEach((picture) => {
+      const img = picture.querySelector('img');
+      if (img) {
+        img.srcset = '';
+        picture.replaceWith(img);
+      }
+    });
+
     // rewrite all links with spans before they get cleaned up
     document.querySelectorAll('a span.text').forEach((span) => span.replaceWith(span.textContent));
     document.querySelectorAll('a strong').forEach((strong) => strong.replaceWith(strong.textContent));
@@ -1338,7 +1350,6 @@ export default {
       '.sticky-social-list',
       '.back-labnote',
       '.recent-posts .overview-page',
-      '.herobanner_wrap .visible-xs-block',
       '.ins-nav-container',
       '.OneLinkShow_zh',
       '.onetrust-consent-sdk',
@@ -1390,7 +1401,6 @@ export default {
       transformTechnologyApplications,
       transformLinkedCardCarousel,
       transformResources,
-      transformCurvedWaveFragment,
       transformColumns,
       makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
