@@ -150,7 +150,7 @@ main .section .hero-advanced-wrapper {
   transition: all ease .3s;
 }
 
-#sample {
+#overlay {
 display: none;
 }
 
@@ -284,7 +284,7 @@ main .hero.blog .sticker {
     font-size: var(--heading-font-size-l);
   }
 
-  .hero-inner .container div div:nth-child(1) * {
+  .hero-inner .container > div > div:nth-child(1) * {
     display: none;
   }
 
@@ -292,8 +292,8 @@ main .hero.blog .sticker {
     font-size: 28px;
   }
 
-  .hero-inner .container div div:nth-child(1) h1,
-  .hero-inner .container div div:nth-child(1) .button-container * {
+  .hero-inner .container > div > div:nth-child(1) h1,
+  .hero-inner .container > div > div:nth-child(1) .button-container * {
     display: block;
   }
 
@@ -420,6 +420,14 @@ main .hero.blog .sticker {
     min-height: 440px;
   }
 
+  .hero-inner > div {
+    width: 750px
+  }  
+
+  .hero-inner .two-column h1 {
+    font-size: 45px;
+  }
+
   .hero-inner .container {
     overflow: auto;
     align-items: stretch;
@@ -455,6 +463,10 @@ main .hero.blog .sticker {
   .hero-inner .container > div:nth-child(1) .button-container {
     margin-top: 30px;
   }
+
+  .video-column {
+    width: 100%;
+  }
   
   .video-icon {
     position: relative;
@@ -464,6 +476,10 @@ main .hero.blog .sticker {
 }
 
 @media (min-width: 992px) {
+  .hero-inner .two-column h1 {
+    font-size: 70px;
+  }
+
   .hero-inner > div {
     width: 970px
   }  

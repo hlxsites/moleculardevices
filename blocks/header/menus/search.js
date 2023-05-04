@@ -5,14 +5,36 @@ import {
   form,
   input,
   button,
+  i,
 } from '../../../scripts/dom-helpers.js';
 
-export function submitSearchForm(event) {
+export function submitSearchForm(event, searchQueryId) {
   event.preventDefault();
-  const searchQuery = document.getElementById('searchQuery').value;
+  const searchQuery = document.getElementById(searchQueryId).value;
   const encodedQuery = encodeURIComponent(searchQuery);
   const searchUrl = `/search-results#q=${encodedQuery}&t=All&sort=relevancy`;
   window.location.href = searchUrl;
+}
+
+export function buildMobileSearch() {
+  return div(
+    { class: 'headersearch' },
+    div(
+      { class: 'search' },
+      form(
+        { class: 'mobile-search-form', action: '/search-results', method: 'GET' },
+        input(
+          {
+            id: 'mobileSearchQuery', class: 'form-control', placeholder: 'Search moleculardevices.com', type: 'text',
+          },
+        ),
+        button(
+          { class: 'searchbutton', type: 'submit', 'aria-label': 'Search' },
+          i({ class: 'fa fa-search' }),
+        ),
+      ),
+    ),
+  );
 }
 
 export default function buildSearch(content) {
@@ -27,7 +49,7 @@ export default function buildSearch(content) {
       },
     ),
     button(
-      { class: 'transparentBtn btn searchbutton', type: 'submit' },
+      { class: 'transparentBtn btn searchbutton', type: 'submit', 'aria-label': 'Search' },
       'Search',
     ),
   );

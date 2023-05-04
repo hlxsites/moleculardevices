@@ -16,6 +16,7 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
+import { a, div, p } from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -96,7 +97,7 @@ function optimiseHeroBlock(main) {
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
  * Breadcrumb block created at the top of first section
  */
-async function createBreadcrumbsSpace(main) {
+function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = document.createElement('div');
     blockWrapper.classList.add('breadcrumbs-wrapper');
@@ -111,6 +112,55 @@ async function loadBreadcrumbs(main) {
     decorateBlock(block);
     await loadBlock(block);
   }
+}
+
+/**
+ * Parse video links and build the markup
+ */
+export function isVideo(url) {
+  let isV = false;
+  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com', 'video.vidyard.com'];
+  [...hostnames].forEach((hostname) => {
+    if (url.hostname.includes(hostname)) {
+      isV = true;
+    }
+  });
+  return isV;
+}
+
+export function embedVideo(link, url, type) {
+  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+      link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+      class="vidyard-player-embed"
+      src="https://play.vidyard.com/${videoId}.jpg"
+      data-uuid="${videoId}"
+      data-v="4"
+      data-width="${(type === 'lightbox') ? '700' : ''}"
+      data-height="${(type === 'lightbox') ? '394' : ''}"
+      data-autoplay="${(type === 'lightbox') ? '1' : '0'}"
+      data-type="${(type === 'lightbox') ? 'lightbox' : 'inline'}"/>`;
+    }
+  });
+  observer.observe(link.parentElement);
+}
+
+function decorateEmbedLinks(main) {
+  main.querySelectorAll('a').forEach((link) => {
+    const url = new URL(link.href);
+    if (isVideo(url) && !link.closest('.block.hero-advanced')) {
+      const up = link.parentElement;
+      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+      up.innerHTML = wrapper.outerHTML;
+      embedVideo(up.querySelector('a'), url, type);
+    }
+  });
 }
 
 /**
@@ -140,6 +190,49 @@ function decoratePageNav(main) {
       }
     });
   }
+}
+
+/**
+ * Detects if a sidebar section is present and transforms main into a CSS grid
+ * @param {Element} main
+ */
+function detectSidebar(main) {
+  const sidebar = main.querySelector('.section.sidebar');
+  if (sidebar) {
+    main.classList.add('sidebar');
+
+    // Create a CSS grid with the number of rows the number of children
+    // minus - 1 (the sidebar section)
+    const numSections = main.children.length - 1;
+    main.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    // By default the sidebar will start with the first section,
+    // but can be configured in the document differently
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+    if (sidebarOffset && Number.parseInt(sidebarOffset, 10)) {
+      const offset = Number.parseInt(sidebarOffset, 10);
+      sidebar.style = `grid-row: ${offset} / infinite;`;
+    }
+  }
+}
+
+/**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function decorateLinkedPictures(container) {
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
+    const br = link.previousElementSibling;
+    let picture = br.previousElementSibling;
+    if (br.tagName === 'PICTURE') {
+      picture = br;
+    }
+    if (link.textContent.includes(link.getAttribute('href'))) {
+      link.innerHTML = '';
+      link.className = '';
+      link.appendChild(picture);
+    }
+  });
 }
 
 /**
@@ -176,7 +269,10 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  detectSidebar(main);
+  decorateLinkedPictures(main);
   createBreadcrumbsSpace(main);
+  decorateEmbedLinks(main);
 }
 
 /**
