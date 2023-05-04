@@ -20,14 +20,8 @@ main .hero-advanced-wrapper {
   color: var(--text-white);
 }
 
-.hero-inner.white-bg {
-  background: #f0f1f2;
-}
-
-.hero-inner.white-bg,
-.hero-inner.white-bg h1,
-.hero-inner.white-bg a:any-link {
-  color: #34393d;
+.hero-inner a:any-link {
+  color: var(--text-white);
 }
 
 .hero-inner .breadcrumbs {
@@ -41,10 +35,6 @@ main .hero-advanced-wrapper {
 
 .hero-inner p {
   margin: 0 0 10px;
-}
-
-.hero-inner a:any-link {
-  color: var(--text-white);
 }
 
 .hero-inner p.button-container {
@@ -125,10 +115,6 @@ main .section .hero-advanced-wrapper {
   padding-right: 15px;
 }
 
-.hero-inner.white-bg .container > div:nth-child(1) {
-  width: 100%;
-}
-
 .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 30px;
@@ -162,6 +148,20 @@ main .section .hero-advanced-wrapper {
 .hero-inner .video-icon img:hover {
   transform: scale(1.1);
   transition: all ease .3s;
+}
+
+.hero-inner.white-bg {
+  background: #f0f1f2;
+}
+
+.hero-inner.white-bg .container > div:nth-child(1) {
+  width: 100%;
+}
+
+.hero-inner.white-bg,
+.hero-inner.white-bg h1,
+.hero-inner.white-bg a:any-link {
+  color: var(--text-color);
 }
 
 #overlay {
