@@ -20,7 +20,7 @@ export default async function decorate(block) {
         && !relatedResourcesExcludedTypes.includes(resource.type))
     .limit(9)
     .all();
-  
+
   const resourceCard = await createCard();
   await createCarousel(
     block,
