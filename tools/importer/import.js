@@ -527,7 +527,7 @@ const transformProductOverviewHeadlines = (block, document) => {
 const transformImageList = (document) => {
   document.querySelectorAll('.listing-image').forEach((featureList) => {
     const cells = [[featureList.classList.contains('overview-features') ? 'Image List (Features)' : 'Image List']];
-    featureList.querySelectorAll('li').forEach((item) => cells.push([...item.children]));
+    [...featureList.children].forEach((item) => cells.push([...item.children]));
     const table = WebImporter.DOMUtils.createTable(cells, document);
     featureList.replaceWith(table);
   });
