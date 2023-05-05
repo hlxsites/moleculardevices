@@ -102,15 +102,6 @@ export function buildHero(block) {
     block.parentElement.appendChild(container);
   }
 
-  if (block.classList.contains('wave')) {
-    const waveBottom = document.createElement('div');
-    waveBottom.classList.add('wave-bottom');
-    const waveImg = document.createElement('img');
-    waveImg.src = '/images/curve.png';
-    waveBottom.appendChild(waveImg);
-    inner.appendChild(waveBottom);
-  }
-
   loadBreadcrumbs(breadcrumbs);
 }
 
