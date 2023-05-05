@@ -81,7 +81,6 @@ export function buildHero(block) {
       if (row.childElementCount > 1) {
         container.classList.add('two-column');
         [...row.children].forEach((column, y) => {
-          if (y === 1 && column.querySelector('img')) container.classList.add('right-image');
           container.appendChild(column);
         });
       } else {

@@ -519,12 +519,6 @@ main .hero.blog .sticker {
     border-left: 2px solid #fff;
   }
 
-  .hero-inner .container.two-column.right-image > div {
-    width: 50%;
-    border: none;
-    padding-top: 0;
-  }
-
   /* Citation Variant - Mobile -- Start */
   .citation main .hero .container > div:nth-child(1) {
     width: 80%
