@@ -42,6 +42,14 @@ const TABS_MAPPING = [
   },
 ];
 
+const META_SHEET_MAPPING = [
+  { url: '/newsroom/in-the-news/', sheet: 'publications' },
+  { url: '/products/', sheet: 'products' },
+  { url: '/applications/', sheet: 'applications' },
+  { url: '/events/', sheet: 'events' },
+  { url: '/resources/citations/', sheet: 'citations' },
+];
+
 const formatDate = (date, includeTime = false) => {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
   if (includeTime) {
@@ -52,9 +60,7 @@ const formatDate = (date, includeTime = false) => {
   return date.toLocaleDateString('en-US', options);
 };
 
-const isProduct = (document) => {
-  return document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
-}
+const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
 
 /**
  * Special handling for resource document meta data.
@@ -64,22 +70,14 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   // we use old XMLHttpRequest as fetch seams to have problems in bulk import
   const request = new XMLHttpRequest();
   let sheet = 'resources';
-  if (params.originalURL.indexOf('/newsroom/in-the-news/') > 0) {
-    sheet = 'publications';
-  }
-  if (params.originalURL.indexOf('/products/') > 0) {
-    sheet = 'products-applications';
-  }
-  if (params.originalURL.indexOf('/events/') > 0) {
-    sheet = 'events';
-  }
-  if (params.originalURL.indexOf('/resources/citations/') > 0) {
-    sheet = 'citations';
+  const metaSheet = META_SHEET_MAPPING.find((m) => params.originalURL.indexOf(m.url) > -1);
+  if (metaSheet) {
+    sheet = metaSheet.sheet;
   }
   request.open(
     'GET',
-    `https://main--moleculardevices--hlxsites.hlx.page/export/moldev-resources-sheet-04252023.json?limit=10000&sheet=${sheet}`,
-    false
+    `https://main--moleculardevices--hlxsites.hlx.page/export/moldev-resources-sheet-0505252023.json?limit=10000&sheet=${sheet}`,
+    false,
   );
   request.overrideMimeType('text/json; UTF-8');
   request.send(null);
@@ -115,12 +113,23 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Card CTA']) {
       meta['Card C2A'] = resource['Card CTA'];
     }
+    if (resource['COVEO TITLE']) {
+      meta['Search Title'] = resource['COVEO TITLE'];
+    }
+    if (resource['Product Category']) {
+      meta.Category = resource['Product Category'];
+    }
+    if (resource['Product Related Categories']) {
+      meta['Related Categories'] = resource['Product Related Categories'];
+    }
+
     if (params.originalURL.indexOf('/resources/citations/') > 0) {
       if (resource['Citation Number']) {
         meta['Citation Number'] = resource['Citation Number'];
       }
       meta.Title = resource.Title;
     }
+
     if (params.originalURL.indexOf('/events/') > 0) {
       if (resource['Event Type']) {
         meta['Event Type'] = resource['Event Type'];
@@ -141,6 +150,24 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       }
       if (resource['']) {
         meta['End Date'] = resource['Event Address'];
+      }
+    }
+
+    if (document.type === 'Products') {
+      if (resource.PID) {
+        meta.PID = resource.PID;
+      }
+      if (resource['PRODUCT TYPE']) {
+        meta['Product Type'] = resource['PRODUCT TYPE'];
+      }
+      if (resource['PRODUCT FAMILY']) {
+        meta['Product Family'] = resource['PRODUCT FAMILY'];
+      }
+      if (resource['LINE OF BUSINESS']) {
+        meta['Line of Business'] = resource['LINE OF BUSINESS'];
+      }
+      if (resource['SHOPIFY HANDLES']) {
+        document.shopfiyHandler = resource['SHOPIFY HANDLES'];
       }
     }
     if (resource.Thumbnail) {
@@ -206,7 +233,14 @@ const createFragmentTable = (document, url) => {
   a.textContent = a.href;
   const cells = [['Fragment'], [a]];
   return WebImporter.DOMUtils.createTable(cells, document);
-}
+};
+
+const makeUrlRelative = (url) => {
+  if (url.startsWith('https://www.moleculardevices.com')) {
+    return url.substring(32, url.length);
+  }
+  return url;
+};
 
 /**
  * Meta data extraction form the original page
@@ -238,11 +272,8 @@ const createMetadata = (url, document) => {
   const img = document.querySelector('[property="og:image"]');
   if (img && img.content) {
     const el = document.createElement('img');
-    let imgUrl = img.content;
-    if (imgUrl.startsWith('/')) {
-      imgUrl = `https://www.moleculardevices.com${imgUrl}`;
-    }
-    el.src = imgUrl;
+    const imgUrl = img.content;
+    el.src = makeUrlRelative(imgUrl);
     meta.Image = el;
   }
 
@@ -282,13 +313,13 @@ const cleanUp = (document) => {
 const extractBackgroundImage = (content) => {
   const { backgroundImage } = content.style;
   if (backgroundImage) {
-    return backgroundImage.match(/url\((.*?)\)/)[1].trim();
+    return makeUrlRelative(backgroundImage.match(/url\((.*?)\)/)[1].trim());
   }
 
   // fallback and check on attributes
   if (content.hasAttribute('style')) {
     const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
-    return backgroundUrl ? backgroundUrl.trim() : null;
+    return backgroundUrl ? makeUrlRelative(backgroundUrl.trim()) : null;
   }
   return null;
 };
