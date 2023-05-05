@@ -110,45 +110,40 @@ export function buildNavbar(content) {
 }
 
 export default async function fetchAndStyleMegamenus(headerBlock) {
+  // fetch the header content, we need it to be able to get the background image
+  const headerContent = await fetchHeaderContent();
+
   // ------ Submenus ------
   const submenusList = getSubmenus();
 
   // Fetch all submenu content concurrently
-  const submenuFetchPromises = [];
+  const submenuProcessingPromises = [];
   for (let i = 0; i < submenusList.length - 1; i += 1) {
     const submenuId = submenusList[i];
     const submenuPath = getMetadata(`${submenuId}-submenu`) || `/fragments/menu/${submenuId}`;
-    submenuFetchPromises.push(
-      fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
-    );
+
+    const processingPromise = fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {})
+      .then(async (submenuResponse) => {
+        if (submenuResponse.ok) {
+          // eslint-disable-next-line no-await-in-loop
+          const submenuHtml = await submenuResponse.text();
+          const submenuContent = div({ class: 'menu-nav-submenu' });
+          submenuContent.innerHTML = submenuHtml;
+
+          // clone the submenu content to the mobile menu
+          const mobileSubmenuContent = submenuContent.cloneNode(true);
+
+          // Get submenu builder, and build submenu
+          buildMegaMenu(headerBlock, headerContent, submenuContent, submenuId);
+
+          buildMobileMenuItem(mobileSubmenuContent, submenuId);
+        }
+      });
+
+    submenuProcessingPromises.push(processingPromise);
   }
 
-  // Process all submenu responses
-  const submenuResponses = await Promise.all(submenuFetchPromises);
-
-  // fetch the header content, we need it to be able to get the background image
-  const headerContent = await fetchHeaderContent();
-
-  // iterate over all submenu responses
-  for (let i = 0; i < submenuResponses.length; i += 1) {
-    const submenuResponse = submenuResponses[i];
-    if (submenuResponse.ok) {
-      const submenuId = submenusList[i];
-
-      // eslint-disable-next-line no-await-in-loop
-      const submenuHtml = await submenuResponse.text();
-      const submenuContent = div({ class: 'menu-nav-submenu' });
-      submenuContent.innerHTML = submenuHtml;
-
-      // clone the submenu content to the mobile menu
-      const mobileSubmenuContent = submenuContent.cloneNode(true);
-
-      // Get submenu builder, and build submenu
-      buildMegaMenu(headerBlock, headerContent, submenuContent, submenuId);
-
-      buildMobileMenuItem(mobileSubmenuContent, submenuId);
-    }
-  }
+  await Promise.all(submenuProcessingPromises);
 
   buildMobileMenuTools(headerContent);
 
