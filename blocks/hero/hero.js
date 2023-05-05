@@ -80,7 +80,7 @@ export function buildHero(block) {
     if (i === (rows - 1)) {
       if (row.childElementCount > 1) {
         container.classList.add('two-column');
-        [...row.children].forEach((column, y) => {
+        [...row.children].forEach((column) => {
           container.appendChild(column);
         });
       } else {
