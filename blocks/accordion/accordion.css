@@ -8,7 +8,8 @@ main .accordion-container {
 main .accordion-container .accordion-wrapper {
   width: 100%;
   max-width: unset;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .accordion-tab-list,

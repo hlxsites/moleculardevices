@@ -443,7 +443,11 @@ main .breadcrumbs-wrapper {
 
 main .section>div {
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 100px 15px 0;
+}
+
+main .section>.featured-posts-wrapper {
+  padding-top: 40px;
 }
 
 main .section.columns-2 {
@@ -543,7 +547,6 @@ main .section.columns-2>div {
 .homepage h2 {
   margin-bottom: 30px;
 }
-
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
