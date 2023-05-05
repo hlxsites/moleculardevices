@@ -1,6 +1,8 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import { a, i, p } from '../../scripts/dom-helpers.js';
+import {
+  a, div, i, iframe, p,
+} from '../../scripts/dom-helpers.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 
 function toggleNewsEvents(container, target) {
@@ -93,6 +95,31 @@ async function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
+function renderNewsletterForm() {
+  return (
+    div({
+      id: 'enewsletter',
+      class: 'hubspot-iframe-wrapper',
+      loading: 'lazy',
+    },
+    div(
+      iframe({
+        src: 'https://info.moleculardevices.com/newsletter-signup',
+        loading: 'lazy',
+      }),
+    ),
+    )
+  );
+}
+
+async function buildNewsletter(container) {
+  const newsletterId = 'enewsletter';
+  // add submission form from hubspot
+  container.querySelector(`#${newsletterId}`).replaceWith(renderNewsletterForm());
+  // remove terms from plain footer, they are provided as part of the iframe
+  // container.querySelector(`#${newsletterId} + p`).remove();
+}
+
 function decorateSocialMediaLinks(socialIconsContainer) {
   socialIconsContainer.querySelectorAll('a').forEach((iconLink) => {
     iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
@@ -134,8 +161,8 @@ export default async function decorate(block) {
     }
   });
 
-  const footerNewsEvents = block.querySelector('.footer-news-events');
-  buildNewsEvents(footerNewsEvents);
+  buildNewsEvents(block.querySelector('.footer-news-events'));
+  buildNewsletter(block.querySelector('.footer-newsletter-form'));
 
   block.append(footer);
   await decorateIcons(block);
