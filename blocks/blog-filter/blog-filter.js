@@ -28,6 +28,31 @@ function showHideAllFilters(block) {
   block.querySelector('ul').classList.toggle('hide');
 }
 
+function scrollBlockIntoView(block) {
+  const section = block.closest('.section');
+
+  const observer = new MutationObserver((mutationList) => {
+    mutationList.forEach((mutation) => {
+      if (mutation.type === 'attributes'
+        && mutation.attributeName === 'data-section-status'
+        && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
+        observer.disconnect();
+        setTimeout(() => {
+          window.scrollTo({
+            top: block.querySelector('a.active').getBoundingClientRect().top - 70,
+            left: 0,
+            behavior: 'smooth',
+          });
+        },
+        1000,
+        );
+      }
+    });
+  });
+
+  observer.observe(section, { attributes: true });
+}
+
 export default function decorate(block) {
   block.prepend(
     div({ class: 'active-filter' },
@@ -55,6 +80,10 @@ export default function decorate(block) {
     window.addEventListener('hashchange', () => { filterChangedViaHash(block, filters); });
     // set initial active filter
     setActiveFilter(block);
+
+    if (window.location.hash && window.matchMedia('only screen and (min-width: 767px)').matches) {
+      scrollBlockIntoView(block);
+    }
   } else {
     // we are on different page
     const currentPageLink = block.querySelector(`a[href="${window.location.pathname}"`);
