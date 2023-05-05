@@ -22,18 +22,15 @@ const TABS_MAPPING = [
   {
     id: 'CompatibleProducts',
     sectionName: 'Compatible Products & Services',
-    fragment: '/fragments/compatible-products',
   },
   { id: 'Citations' },
   {
     id: 'RelatedProducts',
     sectionName: 'Related Products & Services',
-    fragment: '/fragments/products-related',
   },
   {
     id: 'relatedproducts',
     sectionName: 'Related Products & Services',
-    fragment: '/fragments/products-related',
   },
   {
     id: 'specs',
@@ -61,6 +58,7 @@ const formatDate = (date, includeTime = false) => {
 };
 
 const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
+const isAssayKit = (document) => document.productType && (document.productType === 'Assay Kits' || document.productType === 'Labware');
 
 /**
  * Special handling for resource document meta data.
@@ -159,6 +157,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       }
       if (resource['PRODUCT TYPE']) {
         meta['Product Type'] = resource['PRODUCT TYPE'];
+        document.productType = resource['PRODUCT TYPE'];
       }
       if (resource['PRODUCT FAMILY']) {
         meta['Product Family'] = resource['PRODUCT FAMILY'];
@@ -374,7 +373,7 @@ const transformHero = (document) => {
     }
 
     // handle product pages with advanced header
-    if (isProduct(document)) {
+    if (isProduct(document) && !isAssayKit(document)) {
       cells[0] = ['Hero Advanced'];
       if (backgroundImg) {
         cells.push(['Desktop', backgroundImg]);
@@ -439,9 +438,6 @@ const transformSections = (document) => {
     const styles = [];
     if (section.classList.contains('grey_molecules_bg_top')) {
       styles.push('Background Molecules');
-    }
-    if (section.classList.contains('parallax-container1')) {
-      styles.push('Background Parallax');
     }
     if (section.classList.contains('franklin-horizontal')) {
       styles.push('Columns 2');
@@ -522,6 +518,10 @@ const transformTabsSections = (document) => {
             img.alt = 'Background Image';
             metadataCells.push(['background', img]);
           }
+        }
+        if (isAssayKit(document)) {
+          overviewWaveContent.remove();
+          tab.append(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
         }
       }
       const sectionMetaData = WebImporter.DOMUtils.createTable(metadataCells, document);
@@ -1121,6 +1121,15 @@ const transformProductOrderOptions = (document) => {
   }
 };
 
+const transformProductRelatedProducts = (document) => {
+  const div = document.querySelector('div.cat-related-products');
+  if (div) {
+    const cells = [['Related Products']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
 const transformProductApplications = (document) => {
   const div = document.querySelector('div.tab-pane#Applications, div.tab-pane#Technology');
   if (div) {
@@ -1435,7 +1444,7 @@ export default {
       'footer',
       'nav#block-mobilenavigation',
       'div#resources .tabbingContainer',
-      'body > #mediaGallary', // remove the hero media gallery only
+      'div#mediaGallary', // remove the hero media gallery only
       '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
       '.skip-link',
@@ -1490,6 +1499,7 @@ export default {
       transformProductOverview,
       transformProductOptions,
       transformProductOrderOptions,
+      transformProductRelatedProducts,
       transformProductApplications,
       transformProductAssayData,
       transformProductTabs,
