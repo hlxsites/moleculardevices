@@ -1,4 +1,7 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import ffetch from '../../scripts/ffetch.js';
+import { a, i, p } from '../../scripts/dom-helpers.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 
 function toggleNewsEvents(container, target) {
   if (!target.parentElement.classList.contains('on')) {
@@ -18,15 +21,75 @@ function addEventListeners(container) {
   });
 }
 
-function buildNewsEvents(container) {
-  [...container.children].forEach((row) => {
-    [...row.children].forEach((column, i) => {
+function renderEntry(item) {
+  return (
+    p(formatDate(unixDateToString(item.date)),
+      document.createElement('br'),
+      a({
+        href: item.path,
+        'aria-label': item.title,
+      }, item.title),
+    )
+  );
+}
+
+function renderMoreLink(text, link) {
+  return (
+    p(
+      a({
+        href: link,
+        'aria-label': text,
+      }, text, i({
+        class: 'fa fa-chevron-circle-right',
+        'aria-hidden': true,
+      }),
+      ),
+    )
+  );
+}
+
+async function renderEvents(container) {
+  const events = await ffetch('/query-index.json')
+    .filter(({ type }) => (type === 'Event'))
+    .slice(0, 3)
+    .all();
+  container.innerHTML = '';
+  events.forEach(
+    (item) => container.append(renderEntry(item)),
+  );
+  container.append(renderMoreLink('More Events', '/events'));
+}
+
+async function renderNews(container) {
+  const news = await ffetch('/query-index.json')
+    .sheet('news')
+    .slice(0, 3)
+    .all();
+  container.innerHTML = '';
+  news.forEach(
+    (item) => container.append(renderEntry(item)),
+  );
+  container.append(renderMoreLink('More News', '/newsroom/news'));
+}
+
+async function buildNewsEvents(container) {
+  [...container.children].forEach((row, j) => {
+    [...row.children].forEach((column, k) => {
       column.classList.add('toggle');
-      if (i === 0) {
+      if (k === 0) {
         column.classList.add('on');
+      }
+      if (j === 1 && k === 0) {
+        column.classList.add('news-list');
+      } else if (j === 1 && k === 1) {
+        column.classList.add('events-list');
       }
     });
   });
+
+  renderNews(container.querySelector('.news-list'));
+  renderEvents(container.querySelector('.events-list'));
+
   addEventListeners(container);
 }
 
@@ -58,15 +121,15 @@ export default async function decorate(block) {
   block.appendChild(footerWrap);
   block.appendChild(footerBottom);
 
-  [...footer.children].forEach((row, i) => {
-    row.classList.add(`row-${i + 1}`);
-    if (i <= 3) {
+  [...footer.children].forEach((row, idx) => {
+    row.classList.add(`row-${idx + 1}`);
+    if (idx <= 3) {
       footerWrap.appendChild(row);
     } else {
       footerBottom.appendChild(row);
     }
 
-    if (i === 4) {
+    if (idx === 4) {
       decorateSocialMediaLinks(row);
     }
   });

@@ -1,7 +1,7 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
-import { formatDate } from './scripts.js';
+import { formatDate, unixDateToString } from './scripts.js';
 
 const classList = 'list';
 const classListItems = 'items';
@@ -21,14 +21,6 @@ const classPagerNav = 'pager-nav-item';
 const classActive = 'active';
 const classHidden = 'hidden';
 const defaultImage = '/default-meta-image.png';
-
-function unixDateToString(unixDateString) {
-  const date = new Date(unixDateString * 1000);
-  const day = (date.getDate()).toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
-}
 
 function filterData(options) {
   let { data } = options;
