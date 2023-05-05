@@ -65,11 +65,11 @@ export default function decorate(block) {
   const link = block.querySelector('a').href;
   block.textContent = '';
 
-  // const observer = new IntersectionObserver((entries) => {
-  //   if (entries.some((e) => e.isIntersecting)) {
-  //     observer.disconnect();
-  //     loadEmbed(block, link);
-  //   }
-  // });
-  // observer.observe(block);
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadEmbed(block, link);
+    }
+  });
+  observer.observe(block);
 }
