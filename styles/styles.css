@@ -468,6 +468,7 @@ main .section.columns-2>div {
     --heading-font-size-xxl: 54px;
     --heading-font-size-xl: 54px;
     --heading-font-size-l: 36px;
+    --heading-font-size-m: 28px;
     --body-font-size-l: 18px;
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
@@ -636,6 +637,7 @@ main .citations-container > .default-content-wrapper {
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
+  --heading-font-size-l: 20px;
 
   padding: 0 15px;
 }
@@ -658,6 +660,7 @@ main .event-container p {
   padding: 0;
 }
 
+main .event-title,
 main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
@@ -1062,7 +1065,8 @@ main .section[aria-hidden="true"] {
 .news-container::after,
 .news .social-share-container::after,
 .publication-container::after,
-.publication .social-share-container::after {
+.publication .social-share-container::after,
+.event main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;

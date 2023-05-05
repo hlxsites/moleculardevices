@@ -21,7 +21,7 @@ import { a, div, p } from './dom-helpers.js';
 /**
  * to add/remove a template, just add/remove it in the list below
  */
-const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event'];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
@@ -307,7 +307,8 @@ export function addFavIcon(href, rel = 'icon') {
 }
 
 export function formatDate(dateStr, options = {}) {
-  const parts = dateStr.split('/');
+  if (!dateStr) return '';
+  const parts = dateStr.split(/[/,]/);
   const date = new Date(parts[2], parts[0] - 1, parts[1]);
 
   if (date) {

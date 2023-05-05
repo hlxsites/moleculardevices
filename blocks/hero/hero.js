@@ -71,6 +71,8 @@ export function buildHero(block) {
     picture = optimizedHeroBg;
     picture.classList.add('hero-background');
     inner.prepend(picture.parentElement);
+  } else {
+    inner.classList.add('white-bg');
   }
 
   const rows = block.children.length;
