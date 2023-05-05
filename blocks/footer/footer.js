@@ -95,10 +95,11 @@ async function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
-function renderNewsletterForm() {
-  return (
+async function buildNewsletter(container) {
+  const newsletterId = 'enewsletter';
+  const form = (
     div({
-      id: 'enewsletter',
+      id: newsletterId,
       class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
     },
@@ -110,14 +111,8 @@ function renderNewsletterForm() {
     ),
     )
   );
-}
-
-async function buildNewsletter(container) {
-  const newsletterId = 'enewsletter';
   // add submission form from hubspot
-  container.querySelector(`#${newsletterId}`).replaceWith(renderNewsletterForm());
-  // remove terms from plain footer, they are provided as part of the iframe
-  // container.querySelector(`#${newsletterId} + p`).remove();
+  container.querySelector(`#${newsletterId}`).replaceWith(form);
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
