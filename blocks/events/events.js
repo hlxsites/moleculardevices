@@ -1,22 +1,10 @@
-import {
-  readBlockConfig,
-} from '../../scripts/lib-franklin.js';
+import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import createList from '../../scripts/list.js';
 
-function formatDateFullYear(unixDateString) {
-  return new Date(unixDateString * 1000).getFullYear();
-}
-
-function createFilters(options, createDropdown) {
-  const date = Array.from(new Set(options.data.map((n) => n.filterYear)));
-  return [
-    createDropdown(date, options.activeFilters.year, 'year', 'Select Year'),
-  ];
-}
-
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterYear = formatDateFullYear(entry.date);
+  entry.filterTitle = toClassName(entry.title);
+  entry.filterPath = toClassName(entry.path);
   if (!showDescription) {
     entry.description = '';
   }
@@ -25,7 +13,14 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
-export async function createOverview(
+function createFilters(options, createDropdown) {
+  return [
+    createDropdown(Array.from(new Set(options.data.map((n) => n.filterTitle))), options.activeFilters.title, 'title', 'Select Title'),
+    createDropdown(Array.from(new Set(options.data.map((n) => n.filterPath))), options.activeFilters.path, 'path', 'Select Path'),
+  ];
+}
+
+async function createOverview(
   block,
   options,
 ) {
@@ -39,11 +34,11 @@ export async function createOverview(
     block);
 }
 
-export async function fetchData(type) {
-  const data = await ffetch('/query-index.json')
-    .sheet(type)
+async function fetchEvents() {
+  return ffetch('/query-index.json')
+    .filter(({ type }) => (type === 'Event'))
+    .filter(({ date }) => (new Date(date * 1000) < new Date()))
     .all();
-  return data;
 }
 
 export default async function decorate(block) {
@@ -52,14 +47,15 @@ export default async function decorate(block) {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     showDescription: false,
-    viewMoreText: '',
     panelTitle: 'Filter By :',
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('year', '');
+  options.activeFilters.set('title', '');
+  options.activeFilters.set('path', '');
+  // options.activeFilters.set('region', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchData('news');
+  options.data = await fetchEvents();
   await createOverview(
     block,
     options);

@@ -2,6 +2,9 @@ import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
 import { formatDate, unixDateToString } from './scripts.js';
+import {
+  article, button, div, nav, p,
+} from './dom-helpers.js';
 
 const classList = 'list';
 const classListItems = 'items';
@@ -26,7 +29,7 @@ function filterData(options) {
   let { data } = options;
   const filters = options.activeFilters;
   filters.forEach((value, type) => {
-    if (type === 'year') {
+    if (type !== 'page') {
       const filterAttribute = toCamelCase(`filter_${type}`);
       data = data
         .filter((n) => toClassName(
@@ -51,9 +54,7 @@ function toggleFilter(event) {
 }
 
 function renderListItem(item, idx) {
-  const listItemElement = document.createElement('article');
-  listItemElement.classList.add(classListItem);
-
+  const listItemElement = article({ class: classListItem });
   const hasImage = (!item.image.startsWith(defaultImage));
   if (hasImage) {
     const imageElement = createOptimizedPicture(item.image, item.title, (idx === 0), [
@@ -84,8 +85,7 @@ function createListItems(options) {
   const start = (options.activeFilters.get('page') - 1) * options.limitPerPage;
   const items = data.slice(start, start + options.limitPerPage);
 
-  const itemsContainer = document.createElement('div');
-  itemsContainer.classList.add(classListItems);
+  const itemsContainer = div({ class: classListItems });
   items.forEach((item, idx) => {
     itemsContainer.appendChild(renderListItem(item, idx));
   });
@@ -141,7 +141,10 @@ async function switchPage(event, options) {
   pagerNav[2].setAttribute('name', Math.min(selected + 1, maxPages));
   pagerNav.forEach((item, idx) => {
     item.classList.remove(`${classHidden}`);
-    if ((idx < 2 && selected < startIdx) || (idx > 1 && selected > endIdx)) {
+    if (
+      (idx < 2 && selected === 1) // prev nav buttons
+      || (idx > 1 && selected > (endIdx - 1)) // next nav buttons
+    ) {
       item.classList.add(`${classHidden}`);
     }
   });
@@ -153,31 +156,29 @@ async function switchPage(event, options) {
 }
 
 function createDropdown(options, selected, name, placeholder) {
-  const container = document.createElement('div');
-  container.classList.add(classFilterSelect);
+  const container = div({ class: classFilterSelect });
   if (name) {
     container.setAttribute('name', name);
   }
   if (placeholder) {
-    const btn = document.createElement('div');
-    btn.classList.add(classDropdownToggle);
-    btn.innerText = selected || placeholder;
-    btn.value = '';
-    btn.setAttribute('type', 'button');
+    const btn = div({
+      type: 'button',
+      class: classDropdownToggle,
+      value: '',
+    }, selected || placeholder);
     btn.addEventListener('click', toggleFilter, false);
     container.append(btn);
 
     options.unshift(placeholder);
   }
 
-  const dropDown = document.createElement('div');
-  dropDown.classList.add(classDropdownMenu);
-
+  const dropDown = div({ class: classDropdownMenu });
   options.forEach((option) => {
-    const optionTag = document.createElement('p');
-    optionTag.classList.add(classFilterItem);
-    optionTag.innerText = option;
-    optionTag.name = toClassName(option);
+    const optionTag = p({
+      class: classFilterItem,
+      name: toClassName(option),
+    }, option,
+    );
     if (option === placeholder) {
       optionTag.classList.add('reset');
     }
@@ -188,8 +189,10 @@ function createDropdown(options, selected, name, placeholder) {
 }
 
 function createPaginationItem(page, active, label, hide) {
-  const btn = document.createElement('button');
-  btn.classList.add(classPagerItem);
+  const btn = button({
+    class: classPagerItem,
+    name: page,
+  }, label || page);
   const isNavElem = (label);
   if (isNavElem) {
     btn.classList.add(classPagerNav);
@@ -197,8 +200,6 @@ function createPaginationItem(page, active, label, hide) {
   if (hide) {
     btn.classList.add(classHidden);
   }
-  btn.setAttribute('name', page);
-  btn.innerText = label || page;
   if (page === active && !hide && !isNavElem) {
     btn.classList.add(classActive);
   }
@@ -210,35 +211,33 @@ export async function renderPagination(container, options, ajaxCall) {
   options.maxPages = Math.ceil(data.length / options.limitPerPage);
   const page = options.activeFilters.get('page');
 
-  const nav = document.createElement('nav');
-  nav.className = classPagination;
-
+  const pageNav = nav({ class: classPagination });
   if (options.maxPages > 1) {
     const startIdx = getPaginationStart(options);
     const endIdx = getPaginationEnd(startIdx, options);
 
-    nav.append(createPaginationItem(1, page, '«', page === 1));
-    nav.append(createPaginationItem(page - 1, page, '‹', page === 1));
+    pageNav.append(createPaginationItem(1, page, '«', page === 1));
+    pageNav.append(createPaginationItem(page - 1, page, '‹', page === 1));
 
     // eslint-disable-next-line no-plusplus
     for (let i = startIdx; i <= endIdx; i++) {
       if (i > 0) {
-        nav.append(createPaginationItem(i, page, '', false));
+        pageNav.append(createPaginationItem(i, page, '', false));
       }
     }
     // eslint-disable-next-line no-plusplus
     for (let j = endIdx + 1; j <= options.maxPages; j++) {
       if (j > 0) {
-        nav.append(createPaginationItem(j, page, '', true));
+        pageNav.append(createPaginationItem(j, page, '', true));
       }
     }
-    nav.append(createPaginationItem(page + 1, page, '›', page === options.maxPages));
-    nav.append(createPaginationItem(options.maxPages, page, '»', page === options.maxPages));
+    pageNav.append(createPaginationItem(page + 1, page, '›', page === options.maxPages));
+    pageNav.append(createPaginationItem(options.maxPages, page, '»', page === options.maxPages));
   }
   if (ajaxCall) {
     container.querySelector(`.${classPagination}`).remove();
   }
-  container.append(nav);
+  container.append(pageNav);
 
   const pagerItems = container.querySelectorAll(`.${classPagination} .${classPagerItem}`);
   pagerItems.forEach((pagerItem) => {
@@ -271,15 +270,12 @@ async function switchFilter(event, options) {
 }
 
 function renderFilters(options, createFilters) {
-  const filter = document.createElement('div');
-  filter.className = classFilter;
+  const filter = div({ class: classFilter });
 
   const filters = createFilters(options, createDropdown);
   if (filters.length > 0) {
     if (options.panelTitle) {
-      const header = document.createElement('p');
-      header.className = classPanelTitle;
-      header.innerHTML = options.panelTitle;
+      const header = p({ class: classPanelTitle }, options.panelTitle);
       filter.append(header);
     }
 
@@ -310,14 +306,12 @@ export default async function createList(
   });
 
   if (options.data) {
-    const container = document.createElement('div');
-    container.className = classList;
-    const filterElements = renderFilters(options, createFilters);
-    container.append(filterElements);
-    const listItems = createListItems(options);
-    container.append(listItems);
-    renderPagination(container, options, false);
+    const container = div({ class: classList },
+      renderFilters(options, createFilters),
+      createListItems(options),
+    );
     root.append(container);
+    renderPagination(container, options, false);
   }
   await listCSSPromise;
 }
