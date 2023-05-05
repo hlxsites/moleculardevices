@@ -14,8 +14,8 @@
 
 const TABS_MAPPING = [
   { id: 'overview', sectionName: 'Overview' },
-  { id: 'Resources', fragment: '/fragments/relatated-resources' },
-  { id: 'Orderingoptions', sectionName: 'Ordering Options', blockName: 'Product Ordering Options' },
+  { id: 'Resources' },
+  { id: 'Orderingoptions', sectionName: 'Ordering Options'},
   { id: 'Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
@@ -1109,44 +1109,72 @@ const transformProductOptions = (document) => {
   }
 };
 
+const transformProductOrderOptions = (document) => {
+  const div = document.querySelector('div.ordering_wrap');
+  if (div) {
+    const cells = [['Product Ordering Options']];
+    if (document.shopfiyHandler) {
+      cells.push([ document.shopfiyHandler]);
+    }
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
 const transformProductApplications = (document) => {
   const div = document.querySelector('div.tab-pane#Applications, div.tab-pane#Technology');
   if (div) {
-    const heading = div.querySelector('h2');
-    div.before(heading);
-    const cells = [['Related Applications']];
-    const hasTOC = div.querySelector('.view-application-resources');
-    if (hasTOC) {
-      cells[0] = ['Related Applications (TOC)'];
-    }
+    if (div.textContent.trim()) {
+      const heading = div.querySelector('h2');
+      div.before(heading);
+      const cells = [['Related Applications']];
+      const hasTOC = div.querySelector('.view-application-resources');
+      if (hasTOC) {
+        cells[0] = ['Related Applications (TOC)'];
+      }
 
-    const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
-    if (applications) {
-      const linkList = createFragmentList(document, 'Applications', [...applications].map((h2) => h2.textContent.trim()));
-      cells.push([linkList]);
-    }
+      const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
+      if (applications) {
+        const linkList = createFragmentList(
+          document,
+          'Applications',
+          [...applications].map((h2) => h2.textContent.trim())
+        );
+        cells.push([linkList]);
+      }
 
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      div.replaceWith(table);
+    } else {
+      div.remove();
+    }
   }
 };
 
 const transformProductAssayData = (document) => {
   const div = document.querySelector('div.tab-pane#Data');
   if (div) {
-    const heading = div.querySelector('h2');
-    div.before(heading);
-    const cells = [['Related Assay Data']];
+    if (div.textContent.trim()) {
+      const heading = div.querySelector('h2');
+      div.before(heading);
+      const cells = [['Related Assay Data']];
 
-    const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
-    if (applications) {
-      // eslint-disable-next-line max-len
-      const linkList = createFragmentList(document, 'Assay Data', [...applications].map((h2) => h2.textContent.trim()));
-      cells.push([linkList]);
+      const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
+      if (applications) {
+        // eslint-disable-next-line max-len
+        const linkList = createFragmentList(
+          document,
+          'Assay Data',
+          [...applications].map((h2) => h2.textContent.trim())
+        );
+        cells.push([linkList]);
+      }
+
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      div.replaceWith(table);
+    } else {
+      div.remove();
     }
-
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
   }
 };
 
@@ -1169,22 +1197,29 @@ const transformResources = (document) => {
   const div = document.querySelector('div.tab-pane#Resources, div.tab-pane#resources');
 
   if (div) {
-    const resources = div.querySelectorAll('.views-element-container')[1];
-    if (resources) {
-      const cells = [['Content Resources']];
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      resources.parentElement.replaceWith(table);
-    }
+    [...div.querySelectorAll('.views-element-container')].forEach((child, index) => {
+      if (index === 0) {
+        const cellsFilter = [['Card Filter']];
+        const links = child.querySelector('ul');
+        if (links) {
+          cellsFilter.push([links]);
+        }
+        const tableFilter = WebImporter.DOMUtils.createTable(cellsFilter, document);
+        child.replaceWith(tableFilter);
+      }
 
-    const videoResources = div.querySelector('#res_videos');
-    if (videoResources) {
-      const cells = [['Video Resources']];
+      if (index === 1) {
+        const cellsResources = [['Resources']];
+        const tableResources = WebImporter.DOMUtils.createTable(cellsResources, document);
+        child.replaceWith(tableResources);
+      }
 
-      const heading = videoResources.querySelector('.section-heading');
-      cells.push([heading]);
-      const table = WebImporter.DOMUtils.createTable(cells, document);
-      videoResources.replaceWith(table);
-    }
+      if (index === 2) {
+        const cellsVideoResources = [['Video Resources']];
+        const tableVideoResources = WebImporter.DOMUtils.createTable(cellsVideoResources, document);
+        child.replaceWith(tableVideoResources);
+      }
+    });
   }
 };
 
@@ -1287,9 +1322,16 @@ const transformElisaWorkflow = (document) => {
   });
 };
 
-function makeAbsoluteLinks(main) {
+function makeAbsoluteLinks(main, url) {
   const HOST = 'https://main--moleculardevices--hlxsites.hlx.page/';
+  const pagePath = WebImporter.FileUtils.sanitizePath(
+    new URL(url).pathname.replace(/\.html$/, '').replace(/\/$/, ''),
+  );
+
   main.querySelectorAll('a').forEach((a) => {
+    if (!a.href) {
+      a.href = pagePath + a.name;
+    }
     if (a.href.startsWith('/')) {
       const ori = a.href;
       const u = new URL(a.href, HOST);
@@ -1306,11 +1348,8 @@ function makeAbsoluteLinks(main) {
       }
     }
     if (a.href.startsWith('http://localhost:3001')) {
-      const localURL = a.href;
       a.href = a.href.replaceAll('http://localhost:3001/', HOST);
-      if (localURL.endsWith(a.textContent.trim())) {
-        a.textContent = a.href;
-      }
+      a.textContent = a.textContent.replaceAll('http://localhost:3001/', HOST);
     }
   });
 }
@@ -1450,6 +1489,7 @@ export default {
       transformTabsSections,
       transformProductOverview,
       transformProductOptions,
+      transformProductOrderOptions,
       transformProductApplications,
       transformProductAssayData,
       transformProductTabs,
@@ -1462,8 +1502,9 @@ export default {
       transformResources,
       transformColumns,
       transformImageLinks,
-      makeAbsoluteLinks,
     ].forEach((f) => f.call(null, document));
+
+    makeAbsoluteLinks(document, url);
 
     return main;
   },
