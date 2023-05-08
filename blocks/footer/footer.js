@@ -113,6 +113,8 @@ async function buildNewsletter(container) {
   );
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
+  // remove terms from plain footer, they are provided as part of the iframe
+  container.querySelector(`#${newsletterId} + p`).remove();
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
