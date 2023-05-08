@@ -70,10 +70,10 @@ indices:
         select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")
       eventStart:
-        select: head > meta[property="event-start"]
+        select: head > meta[name="event-start"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
       eventEnd:
-        select: head > meta[property="event-end"]
+        select: head > meta[name="event-end"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
       eventType:
         select: head > meta[name="event-type"]
