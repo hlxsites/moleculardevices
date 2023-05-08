@@ -47,6 +47,10 @@ const META_SHEET_MAPPING = [
   { url: '/resources/citations/', sheet: 'citations' },
 ];
 
+const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
+const isAssayKit = (document) => document.productType && (document.productType === 'Assay Kits' || document.productType === 'Labware');
+const isApplication = (document) => document.type && document.type === 'Application';
+
 const formatDate = (date, includeTime = false) => {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
   if (includeTime) {
@@ -57,8 +61,12 @@ const formatDate = (date, includeTime = false) => {
   return date.toLocaleDateString('en-US', options);
 };
 
-const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
-const isAssayKit = (document) => document.productType && (document.productType === 'Assay Kits' || document.productType === 'Labware');
+const makeUrlRelative = (url) => {
+  if (url.startsWith('https://www.moleculardevices.com')) {
+    return url.substring(32, url.length);
+  }
+  return url;
+};
 
 /**
  * Special handling for resource document meta data.
@@ -117,6 +125,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Product Category']) {
       meta.Category = resource['Product Category'];
     }
+    if (resource.Category) {
+      meta.Category = resource.Category;
+    }
     if (resource['Product Related Categories']) {
       meta['Related Categories'] = resource['Product Related Categories'];
     }
@@ -171,7 +182,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
     if (resource.Thumbnail) {
       const el = document.createElement('img');
-      el.src = resource.Thumbnail;
+      el.src = makeUrlRelative(resource.Thumbnail);
       if (params.originalURL.indexOf('/events/') > 0) {
         if (!meta.Image) {
           meta.Image = el;
@@ -232,13 +243,6 @@ const createFragmentTable = (document, url) => {
   a.textContent = a.href;
   const cells = [['Fragment'], [a]];
   return WebImporter.DOMUtils.createTable(cells, document);
-};
-
-const makeUrlRelative = (url) => {
-  if (url.startsWith('https://www.moleculardevices.com')) {
-    return url.substring(32, url.length);
-  }
-  return url;
 };
 
 /**
@@ -488,7 +492,7 @@ const transformTabsNav = (document) => {
 const transformTabsSections = (document) => {
   // move the wave section visible on the overview tab into the tab div
   const overviewWaveContent = document.getElementById('overviewTabContent');
-  const overviewTab = document.querySelector('.tab-content .tab-pane#Overview');
+  const overviewTab = document.querySelector('.tab-content .tab-pane#Overview, .tab-content .tab-pane#overview');
   if (overviewTab) {
     if (overviewWaveContent && overviewWaveContent.classList.contains('cover-bg-no-cover')) {
       overviewTab.append(document.createElement('hr'), overviewWaveContent);
@@ -505,7 +509,7 @@ const transformTabsSections = (document) => {
       // eslint-disable-next-line no-nested-ternary
       metadataCells.push(['name', tabConfig ? ('sectionName' in tabConfig ? tabConfig.sectionName : tabConfig.id) : tab.id]);
 
-      const isOverviewTab = tab.id === 'Overview';
+      const isOverviewTab = tab.id.toLowerCase() === 'overview';
       if (isOverviewTab) {
         // add overview tab wave section
         const waveSection = tab.querySelector('section.content-section.cover-bg-no-cover');
@@ -519,8 +523,10 @@ const transformTabsSections = (document) => {
             metadataCells.push(['background', img]);
           }
         }
-        if (isAssayKit(document)) {
-          overviewWaveContent.remove();
+        if (isAssayKit(document) || isApplication(document)) {
+          if (overviewWaveContent) {
+            overviewWaveContent.remove();
+          }
           tab.append(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
         }
       }
@@ -593,7 +599,7 @@ const transformResourcesCarousel = (block, document) => {
 const transformImageGallery = (document) => {
   const imageGallery = document.querySelector('.images-gallery1, .images-gallery');
   if (imageGallery) {
-    imageGallery.querySelectorAll('.row .fst-set, .row.snd-set').forEach((div) => div.remove());
+    imageGallery.querySelectorAll('.row .fst-set, .row.snd-set, .snd-set').forEach((div) => div.remove());
     const imageContainer = imageGallery.querySelector('.modal .carousel');
     if (imageContainer) {
       const cells = [['Image Gallery']];
@@ -1237,23 +1243,21 @@ const transformTechnologyApplications = (document) => {
     .forEach((div) => {
       if (div.childElementCount > 0) {
         div.querySelectorAll('.modal.fade').forEach((modals) => modals.remove());
-        const cells = [['Related Applications (TOC)']];
+        const cells = [['Related Applications']];
+        const hasTOC = div.closest('.horizontal-list-tab').querySelector('.view-display-id-block_15');
+        if (hasTOC) {
+          cells[0] = ['Related Applications (TOC)'];
+          hasTOC.remove();
+        }
         const applications = div.querySelectorAll('li h2');
         if (applications) {
           const linkList = createFragmentList(
             document,
             'Applications',
-            [...applications].map((h2) => h2.textContent.trim())
+            [...applications].map((h2) => h2.textContent.trim()),
           );
           cells.push([linkList]);
         }
-
-        let parentContainer = div.closest('.container');
-        if (parentContainer.closest('.tabbingContainer')) {
-          parentContainer = parentContainer.closest('.tabbingContainer');
-        }
-        parentContainer.querySelectorAll('.views-element-container .metax-apps.view-application-resources, .tabbingContainer .container.greyBg')
-          .forEach((toc) => toc.remove());
 
         const table = WebImporter.DOMUtils.createTable(cells, document);
         const container = div.closest('ul');
@@ -1444,7 +1448,7 @@ export default {
       'footer',
       'nav#block-mobilenavigation',
       'div#resources .tabbingContainer',
-      'div#mediaGallary', // remove the hero media gallery only
+      'body > div#mediaGallary', // remove the hero media gallery only
       '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
       '.skip-link',
@@ -1460,6 +1464,7 @@ export default {
       '.drift-frame-chat',
       '.drift-frame-controller',
       '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
+      '.content-section.cover-bg.curv-footer-top-section.white-text.lab-autm-pages',
       '.video-container .video-ico',
       '#product-image-modal', // TODO
     ]);
