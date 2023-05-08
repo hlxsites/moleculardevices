@@ -653,7 +653,7 @@ const transformImageGallery = (document) => {
       });
 
       const table = WebImporter.DOMUtils.createTable(cells, document);
-      imageContainer.replaceWith(table);
+      imageContainer.closest('.modal').replaceWith(table);
     }
   }
 };
@@ -1025,18 +1025,18 @@ const transformCitations = (document) => {
   if (document.querySelector('.citations')) {
     // unify summary structure
     const summary = document.querySelector('.citations .citation-title-part');
-
-    // transform labels
-    summary.querySelectorAll('span.brand-blue').forEach((span) => {
-      const em = document.createElement('em');
-      em.textContent = span.textContent.trim();
-      span.replaceWith(em);
-    });
-
-    // check for summary parent container on product pages and remove it
-    const parentContainer = summary.closest('.views-element-container');
-    if (parentContainer) {
-      parentContainer.replaceWith(summary);
+    if (summary) {
+      // transform labels
+      summary.querySelectorAll('span.brand-blue').forEach((span) => {
+        const em = document.createElement('em');
+        em.textContent = span.textContent.trim();
+        span.replaceWith(em);
+      });
+      // check for summary parent container on product pages and remove it
+      const parentContainer = summary.closest('.views-element-container');
+      if (parentContainer) {
+        parentContainer.replaceWith(summary);
+      }
     }
 
     document.querySelectorAll('.citations .views-element-container').forEach((citation) => {
