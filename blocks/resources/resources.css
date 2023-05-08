@@ -1,0 +1,11 @@
+.resources {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resources .resource {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
