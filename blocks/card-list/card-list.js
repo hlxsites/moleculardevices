@@ -17,6 +17,7 @@ function filterChanged(carousel) {
   carousel.render();
   carousel.block.querySelectorAll('.card-list-heading').forEach((heading) => {
     heading.parentElement.classList.add('carousel-heading-item');
+    heading.parentElement.classList.remove('carousel-item');
   });
 }
 
@@ -107,8 +108,9 @@ export default async function decorate(block) {
   );
 
   // kind of hackish, but otherwise we'd need to refactor all the carousels
-  block.querySelectorAll('.card-list-heading').forEach((heading) => {
+  carousel.block.querySelectorAll('.card-list-heading').forEach((heading) => {
     heading.parentElement.classList.add('carousel-heading-item');
+    heading.parentElement.classList.remove('carousel-item');
   });
 
   window.addEventListener('hashchange', () => { filterChanged(carousel); });

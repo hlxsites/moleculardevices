@@ -19,7 +19,7 @@ main .card-list .carousel-item.carousel-heading-item {
   padding-bottom: 0;
 }
 
-main .card-list .carousel-item.carousel-heading-item .card-list-heading h2 {
+main .card-list .carousel-heading-item .card-list-heading h2 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -29,7 +29,7 @@ main .card-list .carousel-item {
   padding: 20px 15px 40px;
 }
 
-main .card-list .carousel-item.carousel-heading-item {
+main .card-list .carousel-heading-item {
   width: 100%;
 }
 
@@ -55,11 +55,11 @@ main .card-list .carousel-item.clone {
 
 /* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  .blog .section div.blog-list-wrapper {
+  .section div.card-list {
     width: 100%;
   }
 
-  main .blog-list {
+  main .card-list {
     justify-content: start;
     flex-wrap: nowrap;
     overflow: hidden;
@@ -68,13 +68,17 @@ main .card-list .carousel-item.clone {
     padding: 0 10%;
   }
 
-  main .blog-list .carousel-item {
+  main .card-list .carousel-item {
     flex: 1 0 100%;
     width: 100%;
     padding: 20px 15px 40px;
   }
 
-  main .blog-list .carousel-item.clone {
+  main .card-list .carousel-heading-item {
+    display: none;
+  }
+
+  main .card-list .carousel-item.clone {
     display: block;
   }
 }
