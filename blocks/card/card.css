@@ -48,8 +48,7 @@ main .card-caption {
 }
 
 main .card-caption h3 {
-  font-size: 20px;
-  line-height: 24.1px;
+  font-size: 22px;
   font-weight: normal;
   text-align: left;
   min-height: 49px;
@@ -90,4 +89,15 @@ main .card-caption .button.primary {
 
 main .card-type {
   display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  main .card-thumb {
+    height: 150px;
+    min-height: 150px;
+  }
+
+  main .card-thumb img {
+    height: 150px;
+  }
 }

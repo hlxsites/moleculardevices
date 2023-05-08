@@ -21,7 +21,9 @@ export default async function decorate(block) {
     .limit(9)
     .all();
 
-  const resourceCard = await createCard();
+  const resourceCard = await createCard({
+    defaultButtonText: 'Learn More',
+  });
   await createCarousel(
     block,
     resources,

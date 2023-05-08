@@ -52,6 +52,7 @@ main .resources-carousel .card .card-type {
 @media only screen and (max-width: 767px) {
   main .carousel.resources-carousel {
     width: 100%;
+    padding: 0 10%;
   }
 
   main .resources-carousel .carousel-item {

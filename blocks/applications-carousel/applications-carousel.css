@@ -27,10 +27,9 @@ main .carousel.applications-carousel {
 }
 
 .carousel.applications-carousel .card-caption h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 24px;
   margin-bottom: 8px;
   margin-top: 0;
-  color: var(--text-color);
   min-height: auto;
 }
 
@@ -68,14 +67,19 @@ main .carousel.applications-carousel {
   .applications-carousel .carousel-item {
     width: 50%;
   }
+
+  .carousel.applications-carousel .card-caption h3 {
+    font-size: 18px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-  .applications-carousel .carousel-item {
+  main .carousel.applications-carousel {
     width: 100%;
+    padding: 0 10%;
   }
 
-  main .carousel.applications-carousel {
+  .applications-carousel .carousel-item {
     width: 100%;
   }
 
