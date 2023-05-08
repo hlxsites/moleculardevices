@@ -5,13 +5,13 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  let startDate = getMetadata('start-date');
+  let startDate = getMetadata('event-start');
   if (startDate) {
     startDate = formatDate(startDate);
     // eslint-disable-next-line prefer-destructuring
     startDate = startDate.split(',')[0];
   }
-  let endDate = getMetadata('end-date');
+  let endDate = getMetadata('event-end');
   if (endDate) { endDate = formatDate(endDate); }
   const title = getMetadata('og:title');
   const type = getMetadata('event-type');
