@@ -191,6 +191,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       if (resource['SET ON CATEGORY']) {
         meta['Set On Category'] = resource['SET ON CATEGORY'];
       }
+      if (resource['Parent Application']) {
+        meta['Parent Application'] = resource['Parent Application'];
+      }
     }
 
     if (resource.Thumbnail) {
@@ -1332,7 +1335,7 @@ const transformFeaturedResources = (document) => {
 
 const transformElisaWorkflow = (document) => {
   document.querySelectorAll('.workflow_elisa').forEach((div) => {
-    const cells = [['Elias Workflow']];
+    const cells = [['Application Workflow']];
 
     const heading = div.querySelector('.timeline-start');
     const h2 = document.createElement('h2');
@@ -1460,7 +1463,7 @@ export default {
       'header',
       'footer',
       'nav#block-mobilenavigation',
-      'div#resources .tabbingContainer',
+      //'div#resources .tabbingContainer',
       'body > div#mediaGallary', // remove the hero media gallery only
       '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
