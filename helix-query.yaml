@@ -66,12 +66,15 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
+      productLandingPageOrder:
+        select: head > meta[name="landing-page-order"]
+        value: attribute(el, "content")
       eventStart:
         select: head > meta[property="event-start"]
-        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm")
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
       eventEnd:
         select: head > meta[property="event-end"]
-        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm")
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
       eventType:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
