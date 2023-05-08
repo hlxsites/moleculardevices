@@ -34,7 +34,7 @@ export default async function decorate(block) {
   APPLICATIONS.set(viewAllCategory, []);
   applications.forEach((item) => {
     const itemCategory = getCategory(item);
-    if (!itemCategory) return;
+    if (!itemCategory || itemCategory === '0') return;
 
     if (!APPLICATIONS.has(itemCategory)) {
       const heading = div({ class: 'card-list-heading' },

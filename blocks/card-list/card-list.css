@@ -9,7 +9,7 @@
 main .card-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  /* justify-content: center; */ /* TODO Blogs have it */
   align-items: stretch;
   align-content: stretch;
 }
