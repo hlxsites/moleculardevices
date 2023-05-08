@@ -1330,7 +1330,10 @@ const transformProductCompareTable = (document) => {
 
 const transformProductProvenComplicateFragment = (document) => {
   document.querySelectorAll('.proven-xp-section').forEach((div) => {
-    div.replaceWith(createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance'));
+    const heading = div.querySelector('h2');
+    if (heading && heading.textContent === 'Assure data integrity and compliance with confidence') {
+      div.replaceWith(createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance'));
+    }
   });
 };
 
@@ -1507,6 +1510,7 @@ export default {
       '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
       '.content-section.cover-bg.curv-footer-top-section.white-text.lab-autm-pages',
       '.video-container .video-ico',
+      'img.new-tag', // to be checked
       '#product-image-modal', // TODO
     ]);
 
