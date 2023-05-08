@@ -59,20 +59,12 @@ function getCustomUrl(path, part) {
     return customBreadcrumbs[part].url_path;
   }
 
-  if (customBreadcrumbs[path]) {
-    return customBreadcrumbs[path].url_path;
-  }
-
   return null;
 }
 
 function getName(pageIndex, path, part, current) {
   if (customBreadcrumbs[part]) {
     return customBreadcrumbs[part].name;
-  }
-
-  if (customBreadcrumbs[path]) {
-    return customBreadcrumbs[path].name;
   }
 
   const pg = pageIndex.find((page) => page.path === path);
