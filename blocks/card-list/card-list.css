@@ -14,6 +14,16 @@ main .card-list {
   align-content: stretch;
 }
 
+main .card-list .carousel-item.carousel-heading-item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .card-list .carousel-item.carousel-heading-item .card-list-heading h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 main .card-list .carousel-item {
   width: 32%;
   padding: 20px 15px 40px;

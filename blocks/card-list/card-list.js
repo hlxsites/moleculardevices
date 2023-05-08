@@ -43,7 +43,7 @@ function createViewAllCategory() {
     .map((link) => link.href.split('#')[1]);
 
   let viewAllCardList = [];
-  for(category of categoryOrder) {
+  for(const category of categoryOrder) {
     if (!APPLICATIONS.has(category))
       continue;
 
@@ -66,7 +66,9 @@ export default async function decorate(block) {
     (technology) => technology.applicationCategory && technology.applicationCategory !== '0'
   );
 
-  const cardRenderer = await createCard();
+  const cardRenderer = await createCard({
+    defaultButtonText: 'Learn more',
+  });
 
   APPLICATIONS.set(viewAllCategory, []);
   [...applications, ...technologies].forEach((item) => {
