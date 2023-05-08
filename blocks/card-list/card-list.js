@@ -21,7 +21,17 @@ function filterChanged(carousel) {
 }
 
 function getCategory(item) {
-  return item.category;
+  return item.applicationCategory && item.applicationCategory !== '0'
+    ? item.applicationCategory
+    : item.category;
+}
+
+function compareApplicationCards(card1, card2) {
+  if (card1.querySelector('h2')) return -1;
+  if (card2.querySelector('h2')) return 1;
+
+  return card1.querySelector('h3').textContent
+    .localeCompare(card2.querySelector('h3').textContent);
 }
 
 export default async function decorate(block) {
@@ -29,10 +39,18 @@ export default async function decorate(block) {
     .sheet('applications')
     .all();
 
+  let technologies = await ffetch('/query-index.json')
+  .sheet('technology')
+  .all();
+
+  technologies = technologies.filter(
+    (technology) => technology.applicationCategory && technology.applicationCategory !== '0'
+  );
+
   const cardRenderer = await createCard();
 
   APPLICATIONS.set(viewAllCategory, []);
-  applications.forEach((item) => {
+  [...applications, ...technologies].forEach((item) => {
     const itemCategory = getCategory(item);
     if (!itemCategory || itemCategory === '0') return;
 
@@ -42,14 +60,21 @@ export default async function decorate(block) {
       );
 
       APPLICATIONS.set(itemCategory, [ heading ]);
-      APPLICATIONS.get(viewAllCategory).push(heading);
     }
 
     const renderedItem = cardRenderer.renderItem(item);
-
     APPLICATIONS.get(itemCategory).push(renderedItem);
-    APPLICATIONS.get(viewAllCategory).push(renderedItem);
   });
+
+  for (const [_, categoryCards] of APPLICATIONS) {
+    categoryCards.sort(compareApplicationCards);
+  }
+
+  let viewAllCardList = [];
+  for(const [_, categoryCards] of APPLICATIONS) {
+    viewAllCardList = [...viewAllCardList, ...categoryCards];
+  }
+  APPLICATIONS.set(viewAllCategory, viewAllCardList);
 
   const carousel = await createCarousel(
     block,
@@ -62,7 +87,7 @@ export default async function decorate(block) {
       renderItem: (item) => item,
     },
   );
- 
+
   // kind of hackish, but otherwise we'd need to refactor all the carousels
   block.querySelectorAll('.card-list-heading').forEach((heading) => {
     heading.parentElement.classList.add('carousel-heading-item');

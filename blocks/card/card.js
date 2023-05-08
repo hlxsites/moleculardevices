@@ -30,6 +30,8 @@ class Card {
   }
 
   renderItem(item) {
+    const cardTitle = item.h1 || item.title; // TODO test all card types
+
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
       itemImage = item.thumbnail;
@@ -59,7 +61,7 @@ class Card {
         item.type ? div({ class: 'card-type' }, item.type) : '',
         div({ class: 'card-caption' },
           h3(
-            this.titleLink ? a({ href: item.path }, item.title) : item.title,
+            this.titleLink ? a({ href: item.path }, cardTitle) : cardTitle,
           ),
           item.description && item.description !== '0'
             ? p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
