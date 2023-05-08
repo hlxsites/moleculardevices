@@ -172,9 +172,29 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
         meta['Product Type'] = resource['PRODUCT TYPE'];
         document.productType = resource['PRODUCT TYPE'];
       }
-
       if (resource['SHOPIFY HANDLES']) {
         document.shopfiyHandler = resource['SHOPIFY HANDLES'];
+      }
+      if (resource['PRODUCT ASSAY KITS']) {
+        meta['Product Assay Kits'] = resource['PRODUCT ASSAY KITS'];
+      }
+      if (resource['IS SERIES MAIN PRODUCT'] && resource['IS SERIES MAIN PRODUCT'].toLowerCase() === 'yes') {
+        meta['Series Main Product'] = resource['IS SERIES MAIN PRODUCT'];
+      }
+      if (resource['SERIES PRODUCT']) {
+        meta['Series Product'] = resource['SERIES PRODUCT'];
+      }
+      if (resource['SHOW IN PRODUCT FINDER'] && resource['SHOW IN PRODUCT FINDER'].toLowerCase() === 'yes') {
+        meta['Show in Product Finder'] = resource['SHOW IN PRODUCT FINDER'];
+      }
+      if (resource['PRODUCT WEIGHT']) {
+        meta['Product Weight'] = resource['PRODUCT WEIGHT'];
+      }
+      if (resource['PRODUCT LANDING PAGE ORDER']) {
+        meta['Landing Page Order'] = resource['PRODUCT LANDING PAGE ORDER'];
+      }
+      if (resource['BUNDLE PRODUCTS']) {
+        meta['Bundle Products'] = resource['BUNDLE PRODUCTS'];
       }
     }
 
