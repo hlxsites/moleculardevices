@@ -22,7 +22,7 @@ export default async function decorate(block) {
     .all();
 
   const resourceCard = await createCard({
-    defaultButtonText: 'Learn More',
+    defaultButtonText: 'Learn more',
   });
   await createCarousel(
     block,
