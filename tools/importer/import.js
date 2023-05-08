@@ -15,7 +15,7 @@
 const TABS_MAPPING = [
   { id: 'overview', sectionName: 'Overview' },
   { id: 'Resources' },
-  { id: 'Orderingoptions', sectionName: 'Ordering Options'},
+  { id: 'Orderingoptions', sectionName: 'Ordering Options' },
   { id: 'Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
@@ -26,10 +26,6 @@ const TABS_MAPPING = [
   { id: 'Citations' },
   {
     id: 'RelatedProducts',
-    sectionName: 'Related Products & Services',
-  },
-  {
-    id: 'relatedproducts',
     sectionName: 'Related Products & Services',
   },
   {
@@ -131,6 +127,12 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Product Related Categories']) {
       meta['Related Categories'] = resource['Product Related Categories'];
     }
+    if (resource['PRODUCT FAMILY']) {
+      meta['Product Family'] = resource['PRODUCT FAMILY'];
+    }
+    if (resource['LINE OF BUSINESS']) {
+      meta['Line of Business'] = resource['LINE OF BUSINESS'];
+    }
 
     if (params.originalURL.indexOf('/resources/citations/') > 0) {
       if (resource['Citation Number']) {
@@ -162,7 +164,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       }
     }
 
-    if (document.type === 'Products') {
+    if (isProduct(document)) {
       if (resource.PID) {
         meta.PID = resource.PID;
       }
@@ -170,16 +172,27 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
         meta['Product Type'] = resource['PRODUCT TYPE'];
         document.productType = resource['PRODUCT TYPE'];
       }
-      if (resource['PRODUCT FAMILY']) {
-        meta['Product Family'] = resource['PRODUCT FAMILY'];
-      }
-      if (resource['LINE OF BUSINESS']) {
-        meta['Line of Business'] = resource['LINE OF BUSINESS'];
-      }
+
       if (resource['SHOPIFY HANDLES']) {
         document.shopfiyHandler = resource['SHOPIFY HANDLES'];
       }
     }
+
+    if (isApplication(document)) {
+      if (resource['SHORT DESCRIPTION']) {
+        meta['Card Description'] = resource['SHORT DESCRIPTION'];
+      }
+      if (resource['APPLICATION TYPE']) {
+        meta['Application Type'] = resource['APPLICATION TYPE'];
+      }
+      if (resource['SHOW IN RESOURCES']) {
+        meta['Resource Category'] = resource['SHOW IN RESOURCES'];
+      }
+      if (resource['SET ON CATEGORY']) {
+        meta['Set On Category'] = resource['SET ON CATEGORY'];
+      }
+    }
+
     if (resource.Thumbnail) {
       const el = document.createElement('img');
       el.src = makeUrlRelative(resource.Thumbnail);
