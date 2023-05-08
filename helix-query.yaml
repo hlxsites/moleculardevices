@@ -27,6 +27,9 @@ indices:
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
+      applicationCategory:
+        select: head > meta[name="application-category"]
+        value: attribute(el, "content")
       publisher:
         select: head > meta[name="publisher"]
         value: attribute(el, "content")
