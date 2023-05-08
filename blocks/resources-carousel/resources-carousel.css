@@ -27,6 +27,7 @@ main .resources-carousel .card .card-type {
   text-transform: uppercase;
   color: #6eb43f;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1199px) {

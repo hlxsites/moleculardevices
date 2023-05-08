@@ -12,7 +12,7 @@ const relatedResourcesExcludedTypes = ['Interactive Demo'];
 
 export default async function decorate(block) {
   const template = getMetadata('template');
-  const title = document.querySelector('.hero .container h1').textContent;
+  const title = document.querySelector('.hero-advanced .container h1').textContent;
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
