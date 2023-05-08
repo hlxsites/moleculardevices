@@ -347,6 +347,14 @@ const cleanUp = (document) => {
   if (isProduct(document)) {
     document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((wave) => wave.remove());
   }
+
+  // remove empty media gallery with not items
+  const mediaGallery = document.querySelector('div#mediaGallary');
+  if (mediaGallery) {
+    if (mediaGallery.querySelector('.carousel-inner') && mediaGallery.querySelector('.carousel-inner').childElementCount === 0) {
+      mediaGallery.remove();
+    }
+  }
 };
 
 const extractBackgroundImage = (content) => {
@@ -1483,7 +1491,6 @@ export default {
       'header',
       'footer',
       'nav#block-mobilenavigation',
-      //'div#resources .tabbingContainer',
       'body > div#mediaGallary', // remove the hero media gallery only
       '.blog-details .hero-desc ul', // blog author & date which we read from meta data
       '.breadcrumb',
