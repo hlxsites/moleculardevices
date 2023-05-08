@@ -68,7 +68,7 @@ indices:
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm a")
       eventEnd:
         select: head > meta[property="end-date"]
-        value: parseTimestamp(attribute(el, "content"))
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm a")
       eventType:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
