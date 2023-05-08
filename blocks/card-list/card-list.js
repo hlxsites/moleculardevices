@@ -34,6 +34,25 @@ function compareApplicationCards(card1, card2) {
     .localeCompare(card2.querySelector('h3').textContent);
 }
 
+function createViewAllCategory() {
+  const categoryOrder = [...document.querySelectorAll('.card-list-filter a')]
+    .filter((link) => !!link.href
+        && link.href.includes('#')
+        && !link.href.includes(`#${viewAllCategory}`)
+    )
+    .map((link) => link.href.split('#')[1]);
+
+  let viewAllCardList = [];
+  for(category of categoryOrder) {
+    if (!APPLICATIONS.has(category))
+      continue;
+
+    viewAllCardList.push(...APPLICATIONS.get(category));
+  }
+
+  APPLICATIONS.set(viewAllCategory, viewAllCardList);
+}
+
 export default async function decorate(block) {
   const applications = await ffetch('/query-index.json')
     .sheet('applications')
@@ -51,8 +70,9 @@ export default async function decorate(block) {
 
   APPLICATIONS.set(viewAllCategory, []);
   [...applications, ...technologies].forEach((item) => {
-    const itemCategory = getCategory(item);
+    let itemCategory = getCategory(item);
     if (!itemCategory || itemCategory === '0') return;
+    itemCategory = itemCategory.replaceAll(' ', '-');
 
     if (!APPLICATIONS.has(itemCategory)) {
       const heading = div({ class: 'card-list-heading' },
@@ -70,11 +90,7 @@ export default async function decorate(block) {
     categoryCards.sort(compareApplicationCards);
   }
 
-  let viewAllCardList = [];
-  for(const [_, categoryCards] of APPLICATIONS) {
-    viewAllCardList = [...viewAllCardList, ...categoryCards];
-  }
-  APPLICATIONS.set(viewAllCategory, viewAllCardList);
+  createViewAllCategory();
 
   const carousel = await createCarousel(
     block,
