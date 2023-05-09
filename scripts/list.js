@@ -3,7 +3,7 @@ import {
 } from './lib-franklin.js';
 import { formatDate, unixDateToString } from './scripts.js';
 import {
-  article, button, div, nav, p,
+  a, article, button, div, nav, p, span, ul, li,
 } from './dom-helpers.js';
 
 const classList = 'list';
@@ -11,6 +11,8 @@ const classListItems = 'items';
 const classListItem = 'item';
 const classItemCite = 'cite';
 const classItemTitle = 'title';
+const classItemKeywords = 'keyword-list';
+const classItemDescription = 'description';
 const classPanelTitle = 'panel-title';
 const classFilter = 'filter';
 const classFilterItem = 'filter-item';
@@ -54,30 +56,43 @@ function toggleFilter(event) {
 }
 
 function renderListItem(item, idx) {
-  const listItemElement = article({ class: classListItem });
-  const hasImage = (!item.image.startsWith(defaultImage));
-  if (hasImage) {
-    const imageElement = createOptimizedPicture(item.image, item.title, (idx === 0), [
-      { width: '500' },
-    ]);
-    listItemElement.innerHTML = `
-      <div class="image">
-        <a href="${item.path}" title="${item.title}">
-          ${imageElement.outerHTML}
-        </a>
-      </div>`;
+  let dt = (item.date && item.date !== '0') ? formatDate(unixDateToString(item.date)) : '';
+  if (!dt && item.eventStart && item.eventEnd) {
+    const startDate = (item.eventStart && item.eventStart !== '0') ? formatDate(unixDateToString(item.eventStart)).split(',')[0] : '';
+    const endDate = (item.eventEnd && item.eventEnd !== '0') ? formatDate(unixDateToString(item.eventEnd)) : '';
+    dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
-  const dt = formatDate(unixDateToString(item.date));
-  const citation = (item.publisher && item.publisher !== '0') ? `${dt} | ${item.publisher}` : dt;
-  const viewMoreLnk = (item.viewMoreText) ? `<a class='view-more' title="${item.viewMoreText}" href="${item.path}">${item.viewMoreText}</a>` : '';
-  listItemElement.innerHTML += `
-    <div class="content">
-      <p class="${classItemCite}">${citation}</p>
-      <p><a class="${classItemTitle}" title="${item.title}" href="${item.path}">${item.title}</a></p>
-      ${item.description} ${viewMoreLnk}
-    </div>
-  `;
-  return listItemElement;
+
+  const hasImage = (!item.image.startsWith(defaultImage));
+  return article({ class: classListItem },
+    (hasImage) ? div({ class: 'image' },
+      a({
+        href: item.path,
+        title: item.title,
+      }, createOptimizedPicture(item.image, item.title, (idx === 0), [{ width: '500' }])),
+    ) : '',
+    div({ class: 'content' },
+      p({ class: classItemCite }, (item.publisher && item.publisher !== '0') ? `${dt} | ${item.publisher}` : dt),
+      p(
+        a({
+          class: classItemTitle,
+          title: item.title,
+          href: item.path,
+        }, item.title),
+      ),
+      (item.keywords && item.keywords !== '0')
+        ? ul({ class: classItemKeywords },
+          ...item.keywords.map((keyword) => li({ class: classListItem }, keyword),
+          ),
+        ) : '',
+      (item.description && item.description !== '0') ? span({ class: classItemDescription }, item.description) : '',
+      (item.viewMoreText) ? a({
+        class: 'view-more',
+        title: item.viewMoreText,
+        href: item.path,
+      }, ` ${item.viewMoreText}`) : '',
+    ),
+  );
 }
 
 function createListItems(options) {

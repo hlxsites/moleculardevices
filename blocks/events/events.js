@@ -5,6 +5,12 @@ import createList from '../../scripts/list.js';
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterTitle = toClassName(entry.title);
   entry.filterPath = toClassName(entry.path);
+  entry.date = '0';
+  const keywords = [];
+  if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
+  if (entry.eventRegion !== '0') keywords[keywords.length] = entry.eventRegion;
+  if (entry.eventAddress !== '0') keywords[keywords.length] = entry.eventAddress;
+  entry.keywords = keywords;
   if (!showDescription) {
     entry.description = '';
   }
@@ -36,7 +42,7 @@ async function createOverview(
 
 async function fetchEvents() {
   return ffetch('/query-index.json')
-    .filter(({ type }) => (type === 'Event'))
+    .sheet('events')
     .filter(({ date }) => (new Date(date * 1000) < new Date()))
     .all();
 }
