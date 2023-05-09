@@ -48,7 +48,7 @@ const isAssayKit = (document) => document.productType && (document.productType =
 const isApplication = (document) => document.type && document.type === 'Application';
 
 const formatDate = (date, includeTime = false) => {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' };
   if (includeTime) {
     options.hour = '2-digit';
     options.minute = '2-digit';
@@ -153,14 +153,11 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       }
       const startDate = new Date(resource['START DATE']);
       if (startDate) {
-        meta['Start Date'] = formatDate(startDate, true);
+        meta['Event Start'] = formatDate(startDate, true);
       }
       const endDate = new Date(resource['END DATE']);
       if (endDate) {
-        meta['End Date'] = formatDate(endDate, true);
-      }
-      if (resource['']) {
-        meta['End Date'] = resource['Event Address'];
+        meta['Event End'] = formatDate(endDate, true);
       }
     }
 
@@ -1162,9 +1159,9 @@ const transformProductOptions = (document) => {
 const transformProductOrderOptions = (document) => {
   const div = document.querySelector('div.ordering_wrap');
   if (div) {
-    const cells = [['Product Ordering Options']];
+    const cells = [['Ordering Options']];
     if (document.shopfiyHandler) {
-      cells.push([ document.shopfiyHandler]);
+      cells.push([document.shopfiyHandler]);
     }
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
