@@ -1087,6 +1087,10 @@ main .section[aria-hidden="true"] {
   visibility: hidden;
 }
 
+.list > .filter .select:last-of-type {
+  margin-bottom: 10px;
+}
+
 /* ------ */
 
 .sticky {

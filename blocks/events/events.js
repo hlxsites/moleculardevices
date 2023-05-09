@@ -3,8 +3,8 @@ import ffetch from '../../scripts/ffetch.js';
 import createList from '../../scripts/list.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterTitle = toClassName(entry.title);
-  entry.filterPath = toClassName(entry.path);
+  entry.filterEventType = toClassName(entry.eventType);
+  entry.filterEventRegion = toClassName(entry.eventRegion);
   entry.date = '0';
   const keywords = [];
   if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
@@ -21,8 +21,18 @@ function prepareEntry(entry, showDescription, viewMoreText) {
 
 function createFilters(options, createDropdown) {
   return [
-    createDropdown(Array.from(new Set(options.data.map((n) => n.filterTitle))), options.activeFilters.title, 'title', 'Select Title'),
-    createDropdown(Array.from(new Set(options.data.map((n) => n.filterPath))), options.activeFilters.path, 'path', 'Select Path'),
+    createDropdown(
+      Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
+      options.activeFilters.eventType,
+      'event-type',
+      'Select Event Type',
+    ),
+    createDropdown(
+      Array.from(new Set(options.data.map((n) => n.eventRegion))).filter((val) => val !== '0'),
+      options.activeFilters.eventRegion,
+      'event-region',
+      'Select Region',
+    ),
   ];
 }
 
@@ -41,24 +51,31 @@ async function createOverview(
 }
 
 async function fetchEvents() {
+  const showFutureEvents = document.querySelector('.events.future');
+  const showArchivedEvents = document.querySelector('.events.archive');
+  const now = Date.now();
   return ffetch('/query-index.json')
     .sheet('events')
-    .filter(({ date }) => (new Date(date * 1000) < new Date()))
+    .filter(({ eventEnd }) => (showArchivedEvents && eventEnd * 1000 < now)
+        || (showFutureEvents && eventEnd * 1000 >= now))
     .all();
 }
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
+  const title = block.querySelector('h1');
+  const relatedLink = block.querySelector('a');
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
-    showDescription: false,
+    title: title ? title.innerHTML : '',
     panelTitle: 'Filter By :',
+    relatedLink,
+    showDescription: false,
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('title', '');
-  options.activeFilters.set('path', '');
-  // options.activeFilters.set('region', '');
+  options.activeFilters.set('event-type', '');
+  options.activeFilters.set('event-region', '');
   options.activeFilters.set('page', 1);
 
   options.data = await fetchEvents();

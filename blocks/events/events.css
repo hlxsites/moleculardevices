@@ -1,1 +1,3 @@
-/* news template style */
+.section.events-container .events-wrapper {
+    padding-top: 0;
+}

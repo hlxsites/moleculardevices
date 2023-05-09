@@ -3,7 +3,7 @@ import {
 } from './lib-franklin.js';
 import { formatDate, unixDateToString } from './scripts.js';
 import {
-  a, article, button, div, nav, p, span, ul, li,
+  a, article, button, div, h2, nav, p, span, ul, li,
 } from './dom-helpers.js';
 
 const classList = 'list';
@@ -34,9 +34,8 @@ function filterData(options) {
     if (type !== 'page') {
       const filterAttribute = toCamelCase(`filter_${type}`);
       data = data
-        .filter((n) => toClassName(
-          n[filterAttribute].toString()).includes(options.activeFilters.get(type),
-        ));
+        .filter((n) => (!value || n[filterAttribute].toString() === value),
+        );
     }
   });
   return data;
@@ -101,6 +100,9 @@ function createListItems(options) {
   const items = data.slice(start, start + options.limitPerPage);
 
   const itemsContainer = div({ class: classListItems });
+  if (options.title) {
+    itemsContainer.appendChild(h2({ class: 'event-title' }, options.title));
+  }
   items.forEach((item, idx) => {
     itemsContainer.appendChild(renderListItem(item, idx));
   });
@@ -191,7 +193,7 @@ function createDropdown(options, selected, name, placeholder) {
   options.forEach((option) => {
     const optionTag = p({
       class: classFilterItem,
-      name: toClassName(option),
+      name: toClassName(option.toString()),
     }, option,
     );
     if (option === placeholder) {
@@ -271,7 +273,7 @@ async function switchFilter(event, options) {
   if (elem.classList.contains('reset')) {
     options.activeFilters.set(filterType, '');
   } else {
-    options.activeFilters.set(filterType, elem.innerHTML);
+    options.activeFilters.set(filterType, elem.getAttribute('name'));
   }
   options.activeFilters.set('page', 1);
   options.filteredData = filterData(options);
@@ -297,6 +299,10 @@ function renderFilters(options, createFilters) {
     filter.append(
       ...filters,
     );
+
+    if (options.relatedLink) {
+      filter.append(p({}, options.relatedLink));
+    }
 
     const menuItems = filter.querySelectorAll(`.${classFilterSelect} .${classDropdownMenu} .${classFilterItem}`);
     menuItems.forEach((menuItem) => {
