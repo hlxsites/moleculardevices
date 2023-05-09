@@ -57,11 +57,6 @@ main .carousel.applications-carousel {
   main .carousel-wrapper.applications-carousel-wrapper {
     width: 940px;
   }
-
-  .carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
-    height: 150px;
-    min-height: 150px;
-  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -90,5 +85,10 @@ main .carousel.applications-carousel {
 
   main .applications-carousel-wrapper .carousel-nav-button {
     display: none;
+  }
+
+  .carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
+    height: 150px;
+    min-height: 150px;
   }
 }
