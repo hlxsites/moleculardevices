@@ -50,7 +50,7 @@ function renderMoreLink(text, link) {
 
 async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
-    .filter(({ type }) => (type === 'Event'))
+    .sheet('events')
     .slice(0, 3)
     .all();
   container.innerHTML = '';
