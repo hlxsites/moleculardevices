@@ -12,7 +12,7 @@ const relatedResourcesExcludedTypes = ['Interactive Demo'];
 
 export default async function decorate(block) {
   const template = getMetadata('template');
-  const title = document.querySelector('.hero-advanced .container h1').textContent;
+  const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
@@ -23,6 +23,7 @@ export default async function decorate(block) {
 
   const resourceCard = await createCard({
     defaultButtonText: 'Learn more',
+    descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
   await createCarousel(
     block,
@@ -48,4 +49,12 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
+  // if(block.classList.contains('list')) {
+  //   resources.forEach(resource => {
+  //     block.append(resourceCard.renderItem(resource));
+  //   });
+  // } else {
+    
+  // }
+  // return block;
 }

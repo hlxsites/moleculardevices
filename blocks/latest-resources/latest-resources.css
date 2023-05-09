@@ -1,0 +1,88 @@
+.latest-resources-container {
+  text-align: center;
+  padding-top: 90px;
+}
+
+main .carousel-wrapper.latest-resources-wrapper {
+  width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+main .carousel.latest-resources {
+  width: 90%;
+  padding: 50px 0;
+}
+
+main .carousel.latest-resources.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  width: 100%;
+}
+
+main .carousel-wrapper.latest-resources-wrapper.list .carousel-nav-button {
+  display: none;
+}
+
+main .latest-resources.list .carousel-item.clone {
+  display: none;
+}
+
+main .latest-resources .carousel-item {
+  display: block;
+  width: 33.3%;
+  padding: 20px 15px 40px;
+  margin: 0;
+}
+
+main .latest-resources .card .card-type {
+  display: block;
+  text-align: left;
+  text-transform: uppercase;
+  color: #6eb43f;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 1199px) {
+  main .carousel-wrapper.latest-resources-wrapper {
+    width: 940px;
+  }
+
+  main .latest-resources .card-thumb, main .latest-resources .card-thumb img {
+    height: 150px;
+    min-height: 150px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .latest-resources-container {
+    padding-top: 30px;
+  }
+
+  main .carousel-wrapper.latest-resources-wrapper {
+    width: 100%;
+  }
+
+  main .carousel.latest-resources .carousel-item {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .carousel.latest-resources {
+    width: 100%;
+    padding: 0 10%;
+  }
+
+  main .carousel.latest-resources .carousel-item {
+    width: 100%;
+  }
+
+  main .carousel-wrapper.latest-resources-wrapper .carousel-nav-button {
+    display: none;
+  }
+}

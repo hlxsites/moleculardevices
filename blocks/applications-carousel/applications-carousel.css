@@ -16,9 +16,9 @@ main .carousel.applications-carousel {
   margin: 0;
 }
 
-.carousel.applications-carousel .card-thumb {
-  width: 100%;
+.carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
   height: 190px;
+  min-height: 190px;
 }
 
 .app-carousel-details {
@@ -55,7 +55,12 @@ main .carousel.applications-carousel {
 
 @media only screen and (max-width: 1200px) {
   main .carousel-wrapper.applications-carousel-wrapper {
-    width: 1199px;
+    width: 940px;
+  }
+
+  .carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
+    height: 150px;
+    min-height: 150px;
   }
 }
 
