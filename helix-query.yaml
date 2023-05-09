@@ -27,8 +27,8 @@ indices:
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
-      applicationCategory:
-        select: head > meta[name="application-category"]
+      technologyType:
+        select: head > meta[name="technology-type"]
         value: attribute(el, "content")
       publisher:
         select: head > meta[name="publisher"]
@@ -50,6 +50,9 @@ indices:
         value: attribute(el, "content")
       cardC2A:
         select: head > meta[name="card-c2a"]
+        value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
         value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
