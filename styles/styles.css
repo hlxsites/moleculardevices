@@ -827,24 +827,14 @@ main .section.wave .default-content-wrapper p:first-of-type {
   margin-bottom: 10px;
 }
 
-.product .section.tabs h2,
-.section.tabs h3  {
+.product .section.tabs h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
 }
 
-.product .section.tabs h3 {
-  font-size: 24px;
-  font-family: var(--ff-proxima-xbold);
-}
-
 .product .section.tabs > div > h3 {
   margin: 45px 15px 15px;
-}
-
-.product .section.tabs[aria-labelledby=overview] h3 + p {
-  font-size: 18px;
 }
 
 main .section .default-content-wrapper h2:only-child {
