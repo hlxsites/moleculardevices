@@ -36,6 +36,7 @@ main .carousel.applications-carousel {
 .carousel.applications-carousel .card-description {
   font-size: var(--body-font-size-xs);
   color: var(--text-color);
+  margin-bottom: 10px;
 }
 
 .carousel.applications-carousel .card .button-container {
