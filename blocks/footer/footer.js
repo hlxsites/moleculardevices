@@ -1,7 +1,9 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import { a, i, p } from '../../scripts/dom-helpers.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import {
+  a, div, i, iframe, p,
+} from '../../scripts/dom-helpers.js';
+import { formatDate, loadScript, unixDateToString } from '../../scripts/scripts.js';
 
 function toggleNewsEvents(container, target) {
   if (!target.parentElement.classList.contains('on')) {
@@ -50,7 +52,7 @@ function renderMoreLink(text, link) {
 
 async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
-    .filter(({ type }) => (type === 'Event'))
+    .sheet('events')
     .slice(0, 3)
     .all();
   container.innerHTML = '';
@@ -91,6 +93,42 @@ async function buildNewsEvents(container) {
   renderEvents(container.querySelector('.events-list'));
 
   addEventListeners(container);
+}
+
+function iframeResizeHandler(formUrl, id, container) {
+  container.querySelector('iframe').addEventListener('load', () => {
+    if (formUrl) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, id);
+    }
+  });
+}
+
+async function buildNewsletter(container) {
+  loadScript('../../scripts/iframeResizer.min.js');
+  const newsletterId = 'enewsletter';
+  const formId = 'enewsletterSubscribeForm';
+  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
+  const form = (
+    div({
+      id: newsletterId,
+      class: 'hubspot-iframe-wrapper',
+      loading: 'lazy',
+    },
+    div(
+      iframe({
+        id: formId,
+        src: formUrl,
+        loading: 'lazy',
+      }),
+    ),
+    )
+  );
+  // add submission form from hubspot
+  container.querySelector(`#${newsletterId}`).replaceWith(form);
+  iframeResizeHandler(formUrl, `#${formId}`, container);
+  // remove terms from plain footer, they are provided as part of the iframe
+  container.querySelector(`#${newsletterId} + p`).remove();
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
@@ -134,8 +172,8 @@ export default async function decorate(block) {
     }
   });
 
-  const footerNewsEvents = block.querySelector('.footer-news-events');
-  buildNewsEvents(footerNewsEvents);
+  buildNewsEvents(block.querySelector('.footer-news-events'));
+  buildNewsletter(block.querySelector('.footer-newsletter-form'));
 
   block.append(footer);
   await decorateIcons(block);
