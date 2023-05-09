@@ -19,20 +19,10 @@ const TABS_MAPPING = [
   { id: 'Order' },
   { id: 'options', sectionName: 'Options' },
   { id: 'workflow', sectionName: 'Workflow' },
-  {
-    id: 'CompatibleProducts',
-    sectionName: 'Compatible Products & Services',
-  },
+  { id: 'CompatibleProducts', sectionName: 'Compatible Products & Services' },
   { id: 'Citations' },
-  {
-    id: 'RelatedProducts',
-    sectionName: 'Related Products & Services',
-  },
-  {
-    id: 'specs',
-    sectionName: 'Specifications & Options',
-    fragment: '/fragments/product-specifications',
-  },
+  { id: 'RelatedProducts', sectionName: 'Related Products & Services' },
+  { id: 'specs', sectionName: 'Specifications & Options' },
 ];
 
 const META_SHEET_MAPPING = [
@@ -624,7 +614,7 @@ const transformResourcesCarousel = (block, document) => {
   const recentResources = block.querySelector('.apps-recent-res');
   if (recentResources) {
     recentResources.before(document.createElement('hr'));
-    const cells = [['Resources Carousel']];
+    const cells = [['Latest Resources']];
     const carousel = recentResources.querySelector('.view-content');
     if (carousel) {
       const table = WebImporter.DOMUtils.createTable(cells, document);
@@ -1156,6 +1146,15 @@ const transformProductOptions = (document) => {
   }
 };
 
+const transformProductSpecs = (document) => {
+  const div = document.querySelector('div.tab-pane#specs .specsTable');
+  if (div) {
+    const cells = [['Specifications']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    div.replaceWith(table);
+  }
+};
+
 const transformProductOrderOptions = (document) => {
   const div = document.querySelector('div.ordering_wrap');
   if (div) {
@@ -1234,48 +1233,16 @@ const transformProductAssayData = (document) => {
   }
 };
 
-const transformProductTab = (document, tabConfig) => {
-  const div = document.querySelector(`div.tab-pane#${tabConfig.id}`);
-  if (div && tabConfig.blockName) {
-    const heading = div.querySelector('h2');
-    div.before(heading);
-    const cells = [[tabConfig.blockName]];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
-  }
-};
-
-const transformProductTabs = (document) => {
-  TABS_MAPPING.forEach((tab) => transformProductTab(document, tab));
-};
-
 const transformResources = (document) => {
   const div = document.querySelector('div.tab-pane#Resources, div.tab-pane#resources');
-
   if (div) {
-    [...div.querySelectorAll('.views-element-container')].forEach((child, index) => {
-      if (index === 0) {
-        const cellsFilter = [['Card Filter']];
-        const links = child.querySelector('ul');
-        if (links) {
-          cellsFilter.push([links]);
-        }
-        const tableFilter = WebImporter.DOMUtils.createTable(cellsFilter, document);
-        child.replaceWith(tableFilter);
-      }
+    const container = div.querySelector('.tabbingContainer');
+    const headline = div.querySelector('h2');
+    const cellsResources = [['Resources']];
+    const tableResources = WebImporter.DOMUtils.createTable(cellsResources, document);
+    container.after(headline, tableResources);
 
-      if (index === 1) {
-        const cellsResources = [['Resources']];
-        const tableResources = WebImporter.DOMUtils.createTable(cellsResources, document);
-        child.replaceWith(tableResources);
-      }
-
-      if (index === 2) {
-        const cellsVideoResources = [['Video Resources']];
-        const tableVideoResources = WebImporter.DOMUtils.createTable(cellsVideoResources, document);
-        child.replaceWith(tableVideoResources);
-      }
-    });
+    div.querySelectorAll('.content-section').forEach((child) => child.remove());
   }
 };
 
@@ -1336,7 +1303,7 @@ const transformProductProvenComplicateFragment = (document) => {
 
 const transformOtherResourcesList = (document) => {
   document.querySelectorAll('.application-other-resources').forEach((div) => {
-    const cells = [['More Resources']];
+    const cells = [['Latest Resources (List)']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   });
@@ -1544,12 +1511,12 @@ export default {
       transformTabsNav,
       transformTabsSections,
       transformProductOverview,
+      transformProductSpecs,
       transformProductOptions,
       transformProductOrderOptions,
       transformProductRelatedProducts,
       transformProductApplications,
       transformProductAssayData,
-      transformProductTabs,
       transformProductCompareTable,
       transformProductProvenComplicateFragment,
       transformOtherResourcesList,
