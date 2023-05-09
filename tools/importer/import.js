@@ -31,11 +31,13 @@ const META_SHEET_MAPPING = [
   { url: '/applications/', sheet: 'applications' },
   { url: '/events/', sheet: 'events' },
   { url: '/resources/citations/', sheet: 'citations' },
+  { url: '/technology', sheet: 'technologies'}
 ];
 
 const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
 const isAssayKit = (document) => document.productType && (document.productType === 'Assay Kits' || document.productType === 'Labware');
 const isApplication = (document) => document.type && document.type === 'Application';
+const isTechnology = (document) => document.type && document.type === 'Technology';
 
 const formatDate = (date, includeTime = false) => {
   const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' };
@@ -91,6 +93,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Tagged to Applications']) {
       meta['Related Applications'] = resource['Tagged to Applications'];
     }
+    if (resource['Tagged Topics']) {
+      meta['Related Topics'] = resource['Tagged Topics'];
+    }
     if (resource['Gated/Ungated'] === 'Yes') {
       meta.Gated = 'Yes';
       const gatedUrl = resource['Gated URL'];
@@ -105,6 +110,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['Card CTA']) {
       meta['Card C2A'] = resource['Card CTA'];
     }
+    if (resource['SHORT DESCRIPTION']) {
+      meta['Card Description'] = resource['SHORT DESCRIPTION'];
+    }
     if (resource['COVEO TITLE']) {
       meta['Search Title'] = resource['COVEO TITLE'];
     }
@@ -113,6 +121,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
     if (resource.Category) {
       meta.Category = resource.Category;
+    }
+    if (resource['Sub Category'] && resource['Sub Category'] !== resource.Category) {
+      meta['Sub Category'] = resource['Sub Category'];
     }
     if (resource['Product Related Categories']) {
       meta['Related Categories'] = resource['Product Related Categories'];
@@ -152,9 +163,6 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
 
     if (isProduct(document)) {
-      if (resource.PID) {
-        meta.PID = resource.PID;
-      }
       if (resource['PRODUCT TYPE']) {
         meta['Product Type'] = resource['PRODUCT TYPE'];
         document.productType = resource['PRODUCT TYPE'];
@@ -178,7 +186,8 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
         meta['Product Weight'] = resource['PRODUCT WEIGHT'];
       }
       if (resource['PRODUCT LANDING PAGE ORDER']) {
-        meta['Landing Page Order'] = resource['PRODUCT LANDING PAGE ORDER'];
+        const order = parseInt(resource['PRODUCT LANDING PAGE ORDER'], 10);
+        meta['Landing Page Order'] = order + 1;
       }
       if (resource['BUNDLE PRODUCTS']) {
         meta['Bundle Products'] = resource['BUNDLE PRODUCTS'];
@@ -186,9 +195,6 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
 
     if (isApplication(document)) {
-      if (resource['SHORT DESCRIPTION']) {
-        meta['Card Description'] = resource['SHORT DESCRIPTION'];
-      }
       if (resource['APPLICATION TYPE']) {
         meta['Application Type'] = resource['APPLICATION TYPE'];
       }
@@ -203,8 +209,17 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       }
     }
 
+    if (isTechnology(document)) {
+      if (resource['TECHNOLOGY TYPE']) {
+        meta['Technology Type'] = resource['TECHNOLOGY TYPE'];
+      }
+      if (resource['Tagged Topics']) {
+        meta['Set On Category'] = resource['Tagged Topics'];
+      }
+    }
+
     if (resource.Thumbnail) {
-      const el = document.createElement('img');
+      const el = document.  createElement('img');
       el.src = makeUrlRelative(resource.Thumbnail);
       if (params.originalURL.indexOf('/events/') > 0) {
         if (!meta.Image) {
@@ -1252,7 +1267,7 @@ const transformTechnologyApplications = (document) => {
       if (div.childElementCount > 0) {
         div.querySelectorAll('.modal.fade').forEach((modals) => modals.remove());
         const cells = [['Related Applications']];
-        const hasTOC = div.closest('.horizontal-list-tab').querySelector('.view-display-id-block_15');
+        const hasTOC = div.closest('.horizontal-list-tab').querySelector('.view-display-id-block_15') || document.querySelector('.technology-section.overview-block')
         if (hasTOC) {
           cells[0] = ['Related Applications (TOC)'];
           hasTOC.remove();
