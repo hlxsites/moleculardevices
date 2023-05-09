@@ -49,12 +49,4 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
-  // if(block.classList.contains('list')) {
-  //   resources.forEach(resource => {
-  //     block.append(resourceCard.renderItem(resource));
-  //   });
-  // } else {
-    
-  // }
-  // return block;
 }
