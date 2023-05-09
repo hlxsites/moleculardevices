@@ -837,10 +837,6 @@ main .section.wave .default-content-wrapper p:first-of-type {
   margin: 45px 15px 15px;
 }
 
-.product .section.tabs[aria-labelledby=overview] h3 + p {
-  font-size: 18px;
-}
-
 main .section .default-content-wrapper h2:only-child {
   margin-top: 0;
   margin-bottom: 0;
