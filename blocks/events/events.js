@@ -70,6 +70,7 @@ export default async function decorate(block) {
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     title: title ? title.innerHTML : '',
     panelTitle: 'Filter By :',
+    noResult: 'No Event found !',
     relatedLink,
     showDescription: false,
   };

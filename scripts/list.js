@@ -3,7 +3,7 @@ import {
 } from './lib-franklin.js';
 import { formatDate, unixDateToString } from './scripts.js';
 import {
-  a, article, button, div, h2, nav, p, span, ul, li,
+  a, article, button, div, h2, h3, nav, p, span, ul, li,
 } from './dom-helpers.js';
 
 const classList = 'list';
@@ -20,6 +20,7 @@ const classFilterOpen = 'open';
 const classFilterSelect = 'select';
 const classDropdownToggle = 'dropdown-toggle';
 const classDropdownMenu = 'dropdown-menu';
+const classNoResult = 'no-result';
 const classPagination = 'pagination';
 const classPagerItem = 'pager-item';
 const classPagerNav = 'pager-nav-item';
@@ -106,6 +107,9 @@ function createListItems(options) {
   items.forEach((item, idx) => {
     itemsContainer.appendChild(renderListItem(item, idx));
   });
+  if (items.length === 0) {
+    itemsContainer.appendChild(h3({ class: classNoResult }, options.noResult));
+  }
   return itemsContainer;
 }
 
