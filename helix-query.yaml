@@ -24,6 +24,12 @@ indices:
       type:
         select: head > meta[name="template"]
         value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      applicationCategory:
+        select: head > meta[name="application-category"]
+        value: attribute(el, "content")
       publisher:
         select: head > meta[name="publisher"]
         value: attribute(el, "content")
@@ -60,35 +66,24 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
-  events:
-    include:
-      - '/events/**'
-    target: /events/query-index.json
-    properties:
-      title:
-        select: head > meta[property="og:title"]
+      productLandingPageOrder:
+        select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")
-      startDate:
-        select: head > meta[property="start-date"]
-        value: parseTimestamp(attribute(el, "content"), "YYYYMMDD")
-      endDate:
-        select: head > meta[property="end-date"]
-        value: attribute(el, "content")
-      type:
+      eventStart:
+        select: head > meta[name="event-start"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
+      eventEnd:
+        select: head > meta[name="event-end"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
+      eventType:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
-      region:
+      eventRegion:
         select: head > meta[name="event-region"]
         value: attribute(el, "content")
-      address:
+      eventAddress:
         select: head > meta[name="event-address"]
         value: attribute(el, "content")
-      date:
-        select: head > meta[name="publication-date"]
-        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
-      lastModified:
-        select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
   citations:
     include:
       - '/resources/citations/**'
