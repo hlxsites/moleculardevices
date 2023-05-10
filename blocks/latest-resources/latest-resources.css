@@ -1,6 +1,10 @@
-.latest-resources-container {
+.product .latest-resources-container {
   text-align: center;
-  padding-top: 90px;
+}
+
+.latest-resources-container .latest-resources-button {
+  text-align: center;
+  padding: 50px 0 100px;
 }
 
 main .carousel-wrapper.latest-resources-wrapper {
@@ -11,7 +15,7 @@ main .carousel-wrapper.latest-resources-wrapper {
 
 main .carousel.latest-resources {
   width: 90%;
-  padding: 50px 0;
+  padding: 0;
 }
 
 main .carousel.latest-resources.list {
