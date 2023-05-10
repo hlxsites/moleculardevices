@@ -11,7 +11,7 @@ main .carousel-wrapper.latest-resources-wrapper {
 
 main .carousel.latest-resources {
   width: 90%;
-  padding: 50px 0;
+  padding: 0;
 }
 
 main .carousel.latest-resources.list {
@@ -34,7 +34,7 @@ main .latest-resources.list .carousel-item.clone {
 main .latest-resources .carousel-item {
   display: block;
   width: 33.3%;
-  padding: 20px 15px 40px;
+  padding: 20px 15px;
   margin: 0;
 }
 
