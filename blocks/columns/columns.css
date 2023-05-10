@@ -189,30 +189,17 @@
   padding-bottom: 0;
 }
 
+.columns.heading-large > div h3 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
 .section .columns.collaboration > div h3 {
   font-size: var(--heading-font-size-l);
   color: var(--text-green);
   font-family: inherit;
   margin-top: 20px;
   margin-bottom: 10px;
-}
-
-.columns.layout-20-80.extended-width > div > div h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.section.columns-container .columns.columns-2-cols > div h3 {
-  font-size: 36px;
-  margin-bottom: 18px;
-}
-
-.columns.layout-20-80.extended-width.green-separator > div > div h3{
-  margin-bottom: 10px;
-}
-
-.columns.layout-20-80.extended-width.green-separator > div > div p{
-  margin-top: 0;
 }
 
 .columns.layout-20-80.partners-list-columns ul {
