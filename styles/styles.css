@@ -875,8 +875,8 @@ main .section.featured-asset h2 {
   color: var(--text-green);
 }
 
-main .section.featured-asset h3 {
-  font-size: 25px !important;
+main .section.featured-asset .columns h3 {
+  font-size: 25px;
 }
 
 main .section.featured-asset .columns > div {
