@@ -786,9 +786,7 @@ main .section.features-section .button-container {
   }
 }
 
-/* WAVE sections */
-
-/* Common */
+/* Wave sections */
 main .section.wave {
   background-repeat: no-repeat;
   background-position: top center;
@@ -838,6 +836,7 @@ main .section.wave p {
   margin: 0;
 }
 
+/* Product page styles */
 .product .section.tabs > div > h3 + p {
   margin: 0 15px;
 }
@@ -845,6 +844,53 @@ main .section.wave p {
 main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
+}
+
+/* Featured Asset section */
+main .section.featured-asset {
+  background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
+  background-position: center top;
+  background-size: cover;
+  color: var(--text-white);
+  padding-bottom: 100px;
+}
+
+main .section.featured-asset .button-container {
+  margin-top: 2em;
+}
+
+main .section.featured-asset a.button.secondary, main .section.featured-asset button.secondary {
+  border: 2px solid var(--button-color);
+  color: var(--button-color);
+}
+
+main .section.featured-asset a.button.secondary:hover, main .section.featured-asset a.button.secondary:focus, main .section.featured-asset button.secondary:hover, main .section.featured-asset button.secondary:focus {
+  color: var(--link-hover-color);
+}
+
+main .section.featured-asset h2 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 36px;
+  color: var(--text-green);
+}
+
+main .section.featured-asset h3 {
+  font-size: 25px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  main .section.featured-asset {
+    padding: 0;
+  }
+
+  main .section.featured-asset > div {
+    padding: 30px 15px;
+    overflow: hidden;
+  }
+
+  main .section.featured-asset img {
+    margin-top: 30px;
+  }
 }
 
 .product .section.tabs h2 {
@@ -898,7 +944,6 @@ main .section.wave.bluegreen::after {
 }
 
 /* Parallax section */
-
 main .section.background-parallax {
   background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
   background-position: center top;
