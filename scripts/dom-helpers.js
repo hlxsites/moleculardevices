@@ -80,3 +80,4 @@ export function iframe(...items) { return domEl('iframe', ...items); }
 export function nav(...items) { return domEl('nav', ...items); }
 export function fieldset(...items) { return domEl('fieldset', ...items); }
 export function article(...items) { return domEl('article', ...items); }
+export function strong(...items) { return domEl('strong', ...items); }

@@ -1,7 +1,8 @@
 import ffetch from '../../scripts/ffetch.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { decorateButtons, getMetadata } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { div, p, strong, a } from '../../scripts/dom-helpers.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
@@ -9,6 +10,13 @@ const relatedResourcesHeaders = {
   Application: 'relatedApplications',
 };
 const relatedResourcesExcludedTypes = ['Interactive Demo'];
+
+function onViewAllClick(e) {
+  e.preventDefault();
+  const resourcesLink = document.querySelector('.page-tabs li > a[href="#resources"]');
+  resourcesLink.click();
+  window.scroll(0, 0);
+}
 
 export default async function decorate(block) {
   const template = getMetadata('template');
@@ -49,4 +57,17 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
+  const viewAllBtn = div({ class: 'default-content-wrapper' },
+    p({ class: 'button-container' },
+      strong(
+        a({
+          href: '#resources',
+          class: 'button primary',
+          onclick: onViewAllClick,
+        }, 'View all Resources'),
+      ),
+    ),
+  );
+  decorateButtons(viewAllBtn);
+  block.parentElement.parentElement.append(viewAllBtn);
 }
