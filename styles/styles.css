@@ -624,6 +624,26 @@ main .citations-container > .default-content-wrapper {
   }
 }
 
+ul.keyword-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.keyword-list li {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+ul.keyword-list li:not(:last-of-type)::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 10px;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -1057,6 +1077,10 @@ main .section[aria-hidden="true"] {
   visibility: hidden;
 }
 
+.list > .filter .select:last-of-type {
+  margin-bottom: 10px;
+}
+
 /* ------ */
 
 .sticky {
@@ -1072,7 +1096,8 @@ main .section[aria-hidden="true"] {
 .news .social-share-container::after,
 .publication-container::after,
 .publication .social-share-container::after,
-.event main::after {
+.event main::after,
+.events-container::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
