@@ -630,7 +630,7 @@ const transformResourcesCarousel = (block, document) => {
   if (recentResources) {
     recentResources.before(document.createElement('hr'));
     const cells = [['Latest Resources']];
-    const carousel = recentResources.querySelector('.view-content');
+    const carousel = recentResources.querySelector('.container');
     if (carousel) {
       const table = WebImporter.DOMUtils.createTable(cells, document);
       carousel.replaceWith(table);
