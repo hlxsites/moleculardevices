@@ -57,7 +57,7 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
-  const viewAllBtn = div({ class: 'default-content-wrapper' },
+  const viewAllBtn = div({ class: 'latest-resources-button' },
     p({ class: 'button-container' },
       strong(
         a({
