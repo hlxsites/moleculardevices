@@ -2,7 +2,9 @@ import ffetch from '../../scripts/ffetch.js';
 import { decorateButtons, getMetadata } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { div, p, strong, a } from '../../scripts/dom-helpers.js';
+import {
+  div, p, strong, a,
+} from '../../scripts/dom-helpers.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
