@@ -4,20 +4,20 @@ const classActive = 'active';
 const verticalMediaQuery = '(max-width: 768px)';
 
 function getEmptyHeight(tabPane) {
-  const tabPaneInside = tabPane.querySelector('.accordion-tab-pane-inside');
+  const tabPaneInside = tabPane.querySelector('.tabs-vertical-pane-inside');
   const tabPaneInsideCS = window.getComputedStyle(tabPaneInside);
-  const tabBtn = tabPane.querySelector('.accordion-tab-btn');
+  const tabBtn = tabPane.querySelector('.tabs-vertical-btn');
   const emptyHeight = (parseInt(tabPaneInsideCS.paddingTop, 10) * 2) + tabBtn.offsetHeight;
   return emptyHeight;
 }
 
 function setHeights(block) {
-  const tabPanes = block.querySelectorAll('.accordion-tab-pane');
+  const tabPanes = block.querySelectorAll('.tabs-vertical-pane');
   [...tabPanes].forEach((tabPane) => {
     if (window.matchMedia(verticalMediaQuery).matches) {
       const emptyHeight = getEmptyHeight(tabPane);
       if (tabPane.classList.contains('active')) {
-        const height = `${(tabPane.querySelector('.accordion-tab-content').offsetHeight + emptyHeight)}px`;
+        const height = `${(tabPane.querySelector('.tabs-vertical-content').offsetHeight + emptyHeight)}px`;
         tabPane.style.height = height;
       } else {
         tabPane.style.height = `${emptyHeight}px`;
@@ -39,11 +39,11 @@ function toggleItem(item, on) {
       if (icon) icon.classList.replace(iconMinus, iconPlus);
     }
   }
-  setHeights(item.closest('.accordion.block'));
+  setHeights(item.closest('.tabs-vertical.block'));
 }
 
 function toggleNav(block, target, i) {
-  if (!(target.closest('.accordion-tab-list') && target.closest('.active'))) {
+  if (!(target.closest('.tabs-vertical-list') && target.closest('.active'))) {
     const actives = block.querySelectorAll(`.${classActive}`);
     if (actives.length) {
       [...actives].forEach((active) => {
@@ -54,7 +54,7 @@ function toggleNav(block, target, i) {
         }
       });
     } else {
-      toggleItem(target.closest('.accordion-tab-pane'), true);
+      toggleItem(target.closest('.tabs-vertical-pane'), true);
     }
   }
 }
@@ -84,27 +84,27 @@ export default function decorate(block) {
   ul.classList.add('nav-tabs');
 
   const tabList = block.querySelector('div');
-  tabList.classList.add('accordion-tab-list');
+  tabList.classList.add('tabs-vertical-list');
   tabList.querySelector('div').appendChild(ul);
 
   const tabMainContent = document.createElement('div');
-  tabMainContent.classList.add('accordion-tab-main-content');
+  tabMainContent.classList.add('tabs-vertical-main-content');
 
   [...block.children].forEach((row, i) => {
     // first row is for navigation, start from second row
     if (i) {
       const tabPane = document.createElement('div');
-      tabPane.classList.add('accordion-tab-pane');
+      tabPane.classList.add('tabs-vertical-pane');
 
       const picture = row.querySelector('picture');
       tabPane.appendChild(picture);
 
-      row.classList.add('accordion-tab-pane-inside');
+      row.classList.add('tabs-vertical-pane-inside');
       tabPane.appendChild(row);
 
       const div = row.querySelector('div');
       const button = document.createElement('button');
-      button.classList.add('accordion-tab-btn');
+      button.classList.add('tabs-vertical-btn');
       button.innerHTML = `<i class='fa ${iconPlus}'></i>${div.textContent}`;
       button.addEventListener('click', (e) => {
         toggleNav(block, e.target, i - 1);
@@ -112,13 +112,13 @@ export default function decorate(block) {
       div.remove();
       row.prepend(button);
 
-      row.querySelector('div').classList.add('accordion-tab-content');
+      row.querySelector('div').classList.add('tabs-vertical-content');
       tabMainContent.appendChild(tabPane);
     }
   });
 
   // set first tab active
-  const firstTabPane = tabMainContent.querySelector('.accordion-tab-pane');
+  const firstTabPane = tabMainContent.querySelector('.tabs-vertical-pane');
   firstTabPane.classList.add(classActive);
   const firstI = firstTabPane.querySelector('i');
   firstI.classList.remove(iconPlus);
