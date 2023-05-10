@@ -1,98 +1,59 @@
-import { loadCSS } from '../../scripts/lib-franklin.js';
-import {
-  div, i, p,
-} from '../../scripts/dom-helpers.js';
+import { createIcon, decorateIcons } from '../../scripts/lib-franklin.js';
 
-class Accordion {
-  constructor(block, data) {
-    // Set defaults
-    this.cssFiles = ['/blocks/accordion/accordion.css'];
-    this.closeContentOnClick = true;
-    this.iconInactive = 'fa-chevron-right';
-    this.iconActive = 'fa-chevron-down';
-    this.iconPosition = 'right';
-
-    // Set information
-    this.block = block;
-    this.data = data || [...block.children];
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  renderItem(item, isActive) {
-    return (
-      div({ class: `item${(isActive) ? ' active' : ''}` },
-        div({ class: 'header' },
-          i({ class: `fa ${(isActive) ? this.iconActive : this.iconInactive} ${this.iconPosition}`, 'aria-hidden': true }),
-          item.header),
-        div({ class: 'content' },
-          p({}, item.content),
-        ),
-      )
-    );
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  deactivateItem(block) {
-    const activeItem = block.querySelector('.item.active');
-    if (activeItem) activeItem.classList.remove('active');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  hideContent(block) {
-    const activeItem = block.querySelector('.item.active .content');
-    if (activeItem) activeItem.classList.remove('active');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  async handleClick(block, closeContentOnClick) {
-    const items = block.querySelectorAll('.item');
-    items.forEach((item) => {
-      const header = item.querySelector('.header');
-      header.addEventListener('click', (event) => {
-        this.deactivateItem(block);
-        if (closeContentOnClick) this.hideContent(block);
-        event.target.parentNode.classList.add('active');
-      });
-    });
-  }
-
-  async render() {
-    let defaultCSSPromise;
-    if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-      defaultCSSPromise = new Promise((resolve) => {
-        this.cssFiles.forEach((cssFile) => {
-          loadCSS(cssFile, (e) => resolve(e));
-        });
-      });
-    }
-
-    const accordion = div({ class: 'accordion' });
-    this.block.innerHTML = '';
-    this.data.forEach((item, idx) => {
-      accordion.append(this.renderItem(item, idx === 0));
-    });
-    this.block.append(accordion);
-
-    this.handleClick(this.block, this.closeContentOnClick);
-
-    await defaultCSSPromise;
-  }
-}
-
-export async function createAccordion(block, data) {
-  const accordion = new Accordion(block, data);
-  await accordion.render();
-  return accordion;
-}
+const openAttribute = 'aria-expanded';
 
 export default async function decorate(block) {
-  const items = [];
-  [...block.children].forEach((entry) => {
-    const item = {
-      header: entry.querySelector('h3').innerHTML,
-      content: entry.querySelector('p').innerHTML,
-    };
-    items.push(item);
+  const isTypeNumbers = block.classList.contains('numbers');
+  const accordionItems = block.querySelectorAll(':scope > div > div');
+  accordionItems.forEach((accordionItem, idx) => {
+    const nodes = accordionItem.children;
+
+    let number = '';
+    if (isTypeNumbers) {
+      number = document.createElement('span');
+      number.classList.add('number');
+      number.innerHTML = (idx + 1);
+    }
+
+    const titleText = nodes[0];
+    const rest = Array.prototype.slice.call(nodes, 1);
+
+    const titleDiv = document.createElement('div');
+    if (number) titleDiv.append(number);
+    titleDiv.appendChild(titleText);
+    titleDiv.appendChild(createIcon('fa-chevron-right'));
+
+    titleDiv.classList.add('accordion-trigger');
+
+    const content = document.createElement('div');
+    content.classList.add('accordion-content');
+    rest.forEach((elem) => {
+      content.appendChild(elem);
+    });
+
+    const newItem = document.createElement('div');
+    newItem.appendChild(titleDiv);
+    newItem.appendChild(content);
+
+    newItem.classList.add('accordion-item');
+    if (idx === 0) newItem.setAttribute(openAttribute, '');
+    decorateIcons(newItem);
+
+    accordionItem.replaceWith(newItem);
   });
-  await createAccordion(block, items);
+
+  const triggers = block.querySelectorAll('.accordion-trigger');
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const wasOpen = trigger.parentElement.hasAttribute(openAttribute);
+
+      triggers.forEach((_trigger) => {
+        _trigger.parentElement.removeAttribute(openAttribute);
+      });
+
+      if (!wasOpen) {
+        trigger.parentElement.setAttribute(openAttribute, '');
+      }
+    });
+  });
 }

@@ -124,6 +124,18 @@ export function toCamelCase(name) {
 }
 
 /**
+ * Returns a Franklin icon span (that will be expanded by decorateIcons)
+ * @param {string} name The icon file name (minus ".svg")
+ * @returns {HTMLSpanElement}
+ */
+export function createIcon(name) {
+  const icon = document.createElement('span');
+  icon.classList.add('icon', `icon-${name}`);
+
+  return icon;
+}
+
+/**
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
  */
