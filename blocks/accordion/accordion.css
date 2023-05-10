@@ -1,0 +1,53 @@
+.accordion .header {
+  cursor: pointer;
+  margin: 2px 0 0 0;
+  padding: 0.5em 0.5em 0.5em 0.7em;
+}
+
+.accordion .item:not(.active) .header {
+  background-color: #f6f6f6;
+  color: #454545;
+  border: 1px solid #c5c5c5;
+  border-top-right-radius: 3px;
+}
+
+.accordion.blue .item.active .header {
+  background-color: #0066a4;
+  color: var(--text-white);
+  border: 1px solid #0066a4;
+  border-top-right-radius: 3px;
+}
+
+.accordion.green .item.active .header {
+  background-color: #6eb43f;
+  color: var(--text-white);
+  border: 1px solid #0066a4;
+  border-top-right-radius: 3px;
+}
+
+.accordion .item .header i {
+  font-size: 0.8em;
+  padding-right: 10px;
+}
+
+.accordion .item .header i.right {
+  float: right;
+  padding-right: 0;
+  padding-left: 10px;
+}
+
+.accordion .item .content {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 1em 2.2em;
+  border-top: 0;
+}
+
+.accordion .item.active .content {
+  display: block;
+}
+
+.accordion .item:not(.active) .content {
+  display: none;
+}
