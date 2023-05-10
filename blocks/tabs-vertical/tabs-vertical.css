@@ -1,50 +1,50 @@
-main .accordion-container {
-  --accordion-heading-font-size-xl: 36px;
-  --accordion-heading-font-size-l: 24px;
-  --accordion-heading-font-size-m: 18px;
-  --accordion-background-color: #000;
+main .tabs-vertical-container {
+  --tabs-vertical-heading-font-size-xl: 36px;
+  --tabs-vertical-heading-font-size-l: 24px;
+  --tabs-vertical-heading-font-size-m: 18px;
+  --tabs-vertical-background-color: #000;
 }
 
-main .accordion-container .accordion-wrapper {
+main .tabs-vertical-container .tabs-vertical-wrapper {
   width: 100%;
   max-width: unset;
   padding-left: 0;
   padding-right: 0;
 }
 
-.accordion-tab-list,
-.accordion-tab-main-content .accordion-tab-pane {
+.tabs-vertical-list,
+.tabs-vertical-main-content .tabs-vertical-pane {
   position: relative;
 }
 
-.accordion-tab-main-content {
-    background-color: var(--accordion-background-color);
+.tabs-vertical-main-content {
+    background-color: var(--tabs-vertical-background-color);
     color: var(--text-white);
     text-align: left;
 }
 
-.accordion-tab-main-content p {
+.tabs-vertical-main-content p {
     line-height: 1.5;
 }
 
-.accordion-tab-main-content h3 {
+.tabs-vertical-main-content h3 {
   font-family: var(--ff-proxima-light);
 }
 
-.accordion-tab-main-content .button.secondary {
+.tabs-vertical-main-content .button.secondary {
   border: 1px solid #fff;
   color: var(--text-white);
   padding: 16px 30px;
   margin-top: 30px;
 }
 
-.accordion-tab-main-content .button.secondary:hover {
+.tabs-vertical-main-content .button.secondary:hover {
   background-color: var(--button-bg-color);
   border-color: var(--button-bg-color);
   color: var(--text-white);
 }
 
-.accordion-tab-main-content > .accordion-tab-pane > picture img {
+.tabs-vertical-main-content > .tabs-vertical-pane > picture img {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -56,36 +56,36 @@ main .accordion-container .accordion-wrapper {
 }
 
 @media (min-width: 768px) {
-  .accordion-tab-list {
+  .tabs-vertical-list {
     float: left;
     min-width: 30%;
     border-right: 3px solid #fff;
     padding: 54px 0 54px 24px;
   }
 
-  .accordion-tab-main-content {
+  .tabs-vertical-main-content {
     float: right;
     min-width: 70%;
     display: flex;
   }
 
-  .accordion-tab-list,
-  .accordion-tab-main-content {
+  .tabs-vertical-list,
+  .tabs-vertical-main-content {
     min-height: 500px;
   }
 
-  .accordion {
+  .tabs-vertical {
     display: -webkit-box;
     display: flex;
   }
 
-  .accordion-tab-pane-inside {
+  .tabs-vertical-pane-inside {
     padding: 54px 24px;
     width: calc(100vw * 0.7);
     position:relative;
   }
 
-  .accordion-tab-list picture img {
+  .tabs-vertical-list picture img {
     position: absolute;
     left: 0;
     top: 0;
@@ -94,11 +94,11 @@ main .accordion-container .accordion-wrapper {
     height: 100%;
   }
 
-  .accordion-tab-list ul {
+  .tabs-vertical-list ul {
     position: relative;
   }
 
-  .accordion-tab-list .nav-tabs {
+  .tabs-vertical-list .nav-tabs {
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: end;
@@ -113,8 +113,8 @@ main .accordion-container .accordion-wrapper {
     padding-left: 0;
   }
 
-  .accordion-tab-list .nav-tabs li a,
-  .accordion-tab-list .nav-tabs li a:focus {
+  .tabs-vertical-list .nav-tabs li a,
+  .tabs-vertical-list .nav-tabs li a:focus {
     color: var(--text-white);
     background: transparent;
     border: 0;
@@ -125,41 +125,41 @@ main .accordion-container .accordion-wrapper {
     line-height: 1.39;
   }
 
-  .accordion-tab-list .nav-tabs li:not(:first-child) a {
+  .tabs-vertical-list .nav-tabs li:not(:first-child) a {
     border-bottom: 1px solid #fff;
   }
 
-  .accordion-tab-list .nav-tabs li:first-child a {
-    font-size: var(--accordion-heading-font-size-l);
+  .tabs-vertical-list .nav-tabs li:first-child a {
+    font-size: var(--tabs-vertical-heading-font-size-l);
   }
 
-  .accordion-tab-list .nav-tabs li:hover a,
-  .accordion-tab-list .nav-tabs li.active a {
+  .tabs-vertical-list .nav-tabs li:hover a,
+  .tabs-vertical-list .nav-tabs li.active a {
     background-color: rgba(255 255 255 / 30%);
   }
 
-  .accordion-tab-list .nav-tabs li.active a {
+  .tabs-vertical-list .nav-tabs li.active a {
     font-family: var(--ff-proxima-xbold);
     cursor: unset;
   }
 
-  .accordion-tab-main-content h3 {
-    font-size: var(--accordion-heading-font-size-xl);
+  .tabs-vertical-main-content h3 {
+    font-size: var(--tabs-vertical-heading-font-size-xl);
     padding-top: 16px;
     margin-bottom: 24px;
   }
 
-  .accordion-tab-main-content p {
+  .tabs-vertical-main-content p {
     line-height: 1.5;
     margin-top: 0;
     margin-bottom: 10px;
   }
 
-  .accordion-tab-main-content p.button-container {
+  .tabs-vertical-main-content p.button-container {
     margin-bottom: 0;
   }
 
-  .accordion-tab-main-content .accordion-tab-pane {
+  .tabs-vertical-main-content .tabs-vertical-pane {
     opacity: 1;
     display: block;
     overflow: hidden;
@@ -171,72 +171,72 @@ main .accordion-container .accordion-wrapper {
     float:left;
   }
 
-  .accordion-tab-main-content .accordion-tab-pane.active {
+  .tabs-vertical-main-content .tabs-vertical-pane.active {
     width: 100%;
   }
 
-  .accordion-tab-btn {
+  .tabs-vertical-btn {
     display:none;
   }
 }
 
 @media (min-width: 992px) {
-  .accordion-tab-list .nav-tabs {
+  .tabs-vertical-list .nav-tabs {
     padding-left: 40px;
   }
 
-  .accordion-tab-list {
+  .tabs-vertical-list {
     padding: 100px 0 100px 32px;
   }
 
-  .accordion-tab-pane-inside {
+  .tabs-vertical-pane-inside {
     padding: 100px 32px;
   }
 
-  .accordion-tab-content {
+  .tabs-vertical-content {
     max-width: 45%;
 }
 }
 
 @media (min-width: 1200px) {
-  .accordion-tab-list {
+  .tabs-vertical-list {
     min-width: 35%;
   }
 
-  .accordion-tab-main-content {
+  .tabs-vertical-main-content {
     min-width: 65%;
   }
 
-  .accordion-tab-pane-inside {
+  .tabs-vertical-pane-inside {
     width: calc(100vw * 0.65);
   }
 
-  .accordion-tab-list .nav-tabs {
+  .tabs-vertical-list .nav-tabs {
     padding-left: 90px;
   }
 
-  .accordion-tab-list .nav-tabs li:not(:first-child) {
+  .tabs-vertical-list .nav-tabs li:not(:first-child) {
     margin-left: 80px;
   }
 }
 
 @media (max-width: 767px) {
-  .accordion-tab-list {
+  .tabs-vertical-list {
     display: none;
   }
 
-  .accordion-tab-pane {
+  .tabs-vertical-pane {
     border-bottom: 1px solid #fff;
     transition: height 0.8s ease-in-out;
     overflow: hidden;
     height: 72px;
   }
 
-  .accordion-tab-pane.active {
+  .tabs-vertical-pane.active {
     height: auto;
   }
 
-  .accordion-tab-content {
+  .tabs-vertical-content {
     position:relative;
     display: block;
     overflow: hidden;
@@ -244,15 +244,15 @@ main .accordion-container .accordion-wrapper {
     margin-top: 5px;
   }
 
-  .accordion-tab-pane.active .accordion-tab-content {
+  .tabs-vertical-pane.active .tabs-vertical-content {
     height: auto;
   }
 
-  .accordion-tab-btn {
+  .tabs-vertical-btn {
     position: relative;
     background: transparent;
     padding: 0;
-    font-size: var(--accordion-heading-font-size-m);
+    font-size: var(--tabs-vertical-heading-font-size-m);
     margin: 0;
     outline: 0;
     display: block;
@@ -264,34 +264,34 @@ main .accordion-container .accordion-wrapper {
     line-height: inherit;
   }
 
-  .accordion-tab-pane.active .accordion-tab-btn {
+  .tabs-vertical-pane.active .tabs-vertical-btn {
     color: var(--button-bg-color);
   }
 
-  .accordion-tab-btn i {
+  .tabs-vertical-btn i {
     margin-right: 12px;
   }
 
-  .accordion-tab-pane-inside {
+  .tabs-vertical-pane-inside {
     padding: 24px;
   }
 
-  .accordion-tab-main-content p {
+  .tabs-vertical-main-content p {
     margin-top: 10px;
     margin-bottom: 0;
   }
 
-  .accordion-tab-main-content p.button-container {
+  .tabs-vertical-main-content p.button-container {
     margin-top: 0;
   }
 
-  .accordion-tab-main-content h3 {
-    font-size: var(--accordion-heading-font-size-l);
+  .tabs-vertical-main-content h3 {
+    font-size: var(--tabs-vertical-heading-font-size-l);
     padding-top: 16px;
     margin-bottom: 16px;
   }
 
-  .accordion-tab-main-content .button.secondary {
+  .tabs-vertical-main-content .button.secondary {
     padding: 16px 24px;
     margin-top: 40px;
   }
