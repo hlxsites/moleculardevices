@@ -869,6 +869,7 @@ main .section.featured-asset a.button.secondary:hover, main .section.featured-as
 }
 
 main .section.featured-asset h2 {
+  margin-top: 0;
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
   color: var(--text-green);
@@ -876,6 +877,10 @@ main .section.featured-asset h2 {
 
 main .section.featured-asset h3 {
   font-size: 25px !important;
+}
+
+main .section.featured-asset .columns > div {
+  align-items: unset;
 }
 
 @media only screen and (max-width: 767px) {
