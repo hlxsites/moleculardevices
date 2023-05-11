@@ -474,7 +474,7 @@ const transformHero = (document) => {
 
   // detect the waved "ebook" style hero used on most gates pages plus some others
   document.querySelectorAll('.ebook-banner.wave').forEach((hero) => {
-    const cells = [['Hero wave']];
+    const cells = [['Hero (wave)']];
     const heroContent = hero.querySelector('.mol-content');
     const backgroundUrl = extractBackgroundImage(hero);
     if (backgroundUrl) {
