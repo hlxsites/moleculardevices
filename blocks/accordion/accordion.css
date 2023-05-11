@@ -1,4 +1,4 @@
-.accordion-trigger {
+.accordion .accordion-trigger {
   display: flex;
   background-color: #f6f6f6;
   color: #454545;
@@ -9,22 +9,22 @@
   padding: 0.5em 0.5em 0.5em 0.7em;
 }
 
-.accordion-trigger h2, 
-.accordion-trigger h3 {
+.accordion .accordion-trigger h2, 
+.accordion .accordion-trigger h3 {
   font-family: var(--ff-proxima-regular);
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-[aria-expanded] .accordion-trigger {
+.accordion [aria-expanded] .accordion-trigger {
   background-color: var(--background-color-blue);
   color: var(--text-white);
   border: 1px solid var(--background-color-blue);
   border-top-right-radius: 3px;
 }
 
-.accordion-trigger .number {
+.accordion .accordion-trigger .number {
   background-color: var(--background-color-green);
   border: 1px solid #fff;
   border-radius: 100%;
@@ -39,40 +39,40 @@
   font-weight: bold;
 }
 
-.numbers [aria-expanded] .accordion-trigger {
+.accordion .numbers [aria-expanded] .accordion-trigger {
   background-color: var(--background-color-green);
   border: 1px solid var(--background-color-green);
 }
 
-.numbers .accordion-item:not([aria-expanded]) .accordion-trigger {
+.accordion .numbers .accordion-item:not([aria-expanded]) .accordion-trigger {
   color: var(--background-color-green);
 }
 
-.accordion-trigger i,
-.accordion-content a i {
+.accordion .accordion-trigger i,
+.accordion .accordion-content a i {
   font-size: 0.8em;
   padding-left: 8px;
   margin: auto;
 }
 
-[aria-expanded] .accordion-trigger i {
+.accordion [aria-expanded] .accordion-trigger i {
   transform: rotate(90deg);
   padding-right: 10px;
 }
 
-.accordion-trigger > h2,
-.accordion-trigger > h3 {
+.accordion .accordion-trigger > h2,
+.accordion .accordion-trigger > h3 {
   display: inline-flex;
   width: calc(100% - 40px);
 }
 
-.numbers .accordion-trigger > h2,
-.numbers .accordion-trigger > h3 {
-  width: calc(82% - 29px);
+.accordion .numbers .accordion-trigger > h2,
+.accordion .numbers .accordion-trigger > h3 {
+  width: calc(92% - 40px);
   margin: auto 0;
 }
 
-.accordion-content {
+.accordion .accordion-content {
   display: none;
   overflow: hidden;
   background-color: #fff;
@@ -82,44 +82,44 @@
   border-top: 0;
 }
 
-[aria-expanded] .accordion-content {
+.accordion [aria-expanded] .accordion-content {
   display: block;
   max-height: 1000px;
 }
 
-.accordion-content-row {
+.accordion .accordion-content-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.accordion-content-col-left {
+.accordion .accordion-content-col-left {
   width: 33.33%;
   padding: 0 15px;
 }
 
-.accordion-content-col-right {
+.accordion .accordion-content-col-right {
   width: 66.67%;
   text-align: left;
   padding: 0 15px;
 }
 
-.accordion-content-col-right p {
+.accordion .accordion-content-col-right p {
   margin-bottom: 50px;
 }
 
 @media(max-width: 767px) {
-  .accordion-trigger h2,
-  .accordion-trigger h3,
-  .accordion-content {
+  .accordion .accordion-trigger h2,
+  .accordion .accordion-trigger h3,
+  .accordion .accordion-content {
     font-size: 16px;
   }
 
-  .accordion-content-col-left {
+  .accordion .accordion-content-col-left {
     width: 100%;
   }
   
-  .accordion-content-col-right {
+  .accordion .accordion-content-col-right {
     width: 100%;
   }
 }
