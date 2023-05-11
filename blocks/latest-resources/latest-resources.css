@@ -74,12 +74,10 @@ main .latest-resources .card .card-type {
 
   main .carousel.latest-resources {
     width: 85%;
-    padding: 0;
   }
 
   main .carousel.latest-resources.list {
     width: 100%;
-    padding: 0;
   }
 
   main .carousel.latest-resources .carousel-item {
