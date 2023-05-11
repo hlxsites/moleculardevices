@@ -39,12 +39,12 @@
   font-weight: bold;
 }
 
-.accordion .numbers [aria-expanded] .accordion-trigger {
+.accordion.numbers [aria-expanded] .accordion-trigger {
   background-color: var(--background-color-green);
   border: 1px solid var(--background-color-green);
 }
 
-.accordion .numbers .accordion-item:not([aria-expanded]) .accordion-trigger {
+.accordion.numbers .accordion-item:not([aria-expanded]) .accordion-trigger {
   color: var(--background-color-green);
 }
 
@@ -66,8 +66,8 @@
   width: calc(100% - 40px);
 }
 
-.accordion .numbers .accordion-trigger > h2,
-.accordion .numbers .accordion-trigger > h3 {
+.accordion.numbers .accordion-trigger > h2,
+.accordion.numbers .accordion-trigger > h3 {
   width: calc(92% - 40px);
   margin: auto 0;
 }
