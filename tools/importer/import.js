@@ -545,6 +545,19 @@ const transformTabsSections = (document) => {
     }
   }
 
+  // check if we have covid19 wave
+  const covidWave = document.querySelector('section .content-section.cover-bg');
+  let hasCovidWave = false;
+  if (covidWave) {
+    const backgroundUrl = extractBackgroundImage(covidWave);
+    if (backgroundUrl.indexOf('covid19-footer') > -1) {
+      hasCovidWave = true;
+      covidWave.remove();
+    }
+  }
+
+  const fragmentPath = hasCovidWave ? '/fragments/we-are-here-to-help' : '/fragments/next-big-discovery';
+
   document.querySelectorAll('.tab-content .tab-pane').forEach((tab) => {
     const hasContent = tab.textContent.trim() !== '';
     if (hasContent) {
@@ -569,11 +582,12 @@ const transformTabsSections = (document) => {
             metadataCells.push(['background', img]);
           }
         }
+
         if (isAssayKit(document) || isApplication(document)) {
           if (overviewWaveContent) {
             overviewWaveContent.remove();
           }
-          tab.append(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
+          tab.append(document.createElement('hr'), createFragmentTable(document, fragmentPath));
         }
       }
       const sectionMetaData = WebImporter.DOMUtils.createTable(metadataCells, document);
@@ -585,14 +599,14 @@ const transformTabsSections = (document) => {
 
         const container = document.createElement('div');
         container.append(createFragmentTable(document, tabConfig.fragment));
-        container.append(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
+        container.append(document.createElement('hr'), createFragmentTable(document, fragmentPath));
         container.append(sectionMetaData);
 
         tab.replaceWith(container);
       } else {
         tab.after(sectionMetaData);
         if (!isOverviewTab) {
-          tab.after(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
+          tab.after(document.createElement('hr'), createFragmentTable(document, fragmentPath));
         }
       }
     }
@@ -880,7 +894,7 @@ const transformQuotes = (document) => {
 
 const transformAccordions = (document) => {
   document.querySelectorAll('.faq_accordion').forEach((accordion) => {
-    const cells = [['Accordion (FAQ)']];
+    const cells = [['Accordion']];
 
     accordion.querySelectorAll('.faqfield-question').forEach((tab) => {
       const entryWrapper = document.createElement('div');
@@ -892,8 +906,12 @@ const transformAccordions = (document) => {
     accordion.replaceWith(table);
   });
 
-  document.querySelectorAll('.accordian-list-part .accordion').forEach((accordion) => {
-    const cells = [['Accordion (FAQ)']];
+  document.querySelectorAll('.accordion.patchClamp-accordian').forEach((accordion) => {
+    const cells = [['Accordion']];
+    if (accordion.querySelector('.sl-number')) {
+      cells[0] = ['Accordion (Numbers)'];
+      accordion.querySelectorAll('.sl-number').forEach((span) => span.remove());
+    }
 
     accordion.querySelectorAll('.card').forEach((tab) => {
       cells.push([tab]);
@@ -1202,7 +1220,6 @@ const transformProductApplications = (document) => {
       if (hasTOC) {
         cells[0] = ['Related Applications (TOC)'];
       }
-
       const applications = div.querySelectorAll('.view-product-resource-widyard li h2');
       if (applications) {
         const linkList = createFragmentList(
@@ -1272,6 +1289,9 @@ const transformTechnologyApplications = (document) => {
           cells[0] = ['Related Applications (TOC)'];
           hasTOC.remove();
         }
+        if (isTechnology(document)) {
+          cells[0] = ['Related Applications (TOC)'];
+        }
         const applications = div.querySelectorAll('li h2');
         if (applications) {
           const linkList = createFragmentList(
@@ -1320,7 +1340,12 @@ const transformOtherResourcesList = (document) => {
   document.querySelectorAll('.application-other-resources').forEach((div) => {
     const cells = [['Latest Resources (List)']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
-    div.replaceWith(table);
+    const container = div.closest('.container');
+    if (container) {
+      container.replaceWith(table);
+    } else {
+      div.replaceWith(table);
+    }
   });
 };
 
