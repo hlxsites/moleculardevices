@@ -815,8 +815,9 @@ const transformColumns = (document) => {
     div.remove();
   });
 
-  document.querySelectorAll('.row > [class*="col-"]:first-of-type').forEach((column) => {
-    const row = column.parentElement;
+  document.querySelectorAll('.row [class*="col-"]:first-of-type').forEach((column) => {
+    column.id = 'col';
+    const row = column.closest('.row:not(#col)');
     const sectionStyle = row.classList.contains('section');
     if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
       if (sectionStyle) {
@@ -907,6 +908,8 @@ const transformAccordions = (document) => {
   });
 
   document.querySelectorAll('.accordion.patchClamp-accordian').forEach((accordion) => {
+    accordion.querySelectorAll('.row').forEach((row) => row.removeAttribute('class'));
+
     const cells = [['Accordion']];
     if (accordion.querySelector('.sl-number')) {
       cells[0] = ['Accordion (Numbers)'];
