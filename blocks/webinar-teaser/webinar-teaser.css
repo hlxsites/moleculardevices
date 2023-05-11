@@ -1,0 +1,11 @@
+.webinar-teaser {
+    background-image:url(/images/wave-background-techtip-blue-green.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 630px;
+    width: 100%;
+    background-position: center;
+    margin: 100px 0;
+    color: #fff;
+    padding: 0 36px;
+}
