@@ -134,6 +134,18 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['LINE OF BUSINESS']) {
       meta['Line of Business'] = resource['LINE OF BUSINESS'];
     }
+    if (resource.Source) {
+      meta.Source = resource.Source;
+    }
+    if (resource.Country) {
+      meta.Country = resource.Country;
+    }
+    if (resource.Language) {
+      meta.Language = resource.Language;
+    }
+    if (resource.Locale) {
+      meta.Locale = resource.Locale;
+    }
 
     if (params.originalURL.indexOf('/resources/citations/') > 0) {
       if (resource['Citation Number']) {
@@ -346,9 +358,7 @@ const cleanUp = (document) => {
   });
 
   // remove green default wave from pages as we are going to inject the fragment into every tab
-  if (isProduct(document)) {
-    document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((wave) => wave.remove());
-  }
+  document.querySelectorAll('div.content-section.cover-bg.curv-footer-top-section').forEach((wave) => wave.remove());
 
   // remove empty media gallery with not items
   const mediaGallery = document.querySelector('div#mediaGallary');
@@ -1017,6 +1027,8 @@ const transformCustomerBreakthroughCarousel = (document) => {
 
 const transformCustomerBreakthroughShareStory = (document) => {
   document.querySelectorAll('.share-story').forEach((share) => {
+    share.after(createFragmentTable(document, '/fragments/next-big-discovery'));
+
     const cells = [['Share Story'], [share.querySelector('h3')]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     share.replaceWith(table);
@@ -1516,7 +1528,6 @@ export default {
       '.drift-frame-controller',
       '.page-node-type-events .button-wrap .linkBtn.blue', // add to calender button on events
       '.content-section.cover-bg.curv-footer-top-section.white-text.lab-autm-pages',
-      '.video-container .video-ico',
       'img.new-tag', // to be checked
       '#product-image-modal', // TODO
     ]);
