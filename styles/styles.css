@@ -49,7 +49,7 @@
   --text-white: #fff;
   --text-gray: #6a747c;
   --text-light-gray: #adb3b7;
-  --text-dark-gray: #333å;
+  --text-dark-gray: #333;
   --heading-color: #00758d;
   --text-green: #6eb43f;
   --link-color: #337ab7;
@@ -83,6 +83,10 @@
   --header-mega-menu-product-cards-background-color: #161e2d;
   --header-mega-menu-green: #6eb43f;
   --header-actionable-submenu-text-color: #e6e6e6;
+  --accordion-dark-gray-text-color: #454545;
+  --accordion-light-gray-border-color: #c5c5c5;
+  --accordion-light-gray-background-color: #f6f6f6;
+  --accordion-color-white: #fff;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
