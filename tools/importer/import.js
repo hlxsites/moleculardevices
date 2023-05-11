@@ -499,6 +499,9 @@ const transformSections = (document) => {
     if (section.classList.contains('grey_molecules_bg_top')) {
       styles.push('Background Molecules');
     }
+    if (section.classList.contains('parallax-container1')) {
+      styles.push('Background Parallax');
+    }
     if (section.classList.contains('franklin-horizontal')) {
       styles.push('Columns 2');
     }
@@ -1027,7 +1030,7 @@ const transformCustomerBreakthroughCarousel = (document) => {
 
 const transformCustomerBreakthroughShareStory = (document) => {
   document.querySelectorAll('.share-story').forEach((share) => {
-    share.after(createFragmentTable(document, '/fragments/next-big-discovery'));
+    share.after(document.createElement('hr'), createFragmentTable(document, '/fragments/next-big-discovery'));
 
     const cells = [['Share Story'], [share.querySelector('h3')]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
