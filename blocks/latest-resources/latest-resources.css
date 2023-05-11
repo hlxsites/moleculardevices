@@ -69,7 +69,17 @@ main .latest-resources .card .card-type {
   }
 
   main .carousel-wrapper.latest-resources-wrapper {
+    width: 750px;
+  }
+
+  main .carousel.latest-resources {
+    width: 85%;
+    padding: 0;
+  }
+
+  main .carousel.latest-resources.list {
     width: 100%;
+    padding: 0;
   }
 
   main .carousel.latest-resources .carousel-item {
@@ -79,6 +89,10 @@ main .latest-resources .card .card-type {
 }
 
 @media only screen and (max-width: 767px) {
+  main .carousel-wrapper.latest-resources-wrapper {
+    width: 100%;
+  }
+
   main .carousel.latest-resources {
     width: 100%;
     padding: 0 10%;
