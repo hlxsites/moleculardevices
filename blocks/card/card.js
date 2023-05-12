@@ -30,7 +30,7 @@ class Card {
   }
 
   renderItem(item) {
-    const cardTitle = item.h1 || item.title; // TODO test all card types
+    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title; // TODO test all card types
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
@@ -63,6 +63,7 @@ class Card {
           h3(
             this.titleLink ? a({ href: item.path }, cardTitle) : cardTitle,
           ),
+          // TODO use cardDescription
           item.description && item.description !== '0'
             ? p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
           p({ class: 'button-container' },
