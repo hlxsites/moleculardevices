@@ -130,6 +130,7 @@ main .section .hero-advanced-wrapper {
 .hero-inner .container > div:nth-child(2).video-column {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 58px;
 }
 
 .hero-inner .container > div:nth-child(2) .button-container {
