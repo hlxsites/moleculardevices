@@ -134,6 +134,10 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     if (resource['LINE OF BUSINESS']) {
       meta['Line of Business'] = resource['LINE OF BUSINESS'];
     }
+    if (resource['Family ID']) {
+      meta['Family ID'] = resource['Family ID'];
+      document.pid = resource['Family ID'];
+    }
     if (resource.Source) {
       meta.Source = resource.Source;
     }
@@ -425,8 +429,19 @@ const transformHero = (document) => {
 
     const cells = [['Hero']];
     const isBlog = hero.classList.contains('blog-details');
+
+    // prepare hero content
     const heroContent = isBlog ? hero.querySelector('.hero-desc') : hero.querySelector('.container');
+    if (heroContent.querySelector('.btn-wrap-mb')) {
+      const buttons = heroContent.querySelector('.btn-wrap-mb').children;
+      [...buttons].forEach((button) => {
+        const buttonWrapper = document.createElement('p');
+        button.parentNode.insertBefore(buttonWrapper, button);
+        buttonWrapper.append(button);
+      });
+    }
     const row = [heroContent];
+
     // add video link
     if (videoLink) {
       row.push([videoLink]);
@@ -1511,6 +1526,7 @@ export default {
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
+      'sytle',
       'header',
       'footer',
       'nav#block-mobilenavigation',
