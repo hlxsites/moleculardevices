@@ -86,11 +86,11 @@ export function buildHero(block) {
           [...column.querySelectorAll('a')].forEach((link) => {
             const url = new URL(link);
             if (isVideo(url)) {
-              const container = link.closest('div');
-              container.classList.add('video-column');
+              const videoContainer = link.closest('div');
+              videoContainer.classList.add('video-column');
               const videoIcon = div({ class: 'video-icon' }, img({ src: '/images/play_icon.png' }));
-              container.appendChild(videoIcon);
-              videoButton(container, container.querySelector('img'), url);
+              videoContainer.appendChild(videoIcon);
+              videoButton(videoContainer, videoContainer.querySelector('img'), url);
               link.remove();
             }
           });
