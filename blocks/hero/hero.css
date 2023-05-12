@@ -327,6 +327,10 @@ main .hero.blog .sticker {
     display: none;
   }
 
+  .hero-inner .container > div.video-column > div > * {
+    display: block;
+  }
+
   .hero-inner.white-bg .container > div > div:nth-child(1) * {
     display: block;
   }
@@ -346,6 +350,14 @@ main .hero.blog .sticker {
   }
 
   .hero-inner .container.two-column > div:nth-child(1) > p {
+    display: none;
+  }
+
+  .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p {
+    display: block;
+  }
+
+  .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay {
     display: none;
   }
 
