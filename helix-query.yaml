@@ -27,6 +27,9 @@ indices:
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
+      subCategory:
+        select: head > meta[name="sub-category"]
+        value: attribute(el, "content")
       technologyType:
         select: head > meta[name="technology-type"]
         value: attribute(el, "content")
