@@ -48,17 +48,6 @@ export default async function decorate(block) {
   const mobile = block.querySelector('div');
   h1.parentNode.insertBefore(mobile.querySelector('div:nth-child(2)'), h1.nextSibling);
   mobile.remove();
-  // [...block.querySelectorAll('a')].forEach((link) => {
-  //   const url = new URL(link);
-  //   if (isVideo(url)) {
-  //     const container = link.parentElement;
-  //     container.classList.add('video-column');
-  //     const videoIcon = div({ class: 'video-icon' }, img({ src: '/images/play_icon.png' }));
-  //     container.appendChild(videoIcon);
-  //     videoButton(container, container.querySelector('img'), url);
-  //     link.remove();
-  //   }
-  // });
   buildHero(block);
   const mg = block.querySelector('a[href*="/media-gallery"]');
   if (mg) {
