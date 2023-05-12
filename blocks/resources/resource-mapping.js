@@ -3,11 +3,11 @@ export default {
     image: 'application-note',
     action: 'Read',
   },
-  'Blog': {
+  Blog: {
     image: 'blog',
     action: 'Read',
   },
-  'Brochure': {
+  Brochure: {
     image: 'brochure',
     action: 'Download',
   },
@@ -15,11 +15,11 @@ export default {
     image: 'application-note',
     action: 'Read',
   },
-  'Citation': {
+  Citation: {
     image: 'citation',
     action: 'Download',
   },
-  'COA': {
+  COA: {
     image: 'document',
     action: 'Download',
   },
@@ -31,19 +31,19 @@ export default {
     image: 'data-sheet',
     action: 'Download',
   },
-  'eBook': {
+  eBook: {
     image: 'ebook',
     action: 'Download',
   },
-  'Flyer': {
+  Flyer: {
     image: 'flyer',
     action: 'Download',
   },
-  'Infographic': {
+  Infographic: {
     image: 'infographic',
     action: 'Download',
   },
-  'Presentations': {
+  Presentations: {
     image: 'presentations',
     action: 'Download',
   },
@@ -51,7 +51,7 @@ export default {
     image: 'document',
     action: 'Download',
   },
-  'Publication': {
+  Publication: {
     image: 'document',
     action: 'Read',
   },
@@ -59,7 +59,7 @@ export default {
     image: 'scientific-poster',
     action: 'Download',
   },
-  'SDS': {
+  SDS: {
     image: 'document',
     action: 'Download',
   },
@@ -82,4 +82,4 @@ export default {
   'White Paper': {
     image: 'document',
   },
-}
+};

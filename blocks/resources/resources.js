@@ -1,4 +1,6 @@
-import { div, img, a, p, h3, i, h2 } from '../../scripts/dom-helpers.js';
+import {
+  div, img, a, p, h3, i, h2,
+} from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
@@ -20,11 +22,11 @@ export default async function decorate(block) {
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
         && includedResourceTypes.includes(resource.type))
     .all();
-  const otherResources = resources.filter(item => !['Videos and Webinars', 'Citation'].includes(item.type));
-  const videoResources = resources.filter(item => item.type === 'Videos and Webinars');
+  const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
+  const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
   const otherResourcesBlock = div({ class: 'resources-section' });
-  otherResources.forEach(item => {
+  otherResources.forEach((item) => {
     const resourceType = item.type;
     const resourceImage = resourceMapping[item.type]?.image;
     const resourceBlock = div(
@@ -64,16 +66,13 @@ export default async function decorate(block) {
   block.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
   const videoResourcesBlock = div({ class: 'resources-section videos-and-webinars' });
 
-  await Promise.all(videoResources.map(async item => {
-    console.log(item.path)
+  await Promise.all(videoResources.map(async (item) => {
     const videoFragmentHtml = await fetchFragment(item.path);
     const videoFragment = document.createElement('div');
     videoFragment.innerHTML = videoFragmentHtml;
-    console.log(videoFragment)
     const videoElement = videoFragment.querySelector('p:last-of-type a');
-    console.log(videoElement)
     const videoHref = videoElement?.href;
-    if(videoElement && videoHref && videoHref.startsWith('https://')) {
+    if (videoElement && videoHref && videoHref.startsWith('https://')) {
       const videoURL = new URL(videoHref);
       const videoWrapper = div({ class: 'video-wrapper' },
         div({ class: 'video-container' },
