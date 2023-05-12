@@ -1,11 +1,65 @@
-.resources {
+.resources .resources-section {
   display: flex;
   flex-wrap: wrap;
 }
 
-.resources .resource {
+.resources .resources-section .resource {
   width: 50%;
+  max-width: 50%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  align-items: start;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.resource-icon {
+  flex: 0 0 auto;
+  margin-right: 15px;
+}
+
+.resource-info {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+}
+
+.resource-header p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.resource-header h3 {
+  font-family: var(--ff-proxima-light);
+  font-weight: 300;
+  font-size: 22px;
+}
+
+.resource-description {
+  font-size: var(--body-font-size-s);
+  margin: 15px 0;
+}
+
+.resource-link a {
+  color: var(--button-bg-color);
+}
+
+.resources a .fa {
+  margin-left: 5px;
+}
+
+.video-resources-title {
+  text-align: center;
+}
+
+.resources-section .video-wrapper {
+  width: 50%;
+  max-width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.resources-section .video-container {
+  box-shadow: 0 0 1vw rgba(0,0,0,.2);
 }
