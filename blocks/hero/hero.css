@@ -403,6 +403,10 @@ main .hero.blog .sticker {
     gap: 0
   }
 
+  .hero-inner .container.two-column > div:nth-child(2) {
+    border-top: 2px solid #fff;
+  }
+
   /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
@@ -457,9 +461,6 @@ main .hero.blog .sticker {
 
   /* Blog Variant - Mobile -- End */
 
-  .hero-inner .container.two-column > div:nth-child(2) {
-    border-top: 2px solid #fff;
-  }
 }
 
 @media (min-width: 768px) {
