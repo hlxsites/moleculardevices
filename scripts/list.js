@@ -2,81 +2,78 @@ import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
 import { formatDate, unixDateToString } from './scripts.js';
-
-const classList = 'list';
-const classListItems = 'items';
-const classListItem = 'item';
-const classItemCite = 'cite';
-const classItemTitle = 'title';
-const classPanelTitle = 'panel-title';
-const classFilter = 'filter';
-const classFilterItem = 'filter-item';
-const classFilterOpen = 'open';
-const classFilterSelect = 'select';
-const classDropdownToggle = 'dropdown-toggle';
-const classDropdownMenu = 'dropdown-menu';
-const classPagination = 'pagination';
-const classPagerItem = 'pager-item';
-const classPagerNav = 'pager-nav-item';
-const classActive = 'active';
-const classHidden = 'hidden';
-const defaultImage = '/default-meta-image.png';
+import {
+  a, article, button, div, h2, h3, nav, p, span, ul, li,
+} from './dom-helpers.js';
 
 function filterData(options) {
   let { data } = options;
   const filters = options.activeFilters;
   filters.forEach((value, type) => {
-    if (type === 'year') {
+    if (type !== 'page') {
       const filterAttribute = toCamelCase(`filter_${type}`);
       data = data
-        .filter((n) => toClassName(
-          n[filterAttribute].toString()).includes(options.activeFilters.get(type),
-        ));
+        .filter((n) => (!value || n[filterAttribute].toString() === value),
+        );
     }
   });
   return data;
 }
 
 function toggleFilter(event) {
-  const filterSelected = event.target.closest(`.${classFilterSelect}`);
-  const filterIsOpen = filterSelected.classList.contains(classFilterOpen);
-  const menu = filterSelected.querySelector(`.${classDropdownMenu}`);
+  const filterSelected = event.target.closest('.select');
+  const filterIsOpen = filterSelected.classList.contains('open');
+  const menu = filterSelected.querySelector('.dropdown-menu');
   if (filterIsOpen) {
-    filterSelected.classList.remove(classFilterOpen);
-    menu.classList.remove(classFilterOpen);
+    filterSelected.classList.remove('open');
+    menu.classList.remove('open');
   } else {
-    filterSelected.classList.add(classFilterOpen);
-    menu.classList.add(classFilterOpen);
+    filterSelected.classList.add('open');
+    menu.classList.add('open');
   }
 }
 
-function renderListItem(item, idx) {
-  const listItemElement = document.createElement('article');
-  listItemElement.classList.add(classListItem);
+function hasImage(imgPath) {
+  return (!imgPath.startsWith('/default-meta-image.png'));
+}
 
-  const hasImage = (!item.image.startsWith(defaultImage));
-  if (hasImage) {
-    const imageElement = createOptimizedPicture(item.image, item.title, (idx === 0), [
-      { width: '500' },
-    ]);
-    listItemElement.innerHTML = `
-      <div class="image">
-        <a href="${item.path}" title="${item.title}">
-          ${imageElement.outerHTML}
-        </a>
-      </div>`;
+function renderListItem(item, idx) {
+  let dt = (item.date && item.date !== '0') ? formatDate(unixDateToString(item.date)) : '';
+  if (!dt && item.eventStart && item.eventEnd) {
+    const startDate = (item.eventStart && item.eventStart !== '0') ? formatDate(unixDateToString(item.eventStart)).split(',')[0] : '';
+    const endDate = (item.eventEnd && item.eventEnd !== '0') ? formatDate(unixDateToString(item.eventEnd)) : '';
+    dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
-  const dt = formatDate(unixDateToString(item.date));
-  const citation = (item.publisher && item.publisher !== '0') ? `${dt} | ${item.publisher}` : dt;
-  const viewMoreLnk = (item.viewMoreText) ? `<a class='view-more' title="${item.viewMoreText}" href="${item.path}">${item.viewMoreText}</a>` : '';
-  listItemElement.innerHTML += `
-    <div class="content">
-      <p class="${classItemCite}">${citation}</p>
-      <p><a class="${classItemTitle}" title="${item.title}" href="${item.path}">${item.title}</a></p>
-      ${item.description} ${viewMoreLnk}
-    </div>
-  `;
-  return listItemElement;
+
+  return article({ class: 'item' },
+    (hasImage(item.image)) ? div({ class: 'image' },
+      a({
+        href: item.path,
+        title: item.title,
+      }, createOptimizedPicture(item.image, item.title, (idx === 0), [{ width: '500' }])),
+    ) : '',
+    div({ class: 'content' },
+      p({ class: 'cite' }, (item.publisher && item.publisher !== '0') ? `${dt} | ${item.publisher}` : dt),
+      p(
+        a({
+          class: 'title',
+          title: item.title,
+          href: item.path,
+        }, item.title),
+      ),
+      (item.keywords && item.keywords !== '0')
+        ? ul({ class: 'keyword-list' },
+          ...item.keywords.map((keyword) => li({ class: 'item' }, keyword),
+          ),
+        ) : '',
+      (item.description && item.description !== '0') ? span({ class: 'description' }, item.description) : '',
+      (item.viewMoreText) ? a({
+        class: 'view-more',
+        title: item.viewMoreText,
+        href: item.path,
+      }, ` ${item.viewMoreText}`) : '',
+    ),
+  );
 }
 
 function createListItems(options) {
@@ -84,16 +81,21 @@ function createListItems(options) {
   const start = (options.activeFilters.get('page') - 1) * options.limitPerPage;
   const items = data.slice(start, start + options.limitPerPage);
 
-  const itemsContainer = document.createElement('div');
-  itemsContainer.classList.add(classListItems);
+  const itemsContainer = div({ class: 'items' });
+  if (options.title) {
+    itemsContainer.appendChild(h2({ class: 'event-title' }, options.title));
+  }
   items.forEach((item, idx) => {
     itemsContainer.appendChild(renderListItem(item, idx));
   });
+  if (items.length === 0) {
+    itemsContainer.appendChild(h3({ class: 'no-result' }, options.noResult));
+  }
   return itemsContainer;
 }
 
 function swapData(options) {
-  const items = document.querySelector(`.${classListItems}`);
+  const items = document.querySelector('.items');
   items.innerHTML = createListItems(options).innerHTML;
 }
 
@@ -118,66 +120,67 @@ async function switchPage(event, options) {
 
   options.activeFilters.set('page', parseInt(elem.getAttribute('name'), 10));
 
-  const pagination = elem.closest(`.${classPagination}`);
-  const current = pagination.querySelector(`.${classPagerItem}.${classActive}`);
-  if (current) { current.classList.remove(`${classActive}`); }
+  const pagination = elem.closest('.pagination');
+  const current = pagination.querySelector('.pager-item.active');
+  if (current) { current.classList.remove('active'); }
 
   const selected = options.activeFilters.get('page');
   const { maxPages } = options;
 
-  const pagerItem = pagination.querySelectorAll(`.${classPagerItem}`);
+  const pagerItem = pagination.querySelectorAll('.pager-item');
   const startIdx = getPaginationStart(options);
   const endIdx = getPaginationEnd(startIdx, options);
   pagerItem.forEach((item) => {
-    item.classList.remove(`${classHidden}`);
+    item.classList.remove('hidden');
     const pager = parseInt(item.getAttribute('name'), 10);
     if (pager < startIdx || pager > endIdx) {
-      item.classList.add(`${classHidden}`);
+      item.classList.add('hidden');
     }
   });
 
-  const pagerNav = pagination.querySelectorAll(`.${classPagerNav}`);
+  const pagerNav = pagination.querySelectorAll('.pager-nav-item');
   pagerNav[1].setAttribute('name', Math.max(selected - 1, 1));
   pagerNav[2].setAttribute('name', Math.min(selected + 1, maxPages));
   pagerNav.forEach((item, idx) => {
-    item.classList.remove(`${classHidden}`);
-    if ((idx < 2 && selected < startIdx) || (idx > 1 && selected > endIdx)) {
-      item.classList.add(`${classHidden}`);
+    item.classList.remove('hidden');
+    if (
+      (idx < 2 && selected === 1) // prev nav buttons
+      || (idx > 1 && selected > (endIdx - 1)) // next nav buttons
+    ) {
+      item.classList.add('hidden');
     }
   });
 
-  pagination.querySelector(`.${classPagerItem}[name="${selected}"]:not(.${classPagerNav})`).classList.add(classActive);
+  pagination.querySelector(`.pager-item[name="${selected}"]:not(.pager-nav-item)`).classList.add('active');
 
   swapData(options);
-  document.querySelector(`.${classList}`).scrollIntoView();
+  document.querySelector('.list').scrollIntoView();
 }
 
 function createDropdown(options, selected, name, placeholder) {
-  const container = document.createElement('div');
-  container.classList.add(classFilterSelect);
+  const container = div({ class: 'select' });
   if (name) {
     container.setAttribute('name', name);
   }
   if (placeholder) {
-    const btn = document.createElement('div');
-    btn.classList.add(classDropdownToggle);
-    btn.innerText = selected || placeholder;
-    btn.value = '';
-    btn.setAttribute('type', 'button');
+    const btn = div({
+      type: 'button',
+      class: 'dropdown-toggle',
+      value: '',
+    }, selected || placeholder);
     btn.addEventListener('click', toggleFilter, false);
     container.append(btn);
 
     options.unshift(placeholder);
   }
 
-  const dropDown = document.createElement('div');
-  dropDown.classList.add(classDropdownMenu);
-
+  const dropDown = div({ class: 'dropdown-menu' });
   options.forEach((option) => {
-    const optionTag = document.createElement('p');
-    optionTag.classList.add(classFilterItem);
-    optionTag.innerText = option;
-    optionTag.name = toClassName(option);
+    const optionTag = p({
+      class: 'filter-item',
+      name: toClassName(option.toString()),
+    }, option,
+    );
     if (option === placeholder) {
       optionTag.classList.add('reset');
     }
@@ -188,19 +191,19 @@ function createDropdown(options, selected, name, placeholder) {
 }
 
 function createPaginationItem(page, active, label, hide) {
-  const btn = document.createElement('button');
-  btn.classList.add(classPagerItem);
+  const btn = button({
+    class: 'pager-item',
+    name: page,
+  }, label || page);
   const isNavElem = (label);
   if (isNavElem) {
-    btn.classList.add(classPagerNav);
+    btn.classList.add('pager-nav-item');
   }
   if (hide) {
-    btn.classList.add(classHidden);
+    btn.classList.add('hidden');
   }
-  btn.setAttribute('name', page);
-  btn.innerText = label || page;
   if (page === active && !hide && !isNavElem) {
-    btn.classList.add(classActive);
+    btn.classList.add('active');
   }
   return btn;
 }
@@ -210,37 +213,35 @@ export async function renderPagination(container, options, ajaxCall) {
   options.maxPages = Math.ceil(data.length / options.limitPerPage);
   const page = options.activeFilters.get('page');
 
-  const nav = document.createElement('nav');
-  nav.className = classPagination;
-
+  const pageNav = nav({ class: 'pagination' });
   if (options.maxPages > 1) {
     const startIdx = getPaginationStart(options);
     const endIdx = getPaginationEnd(startIdx, options);
 
-    nav.append(createPaginationItem(1, page, '«', page === 1));
-    nav.append(createPaginationItem(page - 1, page, '‹', page === 1));
+    pageNav.append(createPaginationItem(1, page, '«', page === 1));
+    pageNav.append(createPaginationItem(page - 1, page, '‹', page === 1));
 
     // eslint-disable-next-line no-plusplus
     for (let i = startIdx; i <= endIdx; i++) {
       if (i > 0) {
-        nav.append(createPaginationItem(i, page, '', false));
+        pageNav.append(createPaginationItem(i, page, '', false));
       }
     }
     // eslint-disable-next-line no-plusplus
     for (let j = endIdx + 1; j <= options.maxPages; j++) {
       if (j > 0) {
-        nav.append(createPaginationItem(j, page, '', true));
+        pageNav.append(createPaginationItem(j, page, '', true));
       }
     }
-    nav.append(createPaginationItem(page + 1, page, '›', page === options.maxPages));
-    nav.append(createPaginationItem(options.maxPages, page, '»', page === options.maxPages));
+    pageNav.append(createPaginationItem(page + 1, page, '›', page === options.maxPages));
+    pageNav.append(createPaginationItem(options.maxPages, page, '»', page === options.maxPages));
   }
   if (ajaxCall) {
-    container.querySelector(`.${classPagination}`).remove();
+    container.querySelector('.pagination').remove();
   }
-  container.append(nav);
+  container.append(pageNav);
 
-  const pagerItems = container.querySelectorAll(`.${classPagination} .${classPagerItem}`);
+  const pagerItems = container.querySelectorAll('.pagination .pager-item');
   pagerItems.forEach((pagerItem) => {
     pagerItem.addEventListener('click', (event) => {
       switchPage(event, options);
@@ -252,34 +253,31 @@ export async function renderPagination(container, options, ajaxCall) {
 
 async function switchFilter(event, options) {
   const elem = event.target;
-  const filter = elem.closest(`.${classFilterSelect}`);
+  const filter = elem.closest('.select');
   const filterType = filter.getAttribute('name');
   if (elem.classList.contains('reset')) {
     options.activeFilters.set(filterType, '');
   } else {
-    options.activeFilters.set(filterType, elem.innerHTML);
+    options.activeFilters.set(filterType, elem.getAttribute('name'));
   }
   options.activeFilters.set('page', 1);
   options.filteredData = filterData(options);
 
-  const selected = filter.querySelector(`.${classDropdownToggle}`);
+  const selected = filter.querySelector('.dropdown-toggle');
   selected.innerHTML = elem.innerText;
 
-  renderPagination(document.querySelector(`.${classList}`), options, true);
+  renderPagination(document.querySelector('.list'), options, true);
   toggleFilter(event);
   swapData(options);
 }
 
 function renderFilters(options, createFilters) {
-  const filter = document.createElement('div');
-  filter.className = classFilter;
+  const filter = div({ class: 'filter' });
 
   const filters = createFilters(options, createDropdown);
   if (filters.length > 0) {
     if (options.panelTitle) {
-      const header = document.createElement('p');
-      header.className = classPanelTitle;
-      header.innerHTML = options.panelTitle;
+      const header = p({ class: 'panel-title' }, options.panelTitle);
       filter.append(header);
     }
 
@@ -287,7 +285,11 @@ function renderFilters(options, createFilters) {
       ...filters,
     );
 
-    const menuItems = filter.querySelectorAll(`.${classFilterSelect} .${classDropdownMenu} .${classFilterItem}`);
+    if (options.relatedLink) {
+      filter.append(p({}, options.relatedLink));
+    }
+
+    const menuItems = filter.querySelectorAll('.select .dropdown-menu .filter-item');
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener('click', (event) => {
         switchFilter(event, options);
@@ -310,14 +312,12 @@ export default async function createList(
   });
 
   if (options.data) {
-    const container = document.createElement('div');
-    container.className = classList;
-    const filterElements = renderFilters(options, createFilters);
-    container.append(filterElements);
-    const listItems = createListItems(options);
-    container.append(listItems);
-    renderPagination(container, options, false);
+    const container = div({ class: 'list' },
+      renderFilters(options, createFilters),
+      createListItems(options),
+    );
     root.append(container);
+    renderPagination(container, options, false);
   }
   await listCSSPromise;
 }

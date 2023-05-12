@@ -60,7 +60,6 @@ export default async function decorate(block) {
   options.activeFilters.set('page', 1);
 
   options.data = await fetchData('news');
-  // console.log(`found ${data.length} entries`);
   await createOverview(
     block,
     options);

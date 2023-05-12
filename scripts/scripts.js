@@ -271,7 +271,6 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
-  createBreadcrumbsSpace(main);
   decorateEmbedLinks(main);
 }
 
@@ -285,6 +284,7 @@ async function loadEager(doc) {
   if (main) {
     await decorateTemplates(main);
     await decorateMain(main);
+    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }

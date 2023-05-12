@@ -1,6 +1,10 @@
-.latest-resources-container {
+.product .latest-resources-container {
   text-align: center;
-  padding-top: 90px;
+}
+
+.latest-resources-container .latest-resources-button {
+  text-align: center;
+  padding: 50px 0 100px;
 }
 
 main .carousel-wrapper.latest-resources-wrapper {
@@ -17,7 +21,7 @@ main .carousel.latest-resources {
 main .carousel.latest-resources.list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: left;
   align-items: stretch;
   align-content: stretch;
   width: 100%;
@@ -34,6 +38,7 @@ main .latest-resources.list .carousel-item.clone {
 main .latest-resources .carousel-item {
   display: block;
   width: 33.3%;
+  max-width: 33.3%;
   padding: 20px 15px;
   margin: 0;
 }
@@ -64,15 +69,28 @@ main .latest-resources .card .card-type {
   }
 
   main .carousel-wrapper.latest-resources-wrapper {
+    width: 750px;
+  }
+
+  main .carousel.latest-resources {
+    width: 85%;
+  }
+
+  main .carousel.latest-resources.list {
     width: 100%;
   }
 
   main .carousel.latest-resources .carousel-item {
     width: 50%;
+    max-width: 50%;
   }
 }
 
 @media only screen and (max-width: 767px) {
+  main .carousel-wrapper.latest-resources-wrapper {
+    width: 100%;
+  }
+
   main .carousel.latest-resources {
     width: 100%;
     padding: 0 10%;
@@ -84,6 +102,7 @@ main .latest-resources .card .card-type {
 
   main .carousel.latest-resources .carousel-item, main .carousel.latest-resources.list .carousel-item {
     width: 100%;
+    max-width: 100%;
   }
 
   main .carousel-wrapper.latest-resources-wrapper .carousel-nav-button {
