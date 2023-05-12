@@ -312,7 +312,7 @@ main .hero.blog .sticker {
     font-size: var(--heading-font-size-m);
   }
 
-  .hero-inner .container > div > div:nth-child(1) * {
+  .hero-inner .container > div > div > * {
     display: none;
   }
 
@@ -325,7 +325,7 @@ main .hero.blog .sticker {
   }
 
   .hero-inner .container > div > div:nth-child(1) h1,
-  .hero-inner .container > div > div:nth-child(1) .button-container * {
+  .hero-inner .container > div > div:nth-child(1) .button-container {
     display: block;
   }
 
