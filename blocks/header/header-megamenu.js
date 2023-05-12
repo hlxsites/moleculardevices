@@ -66,7 +66,16 @@ function buildMegaMenu(block, content, submenuContent, submenuId) {
 
   const closeButton = div({ class: 'menu-nav-submenu-close' });
 
-  submenuContent.querySelectorAll('h1, .menu-nav-submenu-section').forEach((el) => {
+  submenuContent.querySelectorAll('.menu-nav-submenu h1').forEach((el) => {
+    el.addEventListener('mouseover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
+      showRightSubmenu(rightMenu);
+    });
+  });
+
+  submenuContent.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
     el.addEventListener('mouseover', (e) => {
       e.preventDefault();
       e.stopPropagation();
