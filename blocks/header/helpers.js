@@ -4,6 +4,28 @@ import {
   div,
 } from '../../scripts/dom-helpers.js';
 
+let elementsWithEventListener = [];
+
+export function getElementsWithEventListener() {
+  return elementsWithEventListener;
+}
+
+export function addListeners(selector, eventType, callback) {
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach((element) => {
+    elementsWithEventListener.push(element);
+    element.addEventListener(eventType, callback);
+  });
+}
+
+export function removeAllEventListeners() {
+  elementsWithEventListener.forEach((el) => {
+    el.replaceWith(el.cloneNode(true));
+  });
+  elementsWithEventListener = [];
+}
+
 export function buildBrandLogo(content) {
   const logoWrapper = div({ id: 'header-logo' });
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
