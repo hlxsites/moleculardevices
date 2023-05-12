@@ -1,5 +1,6 @@
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 import {
-  div, h2,
+  div, span,
 } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
@@ -12,6 +13,9 @@ export default function decorate(block) {
   const videoSection = nodes[4];
   const webinarDescription = nodes[5];
   const registerButton = nodes[6];
+  const registerButtonLink = registerButton.querySelector('a');
+  registerButtonLink.append(span({ class: 'icon icon-fa-external-link' }));
+  registerButtonLink.setAttribute('target', '_blank');
 
   block.innerHTML = '';
   const header = (
@@ -34,7 +38,7 @@ export default function decorate(block) {
         ),
       ),
       div({ class: 'webinar-teaser-right-col' },
-        div({ class: 'teaser-form' },
+        div({ class: 'webinar-teaser-form' },
           webinarDescription,
           registerButton,
         ),
@@ -43,4 +47,6 @@ export default function decorate(block) {
   );
   block.appendChild(header);
   block.appendChild(content);
+
+  decorateIcons(block);
 }
