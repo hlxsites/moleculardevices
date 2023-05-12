@@ -235,7 +235,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
     }
 
     if (resource.Thumbnail) {
-      const el = document.  createElement('img');
+      const el = document.createElement('img');
       el.src = makeUrlRelative(resource.Thumbnail);
       if (params.originalURL.indexOf('/events/') > 0) {
         if (!meta.Image) {
@@ -1258,7 +1258,7 @@ const transformProductApplications = (document) => {
         const linkList = createFragmentList(
           document,
           'Applications',
-          [...applications].map((h2) => h2.textContent.trim())
+          [...applications].map((h2) => h2.textContent.trim()),
         );
         cells.push([linkList]);
       }
@@ -1285,7 +1285,7 @@ const transformProductAssayData = (document) => {
         const linkList = createFragmentList(
           document,
           'Assay Data',
-          [...applications].map((h2) => h2.textContent.trim())
+          [...applications].map((h2) => h2.textContent.trim()),
         );
         cells.push([linkList]);
       }
@@ -1317,7 +1317,7 @@ const transformTechnologyApplications = (document) => {
       if (div.childElementCount > 0) {
         div.querySelectorAll('.modal.fade').forEach((modals) => modals.remove());
         const cells = [['Related Applications']];
-        const hasTOC = div.closest('.horizontal-list-tab').querySelector('.view-display-id-block_15') || document.querySelector('.technology-section.overview-block')
+        const hasTOC = div.closest('.horizontal-list-tab').querySelector('.view-display-id-block_15') || document.querySelector('.technology-section.overview-block');
         if (hasTOC) {
           cells[0] = ['Related Applications (TOC)'];
           hasTOC.remove();
@@ -1417,6 +1417,19 @@ const transformElisaWorkflow = (document) => {
   });
 };
 
+const prepareRequestQuoteLinks = (document) => {
+  if (document.pid) {
+    document.querySelectorAll('a').forEach((a) => {
+      if (a.href && a.href.indexOf('/quote-request') > -1) {
+        const url = a.href.replace(/pid=\w*/, `pid=${document.pid}`);
+        if (url.indexOf(document.pid) > -1) {
+          a.href = url;
+        }
+      }
+    });
+  }
+};
+
 function makeAbsoluteLinks(main, url) {
   const HOST = 'https://main--moleculardevices--hlxsites.hlx.page/';
   const pagePath = WebImporter.FileUtils.sanitizePath(
@@ -1465,6 +1478,10 @@ export default {
         // TODO
         // a.href = new URL(href).toString();
         a.href = '';
+      }
+
+      if (href.startsWith('https://www.moleculardevices.com')) {
+        a.href = href.substring(32, href.length);
       }
     });
 
@@ -1561,6 +1578,7 @@ export default {
     // convert all blocks
     [
       cleanUp,
+      prepareRequestQuoteLinks,
       transformReferenceProducts,
       transformSections,
       transformFragmentDocuments,
