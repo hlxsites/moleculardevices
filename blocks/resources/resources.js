@@ -14,7 +14,7 @@ const relatedResourcesHeaders = {
 
 export default async function decorate(block) {
   const template = getMetadata('template');
-  const title = document.querySelector('.hero-advanced .container h1').textContent;
+  const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
   const includedResourceTypes = Object.keys(resourceMapping);
 
   const resources = await ffetch('/query-index.json')
