@@ -11,6 +11,7 @@ export default function decorate(block) {
   const speaker = nodes[2];
   const speakerTitle = nodes[3];
   const videoSection = nodes[4];
+  videoSection.querySelector('a').setAttribute('target', '_blank');
   const webinarDescription = nodes[5];
   const registerButton = nodes[6];
   const registerButtonLink = registerButton.querySelector('a');
