@@ -18,6 +18,9 @@ export default async function decorate(block) {
 
   const visibleGallery = document.createElement('div');
   visibleGallery.classList.add('visible-gallery');
+  if (block.classList.contains('showcase-right')) {
+    visibleGallery.classList.add('showcase-right');
+  }
 
   const pictures = block.querySelectorAll('.gallery > div > div > p > picture:first-of-type');
   for (let i = 0; i < pictures.length; i += 1) {
