@@ -12,7 +12,6 @@ import {
   reverseElementLinkTagRelation,
   buildBrandLogo,
 } from './helpers.js';
-import { buildMobileMenuItem, buildMobileMenuTools } from './menus/mobile-menu.js';
 
 function buildRequestQuote() {
   return li(
@@ -98,10 +97,6 @@ function buildMegaMenu(block, content, submenuContent, submenuId) {
   item.append(submenuContent);
 }
 
-export function getSubmenus() {
-  return ['products', 'applications', 'resources', 'service-support', 'company', 'contact-us'];
-}
-
 export function buildNavbar(content) {
   const megaMenu = div({ class: 'mainmenu-wrapper sticky-element sticky-desktop' });
   const container = div({ class: 'container' });
@@ -153,13 +148,8 @@ export async function fetchAndStyleMegamenu(headerBlock, headerContent, menuId) 
         const submenuContent = div({ class: 'menu-nav-submenu' });
         submenuContent.innerHTML = submenuHtml;
 
-        // clone the submenu content to the mobile menu
-        const mobileSubmenuContent = submenuContent.cloneNode(true);
-
         // Get submenu builder, and build submenu
         buildMegaMenu(headerBlock, headerContent, submenuContent, menuId);
-
-        buildMobileMenuItem(mobileSubmenuContent, menuId);
       }
     });
 
@@ -176,6 +166,4 @@ export async function fetchAndStyleMegamenus(headerBlock, headerContent, submenu
   }
 
   await Promise.all(submenuProcessingPromises);
-
-  buildMobileMenuTools(headerContent);
 }

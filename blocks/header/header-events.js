@@ -5,10 +5,10 @@ import {
   addListeners,
   removeAllEventListeners,
   getElementsWithEventListener,
+  getSubmenuIds,
 } from './helpers.js';
 import {
   fetchAndStyleMegamenus,
-  getSubmenus,
   fetchAndStyleMegamenu,
   showRightSubmenu,
 } from './header-megamenu.js';
@@ -37,7 +37,7 @@ async function fetchAndOpenMegaMenu(event) {
     // only after, we start loading the others in the background
     await fetchAndStyleMegamenu(headerBlock, headerContent, menuId);
 
-    const submenusList = getSubmenus(headerContent);
+    const submenusList = getSubmenuIds();
     submenusList.splice(submenusList.indexOf(menuId), 1);
     fetchAndStyleMegamenus(headerBlock, headerContent, submenusList);
   }

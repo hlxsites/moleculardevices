@@ -1,10 +1,22 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a,
   div,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
+
+export function getSubmenus() {
+  return ['Products', 'Applications', 'Resources', 'Service & Support', 'Company', 'Contact Us'];
+}
+
+export function getSubmenuIds() {
+  return getSubmenus().map((submenu) => toClassName(submenu));
+}
+
+export function getSubmenuIdFromTitle(title) {
+  return getSubmenuIds()[getSubmenus().indexOf(title)];
+}
 
 export function getElementsWithEventListener() {
   return elementsWithEventListener;
