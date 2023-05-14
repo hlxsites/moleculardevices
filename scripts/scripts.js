@@ -448,16 +448,6 @@ async function loadLazy(doc) {
 }
 
 /**
- * loads everything that happens a lot later, without impacting
- * the user experience.
- */
-function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
-  // load anything that can be postponed to the latest here
-}
-
-/**
  * Read query string from url
  */
 export function getQueryParameter() {
@@ -519,6 +509,36 @@ function setCookieFromQueryParameters(paramName, exdays) {
   if (readQuery[paramName]) {
     setCookie(paramName, readQuery[paramName], exdays);
   }
+}
+
+// IPStack Integration to get specific user information
+async function loadUserData() {
+  const countryCodeInfo = 'country_code';
+  fetch('http://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566')
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then((data) => {
+      if (!getCookie(countryCodeInfo)) {
+        setCookie(countryCodeInfo, data[countryCodeInfo], 30);
+      }
+    }).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.warn('Could not load user information.', err);
+    });
+}
+
+/**
+ * loads everything that happens a lot later, without impacting
+ * the user experience.
+ */
+function loadDelayed() {
+  // eslint-disable-next-line import/no-cycle
+  window.setTimeout(() => import('./delayed.js'), 3000);
+  // load anything that can be postponed to the latest here
+  loadUserData();
 }
 
 async function loadPage() {
