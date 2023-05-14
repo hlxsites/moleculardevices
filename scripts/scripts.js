@@ -514,7 +514,15 @@ function setCookieFromQueryParameters(paramName, exdays) {
 // IPStack Integration to get specific user information
 async function loadUserData() {
   const countryCodeInfo = 'country_code';
-  fetch('http://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566')
+  fetch('http://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
+    /* Referrer Policy is set to strict-origin-when-cross-origin by default
+       to avoid data leaking of private information.
+       See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
+       HTTP requests may include the optional Referer header, which indicates
+       the origin or web page URL the request was made from.
+    */
+    referer: window.location.href,
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
