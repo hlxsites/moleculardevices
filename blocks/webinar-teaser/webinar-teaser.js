@@ -21,10 +21,12 @@ export default function decorate(block) {
   }
 
   const registerButton = container.querySelector('p.button-container > a');
-  registerButton.classList.add('button');
-  registerButton.classList.add('secondary');
-  registerButton.append(span({ class: 'icon icon-fa-external-link' }));
-  registerButton.setAttribute('target', '_blank');
+  if (registerButton) {
+    registerButton.classList.add('button');
+    registerButton.classList.add('secondary');
+    registerButton.append(span({ class: 'icon icon-fa-external-link' }));
+    registerButton.setAttribute('target', '_blank');
+  }
 
   const headerDiv = div({ class: 'webinar-teaser-header' });
   headerDiv.append(teaserTitle, webinarTitle);
