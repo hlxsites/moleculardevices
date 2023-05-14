@@ -521,7 +521,7 @@ async function loadUserData() {
        HTTP requests may include the optional Referer header, which indicates
        the origin or web page URL the request was made from.
     */
-    referer: window.location.href,
+    mode: ‘cors’,
   })
     .then((response) => {
       if (response.ok) {
