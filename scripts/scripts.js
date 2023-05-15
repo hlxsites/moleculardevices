@@ -521,13 +521,6 @@ function setCookieFromQueryParameters(paramName, exdays) {
   }
 }
 
-export function handleUpdateUserDataEvent(event, userData) {
-  // eslint-disable-next-line no-restricted-syntax, guard-for-in
-  for (const attr in userData) {
-    setCookie(attr, userData[attr], 30);
-  }
-}
-
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
