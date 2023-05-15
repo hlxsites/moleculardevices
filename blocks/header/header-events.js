@@ -1,67 +1,58 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { submitSearchForm } from './menus/search.js';
+import {
+  fetchHeaderContent,
+  addListeners,
+  removeAllEventListeners,
+  getElementsWithEventListener,
+  getSubmenuIds,
+} from './helpers.js';
+import {
+  fetchAndStyleMegamenus,
+  fetchAndStyleMegamenu,
+  showRightSubmenu,
+} from './header-megamenu.js';
 
-let elementsWithEventListener = [];
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
 
 function collapseAllSubmenus(menu) {
   menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
 }
 
-function removeAllEventListeners() {
-  elementsWithEventListener.forEach((el) => {
-    el.replaceWith(el.cloneNode(true));
-  });
-  elementsWithEventListener = [];
+function expandMenu(element) {
+  collapseAllSubmenus(element.closest('ul'));
+  element.setAttribute('aria-expanded', 'true');
 }
 
-function addListeners(selector, eventType, callback) {
-  const elements = document.querySelectorAll(selector);
+async function fetchAndOpenMegaMenu(event) {
+  const menuId = toClassName(event.currentTarget.textContent);
+  const submenuClass = `${menuId}-right-submenu`;
 
-  elements.forEach((element) => {
-    elementsWithEventListener.push(element);
-    element.addEventListener(eventType, callback);
-  });
+  // fetch and style the megamenus if they haven't been fetched yet
+  if (!document.querySelector('.menu-nav-submenu')) {
+    const headerBlock = document.querySelector('.header');
+    const headerContent = await fetchHeaderContent();
+
+    // first we load the menu that the user clicked, to improve responsiveness
+    // only after, we start loading the others in the background
+    await fetchAndStyleMegamenu(headerBlock, headerContent, menuId);
+
+    const submenusList = getSubmenuIds();
+    submenusList.splice(submenusList.indexOf(menuId), 1);
+    fetchAndStyleMegamenus(headerBlock, headerContent, submenusList);
+  }
+
+  const menu = document.querySelector(`[menu-id="${menuId}"]`);
+  expandMenu(menu.parentElement);
+  const rightMenu = document.querySelector(`.${submenuClass}`).parentElement.parentElement;
+  showRightSubmenu(rightMenu);
 }
 
 function addEventListenersDesktop() {
-  function expandMenu(element) {
-    collapseAllSubmenus(element.closest('ul'));
-    element.setAttribute('aria-expanded', 'true');
-  }
-
-  function showRightSubmenu(element) {
-    document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-    element.setAttribute('aria-expanded', 'true');
-  }
-
   addListeners('.menu-nav-category', 'mousedown', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    expandMenu(e.currentTarget.parentElement);
-    const rightMenuClass = `${toClassName(e.currentTarget.textContent)}-right-submenu`;
-    const rightMenu = document.querySelector(`.${rightMenuClass}`).parentElement.parentElement;
-    showRightSubmenu(rightMenu);
-  });
-
-  addListeners('.menu-nav-submenu-close', 'mousedown', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    collapseAllSubmenus(e.currentTarget.closest('ul'));
-  });
-
-  addListeners('.menu-nav-submenu h1', 'mouseover', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
-    showRightSubmenu(rightMenu);
-  });
-
-  addListeners('.menu-nav-submenu-sections .menu-nav-submenu-section', 'mouseover', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const rightMenu = e.currentTarget.querySelector('.right-submenu');
-    showRightSubmenu(rightMenu);
+    fetchAndOpenMegaMenu(e);
   });
 
   addListeners('.searchlink', 'mousedown', (e) => {
@@ -94,7 +85,7 @@ function addEventListenersMobile() {
   }
 
   document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
-    elementsWithEventListener.push(linkElement);
+    getElementsWithEventListener().push(linkElement);
 
     linkElement.addEventListener('click', (e) => {
       e.preventDefault();

@@ -58,8 +58,8 @@ class Card {
             thumbnailBlock,
           ) : thumbnailBlock,
         ) : '',
-        item.type ? div({ class: 'card-type' }, item.type) : '',
         div({ class: 'card-caption' },
+          item.type ? div({ class: 'card-type' }, item.type) : '',
           h3(
             this.titleLink ? a({ href: item.path }, cardTitle) : cardTitle,
           ),

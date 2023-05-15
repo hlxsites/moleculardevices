@@ -23,7 +23,7 @@ function buildTopicCard(topic) {
       { class: 'card-body' },
       div(
         { class: 'card-data' },
-        img({ src: '/images/citation.png' }),
+        img({ src: '/images/resource-icons/citation.png' }),
         h2({ class: 'card-data-count' }, cardDataCount),
         h3({ class: 'card-data-label' }, 'Citations'),
       ),

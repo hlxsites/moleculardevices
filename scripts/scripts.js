@@ -271,7 +271,6 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
-  createBreadcrumbsSpace(main);
   decorateEmbedLinks(main);
 }
 
@@ -285,6 +284,7 @@ async function loadEager(doc) {
   if (main) {
     await decorateTemplates(main);
     await decorateMain(main);
+    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
@@ -320,6 +320,14 @@ export function formatDate(dateStr, options = {}) {
     });
   }
   return dateStr;
+}
+
+export function unixDateToString(unixDateString) {
+  const date = new Date(unixDateString * 1000);
+  const day = (date.getDate()).toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 export function addLinkIcon(elem) {
@@ -416,7 +424,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
-  const headerBlock = loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 

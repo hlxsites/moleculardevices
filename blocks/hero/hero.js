@@ -80,7 +80,8 @@ export function buildHero(block) {
     if (i === (rows - 1)) {
       if (row.childElementCount > 1) {
         container.classList.add('two-column');
-        [...row.children].forEach((column) => {
+        [...row.children].forEach((column, y) => {
+          if (y === 1 && column.querySelector('img') && block.classList.contains('hero')) container.classList.add('right-image');
           container.appendChild(column);
         });
       } else {

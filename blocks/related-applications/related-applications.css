@@ -26,24 +26,18 @@ li.related-link::marker {
   color: #337ab7;;
 }
 
-@media (max-width: 992px) {
-  .related-app {
-    flex-basis: 100%;
-  }
-}
-
-@media (max-width: 767px) {
-  .related-links-container, .related-links-container.cols-3 {
-    column-count: 1;
-  }
-}
 
 .related-app h1 {
   font-size: 36px;
   margin-top: 0;
 }
 
-.related-app p {
+.related-app h2, h3 {
+  font-size: 36px;
+  margin-top: 0;
+}
+
+.related-app p + p {
   margin-top: 40px;
 }
 
@@ -56,4 +50,23 @@ li.related-link::marker {
 
 .related-app a .fa {
   margin-left: 5px;
+}
+
+@media (max-width: 992px) {
+  .related-app {
+    flex-basis: 100%;
+    min-height: 1px;
+    padding: 15px 0;
+  }
+
+  .related-app h3 {
+    min-height: 1px;
+    vertical-align: unset;
+  }
+}
+
+@media (max-width: 767px) {
+  .related-links-container, .related-links-container.cols-3 {
+    column-count: 1;
+  }
 }
