@@ -33,6 +33,7 @@ function LoadDriftWidget() {
 
 // IPStack Integration to get specific user information
 async function loadUserData() {
+  console.log('loadUserData');
   const countryCodeInfo = 'country_code';
   if (getCookie(countryCodeInfo)) return;
   fetch('https://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
@@ -41,13 +42,18 @@ async function loadUserData() {
        See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
        Set explicitely policy 'no-referrer-when-downgrade'.
     */
-    referrerPolicy: 'no-referrer-when-downgrade',
+    mode: 'cors',
+    // referrerPolicy: 'no-referrer-when-downgrade',
   }).then((response) => {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject(response);
   }).then((data) => {
+    if (!data.success) {
+      const {error} = data;
+      console.warn(`Error code ${error.code} occured while loading user information.`, `${error.type}: ${error.info}`);
+    }
     if (data[countryCodeInfo]) {
       setCookie(countryCodeInfo, data[countryCodeInfo], 30);
     }
