@@ -173,8 +173,11 @@ export default async function decorate(block) {
   });
 
   buildNewsEvents(block.querySelector('.footer-news-events'));
-  buildNewsletter(block.querySelector('.footer-newsletter-form'));
-
+  
   block.append(footer);
   await decorateIcons(block);
+
+  setTimeout(() => {
+    buildNewsletter(block.querySelector('.footer-newsletter-form'));
+  }, 3000);
 }
