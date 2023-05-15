@@ -35,7 +35,7 @@ function LoadDriftWidget() {
 async function loadUserData() {
   const countryCodeInfo = 'country_code';
   if (getCookie(countryCodeInfo)) return;
-  fetch('http://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
+  fetch('https://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
     /* Referrer Policy is set to strict-origin-when-cross-origin by default
        to avoid data leaking of private information.
        See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
