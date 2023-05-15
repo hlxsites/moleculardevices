@@ -113,7 +113,9 @@ class FilterableCardList {
     this.dataIndex.set(viewAllCategory, initialViewAllCategoryItems);
 
     this.data.forEach((item) => {
+      console.log(item);
       const itemCategory = this.getCategory(item);
+      console.log(itemCategory);
       if (!itemCategory || itemCategory === '0') return;
       const itemCategoryText = itemCategory;
       const itemCategoryKey = itemCategory.replaceAll(' ', '-');
@@ -134,6 +136,8 @@ class FilterableCardList {
       this.dataIndex.get(itemCategoryKey).push(renderedItem);
       !this.headings && initialViewAllCategoryItems.push(renderedItem);
     });
+
+    console.log(this.dataIndex);
   }
 
   async render() {
@@ -201,9 +205,8 @@ function compareByDate(item1, item2) {
 }
 
 const VARIANTS = {
-  applications: {
+  APPLICATIONS: {
     headings: true,
-    // sortCards: true,
 
     async getData() {
       const applications = await ffetch('/query-index.json')
@@ -222,21 +225,13 @@ const VARIANTS = {
         ? item.applicationCategory
         : item.category;
     },
-
-    // compareItems(card1, card2) {
-    //   if (card1.querySelector('h2')) return -1;
-    //   if (card2.querySelector('h2')) return 1;
-
-    //   return card1.querySelector('h3').textContent
-    //     .localeCompare(card2.querySelector('h3').textContent);
-    // },
   },
 
-  blog: {
+  BLOG: {
     // TODO
   },
 
-  technology: {
+  TECHNOLOGY: {
     headings: false,
     sortCards: false,
 
@@ -255,7 +250,7 @@ const VARIANTS = {
     },
   },
 
-  products: {
+  PRODUCTS: {
     headings: true,
     sortCards: false,
 
@@ -284,7 +279,7 @@ const VARIANTS = {
     },
   },
 
-  'accessories-and-consumables': {
+  'ACCESSORIES-AND-CONSUMABLES': {
     cardRenderer: accessoriesAndConsumables,
     // clusterCategories: true,
 
@@ -294,7 +289,11 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => product.subCategory === 'Accessories and Consumables',
+        (product) => { 
+          return product.subCategory === 'Accessories and Consumables' 
+            && product.locale !== 'ZH'
+            && product.path !== '/products/accessories-consumables' 
+        },
       );
 
       products.sort((product1, product2) => { 
@@ -309,8 +308,9 @@ const VARIANTS = {
     },
   },
 
-  'assay-kits': {
+  'ASSAY-KITS': {
     cardRenderer: accessoriesAndConsumables,
+    clusterCategories: true,
 
     async getData() {
       let products = await ffetch('/query-index.json')
@@ -333,12 +333,29 @@ const VARIANTS = {
     },
   },
 
+  'ADDITIONAL-PRODUCTS': {
+    async getData() {
+      let products = await ffetch('/query-index.json')
+        .sheet('products')
+        .all();
+
+      products = products.filter(
+        (product) => product.category === 'Additional Products'
+      );
+
+      return products;
+    },
+
+    getCategory(item) {
+      return item.category;
+    },
+  },
 };
 
 export default async function decorate(block) {
   const cardList = new FilterableCardList(
     block,
-    VARIANTS[block.classList[1]],
+    VARIANTS[block.classList[1].toUpperCase()],
   );
   await cardList.render();
 }

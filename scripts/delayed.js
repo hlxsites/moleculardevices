@@ -29,6 +29,8 @@ function LoadDriftWidget() {
 };
 /* eslint-enable */
 
+/*
 if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
   LoadDriftWidget();
 }
+*/
