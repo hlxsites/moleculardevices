@@ -28,8 +28,6 @@ export default async function decorate(block) {
     wrapper.classList.remove('overlay');
     wrapper.classList.add('preview');
   });
-
   overlayContent.append(close, right, left);
-
   await decorateIcons(block.parentElement);
 }
