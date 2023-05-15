@@ -23,15 +23,17 @@ const TABS_MAPPING = [
   { id: 'Citations' },
   { id: 'RelatedProducts', sectionName: 'Related Products & Services' },
   { id: 'specs', sectionName: 'Specifications & Options' },
+  { id: 'planoptions', sectionName: 'Plan Options' },
 ];
 
 const META_SHEET_MAPPING = [
   { url: '/newsroom/in-the-news/', sheet: 'publications' },
   { url: '/products/', sheet: 'products' },
+  { url: '/service-support/', sheet: 'products' },
   { url: '/applications/', sheet: 'applications' },
   { url: '/events/', sheet: 'events' },
   { url: '/resources/citations/', sheet: 'citations' },
-  { url: '/technology', sheet: 'technologies'}
+  { url: '/technology', sheet: 'technologies' },
 ];
 
 const isProduct = (document) => document.type === 'Products' && document.querySelector('body').classList.contains('page-node-type-products');
@@ -70,7 +72,7 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
   }
   request.open(
     'GET',
-    `https://main--moleculardevices--hlxsites.hlx.page/export/moldev-resources-sheet-0505252023.json?limit=10000&sheet=${sheet}`,
+    `https://main--moleculardevices--hlxsites.hlx.page/export/moldev-resources-sheet-05152023.json?limit=10000&sheet=${sheet}`,
     false,
   );
   request.overrideMimeType('text/json; UTF-8');
@@ -111,7 +113,14 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       meta['Card C2A'] = resource['Card CTA'];
     }
     if (resource['SHORT DESCRIPTION']) {
-      meta['Card Description'] = resource['SHORT DESCRIPTION'];
+      meta.Description = resource['SHORT DESCRIPTION'];
+    }
+    if (resource.SUMMARY) {
+      if (meta.Description) {
+        meta['Card Description'] = resource.SUMMARY;
+      } else {
+        meta.Description = resource.SUMMARY;
+      }
     }
     if (resource['COVEO TITLE']) {
       meta['Search Title'] = resource['COVEO TITLE'];
@@ -375,12 +384,12 @@ const cleanUp = (document) => {
 
 const extractBackgroundImage = (content) => {
   const { backgroundImage } = content.style;
-  if (backgroundImage) {
+  if (backgroundImage && backgroundImage.match(/url\((.*?)\)/)) {
     return makeUrlRelative(backgroundImage.match(/url\((.*?)\)/)[1].trim());
   }
 
   // fallback and check on attributes
-  if (content.hasAttribute('style')) {
+  if (content.hasAttribute('style') && content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)) {
     const backgroundUrl = content.getAttribute('style').match(/background-image: url(?:\(['"]?)(.*?)(?:['"]?\))/)[1];
     return backgroundUrl ? makeUrlRelative(backgroundUrl.trim()) : null;
   }
@@ -846,41 +855,43 @@ const transformColumns = (document) => {
   document.querySelectorAll('.row [class*="col-"]:first-of-type').forEach((column) => {
     column.id = 'col';
     const row = column.closest('.row:not(#col)');
-    const sectionStyle = row.classList.contains('section');
-    if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
-      if (sectionStyle) {
-        row.before(document.createElement('hr'));
-        const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
-        const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
-        row.append(metaTable);
-        //row.after(document.createElement('hr'));
-      } else {
-        const cells = [['Columns']];
-        const blockOptions = [];
-        [...row.children].forEach((col) => {
-          if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
-            row.after(col);
+    if (row) {
+      const sectionStyle = row.classList.contains('section');
+      if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
+        if (sectionStyle) {
+          row.before(document.createElement('hr'));
+          const metaCells = [['Section Metadata'], [['style'], ['Columns 2']]];
+          const metaTable = WebImporter.DOMUtils.createTable(metaCells, document);
+          row.append(metaTable);
+          //row.after(document.createElement('hr'));
+        } else {
+          const cells = [['Columns']];
+          const blockOptions = [];
+          [...row.children].forEach((col) => {
+            if (col.classList.length === 1 && col.className.indexOf('-12') > 0) {
+              row.after(col);
+            }
+          });
+          // check swap / reverse order tables
+          let children = [...row.children];
+          if (row.classList.contains('swap')) {
+            children = children.reverse();
+            blockOptions.push('swap');
           }
-        });
-        // check swap / reverse order tables
-        let children = [...row.children];
-        if (row.classList.contains('swap')) {
-          children = children.reverse();
-          blockOptions.push('swap');
-        }
-        // match column width layouts
-        // eslint-disable-next-line max-len
-        const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
-        if (styleMatch) {
-          blockOptions.push(styleMatch.blockStyle);
-        }
+          // match column width layouts
+          // eslint-disable-next-line max-len
+          const styleMatch = COLUMN_STYLES.find((e) => e.match.some((match) => column.classList.contains(match)));
+          if (styleMatch) {
+            blockOptions.push(styleMatch.blockStyle);
+          }
 
-        if (blockOptions.length > 0) {
-          cells[0] = [`Columns (${blockOptions.join(', ')})`];
+          if (blockOptions.length > 0) {
+            cells[0] = [`Columns (${blockOptions.join(', ')})`];
+          }
+          cells.push(children);
+          const table = WebImporter.DOMUtils.createTable(cells, document);
+          row.replaceWith(table);
         }
-        cells.push(children);
-        const table = WebImporter.DOMUtils.createTable(cells, document);
-        row.replaceWith(table);
       }
     }
   });
@@ -1214,7 +1225,7 @@ const transformProductOptions = (document) => {
 
 const transformProductSpecs = (document) => {
   const div = document.querySelector('div.tab-pane#specs .specsTable');
-  if (div) {
+  if (div && div.textContent.trim().length > 0) {
     const cells = [['Specifications']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
@@ -1223,7 +1234,7 @@ const transformProductSpecs = (document) => {
 
 const transformProductOrderOptions = (document) => {
   const div = document.querySelector('div.ordering_wrap');
-  if (div) {
+  if (div && div.textContent.trim().length > 0) {
     const cells = [['Ordering Options']];
     if (document.shopfiyHandler) {
       cells.push([document.shopfiyHandler]);
@@ -1235,7 +1246,7 @@ const transformProductOrderOptions = (document) => {
 
 const transformProductRelatedProducts = (document) => {
   const div = document.querySelector('div.cat-related-products');
-  if (div) {
+  if (div && div.textContent.trim().length > 0) {
     const cells = [['Related Products']];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
