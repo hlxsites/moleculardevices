@@ -1,5 +1,5 @@
 import {
-  div, img, a, p, h3, i, h2, span, ul, li
+  div, img, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
@@ -16,12 +16,12 @@ function handleFilterClick(e) {
   e.preventDefault();
   const { target } = e;
   const selected = target.getAttribute('aria-selected') === 'true';
-  if(!selected) {
+  if (!selected) {
     const resourceType = target.getAttribute('aria-labelledby');
     const allFilters = document.querySelectorAll('.filter a');
     allFilters.forEach((item) => item.setAttribute('aria-selected', false));
     target.setAttribute('aria-selected', true);
-    if(resourceType === 'View All') {
+    if (resourceType === 'View All') {
       const filteredResources = document.querySelectorAll('.filtered-item');
       filteredResources.forEach((item) => item.setAttribute('aria-hidden', false));
     } else {
@@ -49,22 +49,22 @@ export default async function decorate(block) {
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
   const filtersBlock = ul({ class: 'filters' });
-  const filters = [...new Set(otherResources.map(item => item.type))]
-    .filter(item => item !== 'Citation');
+  const filters = [...new Set(otherResources.map((item) => item.type))]
+    .filter((item) => item !== 'Citation');
   filters.push('Videos and Webinars');
-  const sortedFilters = filters.sort((a, b) => a.toLowerCase() < b.toLowerCase() ? -1 : 1);
+  const sortedFilters = filters.sort((x, y) => (x.toLowerCase() < y.toLowerCase() ? -1 : 1));
   sortedFilters.unshift('View All');
 
-  sortedFilters.forEach((filter, i) => {
+  sortedFilters.forEach((filter, idx) => {
     filtersBlock.append(li({ class: 'filter' },
-      span({ class: 'filter-divider' }, i === 0 ? '' : '|'),
+      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
       a({
         'aria-labelledby': filter,
         href: '#',
-        'aria-selected': i === 0 ? true : false,
+        'aria-selected': idx === 0,
         onclick: handleFilterClick,
       }, filter),
-    ))
+    ));
   });
 
   block.append(filtersBlock);
@@ -114,7 +114,7 @@ export default async function decorate(block) {
   const videoResourcesBlock = div({
     class: 'videos-container filtered-item',
     'aria-hidden': false,
-    'aria-labelledby':  'Videos and Webinars',
+    'aria-labelledby': 'Videos and Webinars',
   });
   videoResourcesBlock.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
 
