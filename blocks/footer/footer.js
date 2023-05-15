@@ -179,5 +179,5 @@ export default async function decorate(block) {
 
   setTimeout(() => {
     buildNewsletter(block.querySelector('.footer-newsletter-form'));
-  }, 3000);
+  }, 1000);
 }
