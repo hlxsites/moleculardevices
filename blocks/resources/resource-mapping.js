@@ -81,5 +81,6 @@ export default {
   },
   'White Paper': {
     image: 'document',
+    action: 'Download',
   },
 };

@@ -1,5 +1,5 @@
 import {
-  div, img, a, p, h3, i, h2,
+  div, img, a, p, h3, i, h2, span, ul, li
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
@@ -11,6 +11,29 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
+
+function handleFilterClick(e) {
+  e.preventDefault();
+  const { target } = e;
+  const selected = target.getAttribute('aria-selected') === 'true';
+  if(!selected) {
+    const resourceType = target.getAttribute('aria-labelledby');
+    const allFilters = document.querySelectorAll('.filter a');
+    allFilters.forEach((item) => item.setAttribute('aria-selected', false));
+    target.setAttribute('aria-selected', true);
+    if(resourceType === 'View All') {
+      const filteredResources = document.querySelectorAll('.filtered-item');
+      filteredResources.forEach((item) => item.setAttribute('aria-hidden', false));
+    } else {
+      // hide all displayed items
+      const filteredResources = document.querySelectorAll('.filtered-item');
+      filteredResources.forEach((item) => item.setAttribute('aria-hidden', true));
+      // show filtered items
+      const selectedResources = document.querySelectorAll(`.filtered-item[aria-labelledby="${resourceType}"]`);
+      selectedResources.forEach((item) => item.setAttribute('aria-hidden', false));
+    }
+  }
+}
 
 export default async function decorate(block) {
   const template = getMetadata('template');
@@ -25,12 +48,37 @@ export default async function decorate(block) {
   const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
+  const filtersBlock = ul({ class: 'filters' });
+  const filters = [...new Set(otherResources.map(item => item.type))]
+    .filter(item => item !== 'Citation');
+  filters.push('Videos and Webinars');
+  const sortedFilters = filters.sort((a, b) => a.toLowerCase() < b.toLowerCase() ? -1 : 1);
+  sortedFilters.unshift('View All');
+
+  sortedFilters.forEach((filter, i) => {
+    filtersBlock.append(li({ class: 'filter' },
+      span({ class: 'filter-divider' }, i === 0 ? '' : '|'),
+      a({
+        'aria-labelledby': filter,
+        href: '#',
+        'aria-selected': i === 0 ? true : false,
+        onclick: handleFilterClick,
+      }, filter),
+    ))
+  });
+
+  block.append(filtersBlock);
+
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
     const resourceType = item.type;
     const resourceImage = resourceMapping[item.type]?.image;
     const resourceBlock = div(
-      { class: `resource type-${resourceMapping[item.type]?.image || 'document'}` },
+      {
+        class: 'resource filtered-item',
+        'aria-hidden': false,
+        'aria-labelledby': resourceType,
+      },
       div(
         { class: 'resource-icon' },
         img({ src: `/images/resource-icons/${resourceImage || 'document'}.png` }),
@@ -63,8 +111,14 @@ export default async function decorate(block) {
   });
 
   block.append(otherResourcesBlock);
-  block.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
-  const videoResourcesBlock = div({ class: 'resources-section videos-and-webinars' });
+  const videoResourcesBlock = div({
+    class: 'videos-container filtered-item',
+    'aria-hidden': false,
+    'aria-labelledby':  'Videos and Webinars',
+  });
+  videoResourcesBlock.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
+
+  const videosContainerBlock = div({ class: 'resources-section' });
 
   await Promise.all(videoResources.map(async (item) => {
     const videoFragmentHtml = await fetchFragment(item.path);
@@ -81,10 +135,11 @@ export default async function decorate(block) {
         p({ class: 'video-title' }, item.title),
       );
       embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
-      videoResourcesBlock.append(videoWrapper);
+      videosContainerBlock.append(videoWrapper);
     }
   }));
 
+  videoResourcesBlock.append(videosContainerBlock);
   block.append(videoResourcesBlock);
 
   return block;
