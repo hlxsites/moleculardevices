@@ -57,6 +57,9 @@ indices:
       cardDescription:
         select: head > meta[name="card-description"]
         value: attribute(el, "content")
+      locale:
+        select: head > meta[name="locale"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
