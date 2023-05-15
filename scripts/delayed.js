@@ -32,18 +32,16 @@ function LoadDriftWidget() {
 /* eslint-enable */
 
 // IPStack Integration to get specific user information
-async function loadUserData() {
-  console.log('loadUserData');
+async function loadUserData(allowOverwrite) {
   const countryCodeInfo = 'country_code';
-  if (getCookie(countryCodeInfo)) return;
+  if (!allowOverwrite && getCookie(countryCodeInfo)) return;
   fetch('https://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
     /* Referrer Policy is set to strict-origin-when-cross-origin by default
        to avoid data leaking of private information.
        See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
-       Set explicitely policy 'no-referrer-when-downgrade'.
+       Set mode to 'cors' to allow cross-origin requests, see https://developer.mozilla.org/en-US/docs/Web/API/Request/mode.
     */
     mode: 'cors',
-    // referrerPolicy: 'no-referrer-when-downgrade',
   }).then((response) => {
     if (response.ok) {
       return response.json();
@@ -51,7 +49,8 @@ async function loadUserData() {
     return Promise.reject(response);
   }).then((data) => {
     if (!data.success) {
-      const {error} = data;
+      const { error } = data;
+      // eslint-disable-next-line no-console
       console.warn(`Error code ${error.code} occured while loading user information.`, `${error.type}: ${error.info}`);
     }
     if (data[countryCodeInfo]) {
