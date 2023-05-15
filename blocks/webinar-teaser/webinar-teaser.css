@@ -1,5 +1,5 @@
 .webinar-teaser {
-  background-image: url('/images/wave-background-techtip-blue-green.png');
+  background-image: url('/images/wave-background-techtip-blue-green.webp'), url('/images/wave-background-techtip-blue-green.png');
   background-size: cover;
   background-repeat: no-repeat;
   height: 645px;
