@@ -75,6 +75,9 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
+      familyID:
+        select: head > meta[name="family-id"]
+        value: attribute(el, "content")
       productLandingPageOrder:
         select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")
