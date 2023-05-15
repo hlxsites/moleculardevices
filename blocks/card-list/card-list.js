@@ -8,9 +8,16 @@ const defaultCardRender = await createCard({
   defaultButtonText: 'Learn more',
 });
 
+const accessoriesAndConsumables = await createCard({
+  defaultButtonText: 'Details',
+  c2aLinkStyle: true,
+  showImageThumbnail: false,
+});
+
 class FilterableCardList {
   constructor(block, config) {
     this.headings = false;
+    this.clusterCategories = false;
     // this.sortCards = false;
 
     this.block = block;
@@ -23,7 +30,7 @@ class FilterableCardList {
   /** API */
 
   /**
-   * Retrieve the data for the card list
+   * Retrieve the data for the card list, already sorted in the correct order
    * @returns {Array} a list of items to be used for creating cards
    */
   async getData() {
@@ -44,7 +51,7 @@ class FilterableCardList {
    * @returns {Array} - A custom built list of items for the view all category
    */
   createViewAllCategoryItems() {
-    if (!this.headings) return null; // already done
+    if (!this.headings && !this.clusterCategories) return null; // already done
 
     // Take the categories from the category filter component if present
     let categoryOrder = [...document.querySelectorAll('.card-list-filter a')]
@@ -149,6 +156,8 @@ class FilterableCardList {
       this.dataIndex.set(viewAllCategory, viewAllCategoryItems);
     }
 
+    console.log(this.dataIndex);
+
     // Render the carousel
     this.carousel = await createCarousel(
       this.block,
@@ -177,6 +186,18 @@ class FilterableCardList {
       }
     };
   }
+}
+
+function compareByDate(item1, item2) {
+  const date1 = item1.date && item1.date !== '0'
+    ? item1.date
+    : item1.lastModified;
+
+  const date2 = item2.date && item2.date !== '0'
+    ? item2.date
+    : item2.lastModified;
+
+  return (+date1) - (+date2);
 }
 
 const VARIANTS = {
@@ -224,17 +245,7 @@ const VARIANTS = {
         .sheet('technologies')
         .all();
       
-      technologies.sort((technology1, technology2) => {
-        const date1 = technology1.date && technology1.date !== '0'
-          ? technology1.date
-          : technology1.lastModified;
-
-        const date2 = technology2.date && technology2.date !== '0'
-          ? technology2.date
-          : technology2.lastModified;
-
-        return (+date1) - (+date2);
-      });
+      technologies.sort(compareByDate);
 
       return technologies;
     },
@@ -272,6 +283,56 @@ const VARIANTS = {
       return item.path.startsWith('/service-support') ? 'Lab Automation' : item.category;
     },
   },
+
+  'accessories-and-consumables': {
+    cardRenderer: accessoriesAndConsumables,
+    // clusterCategories: true,
+
+    async getData() {
+      let products = await ffetch('/query-index.json')
+        .sheet('products')
+        .all();
+
+      products = products.filter(
+        (product) => product.subCategory === 'Accessories and Consumables',
+      );
+
+      products.sort((product1, product2) => { 
+        return product1.h1.localeCompare(product2.h1);
+      });
+
+      return products;
+    },
+
+    getCategory(item) {
+      return item.category;
+    },
+  },
+
+  'assay-kits': {
+    cardRenderer: accessoriesAndConsumables,
+
+    async getData() {
+      let products = await ffetch('/query-index.json')
+        .sheet('products')
+        .all();
+
+      products = products.filter(
+        (product) => product.category === 'Assay Kits',
+      );
+
+      products.sort((product1, product2) => { 
+        return product1.h1.localeCompare(product2.h1);
+      });
+
+      return products;
+    },
+
+    getCategory(item) {
+      return item.subCategory;
+    },
+  },
+
 };
 
 export default async function decorate(block) {
