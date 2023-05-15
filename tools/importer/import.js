@@ -113,7 +113,11 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       meta['Card C2A'] = resource['Card CTA'];
     }
     if (resource['SHORT DESCRIPTION']) {
-      meta.Description = resource['SHORT DESCRIPTION'];
+      if (meta.Description) {
+        meta['Card Description'] = resource['SHORT DESCRIPTION'];
+      } else {
+        meta.Description = resource['SHORT DESCRIPTION'];
+      }
     }
     if (resource.SUMMARY) {
       if (meta.Description) {
@@ -587,7 +591,7 @@ const transformTabsSections = (document) => {
   let hasCovidWave = false;
   if (covidWave) {
     const backgroundUrl = extractBackgroundImage(covidWave);
-    if (backgroundUrl.indexOf('covid19-footer') > -1) {
+    if (backgroundUrl && backgroundUrl.indexOf('covid19-footer') > -1) {
       hasCovidWave = true;
       covidWave.remove();
     }
@@ -758,7 +762,7 @@ const transformButtons = (document) => {
   });
 
   // convert secondary buttons
-  document.querySelectorAll('a.gradiantTealreverse, a.whiteBtn, a.banner_btn.bluebdr-mb').forEach((button) => {
+  document.querySelectorAll('a.gradiantTealreverse, a.gradiantOrangereverse, a.whiteBtn, a.banner_btn.bluebdr-mb, a.banner_btn').forEach((button) => {
     const wrapper = document.createElement('em');
     wrapper.innerHTML = button.outerHTML;
     button.replaceWith(wrapper);
@@ -1432,10 +1436,12 @@ const prepareRequestQuoteLinks = (document) => {
   if (document.pid) {
     document.querySelectorAll('a').forEach((a) => {
       if (a.href && a.href.indexOf('/quote-request') > -1) {
-        const url = a.href.replace(/pid=\w*/, `pid=${document.pid}`);
-        if (url.indexOf(document.pid) > -1) {
-          a.href = url;
+        const urlParams = new URLSearchParams(a.href.substring(14));
+        if (urlParams.has('request_type') && urlParams.get('request_type').toLocaleLowerCase() === 'call') {
+          urlParams.delete('request_type');
         }
+        urlParams.set('pid', document.pid);
+        a.href = `/quote-request?${urlParams.toString()}`;
       }
     });
   }
