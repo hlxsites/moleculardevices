@@ -63,29 +63,39 @@ export default async function decorate(block) {
   });
 
   block.append(otherResourcesBlock);
-  block.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
-  const videoResourcesBlock = div({ class: 'resources-section videos-and-webinars' });
+  
+  if (videoResources.length > 0) {
+    const videoResourcesBlock = div({
+      class: 'videos-container filtered-item',
+      'aria-hidden': false,
+      'aria-labelledby': 'Videos and Webinars',
+    });
+    videoResourcesBlock.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
 
-  await Promise.all(videoResources.map(async (item) => {
-    const videoFragmentHtml = await fetchFragment(item.path);
-    const videoFragment = document.createElement('div');
-    videoFragment.innerHTML = videoFragmentHtml;
-    const videoElement = videoFragment.querySelector('p:last-of-type a');
-    const videoHref = videoElement?.href;
-    if (videoElement && videoHref && videoHref.startsWith('https://')) {
-      const videoURL = new URL(videoHref);
-      const videoWrapper = div({ class: 'video-wrapper' },
-        div({ class: 'video-container' },
-          a({ href: videoHref }, videoHref),
-        ),
-        p({ class: 'video-title' }, item.title),
-      );
-      embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
-      videoResourcesBlock.append(videoWrapper);
-    }
-  }));
+    const videosContainerBlock = div({ class: 'resources-section' });
 
-  block.append(videoResourcesBlock);
+    await Promise.all(videoResources.map(async (item) => {
+      const videoFragmentHtml = await fetchFragment(item.path);
+      const videoFragment = document.createElement('div');
+      videoFragment.innerHTML = videoFragmentHtml;
+      const videoElement = videoFragment.querySelector('p:last-of-type a');
+      const videoHref = videoElement?.href;
+      if (videoElement && videoHref && videoHref.startsWith('https://')) {
+        const videoURL = new URL(videoHref);
+        const videoWrapper = div({ class: 'video-wrapper' },
+          div({ class: 'video-container' },
+            a({ href: videoHref }, videoHref),
+          ),
+          p({ class: 'video-title' }, item.title),
+        );
+        embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
+        videosContainerBlock.append(videoWrapper);
+      }
+    }));
+
+    videoResourcesBlock.append(videosContainerBlock);
+    block.append(videoResourcesBlock);
+  }
 
   return block;
 }
