@@ -84,7 +84,7 @@ function buildCitation(fragment) {
     { class: 'citation' },
     div(
       { class: 'citation-icon' },
-      img({ src: '/images/citation.png' }),
+      img({ src: '/images/resource-icons/citation.png' }),
     ),
     div(
       { class: 'citation-info' },
