@@ -113,9 +113,7 @@ class FilterableCardList {
     this.dataIndex.set(viewAllCategory, initialViewAllCategoryItems);
 
     this.data.forEach((item) => {
-      console.log(item);
       const itemCategory = this.getCategory(item);
-      console.log(itemCategory);
       if (!itemCategory || itemCategory === '0') return;
       const itemCategoryText = itemCategory;
       const itemCategoryKey = itemCategory.replaceAll(' ', '-');
@@ -137,7 +135,6 @@ class FilterableCardList {
       !this.headings && initialViewAllCategoryItems.push(renderedItem);
     });
 
-    console.log(this.dataIndex);
   }
 
   async render() {
@@ -159,8 +156,6 @@ class FilterableCardList {
     if (viewAllCategoryItems) {
       this.dataIndex.set(viewAllCategory, viewAllCategoryItems);
     }
-
-    console.log(this.dataIndex);
 
     // Render the carousel
     this.carousel = await createCarousel(
