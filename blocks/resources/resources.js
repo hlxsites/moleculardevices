@@ -63,7 +63,7 @@ export default async function decorate(block) {
   });
 
   block.append(otherResourcesBlock);
-  
+
   if (videoResources.length > 0) {
     const videoResourcesBlock = div({
       class: 'videos-container filtered-item',
