@@ -1,58 +1,23 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
-  console.log('decorating image-gallery', block);
+  // console.log('decorating image-gallery', block);
 
-  block.setAttribute('aria-hidden', true);
-  const oldBlockHtml = block.innerHTML;
-  block.innerHTML = `
-<span class="icon icon-icon_link gallery-button-left"></span>
-<span class="icon icon-icon_link gallery-button-right"></span>
-<span class="icon icon-close-circle-outline gallery-button-close"></span>
-<div class="gallery">
-  ${oldBlockHtml}
-</div>
-`;
+  block.classList.add('preview');
+  [...block.children].forEach((row, i) => {
+    const img = row.querySelector('img:first-of-type');
+    img.addEventListener('click', () => {
+      block.classList.add('overlay');
+      block.classList.remove('preview');
+    });
+  });
+  block.prepend(span({ class: 'icon icon-close-circle-outline gallery-button-close' }));
+  block.prepend(span({ class: 'icon icon-icon_link gallery-button-right' }));
+  block.prepend(span({ class: 'icon icon-icon_link gallery-button-left' }));
 
   const body = document.querySelector('body');
 
-  const visibleGallery = document.createElement('div');
-  visibleGallery.classList.add('visible-gallery');
-  if (block.classList.contains('showcase-right')) {
-    visibleGallery.classList.add('showcase-right');
-  }
-
-  const pictures = block.querySelectorAll('.gallery > div > div > p > picture:first-of-type');
-  for (let i = 0; i < pictures.length; i += 1) {
-    const picture = pictures[i];
-    const pictureDiv = picture.parentNode.parentNode.parentNode;
-
-    if (i < 5) {
-      const clonedPicture = picture.cloneNode(true);
-
-      clonedPicture.addEventListener('click', () => {
-        body.classList.add('no-scroll');
-        pictureDiv.removeAttribute('aria-hidden');
-        block.removeAttribute('aria-hidden');
-      });
-
-      visibleGallery.appendChild(clonedPicture);
-    }
-
-    pictureDiv.setAttribute('aria-hidden', true);
-    pictureDiv.addEventListener('click', () => {
-      body.classList.remove('no-scroll');
-      pictureDiv.setAttribute('aria-hidden', true);
-      block.setAttribute('aria-hidden', true);
-    });
-  }
-
-  block.parentNode.prepend(visibleGallery);
-
-  const picturesWithThumbnails = block.querySelectorAll('.gallery > div > div > p > picture:nth-of-type(2)');
-  for (let i = 0; i < picturesWithThumbnails.length; i += 1) {
-    picturesWithThumbnails[i].previousElementSibling.remove();
-  }
+  // for burron event listener example see hero-advanced.js line 31 etc..
 
   block.querySelector('.gallery-button-left').addEventListener('click', () => {
     const visiblePicture = block.querySelector('.gallery > div:not([aria-hidden="true"])');
