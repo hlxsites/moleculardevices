@@ -9,7 +9,10 @@ export default async function decorate(block) {
   const close = span({ class: 'icon icon-close-circle-outline gallery-button-close' });
   right.addEventListener('click', () => { scroll(block.scrollLeft + wrapper.offsetWidth); });
   left.addEventListener('click', () => { scroll(block.scrollLeft - wrapper.offsetWidth); });
-  close.addEventListener('click', () => { wrapper.parentElement.classList.remove('overlay')});
+  close.addEventListener('click', () => { 
+    wrapper.parentElement.classList.remove('overlay');
+    block.scrollIntoView({ behavior: 'instant', block: 'center' });
+  });
   wrapper.append(close, right, left);
   [...block.children].forEach((row, i) => {
     row.querySelector('img:first-of-type').addEventListener('click', (e) => {
