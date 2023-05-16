@@ -881,6 +881,10 @@ main .section.featured-asset .columns h3 {
   font-size: 25px;
 }
 
+main .section.newsroom > div {
+  padding-top: 0;
+}
+
 main .section.featured-asset .columns > div {
   align-items: unset;
 }
@@ -898,6 +902,11 @@ main .section.featured-asset .columns > div {
   main .section.featured-asset img {
     margin-top: 30px;
   }
+}
+
+main .section.newsroom h2 {
+  color: var(--button-bg-color);
+  font-family: var(--ff-proxima-regular);
 }
 
 .product .section.tabs h2 {
@@ -1198,13 +1207,4 @@ main .section:not(.tabs, .wave.bluegreen).newsroom .default-content-wrapper:firs
     padding-left: 15px;
     padding-right: 15px;
   }
-}
-
-main .section.newsroom h2 {
-  color: var(--button-bg-color);
-  font-family: var(--ff-proxima-regular);
-}
-
-main .section.newsroom > div {
-  padding-top: 0;
 }

@@ -1,7 +1,6 @@
 .latest-publications.block {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
 .latest-publications.block article {
