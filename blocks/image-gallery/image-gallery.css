@@ -6,6 +6,7 @@
   height: 100%;
   background-color: rgb(0 0 0 / 100%);
   z-index: 1000;
+  padding-top: 30px;
 }
 
 .overlay-content {
@@ -86,10 +87,12 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   color: white;
+  margin-bottom: 20px;
 }
 
 .overlay .image-gallery picture {
   display: none;
+  text-align: center;
 }
 
 .overlay .image-gallery picture:last-of-type {
