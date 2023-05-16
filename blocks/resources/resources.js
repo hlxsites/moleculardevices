@@ -1,8 +1,8 @@
 import {
-  div, img, a, p, h3, i, h2,
+  div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
@@ -11,6 +11,29 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
+
+function handleFilterClick(e) {
+  e.preventDefault();
+  const { target } = e;
+  const selected = target.getAttribute('aria-selected') === 'true';
+  if (!selected) {
+    const resourceType = target.getAttribute('aria-labelledby');
+    const allFilters = document.querySelectorAll('.filter a');
+    allFilters.forEach((item) => item.setAttribute('aria-selected', false));
+    target.setAttribute('aria-selected', true);
+    if (resourceType === 'View All') {
+      const filteredResources = document.querySelectorAll('.filtered-item');
+      filteredResources.forEach((item) => item.setAttribute('aria-hidden', false));
+    } else {
+      // hide all displayed items
+      const filteredResources = document.querySelectorAll('.filtered-item');
+      filteredResources.forEach((item) => item.setAttribute('aria-hidden', true));
+      // show filtered items
+      const selectedResources = document.querySelectorAll(`.filtered-item[aria-labelledby="${resourceType}"]`);
+      selectedResources.forEach((item) => item.setAttribute('aria-hidden', false));
+    }
+  }
+}
 
 export default async function decorate(block) {
   const template = getMetadata('template');
@@ -25,15 +48,45 @@ export default async function decorate(block) {
   const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
+  const filtersBlock = ul({ class: 'filters' });
+  const filters = [...new Set(otherResources.map((item) => item.type))]
+    .filter((item) => item !== 'Citation');
+  filters.push('Videos and Webinars');
+  const sortedFilters = filters.sort((x, y) => (x.toLowerCase() < y.toLowerCase() ? -1 : 1));
+  sortedFilters.unshift('View All');
+
+  sortedFilters.forEach((filter, idx) => {
+    filtersBlock.append(li({ class: 'filter' },
+      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
+      a({
+        'aria-labelledby': filter,
+        href: '#',
+        'aria-selected': idx === 0,
+        onclick: handleFilterClick,
+      }, filter),
+    ));
+  });
+
+  block.append(filtersBlock);
+
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
     const resourceType = item.type;
     const resourceImage = resourceMapping[item.type]?.image;
     const resourceBlock = div(
-      { class: `resource type-${resourceMapping[item.type]?.image || 'document'}` },
+      {
+        class: 'resource filtered-item',
+        'aria-hidden': false,
+        'aria-labelledby': resourceType,
+      },
       div(
         { class: 'resource-icon' },
-        img({ src: `/images/resource-icons/${resourceImage || 'document'}.png` }),
+        createOptimizedPicture(
+          `/images/resource-icons/${resourceImage}.png`,
+          resourceImage,
+          false,
+          [{ media: '(max-width: 991px)', width: '35' }, { width: '60' }],
+        ),
       ),
       div(
         { class: 'resource-info' },
@@ -78,7 +131,7 @@ export default async function decorate(block) {
       const videoFragmentHtml = await fetchFragment(item.path);
       const videoFragment = document.createElement('div');
       videoFragment.innerHTML = videoFragmentHtml;
-      const videoElement = videoFragment.querySelector('p:last-of-type a');
+      const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
       const videoHref = videoElement?.href;
       if (videoElement && videoHref && videoHref.startsWith('https://')) {
         const videoURL = new URL(videoHref);
