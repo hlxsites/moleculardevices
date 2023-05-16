@@ -2,6 +2,7 @@ import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a,
   div,
+  li,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
@@ -72,4 +73,16 @@ export function reverseElementLinkTagRelation(element) {
   }
 
   return element;
+}
+
+export function buildRequestQuote(classes) {
+  const familyId = getMetadata('family-id');
+  const link = familyId ? `/quote-request?pid=${familyId}` : '/quote-request';
+  return li(
+    { class: classes },
+    a(
+      { href: link },
+      'Request Quote',
+    ),
+  );
 }

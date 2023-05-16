@@ -2,6 +2,7 @@ import {
   reverseElementLinkTagRelation,
   getSubmenus,
   getSubmenuIdFromTitle,
+  buildRequestQuote,
 } from '../helpers.js';
 import { getMetadata } from '../../../scripts/lib-franklin.js';
 import {
@@ -119,14 +120,7 @@ export function buildMobileMenuTools(menuItems, content) {
   menuItems.append(contactUsItem);
 
   // create Request Quote button
-  const requestQuoteItem = li(
-    { class: 'mobile-menu-item request-quote' },
-    a(
-      { href: '/quote-request' },
-      'Request Quote',
-    ),
-  );
-  menuItems.append(requestQuoteItem);
+  menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
 
   // create Tools buttons
   const toolsList = content.querySelector('div:nth-child(2)');
