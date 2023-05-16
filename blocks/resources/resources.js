@@ -81,7 +81,7 @@ export default async function decorate(block) {
       },
       div(
         { class: 'resource-icon' },
-        createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage),
+        createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage, false, [{ width: '60' }]),
       ),
       div(
         { class: 'resource-info' },
@@ -126,7 +126,7 @@ export default async function decorate(block) {
       const videoFragmentHtml = await fetchFragment(item.path);
       const videoFragment = document.createElement('div');
       videoFragment.innerHTML = videoFragmentHtml;
-      const videoElement = videoFragment.querySelector('p:last-of-type a');
+      const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
       const videoHref = videoElement?.href;
       if (videoElement && videoHref && videoHref.startsWith('https://')) {
         const videoURL = new URL(videoHref);
