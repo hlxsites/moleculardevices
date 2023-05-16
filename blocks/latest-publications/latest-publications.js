@@ -6,5 +6,5 @@ export default async function decorate(block) {
     .sheet('publications')
     .limit(4)
     .all();
-    buildList(data, block);
+  buildList(data, block);
 }
