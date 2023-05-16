@@ -1168,6 +1168,10 @@ main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
   padding-bottom: 10px;
 }
 
+main .section:not(.tabs, .wave.bluegreen).newsroom .default-content-wrapper:first-child {
+  padding-top: 50px;
+}
+
 .product .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;
   margin-bottom: 0;
@@ -1194,4 +1198,13 @@ main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+main .section.newsroom h2 {
+  color: var(--button-bg-color);
+  font-family: var(--ff-proxima-regular);
+}
+
+main .section.newsroom > div {
+  padding-top: 0;
 }
