@@ -57,6 +57,9 @@ indices:
       cardDescription:
         select: head > meta[name="card-description"]
         value: attribute(el, "content")
+      locale:
+        select: head > meta[name="locale"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
@@ -71,6 +74,9 @@ indices:
         value: textContent(el)
       productFamily:
         select: head > meta[name="product-family"]
+        value: attribute(el, "content")
+      familyID:
+        select: head > meta[name="family-id"]
         value: attribute(el, "content")
       productLandingPageOrder:
         select: head > meta[name="landing-page-order"]
