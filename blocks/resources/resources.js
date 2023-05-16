@@ -1,5 +1,5 @@
 import {
-  div, a, p, h3, i, h2, span, ul, li,
+  div, a, p, h3, i, h2, span, ul, li, img,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
@@ -81,7 +81,8 @@ export default async function decorate(block) {
       },
       div(
         { class: 'resource-icon' },
-        createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage, false, [{ width: '60' }]),
+        img({ src: `/images/resource-icons/${resourceImage}.png`, alt: resourceImage, width: 60, height: 60 }),
+        // createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage, false, [{ width: '60' }]),
       ),
       div(
         { class: 'resource-info' },
