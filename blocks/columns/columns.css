@@ -329,6 +329,11 @@
   .columns.columns-3-cols > div:not(:only-child),
   .columns.contact.columns-3-cols > div > div {
     flex-basis: 33.33%;
+    width: 33.33%;
+  }
+
+  .technology .columns.columns-3-cols  > div:not(:only-child) {
+    flex-basis: 33.33%;
     width: 100%;
     flex-wrap: wrap;
     column-gap: 30px;
