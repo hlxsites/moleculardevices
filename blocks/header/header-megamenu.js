@@ -1,4 +1,3 @@
-import handleViewportChanges from './header-events.js';
 import buildRightSubmenu from './header-megamenu-components.js';
 import { getMetadata, toClassName, decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
@@ -12,9 +11,7 @@ import {
 import {
   reverseElementLinkTagRelation,
   buildBrandLogo,
-  fetchHeaderContent,
 } from './helpers.js';
-import { buildMobileMenuItem, buildMobileMenuTools } from './menus/mobile-menu.js';
 
 function buildRequestQuote() {
   return li(
@@ -26,8 +23,14 @@ function buildRequestQuote() {
   );
 }
 
+export function showRightSubmenu(element) {
+  document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
+  element.setAttribute('aria-expanded', 'true');
+}
+
 function buildMegaMenu(block, content, submenuContent, submenuId) {
   const productsSubmenu = div();
+
   const title = submenuContent.querySelector('h1');
   productsSubmenu.append(title.cloneNode(true));
 
@@ -61,12 +64,37 @@ function buildMegaMenu(block, content, submenuContent, submenuId) {
   const item = block.querySelector(`div[menu-id="${submenuId}"]`).closest('li');
 
   const closeButton = div({ class: 'menu-nav-submenu-close' });
+
+  submenuContent.querySelectorAll('.menu-nav-submenu h1').forEach((el) => {
+    el.addEventListener('mouseover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
+      showRightSubmenu(rightMenu);
+    });
+  });
+
+  submenuContent.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
+    el.addEventListener('mouseover', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const rightMenu = e.currentTarget.querySelector('.right-submenu');
+      showRightSubmenu(rightMenu);
+    });
+  });
+
+  closeButton.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.closest('ul').querySelectorAll(
+      '*[aria-expanded="true"]',
+    ).forEach(
+      (el) => el.setAttribute('aria-expanded', 'false'),
+    );
+  });
+
   item.append(closeButton);
   item.append(submenuContent);
-}
-
-function getSubmenus() {
-  return ['products', 'applications', 'resources', 'service-support', 'company', 'contact-us'];
 }
 
 export function buildNavbar(content) {
@@ -109,48 +137,33 @@ export function buildNavbar(content) {
   return megaMenu;
 }
 
-export default async function fetchAndStyleMegamenus(headerBlock) {
-  // ------ Submenus ------
-  const submenusList = getSubmenus();
+export async function fetchAndStyleMegamenu(headerBlock, headerContent, menuId) {
+  const submenuPath = getMetadata(`${menuId}-submenu`) || `/fragments/menu/${menuId}`;
 
+  const processingPromise = fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {})
+    .then(async (submenuResponse) => {
+      if (submenuResponse.ok) {
+        // eslint-disable-next-line no-await-in-loop
+        const submenuHtml = await submenuResponse.text();
+        const submenuContent = div({ class: 'menu-nav-submenu' });
+        submenuContent.innerHTML = submenuHtml;
+
+        // Get submenu builder, and build submenu
+        buildMegaMenu(headerBlock, headerContent, submenuContent, menuId);
+      }
+    });
+
+  return processingPromise;
+}
+
+export async function fetchAndStyleMegamenus(headerBlock, headerContent, submenusList) {
   // Fetch all submenu content concurrently
-  const submenuFetchPromises = [];
+  const submenuProcessingPromises = [];
   for (let i = 0; i < submenusList.length - 1; i += 1) {
-    const submenuId = submenusList[i];
-    const submenuPath = getMetadata(`${submenuId}-submenu`) || `/fragments/menu/${submenuId}`;
-    submenuFetchPromises.push(
-      fetch(`${submenuPath}.plain.html`, window.location.pathname.endsWith(`/${submenuId}`) ? { cache: 'reload' } : {}),
+    submenuProcessingPromises.push(
+      fetchAndStyleMegamenu(headerBlock, headerContent, submenusList[i]),
     );
   }
 
-  // Process all submenu responses
-  const submenuResponses = await Promise.all(submenuFetchPromises);
-
-  // fetch the header content, we need it to be able to get the background image
-  const headerContent = await fetchHeaderContent();
-
-  // iterate over all submenu responses
-  for (let i = 0; i < submenuResponses.length; i += 1) {
-    const submenuResponse = submenuResponses[i];
-    if (submenuResponse.ok) {
-      const submenuId = submenusList[i];
-
-      // eslint-disable-next-line no-await-in-loop
-      const submenuHtml = await submenuResponse.text();
-      const submenuContent = div({ class: 'menu-nav-submenu' });
-      submenuContent.innerHTML = submenuHtml;
-
-      // clone the submenu content to the mobile menu
-      const mobileSubmenuContent = submenuContent.cloneNode(true);
-
-      // Get submenu builder, and build submenu
-      buildMegaMenu(headerBlock, headerContent, submenuContent, submenuId);
-
-      buildMobileMenuItem(mobileSubmenuContent, submenuId);
-    }
-  }
-
-  buildMobileMenuTools(headerContent);
-
-  handleViewportChanges(headerBlock);
+  await Promise.all(submenuProcessingPromises);
 }
