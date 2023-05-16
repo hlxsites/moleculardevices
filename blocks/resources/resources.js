@@ -1,8 +1,8 @@
 import {
-  div, img, a, p, h3, i, h2, span, ul, li,
+  div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
@@ -81,7 +81,7 @@ export default async function decorate(block) {
       },
       div(
         { class: 'resource-icon' },
-        img({ src: `/images/resource-icons/${resourceImage || 'document'}.png` }),
+        createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage),
       ),
       div(
         { class: 'resource-info' },
