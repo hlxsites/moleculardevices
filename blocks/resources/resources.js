@@ -81,8 +81,8 @@ export default async function decorate(block) {
       },
       div(
         { class: 'resource-icon' },
-        img({ src: `/images/resource-icons/${resourceImage}.png`, loading: 'lazy', alt: resourceImage, width: 60, height: 60 }),
-        // createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage, false, [{ width: '60' }]),
+        // img({ src: `/images/resource-icons/${resourceImage}.png`, loading: 'lazy', alt: resourceImage, width: 60, height: 60 }),
+        createOptimizedPicture(`/images/resource-icons/${resourceImage}.png`, resourceImage, false, [{ media: '(max-width: 991px)', width: '35' }, { width: '60' }]),
       ),
       div(
         { class: 'resource-info' },
