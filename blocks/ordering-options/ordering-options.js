@@ -70,5 +70,5 @@ async function renderList(block) {
 }
 
 export default async function decorate(block) {
-  // renderList(block);
+  renderList(block);
 }
