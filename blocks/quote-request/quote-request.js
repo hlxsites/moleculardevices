@@ -102,7 +102,7 @@ function loadIframeForm(stepNum, data, type = 'Global') {
 =======
 function loadIframeForm(stepNum, tab) {
   loadScript('../../scripts/iframeResizer.min.js');
->>>>>>> main
+>>>>>>> 38300c74b4d2c8e1cc2fca549a3c2caf932b5ae8
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
