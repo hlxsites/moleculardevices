@@ -1,6 +1,11 @@
 main .section.ordering-options-container > div:first-child,
+main .section.ordering-options-container > div:last-child,
 main .section.ordering-options-container > div.ordering-options-wrapper {
   padding-top: 0;
+}
+
+main .section.ordering-options-container > div:last-child {
+  padding-bottom: 55px;
 }
 
 .ordering-options h3 {
@@ -18,4 +23,10 @@ main .section.ordering-options-container > div.ordering-options-wrapper {
   font-size: 24px;
   font-weight: 400;
   margin: 0 0 10px;
+}
+
+@media (max-width: 767px) {
+  main .section.ordering-options-container > div:last-child {
+    padding-bottom: 15px;
+  }
 }
