@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>404: Page Not Found !</title>
+    <script type="text/javascript">
+      window.isErrorPage = true;
+      window.errorCode = '404';
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="We're sorry, but we are unable to locate the page you have requested. If you have reached this page in error, you may wish to proceed to the home page to locate the information you are looking for. If you continue to receive this message, please do not hesitate to contact us for assistance."
+    />
+    <meta property="og:title" content="404: Page Not Found !" />
+    <meta property="og:site_name" content="Molecular Devices" />
+    <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+    <script type="module">
+      import { sampleRUM } from '/scripts/lib-franklin.js';
+      window.addEventListener('load', () => {
+        sampleRUM('404', { source: document.referrer, target: window.location.href });
+      });
+    </script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/lazy-styles.css" />
+  </head>
 
-<head>
-  <title>Page not found</title>
-  <script type="text/javascript">
-    window.isErrorPage = true;
-    window.errorCode = '404';
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="Page not found">
-  <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-  <script type="module">
-    import { sampleRUM } from '/scripts/lib-franklin.js';
+  <body>
+    <header></header>
+    <main class="error">
+      <div class="hero error">
+        <div>
+          <div>
+            <p>
+              <picture>
+                <source type="image/webp" srcset="./images/default-banner.webp" />
+                <source type="image/jpeg" srcset="./images/default-banner.jpg" />
+                <img
+                  loading="lazy"
+                  alt="Background"
+                  type="image/jpeg"
+                  src="./images/default-banner.jpg"
+                  width="2880"
+                  height="400"
+                />
+              </picture>
+            </p>
+            <h1 id="error">404: Page Not Found !</h1>
+          </div>
+        </div>
+      </div>
 
-    window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-      sampleRUM('404', { source: document.referrer, target: window.location.href });
-    });
-  </script>
-  <link rel="stylesheet" href="/styles/styles.css">
-  <style>
-    main.error {
-      min-height: calc(100vh - var(--nav-height));
-      display: flex;
-      align-items: center;
-    }
-
-    main.error .error-number {
-      width: 100%;
-    }
-
-    main.error .error-number text {
-      font-family: var(--fixed-font-family);
-    }
-  </style>
-  <link rel="stylesheet" href="/styles/lazy-styles.css">
-</head>
-
-<body>
-  <header></header>
-  <main class="error">
-    <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
-      <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
-      </p>
-    </div>
-  </main>
-  <footer></footer>
-</body>
-
+      <div class="section wave">
+        <div>
+          <p>
+            We're sorry, but we are unable to locate the page you have requested. If you have
+            reached this page in error, you may wish to proceed to the
+            <a href="https://www.moleculardevices.com" data-di-id="di-id-426deef0-5b17781f">home</a>
+            page to locate the information you are looking for. If you continue to receive this
+            message, please do not hesitate to
+            <a href="https://www.moleculardevices.com/contact" data-di-id="di-id-b96f385e-a427af06"
+              >contact us</a
+            >
+            for assistance.
+          </p>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
 </html>

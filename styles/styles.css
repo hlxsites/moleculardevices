@@ -838,6 +838,24 @@ main .section.wave p {
   margin: 0;
 }
 
+main.error .section.wave {
+  color: var(--text-color);
+  text-align: unset;
+}
+
+main.error .section .hero-wrapper {
+  padding: 0;
+}
+
+main.error .section > div {
+  margin: 0 auto;
+  padding: 15px 15px 0;
+}
+
+main.error .section.wave:last-child {
+  margin-top: 0;
+}
+
 /* Product page styles */
 .product .section.tabs > div > h3 + p {
   margin: 0 15px;
