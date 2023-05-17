@@ -95,7 +95,7 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
-function loadIframeForm(stepNum, data, type = 'Global') {
+function loadIframeForm(stepNum, data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById(stepNum);
@@ -183,7 +183,7 @@ function stepThree(e) {
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
-  loadIframeForm(stepNum, tab);
+  loadIframeForm(stepNum, tab, 'Global');
 
   root.style.display = 'block';
   prevRoot.style.display = 'none';
@@ -226,22 +226,47 @@ export default async function decorate(block) {
   if (isThankyouPage) {
     parentSection.prepend(htmlContentRoot.children[0]);
     htmlContentRoot.remove();
-    const htmlContent = block.children[0].children[0].innerHTML.trim();
-    block.innerHTML = `<div class="rfq-product-wrapper">
-                       <div class="rfq-thankyou-msg">${htmlContent}</div>
-                       </div>`;
+    const htmlContent = block.children[0].children[0];
+    block.innerHTML = '';
+    block.appendChild(
+      div(
+        {
+          class: 'rfq-product-wrapper',
+        },
+        div({ class: 'rfq-thankyou-msg' }, htmlContent),
+      ),
+    );
   } else {
     const prfdData = await rfqData();
     parentSection.prepend(htmlContentRoot);
+    block.innerHTML = '';
     if (prfdData) {
-      block.innerHTML = `
-      <div id="step-3" class="rfq-product-wrapper request-quote-form hide-back-btn"></div>`;
+      block.appendChild(
+        div({
+          id: 'step-3',
+          class: 'rfq-product-wrapper request-quote-form hide-back-btn',
+        }),
+      );
       loadIframeForm('step-3', prfdData, 'Product');
     } else {
-      block.innerHTML = `
-      <div id="step-1" class="rfq-product-wrapper"></div>
-      <div id="step-2" class="rfq-product-wrapper" style="display: none;"></div>
-      <div id="step-3" class="rfq-product-wrapper request-quote-form" style="display: none;"></div>`;
+      block.appendChild(
+        div(
+          div({
+            id: 'step-1',
+            class: 'rfq-product-wrapper',
+          }),
+          div({
+            id: 'step-2',
+            class: 'rfq-product-wrapper',
+            style: 'display: none;',
+          }),
+          div({
+            id: 'step-3',
+            class: 'rfq-product-wrapper request-quote-form',
+            style: 'display: none;',
+          }),
+        ),
+      );
       stepOne(stepTwo);
     }
   }
