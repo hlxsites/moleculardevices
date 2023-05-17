@@ -1,27 +1,70 @@
-function getProductDetails(item) {
-  fetch(`https://shop.moleculardevices.com/products/${item}.js`, {
+import {
+  div, h3, h4, p,
+} from '../../scripts/dom-helpers.js';
+
+function renderItem(item) {
+  if (!item) return;
+  const itemEl = (
+    div({ class: 'ordering-option-item', id: item.handle },
+      div({ class: 'header' },
+        h3({ class: 'title' }, item.title),
+      ),
+    )
+  );
+  const variantsEl = div({ class: 'ordering-option-item-variants' });
+  itemEl.append(variantsEl);
+
+  item.variants.forEach((variant) => {
+    variantsEl.append(
+      div({ class: 'variant-item' },
+        h4({ class: 'legend' }, variant.public_title),
+        p({ class: 'legend' }, `#${variant.sku}`),
+      ),
+    );
+  });
+  // eslint-disable-next-line consistent-return
+  return itemEl;
+}
+
+function fetchOption(option) {
+  return fetch(`https://shop.moleculardevices.com/products/${option}.js`, {
     mode: 'cors',
   }).then((response) => {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject(response);
-  }).then((data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
   }).catch((err) => {
     // eslint-disable-next-line no-console
-    console.warn(`Could not load product details for item ${item}, got status ${err.status}.`, err.statusText);
+    console.warn(`Could not fetch ordering details for option ${option}, got status ${err.status}.`, err.statusText);
   });
 }
 
-export default function decorate(block) {
-  const products = [...block.querySelectorAll('.ordering-options > div > div')].map((div) => div.innerHTML.split(', '));
-  // eslint-disable-next-line no-console
-  console.log(products);
-  products.forEach((product) => {
-    product.forEach((item) => {
-      getProductDetails(item);
-    });
+async function fetchOptionIntoArray(array, idx, option) {
+  array[idx] = await fetchOption(option.trim());
+}
+
+async function getOrderingOptions(block) {
+  const refs = [...block.querySelectorAll('.ordering-options > div > div')]
+    .map((ref) => (ref.innerHTML).split(', '))
+    .reduce((a, b) => a.concat(b), []);
+
+  const options = new Array(refs.length);
+  await Promise.all(refs
+    .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
+  );
+  return options;
+}
+
+export default async function decorate(block) {
+  const options = await getOrderingOptions(block);
+  const items = [];
+  options.forEach((option) => {
+    items.push(renderItem(option));
   });
+
+  block.innerHTML = '';
+  const container = div({ class: 'ordering-options-list' });
+  container.append(...items);
+  block.append(container);
 }

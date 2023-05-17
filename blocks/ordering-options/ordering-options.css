@@ -1,0 +1,21 @@
+main .section.ordering-options-container > div:first-child,
+main .section.ordering-options-container > div.ordering-options-wrapper {
+  padding-top: 0;
+}
+
+.ordering-options h3 {
+  border-bottom: 2px solid #a2a8a6;
+  padding: 25px 0 15px;
+  margin-top: 40px;
+}
+
+.ordering-options .ordering-option-item-variants,
+.ordering-options .variant-item {
+  margin-top: 20px;
+}
+
+.ordering-options .legend {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 10px;
+}
