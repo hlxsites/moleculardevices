@@ -75,10 +75,10 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
-      seriesMainProduct:
+      productSeriesMain:
         select: head > meta[name="series-main-product"]
         value: attribute(el, "content")
-      showInProductFinder:
+      productShowInFinder:
         select: head > meta[name="show-in-product-finder"]
         value: attribute(el, "content")
       familyID:
