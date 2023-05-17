@@ -5,6 +5,7 @@ import { createCard } from '../card/card.js';
 export default async function decorate(block) {
   const relatedProductsMeta = getMetadata('related-products');
   const relatedProductsTitles = relatedProductsMeta.split(',').map((item) => item.trim());
+  // TODO: add related categories
   // const relatedCategoriesMeta = getMetadata('related-categories');
   // const relatedCategoriesTitles = relatedCategoriesMeta.split(',').map((item) => item.trim());
 
@@ -21,6 +22,9 @@ export default async function decorate(block) {
 
   products.forEach((product) => {
     product.type = product.category;
+    if (product.subCategory && !['0', 'Other'].includes(product.subCategory)) {
+      product.type = product.subCategory;
+    }
     block.append(cardRenderer.renderItem(product));
   });
 

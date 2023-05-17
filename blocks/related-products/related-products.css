@@ -1,3 +1,7 @@
+main .section .related-products-wrapper {
+  padding-top: 0;
+}
+
 .related-products {
   display: flex;
   flex-wrap: wrap;
