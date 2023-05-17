@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './lib-franklin.js';
+// eslint-disable-next-line import/no-cycle
+import { getCookie, setCookie } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -28,6 +30,42 @@ function LoadDriftWidget() {
     drift.load('pyupvvckemp9');
 };
 /* eslint-enable */
+
+/*
+IPStack Integration to get specific user information
+Stores dedicated user data in a cookie.
+*/
+async function loadUserData() {
+  const attrCountryCode = 'country_code';
+  if (getCookie(attrCountryCode)) return;
+  fetch('https://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
+    /* Referrer Policy is set to strict-origin-when-cross-origin by default
+       to avoid data leaking of private information.
+       See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
+       Set mode to 'cors' to allow cross-origin requests, see https://developer.mozilla.org/en-US/docs/Web/API/Request/mode.
+    */
+    mode: 'cors',
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).then((data) => {
+    if (!data.success) {
+      const { error } = data;
+      // eslint-disable-next-line no-console
+      console.warn(`Error code ${error.code} occured while loading user information.`, `${error.type}: ${error.info}`);
+    }
+    if (data[attrCountryCode]) {
+      setCookie(attrCountryCode, data[attrCountryCode], 30);
+    }
+  }).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.warn('Could not load user information.', err);
+  });
+}
+
+loadUserData();
 
 if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
   LoadDriftWidget();

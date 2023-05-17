@@ -27,6 +27,9 @@ indices:
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
+      subCategory:
+        select: head > meta[name="sub-category"]
+        value: attribute(el, "content")
       technologyType:
         select: head > meta[name="technology-type"]
         value: attribute(el, "content")
@@ -54,6 +57,9 @@ indices:
       cardDescription:
         select: head > meta[name="card-description"]
         value: attribute(el, "content")
+      locale:
+        select: head > meta[name="locale"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
@@ -69,6 +75,15 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
+      familyID:
+        select: head > meta[name="family-id"]
+        value: attribute(el, "content")
+      lob:
+        select: head > meta[name="line-of-business"]
+        value: attribute(el, "content")
+      productBundle:
+        select: head > meta[name="bundle-products"]
+        value: attribute(el, "content")            
       productLandingPageOrder:
         select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")
