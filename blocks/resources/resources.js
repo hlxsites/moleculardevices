@@ -42,6 +42,7 @@ export default async function decorate(block) {
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
+    .chunks(2000)
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
         && includedResourceTypes.includes(resource.type))
     .all();

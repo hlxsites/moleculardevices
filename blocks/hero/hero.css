@@ -278,6 +278,11 @@ main .hero.blog .sticker {
   width: 100%;
 }
 
+main.error .hero-wrapper .hero-inner {
+  min-height: 90px;
+  padding: 10px 0;
+}
+
 /* Blog Variant - Desktop -- End */
 
 @media (max-width: 767px) {
