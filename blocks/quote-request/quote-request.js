@@ -12,10 +12,10 @@ export async function rfqData() {
   const pid = 'pid';
   const readQuery = getQueryParameter(pid);
   if (readQuery[pid]) {
-    const productLevelUrl = new URL(readQuery[pid]);
     const productRfq = await ffetch('/query-index.json')
+      .sheet('rfq')
       .withFetch(fetch)
-      .filter(({ path }) => path.includes(productLevelUrl.pathname))
+      .filter(({ familyID }) => familyID.includes(readQuery[pid]))
       .first();
     return productRfq;
   }
@@ -96,7 +96,7 @@ function iframeResizehandler(formUrl, id, root) {
 }
 
 function loadIframeForm(stepNum, data, type = 'Global') {
-  loadScript('/blocks/quote-request/iframeResizer.min.js');
+  loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
