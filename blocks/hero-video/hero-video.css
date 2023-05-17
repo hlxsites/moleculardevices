@@ -1,7 +1,6 @@
 main .hero-video-wrapper {
   position: relative;
   width: 100% !important;
-  margin: 0 0 115px !important;
   padding: 0 !important;
   max-width: unset;
   height: 750px;

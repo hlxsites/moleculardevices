@@ -1,8 +1,43 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a,
   div,
+  li,
 } from '../../scripts/dom-helpers.js';
+
+let elementsWithEventListener = [];
+
+export function getSubmenus() {
+  return ['Products', 'Applications', 'Resources', 'Service & Support', 'Company', 'Contact Us'];
+}
+
+export function getSubmenuIds() {
+  return getSubmenus().map((submenu) => toClassName(submenu));
+}
+
+export function getSubmenuIdFromTitle(title) {
+  return getSubmenuIds()[getSubmenus().indexOf(title)];
+}
+
+export function getElementsWithEventListener() {
+  return elementsWithEventListener;
+}
+
+export function addListeners(selector, eventType, callback) {
+  const elements = document.querySelectorAll(selector);
+
+  elements.forEach((element) => {
+    elementsWithEventListener.push(element);
+    element.addEventListener(eventType, callback);
+  });
+}
+
+export function removeAllEventListeners() {
+  elementsWithEventListener.forEach((el) => {
+    el.replaceWith(el.cloneNode(true));
+  });
+  elementsWithEventListener = [];
+}
 
 export function buildBrandLogo(content) {
   const logoWrapper = div({ id: 'header-logo' });
@@ -38,4 +73,16 @@ export function reverseElementLinkTagRelation(element) {
   }
 
   return element;
+}
+
+export function buildRequestQuote(classes) {
+  const familyId = getMetadata('family-id');
+  const link = familyId ? `/quote-request?pid=${familyId}` : '/quote-request';
+  return li(
+    { class: classes },
+    a(
+      { href: link },
+      'Request Quote',
+    ),
+  );
 }

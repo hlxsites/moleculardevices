@@ -33,7 +33,7 @@ export default async function decorate(block) {
   headerWrapper.append(navbarHeader);
 
   const megaMenu = buildNavbar(content);
-  const mobileMenu = buildMobileMenu();
+  const mobileMenu = buildMobileMenu(content);
 
   block.append(headerWrapper, megaMenu, mobileMenu);
 

@@ -95,9 +95,14 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
+<<<<<<< HEAD
 function loadIframeForm(stepNum, data, type = 'Global') {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
+=======
+function loadIframeForm(stepNum, tab) {
+  loadScript('../../scripts/iframeResizer.min.js');
+>>>>>>> main
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 

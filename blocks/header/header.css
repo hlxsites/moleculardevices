@@ -81,17 +81,17 @@ header .hamburger .icon-bar {
   line-height: 1;
 }
 
-header .hamburger.hamburger-close .icon-bar {
+header .hamburger > .icon-bar + .icon-bar {
+  margin-top: 5px;
+}
+
+body.openmenu header .hamburger .icon-bar {
   transform: rotate(45deg);
   position: absolute;
   top: 17px;
 }
 
-header .hamburger > .icon-bar + .icon-bar {
-  margin-top: 5px;
-}
-
-header .hamburger.hamburger-close > .icon-bar + .icon-bar {
+body.openmenu header .hamburger > .icon-bar + .icon-bar {
   transform: rotate(-45deg);
   top: 12px;
 }
@@ -261,10 +261,11 @@ header .mobile-menu .company-links li {
 header .mobile-menu li h1,
 header .mobile-menu li h2 {
   font-size: 18px;
-  color: #34393d;
   font-family: 'Proxima Nova Light', sans-serif;
   font-weight: 300;
   text-shadow: none;
+  margin-bottom: 0;
+  color: inherit;
 }
 
 header .mobile-menu .company-links li picture {
@@ -280,6 +281,12 @@ header .mobile-menu li:hover {
 
 header .company-links > ul > li:last-child {
   margin-right: 0;
+}
+
+header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
+  line-height: 29px;
+  font-size: 18px;
+  border-bottom: 1px solid #f1f2f3;
 }
 
 header .nav-tabs .menu-nav-submenu-section h2 {
@@ -417,11 +424,14 @@ header .mobile-menu {
   position: fixed;
   left: 0;
   width: 100%;
+  max-width: 100%;
   background: #fff;
   height: calc(100% - 63px);
   top: 63px;
   overflow: hidden;
-  display: none;
+  transform: translate(-100%,0);
+  transition: transform .4s ease;
+  z-index: -9;
 }
 
 header .mobile-menu > ul {
@@ -436,7 +446,7 @@ header .mobile-menu > ul {
 header .mobile-menu .headersearch {
   position: static;
   background: #f0f1f2;
-  padding: 25px 15px;
+  padding: 25px 22px;
   height: auto;
   display: block;
   width: 100%;
@@ -488,18 +498,6 @@ header .mobile-menu .searchbutton {
   font-family: inherit;
 }
 
-header .mobile-menu-item {
-  border-bottom: 1px solid #f1f2f3;
-  float: none;
-  border-top: 0;
-  position: relative;
-  font-size: 18px;
-  color: #34393d;
-  font-family: 'Proxima Nova Light', sans-serif;
-  font-weight: 300;
-  text-shadow: none;
-}
-
 header .mobile-menu li a {
   position: relative;
   white-space: nowrap;
@@ -513,8 +511,139 @@ header .mobile-menu li a {
   text-decoration: none;
 }
 
+header .menu-nav-submenu h1 > a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header .cards-submenu ul li a {
+  color: var(--text-white);
+  font-family: 'Proxima Nova Regular', sans-serif;
+  font-weight: 300;
+  line-height: 15px;
+  padding: 1px 5px;
+  display: block;
+  text-transform: none;
+}
+
+header .mobile-menu-item {
+  border-bottom: 1px solid #f1f2f3;
+  float: none;
+  border-top: 0;
+  position: relative;
+  font-size: 18px;
+  color: #34393d;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+}
+
 header .mobile-menu-subcategories {
-  display: none;
+  float: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  box-shadow: none;
+  position: fixed;
+  padding: 0;
+  border: 0;
+  transition: transform .4s ease;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 1000;
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  transform: translate(100%,0);
+}
+
+header .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+  transform: translate(0%,0);
+}
+
+header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
+  left: 15px;
+  transform: rotate(180deg);
+  content: "\f105";
+  font-size: 25px !important;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  border-radius: 100%;
+  border: 1px solid #c4ccda;
+  color: #34393d;
+  top: 50%;
+  display: inline-block;
+  font-family: FontAwesome, sans-serif;
+  margin-top: -15px;
+}
+
+header .text-submenu ul > li > a {
+  font-size: 11px;
+  color: #fff;
+  border-bottom: 0;
+  line-height: 15px;
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 8px;
+  font-weight: 300;
+  display: block;
+  text-transform: none;
+}
+
+header .mobile-menu .back-to-parent a {
+  padding-left: 55px;
+}
+
+header .mobile-menu .mobile-menu-subcategory-item > a {
+  background: var(--grey-background-color);
+  position: relative;
+  white-space: nowrap;
+  display: block;
+  padding: 24px 70px 19px 15px;
+  color: #34393d;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-family: 'Proxima Nova Light', sans-serif;
+  font-weight: 300;
+  text-shadow: none;
+  text-decoration: none;
+  line-height: 29px;
+}
+
+header .mobile-menu .request-quote a {
+  line-height: 20px;
+  background: #f8a100;
+  font-size: 18px;
+  padding: 18px 50px 18px 15px;
+  text-shadow: none;
+  color: #fff;
+  font-family: 'Proxima Nova Regular', sans-serif;
+  text-align: center;
+  display: block;
+  text-transform: inherit;
+}
+
+header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
+  text-align: center;
+  float: none;
+  border-top: 0;
+  position: relative;
+}
+
+header .mobile-menu .back-to-parent:hover {
+  background: var(--background-color);
+}
+
+header .mobile-menu .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+  display: block;
 }
 
 header .mobile-menu .caret {
@@ -547,48 +676,6 @@ header .mobile-menu .caret::before {
   display: inline-block;
   font-family: FontAwesome, sans-serif;
   margin-top: -15px;
-}
-
-header .menu-nav-submenu h1 > a {
-  color: inherit;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-header .cards-submenu ul li a {
-  color: var(--text-white);
-  font-family: 'Proxima Nova Regular', sans-serif;
-  font-weight: 300;
-  line-height: 15px;
-  padding: 1px 5px;
-  display: block;
-  text-transform: none;
-}
-
-header .text-submenu ul > li > a {
-  font-size: 11px;
-  color: #fff;
-  border-bottom: 0;
-  line-height: 15px;
-  padding-left: 0;
-  padding-top: 0;
-  padding-bottom: 8px;
-  font-weight: 300;
-  display: block;
-  text-transform: none;
-}
-
-header .mobile-menu .request-quote a {
-  line-height: 20px;
-  background: #f8a100;
-  font-size: 18px;
-  padding: 18px 50px 18px 15px;
-  text-shadow: none;
-  color: #fff;
-  font-family: 'Proxima Nova Regular', sans-serif;
-  text-align: center;
-  display: block;
-  text-transform: inherit;
 }
 
 header .mobile-menu .company-links {
@@ -923,6 +1010,11 @@ header .actionable-card-submenu {
   height: 100%;
 }
 
+header .mobile-menu .mobile-menu-subcategory-item:hover a {
+  color: var(--link-color);
+  background: var(--background-color);
+}
+
 header .actionable-card-submenu h3 {
   font-size: 18px;
   margin: 0 0 24px;
@@ -1019,7 +1111,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   max-height: 127px;
 }
 
-@media (min-width: 768) {
+@media (min-width: 768px) {
   header .container {
     width: 750px;
   }
@@ -1037,6 +1129,15 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 }
 
 @media (max-width: 991px) {
+  body.openmenu {
+      overflow-y: hidden;
+  }
+
+  body.openmenu .mobile-menu {
+    transform: translate(0,0);
+    z-index: 99;
+}
+
   header .block {
     padding: 0;
   }
@@ -1052,7 +1153,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     display: initial;
   }
 
-  header .mobile-menu.mobile-menu-open {
+  body:not(.openmenu) header .mobile-menu {
     display: initial;
   }
 

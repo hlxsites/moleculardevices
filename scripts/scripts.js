@@ -16,11 +16,12 @@ import {
   decorateBlock,
   buildBlock,
 } from './lib-franklin.js';
+import { a, div, p } from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
  */
-const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog'];
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event'];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
@@ -118,7 +119,7 @@ async function loadBreadcrumbs(main) {
  */
 export function isVideo(url) {
   let isV = false;
-  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com'];
+  const hostnames = ['vids.moleculardevices.com', 'vidyard.com'];
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
       isV = true;
@@ -126,27 +127,66 @@ export function isVideo(url) {
   });
   return isV;
 }
+
+export function embedVideo(link, url, type) {
+  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+      link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+      class="vidyard-player-embed"
+      src="https://play.vidyard.com/${videoId}.jpg"
+      data-uuid="${videoId}"
+      data-v="4"
+      data-width="${(type === 'lightbox') ? '700' : ''}"
+      data-height="${(type === 'lightbox') ? '394' : ''}"
+      data-autoplay="${(type === 'lightbox') ? '1' : '0'}"
+      data-type="${(type === 'lightbox') ? 'lightbox' : 'inline'}"/>`;
+    }
+  });
+  observer.observe(link.parentElement);
+}
+
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
       loadScript('https://play.vidyard.com/embed/v4.js');
-
-      const overlay = document.createElement('div');
-      overlay.id = 'sample';
-      overlay.innerHTML = `<div class="vidyard-player-embed" data-uuid="${videoId}" data-v="4" data-type="lightbox" data-autoplay="2"></div>`;
+      const overlay = div({ id: 'overlay' }, div({
+        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
+      }));
       container.prepend(overlay);
-
       button.addEventListener('click', () => {
         // eslint-disable-next-line no-undef
-        const players = VidyardV4.api.getPlayersByUUID(videoId);
-        const player = players[0];
-        player.showLightbox();
+        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
       });
     }
   });
   observer.observe(container);
+}
+
+function decorateLinks(main) {
+  main.querySelectorAll('a').forEach((link) => {
+    const url = new URL(link.href);
+    // decorate video links
+    if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
+      const up = link.parentElement;
+      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+      up.innerHTML = wrapper.outerHTML;
+      embedVideo(up.querySelector('a'), url, type);
+    }
+
+    // decorate RFQ page links with pid parameter
+    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
+      url.searchParams.append('pid', getMetadata('family-id'));
+      link.href = url.toString();
+    }
+  });
 }
 
 /**
@@ -179,20 +219,44 @@ function decoratePageNav(main) {
 }
 
 /**
+ * Detects if a sidebar section is present and transforms main into a CSS grid
+ * @param {Element} main
+ */
+function detectSidebar(main) {
+  const sidebar = main.querySelector('.section.sidebar');
+  if (sidebar) {
+    main.classList.add('sidebar');
+
+    // Create a CSS grid with the number of rows the number of children
+    // minus - 1 (the sidebar section)
+    const numSections = main.children.length - 1;
+    main.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    // By default the sidebar will start with the first section,
+    // but can be configured in the document differently
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+    if (sidebarOffset && Number.parseInt(sidebarOffset, 10)) {
+      const offset = Number.parseInt(sidebarOffset, 10);
+      sidebar.style = `grid-row: ${offset} / infinite;`;
+    }
+  }
+}
+
+/**
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
 function decorateLinkedPictures(container) {
-  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((a) => {
-    const br = a.previousElementSibling;
+  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
+    const br = link.previousElementSibling;
     let picture = br.previousElementSibling;
     if (br.tagName === 'PICTURE') {
       picture = br;
     }
-    if (a.textContent.includes(a.getAttribute('href'))) {
-      a.innerHTML = '';
-      a.className = '';
-      a.appendChild(picture);
+    if (link.textContent.includes(link.getAttribute('href'))) {
+      link.innerHTML = '';
+      link.className = '';
+      link.appendChild(picture);
     }
   });
 }
@@ -231,8 +295,9 @@ export async function decorateMain(main) {
   decorateSections(main);
   decoratePageNav(main);
   decorateBlocks(main);
+  detectSidebar(main);
   decorateLinkedPictures(main);
-  createBreadcrumbsSpace(main);
+  decorateLinks(main);
 }
 
 /**
@@ -245,6 +310,7 @@ async function loadEager(doc) {
   if (main) {
     await decorateTemplates(main);
     await decorateMain(main);
+    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
 }
@@ -267,7 +333,8 @@ export function addFavIcon(href, rel = 'icon') {
 }
 
 export function formatDate(dateStr, options = {}) {
-  const parts = dateStr.split('/');
+  if (!dateStr) return '';
+  const parts = dateStr.split(/[/,]/);
   const date = new Date(parts[2], parts[0] - 1, parts[1]);
 
   if (date) {
@@ -279,6 +346,14 @@ export function formatDate(dateStr, options = {}) {
     });
   }
   return dateStr;
+}
+
+export function unixDateToString(unixDateString) {
+  const date = new Date(unixDateString * 1000);
+  const day = (date.getDate()).toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 export function addLinkIcon(elem) {
@@ -375,7 +450,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
-  const headerBlock = loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
@@ -385,8 +460,6 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  const megaMenuModule = await import('../blocks/header/header-megamenu.js');
-  megaMenuModule.default(headerBlock);
   loadFooter(doc.querySelector('footer'));
   loadBreadcrumbs(main);
 

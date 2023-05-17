@@ -6,6 +6,12 @@
   font-size: var(--list-font-size-m);
 }
 
+.list .event-title {
+  font-size: 36px;
+  padding-top: 6px;
+  margin-top: 0;
+}
+
 /* panel */
 .list > .filter > .panel-title {
   font-size: var(--list-heading-font-size-l);

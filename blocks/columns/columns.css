@@ -189,30 +189,17 @@
   padding-bottom: 0;
 }
 
+.columns.heading-large > div h3 {
+  font-size: 36px;
+  margin-bottom: 18px;
+}
+
 .section .columns.collaboration > div h3 {
   font-size: var(--heading-font-size-l);
   color: var(--text-green);
   font-family: inherit;
   margin-top: 20px;
   margin-bottom: 10px;
-}
-
-.columns.layout-20-80.extended-width > div > div h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.section.columns-container .columns.columns-2-cols > div h3 {
-  font-size: 36px;
-  margin-bottom: 18px;
-}
-
-.columns.layout-20-80.extended-width.green-separator > div > div h3{
-  margin-bottom: 10px;
-}
-
-.columns.layout-20-80.extended-width.green-separator > div > div p{
-  margin-top: 0;
 }
 
 .columns.layout-20-80.partners-list-columns ul {
@@ -232,6 +219,38 @@
   padding: 0 20px;
 }
 
+/* stylelint-disable no-descending-specificity */
+.columns.large-numbers {
+  margin-top: 30px;
+}
+
+.columns.large-numbers picture {
+  display: block;
+}
+
+.columns.large-numbers img {
+  width: unset;
+  max-width: 100%;
+  margin-bottom: 7px;
+}
+
+.columns.large-numbers > div > div:last-child {
+  text-align: center;
+}
+
+.columns.large-numbers > div > div:first-child > p:first-child {
+  display: block;
+  font-size: 42px;
+  color: #008da9;
+  border: 1px solid #008da9;
+  border-radius: 50%;
+  padding: 2px 16px;
+  width: 60px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+/* stylelint-enable no-descending-specificity */
+
 @media (min-width: 768px) {
   .columns > div {
     display: flex;
@@ -242,6 +261,10 @@
   .columns > div > div {
     flex: 1;
     margin-left: 32px;
+  }
+
+  .columns.columns-3-cols > div {
+    align-items: unset;
   }
 
   .blog .columns > div {
@@ -309,6 +332,13 @@
     width: 33.33%;
   }
 
+  .technology .columns.columns-3-cols  > div:not(:only-child) {
+    flex-basis: 33.33%;
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 30px;
+  }
+
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
     flex-basis: 25%;
     width: 25%;
@@ -326,6 +356,7 @@
 
   .columns-3-cols {
     display: flex;
+    flex-direction: column;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{

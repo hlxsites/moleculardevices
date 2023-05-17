@@ -24,6 +24,15 @@ indices:
       type:
         select: head > meta[name="template"]
         value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      subCategory:
+        select: head > meta[name="sub-category"]
+        value: attribute(el, "content")
+      technologyType:
+        select: head > meta[name="technology-type"]
+        value: attribute(el, "content")
       publisher:
         select: head > meta[name="publisher"]
         value: attribute(el, "content")
@@ -45,6 +54,12 @@ indices:
       cardC2A:
         select: head > meta[name="card-c2a"]
         value: attribute(el, "content")
+      cardDescription:
+        select: head > meta[name="card-description"]
+        value: attribute(el, "content")
+      locale:
+        select: head > meta[name="locale"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
@@ -60,26 +75,33 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
-  events:
-    include:
-      - '/events/**'
-    target: /events/query-index.json
-    properties:
-      title:
-        select: head > meta[property="og:title"]
+      familyID:
+        select: head > meta[name="family-id"]
         value: attribute(el, "content")
-      type:
+      lob:
+        select: head > meta[name="line-of-business"]
+        value: attribute(el, "content")
+      productBundle:
+        select: head > meta[name="bundle-products"]
+        value: attribute(el, "content")            
+      productLandingPageOrder:
+        select: head > meta[name="landing-page-order"]
+        value: attribute(el, "content")
+      eventStart:
+        select: head > meta[name="event-start"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
+      eventEnd:
+        select: head > meta[name="event-end"]
+        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY, hh:mm A")
+      eventType:
         select: head > meta[name="event-type"]
         value: attribute(el, "content")
-      region:
+      eventRegion:
         select: head > meta[name="event-region"]
         value: attribute(el, "content")
-      date:
-        select: head > meta[name="publication-date"]
-        value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
-      lastModified:
-        select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      eventAddress:
+        select: head > meta[name="event-address"]
+        value: attribute(el, "content")
   citations:
     include:
       - '/resources/citations/**'
