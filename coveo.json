@@ -31,7 +31,7 @@
                 "value": "{}"
             },
             "RestConfiguration": {
-                "value": "{\n  \"services\": [\n    {\n      \"url\": \"https://helix-sitemap--moleculardevices--hlxsites.hlx.page\",\n      \"paging\": {\n        \"pageSize\": 25,\n        \"offsetStart\": 0,\n        \"offsetType\": \"item\",\n        \"totalCountKey\": \"total\",\n        \"parameters\": {\n          \"limit\": \"limit\",\n          \"offset\": \"offset\"\n        }\n      },\n      \"endpoints\": [\n        {\n          \"path\": \"query-index.json\",\n          \"queryParameters\": {\n            \"sheet\": \"coveo\"\n          },\n          \"method\": \"GET\",\n          \"itemPath\": \"data\",\n          \"itemType\": \"%[type]\",\n          \"uri\": \"%[coveo_url]/%[path]\",\n          \"clickableUri\": \"%[coveo_url]/%[path]\",\n          \"title\": \"%[title]\",\n          \"body\": \"%[description]\",\n          \"dateFormat\": \"UnixEpoch\",\n          \"modifiedDate\": \"%[lastModified]\",\n          \"metadata\": {\n            \"dateFormat\": \"UnixEpoch\",\n            \"date\": \"%[date]\",\n            \"filetype\": \"html\",\n            \"md_contenttype\": \"%[md_contenttype]\",\n            \"md_pagetype\": \"%[md_pagetype]\",\n            \"md_img\": \"%[md_img]\",\n            \"mdproductsdatacategory\": \"%[category]\",\n            \"md_country\": \"%[md_country]\",\n            \"md_lang\": \"%[md_lang]\",\n            \"md_source\": \"%[md_source]\"\n          }\n        }\n      ]\n    }\n  ]\n}"
+                "value": "{\n  \"services\": [\n    {\n      \"url\": \"https://main--moleculardevices--hlxsites.hlx.page\",\n      \"paging\": {\n        \"pageSize\": 25,\n        \"offsetStart\": 0,\n        \"offsetType\": \"item\",\n        \"totalCountKey\": \"total\",\n        \"parameters\": {\n          \"limit\": \"limit\",\n          \"offset\": \"offset\"\n        }\n      },\n      \"endpoints\": [\n        {\n          \"path\": \"query-index.json\",\n          \"queryParameters\": {\n            \"sheet\": \"coveo\"\n          },\n          \"method\": \"GET\",\n          \"itemPath\": \"data\",\n          \"itemType\": \"%[type]\",\n          \"uri\": \"%[coveo_url]/%[path]\",\n          \"clickableUri\": \"%[coveo_url]/%[path]\",\n          \"title\": \"%[title]\",\n          \"body\": \"%[description]\",\n          \"dateFormat\": \"UnixEpoch\",\n          \"modifiedDate\": \"%[lastModified]\",\n          \"metadata\": {\n            \"dateFormat\": \"UnixEpoch\",\n            \"date\": \"%[date]\",\n            \"filetype\": \"%[filetype]\",\n            \"md_contenttype\": \"%[md_contenttype]\",\n            \"md_pagetype\": \"%[md_pagetype]\",\n            \"md_img\": \"%[md_img]\",\n            \"mdproductsdatacategory\": \"%[category]\",\n            \"md_country\": \"%[md_country]\",\n            \"md_lang\": \"%[md_lang]\",\n            \"md_source\": \"%[md_source]\"\n          }\n        }\n      ]\n    }\n  ]\n}"
             }
         },
         "securityProviders": {
@@ -773,317 +773,7 @@
     },
     "mappings": [
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-q6xsjt3zekko3qgn5262emcpu4",
-            "kind": "COMMON",
-            "fieldName": "fileextension",
-            "extractionMethod": "METADATA",
-            "content": "%[fileextension]",
-            "rules": [
-                "%[fileextension]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-qbl2vwohtthslqv3vvfyw2sdcu",
-            "kind": "COMMON",
-            "fieldName": "datebucket",
-            "extractionMethod": "METADATA",
-            "content": "%[datebucket]",
-            "rules": [
-                "%[datebucket]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-qogdwbwtuug6fpvaalabircgr4",
-            "kind": "COMMON",
-            "fieldName": "mobilephone",
-            "extractionMethod": "METADATA",
-            "content": "%[cellphone]",
-            "rules": [
-                "%[cellphone]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-qvq2zu5g4pbgf3iq2bzuatcgri",
-            "kind": "COMMON",
-            "fieldName": "office",
-            "extractionMethod": "METADATA",
-            "content": "%[office]",
-            "rules": [
-                "%[office]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-rm4afj5mwvdv27ojyib5ghkbrm",
-            "kind": "COMMON",
-            "fieldName": "fullname",
-            "extractionMethod": "METADATA",
-            "content": "%[fullname]",
-            "rules": [
-                "%[fullname]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-rq2cj73pxvm66kacfrlewd2aum",
-            "kind": "COMMON",
-            "fieldName": "lastname",
-            "extractionMethod": "METADATA",
-            "content": "%[lastname]",
-            "rules": [
-                "%[lastname]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-rrdy7xqjrwlbk336to5zy2scmu",
-            "kind": "COMMON",
-            "fieldName": "filetype",
-            "extractionMethod": "METADATA",
-            "content": "%[filetype]",
-            "rules": [
-                "%[filetype]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-rxwf4p2qjzunrvmaq3fro4kg4e",
-            "kind": "COMMON",
-            "fieldName": "title",
-            "extractionMethod": "METADATA",
-            "content": "%[title:crawler]",
-            "rules": [
-                "%[title:crawler]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-ryxq36svgl26fxzbjrsvby2lia",
-            "kind": "COMMON",
-            "fieldName": "mobilephone",
-            "extractionMethod": "METADATA",
-            "content": "%[mobilephone]",
-            "rules": [
-                "%[mobilephone]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-s2qvdh7ccq5appa2g3psmqse7i",
-            "kind": "COMMON",
-            "fieldName": "sourcetype",
-            "extractionMethod": "METADATA",
-            "content": "%[sourcetype]",
-            "rules": [
-                "%[sourcetype]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-s3hy6bz7ndatdbhoeqrojgkmwm",
-            "kind": "COMMON",
-            "fieldName": "month",
-            "extractionMethod": "METADATA",
-            "content": "%[month]",
-            "rules": [
-                "%[month]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-scmshhlcs5xrgm4klpxfihsb44",
-            "kind": "COMMON",
-            "fieldName": "md_contenttype",
-            "extractionMethod": "METADATA",
-            "content": "%[md_contenttype]",
-            "rules": [
-                "%[md_contenttype]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-si4ea52hs3j55oschvvapt2guu",
-            "kind": "COMMON",
-            "fieldName": "md_country",
-            "extractionMethod": "METADATA",
-            "content": "%[md_country]",
-            "rules": [
-                "%[md_country]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-syu4peushv2y6msgzdd2klcihi",
-            "kind": "COMMON",
-            "fieldName": "year",
-            "extractionMethod": "METADATA",
-            "content": "%[year]",
-            "rules": [
-                "%[year]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tfc2g7ihrz3rngsy25u4rwkcde",
-            "kind": "COMMON",
-            "fieldName": "manager",
-            "extractionMethod": "METADATA",
-            "content": "%[manager]",
-            "rules": [
-                "%[manager]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tfjmjumfpurdff4bjw7jyysem4",
-            "kind": "COMMON",
-            "fieldName": "workphone",
-            "extractionMethod": "METADATA",
-            "content": "%[workphone]",
-            "rules": [
-                "%[workphone]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tggkdlwtkzkwaxq5o3gzh32ew4",
-            "kind": "COMMON",
-            "fieldName": "documenttype",
-            "extractionMethod": "METADATA",
-            "content": "%[documenttype]",
-            "rules": [
-                "%[documenttype]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tmd72g42cxpczrjhhvhxnrkia4",
-            "kind": "COMMON",
-            "fieldName": "filename",
-            "extractionMethod": "METADATA",
-            "content": "%[filename]",
-            "rules": [
-                "%[filename]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tq2hccwbykvcdpjjbizahxkba4",
-            "kind": "COMMON",
-            "fieldName": "foldingparent",
-            "extractionMethod": "METADATA",
-            "content": "%[coveo_foldingparent]",
-            "rules": [
-                "%[coveo_foldingparent]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-ts55l7prk6qvexanrjs7lekfvi",
-            "kind": "COMMON",
-            "fieldName": "md_lang",
-            "extractionMethod": "METADATA",
-            "content": "%[md_lang]",
-            "rules": [
-                "%[md_lang]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tusk3c3st2f4g27t6cp3apkh5i",
-            "kind": "COMMON",
-            "fieldName": "site",
-            "extractionMethod": "METADATA",
-            "content": "%[site]",
-            "rules": [
-                "%[site]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tzo6seems65xo3336inhvl2pmm",
-            "kind": "COMMON",
-            "fieldName": "permanentid",
-            "extractionMethod": "METADATA",
-            "content": "%[permanentid]",
-            "rules": [
-                "%[permanentid]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-tzx5zpomodwwnrprp65z7wsk5q",
-            "kind": "COMMON",
-            "fieldName": "connectortype",
-            "extractionMethod": "METADATA",
-            "content": "%[connectortype]",
-            "rules": [
-                "%[connectortype]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-u2mmqkklstnodtez5zluo2sbw4",
-            "kind": "COMMON",
-            "fieldName": "mobileuri",
-            "extractionMethod": "METADATA",
-            "content": "%[mobileuri]",
-            "rules": [
-                "%[mobileuri]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-u6m2h5qpmwaap6q7umzszm2h7e",
-            "kind": "COMMON",
-            "fieldName": "parents",
-            "extractionMethod": "METADATA",
-            "content": "%[parents]",
-            "rules": [
-                "%[parents]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-udmuw3el2gngqvprfuw77jkmoa",
-            "kind": "COMMON",
-            "fieldName": "relatedlink",
-            "extractionMethod": "METADATA",
-            "content": "%[coveo_externalurl]",
-            "rules": [
-                "%[coveo_externalurl]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-ugabzxcpy2vwqwc72hrh5k2cx4",
-            "kind": "COMMON",
-            "fieldName": "md_img",
-            "extractionMethod": "METADATA",
-            "content": "%[md_img]",
-            "rules": [
-                "%[md_img]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-ujro7ptujw6gwfemjzrriq2mry",
-            "kind": "COMMON",
-            "fieldName": "foldingcollection",
-            "extractionMethod": "METADATA",
-            "content": "%[coveo_foldingcollection]",
-            "rules": [
-                "%[coveo_foldingcollection]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-upqntb4cinhx67evzntoe7kfhy",
-            "kind": "COMMON",
-            "fieldName": "worktitle",
-            "extractionMethod": "METADATA",
-            "content": "%[worktitle]",
-            "rules": [
-                "%[worktitle]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-usbscwsvfixnuzy2gsssoakjhm",
-            "kind": "COMMON",
-            "fieldName": "from",
-            "extractionMethod": "METADATA",
-            "content": "%[from]",
-            "rules": [
-                "%[from]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-uxoj2hyrj7gy5pmfqgzrt7khhq",
-            "kind": "COMMON",
-            "fieldName": "language",
-            "extractionMethod": "METADATA",
-            "content": "%[language]",
-            "rules": [
-                "%[language]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-uxp23vudhuzpm4oudbzadusanm",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qgu4hupvrdqpd2v26mtfetkdh4",
             "kind": "COMMON",
             "fieldName": "mobilephone",
             "extractionMethod": "METADATA",
@@ -1093,177 +783,37 @@
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-v5nj6t3yqrk3bazpjxlkxusao4",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qjnrsp5wu2u6kk74z6ayqtsmnu",
             "kind": "COMMON",
-            "fieldName": "size",
+            "fieldName": "filename",
             "extractionMethod": "METADATA",
-            "content": "%[size]",
+            "content": "%[filename]",
             "rules": [
-                "%[size]"
+                "%[filename]"
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-v7oofqwzaamzq5s3irfxqisccq",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qjtjeydis5sqcnz5bhy4wdshyq",
             "kind": "COMMON",
-            "fieldName": "middlename",
+            "fieldName": "mobileuri",
             "extractionMethod": "METADATA",
-            "content": "%[middlename]",
+            "content": "%[mobileuri]",
             "rules": [
-                "%[middlename]"
+                "%[mobileuri]"
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vetsmubljxvus2cuii7slf2aae",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qp6venmtfbwsyjyt426wglkpcu",
             "kind": "COMMON",
-            "fieldName": "authorloginname",
+            "fieldName": "documenttype",
             "extractionMethod": "METADATA",
-            "content": "%[authorloginname]",
+            "content": "%[documenttype]",
             "rules": [
-                "%[authorloginname]"
+                "%[documenttype]"
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vgefilrh2qlq3qn2gber2vknza",
-            "kind": "COMMON",
-            "fieldName": "cc",
-            "extractionMethod": "METADATA",
-            "content": "%[cc]",
-            "rules": [
-                "%[cc]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vkdzooxk7lsq2pschlcpjnkejm",
-            "kind": "COMMON",
-            "fieldName": "author",
-            "extractionMethod": "METADATA",
-            "content": "%[author:crawler]",
-            "rules": [
-                "%[author:crawler]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vkw57eeat2s2jaoz4m2wyscbea",
-            "kind": "COMMON",
-            "fieldName": "to",
-            "extractionMethod": "METADATA",
-            "content": "%[to]",
-            "rules": [
-                "%[to]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vqua4hqwvbbg7arummdurrklka",
-            "kind": "COMMON",
-            "fieldName": "md_source",
-            "extractionMethod": "METADATA",
-            "content": "%[md_source]",
-            "rules": [
-                "%[md_source]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-vyxz6xckkmpyfzwd2a72u5snma",
-            "kind": "COMMON",
-            "fieldName": "firstname",
-            "extractionMethod": "METADATA",
-            "content": "%[firstname]",
-            "rules": [
-                "%[firstname]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wl7v6kqnt5xqi2lcqbafqjcapq",
-            "kind": "COMMON",
-            "fieldName": "date",
-            "extractionMethod": "METADATA",
-            "content": "%[date]",
-            "rules": [
-                "%[date]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wmiz2f6tzp4zytxtyssurccf3u",
-            "kind": "COMMON",
-            "fieldName": "homephone",
-            "extractionMethod": "METADATA",
-            "content": "%[homephone]",
-            "rules": [
-                "%[homephone]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wrabzefgqq6o5wrp3wuyln2ium",
-            "kind": "COMMON",
-            "fieldName": "company",
-            "extractionMethod": "METADATA",
-            "content": "%[company]",
-            "rules": [
-                "%[company]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wsvzmb6c5azpbop5nlecza2hau",
-            "kind": "COMMON",
-            "fieldName": "workemail",
-            "extractionMethod": "METADATA",
-            "content": "%[workemail]",
-            "rules": [
-                "%[workemail]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wu6gyxvh2hn53la56ugrdpkhdu",
-            "kind": "COMMON",
-            "fieldName": "mdproductsdatacategory",
-            "extractionMethod": "METADATA",
-            "content": "%[category]",
-            "rules": [
-                "%[category]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-wujd72mw6hsjcdrrjezjdwkbiq",
-            "kind": "COMMON",
-            "fieldName": "subject",
-            "extractionMethod": "METADATA",
-            "content": "%[subject]",
-            "rules": [
-                "%[subject]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xgd4euqyidlkrukxjuz2ouccoe",
-            "kind": "COMMON",
-            "fieldName": "folders",
-            "extractionMethod": "METADATA",
-            "content": "%[folders]",
-            "rules": [
-                "%[folders]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xj3eko7b3eej2owgaq2yogkmqi",
-            "kind": "COMMON",
-            "fieldName": "printableuri",
-            "extractionMethod": "METADATA",
-            "content": "%[printableuri]",
-            "rules": [
-                "%[printableuri]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xjimr7m6oce3bpyryx2q2g2mbe",
-            "kind": "COMMON",
-            "fieldName": "bcc",
-            "extractionMethod": "METADATA",
-            "content": "%[bcc]",
-            "rules": [
-                "%[bcc]"
-            ]
-        },
-        {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xkrb6ksh7w6feigewc2fhlcnbm",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qsoxzmo5vp2yff64yoy5drsoau",
             "kind": "COMMON",
             "fieldName": "clickableuri",
             "extractionMethod": "METADATA",
@@ -1273,27 +823,67 @@
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xqk24fjcroo6qtljvncbpn2chm",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-qvc2h26fpxouweirokjg3ucg2m",
             "kind": "COMMON",
-            "fieldName": "fax",
+            "fieldName": "workphone",
             "extractionMethod": "METADATA",
-            "content": "%[fax]",
+            "content": "%[workphone]",
             "rules": [
-                "%[fax]"
+                "%[workphone]"
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xqwf5dwu7jkuknkmklahlvse7a",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-ra4l2wjolcpwbyfkkqyuijcelm",
             "kind": "COMMON",
-            "fieldName": "foldingchild",
+            "fieldName": "to",
             "extractionMethod": "METADATA",
-            "content": "%[coveo_foldingchild]",
+            "content": "%[to]",
             "rules": [
-                "%[coveo_foldingchild]"
+                "%[to]"
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xudfkr4kbjpqbrnn74sf5t2gt4",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rb2wuer4ga7gvvbhhipv5lcn7i",
+            "kind": "COMMON",
+            "fieldName": "worktitle",
+            "extractionMethod": "METADATA",
+            "content": "%[worktitle]",
+            "rules": [
+                "%[worktitle]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rhepyuahnfp5ist5rxgvcismbi",
+            "kind": "COMMON",
+            "fieldName": "md_lang",
+            "extractionMethod": "METADATA",
+            "content": "%[md_lang]",
+            "rules": [
+                "%[md_lang]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rjays2wqscricyzxehv5swsnfq",
+            "kind": "COMMON",
+            "fieldName": "lastname",
+            "extractionMethod": "METADATA",
+            "content": "%[lastname]",
+            "rules": [
+                "%[lastname]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rkxe6majhynfem6xpkwk2csnta",
+            "kind": "COMMON",
+            "fieldName": "parents",
+            "extractionMethod": "METADATA",
+            "content": "%[parents]",
+            "rules": [
+                "%[parents]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rnmthmwsfjfepjsahslij6ch6e",
             "kind": "COMMON",
             "fieldName": "company",
             "extractionMethod": "METADATA",
@@ -1303,7 +893,137 @@
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xvbcz6ujeeeoa2hqtotrdskkva",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-roje2g7bnyyuvcasp3orizkoui",
+            "kind": "COMMON",
+            "fieldName": "workemail",
+            "extractionMethod": "METADATA",
+            "content": "%[workemail]",
+            "rules": [
+                "%[workemail]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rrglyhxlwzmk37kahtkmzlkpqm",
+            "kind": "COMMON",
+            "fieldName": "author",
+            "extractionMethod": "METADATA",
+            "content": "%[author:crawler]",
+            "rules": [
+                "%[author:crawler]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-rxcusm2hyfuwxbe2bzwxxfkjcq",
+            "kind": "COMMON",
+            "fieldName": "mobilephone",
+            "extractionMethod": "METADATA",
+            "content": "%[mobilephone]",
+            "rules": [
+                "%[mobilephone]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-s55wjz2hqxs3jzkckp2xdtklqq",
+            "kind": "COMMON",
+            "fieldName": "location",
+            "extractionMethod": "METADATA",
+            "content": "%[location]",
+            "rules": [
+                "%[location]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-s75eq4ephrcp3wm43dzi4psjjy",
+            "kind": "COMMON",
+            "fieldName": "size",
+            "extractionMethod": "METADATA",
+            "content": "%[size]",
+            "rules": [
+                "%[size]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-sdwmw2bjgg57li7un7abvrkcpa",
+            "kind": "COMMON",
+            "fieldName": "printableuri",
+            "extractionMethod": "METADATA",
+            "content": "%[printableuri]",
+            "rules": [
+                "%[printableuri]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-se5shyosz7qj35crbjztubcp6m",
+            "kind": "COMMON",
+            "fieldName": "connectortype",
+            "extractionMethod": "METADATA",
+            "content": "%[connectortype]",
+            "rules": [
+                "%[connectortype]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-si6wgsueoyu4zxfieqj5du2fna",
+            "kind": "COMMON",
+            "fieldName": "permanentid",
+            "extractionMethod": "METADATA",
+            "content": "%[permanentid]",
+            "rules": [
+                "%[permanentid]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-smjce5exxu7d6fbb7tcdth2jda",
+            "kind": "COMMON",
+            "fieldName": "cc",
+            "extractionMethod": "METADATA",
+            "content": "%[cc]",
+            "rules": [
+                "%[cc]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-t574fbcubdk5h3dqnsa3bz2np4",
+            "kind": "COMMON",
+            "fieldName": "subject",
+            "extractionMethod": "METADATA",
+            "content": "%[subject]",
+            "rules": [
+                "%[subject]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-tm7vuwaxi5vyprhiza3jxwkdci",
+            "kind": "COMMON",
+            "fieldName": "office",
+            "extractionMethod": "METADATA",
+            "content": "%[office]",
+            "rules": [
+                "%[office]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-tqpdybka4aeyms6ol2ipsk2jji",
+            "kind": "COMMON",
+            "fieldName": "md_img",
+            "extractionMethod": "METADATA",
+            "content": "%[md_img]",
+            "rules": [
+                "%[md_img]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-tw7b47uzoo5z66uqmjie532p4e",
+            "kind": "COMMON",
+            "fieldName": "filetype",
+            "extractionMethod": "METADATA",
+            "content": "%[filetype]",
+            "rules": [
+                "%[filetype]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-u6mfqrfbfqh6vofaaervx2cn2y",
             "kind": "COMMON",
             "fieldName": "md_pagetype",
             "extractionMethod": "METADATA",
@@ -1313,13 +1033,283 @@
             ]
         },
         {
-            "id": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu-xvxy26nmuytx3ov43n373fsno4",
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-ua3voeqqwmqy2nkcxprf7rchoi",
             "kind": "COMMON",
-            "fieldName": "location",
+            "fieldName": "fileextension",
             "extractionMethod": "METADATA",
-            "content": "%[location]",
+            "content": "%[fileextension]",
             "rules": [
-                "%[location]"
+                "%[fileextension]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-ugklzknbk6isdxjuuh6qsl2kr4",
+            "kind": "COMMON",
+            "fieldName": "relatedlink",
+            "extractionMethod": "METADATA",
+            "content": "%[coveo_externalurl]",
+            "rules": [
+                "%[coveo_externalurl]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-uixyqm3ebytebuxxuacegmkpwy",
+            "kind": "COMMON",
+            "fieldName": "company",
+            "extractionMethod": "METADATA",
+            "content": "%[company]",
+            "rules": [
+                "%[company]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-ujqznxlkxkovpivpifftzmkgga",
+            "kind": "COMMON",
+            "fieldName": "md_source",
+            "extractionMethod": "METADATA",
+            "content": "%[md_source]",
+            "rules": [
+                "%[md_source]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-umwigjy75rptqszbr2rzlbkhcq",
+            "kind": "COMMON",
+            "fieldName": "foldingcollection",
+            "extractionMethod": "METADATA",
+            "content": "%[coveo_foldingcollection]",
+            "rules": [
+                "%[coveo_foldingcollection]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-ungercw2g3fvwehkluhety2eny",
+            "kind": "COMMON",
+            "fieldName": "year",
+            "extractionMethod": "METADATA",
+            "content": "%[year]",
+            "rules": [
+                "%[year]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-uvzgejrskbu5ho76xdbc462bji",
+            "kind": "COMMON",
+            "fieldName": "foldingparent",
+            "extractionMethod": "METADATA",
+            "content": "%[coveo_foldingparent]",
+            "rules": [
+                "%[coveo_foldingparent]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-vdilueqpf4hja6lil7gqem2kte",
+            "kind": "COMMON",
+            "fieldName": "bcc",
+            "extractionMethod": "METADATA",
+            "content": "%[bcc]",
+            "rules": [
+                "%[bcc]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-vjcwzvdsr57pguyftx2ab7cebe",
+            "kind": "COMMON",
+            "fieldName": "from",
+            "extractionMethod": "METADATA",
+            "content": "%[from]",
+            "rules": [
+                "%[from]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-vl6hfdv54poyzyeh6mouwnko7a",
+            "kind": "COMMON",
+            "fieldName": "foldingchild",
+            "extractionMethod": "METADATA",
+            "content": "%[coveo_foldingchild]",
+            "rules": [
+                "%[coveo_foldingchild]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-vmfvyt5gf6pflmtb75f5hakcka",
+            "kind": "COMMON",
+            "fieldName": "homephone",
+            "extractionMethod": "METADATA",
+            "content": "%[homephone]",
+            "rules": [
+                "%[homephone]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-vwhbz2ajlytrh3jfjzmf2tkezy",
+            "kind": "COMMON",
+            "fieldName": "firstname",
+            "extractionMethod": "METADATA",
+            "content": "%[firstname]",
+            "rules": [
+                "%[firstname]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-w43bgqzurwoa7ok6qntofykaja",
+            "kind": "COMMON",
+            "fieldName": "manager",
+            "extractionMethod": "METADATA",
+            "content": "%[manager]",
+            "rules": [
+                "%[manager]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-wbhkc2rc6ysrfsigdbqrof2e54",
+            "kind": "COMMON",
+            "fieldName": "md_contenttype",
+            "extractionMethod": "METADATA",
+            "content": "%[md_contenttype]",
+            "rules": [
+                "%[md_contenttype]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-wm2d3r2p3petpxtf3ma4be2p7i",
+            "kind": "COMMON",
+            "fieldName": "fax",
+            "extractionMethod": "METADATA",
+            "content": "%[fax]",
+            "rules": [
+                "%[fax]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-wme22ol7iv2hgk7urkfeh32gji",
+            "kind": "COMMON",
+            "fieldName": "fullname",
+            "extractionMethod": "METADATA",
+            "content": "%[fullname]",
+            "rules": [
+                "%[fullname]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-wpon3bkupthwzen2xo5gimko2q",
+            "kind": "COMMON",
+            "fieldName": "sourcetype",
+            "extractionMethod": "METADATA",
+            "content": "%[sourcetype]",
+            "rules": [
+                "%[sourcetype]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-wy2kjzd3m6d76tx5bjp227shpm",
+            "kind": "COMMON",
+            "fieldName": "mobilephone",
+            "extractionMethod": "METADATA",
+            "content": "%[cellphone]",
+            "rules": [
+                "%[cellphone]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-x3t5tginem3vfepivic4igkivu",
+            "kind": "COMMON",
+            "fieldName": "folders",
+            "extractionMethod": "METADATA",
+            "content": "%[folders]",
+            "rules": [
+                "%[folders]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-x5zexuixljucsvab66juxeknku",
+            "kind": "COMMON",
+            "fieldName": "month",
+            "extractionMethod": "METADATA",
+            "content": "%[month]",
+            "rules": [
+                "%[month]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xajuxtxb5odqudhrojbcki2csa",
+            "kind": "COMMON",
+            "fieldName": "date",
+            "extractionMethod": "METADATA",
+            "content": "%[date]",
+            "rules": [
+                "%[date]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xc2addt4sjo5fjrfa2ygoqkfeu",
+            "kind": "COMMON",
+            "fieldName": "site",
+            "extractionMethod": "METADATA",
+            "content": "%[site]",
+            "rules": [
+                "%[site]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xhzgvueq37sqrehtlib7nckbmy",
+            "kind": "COMMON",
+            "fieldName": "language",
+            "extractionMethod": "METADATA",
+            "content": "%[language]",
+            "rules": [
+                "%[language]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xlutjqekk24owy62wh4cslsiii",
+            "kind": "COMMON",
+            "fieldName": "middlename",
+            "extractionMethod": "METADATA",
+            "content": "%[middlename]",
+            "rules": [
+                "%[middlename]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xn2tjwfnbmf5zjpgftbqowcb74",
+            "kind": "COMMON",
+            "fieldName": "title",
+            "extractionMethod": "METADATA",
+            "content": "%[title:crawler]",
+            "rules": [
+                "%[title:crawler]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xr6zyle3w4buhc7oeje5bkcdza",
+            "kind": "COMMON",
+            "fieldName": "datebucket",
+            "extractionMethod": "METADATA",
+            "content": "%[datebucket]",
+            "rules": [
+                "%[datebucket]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xtxtz3dzxkikxpiktekpozcfey",
+            "kind": "COMMON",
+            "fieldName": "md_country",
+            "extractionMethod": "METADATA",
+            "content": "%[md_country]",
+            "rules": [
+                "%[md_country]"
+            ]
+        },
+        {
+            "id": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm-xvfn6y7kv46op5wmzkqibusf3y",
+            "kind": "COMMON",
+            "fieldName": "authorloginname",
+            "extractionMethod": "METADATA",
+            "content": "%[authorloginname]",
+            "rules": [
+                "%[authorloginname]"
             ]
         }
     ],
@@ -1335,5 +1325,5 @@
     "onPremisesEnabled": false,
     "streamEnabled": false,
     "logicalIndex": "default",
-    "resourceId": "moleculardevicesnonproduction1ymbeu2lo-teigj632s3f6sf3cy5d2mgsneu"
+    "resourceId": "moleculardevicesproductionca45f5xc-u5skspqggah2bkgfrcxmyzcpkm"
 }
