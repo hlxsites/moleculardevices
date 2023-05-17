@@ -93,7 +93,7 @@ export async function buildLazyMegaMenus() {
   categories.forEach(async (category) => {
     const menuId = category.getAttribute('menu-id');
 
-    await fetch(`/drafts/josec/fragments/menu/${menuId}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {})
+    await fetch(`/fragments/megamenu/${menuId}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {
         if (submenuResponse.ok) {
           // eslint-disable-next-line no-await-in-loop
