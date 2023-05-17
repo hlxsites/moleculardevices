@@ -56,7 +56,7 @@ async function getOrderingOptions(block) {
   return options;
 }
 
-export default async function decorate(block) {
+async function renderList(block) {
   const options = await getOrderingOptions(block);
   const items = [];
   options.forEach((option) => {
@@ -67,4 +67,8 @@ export default async function decorate(block) {
   const container = div({ class: 'ordering-options-list' });
   container.append(...items);
   block.append(container);
+}
+
+export default async function decorate(block) {
+  renderList(block);
 }
