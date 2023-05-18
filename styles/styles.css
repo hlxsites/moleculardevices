@@ -903,12 +903,9 @@ main .section.newsroom .default-content-wrapper:last-of-type h2 {
 }
 
 main .section.newsroom .default-content-wrapper:last-of-type .button-container {
-  padding-right: 15px;
-}
-
-main .section.newsroom .default-content-wrapper:last-of-type .button-container {
   text-align: right;
   font-size: 18px;
+  padding-right: 15px;
 }
 
 @media (min-width: 768px) {
