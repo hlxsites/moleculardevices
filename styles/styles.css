@@ -884,7 +884,7 @@ main .section.featured-asset .columns h3 {
 main .section.newsroom {
   width: 1170px;
   display: grid;
-  grid-template-columns: 66% 33%;
+  grid-template-columns: 66% 34%;
   grid-template-rows: fit-content;
   margin: 0 auto;
   text-align: left;
