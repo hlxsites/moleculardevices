@@ -1196,6 +1196,25 @@ main .section:not(.tabs, .wave.bluegreen).newsroom .default-content-wrapper:firs
   line-height: 20px;
 }
 
+main .section.newsroom {
+  width: 1170px;
+  display: grid;
+  grid-template-columns: 66% 33%;
+  grid-template-rows: fit-content;
+  margin: 0 auto;
+  text-align: left;
+}
+
+main .section.newsroom > div {
+  grid-column: 1 / 2;
+  max-width: 100%;
+}
+
+main .section.newsroom > div:nth-last-child(-n + 3) {
+  grid-column: 2 / 3;
+  grid-row: 1 / 20;
+}
+
 @media (max-width: 991px) {
   h2 {
     font-size: 36px;
