@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
-import {a, div, p } from '../../scripts/dom-helpers.js';
+import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatDate(startDate, endDate) {
   const startDateObj = new Date(0);
@@ -20,7 +20,7 @@ export function formatDate(startDate, endDate) {
 export function buildList(data, block) {
   const list = div({ class: 'list' });
   block.append(list);
-  data.forEach((item, idx) => {
+  data.forEach((item) => {
     list.append(div({ class: 'item' },
       p({},
         a({ href: item.path, title: item.title },
