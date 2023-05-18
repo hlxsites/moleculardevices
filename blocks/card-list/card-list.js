@@ -18,7 +18,6 @@ class FilterableCardList {
   constructor(block, config) {
     this.headings = false;
     this.clusterCategories = false;
-    // this.sortCards = false;
 
     this.block = block;
     this.cardRenderer = defaultCardRender;
@@ -135,6 +134,11 @@ class FilterableCardList {
       !this.headings && initialViewAllCategoryItems.push(renderedItem);
     });
 
+    // Create view all category (either for headings or there is a custom implementation override)
+    const viewAllCategoryItems = this.createViewAllCategoryItems();
+    if (viewAllCategoryItems) {
+      this.dataIndex.set(viewAllCategory, viewAllCategoryItems);
+    }
   }
 
   async render() {
@@ -143,19 +147,6 @@ class FilterableCardList {
 
     // Build Data Index
     this.buildDataIndex();
-
-    // Sort the cards within each category
-    // if (this.sortCards) {
-    //   [...this.dataIndex.values()].forEach((categoryCards) => {
-    //     categoryCards.sort(this.compareItems);
-    //   });
-    // }
-
-    // Create view all category (either for headings or there is a custom implementation override)
-    const viewAllCategoryItems = this.createViewAllCategoryItems();
-    if (viewAllCategoryItems) {
-      this.dataIndex.set(viewAllCategory, viewAllCategoryItems);
-    }
 
     // Render the carousel
     this.carousel = await createCarousel(
@@ -223,7 +214,7 @@ const VARIANTS = {
   },
 
   BLOG: {
-    // TODO
+    // TODO migrate blog list here
   },
 
   TECHNOLOGY: {
@@ -335,9 +326,12 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => product.category === 'Additional Products'
+        (product) => {
+          return product.category === 'Additional Products' && product.productSeriesMain !== 'Yes'
+        }
       );
 
+      console.log(products);
       return products;
     },
 
@@ -372,6 +366,8 @@ const VARIANTS = {
 };
 
 export default async function decorate(block) {
+  block.parentElement.classList.add(block.classList[1]);
+
   const cardList = new FilterableCardList(
     block,
     VARIANTS[block.classList[1].toUpperCase()],
