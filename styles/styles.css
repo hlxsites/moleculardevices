@@ -882,10 +882,6 @@ main .section.featured-asset h2 {
   color: var(--text-green);
 }
 
-main .section.featured-asset .columns > div {
-  align-items: unset;
-}
-
 @media only screen and (max-width: 767px) {
   main .section.featured-asset {
     padding: 0;
@@ -1027,6 +1023,10 @@ main .section.newsroom .default-content-wrapper:last-of-type .button-container {
   text-align: right;
   font-size: 18px;
   padding-right: 15px;
+}
+
+main .section.featured-asset .columns > div {
+  align-items: unset;
 }
 
 @media (min-width: 768px) {
