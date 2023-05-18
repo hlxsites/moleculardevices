@@ -33,6 +33,7 @@ export function buildList(data, block) {
 export default async function decorate(block) {
   const data = await ffetch('/query-index.json')
     .sheet('news')
+    .chunks(5)
     .limit(3)
     .all();
   buildList(data, block);
