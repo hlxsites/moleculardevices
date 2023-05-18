@@ -11,6 +11,11 @@
   padding: 80px 0;
 }
 
+.columns.image-hover > div > div:hover {
+  transform: scale(1.1);
+  transition: transform ease-in-out 0.3s;
+}
+
 .columns.contact > div > div {
   background-color: var(--background-color);
   width: 100%;
