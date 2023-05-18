@@ -4,26 +4,22 @@ import {
 
 function renderItem(item) {
   if (!item) return;
-  const itemEl = (
+
+  // eslint-disable-next-line consistent-return
+  return (
     div({ class: 'ordering-option-item', id: item.handle },
       div({ class: 'header' },
         h3({ class: 'title' }, item.title),
       ),
+      div({ class: 'ordering-option-item-variants' },
+        ...item.variants.map((variant) => div({ class: 'variant-item' },
+          h4({ class: 'legend' }, variant.public_title),
+          p({ class: 'legend' }, `#${variant.sku}`),
+        ),
+        ),
+      ),
     )
   );
-  const variantsEl = div({ class: 'ordering-option-item-variants' });
-  itemEl.append(variantsEl);
-
-  item.variants.forEach((variant) => {
-    variantsEl.append(
-      div({ class: 'variant-item' },
-        h4({ class: 'legend' }, variant.public_title),
-        p({ class: 'legend' }, `#${variant.sku}`),
-      ),
-    );
-  });
-  // eslint-disable-next-line consistent-return
-  return itemEl;
 }
 
 function fetchOption(option) {
