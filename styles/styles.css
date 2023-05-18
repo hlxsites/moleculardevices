@@ -885,15 +885,25 @@ main .section.featured-asset h2 {
 main .section.newsroom > div,
 main .section.newsroom .embed {
   max-width: 100%;
-  padding-top: 0;
+  padding: 0;
 }
 
-main .section.newsroom .default-content-wrapper:last-of-type {
+main .section.newsroom.left > div {
+  padding-right: 15px;
+}
+
+main .section.newsroom.right .default-content-wrapper:last-of-type {
   background-color: var(--overlay-background-color);
+  padding: 15px;
 }
 
 main .section.newsroom .default-content-wrapper:last-of-type h2 {
   color: var(--text-color);
+  font-size: 32px;
+}
+
+main .section.newsroom .default-content-wrapper:last-of-type .button-container {
+  padding-right: 15px;
 }
 
 main .section.newsroom .default-content-wrapper:last-of-type .button-container {
