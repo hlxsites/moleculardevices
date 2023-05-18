@@ -345,6 +345,30 @@ const VARIANTS = {
       return item.category;
     },
   },
+
+  'CULTURE-MEDIA-AND-REAGENTS': {
+    clusterCategories: true,
+
+    async getData() {
+      let products = await ffetch('/query-index.json')
+        .sheet('products')
+        .all();
+
+      products = products.filter(
+        (product) => product.category === 'Culture Media and Reagents',
+      );
+
+      products.sort((product1, product2) => { 
+        return product1.h1.localeCompare(product2.h1);
+      });
+
+      return products;
+    },
+
+    getCategory(item) {
+      return item.subCategory;
+    },
+  }
 };
 
 export default async function decorate(block) {
