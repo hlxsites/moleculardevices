@@ -38,7 +38,7 @@ main .card-list .carousel-item {
   padding: 20px 15px 40px;
 }
 
-main .card-list .carousel-heading-item {
+main .card-list .carousel-heading-item.carousel-heading-item {
   width: 100%;
 }
 

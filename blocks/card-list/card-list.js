@@ -205,7 +205,6 @@ function compareByDate(item1, item2) {
 }
 
 const VARIANTS = {
-  // TODO: Absorbance missing metadata
   APPLICATIONS: {
     headings: true,
 
@@ -269,8 +268,6 @@ const VARIANTS = {
   },
 
   PRODUCTS: {
-    // TODO check card descriptions
-    // TODO CLAMP 11 Software Suite Category broken again
     headings: true,
     sortCards: false,
 
@@ -300,10 +297,8 @@ const VARIANTS = {
   },
 
   'ACCESSORIES-AND-CONSUMABLES': {
-    // TODO Card descriptions are not the same
-    // TODO Overview page metadata
     cardRenderer: noThumbnailCardRender,
-    // clusterCategories: true,
+    // clusterCategories: true, TODO Uncomment when category mapping is correct in products.
 
     async getData() {
       let products = await ffetch('/query-index.json')
@@ -360,7 +355,6 @@ const VARIANTS = {
   },
 
   'ADDITIONAL-PRODUCTS': {
-    // TODO
     cardRenderer: thumbnailAndLinkCardRender,
 
     async getData() {
