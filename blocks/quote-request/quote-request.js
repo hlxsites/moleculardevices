@@ -147,6 +147,7 @@ function loadIframeForm(stepNum, data, type) {
         class: 'contact-quote-request',
         id: 'contactQuoteRequest',
         src: `${formUrl}?${new URLSearchParams(hubSpotQuery).toString()}`,
+        loading: 'lazy',
       }),
     ),
   );
@@ -247,13 +248,7 @@ export default async function decorate(block) {
           class: 'rfq-product-wrapper request-quote-form hide-back-btn',
         }),
       );
-      const observer = new IntersectionObserver((entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          loadIframeForm('step-3', prfdData, 'Product');
-        }
-      });
-      observer.observe(block);
-     
+      loadIframeForm('step-3', prfdData, 'Product');
     } else {
       block.appendChild(
         div(
