@@ -7,10 +7,6 @@ import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
 
-function notEmpty(field) {
-  return field && field !== '0';
-}
-
 class Card {
   constructor(config = {}) {
     this.cssFiles = [];
@@ -52,6 +48,7 @@ class Card {
       c2aBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
+      c2aBlock = a({ href: item.path, 'aria-label': buttonText }, buttonText);
       c2aBlock.append(
         this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
@@ -60,9 +57,12 @@ class Card {
       decorateIcons(c2aBlock);
     }
 
-    const cardDescription = notEmpty(item.cardDescription)
-      ? summariseDescription(item.cardDescription, this.descriptionLength)
-      : (notEmpty(item.description) ? summariseDescription(item.description, this.descriptionLength) : '');
+    let cardDescription = '';
+    if (item.cardDescription && item.cardDescription !== '0') {
+      cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
+    } else if (item.description && item.description !== '0') {
+      cardDescription = summariseDescription(item.description, this.descriptionLength);
+    }
 
     return (
       div({ class: 'card' },

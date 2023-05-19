@@ -1,4 +1,7 @@
+/* stylelint-disable no-descending-specificity */
+
 /* COMMONS */
+
 /* Desktop - Style like a list */
 
 main .section.card-list-container .default-content-wrapper h2 {
@@ -124,11 +127,6 @@ main .card-list .carousel-item .card a .icon svg path {
   margin-top: 0;
 }
 
-.card-list.products .card-thumb a {
-  display: block;
-  height: 100%;
-}
-
 /* BLOG */
 main .section div.card-list-wrapper.blog {
   max-width: unset;
@@ -200,10 +198,6 @@ main .card-list.technology {
 }
 
 /* ACCESSORIES AND CONSUMABLES + ASSAY KITS */
-/* main .section div.card-list-wrapper.accessories-and-consumables {
-  width: 1140px; uncommenting will break the carousel
-} */
-
 main .section div.card-list-wrapper.assay-kits {
   padding: 0;
 }
