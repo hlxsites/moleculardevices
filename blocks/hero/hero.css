@@ -330,23 +330,6 @@ main.error .hero-wrapper .hero-inner {
     margin-right: 15px;
   }
 
-  /* .hero-inner .container > div > div > * {
-    display: none;
-  }
-
-  .hero-inner .container > div.video-column > div > * {
-    display: block;
-  }
-
-  .hero-inner.white-bg .container > div > div:nth-child(1) * {
-    display: block;
-  }
-
-  .hero-inner .container > div > div:nth-child(1) h1,
-  .hero-inner .container > div > div:nth-child(1) .button-container {
-    display: block;
-  } */
-
   .hero-inner h4 {
     margin-bottom: 10px;;
   }
@@ -355,14 +338,6 @@ main.error .hero-wrapper .hero-inner {
   .hero-inner .container > div:nth-child(1) > div > h1 {
     display: block;
   }
-
-  /* .hero-inner .container.two-column > div:nth-child(1) > p {
-    display: none;
-  }
-
-  .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p {
-    display: block;
-  } */
 
   .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay {
     display: none;
