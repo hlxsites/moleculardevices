@@ -167,9 +167,10 @@ export function videoButton(container, button, url) {
   observer.observe(container);
 }
 
-function decorateEmbedLinks(main) {
+function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
+    // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const up = link.parentElement;
       const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
@@ -178,6 +179,12 @@ function decorateEmbedLinks(main) {
       if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
+    }
+
+    // decorate RFQ page links with pid parameter
+    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
+      url.searchParams.append('pid', getMetadata('family-id'));
+      link.href = url.toString();
     }
   });
 }
@@ -290,7 +297,7 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
-  decorateEmbedLinks(main);
+  decorateLinks(main);
 }
 
 /**

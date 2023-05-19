@@ -5,23 +5,13 @@ import {
   div,
   li,
   nav,
-  a,
   ul,
 } from '../../scripts/dom-helpers.js';
 import {
   reverseElementLinkTagRelation,
   buildBrandLogo,
+  buildRequestQuote,
 } from './helpers.js';
-
-function buildRequestQuote() {
-  return li(
-    { class: 'header-rfq' },
-    a(
-      { href: '/quote-request?cid=12' },
-      'Request Quote',
-    ),
-  );
-}
 
 export function showRightSubmenu(element) {
   document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
@@ -128,7 +118,7 @@ export function buildNavbar(content) {
   }
 
   navMenuUl.append(buildSearch(content));
-  navMenuUl.append(buildRequestQuote());
+  navMenuUl.append(buildRequestQuote('header-rfq'));
 
   megaMenu.querySelector('.nav-menu').innerHTML = navMenuUl.outerHTML;
 
