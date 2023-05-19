@@ -115,10 +115,13 @@ class FilterableCardList {
   filterChanged() {
     this.carousel.data = this.dataIndex.get(this.getCurrentCategory());
     this.carousel.render();
+    this.addHeadingClass();
+  }
+
+  addHeadingClass() {
     this.carousel.block.querySelectorAll('.card-list-heading').forEach((heading) => {
       heading.parentElement.classList.add('carousel-heading-item');
-      // heading.parentElement.classList.remove('carousel-item'); TODO
-    });
+   });
   }
 
   buildDataIndex() {
@@ -133,7 +136,7 @@ class FilterableCardList {
 
       if (!this.dataIndex.has(itemCategoryKey)) {
         if (this.headings) {
-          const heading = div({ class: 'card-list-heading' },
+          const heading = div({ class: 'card-list-heading carousel-skip-item' },
             h2(itemCategoryText),
           );
 
@@ -175,14 +178,8 @@ class FilterableCardList {
       },
     );
 
-    // adjust carousel for headings
-    // kind of hackish, but otherwise we'd need to refactor all the carousels
-    // todo: figure out how to skip
-    this.carousel.block.querySelectorAll('.card-list-heading').forEach((heading) => {
-      heading.parentElement.classList.add('carousel-heading-item');
-      // heading.parentElement.classList.remove('carousel-item'); TODO
-    });
-
+    this.addHeadingClass();
+    
     window.addEventListener('hashchange', () => { this.filterChanged(); });
     window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
       if (e.matches) {
