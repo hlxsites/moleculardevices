@@ -31,7 +31,7 @@ class Card {
   }
 
   renderItem(item) {
-    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title; // TODO test all card types
+    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
