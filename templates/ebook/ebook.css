@@ -1,0 +1,103 @@
+.ebook .hamburger,
+.ebook header .mainmenu-wrapper,
+.ebook header .navbar-header > .company-links,
+.ebook main .breadcrumbs {
+  display: none;
+}
+
+.ebook header {
+  height: 74px;
+}
+
+.ebook .hero-container {
+  padding-bottom: 50px;
+}
+
+.ebook .hero {
+  margin-top: -9px;
+}
+
+.ebook .hero-inner h1 {
+  font-size: 70px;
+}
+
+.ebook .hero-inner h2 {
+  color: var(--text-green);
+  font-size: 50px;
+}
+
+@media (max-width: 767px) {
+  .ebook .hero-inner {
+    background-color: var(--black-background-color);
+    padding-top: 73px;
+  }
+
+  .ebook .hero-inner h1 {
+    font-size: 32px;
+  }
+
+  .ebook .hero-inner h2 {
+    font-size: 32px;
+  }
+
+  .ebook .hero-inner img {
+    display: none;
+  }
+
+  .ebook .hero-inner .two-column img {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .ebook header #header-logo img {
+    max-height: 35px;
+    width: auto;
+    max-width: unset;
+  }
+
+  .ebook #navbar-header {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .ebook header {
+    height: 74px;
+  }
+
+  .ebook .hero-inner .container.two-column.right-image > div:nth-child(1) {
+      width: 58%;
+  }
+
+  .ebook .hero-inner .container.two-column.right-image > div:nth-child(2) {
+    width: 42%;
+    padding: 0 15px;
+  }
+
+  .ebook .hero-inner .container {
+    align-items: center;
+    padding: 60px 0 25px 0;
+  }
+
+  .ebook .hero-inner .container.two-column > div:nth-child(2) {
+    border: 0;
+  }
+
+  .ebook .hero-inner h1 {
+    margin-bottom: 15px;
+  }
+
+  .ebook .hero-inner p {
+    font-size: 27px;
+  }
+}
+
+@media (min-width: 992px) {
+  .ebook header {
+    height: 139px;
+  }
+}
