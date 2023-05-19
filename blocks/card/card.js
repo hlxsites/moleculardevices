@@ -45,6 +45,7 @@ class Card {
       c2aBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
+      c2aBlock = a({ href: item.path, 'aria-label': buttonText }, buttonText);
       c2aBlock.append(i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }));
       decorateIcons(c2aBlock);
     }
