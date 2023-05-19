@@ -112,20 +112,21 @@ async function buildNewsletter(container) {
 
   loadScript('../../scripts/iframeResizer.min.js');
   const formId = 'enewsletterSubscribeForm';
-  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
+  //const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
   const form = (
     div({
       id: newsletterId,
       class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
     },
+    /*
     div(
       iframe({
         id: formId,
         src: formUrl,
         loading: 'lazy',
       }),
-    ),
+    ),*/
     )
   );
   // add submission form from hubspot
@@ -195,13 +196,13 @@ export default async function decorate(block) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      //buildNewsletter(newsletterContainter);
+      buildNewsletter(newsletterContainter);
     }
   });
   observer.observe(newsletterContainter);
 
   setTimeout(() => {
     observer.disconnect();
-    //buildNewsletter(newsletterContainter);
+    buildNewsletter(newsletterContainter);
   }, 3000);
 }
