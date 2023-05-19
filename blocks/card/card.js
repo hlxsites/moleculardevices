@@ -53,14 +53,14 @@ class Card {
     }
     if (this.c2aLinkStyle) {
       c2aBlock.append(
-        this.c2aLinkIconFull 
+        this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
-          : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true })
+          : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
       );
       decorateIcons(c2aBlock);
     }
 
-    const cardDescription = notEmpty(item.cardDescription) 
+    const cardDescription = notEmpty(item.cardDescription)
       ? summariseDescription(item.cardDescription, this.descriptionLength)
       : (notEmpty(item.description) ? summariseDescription(item.description, this.descriptionLength) : '');
 

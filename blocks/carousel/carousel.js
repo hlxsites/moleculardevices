@@ -391,7 +391,7 @@ class Carousel {
     }
 
     this.block.innerHTML = '';
-    this.data.forEach((item, i) => {
+    this.data.forEach((item) => {
       const itemContainer = document.createElement('div');
       itemContainer.className = 'carousel-item';
 

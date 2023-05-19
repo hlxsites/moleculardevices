@@ -27,7 +27,6 @@ const blogCardRender = await createCard({
   descriptionLength: 85,
 });
 
-
 class FilterableCardList {
   constructor(block, config) {
     this.headings = false;
@@ -41,6 +40,7 @@ class FilterableCardList {
   }
 
   /** API */
+  /* eslint-disable class-methods-use-this, no-unused-vars */
 
   /**
    * Retrieve the data for the card list, already sorted in the correct order
@@ -58,6 +58,7 @@ class FilterableCardList {
   getCategory(item) {
     return '';
   }
+  /* eslint-enable class-methods-use-this, no-unused-vars */
 
   /**
    * Optional: Creates a custom View All Category list in the index
@@ -121,7 +122,7 @@ class FilterableCardList {
   addHeadingClass() {
     this.carousel.block.querySelectorAll('.card-list-heading').forEach((heading) => {
       heading.parentElement.classList.add('carousel-heading-item');
-   });
+    });
   }
 
   buildDataIndex() {
@@ -148,6 +149,8 @@ class FilterableCardList {
 
       const renderedItem = this.cardRenderer.renderItem(item);
       this.dataIndex.get(itemCategoryKey).push(renderedItem);
+
+      // eslint-disable-next-line no-unused-expressions
       !this.headings && initialViewAllCategoryItems.push(renderedItem);
     });
 
@@ -179,7 +182,7 @@ class FilterableCardList {
     );
 
     this.addHeadingClass();
-    
+
     window.addEventListener('hashchange', () => { this.filterChanged(); });
     window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
       if (e.matches) {
@@ -211,9 +214,9 @@ const VARIANTS = {
         .sheet('applications')
         .all();
 
-      applications.sort((application1, application2) => {
-        return application1.h1.localeCompare(application2.h1);
-      });  
+      applications.sort(
+        (application1, application2) => application1.h1.localeCompare(application2.h1),
+      );
 
       return applications;
     },
@@ -229,7 +232,7 @@ const VARIANTS = {
     cardRenderer: blogCardRender,
 
     async getData() {
-      return await ffetch('/query-index.json')
+      return ffetch('/query-index.json')
         .sheet('blog')
         .all();
     },
@@ -254,7 +257,7 @@ const VARIANTS = {
       const technologies = await ffetch('/query-index.json')
         .sheet('technologies')
         .all();
-      
+
       technologies.sort(compareByDate);
 
       return technologies;
@@ -280,9 +283,9 @@ const VARIANTS = {
         (product) => !!product.productLandingPageOrder && product.productLandingPageOrder !== '0',
       );
 
-      products.sort((product1, product2) => {
-        return (+product1.productLandingPageOrder) - (+product2.productLandingPageOrder);
-      });
+      products.sort(
+        (p1, p2) => (+p1.productLandingPageOrder) - (+p2.productLandingPageOrder),
+      );
 
       return products;
     },
@@ -291,7 +294,7 @@ const VARIANTS = {
       /*
        * Just for the purpose of `/products` landing page service and support items are included
        * with the Category: Lab Automation
-       */ 
+       */
       return item.path.startsWith('/service-support') ? 'Lab Automation' : item.category;
     },
   },
@@ -308,16 +311,12 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => { 
-          return product.subCategory === 'Accessories and Consumables' 
+        (product) => product.subCategory === 'Accessories and Consumables'
             && product.locale !== 'ZH'
-            && product.path !== '/products/accessories-consumables' 
-        },
+            && product.path !== '/products/accessories-consumables',
       );
 
-      products.sort((product1, product2) => { 
-        return product1.h1.localeCompare(product2.h1);
-      });
+      products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));
 
       return products;
     },
@@ -347,14 +346,11 @@ const VARIANTS = {
           if (YearAndAHalfAgo < productDate) {
             product.badgeText = 'New';
           }
-         return product;
+          return product;
         });
 
-      products.sort((product1, product2) => { 
-        return product1.h1.localeCompare(product2.h1);
-      });
+      products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));
 
-      console.log(products);
       return products;
     },
 
@@ -364,7 +360,7 @@ const VARIANTS = {
   },
 
   'ADDITIONAL-PRODUCTS': {
-    // TODO 
+    // TODO
     cardRenderer: thumbnailAndLinkCardRender,
 
     async getData() {
@@ -373,9 +369,7 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => {
-          return product.category === 'Additional Products' && product.productSeriesMain !== 'Yes'
-        }
+        (product) => product.category === 'Additional Products' && product.productSeriesMain !== 'Yes',
       );
 
       products.sort(compareByDate);
@@ -401,9 +395,7 @@ const VARIANTS = {
         (product) => product.category === 'Culture Media and Reagents',
       );
 
-      products.sort((product1, product2) => { 
-        return product1.h1.localeCompare(product2.h1);
-      });
+      products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));
 
       return products;
     },
@@ -411,7 +403,7 @@ const VARIANTS = {
     getCategory(item) {
       return item.subCategory;
     },
-  }
+  },
 };
 
 export default async function decorate(block) {
