@@ -263,6 +263,10 @@
     margin-left: 32px;
   }
 
+  .columns.columns-3-cols > div {
+    align-items: unset;
+  }
+
   .blog .columns > div {
     align-items: unset;
   }
@@ -328,6 +332,13 @@
     width: 33.33%;
   }
 
+  .technology .columns.columns-3-cols  > div:not(:only-child) {
+    flex-basis: 33.33%;
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 30px;
+  }
+
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
     flex-basis: 25%;
     width: 25%;
@@ -345,6 +356,7 @@
 
   .columns-3-cols {
     display: flex;
+    flex-direction: column;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{

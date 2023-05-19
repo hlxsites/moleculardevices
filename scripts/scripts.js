@@ -119,7 +119,7 @@ async function loadBreadcrumbs(main) {
  */
 export function isVideo(url) {
   let isV = false;
-  const hostnames = ['vids.moleculardevices.com', 'share.vidyard.com', 'video.vidyard.com'];
+  const hostnames = ['vids.moleculardevices.com', 'vidyard.com'];
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
       isV = true;
@@ -148,10 +148,30 @@ export function embedVideo(link, url, type) {
   observer.observe(link.parentElement);
 }
 
-function decorateEmbedLinks(main) {
+export function videoButton(container, button, url) {
+  const videoId = url.pathname.split('/').at(-1).trim();
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+      const overlay = div({ id: 'overlay' }, div({
+        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
+      }));
+      container.prepend(overlay);
+      button.addEventListener('click', () => {
+        // eslint-disable-next-line no-undef
+        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
+      });
+    }
+  });
+  observer.observe(container);
+}
+
+function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
-    if (isVideo(url) && !link.closest('.block.hero-advanced')) {
+    // decorate video links
+    if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const up = link.parentElement;
       const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
       const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
@@ -159,6 +179,12 @@ function decorateEmbedLinks(main) {
       if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
+    }
+
+    // decorate RFQ page links with pid parameter
+    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
+      url.searchParams.append('pid', getMetadata('family-id'));
+      link.href = url.toString();
     }
   });
 }
@@ -271,7 +297,7 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
-  decorateEmbedLinks(main);
+  decorateLinks(main);
 }
 
 /**

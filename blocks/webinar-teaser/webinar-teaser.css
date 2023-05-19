@@ -1,0 +1,117 @@
+.webinar-teaser {
+  background-image: url('/images/wave-background-techtip-blue-green.webp'), url('/images/wave-background-techtip-blue-green.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 645px;
+  width: 100%;
+  background-position: center;
+  color: #fff;
+  padding: 0 36px;
+}
+
+.webinar-teaser .webinar-teaser-header {
+  padding: 0 15px;
+  margin: 0;
+}
+
+.webinar-teaser h2 {
+  font-size: 60px;
+  padding: 20px 0 10px;
+  margin: 0;
+}
+
+.webinar-teaser h3 {
+  font-size: 30px;
+  padding: 20px 0 10px;
+  margin: 0;
+}
+
+.webinar-teaser .webinar-teaser-video h4 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.webinar-teaser .webinar-teaser-video h5 {
+  font-size: 18px;
+  margin: 0 0 18px;
+}
+
+.webinar-teaser p {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.webinar-teaser p.button-container {
+  margin: 0;
+}
+
+.webinar-teaser .webinar-teaser-content {
+  margin-top: 40px;
+  color: var(--text-white);
+  display: inline-block;
+  width: 100%;
+}
+
+.webinar-teaser .webinar-teaser-left-col,
+.webinar-teaser .webinar-teaser-right-col {
+  padding: 0 15px;
+  margin: 0;
+  float: left;
+  width: 50%;
+}
+
+.webinar-teaser .webinar-teaser-video-link {
+    margin-top: 50px;
+}
+
+.webinar-teaser a.button.secondary {
+  background-color: #6eb43f;
+  padding: 10px;
+  color: var(--text-white);
+  text-transform: uppercase;
+  font-size: 15px;
+  min-width: 308px;
+  display: inline-block;
+  border: 1px solid var(--text-white);
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 767px) {
+  .webinar-teaser {
+    height: 100%;
+    margin-bottom: 30px;
+    padding: 20px 16px 122px;
+  }
+  
+  .webinar-teaser h2 {
+    font-size: 40px;
+  }
+  
+  .webinar-teaser h3 {
+    font-size: 20px;
+  }
+
+  .webinar-teaser h4,
+  .webinar-teaser h5,
+  .webinar-teaser p {
+    font-size: 15px;
+  }
+
+  .webinar-teaser .webinar-teaser-header,
+  .webinar-teaser .webinar-teaser-left-col,
+  .webinar-teaser .webinar-teaser-right-col {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+  .webinar-teaser .webinar-teaser-video-link {
+    margin-top: 0;
+  }
+
+  .webinar-teaser a.button.secondary {
+    min-width: unset;
+    min-width: 100%;
+  }
+}

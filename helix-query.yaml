@@ -75,6 +75,21 @@ indices:
       productFamily:
         select: head > meta[name="product-family"]
         value: attribute(el, "content")
+      productSeriesMain:
+        select: head > meta[name="series-main-product"]
+        value: attribute(el, "content")
+      productShowInFinder:
+        select: head > meta[name="show-in-product-finder"]
+        value: attribute(el, "content")
+      familyID:
+        select: head > meta[name="family-id"]
+        value: attribute(el, "content")
+      lob:
+        select: head > meta[name="line-of-business"]
+        value: attribute(el, "content")
+      productBundle:
+        select: head > meta[name="bundle-products"]
+        value: attribute(el, "content")            
       productLandingPageOrder:
         select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")

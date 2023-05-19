@@ -1,9 +1,13 @@
+main .section .resources-wrapper {
+  padding-top: 0;
+}
+
 .resources .resources-section {
   display: flex;
   flex-wrap: wrap;
 }
 
-.resources .resources-section .resource {
+.resources .resource {
   width: 50%;
   max-width: 50%;
   display: flex;
@@ -13,53 +17,108 @@
   margin: 10px 0;
 }
 
-.resource-icon {
+.resources .resource-icon {
   flex: 0 0 auto;
   margin-right: 15px;
 }
 
-.resource-info {
+.resources .resource-info {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  width: inherit;
+  width: min-content;
 }
 
-.resource-header p {
+.resources .resource-header p {
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.resource-header h3 {
+.resources .resource-header h3 {
   font-family: var(--ff-proxima-light);
   font-weight: 300;
   font-size: 22px;
 }
 
-.resource-description {
+.resources .resource-description {
   font-size: var(--body-font-size-s);
   margin: 15px 0;
 }
 
-.resource-link a {
+.resources .resource-link a {
   color: var(--button-bg-color);
 }
 
-.resources a .fa {
+.resources .resource-link a .fa {
   margin-left: 5px;
 }
 
-.video-resources-title {
+.resources .video-resources-title {
   text-align: center;
 }
 
-.resources-section .video-wrapper {
+.resources .video-wrapper {
   width: 50%;
   max-width: 50%;
   padding: 10px;
   margin: 10px 0;
 }
 
-.resources-section .video-container {
+.resources .video-container {
   box-shadow: 0 1px 15px rgba(0 0 0 / 20%);
+}
+
+.resources ul.filters {
+  list-style: none;
+  text-align: center;
+  font-family: var(--ff-proxima-light);
+  font-size: 17px;
+  padding-inline-start: 0;
+}
+
+.resources li.filter {
+  display: inline-block;
+  line-height: 21px;
+  margin-bottom: 20px;
+}
+
+.resources .filter a {
+  color: var(--text-color);
+}
+
+.resources .filter a[aria-selected='true'] {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.resources .filter-divider {
+  margin: 0 15px;
+}
+
+.resources .resource[aria-hidden='true'],
+.resources .videos-container[aria-hidden='true'] {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 991px) {
+  main .section .resources-wrapper {
+    padding: 0;
+  }
+
+  .resources .resource, .resources .video-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .resources .resource-icon {
+    width: 35px;
+  }
+
+  .resources li.filter {
+    margin-bottom: 5px;
+  }
 }
