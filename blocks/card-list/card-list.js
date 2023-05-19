@@ -4,14 +4,23 @@ import { createCard } from '../card/card.js';
 import { div, h2 } from '../../scripts/dom-helpers.js';
 
 const viewAllCategory = 'viewall';
+
 const defaultCardRender = await createCard({
   defaultButtonText: 'Learn more',
+  descriptionLength: 100,
 });
 
-const accessoriesAndConsumables = await createCard({
+const noThumbnailCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
   showImageThumbnail: false,
+  descriptionLength: 100,
+});
+
+const thumbnailAndLinkCardRender = await createCard({
+  defaultButtonText: 'Details',
+  c2aLinkStyle: true,
+  descriptionLength: 100,
 });
 
 class FilterableCardList {
@@ -191,6 +200,7 @@ function compareByDate(item1, item2) {
 }
 
 const VARIANTS = {
+  // TODO: Absorbance missing metadata
   APPLICATIONS: {
     headings: true,
 
@@ -237,6 +247,8 @@ const VARIANTS = {
   },
 
   PRODUCTS: {
+    // TODO check card descriptions
+    // TODO CLAMP 11 Software Suite Category broken again
     headings: true,
     sortCards: false,
 
@@ -266,7 +278,9 @@ const VARIANTS = {
   },
 
   'ACCESSORIES-AND-CONSUMABLES': {
-    cardRenderer: accessoriesAndConsumables,
+    // TODO Card descriptions are not the same
+    // TODO Overview page metadata
+    cardRenderer: noThumbnailCardRender,
     // clusterCategories: true,
 
     async getData() {
@@ -295,22 +309,33 @@ const VARIANTS = {
   },
 
   'ASSAY-KITS': {
-    cardRenderer: accessoriesAndConsumables,
+    cardRenderer: noThumbnailCardRender,
     clusterCategories: true,
 
     async getData() {
+      const YearAndAHalfAgo = new Date();
+      YearAndAHalfAgo.setMonth(YearAndAHalfAgo.getMonth() - 18);
+
       let products = await ffetch('/query-index.json')
         .sheet('products')
         .all();
 
-      products = products.filter(
-        (product) => product.category === 'Assay Kits',
-      );
+      products = products.filter((product) => product.category === 'Assay Kits')
+        // check if products are newer than 18 months to add the "New" Badge
+        .map((product) => {
+          const productDate = new Date(0);
+          productDate.setUTCSeconds(product.date);
+          if (YearAndAHalfAgo < productDate) {
+            product.badgeText = 'New';
+          }
+         return product;
+        });
 
       products.sort((product1, product2) => { 
         return product1.h1.localeCompare(product2.h1);
       });
 
+      console.log(products);
       return products;
     },
 
@@ -320,6 +345,9 @@ const VARIANTS = {
   },
 
   'ADDITIONAL-PRODUCTS': {
+    // TODO 
+    cardRenderer: thumbnailAndLinkCardRender,
+
     async getData() {
       let products = await ffetch('/query-index.json')
         .sheet('products')
@@ -331,7 +359,8 @@ const VARIANTS = {
         }
       );
 
-      console.log(products);
+      products.sort(compareByDate);
+
       return products;
     },
 
@@ -341,6 +370,7 @@ const VARIANTS = {
   },
 
   'CULTURE-MEDIA-AND-REAGENTS': {
+    cardRenderer: thumbnailAndLinkCardRender,
     clusterCategories: true,
 
     async getData() {

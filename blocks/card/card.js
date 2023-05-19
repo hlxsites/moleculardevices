@@ -4,8 +4,12 @@
 import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p, i,
+  a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
+
+function notEmpty(field) {
+  return field && field !== '0';
+}
 
 class Card {
   constructor(config = {}) {
@@ -20,6 +24,7 @@ class Card {
     this.descriptionLength = 75;
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
+    this.c2aLinkIconFull = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -47,9 +52,17 @@ class Card {
       c2aBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aBlock.append(i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }));
+      c2aBlock.append(
+        this.c2aLinkIconFull 
+          ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
+          : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true })
+      );
       decorateIcons(c2aBlock);
     }
+
+    const cardDescription = notEmpty(item.cardDescription) 
+      ? summariseDescription(item.cardDescription, this.descriptionLength)
+      : (notEmpty(item.description) ? summariseDescription(item.description, this.descriptionLength) : '');
 
     return (
       div({ class: 'card' },
@@ -58,14 +71,13 @@ class Card {
             thumbnailBlock,
           ) : thumbnailBlock,
         ) : '',
+        item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
         div({ class: 'card-caption' },
           item.type ? div({ class: 'card-type' }, item.type) : '',
           h3(
             this.titleLink ? a({ href: item.path }, cardTitle) : cardTitle,
           ),
-          // TODO use cardDescription
-          item.description && item.description !== '0'
-            ? p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
+          cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
           p({ class: 'button-container' },
             c2aBlock,
           ),
