@@ -1,7 +1,7 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, p,
+  a, div, i, iframe, p,
 } from '../../scripts/dom-helpers.js';
 import { formatDate, loadScript, unixDateToString } from '../../scripts/scripts.js';
 
@@ -94,15 +94,16 @@ async function buildNewsEvents(container) {
 
   addEventListeners(container);
 }
-/*
+
 function iframeResizeHandler(formUrl, id, container) {
   container.querySelector('iframe').addEventListener('load', () => {
     if (formUrl) {
+      /* global iFrameResize */
       iFrameResize({ log: false }, id);
     }
   });
 }
-*/
+
 async function buildNewsletter(container) {
   const newsletterId = 'enewsletter';
   if (container.querySelector(`#${newsletterId} iframe`)) {
@@ -110,27 +111,26 @@ async function buildNewsletter(container) {
   }
 
   loadScript('../../scripts/iframeResizer.min.js');
-  // const formId = 'enewsletterSubscribeForm';
-  // const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
+  const formId = 'enewsletterSubscribeForm';
+  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
   const form = (
     div({
       id: newsletterId,
       class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
     },
-    /*
     div(
       iframe({
         id: formId,
         src: formUrl,
         loading: 'lazy',
       }),
-    ), */
+    ),
     )
   );
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
-  // iframeResizeHandler(formUrl, `#${formId}`, container);
+  iframeResizeHandler(formUrl, `#${formId}`, container);
   // remove terms from plain footer, they are provided as part of the iframe
   container.querySelector(`#${newsletterId} + p`).remove();
 }
