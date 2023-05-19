@@ -247,7 +247,13 @@ export default async function decorate(block) {
           class: 'rfq-product-wrapper request-quote-form hide-back-btn',
         }),
       );
-      loadIframeForm('step-3', prfdData, 'Product');
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          loadIframeForm('step-3', prfdData, 'Product');
+        }
+      });
+      observer.observe(block);
+     
     } else {
       block.appendChild(
         div(
