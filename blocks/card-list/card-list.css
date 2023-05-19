@@ -62,29 +62,29 @@ main .card-list .carousel-item .card a .icon svg path {
 }
 
 @media only screen and (max-width: 1200px) {
-  .blog .section div.blog-list-wrapper {
+  main .section div.card-list-wrapper {
     width: 970px;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  .blog .section div.blog-list-wrapper {
+  main .section div.card-list-wrapper {
     width: 750px;
   }
 
-  main .blog-list .carousel-item {
+  main .card-list .carousel-item {
     width: 45%;
   }
 }
 
 /* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  .section div.card-list {
+  main .section div.card-list-wrapper {
     width: 100%;
   }
 
   main .card-list {
-    justify-content: start;
+    justify-content: start !important;
     flex-wrap: nowrap;
     overflow: hidden;
     width: 100%;
@@ -131,10 +131,7 @@ main .card-list .carousel-item .card a .icon svg path {
 
 /* BLOG */
 main .section div.card-list-wrapper.blog {
-  width: 1170px;
   max-width: unset;
-  padding: 0 15px;
-  margin-top: 40px;
 }
 
 main .card-list.blog {
