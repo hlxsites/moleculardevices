@@ -177,15 +177,15 @@ main .section > div.image-gallery-wrapper {
   grid-row: 1 / 3;
 }
 
+.section:not(.overlay) .image-gallery > div:nth-of-type(3):hover {
+  transform: scale(var(--scale-big));
+}
+
 .section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(3):hover {
   transform: scale(var(--scale-small));
 }
 
 .section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(5):hover {
-  transform: scale(var(--scale-big));
-}
-
-.section:not(.overlay) .image-gallery > div:nth-of-type(3):hover {
   transform: scale(var(--scale-big));
 }
 
