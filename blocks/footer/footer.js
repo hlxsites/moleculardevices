@@ -110,8 +110,8 @@ async function buildNewsletter(container) {
     return; // newsletter already present
   }
 
-  loadScript('../../scripts/iframeResizer.min.js');
-  const formId = 'enewsletterSubscribeForm';
+  //loadScript('../../scripts/iframeResizer.min.js');
+  //const formId = 'enewsletterSubscribeForm';
   //const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
   const form = (
     div({
@@ -131,7 +131,7 @@ async function buildNewsletter(container) {
   );
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
-  iframeResizeHandler(formUrl, `#${formId}`, container);
+  //iframeResizeHandler(formUrl, `#${formId}`, container);
   // remove terms from plain footer, they are provided as part of the iframe
   container.querySelector(`#${newsletterId} + p`).remove();
 }
