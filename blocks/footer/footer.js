@@ -195,13 +195,13 @@ export default async function decorate(block) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      buildNewsletter(newsletterContainter);
+      //buildNewsletter(newsletterContainter);
     }
   });
   observer.observe(newsletterContainter);
 
   setTimeout(() => {
     observer.disconnect();
-    buildNewsletter(newsletterContainter);
+    //buildNewsletter(newsletterContainter);
   }, 3000);
 }
