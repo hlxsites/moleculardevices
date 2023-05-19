@@ -117,14 +117,15 @@ async function buildNewsletter(container) {
       id: newsletterId,
       class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
-    },   
-    // div(
-      // iframe({
-        // id: formId,
-        // src: formUrl,
-        // loading: 'lazy',
-      // }),
-    // ), 
+    },
+    /*
+    div(
+      iframe({
+        id: formId,
+        src: formUrl,
+        loading: 'lazy',
+      }),
+    ), */
     )
   );
   // add submission form from hubspot
