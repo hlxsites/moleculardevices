@@ -200,9 +200,9 @@ main .card-list.technology {
 }
 
 /* ACCESSORIES AND CONSUMABLES + ASSAY KITS */
-main .section div.card-list-wrapper.accessories-and-consumables {
-  width: 1140px;
-}
+/* main .section div.card-list-wrapper.accessories-and-consumables {
+  width: 1140px; uncommenting will break the carousel
+} */
 
 main .section div.card-list-wrapper.assay-kits {
   padding: 0;
