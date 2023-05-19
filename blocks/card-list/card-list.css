@@ -1,12 +1,6 @@
-/* Desktop - Style like a list */
-/* .blog .section div.blog-list-wrapper {
-  width: 1170px;
-  max-width: unset;
-  padding: 0 15px;
-  margin-top: 40px;
-} */
-
 /* COMMONS */
+/* Desktop - Style like a list */
+
 main .section.card-list-container .default-content-wrapper h2 {
   text-align: center;
   margin-top: 20px;
@@ -130,6 +124,47 @@ main .card-list .carousel-item .card a .icon svg path {
   margin-top: 0;
 }
 
+.card-list.products .card-thumb a {
+  display: block;
+  height: 100%;
+}
+
+/* BLOG */
+main .section div.card-list-wrapper.blog {
+  width: 1170px;
+  max-width: unset;
+  padding: 0 15px;
+  margin-top: 40px;
+}
+
+main .card-list.blog {
+  justify-content: center;
+}
+
+.card-list.blog .card {
+  margin-bottom: 0;
+}
+
+.card-list.blog .card-thumb {
+  flex-shrink: 0;
+  height: 240px;
+}
+
+.card-list.blog .card-thumb a,
+.card-list.blog .card-thumb picture,
+.card-list.blog .card-thumb img {
+  display: block;
+  height: 100%;
+}
+
+.card-list.blog .card-caption {
+  padding: 15px;
+  color: #34393d;
+}
+
+.card-list.blog .card-caption h3 {
+  margin-bottom: 20px;
+}
 
 /* TECHNOLOGY */
 main .card-list.technology {

@@ -23,6 +23,11 @@ const thumbnailAndLinkCardRender = await createCard({
   descriptionLength: 100,
 });
 
+const blogCardRender = await createCard({
+  descriptionLength: 85,
+});
+
+
 class FilterableCardList {
   constructor(block, config) {
     this.headings = false;
@@ -224,7 +229,24 @@ const VARIANTS = {
   },
 
   BLOG: {
-    // TODO migrate blog list here
+    cardRenderer: blogCardRender,
+
+    async getData() {
+      return await ffetch('/query-index.json')
+        .sheet('blog')
+        .all();
+    },
+
+    getCategory(item) {
+      const category = item.path
+        .split('/')[2];
+
+      if (!category || category === 'blog') return null;
+
+      return category.split('-')
+        .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
+        .join('-');
+    },
   },
 
   TECHNOLOGY: {
