@@ -50,20 +50,6 @@ main .card-list .carousel-item .card {
   box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
 }
 
-main .card-list .carousel-item .card a .icon {
-  margin-left: 5px;
-  vertical-align: text-top;
-}
-
-main .card-list .carousel-item .card a .icon svg {
-  height: 18px;
-  width: 18px;
-}
-
-main .card-list .carousel-item .card a .icon svg path {
-  stroke-width: 15;
-}
-
 @media only screen and (max-width: 1200px) {
   main .section div.card-list-wrapper {
     width: 970px;

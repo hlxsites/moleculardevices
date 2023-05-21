@@ -95,6 +95,20 @@ main .card-type {
   display: none;
 }
 
+main .card a .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+main .card a .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
+}
+
+main .card a .icon.icon-chevron-right-outline svg path {
+  stroke-width: 15;
+}
+
 @media only screen and (max-width: 767px) {
   main .card-thumb {
     height: 150px;
