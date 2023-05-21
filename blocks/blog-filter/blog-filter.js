@@ -75,7 +75,7 @@ export default function decorate(block) {
     });
   });
 
-  if (block.closest('main').querySelector('.blog-list')) {
+  if (block.closest('main').querySelector('.card-list')) {
     // we are on the page where cards are displayed and filtering is enabled by hash
     window.addEventListener('hashchange', () => { filterChangedViaHash(block, filters); });
     // set initial active filter
