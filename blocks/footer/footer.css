@@ -181,7 +181,7 @@
   margin: 5px 0 25px;
 }
 
-.row-5 li {
+.row-5 li:not(:last-child) {
   padding-right:32px;
 }
 
@@ -223,6 +223,10 @@
 @media (max-width: 767px) {
   .footer h3+h3 {
     margin-top: 20px;
+  }
+
+  .row-5 ul {
+    justify-content: center;
   }
 
   .row-6 {
