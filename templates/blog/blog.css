@@ -212,3 +212,11 @@ main .section.sidebar h4::after {
   }
 }
 
+.blog .card-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
+  object-position: right;
+}
+
+.blog .card-caption h3 {
+  line-height: 1.1;
+  margin-top: 0;
+}
