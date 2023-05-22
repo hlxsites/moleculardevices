@@ -6,7 +6,7 @@ export function formatDate(startDate, endDate) {
   const startDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, startDate));
   const endDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, endDate));
   return `${startDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
-    - ${endDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', })}`;
+    - ${endDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}`;
 }
 
 export function buildList(data, block) {

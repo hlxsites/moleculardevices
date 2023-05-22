@@ -5,12 +5,12 @@ import { article, a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatDate(date) {
   const dateObj = new Date(Date.UTC(0, 0, 0, 0, 0, date));
-  return dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', });
+  return dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
 }
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
-    let dateLine = item.publisher = formatDate(item.date);
+    let dateLine = formatDate(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
     block.append(article({},
       div({ class: 'image' },
