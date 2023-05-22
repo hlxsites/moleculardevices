@@ -13,12 +13,12 @@ export function buildList(data, block) {
     let dateLine = item.publisher = formatDate(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
     block.append(article({},
-      div({},
+      div({ class: 'image' },
         a({ href: item.path, title: item.title },
           createOptimizedPicture(item.image, item.title, (idx === 0), [{ width: '500' }]),
         ),
       ),
-      div({},
+      div({ class: 'title' },
         p({}, dateLine),
         p({}, a({ href: item.path, title: item.title }, item.title)),
       ),
