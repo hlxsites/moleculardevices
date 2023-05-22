@@ -35,7 +35,7 @@ function renderCart() {
         target: '_blank',
         name: 'View Cart',
         rel: 'noopener noreferrer',
-      }, 'View Cart'),
+      }),
     )
   );
 }
@@ -99,9 +99,9 @@ async function renderList(block) {
   });
 
   block.innerHTML = '';
+  if (addToCart) block.append(renderCart());
   const container = div({ class: 'ordering-options-list' });
   container.append(...items);
-  if (addToCart) container.append(renderCart());
   block.append(container);
 }
 

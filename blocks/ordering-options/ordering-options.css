@@ -1,11 +1,3 @@
-.ordering-options-container::after {
-  clear: both;
-}
-
-.ordering-options .variant-item-store > div {
-  width: 100%;
-}
-
 main .section.ordering-options-container > div:first-child,
 main .section.ordering-options-container > div:last-child,
 main .section.ordering-options-container > div.ordering-options-wrapper {
@@ -80,7 +72,7 @@ main .section.ordering-options-container > div:last-child {
   display: inline-block;
   margin-right: 8px;
   position: fixed;
-  right: -100px;
+  right: -15px;
   top: 50%;
   transform: translateY(-50%);
   background: #ee7624;

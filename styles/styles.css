@@ -801,6 +801,7 @@ main .section.wave {
   padding-bottom: 0;
   color: var(--text-white);
   text-align: center;
+  clear: both;
 }
 
 main .section.wave:last-child {
