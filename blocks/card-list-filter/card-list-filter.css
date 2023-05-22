@@ -23,7 +23,7 @@
 .card-list-filter ul li a:link,
 .card-list-filter ul li a:visited {
   position: relative;
-  display: block;
+  display: inline-block;
   color: #34393d;
   font-family: var(--ff-proxima-light);
   text-decoration: none;
