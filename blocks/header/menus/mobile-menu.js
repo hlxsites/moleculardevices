@@ -128,6 +128,16 @@ export function buildMobileMenuTools(menuItems, content) {
     { class: 'mobile-menu-item company-links' },
     toolsList,
   );
+
+  // get the ul child of the second li
+  const languageTool = toolsWrapper.querySelector('li:nth-child(2)');
+  const languagesList = languageTool.querySelector('ul');
+  languagesList.classList.add('languages-dropdown');
+
+  languageTool.addEventListener('click', () => {
+    languagesList.classList.toggle('show');
+  });
+
   menuItems.append(toolsWrapper);
 }
 

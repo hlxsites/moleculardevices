@@ -751,13 +751,34 @@ header .large-card-submenu ul {
   list-style-type: disc;
 }
 
-header .mobile-menu .company-links ul {
+header .mobile-menu .company-links > div > ul {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 0;
   margin: 0;
   list-style-type: none;
+}
+
+header .mobile-menu .languages-dropdown {
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-color);
+  border: 1px solid rgba(0 0 0 / 15%);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+}
+
+header .mobile-menu .languages-dropdown li {
+  width: 100%;
+  margin-top: 0;
+  text-align: left;
+}
+
+
+header .mobile-menu .languages-dropdown a {
+  color: #34393d;
+  padding: 4px 15px !important;
 }
 
 header .mobile-menu .company-links li a {
