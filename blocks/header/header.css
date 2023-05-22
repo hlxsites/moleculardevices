@@ -138,10 +138,6 @@ header .languages-dropdown a {
   display: block;
 }
 
-header .languages-dropdown a:hover {
-  background-color: #f5f5f5;
-}
-
 header .actionable-card-submenu ul {
   padding-left: 20px;
   list-style-type: disc;
@@ -299,7 +295,6 @@ header .mobile-menu .company-links li {
   margin-top: 15px;
 }
 
-
 header .mobile-menu li h1,
 header .mobile-menu li h2 {
   font-size: 18px;
@@ -319,6 +314,10 @@ header .mobile-menu .company-links li picture {
 header .mobile-menu li:hover {
   color: var(--link-color);
   background: #f0f1f2;
+}
+
+header .company-links li:hover {
+  cursor: pointer;
 }
 
 header .company-links > ul > li:last-child {
@@ -637,6 +636,10 @@ header .text-submenu ul > li > a {
   font-weight: 300;
   display: block;
   text-transform: none;
+}
+
+header .languages-dropdown a:hover {
+  background-color: #f5f5f5;
 }
 
 header .mobile-menu .back-to-parent a {

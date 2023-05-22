@@ -14,10 +14,6 @@ function buildTools(content) {
   const languagesList = languageTool.querySelector('ul');
   languagesList.classList.add('languages-dropdown');
 
-  languageTool.addEventListener('mouseover', () => {
-    languageTool.style.cursor = 'pointer';
-  });
-
   languageTool.addEventListener('click', () => {
     languagesList.classList.toggle('show');
   });
