@@ -339,6 +339,16 @@ header .nav-tabs .menu-nav-category:hover {
   cursor: default;
 }
 
+header .menu-nav-category a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+header .nav-tabs .menu-nav-category a:hover {
+  color: var(--link-color);
+  cursor: pointer;
+}
+
 header nav .nav-sections {
   display: block;
   visibility: visible;

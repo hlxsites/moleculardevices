@@ -4,6 +4,7 @@ import buildSearch from './menus/search.js';
 import {
   div,
   li,
+  a,
   nav,
   ul,
 } from '../../scripts/dom-helpers.js';
@@ -16,6 +17,19 @@ import {
 export function showRightSubmenu(element) {
   document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
   element.setAttribute('aria-expanded', 'true');
+}
+
+function buildContactUs() {
+  return li(
+    { class: 'menu-expandable' },
+    div(
+      { class: 'menu-nav-category' },
+      a(
+        { href: '/contact' },
+        'Contact Us',
+      ),
+    ),
+  );
 }
 
 function buildMegaMenu(block, content) {
@@ -157,6 +171,7 @@ export function buildNavbar(content) {
     navMenuUl.append(item);
   });
 
+  navMenuUl.append(buildContactUs());
   navMenuUl.append(buildSearch(content));
   navMenuUl.append(buildRequestQuote('header-rfq'));
 
