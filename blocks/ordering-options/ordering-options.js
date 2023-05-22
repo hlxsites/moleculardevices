@@ -3,9 +3,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 function renderItem(item) {
-  if (!item) return;
+  if (!item) return '';
 
-  // eslint-disable-next-line consistent-return
   return (
     div({ class: 'ordering-option-item', id: item.handle },
       div({ class: 'header' },
