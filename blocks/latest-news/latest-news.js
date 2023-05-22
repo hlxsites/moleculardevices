@@ -4,18 +4,14 @@ import ffetch from '../../scripts/ffetch.js';
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatDate(date) {
-  const dateObj = new Date(0);
-  dateObj.setUTCSeconds(date);
-  const year = dateObj.getFullYear();
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const month = months[dateObj.getMonth()];
-  const day = dateObj.getDate() + 1;
-  return `${month} ${day}, ${year}`;
+  const dateObj = new Date(Date.UTC(0, 0, 0, 0, 0, date));
+  return dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', });
 }
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
+    let dateLine = item.publisher = formatDate(item.date);
+    if (item.publisher) dateLine += ` | ${item.publisher}`;
     block.append(article({},
       div({},
         a({ href: item.path, title: item.title },
@@ -23,7 +19,7 @@ export function buildList(data, block) {
         ),
       ),
       div({},
-        p({}, formatDate(item.date)),
+        p({}, dateLine),
         p({}, a({ href: item.path, title: item.title }, item.title)),
       ),
     ));

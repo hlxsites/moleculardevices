@@ -3,18 +3,10 @@ import ffetch from '../../scripts/ffetch.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatDate(startDate, endDate) {
-  const startDateObj = new Date(0);
-  startDateObj.setUTCSeconds(startDate);
-  const endDateObj = new Date(0);
-  endDateObj.setUTCSeconds(endDate);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const startMonth = months[startDateObj.getMonth()];
-  const endMonth = months[endDateObj.getMonth()];
-  const startDay = startDateObj.getDate() + 1;
-  const endDay = endDateObj.getDate() + 1;
-  const year = startDateObj.getFullYear();
-  return `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${year}`;
+  const startDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, startDate));
+  const endDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, endDate));
+  return `${startDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+    - ${endDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric', })}`;
 }
 
 export function buildList(data, block) {
