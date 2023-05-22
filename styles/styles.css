@@ -233,10 +233,6 @@ p:last-child {
   margin-bottom: 0;
 }
 
-main .section .default-content-wrapper :not(.button-container):last-child {
-  margin-bottom: 15px;
-}
-
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
