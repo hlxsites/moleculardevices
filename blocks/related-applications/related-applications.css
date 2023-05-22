@@ -32,7 +32,7 @@ li.related-link::marker {
   margin-top: 0;
 }
 
-.related-app h2, h3 {
+.related-app h2, .related-app h3 {
   font-size: 36px;
   margin-top: 0;
 }
