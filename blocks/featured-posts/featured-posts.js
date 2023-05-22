@@ -4,6 +4,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 export default async function decorate(block) {
   const newsUrls = [...block.querySelectorAll('a')].map((a) => a.href);
   const newsItems = await ffetch('/query-index.json')
+    .chunks(500)
     .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
     .all();
 
