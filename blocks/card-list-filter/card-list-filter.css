@@ -102,6 +102,7 @@
     color: #61a60e;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .card-list-filter.blog ul li+li a::before,
   .card-list-filter.blog ul li a.active::after {
     content: none;
@@ -153,6 +154,10 @@
     font-family: var(--ff-proxima-light);
   }
 
+  .card-list-filter ul li + li a::before {
+    content: none;
+  }
+
   .card-list-filter ul li:first-child a::before {
     content: none;
   }
@@ -177,10 +182,6 @@
 
   .card-list-filter .active-filter .icon svg path {
     stroke-width: 15;
-  }
-
-  .card-list-filter ul li + li a::before {
-    content: none;
   }
 
   .card-list-filter ul li a.active {
