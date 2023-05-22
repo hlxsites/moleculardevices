@@ -39,8 +39,8 @@ export default async function decorate(block) {
   });
 
   // citations has default thumbnail image
-  resources.forEach(resource => {
-    if(resource.type === 'Citation') {
+  resources.forEach((resource) => {
+    if (resource.type === 'Citation') {
       resource.thumbnail = '/images/citation-card-thumbnail.webp';
     }
   });

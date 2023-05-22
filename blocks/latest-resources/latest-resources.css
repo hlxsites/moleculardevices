@@ -52,6 +52,16 @@ main .latest-resources .card .card-type {
   margin: 5px 0;
 }
 
+main .latest-resources .card .card-thumb {
+  height: 190px;
+  min-height: 190px;
+  overflow: hidden;
+}
+
+main .latest-resources .card .card-thumb img {
+  height: 190px;
+}
+
 @media only screen and (max-width: 1199px) {
   main .carousel-wrapper.latest-resources-wrapper {
     width: 940px;
