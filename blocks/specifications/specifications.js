@@ -68,8 +68,8 @@ export default async function decorate(block) {
         thisRow.append(domEl('td', attr));
         groupData.data.forEach((item) => {
           let rowValue = item[attr];
-          rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true">');
-          rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false">');
+          rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
+          rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
           const rowBlock = span();
           rowBlock.innerHTML = rowValue;
           thisRow.append(domEl('td', rowBlock));
