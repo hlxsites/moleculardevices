@@ -35,8 +35,10 @@ main .card-list .carousel-heading-item .card-list-heading h2 {
 }
 
 main .card-list .carousel-item {
+  flex: 0 1 auto;
   width: 32%;
   padding: 20px 15px 40px;
+  margin: 0;
 }
 
 main .card-list .carousel-heading-item.carousel-heading-item {
