@@ -133,7 +133,7 @@ function loadIframeForm(stepNum, data, type) {
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
     requested_qdc_discussion__c: 'Quote',
-    return_url: `https://www.moleculardevices.com/quote-request-success?pid=${tab}&cmp=${cmpValue}`,
+    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
   };
 
   root.appendChild(
@@ -147,7 +147,6 @@ function loadIframeForm(stepNum, data, type) {
         class: 'contact-quote-request',
         id: 'contactQuoteRequest',
         src: `${formUrl}?${new URLSearchParams(hubSpotQuery).toString()}`,
-        loading: 'lazy',
       }),
     ),
   );
@@ -220,36 +219,17 @@ function stepTwo(e) {
 }
 
 export default async function decorate(block) {
+  const prfdData = await rfqData();
   const isThankyouPage = block.classList.contains('thankyou');
   const htmlContentRoot = block.children[0].children[0].children[0];
   const parentSection = block.parentElement.parentElement;
+  const htmlContent = block.children[0].children[0];
+  const thankyouHtml = div({ class: 'rfq-thankyou-msg' }, htmlContent);
 
-  if (isThankyouPage) {
-    parentSection.prepend(htmlContentRoot.children[0]);
-    htmlContentRoot.remove();
-    const htmlContent = block.children[0].children[0];
-    block.innerHTML = '';
-    block.appendChild(
-      div(
-        {
-          class: 'rfq-product-wrapper',
-        },
-        div({ class: 'rfq-thankyou-msg' }, htmlContent),
-      ),
-    );
-  } else {
-    const prfdData = await rfqData();
-    parentSection.prepend(htmlContentRoot);
-    block.innerHTML = '';
-    if (prfdData) {
-      block.appendChild(
-        div({
-          id: 'step-3',
-          class: 'rfq-product-wrapper request-quote-form hide-back-btn',
-        }),
-      );
-      loadIframeForm('step-3', prfdData, 'Product');
-    } else {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      block.innerHTML = '';
       block.appendChild(
         div(
           div({
@@ -268,7 +248,23 @@ export default async function decorate(block) {
           }),
         ),
       );
-      stepOne(stepTwo);
+      if (isThankyouPage) {
+        parentSection.prepend(htmlContentRoot.children[0]);
+        htmlContentRoot.remove();
+        document.getElementById('step-1').appendChild(thankyouHtml);
+      } else {
+        parentSection.prepend(htmlContentRoot);
+        if (prfdData) {
+          loadIframeForm('step-3', prfdData, 'Product');
+          document.getElementById('step-1').style.display = 'none';
+          document.getElementById('step-2').style.display = 'none';
+          document.getElementById('step-3').style.display = 'block';
+          document.getElementById('step-3').classList.add('hide-back-btn');
+        } else {
+          stepOne(stepTwo);
+        }
+      }
     }
-  }
+  });
+  observer.observe(block);
 }
