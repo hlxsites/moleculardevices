@@ -144,20 +144,18 @@ export async function buildLazyMegaMenus() {
 export function buildNavbar(content) {
   // link section
   const navMenuUl = ul({ class: 'nav-tabs' });
-  const menus = [...content.querySelectorAll('h1')];
 
-  for (let i = 0; i < menus.length; i += 1) {
-    const item = li({ class: 'menu-expandable', 'aria-expanded': 'false' });
-
-    const textDiv = menus[i].querySelector('a');
-    const menuTab = div(
-      { class: 'menu-nav-category', 'menu-id': toClassName(textDiv.textContent) },
-      textDiv.textContent,
+  [...content.querySelectorAll('h1')].forEach((menu) => {
+    const text = menu.querySelector('a').textContent;
+    const item = li(
+      { class: 'menu-expandable', 'aria-expanded': 'false' },
+      div(
+        { class: 'menu-nav-category', 'menu-id': toClassName(text) },
+        text,
+      ),
     );
-
-    item.innerHTML = menuTab.outerHTML;
     navMenuUl.append(item);
-  }
+  });
 
   navMenuUl.append(buildSearch(content));
   navMenuUl.append(buildRequestQuote('header-rfq'));
