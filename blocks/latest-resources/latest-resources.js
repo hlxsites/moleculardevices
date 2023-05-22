@@ -37,6 +37,14 @@ export default async function decorate(block) {
     defaultButtonText: 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
+
+  // citations has default thumbnail image
+  resources.forEach(resource => {
+    if(resource.type === 'Citation') {
+      resource.thumbnail = '/images/citation-card-thumbnail.webp';
+    }
+  });
+
   await createCarousel(
     block,
     resources,
