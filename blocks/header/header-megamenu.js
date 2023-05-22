@@ -1,5 +1,5 @@
 import buildRightSubmenu from './header-megamenu-components.js';
-import { toClassName, decorateIcons } from '../../scripts/lib-franklin.js';
+import { toClassName, toCamelCase, decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div,
@@ -135,7 +135,9 @@ export async function buildLazyMegaMenus() {
 
           // get the list item in the header block that contains a div with attribute menu-id
           // that matches the menuId
-          const currentMenu = document.querySelector(`h1[id="${menuId}"]`).parentElement.querySelector('.menu-nav-submenu-sections');
+          const currentMenu = document.querySelector(
+            `.menu-nav-category[menu-id="${menuId}"]`,
+          ).parentElement.querySelector('.menu-nav-submenu-sections');
 
           currentMenu.innerHTML = h2List.innerHTML;
 
