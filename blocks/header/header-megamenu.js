@@ -1,5 +1,5 @@
 import buildRightSubmenu from './header-megamenu-components.js';
-import { toClassName, toCamelCase, decorateIcons } from '../../scripts/lib-franklin.js';
+import { toClassName, decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div,
