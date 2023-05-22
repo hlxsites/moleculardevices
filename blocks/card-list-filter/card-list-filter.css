@@ -1,6 +1,6 @@
+/* DESKTOP */
 .section div.card-list-filter-wrapper {
   padding: 0;
-
 }
 
 .card-list-filter .active-filter {
@@ -24,21 +24,19 @@
 .card-list-filter ul li a:visited {
   position: relative;
   display: block;
-  padding: 16px 24px;
-  font-size: 15px;
   color: #34393d;
   font-family: var(--ff-proxima-light);
-
   text-decoration: none;
   font-size: 17px;
   padding: 0 15px;
+  line-height: 1.33;
 }
 
 .card-list-filter ul li+li a::before {
   content: "|";
   position: absolute;
   left: 0;
-  top: -40px;
+  top: -7px;
   bottom: 0;
   margin: auto;
   width: 0;
@@ -50,23 +48,74 @@
   font-family: var(--ff-proxima-regular);
 }
 
-.card-list-filter ul li a.active::before {
-  top: -25px
-}
 .card-list-filter ul li a.active::after {
-  display: block;
+  display: table;
   width: 100%;
   border-bottom: 1px solid #6d6c8d;
   content: " ";
-  margin-top: -15px;
+  margin-top: -1px;
 }
 
-@media only screen and (max-width: 991px) {
-  .card-list-filter {
-    bottom: 50px;
+/* BLOG Variant */
+
+/* Cancel any margin below that the hero might have */
+.blog .hero-wrapper, .hero {
+  margin-bottom: 0 !important;
+}
+
+/* BLOG Variant - Desktop Only */
+@media only screen and (min-width: 768px) {
+  .blog .section div.card-list-filter-wrapper {
+    width: 100%;
+    max-width: unset;
+    padding: 0;
+    position: relative;
+  }
+
+  .card-list-filter.blog {
+    background-color: rgba(0 0 0 / 50%);
+    position: absolute;
+    width: 100%;
+    bottom: 90px;
+    margin: 0;
+  }
+
+  .card-list-filter.blog ul li a:link,
+  .card-list-filter.blog ul li a:visited {
+    font-size: 15px;
+    padding: 16px 24px;
+    text-transform: uppercase;
+    color: var(--text-white);
+    font-family: var(--ff-proxima-regular);
+  }
+
+  .card-list-filter.blog ul li:first-child a::before {
+    content: "|";
+    position: absolute;
+    right: 0;
+    top: -7px;
+    bottom: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    min-height: 12px;
+    color: #61a60e;
+  }
+
+  .card-list-filter.blog ul li+li a::before,
+  .card-list-filter.blog ul li a.active::after {
+    content: none;
+  }
+
+  .card-list-filter.blog ul li a:hover,
+  .card-list-filter.blog ul li a:active,
+  .card-list-filter.blog ul li a.active {
+    color: #61a60e;
+    border: none;
   }
 }
 
+/* MOBILE */
 @media only screen and (max-width: 767px) {
   .card-list-filter {
     display: block;
@@ -95,6 +144,7 @@
   .card-list-filter ul li a:link,
   .card-list-filter ul li a:visited,
   .card-list-filter .active-filter span {
+    line-height: 1.33;
     color: #34393d;
     padding: 5px 0;
     text-align: left;
@@ -129,56 +179,16 @@
     stroke-width: 15;
   }
 
+  .card-list-filter ul li + li a::before {
+    content: none;
+  }
+
   .card-list-filter ul li a.active {
     font-weight: bold;
     font-family: var(--ff-proxima-regular);
   }
-}
 
-/* BLOG Variant */
-
-/* Cancel any margin below that the hero might have */
-.blog .hero-wrapper, .hero {
-  margin-bottom: 0 !important;
-}
-
-.blog .section div.card-list-filter-wrapper {
-  width: 100%;
-  max-width: unset;
-  padding: 0;
-  position: relative;
-}
-
-.card-list-filter.blog {
-  background-color: rgba(0 0 0 / 50%);
-  position: absolute;
-  width: 100%;
-  bottom: 90px;
-  margin: 0;
-}
-
-.card-list-filter.blog ul li a:link,
-.card-list-filter.blog ul li a:visited {
-  text-transform: uppercase;
-  color: var(--text-white);
-  font-family: var(--ff-proxima-regular);
-}
-
-.card-list-filter.blog ul li:first-child a::before {
-  content: "|";
-  position: absolute;
-  right: 0;
-  top: -7px;
-  bottom: 0;
-  margin: auto;
-  width: 0;
-  height: 0;
-  min-height: 12px;
-  color: #61a60e;
-}
-
-.card-list-filter.blog ul li a:hover,
-.card-list-filter.blog ul li a:active,
-.card-list-filter.blog ul li a.active {
-  color: #61a60e;
+  .card-list-filter ul li a.active::after {
+    content: none;
+  }
 }
