@@ -6,7 +6,7 @@
 }
 
 .quote-request-container::after {
-  background-image: url(/images/wave-footer-bg-top.webp), url(/images/wave-footer-bg-top.png);
+  background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
   padding: 10.823% 0 0;
