@@ -963,6 +963,10 @@ main .section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
 }
 
+main .section.wave.bluegreen .default-content-wrapper h2 {
+  font-family: var(--ff-proxima-regular);
+}
+
 main .section.wave.bluegreen::after {
   content: none;
 }
