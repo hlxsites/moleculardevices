@@ -320,6 +320,12 @@ header .company-links li:hover {
   cursor: pointer;
 }
 
+header .mobile-menu .languages-dropdown li {
+  width: 100%;
+  margin-top: 0;
+  text-align: left;
+}
+
 header .company-links > ul > li:last-child {
   margin-right: 0;
 }
@@ -751,6 +757,10 @@ header .large-card-submenu ul {
   list-style-type: disc;
 }
 
+header .nav-tabs .menu-nav-submenu ul {
+  float: none;
+}
+
 header .mobile-menu .company-links > div > ul {
   display: flex;
   justify-content: center;
@@ -768,13 +778,6 @@ header .mobile-menu .languages-dropdown {
   border-radius: 4px;
   box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 }
-
-header .mobile-menu .languages-dropdown li {
-  width: 100%;
-  margin-top: 0;
-  text-align: left;
-}
-
 
 header .mobile-menu .languages-dropdown a {
   color: #34393d;
@@ -893,10 +896,6 @@ header .nav-tabs .menu-nav-submenu-head {
   position: relative;
   padding-top: 20px;
   width: 50%;
-}
-
-header .nav-tabs .menu-nav-submenu ul {
-  float: none;
 }
 
 header .nav-tabs .menu-nav-submenu-sections {
