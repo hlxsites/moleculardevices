@@ -7,8 +7,24 @@
   width: 100%;
 }
 
+.columns.contact > div > div {
+  background-color: var(--background-color);
+  width: 100%;
+}
+
 .columns.image-hover > div > div {
   padding: 20px 15px 40px;
+}
+
+.columns.contact > div p,
+.columns.contact > div ul li {
+  font-size: var(--body-font-size-m);
+}
+
+.columns.contact > div > div > p,
+.columns.contact > div > div > ul,
+.columns.contact > div > div > ol {
+  padding: 0 24px;
 }
 
 .columns.image-hover > div > div > p {
@@ -16,12 +32,18 @@
   max-width: 150px;
   text-align: center;
   text-transform: uppercase;
-  font-size: 15px;
-  font-weight: 600;
 }
 
 .columns.max-width-200 > div > div > p {
   max-width: 200px;
+}
+
+.columns.image-hover > div > div > p:last-child {
+  padding-top: 15px;
+}
+
+.columns.columns-3-cols.image-hover > div {
+  align-items: center;
 }
 
 .columns.black > div > div > p > a {
@@ -36,9 +58,13 @@
   padding: 80px 0;
 }
 
-.columns.contact > div > div {
-  background-color: var(--background-color);
-  width: 100%;
+.columns.columns-3-cols > div:not(:only-child) {
+  padding: 0 15px 20px;
+}
+
+.section .columns.collaboration > div {
+  display: block;
+  text-align: center;
 }
 
 .columns.image-hover > div > div:hover {
@@ -50,17 +76,6 @@
 .columns.contact > div > div > ol {
   list-style: none;
   padding-left: 0;
-}
-
-.columns.contact > div p,
-.columns.contact > div ul li {
-  font-size: var(--body-font-size-m);
-}
-
-.columns.contact > div > div > p,
-.columns.contact > div > div > ul,
-.columns.contact > div > div > ol {
-  padding: 0 24px;
 }
 
 .columns.contact > div h3 {
@@ -177,17 +192,8 @@
   margin-right: -15px;
 }
 
-.columns.columns-3-cols > div:not(:only-child) {
-  padding: 0 15px 20px;
-}
-
 .columns.layout-20-80.extended-width:not(.green-separator) {
   margin-bottom: 80px;
-}
-
-.section .columns.collaboration > div {
-  display: block;
-  text-align: center;
 }
 
 .columns.columns-3-cols > div:not(:only-child) > div {
