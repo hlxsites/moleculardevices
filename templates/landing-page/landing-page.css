@@ -1,71 +1,71 @@
-.ebook .hamburger,
-.ebook header .mainmenu-wrapper,
-.ebook header .navbar-header > .company-links,
-.ebook main .breadcrumbs,
-.ebook footer .footer-wrap {
+.landing-page .hamburger,
+.landing-page header .mainmenu-wrapper,
+.landing-page header .navbar-header > .company-links,
+.landing-page main .breadcrumbs,
+.landing-page footer .footer-wrap {
   display: none;
 }
 
-.ebook header {
+.landing-page header {
   height: 74px;
 }
 
-.ebook .hero-container {
+.landing-page .hero-container {
   padding-bottom: 50px;
 }
 
-.ebook .hero {
+.landing-page .hero {
   margin-top: -9px;
 }
 
-.ebook .hero-inner h1 {
+.landing-page .hero-inner h1 {
   font-size: 70px;
 }
 
-.ebook .hero-inner h2 {
+.landing-page .hero-inner h2 {
   color: var(--text-green);
   font-size: 50px;
 }
 
-.ebook .download-form {
+.landing-page .download-form {
   padding-bottom: 25px;
 }
 
-.ebook main .section.download-form .default-content-wrapper:first-child {
+.landing-page main .section.download-form .default-content-wrapper:first-child {
   margin-left: calc((100vw - var(--section-div-width)) / 2);
   text-align: center;
   padding-top: 25px;
 }
 
-.ebook .download-form h3,
-.ebook .download-form p {
+.landing-page .download-form h3,
+.landing-page .download-form p {
   font-family: var(--ff-proxima-light);
   color: var(--text-white);
 }
 
-.ebook .download-form h3 {
+.landing-page .download-form h3 {
   font-size: 45px;
   font-weight: 600;
   margin-bottom: 40px;
 }
 
-.ebook .download-form p {
+.landing-page .download-form p {
   font-size: 40px;
   font-weight: normal;
   margin-top: 0;
   line-height: 110%;
 }
-.ebook main .section>div.embed-wrapper {
+.landing-page main .section>div.embed-wrapper {
   padding-top: 15px;
 }
 
-.ebook main .embed {
+.landing-page main .embed {
   width: 100%;
   background-color: #f2f2f2;
   padding: 20px 5px 0;
 }
 
-.ebook .embed h4 {
+.landing-page .embed h4 {
   color: #038296;
   font-size: 30px;
   text-align: left;
@@ -73,31 +73,31 @@
   margin-bottom: 0;
 }
 
-.ebook .embed > div > div {
+.landing-page .embed > div > div {
   height: 650px;
   padding-bottom: 0;
 }
 
 
 @media (max-width: 767px) {
-  .ebook .hero-inner {
+  .landing-page .hero-inner {
     background-color: var(--black-background-color);
     padding-top: 73px;
   }
 
-  .ebook .hero-inner h1 {
+  .landing-page .hero-inner h1 {
     font-size: 32px;
   }
 
-  .ebook .hero-inner h2 {
+  .landing-page .hero-inner h2 {
     font-size: 32px;
   }
 
-  .ebook .hero-inner img {
+  .landing-page .hero-inner img {
     display: none;
   }
 
-  .ebook .hero-inner .two-column img {
+  .landing-page .hero-inner .two-column img {
     width: 100%;
     max-width: 600px;
     display: block;
@@ -106,57 +106,57 @@
 }
 
 @media (max-width: 991px) {
-  .ebook header #header-logo img {
+  .landing-page header #header-logo img {
     max-height: 35px;
     width: auto;
     max-width: unset;
   }
 
-  .ebook #navbar-header {
+  .landing-page #navbar-header {
     padding: 15px;
   }
 }
 
 @media (min-width: 768px) {
-  .ebook header {
+  .landing-page header {
     height: 74px;
   }
 
-  .ebook .download-form > div{
+  .landing-page .download-form > div{
     width: calc(var(--section-div-width) / 2);
     display: inline-block;
     vertical-align:top;
   }
 
-  .ebook .hero-inner .container.two-column.right-image > div:nth-child(1) {
+  .landing-page .hero-inner .container.two-column.right-image > div:nth-child(1) {
       width: 58%;
   }
 
-  .ebook .hero-inner .container.two-column.right-image > div:nth-child(2) {
+  .landing-page .hero-inner .container.two-column.right-image > div:nth-child(2) {
     width: 42%;
     padding: 0 15px;
   }
 
-  .ebook .hero-inner .container {
+  .landing-page .hero-inner .container {
     align-items: center;
     padding: 60px 0 25px 0;
   }
 
-  .ebook .hero-inner .container.two-column > div:nth-child(2) {
+  .landing-page .hero-inner .container.two-column > div:nth-child(2) {
     border: 0;
   }
 
-  .ebook .hero-inner h1 {
+  .landing-page .hero-inner h1 {
     margin-bottom: 15px;
   }
 
-  .ebook .hero-inner p {
+  .landing-page .hero-inner p {
     font-size: 27px;
   }
 }
 
 @media (min-width: 992px) {
-  .ebook header {
+  .landing-page header {
     height: 139px;
   }
 }
