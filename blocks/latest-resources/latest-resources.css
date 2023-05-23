@@ -2,9 +2,14 @@
   text-align: center;
 }
 
+.product .latest-resources-container .default-content-wrapper h2 {
+  font-size: 70px;
+  font-family: var(--ff-proxima-light);
+}
+
 .latest-resources-container .latest-resources-button {
   text-align: center;
-  padding: 50px 0 100px;
+  padding: 50px 0;
 }
 
 main .carousel-wrapper.latest-resources-wrapper {

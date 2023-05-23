@@ -1,3 +1,11 @@
+.section.columns-2 > .image-list-wrapper {
+  margin-bottom: 45px;
+}
+
+main div.image-list-wrapper {
+  padding-top: 0;
+}
+
 .image-list.block {
   display: block;
   margin-bottom: 30px;
