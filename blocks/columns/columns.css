@@ -7,15 +7,11 @@
   width: 100%;
 }
 
-.columns.contact {
-  padding: 80px 0;
-}
-
-.columns:not(.contact) .col {
+.columns.image-hover > div > div {
   padding: 20px 15px 40px;
 }
 
-.columns:not(.contact) .col > p {
+.columns.image-hover > div > div > p {
   margin: auto;
   max-width: 150px;
   text-align: center;
@@ -24,16 +20,20 @@
   font-weight: 600;
 }
 
-.columns.max-width-200:not(.contact) .col > p {
+.columns.max-width-200 > div > div > p {
   max-width: 200px;
 }
 
-.columns.black:not(.contact) .col > p > a {
+.columns.black > div > div > p > a {
   color: black;
 }
 
-.columns.green:not(.contact) .col > p > a {
+.columns.green > div > div > p > a {
   color: #6eb43f;
+}
+
+.columns.contact {
+  padding: 80px 0;
 }
 
 .columns.contact > div > div {
@@ -356,7 +356,6 @@
     display: flex;
   }
 
-  .columns.columns-3-cols > div:not(:only-child),
   .columns.contact.columns-3-cols > div > div {
     flex-basis: 33.33%;
     width: 33.33%;
