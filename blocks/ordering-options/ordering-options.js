@@ -1,6 +1,6 @@
 import { getCookie } from '../../scripts/scripts.js';
 import {
-  a, div, h3, h4, i, p, span,
+  a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
 function renderAddToCart(item) {
@@ -18,24 +18,12 @@ function renderAddToCart(item) {
           span({ class: 'up' }, i({ class: 'fa fa-plus', data: item.id })),
         ),
         div({ class: 'variant-item-store-add-to-cart' },
-          a({ class: 'button primary', name: 'Add to cart' }, 'Add to cart'),
+          a({
+            class: 'button primary',
+            name: 'Add to cart',
+          }, 'Add to cart'),
         ),
       ),
-    )
-  );
-}
-
-function renderCart() {
-  return (
-    div({ class: 'cart-store' },
-      span({ class: 'view-cart-count' }, 2),
-      i({ class: 'fa fa-shopping-cart' }),
-      a({
-        href: 'https://shop.moleculardevices.com/cart',
-        target: '_blank',
-        name: 'View Cart',
-        rel: 'noopener noreferrer',
-      }),
     )
   );
 }
@@ -50,12 +38,31 @@ function renderItem(item, addToCart) {
       ),
       div({ class: 'ordering-option-item-variants' },
         ...item.variants.map((variant) => div({ class: 'variant-item' },
-          h4({ class: 'legend' }, variant.public_title),
-          p({ class: 'legend' }, `#${variant.sku}`),
+          div({ class: 'title-variant' },
+            p({ class: 'legend' }, variant.public_title),
+          ),
+          div({ class: 'sku-variant' },
+            p({ class: 'legend' }, `#${variant.sku}`),
+          ),
           (addToCart) ? renderAddToCart(variant) : '',
         ),
         ),
       ),
+    )
+  );
+}
+
+function renderCart() {
+  return (
+    div({ class: 'cart-widget' },
+      span({ class: 'view-cart-count' }, 2),
+      i({ class: 'fa fa-shopping-cart' }),
+      a({
+        href: 'https://shop.moleculardevices.com/cart',
+        target: '_blank',
+        name: 'View Cart',
+        rel: 'noopener noreferrer',
+      }),
     )
   );
 }
@@ -99,7 +106,10 @@ async function renderList(block) {
   });
 
   block.innerHTML = '';
-  if (addToCart) block.append(renderCart());
+  if (addToCart) {
+    block.classList.add('cart-store');
+    block.append(renderCart());
+  }
   const container = div({ class: 'ordering-options-list' });
   container.append(...items);
   block.append(container);
