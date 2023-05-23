@@ -44,7 +44,7 @@ export default async function decorate(block) {
     .sheet('resources')
     .chunks(2000)
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
-        && includedResourceTypes.includes(resource.type))
+      && includedResourceTypes.includes(resource.type))
     .all();
   const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
