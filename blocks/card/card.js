@@ -41,14 +41,15 @@ class Card {
     }
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
-
+    const cardLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
+      ? item.gatedURL : item.path;
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
-    let c2aBlock = a({ href: item.path, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aBlock = a({ href: item.path, 'aria-label': buttonText }, buttonText);
+      c2aBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
       c2aBlock.append(
         this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
@@ -67,7 +68,7 @@ class Card {
     return (
       div({ class: 'card' },
         this.showImageThumbnail ? div({ class: 'card-thumb' },
-          this.thumbnailLink ? a({ href: item.path },
+          this.thumbnailLink ? a({ href: cardLink },
             thumbnailBlock,
           ) : thumbnailBlock,
         ) : '',
@@ -75,7 +76,7 @@ class Card {
         div({ class: 'card-caption' },
           item.type ? div({ class: 'card-type' }, item.type) : '',
           h3(
-            this.titleLink ? a({ href: item.path }, cardTitle) : cardTitle,
+            this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
           p({ class: 'button-container' },

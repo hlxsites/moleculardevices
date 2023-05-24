@@ -74,6 +74,8 @@ export default async function decorate(block) {
   otherResources.forEach((item) => {
     const resourceType = item.type;
     const resourceImage = resourceMapping[item.type]?.image;
+    const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
+      ? item.gatedURL : item.path;
     const resourceBlock = div(
       {
         class: 'resource filtered-item',
@@ -105,7 +107,7 @@ export default async function decorate(block) {
           p(
             { class: 'resource-link' },
             a(
-              { href: item.path },
+              { href: resourceLink },
               `${resourceMapping[resourceType].action} ${resourceType}`,
               i({ class: 'fa fa-chevron-circle-right' }),
             ),
