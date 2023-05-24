@@ -448,10 +448,6 @@ main .section>div {
   padding: 0 15px;
 }
 
-.homepage .section > div {
-  padding: 100px 15px 0;
-}
-
 .product main .section {
   padding-top: 100px;
   padding-bottom: 60px;
@@ -567,6 +563,10 @@ main .section.columns-2>div {
   margin-bottom: 30px;
 }
 
+.homepage .section > div {
+  padding: 100px 15px 0;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
@@ -586,12 +586,6 @@ main .section.background-grey {
     background-size: auto 50px;
     padding-top: 50px;
   }
-}
-
-@media(max-width: 991px) {
-  /* main .section:not(.tabs) .default-content-wrapper {
-    padding-bottom: 70px;
-  } */
 }
 
 /* nav */
@@ -756,7 +750,6 @@ main .section .default-content-wrapper h2:only-child {
   padding-bottom: 10px;
 }
 
-/* main .section:not(.tabs) div + .default-content-wrapper, */
 main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
@@ -864,7 +857,6 @@ main .section.wave::after {
 
 main .section.wave .default-content-wrapper {
   margin-top: 100px;
-  /* margin-bottom: 55px; TODO if uncommented, fix in the product page */ 
   padding: 0 15px;
   padding-right: 15px;
 }
@@ -1201,13 +1193,6 @@ main .section[aria-hidden="true"] {
   width: 100%;
   content: "";
 }
-
-/* main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 10px;
-} */
 
 .product .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;
