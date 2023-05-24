@@ -36,7 +36,6 @@ function handleFilterClick(e) {
 }
 
 export default async function decorate(block) {
-  return block;
   const template = getMetadata('template');
   const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
   const includedResourceTypes = Object.keys(resourceMapping);
