@@ -3,6 +3,7 @@ import {
   getSubmenus,
   getSubmenuIdFromTitle,
   buildRequestQuote,
+  decorateLanguagesTool,
 } from '../helpers.js';
 import { getMetadata } from '../../../scripts/lib-franklin.js';
 import {
@@ -123,20 +124,14 @@ export function buildMobileMenuTools(menuItems, content) {
   menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
 
   // create Tools buttons
+  console.log(content);
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = li(
     { class: 'mobile-menu-item company-links' },
     toolsList,
   );
-
-  // get the ul child of the second li
-  const languageTool = toolsWrapper.querySelector('li:nth-child(2)');
-  const languagesList = languageTool.querySelector('ul');
-  languagesList.classList.add('languages-dropdown');
-
-  languageTool.addEventListener('click', () => {
-    languagesList.classList.toggle('show');
-  });
+  console.log(toolsWrapper);
+  decorateLanguagesTool(toolsWrapper);
 
   menuItems.append(toolsWrapper);
 }
