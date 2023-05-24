@@ -3,6 +3,11 @@ import { span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const wrapper = block.parentElement;
+
+  block.querySelectorAll(':scope > div > div > p:nth-of-type(2) > picture').forEach((picture) => {
+    picture.parentElement.previousElementSibling.classList.add('thumbnail');
+  });
+
   const scroll = (leftScroll) => {
     let resultingLeftScroll = leftScroll;
     if (leftScroll < 0) {

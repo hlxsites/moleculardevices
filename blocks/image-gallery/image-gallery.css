@@ -35,6 +35,10 @@ main .section > div.image-gallery-wrapper {
   position: relative;
 }
 
+.overlay .image-gallery .thumbnail {
+  display: none;
+}
+
 .overlay .image-gallery > div {
   width: 100%;
   flex-shrink: 0;
@@ -203,6 +207,10 @@ main .section > div.image-gallery-wrapper {
   grid-row: 1 / 2;
   color: white;
   margin-bottom: 20px;
+}
+
+.section:not(.overlay) .image-gallery p:nth-of-type(2) {
+  display: none;
 }
 
 .section:not(.overlay) .image-gallery p:last-of-type {
