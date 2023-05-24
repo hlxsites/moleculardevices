@@ -55,10 +55,6 @@ main .section .specifications-wrapper {
   white-space: pre-line;
 }
 
-.specifications .responsive-table th, .specifications .responsive-table td {
-  min-width: 20vw;
-}
-
 .specifications .responsive-table tbody tr:nth-child(even) {
   background: #e0e0e0;
 }
@@ -77,6 +73,7 @@ main .section .specifications-wrapper {
   left: 0;
   background-color: var(--background-color);
   z-index: 1;
+  width: 380px;
 }
 
 .section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child .download-button {
@@ -98,16 +95,21 @@ main .section .specifications-wrapper {
   vertical-align: middle;
 }
 
+@media only screen and (max-width: 1199px) {
+  .specifications .responsive-table th:first-child,
+  .specifications .responsive-table td:first-child {
+    width: 300px;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   .specifications .responsive-table th,
   .specifications .responsive-table td {
-    min-width: 30vw;
     width: 30vw;
   }
 
   .specifications .responsive-table th:first-child,
   .specifications .responsive-table td:first-child {
-    min-width: 40vw;
     width: 40vw;
   }
 }
@@ -115,7 +117,6 @@ main .section .specifications-wrapper {
 @media only screen and (max-width: 767px) {
   .specifications .responsive-table th,
   .specifications .responsive-table td {
-    min-width: 50vw;
     width: 50vw;
   }
 }
