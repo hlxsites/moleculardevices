@@ -79,7 +79,7 @@ export default async function decorate(block) {
     });
   });
 
-  const tHeadBlock = domEl('thead', { class: 'table-head sticky-element sticky-desktop sticky-mobile' }, headRow,
+  const tHeadBlock = domEl('thead', { class: 'table-head' }, headRow,
   );
   block.append(div({ class: 'table-container' },
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
