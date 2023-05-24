@@ -108,7 +108,7 @@ function loadIframeForm(stepNum, data, type) {
   let productFamily = '';
 
   if (type === 'Product') {
-    tab = (data.productBundle)?data.productBundle:data.title;
+    tab = (data.productBundle) ? data.productBundle : data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
