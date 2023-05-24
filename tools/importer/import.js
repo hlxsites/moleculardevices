@@ -221,6 +221,9 @@ const loadResourceMetaAttributes = (url, params, document, meta) => {
       if (resource['BUNDLE PRODUCTS']) {
         meta['Bundle Products'] = resource['BUNDLE PRODUCTS'];
       }
+      if (resource['PRODUCT READ MODE TYPES']) {
+        meta['Read Mode Types'] = resource['PRODUCT READ MODE TYPES'];
+      }
     }
 
     if (isApplication(document)) {
@@ -683,7 +686,8 @@ const transformFeatureSection = (block, document) => {
 const transformResourcesCarousel = (block, document) => {
   const recentResources = block.querySelector('.apps-recent-res');
   if (recentResources) {
-    recentResources.before(document.createElement('hr'));
+    const heading = recentResources.querySelector('.view-header h2');
+    recentResources.before(document.createElement('hr'), heading);
     const cells = [['Latest Resources']];
     const carousel = recentResources.querySelector('.container');
     if (carousel) {
@@ -1379,7 +1383,11 @@ const transformProductProvenComplicateFragment = (document) => {
   document.querySelectorAll('.proven-xp-section').forEach((div) => {
     const heading = div.querySelector('h2');
     if (heading && heading.textContent === 'Assure data integrity and compliance with confidence') {
-      div.replaceWith(createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance'));
+      const fragmentContent = heading.nextElementSibling;
+      if (fragmentContent) {
+        heading.remove();
+        fragmentContent.replaceWith(createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance'));
+      }
     }
   });
 };
