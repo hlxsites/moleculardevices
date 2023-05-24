@@ -356,7 +356,7 @@
 
   .columns-3-cols {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{

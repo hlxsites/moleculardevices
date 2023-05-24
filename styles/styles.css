@@ -446,7 +446,10 @@ main .breadcrumbs-wrapper {
 main .section>div {
   margin: 0 auto;
   padding: 0 15px;
-  /* padding: 100px 15px 0; */
+}
+
+.homepage .section > div {
+  padding: 100px 15px 0;
 }
 
 .product main .section {
@@ -454,11 +457,16 @@ main .section>div {
   padding-bottom: 60px;
 } 
 
-.product main .section.hero-container,
-.product main .section.hero-advanced-container,
-.product main .section.page-tabs-container {
-  padding-top: 0;
-  padding-bottom: 0;
+/* Marked as !important as these should not get overriden */
+main .section.hero-container,
+main .section.hero-advanced-container,
+main .section.page-tabs-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.product main .section .default-content-wrapper h3 {
+  font-family: var(--ff-proxima-xbold);
 }
 
 main .section>.featured-posts-wrapper {
@@ -581,9 +589,9 @@ main .section.background-grey {
 }
 
 @media(max-width: 991px) {
-  main .section:not(.tabs) .default-content-wrapper {
+  /* main .section:not(.tabs) .default-content-wrapper {
     padding-bottom: 70px;
-  }
+  } */
 }
 
 /* nav */
@@ -748,7 +756,7 @@ main .section .default-content-wrapper h2:only-child {
   padding-bottom: 10px;
 }
 
-main .section:not(.tabs) div + .default-content-wrapper,
+/* main .section:not(.tabs) div + .default-content-wrapper, */
 main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
@@ -799,7 +807,7 @@ main .section.features-section .button-container {
 }
 
 @media only screen and (max-width: 991px) {
-  .section.features-section h2 {
+  .section.features-section .default-content-wrapper h2 {
     font-size: 45px;
   }
 }
@@ -809,7 +817,7 @@ main .section.features-section .button-container {
     padding-top: 30px;
   }
 
-  .section.features-section h2 {
+  .section.features-section .default-content-wrapper h2 {
     font-size: 36px;
   }
 
@@ -1194,12 +1202,12 @@ main .section[aria-hidden="true"] {
   content: "";
 }
 
-main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
+/* main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 10px;
-}
+} */
 
 .product .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;

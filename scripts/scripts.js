@@ -21,7 +21,7 @@ import { a, div, p } from './dom-helpers.js';
 /**
  * to add/remove a template, just add/remove it in the list below
  */
-const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event'];
+const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event', 'about-us'];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
