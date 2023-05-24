@@ -695,7 +695,7 @@ const transformResourcesCarousel = (block, document) => {
       carousel.replaceWith(table);
     }
     if (recentResources.classList.contains('greyBg')) {
-      const sectionMetaData = WebImporter.DOMUtils.createTable([['Section Metadata'], ['style', 'Background Grey']], document);
+      const sectionMetaData = WebImporter.DOMUtils.createTable([['Section Metadata'], ['style', 'Background Grey, Center']], document);
       recentResources.after(sectionMetaData);
     }
   }
@@ -704,17 +704,26 @@ const transformResourcesCarousel = (block, document) => {
 const transformImageGallery = (document) => {
   const imageGallery = document.querySelector('.images-gallery1, .images-gallery');
   if (imageGallery) {
-    imageGallery.querySelectorAll('.row .fst-set, .row.snd-set, .snd-set').forEach((div) => div.remove());
+    // get thumbnails
+    const thumbnails = imageGallery.querySelectorAll('.row .fst-set img, .row.snd-set img, .snd-set img');
+    // get lightbox images
     const imageContainer = imageGallery.querySelector('.modal .carousel');
     if (imageContainer) {
-      const cells = [['Image Gallery']];
+      const cells = [[imageGallery.classList.contains('images-gallery1') ? 'Image Gallery (showcase right)' : 'Image Gallery']];
       const entries = imageContainer.querySelectorAll('.carousel .item');
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
+        if (index < thumbnails.length) {
+          if (thumbnails[index].src !== entry.querySelector('img').src) {
+            entry.append(thumbnails[index]);
+          } else {
+            thumbnails[index].remove();
+          }
+        }
         cells.push([[...entry.children].reverse()]);
       });
 
       const table = WebImporter.DOMUtils.createTable(cells, document);
-      imageContainer.closest('.modal').replaceWith(table);
+      imageGallery.replaceWith(table);
     }
   }
 };
@@ -864,7 +873,7 @@ const transformColumns = (document) => {
     column.id = 'col';
     const row = column.closest('.row:not(#col)');
     if (row) {
-      const sectionStyle = row.classList.contains('section');
+      const sectionStyle = row.classList.contains('section') || row.querySelector('table');
       if (row.childElementCount > 1 && !row.closest('section.franklin-horizontal')) {
         if (sectionStyle) {
           row.before(document.createElement('hr'));
@@ -1233,8 +1242,9 @@ const transformProductOptions = (document) => {
 
 const transformProductSpecs = (document) => {
   const div = document.querySelector('div.tab-pane#specs .specsTable');
-  if (div && div.textContent.trim().length > 0) {
-    const cells = [['Specifications']];
+  if (div && document.originalURL) {
+    const filename = document.originalURL.substring(document.originalURL.lastIndexOf('/') + 1);
+    const cells = [['Specifications'], [`https://main--moleculardevices--hlxsites.hlx.page/products/specifications/${filename}.json`]];
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
   }
@@ -1367,15 +1377,28 @@ const transformTechnologyApplications = (document) => {
 
 const transformProductCompareTable = (document) => {
   document.querySelectorAll('#platereadertbllink').forEach((div) => {
-    div.querySelectorAll('.fixt-part').forEach((table) => table.remove());
     const cells = [['Product Comparsion']];
 
+    // get the products
+    const productLinks = [];
     div.querySelectorAll('#productcomparison th .comp-tbl-lbl a').forEach((productLink) => {
-      cells.push([productLink]);
+      const filename = productLink.href.substring(productLink.href.lastIndexOf('/') + 1);
+      const p = document.createElement('p');
+      p.append(`https://main--moleculardevices--hlxsites.hlx.page/products/specifications/${filename}.json`);
+      productLinks.push(p);
     });
+    cells.push(['products', productLinks]);
+
+    // get the attributes to be displayed
+    const attributes = [];
+    div.querySelectorAll('.fixt-part tr td').forEach((attribute) => {
+      attributes.push(attribute.textContent);
+    });
+    cells.push(['attributes', attributes.join(',')]);
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
     div.replaceWith(table);
+    table.before(document.createElement('hr'));
   });
 };
 
@@ -1389,6 +1412,39 @@ const transformProductProvenComplicateFragment = (document) => {
         fragmentContent.replaceWith(createFragmentTable(document, 'https://main--moleculardevices--hlxsites.hlx.page/fragments/product-proven-compliance'));
       }
     }
+  });
+};
+
+const transformCategorySubSections = (document) => {
+  document.querySelectorAll('.subcat.category-page-section .container .row').forEach((div) => {
+    // move all full with columns before the row
+    if (div.firstElementChild.className.indexOf('col-') < 0) {
+      div.before(div.firstElementChild);
+    }
+
+    // fix c2a buttons in lists
+    div.querySelectorAll('a.btn').forEach((link) => {
+      const liWrapper = link.closest('li');
+      if (liWrapper) {
+        const ulWrapper = liWrapper.parentElement;
+        if (link.parentElement.nodeName.match('STRONG|EM')) {
+          ulWrapper.after(link.parentElement);
+        } else {
+          ulWrapper.after(link);
+        }
+      }
+    });
+    div.querySelectorAll('li').forEach((li) => {
+      if (li.textContent.trim().length === 0) {
+        li.remove();
+      }
+    });
+
+    // map columns
+    const cells = [['Columns']];
+    const children = [...div.children];
+
+    cells.push(children);
   });
 };
 
@@ -1568,7 +1624,7 @@ export default {
 
     // use helper method to remove header, footer, etc.
     WebImporter.DOMUtils.remove(main, [
-      'sytle',
+      'style',
       'header',
       'footer',
       'nav#block-mobilenavigation',
@@ -1594,6 +1650,7 @@ export default {
     ]);
 
     // create the metadata block and append it to the main element
+    document.originalURL = params.originalURL;
     const meta = createMetadata(url, document);
     loadResourceMetaAttributes(url, params, document, meta);
 
@@ -1635,6 +1692,7 @@ export default {
       transformProductAssayData,
       transformProductCompareTable,
       transformProductProvenComplicateFragment,
+      transformCategorySubSections,
       transformOtherResourcesList,
       transformFeaturedResources,
       transformTechnologyApplications,
