@@ -124,13 +124,11 @@ export function buildMobileMenuTools(menuItems, content) {
   menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
 
   // create Tools buttons
-  console.log(content);
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = li(
     { class: 'mobile-menu-item company-links' },
     toolsList,
   );
-  console.log(toolsWrapper);
   decorateLanguagesTool(toolsWrapper);
 
   menuItems.append(toolsWrapper);
