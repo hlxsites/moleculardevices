@@ -4,7 +4,7 @@
 import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p, i,
+  a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
 
 class Card {
@@ -20,6 +20,7 @@ class Card {
     this.descriptionLength = 75;
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
+    this.c2aLinkIconFull = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -30,6 +31,8 @@ class Card {
   }
 
   renderItem(item) {
+    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
+
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
       itemImage = item.thumbnail;
@@ -38,31 +41,44 @@ class Card {
     }
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
-
+    const cardLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
+      ? item.gatedURL : item.path;
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
-    let c2aBlock = a({ href: item.path, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aBlock.append(i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true }));
+      c2aBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
+      c2aBlock.append(
+        this.c2aLinkIconFull
+          ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
+          : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
+      );
       decorateIcons(c2aBlock);
+    }
+
+    let cardDescription = '';
+    if (item.cardDescription && item.cardDescription !== '0') {
+      cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
+    } else if (item.description && item.description !== '0') {
+      cardDescription = summariseDescription(item.description, this.descriptionLength);
     }
 
     return (
       div({ class: 'card' },
         this.showImageThumbnail ? div({ class: 'card-thumb' },
-          this.thumbnailLink ? a({ href: item.path },
+          this.thumbnailLink ? a({ href: cardLink },
             thumbnailBlock,
           ) : thumbnailBlock,
         ) : '',
+        item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
         div({ class: 'card-caption' },
           item.type ? div({ class: 'card-type' }, item.type) : '',
           h3(
-            this.titleLink ? a({ href: item.path }, item.title) : item.title,
+            this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
-          item.description && item.description !== '0'
-            ? p({ class: 'card-description' }, summariseDescription(item.description, this.descriptionLength)) : '',
+          cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
           p({ class: 'button-container' },
             c2aBlock,
           ),
