@@ -149,7 +149,7 @@ async function getOrderingOptions(block) {
 
 async function renderList(block) {
   const options = await getOrderingOptions(block);
-  const showStore = (getCookie('country_code') === 'US') || true;
+  const showStore = (getCookie('country_code') === 'US');
   const items = [];
   options.forEach((option) => {
     items.push(renderItem(option, showStore));
