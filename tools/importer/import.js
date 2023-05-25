@@ -1377,7 +1377,7 @@ const transformTechnologyApplications = (document) => {
 
 const transformProductCompareTable = (document) => {
   document.querySelectorAll('#platereadertbllink').forEach((div) => {
-    const cells = [['Product Comparsion']];
+    const cells = [['Product Comparison']];
 
     // get the products
     const productLinks = [];
