@@ -3,6 +3,17 @@ import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
+function updateCounter(event) {
+  const btnContainer = event.target.closest('span');
+  const counterEl = btnContainer.parentElement.querySelector('.count');
+  const counter = parseInt(counterEl.textContent, 10) || 1;
+  if (btnContainer.classList.contains('up')) {
+    counterEl.textContent = counter + 1;
+  } else {
+    counterEl.textContent = (counter > 1) ? counter - 1 : 1;
+  }
+}
+
 function renderAddToCart(item) {
   if (!item) return '';
 
@@ -113,6 +124,13 @@ async function renderList(block) {
   const container = div({ class: 'ordering-options-list' });
   container.append(...items);
   block.append(container);
+
+  const counterButtons = document.querySelectorAll('.ordering-options .variant-item-store-count > span > i');
+  [...counterButtons].forEach((counterButton) => {
+    counterButton.addEventListener('click', (e) => {
+      updateCounter(e);
+    });
+  });
 }
 
 export default async function decorate(block) {
