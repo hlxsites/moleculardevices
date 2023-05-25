@@ -62,7 +62,7 @@ main div.image-list-wrapper {
 .service-support.support-options .image-list-wrapper h3 {
   font-size: 36px;
   font-weight: 300;
-  font-family: 'Proxima Nova Light';
+  font-family: 'Proxima Nova Light', sans-serif;
   padding-top: 0;
 }
 

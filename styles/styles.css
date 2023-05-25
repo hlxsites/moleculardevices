@@ -886,6 +886,17 @@ main div.section.featured-asset .columns > div {
   }
 }
 
+main .section.service-support .default-content-wrapper h2 {
+  font-size: 36px;
+  padding-top: 90px;
+  font-weight: 100;
+  line-height: 1;
+}
+
+main .section.service-support.support-options h2 {
+  font-size: 70px;
+}
+
 /* WAVE sections variants */
 
 /* BlueGreen Variant */
@@ -1192,17 +1203,6 @@ main .section[aria-hidden="true"] {
 
 .product main .section .default-content-wrapper h3 {
   font-family: var(--ff-proxima-xbold);
-}
-
-main .section.service-support .default-content-wrapper h2 {
-  font-size: 36px;
-  padding-top: 90px;
-  font-weight: 100;
-  line-height: 1;
-}
-
-main .section.service-support.support-options h2 {
-  font-size: 70px;
 }
 
 @media (max-width: 991px) {
