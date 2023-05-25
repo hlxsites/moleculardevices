@@ -991,32 +991,32 @@ main div.section.wave.wavecarousel.bluegreen {
 }
 
 /* Orange Buttons */
-main .orange-buttons p.button-container {
+main div.orange-buttons p.button-container {
   display: inline-block;
   margin-top: 20px;
 }
 
-main .orange-buttons .button {
+main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
 }
 
-main .orange-buttons .button.primary:link,
-main .orange-buttons .button.primary:visited {
+main div.orange-buttons .button.primary:link,
+main div.orange-buttons .button.primary:visited {
   color: var(--text-white);
   background: var(--orange-background-color);
   text-transform: none;
 }
 
-main .orange-buttons .button.primary:hover,
-main .orange-buttons .button.primary:active {
+main div.orange-buttons .button.primary:hover,
+main div.orange-buttons .button.primary:active {
   color: var(--orange-text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .orange-buttons .button.secondary:link,
-main .orange-buttons .button.secondary:visited {
+main div.orange-buttons .button.secondary:link,
+main div.orange-buttons .button.secondary:visited {
   color: var(--text-white);
   background: transparent;
   border: 2px solid #fff;
@@ -1024,14 +1024,14 @@ main .orange-buttons .button.secondary:visited {
   margin-left: 20px;
 }
 
-main .orange-buttons .button.secondary:hover,
-main .orange-buttons .button.secondary:active {
+main div.orange-buttons .button.secondary:hover,
+main div.orange-buttons .button.secondary:active {
   color: var(--orange-text-color);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main .orange-buttons .button.primary>.button-border {
+main div.orange-buttons .button.primary>.button-border {
   display: none;
 }
 
@@ -1058,11 +1058,11 @@ main .section.background-molecules {
     height: 50px;
   }
 
-  main .orange-buttons p.button-container {
+  main div.orange-buttons p.button-container {
     display: block;
   }
 
-  main .orange-buttons .button {
+  main div.orange-buttons .button {
     min-width: 140px;
     max-width: 200px;
     width: 100%;
@@ -1071,8 +1071,8 @@ main .section.background-molecules {
     height: 37px;
   }
 
-  main .orange-buttons .button.secondary:link,
-  main .orange-buttons .button.secondary:visited {
+  main div.orange-buttons .button.secondary:link,
+  main div.orange-buttons .button.secondary:visited {
     margin-left: unset;
     margin-top: 20px;
   }
