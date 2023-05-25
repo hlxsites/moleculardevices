@@ -1,9 +1,7 @@
-import { loadScript, getCookie, setCookie } from '../../scripts/scripts.js';
+import { getCookie } from '../../scripts/scripts.js';
 import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
-
-const CART_COOKIE_NAME = 'cart';
 
 function updateCounter(event) {
   const btnContainer = event.target.closest('span');
@@ -14,26 +12,6 @@ function updateCounter(event) {
   } else {
     counterEl.textContent = (counter > 1) ? counter - 1 : 1;
   }
-}
-
-async function generateCartToken() {
-  await loadScript('../../scripts/buy-button-storefront.min.js');
-  // Initialize the Shopify Buy SDK client
-  // eslint-disable-next-line no-undef
-  /* const client = ShopifyBuy.buildClient({
-    domain: 'shop.moleculardevices.com',
-    storefrontAccessToken: 'your-storefront-access-token',
-  });
-
-  // Create a new cart and generate a cart token
-  client.createCart().then((cart) => {
-    const cartToken = cart.token;
-    console.log('Cart Token:', cartToken);
-    return cartToken;
-  }).catch((error) => {
-    console.error('Error creating cart:', error);
-  }); */
-  return '0349b4fbb1e90a42598d459200f5c459';
 }
 
 async function getCartDetails() {
@@ -47,24 +25,18 @@ async function getCartDetails() {
 }
 
 async function setCartWidgetItemCount() {
-  if (getCookie(CART_COOKIE_NAME)) {
-    const details = await getCartDetails();
-    const count = details.item_count;
-    document.querySelector('.ordering-options .cart-widget .view-cart-count').textContent = count || 0;
-  }
+  const details = await getCartDetails();
+  const count = details.item_count;
+  document.querySelector('.ordering-options .cart-widget .view-cart-count').textContent = count || 0;
 }
 
 async function addToCart(event) {
-  const cartCookie = getCookie(CART_COOKIE_NAME);
-  const cartToken = cartCookie || await generateCartToken();
-  if (!cartCookie) setCookie(CART_COOKIE_NAME, cartToken, 30);
-
   const el = event.target;
   const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
-  fetch(`https://shop.moleculardevices.com/cart/add.js?${new URLSearchParams({
+  await fetch(`https://shop.moleculardevices.com/cart/add.js?${new URLSearchParams({
     id: itemId,
     quantity: counter,
     _: Date.now(),
@@ -75,6 +47,8 @@ async function addToCart(event) {
     // eslint-disable-next-line no-console
       console.warn(`Could not add id ${itemId} to cart.`, err);
     });
+
+  setCartWidgetItemCount();
 }
 
 function renderAddToCart(item) {
