@@ -1090,8 +1090,8 @@ main .section.background-molecules {
 }
 
 main .section[aria-hidden="true"] {
-  display: none;
-  visibility: hidden;
+  display: none !important;
+  visibility: hidden !important;
 }
 
 
