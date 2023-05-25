@@ -647,15 +647,15 @@ main .event-container strong {
   font-weight: 700;
 }
 
-main .section[aria-labelledby="order"] {
+main .tabs[aria-labelledby="order"] {
   padding-bottom: 100px;
 }
 
-main .section[aria-labelledby="order"] strong {
+main .tabs[aria-labelledby="order"] strong {
   font-family: var(--ff-proxima-regular);
 }
 
-main .section[aria-labelledby="order"] .default-content-wrapper img {
+main .tabs[aria-labelledby="order"] .default-content-wrapper img {
   display: block;
   margin: 0 auto;
 }
