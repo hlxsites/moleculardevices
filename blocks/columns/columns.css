@@ -251,6 +251,11 @@
 }
 /* stylelint-enable no-descending-specificity */
 
+.service-support .columns-wrapper {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
 @media (min-width: 768px) {
   .columns > div {
     display: flex;
