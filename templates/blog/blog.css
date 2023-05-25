@@ -84,7 +84,7 @@
   margin: 0;
 }
 
-.blog .section.blog-heading > div:first-of-type {
+.blog .section.blog-heading > div.default-content-wrapper:first-of-type {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -173,6 +173,10 @@ main.sidebar .section.sidebar {
 main .section.sidebar h4 {
   margin-bottom: 50px;
   position: relative;
+}
+
+main.sidebar .section.sidebar .default-content-wrapper {
+  padding-top: 0;
 }
 
 main .section.sidebar h4::after {

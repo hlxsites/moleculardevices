@@ -233,10 +233,6 @@ p:last-child {
   margin-bottom: 0;
 }
 
-main .section .default-content-wrapper :not(.button-container):last-child {
-  margin-bottom: 15px;
-}
-
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
@@ -1168,7 +1164,8 @@ main .section[aria-hidden="true"] {
 .publication-container::after,
 .publication .social-share-container::after,
 .event main::after,
-.events-container::after {
+.events-container::after,
+.quote-request-container::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;

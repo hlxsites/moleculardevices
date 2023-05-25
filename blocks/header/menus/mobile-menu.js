@@ -3,6 +3,7 @@ import {
   getSubmenus,
   getSubmenuIdFromTitle,
   buildRequestQuote,
+  decorateLanguagesTool,
 } from '../helpers.js';
 import { getMetadata } from '../../../scripts/lib-franklin.js';
 import {
@@ -128,6 +129,8 @@ export function buildMobileMenuTools(menuItems, content) {
     { class: 'mobile-menu-item company-links' },
     toolsList,
   );
+  decorateLanguagesTool(toolsWrapper);
+
   menuItems.append(toolsWrapper);
 }
 

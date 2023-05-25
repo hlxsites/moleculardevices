@@ -53,6 +53,7 @@ function renderMoreLink(text, link) {
 async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
     .sheet('events')
+    .chunks(5)
     .slice(0, 3)
     .all();
   container.innerHTML = '';
@@ -65,6 +66,7 @@ async function renderEvents(container) {
 async function renderNews(container) {
   const news = await ffetch('/query-index.json')
     .sheet('news')
+    .chunks(5)
     .slice(0, 3)
     .all();
   container.innerHTML = '';

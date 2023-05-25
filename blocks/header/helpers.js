@@ -86,3 +86,20 @@ export function buildRequestQuote(classes) {
     ),
   );
 }
+
+export function decorateLanguagesTool(tools) {
+  const languageTool = tools.querySelector('li:nth-child(2)');
+  const languagesList = languageTool.querySelector('ul');
+  languagesList.classList.add('languages-dropdown');
+
+  languageTool.addEventListener('click', () => {
+    languagesList.classList.toggle('show');
+  });
+
+  const body = document.querySelector('body');
+  body.addEventListener('click', (e) => {
+    if (e.target !== languageTool) {
+      languagesList.classList.remove('show');
+    }
+  });
+}
