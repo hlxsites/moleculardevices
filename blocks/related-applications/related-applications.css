@@ -8,6 +8,7 @@
 
 .related-apps-container {
   --related-app-gap: 30px;
+  
   display: flex;
   flex-wrap: wrap;
   gap: var(--related-app-gap);

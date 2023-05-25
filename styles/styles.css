@@ -192,6 +192,14 @@ h2 {
   font-size: var(--heading-font-size-xl);
 }
 
+@media only screen and (max-width: 991px) {
+  h2 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 h3 {
   font-size: var(--heading-font-size-l)
 }
@@ -448,24 +456,10 @@ main .section>div {
   padding: 0 15px;
 }
 
-.product main .section {
-  padding-top: 100px;
-  padding-bottom: 60px;
-} 
-
-@media only screen and (max-width: 991px) {
-  .product main .section {
-    padding: 67px 0 70px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .product main .section {
-    padding: 30px 0 45px;
-  }
-
-  .product main .video-title {
-    font-size: 14px;
+@media (max-width: 991px) {
+  main .section .default-content-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -475,10 +469,6 @@ main .section.hero-advanced-container,
 main .section.page-tabs-container {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
-}
-
-.product main .section .default-content-wrapper h3 {
-  font-family: var(--ff-proxima-xbold);
 }
 
 main .section>.featured-posts-wrapper {
@@ -569,19 +559,6 @@ main .section.columns-2>div {
   }
 }
 
-/* template & theme styles */
-.homepage h1,
-.homepage h2 {
-  color: var(--heading-color);
-}
-
-.homepage h2 {
-  margin-bottom: 30px;
-}
-
-.homepage .section > div {
-  padding: 100px 15px 0;
-}
 
 /* progressive section appearance */
 main .section[data-section-status='loading'],
@@ -670,7 +647,8 @@ main .event-container strong {
   font-weight: 700;
 }
 
-main .section.tabs[aria-labelledby="order"]:first {
+/* main .section.tabs[aria-labelledby="order"]:first before. TODO test order tab */
+main .section.tabs[aria-labelledby="order"] {
   padding-bottom: 100px;
 }
 
@@ -703,16 +681,6 @@ main .event-container i.fa.fa-external-link {
   top: -7px;
   font-size: 13px;
   margin-left: 2px;
-}
-
-.product .section.tabs h2 {
-  font-size: 36px;
-  font-family: var(--ff-proxima-regular);
-  margin-top: 0;
-}
-
-.product .section.tabs > div > h3 {
-  margin: 45px 15px 15px;
 }
 
 main .section .default-content-wrapper h2:only-child {
@@ -793,6 +761,7 @@ main .section.features-section .button-container {
 }
 
 /* Wave sections */
+
 /* TODO test wave sectiomns */
 main .section.wave {
   background-repeat: no-repeat;
@@ -862,11 +831,6 @@ main.error .section.wave:last-child {
   margin-top: 0;
 }
 
-/* Product page styles */
-.product .section.tabs > div > h3 ~ p {
-  margin: 0 15px;
-}
-
 main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
@@ -894,7 +858,7 @@ main .section.featured-asset a.button.secondary:hover, main .section.featured-as
   color: var(--link-hover-color);
 }
 
-main .section.featured-asset h2 {
+main .section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
@@ -1166,30 +1130,66 @@ main .section[aria-hidden="true"] {
   content: "";
 }
 
-.product .section.columns-container .columns.columns-2-cols > div h3 {
-  font-size: 24px;
-  margin-bottom: 0;
+/* stylelint-disable no-descending-specificity */
+
+.homepage h1,
+.homepage h2 {
+  color: var(--heading-color);
 }
 
-.product .section.columns-container .columns.columns-2-cols > div ul {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.homepage h2 {
+  margin-bottom: 30px;
 }
 
-.product .section.columns-container .columns.columns-2-cols > div ul li {
-  margin-bottom: 10px;
-  line-height: 20px;
+.homepage .section > div {
+  padding: 100px 15px 0;
 }
 
-@media (max-width: 991px) {
-  h2 {
-    font-size: 36px;
-    margin-top: 0;
-    margin-bottom: 0;
+@media only screen and (max-width: 767px) {
+  .homepage .section > div {
+    padding: 50px 15px 0;
+  }
+}
+
+/* 
+ Theoretically, we could move this to a product template, 
+ but product pages are already very heavy, so we avoid extra requests
+*/ 
+.product main .section {
+  padding-top: 100px;
+  padding-bottom: 60px;
+} 
+
+@media only screen and (max-width: 991px) {
+  .product main .section {
+    padding: 67px 0 70px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .product main .section {
+    padding: 30px 0 45px;
   }
 
-  main .section .default-content-wrapper {
-    padding-left: 15px;
-    padding-right: 15px;
+  .product main .video-title {
+    font-size: 14px;
   }
+}
+
+.product .section.tabs h2 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+  margin-top: 0;
+}
+
+.product .section.tabs > div > h3 {
+  margin: 45px 15px 15px;
+}
+
+.product .section.tabs > div > h3 ~ p {
+  margin: 0 15px;
+}
+
+.product main .section .default-content-wrapper h3 {
+  font-family: var(--ff-proxima-xbold);
 }
