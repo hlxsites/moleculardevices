@@ -836,7 +836,7 @@ main div.section.wave .default-content-wrapper p:first-of-type {
 }
 
 /* Featured Asset section */
-main .section.featured-asset {
+main div.section.featured-asset {
   background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
   background-position: center top;
   background-size: cover;
@@ -844,45 +844,49 @@ main .section.featured-asset {
   padding-bottom: 100px;
 }
 
-main .section.featured-asset .button-container {
+main div.section.featured-asset .button-container {
   margin-top: 2em;
 }
 
-main .section.featured-asset a.button.secondary, main .section.featured-asset button.secondary {
+main div.section.featured-asset a.button.secondary,
+main div.section.featured-asset button.secondary {
   border: 2px solid var(--button-color);
   color: var(--button-color);
 }
 
-main .section.featured-asset a.button.secondary:hover, main .section.featured-asset a.button.secondary:focus, main .section.featured-asset button.secondary:hover, main .section.featured-asset button.secondary:focus {
+main div.section.featured-asset a.button.secondary:hover,
+main div.section.featured-asset a.button.secondary:focus,
+main div.section.featured-asset button.secondary:hover,
+main div.section.featured-asset button.secondary:focus {
   color: var(--link-hover-color);
 }
 
-main .section.featured-asset .default-content-wrapper h2 {
+main div.section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
   color: var(--text-green);
 }
 
-main .section.featured-asset .columns h3 {
+main div.section.featured-asset .columns h3 {
   font-size: 25px;
 }
 
-main .section.featured-asset .columns > div {
+main div.section.featured-asset .columns > div {
   align-items: unset;
 }
 
 @media only screen and (max-width: 767px) {
-  main .section.featured-asset {
+  main div.section.featured-asset {
     padding: 0;
   }
 
-  main .section.featured-asset > div {
+  main div.section.featured-asset > div {
     padding: 30px 15px;
     overflow: hidden;
   }
 
-  main .section.featured-asset img {
+  main div.section.featured-asset img {
     margin-top: 30px;
   }
 }
