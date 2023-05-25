@@ -796,6 +796,17 @@ main div.section.wave .default-content-wrapper {
   padding-right: 15px;
 }
 
+main .section.service-support .default-content-wrapper h2 {
+  font-size: 36px;
+  padding-top: 90px;
+  font-weight: 100;
+  line-height: 1;
+}
+
+main .section.service-support.support-options h2 {
+  font-size: 70px;
+}
+
 main div.section.wave .default-content-wrapper h2 {
   font-size: 65px;
   margin-bottom: 30px;
@@ -884,17 +895,6 @@ main div.section.featured-asset .columns > div {
   main div.section.featured-asset img {
     margin-top: 30px;
   }
-}
-
-main .section.service-support .default-content-wrapper h2 {
-  font-size: 36px;
-  padding-top: 90px;
-  font-weight: 100;
-  line-height: 1;
-}
-
-main .section.service-support.support-options h2 {
-  font-size: 70px;
 }
 
 /* WAVE sections variants */
