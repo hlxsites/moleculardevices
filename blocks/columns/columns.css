@@ -356,7 +356,7 @@
 
   .columns-3-cols {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{
@@ -406,4 +406,19 @@
 
 .section .columns.collaboration > div h3 strong {
   font-family: inherit;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div h3 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul li {
+  margin-bottom: 10px;
+  line-height: 20px;
 }
