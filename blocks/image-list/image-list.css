@@ -50,6 +50,26 @@ main div.image-list-wrapper {
   margin-top: 0;
 }
 
+.service-support .image-list-wrapper {
+  padding-top: 0;
+  padding-bottom: 90px;
+}
+
+.service-support.support-options .image-list.features.block .item {
+  margin-top: 45px;
+}
+
+.service-support.support-options .image-list-wrapper h3 {
+  font-size: 36px;
+  font-weight: 300;
+  font-family: 'Proxima Nova Light';
+  padding-top: 0;
+}
+
+.service-support.support-options .button-container {
+  margin-top: 50px;
+}
+
 @media only screen and (max-width: 991px) {
   .image-list.block > div {
     gap: 10px;
@@ -67,7 +87,7 @@ main div.image-list-wrapper {
 }
 
 @media only screen and (max-width: 768px) {
-  .image-list.block {
+  .image-list.features.block {
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 20px;
@@ -82,5 +102,22 @@ main div.image-list-wrapper {
   .image-list.block img {
     width: 28px;
     height: 28px;
+  }
+
+  .service-support.support-options .button-container {
+    margin-top: 10px;
+  }
+
+  .service-support.support-options .image-list.features.block .item {
+    margin-top: 10px;
+  }
+
+  .service-support.support-options .image-list.block img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .service-support.support-options .image-list.block .item h3 {
+    font-size: 24px;
   }
 }

@@ -963,6 +963,7 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
 /* Service Support Variant */
 main div.section.wave.bg-support-service {
   background-position: 100% 30%;
+  padding-top: 100px;
 }
 
 /* Carousel Variant */
@@ -1191,4 +1192,27 @@ main .section[aria-hidden="true"] {
 
 .product main .section .default-content-wrapper h3 {
   font-family: var(--ff-proxima-xbold);
+}
+
+main .section.service-support .default-content-wrapper h2 {
+  font-size: 36px;
+  padding-top: 90px;
+  font-weight: 100;
+  line-height: 1;
+}
+
+main .section.service-support.support-options h2 {
+  font-size: 70px;
+}
+
+@media (max-width: 991px) {
+  main .section.service-support.support-options h2 {
+    font-size: 36px;
+    padding-top: 30px;
+  }
+
+  main .section .default-content-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
