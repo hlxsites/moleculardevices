@@ -3,14 +3,12 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
   const specURLs = [...block.querySelectorAll('a')].map((a) => a.href);
-  const attributesDiv = block.querySelector('.product-comparison div:last-child > div:last-child');
-  block.innerHTML = '';
-
-  const attributesText = attributesDiv.textContent;
-  const attributes = attributesText.split(',').map(function(attribute) {
-    return attribute.trim().toLowerCase();
-  });
+  const attributes = [...block.querySelectorAll('.product-comparison > div:last-child > div:last-child > p')]
+    .map(attrP => attrP.textContent.trim().toLowerCase());
+  console.log(attributes)
   console.log(specURLs)
+
+  block.innerHTML = '';
   const productSpecs = {};
   const specDataAll = await Promise.all(specURLs.map(async (url) => {
     const response = await fetch(url);
@@ -22,6 +20,7 @@ export default async function decorate(block) {
         if (!productSpecs[item.path]) {
           productSpecs[item.path] = {};
         }
+        console.log('item', item)
         productSpecs[item.path] = { ...productSpecs[item.path], ...item }
       });
     }));
