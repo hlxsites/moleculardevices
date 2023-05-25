@@ -1209,9 +1209,4 @@ main .section[aria-hidden="true"] {
     font-size: 36px;
     padding-top: 30px;
   }
-
-  main .section .default-content-wrapper {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 }
