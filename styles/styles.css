@@ -647,16 +647,15 @@ main .event-container strong {
   font-weight: 700;
 }
 
-/* main .section.tabs[aria-labelledby="order"]:first before. TODO test order tab */
-main .section.tabs[aria-labelledby="order"] {
+main .section[aria-labelledby="order"] {
   padding-bottom: 100px;
 }
 
-main .section.tabs[aria-labelledby="order"] strong {
+main .section[aria-labelledby="order"] strong {
   font-family: var(--ff-proxima-regular);
 }
 
-main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
+main .section[aria-labelledby="order"] .default-content-wrapper img {
   display: block;
   margin: 0 auto;
 }
