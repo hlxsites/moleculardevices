@@ -15,6 +15,10 @@
   font-size: 36px;
 }
 
+.about-us main .vidyard {
+  max-width: unset;
+}
+
 @media only screen and (max-width: 991px) {
   .about-us .section .default-content-wrapper h2 {
     font-size: 45px;
