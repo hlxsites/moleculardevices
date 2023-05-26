@@ -387,7 +387,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero.service-support .hero-inner .button-container a {
     padding: 9px 0 10px;
-    font-size: 16px;
+    font-size: 17px;
+  }
+
+  .hero.service-support .hero-inner .button-container {
+    padding-bottom: 20px;
   }
 
   .video-icon {
