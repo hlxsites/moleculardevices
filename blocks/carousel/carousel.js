@@ -67,7 +67,7 @@ class Carousel {
   updateCounterText(newIndex = this.currentIndex) {
     this.currentIndex = newIndex;
     if (this.counter) {
-      const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+      const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
       const counterTextBlock = this.block.parentElement.querySelector('.carousel-counter .carousel-counter-text p');
       const pageCounter = `${this.currentIndex + 1} / ${items.length}`;
       counterTextBlock.innerHTML = this.counterText ? `${this.counterText} ${pageCounter}` : pageCounter;
@@ -82,7 +82,7 @@ class Carousel {
     !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
 
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
 
     let index = [...items].indexOf(selectedItem);
@@ -136,7 +136,7 @@ class Carousel {
     !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
 
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone)');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
 
     let index = [...items].indexOf(selectedItem);
@@ -391,20 +391,25 @@ class Carousel {
     }
 
     this.block.innerHTML = '';
-    this.data.forEach((item, i) => {
+    this.data.forEach((item) => {
       const itemContainer = document.createElement('div');
       itemContainer.className = 'carousel-item';
-      if (i === this.currentIndex) {
-        itemContainer.classList.add('selected');
-      }
 
       let renderedItem = this.cardRenderer.renderItem(item);
       renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
       renderedItem.forEach((renderedItemElement) => {
+        // There may be items in the carousel that are skipped from scrolling
+        if (renderedItemElement.classList.contains('carousel-skip-item')) {
+          itemContainer.classList.add('skip');
+        }
         itemContainer.appendChild(renderedItemElement);
       });
       this.block.appendChild(itemContainer);
     });
+
+    // set initial selected carousel item
+    const activeItems = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
+    activeItems[this.currentIndex].classList.add('selected');
 
     // create autoscrolling animation
     this.autoScroll && this.infiniteScroll

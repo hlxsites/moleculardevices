@@ -1,13 +1,18 @@
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
-import { buildBrandLogo, fetchHeaderContent } from './helpers.js';
+import { buildBrandLogo, fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
+import {
+  div,
+} from '../../scripts/dom-helpers.js';
 
 function buildTools(content) {
   const toolsList = content.querySelector('div:nth-child(2)');
-  const toolsWrapper = document.createElement('div');
-  toolsWrapper.classList = ('company-links');
+  const toolsWrapper = div(
+    { class: 'company-links' },
+  );
   toolsWrapper.innerHTML = toolsList.innerHTML;
+  decorateLanguagesTool(toolsWrapper);
   return toolsWrapper;
 }
 

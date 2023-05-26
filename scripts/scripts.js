@@ -21,7 +21,15 @@ import { a, div, p } from './dom-helpers.js';
 /**
  * to add/remove a template, just add/remove it in the list below
  */
-const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event', 'newsroom'];
+const TEMPLATE_LIST = [
+  'application-note',
+  'news',
+  'publication',
+  'blog',
+  'event',
+  'about-us',
+  'newsroom',
+];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
@@ -167,9 +175,10 @@ export function videoButton(container, button, url) {
   observer.observe(container);
 }
 
-function decorateEmbedLinks(main) {
+function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
+    // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const up = link.parentElement;
       const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
@@ -178,6 +187,69 @@ function decorateEmbedLinks(main) {
       if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
+    }
+
+    // decorate RFQ page links with pid parameter
+    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
+      url.searchParams.append('pid', getMetadata('family-id'));
+      link.href = url.toString();
+    }
+  });
+}
+
+/**
+ * Lazy loads all the blocks in the tabs, except for the visible/active one
+ * @param {[Element]} sections All sections which belong to the Page Nav
+ * @param {string} nameOfFirstSection Exact name of the first section, in case there is no hash
+ */
+function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
+  const activeHash = window.location.hash;
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
+
+  sections.forEach((section) => {
+    if (section.getAttribute('aria-labelledby') !== active) {
+      /*
+       It marks all the blocks inside the hidden sections as loaded,
+       so Franklin lib will skip them.
+       This means that the decorate functions of these blocks will not be executed
+       and the CSS will not be downloaded
+       */
+      section.querySelectorAll('.block').forEach((block) => {
+        // make the Franklin rendering skip this block
+        block.setAttribute('data-block-status', 'loaded');
+        // mark them as lazy load, so we can identify them later
+        block.setAttribute('data-block-lazy-load', true);
+        // hide them, to avoid CLS during lazy load
+        block.parentElement.style.display = 'none';
+      });
+
+      const loadLazyBlocks = (lazySection) => {
+        lazySection.querySelectorAll('.block[data-block-lazy-load]').forEach(async (block) => {
+          block.removeAttribute('data-block-lazy-load');
+          // Mark them back in the initialised status
+          block.setAttribute('data-block-status', 'initialized');
+          // Manually load each block: Download CSS, JS, execute the decorate
+          await loadBlock(block);
+          // Show the block only when everything is ready to avoid CLS
+          block.parentElement.style.display = '';
+        });
+      };
+
+      // In case the user clicks on the section, quickly render it on the spot,
+      // if it happens before the timeout bleow
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadLazyBlocks(section);
+        }
+      });
+      observer.observe(section);
+
+      // Render the section with a delay
+      setTimeout(() => {
+        observer.disconnect();
+        loadLazyBlocks(section);
+      }, 3500);
     }
   });
 }
@@ -209,6 +281,8 @@ function decoratePageNav(main) {
       }
     });
   }
+
+  lazyLoadHiddenPageNavTabs(sections, namedSections[0].getAttribute('data-name'));
 }
 
 /**
@@ -286,11 +360,11 @@ export async function decorateMain(main) {
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
-  decoratePageNav(main);
   decorateBlocks(main);
+  decoratePageNav(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
-  decorateEmbedLinks(main);
+  decorateLinks(main);
 }
 
 /**

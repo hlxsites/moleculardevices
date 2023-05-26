@@ -2,6 +2,7 @@ import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a,
   div,
+  li,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
@@ -28,6 +29,18 @@ export function addListeners(selector, eventType, callback) {
   elements.forEach((element) => {
     elementsWithEventListener.push(element);
     element.addEventListener(eventType, callback);
+  });
+}
+
+export function addCloseMenuButtonListener(button) {
+  button.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.closest('ul').querySelectorAll(
+      '*[aria-expanded="true"]',
+    ).forEach(
+      (el) => el.setAttribute('aria-expanded', 'false'),
+    );
   });
 }
 
@@ -72,4 +85,33 @@ export function reverseElementLinkTagRelation(element) {
   }
 
   return element;
+}
+
+export function buildRequestQuote(classes) {
+  const familyId = getMetadata('family-id');
+  const link = familyId ? `/quote-request?pid=${familyId}` : '/quote-request';
+  return li(
+    { class: classes },
+    a(
+      { href: link },
+      'Request Quote',
+    ),
+  );
+}
+
+export function decorateLanguagesTool(tools) {
+  const languageTool = tools.querySelector('li:nth-child(2)');
+  const languagesList = languageTool.querySelector('ul');
+  languagesList.classList.add('languages-dropdown');
+
+  languageTool.addEventListener('click', () => {
+    languagesList.classList.toggle('show');
+  });
+
+  const body = document.querySelector('body');
+  body.addEventListener('click', (e) => {
+    if (e.target !== languageTool) {
+      languagesList.classList.remove('show');
+    }
+  });
 }
