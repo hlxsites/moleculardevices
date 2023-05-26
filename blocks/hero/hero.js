@@ -90,7 +90,7 @@ export function buildHero(block) {
               videoContainer.classList.add('video-column');
               const videoIcon = div({ class: 'video-icon' }, img({ src: '/images/play_icon.png' }));
               videoContainer.appendChild(videoIcon);
-              videoButton(videoContainer, videoContainer.querySelector('img'), url);
+              // videoButton(videoContainer, videoContainer.querySelector('img'), url);
               link.remove();
             }
           });
