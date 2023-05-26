@@ -971,10 +971,6 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
   }
 }
 
-main .section.featured-asset .columns > div {
-  align-items: unset;
-}
-
 @media (min-width: 768px) {
   main .section.footer-wave {
     clear: both;
