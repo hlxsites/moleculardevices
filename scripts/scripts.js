@@ -198,17 +198,20 @@ function decorateLinks(main) {
 
 /**
  * Lazy loads all the blocks in the tabs, except for the visible/active one
- * @param {[Element]} sections Sections which belong to the Page Nav
+ * @param {[Element]} sections All sections which belong to the Page Nav
+ * @param {string} nameOfFirstSection Exact name of the first section, in case there is no hash
  */
-function lazyLoadHiddenPageNavTabs(sections) {
+function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
   const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
 
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
       /*
-       1. It marks all the blocks inside the hidden sections as loaded, so Franklin lib will skip them.
-       This means that the decorate functions of these blocks will not be executed and the CSS will not be downloaded
+       1. It marks all the blocks inside the hidden sections as loaded,
+       so Franklin lib will skip them.
+       This means that the decorate functions of these blocks will not be executed
+       and the CSS will not be downloaded
        */
       section.querySelectorAll('.block').forEach((block) => {
         // make the Franklin rendering skip this block
@@ -278,7 +281,7 @@ function decoratePageNav(main) {
     });
   }
 
-  lazyLoadHiddenPageNavTabs(sections);
+  lazyLoadHiddenPageNavTabs(sections, namedSections[0].getAttribute('data-name'));
 }
 
 /**
