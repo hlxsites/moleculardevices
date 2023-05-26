@@ -480,6 +480,12 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   /* Blog Variant - Mobile -- End */
 
+  /* Service & Support Variant - Mobile -- Start */
+  main .hero.service-support .two-column > div:nth-of-type(1) > p {
+    display: none;
+  }
+
+  /* Service & Support Variant - Mobile -- End */
 }
 
 @media (min-width: 768px) {
