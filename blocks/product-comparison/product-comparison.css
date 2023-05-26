@@ -19,17 +19,19 @@
 }
 
 .product-comparison .product-heading {
-  padding: 10px 5px;
+  padding: 10px;
+  color: #008da9;
 }
 
 .product-comparison .product-heading img {
   height: 78px;
+  margin-bottom: 10px;
   object-fit: contain;
 }
 
 .product-comparison .product-heading img:hover {
   z-index: 1;
-  transform: scale(1.07);
+  transform: scale(1.09);
   transition: all .3s;
 }
 
