@@ -254,10 +254,10 @@ function decoratePageNav(main) {
       observer.observe(section);
 
       // Render the section with a delay
-      setTimeout(() => {
-        observer.disconnect();
-        loadLazyBlocks(section);
-      }, 3500);
+      // setTimeout(() => {
+      //   observer.disconnect();
+      //   loadLazyBlocks(section);
+      // }, 3500);
     }
   });
 }
