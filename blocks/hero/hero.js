@@ -85,14 +85,14 @@ export function buildHero(block) {
           if (y === 1 && column.querySelector('img') && block.classList.contains('hero')) container.classList.add('right-image');
           [...column.querySelectorAll('a')].forEach((link) => {
             const url = new URL(link);
-            // if (isVideo(url)) {
-            //   const videoContainer = link.closest('div');
-            //   videoContainer.classList.add('video-column');
-            //   const videoIcon = div({ class: 'video-icon' }, img({ src: '/images/play_icon.png' }));
-            //   videoContainer.appendChild(videoIcon);
-            //   videoButton(videoContainer, videoContainer.querySelector('img'), url);
-            //   link.remove();
-            // }
+            if (isVideo(url)) {
+              const videoContainer = link.closest('div');
+              videoContainer.classList.add('video-column');
+              const videoIcon = div({ class: 'video-icon' }, img({ src: '/images/play_icon.png' }));
+              videoContainer.appendChild(videoIcon);
+              videoButton(videoContainer, videoContainer.querySelector('img'), url);
+              link.remove();
+            }
           });
           container.appendChild(column);
         });

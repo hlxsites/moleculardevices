@@ -378,7 +378,6 @@ export function buildBlock(blockName, content) {
  * @param {Element} block The block element
  */
 export async function loadBlock(block) {
-  return;
   const status = block.getAttribute('data-block-status');
   if (status !== 'loading' && status !== 'loaded') {
     block.setAttribute('data-block-status', 'loading');

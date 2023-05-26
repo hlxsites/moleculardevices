@@ -563,7 +563,7 @@ main .section.columns-2>div {
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'] {
-  /* display: none !important; */
+  display: none !important;
 }
 
 main .section.highlight {
