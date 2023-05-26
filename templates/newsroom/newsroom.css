@@ -43,7 +43,8 @@
   
   .newsroom main .section.left,
   .newsroom main .section.right {
-    float: left;
+    display: inline-block;
+    vertical-align:top;
   }
 
   .newsroom main .section.left {
