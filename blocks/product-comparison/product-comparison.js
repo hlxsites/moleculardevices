@@ -1,38 +1,36 @@
-import { domEl, div, span, a } from '../../scripts/dom-helpers.js';
+import {
+  domEl, div, span, a,
+} from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
-  const specURLs = [...block.querySelectorAll('a')].map((a) => a.href);
+  const specURLs = [...block.querySelectorAll('a')].map((link) => link.href);
   const attributes = [...block.querySelectorAll('.product-comparison > div:last-child > div:last-child > p')]
-    .map(attrP => attrP.textContent.trim().toLowerCase());
-  console.log(attributes)
-  console.log(specURLs)
+    .map((attrP) => attrP.textContent.trim().toLowerCase());
 
   block.innerHTML = '';
   const productSpecs = {};
-  const specDataAll = await Promise.all(specURLs.map(async (url) => {
+  await Promise.all(specURLs.map(async (url) => {
     const response = await fetch(url);
     const specData = await response.json();
-
-    specData[':names'].forEach((group => {
-      
-      specData[group].data.forEach(item => {
+    specData[':names'].forEach(((group) => {
+      specData[group].data.forEach((item) => {
         if (!productSpecs[item.path]) {
           productSpecs[item.path] = {};
         }
-        console.log('item', item)
-        productSpecs[item.path] = { ...productSpecs[item.path], ...item }
+        productSpecs[item.path] = { ...productSpecs[item.path], ...item };
       });
     }));
     return specData;
   }));
-  console.log(productSpecs);
 
   const productPaths = Object.keys(productSpecs);
 
   // make all attribute keys lower case
-  productPaths.forEach(productPath => {
-    productSpecs[productPath] = Object.entries(productSpecs[productPath]).reduce((acc, [key, value]) => {
+  productPaths.forEach((productPath) => {
+    productSpecs[productPath] = Object.entries(
+      productSpecs[productPath],
+    ).reduce((acc, [key, value]) => {
       acc[key.toLowerCase()] = value;
       return acc;
     }, {});
@@ -59,7 +57,7 @@ export default async function decorate(block) {
   attributes.forEach((attribute) => {
     const thisRow = domEl('tr');
     thisRow.append(domEl('td', attribute));
-    productPaths.forEach(productPath => {
+    productPaths.forEach((productPath) => {
       let rowValue = productSpecs[productPath][attribute] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
       rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');

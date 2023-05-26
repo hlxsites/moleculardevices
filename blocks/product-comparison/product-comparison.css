@@ -1,0 +1,110 @@
+.product-comparison .table-container {
+  overflow-x: auto;
+  -ms-overflow-style: none;
+}
+
+.product-comparison .responsive-table {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  text-align: center;
+}
+
+.product-comparison .responsive-table td {
+  padding: 15px;
+  vertical-align: top;
+  white-space: pre-line;
+  font-size: var(--body-font-size-xs);
+  border-bottom: 1px solid #ccc;
+}
+
+.product-comparison .product-heading {
+  padding: 10px 5px;
+}
+
+.product-comparison .product-heading img {
+  height: 78px;
+  object-fit: contain;
+}
+
+.product-comparison .product-heading img:hover {
+  z-index: 1;
+  transform: scale(1.07);
+  transition: all .3s;
+}
+
+.product-comparison .responsive-table th {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-comparison .responsive-table th:first-child {
+  border-top: none;
+}
+
+.product-comparison .responsive-table th:nth-child(odd),
+.product-comparison .responsive-table td:nth-child(odd) {
+  background: #f2f2f2;
+}
+
+.product-comparison .responsive-table th:nth-child(even),
+.product-comparison .responsive-table td:nth-child(even) {
+  background: var(--background-color);
+}
+
+.product-comparison .responsive-table th:first-child,
+.product-comparison .responsive-table td:first-child,
+.product-comparison .responsive-table th:last-child,
+.product-comparison .responsive-table td:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.product-comparison .responsive-table th:first-child,
+.product-comparison .responsive-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  width: 200px;
+}
+
+.product-comparison .responsive-table tbody td:first-child {
+  background-color: #525b61;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-white);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1199px) {
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 20vw;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .product-comparison .responsive-table th,
+  .product-comparison .responsive-table td {
+    width: 30vw;
+  }
+
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 25vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .product-comparison .responsive-table th,
+  .product-comparison .responsive-table td {
+    width: 50vw;
+  }
+
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 40vw;
+  }
+}
