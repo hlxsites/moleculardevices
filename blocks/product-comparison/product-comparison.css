@@ -29,7 +29,7 @@
 
 .product-comparison .product-heading img:hover {
   z-index: 1;
-  transform: scale(1.07);
+  transform: scale(var(--scale-small));
   transition: all .3s;
 }
 
