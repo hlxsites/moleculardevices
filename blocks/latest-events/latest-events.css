@@ -1,21 +1,21 @@
-main .section.newsroom .latest-events {
+main .section .latest-events {
   display: flex;
 }
 
-main .section.newsroom .latest-events > div {
+main .section .latest-events > div {
   width: 50%;
   padding-right: 25px;
 }
 
-main .section.newsroom .latest-events .list .item {
+main .section .latest-events .list .item {
   border-bottom: 2px solid var(--highlight-background-color);
   padding: 10px 0;
 }
 
-main .section.newsroom .latest-events p {
+main .section .latest-events p {
   margin: 0;
 }
 
-main .section.newsroom .latest-events a:any-link {
+main .section .latest-events a:any-link {
   color: var(--text-color);
 }
