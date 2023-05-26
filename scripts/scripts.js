@@ -223,6 +223,43 @@ function decoratePageNav(main) {
       }
     });
   }
+
+  const activeHash = window.location.hash;
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
+
+  sections.forEach((section) => {
+    if (section.getAttribute('aria-labelledby') !== active) {
+      section.querySelectorAll('.block').forEach((block) => {
+        block.setAttribute('data-block-status', 'loaded'); // make the Franklin rednering skip this block
+        block.setAttribute('data-block-lazy-load', true);
+        block.parentElement.style.display = 'none';
+      });
+
+      const loadLazyBlocks = (lazySection) => {
+        lazySection.querySelectorAll('.block[data-block-lazy-load]').forEach(async (block) => {
+          block.removeAttribute('data-block-lazy-load');
+          block.setAttribute('data-block-status', 'initialized');
+          await loadBlock(block);
+          block.parentElement.display = '';
+        });
+      };
+
+      // In case the user clicks on the section, render it on the spot
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadLazyBlocks(section);
+        }
+      });
+      observer.observe(section);
+
+      // Render the section with a delay
+      setTimeout(() => {
+        observer.disconnect();
+        loadLazyBlocks(section);
+      }, 3500);
+    }
+  });
 }
 
 /**
