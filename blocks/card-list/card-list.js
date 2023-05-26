@@ -132,7 +132,7 @@ class FilterableCardList {
     this.data.forEach((item) => {
       const itemCategories = this.getCategories(item);
       if (!itemCategories || itemCategories.length === 0) return;
-      itemCategories.forEach(itemCategory => {
+      itemCategories.forEach((itemCategory) => {
         if (!itemCategory || itemCategory === '0') return;
         const itemCategoryText = itemCategory;
         const itemCategoryKey = itemCategory.replaceAll(' ', '-');
@@ -154,7 +154,7 @@ class FilterableCardList {
 
         // eslint-disable-next-line no-unused-expressions
         !this.headings && initialViewAllCategoryItems.push(renderedItem);
-      })
+      });
     });
 
     // Create view all category (either for headings or there is a custom implementation override)
@@ -208,7 +208,7 @@ function compareByDate(item1, item2) {
 }
 
 function parseMultipleCategories(categoryValue) {
-  return categoryValue.split(',').map(val => val.trim());
+  return categoryValue.split(',').map((val) => val.trim());
 }
 
 const VARIANTS = {
