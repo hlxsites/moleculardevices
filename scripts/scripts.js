@@ -39,7 +39,8 @@ let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
-  if (!document.querySelector(`head > script[src="${url}"]`)) {
+  let script = document.querySelector(`head > script[src="${url}"]`);
+  if (!script) {
     const head = document.querySelector('head');
     const script = document.createElement('script');
     script.src = url;
@@ -51,11 +52,11 @@ export function loadScript(url, callback, type, async) {
     }
     script.onload = callback;
     head.append(script);
-    return script;
   } else if (typeof callback === 'function') {
     callback('noop');
-    return document.querySelector(`head > script[src="${url}"]`);
   }
+
+  return script;
 }
 
 /**
