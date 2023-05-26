@@ -42,7 +42,7 @@ export function loadScript(url, callback, type, async) {
   let script = document.querySelector(`head > script[src="${url}"]`);
   if (!script) {
     const head = document.querySelector('head');
-    const script = document.createElement('script');
+    script = document.createElement('script');
     script.src = url;
     if (async) {
       script.async = true;
