@@ -197,6 +197,60 @@ function decorateLinks(main) {
 }
 
 /**
+ * Lazy loads all the blocks in the tabs, except for the visible/active one
+ * @param {[Element]} sections Sections which belong to the Page Nav
+ */
+function lazyLoadHiddenPageNavTabs(sections) {
+  const activeHash = window.location.hash;
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
+
+  sections.forEach((section) => {
+    if (section.getAttribute('aria-labelledby') !== active) {
+      /*
+       1. It marks all the blocks inside the hidden sections as loaded, so Franklin lib will skip them.
+       This means that the decorate functions of these blocks will not be executed and the CSS will not be downloaded
+       */
+      section.querySelectorAll('.block').forEach((block) => {
+        // make the Franklin rendering skip this block
+        block.setAttribute('data-block-status', 'loaded');
+        // mark them as lazy load, so we can identify them later
+        block.setAttribute('data-block-lazy-load', true);
+        // hide them, to avoid CLS during lazy load
+        block.parentElement.style.display = 'none';
+      });
+
+      const loadLazyBlocks = (lazySection) => {
+        lazySection.querySelectorAll('.block[data-block-lazy-load]').forEach(async (block) => {
+          block.removeAttribute('data-block-lazy-load');
+          // Mark them back in the initialised status
+          block.setAttribute('data-block-status', 'initialized');
+          // Manually load each block: Download CSS, JS, execute the decorate
+          await loadBlock(block);
+          // Show the block only when everything is ready to avoid CLS
+          block.parentElement.style.display = '';
+        });
+      };
+
+      // In case the user clicks on the section, quickly render it on the spot,
+      // if it happens before the timeout bleow
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadLazyBlocks(section);
+        }
+      });
+      observer.observe(section);
+
+      // Render the section with a delay
+      setTimeout(() => {
+        observer.disconnect();
+        loadLazyBlocks(section);
+      }, 3500);
+    }
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * Run named sections for in page navigation.
  * Decroate named sections for in page navigation.
@@ -224,42 +278,7 @@ function decoratePageNav(main) {
     });
   }
 
-  const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
-
-  sections.forEach((section) => {
-    if (section.getAttribute('aria-labelledby') !== active) {
-      section.querySelectorAll('.block').forEach((block) => {
-        block.setAttribute('data-block-status', 'loaded'); // make the Franklin rednering skip this block
-        block.setAttribute('data-block-lazy-load', true);
-        block.parentElement.style.display = 'none';
-      });
-
-      const loadLazyBlocks = (lazySection) => {
-        lazySection.querySelectorAll('.block[data-block-lazy-load]').forEach(async (block) => {
-          block.removeAttribute('data-block-lazy-load');
-          block.setAttribute('data-block-status', 'initialized');
-          await loadBlock(block);
-          block.parentElement.display = '';
-        });
-      };
-
-      // In case the user clicks on the section, render it on the spot
-      const observer = new IntersectionObserver((entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          observer.disconnect();
-          loadLazyBlocks(section);
-        }
-      });
-      observer.observe(section);
-
-      // Render the section with a delay
-      setTimeout(() => {
-        observer.disconnect();
-        loadLazyBlocks(section);
-      }, 3500);
-    }
-  });
+  lazyLoadHiddenPageNavTabs(sections);
 }
 
 /**
