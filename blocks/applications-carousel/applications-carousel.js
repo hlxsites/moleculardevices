@@ -23,6 +23,7 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
+  return;
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
