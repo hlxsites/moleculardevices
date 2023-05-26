@@ -65,8 +65,8 @@ async function loadUserData() {
   });
 }
 
-loadUserData();
+// loadUserData();
 
-if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
-  LoadDriftWidget();
-}
+// if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
+//   LoadDriftWidget();
+// }
