@@ -84,7 +84,7 @@
   margin: 0;
 }
 
-.blog .section.blog-heading > div:first-of-type {
+.blog .section.blog-heading > div.default-content-wrapper:first-of-type {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -175,6 +175,10 @@ main .section.sidebar h4 {
   position: relative;
 }
 
+main.sidebar .section.sidebar .default-content-wrapper {
+  padding-top: 0;
+}
+
 main .section.sidebar h4::after {
   content: "";
   position: absolute;
@@ -212,3 +216,11 @@ main .section.sidebar h4::after {
   }
 }
 
+.blog .card-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
+  object-position: right;
+}
+
+.blog .card-caption h3 {
+  line-height: 1.1;
+  margin-top: 0;
+}

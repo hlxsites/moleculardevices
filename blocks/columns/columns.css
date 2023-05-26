@@ -251,6 +251,11 @@
 }
 /* stylelint-enable no-descending-specificity */
 
+.service-support .columns-wrapper {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
 @media (min-width: 768px) {
   .columns > div {
     display: flex;
@@ -261,6 +266,10 @@
   .columns > div > div {
     flex: 1;
     margin-left: 32px;
+  }
+
+  .columns.columns-3-cols > div {
+    align-items: unset;
   }
 
   .blog .columns > div {
@@ -328,6 +337,13 @@
     width: 33.33%;
   }
 
+  .technology .columns.columns-3-cols  > div:not(:only-child) {
+    flex-basis: 33.33%;
+    width: 100%;
+    flex-wrap: wrap;
+    column-gap: 30px;
+  }
+
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
     flex-basis: 25%;
     width: 25%;
@@ -345,6 +361,7 @@
 
   .columns-3-cols {
     display: flex;
+    flex-direction: row;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{
@@ -394,4 +411,19 @@
 
 .section .columns.collaboration > div h3 strong {
   font-family: inherit;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div h3 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product .section.columns-container .columns.columns-2-cols > div ul li {
+  margin-bottom: 10px;
+  line-height: 20px;
 }

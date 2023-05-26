@@ -1,6 +1,7 @@
 .blog .section div.blog-teaser-wrapper {
   max-width: unset;
   margin-bottom: 100px;
+  padding-top: 0;
 }
 
 .blog .section.blog-heading div.blog-teaser-wrapper {

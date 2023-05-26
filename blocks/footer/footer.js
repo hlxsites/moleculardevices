@@ -53,6 +53,7 @@ function renderMoreLink(text, link) {
 async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
     .sheet('events')
+    .chunks(5)
     .slice(0, 3)
     .all();
   container.innerHTML = '';
@@ -65,6 +66,7 @@ async function renderEvents(container) {
 async function renderNews(container) {
   const news = await ffetch('/query-index.json')
     .sheet('news')
+    .chunks(5)
     .slice(0, 3)
     .all();
   container.innerHTML = '';
@@ -105,8 +107,12 @@ function iframeResizeHandler(formUrl, id, container) {
 }
 
 async function buildNewsletter(container) {
-  loadScript('../../scripts/iframeResizer.min.js');
   const newsletterId = 'enewsletter';
+  if (container.querySelector(`#${newsletterId} iframe`)) {
+    return; // newsletter already present
+  }
+
+  loadScript('../../scripts/iframeResizer.min.js');
   const formId = 'enewsletterSubscribeForm';
   const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
   const form = (
@@ -173,8 +179,31 @@ export default async function decorate(block) {
   });
 
   buildNewsEvents(block.querySelector('.footer-news-events'));
-  buildNewsletter(block.querySelector('.footer-newsletter-form'));
 
   block.append(footer);
   await decorateIcons(block);
+
+  /*
+   Creating the Newsletter has high TBT due to a high number of external scripts it brings.
+   However it is an important business piece, so we make all the effort to give a good
+   experience to user:
+   1. We lazy load it 3 seconds later, but if the user reaches the footer before that
+   2. We quickly load it with an intersection observer
+   In most cases it is expected that the newsletter is already present when the user has
+   scrolled down to it.
+  */
+  const newsletterContainter = block.querySelector('.footer-newsletter-form');
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      buildNewsletter(newsletterContainter);
+    }
+  });
+  observer.observe(newsletterContainter);
+
+  setTimeout(() => {
+    observer.disconnect();
+    buildNewsletter(newsletterContainter);
+  }, 3000);
 }

@@ -1,7 +1,12 @@
 .quote-request-container {
   background-attachment: fixed;
   background-size: cover;
-  padding: 80px 0;
+  padding-top: 80px;
+  position: relative;
+}
+
+.quote-request-container::after {
+  z-index: 9;
   position: relative;
 }
 
@@ -19,6 +24,10 @@
   object-fit: cover;
 }
 
+.quote-request-wrapper {
+  padding-top: 0 !important;
+}
+
 .rfq-product-wrapper {
   background: rgb(0 0 0 / 70%);
   border: 1px solid var(--heading-color);
@@ -34,6 +43,10 @@
 
 .rfq-product-wrapper.request-quote-form {
   padding-bottom: 0;
+}
+
+.quote-request-wrapper .quote-request{
+  padding-bottom: 100px;
 }
 
 .quote-request h3 {
@@ -78,7 +91,7 @@
 }
 
 .rfq-icon-link:hover {
-  background: url("images/hover-bg.png");
+  background: url('images/hover-bg.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -179,6 +192,7 @@
 .contact-quote-request {
   border: none;
   width: 100%;
+  height: 574px;
 }
 
 .progress-wrapper {
@@ -212,7 +226,7 @@
 }
 
 .progress {
-  background-image: url("images/progress-bar_resized.png");
+  background-image: url('images/progress-bar_resized.png');
   background-size: contain;
   border: 0;
   border-radius: 20px !important;
@@ -244,3 +258,4 @@
     padding: 0 20px;
   }
 }
+

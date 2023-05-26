@@ -7,6 +7,7 @@ import {
   button,
   i,
 } from '../../../scripts/dom-helpers.js';
+import { addCloseMenuButtonListener } from '../helpers.js';
 
 export function submitSearchForm(event, searchQueryId) {
   event.preventDefault();
@@ -54,6 +55,8 @@ export default function buildSearch(content) {
     ),
   );
 
+  const closeButton = div({ class: 'menu-nav-submenu-close' });
+
   const search = li(
     { class: 'searchlink header-search fa fa-search', 'aria-expanded': 'false' },
     div(
@@ -72,11 +75,11 @@ export default function buildSearch(content) {
           ),
         ),
       ),
-      div(
-        { class: 'menu-nav-submenu-close' },
-      ),
+      closeButton,
     ),
   );
+
+  addCloseMenuButtonListener(closeButton);
 
   return search;
 }
