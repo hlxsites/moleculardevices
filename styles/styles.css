@@ -1142,6 +1142,15 @@ main .section[aria-hidden="true"] {
   content: "";
 }
 
+/* videos-and-webinars theme */
+.videos-and-webinars .hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
+}
+
+.videos-and-webinars main::after {
+  margin-top: 100px;
+}
+
 /* stylelint-disable no-descending-specificity */
 
 .homepage h1,
