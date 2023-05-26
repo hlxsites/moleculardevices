@@ -230,6 +230,7 @@ function decoratePageNav(main) {
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
       section.querySelectorAll('.block').forEach((block) => {
+        console.log(block);
         block.setAttribute('data-block-status', 'loaded'); // make the Franklin rednering skip this block
         block.setAttribute('data-block-lazy-load', true);
         block.parentElement.style.display = 'none';
@@ -254,10 +255,10 @@ function decoratePageNav(main) {
       observer.observe(section);
 
       // Render the section with a delay
-      // setTimeout(() => {
-      //   observer.disconnect();
-      //   loadLazyBlocks(section);
-      // }, 3500);
+      setTimeout(() => {
+        observer.disconnect();
+        loadLazyBlocks(section);
+      }, 3500);
     }
   });
 }
@@ -337,8 +338,8 @@ export async function decorateMain(main) {
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
-  decoratePageNav(main);
   decorateBlocks(main);
+  decoratePageNav(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
   decorateLinks(main);
