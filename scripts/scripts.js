@@ -208,7 +208,7 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
       /*
-       1. It marks all the blocks inside the hidden sections as loaded,
+       It marks all the blocks inside the hidden sections as loaded,
        so Franklin lib will skip them.
        This means that the decorate functions of these blocks will not be executed
        and the CSS will not be downloaded
