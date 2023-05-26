@@ -1128,7 +1128,9 @@ main .section[aria-hidden="true"] {
 .publication .social-share-container::after,
 .event main::after,
 .events-container::after,
-.quote-request-container::after {
+.quote-request-container::after,
+.videos-and-webinars main::after,
+.citation main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
