@@ -494,7 +494,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
-  // loadHeader(doc.querySelector('header'));
+  loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
