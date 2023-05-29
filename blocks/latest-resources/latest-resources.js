@@ -5,13 +5,13 @@ import { createCard } from '../card/card.js';
 import {
   div, p, strong, a,
 } from '../../scripts/dom-helpers.js';
+import resourceMapping from '../resources/resource-mapping.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
-const relatedResourcesExcludedTypes = ['Interactive Demo'];
 
 function onViewAllClick(e) {
   e.preventDefault();
@@ -23,11 +23,13 @@ function onViewAllClick(e) {
 export default async function decorate(block) {
   const template = getMetadata('template');
   const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+  const includedResourceTypes = Object.keys(resourceMapping);
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
+    .chunks(2000)
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
-        && !relatedResourcesExcludedTypes.includes(resource.type))
+      && includedResourceTypes.includes(resource.type))
     .limit(9)
     .all();
 
@@ -35,6 +37,14 @@ export default async function decorate(block) {
     defaultButtonText: 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
+
+  // citations has default thumbnail image
+  resources.forEach((resource) => {
+    if (resource.type === 'Citation') {
+      resource.thumbnail = '/images/citation-card-thumbnail.webp';
+    }
+  });
+
   await createCarousel(
     block,
     resources,

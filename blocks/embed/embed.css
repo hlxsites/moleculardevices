@@ -31,3 +31,6 @@ main .embed > div {
   }
 }
 
+main .embed.embed-twitter {
+  width: 100%;
+}

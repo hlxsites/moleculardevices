@@ -44,7 +44,7 @@ export default async function decorate(block) {
     .sheet('resources')
     .chunks(2000)
     .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
-        && includedResourceTypes.includes(resource.type))
+      && includedResourceTypes.includes(resource.type))
     .all();
   const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
@@ -74,6 +74,8 @@ export default async function decorate(block) {
   otherResources.forEach((item) => {
     const resourceType = item.type;
     const resourceImage = resourceMapping[item.type]?.image;
+    const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
+      ? item.gatedURL : item.path;
     const resourceBlock = div(
       {
         class: 'resource filtered-item',
@@ -105,7 +107,7 @@ export default async function decorate(block) {
           p(
             { class: 'resource-link' },
             a(
-              { href: item.path },
+              { href: resourceLink },
               `${resourceMapping[resourceType].action} ${resourceType}`,
               i({ class: 'fa fa-chevron-circle-right' }),
             ),
