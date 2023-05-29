@@ -1,4 +1,3 @@
-// import { isVideo, videoButton, loadScript } from '../../scripts/scripts.js';
 // eslint-disable-next-line object-curly-newline
 import { a, span } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
