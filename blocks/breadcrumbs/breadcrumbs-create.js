@@ -52,6 +52,10 @@ const customBreadcrumbs = {
     name: 'Microplate Readers',
     url_path: '/lab-notes/blog#Microplate-Readers',
   },
+  'service-support': {
+    name: 'Service and Support',
+    url_path: '/service-support',
+  },
 };
 
 function getCustomUrl(path, part) {

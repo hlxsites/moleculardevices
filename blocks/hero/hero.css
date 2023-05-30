@@ -283,6 +283,26 @@ main.error .hero-wrapper .hero-inner {
 
 /* Blog Variant - Desktop -- End */
 
+/* Service Support Variant - Desktop -- Start */
+
+main .hero.service-support .two-column > div:nth-of-type(2) > p {
+  margin-bottom: 0;
+}
+
+main .hero.service-support .two-column > div:nth-of-type(2) > p:has(em) {
+  padding-bottom: 30px;
+}
+
+main .hero.service-support .two-column > div:nth-of-type(2) > p > em {
+  font-style: normal;
+}
+
+main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
+  text-decoration: underline;
+}
+
+/* Service Support Variant - Desktop -- End */
+
 @media (max-width: 767px) {
   /* duplicated from breadcrumbs.css for performance reasons */
   .breadcrumbs {
@@ -363,6 +383,15 @@ main.error .hero-wrapper .hero-inner {
 
   .hero-inner .button-container a {
     padding: 9px 12px 10px;
+  }
+
+  .hero.service-support .hero-inner .button-container a {
+    padding: 9px 0 10px;
+    font-size: 17px;
+  }
+
+  .hero.service-support .hero-inner .button-container {
+    padding-bottom: 20px;
   }
 
   .video-icon {
@@ -455,6 +484,12 @@ main.error .hero-wrapper .hero-inner {
 
   /* Blog Variant - Mobile -- End */
 
+  /* Service & Support Variant - Mobile -- Start */
+  main .hero.service-support .two-column > div:nth-of-type(1) > p {
+    display: none;
+  }
+
+  /* Service & Support Variant - Mobile -- End */
 }
 
 @media (min-width: 768px) {
