@@ -2,7 +2,9 @@
 .landing-page header .mainmenu-wrapper,
 .landing-page header .navbar-header > .company-links,
 .landing-page main .breadcrumbs,
-.landing-page footer .footer-wrap {
+.landing-page footer .footer-wrap,
+.no-header header,
+.no-header .hero-container {
   display: none;
 }
 
@@ -52,6 +54,7 @@
 
 .landing-page main div:nth-last-of-type(2).download-form {
   margin-top: 0;
+  background-size: cover;
 }
 
 .landing-page .download-form {
@@ -205,3 +208,10 @@
     height: 139px;
   }
 }
+
+main .section.full-width > div,
+main .section.full-width > div img {
+  width: 100%;
+  padding: 0;
+}
+
