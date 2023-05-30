@@ -350,3 +350,12 @@ main .section div.card-list-wrapper.culture-media-and-reagents {
   min-width: unset;
   letter-spacing: .5px
 }
+
+/* CUSTOMER BREAKTHROUGHS */
+.card-list.customer-breakthroughs {
+  justify-content: center;
+}
+
+.card-list.customer-breakthroughs .card-description {
+  display: none;
+}

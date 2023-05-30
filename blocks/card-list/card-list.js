@@ -51,12 +51,12 @@ class FilterableCardList {
   }
 
   /**
-   * Mandatory: Gives the category of an item that will be used for indexing as a filter
+   * Mandatory: Gives the categories of an item that will be used for indexing as a filter
    * @param {Object} item
-   * @returns {string} - Filterable category of the item
+   * @returns {string} - List of Filterable categories of the item
    */
-  getCategory(item) {
-    return '';
+  getCategories(item) {
+    return [];
   }
   /* eslint-enable class-methods-use-this, no-unused-vars */
 
@@ -130,28 +130,31 @@ class FilterableCardList {
     this.dataIndex.set(viewAllCategory, initialViewAllCategoryItems);
 
     this.data.forEach((item) => {
-      const itemCategory = this.getCategory(item);
-      if (!itemCategory || itemCategory === '0') return;
-      const itemCategoryText = itemCategory;
-      const itemCategoryKey = itemCategory.replaceAll(' ', '-');
+      const itemCategories = this.getCategories(item);
+      if (!itemCategories || itemCategories.length === 0) return;
+      itemCategories.forEach((itemCategory) => {
+        if (!itemCategory || itemCategory === '0') return;
+        const itemCategoryText = itemCategory;
+        const itemCategoryKey = itemCategory.replaceAll(' ', '-');
 
-      if (!this.dataIndex.has(itemCategoryKey)) {
-        if (this.headings) {
-          const heading = div({ class: 'card-list-heading carousel-skip-item' },
-            h2(itemCategoryText),
-          );
+        if (!this.dataIndex.has(itemCategoryKey)) {
+          if (this.headings) {
+            const heading = div({ class: 'card-list-heading carousel-skip-item' },
+              h2(itemCategoryText),
+            );
 
-          this.dataIndex.set(itemCategoryKey, [heading]);
-        } else {
-          this.dataIndex.set(itemCategoryKey, []);
+            this.dataIndex.set(itemCategoryKey, [heading]);
+          } else {
+            this.dataIndex.set(itemCategoryKey, []);
+          }
         }
-      }
 
-      const renderedItem = this.cardRenderer.renderItem(item);
-      this.dataIndex.get(itemCategoryKey).push(renderedItem);
+        const renderedItem = this.cardRenderer.renderItem(item);
+        this.dataIndex.get(itemCategoryKey).push(renderedItem);
 
-      // eslint-disable-next-line no-unused-expressions
-      !this.headings && initialViewAllCategoryItems.push(renderedItem);
+        // eslint-disable-next-line no-unused-expressions
+        !this.headings && initialViewAllCategoryItems.push(renderedItem);
+      });
     });
 
     // Create view all category (either for headings or there is a custom implementation override)
@@ -204,6 +207,10 @@ function compareByDate(item1, item2) {
   return (+date1) - (+date2);
 }
 
+function parseMultipleCategories(categoryValue) {
+  return categoryValue.split(',').map((val) => val.trim());
+}
+
 const VARIANTS = {
   APPLICATIONS: {
     headings: true,
@@ -220,10 +227,10 @@ const VARIANTS = {
       return applications;
     },
 
-    getCategory(item) {
+    getCategories(item) {
       return item.applicationCategory && item.applicationCategory !== '0'
-        ? item.applicationCategory
-        : item.category;
+        ? [item.applicationCategory]
+        : [item.category];
     },
   },
 
@@ -236,15 +243,17 @@ const VARIANTS = {
         .all();
     },
 
-    getCategory(item) {
+    getCategories(item) {
       const category = item.path
         .split('/')[2];
 
       if (!category || category === 'blog') return null;
 
-      return category.split('-')
+      const filterableCategory = category.split('-')
         .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
         .join('-');
+
+      return [filterableCategory];
     },
   },
 
@@ -262,8 +271,8 @@ const VARIANTS = {
       return technologies;
     },
 
-    getCategory(item) {
-      return item.technologyType;
+    getCategories(item) {
+      return [item.technologyType];
     },
   },
 
@@ -287,12 +296,12 @@ const VARIANTS = {
       return products;
     },
 
-    getCategory(item) {
+    getCategories(item) {
       /*
        * Just for the purpose of `/products` landing page service and support items are included
        * with the Category: Lab Automation
        */
-      return item.path.startsWith('/service-support') ? 'Lab Automation' : item.category;
+      return item.path.startsWith('/service-support') ? ['Lab Automation'] : [item.category];
     },
   },
 
@@ -316,8 +325,8 @@ const VARIANTS = {
       return products;
     },
 
-    getCategory(item) {
-      return item.category;
+    getCategories(item) {
+      return parseMultipleCategories(item.category);
     },
   },
 
@@ -349,8 +358,8 @@ const VARIANTS = {
       return products;
     },
 
-    getCategory(item) {
-      return item.subCategory;
+    getCategories(item) {
+      return [item.subCategory];
     },
   },
 
@@ -371,8 +380,8 @@ const VARIANTS = {
       return products;
     },
 
-    getCategory(item) {
-      return item.category;
+    getCategories(item) {
+      return parseMultipleCategories(item.category);
     },
   },
 
@@ -394,8 +403,22 @@ const VARIANTS = {
       return products;
     },
 
-    getCategory(item) {
-      return item.subCategory;
+    getCategories(item) {
+      return [item.subCategory];
+    },
+  },
+
+  'CUSTOMER-BREAKTHROUGHS': {
+    clusterCategories: true,
+
+    async getData() {
+      return ffetch('/query-index.json')
+        .sheet('customer-breakthroughs')
+        .all();
+    },
+
+    getCategories(item) {
+      return parseMultipleCategories(item.category);
     },
   },
 };
