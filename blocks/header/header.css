@@ -252,7 +252,7 @@ header .large-card-submenu h3 {
   padding: 0;
   padding-bottom: 10px;
   font-size: 18px;
-  font-family: "Proxima Nova Regular", sans-serif;
+  font-family: var(--ff-proxima-regular);
   margin-top: 0;
   font-weight: 300;
   margin-bottom: 10px;
@@ -298,7 +298,7 @@ header .mobile-menu .company-links li {
 header .mobile-menu li h1,
 header .mobile-menu li h2 {
   font-size: 18px;
-  font-family: 'Proxima Nova Light', sans-serif;
+  font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
   margin-bottom: 0;
@@ -341,7 +341,7 @@ header .nav-tabs .menu-nav-submenu-section h2 {
   color: var(--background-color);
   font-size: 18px;
   padding: 12px 20px 6px;
-  font-family:'Proxima Nova Light', sans-serif;
+  font-family: var(--ff-proxima-light);
   margin: 0 2px 0 0;
 }
 
@@ -527,7 +527,7 @@ header .mobile-menu .form-control {
   padding: 0;
   color: #34393d;
   background: none;
-  font-family: 'Proxima Nova Regular', sans-serif;
+  font-family: var(--ff-proxima-regular);
   width: 100%;
 }
 
@@ -566,7 +566,7 @@ header .menu-nav-submenu h1 > a {
 
 header .cards-submenu ul li a {
   color: var(--text-white);
-  font-family: 'Proxima Nova Regular', sans-serif;
+  font-family: var(--ff-proxima-regular);
   font-weight: 300;
   line-height: 15px;
   padding: 1px 5px;
@@ -581,7 +581,7 @@ header .mobile-menu-item {
   position: relative;
   font-size: 18px;
   color: #34393d;
-  font-family: 'Proxima Nova Light', sans-serif;
+  font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
 }
@@ -662,7 +662,7 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 0;
-  font-family: 'Proxima Nova Light', sans-serif;
+  font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
   text-decoration: none;
@@ -676,7 +676,7 @@ header .mobile-menu .request-quote a {
   padding: 18px 50px 18px 15px;
   text-shadow: none;
   color: #fff;
-  font-family: 'Proxima Nova Regular', sans-serif;
+  font-family: var(--ff-proxima-regular);
   text-align: center;
   display: block;
   text-transform: inherit;
@@ -833,7 +833,7 @@ header .nav-tabs .menu-nav-submenu > div {
 
 header .nav-tabs .menu-nav-submenu h1 {
   font-size: 36px;
-  font-family: 'Proxima Nova Light', sans-serif;
+  font-family: var(--ff-proxima-light);
   color: var(--header-mega-menu-font-color);
   border-bottom: 0;
   padding: 9px 20px 6px;
@@ -1085,7 +1085,7 @@ header .actionable-card-submenu h3 {
   margin: 0 0 24px;
   padding-bottom: 20px;
   color: var(--text-white);
-  font-family: "Proxima Nova Regular", sans-serif;
+  font-family: var(--ff-proxima-regular);
   border-bottom: 1px solid rgba(255 255 255 / 25%);
 }
 
@@ -1100,7 +1100,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) p {
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(1) {
   line-height: 1.3;
   font-size: 16px;
-  font-family: "Proxima Nova Light", sans-serif;
+  font-family: var(--ff-proxima-light);
   margin-top: 0;
   margin-bottom: 10px;
 }
@@ -1108,7 +1108,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-ch
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+2) {
   line-height: 1.3;
   font-size: 16px;
-  font-family: "Proxima Nova Light", sans-serif;
+  font-family: var(--ff-proxima-light);
 }
 
 header .nav-tabs .menu-nav-category a:hover {
@@ -1117,7 +1117,7 @@ header .nav-tabs .menu-nav-category a:hover {
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
-  font-family: "Proxima Nova Regular", sans-serif;
+  font-family: var(--ff-proxima-regular);
   transition: all .2s;
   background: var(--button-bg-color);
   border: 0;
@@ -1158,7 +1158,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
 }
 
 header .actionable-card-submenu.text-only.proxima-nova-lt > div:nth-child(2) > div:nth-child(1) > p {
-  font-family: "Proxima Nova Light", sans-serif;
+  font-family: var(--ff-proxima-light);
   font-weight: 100;
   font-size: 16px;
 }
@@ -1410,7 +1410,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .menu-nav-search-bar h3 {
     text-align: left;
     font-size: 20px;
-    font-family: 'Proxima Nova Light', sans-serif;
+    font-family: var(--ff-proxima-light);
     color: white;
     margin-bottom: 11px;
   }
@@ -1424,7 +1424,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     background-color: var(--text-white);
     width: 100%;
     height: 35px;
-    font-family: 'Proxima Nova Light', sans-serif;
+    font-family: var(--ff-proxima-light);
     font-size: 16px;
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -1435,7 +1435,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .header-search form button {
     color: var(--text-white);
     font-size: 13px;
-    font-family: 'Proxima Nova Light', sans-serif;
+    font-family: var(--ff-proxima-light);
     min-width: 152px;
     padding: 5px 0;
     border: 2px solid;
