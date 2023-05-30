@@ -19,3 +19,13 @@
 .social-media-buttons .button-container img {
   display: block;
 }
+
+.newsroom .social-media-buttons {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.newsroom .social-media-buttons a:any-link {
+  color: var(--text-color);
+}

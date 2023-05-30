@@ -12,6 +12,7 @@ import {
   reverseElementLinkTagRelation,
   buildBrandLogo,
   buildRequestQuote,
+  addCloseMenuButtonListener,
 } from './helpers.js';
 
 export function showRightSubmenu(element) {
@@ -85,15 +86,7 @@ function buildMegaMenu(block, content) {
       });
     });
 
-    closeButton.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      e.currentTarget.closest('ul').querySelectorAll(
-        '*[aria-expanded="true"]',
-      ).forEach(
-        (el) => el.setAttribute('aria-expanded', 'false'),
-      );
-    });
+    addCloseMenuButtonListener(closeButton);
 
     item.append(closeButton);
     item.append(submenu);

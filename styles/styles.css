@@ -971,6 +971,12 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
   }
 }
 
+@media (min-width: 768px) {
+  main .section.footer-wave {
+    clear: both;
+  }
+}
+
 /* Service Support Variant */
 main div.section.wave.bg-support-service {
   background-position: 100% 30%;
@@ -1128,7 +1134,10 @@ main .section[aria-hidden="true"] {
 .publication .social-share-container::after,
 .event main::after,
 .events-container::after,
-.quote-request-container::after {
+.footer-wave::after,
+.quote-request-container::after,
+.videos-and-webinars main::after,
+.citation main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
@@ -1138,6 +1147,15 @@ main .section[aria-hidden="true"] {
   display: block;
   width: 100%;
   content: "";
+}
+
+/* videos-and-webinars theme */
+.videos-and-webinars .hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
+}
+
+.videos-and-webinars main::after {
+  margin-top: 100px;
 }
 
 /* stylelint-disable no-descending-specificity */
