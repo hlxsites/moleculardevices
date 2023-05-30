@@ -28,6 +28,7 @@ const TEMPLATE_LIST = [
   'blog',
   'event',
   'about-us',
+  'newsroom',
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
@@ -39,17 +40,23 @@ let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
-  const head = document.querySelector('head');
-  const script = document.createElement('script');
-  script.src = url;
-  if (async) {
-    script.async = true;
+  let script = document.querySelector(`head > script[src="${url}"]`);
+  if (!script) {
+    const head = document.querySelector('head');
+    script = document.createElement('script');
+    script.src = url;
+    if (async) {
+      script.async = true;
+    }
+    if (type) {
+      script.setAttribute('type', type);
+    }
+    script.onload = callback;
+    head.append(script);
+  } else if (typeof callback === 'function') {
+    callback('noop');
   }
-  if (type) {
-    script.setAttribute('type', type);
-  }
-  script.onload = callback;
-  head.append(script);
+
   return script;
 }
 
@@ -157,21 +164,17 @@ export function embedVideo(link, url, type) {
 
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      loadScript('https://play.vidyard.com/embed/v4.js');
-      const overlay = div({ id: 'overlay' }, div({
-        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
-      }));
-      container.prepend(overlay);
-      button.addEventListener('click', () => {
-        // eslint-disable-next-line no-undef
-        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
-      });
-    }
+  const overlay = div({ id: 'overlay' }, div({
+    class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
+  }));
+
+  container.prepend(overlay);
+  button.addEventListener('click', () => {
+    loadScript('https://play.vidyard.com/embed/v4.js', () => {
+      // eslint-disable-next-line no-undef
+      VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
+    });
   });
-  observer.observe(container);
 }
 
 function decorateLinks(main) {
