@@ -21,7 +21,15 @@ import { a, div, p } from './dom-helpers.js';
 /**
  * to add/remove a template, just add/remove it in the list below
  */
-const TEMPLATE_LIST = ['application-note', 'news', 'publication', 'blog', 'event'];
+const TEMPLATE_LIST = [
+  'application-note',
+  'news',
+  'publication',
+  'blog',
+  'event',
+  'about-us',
+  'newsroom',
+];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
@@ -32,17 +40,23 @@ let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
 export function loadScript(url, callback, type, async) {
-  const head = document.querySelector('head');
-  const script = document.createElement('script');
-  script.src = url;
-  if (async) {
-    script.async = true;
+  let script = document.querySelector(`head > script[src="${url}"]`);
+  if (!script) {
+    const head = document.querySelector('head');
+    script = document.createElement('script');
+    script.src = url;
+    if (async) {
+      script.async = true;
+    }
+    if (type) {
+      script.setAttribute('type', type);
+    }
+    script.onload = callback;
+    head.append(script);
+  } else if (typeof callback === 'function') {
+    callback('noop');
   }
-  if (type) {
-    script.setAttribute('type', type);
-  }
-  script.onload = callback;
-  head.append(script);
+
   return script;
 }
 
@@ -150,21 +164,17 @@ export function embedVideo(link, url, type) {
 
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      loadScript('https://play.vidyard.com/embed/v4.js');
-      const overlay = div({ id: 'overlay' }, div({
-        class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
-      }));
-      container.prepend(overlay);
-      button.addEventListener('click', () => {
-        // eslint-disable-next-line no-undef
-        VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
-      });
-    }
+  const overlay = div({ id: 'overlay' }, div({
+    class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
+  }));
+
+  container.prepend(overlay);
+  button.addEventListener('click', () => {
+    loadScript('https://play.vidyard.com/embed/v4.js', () => {
+      // eslint-disable-next-line no-undef
+      VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
+    });
   });
-  observer.observe(container);
 }
 
 function decorateLinks(main) {
@@ -185,6 +195,63 @@ function decorateLinks(main) {
     if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
+    }
+  });
+}
+
+/**
+ * Lazy loads all the blocks in the tabs, except for the visible/active one
+ * @param {[Element]} sections All sections which belong to the Page Nav
+ * @param {string} nameOfFirstSection Exact name of the first section, in case there is no hash
+ */
+function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
+  const activeHash = window.location.hash;
+  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
+
+  sections.forEach((section) => {
+    if (section.getAttribute('aria-labelledby') !== active) {
+      /*
+       It marks all the blocks inside the hidden sections as loaded,
+       so Franklin lib will skip them.
+       This means that the decorate functions of these blocks will not be executed
+       and the CSS will not be downloaded
+       */
+      section.querySelectorAll('.block').forEach((block) => {
+        // make the Franklin rendering skip this block
+        block.setAttribute('data-block-status', 'loaded');
+        // mark them as lazy load, so we can identify them later
+        block.setAttribute('data-block-lazy-load', true);
+        // hide them, to avoid CLS during lazy load
+        block.parentElement.style.display = 'none';
+      });
+
+      const loadLazyBlocks = (lazySection) => {
+        lazySection.querySelectorAll('.block[data-block-lazy-load]').forEach(async (block) => {
+          block.removeAttribute('data-block-lazy-load');
+          // Mark them back in the initialised status
+          block.setAttribute('data-block-status', 'initialized');
+          // Manually load each block: Download CSS, JS, execute the decorate
+          await loadBlock(block);
+          // Show the block only when everything is ready to avoid CLS
+          block.parentElement.style.display = '';
+        });
+      };
+
+      // In case the user clicks on the section, quickly render it on the spot,
+      // if it happens before the timeout bleow
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          loadLazyBlocks(section);
+        }
+      });
+      observer.observe(section);
+
+      // Render the section with a delay
+      setTimeout(() => {
+        observer.disconnect();
+        loadLazyBlocks(section);
+      }, 3500);
     }
   });
 }
@@ -216,6 +283,8 @@ function decoratePageNav(main) {
       }
     });
   }
+
+  lazyLoadHiddenPageNavTabs(sections, namedSections[0].getAttribute('data-name'));
 }
 
 /**
@@ -293,8 +362,8 @@ export async function decorateMain(main) {
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
-  decoratePageNav(main);
   decorateBlocks(main);
+  decoratePageNav(main);
   detectSidebar(main);
   decorateLinkedPictures(main);
   decorateLinks(main);

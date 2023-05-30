@@ -1,8 +1,3 @@
-.related-apps-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .related-links-container {
   column-count: 2;
 }
@@ -11,10 +6,17 @@
   column-count: 3;
 }
 
+.related-apps-container {
+  --related-app-gap: 30px;
+  
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--related-app-gap);
+}
+
 .related-app {
-  flex-basis: 50%;
+  flex-basis: calc(50% - var(--related-app-gap) / 2);
   min-height: 1px;
-  padding: 15px;
 }
 
 .related-link  {
@@ -26,13 +28,13 @@ li.related-link::marker {
   color: #337ab7;;
 }
 
-
 .related-app h1 {
   font-size: 36px;
   margin-top: 0;
 }
 
-.related-app h2, .related-app h3 {
+.related-app h2,
+.related-app h3 {
   font-size: 36px;
   margin-top: 0;
 }
@@ -56,7 +58,6 @@ li.related-link::marker {
   .related-app {
     flex-basis: 100%;
     min-height: 1px;
-    padding: 15px 0;
   }
 
   .related-app h3 {

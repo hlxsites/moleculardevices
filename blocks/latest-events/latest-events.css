@@ -1,0 +1,21 @@
+main .section .latest-events {
+  display: flex;
+}
+
+main .section .latest-events > div {
+  width: 50%;
+  padding-right: 25px;
+}
+
+main .section .latest-events .list .item {
+  border-bottom: 2px solid var(--highlight-background-color);
+  padding: 10px 0;
+}
+
+main .section .latest-events p {
+  margin: 0;
+}
+
+main .section .latest-events a:any-link {
+  color: var(--text-color);
+}

@@ -1,0 +1,37 @@
+.about-us .section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.about-us .section[data-name] {
+  padding-bottom: 0;
+}
+
+.about-us .section .default-content-wrapper h2 {
+  text-align: center;
+}
+
+.about-us .section .default-content-wrapper h3 {
+  font-size: 36px;
+}
+
+.about-us main .section[data-name="about-us"] .vidyard {
+  max-width: unset;
+}
+
+@media only screen and (max-width: 991px) {
+  .about-us .section .default-content-wrapper h2 {
+    font-size: 45px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .about-us .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .about-us .section .default-content-wrapper h2 {
+    font-size: 37px;
+  }
+}
