@@ -1,6 +1,6 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
-import { div, img } from '../../scripts/dom-helpers.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -82,7 +82,14 @@ export function buildHero(block) {
       if (row.childElementCount > 1) {
         container.classList.add('two-column');
         [...row.children].forEach((column, y) => {
-          if (y === 1 && column.querySelector('img') && block.classList.contains('hero')) container.classList.add('right-image');
+          const img = column.querySelector('img');
+          if (y === 1 && img && block.classList.contains('hero')) {
+            container.classList.add('right-image');
+            img.addEventListener('click', () => {
+              const downloadForm = document.querySelector('.download-form');
+              if (downloadForm) downloadForm.scrollIntoView(true);
+            });
+          }
           [...column.querySelectorAll('a')].forEach((link) => {
             const url = new URL(link);
             if (isVideo(url)) {

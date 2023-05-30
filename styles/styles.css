@@ -114,6 +114,21 @@
   /* nav height */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
+
+  /* section > div width */
+  --section-div-width: 1170px;
+}
+
+@media(max-width: 1200px) {
+  :root {
+    --section-div-width: 970px;
+  }
+}
+
+@media(max-width: 991px) {
+  :root {
+    --section-div-width: 750px;
+  }
 }
 
 * {

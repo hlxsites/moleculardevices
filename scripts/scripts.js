@@ -29,6 +29,7 @@ const TEMPLATE_LIST = [
   'event',
   'about-us',
   'newsroom',
+  'landing-page',
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
