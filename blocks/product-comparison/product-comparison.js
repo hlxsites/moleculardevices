@@ -1,5 +1,5 @@
 import {
-  domEl, div, span, a,
+  domEl, div, span, a, p,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
@@ -46,7 +46,7 @@ export default async function decorate(block) {
       div({ class: 'product-heading' },
         a({ href: productPath },
           createOptimizedPicture(productSpec.thumbnail),
-          productSpec.title,
+          p(productSpec.title),
         ),
       ),
     ));
