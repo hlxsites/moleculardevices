@@ -1,4 +1,9 @@
 <style type="text/css">
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto
+}
 
 #conference-timeline {
     position: relative;
@@ -8,7 +13,7 @@
 
 #conference-timeline .timeline-start,#conference-timeline .timeline-end {
     display: table;
-    font-family: 'Proxima Nova Lt';
+    font-family: var(--ff-proxima-regular);
     font-size: 48px;
     text-transform: capitalize;
     background: #0066a4;
@@ -61,7 +66,7 @@
 
 .ask-me-part.image_part.bubbles-part {
     position: static;
-    background-image: url(/themes/moldev/images/workflow/ask-me-bubble.png);
+    background-image: url(/fragments/workflow/ask-me-bubble.png);
     background-repeat: no-repeat;
     background-size: 91% 100%;
     background-position: center;
@@ -72,7 +77,7 @@
 
 .image_part.bubbles-part {
     position: static;
-    background-image: url(/themes/moldev/images/workflow/chat-bbls.png);
+    background-image: url(/fragments/workflow/chat-bbls.png);
     background-repeat: no-repeat;
     background-size: 91% 100%;
     background-position: center;
@@ -83,7 +88,7 @@
 
 .meta-date.left-arrow:after {
     content: "";
-    background-image: url(/themes/moldev/images/workflow/bullet-arrow.png);
+    background-image: url(/fragments/workflow/bullet-arrow.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 142px;
@@ -99,7 +104,7 @@
 
 .meta-date.right-arrow:after {
     content: "";
-    background-image: url(/themes/moldev/images/workflow/bullet-arrow.png);
+    background-image: url(/fragments/workflow/bullet-arrow.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 142px;
@@ -192,7 +197,7 @@
 
 .workflow_elisa .image-section h3 {
     color: #0066a4;
-    font-family: 'Proxima Nova Lt';
+    font-family: var(--ff-proxima-light);
     font-weight: 600;
     margin-bottom: 25px;
     font-size: 30px;
@@ -278,7 +283,7 @@
 .timeline-article .meta-date .date {
     font-size: 36px;
     line-height: 88px;
-    font-family: 'Proxima Nova Rg';
+    font-family: var(--ff-proxima-regular);
     font-weight: 600
 }
 
@@ -906,7 +911,7 @@
               </p>
               <div class="with-icon-part">
                 <img
-                  class="img-responsive"
+                  class="img-responsive img-icon"
                   src="/fragments/applications/3d-cell-models/presentation-gn.png"
                   alt="Presentation"
                   width="61"
@@ -949,7 +954,7 @@
               </p>
               <div class="with-icon-part">
                 <img
-                  class="img-responsive"
+                  class="img-responsive img-icon"
                   src="/fragments/applications/3d-cell-models/presentation-gn.png"
                   alt="Presentation"
                   width="61"
