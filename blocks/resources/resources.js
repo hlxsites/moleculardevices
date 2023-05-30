@@ -2,7 +2,7 @@ import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
@@ -15,12 +15,18 @@ const relatedResourcesHeaders = {
 function handleFilterClick(e) {
   e.preventDefault();
   const { target } = e;
-  const selected = target.getAttribute('aria-selected') === 'true';
+  const targetFilter = target.closest('li.filter');
+
+  // toggle filters dropdown on mobile
+  const targetFilters = target.closest('.filters');
+  targetFilters.classList.toggle('dropdown');
+
+  const selected = targetFilter.getAttribute('aria-selected') === 'true';
   if (!selected) {
-    const resourceType = target.getAttribute('aria-labelledby');
-    const allFilters = document.querySelectorAll('.filter a');
+    const resourceType = targetFilter.getAttribute('aria-labelledby');
+    const allFilters = document.querySelectorAll('.filter');
     allFilters.forEach((item) => item.setAttribute('aria-selected', false));
-    target.setAttribute('aria-selected', true);
+    targetFilter.setAttribute('aria-selected', true);
     if (resourceType === 'View All') {
       const filteredResources = document.querySelectorAll('.filtered-item');
       filteredResources.forEach((item) => item.setAttribute('aria-hidden', false));
@@ -57,16 +63,24 @@ export default async function decorate(block) {
   sortedFilters.unshift('View All');
 
   sortedFilters.forEach((filter, idx) => {
-    filtersBlock.append(li({ class: 'filter' },
-      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
-      a({
+    filtersBlock.append(
+      li({
+        class: 'filter',
         'aria-labelledby': filter,
-        href: '#',
         'aria-selected': idx === 0,
         onclick: handleFilterClick,
+      },
+      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
+      a({
+        href: '#',
       }, filter),
-    ));
+      span({ class: 'icon icon-chevron-right-outline' }),
+      ),
+    );
   });
+  if (window.matchMedia('only screen and (max-width: 767px)').matches) {
+    decorateIcons(filtersBlock);
+  }
 
   block.append(filtersBlock);
 
