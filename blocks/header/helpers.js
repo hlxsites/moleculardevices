@@ -52,9 +52,15 @@ export function removeAllEventListeners() {
 }
 
 export function buildBrandLogo(content) {
-  const logoWrapper = div({ id: 'header-logo' });
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
-  logoWrapper.innerHTML = logoImg.outerHTML;
+
+  const logoLink = a({ href: '/' });
+  logoLink.innerHTML = logoImg.outerHTML;
+
+  const logoWrapper = div(
+    { id: 'header-logo' },
+    logoLink,
+  );
   return logoWrapper;
 }
 
