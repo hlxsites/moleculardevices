@@ -19,15 +19,6 @@ import {
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 
-function addHamburgerListener(hamburger) {
-  hamburger.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const body = document.querySelector('body');
-    body.classList.toggle('openmenu');
-  });
-}
-
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
 }
@@ -40,7 +31,7 @@ function closeSubMenu(menuItem) {
 
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
-export async function buildMobileMenuItem(menuItem, menuId) {
+async function buildMobileMenuItem(menuItem, menuId) {
   const menuName = menuItem.querySelector('h1 a').textContent;
   const menuParentLink = menuItem.querySelector('h1 a').href;
 
@@ -100,6 +91,27 @@ export async function buildMobileMenuItem(menuItem, menuId) {
         closeSubMenu(menuItem);
       });
     }
+  });
+}
+
+function addHamburgerListener(hamburger) {
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const body = document.querySelector('body');
+    body.classList.toggle('openmenu');
+
+    const submenuIds = getSubmenuIds();
+
+    // check if all submenus exist otherwise create
+    submenuIds.forEach((submenuId) => {
+      if (submenuId === 'contact-us') return;
+
+      if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${submenuId}"]`)) {
+        const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${submenuId}"]`);
+        buildMobileMenuItem(submenuListItem, submenuId);
+      }
+    });
   });
 }
 
@@ -163,19 +175,6 @@ export function buildMobileMenu(content) {
       if (e.target === e.currentTarget) {
         e.preventDefault();
         e.stopPropagation();
-
-        const submenuIds = getSubmenuIds();
-
-        // check if all submenus exist otherwise create
-        submenuIds.forEach((submenuId) => {
-          if (submenuId === 'contact-us') return;
-
-          if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${submenuId}"]`)) {
-            const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${submenuId}"]`);
-            buildMobileMenuItem(submenuListItem, submenuId);
-          }
-        });
-
         openSubMenu(listItem);
       }
     });
