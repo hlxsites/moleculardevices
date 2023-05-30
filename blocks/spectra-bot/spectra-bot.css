@@ -1,13 +1,19 @@
+main .section > div.spectra-bot-wrapper {
+    min-height: 600px;
+    padding: 0;
+}
+
 .spectra-bot.block {
     background-image: url('/images/spectra-chat-mobile.png');
     background-position: 30% 61%;
     background-repeat: no-repeat;
+    background-size: 345px auto;
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
     min-height: 600px;
     position: relative;
     width: 100%;
     float: left;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 .spectra-bot.block > div {
