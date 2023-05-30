@@ -1,12 +1,13 @@
 import {
   reverseElementLinkTagRelation,
   getSubmenus,
+  getSubmenuIds,
   getSubmenuIdFromTitle,
   buildRequestQuote,
   decorateLanguagesTool,
 } from '../helpers.js';
-import { getMetadata } from '../../../scripts/lib-franklin.js';
 import {
+  div,
   h1,
   h2,
   ul,
@@ -17,15 +18,6 @@ import {
   button,
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
-
-function addHamburgerListener(hamburger) {
-  hamburger.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const body = document.querySelector('body');
-    body.classList.toggle('openmenu');
-  });
-}
 
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
@@ -39,16 +31,20 @@ function closeSubMenu(menuItem) {
 
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
-export async function buildMobileMenuItem(menuItem, menuId) {
+async function buildMobileMenuItem(menuItem, menuId) {
   const menuName = menuItem.querySelector('h1 a').textContent;
   const menuParentLink = menuItem.querySelector('h1 a').href;
 
-  const menuPath = getMetadata(`${menuId}-submenu`) || `/fragments/menu/${menuId}`;
-  await fetch(`${menuPath}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
+  await fetch(`/fragments/megamenu/${menuId}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
     if (response.ok) {
       // eslint-disable-next-line no-await-in-loop
       const content = await response.text();
-      const subcategoriesContent = [...content.querySelectorAll('h2')];
+
+      const submenuContent = div();
+      submenuContent.innerHTML = content;
+
+      // get all H2s and create a list of them
+      const subcategoriesContent = [...submenuContent.querySelectorAll('h2')];
 
       const subCategories = ul({ class: 'mobile-menu-subcategories', 'menu-id': menuId });
 
@@ -89,23 +85,33 @@ export async function buildMobileMenuItem(menuItem, menuId) {
 
       menuItem.append(subCategories);
 
-      const menuItemLink = menuItem.querySelector('a');
-      // add listener to toggle subcategories
-      menuItemLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        openSubMenu(menuItem);
-      });
-
       // add listener to close subcategories
       backToParentMenuItem.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSubMenu(menuItem);
       });
-
-      const mobileMenuItems = document.querySelector('.mobile-menu-items');
-      mobileMenuItems.append(menuItem);
     }
+  });
+}
+
+function addHamburgerListener(hamburger) {
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const body = document.querySelector('body');
+    body.classList.toggle('openmenu');
+
+    const submenuIds = getSubmenuIds();
+
+    // check if all submenus exist otherwise create
+    submenuIds.forEach((submenuId) => {
+      if (submenuId === 'contact-us') return;
+
+      if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${submenuId}"]`)) {
+        const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${submenuId}"]`);
+        buildMobileMenuItem(submenuListItem, submenuId);
+      }
+    });
   });
 }
 
@@ -152,21 +158,24 @@ export function buildMobileMenu(content) {
   submenus.forEach((title) => {
     if (title === 'Contact Us') return;
 
+    const menuId = getSubmenuIdFromTitle(title);
+
+    const submenuLink = a(title);
+
     const listItem = li(
-      { class: 'mobile-menu-item' },
+      { class: 'mobile-menu-item', 'menu-id': menuId },
       h1(
-        a(title),
+        submenuLink,
       ),
       span({ class: 'caret' }),
     );
 
     // add listener to toggle subcategories
-    listItem.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const menuId = getSubmenuIdFromTitle(title);
-      if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${menuId}"]`)) {
-        buildMobileMenuItem(listItem, menuId);
+    submenuLink.addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        e.preventDefault();
+        e.stopPropagation();
+        openSubMenu(listItem);
       }
     });
 
