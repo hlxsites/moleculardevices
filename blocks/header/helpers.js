@@ -32,6 +32,18 @@ export function addListeners(selector, eventType, callback) {
   });
 }
 
+export function addCloseMenuButtonListener(button) {
+  button.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.closest('ul').querySelectorAll(
+      '*[aria-expanded="true"]',
+    ).forEach(
+      (el) => el.setAttribute('aria-expanded', 'false'),
+    );
+  });
+}
+
 export function removeAllEventListeners() {
   elementsWithEventListener.forEach((el) => {
     el.replaceWith(el.cloneNode(true));
@@ -85,4 +97,21 @@ export function buildRequestQuote(classes) {
       'Request Quote',
     ),
   );
+}
+
+export function decorateLanguagesTool(tools) {
+  const languageTool = tools.querySelector('li:nth-child(2)');
+  const languagesList = languageTool.querySelector('ul');
+  languagesList.classList.add('languages-dropdown');
+
+  languageTool.addEventListener('click', () => {
+    languagesList.classList.toggle('show');
+  });
+
+  const body = document.querySelector('body');
+  body.addEventListener('click', (e) => {
+    if (e.target !== languageTool) {
+      languagesList.classList.remove('show');
+    }
+  });
 }
