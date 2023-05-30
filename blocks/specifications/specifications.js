@@ -21,7 +21,7 @@ function decorateDownloadButton() {
 export default async function decorate(block) {
   decorateDownloadButton();
 
-  const jsonFileBlock = block.querySelector('.specifications .button-container a');
+  const jsonFileBlock = block.querySelector('a');
   const jsonFile = jsonFileBlock?.href;
   block.innerHTML = '';
   if (!jsonFile) {
