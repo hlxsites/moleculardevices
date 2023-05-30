@@ -50,6 +50,10 @@
   cursor: pointer;
 }
 
+.landing-page main div:nth-last-of-type(2).download-form {
+  margin-top: 0;
+}
+
 .landing-page .download-form {
   padding-bottom: 25px;
   margin-top: 125px;
@@ -69,6 +73,11 @@
 .landing-page .download-form .embed h4,
 .landing-page .download-form .embed h5 {
   font-family: var(--ff-proxima-regular);
+}
+
+.landing-page .download-form .default-content-wrapper h2 {
+  color: var(--heading-color);
+  font-size: 45px;
 }
 
 .landing-page .download-form[style*="background-image"] .default-content-wrapper * {
@@ -96,8 +105,9 @@
   margin-top: 0;
 }
 
+.landing-page .embed h3,
 .landing-page .embed h4 {
-  color: #038296;
+  color: var(--heading-color);
   font-size: 30px;
   text-align: left;
   padding: 0 20px;
