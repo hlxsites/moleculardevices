@@ -1,8 +1,22 @@
-.mb-10 {
+.workflow_elisa .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.workflow_elisa .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
+}
+
+.workflow_elisa .icon.icon-chevron-right-outline svg path {
+  stroke-width: 15;
+}
+
+.workflow_elisa .mb-10 {
   margin-bottom: 10px !important;
 }
 
-.mt-10 {
+.workflow_elisa .mt-10 {
   margin-top: 10px !important;
 }
 

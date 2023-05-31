@@ -1,3 +1,4 @@
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { fetchFragment, videoButton } from '../../scripts/scripts.js';
 
 async function getFragmentFromFile(fragmentURL) {
@@ -46,6 +47,7 @@ async function decorateSnippet(block, fragmentURL) {
   block.innerHTML = fragment;
   processScriptNodes(block.parentElement, block);
   decorateVidyardVideos(block);
+  decorateIcons(block);
 }
 
 export default async function decorate(block) {
