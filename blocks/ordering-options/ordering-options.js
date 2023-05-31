@@ -1,9 +1,11 @@
-import { getCookie } from '../../scripts/scripts.js';
+import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
-function updateCounter(event) {
+const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
+
+function increaseAndDecreaseCounter(event) {
   const btnContainer = event.target.closest('span');
   const counterEl = btnContainer.parentElement.querySelector('.count');
   const counter = parseInt(counterEl.textContent, 10) || 1;
@@ -11,6 +13,16 @@ function updateCounter(event) {
     counterEl.textContent = counter + 1;
   } else {
     counterEl.textContent = (counter > 1) ? counter - 1 : 1;
+  }
+}
+
+async function updateCounters() {
+  const count = getCartItemCount();
+  const cartCounters = document.querySelectorAll('.cart-count');
+  if (cartCounters) {
+    cartCounters.forEach((cartCounter) => {
+      cartCounter.textContent = count;
+    });
   }
 }
 
@@ -24,10 +36,10 @@ async function getCartDetails() {
     });
 }
 
-async function setCartWidgetItemCount() {
+async function setCartItemCount() {
   const details = await getCartDetails();
   const count = details.item_count;
-  document.querySelector('.ordering-options .cart-widget .view-cart-count').textContent = count || 0;
+  setCookie(COOKIE_NAME_CART_ITEM_COUNT, count || 0);
 }
 
 async function addToCart(event) {
@@ -48,7 +60,8 @@ async function addToCart(event) {
       console.warn(`Could not add id ${itemId} to cart.`, err);
     });
 
-  setCartWidgetItemCount();
+  await setCartItemCount();
+  updateCounters();
 }
 
 function renderAddToCart(item) {
@@ -101,20 +114,19 @@ function renderItem(item, showStore) {
   );
 }
 
-async function renderCartWidget(container) {
-  container.append(
+function renderCartWidget() {
+  return (
     div({ class: 'cart-widget' },
-      span({ class: 'view-cart-count' }, 0),
+      span({ class: 'cart-count' }, getCartItemCount()),
       i({ class: 'fa fa-shopping-cart' }),
       a({
         href: 'https://shop.moleculardevices.com/cart',
         target: '_blank',
-        name: 'View Cart',
+        name: 'Cart',
         rel: 'noopener noreferrer',
       }),
-    ),
+    )
   );
-  setCartWidgetItemCount();
 }
 
 function fetchOption(option) {
@@ -135,11 +147,7 @@ async function fetchOptionIntoArray(array, idx, option) {
   array[idx] = await fetchOption(option.trim());
 }
 
-async function getOrderingOptions(block) {
-  const refs = [...block.querySelectorAll('.ordering-options > div > div')]
-    .map((ref) => (ref.innerHTML).split(', '))
-    .reduce((x, y) => x.concat(y), []);
-
+async function getOrderingOptions(refs) {
   const options = new Array(refs.length);
   await Promise.all(refs
     .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
@@ -147,40 +155,47 @@ async function getOrderingOptions(block) {
   return options;
 }
 
-async function renderList(block) {
-  const options = await getOrderingOptions(block);
-  const showStore = (getCookie('country_code') === 'US');
+async function renderList(refs, showStore, container) {
+  const options = await getOrderingOptions(refs);
   const items = [];
   options.forEach((option) => {
     items.push(renderItem(option, showStore));
   });
+  container.append(...items);
+
+  const counterButtons = document.querySelectorAll('.ordering-options .variant-item-store-count > span > i');
+  [...counterButtons].forEach((counterButton) => {
+    counterButton.addEventListener('click', (e) => {
+      increaseAndDecreaseCounter(e);
+    });
+  });
+
+  const addToCartButtons = document.querySelectorAll('.ordering-options .variant-item-store-add-to-cart > a');
+  [...addToCartButtons].forEach((addToCartButton) => {
+    addToCartButton.addEventListener('click', (e) => {
+      addToCart(e);
+    });
+  });
+}
+
+export default async function decorate(block) {
+  const refs = [...block.querySelectorAll('.ordering-options > div > div')]
+    .map((ref) => (ref.innerHTML).split(', '))
+    .reduce((x, y) => x.concat(y), []);
 
   block.innerHTML = '';
 
   const container = div({ class: 'ordering-options-list' });
-  container.append(...items);
   block.append(container);
+
+  const showStore = detectStore();
+  renderList(refs, showStore, container);
 
   if (showStore) {
     block.classList.add('cart-store');
-    renderCartWidget(block);
 
-    const counterButtons = document.querySelectorAll('.ordering-options .variant-item-store-count > span > i');
-    [...counterButtons].forEach((counterButton) => {
-      counterButton.addEventListener('click', (e) => {
-        updateCounter(e);
-      });
-    });
-
-    const addToCartButtons = document.querySelectorAll('.ordering-options .variant-item-store-add-to-cart > a');
-    [...addToCartButtons].forEach((addToCartButton) => {
-      addToCartButton.addEventListener('click', (e) => {
-        addToCart(e);
-      });
-    });
+    // cart visible everywhere in product page
+    const productsMain = document.querySelector('.product main');
+    if (productsMain) productsMain.append(renderCartWidget());
   }
-}
-
-export default async function decorate(block) {
-  renderList(block);
 }

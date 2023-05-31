@@ -48,7 +48,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .ordering-options .ordering-option-item .header {
-  border-bottom: 2px solid #a2a8a6;
+  border-bottom: 2px solid var(--dark-border-color-gray);
   padding: 25px 0 15px;
   margin-top: 40px;
 }
@@ -95,11 +95,11 @@ main .section.ordering-options-container > div:last-child {
   font-size: 14px;
   height: 40px;
   margin-bottom: 3px;
-  background: #f1f1f0;
-  border: 1px solid #d9d9d9;
+  background: var(--grey-background-color);
+  border: 1px solid var(--grey-background-color);
   white-space: nowrap;
   display: flex;
-  border-left: 1px solid #d9d9d9;
+  border-left: 1px solid var(--grey-background-color);
 }
 
 .ordering-options .variant-item-store .variant-item-store-count > span {
@@ -109,8 +109,8 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .ordering-options .variant-item-store .variant-item-store-count .count {
-  border-left: 1px solid #d9d9d9;
-  border-right: 1px solid #d9d9d9;
+  border-left: 1px solid var(--grey-background-color);
+  border-right: 1px solid var(--grey-background-color);
 }
 
 .ordering-options .variant-item-store a.button.primary {
@@ -118,42 +118,6 @@ main .section.ordering-options-container > div:last-child {
   font-size: 18px;
   text-align: center;
   padding: 15px 18px 16px;
-}
-
-.ordering-options.cart-store .cart-widget {
-  display: inline-block;
-  margin-right: 8px;
-  position: fixed;
-  right: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ee7624;
-  padding: 16px 24px;
-  border-radius: 30px 0 0 30px;
-  color: #fff;
-  transition: right .3s;
-  z-index: 1;
-  cursor: pointer;
-}
-
-.ordering-options.cart-store .cart-widget .fa-shopping-cart::before {
-  content: '\f07a';
-}
-
-.ordering-options.cart-store .view-cart-count {
-  position: absolute;
-  top: -12px;
-  left: 31px;
-  background: #fff;
-  color: #ee7624;
-  padding: 0;
-  font-size: 75%;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  border: 1px solid #ee7624;
 }
 
 .ordering-options.cart-store .variant-item-store-content .variant-item-store-count, 
