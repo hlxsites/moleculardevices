@@ -1,3 +1,41 @@
+main .citations-container {
+  --heading-font-size-l: 36px;
+
+  padding: 90px 50px 50px;
+}
+
+main .citations-container h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+main .citations-container > .default-content-wrapper {
+  padding: 0;
+  width: auto;
+  padding-left: 90px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  main .citations-container > .default-content-wrapper {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  main .citations-container > .default-content-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .citations-container > .default-content-wrapper{
+    width: 1170px;
+  }
+}
+
 .citations .citation {
   margin-bottom: 40px;
 }
@@ -28,7 +66,8 @@
   margin: 0;
 }
 
-.citations em {
+.citation em,
+.citations-container em {
   color: var(--text-green);
   font-style: normal;
 }

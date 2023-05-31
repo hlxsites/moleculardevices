@@ -1,5 +1,5 @@
 main .section .related-products-wrapper {
-  padding-top: 0;
+  padding-top: 20px;
 }
 
 .related-products {
@@ -26,7 +26,7 @@ main .section .related-products-wrapper {
   height: 240px;
   position: static;
   width: 100%;
-  object-fit: scale-down;
+  object-fit: none;
   object-position: bottom;
 }
 
@@ -61,6 +61,13 @@ main .section .related-products-wrapper {
 
 .related-products .card .button-container a .fa {
   margin-left: 5px;
+}
+
+@media only screen and (max-width: 992px) {
+  .related-products .card {
+    width: 45%;
+    max-width: 45%;
+  }
 }
 
 @media only screen and (max-width: 767px) {

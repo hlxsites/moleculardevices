@@ -32,6 +32,18 @@ export function addListeners(selector, eventType, callback) {
   });
 }
 
+export function addCloseMenuButtonListener(button) {
+  button.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.closest('ul').querySelectorAll(
+      '*[aria-expanded="true"]',
+    ).forEach(
+      (el) => el.setAttribute('aria-expanded', 'false'),
+    );
+  });
+}
+
 export function removeAllEventListeners() {
   elementsWithEventListener.forEach((el) => {
     el.replaceWith(el.cloneNode(true));
@@ -40,9 +52,15 @@ export function removeAllEventListeners() {
 }
 
 export function buildBrandLogo(content) {
-  const logoWrapper = div({ id: 'header-logo' });
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
-  logoWrapper.innerHTML = logoImg.outerHTML;
+
+  const logoLink = a({ href: '/' });
+  logoLink.innerHTML = logoImg.outerHTML;
+
+  const logoWrapper = div(
+    { id: 'header-logo' },
+    logoLink,
+  );
   return logoWrapper;
 }
 

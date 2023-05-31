@@ -1,7 +1,7 @@
 import { loadScript } from '../../scripts/scripts.js';
 
 const getDefaultEmbed = (url) => {
-  const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
+  const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
         scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
@@ -51,19 +51,21 @@ const loadEmbed = (block, link, autoplay) => {
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
-  if (config) {
-    block.innerHTML = config.embed(url, autoplay);
-    block.classList = `block embed embed-${config.match[0]}`;
-  } else {
-    block.innerHTML = getDefaultEmbed(url);
-    block.classList = 'block embed';
-  }
-  block.classList.add('embed-is-loaded');
+  const embedBlock = document.createElement('div');
+  embedBlock.innerHTML = config ? config.embed(url, autoplay) : getDefaultEmbed(url);
+  block.append(embedBlock);
+  block.classList.add('block, embed, embed-is-loaded');
+  if (config) block.classList.add(config.match[0]);
 };
 
 export default function decorate(block) {
+  const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6, h7');
   const link = block.querySelector('a').href;
   block.textContent = '';
+
+  [...headings].forEach((heading) => {
+    block.prepend(heading);
+  });
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
