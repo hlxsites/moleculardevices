@@ -1,7 +1,6 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 
 async function getFragmentFromFile(fragmentURL) {
-  console.log(fragmentURL);
   const fragment = await fetchFragment(fragmentURL, false);
   return fragment;
 }
@@ -36,7 +35,6 @@ function processScriptNodes(parent, node) {
   return node;
 }
 
-
 async function decorateSnippet(block, fragmentURL) {
   const fragment = await getFragmentFromFile(fragmentURL);
   block.innerHTML = fragment;
@@ -48,6 +46,7 @@ export default async function decorate(block) {
 
   if (!url) {
     block.textContent = '';
+    // eslint-disable-next-line no-console
     console.warn('no snippet found');
     return;
   }
@@ -56,6 +55,7 @@ export default async function decorate(block) {
     await decorateSnippet(block, url);
   } catch (e) {
     block.textContent = '';
+    // eslint-disable-next-line no-console
     console.warn(`cannot load snippet at ${url}: ${e}`);
   }
 }
