@@ -38,7 +38,7 @@ Stores dedicated user data in a cookie.
 async function loadUserData() {
   const attrCountryCode = 'country_code';
   if (getCookie(attrCountryCode)) return;
-  fetch('https://api.ipstack.com/check?access_key=fa0c43f899d86d91bf5aa529a5774566', {
+  fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
     /* Referrer Policy is set to strict-origin-when-cross-origin by default
        to avoid data leaking of private information.
        See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
