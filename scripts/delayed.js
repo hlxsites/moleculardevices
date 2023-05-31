@@ -51,11 +51,6 @@ async function loadUserData() {
     }
     return Promise.reject(response);
   }).then((data) => {
-    if (!data.success) {
-      const { error } = data;
-      // eslint-disable-next-line no-console
-      console.warn(`Error code ${error.code} occured while loading user information.`, `${error.type}: ${error.info}`);
-    }
     if (data[attrCountryCode]) {
       setCookie(attrCountryCode, data[attrCountryCode], 30);
     }
