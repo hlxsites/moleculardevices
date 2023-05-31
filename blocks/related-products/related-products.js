@@ -15,20 +15,27 @@ export default async function decorate(block) {
     .filter((product) => allProductTitles.includes(product.h1))
     .all();
 
+  const categories = await ffetch('/query-index.json')
+    .sheet('categories')
+    .filter((category) => relatedCategoriesTitles.includes(category.h1))
+    .all();
+
+  const allItems = [...products, ...categories];
+
   const cardRenderer = await createCard({
     descriptionLength: 75,
     c2aLinkStyle: true,
     defaultButtonText: 'Details',
   });
 
-  products.forEach((product) => {
+  allItems.forEach((product) => {
     product.type = product.category;
     if (product.subCategory && !['0', 'Other'].includes(product.subCategory)) {
       product.type = product.subCategory;
     } else if (product.category && !['0', 'Other'].includes(product.category)) {
       product.type = product.category;
     } else {
-      product.type = product.title;
+      product.type = product.h1;
     }
     block.append(cardRenderer.renderItem(product));
   });

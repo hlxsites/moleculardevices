@@ -63,6 +63,13 @@ main .section .related-products-wrapper {
   margin-left: 5px;
 }
 
+@media only screen and (max-width: 992px) {
+  .related-products .card {
+    width: 45%;
+    max-width: 45%;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .related-products .card {
     width: 100%;
