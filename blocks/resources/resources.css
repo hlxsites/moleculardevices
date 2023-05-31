@@ -156,11 +156,11 @@ main .section .resources-wrapper {
   .resources li.filter[aria-selected='true'] {
     display: block;
     order: -1;
-    color: #0066a4;
+    color: var(--link-hover-color);
   }
 
   .resources li.filter[aria-selected='true'] a {
-    color: #0066a4;
+    color: var(--link-hover-color);
   }
 
   .resources li.filter[aria-selected='true'] .icon.icon-chevron-right-outline {
