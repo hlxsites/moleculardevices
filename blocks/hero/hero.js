@@ -83,7 +83,7 @@ export function buildHero(block) {
         container.classList.add('two-column');
         [...row.children].forEach((column, y) => {
           const image = column.querySelector('img');
-          if (y === 1 && img && block.classList.contains('hero')) {
+          if (y === 1 && image && block.classList.contains('hero')) {
             container.classList.add('right-image');
             image.addEventListener('click', () => {
               const downloadForm = document.querySelector('.download-form');
