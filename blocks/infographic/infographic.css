@@ -1,0 +1,50 @@
+.infographic {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.infographic > div {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.infographic > div > div {
+  max-width: 33.33%;
+  width: 100%;
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 15px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.infographic > div > div::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  height: 30px;
+  width: 1px;
+  border-left: 1px dashed #6a757d;
+  bottom: 0;
+}
+
+.infographic > div > div::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px dashed #6a757d;
+  bottom: 0;
+  z-index: -1;
+}
+
+.infographic > div > div:first-of-type()::after {
+  left: 50%;
+  width: 50%;
+}

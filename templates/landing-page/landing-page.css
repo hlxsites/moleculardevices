@@ -215,3 +215,8 @@ main .section.full-width > div img {
   padding: 0;
 }
 
+.landing-page .default-content-wrapper .button-container {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
