@@ -41,8 +41,14 @@ class Card {
     }
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
-    const cardLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
-      ? item.gatedURL : item.path;
+
+    let cardLink = item.path;
+    if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
+      cardLink = item.gatedURL;
+    } else if (item.redirectPath && item.redirectPath !== '0') {
+      cardLink = item.redirectPath;
+    }
+
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
     let c2aBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
