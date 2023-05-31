@@ -5,13 +5,14 @@ import { createCard } from '../card/card.js';
 export default async function decorate(block) {
   const relatedProductsMeta = getMetadata('related-products');
   const relatedProductsTitles = relatedProductsMeta.split(',').map((item) => item.trim());
-  // TODO: add related categories
-  // const relatedCategoriesMeta = getMetadata('related-categories');
-  // const relatedCategoriesTitles = relatedCategoriesMeta.split(',').map((item) => item.trim());
+  const relatedCategoriesMeta = getMetadata('related-categories');
+  const relatedCategoriesTitles = relatedCategoriesMeta.split(',').map((item) => item.trim());
+
+  const allProductTitles = [...relatedProductsTitles, ...relatedCategoriesTitles];
 
   const products = await ffetch('/query-index.json')
     .sheet('products')
-    .filter((product) => relatedProductsTitles.includes(product.h1))
+    .filter((product) => allProductTitles.includes(product.h1))
     .all();
 
   const cardRenderer = await createCard({
@@ -24,6 +25,10 @@ export default async function decorate(block) {
     product.type = product.category;
     if (product.subCategory && !['0', 'Other'].includes(product.subCategory)) {
       product.type = product.subCategory;
+    } else if (product.category && !['0', 'Other'].includes(product.category)) {
+      product.type = product.category;
+    } else {
+      product.type = product.title;
     }
     block.append(cardRenderer.renderItem(product));
   });
