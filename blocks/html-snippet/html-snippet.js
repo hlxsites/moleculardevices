@@ -1,11 +1,11 @@
-import { fetchFragment } from '../../scripts/scripts.js';
+import { fetchFragment, videoButton } from '../../scripts/scripts.js';
 
 async function getFragmentFromFile(fragmentURL) {
   const fragment = await fetchFragment(fragmentURL, false);
   return fragment;
 }
 
-function loadScript(parentElem, originalElem) {
+function loadHtmlScript(parentElem, originalElem) {
   const script = document.createElement('script');
   const attributes = originalElem.getAttributeNames();
 
@@ -25,7 +25,7 @@ function loadScript(parentElem, originalElem) {
 function processScriptNodes(parent, node) {
   const isScriptNode = (node && node.tagName === 'SCRIPT');
   if (isScriptNode) {
-    loadScript(parent, node);
+    loadHtmlScript(parent, node);
   } else {
     const children = [...node.children];
     for (let i = 0; i < children.length; i += 1) {
@@ -35,10 +35,17 @@ function processScriptNodes(parent, node) {
   return node;
 }
 
+function decorateVidyardVideos(block) {
+  block.querySelectorAll('.video-ico[data-vidyard-video-url]').forEach((button) => {
+    videoButton(button.parentElement, button, new URL(button.getAttribute('data-vidyard-video-url')));
+  });
+}
+
 async function decorateSnippet(block, fragmentURL) {
   const fragment = await getFragmentFromFile(fragmentURL);
   block.innerHTML = fragment;
   processScriptNodes(block.parentElement, block);
+  decorateVidyardVideos(block);
 }
 
 export default async function decorate(block) {
