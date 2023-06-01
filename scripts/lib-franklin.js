@@ -550,7 +550,7 @@ export function decorateCaptions(element) {
     if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
       up.classList.add('caption-container');
     }
-  })
+  });
 }
 
 /**
