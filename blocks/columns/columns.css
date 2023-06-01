@@ -1,3 +1,7 @@
+main .section>div.columns-wrapper {
+  margin-top: 20px;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -260,7 +264,7 @@
   .columns > div {
     display: flex;
     flex-direction: unset;
-    align-items: center;
+    align-items: top;
   }
 
   .columns > div > div {
