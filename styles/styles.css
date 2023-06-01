@@ -789,6 +789,7 @@ main div.section.wave {
 
 main div.section.wave:last-child {
   margin-top: 45px;
+  margin-bottom: 80px;
 }
 
 main div.section.wave::after {
@@ -823,7 +824,7 @@ main .section.service-support.support-options h2 {
 }
 
 main div.section.wave .default-content-wrapper h2 {
-  font-size: 65px;
+  font-size: 60px;
   margin-bottom: 30px;
   line-height: 1;
   font-family: var(--ff-proxima-light);
@@ -917,6 +918,11 @@ main div.section.featured-asset .columns > div {
 /* BlueGreen Variant */
 main div.section.wave.bluegreen {
   background-size: 100% 100%;
+  padding: 30px 0;
+}
+
+.hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper {
@@ -1165,9 +1171,6 @@ main .section[aria-hidden="true"] {
 }
 
 /* videos-and-webinars theme */
-.videos-and-webinars .hero-container + .section > .default-content-wrapper:first-child {
-  margin-top: 50px;
-}
 
 .videos-and-webinars main::after {
   margin-top: 100px;
