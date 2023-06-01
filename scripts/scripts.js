@@ -113,7 +113,7 @@ function decorateWaveSection(main) {
   const excludedTemplates = ['Product', 'Application', 'Technology'];
   if (!excludedTemplates.includes(getMetadata('template'))) {
     const lastSection = main.querySelector('div.section:last-of-type');
-    const hasWaveFragment = lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
+    const hasWaveFragment = lastSection.firstElementChild && lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
     if (!lastSection.classList.contains('wave') && !hasWaveFragment) {
       const waveSection = document.createElement('div');
       waveSection.classList.add('section');
