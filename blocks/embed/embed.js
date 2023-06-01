@@ -54,7 +54,7 @@ const loadEmbed = (block, link, autoplay) => {
   const embedBlock = document.createElement('div');
   embedBlock.innerHTML = config ? config.embed(url, autoplay) : getDefaultEmbed(url);
   block.append(embedBlock);
-  block.classList.add('block, embed, embed-is-loaded');
+  block.classList.add('block', 'embed', 'embed-is-loaded');
   if (config) block.classList.add(config.match[0]);
 };
 
