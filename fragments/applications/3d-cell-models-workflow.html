@@ -1,0 +1,494 @@
+<link rel="stylesheet" href="/fragments/applications/application-workflow-commons.css"/>
+
+<style type="text/css">
+  #conference-timeline .conference-center-line {
+    height: 75%;
+  }
+
+  .content-section + .content-section {
+    padding-top: 0;
+  }
+
+  .conference-timeline-content .timeline-article:first-child .fst-card-txt {
+    position: absolute;
+    top: 194px;
+  }
+
+  .image-section.on_image .text-part.analize-txt {
+    position: absolute;
+    top: 181px;
+  }
+
+  .image-section.on_image .text-part.acuire-cell-txt {
+    position: absolute;
+    bottom: -31px;
+  }
+
+  .timeline-article .content-left,
+  .timeline-article .content-right {
+    background-color: transparent;
+  }
+
+  .conference-timeline-content .timeline-article:first-child {
+    padding: 100px 20px 10px 20px;
+  }
+
+  .conference-timeline-content .timeline-article.spectra-part {
+    padding: 10px 20px 230px 0;
+    margin: 0px;
+  }
+
+  .conference-timeline-content
+    .timeline-article.spectra-part
+    .image-section
+    .spectra-image {
+    position: absolute;
+    top: 241px;
+    z-index: -11;
+  }
+
+  .conference-timeline-content
+    .timeline-article:first-child
+    .content-right-container
+    .image_part.white_arro {
+    position: absolute;
+    top: -100px;
+  }
+
+  .conference-timeline-content
+    .timeline-article:first-child
+    .content-right-container
+    .box-section
+    .text-part {
+    padding: 225px 25px 20px 25px;
+  }
+
+  .image-section.on_image .text-part {
+    bottom: -123px;
+  }
+
+  .ico-desc {
+    margin-left: 78px;
+    padding-top: 10px;
+    font-family: var(--ff-proxima-regular);
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .ico-desc a {
+    color: #34393d;
+  }
+
+  .with-icon-part {
+    position: relative;
+  }
+
+  .with-icon-part .img-icon {
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  @media only screen and (max-width: 830px) {
+    .timeline-article .content-left-container {
+      margin-bottom: 50px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .conference-timeline-content .timeline-article:first-child .fst-card-txt {
+      position: static;
+      margin-top: -3em;
+    }
+
+    .conference-timeline-content
+      .timeline-article:first-child
+      .content-right-container {
+      margin-top: 100px;
+    }
+
+    .conference-timeline-content
+      .timeline-article:first-child
+      .content-right-container
+      .image_part.white_arro {
+      top: -68px;
+    }
+
+    .conference-timeline-content
+      .timeline-article:first-child
+      .content-right-container
+      .box-section
+      .text-part {
+      padding: 168px 25px 20px 25px;
+    }
+
+    .conference-timeline-content
+      .timeline-article.spectra-part
+      .image-section
+      .spectra-image {
+      position: static;
+    }
+
+    .conference-timeline-content .timeline-article.spectra-part {
+      padding: 10px 20px 78px 0;
+    }
+
+    .image-section.on_image .text-part.acuire-cell-txt {
+      position: static;
+      padding-top: 4.5em;
+    }
+
+    .image-section.on_image .text-part.wash_microplate {
+      margin-top: -8em;
+    }
+
+    .image-section.on_image .text-part.analize-txt {
+      position: static;
+      margin-top: -10em;
+    }
+
+    .image-section.on_image .text-part {
+      margin-top: -9em;
+    }
+
+    .with-icon-part {
+      margin-top: 20px;
+    }
+
+    .conference-timeline-content
+      .timeline-article:last-child
+      .content-right-container {
+      margin-top: 40px;
+    }
+
+    #conference-timeline .conference-center-line {
+      height: 77.5%;
+    }
+  }
+</style>
+
+<div class="col-md-12">
+  <p></p>
+  <p>&nbsp;</p>
+  <section class="workflow_elisa" id="conference-timeline">
+    <div class="timeline-start">3D Cell Imaging &amp; Analysis Workflow</div>
+    <div class="conference-center-line">&nbsp;</div>
+    <div class="conference-timeline-content">
+      <div class="timeline-article">
+        <div class="content-left-container">
+          <div class="content-left image-section">
+            <div class="image_part">
+              <img
+                src="/fragments/applications/3d-cell-models/culture-spheroids.png"
+                alt="Culture Spheroids"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part fst-card-txt">
+              <h3>CULTURE SPHEROIDS</h3>
+              <p class="center-align">
+                3D cell can be cultured directly in a ULA, round bottom plate to
+                develop the typical spherical shape of a spheroid. Cells can
+                also be grown in alternate labware like a petri dish, flask, or
+                other microplate before transferring to an imaging microplate.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="content-right-container">
+          <div class="content-right box-section">
+            <div class="image_part white_arro">
+              <img
+                src="/fragments/applications/3d-cell-models/96-or-384-well-plates.png"
+                alt="96 or 384 Well Plates"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part">
+              <h3>96- or 384- Well Plates</h3>
+              <p>
+                Most 3D cell cultures for high-content, high-throughput
+                screening are run using 96- or 384-well microplates. ULA,
+                U-shaped/round bottom microplates enable the spherical shape to
+                form spheroids or spheroids can also be cultured in a
+                flat-bottom microplate using hydrogels to simulate extracellular
+                matrices (ECM). Optimized spheroid cell culture protocols for
+                the ImageXpress® Micro Confocal High-Content Imaging System can
+                use ULA, U-bottom 96- and 384-well plates with a one-step
+                staining procedure that reduces assay time and minimizes
+                variability.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="meta-date left-arrow"><span class="date">01</span></div>
+      </div>
+      <div class="timeline-article spectra-part">
+        <div class="content-left-container">
+          <div class="content-left image-section">
+            <div class="spectra-flow">
+              <div class="image_part bubbles-part">
+                <div class="text-wrap">
+                  <h3><em>Shopping for reagents?</em></h3>
+                  <p>
+                    Check out our<br /><a
+                      href="/products/assay-kits/cell-viability/earlytox-cell-viability-assay-kits"
+                      >EarlyTox Cell Viability Assay Kits</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="spectra-image">
+              <img
+                src="/fragments/workflow/spectra1.png"
+                alt="Spectra"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="content-right-container">
+          <div class="content-right image-section on_image">
+            <div class="image_part">
+              <img
+                src="/fragments/applications/3d-cell-models/treat-with-compounds.png"
+                alt="Treat with compounds"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part">
+              <h3>TREAT WITH COMPOUNDS</h3>
+              <p class="center-align">
+                After spheroid formation, compounds are added into the wells,
+                and then incubated for one to several days, depending on the
+                mechanism being studied. Generally, shorter durations are used
+                to study apoptosis and longer durations for multi-parameter
+                cytotoxicity studies. For drug treatments requiring a longer
+                duration, compounds are refreshed periodically during
+                incubation. The concentration of compounds and the incubation
+                period is dependent on the desired protocol.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="meta-date right-arrow"><span class="date">02</span></div>
+      </div>
+      <div class="timeline-article">
+        <div class="content-left-container">
+          <div class="content-left image-section on_image">
+            <div class="image_part">
+              <img
+                src="/fragments/applications/3d-cell-models/stain-for-markers.png"
+                alt="Stain for Markers"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part wash_microplate">
+              <h3>STAIN FOR MARKERS</h3>
+              <p class="center-align">
+                After compound treatment is completed, stains are added directly
+                to the media. Stains that require no washing can be used to
+                avoid disturbing spheroids, but spheroids can be carefully
+                washed even using automation, if necessary.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="content-right-container">
+          <div class="content-right box-section">
+            <div class="image_part white_arro">
+              <img
+                src="/fragments/workflow/reagents.png"
+                alt="96 or 384 Well Plates"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part">
+              <h3>Assay Kits</h3>
+              <p>
+                Easy-to-use, robust assay kits for life science research, drug
+                discovery and development, and bioassays. Our assay kits are
+                optimized for use on our instruments. Screen more compounds
+                earlier in drug discovery and enable characterization of a full
+                concentration-response profile of test compounds for cell
+                viability, cell proliferation, axiogensis, and more.
+              </p>
+              <p>
+                <a
+                  class="watch-video"
+                  href="/products/assay-kits/cell-viability/earlytox-cell-viability-assay-kits"
+                  >Shop assay kits&nbsp;<em
+                    ><span class='icon icon-chevron-right-outline'/></em
+                  ></a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="meta-date left-arrow"><span class="date">03</span></div>
+      </div>
+      <div class="timeline-article">
+        <div class="content-left-container video">
+          <div class="content-left box-section">
+            <div
+              class="image_part blue_arro video-ico"
+              data-vidyard-video-url="https://vids.moleculardevices.com/watch/b3RtIKRdaR7Nc6VowrGtNg"
+            >
+              <img
+                src="/fragments/applications/3d-cell-models/imaging-system.png"
+                alt="Imaging System"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part">
+              <h3>High-content Imaging System</h3>
+              <p class="center-align">
+                The ImageXpress Micro Confocal system is a unique confocal
+                imaging solution capable of imaging more than a million wells a
+                week. MetaXpress software enables acquisition of 3D z-stacks.
+                Z-plane images can be saved individually or collapsed into a
+                single 2D projection image using a mathematical algorithm.
+              </p>
+              <!-- Cannot find where this is actually used...
+                <script
+                type="text/javascript"
+                id=""
+                src="https://play.vidyard.com/TcbyPZHsYw8FNUS8oYQJnH.js?width=700&amp;height=394&amp;frameborder=0&amp;v=3.1.1&amp;type=lightbox"
+              ></script> -->
+              <p>
+                <a
+                  class="watch-video"
+                  href="/products/cellular-imaging-systems/high-content-imaging/imagexpress-micro-confocal"
+                  >View product&nbsp;<em
+                    ><span class='icon icon-chevron-right-outline'/></em
+                  ></a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="content-right-container">
+          <div class="content-right image-section on_image">
+            <div class="image_part">
+              <img
+                src="/fragments/applications/3d-cell-models/3d-cell-image.png"
+                alt="Acquire 3D Cell Image"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part acuire-cell-txt">
+              <h3>ACQUIRE 3D CELL IMAGE</h3>
+              <p class="center-align">
+                Images within the body of the spheroid can be captured
+                individually or as a z-stack (multiple images taken at differing
+                depths) using specialized imaging equipment.
+              </p>
+              <div class="with-icon-part">
+                <img
+                  class="img-responsive img-icon"
+                  src="/fragments/applications/3d-cell-models/presentation-gn.png"
+                  alt="Presentation"
+                  width="61"
+                  height="61"
+                  typeof="foaf:Image"
+                  loading="lazy"
+                />
+                <div class="ico-desc">
+                  <a
+                    href="/en/assets/tutorials-videos/dd/img/high-throughput-3d-acquisition-using-high-content-imaging"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Solutions for High-Throughput 3D Acquisition using
+                    High-Content Imaging (PPT)</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="meta-date right-arrow"><span class="date">04</span></div>
+      </div>
+      <div class="timeline-article">
+        <div class="content-left-container">
+          <div class="content-left image-section on_image">
+            <div class="image_part">
+              <img
+                src="/fragments/applications/3d-cell-models/analyze.png"
+                alt="Analyze"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part analize-txt">
+              <h3>ANALYZE 3D CELL IMAGE</h3>
+              <p class="center-align">
+                Use cellular imaging analysis software to run quantitative
+                analysis of the cell images to assess and monitor how cells
+                express against different markers and to quantify biological
+                readouts.
+              </p>
+              <div class="with-icon-part">
+                <img
+                  class="img-responsive img-icon"
+                  src="/fragments/applications/3d-cell-models/presentation-gn.png"
+                  alt="Presentation"
+                  width="61"
+                  height="61"
+                  typeof="foaf:Image"
+                  loading="lazy"
+                />
+                <div class="ico-desc">
+                  <a
+                    href="/en/assets/tutorials-videos/dd/img/solutions-for-high-content-analysis-of-3d-images"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Solutions for High-Content Analysis of 3D Images (PPT)</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content-right-container video">
+          <div class="content-right box-section">
+            <div
+              class="image_part grey_arro video-ico"
+              data-vidyard-video-url="https://vids.moleculardevices.com/watch/ABJi1T62w9u2H6GTC59Uxx"
+            >
+              <img
+                src="/fragments/applications/3d-cell-models/high-content-imagingsoftware.png"
+                alt="High-content Imaging Software"
+                loading="lazy"
+              />
+            </div>
+            <div class="text-part">
+              <h3>High-content Imaging Software</h3>
+              <p>
+                MetaXpress High-Content Image Acquisition and Analysis Software
+                is a multi-level analysis tool for a wide range of 2D and 3D
+                applications optimized for the ImageXpress Micro Confocal
+                system. The integrated acquisition and analysis application
+                modules for 3D cell models simplify high-throughput
+                quantification of 3D structures with volume, intensity, and
+                distance measurements.
+              </p>
+              <p>
+                <a
+                  class="watch-video"
+                  href="/products/cellular-imaging-systems/acquisition-and-analysis-software/metaxpress"
+                  >View product&nbsp;<em
+                    ><span class='icon icon-chevron-right-outline'/></em
+                  ></a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="meta-date left-arrow"><span class="date">05</span></div>
+      </div>
+    </div>
+  </section>
+  <p>&nbsp;</p>
+  <p></p>
+</div>
