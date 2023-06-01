@@ -2,6 +2,7 @@ import {
   div,
   li,
   h3,
+  img,
   form,
   input,
   button,
@@ -58,7 +59,7 @@ export default function buildSearch(content) {
   const closeButton = div({ class: 'menu-nav-submenu-close' });
 
   const search = li(
-    { class: 'searchlink header-search fa fa-search', 'aria-expanded': 'false' },
+    { class: 'searchlink header-search', 'aria-expanded': 'false' },
     div(
       { class: 'menu-nav-search-flex' },
       div(

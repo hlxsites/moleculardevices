@@ -1328,12 +1328,22 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     width: 100%;
   }
 
+  header .searchlink {
+    background-image: url('/images/orange-search.webp');;
+    display: block;
+    background-repeat: no-repeat;
+    height: 42px;
+    margin-top: 2px !important;
+    background-size: contain;
+    background-position: right;
+  }
+
   header .searchlink > div {
     display: none;
   }
 
   header .header-search > div {
-    margin-top: 31px;
+    margin-top: 43px;
     left: 0;
     right: 0;
     border: 0;
@@ -1362,6 +1372,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   header .nav-tabs > li.header-search {
     margin-top: 0;
     text-align: center;
+  }
+
+  header .mainmenu-wrapper.sticky li.header-search {
+    width: 25px;
   }
 
   header .nav-tabs > li.fa-search {
