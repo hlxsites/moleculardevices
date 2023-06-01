@@ -2,7 +2,6 @@ import {
   div,
   li,
   h3,
-  img,
   form,
   input,
   button,
