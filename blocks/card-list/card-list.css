@@ -84,6 +84,10 @@ main .card-list .carousel-item .card {
     padding: 0 10%;
   }
 
+  main .section.card-list-container .default-content-wrapper h2 {
+    padding: 0 15px;
+  }
+
   main .card-list .carousel-item {
     flex: 1 0 100%;
     width: 100%;
