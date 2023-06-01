@@ -34,3 +34,7 @@ main .embed > div {
 main .embed.embed-twitter {
   width: 100%;
 }
+
+main .embed.embed-twitter > div {
+  display: block;
+}
