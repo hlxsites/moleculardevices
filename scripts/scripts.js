@@ -615,6 +615,20 @@ function setCookieFromQueryParameters(paramName, exdays) {
   }
 }
 
+/**
+ * Detect if page has store capability
+ */
+export function detectStore() {
+  return (getCookie('country_code') === 'US');
+}
+
+/**
+ * Get cart item total count
+ */
+export function getCartItemCount() {
+  return (getCookie('cart-item-count')) || 0;
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
