@@ -921,6 +921,10 @@ main div.section.wave.bluegreen {
   padding: 30px 0;
 }
 
+.hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
+}
+
 main div.section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
 }
@@ -1167,9 +1171,6 @@ main .section[aria-hidden="true"] {
 }
 
 /* videos-and-webinars theme */
-.hero-container + .section > .default-content-wrapper:first-child {
-  margin-top: 50px;
-}
 
 .videos-and-webinars main::after {
   margin-top: 100px;
