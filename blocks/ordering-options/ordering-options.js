@@ -3,6 +3,7 @@ import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
+const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
 
 function increaseAndDecreaseCounter(event) {
@@ -27,7 +28,7 @@ async function updateCounters() {
 }
 
 async function getCartDetails() {
-  return fetch('https://shop.moleculardevices.com/cart.json', {
+  return fetch(`${SHOP_BASE_URL}/cart.json`, {
     mode: 'no-cors',
   })
     .catch((err) => {
@@ -48,7 +49,7 @@ async function addToCart(event) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
-  await fetch(`https://shop.moleculardevices.com/cart/add.js?${new URLSearchParams({
+  await fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
     id: itemId,
     quantity: counter,
     _: Date.now(),
@@ -120,7 +121,7 @@ function renderCartWidget() {
       span({ class: 'cart-count' }, getCartItemCount()),
       i({ class: 'fa fa-shopping-cart' }),
       a({
-        href: 'https://shop.moleculardevices.com/cart',
+        href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
@@ -130,7 +131,7 @@ function renderCartWidget() {
 }
 
 function fetchOption(option) {
-  return fetch(`https://shop.moleculardevices.com/products/${option}.js`, {
+  return fetch(`${SHOP_BASE_URL}/products/${option}.js`, {
     mode: 'cors',
   }).then((response) => {
     if (response.ok) {
