@@ -8,13 +8,15 @@ import {
 import { detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
+const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
+
 function renderCart() {
   return (
     li({ class: 'cart-link' },
       i({ class: 'fa fa-shopping-cart' }),
       span({ class: 'cart-count' }, getCartItemCount()),
       a({
-        href: 'https://shop.moleculardevices.com/cart',
+        href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
@@ -28,7 +30,7 @@ function renderStore() {
     li({ class: 'store-link' },
       span({ class: 'icon icon-store' }),
       a({
-        href: 'https://shop.moleculardevices.com/',
+        href: `${SHOP_BASE_URL}/`,
         target: '_blank',
         name: 'Store',
         rel: 'noopener noreferrer',
