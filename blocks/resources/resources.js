@@ -58,7 +58,9 @@ export default async function decorate(block) {
   const filtersBlock = ul({ class: 'filters' });
   const filters = [...new Set(otherResources.map((item) => item.type))]
     .filter((item) => item !== 'Citation');
-  filters.push('Videos and Webinars');
+  if (videoResources.length > 0) {
+    filters.push('Videos and Webinars');
+  }
   const sortedFilters = filters.sort((x, y) => (x.toLowerCase() < y.toLowerCase() ? -1 : 1));
   sortedFilters.unshift('View All');
 
