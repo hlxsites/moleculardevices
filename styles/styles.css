@@ -1225,7 +1225,7 @@ main .section[aria-hidden="true"] {
   z-index: 999;
 }
 
-.coveo-search-container::after,
+/* .coveo-search-container::after,
 .news-container::after,
 .news .social-share-container::after,
 .publication-container::after,
@@ -1245,7 +1245,7 @@ main .section[aria-hidden="true"] {
   display: block;
   width: 100%;
   content: "";
-}
+} */
 
 /* videos-and-webinars theme */
 

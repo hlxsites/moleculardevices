@@ -97,8 +97,8 @@ export function styleCaption(elems) {
 }
 
 /*
-* If we have a hero block, move it into its own section, so it can be displayed faster
-*/
+ * If we have a hero block, move it into its own section, so it can be displayed faster
+ */
 function optimiseHeroBlock(main) {
   const heroBlock = main.querySelector('.hero, .hero-advanced');
   if (!heroBlock) return;
@@ -106,6 +106,22 @@ function optimiseHeroBlock(main) {
   const heroSection = document.createElement('div');
   heroSection.appendChild(heroBlock);
   main.prepend(heroSection);
+}
+
+function decorateWaveSection(main) {
+  /* append default wave section */
+  const excludedTemplates = ['Product', 'Application', 'Technology'];
+  if (!excludedTemplates.includes(getMetadata('template'))) {
+    const lastSection = main.querySelector('div.section:last-of-type');
+    const hasWaveFragment = lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
+    if (!lastSection.classList.contains('wave') && !hasWaveFragment) {
+      const waveSection = document.createElement('div');
+      waveSection.classList.add('section');
+      waveSection.classList.add('wave');
+      waveSection.setAttribute('data-section-status', 'initialized');
+      lastSection.after(waveSection);
+    }
+  }
 }
 
 /**
@@ -154,10 +170,10 @@ export function embedVideo(link, url, type) {
       src="https://play.vidyard.com/${videoId}.jpg"
       data-uuid="${videoId}"
       data-v="4"
-      data-width="${(type === 'lightbox') ? '700' : ''}"
-      data-height="${(type === 'lightbox') ? '394' : ''}"
-      data-autoplay="${(type === 'lightbox') ? '1' : '0'}"
-      data-type="${(type === 'lightbox') ? 'lightbox' : 'inline'}"/>`;
+      data-width="${type === 'lightbox' ? '700' : ''}"
+      data-height="${type === 'lightbox' ? '394' : ''}"
+      data-autoplay="${type === 'lightbox' ? '1' : '0'}"
+      data-type="${type === 'lightbox' ? 'lightbox' : 'inline'}"/>`;
     }
   });
   observer.observe(link.parentElement);
@@ -165,9 +181,16 @@ export function embedVideo(link, url, type) {
 
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
-  const overlay = div({ id: 'overlay' }, div({
-    class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
-  }));
+  const overlay = div(
+    { id: 'overlay' },
+    div({
+      class: 'vidyard-player-embed',
+      'data-uuid': videoId,
+      'dava-v': '4',
+      'data-type': 'lightbox',
+      'data-autoplay': '2',
+    })
+  );
 
   container.prepend(overlay);
   button.addEventListener('click', () => {
@@ -184,16 +207,26 @@ function decorateLinks(main) {
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const up = link.parentElement;
-      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
-      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+      const isInlineBlock =
+        link.closest('.block.vidyard') &&
+        !link.closest('.block.vidyard').classList.contains('lightbox');
+      const type = up.tagName === 'EM' || isInlineBlock ? 'inline' : 'lightbox';
+      const wrapper = div(
+        { class: 'video-wrapper' },
+        div({ class: 'video-container' }, a({ href: link.href }, link.textContent))
+      );
+      if (link.href !== link.textContent)
+        wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
     }
 
     // decorate RFQ page links with pid parameter
-    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
+    if (
+      url.pathname.startsWith('/quote-request') &&
+      !url.searchParams.has('pid') &&
+      getMetadata('family-id')
+    ) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
@@ -363,6 +396,7 @@ export async function decorateMain(main) {
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
+  decorateWaveSection(main);
   decorateBlocks(main);
   decoratePageNav(main);
   detectSidebar(main);
@@ -420,7 +454,7 @@ export function formatDate(dateStr, options = {}) {
 
 export function unixDateToString(unixDateString) {
   const date = new Date(unixDateString * 1000);
-  const day = (date.getDate()).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
@@ -503,7 +537,10 @@ function enableStickyElements() {
       }
 
       if (currentScrollPosition < LAST_SCROLL_POSITION && currentScrollPosition <= offsets[index]) {
-        element.style.top = `${Math.max(offsets[index] - currentScrollPosition, stackedHeight - element.offsetHeight)}px`;
+        element.style.top = `${Math.max(
+          offsets[index] - currentScrollPosition,
+          stackedHeight - element.offsetHeight
+        )}px`;
       } else {
         element.style.top = `${stackedHeight - element.offsetHeight}px`;
       }
@@ -572,7 +609,7 @@ export function setCookie(cname, cvalue, exdays) {
   let hostName = '';
   let domain = '';
   let expires = '';
-  date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
   if (exdays !== 0) {
     expires = `expires=${date.toUTCString()}`;
   }
@@ -619,14 +656,14 @@ function setCookieFromQueryParameters(paramName, exdays) {
  * Detect if page has store capability
  */
 export function detectStore() {
-  return (getCookie('country_code') === 'US');
+  return getCookie('country_code') === 'US';
 }
 
 /**
  * Get cart item total count
  */
 export function getCartItemCount() {
-  return (getCookie('cart-item-count')) || 0;
+  return getCookie('cart-item-count') || 0;
 }
 
 async function loadPage() {
