@@ -52,7 +52,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
       const backToParentMenuItem = li(
         { class: 'back-to-parent' },
         a(
-          { href: '#' },
+          { href: '#', 'aria-label': 'Go Back' },
           menuName,
         ),
       );
@@ -120,7 +120,7 @@ export function buildMobileMenuTools(menuItems, content) {
   const contactUsItem = li(
     { class: 'mobile-menu-item contact-us' },
     a(
-      { href: '/contact' },
+      { href: '/contact', 'aria-label': 'Contact Us' },
       'Contact Us',
     ),
   );
@@ -161,7 +161,7 @@ export function buildMobileMenu(content) {
     const menuId = getSubmenuIdFromTitle(title);
 
     const submenuLink = a(
-      { href: '#' },
+      { href: '#', 'aria-label': title },
       title,
     );
 
