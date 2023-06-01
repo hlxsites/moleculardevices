@@ -50,6 +50,10 @@ main .hero-advanced-wrapper {
   margin-bottom: 15px;
 }
 
+.hero-inner .container:not(.two-column) li {
+  margin-bottom: 5px;
+}
+
 .hero-inner h1 {
   margin-top: 20px;
   margin-bottom: 40px;
