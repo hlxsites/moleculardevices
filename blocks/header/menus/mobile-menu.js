@@ -160,7 +160,10 @@ export function buildMobileMenu(content) {
 
     const menuId = getSubmenuIdFromTitle(title);
 
-    const submenuLink = a(title);
+    const submenuLink = a(
+      { href: '#' },
+      title,
+    );
 
     const listItem = li(
       { class: 'mobile-menu-item', 'menu-id': menuId },
