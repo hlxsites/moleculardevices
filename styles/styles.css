@@ -1185,7 +1185,7 @@ main .section[aria-hidden="true"] {
 }
 
 .homepage .section > div {
-  padding: 100px 15px 0;
+  padding: 70px 15px 0;
 }
 
 @media only screen and (max-width: 767px) {
