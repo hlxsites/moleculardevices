@@ -28,9 +28,7 @@ async function updateCounters() {
 }
 
 async function getCartDetails() {
-  return fetch(`${SHOP_BASE_URL}/cart.json`, {
-    mode: 'no-cors',
-  })
+  return fetch(`${SHOP_BASE_URL}/cart.json`)
     .catch((err) => {
     // eslint-disable-next-line no-console
       console.warn('Could not get cart details.', err);
@@ -53,9 +51,7 @@ async function addToCart(event) {
     id: itemId,
     quantity: counter,
     _: Date.now(),
-  })}`, {
-    mode: 'no-cors',
-  })
+  })}`)
     .catch((err) => {
     // eslint-disable-next-line no-console
       console.warn(`Could not add id ${itemId} to cart.`, err);
