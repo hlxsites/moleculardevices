@@ -540,6 +540,20 @@ export function decorateButtons(element) {
 }
 
 /**
+ * decorates paragraphs containing a single em as captions.
+ * @param {Element} element container element
+ */
+
+export function decorateCaptions(element) {
+  element.querySelectorAll('em').forEach((em) => {
+    const up = em.parentElement;
+    if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
+      up.classList.add('caption-container');
+    }
+  })
+}
+
+/**
  * load LCP block and/or wait for LCP in default content.
  */
 export async function waitForLCP(lcpBlocks) {

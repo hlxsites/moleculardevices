@@ -2,6 +2,7 @@ import {
   sampleRUM,
   loadFooter,
   decorateButtons,
+  decorateCaptions,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -360,6 +361,7 @@ async function decorateTemplates(main) {
 export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateCaptions(main);
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);

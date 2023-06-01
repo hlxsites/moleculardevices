@@ -294,6 +294,10 @@ em strong {
   font-weight: 700;
 }
 
+.caption-container > em {
+  font-size: 14px;
+}
+
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
