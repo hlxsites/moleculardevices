@@ -54,7 +54,9 @@ export function removeAllEventListeners() {
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
 
-  const logoLink = a({ href: '/' });
+  const logoLink = a(
+    { href: '/', 'aria-label': 'Home' },
+  );
   logoLink.innerHTML = logoImg.outerHTML;
 
   const logoWrapper = div(
@@ -99,7 +101,7 @@ export function buildRequestQuote(classes) {
   return li(
     { class: classes },
     a(
-      { href: link },
+      { href: link, 'aria-label': 'Request Quote' },
       'Request Quote',
     ),
   );
