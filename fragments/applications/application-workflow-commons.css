@@ -1,0 +1,580 @@
+.workflow_elisa .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.workflow_elisa .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
+}
+
+.workflow_elisa .icon.icon-chevron-right-outline svg path {
+  stroke-width: 15;
+}
+
+.workflow_elisa .mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.workflow_elisa .mt-10 {
+  margin-top: 10px !important;
+}
+
+.workflow_elisa img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.workflow_elisa p {
+  margin: 0 0 10px;
+}
+
+.video .video-ico {
+  position: relative;
+}
+
+.video .video-ico:before {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  content: "";
+  display: block;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0.7) url(/fragments/workflow/play-ico.png)
+    no-repeat center center;
+  background-size: 45% auto;
+  margin: auto;
+  left: -5px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#conference-timeline {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#conference-timeline .timeline-start,
+#conference-timeline .timeline-end {
+  display: table;
+  font-family: var(--ff-proxima-light);
+  font-size: 48px;
+  text-transform: capitalize;
+  background: #0066a4;
+  padding: 7px 23px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+#conference-timeline .conference-center-line {
+  position: absolute;
+  width: 20px;
+  height: 83%;
+  top: 272px;
+  left: 0;
+  right: 0;
+  background: #e6e6e6;
+  z-index: -1;
+  margin: 0 auto;
+}
+
+#conference-timeline .conference-timeline-content {
+  padding-top: 67px;
+  padding-bottom: 67px;
+}
+
+.timeline-article {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 100px 0;
+  padding: 10px 20px;
+}
+
+.timeline-article .content-left-container,
+.timeline-article .content-right-container {
+  max-width: 40%;
+  width: 100%;
+}
+
+.workflow_elisa .box-section {
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image_part .spectra-flow {
+  position: relative;
+}
+
+.ask-me-part.image_part.bubbles-part {
+  position: static;
+  background-image: url(/fragments/workflow/ask-me-bubble.png);
+  background-repeat: no-repeat;
+  background-size: 91% 100%;
+  background-position: center;
+  height: 311px;
+  width: 494px;
+  margin-left: -35px;
+}
+
+.image_part.bubbles-part {
+  position: static;
+  background-image: url(/fragments/workflow/chat-bbls.png);
+  background-repeat: no-repeat;
+  background-size: 91% 100%;
+  background-position: center;
+  height: 311px;
+  width: 494px;
+  margin-left: -35px;
+}
+
+.meta-date.left-arrow:after {
+  content: "";
+  background-image: url(/fragments/workflow/bullet-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 142px;
+  display: block;
+  height: 17px;
+  top: 0;
+  bottom: 0;
+  right: 86px;
+  margin: auto;
+  position: absolute;
+  transform: rotate(180deg);
+}
+
+.meta-date.right-arrow:after {
+  content: "";
+  background-image: url(/fragments/workflow/bullet-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 142px;
+  display: block;
+  height: 17px;
+  top: 0;
+  bottom: 0;
+  left: 86px;
+  margin: auto;
+  position: absolute;
+}
+
+.image-section .spectra-image {
+  position: static;
+}
+
+.ask-me-part .text-wrap {
+  padding: 31px 70px;
+}
+
+.myspectra .spectra-image.for_desktop {
+  width: 238px;
+}
+
+.text-wrap {
+  padding: 50px 41px;
+  text-align: center;
+}
+
+.workflow_elisa .image-section .text-wrap p {
+  color: #008da9;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.workflow_elisa .image-section .text-wrap h3 {
+  color: #008da9;
+}
+
+.workflow_elisa .image-section .text-wrap a {
+  color: #008da9;
+  font-weight: 500;
+}
+
+.box-section .text-part {
+  padding: 27px 25px;
+}
+
+.box-section .image_part img {
+  width: 100%;
+}
+
+.image-section .image_part {
+  text-align: center;
+}
+
+.image-section.on_image {
+  position: relative;
+}
+
+.image-section.on_image .text-part {
+  position: absolute;
+  bottom: 82px;
+}
+
+.timeline-article .timeline-author {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #242424;
+  text-align: right;
+}
+
+.timeline-article .content-left,
+.timeline-article .content-right {
+  position: relative;
+  width: auto;
+  background-color: #fff;
+  padding: 0;
+  min-height: 400px;
+}
+
+.workflow_elisa .image-section p {
+  padding: 0;
+  font-weight: 400;
+  color: #4d4d4d;
+  font-size: 18px;
+  position: relative;
+}
+
+.workflow_elisa .image-section h3 {
+  color: #0066a4;
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  margin-bottom: 25px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.workflow_elisa .box-section p {
+  padding: 0;
+  font-weight: 400;
+  color: #4d4d4d;
+  font-size: 18px;
+  position: relative;
+}
+
+.workflow_elisa .box-section h3 {
+  color: #4d4d4d;
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+.workflow_elisa .box-section p {
+  text-align: left;
+}
+
+.workflow_elisa .image-section p.center-align {
+  text-align: center;
+}
+
+.timeline-article p span.article-number {
+  position: absolute;
+  font-weight: 300;
+  font-size: 44px;
+  top: 10px;
+  left: -60px;
+  color: #00b0bd;
+}
+
+.timeline-article .content-left-container {
+  float: left;
+}
+
+.timeline-article .content-right-container {
+  float: right;
+}
+
+.timeline-article .content-left:before,
+.timeline-article .content-right:before {
+  position: absolute;
+  top: 20px;
+  font-size: 23px;
+  font-family: "FontAwesome";
+  color: #fff;
+}
+
+.timeline-article .content-left:before {
+  content: "\f0da";
+  right: -8px;
+}
+
+.timeline-article .content-right:before {
+  content: "\f0d9";
+  left: -8px;
+}
+
+.timeline-article .meta-date {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  color: #fff;
+  border-radius: 100%;
+  background: #0066a4;
+  right: 0;
+  margin: 0 auto;
+}
+
+.timeline-article .meta-date .date,
+.timeline-article .meta-date .month {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+}
+
+.timeline-article .meta-date .date {
+  font-size: 36px;
+  line-height: 88px;
+  font-family: var(--ff-proxima-regular);
+  font-weight: 600;
+}
+
+.timeline-article .meta-date .month {
+  font-size: 18px;
+  line-height: 10px;
+}
+
+.image-section.on_image .text-part.add_substrate {
+  margin-top: -10em;
+  position: static;
+}
+
+.image-section.on_image .text-part.add_detection {
+  position: static;
+  margin-top: -5em;
+}
+
+.image-section.on_image .text-part.wash_microplate {
+  position: static;
+  margin-top: -11em;
+}
+
+.watch-video {
+  display: inline-block;
+  font-family: var(--ff-proxima-regular);
+}
+
+.watch-video i.icon-icon_link {
+  vertical-align: middle;
+  margin-left: 0;
+}
+
+.timeline-article .content-right:before {
+  content: none;
+}
+
+.timeline-article .content-left:before {
+  content: none;
+}
+
+#conference-timeline .for_desktop {
+  display: block;
+}
+
+#conference-timeline .for_mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 830px) {
+  .ask-me-part .text-wrap {
+    padding: 33px 32px;
+  }
+
+  .ask-me-part.image_part.bubbles-part {
+    height: 383px;
+    width: 300px;
+    margin-left: -14px;
+  }
+
+  .image-section.on_image .text-part {
+    position: static;
+  }
+
+  #conference-timeline .for_desktop {
+    display: none !important;
+  }
+
+  #conference-timeline .for_mobile {
+    display: block !important;
+  }
+
+  .image-section.on_image .text-part.wash_microplate {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .image-section.on_image .text-part.add_detection {
+    margin-top: 0;
+  }
+
+  .image-section.on_image .text-part.add_substrate {
+    margin-top: 0;
+  }
+
+  #conference-timeline .timeline-start,
+  #conference-timeline .timeline-end {
+    margin: 0;
+  }
+
+  #conference-timeline .conference-center-line {
+    margin-left: 0;
+    left: 50px;
+  }
+
+  .timeline-article .meta-date {
+    margin-left: 0;
+    left: 20px;
+  }
+
+  .timeline-article .content-left-container,
+  .timeline-article .content-right-container {
+    max-width: 100%;
+    width: auto;
+    float: none;
+    margin-left: 110px;
+    min-height: 53px;
+  }
+
+  .timeline-article .content-left-container {
+    margin-bottom: 20px;
+  }
+
+  .timeline-article .content-left,
+  .timeline-article .content-right {
+    padding: 10px 25px;
+    min-height: 65px;
+  }
+
+  .timeline-article .content-left:before {
+    content: none;
+  }
+
+  .timeline-article .content-right:before {
+    display: none;
+  }
+
+  .image_part.blue_arro:before {
+    content: "";
+    left: -19px;
+  }
+
+  .meta-date.right-arrow:after {
+    content: none;
+  }
+
+  .meta-date.left-arrow:after {
+    content: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #conference-timeline .conference-center-line {
+    height: 82%;
+  }
+
+  .timeline-article p {
+    margin: 0;
+  }
+
+  .timeline-article p span.article-number {
+    display: none;
+  }
+
+  #conference-timeline .conference-center-line {
+    margin-left: 0;
+    left: 19px;
+  }
+
+  #conference-timeline .conference-center-line {
+    width: 10px;
+  }
+
+  .timeline-article .meta-date {
+    width: 50px;
+    height: 50px;
+    left: 0;
+  }
+
+  #conference-timeline .timeline-start {
+    font-size: 34px;
+  }
+
+  .timeline-article .meta-date .date {
+    font-size: 25px;
+    line-height: 54px;
+  }
+
+  .timeline-article .content-left-container,
+  .timeline-article .content-right-container {
+    margin-left: 40px;
+  }
+
+  .timeline-article .content-left,
+  .timeline-article .content-right {
+    padding: 0;
+  }
+
+  .timeline-article {
+    margin: 0 0 50px 0;
+  }
+
+  .text-wrap {
+    padding: 52px 40px;
+    text-align: center;
+  }
+
+  .image_part.bubbles-part {
+    height: 403px;
+    width: 271px;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .workflow_elisa .image-section h3 {
+    margin-bottom: 16px;
+  }
+
+  .workflow_elisa .image-section h3 {
+    font-size: 24px;
+  }
+
+  .image-section.on_image .text-part {
+    position: static;
+    margin-top: 0;
+  }
+
+  .image-section.on_image .text-part.wash_microplate {
+    position: static;
+    margin-top: 0;
+  }
+
+  .image-section.on_image .text-part.add_detection {
+    position: static;
+    margin-top: 0;
+  }
+
+  .workflow_elisa .box-section h3 {
+    font-size: 25px;
+  }
+
+  .image-section.on_image .text-part.add_substrate {
+    margin-top: 0;
+    position: static;
+  }
+}

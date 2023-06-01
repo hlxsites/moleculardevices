@@ -371,14 +371,13 @@ header .nav-tabs .menu-nav-category {
   padding: 11px 0;
   text-transform: uppercase;
   text-align: left;
-  margin-top: 4px;
-  margin-bottom: -1px;
+  margin: 4px 0 -1px 4%;
   border: 0;
-  margin-right: 0;
   font-size: 12px;
   background-color: transparent;
   font-weight: 300;
   cursor: default;
+  transform: scale(1.06,1);
 }
 
 header .nav-tabs .menu-nav-category:hover {
@@ -1381,7 +1380,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     width: 18px;
     height: 18px;
     position: absolute;
-    transform: translate(-3px,-12px);
+    transform: translate(-2px,-12px);
     line-height: 18px;
   }
 
@@ -1469,8 +1468,9 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     box-sizing: border-box;
     padding-left: 20px;
     position: relative;
-    margin-left: 5px;
+    margin-left: -12px;
     overflow: hidden;
+    transform: translate(6px,0);
   }
 
   header nav .nav-menu {
