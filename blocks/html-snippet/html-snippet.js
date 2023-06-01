@@ -53,7 +53,7 @@ async function decorateSnippet(block, fragmentURL) {
 export default async function decorate(block) {
   const url = block.querySelector('a').href;
   if (new URL(url).origin !== window.location.origin) {
-    block.innerHTML = '<p>Cannot use unsafe cross origin reference for the HTML Snippets.<p>';
+    block.innerHTML = '<p>Cannot use unsafe cross-origin reference for the HTML Snippets.<p>';
     return;
   }
 
