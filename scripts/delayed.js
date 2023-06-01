@@ -52,7 +52,7 @@ async function loadUserData() {
     return Promise.reject(response);
   }).then((data) => {
     if (data[attrCountryCode]) {
-      setCookie(attrCountryCode, data[attrCountryCode], 30);
+      setCookie(attrCountryCode, data[attrCountryCode], 1);
     }
   }).catch((err) => {
     // eslint-disable-next-line no-console
