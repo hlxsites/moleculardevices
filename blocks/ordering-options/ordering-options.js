@@ -119,13 +119,13 @@ function renderCartWidget() {
   return (
     div({ class: 'cart-widget' },
       span({ class: 'cart-count' }, getCartItemCount()),
-      i({ class: 'fa fa-shopping-cart' }),
       a({
         href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
-      }),
+      }, i({ class: 'fa fa-shopping-cart' }),
+      ),
     )
   );
 }
