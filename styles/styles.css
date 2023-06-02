@@ -765,12 +765,10 @@ main .section.features-section .button-container {
 }
 
 .picture + p > em:only-child,
-.blog ol > li > em:only-child,
-.blog ol > li::marker,
+.blog ol.text-caption,
 .columns-wrapper + div > p:first-child > em:only-child,
 .vidyard-wrapper + div > p:first-child > em:only-child,
-.table-wrapper + div > p:first-child > em:only-child,
-.text-caption {
+.table-wrapper + div > p:first-child > em:only-child {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;

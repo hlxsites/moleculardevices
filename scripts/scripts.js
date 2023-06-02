@@ -187,6 +187,9 @@ function decorateParagraphs(main) {
   [...main.querySelectorAll('p > picture')].forEach((picturePar) => {
     picturePar.parentElement.classList.add('picture');
   });
+  [...main.querySelectorAll('ol > li > em:only-child')].forEach((captionList) => {
+    captionList.parentElement.parentElement.classList.add('text-caption');
+  })
 }
 
 /**
