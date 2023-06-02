@@ -126,6 +126,7 @@ async function buildNewsletter(container) {
         id: formId,
         src: formUrl,
         loading: 'lazy',
+        title: 'Newsletter',
       }),
     ),
     )
