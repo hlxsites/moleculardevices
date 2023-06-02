@@ -152,6 +152,7 @@ export function decorateIcons(element = document) {
         const img = document.createElement('img');
         img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
         img.alt = `${icon.split('-').join(' ')}`;
+        span.innerHTML = '';
         span.appendChild(img);
       } else {
         span.innerHTML = iconHTML;
