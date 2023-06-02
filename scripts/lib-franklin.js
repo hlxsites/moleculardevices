@@ -131,7 +131,9 @@ export function decorateIcons(element = document) {
   const iconPrefix = 'fa'; // the fontawesome icon prefix
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
-    if (span.classList.length < 2 || !span.classList[1].startsWith('icon-')) {
+    if (span.classList.length < 2
+      || !span.classList[1].startsWith('icon-')
+      || span.children.length !== 0) {
       return;
     }
     const icon = span.classList[1].substring(5);
