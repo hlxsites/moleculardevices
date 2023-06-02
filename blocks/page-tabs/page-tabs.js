@@ -39,16 +39,16 @@ function createTabList(sections, active) {
   return ul;
 }
 
-function decorateAnchors() {
-  const anchors = document.querySelectorAll('.hero-inner a[href*="#"]');
-  [...anchors].forEach((anchor) => {
-    const anchorId = anchor.href.slice(anchor.href.indexOf('#') + 1);
-    const tab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
-    if (tab) {
-      anchor.addEventListener('click', openTab(tab));
-    }
-  });
-}
+// function decorateAnchors() {
+//   const anchors = document.querySelectorAll('.hero-inner a[href*="#"]');
+//   [...anchors].forEach((anchor) => {
+//     const anchorId = anchor.href.slice(anchor.href.indexOf('#') + 1);
+//     const tab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
+//     if (tab) {
+//       anchor.addEventListener('click', openTab(tab));
+//     }
+//   });
+// }
 
 export default function decorate(block) {
   const main = block.closest('main');
@@ -68,7 +68,15 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
-  decorateAnchors();
+  // decorateAnchors();
+  const heroAnchor = main.querySelector('.hero-inner a[href*="#"]');
+  if (heroAnchor) {
+    const anchorId = heroAnchor.href.slice(anchor.href.indexOf('#') + 1);
+    const heroAnchorTab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
+    if (heroAnchorTab) {
+      heroAnchorTab.addEventListener('click', openTab(heroAnchorTab));
+    }
+  }
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
