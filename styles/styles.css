@@ -238,6 +238,14 @@ h6 {
   font-size: var(--heading-font-size-xs)
 }
 
+h1 {
+  text-align: center;
+}
+
+.hero-inner h1 {
+  text-align: unset;
+}
+
 p,
 dl,
 ol,
@@ -585,7 +593,8 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-main .section.background-grey {
+main .section.background-grey
+main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
 }
 
