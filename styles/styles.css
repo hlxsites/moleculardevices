@@ -765,7 +765,7 @@ main .section.features-section .button-container {
   font-style: italic;
 }
 
-main .section.features-section .default-content-wrapper em {
+.features-section .default-content-wrapper p > em:only-child {
   margin-top: 30px;
   display: block;
   text-align: left;
