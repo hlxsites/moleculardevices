@@ -27,18 +27,22 @@ async function updateCounters() {
   }
 }
 
-async function getCartDetails() {
-  return fetch(`${SHOP_BASE_URL}/cart.json`)
-    .catch((err) => {
+function setCartDetails() {
+  fetch(`${SHOP_BASE_URL}/cart.json`, { mode: 'cors' })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then((data) => {
+      const count = data.item_count || 0;
+      setCookie(COOKIE_NAME_CART_ITEM_COUNT, count);
+      updateCounters();
+    }).catch((err) => {
     // eslint-disable-next-line no-console
       console.warn('Could not get cart details.', err);
     });
-}
-
-async function setCartItemCount() {
-  const details = await getCartDetails();
-  const count = details.item_count;
-  setCookie(COOKIE_NAME_CART_ITEM_COUNT, count || 0);
 }
 
 async function addToCart(event) {
@@ -47,18 +51,19 @@ async function addToCart(event) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
-  await fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+  fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
     id: itemId,
     quantity: counter,
     _: Date.now(),
-  })}`)
-    .catch((err) => {
-    // eslint-disable-next-line no-console
-      console.warn(`Could not add id ${itemId} to cart.`, err);
-    });
+  })}`, {
+    mode: 'no-cors',
+    method: 'POST',
+  }).catch((err) => {
+  // eslint-disable-next-line no-console
+    console.warn(`Could not add id ${itemId} to cart.`, err);
+  });
 
-  await setCartItemCount();
-  updateCounters();
+  setCartDetails();
 }
 
 function renderAddToCart(item) {
