@@ -294,15 +294,6 @@ em strong {
   font-weight: 700;
 }
 
-.table-wrapper + div > p:first-child > em:only-child,
-.text-caption {
-  margin: 15px 0 25px;
-  font-size: var(--body-font-size-xs);
-  display: block;
-  color: var(--text-gray);
-  font-style: italic;
-}
-
 .video-wrapper {
     margin: 40px auto;
     max-width: 700px;
@@ -769,6 +760,15 @@ main .section.features-section .button-container {
     width: 100%;
     padding: 0 15px;
   }
+}
+
+.table-wrapper + div > p:first-child > em:only-child,
+.text-caption {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
 }
 
 /* Wave sections */
