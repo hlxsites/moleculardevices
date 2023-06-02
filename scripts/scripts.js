@@ -2,6 +2,7 @@ import {
   sampleRUM,
   loadFooter,
   decorateButtons,
+  decorateCaptions,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -368,6 +369,7 @@ export async function decorateMain(main) {
   detectSidebar(main);
   decorateLinkedPictures(main);
   decorateLinks(main);
+  decorateCaptions(main);
 }
 
 /**
