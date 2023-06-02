@@ -762,7 +762,11 @@ main .section.features-section .button-container {
   }
 }
 
+.columns-wrapper + div > p:first-child > em:only-child,
+.vidyard-wrapper + div > p:first-child > em:only-child,
 .table-wrapper + div > p:first-child > em:only-child,
+.blog ol > li > em,
+p.picture + p > em:only-child,
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);

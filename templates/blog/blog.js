@@ -16,24 +16,6 @@ export default function buildAutoBlocks() {
     );
   }
 
-  // decorate captions
-  const main = document.querySelector('main');
-  styleCaption(main.querySelectorAll('p > picture'));
-  main.querySelectorAll('ol > li > em').forEach((item) => {
-    item.parentElement.parentElement.classList.add('text-caption');
-  });
-
-  main.querySelectorAll('.vidyard', '.columns').forEach((item) => {
-    if (!item.nextElementSibling.tagName === 'P') {
-      return;
-    }
-
-    const paragraph = item.nextElementSibling;
-    if (paragraph.children.length === 1 && paragraph.children[0].tagName === 'EM') {
-      paragraph.children[0].classList.add('text-caption');
-    }
-  });
-
   // add wave
   main.appendChild(
     div(
