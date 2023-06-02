@@ -1,11 +1,17 @@
-.quote-request-container {
+main div.section.quote-request-container {
   background-attachment: fixed;
   background-size: cover;
   padding-top: 80px;
   position: relative;
 }
 
-.quote-request-container::after {
+main div.section.quote-request-container.wave {
+  padding-top: 80px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+main div.section.quote-request-container::after {
   z-index: 9;
   position: relative;
 }

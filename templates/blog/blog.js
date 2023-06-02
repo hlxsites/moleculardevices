@@ -14,7 +14,6 @@ export default function buildAutoBlocks() {
       blogCarouselSection,
     );
   }
-
   // add wave
   const main = document.querySelector('main');
   main.appendChild(

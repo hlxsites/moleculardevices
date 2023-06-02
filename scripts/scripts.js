@@ -80,8 +80,8 @@ export function summariseDescription(description, charCount) {
 }
 
 /*
-* If we have a hero block, move it into its own section, so it can be displayed faster
-*/
+ * If we have a hero block, move it into its own section, so it can be displayed faster
+ */
 function optimiseHeroBlock(main) {
   const heroBlock = main.querySelector('.hero, .hero-advanced');
   if (!heroBlock) return;
@@ -89,6 +89,25 @@ function optimiseHeroBlock(main) {
   const heroSection = document.createElement('div');
   heroSection.appendChild(heroBlock);
   main.prepend(heroSection);
+}
+
+/**
+ * Append default wave section to pages
+ */
+function decorateWaveSection(main) {
+  const hasPageTabsBlock = main.querySelector('.page-tabs');
+  if (hasPageTabsBlock) return;
+
+  const lastSection = main.querySelector('div.section:last-of-type');
+  if (lastSection.classList.contains('wave')) return;
+  const hasWaveFragment = lastSection.firstElementChild && lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
+  if (hasWaveFragment) return;
+
+  const waveSection = document.createElement('div');
+  waveSection.classList.add('section');
+  waveSection.classList.add('wave');
+  waveSection.setAttribute('data-section-status', 'initialized');
+  lastSection.after(waveSection);
 }
 
 /**
@@ -137,10 +156,10 @@ export function embedVideo(link, url, type) {
       src="https://play.vidyard.com/${videoId}.jpg"
       data-uuid="${videoId}"
       data-v="4"
-      data-width="${(type === 'lightbox') ? '700' : ''}"
-      data-height="${(type === 'lightbox') ? '394' : ''}"
-      data-autoplay="${(type === 'lightbox') ? '1' : '0'}"
-      data-type="${(type === 'lightbox') ? 'lightbox' : 'inline'}"/>`;
+      data-width="${type === 'lightbox' ? '700' : ''}"
+      data-height="${type === 'lightbox' ? '394' : ''}"
+      data-autoplay="${type === 'lightbox' ? '1' : '0'}"
+      data-type="${type === 'lightbox' ? 'lightbox' : 'inline'}"/>`;
     }
   });
   observer.observe(link.parentElement);
@@ -355,6 +374,7 @@ export async function decorateMain(main) {
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
+  decorateWaveSection(main);
   decorateBlocks(main);
   decoratePageNav(main);
   detectSidebar(main);
@@ -565,7 +585,7 @@ export function setCookie(cname, cvalue, exdays) {
   let hostName = '';
   let domain = '';
   let expires = '';
-  date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
   if (exdays !== 0) {
     expires = `expires=${date.toUTCString()}`;
   }
@@ -612,14 +632,14 @@ function setCookieFromQueryParameters(paramName, exdays) {
  * Detect if page has store capability
  */
 export function detectStore() {
-  return (getCookie('country_code') === 'US');
+  return getCookie('country_code') === 'US';
 }
 
 /**
  * Get cart item total count
  */
 export function getCartItemCount() {
-  return (getCookie('cart-item-count')) || 0;
+  return getCookie('cart-item-count') || 0;
 }
 
 async function loadPage() {
