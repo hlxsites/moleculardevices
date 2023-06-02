@@ -1,19 +1,19 @@
 function openTab(target) {
-  const parent = target.parentNode;
-  const main = parent.closest('main');
-  const selected = target.getAttribute('aria-selected') === 'true';
+  // const parent = target.parentNode;
+  // const main = parent.closest('main');
+  // const selected = target.getAttribute('aria-selected') === 'true';
 
-  if (!selected) {
-    // close all open tabs
-    const openPageNav = parent.parentNode.querySelectorAll('li[aria-selected="true"]');
-    const openContent = main.querySelectorAll('div.section[aria-hidden="false"]');
-    openPageNav.forEach((tab) => tab.setAttribute('aria-selected', false));
-    openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
-    // open clicked tab
-    parent.setAttribute('aria-selected', true);
-    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.id}"]`);
-    tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
-  }
+  // if (!selected) {
+  //   // close all open tabs
+  //   const openPageNav = parent.parentNode.querySelectorAll('li[aria-selected="true"]');
+  //   const openContent = main.querySelectorAll('div.section[aria-hidden="false"]');
+  //   openPageNav.forEach((tab) => tab.setAttribute('aria-selected', false));
+  //   openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
+  //   // open clicked tab
+  //   parent.setAttribute('aria-selected', true);
+  //   const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.id}"]`);
+  //   tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
+  // }
 }
 
 function createTabList(sections, active) {
