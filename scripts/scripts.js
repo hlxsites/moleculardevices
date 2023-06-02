@@ -79,23 +79,6 @@ export function summariseDescription(description, charCount) {
   return `${result}…`;
 }
 
-/**
- * Will add the 'text-caption' class to the empasised elements from
- * the next sibling to mark them as captions
- * @param {NodeListOf<Element>} elems Elements which are presumed to have a caption attached.
- */
-export function styleCaption(elems) {
-  elems.forEach((elem) => {
-    const checkEm = elem.parentElement.nextElementSibling.querySelector('p > em');
-    if (checkEm) {
-      const ems = checkEm.parentElement.children;
-      [...ems].forEach((em) => {
-        em.classList.add('text-caption');
-      });
-    }
-  });
-}
-
 /*
  * If we have a hero block, move it into its own section, so it can be displayed faster
  */
@@ -216,6 +199,15 @@ function decorateLinks(main) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
+  });
+}
+
+function decorateParagraphs(main) {
+  [...main.querySelectorAll('p > picture')].forEach((picturePar) => {
+    picturePar.parentElement.classList.add('picture');
+  });
+  [...main.querySelectorAll('ol > li > em:only-child')].forEach((captionList) => {
+    captionList.parentElement.parentElement.classList.add('text-caption');
   });
 }
 
@@ -388,6 +380,7 @@ export async function decorateMain(main) {
   detectSidebar(main);
   decorateLinkedPictures(main);
   decorateLinks(main);
+  decorateParagraphs(main);
 }
 
 /**
