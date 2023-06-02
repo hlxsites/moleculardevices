@@ -294,6 +294,14 @@ em strong {
   font-weight: 700;
 }
 
+.text-caption {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
 .video-wrapper {
     margin: 40px auto;
     max-width: 700px;
@@ -762,15 +770,6 @@ main .section.features-section .button-container {
   }
 }
 
-.table-wrapper + div > p:first-child > em:only-child,
-.text-caption {
-  margin: 15px 0 25px;
-  font-size: var(--body-font-size-xs);
-  display: block;
-  color: var(--text-gray);
-  font-style: italic;
-}
-
 /* Wave sections */
 
 main div.section.wave {
@@ -1234,7 +1233,8 @@ main .section[aria-hidden="true"] {
 .footer-wave::after,
 .quote-request-container::after,
 .videos-and-webinars main::after,
-.citation main::after {
+.citation main::after,
+.application-note main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
