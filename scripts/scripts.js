@@ -208,7 +208,7 @@ function decorateParagraphs(main) {
   });
   [...main.querySelectorAll('ol > li > em:only-child')].forEach((captionList) => {
     captionList.parentElement.parentElement.classList.add('text-caption');
-  })
+  });
 }
 
 /**
