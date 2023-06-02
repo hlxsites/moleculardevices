@@ -108,8 +108,10 @@ function optimiseHeroBlock(main) {
   main.prepend(heroSection);
 }
 
+/**
+ * Append default wave section to pages
+ */
 function decorateWaveSection(main) {
-  /* append default wave section */
   const hasPageTabsBlock = main.querySelector('.page-tabs');
   if (hasPageTabsBlock) return;
 
