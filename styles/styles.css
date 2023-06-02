@@ -752,7 +752,17 @@ main .section.features-section .button-container {
   }
 }
 
-.blog ol > li > em,
+.features-section .default-content-wrapper p > em:only-child {
+  margin-top: 30px;
+  display: block;
+  text-align: left;
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+  width: 50%;
+}
+
+.blog ol > li > em:only-child,
 .picture + p > em:only-child,
 .columns-wrapper + div > p:first-child > em:only-child,
 .vidyard-wrapper + div > p:first-child > em:only-child,
@@ -763,16 +773,6 @@ main .section.features-section .button-container {
   display: block;
   color: var(--text-gray);
   font-style: italic;
-}
-
-.features-section .default-content-wrapper p > em:only-child {
-  margin-top: 30px;
-  display: block;
-  text-align: left;
-  font-size: 12px;
-  font-style: italic;
-  float: right;
-  width: 50%;
 }
 
 /* Wave sections */
