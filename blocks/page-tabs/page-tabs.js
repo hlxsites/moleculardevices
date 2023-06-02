@@ -45,9 +45,7 @@ function decorateAnchors() {
     const anchorId = anchor.href.slice(anchor.href.indexOf('#') + 1);
     const tab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
     if (tab) {
-      anchor.addEventListener('click', (e) => {
-        openTab(tab);
-      });
+      anchor.addEventListener('click', openTab(tab));
     }
   })
 }
