@@ -1,5 +1,4 @@
-function openTab(e) {
-  const { target } = e;
+function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
   const selected = target.getAttribute('aria-selected') === 'true';
@@ -25,7 +24,10 @@ function createTabList(sections, active) {
     a.href = `#${section.getAttribute('data-name')}`;
     a.id = section.getAttribute('data-name');
     a.textContent = section.title;
-    a.addEventListener('click', openTab);
+    a.addEventListener('click', (e) => {
+      openTab(e.target);
+    });
+    // a.addEventListener('click', openTab);
     li.append(a);
     if (section.getAttribute('data-name') === active) {
       li.setAttribute('aria-selected', true);
@@ -35,6 +37,19 @@ function createTabList(sections, active) {
     ul.append(li);
   });
   return ul;
+}
+
+function decorateAnchors() {
+  const anchors = document.querySelectorAll('.hero-inner a[href*="#"]');
+  [...anchors].forEach((anchor) => {
+    const anchorId = anchor.href.slice(anchor.href.indexOf('#') + 1);
+    const tab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
+    if (tab) {
+      anchor.addEventListener('click', (e) => {
+        openTab(tab);
+      });
+    }
+  })
 }
 
 export default function decorate(block) {
@@ -55,6 +70,7 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
+  decorateAnchors();
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
