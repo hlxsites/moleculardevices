@@ -47,7 +47,7 @@ function decorateAnchors() {
     if (tab) {
       anchor.addEventListener('click', openTab(tab));
     }
-  })
+  });
 }
 
 export default function decorate(block) {
