@@ -17,26 +17,26 @@ function openTab(target) {
 }
 
 function createTabList(sections, active) {
-  const ul = document.createElement('ul');
-  sections.forEach((section) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = `#${section.getAttribute('data-name')}`;
-    a.id = section.getAttribute('data-name');
-    a.textContent = section.title;
-    a.addEventListener('click', (e) => {
-      openTab(e.target);
-    });
-    // a.addEventListener('click', openTab);
-    li.append(a);
-    if (section.getAttribute('data-name') === active) {
-      li.setAttribute('aria-selected', true);
-    } else {
-      li.setAttribute('aria-selected', false);
-    }
-    ul.append(li);
-  });
-  return ul;
+  // const ul = document.createElement('ul');
+  // sections.forEach((section) => {
+  //   const li = document.createElement('li');
+  //   const a = document.createElement('a');
+  //   a.href = `#${section.getAttribute('data-name')}`;
+  //   a.id = section.getAttribute('data-name');
+  //   a.textContent = section.title;
+  //   a.addEventListener('click', (e) => {
+  //     openTab(e.target);
+  //   });
+  //   // a.addEventListener('click', openTab);
+  //   li.append(a);
+  //   if (section.getAttribute('data-name') === active) {
+  //     li.setAttribute('aria-selected', true);
+  //   } else {
+  //     li.setAttribute('aria-selected', false);
+  //   }
+  //   ul.append(li);
+  // });
+  // return ul;
 }
 
 // function decorateAnchors() {
