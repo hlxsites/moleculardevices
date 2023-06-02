@@ -803,8 +803,8 @@ main div.section.wave {
 }
 
 main div.section.wave:last-child {
-  margin-top: 45px;
-  margin-bottom: 80px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 main div.section.wave::after {
