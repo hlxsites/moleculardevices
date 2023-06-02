@@ -184,16 +184,9 @@ export function embedVideo(link, url, type) {
 
 export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
-  const overlay = div(
-    { id: 'overlay' },
-    div({
-      class: 'vidyard-player-embed',
-      'data-uuid': videoId,
-      'dava-v': '4',
-      'data-type': 'lightbox',
-      'data-autoplay': '2',
-    })
-  );
+  const overlay = div({ id: 'overlay' }, div({
+    class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
+  }));
 
   container.prepend(overlay);
   button.addEventListener('click', () => {
@@ -210,26 +203,16 @@ function decorateLinks(main) {
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const up = link.parentElement;
-      const isInlineBlock =
-        link.closest('.block.vidyard') &&
-        !link.closest('.block.vidyard').classList.contains('lightbox');
-      const type = up.tagName === 'EM' || isInlineBlock ? 'inline' : 'lightbox';
-      const wrapper = div(
-        { class: 'video-wrapper' },
-        div({ class: 'video-container' }, a({ href: link.href }, link.textContent))
-      );
-      if (link.href !== link.textContent)
-        wrapper.append(p({ class: 'video-title' }, link.textContent));
+      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
       up.innerHTML = wrapper.outerHTML;
       embedVideo(up.querySelector('a'), url, type);
     }
 
     // decorate RFQ page links with pid parameter
-    if (
-      url.pathname.startsWith('/quote-request') &&
-      !url.searchParams.has('pid') &&
-      getMetadata('family-id')
-    ) {
+    if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
@@ -457,7 +440,7 @@ export function formatDate(dateStr, options = {}) {
 
 export function unixDateToString(unixDateString) {
   const date = new Date(unixDateString * 1000);
-  const day = date.getDate().toString().padStart(2, '0');
+  const day = (date.getDate()).toString().padStart(2, '0');
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
@@ -540,10 +523,7 @@ function enableStickyElements() {
       }
 
       if (currentScrollPosition < LAST_SCROLL_POSITION && currentScrollPosition <= offsets[index]) {
-        element.style.top = `${Math.max(
-          offsets[index] - currentScrollPosition,
-          stackedHeight - element.offsetHeight
-        )}px`;
+        element.style.top = `${Math.max(offsets[index] - currentScrollPosition, stackedHeight - element.offsetHeight)}px`;
       } else {
         element.style.top = `${stackedHeight - element.offsetHeight}px`;
       }
