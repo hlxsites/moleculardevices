@@ -294,6 +294,14 @@ em strong {
   font-weight: 700;
 }
 
+.text-caption {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
 .video-wrapper {
     margin: 40px auto;
     max-width: 700px;
@@ -795,8 +803,8 @@ main div.section.wave {
 }
 
 main div.section.wave:last-child {
-  margin-top: 45px;
-  margin-bottom: 80px;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 main div.section.wave::after {
