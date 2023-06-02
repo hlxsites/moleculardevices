@@ -727,16 +727,6 @@ main .section.features-section .default-content-wrapper::after {
   display: block;
 }
 
-main .section.features-section .default-content-wrapper em {
-  margin-top: 30px;
-  display: block;
-  text-align: left;
-  font-size: 12px;
-  font-style: italic;
-  float: right;
-  width: 50%;
-}
-
 main .section.features-section .button-container {
   margin-top: 50px;
 }
@@ -762,8 +752,23 @@ main .section.features-section .button-container {
   }
 }
 
-.table-wrapper + div > p:first-child > em:only-child,
-.text-caption {
+@media only screen and (min-width: 992px) {
+  .features-section .default-content-wrapper p > em:only-child {
+    margin-top: 30px;
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    font-style: italic;
+    float: right;
+    width: 50%;
+  }
+}
+
+.picture + p > em:only-child,
+.blog ol.text-caption,
+.columns-wrapper + div > p:first-child > em:only-child,
+.vidyard-wrapper + div > p:first-child > em:only-child,
+.table-wrapper + div > p:first-child > em:only-child {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
