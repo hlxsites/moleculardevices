@@ -1,3 +1,9 @@
+.leadership-modal-carousel-nav > div {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+}
+
 .cards > ul {
   display: grid;
   grid-gap: 30px;
@@ -7,9 +13,124 @@
   padding: 0;
 }
 
+.cards.image-link {
+  margin-top: 50px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
 .cards > ul > li {
   background-color: var(--background-color);
   border: 1px solid var(--highlight-background-color);
+}
+
+.cards.image-link > ul > li {
+  border: 0;
+}
+
+.cards.image-link > ul > li > div {
+  text-align: center;
+}
+
+.cards.max-width-150 > ul {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.cards.max-width-150 > ul > li > div {
+  max-width: 150px;
+}
+
+.cards.max-width-200 > ul {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.cards.max-width-200 > ul > li > div {
+  max-width: 200px;
+}
+
+.cards > ul > li img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  width: 100%;
+}
+
+.leadership-modal-body .cards-card-image img {
+  display: block;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.cards.leaders > ul > li {
+  background-color: var(--background-color);
+  box-shadow: 0 2px 10px 3px #ccc;
+  flex-basis: 100%;
+  margin-bottom: 30px;
+}
+
+.cards.hover > ul > li img {
+  aspect-ratio: auto;
+}
+
+.cards.hover > ul > li {
+  display: flex;
+  flex-flow: column;
+  transition: transform ease-in-out 0.3s;
+}
+
+.cards.hover > ul > li > div {
+  margin: auto;
+}
+
+.cards.image-link > ul > li > div:last-child {
+  padding-top: 15px;
+}
+
+@media (min-width: 720px) {
+  .cards.image-link > ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.leadership-modal-footer a {
+  align-items: center;
+  color: var(--text-white);
+  display: flex;
+  font-size: var(--body-font-size-s);
+  font-weight: bold;
+}
+
+.leadership-modal-pagination a {
+  color: var(--text-white);
+}
+
+.leadership-modal-carousel-nav > div a {
+  font-size: 36px;
+}
+
+.cards.black a {
+  color: black;
+}
+
+.cards.green a {
+  color: #6eb43f;
+}
+
+.cards.gallery ul > li {
+  border: none;
+  position: relative;
+}
+
+.cards.who-we-are ul > li {
+  border: 0;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+.cards.hover > ul > li:hover {
+  transform: scale(1.1);
 }
 
 .cards .cards-card-body {
@@ -27,12 +148,6 @@
 
 .cards .cards-card-body > *:first-child {
   margin-top: 0;
-}
-
-.cards > ul > li img {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  width: 100%;
 }
 
 /* LEADERSHIP MODAL */
@@ -124,14 +239,6 @@
   scrollbar-width: none;
 }
 
-.leadership-modal-body .cards-card-image img {
-  display: block;
-  height: auto;
-  margin: auto;
-  max-width: 100%;
-  width: 100%;
-}
-
 .leadership-modal-body .cards-card-body,
 .leadership-modal-body .cards-card-body p {
   font-size: var(--body-font-size-xs);
@@ -162,14 +269,6 @@
   width: 100%;
 }
 
-.leadership-modal-footer a {
-  align-items: center;
-  color: var(--text-white);
-  display: flex;
-  font-size: var(--body-font-size-s);
-  font-weight: bold;
-}
-
 .leadership-modal-pagination {
   align-items: center;
   background: var(--button-secondary-hover-color);
@@ -182,10 +281,6 @@
   width: 100%;
 }
 
-.leadership-modal-pagination a {
-  color: var(--text-white);
-}
-
 .leadership-modal-pagination .prev-item a > i {
   margin-right: 10px;
 }
@@ -194,22 +289,12 @@
   margin-left: 10px;
 }
 
-.leadership-modal-carousel-nav > div {
-  position: absolute;
-  top: 55%;
-  transform: translateY(-50%);
-}
-
 .leadership-modal-carousel-nav > .prev-item {
   left: -40px;
 }
 
 .leadership-modal-carousel-nav > .next-item {
   right: -40px;
-}
-
-.leadership-modal-carousel-nav > div a {
-  font-size: 36px;
 }
 
 /* LEADERSHIP MODAL */
@@ -227,13 +312,6 @@
   display: flex;
   flex-wrap: wrap;
   grid-gap: 0;
-}
-
-.cards.leaders > ul > li {
-  background-color: var(--background-color);
-  box-shadow: 0 2px 10px 3px #ccc;
-  flex-basis: 100%;
-  margin-bottom: 30px;
 }
 
 .cards.leaders > ul > li img {
@@ -348,11 +426,6 @@
 /* ================ Leadership Block ================ */
 
 /* ================ GALLERY BLOCK ================ */
-.cards.gallery ul > li {
-  border: none;
-  position: relative;
-}
-
 .cards.gallery ul > li > .cards-card-body{
   margin: 0;
   background: rgb(0 117 141 / 80%);
@@ -409,13 +482,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.cards.who-we-are ul > li {
-  border: 0;
-  text-align: center;
-  max-width: 100%;
-  width: 100%;
 }
 
 .cards.who-we-are ul > li > .cards-card-body code {
