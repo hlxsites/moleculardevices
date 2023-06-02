@@ -12,9 +12,7 @@ main .section > div.spectra-bot-wrapper {
 
 .spectra-bot.block > div {
     display: flex;
-    background: url('/images/chat-box-mobile.png');
-    background-repeat: no-repeat;
-    background-position: center top;
+    background: url('/images/chat-box-mobile.png') no-repeat center top;
     background-size: 315px 200px;
     min-height: 219px;
     align-items: center;
@@ -38,17 +36,15 @@ main .section > div.spectra-bot-wrapper {
         background-image: url('/images/spectra-chat-desktop.png');
         background-size: contain;
         background-position: center;
+        position: relative;
     }
 
     .spectra-bot.block > div {
         position: absolute;
         background-image: url('/images/chat-box-desktop.png');
         background-size: 100% 100%;
-        min-width: 266px;
         max-width: 445px;
-        height: auto;
         top: 90px;
-        width: 100%;
         left: -215px;
         right: 0;
     }
@@ -56,5 +52,7 @@ main .section > div.spectra-bot-wrapper {
     .spectra-bot.block > div > div {
         padding: 72px 100px 50px 60px;
         font-size: 20px;
+        height: auto;
+        width: 100%;
     }
 }
