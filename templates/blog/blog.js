@@ -1,4 +1,3 @@
-import { styleCaption } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 export default function buildAutoBlocks() {
@@ -17,6 +16,7 @@ export default function buildAutoBlocks() {
   }
 
   // add wave
+  const main = document.querySelector('main');
   main.appendChild(
     div(
       div({ class: 'section-metadata' },

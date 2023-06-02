@@ -186,7 +186,7 @@ function decorateLinks(main) {
 function decorateParagraphs(main) {
   [...main.querySelectorAll('p > picture')].forEach((picturePar) => {
     picturePar.parentElement.classList.add('picture');
-  })
+  });
 }
 
 /**
