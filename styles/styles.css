@@ -1233,8 +1233,7 @@ main .section[aria-hidden="true"] {
 .footer-wave::after,
 .quote-request-container::after,
 .videos-and-webinars main::after,
-.citation main::after,
-.application-note main::after {
+.citation main::after {
   background-image: url('/images/wave-footer-bg-top.webp'), url('/images/wave-footer-bg-top.png');
   background-repeat: no-repeat;
   background-size: 100%;
