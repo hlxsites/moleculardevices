@@ -294,14 +294,6 @@ em strong {
   font-weight: 700;
 }
 
-.text-caption {
-  margin: 15px 0 25px;
-  font-size: var(--body-font-size-xs);
-  display: block;
-  color: var(--text-gray);
-  font-style: italic;
-}
-
 .video-wrapper {
     margin: 40px auto;
     max-width: 700px;
@@ -770,6 +762,15 @@ main .section.features-section .button-container {
   }
 }
 
+.table-wrapper + div > p:first-child > em:only-child,
+.text-caption {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
 /* Wave sections */
 
 main div.section.wave {
@@ -1214,8 +1215,6 @@ main .section[aria-hidden="true"] {
   text-align: center;
   border: 1px solid var(--orange-background-color);
 }
-
-/* ------ */
 
 .sticky {
   position: fixed;

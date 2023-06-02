@@ -33,16 +33,4 @@ export default function buildAutoBlocks() {
       paragraph.children[0].classList.add('text-caption');
     }
   });
-
-  // add wave
-  main.appendChild(
-    div(
-      div({ class: 'section-metadata' },
-        div(
-          div('style'),
-          div('wave'),
-        ),
-      ),
-    ),
-  );
 }
