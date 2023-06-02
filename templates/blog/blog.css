@@ -3,7 +3,6 @@
 }
 
 .blog {
-  overflow-x: hidden; /* Could be removed after the soundcloud player is implemented */
   font-family: var(--ff-proxima-regular);
 }
 
@@ -72,6 +71,10 @@
   max-width: 800px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.blog .section > div.embed-wrapper > div.embed {
+  width: unset;
 }
 
 .blog .columns-wrapper:has(h3) { /* ?? */
