@@ -68,7 +68,7 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
-  decorateAnchors();
+  // decorateAnchors();
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
