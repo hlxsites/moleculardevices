@@ -539,16 +539,6 @@ export function decorateButtons(element) {
   });
 }
 
-export function decorateCaptions(element) {
-  element.querySelectorAll('.table-wrapper').forEach((item) => {
-    const next = item.nextElementSibling;
-    const paragraph = next.querySelector(':scope > p:first-child');
-    if (paragraph && paragraph.children.length === 1 && paragraph.querySelector(':scope > em:first-child')) {
-      paragraph.classList.add('text-caption');
-    }
-  });
-}
-
 /**
  * load LCP block and/or wait for LCP in default content.
  */

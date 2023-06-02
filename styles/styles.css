@@ -294,6 +294,7 @@ em strong {
   font-weight: 700;
 }
 
+.table-wrapper + div > p:first-child > em:only-child,
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
