@@ -110,18 +110,19 @@ function optimiseHeroBlock(main) {
 
 function decorateWaveSection(main) {
   /* append default wave section */
-  const excludedTemplates = ['Product', 'Application', 'Technology'];
-  if (!excludedTemplates.includes(getMetadata('template'))) {
-    const lastSection = main.querySelector('div.section:last-of-type');
-    const hasWaveFragment = lastSection.firstElementChild && lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
-    if (!lastSection.classList.contains('wave') && !hasWaveFragment) {
-      const waveSection = document.createElement('div');
-      waveSection.classList.add('section');
-      waveSection.classList.add('wave');
-      waveSection.setAttribute('data-section-status', 'initialized');
-      lastSection.after(waveSection);
-    }
-  }
+  const hasPageTabsBlock = main.querySelector('.page-tabs');
+  if (hasPageTabsBlock) return;
+
+  const lastSection = main.querySelector('div.section:last-of-type');
+  if (lastSection.classList.contains('wave')) return;
+  const hasWaveFragment = lastSection.firstElementChild && lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
+  if (hasWaveFragment) return;
+
+  const waveSection = document.createElement('div');
+  waveSection.classList.add('section');
+  waveSection.classList.add('wave');
+  waveSection.setAttribute('data-section-status', 'initialized');
+  lastSection.after(waveSection);
 }
 
 /**
