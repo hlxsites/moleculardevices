@@ -766,6 +766,7 @@ main .section.features-section .button-container {
 
 .picture + p > em:only-child,
 .blog ol > li > em:only-child,
+.blog ol > li::marker,
 .columns-wrapper + div > p:first-child > em:only-child,
 .vidyard-wrapper + div > p:first-child > em:only-child,
 .table-wrapper + div > p:first-child > em:only-child,
