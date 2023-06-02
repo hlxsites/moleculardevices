@@ -28,7 +28,7 @@ async function updateCounters() {
 }
 
 function setCartDetails() {
-  fetch(`${SHOP_BASE_URL}/cart.json`, { mode: 'cors' })
+  fetch(`${SHOP_BASE_URL}/cart.js`, { mode: 'cors' })
     .then((response) => {
       if (response.ok) {
         return response.json();
