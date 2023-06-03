@@ -5,7 +5,6 @@ export default function decorate(block) {
   if (namedSections) {
     const activeHash = window.location.hash;
     const active = activeHash ? activeHash.substring(1, activeHash.length) : namedSections[0].getAttribute('data-name');
-
     sections.forEach((section) => {
       if (active === section.getAttribute('aria-labelledby')) {
         section.setAttribute('aria-hidden', false);
@@ -13,6 +12,5 @@ export default function decorate(block) {
         section.setAttribute('aria-hidden', true);
       }
     });
-    
   }
 }
