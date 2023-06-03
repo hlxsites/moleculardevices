@@ -71,7 +71,7 @@ export default function decorate(block) {
   // decorateAnchors();
   const heroAnchor = main.querySelector('.hero-inner a[href*="#"]');
   if (heroAnchor) {
-    const anchorId = heroAnchor.href.slice(anchor.href.indexOf('#') + 1);
+    // const anchorId = heroAnchor.href.slice(anchor.href.indexOf('#') + 1);
     // const heroAnchorTab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
     // if (heroAnchorTab) {
     //   heroAnchorTab.addEventListener('click', openTab(heroAnchorTab));
