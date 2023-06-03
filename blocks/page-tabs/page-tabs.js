@@ -1,5 +1,4 @@
-function openTab(e) {
-  const { target } = e;
+function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
   const selected = target.getAttribute('aria-selected') === 'true';
@@ -25,7 +24,9 @@ function createTabList(sections, active) {
     a.href = `#${section.getAttribute('data-name')}`;
     a.id = section.getAttribute('data-name');
     a.textContent = section.title;
-    a.addEventListener('click', openTab);
+    a.addEventListener('click', (e) => {
+      openTab(e.target);
+    });
     li.append(a);
     if (section.getAttribute('data-name') === active) {
       li.setAttribute('aria-selected', true);
@@ -55,7 +56,16 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
-
+  const heroAnchor = main.querySelector('.hero-inner a[href*="#"]');
+  if (heroAnchor) {
+    const anchorId = heroAnchor.href.slice(heroAnchor.href.indexOf('#') + 1);
+    const heroAnchorTarget = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
+    if (heroAnchorTarget) {
+      heroAnchor.addEventListener('click', () => {
+        openTab(heroAnchorTarget);
+      });
+    }
+  }
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
 }
