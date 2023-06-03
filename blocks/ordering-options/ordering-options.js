@@ -28,7 +28,15 @@ async function updateCounters() {
 }
 
 async function getCartDetails() {
+  // return fetch(`${SHOP_BASE_URL}/cart.json`, {
+  //   mode: 'no-cors',
+  // })
+  //   .catch((err) => {
+  //   // eslint-disable-next-line no-console
+  //     console.warn('Could not get cart details.', err);
+  //   });
   return new Promise((resolve) => {
+    console.log('here');
     const script = domEl('script',
       {
         src: `${SHOP_BASE_URL}/cart.json?callback=cartDetails`,
@@ -36,10 +44,11 @@ async function getCartDetails() {
     );
 
     window['cartDetails'] = function(data) {
+      console.log(data);
+      resolve(data);
+
       document.getElementsByTagName('head')[0].removeChild(script); 
       delete window['cartDetails'];
-      setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
-      resolve(data);
     }
 
     document.getElementsByTagName('head')[0].appendChild(script); 
@@ -76,7 +85,6 @@ async function addToCart(event) {
   // }); 
 
   await getCartDetails();
-  updateCounters();
 }
 
 function renderAddToCart(item) {
@@ -210,7 +218,7 @@ export default async function decorate(block) {
   if (showStore) {
     block.classList.add('cart-store');
     await getCartDetails();
-    updateCounters();
+
 
     // cart visible everywhere in product page
     const productsMain = document.querySelector('.product main');
