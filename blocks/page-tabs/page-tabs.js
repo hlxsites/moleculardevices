@@ -1,3 +1,4 @@
 export default function decorate(block) {
-  block.classList.add('test');
+  const main = block.closest('main');
+  const sections = main.querySelectorAll('div.section.tabs');
 }
