@@ -1,3 +1,3 @@
 export default function decorate(block) {
-  alert(block);
+  block.classlist.add('test');
 }
