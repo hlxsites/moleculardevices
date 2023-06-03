@@ -2,7 +2,6 @@ function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
   const selected = target.getAttribute('aria-selected') === 'true';
-
   if (!selected) {
     // close all open tabs
     const openPageNav = parent.parentNode.querySelectorAll('li[aria-selected="true"]');
