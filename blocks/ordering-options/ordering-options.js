@@ -52,36 +52,28 @@ async function addToCart(event) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
-  // await fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-  //   id: itemId,
-  //   quantity: counter,
-  //   _: Date.now(),
-  // })}`, {
-  //   mode: 'no-cors',
-  // })
-  //   .catch((err) => {
-  //   // eslint-disable-next-line no-console
-  //     console.warn(`Could not add id ${itemId} to cart.`, err);
-  //   });
+  await fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+    id: itemId,
+    quantity: counter,
+    _: Date.now(),
+  })}`, {
+    mode: 'no-cors',
+  })
+    .catch((err) => {
+    // eslint-disable-next-line no-console
+      console.warn(`Could not add id ${itemId} to cart.`, err);
+    });
 
-  await new Promise((resolve) => {
-    const script = domEl('script',
-      {
-        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-          id: itemId,
-          quantity: counter,
-          _: Date.now(),
-          callback: 'addToCart',
-        })}`,
-        onload: () => { 
-          resolve(); 
-        }
-
-      }
-    );
-    document.getElementsByTagName('head')[0].appendChild(script); 
-    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
-  }); 
+  // await new Promise((resolve) => {
+  //   const script = domEl('script',
+  //     {
+  //       src: `${SHOP_BASE_URL}/cart/add.js?id=${itemId}&quantity=${counter}&callback=addToCart`,
+  //       onload: () => { resolve(); }
+  //     }
+  //   );
+  //   document.getElementsByTagName('head')[0].appendChild(script); 
+  //   setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
+  // }); 
 
   await getCartDetails();
   updateCounters();
