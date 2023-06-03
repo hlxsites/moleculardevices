@@ -72,10 +72,10 @@ export default function decorate(block) {
   const heroAnchor = main.querySelector('.hero-inner a[href*="#"]');
   if (heroAnchor) {
     const anchorId = heroAnchor.href.slice(anchor.href.indexOf('#') + 1);
-    const heroAnchorTab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
-    if (heroAnchorTab) {
-      // heroAnchorTab.addEventListener('click', openTab(heroAnchorTab));
-    }
+    // const heroAnchorTab = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
+    // if (heroAnchorTab) {
+    //   heroAnchorTab.addEventListener('click', openTab(heroAnchorTab));
+    // }
   }
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
