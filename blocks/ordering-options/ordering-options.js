@@ -1,6 +1,6 @@
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
-  a, div, h3, i, p, span,
+  a, div, domEl, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -27,22 +27,25 @@ async function updateCounters() {
   }
 }
 
-function setCartDetails() {
-  fetch(`${SHOP_BASE_URL}/cart.js`, { mode: 'cors' })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(response);
-    })
-    .then((data) => {
-      const count = data.item_count || 0;
-      setCookie(COOKIE_NAME_CART_ITEM_COUNT, count);
-      updateCounters();
-    }).catch((err) => {
-    // eslint-disable-next-line no-console
-      console.warn('Could not get cart details.', err);
-    });
+async function getCartDetails() {
+  return new Promise((resolve) => {
+    const script = domEl('script',
+      {
+        src: `${SHOP_BASE_URL}/cart.json?callback=cartDetails`,
+      },
+    );
+
+    /* eslint-disable dot-notation */
+    window['cartDetails'] = (data) => {
+      document.getElementsByTagName('head')[0].removeChild(script);
+      delete window['cartDetails'];
+      setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
+      resolve(data);
+    };
+    /* eslint-enable dot-notation */
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
 }
 
 async function addToCart(event) {
@@ -51,19 +54,26 @@ async function addToCart(event) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
-  fetch(`${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-    id: itemId,
-    quantity: counter,
-    _: Date.now(),
-  })}`, {
-    mode: 'no-cors',
-    method: 'POST',
-  }).catch((err) => {
-  // eslint-disable-next-line no-console
-    console.warn(`Could not add id ${itemId} to cart.`, err);
+  await new Promise((resolve) => {
+    const script = domEl('script',
+      {
+        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+          id: itemId,
+          quantity: counter,
+          _: Date.now(),
+          callback: 'addToCart',
+        })}`,
+        onload: () => {
+          resolve();
+        },
+      },
+    );
+    document.getElementsByTagName('head')[0].appendChild(script);
+    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
   });
 
-  setCartDetails();
+  await getCartDetails();
+  updateCounters();
 }
 
 function renderAddToCart(item) {
@@ -195,6 +205,8 @@ export default async function decorate(block) {
 
   if (showStore) {
     block.classList.add('cart-store');
+    await getCartDetails();
+    updateCounters();
 
     // cart visible everywhere in product page
     const productsMain = document.querySelector('.product main');
