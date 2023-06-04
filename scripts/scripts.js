@@ -249,7 +249,10 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
           block.parentElement.style.display = '';
         });
 
+        // should set the status of section as loaded using standard lib-franklin logic
         updateSectionsStatus(document.querySelector('main'));
+        // force the loaded status just as a double precaution
+        section.setAttribute('data-section-status', 'loaded');
       };  
 
       // In case the user clicks on the section, quickly render it on the spot,
