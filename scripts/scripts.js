@@ -250,7 +250,7 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
 
         // force the loaded status of the section
         section.setAttribute('data-section-status', 'loaded');
-      };  
+      };
 
       // In case the user clicks on the section, quickly render it on the spot,
       // if it happens before the timeout bleow
