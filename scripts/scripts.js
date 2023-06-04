@@ -415,6 +415,12 @@ export function addFavIcon(href, rel = 'icon') {
   }
 }
 
+/**
+ * Format date expressed as string: mm/dd/yyyy
+ * @param {string} dateStr date as string
+ * @param {Object} options result string format options
+ * @returns new string with the formated date
+ */
 export function formatDate(dateStr, options = {}) {
   if (!dateStr) return '';
   const parts = dateStr.split(/[/,]/);
@@ -429,6 +435,23 @@ export function formatDate(dateStr, options = {}) {
     });
   }
   return dateStr;
+}
+
+/**
+ * Format date expressed in UTC seconds
+ * @param {number} date
+ * @returns new string with the formated date
+ */
+export function formatDateUTCSeconds(date, options = {}) {
+  const dateObj = new Date(0);
+  dateObj.setUTCSeconds(date);
+
+  return dateObj.toLocaleDateString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+    ...options,
+  });
 }
 
 export function unixDateToString(unixDateString) {
