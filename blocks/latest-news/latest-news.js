@@ -2,15 +2,11 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
-
-export function formatDate(date) {
-  const dateObj = new Date(Date.UTC(0, 0, 0, 0, 0, date));
-  return dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-}
+import { formatDateUTCSeconds } from '../../scripts/scripts.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
-    let dateLine = formatDate(item.date);
+    let dateLine = formatDateUTCSeconds(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
     block.append(article({},
       div({ class: 'image' },

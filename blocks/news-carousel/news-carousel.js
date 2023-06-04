@@ -1,17 +1,7 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { formatDateUTCSeconds } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
-
-function formatDate(newsDate) {
-  const dateObj = new Date(0);
-  dateObj.setUTCSeconds(newsDate);
-
-  return dateObj.toLocaleDateString('en-US', {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-  });
-}
 
 function renderItem(item) {
   const newsItem = document.createElement('div');
@@ -32,7 +22,7 @@ function renderItem(item) {
   const newsCaptionText = document.createElement('div');
   newsCaptionText.classList.add('news-carousel-caption-text');
   newsCaptionText.innerHTML = `
-    <p>${formatDate(item.date)}</p>
+    <p>${formatDateUTCSeconds(item.date)}</p>
     <p>${item.title}</p>
   `;
 
