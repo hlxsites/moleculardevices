@@ -15,7 +15,6 @@ import {
   loadHeader,
   decorateBlock,
   buildBlock,
-  updateSectionsStatus,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -249,9 +248,7 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
           block.parentElement.style.display = '';
         });
 
-        // should set the status of section as loaded using standard lib-franklin logic
-        updateSectionsStatus(document.querySelector('main'));
-        // force the loaded status just as a double precaution
+        // force the loaded status of the section
         section.setAttribute('data-section-status', 'loaded');
       };  
 
