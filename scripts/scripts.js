@@ -15,6 +15,7 @@ import {
   loadHeader,
   decorateBlock,
   buildBlock,
+  updateSectionsStatus,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -247,7 +248,9 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
           // Show the block only when everything is ready to avoid CLS
           block.parentElement.style.display = '';
         });
-      };
+
+        updateSectionsStatus(document.querySelector('main'));
+      };  
 
       // In case the user clicks on the section, quickly render it on the spot,
       // if it happens before the timeout bleow
