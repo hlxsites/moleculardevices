@@ -122,10 +122,7 @@ class LeadershipModal {
     const startPoint = 0;
     const endPoint = Number(this.leaderCardItems.length - 1);
 
-    console.log('creating all modals', startPoint, endPoint);
-
     this.leaderCardItems.forEach((leaderCard, index) => {
-      console.log('creating modal for index and card', index, leaderCard);
       const cardContent = document.createElement('div');
       const cardWrapper = document.createElement('div');
 
@@ -163,16 +160,13 @@ class LeadershipModal {
   }
 
   showModalCard(index) {
-    console.log('showing modal card');
     this.modalCarouselItems = this.modalBody.children;
     this.modalOverlay = document.querySelector('.leader-profiles-modal-overlay');
 
     this.curSlide = index;
     [...this.modalCarouselItems].forEach((slide, indx) => {
-      console.log('iterating over modal items');
       slide.style.transform = `translateX(${100 * (indx - this.curSlide)}%)`;
       setTimeout(() => {
-        console.log('adding transition class');
         slide.classList.add('leader-profiles-transition');
       }, 100);
     });
@@ -233,10 +227,8 @@ class LeadershipModal {
   }
 
   init() {
-    console.log('initializing');
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
-        console.log('creating modal carousel');
         this.createModalCarousel();
         observer.disconnect(entries);
       }
@@ -244,13 +236,9 @@ class LeadershipModal {
     observer.observe(document.body);
 
     const modalObserver = new IntersectionObserver((entries) => {
-      console.log('evaluating entry in observer', entries);
       if (entries.some((e) => e.isIntersecting)) {
-        console.log('observed modal card');
         entries.forEach((entry, index) => {
-          console.log('adding event listener');
           entry.target.addEventListener('click', () => {
-            console.log('clicked', index);
             this.showModalCard(index);
           });
           modalObserver.disconnect(entry.target);
