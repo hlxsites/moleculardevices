@@ -1,0 +1,47 @@
+.technology .section h2 {
+  font-size: 36px;
+}
+
+.technology .section.tabs {
+  padding-top: 90px;
+}
+
+.technology .section > div {
+  padding-bottom: 20px;
+}
+
+.technology .section .related-links-container {
+  background-color: #f2f2f2;
+  padding-bottom: 32px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.technology .default-content-wrapper:has(#western-blot-overview) {
+  background-color: #f2f2f2;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 26px;
+  margin-top: 50px;
+}
+
+.technology .related-apps-container {
+  --related-app-gap: 50px;
+}
+
+.technology .related-applications-container {
+  margin-bottom: 70px;
+}
+
+.technology .latest-resources-container h2 {
+  text-align: center;
+  font-size: 70px;
+}
+
+@media(max-width: 991px) {
+  .technology .latest-resources-container h2 {
+    font-size: 45px;
+  }
+}
