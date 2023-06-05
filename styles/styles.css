@@ -204,6 +204,7 @@ h1 {
   text-align: center;
 }
 
+header h1,
 .hero-inner h1 {
   text-align: unset;
 }
