@@ -1,4 +1,4 @@
-.leadership-modal-carousel-nav > div {
+.leader-profiles-modal-carousel-nav > div {
   position: absolute;
   top: 55%;
   transform: translateY(-50%);
@@ -28,7 +28,7 @@
   width: 100%;
 }
 
-.leadership-modal-body .leadership-profile-card-image img {
+.leader-profiles-modal-body .leader-profiles-card-image img {
   display: block;
   height: auto;
   margin: auto;
@@ -36,7 +36,7 @@
   width: 100%;
 }
 
-.leadership-modal-footer a {
+.leader-profiles-modal-footer a {
   align-items: center;
   color: var(--text-white);
   display: flex;
@@ -44,32 +44,32 @@
   font-weight: bold;
 }
 
-.leadership-modal-pagination a {
+.leader-profiles-modal-pagination a {
   color: var(--text-white);
 }
 
-.leadership-modal-carousel-nav > div a {
+.leader-profiles-modal-carousel-nav > div a {
   font-size: 36px;
 }
 
-.leader-profiles .leadership-profile-card-body {
+.leader-profiles .leader-profiles-card-body {
   margin: 16px;
   position: relative;
 }
 
-.leader-profiles .leadership-profile-card-image {
+.leader-profiles .leader-profiles-card-image {
   line-height: 0;
 }
 
-.leader-profiles .leadership-profile-card-image picture {
+.leader-profiles .leader-profiles-card-image picture {
   display: block;
 }
 
-.leader-profiles .leadership-profile-card-body > *:first-child {
+.leader-profiles .leader-profiles-card-body > *:first-child {
   margin-top: 0;
 }
 
-.leadership-modal {
+.leader-profiles-modal {
   left: 0;
   margin: auto;
   transform: translateY(-20%);
@@ -80,7 +80,7 @@
   width: 100%;
 }
 
-.leadership-modal-overlay {
+.leader-profiles-modal-overlay {
   background-color: rgb(0 0 0/ 80%);
   bottom: 0;
   cursor: pointer;
@@ -92,30 +92,30 @@
   width: 100%;
 }
 
-.leadership-modal,
-.leadership-modal-overlay {
+.leader-profiles-modal,
+.leader-profiles-modal-overlay {
   opacity: 0;
   transition: all 0.3s ease-in-out;
   visibility: hidden;
   z-index: -1;
 }
 
-.leadership-modal.show,
-.leadership-modal-overlay.show {
+.leader-profiles-modal.show,
+.leader-profiles-modal-overlay.show {
   transform: translateY(0);
   opacity: 1;
   visibility: visible;
 }
 
-.leadership-modal.show {
+.leader-profiles-modal.show {
   z-index: 9999;
 }
 
-.leadership-modal-overlay.show {
+.leader-profiles-modal-overlay.show {
   z-index: 999;
 }
 
-.leadership-modal-close {
+.leader-profiles-modal-close {
   background: transparent;
   border: 1px solid;
   border-radius: 50%;
@@ -131,20 +131,20 @@
   width: 48px;
 }
 
-.leadership-modal-close:hover {
+.leader-profiles-modal-close:hover {
   color: var(--text-white);
 }
 
-.leadership-modal-body {
+.leader-profiles-modal-body {
   overflow: hidden;
   position: relative;
 }
 
-.leadership-modal-body .leadership-modal-carousel-content::-webkit-scrollbar {
+.leader-profiles-modal-body .leader-profiles-modal-carousel-content::-webkit-scrollbar {
   display: none;
 }
 
-.leadership-modal-body .leadership-modal-carousel-content {
+.leader-profiles-modal-body .leader-profiles-modal-carousel-content {
   background-color: var(--background-color);
   background-image: url('images/grey_molecules_tp.png'), url('images/grey_molecules.png');
   background-position: center top, center bottom;
@@ -157,29 +157,29 @@
   scrollbar-width: none;
 }
 
-.leadership-modal-body .leadership-profile-card-body,
-.leadership-modal-body .leadership-profile-card-body p {
+.leader-profiles-modal-body .leader-profiles-card-body,
+.leader-profiles-modal-body .leader-profiles-card-body p {
   font-size: var(--body-font-size-xs);
 }
 
-.leadership-modal-body .leadership-profile-card-body h2 {
+.leader-profiles-modal-body .leader-profiles-card-body h2 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 10px;
   margin-top: 0;
 }
 
-.leadership-modal-body .leadership-profile-card-body h4 {
+.leader-profiles-modal-body .leader-profiles-card-body h4 {
   font-weight: 600;
   padding-bottom: 10px;
   padding-top: 5px;
 }
 
-.leadership-modal-body .leadership-profile-card-body p:first-child {
+.leader-profiles-modal-body .leader-profiles-card-body p:first-child {
   margin-top: 0;
 }
 
-.leadership-modal-carousel-item {
+.leader-profiles-modal-carousel-item {
   height: 100%;
   left: 0;
   position: absolute;
@@ -187,7 +187,7 @@
   width: 100%;
 }
 
-.leadership-modal-pagination {
+.leader-profiles-modal-pagination {
   align-items: center;
   background: var(--button-secondary-hover-color);
   bottom: 0;
@@ -199,25 +199,25 @@
   width: 100%;
 }
 
-.leadership-modal-pagination .prev-item a > i {
+.leader-profiles-modal-pagination .prev-item a > i {
   margin-right: 10px;
 }
 
-.leadership-modal-pagination .next-item a > i {
+.leader-profiles-modal-pagination .next-item a > i {
   margin-left: 10px;
 }
 
-.leadership-modal-carousel-nav > .prev-item {
+.leader-profiles-modal-carousel-nav > .prev-item {
   left: -40px;
 }
 
-.leadership-modal-carousel-nav > .next-item {
+.leader-profiles-modal-carousel-nav > .next-item {
   right: -40px;
 }
 
 /* LEADERSHIP MODAL */
 
-.leadership-transition {
+.leader-profiles-transition {
   transition: transform 1s ease;
 }
 
@@ -225,17 +225,17 @@
   padding: 50px 0;
 }
 
-.leader-profiles > ul > li > div.leadership-profile-card-image,
-.leader-profiles > ul > li > div.leadership-profile-card-body {
+.leader-profiles > ul > li > div.leader-profiles-card-image,
+.leader-profiles > ul > li > div.leader-profiles-card-body {
   cursor: pointer;
 }
 
-.leader-profiles > ul > li > div.leadership-profile-card-body {
+.leader-profiles > ul > li > div.leader-profiles-card-body {
   margin-bottom: 10px;
   margin-top: 20px;
 }
 
-.leader-profiles > ul > li > div.leadership-profile-card-body h2 {
+.leader-profiles > ul > li > div.leader-profiles-card-body h2 {
   color: var(--text-color);
   font-family: var(--ff-proxima-regular);
   font-size: var(--heading-font-size-l);
@@ -243,7 +243,7 @@
   margin: 0 0 10px;
 }
 
-.leader-profiles > ul > li > div.leadership-profile-card-body h4 {
+.leader-profiles > ul > li > div.leader-profiles-card-body h4 {
   color: var(--text-color);
   display: block;
   font-size: var(--heading-font-size-s);
@@ -251,7 +251,7 @@
   margin: 0;
 }
 
-.leader-profiles > ul > li > div.leadership-profile-card-body:last-child {
+.leader-profiles > ul > li > div.leader-profiles-card-body:last-child {
   display: none;
 }
 
@@ -267,17 +267,17 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .leadership-modal-wrapper,
-  .leadership-modal-body {
+  .leader-profiles-modal-wrapper,
+  .leader-profiles-modal-body {
     height: 500px;
   }
 
-  .leadership-modal-wrapper {
+  .leader-profiles-modal-wrapper {
     height: 500px;
     overflow-y: auto;
   }
 
-  .leadership-modal-body .leadership-profile-card-image {
+  .leader-profiles-modal-body .leader-profiles-card-image {
     float: right;
     margin-left: 50px;
     max-width: 300px;
@@ -291,41 +291,41 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .leadership-modal {
+  .leader-profiles-modal {
     padding: 10px;
   }
 
-  .leadership-modal-close {
+  .leader-profiles-modal-close {
     font-size: 40px;
     height: 40px;
     line-height: 40px;
     width: 40px;
   }
 
-  .leadership-modal-wrapper {
+  .leader-profiles-modal-wrapper {
     height: 80vh;
     overflow-y: auto;
   }
 
-  .leadership-modal-body .leadership-modal-carousel-content {
+  .leader-profiles-modal-body .leader-profiles-modal-carousel-content {
     padding: 50px 10px 40px;
   }
 
-  .leadership-modal-body .leadership-profile-card-image {
+  .leader-profiles-modal-body .leader-profiles-card-image {
     margin-bottom: 30px;
   }
 
-  .leadership-modal-footer a {
+  .leader-profiles-modal-footer a {
     font-size: var(--body-font-size-xs);
   }
 
-  .leadership-modal-footer .leadership-modal-pagination {
+  .leader-profiles-modal-footer .leader-profiles-modal-pagination {
     margin: 0 10px;
     padding: 20px 10px;
     width: calc(100% - 20px);
   }
 
-  .leadership-modal-footer .leadership-modal-carousel-nav {
+  .leader-profiles-modal-footer .leader-profiles-modal-carousel-nav {
     display: none;
   }
 }

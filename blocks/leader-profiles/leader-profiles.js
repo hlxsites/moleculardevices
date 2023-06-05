@@ -6,7 +6,7 @@ class LeadershipModal {
     this.maxSlide = leaderCardItems.length - 1;
     this.leaderCardItems = leaderCardItems;
     this.modalFooterContent = `
-    <div class="leadership-modal-carousel-nav">
+    <div class="leader-profiles-modal-carousel-nav">
       <div class="prev-item">
         <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-chevron-circle-left"></i></a>
       </div>
@@ -51,7 +51,7 @@ class LeadershipModal {
       entries.forEach((entry) => {
         const allImages = entry.target.querySelectorAll('img');
         allImages.forEach((image) => {
-          const PictureEl = image.closest('.leadership-profile-card-image');
+          const PictureEl = image.closest('.leader-profiles-card-image');
           if (PictureEl) {
             PictureEl.style.minHeight = `${
               PictureEl.clientWidth < PictureEl.clientHeight
@@ -65,7 +65,7 @@ class LeadershipModal {
       });
     });
     imgObserver.observe(document.body);
-    const allImages = document.querySelectorAll('.leadership-profile-card-image img');
+    const allImages = document.querySelectorAll('.leader-profiles-card-image img');
     allImages.forEach((image) => {
       imgObserver.observe(image);
     });
@@ -122,7 +122,10 @@ class LeadershipModal {
     const startPoint = 0;
     const endPoint = Number(this.leaderCardItems.length - 1);
 
+    console.log('creating all modals', startPoint, endPoint);
+
     this.leaderCardItems.forEach((leaderCard, index) => {
+      console.log('creating modal for index and card', index, leaderCard);
       const cardContent = document.createElement('div');
       const cardWrapper = document.createElement('div');
 
@@ -142,7 +145,7 @@ class LeadershipModal {
 
       cardContent.innerHTML = leaderCard.innerHTML;
       cardWrapper.innerHTML += `
-        <div class="leadership-modal-pagination">
+        <div class="leader-profiles-modal-pagination">
         <div class="prev-item">
           <a href="javascript:void(0)" data-slide="prev"><i class="fa fa-arrow-circle-left"></i> <span>${prevText}</span></a>
         </div>
@@ -160,13 +163,16 @@ class LeadershipModal {
   }
 
   showModalCard(index) {
+    console.log('showing modal card');
     this.modalCarouselItems = this.modalBody.children;
     this.modalOverlay = document.querySelector('.leader-profiles-modal-overlay');
 
     this.curSlide = index;
     [...this.modalCarouselItems].forEach((slide, indx) => {
+      console.log('iterating over modal items');
       slide.style.transform = `translateX(${100 * (indx - this.curSlide)}%)`;
       setTimeout(() => {
+        console.log('adding transition class');
         slide.classList.add('leader-profiles-transition');
       }, 100);
     });
@@ -227,8 +233,10 @@ class LeadershipModal {
   }
 
   init() {
+    console.log('initializing');
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
+        console.log('creating modal carousel');
         this.createModalCarousel();
         observer.disconnect(entries);
       }
@@ -236,9 +244,13 @@ class LeadershipModal {
     observer.observe(document.body);
 
     const modalObserver = new IntersectionObserver((entries) => {
+      console.log('evaluating entry in observer', entries);
       if (entries.some((e) => e.isIntersecting)) {
+        console.log('observed modal card');
         entries.forEach((entry, index) => {
+          console.log('adding event listener');
           entry.target.addEventListener('click', () => {
+            console.log('clicked', index);
             this.showModalCard(index);
           });
           modalObserver.disconnect(entry.target);
@@ -257,8 +269,8 @@ export default function decorate(block) {
     const li = document.createElement('li');
     li.innerHTML = row.innerHTML;
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'leadership-profile-card-image';
-      else div.className = 'leadership-profile-card-body';
+      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'leader-profiles-card-image';
+      else div.className = 'leader-profiles-card-body';
     });
     ul.append(li);
   });
@@ -266,7 +278,7 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ul);
 
-  const leaderCardItems = document.querySelectorAll('.leaders ul li');
+  const leaderCardItems = document.querySelectorAll('.leader-profiles ul li');
   const modal = new LeadershipModal(leaderCardItems);
   modal.init();
   LeadershipModal.imgHeightWidth();
