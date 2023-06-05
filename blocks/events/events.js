@@ -36,6 +36,16 @@ function createFilters(options, createDropdown) {
   ];
 }
 
+function compareEvents(eventA, eventB) {
+  if (eventA.eventStart < eventB.eventStart) {
+    return -1;
+  }
+  if (eventA.eventStart > eventB.eventStart) {
+    return 1;
+  }
+  return 0;
+}
+
 async function createOverview(
   block,
   options,
@@ -80,6 +90,7 @@ export default async function decorate(block) {
   options.activeFilters.set('page', 1);
 
   options.data = await fetchEvents();
+  options.data.sort(compareEvents);
   await createOverview(
     block,
     options);
