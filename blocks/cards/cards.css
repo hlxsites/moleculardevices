@@ -13,9 +13,52 @@
   text-transform: uppercase;
 }
 
+.cards .cards-card-image {
+  line-height: 0;
+}
+
+.cards .cards-card-image picture {
+  display: block;
+}
+
 .cards > ul > li {
   background-color: var(--background-color);
   border: 1px solid var(--highlight-background-color);
+}
+
+.cards.slim > ul {
+  margin-top: 90px;
+  margin-bottom: 50px;
+  grid-gap: 20px;
+}
+
+.cards.slim li {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  padding: 0 20px;
+  height: 82px;
+  align-items: center;
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+.cards.slim li > div {
+  vertical-align: middle;
+}
+
+.cards.slim .cards-card-image {
+  max-height: 70px;
+  max-width: 74px;
+  background-color: black;
+}
+
+.cards.slim .cards-card-body > h3 {
+  text-transform: uppercase;
+  font-size: 11px;
+  margin: 0;
+}
+
+.cards.left-border li {
+  border-left: 5px solid #008da9;
 }
 
 .cards.image-link > ul > li {
@@ -99,14 +142,6 @@
 .cards .cards-card-body {
   margin: 16px;
   position: relative;
-}
-
-.cards .cards-card-image {
-  line-height: 0;
-}
-
-.cards .cards-card-image picture {
-  display: block;
 }
 
 .cards .cards-card-body > *:first-child {
