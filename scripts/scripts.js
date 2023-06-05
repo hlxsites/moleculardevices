@@ -247,6 +247,9 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
           // Show the block only when everything is ready to avoid CLS
           block.parentElement.style.display = '';
         });
+
+        // force the loaded status of the section
+        section.setAttribute('data-section-status', 'loaded');
       };
 
       // In case the user clicks on the section, quickly render it on the spot,
