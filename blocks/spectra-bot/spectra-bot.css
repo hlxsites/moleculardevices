@@ -31,14 +31,16 @@ main .section > div.spectra-bot-wrapper {
     text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 420px) {
     .spectra-bot.block {
         background-image: url('/images/spectra-chat-desktop.png');
         background-size: contain;
         background-position: center;
         position: relative;
     }
+}
 
+@media (min-width: 768px) {
     .spectra-bot.block > div {
         position: absolute;
         background-image: url('/images/chat-box-desktop.png');
