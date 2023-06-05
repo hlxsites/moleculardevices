@@ -1313,3 +1313,13 @@ main .section[aria-hidden="true"] {
     padding-top: 30px;
   }
 }
+
+.thankyou main .section {
+  display: none;
+}
+
+.thankyou main .section.hero-container,
+.thankyou main .section.hero-advanced-container,
+.thankyou main .section.thank-you-page {
+  display: block;
+}

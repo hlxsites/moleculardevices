@@ -189,6 +189,31 @@ display: none;
   background-position: bottom center;
 }
 
+.thankyou .hero-inner {
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
+  padding-top: 50px;
+}
+
+.thankyou .hero-inner h1 {
+  font-weight: bold;;
+}
+
+.thankyou .hero-inner > div:last-of-type {
+  position: relative;
+  overflow: visible;
+}
+
+.thankyou .hero-inner > div:last-of-type > div:last-of-type {
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+
+.thankyou .hero-inner > div:last-of-type > div:last-of-type img {
+  max-width: 332px;
+  transform: translateY(30%);
+}
+
 /* Citation Variant - Desktop -- Start */
 .citation main .hero {
   overflow: hidden 
