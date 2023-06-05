@@ -200,7 +200,13 @@ h6 {
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl)
+  font-size: var(--heading-font-size-xxl);
+  text-align: center;
+}
+
+header h1,
+.hero-inner h1 {
+  text-align: unset;
 }
 
 h2 {
@@ -585,7 +591,8 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-main .section.background-grey {
+main .section.background-grey
+main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
 }
 
