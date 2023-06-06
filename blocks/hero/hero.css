@@ -114,6 +114,15 @@ main .section .hero-advanced-wrapper {
   padding: 0;
 }
 
+.thankyou .hero-inner {
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
+  padding-top: 50px;
+}
+
+.thankyou .hero-inner h1 {
+  font-weight: bold;;
+}
+
 .hero-inner > div {
   margin:auto;
 }
@@ -618,18 +627,13 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 }
 
-.thankyou .hero-inner {
-  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
-  padding-top: 50px;
-}
-
-.thankyou .hero-inner h1 {
-  font-weight: bold;;
-}
-
 .thankyou .hero-inner > div:last-of-type {
   position: relative;
   overflow: visible;
+}
+
+.hero-inner.white-bg .container > div:nth-child(1) {
+  width: 100%;
 }
 
 .thankyou .hero-inner > div:last-of-type > div:last-of-type {
@@ -641,8 +645,4 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 .thankyou .hero-inner > div:last-of-type > div:last-of-type img {
   max-width: 332px;
   transform: translateY(30%);
-}
-
-.hero-inner.white-bg .container > div:nth-child(1) {
-  width: 100%;
 }
