@@ -23,7 +23,7 @@ export default async function decorate(block) {
       defaultStyling: true,
       navButtons: window.matchMedia('only screen and (max-width: 767px)').matches || products.length > 3,
       dotButtons: false,
-      infiniteScroll: false,
+      infiniteScroll: true,
       autoScroll: false,
       visibleItems: [
         {
