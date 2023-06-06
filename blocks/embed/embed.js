@@ -34,9 +34,6 @@ const embedTwitterFeed = (url) => {
 };
 
 export function embedCerosFrame(url) {
-  // id="experience-5dfa6bd3e485e"
-  // data-aspectRatio="0.25714286"
-  // data-mobile-aspectRatio="0.06539153"
   const embedHTML = `
   <div style="left: 0; width: 100%; position: relative; padding-top:57%;">
   <iframe
@@ -50,13 +47,7 @@ export function embedCerosFrame(url) {
       title="Content from ${url.hostname}"
   ></iframe>
   </div>
-  `
-
-  // const embedHTML = `<div style="left: 0; width: 100%; position: relative; padding-top:57%;">
-  //   <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
-  //     scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
-  //   </iframe>
-  // </div>`;
+  `;
   loadScript('https://view.ceros.com/scroll-proxy.min.js');
   return embedHTML;
 }
@@ -77,8 +68,8 @@ const loadEmbed = (block, link, autoplay) => {
     },
     {
       match: ['ceros'],
-      embed: embedCerosFrame
-    }
+      embed: embedCerosFrame,
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
