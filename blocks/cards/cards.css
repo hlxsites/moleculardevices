@@ -7,7 +7,7 @@
   padding: 0;
 }
 
-.cards.microplate {
+.cards.stacked-image-text {
   margin-top: 50px;
   font-size: 15px;
 }
@@ -63,7 +63,7 @@
   border-left: 5px solid #008da9;
 }
 
-.cards.microplate > ul > li > div {
+.cards.stacked-image-text > ul > li > div {
   margin: auto;
   text-align: center;
 }
@@ -90,11 +90,11 @@
   width: 100%;
 }
 
-.cards.microplate > ul > li img {
+.cards.stacked-image-text > ul > li img {
   aspect-ratio: auto;
 }
 
-.cards.microplate > ul > li {
+.cards.stacked-image-text > ul > li {
   display: flex;
   flex-flow: column;
   border: 0;
@@ -104,12 +104,12 @@
   transition: transform ease-in-out 0.3s;
 }
 
-.cards.microplate > ul > li > div:last-child {
+.cards.stacked-image-text > ul > li > div:last-child {
   padding-top: 15px;
 }
 
 @media (min-width: 720px) {
-  .cards.microplate > ul {
+  .cards.stacked-image-text > ul {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
