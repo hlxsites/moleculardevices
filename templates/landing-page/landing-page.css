@@ -236,7 +236,31 @@
   margin-bottom: 50px;
 }
 
-.thank-you-page .layout-40-60 > div > div:first-of-type,
-.thank-you-page .layout-60-40 > div > div:last-of-type {
+.thank-you-page .layout-40-60 > div > div:first-of-type {
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .thank-you-page .columns > div {
+    grid-template-columns: 35fr 65fr;
+  }
+
+  .thank-you-page .columns.odd > div {
+    grid-template-columns: 65fr 35fr;
+  }
+  
+  .thank-you-page .columns.odd > div > div:first-of-type {
+    order: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .thank-you-page {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .thank-you-page p {
+    font-size: 18px;
+  }
 }

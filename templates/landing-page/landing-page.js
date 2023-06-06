@@ -10,5 +10,9 @@ export default function buildAutoBlocks() {
       div(h1('Thank you.'), p(`Your ${getMetadata('download-title') || 'document'} is on its way.`)),
       div(img({ src: '/images/thank-you-spectra.png' })),
     ));
+    const columns = document.querySelectorAll('.columns');
+    [...columns].forEach((column, i) => {
+      if (i % 2 > 0) column.classList.add('odd');
+    });
   }
 }
