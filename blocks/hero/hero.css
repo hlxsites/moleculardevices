@@ -162,10 +162,6 @@ main .section .hero-advanced-wrapper {
   background: #f0f1f2;
 }
 
-.hero-inner.white-bg .container > div:nth-child(1) {
-  width: 100%;
-}
-
 .hero-inner.white-bg,
 .hero-inner.white-bg h1,
 .hero-inner.white-bg a:any-link {
@@ -187,31 +183,6 @@ display: none;
   background-size: 100%;
   padding-bottom: 10%;
   background-position: bottom center;
-}
-
-.thankyou .hero-inner {
-  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
-  padding-top: 50px;
-}
-
-.thankyou .hero-inner h1 {
-  font-weight: bold;;
-}
-
-.thankyou .hero-inner > div:last-of-type {
-  position: relative;
-  overflow: visible;
-}
-
-.thankyou .hero-inner > div:last-of-type > div:last-of-type {
-  position: absolute;
-  right: 0;
-  text-align: right;
-}
-
-.thankyou .hero-inner > div:last-of-type > div:last-of-type img {
-  max-width: 332px;
-  transform: translateY(30%);
 }
 
 /* Citation Variant - Desktop -- Start */
@@ -645,4 +616,33 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .hero-inner > div {
     width: 1170px
   }
+}
+
+.thankyou .hero-inner {
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
+  padding-top: 50px;
+}
+
+.thankyou .hero-inner h1 {
+  font-weight: bold;;
+}
+
+.thankyou .hero-inner > div:last-of-type {
+  position: relative;
+  overflow: visible;
+}
+
+.thankyou .hero-inner > div:last-of-type > div:last-of-type {
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+
+.thankyou .hero-inner > div:last-of-type > div:last-of-type img {
+  max-width: 332px;
+  transform: translateY(30%);
+}
+
+.hero-inner.white-bg .container > div:nth-child(1) {
+  width: 100%;
 }
