@@ -48,9 +48,7 @@ function compareEvents(eventA, eventB) {
 
 function sortEvents(data, showFutureEvents) {
   data.sort(compareEvents);
-  console.log(showFutureEvents);
   if (!showFutureEvents) {
-    console.log('reverse');
     data.reverse();
   }
 }
