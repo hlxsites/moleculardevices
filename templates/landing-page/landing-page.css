@@ -206,6 +206,10 @@
   }
 }
 
+.thank-you-page {
+  padding-top: 100px;
+}
+
 .thank-you-page h2 {
   color: var(--text-green);
   font-family: var(--ff-proxima-regular);
