@@ -1109,7 +1109,7 @@ main .section.background-molecules {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding: 0;
+    padding: 0 15px;
     overflow: hidden;
   }
 
