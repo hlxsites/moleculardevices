@@ -46,6 +46,15 @@ function compareEvents(eventA, eventB) {
   return 0;
 }
 
+function sortEvents(data, showFutureEvents) {
+  data.sort(compareEvents);
+  console.log(showFutureEvents);
+  if (!showFutureEvents) {
+    console.log('reverse');
+    data.reverse();
+  }
+}
+
 async function createOverview(
   block,
   options,
@@ -60,14 +69,12 @@ async function createOverview(
     block);
 }
 
-async function fetchEvents() {
-  const showFutureEvents = document.querySelector('.events.future');
-  const showArchivedEvents = document.querySelector('.events.archive');
+async function fetchEvents(options) {
   const now = Date.now();
   return ffetch('/query-index.json')
     .sheet('events')
-    .filter(({ eventEnd }) => (showArchivedEvents && eventEnd * 1000 < now)
-        || (showFutureEvents && eventEnd * 1000 >= now))
+    .filter(({ eventEnd }) => (options.showArchivedEvents && eventEnd * 1000 < now)
+        || (options.showFutureEvents && eventEnd * 1000 >= now))
     .all();
 }
 
@@ -75,6 +82,8 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
   const relatedLink = block.querySelector('a');
+  const showFutureEvents = document.querySelector('.events.future');
+  const showArchivedEvents = document.querySelector('.events.archive');
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
@@ -83,14 +92,16 @@ export default async function decorate(block) {
     noResult: 'No Event found !',
     relatedLink,
     showDescription: false,
+    showFutureEvents,
+    showArchivedEvents,
   };
   options.activeFilters = new Map();
   options.activeFilters.set('event-type', '');
   options.activeFilters.set('event-region', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchEvents();
-  options.data.sort(compareEvents);
+  options.data = await fetchEvents(options);
+  sortEvents(options.data, showFutureEvents);
   await createOverview(
     block,
     options);
