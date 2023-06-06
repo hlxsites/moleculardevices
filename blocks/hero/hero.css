@@ -114,15 +114,6 @@ main .section .hero-advanced-wrapper {
   padding: 0;
 }
 
-.thankyou .hero-inner {
-  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
-  padding-top: 50px;
-}
-
-.thankyou .hero-inner h1 {
-  font-weight: bold;;
-}
-
 .hero-inner > div {
   margin:auto;
 }
@@ -192,6 +183,15 @@ display: none;
   background-size: 100%;
   padding-bottom: 10%;
   background-position: bottom center;
+}
+
+.thankyou .hero-inner {
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
+  padding-top: 50px;
+}
+
+.thankyou .hero-inner h1 {
+  font-weight: bold;;
 }
 
 /* Citation Variant - Desktop -- Start */
