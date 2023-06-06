@@ -142,10 +142,6 @@
   border: 0;
 }
 
-.cards.hover > ul > li {
-  transition: transform ease-in-out 0.3s;
-}
-
 .cards.stacked-image-text > ul > li > div:last-child {
   padding-top: 15px;
 }
@@ -176,7 +172,19 @@
   width: 100%;
 }
 
-.cards.hover > ul > li:hover {
+.cards.hover li {
+  width: 343px;
+  height: 207px;
+  overflow: hidden;
+}
+
+.cards.hover img {
+  transition: transform ease-in-out 0.3s;
+  width: 100%;
+  height: 100%;
+}
+
+.cards.hover img:hover {
   transform: scale(1.1);
 }
 
