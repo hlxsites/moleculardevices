@@ -1,9 +1,15 @@
-.ceros-wrapper {
+.ceros-wrapper > p {
   font-size: 24px;
   color: #34393d;
   font-family: var(--ff-proxima-xbold);
   font-weight: 600;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .ceros-wrapper > p {
+    font-size: 14px;
+  }
 }
 
 .ceros {
