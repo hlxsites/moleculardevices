@@ -1,3 +1,45 @@
+.cards.image-link li:hover {
+  cursor: pointer;
+}
+
+.cards.text-over-image ul {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.cards.text-over-image li {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.cards.text-over-image .cards-card-image {
+  height: 100%;
+  width: 100%;
+}
+.cards.text-over-image .cards-card-image img {
+  max-height: 207px;
+}
+
+
+.cards.text-over-image .cards-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+  padding: 10px;
+}
+
+.cards.text-over-image .cards-card-body h3 {
+
+}
+
+.cards.text-over-image .cards-card-body a {
+    color: var(--text-white);
+}
+
 .cards > ul {
   display: grid;
   grid-gap: 30px;
