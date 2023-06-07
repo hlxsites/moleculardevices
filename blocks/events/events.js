@@ -36,15 +36,14 @@ function createEventsDropdown(options, selected, name, placeholder) {
   const dropDown = div({ class: 'dropdown-menu' });
   options.forEach((option) => {
     const fieldName = toClassName(option.toString());
-    dropDown.append(div(
-      { class: 'filter-item' },
+    dropDown.append(label(
+      { for: fieldName, class: 'filter-item' },
       input({
         type: 'checkbox',
         name: fieldName,
         id: fieldName,
       }),
-      label({ for: fieldName }, option),
-    ));
+      option));
   });
   container.append(dropDown);
 
