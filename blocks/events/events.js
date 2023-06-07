@@ -96,7 +96,7 @@ async function createOverview(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
   await createList(
-    createFilters,
+    createFilters(options),
     options,
     block);
 }

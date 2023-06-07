@@ -272,10 +272,9 @@ async function switchFilter(event, options) {
   swapData(options);
 }
 
-function renderFilters(options, createFilters) {
+function renderFilters(options, filters) {
   const filter = div({ class: 'filter' });
 
-  const filters = createFilters(options);
   if (filters.length > 0) {
     if (options.panelTitle) {
       const header = p({ class: 'panel-title' }, options.panelTitle);
@@ -290,10 +289,12 @@ function renderFilters(options, createFilters) {
       filter.append(p({}, options.relatedLink));
     }
 
+    const onFilterClick = options.onFilterClick ?? switchFilter;
+
     const menuItems = filter.querySelectorAll('.select .dropdown-menu .filter-item');
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener('click', (event) => {
-        switchFilter(event, options);
+        onFilterClick(event, options);
       }, false);
     }, false);
 
@@ -304,7 +305,7 @@ function renderFilters(options, createFilters) {
 }
 
 export async function createList(
-  createFilters,
+  filters,
   options,
   root,
 ) {
@@ -314,7 +315,7 @@ export async function createList(
 
   if (options.data) {
     const container = div({ class: 'list' },
-      renderFilters(options, createFilters),
+      renderFilters(options, filters),
       createListItems(options),
     );
     root.append(container);
