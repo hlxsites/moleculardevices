@@ -1,6 +1,8 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { p } from '../../scripts/dom-helpers.js';
+import createCompareProducts from '../compare-items/compare-items.js';
 
 export default async function decorate(block) {
   const productPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
@@ -21,9 +23,9 @@ export default async function decorate(block) {
     products,
     {
       defaultStyling: true,
-      navButtons: window.matchMedia('only screen and (max-width: 1200px)').matches || products.length > 3,
+      navButtons: window.matchMedia('only screen and (max-width: 767px)').matches || products.length > 3,
       dotButtons: false,
-      infiniteScroll: products.length > 3,
+      infiniteScroll: true,
       autoScroll: false,
       visibleItems: [
         {
@@ -40,4 +42,50 @@ export default async function decorate(block) {
       cardRenderer,
     },
   );
+
+  const main = document.querySelector('main');
+  const compareProducts = await createCompareProducts({
+    maxCompareItemsCount: 3,
+  });
+
+  const compareBanner = await compareProducts.createBanner();
+
+  // insert compare banner at the bottom of the page
+  main.append(compareBanner.render());
+
+  const cards = document.querySelectorAll('.card-caption');
+  cards.forEach((card) => {
+    const compareButton = p(
+      { class: 'button-container compare' },
+      'Compare',
+    );
+
+    card.append(
+      compareButton,
+    );
+
+    compareButton.addEventListener('click', () => {
+      const productUrl = card.querySelector('a').getAttribute('href');
+      const productTitle = card.querySelector('h3').textContent;
+
+      // check if compare is already active
+      if (compareProducts.hasItem(productTitle)) {
+        compareButton.classList.remove('active');
+        compareProducts.removeItem(productTitle);
+        if (compareProducts.isEmpty()) {
+          compareProducts.banner.hide();
+        }
+        return;
+      }
+
+      if (compareProducts.isFull()) {
+        compareProducts.showItemCountWarning();
+        return;
+      }
+
+      compareButton.classList.remove('active');
+      compareProducts.addItem(productUrl, productTitle);
+      compareProducts.banner.show();
+    });
+  });
 }
