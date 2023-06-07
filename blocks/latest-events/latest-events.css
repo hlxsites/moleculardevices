@@ -19,3 +19,23 @@ main .section .latest-events p {
 main .section .latest-events a:any-link {
   color: var(--text-color);
 }
+
+@media only screen and (max-width: 767px) {
+  main .section .latest-events {
+    display: inline-block;
+  }
+
+  main .section .latest-events > div {
+    width: 100%;
+    padding: 20px;
+  }
+
+  main .section .latest-events > div:not(.list) {
+    padding-bottom: 0;
+  }
+
+  main .section .latest-events .list .item {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+}
