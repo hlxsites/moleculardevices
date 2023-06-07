@@ -15,6 +15,7 @@
 
 .overlay.open {
   display: block;
+  z-index: 600;
 }
 
 .overlay-content {
