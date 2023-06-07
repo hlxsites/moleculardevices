@@ -31,6 +31,13 @@
   padding-right: 15px;
 }
 
+@media (max-width: 767px) {
+  .newsroom main .section h2 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
 @media (min-width: 768px) {
   .newsroom main .section {
     --newsroom-section-width: 750px;
