@@ -1,7 +1,7 @@
 import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createList, toggleFilter } from '../../scripts/list.js';
-import { div, input, label } from '../../scripts/dom-helpers.js';
+import { div, input, label, span } from '../../scripts/dom-helpers.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterEventType = toClassName(entry.eventType);
@@ -43,7 +43,7 @@ function createEventsDropdown(options, selected, name, placeholder) {
         name: fieldName,
         id: fieldName,
       }),
-      option));
+      span(option)));
   });
   container.append(dropDown);
 

@@ -8,9 +8,41 @@
 }
 
 .events .filter-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+    padding: 0 0 0 37px;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    min-height: 20px;
 }
 
-.events .filter-item input {
-    width: auto;
+.events .filter-item input[type="checkbox"] {
+    display: none;
+    position: absolute;
+    margin: 4px 0 0 -20px;
+}
+
+.events .filter-item span {
+    font-size: 18px;
+    color: #34393d;
+    font-weight: 400;
+}
+
+.events .filter-item span::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    left: 9px;
+    top: 1px;
+    background: none;
+    border: 2px solid #adb3b7;
+}
+
+.events .filter-item input[type="checkbox"]:checked+span::before {
+    background-color: green;
+    border: 0;
 }
