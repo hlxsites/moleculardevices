@@ -367,6 +367,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     display: none;
   }
 
+  .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay.open {
+    display: block;
+  }
+
   .hero-inner .container > div:nth-child(2) {
     font-size: var(--body-font-size-m);
   }
