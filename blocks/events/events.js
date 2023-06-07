@@ -1,6 +1,7 @@
 import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createList, createDropdown } from '../../scripts/list.js';
+import { createList, toggleFilter } from '../../scripts/list.js';
+import { div, input, label } from '../../scripts/dom-helpers.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterEventType = toClassName(entry.eventType);
@@ -19,15 +20,49 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
+function createEventsDropdown(options, selected, name, placeholder) {
+  const container = div({ class: 'select' });
+  if (name) {
+    container.setAttribute('name', name);
+  }
+  const btn = div({
+    type: 'button',
+    class: 'dropdown-toggle',
+    value: '',
+  }, selected || placeholder);
+  btn.addEventListener('click', toggleFilter, false);
+  container.append(btn);
+
+  const dropDown = div({ class: 'dropdown-menu' });
+  options.forEach((option) => {
+    const fieldName = toClassName(option.toString());
+    dropDown.append(div(
+      { class: 'filter-item' },
+      input({
+        type: 'checkbox',
+        name: fieldName,
+        id: fieldName,
+      }),
+      label({ for: fieldName }, option),
+    ));
+  });
+  container.append(dropDown);
+
+  console.log('created dropdown', container, 'options', options, 'selected', selected, name, placeholder);
+
+  return container;
+}
+
 function createFilters(options) {
+  console.log('filter options');
   return [
-    createDropdown(
+    createEventsDropdown(
       Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
       options.activeFilters.eventType,
       'event-type',
       'Event Type',
     ),
-    createDropdown(
+    createEventsDropdown(
       Array.from(new Set(options.data.map((n) => n.eventRegion))).filter((val) => val !== '0'),
       options.activeFilters.eventRegion,
       'event-region',

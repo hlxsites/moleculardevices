@@ -20,7 +20,7 @@ function filterData(options) {
   return data;
 }
 
-function toggleFilter(event) {
+export function toggleFilter(event) {
   const filterSelected = event.target.closest('.select');
   const filterIsOpen = filterSelected.classList.contains('open');
   const menu = filterSelected.querySelector('.dropdown-menu');

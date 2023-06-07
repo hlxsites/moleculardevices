@@ -1,3 +1,16 @@
 .section.events-container .events-wrapper {
     padding-top: 0;
 }
+
+.events .list .filter .select.open .dropdown-toggle,
+.events .list .filter .select .dropdown-toggle:hover  {
+    color: black;
+}
+
+.events .filter-item {
+    display: flex;
+}
+
+.events .filter-item input {
+    width: auto;
+}
