@@ -51,7 +51,7 @@ main .section > div.image-gallery-wrapper {
   cursor: pointer;
 }
 
-.overlay .icon svg {
+.overlay .image-gallery .icon svg {
   width: 44px;
   height: auto;
 }
