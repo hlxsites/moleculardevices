@@ -70,7 +70,7 @@ main .compare-banner .compare-data {
   max-width: 400px;
 }
 
-main .compare-banner .gradiantBlueBtn.btn {
+main .compare-banner .gradiant-blue-btn.btn {
   border: 0;
   transition: all .2s;
   min-width: 140px;
@@ -79,20 +79,18 @@ main .compare-banner .gradiantBlueBtn.btn {
   height: auto;
   border-radius: 0;
   font-size: 18px;
-  font-family: 'Proxima Nova Regular';
   line-height: 18px;
   padding: 15px 18px 16px;
-  border-radius: 0;
   text-align: center;
 }
 
-main .compare-banner .compare-data .gradiantBlueBtn.btn {
+main .compare-banner .compare-data .gradiant-blue-btn.btn {
   font-size: 14px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
 
-main .compare-banner .gradiantBlueBtn {
+main .compare-banner .gradiant-blue-btn {
   background: var(--button-bg-color);
 }
 

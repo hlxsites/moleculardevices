@@ -34,7 +34,7 @@ class CompareBanner {
             div(
               { class: 'compare-data' },
               a(
-                { class: 'gradiantBlueBtn btn compare-toggle' },
+                { class: 'gradiant-blue-btn btn compare-toggle' },
                 this.compareButtonText,
                 span(
                   { class: 'compare-count' },
@@ -47,7 +47,7 @@ class CompareBanner {
                 ),
               ),
               a(
-                { class: 'gradiantBlueBtn btn compare-close' },
+                { class: 'gradiant-blue-btn btn compare-close' },
                 i(
                   { class: 'fa fa-close' },
                 ),
