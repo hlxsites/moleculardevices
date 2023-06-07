@@ -95,7 +95,7 @@ function optimiseHeroBlock(main) {
  * Append default wave section to pages
  */
 function decorateWaveSection(main) {
-  const skipWave = document.querySelector('.page-tabs, .thankyou, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
+  const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .thankyou, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
   if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }));
 }
 
