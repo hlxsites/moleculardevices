@@ -132,6 +132,10 @@ export default async function decorate(block) {
   options.activeFilters.set('event-region', '');
   options.activeFilters.set('page', 1);
 
+  options.onFilterClick = (event, _options) => {
+    console.log('custom filter click', event, _options);
+  };
+
   options.data = await fetchEvents(options);
   sortEvents(options.data, showFutureEvents);
   await createOverview(
