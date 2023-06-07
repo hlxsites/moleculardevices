@@ -1,5 +1,5 @@
 main .carousel-wrapper.product-carousel-wrapper {
-  width: 1170px;
+  width: 1140px;
   padding: unset;
   margin-top: 40px;
 }
@@ -11,8 +11,8 @@ main .carousel.product-carousel {
 
 .product-carousel .carousel-item {
   display: block;
-  max-width: 32%;
-  width: 32%;
+  max-width: 333px;
+  width: 333px;
   padding: 20px 15px;
   margin: 0;
 }
