@@ -3,7 +3,7 @@
 }
 
 .product .latest-resources-container .default-content-wrapper h2 {
-  font-size: 70px;
+  font-size: var(--heading-font-size-xl);
   font-family: var(--ff-proxima-light);
 }
 

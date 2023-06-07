@@ -846,7 +846,7 @@ main .section.service-support.support-options h2 {
 }
 
 main div.section.wave .default-content-wrapper h2 {
-  font-size: 60px;
+  font-size: var(--heading-font-size-xl);
   margin-bottom: 30px;
   line-height: 1;
   font-family: var(--ff-proxima-light);
