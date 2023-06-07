@@ -2,13 +2,13 @@ import {
   readBlockConfig,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import createList from '../../scripts/list.js';
+import { createList, createDropdown } from '../../scripts/list.js';
 
 function formatDateFullYear(unixDateString) {
   return new Date(unixDateString * 1000).getFullYear();
 }
 
-function createFilters(options, createDropdown) {
+function createFilters(options) {
   const date = Array.from(new Set(options.data.map((n) => n.filterYear)));
   return [
     createDropdown(date, options.activeFilters.year, 'year', 'Select Year'),

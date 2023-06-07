@@ -157,7 +157,7 @@ async function switchPage(event, options) {
   document.querySelector('.list').scrollIntoView();
 }
 
-function createDropdown(options, selected, name, placeholder) {
+export function createDropdown(options, selected, name, placeholder) {
   const container = div({ class: 'select' });
   if (name) {
     container.setAttribute('name', name);
@@ -187,6 +187,7 @@ function createDropdown(options, selected, name, placeholder) {
     dropDown.append(optionTag);
   });
   container.append(dropDown);
+
   return container;
 }
 
@@ -274,7 +275,7 @@ async function switchFilter(event, options) {
 function renderFilters(options, createFilters) {
   const filter = div({ class: 'filter' });
 
-  const filters = createFilters(options, createDropdown);
+  const filters = createFilters(options);
   if (filters.length > 0) {
     if (options.panelTitle) {
       const header = p({ class: 'panel-title' }, options.panelTitle);
@@ -302,7 +303,7 @@ function renderFilters(options, createFilters) {
   return null;
 }
 
-export default async function createList(
+export async function createList(
   createFilters,
   options,
   root,

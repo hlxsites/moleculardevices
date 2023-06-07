@@ -1,6 +1,6 @@
 import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import createList from '../../scripts/list.js';
+import { createList, createDropdown } from '../../scripts/list.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterEventType = toClassName(entry.eventType);
@@ -19,19 +19,19 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
-function createFilters(options, createDropdown) {
+function createFilters(options) {
   return [
     createDropdown(
       Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
       options.activeFilters.eventType,
       'event-type',
-      'Select Event Type',
+      'Event Type',
     ),
     createDropdown(
       Array.from(new Set(options.data.map((n) => n.eventRegion))).filter((val) => val !== '0'),
       options.activeFilters.eventRegion,
       'event-region',
-      'Select Region',
+      'Region',
     ),
   ];
 }
