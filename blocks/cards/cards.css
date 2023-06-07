@@ -176,6 +176,7 @@
   width: 100%;
   z-index: 1;
   padding: 10px;
+  margin: 0;
 }
 
 .cards.text-over-image .cards-card-body a {
