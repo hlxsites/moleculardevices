@@ -959,6 +959,20 @@ main div.section.wave.bluegreen::after {
   content: none;
 }
 
+main div.section.wave.blue .button-container,
+main div.section.wave.bluegreen .button-container {
+  margin-top: 30px;
+}
+
+main div.section.wave.blue .button-container > a,
+main div.section.wave.bluegreen .button-container > a {
+  color: var(--text-white);
+  font-size: var(--body-font-size-m);
+  border-radius: 0;
+  padding: 15px 40px;
+  border: 1px solid #cbdce8;
+}
+
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
     background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
