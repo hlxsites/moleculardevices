@@ -264,3 +264,13 @@
     font-size: 18px;
   }
 }
+
+.thankyou main .section {
+  display: none;
+}
+
+.thankyou main .section.hero-container,
+.thankyou main .section.hero-advanced-container,
+.thankyou main .section.thank-you-page {
+  display: block;
+}
