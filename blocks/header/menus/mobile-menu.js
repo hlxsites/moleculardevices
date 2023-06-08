@@ -23,10 +23,19 @@ function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
 }
 
-function closeSubMenu(menuItem) {
+function closeSubMenu(parentMenuItem) {
   // get parent that has class mobile-menu-item
-  const parentMenuItem = menuItem.closest('.mobile-menu-item');
   parentMenuItem.classList.remove('submenu-open');
+}
+
+function addOpenMenuListener(element, submenu) {
+  element.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      e.preventDefault();
+      e.stopPropagation();
+      openSubMenu(submenu);
+    }
+  });
 }
 
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
@@ -72,13 +81,54 @@ async function buildMobileMenuItem(menuItem, menuId) {
 
       // add H2s to list
       subcategoriesContent.forEach((subcategoryContent) => {
+        const categoryId = subcategoryContent.getAttribute('id');
+        let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a')];
+
+        if (subcategoryItems.length === 0) {
+          subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p')];
+        }
+
+        // create clone of subcategoryContent to avoid modifying the original
         const element = reverseElementLinkTagRelation(subcategoryContent);
-        element.append(span({ class: 'caret' }));
+        const caret = span({ class: 'caret' });
+        element.append(caret);
+
+        const backToParentCategory = li(
+          { class: 'back-to-parent' },
+          a(
+            { href: '#', 'aria-label': 'Go Back' },
+            element.textContent,
+          ),
+        );
+
+        // create the list of items inside this subcategory (3rd menu level)
+        const items = ul(
+          { class: 'mobile-menu-subcategories', 'menu-id': categoryId },
+          backToParentCategory,
+        );
+
+        // get subcategory items from the content. This elements are in a div
+        // within the same parent as the H2
+        subcategoryItems.forEach((item) => {
+          const listItem = li(
+            { class: 'mobile-menu-subcategory-item' },
+            item,
+          );
+          items.append(listItem);
+        });
 
         const subcategory = li(
           { class: 'mobile-menu-subcategory-item' },
           element,
+          items,
         );
+
+        backToParentCategory.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeSubMenu(subcategory);
+        });
+
+        addOpenMenuListener(caret, subcategory);
 
         subCategories.append(subcategory);
       });
@@ -88,7 +138,8 @@ async function buildMobileMenuItem(menuItem, menuId) {
       // add listener to close subcategories
       backToParentMenuItem.addEventListener('click', (e) => {
         e.stopPropagation();
-        closeSubMenu(menuItem);
+        const parentMenuItem = menuItem.closest('.mobile-menu-item');
+        closeSubMenu(parentMenuItem);
       });
     }
   });
@@ -165,22 +216,17 @@ export function buildMobileMenu(content) {
       title,
     );
 
+    const caret = span({ class: 'caret' });
     const listItem = li(
       { class: 'mobile-menu-item', 'menu-id': menuId },
       h1(
         submenuLink,
       ),
-      span({ class: 'caret' }),
+      caret,
     );
 
-    // add listener to toggle subcategories
-    submenuLink.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        e.preventDefault();
-        e.stopPropagation();
-        openSubMenu(listItem);
-      }
-    });
+    addOpenMenuListener(submenuLink, listItem);
+    addOpenMenuListener(caret, listItem);
 
     navigation.querySelector('ul').append(listItem);
   });
