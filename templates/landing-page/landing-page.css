@@ -124,7 +124,6 @@
   padding-top: 10px;
 }
 
-
 @media (max-width: 767px) {
   .landing-page .hero-inner {
     background-color: var(--black-background-color);
@@ -206,8 +205,6 @@
     height: 139px;
   }
 }
-
-
 
 .thank-you-page {
   padding-top: 100px;
