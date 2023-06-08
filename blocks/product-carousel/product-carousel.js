@@ -53,7 +53,7 @@ export default async function decorate(block) {
   // insert compare banner at the bottom of the page
   main.append(compareBanner.render());
 
-  const cards = document.querySelectorAll('.card-caption');
+  const cards = document.querySelectorAll('.card-caption-notshow');
   cards.forEach((card) => {
     const compareButton = p(
       { class: 'button-container compare' },

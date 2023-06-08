@@ -7,6 +7,34 @@ import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
 
+const MAX_COMPARE_PRODUCTS = 3;
+
+function updateCompareProducts(e) {
+  const { target } = e;
+  const addedCompareButton = target.parentNode;
+  const selectedProducts = [...document.querySelectorAll('.compare-button .compare-checkbox.selected')].map((item) => item.parentNode);
+
+  if (selectedProducts.length >= MAX_COMPARE_PRODUCTS
+    && !selectedProducts.includes(addedCompareButton)) {
+    alert(`You can only select up to ${MAX_COMPARE_PRODUCTS} products.`);
+    return;
+  }
+
+  target.classList.toggle('selected');
+
+  // update all compare buttons
+  const selectedCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox.selected')];
+  const allCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox')];
+  allCompareCheckboxes.forEach((item) => {
+    const buttonParent = item.parentNode;
+    if (item.classList.contains('selected')) {
+      buttonParent.querySelector('.compare-count').innerHTML = selectedCompareCheckboxes.length;
+    } else {
+      buttonParent.querySelector('.compare-count').innerHTML = '0';
+    }
+  });
+}
+
 class Card {
   constructor(config = {}) {
     this.cssFiles = [];
@@ -50,18 +78,36 @@ class Card {
     }
 
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
-    let c2aBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
-      c2aBlock = a(this.c2aLinkConfig, buttonText);
+      c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
-      c2aBlock.append(
+      c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
+      c2aLinkBlock.append(
         this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
           : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
       );
-      decorateIcons(c2aBlock);
+      decorateIcons(c2aLinkBlock);
+    }
+
+    const c2aBlock = div({ class: 'c2a' },
+      p({ class: 'button-container' },
+        c2aLinkBlock,
+      ),
+    );
+    if (item.productShowInFinder && item.productShowInFinder === 'Yes') {
+      c2aBlock.append(div({ class: 'compare-button' },
+        'Compare (',
+        span({ class: 'compare-count' }, '0'),
+        ')',
+        span({
+          class: 'compare-checkbox',
+          onclick: updateCompareProducts,
+          'data-product-path': item.path,
+        }),
+      ));
     }
 
     let cardDescription = '';
@@ -85,9 +131,7 @@ class Card {
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
-          p({ class: 'button-container' },
-            c2aBlock,
-          ),
+          c2aBlock,
         ),
       )
     );

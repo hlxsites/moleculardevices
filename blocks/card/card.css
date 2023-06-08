@@ -71,10 +71,9 @@ main .card-caption .card-description {
   margin-top: 0;
 }
 
-main .card-caption .button-container {
+main .card-caption .c2a {
   text-align: center;
   margin-top: auto;
-  margin-bottom: 0;
 }
 
 main .card-caption .button.primary {
@@ -89,6 +88,32 @@ main .card-caption .button.primary {
   width: unset;
   white-space: break-spaces;
   word-break: break-word;
+}
+
+main .card-caption .c2a .compare-button {
+  color: #adb3b7;
+  letter-spacing: .5px;
+  align-items: center;
+  float: right;
+  display: none;
+}
+
+.product-compare main .card-caption .c2a .compare-button {
+  display: flex;
+}
+
+main .card-caption .c2a .compare-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  vertical-align: middle;
+  border: 2px solid #adb3b7;
+  cursor: pointer;
+}
+
+main .card-caption .c2a .compare-checkbox.selected {
+  background: #6eb43f;
+  border-color: #6eb43f;
 }
 
 main .card-type {
