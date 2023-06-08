@@ -607,7 +607,11 @@ header .mobile-menu-subcategories {
   transform: translate(100%,0);
 }
 
-header .mobile-menu-item.submenu-open .mobile-menu-subcategories {
+header .mobile-menu-item.submenu-open > .mobile-menu-subcategories {
+  transform: translate(0%,0);
+}
+
+header .mobile-menu-subcategory-item.submenu-open > .mobile-menu-subcategories {
   transform: translate(0%,0);
 }
 
@@ -656,7 +660,7 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   position: relative;
   white-space: nowrap;
   display: block;
-  padding: 24px 70px 19px 15px;
+  padding: 4px 70px 23px 15px;
   color: #34393d;
   text-align: left;
   text-transform: uppercase;
@@ -666,6 +670,10 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   text-shadow: none;
   text-decoration: none;
   line-height: 29px;
+}
+
+header .mobile-menu-subcategory-item .mobile-menu-subcategory-item > a {
+  padding: 20px 70px 15px 15px;
 }
 
 header .mobile-menu .request-quote a {
@@ -1074,7 +1082,7 @@ header .actionable-card-submenu {
   height: 100%;
 }
 
-header .mobile-menu .mobile-menu-subcategory-item:hover a {
+header .mobile-menu-item .mobile-menu-subcategory-item:hover > a {
   color: var(--link-color);
   background: var(--background-color);
 }
