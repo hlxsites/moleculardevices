@@ -85,11 +85,6 @@ main .section.wave .wave-teaser .button-container {
 }
 
 @media only screen and (max-width: 767px) {
-  main .section.wave.bluegreen.wave-teaser-container {
-    /* background-size: 100% 50% !important;
-    background-position-y: bottom; */
-  }
-
   .wave-teaser {
     position: relative;
     top: -200px;
