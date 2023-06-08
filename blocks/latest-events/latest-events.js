@@ -1,12 +1,18 @@
 import ffetch from '../../scripts/ffetch.js';
+import { formatDateUTCSeconds } from '../../scripts/scripts.js';
 // eslint-disable-next-line object-curly-newline
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
-export function formatDate(startDate, endDate) {
-  const startDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, startDate));
-  const endDateObj = new Date(Date.UTC(0, 0, 0, 0, 0, endDate));
-  return `${startDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
-    - ${endDateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}`;
+export function formatEventDates(startUnixStr, endUnixStr) {
+  let eventDates = '';
+  if (startUnixStr && endUnixStr) {
+    let startDate = formatDateUTCSeconds(startUnixStr);
+    // eslint-disable-next-line prefer-destructuring
+    startDate = startDate.split(',')[0];
+    const endDate = formatDateUTCSeconds(endUnixStr);
+    eventDates = `${startDate} - ${endDate}`;
+  }
+  return eventDates;
 }
 
 export function buildList(data, block) {
@@ -19,7 +25,7 @@ export function buildList(data, block) {
           item.title,
         ),
       ),
-      p({}, `${formatDate(item.eventStart, item.eventEnd)} | ${item.eventRegion}`),
+      p({}, `${formatEventDates(item.eventStart, item.eventEnd)} | ${item.eventRegion}`),
     ));
   });
 }
