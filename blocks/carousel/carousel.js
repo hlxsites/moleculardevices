@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import { div, span, p } from '../../scripts/dom-helpers.js';
+import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -13,6 +14,12 @@ function createClone(item) {
   const clone = item.cloneNode(true);
   clone.classList.add('clone');
   clone.classList.remove('selected');
+
+  // if clone has compare box, add event handler
+  const compareCheckbox = clone.querySelector('.compare-checkbox');
+  if (compareCheckbox) {
+    compareCheckbox.addEventListener('click', handleCompareProducts);
+  }
 
   return clone;
 }

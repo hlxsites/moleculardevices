@@ -8,30 +8,49 @@ import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
 
-const MAX_COMPARE_PRODUCTS = 3;
+const MAX_COMPARE_ITEMS = 3;
 
-function updateCompareProducts(e) {
+function getPathFromNode(item) {
+  return item.getAttribute('data-path');
+}
+
+export function getSelectedItems() {
+  return [...document.querySelectorAll('.compare-button .compare-checkbox.selected')]
+    .filter((value, index, self) => index === self.findIndex((t) => (
+      getPathFromNode(t) === getPathFromNode(value)
+    ),
+    ))
+    .map((item) => getPathFromNode(item));
+}
+
+export function handleCompareProducts(e) {
   const { target } = e;
-  const addedCompareButton = target.parentNode;
-  const selectedProducts = [...document.querySelectorAll('.compare-button .compare-checkbox.selected')].map((item) => item.parentNode);
+  const clickedItemPath = getPathFromNode(target);
+  const selectedItemPaths = getSelectedItems();
 
-  if (selectedProducts.length >= MAX_COMPARE_PRODUCTS
-    && !selectedProducts.includes(addedCompareButton)) {
-    alert(`You can only select up to ${MAX_COMPARE_PRODUCTS} products.`);
+  if (selectedItemPaths.includes(clickedItemPath)) {
+    const deleteIndex = selectedItemPaths.indexOf(clickedItemPath);
+    if (deleteIndex !== -1) {
+      selectedItemPaths.splice(deleteIndex, 1);
+    }
+  } else if (selectedItemPaths.length >= MAX_COMPARE_ITEMS) {
+    alert(`You can only select up to ${MAX_COMPARE_ITEMS} products.`);
     return;
+  } else {
+    selectedItemPaths.push(clickedItemPath);
   }
-
-  target.classList.toggle('selected');
+  const numSelectedItems = selectedItemPaths.length;
 
   // update all compare buttons
-  const selectedCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox.selected')];
   const allCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox')];
   allCompareCheckboxes.forEach((item) => {
     const buttonParent = item.parentNode;
-    if (item.classList.contains('selected')) {
-      buttonParent.querySelector('.compare-count').innerHTML = selectedCompareCheckboxes.length;
-    } else {
-      buttonParent.querySelector('.compare-count').innerHTML = '0';
+    item.classList.remove('selected');
+    buttonParent.querySelector('.compare-count').innerHTML = '0';
+    const currentProductPath = getPathFromNode(item);
+    if (selectedItemPaths.includes(currentProductPath)) {
+      item.classList.add('selected');
+      buttonParent.querySelector('.compare-count').innerHTML = numSelectedItems;
     }
   });
 }
@@ -105,8 +124,8 @@ class Card {
         ')',
         span({
           class: 'compare-checkbox',
-          onclick: updateCompareProducts,
-          'data-product-path': item.path,
+          onclick: handleCompareProducts,
+          'data-path': item.path,
         }),
       ));
     }
