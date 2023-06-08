@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable no-alert */
 
 import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
