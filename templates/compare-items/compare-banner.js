@@ -4,7 +4,7 @@ import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';
-import { unselectAllComparedItems, updateCompareButtons } from '../../blocks/card/card.js';
+import { unselectAllComparedItems, updateCompareButtons } from '../../blocks/card/compare-helpers.js';
 
 class CompareBanner {
   constructor(config = {}) {
@@ -65,6 +65,10 @@ class CompareBanner {
         ),
       ),
     );
+
+    compareButton.addEventListener('click', () => {
+      // TODO: open modal with comparison
+    });
 
     closeButton.addEventListener('click', () => {
       const selectedItemPaths = unselectAllComparedItems();
