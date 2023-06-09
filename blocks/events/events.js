@@ -52,13 +52,10 @@ function createEventsDropdown(options, selected, name, placeholder) {
   });
   container.append(dropDown);
 
-  console.log('created dropdown', container, 'options', options, 'selected', selected, name, placeholder);
-
   return container;
 }
 
 function createFilters(options) {
-  console.log('filter options');
   return [
     createEventsDropdown(
       Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
@@ -115,16 +112,6 @@ async function fetchEvents(options) {
     .all();
 }
 
-export function customToggleFilter(event) {
-  const filterSelected = event.target.closest('.select');
-  const filterIsOpen = filterSelected.classList.contains('open');
-  if (filterIsOpen) {
-    filterSelected.classList.remove('open');
-  } else {
-    filterSelected.classList.add('open');
-  }
-}
-
 function eventsFilterData(options) {
   let { data } = options;
   const filters = options.activeFilters;
@@ -146,29 +133,17 @@ async function updateFilter(event, options) {
   const filterType = filter.getAttribute('name');
 
   const elemName = elem.getAttribute('name');
-
-  console.log('element clicked:', elem, 'name', elemName);
-
   const currentFilter = options.activeFilters.get(filterType);
   if (event.target.checked) {
     currentFilter.add(elemName);
-    console.log('Checkbox is checked');
   } else {
     currentFilter.delete(elemName);
-    console.log('Checkbox is unchecked');
   }
-  options.activeFilters.set(filterType, currentFilter);
 
   options.activeFilters.set('page', 1);
   options.filteredData = eventsFilterData(options);
 
-  console.log('filtered data', options.filteredData);
-
-  // const selected = filter.querySelector('.dropdown-toggle');
-  // selected.innerHTML = elem.innerText;
-
   renderPagination(document.querySelector('.list'), options, true);
-  // customToggleFilter(event);
   swapData(options);
 }
 

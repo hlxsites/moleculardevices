@@ -293,7 +293,6 @@ function renderFilters(options, filters) {
 
     const menuItems = filter.querySelectorAll('.select .dropdown-menu .filter-item');
     menuItems.forEach((menuItem) => {
-      console.log('menu item with listener', menuItem);
       menuItem.addEventListener('click', (event) => {
         onFilterClick(event, options);
       }, false);
