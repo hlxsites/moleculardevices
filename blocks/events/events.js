@@ -8,8 +8,10 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterEventType = toClassName(entry.eventType);
-  entry.filterEventRegion = toClassName(entry.eventRegion);
+  entry.filterEventType = entry.eventType.split(', ')
+    .map(toClassName);
+  entry.filterEventRegion = entry.eventRegion.split(', ')
+    .map(toClassName);
   entry.date = '0';
   const keywords = [];
   if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
@@ -26,9 +28,8 @@ function prepareEntry(entry, showDescription, viewMoreText) {
 
 function createEventsDropdown(options, selected, name, placeholder) {
   const container = div({ class: 'select' });
-  if (name) {
-    container.setAttribute('name', name);
-  }
+  container.setAttribute('name', name);
+
   const btn = div({
     type: 'button',
     class: 'dropdown-toggle',
@@ -58,13 +59,19 @@ function createEventsDropdown(options, selected, name, placeholder) {
 function createFilters(options) {
   return [
     createEventsDropdown(
-      Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
+      Array.from(new Set(
+        options.data.flatMap((n) => n.eventType.split(', '))
+          .filter((val) => val !== '0'),
+      )),
       options.activeFilters.eventType,
       'event-type',
       'Event Type',
     ),
     createEventsDropdown(
-      Array.from(new Set(options.data.map((n) => n.eventRegion))).filter((val) => val !== '0'),
+      Array.from(new Set(
+        options.data.flatMap((n) => n.eventRegion.split(', '))
+          .filter((val) => val !== '0'),
+      )),
       options.activeFilters.eventRegion,
       'event-region',
       'Region',
@@ -108,7 +115,7 @@ async function fetchEvents(options) {
   return ffetch('/query-index.json')
     .sheet('events')
     .filter(({ eventEnd }) => (options.showArchivedEvents && eventEnd * 1000 < now)
-        || (options.showFutureEvents && eventEnd * 1000 >= now))
+      || (options.showFutureEvents && eventEnd * 1000 >= now))
     .all();
 }
 
@@ -120,7 +127,8 @@ function eventsFilterData(options) {
     if (type !== 'page') {
       const filterAttribute = toCamelCase(`filter_${type}`);
       data = data
-        .filter((n) => value.size === 0 || value.has(n[filterAttribute]));
+        .filter((n) => value.size === 0
+          || n[filterAttribute].some((filterValue) => value.has(filterValue)));
     }
   });
 
