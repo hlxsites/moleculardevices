@@ -15,6 +15,7 @@
 
 .overlay.open {
   display: block;
+  z-index: 600;
 }
 
 .overlay-content {
@@ -32,16 +33,23 @@
   scroll-behavior: smooth;
 }
 
-.overlay-carousel > div {
+.overlay-carousel > div.section {
   width: 100%;
+  padding-top: 0;
   flex-shrink: 0;
   scroll-snap-align: start;
   position: relative;
   align-items: flex-end;
 }
 
+main .overlay .overlay-carousel div.embed-wrapper {
+  padding-top: 0;
+}
+
 main .overlay-carousel .embed {
   max-width: unset;
+  padding: 0;
+  margin-top: 0;
 }
 
 main .overlay-carousel .section>div {
@@ -83,16 +91,17 @@ main .overlay-carousel .section>div {
 
  a.right, a.left {
   top: 50%;
+  transform: translate(0, -50%);
   color: #fff;
   height: auto;
  }
 
  a.right {
-  right: 0;
+  right: -15px;
  }
 
  a.left {
-  left: 0;
+  left: -15px;
  }
 
  .hero-inner {

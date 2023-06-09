@@ -96,19 +96,8 @@ function optimiseHeroBlock(main) {
  * Append default wave section to pages
  */
 function decorateWaveSection(main) {
-  const hasPageTabsBlock = main.querySelector('.page-tabs');
-  if (hasPageTabsBlock) return;
-
-  const lastSection = main.querySelector('div.section:last-of-type');
-  if (lastSection.classList.contains('wave')) return;
-  const hasWaveFragment = lastSection.firstElementChild && lastSection.firstElementChild.childElementCount === 1 && lastSection.querySelector('.fragment');
-  if (hasWaveFragment) return;
-
-  const waveSection = document.createElement('div');
-  waveSection.classList.add('section');
-  waveSection.classList.add('wave');
-  waveSection.setAttribute('data-section-status', 'initialized');
-  lastSection.after(waveSection);
+  const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
+  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }));
 }
 
 /**
@@ -147,7 +136,7 @@ export function isVideo(url) {
 }
 
 export function embedVideo(link, url, type) {
-  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1);
+  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1).replace('.html', '');
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();

@@ -162,10 +162,6 @@ main .section .hero-advanced-wrapper {
   background: #f0f1f2;
 }
 
-.hero-inner.white-bg .container > div:nth-child(1) {
-  width: 100%;
-}
-
 .hero-inner.white-bg,
 .hero-inner.white-bg h1,
 .hero-inner.white-bg a:any-link {
@@ -187,6 +183,15 @@ display: none;
   background-size: 100%;
   padding-bottom: 10%;
   background-position: bottom center;
+}
+
+.thankyou .hero-inner {
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
+  padding-top: 50px;
+}
+
+.thankyou .hero-inner h1 {
+  font-weight: bold;;
 }
 
 /* Citation Variant - Desktop -- Start */
@@ -373,6 +378,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay {
     display: none;
+  }
+
+  .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay.open {
+    display: block;
   }
 
   .hero-inner .container > div:nth-child(2) {
@@ -627,5 +636,45 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 @media (min-width: 1200px) {
   .hero-inner > div {
     width: 1170px
+  }
+}
+
+.hero-inner.white-bg .container > div:nth-child(1) {
+  width: 100%;
+}
+
+
+.thankyou .hero-inner > div:last-of-type > div:last-of-type img {
+  max-width: 332px;
+}
+
+@media (max-width: 767px) {
+  .thankyou .hero-inner h1 {
+    font-size: 32px;
+  }
+
+  .thankyou .hero-inner p {
+    font-size: 27px;
+  }
+
+  .thankyou .hero-inner .container.two-column > div:nth-child(2) {
+    border: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .thankyou .hero-inner > div:last-of-type {
+    position: relative;
+    overflow: visible;
+  }
+
+  .thankyou .hero-inner > div:last-of-type > div:last-of-type {
+    position: absolute;
+    right: 0;
+    text-align: right;
+  }
+
+  .thankyou .hero-inner > div:last-of-type > div:last-of-type img {
+    transform: translateY(30%);
   }
 }

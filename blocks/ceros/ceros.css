@@ -1,0 +1,84 @@
+.ceros-wrapper > p {
+  font-size: 24px;
+  color: #34393d;
+  font-family: var(--ff-proxima-xbold);
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .ceros-wrapper > p {
+    font-size: 14px;
+  }
+}
+
+.ceros {
+  position: relative;
+  text-align: center;
+}
+
+.ceros img {
+  box-shadow: 0 0 1vw rgba(0 0 0 / 20%);
+}
+
+.ceros .ceros-modal {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  outline: 0;
+  background-color: rgba(0 0 0 / 80%);
+}
+
+.ceros .ceros-modal.open {
+  display: block;
+  opacity: 1;
+}
+
+.ceros .ceros-modal .ceros-modal-content {
+  max-width: 1170px;
+  margin: 30px auto;
+  padding: 60px 50px 15px;
+  position: relative;
+}
+
+.ceros .ceros-modal .ceros-modal-content button.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  color: #fff;
+  min-width: unset;
+  max-width: unset;
+  width: auto;
+  height: auto;
+}
+
+.ceros .ceros-modal button.close span {
+  display: block;
+}
+
+.ceros .ceros-modal button.close svg {
+  height: 45px;
+  width: 45px;
+  display: block;
+}
+
+.ceros .ceros-poster-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0 0 0 / 50%);
+  border: 2px solid rgba(0 0 0 / 50%);
+  color: #fff;
+}
+
+.ceros .ceros-poster-overlay:hover {
+  border: 0;
+}

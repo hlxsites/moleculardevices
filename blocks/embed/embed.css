@@ -2,6 +2,10 @@ main .section>div.embed-wrapper {
   padding-top: 35px;
 }
 
+.section.columns-2 .embed-wrapper {
+  padding-top: 0;
+}
+
 main .embed {
   width: unset;
   text-align: center;
@@ -29,6 +33,10 @@ main .embed > div {
   main .embed {
     width: 1110px;
   }
+}
+
+main .embed.embed-ceros {
+  width: 100%;
 }
 
 main .embed.embed-twitter {

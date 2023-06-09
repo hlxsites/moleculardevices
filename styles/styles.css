@@ -628,6 +628,17 @@ ul.keyword-list li:not(:last-of-type)::after {
   margin-left: 10px;
 }
 
+/* errors */
+
+main.error .section .hero-wrapper {
+  padding: 0;
+}
+
+main.error .section > div {
+  margin: 0 auto;
+  padding: 15px 15px 0;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -711,6 +722,26 @@ main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
 
+/* services & support */
+
+main .section.service-support .default-content-wrapper h2 {
+  font-size: 36px;
+  padding-top: 90px;
+  font-weight: 100;
+  line-height: 1;
+}
+
+main .section.service-support.support-options h2 {
+  font-size: 70px;
+}
+
+@media (max-width: 991px) {
+  main .section.service-support.support-options h2 {
+    font-size: 36px;
+    padding-top: 30px;
+  }
+}
+
 /* Features Section */
 main .section.features-section {
   padding-top: 50px;
@@ -791,94 +822,6 @@ main .section.features-section .button-container {
   font-style: italic;
 }
 
-/* Wave sections */
-
-main div.section.wave {
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-  padding-bottom: 0;
-  padding-top: 0;
-  color: var(--text-white);
-  text-align: center;
-  clear: both;
-}
-
-main div.section.wave:last-child {
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-main div.section.wave::after {
-  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  padding: 10.823% 0 0;
-  margin: 0 0 -1px;
-  background-position: bottom center;
-  display: block;
-  width: 100%;
-  content: "";
-  flex-basis: 100%;
-  align-self: self-end;
-}
-
-main div.section.wave .default-content-wrapper {
-  margin-top: 100px;
-  padding: 0 15px;
-  padding-right: 15px;
-}
-
-main .section.service-support .default-content-wrapper h2 {
-  font-size: 36px;
-  padding-top: 90px;
-  font-weight: 100;
-  line-height: 1;
-}
-
-main .section.service-support.support-options h2 {
-  font-size: 70px;
-}
-
-main div.section.wave .default-content-wrapper h2 {
-  font-size: 60px;
-  margin-bottom: 30px;
-  line-height: 1;
-  font-family: var(--ff-proxima-light);
-}
-
-main div.section.wave p {
-  margin: 0;
-}
-
-main.error div.section.wave {
-  color: var(--text-color);
-  text-align: unset;
-}
-
-main.error .section .hero-wrapper {
-  padding: 0;
-}
-
-main.error .section > div {
-  margin: 0 auto;
-  padding: 15px 15px 0;
-}
-
-main.error div.section.wave:last-child {
-  margin-top: 0;
-}
-
-main div.section.wave .default-content-wrapper p:first-of-type {
-  padding: 0 20px 20px;
-  margin-bottom: 10px;
-}
-
 /* Featured Asset section */
 main div.section.featured-asset {
   background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
@@ -935,43 +878,8 @@ main div.section.featured-asset .columns > div {
   }
 }
 
-/* WAVE sections variants */
-
-/* BlueGreen Variant */
-main div.section.wave.bluegreen {
-  background-size: 100% 100%;
-  padding: 30px 0;
-}
-
-.hero-container + .section > .default-content-wrapper:first-child {
-  margin-top: 50px;
-}
-
-main div.section.wave.bluegreen .default-content-wrapper {
-  margin-bottom: 100px;
-}
-
-main div.section.wave.bluegreen .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-regular);
-}
-
-main div.section.wave.bluegreen::after {
-  content: none;
-}
-
-@media only screen and (max-width: 768px) {
-  main .section.bluegreen {
-    background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
-    background-image: none;
-  }
-
-  main .section.blue {
-    background: #116da7 !important;
-    background-image: none;
-  }
-}
-
 /* Parallax section */
+
 main .section.background-parallax {
   background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
   background-position: center top;
@@ -1017,6 +925,124 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
 @media (min-width: 768px) {
   main .section.footer-wave {
     clear: both;
+  }
+}
+
+/* Wave sections */
+
+main div.section.wave {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding-bottom: 0;
+  padding-top: 0;
+  color: var(--text-white);
+  text-align: center;
+  clear: both;
+}
+
+main div.section.wave:last-child {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+main div.section.wave::after {
+  background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 10.823% 0 0;
+  margin: 0 0 -1px;
+  background-position: bottom center;
+  display: block;
+  width: 100%;
+  content: "";
+  flex-basis: 100%;
+  align-self: self-end;
+}
+
+main div.section.wave .default-content-wrapper {
+  margin-top: 100px;
+  padding: 0 15px;
+  padding-right: 15px;
+}
+
+main div.section.wave .default-content-wrapper h2 {
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: 30px;
+  line-height: 1;
+  font-family: var(--ff-proxima-light);
+}
+
+main div.section.wave p {
+  margin: 0;
+}
+
+main.error div.section.wave {
+  color: var(--text-color);
+  text-align: unset;
+}
+
+main.error div.section.wave:last-child {
+  margin-top: 0;
+}
+
+main div.section.wave .default-content-wrapper p:first-of-type {
+  padding: 0 20px 20px;
+  margin-bottom: 10px;
+}
+
+/* WAVE sections variants */
+
+/* BlueGreen Variant */
+main div.section.wave.bluegreen {
+  background-size: 100% 100%;
+  padding: 30px 0;
+}
+
+.hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
+}
+
+main div.section.wave.bluegreen .default-content-wrapper {
+  margin-bottom: 100px;
+}
+
+main div.section.wave.bluegreen .default-content-wrapper h2 {
+  font-family: var(--ff-proxima-regular);
+}
+
+main div.section.wave.bluegreen::after {
+  content: none;
+}
+
+main div.section.wave.blue .button-container,
+main div.section.wave.bluegreen .button-container {
+  margin-top: 30px;
+}
+
+main div.section.wave.blue .button-container > a,
+main div.section.wave.bluegreen .button-container > a {
+  color: var(--text-white);
+  font-size: var(--body-font-size-m);
+  border-radius: 0;
+  padding: 15px 40px;
+  border: 1px solid #cbdce8;
+}
+
+@media only screen and (max-width: 768px) {
+  main .section.bluegreen {
+    background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
+    background-image: none;
+  }
+
+  main .section.blue {
+    background: #116da7 !important;
+    background-image: none;
   }
 }
 
@@ -1109,7 +1135,7 @@ main .section.background-molecules {
 
 @media only screen and (max-width: 768px) {
   main .section .default-content-wrapper {
-    padding: 0;
+    padding: 0 15px;
     overflow: hidden;
   }
 
@@ -1312,11 +1338,4 @@ main .section[aria-hidden="true"] {
 
 .product main .section .default-content-wrapper h3 {
   font-family: var(--ff-proxima-xbold);
-}
-
-@media (max-width: 991px) {
-  main .section.service-support.support-options h2 {
-    font-size: 36px;
-    padding-top: 30px;
-  }
 }

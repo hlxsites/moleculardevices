@@ -51,13 +51,13 @@ main .section > div.image-gallery-wrapper {
   cursor: pointer;
 }
 
-.overlay .icon svg {
-  width: 44px;
-  height: auto;
-}
-
 .gallery-button-left.icon svg  {
   transform: rotate(180deg);
+}
+
+.overlay .image-gallery .icon svg {
+  width: 44px;
+  height: auto;
 }
 
 .overlay .icon svg path {
