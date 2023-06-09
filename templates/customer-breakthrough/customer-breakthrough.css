@@ -6,6 +6,10 @@
   margin: 0 auto;
 }
 
+.customer-breakthrough main .background-parallax .default-content-wrapper {
+  margin-bottom: 0;
+}
+
 .customer-breakthrough main .default-content-wrapper p + h2 {
   margin-top: 50px;
 }
