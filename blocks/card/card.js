@@ -29,6 +29,27 @@ export function getSelectedItems() {
     .map((item) => getPathFromNode(item));
 }
 
+export function unselectAllComparedItems() {
+  const selectedItemPaths = getSelectedItems();
+  selectedItemPaths.splice(0, selectedItemPaths.length);
+  return selectedItemPaths;
+}
+
+export function updateCompareButtons(selectedItemPaths, numSelectedItems) {
+  // update all compare buttons
+  const allCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox')];
+  allCompareCheckboxes.forEach((item) => {
+    const buttonParent = item.parentNode;
+    item.classList.remove('selected');
+    buttonParent.querySelector('.compare-count').innerHTML = '0';
+    const currentProductPath = getPathFromNode(item);
+    if (selectedItemPaths.includes(currentProductPath)) {
+      item.classList.add('selected');
+      buttonParent.querySelector('.compare-count').innerHTML = numSelectedItems;
+    }
+  });
+}
+
 export async function handleCompareProducts(e) {
   const { target } = e;
   const clickedItemPath = getPathFromNode(target);
@@ -64,18 +85,7 @@ export async function handleCompareProducts(e) {
   }
   const numSelectedItems = selectedItemPaths.length;
 
-  // update all compare buttons
-  const allCompareCheckboxes = [...document.querySelectorAll('.compare-button .compare-checkbox')];
-  allCompareCheckboxes.forEach((item) => {
-    const buttonParent = item.parentNode;
-    item.classList.remove('selected');
-    buttonParent.querySelector('.compare-count').innerHTML = '0';
-    const currentProductPath = getPathFromNode(item);
-    if (selectedItemPaths.includes(currentProductPath)) {
-      item.classList.add('selected');
-      buttonParent.querySelector('.compare-count').innerHTML = numSelectedItems;
-    }
-  });
+  updateCompareButtons(selectedItemPaths, numSelectedItems);
 }
 
 class Card {
