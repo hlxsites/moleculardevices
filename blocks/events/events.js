@@ -7,10 +7,14 @@ import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
 
+function splitByComma(value) {
+  return value.split(',').map((s) => s.trim());
+}
+
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterEventType = entry.eventType.split(', ')
+  entry.filterEventType = splitByComma(entry.eventType)
     .map(toClassName);
-  entry.filterEventRegion = entry.eventRegion.split(', ')
+  entry.filterEventRegion = splitByComma(entry.eventRegion)
     .map(toClassName);
   entry.date = '0';
   const keywords = [];
@@ -60,7 +64,7 @@ function createFilters(options) {
   return [
     createEventsDropdown(
       Array.from(new Set(
-        options.data.flatMap((n) => n.eventType.split(', '))
+        options.data.flatMap((n) => splitByComma(n.eventType))
           .filter((val) => val !== '0'),
       )),
       options.activeFilters.eventType,
@@ -69,7 +73,7 @@ function createFilters(options) {
     ),
     createEventsDropdown(
       Array.from(new Set(
-        options.data.flatMap((n) => n.eventRegion.split(', '))
+        options.data.flatMap((n) => splitByComma(n.eventRegion))
           .filter((val) => val !== '0'),
       )),
       options.activeFilters.eventRegion,
