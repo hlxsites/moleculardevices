@@ -2,6 +2,10 @@
     padding-top: 0;
 }
 
+.events .list .filter .select .dropdown-menu.open {
+    max-height: initial;
+}
+
 .events .list .filter .select.open .dropdown-toggle,
 .events .list .filter .select .dropdown-toggle:hover  {
     color: black;
