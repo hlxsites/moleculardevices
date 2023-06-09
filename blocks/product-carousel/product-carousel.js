@@ -23,9 +23,9 @@ export default async function decorate(block) {
     products,
     {
       defaultStyling: true,
-      navButtons: window.matchMedia('only screen and (max-width: 767px)').matches || products.length > 3,
+      navButtons: window.matchMedia('only screen and (max-width: 1200px)').matches || products.length > 3,
       dotButtons: false,
-      infiniteScroll: true,
+      infiniteScroll: products.length > 3,
       autoScroll: false,
       visibleItems: [
         {
