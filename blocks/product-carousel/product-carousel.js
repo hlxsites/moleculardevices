@@ -2,7 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { p } from '../../scripts/dom-helpers.js';
-import createCompareProducts from '../compare-items/compare-items.js';
+import createCompareProducts from '../../templates/compare-items/compare-items.js';
 
 export default async function decorate(block) {
   const productPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
