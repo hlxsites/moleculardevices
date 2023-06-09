@@ -6,7 +6,7 @@ import {
   a, article, button, div, h2, h3, nav, p, span, ul, li,
 } from './dom-helpers.js';
 
-function filterData(options) {
+export function filterData(options) {
   let { data } = options;
   const filters = options.activeFilters;
   filters.forEach((value, type) => {
@@ -94,7 +94,7 @@ function createListItems(options) {
   return itemsContainer;
 }
 
-function swapData(options) {
+export function swapData(options) {
   const items = document.querySelector('.items');
   items.innerHTML = createListItems(options).innerHTML;
 }
@@ -293,6 +293,7 @@ function renderFilters(options, filters) {
 
     const menuItems = filter.querySelectorAll('.select .dropdown-menu .filter-item');
     menuItems.forEach((menuItem) => {
+      console.log('menu item with listener', menuItem);
       menuItem.addEventListener('click', (event) => {
         onFilterClick(event, options);
       }, false);

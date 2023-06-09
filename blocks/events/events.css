@@ -7,7 +7,7 @@
     color: black;
 }
 
-.events .filter-item {
+.events label {
     display: block;
     grid-template-columns: 1em auto;
     padding: 0 0 0 37px;
@@ -17,19 +17,19 @@
     min-height: 20px;
 }
 
-.events .filter-item input[type="checkbox"] {
+.events input[type="checkbox"].filter-item {
     display: none;
     position: absolute;
     margin: 4px 0 0 -20px;
 }
 
-.events .filter-item span {
+.events label span {
     font-size: 18px;
     color: #34393d;
     font-weight: 400;
 }
 
-.events .filter-item span::before {
+.events label span::before {
     content: "";
     width: 18px;
     height: 18px;
@@ -41,7 +41,7 @@
     border: 2px solid #adb3b7;
 }
 
-.events .filter-item input[type="checkbox"]:checked+span::before {
+.events input[type="checkbox"].filter-item:checked+span::before {
     background-color: var(--background-color-green);
     border-color: var(--background-color-green);
 }

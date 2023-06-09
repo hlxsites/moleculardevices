@@ -1,7 +1,11 @@
-import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
+import { readBlockConfig, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createList, toggleFilter } from '../../scripts/list.js';
-import { div, input, label, span } from '../../scripts/dom-helpers.js';
+import {
+  createList, renderPagination, swapData, toggleFilter,
+} from '../../scripts/list.js';
+import {
+  div, input, label, span,
+} from '../../scripts/dom-helpers.js';
 
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterEventType = toClassName(entry.eventType);
@@ -37,11 +41,12 @@ function createEventsDropdown(options, selected, name, placeholder) {
   options.forEach((option) => {
     const fieldName = toClassName(option.toString());
     dropDown.append(label(
-      { for: fieldName, class: 'filter-item' },
+      { for: fieldName },
       input({
         type: 'checkbox',
         name: fieldName,
         id: fieldName,
+        class: 'filter-item',
       }),
       span(option)));
   });
@@ -110,6 +115,63 @@ async function fetchEvents(options) {
     .all();
 }
 
+export function customToggleFilter(event) {
+  const filterSelected = event.target.closest('.select');
+  const filterIsOpen = filterSelected.classList.contains('open');
+  if (filterIsOpen) {
+    filterSelected.classList.remove('open');
+  } else {
+    filterSelected.classList.add('open');
+  }
+}
+
+function eventsFilterData(options) {
+  let { data } = options;
+  const filters = options.activeFilters;
+
+  filters.forEach((value, type) => {
+    if (type !== 'page') {
+      const filterAttribute = toCamelCase(`filter_${type}`);
+      data = data
+        .filter((n) => value.size === 0 || value.has(n[filterAttribute]));
+    }
+  });
+
+  return data;
+}
+
+async function updateFilter(event, options) {
+  const elem = event.target;
+  const filter = elem.closest('.select');
+  const filterType = filter.getAttribute('name');
+
+  const elemName = elem.getAttribute('name');
+
+  console.log('element clicked:', elem, 'name', elemName);
+
+  const currentFilter = options.activeFilters.get(filterType);
+  if (event.target.checked) {
+    currentFilter.add(elemName);
+    console.log('Checkbox is checked');
+  } else {
+    currentFilter.delete(elemName);
+    console.log('Checkbox is unchecked');
+  }
+  options.activeFilters.set(filterType, currentFilter);
+
+  options.activeFilters.set('page', 1);
+  options.filteredData = eventsFilterData(options);
+
+  console.log('filtered data', options.filteredData);
+
+  // const selected = filter.querySelector('.dropdown-toggle');
+  // selected.innerHTML = elem.innerText;
+
+  renderPagination(document.querySelector('.list'), options, true);
+  // customToggleFilter(event);
+  swapData(options);
+}
+
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
@@ -128,13 +190,11 @@ export default async function decorate(block) {
     showArchivedEvents,
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('event-type', '');
-  options.activeFilters.set('event-region', '');
+  options.activeFilters.set('event-type', new Set());
+  options.activeFilters.set('event-region', new Set());
   options.activeFilters.set('page', 1);
 
-  options.onFilterClick = (event, _options) => {
-    console.log('custom filter click', event, _options);
-  };
+  options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
   sortEvents(options.data, showFutureEvents);
