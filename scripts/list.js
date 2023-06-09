@@ -20,7 +20,7 @@ function filterData(options) {
   return data;
 }
 
-function toggleFilter(event) {
+export function toggleFilter(event) {
   const filterSelected = event.target.closest('.select');
   const filterIsOpen = filterSelected.classList.contains('open');
   const menu = filterSelected.querySelector('.dropdown-menu');
@@ -94,7 +94,7 @@ function createListItems(options) {
   return itemsContainer;
 }
 
-function swapData(options) {
+export function swapData(options) {
   const items = document.querySelector('.items');
   items.innerHTML = createListItems(options).innerHTML;
 }
@@ -157,7 +157,7 @@ async function switchPage(event, options) {
   document.querySelector('.list').scrollIntoView();
 }
 
-function createDropdown(options, selected, name, placeholder) {
+export function createDropdown(options, selected, name, placeholder) {
   const container = div({ class: 'select' });
   if (name) {
     container.setAttribute('name', name);
@@ -187,6 +187,7 @@ function createDropdown(options, selected, name, placeholder) {
     dropDown.append(optionTag);
   });
   container.append(dropDown);
+
   return container;
 }
 
@@ -271,10 +272,9 @@ async function switchFilter(event, options) {
   swapData(options);
 }
 
-function renderFilters(options, createFilters) {
+function renderFilters(options, filters) {
   const filter = div({ class: 'filter' });
 
-  const filters = createFilters(options, createDropdown);
   if (filters.length > 0) {
     if (options.panelTitle) {
       const header = p({ class: 'panel-title' }, options.panelTitle);
@@ -289,10 +289,12 @@ function renderFilters(options, createFilters) {
       filter.append(p({}, options.relatedLink));
     }
 
+    const onFilterClick = options.onFilterClick ?? switchFilter;
+
     const menuItems = filter.querySelectorAll('.select .dropdown-menu .filter-item');
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener('click', (event) => {
-        switchFilter(event, options);
+        onFilterClick(event, options);
       }, false);
     }, false);
 
@@ -302,8 +304,8 @@ function renderFilters(options, createFilters) {
   return null;
 }
 
-export default async function createList(
-  createFilters,
+export async function createList(
+  filters,
   options,
   root,
 ) {
@@ -313,7 +315,7 @@ export default async function createList(
 
   if (options.data) {
     const container = div({ class: 'list' },
-      renderFilters(options, createFilters),
+      renderFilters(options, filters),
       createListItems(options),
     );
     root.append(container);

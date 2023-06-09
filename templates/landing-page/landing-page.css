@@ -2,7 +2,8 @@
 .landing-page header .mainmenu-wrapper,
 .landing-page header .navbar-header > .company-links,
 .landing-page main .breadcrumbs,
-.landing-page footer .footer-wrap {
+.landing-page footer .footer-wrap,
+.landing-page main .thank-you-page {
   display: none;
 }
 
@@ -122,7 +123,6 @@
 .landing-page main .section>div.columns-wrapper {
   padding-top: 10px;
 }
-
 
 @media (max-width: 767px) {
   .landing-page .hero-inner {
