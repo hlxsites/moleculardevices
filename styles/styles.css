@@ -411,6 +411,10 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
+a i.fa {
+  padding-left: 5px;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
