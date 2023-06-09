@@ -8,7 +8,7 @@
 
 .events .list .filter .select.open .dropdown-toggle,
 .events .list .filter .select .dropdown-toggle:hover  {
-    color: black;
+    color: inherit;
 }
 
 .events label {
@@ -17,29 +17,18 @@
     margin: 0 0 20px;
     position: relative;
     cursor: pointer;
-    min-height: 20px;
 }
 
 .events input[type="checkbox"].filter-item {
     display: none;
-    position: absolute;
-    margin: 4px 0 0 -20px;
-}
-
-.events label span {
-    font-size: 18px;
-    color: #34393d;
-    font-weight: 400;
 }
 
 .events label span::before {
     content: "";
     width: 18px;
     height: 18px;
-    display: block;
     position: absolute;
     left: 9px;
-    top: 1px;
     background: none;
     border: 2px solid #adb3b7;
 }
