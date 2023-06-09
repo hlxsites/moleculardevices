@@ -6,7 +6,7 @@ import {
   a, article, button, div, h2, h3, nav, p, span, ul, li,
 } from './dom-helpers.js';
 
-export function filterData(options) {
+function filterData(options) {
   let { data } = options;
   const filters = options.activeFilters;
   filters.forEach((value, type) => {
