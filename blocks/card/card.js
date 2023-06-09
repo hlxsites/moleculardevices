@@ -7,11 +7,17 @@ import { summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
+import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 
 const MAX_COMPARE_ITEMS = 3;
 
 function getPathFromNode(item) {
   return item.getAttribute('data-path');
+}
+
+function getNameFromNode(item) {
+  // gets the name from the neares h3 above the item
+  return item.closest('.card-caption').querySelector('h3').textContent;
 }
 
 export function getSelectedItems() {
@@ -23,21 +29,38 @@ export function getSelectedItems() {
     .map((item) => getPathFromNode(item));
 }
 
-export function handleCompareProducts(e) {
+export async function handleCompareProducts(e) {
   const { target } = e;
   const clickedItemPath = getPathFromNode(target);
+  const clickedItemName = getNameFromNode(target);
   const selectedItemPaths = getSelectedItems();
+
+  // get or create compare banner
+  const compareBannerInterface = await createCompareBannerInterface({
+    currentCompareItemsCount: selectedItemPaths.length,
+    maxCompareItemsCount: MAX_COMPARE_ITEMS,
+  });
+
+  compareBannerInterface.getOrRenderBanner();
 
   if (selectedItemPaths.includes(clickedItemPath)) {
     const deleteIndex = selectedItemPaths.indexOf(clickedItemPath);
     if (deleteIndex !== -1) {
       selectedItemPaths.splice(deleteIndex, 1);
     }
+
+    compareBannerInterface.removeItem(clickedItemPath);
+    if (selectedItemPaths.length === 0) {
+      compareBannerInterface.hideBanner();
+    }
   } else if (selectedItemPaths.length >= MAX_COMPARE_ITEMS) {
     alert(`You can only select up to ${MAX_COMPARE_ITEMS} products.`);
     return;
   } else {
     selectedItemPaths.push(clickedItemPath);
+
+    compareBannerInterface.addItem(clickedItemPath, clickedItemName);
+    compareBannerInterface.showBanner();
   }
   const numSelectedItems = selectedItemPaths.length;
 

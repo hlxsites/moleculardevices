@@ -1,19 +1,22 @@
 /* eslint-disable import/prefer-default-export */
 
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';
 
 class CompareBanner {
   constructor(config = {}) {
+    this.cssFiles = [];
     this.currentCompareItemsCount = 0;
     this.maxCompareItemsCount = 3;
     this.compareButtonText = 'Compare ';
-    this.banner = null;
+    this.banner = document.querySelector('.compare-banner');
 
     // Apply overwrites
     Object.assign(this, config);
+
+    this.cssFiles.push('/templates/compare-items/compare-items.css');
   }
 
   render() {
@@ -64,15 +67,27 @@ class CompareBanner {
     return compareBanner;
   }
 
-  show() {
+  showBanner() {
     this.banner.classList.add('show');
   }
 
-  hide() {
+  hideBanner() {
     this.banner.classList.remove('show');
   }
 
-  addItemName(itemName) {
+  getOrRenderBanner() {
+    let banner = document.querySelector('.compare-banner');
+    if (!banner) {
+      banner = this.render();
+
+      const main = document.querySelector('main');
+      main.append(banner);
+    }
+
+    return banner;
+  }
+
+  addItem(itemPath, itemName) {
     this.currentCompareItemsCount += 1;
     this.banner.querySelector('.compare-count').innerHTML = this.currentCompareItemsCount;
 
@@ -90,7 +105,7 @@ class CompareBanner {
     const compareCellItem = div(
       { class: 'compare-cell' },
       div(
-        { class: 'compare-data', title: itemName },
+        { class: 'compare-data', 'data-name': itemName, 'data-path': itemPath },
         itemName,
         closeButton,
       ),
@@ -99,24 +114,38 @@ class CompareBanner {
     cellRow.appendChild(compareCellItem);
   }
 
-  removeItemName(itemName) {
+  removeItem(itemPath) {
     this.currentCompareItemsCount -= 1;
     this.banner.querySelector('.compare-count').innerHTML = this.currentCompareItemsCount;
 
-    // remove compare-cell that contains compare-data with title itemName
+    // remove compare-cell that contains compare-data with path itemPath
     const compareCell = this.banner.querySelectorAll('.compare-cell')[0];
     const cellRow = compareCell.querySelector('.compare-row');
-    const compareCellItem = cellRow.querySelector(`.compare-data[title="${itemName}"]`).parentNode;
+    const compareCellItem = cellRow.querySelector(`.compare-data[data-path="${itemPath}"]`).parentNode;
     cellRow.removeChild(compareCellItem);
+  }
+
+  async loadCSSFiles() {
+    let defaultCSSPromise;
+    if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
+      defaultCSSPromise = new Promise((resolve) => {
+        this.cssFiles.forEach((cssFile) => {
+          loadCSS(cssFile, (e) => resolve(e));
+        });
+      });
+    }
+    // eslint-disable-next-line no-unused-expressions
+    this.cssFiles && (await defaultCSSPromise);
   }
 }
 
 /**
- * Create and render default compare products banner.
+ * Create an instance of the CompareBanner class
  * @param {Object}  config   optional - config object for
  * customizing the rendering and behaviour
  */
-export async function createCompareBanner(config) {
+export async function createCompareBannerInterface(config) {
   const banner = new CompareBanner(config);
+  await banner.loadCSSFiles();
   return banner;
 }
