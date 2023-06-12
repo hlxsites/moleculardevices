@@ -9,50 +9,38 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
-  getPathFromNode,
-  getNameFromNode,
+  MAX_COMPARE_ITEMS,
+  getTitleFromNode,
   getSelectedItems,
   updateCompareButtons,
-} from './compare-helpers.js';
-
-const MAX_COMPARE_ITEMS = 3;
+} from '../../scripts/compare-helpers.js';
 
 export async function handleCompareProducts(e) {
   const { target } = e;
-  const clickedItemPath = getPathFromNode(target);
-  const clickedItemName = getNameFromNode(target);
-  const selectedItemPaths = getSelectedItems();
+  const clickedItemTitle = getTitleFromNode(target);
+  const selectedItemTitles = getSelectedItems();
 
   // get or create compare banner
   const compareBannerInterface = await createCompareBannerInterface({
-    currentCompareItemsCount: selectedItemPaths.length,
-    maxCompareItemsCount: MAX_COMPARE_ITEMS,
+    currentCompareItemsCount: selectedItemTitles.length,
   });
 
   compareBannerInterface.getOrRenderBanner();
 
-  if (selectedItemPaths.includes(clickedItemPath)) {
-    const deleteIndex = selectedItemPaths.indexOf(clickedItemPath);
+  if (selectedItemTitles.includes(clickedItemTitle)) {
+    const deleteIndex = selectedItemTitles.indexOf(clickedItemTitle);
     if (deleteIndex !== -1) {
-      selectedItemPaths.splice(deleteIndex, 1);
+      selectedItemTitles.splice(deleteIndex, 1);
     }
-
-    compareBannerInterface.removeItem(clickedItemPath);
-    if (selectedItemPaths.length === 0) {
-      compareBannerInterface.hideBanner();
-    }
-  } else if (selectedItemPaths.length >= MAX_COMPARE_ITEMS) {
+  } else if (selectedItemTitles.length >= MAX_COMPARE_ITEMS) {
     alert(`You can only select up to ${MAX_COMPARE_ITEMS} products.`);
     return;
   } else {
-    selectedItemPaths.push(clickedItemPath);
-
-    compareBannerInterface.addItem(clickedItemPath, clickedItemName);
-    compareBannerInterface.showBanner();
+    selectedItemTitles.push(clickedItemTitle);
   }
-  const numSelectedItems = selectedItemPaths.length;
 
-  updateCompareButtons(selectedItemPaths, numSelectedItems);
+  updateCompareButtons(selectedItemTitles);
+  compareBannerInterface.refreshBanner();
 }
 
 class Card {
@@ -125,7 +113,7 @@ class Card {
         span({
           class: 'compare-checkbox',
           onclick: handleCompareProducts,
-          'data-path': item.path,
+          'data-title': cardTitle,
         }),
       ));
     }

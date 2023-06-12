@@ -4,13 +4,17 @@ import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';
-import { unselectAllComparedItems, updateCompareButtons } from '../../blocks/card/compare-helpers.js';
+import {
+  MAX_COMPARE_ITEMS,
+  getSelectedItems,
+  unselectAllComparedItems,
+  updateCompareButtons,
+} from '../../scripts/compare-helpers.js';
 
 class CompareBanner {
   constructor(config = {}) {
     this.cssFiles = [];
     this.currentCompareItemsCount = 0;
-    this.maxCompareItemsCount = 3;
     this.compareButtonText = 'Compare ';
     this.banner = document.querySelector('.compare-banner');
 
@@ -31,7 +35,7 @@ class CompareBanner {
       '/',
       span(
         { class: 'compare-total-count' },
-        this.maxCompareItemsCount,
+        MAX_COMPARE_ITEMS,
       ),
     );
 
@@ -71,9 +75,8 @@ class CompareBanner {
     });
 
     closeButton.addEventListener('click', () => {
-      const selectedItemPaths = unselectAllComparedItems();
-      updateCompareButtons(selectedItemPaths, 0);
-      this.removeAllItems();
+      unselectAllComparedItems();
+      updateCompareButtons([]);
       this.hideBanner();
     });
 
@@ -91,6 +94,41 @@ class CompareBanner {
     this.banner.classList.remove('show');
   }
 
+  refreshBanner() {
+    const selectedItemTitles = getSelectedItems();
+    const numSelectedItems = selectedItemTitles.length;
+    if (numSelectedItems === 0) {
+      this.hideBanner();
+      return;
+    }
+    this.banner.querySelector('.compare-count').innerHTML = numSelectedItems;
+
+    // get first compare cell
+    const compareCell = this.banner.querySelectorAll('.compare-cell')[0];
+    const cellRow = compareCell.querySelector('.compare-row');
+    cellRow.innerHTML = '';
+
+    selectedItemTitles.forEach((title) => {
+      const closeButton = a(
+        { class: 'close greenstrip_close' },
+        img(
+          { src: '/images/close.png' },
+        ),
+      );
+  
+      const compareCellItem = div(
+        { class: 'compare-cell' },
+        div(
+          { class: 'compare-data', 'data-title': title },
+          title,
+          closeButton,
+        ),
+      );
+      cellRow.appendChild(compareCellItem);
+    });
+    this.showBanner();
+  }
+
   getOrRenderBanner() {
     let banner = document.querySelector('.compare-banner');
     if (!banner) {
@@ -101,57 +139,6 @@ class CompareBanner {
     }
 
     return banner;
-  }
-
-  addItem(itemPath, itemName) {
-    this.currentCompareItemsCount += 1;
-    this.banner.querySelector('.compare-count').innerHTML = this.currentCompareItemsCount;
-
-    // get first compare cell
-    const compareCell = this.banner.querySelectorAll('.compare-cell')[0];
-    const cellRow = compareCell.querySelector('.compare-row');
-
-    const closeButton = a(
-      { class: 'close greenstrip_close' },
-      img(
-        { src: '/images/close.png' },
-      ),
-    );
-
-    const compareCellItem = div(
-      { class: 'compare-cell' },
-      div(
-        { class: 'compare-data', 'data-name': itemName, 'data-path': itemPath },
-        itemName,
-        closeButton,
-      ),
-    );
-
-    cellRow.appendChild(compareCellItem);
-  }
-
-  removeItem(itemPath) {
-    this.currentCompareItemsCount -= 1;
-    this.banner.querySelector('.compare-count').innerHTML = this.currentCompareItemsCount;
-
-    // remove compare-cell that contains compare-data with path itemPath
-    const compareCell = this.banner.querySelectorAll('.compare-cell')[0];
-    const cellRow = compareCell.querySelector('.compare-row');
-    const compareCellItem = cellRow.querySelector(`.compare-data[data-path="${itemPath}"]`).parentNode;
-    cellRow.removeChild(compareCellItem);
-  }
-
-  removeAllItems() {
-    this.currentCompareItemsCount = 0;
-    this.banner.querySelector('.compare-count').innerHTML = this.currentCompareItemsCount;
-
-    // remove all compare-cell that contains compare-data
-    const compareCell = this.banner.querySelectorAll('.compare-cell')[0];
-    const cellRow = compareCell.querySelector('.compare-row');
-    const compareCellItems = cellRow.querySelectorAll('.compare-data');
-    compareCellItems.forEach((compareCellItem) => {
-      cellRow.removeChild(compareCellItem.parentNode);
-    });
   }
 
   async loadCSSFiles() {
