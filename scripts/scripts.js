@@ -23,7 +23,6 @@ import { a, div, p } from './dom-helpers.js';
  */
 const TEMPLATE_LIST = [
   'application-note',
-  'customer-breakthrough',
   'news',
   'publication',
   'blog',
