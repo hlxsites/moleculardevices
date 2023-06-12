@@ -1,6 +1,6 @@
 main .card {
   height: 100%;
-  background: #fff;
+  background: var(--background-color);
   margin: 0;
   position: relative;
   box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
@@ -71,15 +71,14 @@ main .card-caption .card-description {
   margin-top: 0;
 }
 
-main .card-caption .button-container {
+main .card-caption .c2a {
   text-align: center;
   margin-top: auto;
-  margin-bottom: 0;
 }
 
 main .card-caption .button.primary {
-  border: 1px solid #6eb43f;
-  color: #000;
+  border: 1px solid var(--background-color-green);
+  color: var(--text-color);
   padding-bottom: 10px;
   padding-top: 11px;
   background: none;
@@ -89,6 +88,32 @@ main .card-caption .button.primary {
   width: unset;
   white-space: break-spaces;
   word-break: break-word;
+}
+
+main .card-caption .c2a .compare-button {
+  color: var(--text-light-gray);
+  letter-spacing: .5px;
+  align-items: center;
+  float: right;
+  display: none;
+}
+
+.product-compare main .card-caption .c2a .compare-button {
+  display: flex;
+}
+
+main .card-caption .c2a .compare-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  vertical-align: middle;
+  border: 2px solid var(--dark-border-color-gray);
+  cursor: pointer;
+}
+
+main .card-caption .c2a .compare-checkbox.selected {
+  background: var(--background-color-green);
+  border-color: var(--background-color-green);
 }
 
 main .card-type {
