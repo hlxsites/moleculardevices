@@ -6,10 +6,12 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   MAX_COMPARE_ITEMS,
+  getItemPath,
   getSelectedItems,
   unselectAllComparedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+import { createCompareModalInterface } from './compare-modal.js';
 
 class CompareBanner {
   constructor(config = {}) {
@@ -17,6 +19,7 @@ class CompareBanner {
     this.currentCompareItemsCount = 0;
     this.compareButtonText = 'Compare ';
     this.banner = document.querySelector('.compare-banner');
+    this.selectedItemTitles = [];
 
     // Apply overwrites
     Object.assign(this, config);
@@ -36,6 +39,9 @@ class CompareBanner {
       span(
         { class: 'compare-total-count' },
         MAX_COMPARE_ITEMS,
+      ),
+      span(
+        { class: 'btn_bdr' },
       ),
     );
 
@@ -70,8 +76,19 @@ class CompareBanner {
       ),
     );
 
-    compareButton.addEventListener('click', () => {
+    compareButton.addEventListener('click', async () => {
       // TODO: open modal with comparison
+      this.selectedItemTitles = getSelectedItems();
+      const comparePaths = this.selectedItemTitles.map((title) => {
+        const path = getItemPath(title);
+        return path;
+      });
+
+      const compareModalInterface = await createCompareModalInterface(comparePaths);
+
+      const main = document.querySelector('main');
+      main.appendChild(compareModalInterface.render());
+      compareModalInterface.showModal();
     });
 
     closeButton.addEventListener('click', () => {
@@ -95,8 +112,8 @@ class CompareBanner {
   }
 
   refreshBanner() {
-    const selectedItemTitles = getSelectedItems();
-    const numSelectedItems = selectedItemTitles.length;
+    this.selectedItemTitles = getSelectedItems();
+    const numSelectedItems = this.selectedItemTitles.length;
     if (numSelectedItems === 0) {
       this.hideBanner();
       return;
@@ -108,7 +125,7 @@ class CompareBanner {
     const cellRow = compareCell.querySelector('.compare-row');
     cellRow.innerHTML = '';
 
-    selectedItemTitles.forEach((title) => {
+    this.selectedItemTitles.forEach((title) => {
       const closeButton = a(
         { class: 'close greenstrip_close' },
         img(
@@ -126,6 +143,7 @@ class CompareBanner {
       );
       cellRow.appendChild(compareCellItem);
     });
+
     this.showBanner();
   }
 

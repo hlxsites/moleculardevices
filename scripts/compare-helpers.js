@@ -13,6 +13,12 @@ export function getSelectedItems() {
     .map((item) => getTitleFromNode(item));
 }
 
+export function getItemPath(itemTitle) {
+  return [...document.querySelectorAll('.compare-button .compare-checkbox')]
+    .filter((value) => getTitleFromNode(value) === itemTitle)[0]
+    .getAttribute('data-path');
+}
+
 export function unselectAllComparedItems() {
   [...document.querySelectorAll('.compare-button .compare-checkbox.selected')]
     .forEach((item) => item.classList.remove('selected'));

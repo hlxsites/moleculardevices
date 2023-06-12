@@ -114,6 +114,7 @@ class Card {
           class: 'compare-checkbox',
           onclick: handleCompareProducts,
           'data-title': cardTitle,
+          'data-path': cardLink,
         }),
       ));
     }
