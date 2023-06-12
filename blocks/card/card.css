@@ -1,6 +1,6 @@
 main .card {
   height: 100%;
-  background: #fff;
+  background: var(--background-color);
   margin: 0;
   position: relative;
   box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
@@ -77,8 +77,8 @@ main .card-caption .c2a {
 }
 
 main .card-caption .button.primary {
-  border: 1px solid #6eb43f;
-  color: #000;
+  border: 1px solid var(--background-color-green);
+  color: var(--text-color);
   padding-bottom: 10px;
   padding-top: 11px;
   background: none;
@@ -91,7 +91,7 @@ main .card-caption .button.primary {
 }
 
 main .card-caption .c2a .compare-button {
-  color: #adb3b7;
+  color: var(--text-light-gray);
   letter-spacing: .5px;
   align-items: center;
   float: right;
@@ -107,13 +107,13 @@ main .card-caption .c2a .compare-checkbox {
   height: 18px;
   margin-left: 10px;
   vertical-align: middle;
-  border: 2px solid #adb3b7;
+  border: 2px solid var(--dark-border-color-gray);
   cursor: pointer;
 }
 
 main .card-caption .c2a .compare-checkbox.selected {
-  background: #6eb43f;
-  border-color: #6eb43f;
+  background: var(--background-color-green);
+  border-color: var(--background-color-green);
 }
 
 main .card-type {
