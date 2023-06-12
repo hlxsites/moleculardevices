@@ -1339,3 +1339,23 @@ main .section[aria-hidden="true"] {
 .product main .section .default-content-wrapper h3 {
   font-family: var(--ff-proxima-xbold);
 }
+
+/*
+  Customer breakthrough pages
+*/
+
+.customer-breakthrough main .default-content-wrapper {
+  margin-bottom: 50px;
+}
+
+.customer-breakthrough main .hero-container + .section > .default-content-wrapper:first-child {
+  margin: 0 auto;
+}
+
+.customer-breakthrough main .background-parallax .default-content-wrapper {
+  margin-bottom: 0;
+}
+
+.customer-breakthrough main .default-content-wrapper p + h2 {
+  margin-top: 50px;
+}
