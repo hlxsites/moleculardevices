@@ -55,7 +55,7 @@ main .section > div.image-gallery-wrapper {
   transform: rotate(180deg);
 }
 
-.overlay .image-gallery .icon svg {
+.overlay .image-gallery-wrapper .icon svg {
   width: 44px;
   height: auto;
 }
