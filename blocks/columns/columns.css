@@ -11,6 +11,14 @@ main .section>div.columns-wrapper {
   width: 100%;
 }
 
+.columns .video-wrapper {
+  margin-top: 0;
+}
+
+.columns p.video-title {
+  font-size: var(--body-font-size-m);
+}
+
 .columns.contact {
   padding: 80px 0;
 }
