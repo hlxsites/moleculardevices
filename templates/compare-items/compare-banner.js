@@ -115,7 +115,7 @@ class CompareBanner {
           { src: '/images/close.png' },
         ),
       );
-  
+
       const compareCellItem = div(
         { class: 'compare-cell' },
         div(
