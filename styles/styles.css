@@ -1323,8 +1323,9 @@ main .section[aria-hidden="true"] {
   }
 }
 
-.product .section.tabs h2,
-.technology .section.tabs h2 {
+.product .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title) {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
@@ -1344,58 +1345,24 @@ main .section[aria-hidden="true"] {
 
 /* -- Technology -- */
 
-.technology .section.tabs {
+.technology .section.tabs,
+.application .section.tabs {
   padding-top: 67px;
 }
 
-.technology main .section.tabs .default-content-wrapper h2 {
+.technology main .section.tabs .default-content-wrapper h2,
+.application main .section.tabs .default-content-wrapper h2 {
   margin: 20px 0 10px;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.technology .section > div {
+.technology .section > div,
+.application .section > div {
   padding-bottom: 20px;
 }
 
-.technology .section .related-links-container {
-  background-color: var(--light-gray-background-color2);
+.technology .section .related-links-container,
+.application .section .related-links-container {
   padding-bottom: 32px;
-  padding-top: 0;
-  padding-right: 15px;
-  margin-top: 0;
-  margin-bottom: 50px;
-}
-
-.technology .default-content-wrapper:has(#western-blot-overview) {
-  background-color: var(--light-gray-background-color2);
-  text-align: center;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 26px;
-  margin-top: 50px;
-}
-
-.technology .related-applications-wrapper {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.technology .related-apps-container {
-  --related-app-gap: 50px;
-}
-
-.technology .related-applications-container {
-  margin-bottom: 70px;
-}
-
-.technology .latest-resources-container h2 {
-  text-align: center;
-  font-size: 70px;
-}
-
-@media(max-width: 991px) {
-  .technology .latest-resources-container h2 {
-    font-size: 45px;
-  }
 }

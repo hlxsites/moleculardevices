@@ -67,6 +67,11 @@ li.related-link::marker {
 }
 
 @media (max-width: 767px) {
+  .related-links-container {
+    padding-right: 15px;
+    padding-left: 15px;
+  } 
+
   .related-links-container, .related-links-container.cols-3 {
     column-count: 1;
   }
