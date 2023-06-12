@@ -1,6 +1,6 @@
 @import url("../hero/hero.css");
 
-.overlay {
+.hero-advanced .overlay {
   display: none;
   background-color: #000;
   opacity: 1;
@@ -13,12 +13,12 @@
   transition: opacity .15s linear;
 }
 
-.overlay.open {
+.hero-advanced .overlay.open {
   display: block;
   z-index: 600;
 }
 
-.overlay-content {
+.hero-advanced .overlay-content {
   margin: 30px auto;
   width: 100%;
   padding: 0 15px;
@@ -26,14 +26,14 @@
   position: relative;
 }
 
-.overlay-carousel {
+.hero-advanced .overlay-carousel {
   display: flex;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
 
-.overlay-carousel > div.section {
+.hero-advanced .overlay-carousel > div.section {
   width: 100%;
   padding-top: 0;
   flex-shrink: 0;
@@ -42,26 +42,26 @@
   align-items: flex-end;
 }
 
-main .overlay .overlay-carousel div.embed-wrapper {
+main .hero-advanced .overlay .overlay-carousel div.embed-wrapper {
   padding-top: 0;
 }
 
-main .overlay-carousel .embed {
+main .hero-advanced .overlay-carousel .embed {
   max-width: unset;
   padding: 0;
   margin-top: 0;
 }
 
-main .overlay-carousel .section>div {
+main .hero-advanced .overlay-carousel .section>div {
   width: unset;
 }
 
-.overlay-content h3 {
+.hero-advanced .overlay-content h3 {
   padding: 0 15px 0 60px;
   font-size: 16px;
 }
 
-.overlay-content a {
+.hero-advanced .overlay-content a {
   position:absolute;
   background-color: unset;
   color: var(--text-white);
@@ -70,150 +70,149 @@ main .overlay-carousel .section>div {
   border: 1.5px solid #fff;
 }
 
-.overlay-content a .icon {
+.hero-advanced .overlay-content a .icon {
   height: 38px;
   width: 38px;
   stroke-width: 20;
   display: block;
 }
 
- a.close {
+.hero-advanced a.close {
   top: 0;
   right: 0;
  }
 
- a.close svg {
+.hero-advanced a.close svg {
   width: 55%;
   position: relative;
   bottom: 20%;
   left: 23%;
  }
 
- a.right, a.left {
+.hero-advanced a.right, .hero-advanced a.left {
   top: 50%;
   transform: translate(0, -50%);
   color: #fff;
   height: auto;
  }
 
- a.right {
+.hero-advanced a.right {
   right: -15px;
  }
 
- a.left {
+.hero-advanced a.left {
   left: -15px;
  }
 
- .hero-inner {
+.hero-advanced .hero-inner {
   padding-bottom: 85px;
  }
 
- .hero-inner .container > div:nth-child(1) .button-container {
+.hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
   margin-top: 0;
  }
 
- .hero-inner .two-column p {
+.hero-advanced .hero-inner .two-column p {
   margin-bottom: 18px;
  }
 
 @media (min-width: 768px) {
-  .overlay-content {
+  .hero-advanced .overlay-content {
     max-width: 750px;
   }
 
-  .hero-inner h1 + div picture {
+  .hero-advanced .hero-inner h1 + div picture {
     display: none;
   }
 
-  .hero-inner h1 {
+  .hero-advanced .hero-inner h1 {
     margin-bottom: 30px;
   }
 
-  main .overlay-carousel .section .default-content-wrapper {
+  main .hero-advanced .overlay-carousel .section .default-content-wrapper {
     padding-top: 25px;
     padding-bottom: 25px;
   }
 
-  .hero-inner .container > div:nth-child(1) .button-container {
+  .hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
     float: left;
     margin-right: 15px;
   }
 
-  .hero-inner a.button.secondary {
+  .hero-advanced .hero-inner a.button.secondary {
    border: 2px solid #fff;
    padding: 13px 18px;
   }
-
 }
 
 @media (min-width: 992px) {
-  .overlay-content {
+  .hero-advanced .overlay-content {
     max-width: 970px;
   }
 }
 
 @media (min-width: 1200px) {
-  .overlay-content {
+  .hero-advanced .overlay-content {
     max-width: 1170px;
   }
 }
 
 @media (max-width: 767px) {
-  .hero-inner {
+  .hero-advanced .hero-inner {
     background-color: var(--grey-background-color);
     color: var(--text-color);
     padding-top: 30px;
   }
 
-  .hero-inner .overlay {
+  .hero-advanced .hero-inner .overlay {
     color: var(--text-white);
   }
 
-  .hero-inner .container {
+  .hero-advanced .hero-inner .container {
     position: relative;
   }
 
-  .hero-advanced .hero-inner .container > div > div > * {
+  .hero-advanced .hero-advanced .hero-inner .container > div > div > * {
     display: block;
   }
 
-  .hero-inner h1 {
+  .hero-advanced .hero-inner h1 {
     color: var(--text-color);
     font-family: var(--ff-proxima-light);
   }
 
-  .hero-inner .two-column h1+div {
+  .hero-advanced .hero-inner .two-column h1+div {
     text-align: center;
   }
 
-  .hero-inner h1 + div picture img {
+  .hero-advanced .hero-inner h1 + div picture img {
     width: 300px;
     height: unset;
     margin-top: 20px;
     margin-bottom: 32px;
   }
-  
-  .hero-inner .video-column {
+
+  .hero-advanced .hero-inner .video-column {
     position: absolute;
     top: 25%;
     left: 40%;
   }
 
-  .hero-inner .button-container .overlay a {
+  .hero-advanced .hero-inner .button-container .overlay a {
     padding: unset;
   }
 
-  .hero-inner p {
+  .hero-advanced .hero-inner p {
     font-size: var(--body-font-size-l);
   }
 
-  .hero-inner a.button.secondary {
+  .hero-advanced .hero-inner a.button.secondary {
     border: 2px solid var(--button-bg-color);
     color: var(--button-bg-color);
     padding: 8px 12px;
   }
 
-  .hero-inner p.button-container {
+  .hero-advanced .hero-inner p.button-container {
     margin-bottom: 10px;
   }
 }
