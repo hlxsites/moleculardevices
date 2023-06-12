@@ -1359,10 +1359,15 @@ main .section[aria-hidden="true"] {
 
 .technology .section > div,
 .application .section > div {
-  padding-bottom: 20px;
+  padding-bottom: 35px;
 }
 
 .technology .section .related-links-container,
 .application .section .related-links-container {
   padding-bottom: 32px;
+}
+
+.technology .section .related-app,
+.application .section .related-app {
+  margin-top: 35px;
 }
