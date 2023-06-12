@@ -67,10 +67,6 @@ main .featured-products-carousel.mini .carousel-item-text a {
   color: #008ca8;
 }
 
-main .featured-products-carousel.mini .carousel-item-text a .fa {
-  margin-left: 5px;
-}
-
 main .featured-products-carousel.mini .carousel-item-columns-container {
   flex-direction: column;
 }
