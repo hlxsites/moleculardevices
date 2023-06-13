@@ -194,7 +194,7 @@ main .pro-comparison-result .pro-details h4, .pro-details h3 {
 main .pro-comparison-result .comparison-table .comparison-row .link_wrap .linkBtn {
   font-size: 13px;
   margin-top: 3px;
-  display: inline-block;
+  display: block;
   color: var(--button-bg-color);
 }
 
@@ -208,6 +208,12 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap .linkBt
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  color: var(--button-bg-color);
+}
+
+main .pro-comparison-result .link_wrap .linkBtn svg {
+  width: 15px;
+  height: 15px;
   color: var(--button-bg-color);
 }
 

@@ -129,3 +129,7 @@ main .compare-banner .compare-data .close {
   top: 2px;
   background: none;
 }
+
+main .compare-banner .compare-data .close:hover {
+  cursor: pointer;
+}

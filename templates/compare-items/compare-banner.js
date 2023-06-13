@@ -9,6 +9,7 @@ import {
   getItemPath,
   getSelectedItems,
   unselectAllComparedItems,
+  unselectSpecificComparedItem,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
 import { createCompareModalInterface } from './compare-modal.js';
@@ -84,7 +85,9 @@ class CompareBanner {
         return path;
       });
 
-      const compareModalInterface = await createCompareModalInterface(comparePaths);
+      const compareModalInterface = await createCompareModalInterface(
+        comparePaths, this.selectedItemTitles,
+      );
 
       const main = document.querySelector('main');
       main.appendChild(compareModalInterface.render());
@@ -132,6 +135,12 @@ class CompareBanner {
           { src: '/images/close.png' },
         ),
       );
+
+      closeButton.addEventListener('click', () => {
+        // unselect this item
+        unselectSpecificComparedItem(title);
+        this.refreshBanner();
+      });
 
       const compareCellItem = div(
         { class: 'compare-cell' },

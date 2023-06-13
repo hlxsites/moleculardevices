@@ -16,12 +16,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 class Item {
-  // create constructor that receives json object
-  constructor(data = {}) {
-    const productData = data.product.data[0];
-    const specificationsData = data.general.data[0];
+  constructor(productData, specifications) {
     this.productData = productData;
-    this.specifications = specificationsData;
+    this.specifications = specifications;
 
     // remove Name and path from specifications
     delete this.specifications.Name;
@@ -59,23 +56,59 @@ class CompareModal {
     this.cssFiles.push('/templates/compare-items/compare-modal.css');
   }
 
-  async fetchPathData(path) {
+  async fetchPathData(path, name) {
     const productPath = path.split('/').pop();
     const resp = await fetch(`${this.productSpecsBasePath}/${productPath}.json`);
 
     if (resp.ok) {
       const json = await resp.json();
-      return new Item(json);
+
+      const products = json.product.data;
+      const general = json.general.data;
+
+      // get product index that contains the path in the key path
+      const productIndex = products.findIndex((row) => row.title === name);
+      const productData = products[productIndex];
+      const generalIndex = general.findIndex((row) => row.path === productData.path);
+
+      return new Item(
+        productData,
+        json.general.data[generalIndex],
+      );
     }
 
     return null;
   }
 
-  async fetchMetadata(paths) {
+  async fetchFamilyId(path) {
+    const resp = await fetch(`${path}`);
+    if (!resp.ok) {
+      return null;
+    }
+
+    // get the head meta tag with name="family-id"
+    const html = await resp.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const meta = doc.querySelector('meta[name="family-id"]');
+    if (!meta) {
+      return null;
+    }
+
+    return meta.getAttribute('content');
+  }
+
+  async fetchMetadata(paths, names) {
     const metadata = [];
 
+    const promises = [];
     // use promises to fetch all items in parallel
-    const promises = paths.map((path) => this.fetchPathData(path));
+    paths.forEach((path) => {
+      const index = paths.indexOf(path);
+      const name = names[index];
+      promises.push(this.fetchPathData(path, name));
+    });
+
     const items = await Promise.all(promises);
 
     // filter out null items
@@ -201,6 +234,29 @@ class CompareModal {
     for (let i = 0; i < this.compareItemsMetadata.length; i += 1) {
       const item = this.compareItemsMetadata[i];
 
+      const links = div(
+        { class: 'link_wrap' },
+        a(
+          { href: item.getPath(), class: 'linkBtn' },
+          'Details',
+          span({ class: 'icon icon-icon_link' }),
+        ),
+      );
+
+      // asynchronously fetch the family id for the item, and when complete
+      // append to the links div
+      this.fetchFamilyId(item.getPath()).then((familyId) => {
+        if (familyId) {
+          const familyLink = a(
+            { href: `/quote-request?pid=${familyId}`, class: 'linkBtn' },
+            'Request a Quote',
+            span({ class: 'icon icon-icon_link' }),
+          );
+          decorateIcons(familyLink);
+          links.appendChild(familyLink);
+        }
+      });
+
       const itemColumn = div(
         { class: 'col-xs-6 col-sm-3' },
         div(
@@ -214,15 +270,7 @@ class CompareModal {
               { class: 'pro-details' },
               h3(item.getTitle()),
             ),
-            div(
-              { class: 'link_wrap' },
-              a(
-                { href: item.getPath(), class: 'linkBtn' },
-                'Details',
-                span({ class: 'icon icon-icon_link' }),
-              ),
-              // TODO: add request quote button
-            ),
+            links,
           ),
         ),
       );
@@ -258,7 +306,7 @@ class CompareModal {
     const closeBtn = a(
       { class: 'img-ico img-ico-close emptycomparebox' },
       img(
-        { src: '/images/close.png' },
+        { src: '/images/close-black.png' },
       ),
     );
 
@@ -272,6 +320,11 @@ class CompareModal {
       itemsComparisonTable.appendChild(row);
     });
 
+    const printBtn = button(
+      { class: 'btn btn-primary pull-right' },
+      'Print',
+    );
+
     const compareModal = div(
       { class: 'pro-comparison-result popup' },
       div(
@@ -284,10 +337,7 @@ class CompareModal {
               { class: 'col-xs-12' },
               div(
                 { class: 'section-heading text-center' },
-                button(
-                  { class: 'btn btn-primary pull-right' },
-                  'Print',
-                ),
+                printBtn,
                 h2('Product Comparison'),
                 closeBtn,
               ),
@@ -306,6 +356,10 @@ class CompareModal {
         ),
       ),
     );
+
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
 
     this.modal = compareModal;
 
@@ -343,9 +397,9 @@ class CompareModal {
  * @param {Object}  config   optional - config object for
  * customizing the rendering and behaviour
  */
-export async function createCompareModalInterface(paths) {
+export async function createCompareModalInterface(paths, names) {
   const modalInterface = new CompareModal();
-  modalInterface.compareItemsMetadata = await modalInterface.fetchMetadata(paths);
+  modalInterface.compareItemsMetadata = await modalInterface.fetchMetadata(paths, names);
   await modalInterface.loadCSSFiles();
   return modalInterface;
 }

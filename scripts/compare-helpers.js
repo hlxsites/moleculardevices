@@ -38,3 +38,14 @@ export function updateCompareButtons(selectedItemTitles) {
     }
   });
 }
+
+export function unselectSpecificComparedItem(itemTitle) {
+  console.log(itemTitle);
+  [...document.querySelectorAll('.compare-button .compare-checkbox')]
+    .filter((value) => getTitleFromNode(value) === itemTitle)[0]
+    .classList.remove('selected');
+
+  const selectedItemTitles = getSelectedItems();
+  console.log(selectedItemTitles);
+  updateCompareButtons(selectedItemTitles);
+}
