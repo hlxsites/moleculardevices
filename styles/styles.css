@@ -1324,8 +1324,11 @@ main .section[aria-hidden="true"] {
 }
 
 .product .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.product .section.tabs .columns-wrapper h2,
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
-.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title) {
+.technology .section.tabs .columns-wrapper h2,
+.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application .section.tabs .columns-wrapper h2{
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
