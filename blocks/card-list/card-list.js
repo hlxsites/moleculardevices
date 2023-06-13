@@ -307,7 +307,7 @@ const VARIANTS = {
 
   'ACCESSORIES-AND-CONSUMABLES': {
     cardRenderer: noThumbnailCardRender,
-    // clusterCategories: true, TODO Uncomment when category mapping is correct in products.
+    clusterCategories: true,
 
     async getData() {
       let products = await ffetch('/query-index.json')
