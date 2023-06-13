@@ -1326,12 +1326,7 @@ main .section[aria-hidden="true"] {
   }
 }
 
-.product .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
-.product .section.tabs .columns-wrapper h2,
-.technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
-.technology .section.tabs .columns-wrapper h2,
-.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
-.application .section.tabs .columns-wrapper h2{
+.product .section.tabs h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
@@ -1356,11 +1351,23 @@ main .section[aria-hidden="true"] {
   padding-top: 67px;
 }
 
-.technology main .section.tabs .default-content-wrapper h2,
-.application main .section.tabs .default-content-wrapper h2 {
+.technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology .section.tabs .columns-wrapper h2,
+.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application .section.tabs .columns-wrapper h2 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+  margin-top: 0;
+}
+
+.technology main .section.tabs h2,
+.application main .section.tabs h2 {
   margin: 20px 0 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+}
+
+.technology .section.tabs h2 + p,
+.application .section.tabs h2 + p {
+  margin-top: 0;
 }
 
 .technology .section > div,
