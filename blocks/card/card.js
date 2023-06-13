@@ -1,11 +1,47 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable no-alert */
 
 import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
+import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
+import {
+  MAX_COMPARE_ITEMS,
+  getTitleFromNode,
+  getSelectedItems,
+  updateCompareButtons,
+} from '../../scripts/compare-helpers.js';
+
+export async function handleCompareProducts(e) {
+  const { target } = e;
+  const clickedItemTitle = getTitleFromNode(target);
+  const selectedItemTitles = getSelectedItems();
+
+  // get or create compare banner
+  const compareBannerInterface = await createCompareBannerInterface({
+    currentCompareItemsCount: selectedItemTitles.length,
+  });
+
+  compareBannerInterface.getOrRenderBanner();
+
+  if (selectedItemTitles.includes(clickedItemTitle)) {
+    const deleteIndex = selectedItemTitles.indexOf(clickedItemTitle);
+    if (deleteIndex !== -1) {
+      selectedItemTitles.splice(deleteIndex, 1);
+    }
+  } else if (selectedItemTitles.length >= MAX_COMPARE_ITEMS) {
+    alert(`You can only select up to ${MAX_COMPARE_ITEMS} products.`);
+    return;
+  } else {
+    selectedItemTitles.push(clickedItemTitle);
+  }
+
+  updateCompareButtons(selectedItemTitles);
+  compareBannerInterface.refreshBanner();
+}
 
 class Card {
   constructor(config = {}) {
@@ -50,18 +86,36 @@ class Card {
     }
 
     const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
-    let c2aBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
-      c2aBlock = a(this.c2aLinkConfig, buttonText);
+      c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
-      c2aBlock.append(
+      c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
+      c2aLinkBlock.append(
         this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })
           : span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
       );
-      decorateIcons(c2aBlock);
+      decorateIcons(c2aLinkBlock);
+    }
+
+    const c2aBlock = div({ class: 'c2a' },
+      p({ class: 'button-container' },
+        c2aLinkBlock,
+      ),
+    );
+    if (item.productShowInFinder && item.productShowInFinder === 'Yes') {
+      c2aBlock.append(div({ class: 'compare-button' },
+        'Compare (',
+        span({ class: 'compare-count' }, '0'),
+        ')',
+        span({
+          class: 'compare-checkbox',
+          onclick: handleCompareProducts,
+          'data-title': cardTitle,
+        }),
+      ));
     }
 
     let cardDescription = '';
@@ -85,9 +139,7 @@ class Card {
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
-          p({ class: 'button-container' },
-            c2aBlock,
-          ),
+          c2aBlock,
         ),
       )
     );

@@ -412,6 +412,10 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
+a i.fa {
+  margin-left: 5px;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -709,7 +713,6 @@ main .event-container i.fa.fa-external-link {
   position: relative;
   top: -7px;
   font-size: 13px;
-  margin-left: 2px;
 }
 
 main .section .default-content-wrapper h2:only-child {

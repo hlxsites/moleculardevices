@@ -1,10 +1,21 @@
-import { readBlockConfig, toClassName } from '../../scripts/lib-franklin.js';
+import { readBlockConfig, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-import createList from '../../scripts/list.js';
+import {
+  createList, renderPagination, swapData, toggleFilter,
+} from '../../scripts/list.js';
+import {
+  div, input, label, span,
+} from '../../scripts/dom-helpers.js';
+
+function splitByComma(value) {
+  return value.split(',').map((s) => s.trim());
+}
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterEventType = toClassName(entry.eventType);
-  entry.filterEventRegion = toClassName(entry.eventRegion);
+  entry.filterEventType = splitByComma(entry.eventType)
+    .map(toClassName);
+  entry.filterEventRegion = splitByComma(entry.eventRegion)
+    .map(toClassName);
   entry.date = '0';
   const keywords = [];
   if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
@@ -19,19 +30,55 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
-function createFilters(options, createDropdown) {
+function createEventsDropdown(options, selected, name, placeholder) {
+  const container = div({ class: 'select' });
+  container.setAttribute('name', name);
+
+  const btn = div({
+    type: 'button',
+    class: 'dropdown-toggle',
+    value: '',
+  }, selected || placeholder);
+  btn.addEventListener('click', toggleFilter, false);
+  container.append(btn);
+
+  const dropDown = div({ class: 'dropdown-menu' });
+  options.forEach((option) => {
+    const fieldName = toClassName(option.toString());
+    dropDown.append(label(
+      { for: fieldName },
+      input({
+        type: 'checkbox',
+        name: fieldName,
+        id: fieldName,
+        class: 'filter-item',
+      }),
+      span(option)));
+  });
+  container.append(dropDown);
+
+  return container;
+}
+
+function createFilters(options) {
   return [
-    createDropdown(
-      Array.from(new Set(options.data.map((n) => n.eventType))).filter((val) => val !== '0'),
+    createEventsDropdown(
+      Array.from(new Set(
+        options.data.flatMap((n) => splitByComma(n.eventType))
+          .filter((val) => val !== '0'),
+      )),
       options.activeFilters.eventType,
       'event-type',
-      'Select Event Type',
+      'Event Type',
     ),
-    createDropdown(
-      Array.from(new Set(options.data.map((n) => n.eventRegion))).filter((val) => val !== '0'),
+    createEventsDropdown(
+      Array.from(new Set(
+        options.data.flatMap((n) => splitByComma(n.eventRegion))
+          .filter((val) => val !== '0'),
+      )),
       options.activeFilters.eventRegion,
       'event-region',
-      'Select Region',
+      'Region',
     ),
   ];
 }
@@ -62,7 +109,7 @@ async function createOverview(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
   await createList(
-    createFilters,
+    createFilters(options),
     options,
     block);
 }
@@ -72,8 +119,44 @@ async function fetchEvents(options) {
   return ffetch('/query-index.json')
     .sheet('events')
     .filter(({ eventEnd }) => (options.showArchivedEvents && eventEnd * 1000 < now)
-        || (options.showFutureEvents && eventEnd * 1000 >= now))
+      || (options.showFutureEvents && eventEnd * 1000 >= now))
     .all();
+}
+
+function eventsFilterData(options) {
+  let { data } = options;
+  const filters = options.activeFilters;
+
+  filters.forEach((value, type) => {
+    if (type !== 'page') {
+      const filterAttribute = toCamelCase(`filter_${type}`);
+      data = data
+        .filter((n) => value.size === 0
+          || n[filterAttribute].some((filterValue) => value.has(filterValue)));
+    }
+  });
+
+  return data;
+}
+
+async function updateFilter(event, options) {
+  const elem = event.target;
+  const filter = elem.closest('.select');
+  const filterType = filter.getAttribute('name');
+
+  const elemName = elem.getAttribute('name');
+  const currentFilter = options.activeFilters.get(filterType);
+  if (event.target.checked) {
+    currentFilter.add(elemName);
+  } else {
+    currentFilter.delete(elemName);
+  }
+
+  options.activeFilters.set('page', 1);
+  options.filteredData = eventsFilterData(options);
+
+  renderPagination(document.querySelector('.list'), options, true);
+  swapData(options);
 }
 
 export default async function decorate(block) {
@@ -94,9 +177,11 @@ export default async function decorate(block) {
     showArchivedEvents,
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('event-type', '');
-  options.activeFilters.set('event-region', '');
+  options.activeFilters.set('event-type', new Set());
+  options.activeFilters.set('event-region', new Set());
   options.activeFilters.set('page', 1);
+
+  options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
   sortEvents(options.data, showFutureEvents);
