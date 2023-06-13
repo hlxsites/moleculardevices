@@ -55,16 +55,28 @@ export default function decorate(block) {
 
     block.append(createTabList(namedSections, active));
   }
-  const heroAnchor = main.querySelector('.hero-inner a[href*="#"]');
-  if (heroAnchor) {
-    const anchorId = heroAnchor.href.slice(heroAnchor.href.indexOf('#') + 1);
-    const heroAnchorTarget = document.querySelector(`.page-tabs a[href="#${anchorId}"]`);
-    if (heroAnchorTarget) {
-      heroAnchor.addEventListener('click', () => {
-        openTab(heroAnchorTarget);
-      });
-    }
-  }
+
+  window.addEventListener('hashchange', () => {
+    let activeHash = window.location.hash;
+    activeHash = activeHash ? activeHash.substring(1) : namedSections[0].getAttribute('data-name');
+    if (!activeHash) return;
+
+    const targetTab = block.querySelector(`a[href="#${activeHash}"]`);
+    if (!targetTab) return;
+
+    openTab(targetTab);
+
+    // scroll conent into view
+    const firstVisibleSection = main.querySelector(`div.section[aria-labelledby="${activeHash}"]`);
+    if (!firstVisibleSection) return;
+
+    window.scrollTo({
+      left: 0,
+      top: firstVisibleSection.offsetTop - 10,
+      behavior: 'smooth',
+    })
+   });
+
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
 }
