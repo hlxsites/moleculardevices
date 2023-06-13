@@ -74,8 +74,8 @@ export default function decorate(block) {
       left: 0,
       top: firstVisibleSection.offsetTop - 10,
       behavior: 'smooth',
-    })
-   });
+    });
+  });
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
