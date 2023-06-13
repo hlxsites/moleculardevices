@@ -1351,6 +1351,11 @@ main .section[aria-hidden="true"] {
   padding-top: 67px;
 }
 
+.technology .section > div,
+.application .section > div {
+  padding-bottom: 50px;
+}
+
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
 .application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1358,6 +1363,11 @@ main .section[aria-hidden="true"] {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
+}
+
+.technology .section.tabs .default-content-wrapper p + h2,
+.application .section.tabs .default-content-wrapper p + h2 {
+  padding-top: 50px;
 }
 
 .technology main .section.tabs h2,
@@ -1370,11 +1380,6 @@ main .section[aria-hidden="true"] {
   margin-top: 0;
 }
 
-.technology .section > div,
-.application .section > div {
-  padding-bottom: 35px;
-}
-
 .technology .section .related-links-container,
 .application .section .related-links-container {
   padding-bottom: 32px;
@@ -1383,4 +1388,45 @@ main .section[aria-hidden="true"] {
 .technology .section .related-app,
 .application .section .related-app {
   margin-top: 35px;
+}
+
+.application .section.resources-container .default-content-wrapper:first-child, 
+.technology .section.resources-container .default-content-wrapper:first-child {
+  padding-bottom: 0;
+}
+
+.application .section.related-products-container .default-content-wrapper:first-child,
+.technology .section.related-products-container .default-content-wrapper:first-child {
+  padding-bottom: 0;
+}
+
+.application .section.resources-container .default-content-wrapper:first-child h2, 
+.technology .section.resources-container .default-content-wrapper:first-child h2 {
+  padding-bottom: 0;
+}
+
+.technology .columns.block.columns-1-cols,
+.application .columns.block.columns-1-cols {
+  background-color: var(--light-gray-background-color2);
+  padding: 15px 26px 15px 32px;
+}
+
+.technology .columns.block.columns-1-cols h2,
+.application .columns.block.columns-1-cols h2 {
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 26px;
+}
+
+.technology .columns.block.columns-1-cols h3,
+.application .columns.block.columns-1-cols h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.technology .columns.block.columns-1-cols ul li,
+.application .columns.block.columns-1-cols ul li {
+    color: var(--link-color);
+    line-height: 21px;
+    margin-bottom: 10px;
 }
