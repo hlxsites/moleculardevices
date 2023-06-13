@@ -676,6 +676,12 @@ header .mobile-menu-subcategory-item .mobile-menu-subcategory-item > a {
   padding: 20px 70px 15px 15px;
 }
 
+header .resources-submenu-search {
+  position: absolute;
+  margin-top: 30%;
+  margin-left: 50%;
+}
+
 header .mobile-menu .request-quote a {
   line-height: 20px;
   background: #f8a100;
@@ -1436,12 +1442,12 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     margin-bottom: 11px;
   }
 
-  header .header-search form {
+  header .menu-nav-search-bar form {
     text-align: right;
     max-width: 450px;
   }
 
-  header .header-search .form-control {
+  header .menu-nav-search-bar .form-control {
     background-color: var(--text-white);
     width: 100%;
     height: 35px;
@@ -1453,7 +1459,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     color: #555;
   }
 
-  header .header-search form button {
+  header .menu-nav-search-bar form button {
     color: var(--text-white);
     font-size: 13px;
     font-family: var(--ff-proxima-light);
