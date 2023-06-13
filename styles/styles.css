@@ -601,6 +601,11 @@ main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
 }
 
+main .section.horizontal-line > div:first-of-type {
+  border-top: 1px solid var(--highlight-background-color);
+  padding-top: 45px;
+}
+
 @media only screen and (max-width: 991px) {
   main .section.background-molecules {
     background-size: auto 50px;
@@ -1390,18 +1395,19 @@ main .section[aria-hidden="true"] {
   margin-top: 35px;
 }
 
+.technology .section.resources-container .default-content-wrapper:first-child,
 .application .section.resources-container .default-content-wrapper:first-child, 
-.technology .section.resources-container .default-content-wrapper:first-child {
+.technology .section.tabs.related-products-container .default-content-wrapper:first-child,
+.application .section.tabs.related-products-container .default-content-wrapper:first-child,
+.technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
+.application .section.tabs.related-applications-container .default-content-wrapper:first-child,
+.technology .section.tabs.latest-resources-container .default-content-wrapper:first-child,
+.application .section.tabs.latest-resources-container .default-content-wrapper:first-child {
   padding-bottom: 0;
 }
 
-.application .section.related-products-container .default-content-wrapper:first-child,
-.technology .section.related-products-container .default-content-wrapper:first-child {
-  padding-bottom: 0;
-}
-
-.application .section.resources-container .default-content-wrapper:first-child h2, 
-.technology .section.resources-container .default-content-wrapper:first-child h2 {
+.technology .section.resources-container .default-content-wrapper:first-child h2,
+.application .section.resources-container .default-content-wrapper:first-child h2 { 
   padding-bottom: 0;
 }
 
