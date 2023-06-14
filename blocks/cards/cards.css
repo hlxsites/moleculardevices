@@ -187,13 +187,12 @@
 }
 
 /* ================ GALLERY BLOCK ================ */
-
-.cards.gallery ul > li .cards-card-body {
+.cards.gallery ul > li > .cards-card-body {
   margin: 0;
   background: rgb(0 117 141 / 80%);
 }
 
-.cards.gallery ul > li .cards-card-body:not(:empty) {
+.cards.gallery ul > li > .cards-card-body:not(:empty) {
   position: absolute;
   left: 0;
   top: 0;
@@ -210,7 +209,7 @@
   transition: all .2s;
 }
 
-.cards.gallery.hover-gradient ul > li .cards-card-body {
+.cards.gallery.hover-gradient ul > li > .cards-card-body {
   background: linear-gradient(
     to left,
     rgb(21 145 164 / 80%) 0,
@@ -219,18 +218,18 @@
   );
 }
 
-.cards.gallery ul > li:hover .cards-card-body:not(:empty) {
+.cards.gallery ul > li:hover > .cards-card-body:not(:empty) {
   opacity: 1;
   visibility: visible;
 }
 
 
-.cards.gallery ul > li .cards-card-image picture img {
+.cards.gallery ul > li > .cards-card-image picture img {
   aspect-ratio: unset;
   display: block;
 }
 
-.cards.gallery ul > li .cards-card-body > a {
+.cards.gallery ul > li > .cards-card-body > a {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
   color: var(--text-white);
