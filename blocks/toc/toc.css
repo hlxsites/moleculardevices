@@ -1,15 +1,15 @@
-li.H3 {
+li.h3 {
   transform: translateX(10px);
 }
 
-li.H4 {
+li.h4 {
   transform: translateX(20px);
 }
 
-li.H5 {
+li.h5 {
   transform: translateX(30px);
 }
 
-li.H6 {
+li.h6 {
   transform: translateX(40px);
 }

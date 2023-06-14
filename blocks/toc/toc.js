@@ -10,7 +10,7 @@ export default async function decorate(block) {
   toc.innerHTML = '';
   [...headings].forEach((title) => {
     if (hTagNames.indexOf(title.tagName) >= hTagNames.indexOf(firstHTagName)) {
-      toc.append(li({ class: title.tagName }, a({ href: `#${title.id}` }, title.textContent)));
+      toc.append(li({ class: title.tagName.toLowerCase() }, a({ href: `#${title.id}` }, title.textContent)));
     }
   });
   block.appendChild(toc);
