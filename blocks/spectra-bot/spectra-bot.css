@@ -1,5 +1,5 @@
 .spectra-bot {
-    position: relative;
+    /*position: relative;*/
     width: 100%;
 }
 
@@ -12,6 +12,9 @@
 }
 
 .spectra-bot .background-img {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
     width: 100%;
     height: 100%;
 }
@@ -28,7 +31,7 @@
 @media(min-width: 768px) {
     .spectra-bot .bubble-wrapper {
         margin-bottom: -15%;
-        margin-left: 125px;
+        /*margin-left: 125px; => previous spectra */
         width: 420px;
     }
 
