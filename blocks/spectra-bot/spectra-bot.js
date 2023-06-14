@@ -15,13 +15,13 @@ function decorateBubbleWrapper(elem) {
 
 export default function decorate(block) {
   if (block.classList.contains('softmax')) {
-    const elem = block.querySelector('div:nth-child(1)');
-    decorateBubbleWrapper(elem);
-
-    const elem2 = block.querySelector('div:nth-child(2)');
-    decorateBubbleWrapper(elem2);
-
+    decorateBubbleWrapper(block.querySelector('div:nth-child(1)'));
+    decorateBubbleWrapper(block.querySelector('div:nth-child(2)'));
     const bgImg = block.querySelector('div:nth-child(3)');
+    bgImg.classList.add('background-img');
+  } else if (block.classList.contains('microplate')) {
+    decorateBubbleWrapper(block.querySelector('div:nth-child(1)'));
+    const bgImg = block.querySelector('div:nth-child(2)');
     bgImg.classList.add('background-img');
   } else {
     const textDiv = block.querySelector('div:nth-child(1) > div > div');

@@ -3,6 +3,14 @@
     width: 100%;
 }
 
+.spectra-bot.desktop-only {
+    display: none;
+}
+
+.spectra-bot.microplate {
+    position: relative;
+}
+
 .spectra-bot .bubble-wrapper {
     position: relative;
     background-size: 100% 100%;
@@ -46,6 +54,10 @@
     font-size: 16px;
 }
 
+.spectra-bot.microplate .text-over {
+    font-size: 17px;
+}
+
 .spectra-bot.softmax > div:first-child.bubble-wrapper {
     width: 400px;
 }
@@ -63,7 +75,24 @@
     max-width: 300px;
 }
 
+div.spectra-bot.microplate.mobile-only {
+    width: 375px;
+    margin-left: -15px;
+}
+
+div.spectra-bot.microplate.mobile-only .bubble-wrapper {
+    margin-bottom: -100px;
+}
+
 @media(min-width: 768px) {
+    .spectra-bot.mobile-only {
+        display: none;
+    }
+
+    .spectra-bot.desktop-only {
+        display: block;
+    }
+
     .spectra-bot .bubble-wrapper {
         margin-bottom: -15%;
         /*margin-left: 125px; => previous spectra */
@@ -82,5 +111,14 @@
     .spectra-bot.softmax .text-over {
         color: black;
         font-size: 18px;
+    }
+
+    .spectra-bot.microplate .bubble-wrapper {
+        position: absolute;
+    }
+
+    .spectra-bot.microplate .text-over {
+        font-size: 20px;
+        padding: 50px 65px 18px 31px;
     }
 }
