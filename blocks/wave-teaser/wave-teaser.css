@@ -53,10 +53,6 @@ main .section.wave .wave-teaser .button-container {
   font-size: 22px;
 }
 
-.wave-teaser .button-container a .fa {
-  margin-left: 5px;
-}
-
 @media only screen and (max-width: 1199px) {
   .wave-teaser > div > div:last-child {
     max-width: 500px;

@@ -50,10 +50,6 @@ main .carousel.applications-carousel {
   color: #008ca8;
 }
 
-.carousel.applications-carousel .card .button-container a .fa {
-  margin-left: 5px;
-}
-
 @media only screen and (max-width: 1200px) {
   main .carousel-wrapper.applications-carousel-wrapper {
     width: 940px;

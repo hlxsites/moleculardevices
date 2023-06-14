@@ -39,10 +39,6 @@ main .section .specifications-wrapper {
   color: #008da9;
 }
 
-.specifications .product-heading a .fa {
-  margin-left: 5px;
-}
-
 .specifications .responsive-table th {
   text-align: left;
   padding: 15px;
