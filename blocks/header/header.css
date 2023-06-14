@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* nav layout */
 header {
   position: relative;
@@ -1220,8 +1222,8 @@ header .actionable-card-submenu.customercare-portal h3,
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
   line-height: 1.5;
-  font-family: 'Quicksand', sans-serif;
-  color: rgba(255,255,255,.75);
+  font-family: Quicksand, sans-serif;
+  color: rgba(255 255 255 / 75%);
 }
 
 header .actionable-card-submenu.customercare-portal h3 {
