@@ -1,16 +1,16 @@
 import { div } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
-  const textDiv = block.querySelector('div:nth-child(1)');
+  const textDiv = block.querySelector('div:nth-child(1) > div > div');
   textDiv.classList.add('text-over');
 
   const fgImg = block.querySelector('div:nth-child(2)');
-  fgImg.classList.add('foreground-img');
+  const bubbleSrc = fgImg.querySelector('img').src;
 
   const bgImg = block.querySelector('div:nth-child(3)');
   bgImg.classList.add('background-img');
 
-  const bubbleWrapper = div({ class: 'bubble-wrapper' }, textDiv, fgImg);
+  const bubbleWrapper = div({ class: 'bubble-wrapper', style: `background-image: url(${bubbleSrc})` }, textDiv);
 
   block.innerHTML = '';
 

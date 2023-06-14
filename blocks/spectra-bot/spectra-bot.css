@@ -1,42 +1,39 @@
 .spectra-bot {
-    position: relative;  /* This is needed to contain the absolute positioning of child elements */
+    position: relative;
     width: 100%;
-    height: 100vh;  /* This can be adjusted as per your needs */
 }
 
 .spectra-bot .bubble-wrapper {
     position: relative;
+    background-size: 100% 100%;
+    margin-bottom: -55px;
+    height: 208px;
+    width: 319px;
 }
 
-.background-img {
+.spectra-bot .background-img {
     width: 100%;
     height: 100%;
-    z-index: 1;  /* Layer order is controlled using z-index */
 }
 
-.bubble-wrapper {
-    margin-bottom: -160px;
-    margin-left: 125px;
-    height: 208px;
-    width: 420px;
-}
-
-.foreground-img {
-    z-index: 2;
-    /* For proper image placement */
-    object-fit: cover;
-}
-
-.text-over {
+.spectra-bot .text-over {
     position: absolute;
-    z-index: 3;
     display: flex;
-    /*justify-content: center;  !* Center text horizontally *!*/
-    /*align-items: center;  !* Center text vertically *!*/
     color: #008da9;
-    font-size: 16px;
-    text-align: center;
-    top: 30px;
-    left: 134px;
-    /*padding: 38px 34px 18px 31px;*/
+    font-size: 14px;
+    text-align: left;
+    padding: 38px 34px 18px 31px;
+}
+
+@media(min-width: 768px) {
+    .spectra-bot .bubble-wrapper {
+        margin-bottom: -15%;
+        margin-left: 125px;
+        width: 420px;
+    }
+
+    .spectra-bot .text-over {
+        font-size: 16px;
+        text-align: center;
+    }
 }
