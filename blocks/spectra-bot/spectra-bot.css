@@ -95,8 +95,12 @@ div.spectra-bot.microplate.mobile-only .bubble-wrapper {
 
     .spectra-bot .bubble-wrapper {
         margin-bottom: -15%;
-        /*margin-left: 125px; => previous spectra */
         width: 420px;
+    }
+
+    .spectra-bot.multimode .bubble-wrapper {
+        margin-left: 100px;
+        margin-bottom: -12%;
     }
 
     .spectra-bot .text-over {
