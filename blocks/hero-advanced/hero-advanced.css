@@ -134,11 +134,6 @@ main .hero-advanced .overlay-carousel .section>div {
     padding-bottom: 25px;
   }
 
-  .hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
-    float: left;
-    margin-right: 15px;
-  }
-
   .hero-advanced .hero-inner a.button.secondary {
    border: 2px solid #fff;
    padding: 13px 18px;

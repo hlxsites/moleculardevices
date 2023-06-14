@@ -135,6 +135,11 @@ main .section .hero-advanced-wrapper {
   padding-left: 58px;
 }
 
+.hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
+  margin-right: 15px;
+  display: inline-block;
+}
+
 .hero-inner .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
