@@ -750,6 +750,23 @@ header .mobile-menu .company-links {
   right: auto;
 }
 
+header .spectra-accessories {
+  position: absolute;
+  margin-top: 30%;
+  margin-left: 60%;
+  width: 240px;
+  height: 230px;
+}
+
+@media (min-width: 1200px) {
+  header .spectra-accessories {
+    margin-top: 20%;
+    margin-left: 60%;
+    width: 320px;
+    height: 306px;
+  } 
+}
+
 header .cards-submenu ul {
   padding: 0;
   margin: 0;
@@ -1440,6 +1457,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
     font-family: var(--ff-proxima-light);
     color: white;
     margin-bottom: 11px;
+    text-transform: none;
   }
 
   header .menu-nav-search-bar form {
