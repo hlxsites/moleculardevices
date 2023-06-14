@@ -1,38 +1,47 @@
 import { div } from '../../scripts/dom-helpers.js';
 
+function decorateBubbleWrapper(elem) {
+  elem.classList.add('bubble-wrapper');
+
+  elem.querySelector(':scope > div:first-child')
+    .classList
+    .add('text-over');
+
+  const bubbleSrc = elem.querySelector(':scope > div:last-child img').src;
+  elem.style = `background-image: url(${bubbleSrc})`;
+  elem.querySelector(':scope > div:last-child')
+    .remove();
+}
+
 export default function decorate(block) {
-  const textDiv = block.querySelector('div:nth-child(1) > div > div');
-  textDiv.classList.add('text-over');
+  if (block.classList.contains('softmax')) {
+    const elem = block.querySelector('div:nth-child(1)');
+    decorateBubbleWrapper(elem);
 
-  const fgImg = block.querySelector('div:nth-child(2)');
-  const bubbleSrc = fgImg.querySelector('img').src;
+    const elem2 = block.querySelector('div:nth-child(2)');
+    decorateBubbleWrapper(elem2);
 
-  const bgImg = block.querySelector('div:nth-child(3)');
-  bgImg.classList.add('background-img');
+    const bgImg = block.querySelector('div:nth-child(3)');
+    bgImg.classList.add('background-img');
+  } else {
+    const textDiv = block.querySelector('div:nth-child(1) > div > div');
+    textDiv.classList.add('text-over');
 
-  const bubbleWrapper = div({ class: 'bubble-wrapper', style: `background-image: url(${bubbleSrc})` }, textDiv);
+    const fgImg = block.querySelector('div:nth-child(2)');
+    const bubbleSrc = fgImg.querySelector('img').src;
 
-/*  block.classList.forEach((className) => {
-    if (className.startsWith('width-')) {
-      const width = className.substring(6);
-      bgImg.style.width = `${width}px`;
-    }
+    const bgImg = block.querySelector('div:nth-child(3)');
+    bgImg.classList.add('background-img');
 
-    if (className.startsWith('bubble-height-')) {
-      const height = className.substring(14);
-      bubbleWrapper.style.height = `${height}px`;
-    }
+    const bubbleWrapper = div({
+      class: 'bubble-wrapper',
+      style: `background-image: url(${bubbleSrc})`,
+    }, textDiv);
 
-    // TODO discriminate mobile vs desktop
-    if (className.startsWith('desktop-font-size-')) {
-      const fontSize = className.substring(18);
-      textDiv.style.fontSize = `${fontSize}px`;
-    }
-  });*/
+    block.innerHTML = '';
 
-  block.innerHTML = '';
-
-  // Append the elements in the new order, adding new classes as necessary
-  block.appendChild(bubbleWrapper);
-  block.appendChild(bgImg);
+    // Append the elements in the new order, adding new classes as necessary
+    block.appendChild(bubbleWrapper);
+    block.appendChild(bgImg);
+  }
 }

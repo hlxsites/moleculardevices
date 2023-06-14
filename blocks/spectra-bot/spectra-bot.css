@@ -41,6 +41,28 @@
     font-size: 16px;
 }
 
+.spectra-bot.softmax .text-over {
+    color: black;
+    font-size: 16px;
+}
+
+.spectra-bot.softmax > div:first-child.bubble-wrapper {
+    width: 400px;
+}
+
+.spectra-bot.softmax > div:first-child.bubble-wrapper > .text-over {
+    padding-right: 60px;
+}
+
+.spectra-bot.softmax div:nth-child(2).bubble-wrapper {
+    width: 260px;
+    margin-left: auto;
+}
+
+.spectra-bot.softmax .background-img {
+    max-width: 300px;
+}
+
 @media(min-width: 768px) {
     .spectra-bot .bubble-wrapper {
         margin-bottom: -15%;
@@ -54,6 +76,11 @@
     }
 
     .spectra-bot.multimode .text-over {
+        font-size: 18px;
+    }
+
+    .spectra-bot.softmax .text-over {
+        color: black;
         font-size: 18px;
     }
 }
