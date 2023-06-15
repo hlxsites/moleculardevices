@@ -6,7 +6,7 @@ function onReadMoreClick(e) {
   e.preventDefault();
   const appsLink = document.querySelector('.page-tabs li > a[href="#applications"]');
   appsLink.click();
-  window.scroll(0, 0);
+  document.querySelector('.page-tabs-container').scrollIntoView();
 }
 
 function getDescription(element) {
