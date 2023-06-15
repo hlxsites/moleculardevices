@@ -91,6 +91,7 @@
 
 .cards.stacked-image-text img {
   aspect-ratio: auto;
+  width: auto;
 }
 
 .cards.stacked-image-text li {
