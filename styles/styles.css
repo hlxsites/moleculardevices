@@ -548,8 +548,9 @@ main .section.columns-2>div {
   }
 
   main .section>div {
-    width: 750px;
     --heading-font-size-xl: 36px;
+    
+    width: 750px;
   }
 
   main .section.columns-2 {
