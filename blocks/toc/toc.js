@@ -9,7 +9,7 @@ export default async function decorate(block) {
   const firstHTagName = headings[0].tagName;
   [...headings].forEach((title) => {
     if (hTagNames.indexOf(title.tagName) >= hTagNames.indexOf(firstHTagName)) {
-      toc.append(li({ class: title.tagName.toLowerCase() }, a({ href: `#${title.id}` }, title.textContent)));
+      toc.append(li({ class: title.tagName.toLowerCase() }, a({ href: `#${title.id}` }, title.textContent.replace(/^\d*[0-9].\s/g, ''))));
     }
   });
   block.appendChild(toc);
