@@ -1,0 +1,109 @@
+main .section.wave.bluegreen.wave-teaser-container {
+  background-size: 100% 80%;
+  background-position-y: center;
+}
+
+main .section .wave-teaser-wrapper {
+  width: 100%;
+  padding: 0;
+}
+
+.wave-teaser > div {
+  display: flex;
+  align-items: center;
+}
+
+.wave-teaser > div > div:last-child {
+  padding: 30px 15px 0;
+  text-align: center;
+  max-width: 702px;
+  margin: auto;
+}
+
+.wave-teaser.image-right > div > div:first-child {
+  order: 2;
+  align-self: flex-end;
+}
+
+.wave-teaser.image-right > div > div:last-child {
+  order: 1;
+}
+
+.wave-teaser img {
+  height: 650px;
+}
+
+.wave-teaser h4 {
+  color: #ccc;
+  font-size: 30px;
+}
+
+.wave-teaser p {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+main .section.wave .wave-teaser .button-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.wave-teaser .button-container a {
+  color: var(--text-white);
+  font-size: 22px;
+}
+
+@media only screen and (max-width: 1199px) {
+  .wave-teaser > div > div:last-child {
+    max-width: 500px;
+  }
+
+  .wave-teaser p {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .wave-teaser img {
+    max-width: 400px;
+    height: 500px;
+  }
+
+  .wave-teaser h4 {
+    font-size: 20px;
+  }
+
+  .wave-teaser p, .wave-teaser .button-container a {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .wave-teaser {
+    position: relative;
+    top: -200px;
+  }
+
+  .wave-teaser > div {
+    flex-direction: column;
+  }
+
+  .wave-teaser > div > div:first-child {
+    align-self: flex-start;
+  }
+
+  .wave-teaser.image-right > div > div:first-child {
+    order: 1;
+  }
+  
+  .wave-teaser.image-right > div > div:last-child {
+    order: 2;
+  }
+
+  .wave-teaser img {
+    max-width: 600px;
+    height: 400px;
+  }
+}

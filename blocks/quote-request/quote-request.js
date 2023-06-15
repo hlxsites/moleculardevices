@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { getQueryParameter, loadScript, getCookie } from '../../scripts/scripts.js';
+import { loadScript, getCookie } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
@@ -8,14 +8,12 @@ const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
 
-export async function rfqData() {
-  const pid = 'pid';
-  const readQuery = getQueryParameter(pid);
-  if (readQuery[pid]) {
+export async function rfqData(pid) {
+  if (pid) {
     const productRfq = await ffetch('/query-index.json')
       .sheet('rfq')
       .withFetch(fetch)
-      .filter(({ familyID }) => familyID.includes(readQuery[pid]))
+      .filter(({ familyID }) => familyID.includes(pid))
       .first();
     return productRfq;
   }
@@ -108,7 +106,13 @@ function loadIframeForm(stepNum, data, type) {
   let productFamily = '';
 
   if (type === 'Product') {
-    tab = (data.productBundle && data.productBundle !== '0') ? data.productBundle : data.title;
+    const queryParams = new URLSearchParams(window.location.search);
+    const typeParam = queryParams && queryParams.get('type');
+    if (typeParam && typeParam.toLowerCase() === 'bundle' && data.productBundle && data.productBundle !== '0') {
+      tab = `${data.productBundle} Bundle`;
+    } else {
+      tab = data.title;
+    }
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
@@ -237,7 +241,8 @@ export default async function decorate(block) {
       ),
     );
   } else {
-    const prfdData = await rfqData();
+    const queryParams = new URLSearchParams(window.location.search);
+    const prfdData = await rfqData(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
     if (prfdData) {

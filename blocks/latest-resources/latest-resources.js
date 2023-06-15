@@ -17,7 +17,7 @@ function onViewAllClick(e) {
   e.preventDefault();
   const resourcesLink = document.querySelector('.page-tabs li > a[href="#resources"]');
   resourcesLink.click();
-  window.scroll(0, 0);
+  document.querySelector('.page-tabs-container').scrollIntoView();
 }
 
 export default async function decorate(block) {

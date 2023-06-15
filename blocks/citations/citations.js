@@ -1,5 +1,6 @@
 import { fetchFragment } from '../../scripts/scripts.js';
-import { div, img } from '../../scripts/dom-helpers.js';
+import { div } from '../../scripts/dom-helpers.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
 function viewLongDescription(citation) {
   const shortDescriptionBlock = citation.querySelector('.citation-short-description');
@@ -84,7 +85,7 @@ function buildCitation(fragment) {
     { class: 'citation' },
     div(
       { class: 'citation-icon' },
-      img({ src: '/images/resource-icons/citation.png' }),
+      createOptimizedPicture('/images/resource-icons/citation.png', 'citation icon'),
     ),
     div(
       { class: 'citation-info' },

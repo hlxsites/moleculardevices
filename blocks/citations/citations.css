@@ -4,9 +4,10 @@ main .citations-container {
   padding: 90px 50px 50px;
 }
 
-main .citations-container h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+main .citations-container .default-content-wrapper h3,
+.product main .citations-container .default-content-wrapper h3 {
+  margin: 25px 0 10px;
+  font-family: var(--ff-proxima-regular);
 }
 
 main .citations-container > .default-content-wrapper {
@@ -66,13 +67,18 @@ main .citations-container > .default-content-wrapper {
   margin: 0;
 }
 
+.product main .citations-container .default-content-wrapper h3 ~ p {
+  margin: 1em 0;
+}
+
 .citation em,
 .citations-container em {
   color: var(--text-green);
   font-style: normal;
 }
 
-.citations h2 {
+.citations .citation-header h2,
+.product .section.tabs .citations .citation-header h2 {
   padding-bottom: 15px;
   margin-bottom: 10px;
   margin-top: 10px;

@@ -38,10 +38,7 @@ export function buildMobileSearch() {
   );
 }
 
-export default function buildSearch(content) {
-  // get div with class Robot Image with Speach from navContent
-  const robotDiv = content.querySelector('.robot-image-with-speech');
-
+export function buildSearchBar() {
   const searchForm = form(
     { class: 'search-form', action: '/search-results', method: 'GET' },
     input(
@@ -55,7 +52,25 @@ export default function buildSearch(content) {
     ),
   );
 
+  return div(
+    { class: 'menu-nav-search-bar' },
+    h3(
+      'Search',
+    ),
+    div(
+      { class: 'search-form-group' },
+      searchForm,
+    ),
+  );
+}
+
+export default function buildSearch(content) {
+  // get div with class Robot Image with Speach from navContent
+  const robotDiv = content.querySelector('.robot-image-with-speech');
+
   const closeButton = div({ class: 'menu-nav-submenu-close' });
+
+  const searchBar = buildSearchBar();
 
   const search = li(
     { class: 'searchlink header-search', 'aria-expanded': 'false' },
@@ -64,16 +79,7 @@ export default function buildSearch(content) {
       div(
         { class: 'menu-nav-search-view' },
         robotDiv,
-        div(
-          { class: 'menu-nav-search-bar' },
-          h3(
-            'Search',
-          ),
-          div(
-            { class: 'search-form-group' },
-            searchForm,
-          ),
-        ),
+        searchBar,
       ),
       closeButton,
     ),
