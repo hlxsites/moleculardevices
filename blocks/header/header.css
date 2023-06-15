@@ -1205,7 +1205,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a {
   background: transparent;
-  border: 1px solid var(--button-bg-color) !important;
+  border: 1px solid var(--button-bg-color);
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
@@ -1278,7 +1278,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
 }
 
 header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+1) > a {
-  border: 1px solid var(--background-color-green) !important
+  border: 1px solid var(--background-color-green);
 }
 
 @media (min-width: 768px) {
