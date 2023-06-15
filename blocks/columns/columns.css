@@ -350,7 +350,8 @@ main .section>div.columns-wrapper {
     width: 33.33%;
   }
 
-  .technology .columns.columns-3-cols  > div:not(:only-child) {
+  .technology .columns.columns-3-cols  > div:not(:only-child),
+  .application .columns.columns-3-cols  > div:not(:only-child) {
     flex-basis: 33.33%;
     width: 100%;
     flex-wrap: wrap;
