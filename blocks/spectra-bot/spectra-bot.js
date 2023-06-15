@@ -1,5 +1,3 @@
-import { div } from '../../scripts/dom-helpers.js';
-
 function decorateBubbleWrapper(elem) {
   elem.classList.add('bubble-wrapper');
 
