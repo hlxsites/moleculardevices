@@ -829,29 +829,14 @@ header .mobile-menu .company-links li:nth-child(2) {
 
 /* Mobile Menu - END */
 
-header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7),
-header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3) {
-  margin-top: 47px;
-}
-
-header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7)::after,
-header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3)::after {
+header .nav-tabs .menu-nav-submenu-sections > .line-divider {
   content: "";
   background-color: rgba(255 255 255 / 50%);
   height: 2px;
   width: 50px;
-  bottom: 20px;
-  left: 24px;
-  position: absolute;
-  top: 8px;
-}
-
-header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7)::after {
-  transform: translateY(387px);
-}
-
-header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3)::after {
-  transform: translateY(185px);
+  margin-left: -16px;
+  margin-top: 18px;
+  margin-bottom: 20px;
 }
 
 header .col-1 {
