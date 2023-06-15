@@ -111,6 +111,9 @@ indices:
       eventAddress:
         select: head > meta[name="event-address"]
         value: attribute(el, "content")
+      specifications:
+        select: head > meta[name="specifications"]
+        value: attribute(el, "content")
   citations:
     include:
       - '/resources/citations/**'
