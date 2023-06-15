@@ -1,0 +1,89 @@
+.product-video-highlight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+}
+
+.product-video-highlight .main {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.product-video-highlight .main .button {
+  margin-top: 30px;
+}
+
+.product-video-highlight .related {
+  grid-column: 2;
+}
+
+.product-video-highlight .related::after {
+  display: table;
+  content: "";
+  width: 100%;
+  padding-top: 20px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 16px;
+}
+
+.product-video-highlight .related > div {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.product-video-highlight .related > div > * {
+  width: 50%;
+}
+
+.product-video-highlight .main > div > p, 
+.product-video-highlight .main > div > p .video-wrapper,
+.product-video-highlight .main > div > p .video-container,
+.product-video-highlight .related > div > p,
+.product-video-highlight .related > div > p .video-wrapper,
+.product-video-highlight .related > div > p .video-container {
+  margin: 0;
+}
+
+.product-video-highlight .related > div > p:last-child {
+  font-size: 14px;
+  font-family: var(--ff-proxima-regular);
+  text-align: left;
+}
+
+/* Desktop Only */
+@media only screen and (min-width: 768px) {
+  .product-video-highlight .ceros .ceros-poster-overlay {
+    max-width: 140px;
+    font-size: 10px;
+    padding: 4px;
+  }
+
+  .product-video-highlight .related .vidyard-player-container .play-button {
+    width: 34%;
+  }
+}
+
+/* Mobile Only */
+@media only screen and (max-width: 787px) {
+  .product-video-highlight {
+    display: block;
+  }
+
+  .product-video-highlight .main {
+    margin-bottom: 40px;
+  }
+
+  .product-video-highlight .related > div {
+    display: block;
+  }
+
+  .product-video-highlight .related > div > * {
+    width: unset;
+  }
+
+  .product-video-highlight .related > div > p:last-child  {
+    padding: 0 15px;
+    margin-top: 10px;
+  }
+}
