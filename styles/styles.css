@@ -1029,20 +1029,6 @@ main div.section.wave.bluegreen::after {
   content: none;
 }
 
-main div.section.wave.blue .button-container,
-main div.section.wave.bluegreen .button-container {
-  margin-top: 30px;
-}
-
-main div.section.wave.blue .button-container > a,
-main div.section.wave.bluegreen .button-container > a {
-  color: var(--text-white);
-  font-size: var(--body-font-size-m);
-  border-radius: 0;
-  padding: 15px 40px;
-  border: 1px solid #cbdce8;
-}
-
 @media only screen and (max-width: 768px) {
   main .section.bluegreen {
     background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
@@ -1435,4 +1421,42 @@ main .section[aria-hidden="true"] {
     color: var(--link-color);
     line-height: 21px;
     margin-bottom: 10px;
+}
+
+/*
+  Category page
+*/
+
+/* Button in blue wave carousels */
+
+.category main div.section.wave.blue .button-container {
+  margin-top: 30px;
+}
+
+.category main div.section.wave.blue .button-container > a {
+  color: var(--text-white);
+  font-size: var(--body-font-size-m);
+  border-radius: 0;
+  padding: 15px 40px;
+  border: 1px solid #cbdce8;
+}
+
+/*
+  Customer breakthrough pages
+*/
+
+.customer-breakthrough main .default-content-wrapper {
+  margin-bottom: 50px;
+}
+
+.customer-breakthrough main .hero-container + .section > .default-content-wrapper:first-child {
+  margin: 0 auto;
+}
+
+.customer-breakthrough main .background-parallax .default-content-wrapper {
+  margin-bottom: 0;
+}
+
+.customer-breakthrough main .default-content-wrapper p + h2 {
+  margin-top: 50px;
 }
