@@ -58,8 +58,9 @@ function buildMegaMenu(block, content) {
       h2List.append(h2ListItem);
     });
 
+    const menuId = toClassName(title.textContent);
     const submenu = div(
-      { class: 'menu-nav-submenu' },
+      { class: 'menu-nav-submenu', 'menu-id': menuId },
       div(
         title.cloneNode(true),
         buildRightSubmenu(title, toClassName(title.textContent)),
@@ -72,7 +73,6 @@ function buildMegaMenu(block, content) {
 
     // Get the list item in the header block that contains a div with attribute menu-id
     // that matches the menuId
-    const menuId = toClassName(title.textContent);
     const item = block.querySelector(`div[menu-id="${menuId}"]`).closest('li');
 
     const closeButton = div({ class: 'menu-nav-submenu-close' });

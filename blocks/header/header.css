@@ -283,6 +283,31 @@ header .nav-tabs .menu-nav-submenu-section:hover {
   background-color: rgba(255 255 255 / 30%);
 }
 
+header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7),
+header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3) {
+  margin-top: 47px;
+}
+
+header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7)::after,
+header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3)::after {
+  content: "";
+  background-color: rgba(255 255 255 / 50%);
+  height: 2px;
+  width: 50px;
+  bottom: 20px;
+  left: 24px;
+  position: absolute;
+  top: 8px;
+}
+
+header .nav-tabs .menu-nav-submenu[menu-id="products"] .menu-nav-submenu-sections > li:nth-child(7)::after {
+  transform: translateY(387px);
+}
+
+header .nav-tabs .menu-nav-submenu[menu-id="applications"] .menu-nav-submenu-sections > li:nth-child(3):after {
+  transform: translateY(185px);
+}
+
 header .mobile-menu .company-links li {
   border-bottom: 1px solid #f1f2f3;
   float: none;
