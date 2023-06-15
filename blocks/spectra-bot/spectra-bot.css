@@ -1,5 +1,4 @@
 .spectra-bot {
-    /*position: relative;*/
     width: 100%;
 }
 
@@ -84,6 +83,10 @@ div.spectra-bot.microplate.mobile-only .bubble-wrapper {
     margin-bottom: -100px;
 }
 
+.spectra-bot.absorbance-readers .background-img {
+    margin-top: 10px;
+}
+
 @media(min-width: 768px) {
     .spectra-bot.mobile-only {
         display: none;
@@ -119,10 +122,27 @@ div.spectra-bot.microplate.mobile-only .bubble-wrapper {
 
     .spectra-bot.microplate .bubble-wrapper {
         position: absolute;
+        top: 15%;
+        right: 40%;
+        height: 230px;
     }
 
     .spectra-bot.microplate .text-over {
         font-size: 20px;
-        padding: 50px 65px 18px 31px;
+        padding: 60px 65px 0 31px;
+    }
+
+    .spectra-bot.absorbance-readers {
+        position: relative;
+    }
+
+    .spectra-bot.absorbance-readers .background-img {
+        padding-top: 30px;
+    }
+
+    .spectra-bot.absorbance-readers .bubble-wrapper {
+        position: absolute;
+        top: -20px;
+        left: 70px;
     }
 }
