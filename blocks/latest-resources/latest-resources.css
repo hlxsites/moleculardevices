@@ -1,11 +1,3 @@
-.product .latest-resources-container {
-  text-align: center;
-}
-
-.product .latest-resources-container .default-content-wrapper h2 {
-  font-size: var(--heading-font-size-xl);
-  font-family: var(--ff-proxima-light);
-}
 
 .latest-resources-container .latest-resources-button {
   text-align: center;
@@ -127,5 +119,19 @@ main .latest-resources .card .card-thumb img {
   main .carousel.latest-resources .card-thumb, main .latest-resources .card-thumb img {
     height: 150px;
     min-height: 150px;
+  }
+
+  .product .latest-resources-container h2,
+  .technology .latest-resources-container h2,
+  .application .latest-resources-container h2 {
+    font-size: 36px;
+  }
+}
+
+@media(max-width: 991px) {
+  .product .latest-resources-container h2,
+  .technology .latest-resources-container h2,
+  .application .latest-resources-container h2 {
+    font-size: 45px;
   }
 }

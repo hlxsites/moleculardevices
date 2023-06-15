@@ -282,6 +282,7 @@ main .section>div.columns-wrapper {
 
   .columns.columns-3-cols > div {
     align-items: unset;
+    flex-grow: 1
   }
 
   .blog .columns > div {
@@ -346,14 +347,10 @@ main .section>div.columns-wrapper {
   .columns.columns-3-cols > div:not(:only-child),
   .columns.contact.columns-3-cols > div > div {
     flex-basis: 33.33%;
-    width: 33.33%;
-  }
-
-  .technology .columns.columns-3-cols  > div:not(:only-child) {
-    flex-basis: 33.33%;
     width: 100%;
     flex-wrap: wrap;
     column-gap: 30px;
+    padding-bottom: 40px;
   }
 
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
@@ -373,7 +370,7 @@ main .section>div.columns-wrapper {
 
   .columns-3-cols {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .columns.layout-20-80.partners-list-columns ul li picture{
