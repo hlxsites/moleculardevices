@@ -164,7 +164,7 @@ main .section .hero-advanced-wrapper {
 
 .hero-inner.white-bg,
 .hero-inner.white-bg h1,
-.hero-inner.white-bg a:not(.button.primary):any-link {
+.hero-inner.white-bg a:any-link {
   color: var(--text-color);
 }
 
