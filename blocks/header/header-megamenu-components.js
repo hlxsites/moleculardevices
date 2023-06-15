@@ -75,7 +75,7 @@ function buildActionableCardSubmenu(actionableCardContent) {
 
   // if card has class btn-new-tab
   if (actionableCardContent.classList.contains('btn-new-tab')) {
-    const btn = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p a');
+    const btn = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) a');
     btn.target = '_blank';
     btn.rel = 'noopener';
   }
