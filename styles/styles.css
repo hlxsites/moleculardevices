@@ -215,7 +215,6 @@ h2 {
 
 @media only screen and (max-width: 991px) {
   h2 {
-    font-size: 36px;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -550,6 +549,7 @@ main .section.columns-2>div {
 
   main .section>div {
     width: 750px;
+    --heading-font-size-xl: 36px;
   }
 
   main .section.columns-2 {
@@ -854,7 +854,6 @@ main div.section.featured-asset button.secondary:focus {
 main div.section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
-  font-size: 36px;
   color: var(--text-green);
 }
 
@@ -1286,14 +1285,11 @@ main .section[aria-hidden="true"] {
   }
 }
 
-/* 
- Theoretically, we could move this to a product template, 
- but product pages are already very heavy, so we avoid extra requests
-*/ 
-.product main .section {
+.product main .section,
+.application main .section {
   padding-top: 100px;
   padding-bottom: 60px;
-} 
+}
 
 @media only screen and (max-width: 991px) {
   .product main .section {
@@ -1312,7 +1308,6 @@ main .section[aria-hidden="true"] {
 }
 
 .product .section.tabs h2 {
-  font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
 }
