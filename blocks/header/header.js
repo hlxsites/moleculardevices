@@ -7,6 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { buildSearchBar } from './menus/search.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 
@@ -54,6 +55,17 @@ function buildTools(content) {
   return toolsWrapper;
 }
 
+function addIndividualComponents(block) {
+  // search for div with menu-id resources
+  const resources = block.querySelector('div[menu-id="resources"]').parentElement;
+  const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
+
+  // add search bar to right submenu
+  const searchBar = buildSearchBar();
+  searchBar.classList.add('resources-submenu-search');
+  rightSubMenu.appendChild(searchBar);
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -80,6 +92,8 @@ export default async function decorate(block) {
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();
+
+  addIndividualComponents(block);
 
   handleViewportChanges(block);
 }

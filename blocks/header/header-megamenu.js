@@ -62,7 +62,7 @@ function buildMegaMenu(block, content) {
       { class: 'menu-nav-submenu' },
       div(
         title.cloneNode(true),
-        buildRightSubmenu(title),
+        buildRightSubmenu(title, toClassName(title.textContent)),
         h2List,
       ),
     );
@@ -115,12 +115,13 @@ export async function buildLazyMegaMenus() {
 
           // add H2s to list
           h2s.forEach((h2) => {
+            const submenuId = toClassName(h2.textContent);
             const element = reverseElementLinkTagRelation(h2);
 
             const h2ListItem = li(
               { class: 'menu-nav-submenu-section' },
               element,
-              buildRightSubmenu(element),
+              buildRightSubmenu(element, submenuId),
             );
 
             h2List.append(h2ListItem);

@@ -1,3 +1,6 @@
+import { buildSearchBar } from './menus/search.js';
+import { img } from '../../scripts/dom-helpers.js';
+
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   const linkCopy = document.createElement('a');
   linkCopy.href = link.href;
@@ -15,8 +18,8 @@ function wrapLinkAroundComponent(link, component, removeLink = false) {
 
 function buildLargeCardsMenu(cardContent) {
   const link = cardContent.querySelector('a');
-  const img = cardContent.querySelector('picture');
-  wrapLinkAroundComponent(link, img);
+  const picture = cardContent.querySelector('picture');
+  wrapLinkAroundComponent(link, picture);
   return cardContent;
 }
 
@@ -86,7 +89,24 @@ function getRightSubmenuBuilder(className) {
   return map.get(className);
 }
 
-export default function buildRightSubmenu(contentHeader) {
+function addIndividualComponents(rightSubMenu, submenuId) {
+  if (submenuId === 'resource-hub') {
+    const searchBar = buildSearchBar();
+    searchBar.classList.add('resources-submenu-search');
+    rightSubMenu.parentElement.appendChild(searchBar);
+    return;
+  }
+
+  if (submenuId === 'accessories-consumables') {
+    rightSubMenu.parentElement.appendChild(
+      img(
+        { class: 'spectra-accessories', src: '/images/header-menus/spectra-accessories.png', alt: 'Spectra Accessories' },
+      ),
+    );
+  }
+}
+
+export default function buildRightSubmenu(contentHeader, subMenuId) {
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const rightSubmenuWrapper = document.createElement('div');
   rightSubmenuWrapper.classList.add('right-submenu');
@@ -109,6 +129,9 @@ export default function buildRightSubmenu(contentHeader) {
       rightSubmenuBuilder(rightSubmenu);
       rightSubmenuRow.appendChild(rightSubmenu);
     }
+
+    // add individual components
+    addIndividualComponents(rightSubmenu, subMenuId);
   });
 
   rightSubmenuWrapper.innerHTML = rightSubmenuRow.outerHTML;

@@ -50,10 +50,6 @@ li.related-link::marker {
   width: 100%;
 }
 
-.related-app a .fa {
-  margin-left: 5px;
-}
-
 @media (max-width: 992px) {
   .related-app {
     flex-basis: 100%;

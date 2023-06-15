@@ -511,6 +511,14 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   /* Service & Support Variant - Mobile -- End */
+
+  /* Video Gallery Variant - Mobile -- Start */
+  .hero.video-gallery .hero-inner,
+  .hero.video-gallery .hero-inner.short {
+    min-height: 440px;
+  }
+
+  /* Video Gallery Variant - Mobile -- End */
 }
 
 @media (min-width: 768px) {
@@ -521,6 +529,15 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .hero-inner.short {
     min-height: unset;
   }
+
+  /* Video Gallery Variant - Desktop -- Start */
+  .hero.video-gallery .hero-inner,
+  .hero.video-gallery .hero-inner.short {
+    min-height: 440px;
+  }
+
+  /* Video Gallery Variant - Desktop -- End */
+
 
   .hero-inner > div {
     width: 750px

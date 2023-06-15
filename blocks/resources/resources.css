@@ -49,10 +49,6 @@ main .section .resources-wrapper {
   color: var(--button-bg-color);
 }
 
-.resources .resource-link a .fa {
-  margin-left: 5px;
-}
-
 .resources .video-resources-title {
   text-align: center;
 }
