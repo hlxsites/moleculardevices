@@ -274,6 +274,9 @@ main .section>div.columns-wrapper {
     flex-direction: unset;
     align-items: top;
   }
+  .columns.columns-3-cols > div {
+    flex-grow: 1
+  }
 
   .columns > div > div {
     flex: 1;
