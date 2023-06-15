@@ -355,7 +355,8 @@ main .section>div.columns-wrapper {
     flex-basis: 33.33%;
     width: 100%;
     flex-wrap: wrap;
-    column-gap: 40px;
+    column-gap: 30px;
+    padding-bottom: 40px;
   }
 
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
