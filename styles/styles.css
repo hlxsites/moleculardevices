@@ -601,11 +601,6 @@ main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
 }
 
-main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--highlight-background-color);
-  padding-top: 45px;
-}
-
 @media only screen and (max-width: 991px) {
   main .section.background-molecules {
     background-size: auto 50px;
@@ -647,6 +642,11 @@ main.error .section .hero-wrapper {
 main.error .section > div {
   margin: 0 auto;
   padding: 15px 15px 0;
+}
+
+main .section.horizontal-line > div:first-of-type {
+  border-top: 1px solid var(--highlight-background-color);
+  padding-top: 45px;
 }
 
 /* news and publication */
