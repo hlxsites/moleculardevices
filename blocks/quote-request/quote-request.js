@@ -109,7 +109,7 @@ function loadIframeForm(stepNum, data, type) {
     const queryParams = new URLSearchParams(window.location.search);
     const typeParam = queryParams && queryParams.get('type');
     if (typeParam && typeParam.toLowerCase() === 'bundle' && data.productBundle && data.productBundle !== '0') {
-      tab = data.productBundle;
+      tab = `${data.productBundle} Bundle`;
     } else {
       tab = data.title;
     }
