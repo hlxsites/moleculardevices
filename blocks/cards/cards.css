@@ -118,6 +118,10 @@
   color: #6eb43f;
 }
 
+.cards.borderless li {
+  border: 0;
+}
+
 .cards.gallery ul > li {
   border: none;
   position: relative;
