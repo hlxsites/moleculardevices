@@ -1,5 +1,5 @@
 import {
-  span,
+  span, div,
 } from '../../scripts/dom-helpers.js';
 
 import {
@@ -12,6 +12,12 @@ export default async function decorate(block) {
   await Promise.all([...block.children].map(async (child, idx) => {
     child.classList.add(idx ? 'related' : 'main');
 
+    // vidyard video
+    if (child.querySelector('a[href*="vidyard.com"], a[href*="vids.moleculardevices.com"]')) {
+      return;
+    }
+
+    // ceros demo
     if (child.querySelector('a[href*="ceros.com')) {
       const cerosBlock = buildBlock(
         'ceros', [[child.children[0].children[0], child.children[0].children[1]]],
@@ -19,6 +25,34 @@ export default async function decorate(block) {
       child.children[0].prepend(cerosBlock);
       decorateBlock(cerosBlock);
       await loadBlock(cerosBlock);
+      return;
+    }
+
+    // picture with external reference
+    if (child.querySelector('picture') && child.querySelector('a')) {
+      const picture = child.querySelector('picture');
+      const link = child.querySelector('a');
+
+      if (link.children[0] !== picture) {
+        picture.parentElement.remove();
+        link.innerHTML = '';
+        link.appendChild(picture);
+      }
+
+      link.className = '';
+      link.classList.add('reference-placeholder');
+      link.appendChild(
+        div({
+          class: 'video-icon',
+          type: 'button',
+          role: 'button',
+          onclick: (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            window.open(link.href, '_blank');
+          },
+        }),
+      );
     }
   }));
 
