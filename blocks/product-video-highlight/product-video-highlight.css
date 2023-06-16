@@ -51,6 +51,25 @@
   text-align: left;
 }
 
+.product-video-highlight-wrapper > .button-container {
+  margin: 0;
+  text-align: right;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline svg path {
+  stroke-width: 15;
+}
+
 /* Desktop Only */
 @media only screen and (min-width: 768px) {
   .product-video-highlight .ceros .ceros-poster-overlay {

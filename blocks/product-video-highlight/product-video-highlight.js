@@ -1,3 +1,4 @@
+import { span } from '../../scripts/dom-helpers.js';
 import { buildBlock, decorateBlock, loadBlock } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
@@ -15,4 +16,10 @@ export default async function decorate(block) {
       await loadBlock(cerosBlock);
     }
   }));
+
+  const seeMoreVideos = block.querySelector('a[title="See more videos"]');
+  if (seeMoreVideos) {
+    seeMoreVideos.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+    block.parentElement.appendChild(seeMoreVideos.parentElement);
+  }
 }
