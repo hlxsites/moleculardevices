@@ -68,6 +68,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  background: none;
 }
 
 .product-video-highlight a.reference-placeholder .video-icon::before {

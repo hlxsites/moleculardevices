@@ -1,5 +1,5 @@
 import {
-  span, div,
+  span, button,
 } from '../../scripts/dom-helpers.js';
 
 import {
@@ -42,10 +42,9 @@ export default async function decorate(block) {
       link.className = '';
       link.classList.add('reference-placeholder');
       link.appendChild(
-        div({
+        button({
           class: 'video-icon',
-          type: 'button',
-          role: 'button',
+          'aria-label': 'Open in new tab',
           onclick: (e) => {
             e.stopPropagation();
             e.preventDefault();
