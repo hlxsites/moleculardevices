@@ -72,6 +72,7 @@
   --dark-gray-background-color: #5b6670;
   --black-background-color: #000;
   --light-gray-background-color: #f3f3f3;
+  --light-gray-background-color2: #f2f2f2;
   --light-border-color-gray: #ddd;
   --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
@@ -644,6 +645,11 @@ main.error .section > div {
   padding: 15px 15px 0;
 }
 
+main .section.horizontal-line > div:first-of-type {
+  border-top: 1px solid var(--highlight-background-color);
+  padding-top: 45px;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -755,7 +761,7 @@ main .section.features-section {
     url('/images/molecules-left.png') left bottom,
     url('/images/molecules-right.png') right top;
   background-repeat: no-repeat;
-  background-color: #f2f2f2;
+  background-color: var(--light-gray-background-color2)
 }
 
 main .section.features-section .default-content-wrapper {
@@ -1022,20 +1028,6 @@ main div.section.wave.bluegreen .default-content-wrapper h2 {
 
 main div.section.wave.bluegreen::after {
   content: none;
-}
-
-main div.section.wave.blue .button-container,
-main div.section.wave.bluegreen .button-container {
-  margin-top: 30px;
-}
-
-main div.section.wave.blue .button-container > a,
-main div.section.wave.bluegreen .button-container > a {
-  color: var(--text-white);
-  font-size: var(--body-font-size-m);
-  border-radius: 0;
-  padding: 15px 40px;
-  border: 1px solid #cbdce8;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1344,6 +1336,135 @@ main .section[aria-hidden="true"] {
   font-family: var(--ff-proxima-xbold);
 }
 
+/* -- Technology -- */
+
+.technology .section.tabs,
+.application .section.tabs {
+  padding-top: 67px;
+}
+
+.technology .section > div,
+.application .section > div {
+  padding-bottom: 50px;
+}
+
+.technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology .section.tabs .columns-wrapper h2,
+.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application .section.tabs .columns-wrapper h2 {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+  margin-top: 0;
+}
+
+.technology .section.tabs .default-content-wrapper p + h2,
+.application .section.tabs .default-content-wrapper p + h2 {
+  padding-top: 50px;
+}
+
+.technology main .section.tabs h2,
+.application main .section.tabs h2 {
+  margin: 20px 0 10px;
+}
+
+.technology .section.tabs h2 + p,
+.application .section.tabs h2 + p {
+  margin-top: 0;
+}
+
+.technology .section .related-links-container,
+.application .section .related-links-container {
+  padding-bottom: 32px;
+}
+
+.technology .section .related-app,
+.application .section .related-app {
+  margin-top: 35px;
+}
+
+.technology .section.resources-container .default-content-wrapper:first-child,
+.application .section.resources-container .default-content-wrapper:first-child, 
+.technology .section.tabs.related-products-container .default-content-wrapper:first-child,
+.application .section.tabs.related-products-container .default-content-wrapper:first-child,
+.technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
+.application .section.tabs.related-applications-container .default-content-wrapper:first-child,
+.technology .section.tabs.latest-resources-container .default-content-wrapper:first-child,
+.application .section.tabs.latest-resources-container .default-content-wrapper:first-child {
+  padding-bottom: 0;
+}
+
+.technology .section.resources-container .default-content-wrapper:first-child h2,
+.application .section.resources-container .default-content-wrapper:first-child h2 { 
+  padding-bottom: 0;
+}
+
+.technology .columns.block.columns-1-cols,
+.application .columns.block.columns-1-cols {
+  background-color: var(--light-gray-background-color2);
+  padding: 15px 26px 15px 32px;
+}
+
+.technology .columns.block.columns-1-cols h2,
+.application .columns.block.columns-1-cols h2 {
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 26px;
+}
+
+.technology .columns.block.columns-1-cols h3,
+.application .columns.block.columns-1-cols h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.technology .columns.block.columns-1-cols ul li,
+.application .columns.block.columns-1-cols ul li {
+    color: var(--link-color);
+    line-height: 21px;
+    margin-bottom: 10px;
+}
+
+/*
+  Category page
+*/
+
+/* Button in blue wave carousels */
+
+.category main div.section.wave.blue .button-container {
+  margin-top: 30px;
+}
+
+.category main div.section.wave.blue .button-container > a {
+  color: var(--text-white);
+  font-size: var(--body-font-size-m);
+  border-radius: 0;
+  padding: 15px 40px;
+  border: 1px solid #cbdce8;
+}
+
+/*
+  Customer breakthrough pages
+*/
+
+.customer-breakthrough main .default-content-wrapper {
+  margin-bottom: 50px;
+}
+
+.customer-breakthrough main .hero-container + .section > .default-content-wrapper:first-child {
+  margin: 0 auto;
+}
+
+.customer-breakthrough main .background-parallax .default-content-wrapper {
+  margin-bottom: 0;
+}
+
+.customer-breakthrough main .default-content-wrapper p + h2 {
+  margin-top: 50px;
+}
+
+/*
+  Video Gallery
+*/
 .video-gallery .section {
   padding-top: 60px;
   padding-bottom: 40px;

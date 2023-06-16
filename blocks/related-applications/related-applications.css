@@ -39,6 +39,11 @@ li.related-link::marker {
   margin-top: 0;
 }
 
+.related-app strong {
+  font-family: unset;
+  font-weight: 700;
+}
+
 .related-app p + p {
   margin-top: 40px;
 }
@@ -63,6 +68,11 @@ li.related-link::marker {
 }
 
 @media (max-width: 767px) {
+  .related-links-container {
+    padding-right: 15px;
+    padding-left: 15px;
+  } 
+
   .related-links-container, .related-links-container.cols-3 {
     column-count: 1;
   }

@@ -72,6 +72,16 @@ function buildActionableCardSubmenu(actionableCardContent) {
   if (link && picture) {
     wrapLinkAroundComponent(link, picture, true);
   }
+
+  // if card has class btn-new-tab
+  if (actionableCardContent.classList.contains('btn-new-tab')) {
+    const btns = actionableCardContent.querySelectorAll('div:nth-child(2) > div:nth-child(2) a');
+    btns.forEach((btn) => {
+      btn.target = '_blank';
+      btn.rel = 'noopener';
+    });
+  }
+
   return actionableCardContent;
 }
 

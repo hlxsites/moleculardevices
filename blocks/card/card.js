@@ -91,7 +91,7 @@ class Card {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
-      c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText }, buttonText);
+      c2aLinkBlock.classList.remove('button', 'primary');
       c2aLinkBlock.append(
         this.c2aLinkIconFull
           ? i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })

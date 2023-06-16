@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* nav layout */
 header {
   position: relative;
@@ -868,7 +870,7 @@ header .nav-tabs .menu-nav-submenu h1 {
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
-  width: 330px;
+  width: 380px;
   background-color: transparent;
   transition: background-color 0.3s ease;
 }
@@ -1203,12 +1205,80 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a {
   background: transparent;
-  border: 1px solid var(--button-bg-color) !important;
+  border: 1px solid var(--button-bg-color);
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   max-width: 250px;
   max-height: 127px;
+}
+
+header .actionable-card-submenu.customercare-portal {
+  margin-right: 20px;
+  
+}
+
+header .actionable-card-submenu.customercare-portal h3,
+header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
+header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
+  line-height: 1.5;
+  font-family: Quicksand, sans-serif;
+  color: rgba(255 255 255 / 75%);
+}
+
+header .actionable-card-submenu.customercare-portal h3 {
+  border-bottom: none;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
+header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
+header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
+  text-transform: none;
+  font-size: 12px;
+}
+
+header .actionable-card-submenu.customercare-portal > div:nth-child(1) {
+  background-image: url('/images/header-menus/spectranet-customer-portal.svg');
+  height: 89px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div {
+  width: 100%;
+}
+
+header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+2) {
+  width: auto;
+  float: left;
+  margin-bottom: 0;
+}
+
+header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
+  background-color: var(--background-color-green) ;
+}
+
+header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p > a {
+  min-width: 119px !important;
+}
+
+@media (min-width: 1200px) {
+  header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p > a {
+    min-width: 160px !important;
+  }
+}
+
+header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+1) {
+  line-height: 1.2;
+}
+
+header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+1) > a {
+  border: 1px solid var(--background-color-green);
 }
 
 @media (min-width: 768px) {
@@ -1302,6 +1372,38 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
   header .cards-submenu ul li a {
     font-size: 11px;
+  }
+
+  header .cards-submenu.customercare-portal {
+    width: 90%;
+  }
+
+  header .col-2.customercare-portal > div > div {
+    flex-basis: calc(50% - 10px);
+  }
+
+  header .cards-submenu.customercare-portal > div > div > p {
+    width: 115px;
+    margin-right: 0;
+  }
+
+  @media (min-width: 1200px) {
+    header .cards-submenu.customercare-portal > div > div > p {
+      width: 154px;
+    }
+  }
+
+  header .cards-submenu.customercare-portal > div > div > p:nth-child(1) {
+    min-height: 154px;
+  }
+
+  header .cards-submenu.cards-submenu.customercare-portal p > a > picture img {
+    margin-top: 20px;
+    transition: all .2s ease-in-out;
+  }
+
+  header .cards-submenu.cards-submenu.customercare-portal p > a > picture img:hover {
+    scale: 1.2;
   }
 
   header .cards-submenu p:nth-child(2) a {

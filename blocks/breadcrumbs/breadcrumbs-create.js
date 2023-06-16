@@ -56,6 +56,10 @@ const customBreadcrumbs = {
     name: 'Service and Support',
     url_path: '/service-support',
   },
+  technology: {
+    name: 'Technology and Innovation',
+    url_path: '/technology',
+  },
 };
 
 function getCustomUrl(path, part) {
