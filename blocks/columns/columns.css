@@ -15,6 +15,25 @@ main .section>div.columns-wrapper {
   margin-top: 0;
 }
 
+.columns.line > div {
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.columns.line > div::after {
+  flex-wrap: wrap;
+  content: "";
+  width: 94%;
+  padding-top: 50px;
+  border-bottom: 2px solid #ccc;
+  margin-left: 14px;
+  margin-bottom: 16px;
+}
+
+.columns.line h4 {
+  font-size: 26px;
+}
+
 .columns p.video-title {
   font-size: var(--body-font-size-m);
 }
@@ -406,6 +425,16 @@ main .section>div.columns-wrapper {
 @media (max-width: 767px) {
   .columns.mobile-swap > div {
     flex-direction: column-reverse;
+  }
+
+  .columns.line > div {
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 0 0 25px;
+  }
+
+  .columns.line > div::after {
+    padding-top: 30px;
   }
 
   .columns.contact > div > div:not(:last-child) {

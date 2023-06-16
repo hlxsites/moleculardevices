@@ -598,6 +598,7 @@ main .section.highlight {
 main .section.background-grey,
 main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
+  margin-top: 0;
 }
 
 @media only screen and (max-width: 991px) {
