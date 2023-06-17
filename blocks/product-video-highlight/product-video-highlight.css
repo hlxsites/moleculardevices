@@ -120,7 +120,7 @@
 }
 
 /* Desktop Only */
-@media only screen and (min-width: 768px) {
+@media(min-width: 768px) {
   .product-video-highlight .ceros .ceros-poster-overlay {
     max-width: 140px;
     font-size: 10px;
@@ -133,7 +133,7 @@
 }
 
 /* Mobile Only */
-@media only screen and (max-width: 787px) {
+@media(max-width: 787px) {
   .product-video-highlight {
     display: block;
   }
