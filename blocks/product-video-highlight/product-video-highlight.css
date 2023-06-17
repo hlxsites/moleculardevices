@@ -13,6 +13,16 @@
   margin-top: 30px;
 }
 
+.product-video-highlight .video-container {
+  width: 100%;
+}
+
+.product-video-highlight .video-container a {
+  padding: 0 0 56.12% 0;
+  width: 100%;
+  display: block;
+}
+
 .product-video-highlight .related {
   grid-column: 2;
 }
