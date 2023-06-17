@@ -13,14 +13,17 @@
   margin-top: 30px;
 }
 
-.product-video-highlight .video-container {
+.product-video-highlight .video-wrapper {
   width: 100%;
+  padding: 0 0 56.12%;
+  position: relative;
 }
 
-.product-video-highlight .video-container a {
-  padding: 0 0 56.12%;
+.product-video-highlight .video-container {
+  position: absolute;
   width: 100%;
-  display: block;
+  top: 0;
+  left: 0;
 }
 
 .product-video-highlight .related {
