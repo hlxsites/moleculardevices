@@ -90,7 +90,7 @@ function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
     setTimeout(() => {
       video.addEventListener('play', playVideoAnimation);
       video.addEventListener('pause', pauseVideoAnimation);
-    })
+    });
   });
 
   overlay.appendChild(button);
