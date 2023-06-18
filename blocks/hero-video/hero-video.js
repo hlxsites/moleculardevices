@@ -6,7 +6,6 @@ function decorateTeaserPicture(teaserPicture, target) {
 }
 
 function playVideoAnimation(e) {
-  console.log(e.target);
   const [playIcon] = e.target
     .closest('.hero-video')
     .querySelectorAll('.play-pause-fullscreen-button svg');
