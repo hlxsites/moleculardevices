@@ -49,10 +49,17 @@ function addEventListenersDesktop() {
     }
   });
 
-  addListeners('.search-form', 'submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    submitSearchForm(e, 'searchQuery');
+  const searchFormsIds = [
+    'resourcesSearchForm',
+    'mainSearchForm',
+  ];
+  searchFormsIds.forEach((id) => {
+    const element = document.getElementById(id);
+    element.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, id);
+    });
   });
 
   addListeners('.mobile-search-form', 'submit', (e) => {
