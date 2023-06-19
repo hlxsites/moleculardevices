@@ -18,6 +18,7 @@ import {
   button,
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
+import { processSectionMetadata } from '../../../scripts/scripts.js';
 
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
@@ -38,13 +39,25 @@ function addOpenMenuListener(element, submenu) {
   });
 }
 
+function getResponseMetadata(content, metadataField) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, 'text/html');
+  const meta = doc.head.querySelector(`meta[name="${metadataField}"]`);
+
+  if (meta !== null) {
+    return meta.getAttribute('content');
+  }
+
+  return null;
+}
+
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
 async function buildMobileMenuItem(menuItem, menuId) {
   const menuName = menuItem.querySelector('h1 a').textContent;
   const menuParentLink = menuItem.querySelector('h1 a').href;
 
-  await fetch(`/fragments/megamenu/${menuId}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
+  await fetch(`/fragments/megamenu/${menuId}`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
     if (response.ok) {
       // eslint-disable-next-line no-await-in-loop
       const content = await response.text();
@@ -67,20 +80,25 @@ async function buildMobileMenuItem(menuItem, menuId) {
       );
       subCategories.append(backToParentMenuItem);
 
-      // add button to parent directly
-      const parentItem = li(
-        { class: 'mobile-menu-subcategory-item' },
-        a(
-          { href: menuParentLink },
-          h2(
-            menuName,
+      // add button to parent directly. This depends on the mobile-style meta tag
+      const mobileStyle = getResponseMetadata(content, 'mobile-style');
+      if (mobileStyle !== 'No Parent Link') {
+        const parentItem = li(
+          { class: 'mobile-menu-subcategory-item' },
+          a(
+            { href: menuParentLink },
+            h2(
+              menuName,
+            ),
           ),
-        ),
-      );
-      subCategories.append(parentItem);
+        );
+        subCategories.append(parentItem);
+      }
 
       // add H2s to list
       subcategoriesContent.forEach((subcategoryContent) => {
+        processSectionMetadata(subcategoryContent.parentElement);
+        const mobileMode = subcategoryContent.parentElement.getAttribute('data-mobile-mode');
         const categoryId = subcategoryContent.getAttribute('id');
         let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a')];
 
@@ -91,44 +109,50 @@ async function buildMobileMenuItem(menuItem, menuId) {
         // create clone of subcategoryContent to avoid modifying the original
         const element = reverseElementLinkTagRelation(subcategoryContent);
         const caret = span({ class: 'caret' });
-        element.append(caret);
-
-        const backToParentCategory = li(
-          { class: 'back-to-parent' },
-          a(
-            { href: '#', 'aria-label': 'Go Back' },
-            element.textContent,
-          ),
-        );
-
-        // create the list of items inside this subcategory (3rd menu level)
-        const items = ul(
-          { class: 'mobile-menu-subcategories', 'menu-id': categoryId },
-          backToParentCategory,
-        );
-
-        // get subcategory items from the content. This elements are in a div
-        // within the same parent as the H2
-        subcategoryItems.forEach((item) => {
-          const listItem = li(
-            { class: 'mobile-menu-subcategory-item' },
-            item,
-          );
-          items.append(listItem);
-        });
 
         const subcategory = li(
           { class: 'mobile-menu-subcategory-item' },
           element,
-          items,
         );
 
-        backToParentCategory.addEventListener('click', (e) => {
-          e.stopPropagation();
-          closeSubMenu(subcategory);
-        });
+        // if mobileMode is null or is not set to "No Expand" then add the caret
+        const addSubmenu = mobileMode === null || mobileMode !== 'No Expand';
+        if (addSubmenu) {
+          element.append(caret);
 
-        addOpenMenuListener(caret, subcategory);
+          const backToParentCategory = li(
+            { class: 'back-to-parent' },
+            a(
+              { href: '#', 'aria-label': 'Go Back' },
+              element.textContent,
+            ),
+          );
+
+          // create the list of items inside this subcategory (3rd menu level)
+          const items = ul(
+            { class: 'mobile-menu-subcategories', 'menu-id': categoryId },
+            backToParentCategory,
+          );
+
+          // get subcategory items from the content. This elements are in a div
+          // within the same parent as the H2
+          subcategoryItems.forEach((item) => {
+            const listItem = li(
+              { class: 'mobile-menu-subcategory-item' },
+              item,
+            );
+            items.append(listItem);
+          });
+
+          subcategory.append(items);
+
+          backToParentCategory.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeSubMenu(subcategory);
+          });
+
+          addOpenMenuListener(caret, subcategory);
+        }
 
         subCategories.append(subcategory);
       });
