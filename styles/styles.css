@@ -87,6 +87,8 @@
   --accordion-light-gray-border-color: #c5c5c5;
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
+  --carousel-slider-background-color: #b3d8e0;
+  --carousel-slider-active-background-color: #008da9;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
@@ -549,7 +551,7 @@ main .section.columns-2>div {
 
   main .section>div {
     --heading-font-size-xl: 36px;
-    
+
     width: 750px;
   }
 
