@@ -52,6 +52,7 @@ function addEventListenersDesktop() {
   const searchFormsIds = [
     'resourcesSearchForm',
     'mainSearchForm',
+    'mobile-search-form',
   ];
   searchFormsIds.forEach((id) => {
     const element = document.getElementById(id);
@@ -60,12 +61,6 @@ function addEventListenersDesktop() {
       e.stopPropagation();
       submitSearchForm(e, id);
     });
-  });
-
-  addListeners('.mobile-search-form', 'submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    submitSearchForm(e, 'mobileSearchQuery');
   });
 }
 

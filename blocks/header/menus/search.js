@@ -24,7 +24,9 @@ export function buildMobileSearch() {
     div(
       { class: 'search' },
       form(
-        { class: 'mobile-search-form', action: '/search-results', method: 'GET' },
+        {
+          id: 'mobile-search-form', class: 'mobile-search-form', action: '/search-results', method: 'GET',
+        },
         input(
           {
             id: 'mobileSearchQuery', class: 'form-control', placeholder: 'Search moleculardevices.com', type: 'text',
