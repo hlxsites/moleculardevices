@@ -5,6 +5,28 @@ function decorateTeaserPicture(teaserPicture, target) {
   target.appendChild(teaserPicture.parentElement);
 }
 
+function playVideoAnimation(e) {
+  const [playIcon] = e.target
+    .closest('.hero-video')
+    .querySelectorAll('.play-pause-fullscreen-button svg');
+
+  playIcon.style.opacity = 1;
+  setTimeout(() => {
+    playIcon.style.opacity = 0;
+  }, 400);
+}
+
+function pauseVideoAnimation(e) {
+  const [, pauseIcon] = e.target
+    .closest('.hero-video')
+    .querySelectorAll('.play-pause-fullscreen-button svg');
+
+  pauseIcon.style.opacity = 1;
+  setTimeout(() => {
+    pauseIcon.style.opacity = 0;
+  }, 400);
+}
+
 function decorateTeaser(video, teaserPicture, target) {
   if (!video && !teaserPicture) {
     // nothing to decorate
@@ -63,7 +85,12 @@ function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
   button.addEventListener('click', () => {
     const fullVideoContainer = block.querySelector('.full-video-container');
     fullVideoContainer.style.display = 'block';
-    fullVideoContainer.querySelector('video').play();
+    const video = fullVideoContainer.querySelector('video');
+    video.play();
+    setTimeout(() => {
+      video.addEventListener('play', playVideoAnimation);
+      video.addEventListener('pause', pauseVideoAnimation);
+    });
   });
 
   overlay.appendChild(button);
@@ -106,6 +133,8 @@ async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, targe
   closeVideoButton.classList.add('close-video');
   createIcons(closeVideoButton, ['close-video']);
   closeVideoButton.addEventListener('click', () => {
+    video.removeEventListener('pause', pauseVideoAnimation);
+    video.removeEventListener('play', playVideoAnimation);
     video.pause();
     video.currentTime = 0;
     video.load();
@@ -116,22 +145,6 @@ async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, targe
   playPauseVideoButton.classList.add('play-pause-fullscreen-button');
   createIcons(playPauseVideoButton, ['full-screen-play', 'full-screen-pause']);
   playPauseVideoButton.addEventListener('click', () => { toggleVideoPlay(video); });
-
-  video.addEventListener('play', () => {
-    const [playIcon] = playPauseVideoButton.querySelectorAll('svg');
-    playIcon.style.opacity = 1;
-    setTimeout(() => {
-      playIcon.style.opacity = 0;
-    }, 400);
-  });
-
-  video.addEventListener('pause', () => {
-    const [, pauseIcon] = playPauseVideoButton.querySelectorAll('svg');
-    pauseIcon.style.opacity = 1;
-    setTimeout(() => {
-      pauseIcon.style.opacity = 0;
-    }, 400);
-  });
 
   fullVideoContainer.appendChild(closeVideoButton);
   fullVideoContainer.appendChild(playPauseVideoButton);
