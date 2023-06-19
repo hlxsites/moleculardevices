@@ -4,7 +4,7 @@
 }
 
 .get-in-touch > div > div p {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .get-in-touch > div > div h5 {
@@ -65,11 +65,12 @@
     flex-direction: column;
   }
 
-  .get-in-touch > div > div:last-child iframe {
-    height: 400px;
-  }
   .get-in-touch .hubspot-iframe-wrapper iframe {
     height: 800px;
+  }
+  
+  .get-in-touch > div > div:last-child iframe {
+    height: 400px;
   }
 }
 
