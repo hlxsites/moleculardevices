@@ -831,6 +831,16 @@ header .mobile-menu .company-links li:nth-child(2) {
 
 /* Mobile Menu - END */
 
+header .nav-tabs .menu-nav-submenu-sections > .line-divider {
+  content: "";
+  background-color: rgba(255 255 255 / 50%);
+  height: 2px;
+  width: 50px;
+  margin-left: -16px;
+  margin-top: 18px;
+  margin-bottom: 20px;
+}
+
 header .col-1 {
   flex-basis: calc(100% - 10px);
   box-sizing: border-box;
