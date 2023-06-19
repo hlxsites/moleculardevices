@@ -1,0 +1,157 @@
+.product-video-highlight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+}
+
+.product-video-highlight .main {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.product-video-highlight .main .button {
+  margin-top: 30px;
+}
+
+.product-video-highlight .video-wrapper {
+  width: 100%;
+  padding: 0 0 56.12%;
+  position: relative;
+}
+
+.product-video-highlight .video-container {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.product-video-highlight .related {
+  grid-column: 2;
+}
+
+.product-video-highlight .related::after {
+  display: table;
+  content: "";
+  width: 100%;
+  padding-top: 20px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 16px;
+}
+
+.product-video-highlight .related > div {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.product-video-highlight .related > div > * {
+  width: 50%;
+}
+
+.product-video-highlight .main > div > p, 
+.product-video-highlight .main > div > p .video-wrapper,
+.product-video-highlight .main > div > p .video-container,
+.product-video-highlight .related > div > p,
+.product-video-highlight .related > div > p .video-wrapper,
+.product-video-highlight .related > div > p .video-container {
+  margin: 0;
+}
+
+.product-video-highlight .main > div > p {
+  font-size: 18px;
+  font-family: var(--ff-proxima-regular);
+  text-align: left;
+}
+
+.product-video-highlight .related > div > p:last-child {
+  font-size: 14px;
+  font-family: var(--ff-proxima-regular);
+  text-align: left;
+}
+
+.product-video-highlight a.reference-placeholder {
+  position: relative;
+  display: block
+}
+
+.product-video-highlight a.reference-placeholder .video-icon {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+
+.product-video-highlight a.reference-placeholder .video-icon::before {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  content: "";
+  display: block;
+  border-radius: 100%;
+  background: rgba(0 0 0 / 70%) url("/fragments/workflow/play-ico.png") no-repeat center center;
+  background-size: 45% auto;
+  margin: auto;
+  left: -5px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.product-video-highlight-wrapper > .button-container {
+  margin: 0;
+  text-align: right;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
+}
+
+.product-video-highlight-wrapper a .icon.icon-chevron-right-outline svg path {
+  stroke-width: 15;
+}
+
+/* Desktop Only */
+@media only screen and (min-width: 768px) {
+  .product-video-highlight .ceros .ceros-poster-overlay {
+    max-width: 140px;
+    font-size: 10px;
+    padding: 4px;
+  }
+
+  .product-video-highlight .related .vidyard-player-container .play-button {
+    width: 34%;
+  }
+}
+
+/* Mobile Only */
+@media only screen and (max-width: 787px) {
+  .product-video-highlight {
+    display: block;
+  }
+
+  .product-video-highlight .main {
+    margin-bottom: 40px;
+  }
+
+  .product-video-highlight .related > div {
+    display: block;
+  }
+
+  .product-video-highlight .related > div > * {
+    width: unset;
+  }
+
+  .product-video-highlight .related > div > p:last-child  {
+    padding: 0 15px;
+    margin-top: 10px;
+  }
+}

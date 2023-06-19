@@ -40,8 +40,13 @@ let STICKY_ELEMENTS;
 let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
-export function loadScript(url, callback, type, async) {
+export function loadScript(url, callback, type, async, forceReload) {
   let script = document.querySelector(`head > script[src="${url}"]`);
+  if (forceReload && script) {
+    script.remove();
+    script = null;
+  }
+
   if (!script) {
     const head = document.querySelector('head');
     script = document.createElement('script');
@@ -139,7 +144,7 @@ export function embedVideo(link, url, type) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      loadScript('https://play.vidyard.com/embed/v4.js');
+      loadScript('https://play.vidyard.com/embed/v4.js', null, null, null, true);
       link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
       class="vidyard-player-embed"
       src="https://play.vidyard.com/${videoId}.jpg"
