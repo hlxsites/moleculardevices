@@ -129,6 +129,7 @@ export function isVideo(url) {
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
       isV = true;
+      console.log("It's a video!", url.toString());
     }
   });
   return isV;
