@@ -40,5 +40,5 @@ export default async function decorate(block) {
   block.appendChild(carousel);
 
   left.addEventListener('click', () => { activeItem(slider, null, -1); });
-  left.addEventListener('click', () => { activeItem(slider, null, +1); });
+  right.addEventListener('click', () => { activeItem(slider, null, +1); });
 }
