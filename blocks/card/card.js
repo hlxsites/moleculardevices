@@ -106,8 +106,7 @@ class Card {
       ),
     );
     if (
-      item.productShowInFinder
-      && item.productShowInFinder === 'Yes'
+      item.specifications
       && item.specifications !== '0'
     ) {
       c2aBlock.append(div({ class: 'compare-button' },
