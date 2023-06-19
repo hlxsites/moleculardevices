@@ -141,7 +141,6 @@ export function isVideo(url) {
 
 export function embedVideo(link, url, type) {
   const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1).replace('.html', '');
-  link.innerHTML = '';
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
