@@ -1,8 +1,21 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import {
-  a, li as liHelper, div as divHelper, img as imgHelper, button,
-} from '../../scripts/dom-helpers.js';
-import { isVideo, videoButton } from '../../scripts/scripts.js';
+import { a, div as divHelper, div, li as liHelper, p, } from '../../scripts/dom-helpers.js';
+import { isVideo, loadScript } from '../../scripts/scripts.js';
+
+export function embedVideo(link, url, type) {
+  const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1).replace('.html', '');
+  console.log('videoId', videoId);
+  loadScript('https://play.vidyard.com/embed/v4.js');
+  link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+      class="vidyard-player-embed"
+      src="https://play.vidyard.com/${videoId}.jpg"
+      data-uuid="${videoId}"
+      data-v="4"
+      data-width="${type === 'lightbox' ? '700' : ''}"
+      data-height="${type === 'lightbox' ? '394' : ''}"
+      data-autoplay="${type === 'lightbox' ? '1' : '0'}"
+      data-type="${type === 'lightbox' ? 'lightbox' : 'inline'}"/>`;
+}
 
 // prettier-ignore
 export default function decorate(block) {
@@ -24,20 +37,32 @@ export default function decorate(block) {
   </strong>
 </p>
  */
-  block.querySelectorAll('div.video-wrapper').forEach((wrapper) => {
+  block.querySelectorAll('a').forEach((link) => {
+    const url = new URL(link.href);
+    // decorate video links
+    if (isVideo(url)) {
+      //const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      embedVideo(link, url, 'lightbox');
+    }
+  });
+/*  block.querySelectorAll('div.video-wrapper').forEach((wrapper) => {
     console.log('video container', wrapper);
     const link = wrapper.querySelector('a');
     const previous = wrapper.previousElementSibling;
     if (previous !== null && previous.classList.contains('button-container') && previous.innerHTML.trim() === '') {
       console.log('matches!', link.outerHTML);
-      previous.innerHTML = link.outerHTML;
+      /*previous.innerHTML = link.outerHTML;
       wrapper.remove();
+
+      const videoContainer = wrapper.querySelector('.video-container');
+      const url = new URL(link);
+      videoButton(videoContainer, link, url);
     } else {
       // TODO see if we can validate this in any way
       console.error('previous not button-container', previous, wrapper, wrapper.parentElement, wrapper.parentElement.parentElement);
     }
   });
-
+*/
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
@@ -81,5 +106,7 @@ export default function decorate(block) {
       videoButton(videoContainer, videoContainer.querySelector('img'), url);
       link.remove();
     }
-  });*/
+  });
+
+ */
 }

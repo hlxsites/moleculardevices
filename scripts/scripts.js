@@ -174,7 +174,7 @@ function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links
-    if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
+    if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero') && !link.closest('.block.cards')) {
       const up = link.parentElement;
       const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
       const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
