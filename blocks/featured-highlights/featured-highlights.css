@@ -13,7 +13,7 @@ main .section > div.featured-highlights-wrapper {
 }
 
 .featured-highlights {
-  box-shadow: 1px 3px 20px -4px rgba(0,0,0,.45);
+  box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
   width: 1150px;
   height: 1150px;
   position: absolute;
@@ -56,10 +56,23 @@ main .section > div.featured-highlights-wrapper {
   padding-right: 50px;
 }
 
+.featured-highlights .slider > div {
+  position: relative;
+  z-index: 9;
+  text-align: center;
+  display: inline-block;
+  padding: 0 22px;
+  color: #008da9;
+  font-size: 14px;
+  font-family: var(--ff-proxima-light);
+  margin-top: 50px;
+  text-decoration: none;
+  line-height: 1;
+}
+
 .featured-highlights .carousel > div > div {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   align-items: flex-end;
 }
 
@@ -79,20 +92,6 @@ main .section > div.featured-highlights-wrapper {
   transform: translateY(5px) rotateY(180deg);
 }
 
-.featured-highlights .slider > div {
-  position: relative;
-  z-index: 9;
-  text-align: center;
-  display: inline-block;
-  padding: 0 22px;
-  color: #008da9;
-  font-size: 14px;
-  font-family: 'Proxima Nova Lt';
-  margin-top: 50px;
-  text-decoration: none;
-  line-height: 1;
-}
-
 .featured-highlights .slider ul {
   padding: 0;
   display: flex;
@@ -110,7 +109,6 @@ main .section > div.featured-highlights-wrapper {
   border-radius: 100%;
   border: none;
   font-size: 0;
-  color: #fff;
   text-indent: 0;
   margin: 0 5px;
 }
