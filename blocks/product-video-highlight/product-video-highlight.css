@@ -4,6 +4,12 @@
   column-gap: 30px;
 }
 
+/* avoid CLS */
+.product-video-highlight .video-container a[href*="share.vidyard.com"],
+.product-video-highlight .video-container a[href*="vids.moleculardevices.com"] {
+  display: none;
+}
+
 .product-video-highlight .main {
   grid-column: 1;
   grid-row: 1 / -1;
@@ -13,17 +19,18 @@
   margin-top: 30px;
 }
 
-.product-video-highlight .video-wrapper {
+.product-video-highlight .main .video-wrapper,
+.product-video-highlight .main .video-container,
+.product-video-highlight .main .video-container img {
+  height: 343px;
   width: 100%;
-  padding: 0 0 56.12%;
-  position: relative;
 }
 
-.product-video-highlight .video-container {
-  position: absolute;
+.product-video-highlight .main .video-container img,
+.product-video-highlight .main .video-container iframe {
   width: 100%;
-  top: 0;
-  left: 0;
+  height: 296px;
+  display: block;
 }
 
 .product-video-highlight .related {
@@ -47,6 +54,11 @@
 
 .product-video-highlight .related > div > * {
   width: 50%;
+  max-width: 50%;
+}
+
+.product-video-highlight .related .video-wrapper {
+  height: 150px;
 }
 
 .product-video-highlight .main > div > p, 
