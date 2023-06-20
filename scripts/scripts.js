@@ -214,7 +214,9 @@ function decorateParagraphs(main) {
  */
 function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
   const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
+  const active = activeHash
+    ? activeHash.substring(1, activeHash.length).toLowerCase()
+    : nameOfFirstSection;
 
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
