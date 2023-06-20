@@ -291,9 +291,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .leader-profiles-modal-wrapper,
-  .leader-profiles-modal-body {
-    height: 500px;
+  .leader-profiles-modal {
     padding: 10px;
   }
 
