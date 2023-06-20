@@ -222,11 +222,11 @@ export function decorateBlock(block) {
     // locale specific processing
     const localesFound = [];
     block.classList.forEach((blockClass) => {
-      if (blockClass.length != 2) return; // optimisation
+      if (blockClass.length !== 2) return; // optimisation
       if (!SUPPORTED_LOCALES.includes(blockClass)) return;
 
       localesFound.push(blockClass);
-      if (blockClass != 'en') {
+      if (blockClass !== 'en') {
         block.classList.add(`OneLinkShow_${blockClass}`);
         blockWrapper.classList.add(`OneLinkShow_${blockClass}`);
       } else {
@@ -235,7 +235,7 @@ export function decorateBlock(block) {
       }
     });
 
-    if (localesFound.length != 0
+    if (localesFound.length !== 0
       && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
       // skip block decoration and remove content from blocks which are not displayed due to locale
       block.setAttribute('data-block-status', 'loaded');
