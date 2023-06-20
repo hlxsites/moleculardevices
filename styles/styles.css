@@ -43,7 +43,8 @@
   size-adjust: 97.72%;
 }
 
-/* Translations classes */
+/* stylelint-disable */
+/* Translations classes from One Link */
 .OneLinkShow_jp { display:none;}
 .OneLinkShow_de { display:none;}
 .OneLinkShow_fr { display:none;}
@@ -53,7 +54,7 @@
 .OneLinkShow_zh { display:none;}
 /* Will be hidden on translated pages */
 .OneLinkHide { display: block;}
-
+/* stylelint-enable */
 
 :root {
   /* colors */
