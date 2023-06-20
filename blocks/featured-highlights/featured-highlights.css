@@ -67,14 +67,6 @@ main .section > div.featured-highlights-wrapper {
   scroll-behavior: smooth;
 }
 
-.featured-highlights .carousel a:any-link {
-  color: var(--button-bg-color);
-}
-
-.featured-highlights .carousel a:hover {
-  color: var(--link-hover-color);
-}
-
 .featured-highlights .carousel img {
   max-width: 400px;
 }
@@ -93,7 +85,7 @@ main .section > div.featured-highlights-wrapper {
   text-align: center;
   display: inline-block;
   padding: 0 22px;
-  color: var(--button-bg-color);
+  color: #008da9;
   font-size: 14px;
   font-family: var(--ff-proxima-light);
   margin-top: 40px;
@@ -118,18 +110,17 @@ main .section > div.featured-highlights-wrapper {
   margin-right: 5px;
 }
 
+.featured-highlights .slider .icon-flip svg {
+  transform: translateY(5px) rotateY(180deg);
+}
 .featured-highlights svg {
   width: 13px;
   cursor: pointer;
   transform: translateY(5px);
 }
 
-.featured-highlights .slider .icon-flip svg {
-  transform: translateY(5px) rotateY(180deg);
-}
-
 .featured-highlights svg path {
-  fill: var(--button-bg-color);
+  fill: #008da9;
 }
 
 .featured-highlights .slider ul {
