@@ -50,6 +50,10 @@ main .section > div.featured-highlights-wrapper {
   margin-bottom: 0;
 }
 
+.featured-highlights p.picture + p {
+  font-family: var(--ff-proxima-light);
+}
+
 .featured-highlights p.button-container {
   margin-top: 0;
   font-size: 18px;
