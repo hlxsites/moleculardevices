@@ -36,12 +36,44 @@
 .cards.image-link.block img {
   max-width: 100%;
   height: auto;
-  width: auto;
-  margin-left: 100px;
+  width: 100%;
+  object-fit: contain;
 }
 
 .columns.layout-20-80.partners-list-columns.extended-width.block.columns-2-cols > div > div > p:first-child {
   font-size: 35px;
+}
+
+@media screen and (max-width: 600px) {
+  .cards.image-link.block ul {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Display images in a single column */
+  }
+
+  .cards.image-link.block li {
+    text-align: center;
+    border: transparent;
+  }
+
+  .cards.image-link.block img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin-left: 0; 
+  }
+
+  .columns.layout-20-80.partners-list-columns.extended-width.block.columns-2-cols > div > div > p:first-child {
+    font-size: 24px; 
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .cards.image-link.block ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards.image-link.block img {
+    width: 56.25%; 
+  }
 }
 
 .cards.who-we-are ul > li .cards-card-body code {
