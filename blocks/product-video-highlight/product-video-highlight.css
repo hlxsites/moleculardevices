@@ -4,6 +4,12 @@
   column-gap: 30px;
 }
 
+/* avoid CLS */
+.product-video-highlight .video-container a[href*="share.vidyard.com"],
+.product-video-highlight .video-container a[href*="vids.moleculardevices.com"] {
+  display: none;
+}
+
 .product-video-highlight .main {
   grid-column: 1;
   grid-row: 1 / -1;
@@ -11,19 +17,6 @@
 
 .product-video-highlight .main .button {
   margin-top: 30px;
-}
-
-.product-video-highlight .video-wrapper {
-  width: 100%;
-  padding: 0 0 56.12%;
-  position: relative;
-}
-
-.product-video-highlight .video-container {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
 }
 
 .product-video-highlight .related {
@@ -47,6 +40,15 @@
 
 .product-video-highlight .related > div > * {
   width: 50%;
+}
+
+.product-video-highlight .video-wrapper,
+.product-video-highlight .video-container,
+.product-video-highlight a.reference-placeholder picture,
+.product-video-highlight a.reference-placeholder img {
+  display: block;
+  width: 100%;
+  max-width: unset;
 }
 
 .product-video-highlight .main > div > p, 
@@ -76,8 +78,9 @@
 }
 
 .product-video-highlight a.reference-placeholder .video-icon {
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -127,13 +130,26 @@
     padding: 4px;
   }
 
+  .product-video-highlight .main .video-wrapper,
+  .product-video-highlight .main .video-container {
+    height: 343px;
+    width: 100%;
+  }
+
+  .product-video-highlight .main .video-container img,
+  .product-video-highlight .main .video-container iframe {
+    width: 100%;
+    height: 296px;
+    display: block;
+  }
+
   .product-video-highlight .related .vidyard-player-container .play-button {
     width: 34%;
   }
 }
 
 /* Mobile Only */
-@media only screen and (max-width: 787px) {
+@media only screen and (max-width: 767px) {
   .product-video-highlight {
     display: block;
   }
