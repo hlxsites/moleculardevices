@@ -6,8 +6,11 @@ function activeItem(slider, item, diff) {
   const carousel = slider.closest('.block').querySelector('.carousel');
   // eslint-disable-next-line no-param-reassign
   if (!item) item = slider.querySelector('li.active');
-  let index = Array.from(item.parentElement.children).indexOf(item);
+  const itemsArray = Array.from(item.parentElement.children);
+  let index = itemsArray.indexOf(item);
   if (diff) index += diff;
+  if (index > (itemsArray.length - 1)) index = 0;
+  if (index < 0) index = (itemsArray.length - 1);
   [...item.closest('ul').querySelectorAll('li')].forEach((sliderItem, i) => {
     sliderItem.classList.remove('active');
     if (i === index) sliderItem.classList.add('active');
