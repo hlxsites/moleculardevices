@@ -1,8 +1,9 @@
 import { li, a } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  const levelsFromClass = /levels-(\d+)/.exec(block.className);
-  const levels = levelsFromClass ? Number(levelsFromClass[1]) : 5;
+  // const levelsFromClass = /levels-(\d+)/.exec(block.className);
+  // const levels = levelsFromClass ? Number(levelsFromClass[1]) : 5;
+  const levels = 5;
   const itemsStartFromClass = /items-(\d+)/.exec(block.className);
   const itemsEndFromClass = /items-\d+-(\d+)/.exec(block.className);
   const itemsStart = itemsStartFromClass ? Number(itemsStartFromClass[1]) : 1;
