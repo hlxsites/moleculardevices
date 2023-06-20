@@ -11,6 +11,11 @@ main .section>div.columns-wrapper {
   width: 100%;
 }
 
+.columns p.button-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
 .columns .video-wrapper {
   margin-top: 0;
 }
@@ -420,6 +425,12 @@ main .section>div.columns-wrapper {
 }
 
 @media (max-width: 767px) {
+  .columns p.button-container {
+    display: block;
+    text-align: center;
+    margin: 15px 0 0;
+  }
+
   .columns.mobile-swap > div {
     flex-direction: column-reverse;
   }
