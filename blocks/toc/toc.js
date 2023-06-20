@@ -16,7 +16,10 @@ export default async function decorate(block) {
   const firstHTagNameIndex = hTagNames.indexOf(firstHTagName);
   [...headings].forEach((title, i) => {
     const hTagNameIndex = hTagNames.indexOf(title.tagName);
-    if (hTagNameIndex >= firstHTagNameIndex && hTagNameIndex < (firstHTagNameIndex + levels) && i >= (itemsStart - 1) && i < itemsEnd) {
+    if (hTagNameIndex >= firstHTagNameIndex && 
+        hTagNameIndex < (firstHTagNameIndex + levels) && 
+        i >= (itemsStart - 1) && 
+        i < itemsEnd) {
       toc.append(li({ class: title.tagName.toLowerCase() }, a({ href: `#${title.id}` }, title.textContent.replace(/^\d*[0-9].\s/g, ''))));
     }
   });
