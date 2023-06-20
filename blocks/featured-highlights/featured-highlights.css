@@ -110,13 +110,14 @@ main .section > div.featured-highlights-wrapper {
   margin-right: 5px;
 }
 
-.featured-highlights .slider .icon-flip svg {
-  transform: translateY(5px) rotateY(180deg);
-}
 .featured-highlights svg {
   width: 13px;
   cursor: pointer;
   transform: translateY(5px);
+}
+
+.featured-highlights .slider .icon-flip svg {
+  transform: translateY(5px) rotateY(180deg);
 }
 
 .featured-highlights svg path {
