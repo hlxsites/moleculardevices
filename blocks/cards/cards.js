@@ -4,9 +4,13 @@ import { isVideo, loadScript } from '../../scripts/scripts.js';
 
 export function embedVideo(link, url, type) {
   const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1).replace('.html', '');
-  console.log('videoId', videoId);
-  loadScript('https://play.vidyard.com/embed/v4.js');
-  link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
+  const observer = new IntersectionObserver((entries) => {
+    console.log('observer triggered!');
+    //if (entries.some((e) => e.isIntersecting)) {
+      console.log('observer triggered and isIntersecting!');
+      observer.disconnect();
+      loadScript('https://play.vidyard.com/embed/v4.js');
+      link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
       class="vidyard-player-embed"
       src="https://play.vidyard.com/${videoId}.jpg"
       data-uuid="${videoId}"
@@ -15,6 +19,9 @@ export function embedVideo(link, url, type) {
       data-height="${type === 'lightbox' ? '394' : ''}"
       data-autoplay="${type === 'lightbox' ? '1' : '0'}"
       data-type="${type === 'lightbox' ? 'lightbox' : 'inline'}"/>`;
+    //}
+  });
+  observer.observe(link.parentElement);
 }
 
 // prettier-ignore
@@ -42,7 +49,14 @@ export default function decorate(block) {
     // decorate video links
     if (isVideo(url)) {
       //const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-      embedVideo(link, url, 'lightbox');
+      //embedVideo(link, url, 'lightbox');
+
+      const up = link.parentElement;
+      const type = 'lightbox';
+      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+      up.innerHTML = wrapper.outerHTML;
+      embedVideo(up.querySelector('a'), url, type);
     }
   });
 /*  block.querySelectorAll('div.video-wrapper').forEach((wrapper) => {
