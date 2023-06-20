@@ -105,7 +105,10 @@ class Card {
         c2aLinkBlock,
       ),
     );
-    if (item.productShowInFinder && item.productShowInFinder === 'Yes') {
+    if (
+      item.specifications
+      && item.specifications !== '0'
+    ) {
       c2aBlock.append(div({ class: 'compare-button' },
         'Compare (',
         span({ class: 'compare-count' }, '0'),
