@@ -98,8 +98,13 @@ async function buildNewsEvents(container) {
 }
 
 function iframeResizeHandler(formUrl, id, container) {
-  container.querySelector('iframe').addEventListener('load', () => {
+  const resizerPromise = new Promise((resolve) => {
+    loadScript('../../scripts/iframeResizer.min.js', () => { resolve(); });
+  });
+
+  container.querySelector('iframe').addEventListener('load', async () => {
     if (formUrl) {
+      await resizerPromise;
       /* global iFrameResize */
       iFrameResize({ log: false }, id);
     }
@@ -112,7 +117,6 @@ async function buildNewsletter(container) {
     return; // newsletter already present
   }
 
-  loadScript('../../scripts/iframeResizer.min.js');
   const formId = 'enewsletterSubscribeForm';
   const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
   const form = (
