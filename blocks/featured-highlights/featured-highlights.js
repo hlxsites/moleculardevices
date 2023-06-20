@@ -6,14 +6,14 @@ function activeItem(slider, item, diff) {
   const carousel = slider.closest('.block').querySelector('.carousel');
   // eslint-disable-next-line no-param-reassign
   if (!item) item = slider.querySelector('li.active');
-  [...item.closest('ul').querySelectorAll('li')].forEach((sliderItem) => {
-    sliderItem.classList.remove('active');
-    item.classList.add('active');
-  });
   let index = Array.from(item.parentElement.children).indexOf(item);
   if (diff) index += diff;
+  [...item.closest('ul').querySelectorAll('li')].forEach((sliderItem, i) => {
+    sliderItem.classList.remove('active');
+    if (i === index) sliderItem.classList.add('active');
+  });
   const scroll = (leftScroll) => carousel.scrollTo({ top: 0, left: leftScroll, behavior: 'smooth' });
-  scroll(450 * index);
+  scroll(500 * index);
 }
 
 export default async function decorate(block) {
