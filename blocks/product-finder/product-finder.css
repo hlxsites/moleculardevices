@@ -21,11 +21,30 @@
   padding-top: 30px;
 }
 
-.product-finder-container h6 {
+.product-finder-container h3 {
+  font-size: 25px;
+  margin: 0 0 10px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.product-finder-container h4 {
   font-size: 16px;
   margin: 0 0 10px;
   font-weight: 100;
   font-family: var(--ff-proxima-regular);
+}
+
+.product-finder-container {
+  float: left;
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
 }
 
 .product-finder-container ul li {
@@ -36,9 +55,12 @@
   line-height: 16px;
 }
 
-.product-finder-container ul li::before {
+.product-finder-container ul li > .progress-step::before {
   font-size: 15px;
   content: "\f096";
+}
+
+.product-finder-container ul li > .progress-step { 
   position: absolute;
   width: 16px;
   height: 16px;
@@ -46,7 +68,7 @@
   text-align: center;
   display: block;
   left: 0;
-  font-size: 0;
+  font: normal normal normal 14px/1 FontAwesome;
   font-size: 14px;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -61,6 +83,57 @@
   margin: 0;
   padding: 0;
   text-align: left;
+}
+
+.product-finder-container .product-finder-step-wrapper {
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.product-finder-container .product-finder-list {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  grid-gap: 30px;
+}
+
+.product-finder-container .product-finder-list>* {
+  flex: 1 1 0;
+}
+
+.product-finder-container .icon-card {
+  height: unset;
+  width: 25%;
+  align-items: stretch;
+  align-content: stretch;
+  min-height: 1px;
+  padding: 30px 20px;
+}
+
+.product-finder-container a span {
+  font: var(--ff-proxima-light);
+  color: var(--text-color);
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+
+.product-finder-container.icon-title {
+  margin: 10px 0 0;
+}
+
+@media (max-width: 767px) {
+  .product-finder-container .icon-card {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -86,9 +159,13 @@
   .hero-inner .container.two-column h2 {
     margin: 0 0 20px;
   }
+
+  .product-finder-container .icon-card {
+    width: 50%;
+  }
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
   .hero-inner .container.two-column > div:nth-child(2) {
     width: 33.35%;
     border-left: unset;
