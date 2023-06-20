@@ -269,12 +269,7 @@
 @media only screen and (min-width: 768px) {
   .leader-profiles-modal-wrapper,
   .leader-profiles-modal-body {
-    height: 500px;
-  }
-
-  .leader-profiles-modal-wrapper {
-    height: 500px;
-    overflow-y: auto;
+    height: 700px;
   }
 
   .leader-profiles-modal-body .leader-profiles-card-image {
@@ -291,8 +286,16 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .leader-profiles-modal {
-    padding: 10px;
+  .leader-profiles-modal-body {
+    height: 80vh;
+    margin:10px;
+    bottom: 35px;
+  }
+
+  .leader-profiles-modal-body .leader-profiles-card-image {
+    float: none;
+    margin: 0 auto 30px;
+    max-width: 70%;
   }
 
   .leader-profiles-modal-close {
@@ -303,16 +306,12 @@
   }
 
   .leader-profiles-modal-wrapper {
-    height: 80vh;
+    min-height: 80vh;
     overflow-y: auto;
   }
 
   .leader-profiles-modal-body .leader-profiles-modal-carousel-content {
     padding: 50px 10px 40px;
-  }
-
-  .leader-profiles-modal-body .leader-profiles-card-image {
-    margin-bottom: 30px;
   }
 
   .leader-profiles-modal-footer a {
