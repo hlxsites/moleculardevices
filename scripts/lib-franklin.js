@@ -194,10 +194,10 @@ export async function fetchPlaceholders(prefix = 'default') {
 }
 
 /**
- * Decorates a block.
+ * Decorates a block with MolDev / OneLink Trasperfect specific locale logic
  * @param {Element} block The block element
  */
-export function decorateBlock(block) {
+function decorateBlockLocale(block) {
   const SUPPORTED_LOCALES = [
     'en',
     'jp',
@@ -209,6 +209,37 @@ export function decorateBlock(block) {
     'zh',
   ];
 
+  // locale specific processing
+  const localesFound = [];
+  block.classList.forEach((blockClass) => {
+    if (blockClass.length !== 2) return; // optimisation
+    if (!SUPPORTED_LOCALES.includes(blockClass)) return;
+
+    localesFound.push(blockClass);
+    if (blockClass !== 'en') {
+      block.classList.add(`OneLinkShow_${blockClass}`);
+      block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
+    } else {
+      block.classList.add('OneLinkHide');
+      block.parentElement.classList.add('OneLinkHide');
+    }
+  });
+
+  if (localesFound.length !== 0
+    && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
+    // skip block decoration and remove content from blocks which are not displayed due to locale
+    block.setAttribute('data-block-status', 'loaded');
+    block.setAttribute('data-block-skip', true);
+    block.setAttribute('data-block-skip-reason', 'locale');
+    block.innerHTML = '';
+  }
+}
+
+/**
+ * Decorates a block.
+ * @param {Element} block The block element
+ */
+export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
   if (shortBlockName) {
     block.classList.add('block');
@@ -218,31 +249,7 @@ export function decorateBlock(block) {
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
-
-    // locale specific processing
-    const localesFound = [];
-    block.classList.forEach((blockClass) => {
-      if (blockClass.length !== 2) return; // optimisation
-      if (!SUPPORTED_LOCALES.includes(blockClass)) return;
-
-      localesFound.push(blockClass);
-      if (blockClass !== 'en') {
-        block.classList.add(`OneLinkShow_${blockClass}`);
-        blockWrapper.classList.add(`OneLinkShow_${blockClass}`);
-      } else {
-        block.classList.add('OneLinkHide');
-        blockWrapper.classList.add('OneLinkHide');
-      }
-    });
-
-    if (localesFound.length !== 0
-      && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
-      // skip block decoration and remove content from blocks which are not displayed due to locale
-      block.setAttribute('data-block-status', 'loaded');
-      block.setAttribute('data-block-skip', true);
-      block.setAttribute('data-block-skip-reason', 'locale');
-      block.innerHTML = '';
-    }
+    decorateBlockLocale(block);
   }
 }
 
