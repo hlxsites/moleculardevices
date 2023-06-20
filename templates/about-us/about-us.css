@@ -21,12 +21,6 @@
 
 /* ================ WHO WE ARE BLOCK ================ */
 
-.cards-card-body {
-  height: 0;
-  width: 0;
-  opacity: 0;
-}
-
 .cards.image-link.block ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -28,6 +28,14 @@ export default function decorate(block) {
       const pictureClone = picture.cloneNode(true);
       const newLink = a({ href: link.href }, pictureClone);
       picture.parentNode.replaceChild(newLink, picture);
+
+      // Check if the links match
+      const linkInCardBody = li.querySelector('.cards-card-body a');
+      if (linkInCardBody && linkInCardBody.href === link.href) {
+        const cardBody = li.querySelector('.cards-card-body');
+        cardBody.parentNode.removeChild(cardBody);
+      }
     });
   }
 }
+
