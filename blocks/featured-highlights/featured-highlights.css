@@ -67,6 +67,14 @@ main .section > div.featured-highlights-wrapper {
   scroll-behavior: smooth;
 }
 
+.featured-highlights .carousel a:any-link {
+  color: var(--button-bg-color);
+}
+
+.featured-highlights .carousel a:hover {
+  color: var(--link-hover-color);
+}
+
 .featured-highlights .carousel img {
   max-width: 400px;
 }
@@ -85,7 +93,7 @@ main .section > div.featured-highlights-wrapper {
   text-align: center;
   display: inline-block;
   padding: 0 22px;
-  color: #008da9;
+  color: var(--button-bg-color);
   font-size: 14px;
   font-family: var(--ff-proxima-light);
   margin-top: 40px;
@@ -120,7 +128,7 @@ main .section > div.featured-highlights-wrapper {
 }
 
 .featured-highlights svg path {
-  fill: #008da9;
+  fill: var(--button-bg-color);
 }
 
 .featured-highlights .slider ul {
@@ -146,5 +154,5 @@ main .section > div.featured-highlights-wrapper {
 }
 
 .featured-highlights .slider li.active {
-  background: var(--carousel-slider-active-background-color);
+  background: var(--button-bg-color);
 }
