@@ -291,10 +291,16 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .leader-profiles-modal-wrapper,
   .leader-profiles-modal-body {
-    height: 500px;
-    padding: 10px;
+    height: 80vh;
+    margin:10px;
+    bottom: 35px;
+  }
+
+  .leader-profiles-modal-body .leader-profiles-card-image {
+    float: none;
+    margin: 0 auto 30px;
+    max-width: 70%;
   }
 
   .leader-profiles-modal-close {
@@ -305,7 +311,7 @@
   }
 
   .leader-profiles-modal-wrapper {
-    height: 80vh;
+    min-height: 80vh;
     overflow-y: auto;
   }
 
