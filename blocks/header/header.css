@@ -636,9 +636,13 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   margin-top: -15px;
 }
 
+header .text-submenu a {
+  color: var(--text-white);
+}
+
 header .text-submenu ul > li > a {
   font-size: 11px;
-  color: #fff;
+  color: var(--text-white);
   border-bottom: 0;
   line-height: 15px;
   padding-left: 0;

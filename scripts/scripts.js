@@ -15,6 +15,8 @@ import {
   loadHeader,
   decorateBlock,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -676,5 +678,18 @@ const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid']
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
+
+export function processSectionMetadata(element) {
+  const sectionMeta = element.querySelector('.section-metadata');
+  if (sectionMeta) {
+    const meta = readBlockConfig(sectionMeta);
+    const keys = Object.keys(meta);
+    keys.forEach((key) => {
+      if (key === 'style') element.classList.add(toClassName(meta.style));
+      else element.dataset[toCamelCase(key)] = meta[key];
+    });
+    sectionMeta.remove();
+  }
+}
 
 loadPage();
