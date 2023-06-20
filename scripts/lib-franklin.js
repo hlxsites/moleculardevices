@@ -198,6 +198,17 @@ export async function fetchPlaceholders(prefix = 'default') {
  * @param {Element} block The block element
  */
 export function decorateBlock(block) {
+  const SUPPORTED_LOCALES = [
+    'en',
+    'jp',
+    'de',
+    'fr',
+    'ko',
+    'it',
+    'es',
+    'zh',
+  ];
+
   const shortBlockName = block.classList[0];
   if (shortBlockName) {
     block.classList.add('block');
@@ -207,6 +218,31 @@ export function decorateBlock(block) {
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
+
+    // locale specific processing
+    const localesFound = [];
+    block.classList.forEach((blockClass) => {
+      if (blockClass.length != 2) return; // optimisation
+      if (!SUPPORTED_LOCALES.includes(blockClass)) return;
+
+      localesFound.push(blockClass);
+      if (blockClass != 'en') {
+        block.classList.add(`OneLinkShow_${blockClass}`);
+        blockWrapper.classList.add(`OneLinkShow_${blockClass}`);
+      } else {
+        block.classList.add('OneLinkHide');
+        blockWrapper.classList.add('OneLinkHide');
+      }
+    });
+
+    if (localesFound.length != 0
+      && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
+      // skip block decoration and remove content from blocks which are not displayed due to locale
+      block.setAttribute('data-block-status', 'loaded');
+      block.setAttribute('data-block-skip', true);
+      block.setAttribute('data-block-skip-reason', 'locale');
+      block.innerHTML = '';
+    }
   }
 }
 

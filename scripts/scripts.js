@@ -384,7 +384,11 @@ export async function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  // automatic page translators like google translate may change the lang attribute
+  // so we store it in an additional attribute, to use the original value for the rendering
+  // logic later
+  document.documentElement.lang = document.documentElement.lang || 'en';
+  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
