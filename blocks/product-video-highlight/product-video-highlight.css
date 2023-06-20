@@ -42,6 +42,15 @@
   width: 50%;
 }
 
+.product-video-highlight .video-wrapper,
+.product-video-highlight .video-container,
+.product-video-highlight a.reference-placeholder picture,
+.product-video-highlight a.reference-placeholder img {
+  display: block;
+  width: 100%;
+  max-width: unset;
+}
+
 .product-video-highlight .main > div > p, 
 .product-video-highlight .main > div > p .video-wrapper,
 .product-video-highlight .main > div > p .video-container,
@@ -66,15 +75,6 @@
 .product-video-highlight a.reference-placeholder {
   position: relative;
   display: block
-}
-
-.product-video-highlight .video-wrapper,
-.product-video-highlight .video-container,
-.product-video-highlight a.reference-placeholder picture,
-.product-video-highlight a.reference-placeholder img {
-  display: block;
-  width: 100%;
-  max-width: unset;
 }
 
 .product-video-highlight a.reference-placeholder .video-icon {
