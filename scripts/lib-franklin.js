@@ -603,6 +603,8 @@ export async function waitForLCP(lcpBlocks) {
       resolve();
     }
   });
+
+  updateSectionsStatus(document.querySelector('main'));
 }
 
 /**
