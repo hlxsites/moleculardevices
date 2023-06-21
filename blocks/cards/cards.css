@@ -225,6 +225,12 @@
   visibility: visible;
 }
 
+.cards.image-only.block img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
 
 .cards.gallery ul > li .cards-card-image picture img {
   aspect-ratio: unset;
@@ -261,13 +267,6 @@
 .cards.image-only.block li {
   text-align: center;
   border: transparent;
-}
-
-.cards.image-only.block img {
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-  object-fit: contain;
 }
 
 .columns.layout-20-80.partners-list-columns.extended-width.block.columns-2-cols > div > div > p:first-child {
