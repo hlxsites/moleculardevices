@@ -1,4 +1,4 @@
-import { ul, li, a } from '../../scripts/dom-helpers.js';
+import { li, a } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const levelsFromClass = /levels-(\d+)/.exec(block.className);
