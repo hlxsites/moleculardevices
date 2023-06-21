@@ -87,3 +87,7 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
 .table.order table tr.apparent-heading:not(:first-child) th {
   padding-top: 50px;
 }
+
+.table.options-compare.block table thead {
+  background-color: red;
+}
