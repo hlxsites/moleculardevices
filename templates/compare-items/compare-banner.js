@@ -8,6 +8,7 @@ import {
 import {
   MAX_COMPARE_ITEMS,
   getItemPath,
+  getPathFromNode,
   getSelectedItems,
   unselectAllComparedItems,
   unselectSpecificComparedItem,
@@ -138,8 +139,10 @@ class CompareBanner {
       );
 
       closeButton.addEventListener('click', () => {
-        // unselect this item
-        unselectSpecificComparedItem(title);
+        // query for .compare-checkbox that has the data-title attribute equal to the title
+        const item = document.querySelector(`.compare-checkbox[data-title="${title}"]`);
+        const path = getPathFromNode(item);
+        unselectSpecificComparedItem(path);
         this.refreshBanner();
       });
 

@@ -14,6 +14,7 @@ import {
   span,
   p,
 } from '../../scripts/dom-helpers.js';
+import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
 
 class Item {
   constructor(title, path, thumbnail, specifications) {
@@ -56,6 +57,14 @@ class CompareModal {
     this.cssFiles.push('/templates/compare-items/compare-modal.css');
   }
 
+  showModal() {
+    this.modal.classList.add('show');
+  }
+
+  hideModal() {
+    this.modal.classList.remove('show');
+  }
+
   async fetchItemSpecifications(path) {
     const productPath = path.split('/').pop();
     const resp = await fetch(`${this.productSpecsBasePath}/${productPath}.json`);
@@ -75,7 +84,7 @@ class CompareModal {
     const productData = products[productIndex];
 
     // get all keys in the json that are in the 'categories' string inside the product data
-    // this string is separated by commas
+    // this string is separated by commas.
     const specificationsObjects = Object.keys(json).filter((key) => {
       const categories = productData.categories.split(',');
       return categories.includes(key);
@@ -249,7 +258,7 @@ class CompareModal {
 
         valueColumns.push(
           div(
-            { class: 'col-xs-6 col-sm-3' },
+            { class: 'col-xs-6 col-sm-3', 'item-title': this.compareItemsMetadata[i].getTitle() },
             div(
               { class: 'comparison-cell' },
               pElement,
@@ -287,6 +296,22 @@ class CompareModal {
     return rows;
   }
 
+  removeCompareItem(title) {
+    // remove all divs inside pro-comparison-result that have an attribute item-title equal to title
+    const divs = document.querySelectorAll(`.pro-comparison-result div[item-title="${title}"]`);
+    divs.forEach((removable) => {
+      removable.remove();
+    });
+
+    // remove the item from this.compareItemsMetadata
+    for (let i = 0; i < this.compareItemsMetadata.length; i += 1) {
+      if (this.compareItemsMetadata[i].getTitle() === title) {
+        this.compareItemsMetadata.splice(i, 1);
+        break;
+      }
+    }
+  }
+
   createFeaturesRow() {
     const itemColumns = [];
 
@@ -318,12 +343,17 @@ class CompareModal {
         }
       });
 
+      const removeButton = img(
+        { class: 'trash-icon', src: '/images/trash.png', alt: 'Remove' },
+      );
+
       const itemColumn = div(
-        { class: 'col-xs-6 col-sm-3' },
+        { class: 'col-xs-6 col-sm-3', 'item-title': item.getTitle() },
         div(
           { class: 'comparison-cell' },
           div(
             { class: 'pro-container' },
+            removeButton,
             img(
               { alt: item.getTitle(), src: item.getThumbnail(), width: '100%' },
             ),
@@ -335,6 +365,19 @@ class CompareModal {
           ),
         ),
       );
+
+      removeButton.addEventListener('click', () => {
+        this.removeCompareItem(item.getTitle());
+
+        if (this.compareItemsMetadata.length === 1) {
+          // eslint-disable-next-line no-alert
+          window.alert('Please choose atleast two products for comparison.');
+        }
+
+        unselectSpecificComparedItem(item.getPath());
+        this.compareBanner.refreshBanner();
+        this.hideModal();
+      });
 
       decorateIcons(itemColumn);
 
@@ -425,18 +468,10 @@ class CompareModal {
     this.modal = compareModal;
 
     closeBtn.addEventListener('click', () => {
-      this.hideBanner();
+      this.hideModal();
     });
 
     return compareModal;
-  }
-
-  showModal() {
-    this.modal.classList.add('show');
-  }
-
-  hideBanner() {
-    this.modal.classList.remove('show');
   }
 
   async loadCSSFiles() {

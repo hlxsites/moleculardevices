@@ -158,6 +158,11 @@ main .pro-comparison-result .pro-container {
   height: 100%;
 }
 
+main .pro-comparison-result .pro-container:hover {
+  transform: scale(1.07);
+  transition: all .3s;
+}
+
 main .pro-comparison-result .pro-container>img {
   width: 100%;
   max-width: 252px;
@@ -168,6 +173,16 @@ main .pro-comparison-result .pro-container>img {
   margin-right: auto;
   align-self: center;
   height: auto;
+}
+
+main .pro-comparison-result .pro-container>.trash-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 12px;
+  margin-top: 0;
+  right: 12px;
+  cursor: pointer;
 }
 
 main .pro-comparison-result .comparison-table .comparison-row .pro-details {
