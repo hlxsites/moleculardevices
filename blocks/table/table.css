@@ -88,6 +88,32 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
   padding-top: 50px;
 }
 
-.table.options-compare.block table thead {
-  background-color: red;
+.table.options-compare table th:nth-child(odd),
+.table.options-compare table td:nth-child(odd) {
+  background-color: #f2f2f2;
 }
+
+.options-compare table td:first-child {
+  background-color: #525b61 !important;
+  color: white;
+  width: 190px;
+  padding: 15px;
+}
+
+.options-compare table th {
+  background-color: transparent;
+}
+
+.options-compare table {
+  font-size: small;
+}
+
+.table.options-compare table th:first-child {
+  background-color: transparent;
+  border: none;
+}
+
+.table table th:not(:first-child),
+.table table td:not(:first-child) {
+  text-align: center;
+} 
