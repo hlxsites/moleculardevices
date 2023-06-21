@@ -16,40 +16,55 @@
   background: var(--light-gray-background-color);
 }
 
-.table table th, .table table td {
+.table table th,
+.table table td {
   border: 1px solid var(--light-border-color-gray);
   padding: 8px;
   text-align: left;
   vertical-align: top;
 }
 
-table th.text-align-left, table td.text-align-left {
+table th.text-align-left,
+table td.text-align-left {
   text-align: left;
 }
-  
-table th.text-align-center, table td.text-align-center {
+
+table th.text-align-center,
+table td.text-align-center {
   text-align: center;
 }
 
-table th.text-align-right, table td.text-align-right {
+table th.text-align-right,
+table td.text-align-right {
   text-align: right;
 }
 
-table th.vertical-align-top, table td.vertical-align-bottom {
+table th.vertical-align-top,
+table td.vertical-align-bottom {
   vertical-align: top;
 }
 
-table th.vertical-align-middle,table td.vertical-align-bottom {
+table th.vertical-align-middle,
+table td.vertical-align-middle {
   vertical-align: middle;
 }
 
-table th.vertical-align-bottom, table td.vertical-align-bottom {
+table th.vertical-align-bottom,
+table td.vertical-align-bottom {
   vertical-align: bottom;
+}
+
+.options-compare table {
+  font-size: small;
 }
 
 .table.order table {
   font-size: 18px; /* Font size does not change for mobile views */
   margin-bottom: 20px;
+}
+
+.options-compare table th {
+  background-color: transparent;
 }
 
 .table.order table td,
@@ -63,6 +78,23 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
 
 .table.order table p {
   margin: 0;
+}
+
+.options-compare table td:first-child {
+  background-color: #525b61 !important;
+  color: white;
+  width: 190px;
+  padding: 15px;
+}
+
+.options-compare table th:nth-child(odd),
+.options-compare table td:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.table table th:not(:first-child),
+.table table td:not(:first-child) {
+  text-align: center;
 }
 
 .table.order table td:first-child {
@@ -79,6 +111,11 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
   padding-top: 20px;
 }
 
+.options-compare table th:first-child {
+  background-color: transparent;
+  border: none;
+}
+
 .table.order table tr.apparent-heading th {
   border: none;
   background: none;
@@ -87,33 +124,3 @@ table th.vertical-align-bottom, table td.vertical-align-bottom {
 .table.order table tr.apparent-heading:not(:first-child) th {
   padding-top: 50px;
 }
-
-.table.options-compare table th:nth-child(odd),
-.table.options-compare table td:nth-child(odd) {
-  background-color: #f2f2f2;
-}
-
-.options-compare table td:first-child {
-  background-color: #525b61 !important;
-  color: white;
-  width: 190px;
-  padding: 15px;
-}
-
-.options-compare table th {
-  background-color: transparent;
-}
-
-.options-compare table {
-  font-size: small;
-}
-
-.table.options-compare table th:first-child {
-  background-color: transparent;
-  border: none;
-}
-
-.table table th:not(:first-child),
-.table table td:not(:first-child) {
-  text-align: center;
-} 
