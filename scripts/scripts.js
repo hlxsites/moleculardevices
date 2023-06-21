@@ -168,7 +168,8 @@ export function videoButton(container, button, url) {
   }));
 
   container.prepend(overlay);
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
     loadScript('https://play.vidyard.com/embed/v4.js', () => {
       // eslint-disable-next-line no-undef
       VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
@@ -181,13 +182,17 @@ function decorateLinks(main) {
     const url = new URL(link.href);
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
-      const up = link.parentElement;
-      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
-      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
-      up.innerHTML = wrapper.outerHTML;
-      embedVideo(up.querySelector('a'), url, type);
+      if (link.closest('.button-container') && link.href !== link.textContent && !link.querySelector('img')) {
+        videoButton(link.closest('div'), link, url);
+      } else {
+        const up = link.parentElement;
+        const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+        const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+        const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+        if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+        up.innerHTML = wrapper.outerHTML;
+        embedVideo(up.querySelector('a'), url, type);
+      }
     }
 
     // decorate RFQ page links with pid parameter
