@@ -1,6 +1,10 @@
-/* 
-  Cards Carousel specific styling. 
+/*
+  Cards Carousel specific styling.
 */
+
+.block.carousel.cards img {
+  width: 100%;
+}
 
 .carousel-wrapper.cards {
   width: 1020px;

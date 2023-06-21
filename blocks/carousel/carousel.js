@@ -59,6 +59,11 @@ class Carousel {
     // Apply overwrites
     Object.assign(this, config);
 
+    if (this.getCurrentVisibleItems() >= this.data.length) {
+      this.infiniteScroll = false;
+      this.navButtons = false;
+    }
+
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/carousel/carousel.css');
     }
@@ -101,8 +106,7 @@ class Carousel {
       return;
     }
 
-    const currentVisibleItems = this.visibleItems
-      .filter((e) => !e.condition || e.condition())[0].items;
+    const currentVisibleItems = this.getCurrentVisibleItems();
     if (newIndex === items.length - currentVisibleItems && !this.infiniteScroll) {
       this.navButtonRight.classList.add('disabled');
     }
@@ -133,6 +137,11 @@ class Carousel {
     }
 
     this.updateCounterText(newIndex);
+  }
+
+  getCurrentVisibleItems() {
+    return this.visibleItems
+      .filter((e) => !e.condition || e.condition())[0].items;
   }
 
   /**
