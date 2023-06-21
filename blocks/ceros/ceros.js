@@ -28,7 +28,11 @@ export default function decorate(block) {
   const cerosTitle = block.querySelector('p:last-of-type');
   block.innerHTML = '';
 
-  cerosPoster && cerosTitle && block.parentElement.appendChild(cerosTitle);
+  cerosPoster
+    && cerosTitle
+    && !cerosTitle.classList.contains('picture')
+    && !cerosTitle.querySelector('a')
+    && block.parentElement.appendChild(cerosTitle);
 
   let buttonClasses = 'primary open';
   if (cerosPoster) {

@@ -194,6 +194,48 @@ export async function fetchPlaceholders(prefix = 'default') {
 }
 
 /**
+ * Decorates a block with MolDev / OneLink Trasperfect specific locale logic
+ * @param {Element} block The block element
+ */
+function decorateBlockLocale(block) {
+  const SUPPORTED_LOCALES = [
+    'en',
+    'jp',
+    'de',
+    'fr',
+    'ko',
+    'it',
+    'es',
+    'zh',
+  ];
+
+  // locale specific processing
+  const localesFound = [];
+  block.classList.forEach((blockClass) => {
+    if (blockClass.length !== 2) return; // optimisation
+    if (!SUPPORTED_LOCALES.includes(blockClass)) return;
+
+    localesFound.push(blockClass);
+    if (blockClass !== 'en') {
+      block.classList.add(`OneLinkShow_${blockClass}`);
+      block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
+    } else {
+      block.classList.add('OneLinkHide');
+      block.parentElement.classList.add('OneLinkHide');
+    }
+  });
+
+  if (localesFound.length !== 0
+    && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
+    // skip block decoration and remove content from blocks which are not displayed due to locale
+    block.setAttribute('data-block-status', 'loaded');
+    block.setAttribute('data-block-skip', true);
+    block.setAttribute('data-block-skip-reason', 'locale');
+    block.innerHTML = '';
+  }
+}
+
+/**
  * Decorates a block.
  * @param {Element} block The block element
  */
@@ -207,6 +249,7 @@ export function decorateBlock(block) {
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
+    decorateBlockLocale(block);
   }
 }
 
@@ -318,6 +361,8 @@ export function decorateSections(main) {
  * @param {Element} main The container element
  */
 export function updateSectionsStatus(main) {
+  if (!main) return;
+
   const sections = [...main.querySelectorAll(':scope > div.section')];
   for (let i = 0; i < sections.length; i += 1) {
     const section = sections[i];
@@ -560,6 +605,8 @@ export async function waitForLCP(lcpBlocks) {
       resolve();
     }
   });
+
+  updateSectionsStatus(document.querySelector('main'));
 }
 
 /**

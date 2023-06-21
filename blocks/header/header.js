@@ -61,7 +61,7 @@ function addIndividualComponents(block) {
   const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
 
   // add search bar to right submenu
-  const searchBar = buildSearchBar();
+  const searchBar = buildSearchBar('resourcesSearchForm');
   searchBar.classList.add('resources-submenu-search');
   rightSubMenu.appendChild(searchBar);
 }

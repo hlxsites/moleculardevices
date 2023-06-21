@@ -1,4 +1,4 @@
-import { buildSearchBar } from './menus/search.js';
+import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import { img } from '../../scripts/dom-helpers.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
@@ -101,9 +101,14 @@ function getRightSubmenuBuilder(className) {
 
 function addIndividualComponents(rightSubMenu, submenuId) {
   if (submenuId === 'resource-hub') {
-    const searchBar = buildSearchBar();
+    const searchBar = buildSearchBar('resourceHubSearchForm');
     searchBar.classList.add('resources-submenu-search');
     rightSubMenu.parentElement.appendChild(searchBar);
+    searchBar.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, 'resourceHubSearchForm');
+    });
     return;
   }
 

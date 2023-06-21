@@ -1,0 +1,74 @@
+.virtual-events {
+  display: flex;
+  gap: 15px
+}
+
+.virtual-events img {
+  width: 100%;
+}
+
+.virtual-events > div {
+  width: 50%;
+}
+
+.virtual-events br {
+  display: none;
+}
+
+.virtual-events .side {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+}
+
+.virtual-events .side::after {
+  content: "";
+  width: 94%;
+  padding-top: 20px;
+  border-bottom: 2px solid #ccc;
+  margin-left: 14px;
+  margin-bottom: 16px;
+}
+
+.virtual-events .side > div {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.virtual-events .side img {
+  max-height: 256px;
+  height: auto;
+}
+
+.virtual-events .side h3 {
+  font-size: 20px;
+}
+
+.virtual-events .side p {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 767px) {
+  .virtual-events {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .virtual-events > div {
+    width: 100%;
+  }
+
+  .virtual-events .side {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .virtual-events .side > div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .virtual-events .side img {
+    max-height: unset;
+  }
+}

@@ -126,6 +126,11 @@
   margin-bottom: 0 !important;
 }
 
+.video-gallery .section.card-list-filter-container {
+  padding: 0;
+  margin: 0;
+}
+
 .video-gallery .section div.card-list-filter-wrapper {
   margin: 0;
   width: 100%;

@@ -15,6 +15,8 @@ import {
   loadHeader,
   decorateBlock,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -40,8 +42,13 @@ let STICKY_ELEMENTS;
 let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
-export function loadScript(url, callback, type, async) {
+export function loadScript(url, callback, type, async, forceReload) {
   let script = document.querySelector(`head > script[src="${url}"]`);
+  if (forceReload && script) {
+    script.remove();
+    script = null;
+  }
+
   if (!script) {
     const head = document.querySelector('head');
     script = document.createElement('script');
@@ -139,7 +146,7 @@ export function embedVideo(link, url, type) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      loadScript('https://play.vidyard.com/embed/v4.js');
+      loadScript('https://play.vidyard.com/embed/v4.js', null, null, null, true);
       link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
       class="vidyard-player-embed"
       src="https://play.vidyard.com/${videoId}.jpg"
@@ -207,7 +214,9 @@ function decorateParagraphs(main) {
  */
 function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
   const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
+  const active = activeHash
+    ? activeHash.substring(1, activeHash.length).toLowerCase()
+    : nameOfFirstSection;
 
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
@@ -379,7 +388,11 @@ export async function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  // automatic page translators like google translate may change the lang attribute
+  // so we store it in an additional attribute, to use the original value for the rendering
+  // logic later
+  document.documentElement.lang = document.documentElement.lang || 'en';
+  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -667,5 +680,18 @@ const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid']
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
+
+export function processSectionMetadata(element) {
+  const sectionMeta = element.querySelector('.section-metadata');
+  if (sectionMeta) {
+    const meta = readBlockConfig(sectionMeta);
+    const keys = Object.keys(meta);
+    keys.forEach((key) => {
+      if (key === 'style') element.classList.add(toClassName(meta.style));
+      else element.dataset[toCamelCase(key)] = meta[key];
+    });
+    sectionMeta.remove();
+  }
+}
 
 loadPage();

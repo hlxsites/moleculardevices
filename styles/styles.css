@@ -43,6 +43,19 @@
   size-adjust: 97.72%;
 }
 
+/* stylelint-disable */
+/* Translations classes from One Link */
+.OneLinkShow_jp { display:none;}
+.OneLinkShow_de { display:none;}
+.OneLinkShow_fr { display:none;}
+.OneLinkShow_ko { display:none;}
+.OneLinkShow_it { display:none;}
+.OneLinkShow_es { display:none;}
+.OneLinkShow_zh { display:none;}
+/* Will be hidden on translated pages */
+.OneLinkHide { display: block;}
+/* stylelint-enable */
+
 :root {
   /* colors */
   --text-color: #34393d;
@@ -599,6 +612,7 @@ main .section.highlight {
 main .section.background-grey,
 main .section.background-grey + .section.wave {
   background-color: var(--grey-background-color);
+  margin-top: 0;
 }
 
 @media only screen and (max-width: 991px) {
@@ -1459,4 +1473,19 @@ main .section[aria-hidden="true"] {
 
 .customer-breakthrough main .default-content-wrapper p + h2 {
   margin-top: 50px;
+}
+
+/*
+  Video Gallery
+*/
+.video-gallery .section {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.video-gallery main .section .default-content-wrapper h2 {
+  color: #008da9;
+  font-size: 40px;
+  margin-bottom: 40px;
+  font-family: var(--ff-proxima-light);
 }
