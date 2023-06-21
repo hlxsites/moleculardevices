@@ -10,9 +10,7 @@ export default function decorate(block) {
     wrappingDiv.innerHTML = row.innerHTML;
     [...wrappingDiv.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
-        
-          div.className = 'cards-card-image';
-        
+        div.className = 'cards-card-image';
       } else {
         div.className = 'cards-card-body';
       }
