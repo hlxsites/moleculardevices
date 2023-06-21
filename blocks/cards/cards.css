@@ -47,6 +47,10 @@
   margin-bottom: 50px;
 }
 
+.cards.cell-reporter ul {
+  column-gap: 0;
+}
+
 .cards.cell-reporter .cards-card-wrapper {
   height: 100%;
 }
