@@ -10,15 +10,9 @@ export default function decorate(block) {
     wrappingDiv.innerHTML = row.innerHTML;
     [...wrappingDiv.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
-        if (block.classList.contains('image-only')) {
-          // Generate image link without cards-card-body div
-          const image = div.querySelector('img');
-          const link = a({ href: image.src }, createOptimizedPicture(image.src, image.alt, false, [{ width: '750' }]));
-          wrappingDiv.innerHTML = '';
-          wrappingDiv.append(link);
-        } else {
+        
           div.className = 'cards-card-image';
-        }
+        
       } else {
         div.className = 'cards-card-body';
       }
@@ -44,9 +38,9 @@ export default function decorate(block) {
     block.querySelectorAll('li').forEach((li) => {
       const link = li.querySelector('a');
       const picture = li.querySelector('picture');
-      const image = picture.querySelector('img');
-      const linkWithImage = a({ href: link.href }, image);
-      picture.parentNode.replaceChild(linkWithImage, picture);
+      const pictureClone = picture.cloneNode(true);
+      const newLink = a({ href: link.href }, pictureClone);
+      picture.parentNode.replaceChild(newLink, picture);
       const cardBody = li.querySelector('.cards-card-body');
       cardBody.parentNode.removeChild(cardBody);
     });

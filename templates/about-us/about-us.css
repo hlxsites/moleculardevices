@@ -21,61 +21,6 @@
 
 /* ================ WHO WE ARE BLOCK ================ */
 
-.cards.image-only.block ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
-  list-style: none;
-}
-
-.cards.image-only.block li {
-  text-align: center;
-  border: transparent;
-}
-
-.cards.image-only.block img {
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-  object-fit: contain;
-}
-
-.columns.layout-20-80.partners-list-columns.extended-width.block.columns-2-cols > div > div > p:first-child {
-  font-size: 35px;
-}
-
-@media screen and (max-width: 600px) {
-  .cards.image-only.block ul {
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Display images in a single column */
-  }
-
-  .cards.image-only.block li {
-    text-align: center;
-    border: transparent;
-  }
-
-  .cards.image-only.block img {
-    max-width: 100%;
-    height: auto;
-    width: auto;
-    margin-left: 0; 
-  }
-
-  .columns.layout-20-80.partners-list-columns.extended-width.block.columns-2-cols > div > div > p:first-child {
-    font-size: 24px; 
-  }
-}
-
-@media screen and (min-width: 601px) {
-  .cards.image-only.block ul {
-    grid-template-columns: repeat(4, 1fr);  
-  }
-
-  .cards.image-only.block img {
-    width: 56.25%; 
-  }
-}
-
 .cards.who-we-are ul > li .cards-card-body code {
   font-family: var(--ff-proxima-regular);
   font-size: var(--body-font-size-m);
