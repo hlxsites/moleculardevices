@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
+import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';
@@ -15,12 +16,13 @@ import {
 import { createCompareModalInterface } from './compare-modal.js';
 
 class CompareBanner {
-  constructor(config = {}) {
+  constructor(queryIndexProductData, config = {}) {
     this.cssFiles = [];
     this.currentCompareItemsCount = 0;
     this.compareButtonText = 'Compare ';
     this.banner = document.querySelector('.compare-banner');
     this.selectedItemTitles = [];
+    this.queryIndexProductData = queryIndexProductData;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -78,7 +80,6 @@ class CompareBanner {
     );
 
     compareButton.addEventListener('click', async () => {
-      // TODO: open modal with comparison
       this.selectedItemTitles = getSelectedItems();
       const comparePaths = this.selectedItemTitles.map((title) => {
         const path = getItemPath(title);
@@ -86,7 +87,7 @@ class CompareBanner {
       });
 
       const compareModalInterface = await createCompareModalInterface(
-        comparePaths, this.selectedItemTitles,
+        this, this.queryIndexProductData, comparePaths,
       );
 
       const main = document.querySelector('main');
@@ -188,7 +189,11 @@ class CompareBanner {
  * customizing the rendering and behaviour
  */
 export async function createCompareBannerInterface(config) {
-  const banner = new CompareBanner(config);
+  const queryIndexProductData = await ffetch('/query-index.json')
+    .sheet('products')
+    .all();
+
+  const banner = new CompareBanner(queryIndexProductData, config);
   await banner.loadCSSFiles();
   return banner;
 }

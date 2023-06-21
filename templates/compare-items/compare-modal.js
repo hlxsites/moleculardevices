@@ -16,25 +16,23 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 class Item {
-  constructor(productData, specifications) {
-    this.productData = productData;
+  constructor(title, path, thumbnail, specifications) {
+    this.title = title;
+    this.path = path;
+    this.thumbnail = thumbnail;
     this.specifications = specifications;
-
-    // remove Name and path from specifications
-    delete this.specifications.Name;
-    delete this.specifications.path;
   }
 
   getTitle() {
-    return this.productData.title;
+    return this.title;
   }
 
   getPath() {
-    return this.productData.path;
+    return this.path;
   }
 
   getThumbnail() {
-    return this.productData.thumbnail;
+    return this.thumbnail;
   }
 
   getSpecs() {
@@ -43,10 +41,12 @@ class Item {
 }
 
 class CompareModal {
-  constructor(config = {}) {
+  constructor(queryIndexProductData, compareBanner, config = {}) {
     this.cssFiles = [];
     this.compareItemsMetadata = [];
     this.modal = document.querySelector('.pro-comparison-result');
+    this.queryIndexProductData = queryIndexProductData;
+    this.compareBanner = compareBanner;
 
     this.productSpecsBasePath = '/products/specifications';
 
@@ -56,69 +56,93 @@ class CompareModal {
     this.cssFiles.push('/templates/compare-items/compare-modal.css');
   }
 
-  async fetchPathData(path, name) {
+  async fetchItemSpecifications(path) {
     const productPath = path.split('/').pop();
     const resp = await fetch(`${this.productSpecsBasePath}/${productPath}.json`);
 
-    if (resp.ok) {
-      const json = await resp.json();
-
-      const products = json.product.data;
-      const general = json.general.data;
-
-      // get product index that contains the path in the key path
-      const productIndex = products.findIndex((row) => row.title === name);
-      const productData = products[productIndex];
-      const generalIndex = general.findIndex((row) => row.path === productData.path);
-
-      return new Item(
-        productData,
-        json.general.data[generalIndex],
-      );
-    }
-
-    return null;
-  }
-
-  async fetchFamilyId(path) {
-    const resp = await fetch(`${path}`);
     if (!resp.ok) {
       return null;
     }
 
-    // get the head meta tag with name="family-id"
-    const html = await resp.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const meta = doc.querySelector('meta[name="family-id"]');
-    if (!meta) {
-      return null;
-    }
-
-    return meta.getAttribute('content');
+    const json = await resp.json();
+    return json;
   }
 
-  async fetchMetadata(paths, names) {
-    const metadata = [];
+  parseSpecificationsSheet(path, json) {
+    // get product index that contains the path in the key path
+    const products = json.product.data;
+    const productIndex = products.findIndex((row) => row.path === path);
+    const productData = products[productIndex];
 
-    const promises = [];
-    // use promises to fetch all items in parallel
-    paths.forEach((path) => {
-      const index = paths.indexOf(path);
-      const name = names[index];
-      promises.push(this.fetchPathData(path, name));
+    // get all keys in the json that are in the 'categories' string inside the product data
+    // this string is separated by commas
+    const specificationsObjects = Object.keys(json).filter((key) => {
+      const categories = productData.categories.split(',');
+      return categories.includes(key);
     });
 
-    const items = await Promise.all(promises);
-
-    // filter out null items
-    items.forEach((item) => {
-      if (item) {
-        metadata.push(item);
+    // create array of specifications that contains all the specs that contain
+    // a path equal to the product path
+    // This is required because in the same product specifications json, we can have
+    // specifications for multiple similar products
+    const productSpecificationsObjects = [];
+    specificationsObjects.forEach((spec) => {
+      const specIndex = json[spec].data.findIndex((row) => row.path === productData.path);
+      if (specIndex !== -1) {
+        productSpecificationsObjects.push(json[spec].data[specIndex]);
       }
     });
 
-    return metadata;
+    // create object with all specifications for this product
+    const specifications = {};
+    productSpecificationsObjects.forEach((spec) => {
+      Object.keys(spec).forEach((key) => {
+        if (key !== 'path' && key !== 'Name') {
+          specifications[key] = spec[key];
+        }
+      });
+    });
+
+    return specifications;
+  }
+
+  async createItem(indexProductData, path) {
+    const specificationsJson = await this.fetchItemSpecifications(path);
+    const specifications = this.parseSpecificationsSheet(path, specificationsJson);
+
+    return new Item(
+      indexProductData[0].title,
+      indexProductData[0].path,
+      indexProductData[0].thumbnail,
+      specifications,
+    );
+  }
+
+  async createItems(paths) {
+    // use promises to fetch all items in parallel
+    const promises = [];
+    paths.forEach((path) => {
+      // get the product data from the query-index.json
+      const queryIndexProductData = this.queryIndexProductData.filter(
+        (product) => product.path === path,
+      );
+
+      promises.push(
+        this.createItem(queryIndexProductData, path),
+      );
+    });
+
+    const itemPromises = await Promise.all(promises);
+
+    // filter out null items
+    const items = [];
+    itemPromises.forEach((item) => {
+      if (item) {
+        items.push(item);
+      }
+    });
+
+    return items;
   }
 
   getItemsSpecValues(specName) {
@@ -144,6 +168,8 @@ class CompareModal {
     return value;
   }
 
+  // Stylizes the value of a specification, for example, if the value is true or false
+  // it replaces by a checkmark or x. If the value contains &#8322, it replaces with <sub>2</sub>
   stylizeSpecValue(value) {
     // if value is true or false string then display a checkmark or x
     if (value === 'true') {
@@ -165,15 +191,50 @@ class CompareModal {
     return [this.parseUnconventionalCharacters(value), false];
   }
 
-  specificationsRows() {
+  // Computes an array containing all the specifications across all items
+  getAllSpecs() {
+    const specs = [];
+    for (let i = 0; i < this.compareItemsMetadata.length; i += 1) {
+      const item = this.compareItemsMetadata[i];
+      const itemSpecs = item.getSpecs();
+      Object.keys(itemSpecs).forEach((key) => {
+        if (!specs.includes(key)) {
+          specs.push(key);
+        }
+      });
+    }
+    return specs;
+  }
+
+  // The family-id is used to redirect the user to the request quote page
+  // This id lives in the product content page metadata
+  async fetchFamilyId(path) {
+    const resp = await fetch(`${path}`);
+    if (!resp.ok) {
+      return null;
+    }
+
+    // get the head meta tag with name="family-id"
+    const html = await resp.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const meta = doc.querySelector('meta[name="family-id"]');
+    if (!meta) {
+      return null;
+    }
+
+    return meta.getAttribute('content');
+  }
+
+  createSpecificationsRows() {
     // iterate through the specifications of the first item
     // and create a row for each specification
     const rows = [];
-    const specs = this.compareItemsMetadata[0].getSpecs();
+    const specs = this.getAllSpecs();
 
     // iterate through the other items and get the value for the current key
-    Object.keys(specs).forEach((key) => {
-      const values = this.getItemsSpecValues(key);
+    specs.forEach((specName) => {
+      const values = this.getItemsSpecValues(specName);
 
       const valueColumns = [];
 
@@ -197,7 +258,7 @@ class CompareModal {
         );
       }
 
-      const parsedKey = this.parseUnconventionalCharacters(key);
+      const parsedKey = this.parseUnconventionalCharacters(specName);
       const pElement = p();
       pElement.innerHTML = parsedKey;
       const row = div(
@@ -226,7 +287,7 @@ class CompareModal {
     return rows;
   }
 
-  featuresRow() {
+  createFeaturesRow() {
     const itemColumns = [];
 
     // for each object of type Item inside this.compareItemsMetadata
@@ -312,10 +373,10 @@ class CompareModal {
 
     const itemsComparisonTable = div(
       { class: 'comparison-table' },
-      this.featuresRow(),
+      this.createFeaturesRow(),
     );
 
-    const specificationsRows = this.specificationsRows();
+    const specificationsRows = this.createSpecificationsRows();
     specificationsRows.forEach((row) => {
       itemsComparisonTable.appendChild(row);
     });
@@ -393,13 +454,21 @@ class CompareModal {
 
 /**
  * Create and render default compare products modal.
- * @param {Object}  item     required - rendered item in JSON
- * @param {Object}  config   optional - config object for
+ * @param {Object}  compareBanner     required - rendered compare banner
+ * @param {Object}  queryIndexProductData   object containing the query-index.json data
+ * @param {Array}   paths              array of paths to compare
  * customizing the rendering and behaviour
  */
-export async function createCompareModalInterface(paths, names) {
-  const modalInterface = new CompareModal();
-  modalInterface.compareItemsMetadata = await modalInterface.fetchMetadata(paths, names);
+export async function createCompareModalInterface(
+  compareBanner, queryIndexProductData, paths,
+) {
+  // filter the queryIndexProductData by the paths compared
+  const filteredQueryIndexData = queryIndexProductData.filter(
+    (item) => paths.includes(item.path),
+  );
+
+  const modalInterface = new CompareModal(filteredQueryIndexData, compareBanner, {});
+  modalInterface.compareItemsMetadata = await modalInterface.createItems(paths);
   await modalInterface.loadCSSFiles();
   return modalInterface;
 }
