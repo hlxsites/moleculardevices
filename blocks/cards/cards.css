@@ -25,6 +25,10 @@
   border: 1px solid var(--highlight-background-color);
 }
 
+.cards.borderless li {
+  border: 0;
+}
+
 .cards.slim > ul {
   margin-top: 90px;
   margin-bottom: 50px;
