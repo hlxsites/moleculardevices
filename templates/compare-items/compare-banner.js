@@ -10,6 +10,7 @@ import {
   getItemPath,
   getPathFromNode,
   getSelectedItems,
+  getTitleFromNode,
   unselectAllComparedItems,
   unselectSpecificComparedItem,
   updateCompareButtons,
@@ -139,10 +140,7 @@ class CompareBanner {
       );
 
       closeButton.addEventListener('click', () => {
-        // query for .compare-checkbox that has the data-title attribute equal to the title
-        const item = document.querySelector(`.compare-checkbox[data-title="${title}"]`);
-        const path = getPathFromNode(item);
-        unselectSpecificComparedItem(path);
+        unselectSpecificComparedItem(getItemPath(title));
         this.refreshBanner();
       });
 
