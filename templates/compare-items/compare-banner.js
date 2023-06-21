@@ -8,9 +8,7 @@ import {
 import {
   MAX_COMPARE_ITEMS,
   getItemPath,
-  getPathFromNode,
   getSelectedItems,
-  getTitleFromNode,
   unselectAllComparedItems,
   unselectSpecificComparedItem,
   updateCompareButtons,
