@@ -1,4 +1,4 @@
-import { li, a } from '../../scripts/dom-helpers.js';
+import { ul, li, a } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const levelsFromClass = /levels-(\d+)/.exec(block.className);
@@ -14,14 +14,21 @@ export default async function decorate(block) {
   const headings = section.querySelectorAll(hTagNames.map((i) => `div:nth-child(n+${tocPosition + 1}) ${i}`).join(','));
   const firstHTagName = headings[0].tagName;
   const firstHTagNameIndex = hTagNames.indexOf(firstHTagName);
+  let previousHTagNameIndex = firstHTagNameIndex;
+  let currentList = toc;
   [...headings].forEach((title, i) => {
     const hTagNameIndex = hTagNames.indexOf(title.tagName);
     if (hTagNameIndex >= firstHTagNameIndex
         && hTagNameIndex < (firstHTagNameIndex + levels)
         && i >= (itemsStart - 1)
         && i < itemsEnd) {
-      toc.append(li({ class: title.tagName.toLowerCase() }, a({ href: `#${title.id}` }, title.textContent.replace(/^\d*[0-9].\s/g, ''))));
+      if (hTagNameIndex > previousHTagNameIndex) {
+        currentList.append(block.classList.contains('numbers') ? document.createElement('ol') : document.createElement('ul'));
+        currentList = currentList.querySelector('ul:last-of-type, ol:last-of-type');
+      } else if (hTagNameIndex < previousHTagNameIndex) currentList = currentList.parentElement;
+      currentList.append(li(a({ href: `#${title.id}` }, title.textContent.replace(/^\d*[0-9].\s/g, ''))));
     }
+    previousHTagNameIndex = hTagNameIndex;
   });
   block.appendChild(toc);
 }
