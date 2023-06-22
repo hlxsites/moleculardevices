@@ -49,6 +49,17 @@
     border: none;
 }
 
+@media only screen and (max-width: 600px) {
+    .modal-content iframe {
+        width: 90vw;
+        margin-left: 8.5vw;
+        max-width: 600px;
+        height: 100vh;
+        background-color: #f0f1f2;
+        border: none;
+    }
+}
+
 .modal-close {
     background-color: transparent;
 }
@@ -56,6 +67,10 @@
 .modal-close img {
     position: absolute;
     top: -47vh;
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 25px;
+    min-height: 25px;
     cursor: pointer;
     background: none;
     border: none;
