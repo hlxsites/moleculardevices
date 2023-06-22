@@ -1335,6 +1335,19 @@ main .section[aria-hidden="true"] {
   }
 }
 
+.product main .section.tabs {
+  padding-bottom: 0;
+}
+
+.product main .section.tabs ~ .section.tabs {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.product main .applications-carousel-container > div:nth-child(3) {
+  margin-top: 30px;
+}
+
 .product .section.tabs h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
