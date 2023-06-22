@@ -2,16 +2,38 @@
     background-color: #008da9;
     padding: 10px;
     cursor: pointer;
-    width: 150px;
+    width: 170px;
     height: 50px;
     margin: 0 auto;
 }
 
 .modal-block a {
+    position: relative;
+    top: 5px;
     color: #ffffff;
     font-size: 17px;
     text-align: center;
     font-family: var(--ff-proxima-regular);
+}
+
+.modal-block:hover {
+    background-color: #ffffff;
+}
+
+.modal-block:hover a {
+    color: #008da9;
+}
+
+.modal-block:hover::after {
+    content: "";
+    display: block;
+    position: relative;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background-color: #004c70;
 }
 
 .modal {

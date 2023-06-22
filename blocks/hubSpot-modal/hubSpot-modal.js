@@ -5,11 +5,6 @@ function openModal(block) {
   const link = block.querySelector('a');
   const iframeSrc = link.href;
 
-  // Prevent the link from opening
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-  });
-
   const modalContent = modal.querySelector('.modal-content');
   modalContent.innerHTML = '';
   modalContent.appendChild(iframe({ src: iframeSrc }));
@@ -23,7 +18,6 @@ function closeModal() {
 }
 
 export default function decorate(block) {
-  // Add a CSS class to the block element for styling
   block.classList.add('modal-block');
 
   // Create the modal element
@@ -38,7 +32,6 @@ export default function decorate(block) {
     closeButton,
   );
 
-  // Append the modal to the document body
   document.body.appendChild(modal);
 
   // Add event listener to open the modal
@@ -49,7 +42,7 @@ export default function decorate(block) {
     openModal(block);
   });
 
-  // Add event listener to close the modal when clicking the backdrop
+  // Add event listener to close the modal when clicking the backdrop and close button
   modal.addEventListener('click', (event) => {
     if (event.target === modal || event.target === closeButtonImage) {
       closeModal();
