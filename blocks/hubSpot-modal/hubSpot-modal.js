@@ -5,6 +5,11 @@ function openModal(block) {
   const link = block.querySelector('a');
   const iframeSrc = link.href;
 
+  // Prevent the link from opening
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
+
   const modalContent = modal.querySelector('.modal-content');
   modalContent.innerHTML = '';
   modalContent.appendChild(iframe({ src: iframeSrc }));
@@ -37,7 +42,12 @@ export default function decorate(block) {
   document.body.appendChild(modal);
 
   // Add event listener to open the modal
-  block.addEventListener('click', () => openModal(block));
+  block.addEventListener('click', (event) => {
+    if (event.target.tagName === 'A') {
+      event.preventDefault(); // Prevent the link from opening in a new tab
+    }
+    openModal(block);
+  });
 
   // Add event listener to close the modal when clicking the backdrop
   modal.addEventListener('click', (event) => {
