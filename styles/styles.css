@@ -1344,6 +1344,10 @@ main .section[aria-hidden="true"] {
   padding-bottom: 60px;
 }
 
+.product main .applications-carousel-container > div:nth-child(3) {
+  margin-top: 30px;
+}
+
 .product .section.tabs h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
