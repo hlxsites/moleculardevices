@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import { div, ul, li, span, a, i } from '../../scripts/dom-helpers.js';
+import { div, ul, li, span, a } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 function activeItem(slider, item, diff) {
