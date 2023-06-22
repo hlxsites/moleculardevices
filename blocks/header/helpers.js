@@ -15,10 +15,6 @@ export function getSubmenuIds() {
   return getSubmenus().map((submenu) => toClassName(submenu));
 }
 
-export function getSubmenuIdFromTitle(title) {
-  return getSubmenuIds()[getSubmenus().indexOf(title)];
-}
-
 export function getElementsWithEventListener() {
   return elementsWithEventListener;
 }

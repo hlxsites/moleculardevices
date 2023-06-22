@@ -13,9 +13,7 @@ export function submitSearchForm(event, searchQueryId) {
   event.preventDefault();
   const searchForm = document.getElementById(searchQueryId);
   const searchInput = searchForm.querySelector('input');
-  console.log(searchInput);
   const encodedQuery = encodeURIComponent(searchInput.value);
-  console.log(encodedQuery);
   const searchUrl = `/search-results#q=${encodedQuery}&t=All&sort=relevancy`;
   window.location.href = searchUrl;
 }

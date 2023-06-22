@@ -1,8 +1,6 @@
 import {
   reverseElementLinkTagRelation,
-  getSubmenus,
   getSubmenuIds,
-  getSubmenuIdFromTitle,
   buildRequestQuote,
   decorateLanguagesTool,
 } from '../helpers.js';
@@ -19,6 +17,7 @@ import {
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 import { processSectionMetadata } from '../../../scripts/scripts.js';
+import { toClassName } from '../../../scripts/lib-franklin.js';
 
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
@@ -55,7 +54,7 @@ function getResponseMetadata(content, metadataField) {
 // and builds the <li> element for it.
 async function buildMobileMenuItem(menuItem, menuId) {
   const menuName = menuItem.querySelector('h1 a').textContent;
-  const menuParentLink = menuItem.querySelector('h1 a').href;
+  const menuParentLink = menuItem.getAttribute('menu-link');
 
   await fetch(`/fragments/megamenu/${menuId}`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
     if (response.ok) {
@@ -216,7 +215,7 @@ export function buildMobileMenuTools(menuItems, content) {
 }
 
 export function buildMobileMenu(content) {
-  const submenus = getSubmenus();
+  const submenus = content.querySelectorAll('h1');
 
   const navigation = nav(
     { class: 'mobile-menu' },
@@ -230,10 +229,11 @@ export function buildMobileMenu(content) {
   );
 
   // add menu items
-  submenus.forEach((title) => {
-    if (title === 'Contact Us') return;
+  submenus.forEach((submenu) => {
+    const title = submenu.querySelector('a').textContent;
+    const link = submenu.querySelector('a').getAttribute('href');
 
-    const menuId = getSubmenuIdFromTitle(title);
+    if (title === 'Contact Us') return;
 
     const submenuLink = a(
       { href: '#', 'aria-label': title },
@@ -242,7 +242,7 @@ export function buildMobileMenu(content) {
 
     const caret = span({ class: 'caret' });
     const listItem = li(
-      { class: 'mobile-menu-item', 'menu-id': menuId },
+      { class: 'mobile-menu-item', 'menu-id': toClassName(title), 'menu-link': link },
       h1(
         submenuLink,
       ),
