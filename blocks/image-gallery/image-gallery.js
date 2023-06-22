@@ -25,7 +25,6 @@ export default async function decorate(block) {
   left.addEventListener('click', () => { scroll(block.scrollLeft - wrapper.offsetWidth); });
   close.addEventListener('click', () => {
     wrapper.parentElement.classList.remove('overlay');
-    block.scrollIntoView({ behavior: 'instant', block: 'center' });
   });
   wrapper.append(close, right, left);
   [...block.children].forEach((row, i) => {
