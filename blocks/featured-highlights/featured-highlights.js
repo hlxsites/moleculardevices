@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import { div, ul, li, span } from '../../scripts/dom-helpers.js';
+import { div, ul, li, span, a, i } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 function activeItem(slider, item, diff) {
@@ -16,14 +16,14 @@ function activeItem(slider, item, diff) {
     if (i === index) sliderItem.classList.add('active');
   });
   const scroll = (leftScroll) => carousel.scrollTo({ top: 0, left: leftScroll, behavior: 'smooth' });
-  scroll(500 * index);
+  scroll(carousel.offsetWidth * index);
 }
 
 export default async function decorate(block) {
   const heroSection = block.closest('main').querySelector('.section.hero-container, .section.hero-advanced-container');
   heroSection.appendChild(block.parentElement);
   const carousel = div({ class: 'carousel' });
-  const slider = div({ class: 'slider' }, div('Featured Highlights'));
+  const slider = div({ class: 'slider' }, div(span('Featured Highlights')));
   const sliderInner = slider.querySelector('div');
   const left = span({ class: 'icon icon-icon_link icon-flip' });
   const right = span({ class: 'icon icon-icon_link' });
@@ -38,6 +38,7 @@ export default async function decorate(block) {
       activeItem(slider, e.target, null);
     });
   });
+  block.parentElement.prepend(a({ id: 'product-finder', href: '/product-finder' }, span({ class: 'icon icon-search' }), span('Product'), span('Finder')));
   block.appendChild(slider);
   block.appendChild(carousel);
   decorateIcons(block);

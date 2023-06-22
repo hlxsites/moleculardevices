@@ -1,47 +1,15 @@
-.section.hero-container,
-.section.hero-advanced-container {
-  position:relative;
-}
-
-main .section > div.featured-highlights-wrapper {
-  height: 530px;
-  width: 448px;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.featured-highlights {
-  box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
-  width: 1150px;
-  height: 1150px;
-  position: absolute;
-  top: -620px;
-  right: -702px;
-  border-radius: 100%;
-  overflow: hidden;
-  padding: 620px 702px 0 0;
-  background: var(--grey-background-color);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-}
-
 .featured-highlights h2 {
   font-size: 30px;
-  text-align: right;
+  text-align: center;
   margin-top: 0;
   margin-bottom: 0;
-  padding-left: 35px;
   width: 100%;
 }
 
 .featured-highlights p {
   font-size: 14px;
   line-height: 1.2;
-  text-align: right;
-  width: 50%;
+  text-align: center;
 }
 
 .featured-highlights p.picture {
@@ -63,7 +31,7 @@ main .section > div.featured-highlights-wrapper {
   display: flex;
   gap: 50px;
   scroll-snap-type: x mandatory;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -72,11 +40,9 @@ main .section > div.featured-highlights-wrapper {
 }
 
 .featured-highlights .carousel > div {
-  height: 400px;
-  width: 450px;
   flex-shrink: 0;
-  padding-right: 50px;
   scroll-snap-align: start;
+  width: 100%;
 }
 
 .featured-highlights .slider > div {
@@ -96,7 +62,7 @@ main .section > div.featured-highlights-wrapper {
 .featured-highlights .carousel > div > div {
   display: flex;
   flex-flow: column wrap;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .featured-highlights .slider {
@@ -120,7 +86,8 @@ main .section > div.featured-highlights-wrapper {
   transform: translateY(5px) rotateY(180deg);
 }
 
-.featured-highlights svg path {
+.featured-highlights svg path,
+#product-finder svg path {
   fill: #008da9;
 }
 
@@ -148,4 +115,128 @@ main .section > div.featured-highlights-wrapper {
 
 .featured-highlights .slider li.active {
   background: var(--button-bg-color);
+}
+
+#product-finder {
+  position: absolute;
+  width: 122px;
+  height: 122px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 100%;
+  background: var(--grey-background-color);
+  text-align: center;
+  line-height: 1;
+  text-decoration: none;
+  z-index: 9;
+  color: var(--button-bg-color);
+  border-radius: 100%;
+  box-shadow: 0 0 3px #000;
+  text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+  main .section > div.featured-highlights-wrapper {
+    width: unset;
+    border-bottom: 1px solid #ddd;
+    background-color: var(--grey-background-color);
+    padding-bottom: 30px;
+    position: relative;
+  }
+
+  .featured-highlights .slider > div span {
+    display: none;
+  }
+
+  .featured-highlights h2 {
+    margin-bottom: 10px;
+  }
+
+  #product-finder {
+    right: 8.3333%;
+    top: -30px;
+    width: 70px;
+    z-index: 1;
+    height: 70px;
+    font-size: 10px;
+  }
+
+  #product-finder svg {
+    width: 70px;
+    transform: translateY(-2px);
+  }
+}
+
+@media (min-width: 992px) {
+  .section.hero-container,
+  .section.hero-advanced-container {
+    position:relative;
+  }
+
+  main .section > div.featured-highlights-wrapper {
+    height: 530px;
+    width: 448px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .featured-highlights {
+    box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
+    width: 1150px;
+    height: 1150px;
+    position: absolute;
+    top: -620px;
+    right: -702px;
+    border-radius: 100%;
+    overflow: hidden;
+    padding: 620px 702px 0 0;
+    background: var(--grey-background-color);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-highlights .carousel > div {
+    height: 400px;
+    width: 450px;
+    padding-right: 50px;
+  }
+
+  .featured-highlights .carousel > div > div {
+    align-items: flex-end;
+  }
+
+  .featured-highlights h2 {
+    text-align: right;
+    padding-left: 35px;
+  }
+
+  .featured-highlights p {
+    text-align: right;
+    width: 50%;
+  }
+
+  #product-finder {
+    bottom: -80px;
+    left: 110px;
+    box-shadow: 1px 3px 20px -4px rgba(0,0,0,.45);
+  }
+
+  #product-finder::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 100px;
+    background: #f0f1f2;
+    top: -80px;
+    right: 0;
+    transform: rotate(30deg);
+  }
+
+  #product-finder svg {
+    width: 50px;
+    height: 50px;
+  }
 }
