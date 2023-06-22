@@ -2,8 +2,8 @@
   Cards Carousel specific styling.
 */
 
-.block.carousel.cards img {
-  width: 100%;
+.block.carousel.cards {
+  justify-content: center;
 }
 
 .carousel-wrapper.cards {
@@ -32,13 +32,13 @@
 .carousel.cards .carousel-item {
   display: block;
   padding: 20px 15px 40px;
-  width: 340px;
+  max-width: 317px;
   margin: 0;
 }
 
 .carousel.cards .carousel-item:hover {
   z-index: 1;
-  transform: scale(1.07);
+  transform: scale(1.01);
   transition: all 0.3s;
 }
 
