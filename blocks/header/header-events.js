@@ -43,6 +43,7 @@ function addEventListenersDesktop() {
   addListeners('.searchlink', 'mousedown', (e) => {
     if (e.target === e.currentTarget) {
       // get the tag of the parent element
+      console.log(e.target);
       e.preventDefault();
       e.stopPropagation();
       expandMenu(e.currentTarget);
