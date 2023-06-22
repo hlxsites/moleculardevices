@@ -41,6 +41,10 @@ main .hero-advanced-wrapper {
   margin: 0;
 }
 
+.hero-inner a.button.secondary {
+  border-color: #fff;
+}
+
 .hero-inner ul {
   margin: 0;
   padding-top: 5px;
@@ -366,6 +370,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner h4 {
     margin-bottom: 10px;;
+  }
+
+  .hero-inner p.button-container {
+    margin-bottom: 10px;
   }
 
   .hero-inner .container > div:nth-child(1) > div > p.button-container,
