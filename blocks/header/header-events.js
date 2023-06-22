@@ -52,7 +52,7 @@ function addEventListenersDesktop() {
   const searchFormsIds = [
     'resourcesSearchForm',
     'mainSearchForm',
-    'mobile-search-form',
+    'mobileSearchForm',
   ];
   searchFormsIds.forEach((id) => {
     const element = document.getElementById(id);

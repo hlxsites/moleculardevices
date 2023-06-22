@@ -25,7 +25,7 @@ export function buildMobileSearch() {
       { class: 'search' },
       form(
         {
-          id: 'mobile-search-form', class: 'mobile-search-form', action: '/search-results', method: 'GET',
+          id: 'mobileSearchForm', class: 'mobile-search-form', action: '/search-results', method: 'GET',
         },
         input(
           {
