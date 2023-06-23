@@ -88,10 +88,10 @@ export default function decorate(block) {
   if (isVideo(new URL(link))) {
     block.classList.add('video');
   } else {
-  block.textContent = '';
-  [...headings].forEach((heading) => {
-    block.prepend(heading);
-  });
+    block.textContent = '';
+    [...headings].forEach((heading) => {
+      block.prepend(heading);
+    });
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
         observer.disconnect();
