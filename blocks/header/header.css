@@ -535,7 +535,7 @@ header .mobile-menu .form-control {
 header .mobile-menu .searchbutton {
   bottom: -15px;
   width: 25px;
-  min-width: 10px;
+  min-width: 50px;
   font-size: 25px;
   color: #34393d;
   background: none;
@@ -666,7 +666,7 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   position: relative;
   white-space: nowrap;
   display: block;
-  padding: 4px 70px 23px 15px;
+  padding: 4px 70px 15px 15px;
   color: #34393d;
   text-align: left;
   text-transform: uppercase;
