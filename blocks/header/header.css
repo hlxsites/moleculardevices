@@ -1178,6 +1178,10 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   min-width: 180px !important;
 }
 
+header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
+  color: var(--background-color-green) !important;
+}
+
 header .actionable-card-submenu.text-only {
   max-width: 375px;
 }
@@ -1275,7 +1279,18 @@ header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-c
 }
 
 header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
-  background-color: var(--background-color-green) ;
+  background-color: var(--background-color-green);
+  transition: background-color 0.3s ease;
+}
+
+header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a:hover {
+  background-color: white;
+  color: var(--background-color-green);
+}
+
+.customercare-portal.actionable-card-submenu p:nth-last-child(-n+2):hover {
+  background-color: white;
+  color: green !important;
 }
 
 header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p > a {
