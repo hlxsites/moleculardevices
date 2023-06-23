@@ -1168,7 +1168,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   transition: all .2s;
   background: var(--button-bg-color);
   border: 0;
-  color: var(--text-white) !important;
+  color: var(--text-white);
   position: relative !important;
   height: auto;
   border-radius: 0;
@@ -1176,10 +1176,12 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   display: inline-block !important;
   text-align: center;
   min-width: 180px !important;
+  transition: background-color .2s ease;
 }
 
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
+div.actionable-card-submenu.service-support-right-submenu.right-submenu-content.customercare-portal.btn-new-tab > div:nth-child(2) > div > p:nth-last-of-type(-n+2) > a:hover {
   color: var(--background-color-green) !important;
+  background-color: white !important;
 }
 
 header .actionable-card-submenu.text-only {
@@ -1281,16 +1283,6 @@ header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-c
 header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
   background-color: var(--background-color-green);
   transition: background-color 0.3s ease;
-}
-
-header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a:hover {
-  background-color: white;
-  color: var(--background-color-green);
-}
-
-.customercare-portal.actionable-card-submenu p:nth-last-child(-n+2):hover {
-  background-color: white;
-  color: green !important;
 }
 
 header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p > a {
