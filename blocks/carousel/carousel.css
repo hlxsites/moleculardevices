@@ -1,5 +1,5 @@
-/* 
-  Default Carousel Styling. 
+/*
+  Default Carousel Styling.
   Same as .products on the landing page.
   Variant stylings can be found below.
 */
@@ -322,7 +322,7 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   }
 
   main .carousel.wave {
-    /* 
+    /*
       Ugly hack because you cannot mix overflow-x: hidden with overflow-y: visible
       https://stackoverflow.com/a/39554003
     */
