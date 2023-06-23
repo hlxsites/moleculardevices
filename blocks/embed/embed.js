@@ -1,4 +1,4 @@
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, isVideo } from '../../scripts/scripts.js';
 
 const getDefaultEmbed = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
@@ -84,17 +84,20 @@ const loadEmbed = (block, link, autoplay) => {
 export default function decorate(block) {
   const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6, h7');
   const link = block.querySelector('a').href;
-  block.textContent = '';
 
+  if (isVideo(new URL(link))) {
+    block.classList.add('video');
+  } else {
+  block.textContent = '';
   [...headings].forEach((heading) => {
     block.prepend(heading);
   });
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      loadEmbed(block, link);
-    }
-  });
-  observer.observe(block);
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        observer.disconnect();
+        loadEmbed(block, link);
+      }
+    });
+    observer.observe(block);
+  }
 }

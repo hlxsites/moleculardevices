@@ -17,6 +17,10 @@ main .embed > div {
   justify-content: center;
 }
 
+main .embed.video > div {
+  display: block;
+}
+
 @media (min-width: 768px) {
   main .embed {
     width: 690px;
