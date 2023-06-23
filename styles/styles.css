@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License. You may obtain a copy
  * of the License at http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under
+ * Unless required by  applicable law or agreed to in writing, software distributed under
  * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
@@ -101,6 +101,7 @@
   --accordion-light-gray-border-color: #c5c5c5;
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
+  --carousel-slider-background-color: #b3d8e0;
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue', helvetica, arial, sans-serif;
@@ -233,7 +234,6 @@ h2 {
 
 @media only screen and (max-width: 991px) {
   h2 {
-    font-size: 36px;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -878,7 +878,6 @@ main div.section.featured-asset button.secondary:focus {
 main div.section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
-  font-size: 36px;
   color: var(--text-green);
 }
 
@@ -1310,14 +1309,11 @@ main .section[aria-hidden="true"] {
   }
 }
 
-/* 
- Theoretically, we could move this to a product template, 
- but product pages are already very heavy, so we avoid extra requests
-*/ 
-.product main .section {
+.product main .section,
+.application main .section {
   padding-top: 100px;
   padding-bottom: 60px;
-} 
+}
 
 @media only screen and (max-width: 991px) {
   .product main .section {
@@ -1336,7 +1332,6 @@ main .section[aria-hidden="true"] {
 }
 
 .product .section.tabs h2 {
-  font-size: 36px;
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
 }

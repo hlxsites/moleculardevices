@@ -34,7 +34,7 @@ const TEMPLATE_LIST = [
   'landing-page',
 ];
 
-const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
