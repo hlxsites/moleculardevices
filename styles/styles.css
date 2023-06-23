@@ -1031,12 +1031,12 @@ main div.section.wave.bluegreen {
   padding: 30px 0;
 }
 
-.application .hero-container + .section > .default-content-wrapper:first-child {
-  margin-top: 15px;
-}
-
 main div.section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
+}
+
+.application .hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 15px;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper h2 {
