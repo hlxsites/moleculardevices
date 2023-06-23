@@ -1,6 +1,5 @@
 import {
   reverseElementLinkTagRelation,
-  getSubmenuIds,
   buildRequestQuote,
   decorateLanguagesTool,
 } from '../helpers.js';
@@ -17,7 +16,6 @@ import {
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 import { processSectionMetadata } from '../../../scripts/scripts.js';
-import { toClassName } from '../../../scripts/lib-franklin.js';
 
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');
@@ -168,38 +166,27 @@ async function buildMobileMenuItem(menuItem, menuId) {
   });
 }
 
-function addHamburgerListener(hamburger) {
+function addHamburgerListener(content, hamburger) {
   hamburger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
     const body = document.querySelector('body');
     body.classList.toggle('openmenu');
 
-    const submenuIds = getSubmenuIds();
-
-    // check if all submenus exist otherwise create
-    submenuIds.forEach((submenuId) => {
-      if (submenuId === 'contact-us') return;
-
-      if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${submenuId}"]`)) {
-        const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${submenuId}"]`);
-        buildMobileMenuItem(submenuListItem, submenuId);
+    const titles = content.querySelectorAll('h1');
+    titles.forEach((title) => {
+      const menuId = title.getAttribute('id');
+      if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${menuId}"]`)) {
+        const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${menuId}"]`);
+        const hasSubmenu = submenuListItem.getAttribute('data-dropdown');
+        if (hasSubmenu === 'false' || hasSubmenu === 'False') return;
+        buildMobileMenuItem(submenuListItem, menuId);
       }
     });
   });
 }
 
 export function buildMobileMenuTools(menuItems, content) {
-  // create Contact Us button
-  const contactUsItem = li(
-    { class: 'mobile-menu-item contact-us' },
-    a(
-      { href: '/contact', 'aria-label': 'Contact Us' },
-      'Contact Us',
-    ),
-  );
-  menuItems.append(contactUsItem);
-
   // create Request Quote button
   menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
 
@@ -215,8 +202,6 @@ export function buildMobileMenuTools(menuItems, content) {
 }
 
 export function buildMobileMenu(content) {
-  const submenus = content.querySelectorAll('h1');
-
   const navigation = nav(
     { class: 'mobile-menu' },
     ul(
@@ -229,28 +214,34 @@ export function buildMobileMenu(content) {
   );
 
   // add menu items
-  submenus.forEach((submenu) => {
-    const title = submenu.querySelector('a').textContent;
-    const link = submenu.querySelector('a').getAttribute('href');
-
-    if (title === 'Contact Us') return;
+  [...content.querySelectorAll('h1')].forEach((menu) => {
+    const id = menu.getAttribute('id');
+    const menuLink = menu.querySelector('a');
 
     const submenuLink = a(
-      { href: '#', 'aria-label': title },
-      title,
+      { href: '#', 'aria-label': menuLink.textContent },
+      menuLink.textContent,
     );
 
-    const caret = span({ class: 'caret' });
     const listItem = li(
-      { class: 'mobile-menu-item', 'menu-id': toClassName(title), 'menu-link': link },
+      { class: 'mobile-menu-item', 'menu-id': id, 'menu-link': menuLink.getAttribute('href') },
       h1(
         submenuLink,
       ),
-      caret,
     );
 
-    addOpenMenuListener(submenuLink, listItem);
-    addOpenMenuListener(caret, listItem);
+    processSectionMetadata(menu.parentElement);
+    const dropdownFlag = menu.parentElement.getAttribute('data-dropdown');
+    if (dropdownFlag === 'False' || dropdownFlag === 'false') {
+      submenuLink.setAttribute('href', menuLink.getAttribute('href'));
+      // add attribute menu-dropdown false to listItem
+      listItem.setAttribute('menu-dropdown', 'false');
+    } else {
+      const caret = span({ class: 'caret' });
+      listItem.appendChild(caret);
+      addOpenMenuListener(submenuLink, listItem);
+      addOpenMenuListener(caret, listItem);
+    }
 
     navigation.querySelector('ul').append(listItem);
   });
@@ -259,7 +250,7 @@ export function buildMobileMenu(content) {
   return navigation;
 }
 
-export function buildHamburger() {
+export function buildHamburger(content) {
   const hamburger = button(
     { class: 'hamburger' },
     span(
@@ -278,7 +269,7 @@ export function buildHamburger() {
   );
 
   // add listener to toggle hamburger
-  addHamburgerListener(hamburger);
+  addHamburgerListener(content, hamburger);
 
   return hamburger;
 }
