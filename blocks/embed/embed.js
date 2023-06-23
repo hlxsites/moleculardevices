@@ -52,7 +52,22 @@ export function embedCerosFrame(url) {
   return embedHTML;
 }
 
-const loadEmbed = (block, link, autoplay) => {
+function embedFlippingBook(url) {
+  return `
+  <div style="left: 0; width: 100%; position: relative; padding-top: 66.67%;">
+  <iframe
+      allowfullscreen
+      src="${url.href}"
+      style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+      scrolling="no"
+      loading="lazy"
+      title="Content from ${url.hostname}"
+  ></iframe>
+  </div>
+  `;
+}
+
+const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
@@ -70,12 +85,16 @@ const loadEmbed = (block, link, autoplay) => {
       match: ['ceros'],
       embed: embedCerosFrame,
     },
+    {
+      match: ['flippingbook'],
+      embed: embedFlippingBook,
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
   const embedBlock = document.createElement('div');
-  embedBlock.innerHTML = config ? config.embed(url, autoplay) : getDefaultEmbed(url);
+  embedBlock.innerHTML = config ? config.embed(url) : getDefaultEmbed(url);
   block.append(embedBlock);
   block.classList.add('block', 'embed', 'embed-is-loaded');
   if (config) block.classList.add(`embed-${config.match[0]}`);
