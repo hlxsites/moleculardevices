@@ -1,14 +1,13 @@
 /*
   Cards Carousel specific styling.
 */
-
-.block.carousel.cards {
-  justify-content: center;
-}
-
 .carousel-wrapper.cards {
   width: 1020px;
   margin: 0 auto;
+}
+
+.block.carousel.cards.fully-visible {
+  justify-content: center;
 }
 
 .carousel-wrapper.cards .carousel-nav-button:hover {

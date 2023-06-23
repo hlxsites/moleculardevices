@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
-import { div, span, p } from '../../scripts/dom-helpers.js';
+import { div, p, span } from '../../scripts/dom-helpers.js';
 import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -62,6 +62,7 @@ class Carousel {
     if (this.getCurrentVisibleItems() >= this.data.length) {
       this.infiniteScroll = false;
       this.navButtons = false;
+      this.block.classList.add('fully-visible');
     }
 
     if (this.defaultStyling) {
@@ -106,8 +107,7 @@ class Carousel {
       return;
     }
 
-    const currentVisibleItems = this.getCurrentVisibleItems();
-    if (newIndex === items.length - currentVisibleItems && !this.infiniteScroll) {
+    if (newIndex === items.length - this.getCurrentVisibleItems() && !this.infiniteScroll) {
       this.navButtonRight.classList.add('disabled');
     }
 
