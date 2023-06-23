@@ -6,8 +6,11 @@ function openModal(block) {
   const iframeSrc = link.href;
 
   const modalContent = modal.querySelector('.modal-content');
-  modalContent.innerHTML = '';
-  modalContent.appendChild(iframe({ src: iframeSrc }));
+
+  // Check if the iframe is already present
+  if (!modalContent.querySelector('iframe')) {
+    modalContent.appendChild(iframe({ src: iframeSrc }));
+  }
 
   modal.classList.add('open');
 }
