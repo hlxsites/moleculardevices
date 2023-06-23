@@ -2,6 +2,8 @@ import { toClassName } from '../../scripts/lib-franklin.js';
 import { submitSearchForm } from './menus/search.js';
 import {
   addListeners,
+  expandMenu,
+  collapseAllSubmenus,
   removeAllEventListeners,
   getElementsWithEventListener,
 } from './helpers.js';
@@ -9,17 +11,9 @@ import {
   showRightSubmenu,
   buildLazyMegaMenus,
 } from './header-megamenu.js';
+import { toggleMobileMenu } from './menus/mobile-menu.js';
 
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
-
-function collapseAllSubmenus(menu) {
-  menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-}
-
-function expandMenu(element) {
-  collapseAllSubmenus(element.closest('ul'));
-  element.setAttribute('aria-expanded', 'true');
-}
 
 function addEventListenersDesktop() {
   addListeners('.menu-nav-category', 'mousedown', (e) => {
@@ -59,6 +53,7 @@ function addEventListenersDesktop() {
       e.preventDefault();
       e.stopPropagation();
       submitSearchForm(e, id);
+      collapseAllSubmenus(document);
     });
   });
 }
@@ -89,6 +84,7 @@ function addEventListenersMobile() {
       e.preventDefault();
       e.stopPropagation();
       submitSearchForm(e, id);
+      toggleMobileMenu();
     });
   });
 }

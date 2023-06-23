@@ -168,12 +168,16 @@ async function buildMobileMenuItem(menuItem, menuId) {
   });
 }
 
+export function toggleMobileMenu() {
+  const body = document.querySelector('body');
+  body.classList.toggle('openmenu');
+}
+
 function addHamburgerListener(hamburger) {
   hamburger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const body = document.querySelector('body');
-    body.classList.toggle('openmenu');
+    toggleMobileMenu();
 
     const submenuIds = getSubmenuIds();
 
