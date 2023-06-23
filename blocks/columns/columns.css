@@ -7,6 +7,10 @@ main .section>div.columns-wrapper {
   flex-direction: column;
 }
 
+.columns div > *:first-child {
+  margin-top: 0;
+}
+
 .columns img {
   width: 100%;
 }
