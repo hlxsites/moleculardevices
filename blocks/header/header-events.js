@@ -1,4 +1,3 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
 import { submitSearchForm } from './menus/search.js';
 import {
   addListeners,
@@ -32,7 +31,7 @@ function addEventListenersDesktop() {
       buildLazyMegaMenus();
     }
 
-    const menuId = toClassName(e.currentTarget.textContent);
+    const menuId = e.currentTarget.getAttribute('menu-id');
     const submenuClass = `${menuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
     expandMenu(menu.parentElement);
