@@ -1,137 +1,25 @@
 @import url("../hero/hero.css");
-
-.hero-advanced .overlay {
-  display: none;
-  background-color: #000;
-  opacity: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1050;
-  transition: opacity .15s linear;
-}
-
-.hero-advanced .overlay.open {
-  display: block;
-  z-index: 600;
-}
-
-.hero-advanced .overlay-content {
-  margin: 30px auto;
-  width: 100%;
-  padding: 0 15px;
-  max-width: 1170px;
-  position: relative;
-}
-
-.hero-advanced .overlay-carousel {
-  display: flex;
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-
-.hero-advanced .overlay-carousel > div.section {
-  width: 100%;
-  padding-top: 0;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  position: relative;
-  align-items: flex-end;
-}
-
-main .hero-advanced .overlay .overlay-carousel div.embed-wrapper {
-  padding-top: 0;
-}
-
-main .hero-advanced .overlay-carousel .embed {
-  max-width: unset;
-  padding: 0;
-  margin-top: 0;
-}
-
-main .hero-advanced .overlay-carousel .section>div {
-  width: unset;
-}
-
-.hero-advanced .overlay-content h3 {
-  padding: 0 15px 0 60px;
-  font-size: 16px;
-}
-
-.hero-advanced .overlay-content a {
-  position:absolute;
-  background-color: unset;
-  color: var(--text-white);
-  font-size: 36px;
-  border-radius: 50%;
-  border: 1.5px solid #fff;
-}
-
-.hero-advanced .overlay-content a .icon {
-  height: 38px;
-  width: 38px;
-  stroke-width: 20;
-  display: block;
-}
-
-.hero-advanced a.close {
-  top: 0;
-  right: 0;
- }
-
-.hero-advanced a.close svg {
-  width: 55%;
-  position: relative;
-  bottom: 20%;
-  left: 23%;
- }
-
-.hero-advanced a.right, .hero-advanced a.left {
-  top: 50%;
-  transform: translate(0, -50%);
-  color: #fff;
-  height: auto;
- }
-
-.hero-advanced a.right {
-  right: -15px;
- }
-
-.hero-advanced a.left {
-  left: -15px;
- }
+@import url("../media-gallery/media-gallery.css");
 
 .hero-advanced .hero-inner {
   padding-bottom: 85px;
- }
+}
 
 .hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
   margin-top: 0;
- }
+}
 
 .hero-advanced .hero-inner .two-column p {
   margin-bottom: 18px;
- }
+}
 
 @media (min-width: 768px) {
-  .hero-advanced .overlay-content {
-    max-width: 750px;
-  }
-
   .hero-advanced .hero-inner h1 + div picture {
     display: none;
   }
 
   .hero-advanced .hero-inner h1 {
     margin-bottom: 30px;
-  }
-
-  main .hero-advanced .overlay-carousel .section .default-content-wrapper {
-    padding-top: 25px;
-    padding-bottom: 25px;
   }
 
   .hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
@@ -145,27 +33,11 @@ main .hero-advanced .overlay-carousel .section>div {
   }
 }
 
-@media (min-width: 992px) {
-  .hero-advanced .overlay-content {
-    max-width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-advanced .overlay-content {
-    max-width: 1170px;
-  }
-}
-
 @media (max-width: 767px) {
   .hero-advanced .hero-inner {
     background-color: var(--grey-background-color);
     color: var(--text-color);
     padding-top: 30px;
-  }
-
-  .hero-advanced .hero-inner .overlay {
-    color: var(--text-white);
   }
 
   .hero-advanced .hero-inner .container {
@@ -196,10 +68,6 @@ main .hero-advanced .overlay-carousel .section>div {
     position: absolute;
     top: 25%;
     left: 40%;
-  }
-
-  .hero-advanced .hero-inner .button-container .overlay a {
-    padding: unset;
   }
 
   .hero-advanced .hero-inner p {
