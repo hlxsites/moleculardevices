@@ -1031,7 +1031,7 @@ main div.section.wave.bluegreen {
   padding: 30px 0;
 }
 
-.hero-container + .section > .default-content-wrapper:first-child {
+.application .hero-container + .section > .default-content-wrapper:first-child {
   margin-top: 15px;
 }
 
