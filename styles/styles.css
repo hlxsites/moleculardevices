@@ -1035,6 +1035,10 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
 }
 
+.hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 50px;
+}
+
 .application .hero-container + .section > .default-content-wrapper:first-child {
   margin-top: 15px;
 }
