@@ -3,7 +3,7 @@ import {
   buildBlock, decorateBlock, loadBlock, decorateIcons, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
-  a, div, h3, img, li, span, strong,
+  a, div, h3, img, li, p, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 
@@ -158,7 +158,9 @@ async function stepThree(e) {
   const products = await getProducts(tab);
   const productsWrapper = div();
   products.forEach((product) => {
-    productsWrapper.append(a({ href: product.path }, product.title));
+    if (product.specifications && product.specifications !== '0') {
+      productsWrapper.append(p(a({ href: product.specifications }, product.specifications)));
+    }
   });
   const productCompareEl = root.querySelectorAll(`.${PRODUCT_COMPARISON_CLASS}`);
   productCompareEl.forEach((pc) => {
