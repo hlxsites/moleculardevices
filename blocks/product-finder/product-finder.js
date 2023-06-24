@@ -161,9 +161,9 @@ async function stepThree(e) {
     productsWrapper.append(a({ href: product.path }, product.title));
   });
   const productCompareEl = root.querySelectorAll(`.${PRODUCT_COMPARISON_CLASS}`);
-  if (productCompareEl) {
-    productCompareEl.classList.add(HIDDEN_CLASS);
-  }
+  productCompareEl.forEach((pc) => {
+    pc.classList.add(HIDDEN_CLASS);
+  });
   const compareContent = root.querySelector(`.${PRODUCT_COMPARISON_CLASS}[data-card-type="${getAriaIdentifier(tab)}"]`);
   if (compareContent) {
     compareContent.classList.remove(HIDDEN_CLASS);
@@ -171,7 +171,7 @@ async function stepThree(e) {
     const productsBlock = buildBlock(
       PRODUCT_COMPARISON_CLASS, productsWrapper,
     );
-    productsBlock.addAttribute('data-card-type', getAriaIdentifier(tab));
+    productsBlock.setAttribute('data-card-type', getAriaIdentifier(tab));
     root.append(productsBlock);
     decorateBlock(productsBlock);
     await loadBlock(productsBlock);
