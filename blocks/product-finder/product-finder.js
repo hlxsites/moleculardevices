@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  buildBlock, decorateBlock, loadBlock, decorateIcons, toClassName,
+  decorateIcons, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
   a, div, h3, img, li, p, span, strong,
@@ -11,9 +11,8 @@ const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';
 const HIDDEN_CLASS = 'hidden';
 const CHECKED_CLASS = 'checked';
-const PRODUCT_COMPARISON_CLASS = 'product-comparison';
 const DEFAULT_TITLE = 'Select a Product Type';
-const URL = '/product-finder/product-finder.json';
+const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
 function getAriaIdentifier(tabName) {
   return toClassName(tabName);
@@ -143,6 +142,7 @@ async function getProducts(categoryName) {
     .sheet('products')
     .withFetch(fetch)
     .filter(({ category }) => category.includes(categoryName))
+    .filter(({ productShowInFinder }) => productShowInFinder === 'Yes')
     .all();
 }
 
@@ -156,28 +156,18 @@ async function stepThree(e) {
   const root = switchTab(tab, stepNum, prevStepNum, 'Select Product');
 
   const products = await getProducts(tab);
-  const productsWrapper = div();
+
+  const list = div({
+    class: 'product-finder-list',
+    'data-card-type': getAriaIdentifier(`${tab}-products`),
+  });
+
+  const cardRenderer = await createCard();
   products.forEach((product) => {
-    if (product.specifications && product.specifications !== '0') {
-      productsWrapper.append(p(a({ href: product.specifications }, product.specifications)));
-    }
+    list.append(cardRenderer.renderItem(product));
   });
-  const productCompareEl = root.querySelectorAll(`.${PRODUCT_COMPARISON_CLASS}`);
-  productCompareEl.forEach((pc) => {
-    pc.classList.add(HIDDEN_CLASS);
-  });
-  const compareContent = root.querySelector(`.${PRODUCT_COMPARISON_CLASS}[data-card-type="${getAriaIdentifier(tab)}"]`);
-  if (compareContent) {
-    compareContent.classList.remove(HIDDEN_CLASS);
-  } else {
-    const productsBlock = buildBlock(
-      PRODUCT_COMPARISON_CLASS, productsWrapper,
-    );
-    productsBlock.setAttribute('data-card-type', getAriaIdentifier(tab));
-    root.append(productsBlock);
-    decorateBlock(productsBlock);
-    await loadBlock(productsBlock);
-  }
+  root.append(list);
+  return list;
 }
 
 /* step two */
@@ -194,7 +184,7 @@ async function stepTwo(e) {
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {
-    const categories = await ffetch(URL).sheet('categories').all();
+    const categories = await ffetch(PRODUCT_FINDER_URL).sheet('categories').all();
     const filterData = categories.filter(({ type }) => type.includes(tab) > 0);
     root.append(await renderIconCards(filterData, stepNum, tab, stepThree));
   }
@@ -205,7 +195,7 @@ async function stepOne(callback) {
   const stepNum = `${STEP_PREFIX}-1`;
   const root = document.getElementById(stepNum);
 
-  const types = await ffetch(URL).sheet('types').all();
+  const types = await ffetch(PRODUCT_FINDER_URL).sheet('types').all();
   root.append(await renderIconCards(types, stepNum, '', callback));
 }
 
