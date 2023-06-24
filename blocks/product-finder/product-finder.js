@@ -195,7 +195,7 @@ async function stepTwo(e) {
     const categories = await ffetch(URL).sheet('categories').all();
     const filterData = categories.filter(({ type }) => type.includes(tab) > 0);
     root.append(await renderIconCards(filterData, stepNum, tab, stepThree));
-  //}
+  }
 }
 
 /* step one */
