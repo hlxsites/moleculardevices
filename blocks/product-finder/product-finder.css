@@ -35,6 +35,17 @@
   font-family: var(--ff-proxima-regular);
 }
 
+.product-finder-container .reset {
+  display: block;
+  font-size: 14px;
+  margin-left: 0;
+}
+
+.product-finder-container #start-over i.fa {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
 .product-finder-container {
   float: left;
   width: 100%;
@@ -60,6 +71,10 @@
   content: "\f096";
 }
 
+.product-finder-container ul li > .progress-step.checked::before {
+  content: "\f14a";
+}
+
 .product-finder-container ul li > .progress-step { 
   position: absolute;
   width: 16px;
@@ -68,7 +83,7 @@
   text-align: center;
   display: block;
   left: 0;
-  font: normal normal normal 14px/1 FontAwesome;
+  font-family: FontAwesome,sans-serif;
   font-size: 14px;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -96,21 +111,25 @@
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
   width: 100%;
   grid-gap: 30px;
 }
 
-.product-finder-container .product-finder-list>* {
-  flex: 1 1 0;
+.product-finder-container .hidden {
+  display: none;
+}
+
+.product-finder-container .active {
+  display: block;
 }
 
 .product-finder-container .icon-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   height: unset;
-  width: 25%;
-  align-items: stretch;
-  align-content: stretch;
   min-height: 1px;
+  min-width: 1px;
   padding: 30px 20px;
 }
 
@@ -158,10 +177,6 @@
 
   .hero-inner .container.two-column h2 {
     margin: 0 0 20px;
-  }
-
-  .product-finder-container .icon-card {
-    width: 50%;
   }
 }
 
