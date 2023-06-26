@@ -876,7 +876,6 @@ main div.section.featured-asset button.secondary:focus {
 }
 
 main div.section.featured-asset .default-content-wrapper h2 {
-  font-size: 36px;
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
   color: var(--text-green);

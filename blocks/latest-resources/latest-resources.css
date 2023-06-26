@@ -4,6 +4,11 @@
   padding: 50px 0;
 }
 
+main .section.latest-resources-container .default-content-wrapper h2 {
+  font-family: var(--ff-proxima-light);
+  font-size: var(--heading-font-size-xl);
+}
+
 main .carousel-wrapper.latest-resources-wrapper {
   width: 1140px;
   padding: 0 15px;
