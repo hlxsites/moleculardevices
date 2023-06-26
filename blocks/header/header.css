@@ -154,7 +154,7 @@ header .actionable-card-submenu li {
 }
 
 header .image-card-submenu {
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0 0 0 / 30%);
   color: #e6e6e6;
   position: relative;
   height: 100%;
@@ -171,7 +171,7 @@ header .image-card-submenu picture > img {
 }
 
 header .image-card-submenu > div > div > h3 {
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 0;
   margin-top: 0;
   font-size: 18px;
 }
@@ -185,8 +185,8 @@ header .image-card-submenu > div > div > p {
 }
 
 header .image-card-submenu > div > div > p:last-child {
-  padding: 0 20px 20px 20px;
-  font-family: 'Proxima Nova Light';
+  padding: 0 20px 20px;
+  font-family: 'Proxima Nova Light', sans-serif;
   font-size: 16px;
   font-weight: 400;
   text-transform: none;
