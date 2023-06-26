@@ -45,14 +45,14 @@ main .embed > div {
   position: relative;
 }
 
-.flippingbook-mobile > a > div {
+.flippingbook-mobile .book-icon {
   width: 60px;
   height: 60px;
   position: absolute;
   inset: 0;
   margin: auto;
-  background-image: url('../../icons/flippingbook.svg');
-  background-position: center;
+  z-index: 1;
+  color: rgb(0 0 0 / 70%);
   transform: scale(0.9);
   border-radius: 100%;
   background-color: rgb(0 0 0 / 70%);

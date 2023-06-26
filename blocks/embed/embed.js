@@ -57,7 +57,7 @@ function embedFlippingBook(url) {
 <div class="flippingbook-mobile">
     <a href="${url.href}" title="View Publication" target="_blank">
         <img src="https://online.flippingbook.com/Thumbnail.aspx?url=${encodeURIComponent(url.href)}&size=400" alt="Flippingbook thumbnail" >
-        <div></div>
+        <img src="/icons/flippingbook.svg" class="book-icon" >
     </a>
 </div>
 <div class="flippingbook-desktop">
