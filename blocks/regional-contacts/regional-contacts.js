@@ -1,6 +1,7 @@
 function tabQueryString(tabID) {
-  const newurl = `${window.location.origin}${window.location.pathname}?region=${tabID}`;
-  window.history.pushState({ path: newurl }, '', newurl);
+  const newurl = new URL(window.location);
+  newurl.searchParams.set('region', tabID);
+  window.history.pushState({ path: newurl.href }, '', newurl.href);
 }
 
 /* ================ TAB HANDLER ===================== */
