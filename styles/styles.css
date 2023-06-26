@@ -1038,6 +1038,10 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
 }
 
+.application .hero-container + .section > .default-content-wrapper:first-child {
+  margin-top: 15px;
+}
+
 main div.section.wave.bluegreen .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
 }
@@ -1350,6 +1354,14 @@ main .section[aria-hidden="true"] {
 
 /* -- Technology -- */
 
+.application .section h2 {
+  font-size: 36px;
+}
+
+.application .section:not(:last-child) > div:last-child {
+  border-bottom: 1px solid var(--highlight-background-color);
+}
+
 .technology .section.tabs,
 .application .section.tabs {
   padding-top: 67px;
@@ -1357,7 +1369,8 @@ main .section[aria-hidden="true"] {
 
 .technology .section > div,
 .application .section > div {
-  padding-bottom: 50px;
+  padding-bottom: 40px;
+  padding-top: 60px
 }
 
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1487,4 +1500,23 @@ main .section[aria-hidden="true"] {
   font-size: 40px;
   margin-bottom: 40px;
   font-family: var(--ff-proxima-light);
+}
+
+/*
+  Contact us page
+*/
+
+.contact main .section.hero-container .hero-inner img {
+  object-position: center center;
+}
+
+.contact main > .section.columns-container > .columns-wrapper {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .contact main .section.hero-container .hero-inner .container {
+    padding-top: 100px;
+    padding-bottom: 120px;
+  }
 }
