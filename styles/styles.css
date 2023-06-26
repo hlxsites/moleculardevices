@@ -1337,6 +1337,7 @@ main .section[aria-hidden="true"] {
 
 .product .section.tabs h2 {
   font-family: var(--ff-proxima-regular);
+  font-size: 36px;
   margin-top: 0;
 }
 
