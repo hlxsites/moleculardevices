@@ -1225,7 +1225,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
 
 .actionable-card-submenu.service-support-right-submenu.right-submenu-content.text-only.proxima-nova-lt.uppercase > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a,
 .actionable-card-submenu.service-support-right-submenu.right-submenu-content.text-only.proxima-nova-lt.uppercase > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(1) > a {
-  background-color:transparent;
+  background-color: transparent;
   width: 300px;
   line-height: 10px;
   margin-left: -12px;
@@ -1236,6 +1236,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   background-repeat: no-repeat;
   background-position: 230px center;
 }
+
 
 .actionable-card-submenu.service-support-right-submenu.right-submenu-content.text-only.proxima-nova-lt.uppercase > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
   background-position: 180px center !important;
