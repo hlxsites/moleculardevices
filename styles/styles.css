@@ -1501,3 +1501,22 @@ main .section[aria-hidden="true"] {
   margin-bottom: 40px;
   font-family: var(--ff-proxima-light);
 }
+
+/*
+  Contact us page
+*/
+
+.contact main .section.hero-container .hero-inner img {
+  object-position: center center;
+}
+
+.contact main > .section.columns-container > .columns-wrapper {
+  margin-top: 0;
+}
+
+@media (min-width: 992px) {
+  .contact main .section.hero-container .hero-inner .container {
+    padding-top: 100px;
+    padding-bottom: 120px;
+  }
+}
