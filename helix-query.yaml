@@ -24,6 +24,9 @@ indices:
       type:
         select: head > meta[name="template"]
         value: attribute(el, "content")
+      identifier:
+        select: head > meta[name="identifier"]
+        value: attribute(el, "content")
       category:
         select: head > meta[name="category"]
         value: attribute(el, "content")
@@ -107,6 +110,9 @@ indices:
         value: attribute(el, "content")
       eventAddress:
         select: head > meta[name="event-address"]
+        value: attribute(el, "content")
+      specifications:
+        select: head > meta[name="specifications"]
         value: attribute(el, "content")
   citations:
     include:

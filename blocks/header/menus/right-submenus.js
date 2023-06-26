@@ -35,6 +35,7 @@ function buildCardsMenu(cardContent) {
         // if the second paragraph of the card contains the string (expand-image),
         // we style the image. We need this because some images fill the card, others dont
         const secondParagraph = card.querySelector('p:nth-child(2)');
+        // TODO: content needs to be changed because this does not work on translated sites
         if (secondParagraph.textContent.includes('(expand-image)')) {
           picture.classList.add('expanded-image');
           // delete the second paragraph

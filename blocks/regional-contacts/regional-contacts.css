@@ -58,7 +58,7 @@
   border-top: none;
 }
 
-.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div ul li br {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div ul li br:first-of-type {
   display: none;
 }
 

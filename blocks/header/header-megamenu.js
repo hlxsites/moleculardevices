@@ -1,10 +1,9 @@
 import buildRightSubmenu from './header-megamenu-components.js';
-import { toClassName, decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div,
   li,
-  a,
   nav,
   ul,
 } from '../../scripts/dom-helpers.js';
@@ -14,31 +13,47 @@ import {
   buildRequestQuote,
   addCloseMenuButtonListener,
 } from './helpers.js';
+import { processSectionMetadata } from '../../scripts/scripts.js';
 
 export function showRightSubmenu(element) {
   document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
   element.setAttribute('aria-expanded', 'true');
 }
 
-function buildContactUs() {
-  return li(
-    { class: 'menu-expandable' },
-    div(
-      { class: 'menu-nav-category' },
-      a(
-        { href: '/contact' },
-        'Contact Us',
-      ),
-    ),
-  );
+function menuHasNoDropdown(menu) {
+  if (menu.getAttribute('menu-dropdown') === 'false') {
+    return true;
+  }
+
+  return false;
+}
+
+function getTitlesWithLineDividers(content) {
+  const titleIds = [];
+  const lineDividers = content.querySelectorAll('p');
+  lineDividers.forEach((lineDivider) => {
+    if (!lineDivider.textContent.includes('--')) {
+      return;
+    }
+
+    // get the h2 id immediately after the p element
+    const h2Id = lineDivider.nextElementSibling.id;
+    titleIds.push(h2Id);
+  });
+
+  return titleIds;
 }
 
 function buildMegaMenu(block, content) {
   const titles = content.querySelectorAll('h1');
+  const titlesWithLineDividers = getTitlesWithLineDividers(content);
 
   // for each title get the h2s in the same section
   titles.forEach((title) => {
-    if (title.textContent === 'Contact Us') {
+    const menuId = title.getAttribute('id');
+
+    const dropdownElement = block.querySelector(`.menu-nav-category[menu-id="${menuId}"]`);
+    if (menuHasNoDropdown(dropdownElement)) {
       return;
     }
 
@@ -48,21 +63,26 @@ function buildMegaMenu(block, content) {
 
     // add H2s to list
     sectionH2s.forEach((h2) => {
+      const sectionId = h2.id;
       const element = reverseElementLinkTagRelation(h2);
 
       const h2ListItem = li(
-        { class: 'menu-nav-submenu-section' },
+        { class: 'menu-nav-submenu-section', 'submenu-id': sectionId },
         element,
       );
+
+      if (titlesWithLineDividers.includes(sectionId)) {
+        h2List.append(li({ class: 'line-divider' }));
+      }
 
       h2List.append(h2ListItem);
     });
 
     const submenu = div(
-      { class: 'menu-nav-submenu' },
+      { class: 'menu-nav-submenu', 'menu-id': menuId },
       div(
         title.cloneNode(true),
-        buildRightSubmenu(title, toClassName(title.textContent)),
+        buildRightSubmenu(title, menuId),
         h2List,
       ),
     );
@@ -72,7 +92,6 @@ function buildMegaMenu(block, content) {
 
     // Get the list item in the header block that contains a div with attribute menu-id
     // that matches the menuId
-    const menuId = toClassName(title.textContent);
     const item = block.querySelector(`div[menu-id="${menuId}"]`).closest('li');
 
     const closeButton = div({ class: 'menu-nav-submenu-close' });
@@ -98,9 +117,16 @@ export async function buildLazyMegaMenus() {
 
   // for each category, get the menu-id attribute
   categories.forEach(async (category) => {
+    if (menuHasNoDropdown(category)) {
+      return;
+    }
+
     const menuId = category.getAttribute('menu-id');
 
-    await fetch(`/fragments/megamenu/${menuId}.plain.html`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {})
+    // replace -- by - in menuId
+    const menuIdClean = menuId.replace('--', '-');
+
+    await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {
         if (submenuResponse.ok) {
           // eslint-disable-next-line no-await-in-loop
@@ -111,31 +137,18 @@ export async function buildLazyMegaMenus() {
 
           // get all H2s and create a list of them
           const h2s = [...submenuContent.querySelectorAll('h2')];
-          const h2List = ul({ class: 'menu-nav-submenu-sections' });
+          const h2List = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
 
           // add H2s to list
           h2s.forEach((h2) => {
-            const submenuId = toClassName(h2.textContent);
+            const submenuId = h2.id;
             const element = reverseElementLinkTagRelation(h2);
 
-            const h2ListItem = li(
-              { class: 'menu-nav-submenu-section' },
-              element,
-              buildRightSubmenu(element, submenuId),
-            );
-
-            h2List.append(h2ListItem);
+            const h2ListItem = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
+            h2ListItem.appendChild(buildRightSubmenu(element, submenuId));
           });
 
-          // get the list item in the header block that contains a div with attribute menu-id
-          // that matches the menuId
-          const currentMenu = document.querySelector(
-            `.menu-nav-category[menu-id="${menuId}"]`,
-          ).parentElement.querySelector('.menu-nav-submenu-sections');
-
-          currentMenu.innerHTML = h2List.innerHTML;
-
-          currentMenu.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
+          h2List.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
             el.addEventListener('mouseover', (e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -156,18 +169,30 @@ export function buildNavbar(content) {
   const navMenuUl = ul({ class: 'nav-tabs' });
 
   [...content.querySelectorAll('h1')].forEach((menu) => {
-    const text = menu.querySelector('a').textContent;
+    const id = menu.getAttribute('id');
+    const menuLink = menu.querySelector('a');
+
+    let category = div(
+      { class: 'menu-nav-category', 'menu-id': id },
+      menuLink.textContent,
+    );
+
+    processSectionMetadata(menu.parentElement);
+    const dropdownFlag = menu.parentElement.getAttribute('data-dropdown');
+    if (dropdownFlag === 'False' || dropdownFlag === 'false') {
+      category = div(
+        { class: 'menu-nav-category', 'menu-id': id, 'menu-dropdown': 'false' },
+        menuLink.cloneNode(true),
+      );
+    }
+
     const item = li(
       { class: 'menu-expandable', 'aria-expanded': 'false' },
-      div(
-        { class: 'menu-nav-category', 'menu-id': toClassName(text) },
-        text,
-      ),
+      category,
     );
     navMenuUl.append(item);
   });
 
-  navMenuUl.append(buildContactUs());
   navMenuUl.append(buildSearch(content));
   navMenuUl.append(buildRequestQuote('header-rfq'));
 

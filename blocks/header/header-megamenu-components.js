@@ -1,4 +1,4 @@
-import { buildSearchBar } from './menus/search.js';
+import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import { img } from '../../scripts/dom-helpers.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
@@ -72,6 +72,16 @@ function buildActionableCardSubmenu(actionableCardContent) {
   if (link && picture) {
     wrapLinkAroundComponent(link, picture, true);
   }
+
+  // if card has class btn-new-tab
+  if (actionableCardContent.classList.contains('btn-new-tab')) {
+    const btns = actionableCardContent.querySelectorAll('div:nth-child(2) > div:nth-child(2) a');
+    btns.forEach((btn) => {
+      btn.target = '_blank';
+      btn.rel = 'noopener';
+    });
+  }
+
   return actionableCardContent;
 }
 
@@ -91,13 +101,18 @@ function getRightSubmenuBuilder(className) {
 
 function addIndividualComponents(rightSubMenu, submenuId) {
   if (submenuId === 'resource-hub') {
-    const searchBar = buildSearchBar();
+    const searchBar = buildSearchBar('resourceHubSearchForm');
     searchBar.classList.add('resources-submenu-search');
     rightSubMenu.parentElement.appendChild(searchBar);
+    searchBar.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, 'resourceHubSearchForm');
+    });
     return;
   }
 
-  if (submenuId === 'accessories-consumables') {
+  if (submenuId === 'accessories--consumables') {
     rightSubMenu.parentElement.appendChild(
       img(
         { class: 'spectra-accessories', src: '/images/header-menus/spectra-accessories.png', alt: 'Spectra Accessories' },

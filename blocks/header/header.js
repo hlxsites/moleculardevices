@@ -61,7 +61,7 @@ function addIndividualComponents(block) {
   const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
 
   // add search bar to right submenu
-  const searchBar = buildSearchBar();
+  const searchBar = buildSearchBar('resourcesSearchForm');
   searchBar.classList.add('resources-submenu-search');
   rightSubMenu.appendChild(searchBar);
 }
@@ -81,7 +81,7 @@ export default async function decorate(block) {
   navbarHeader.classList.add('navbar-header');
   navbarHeader.append(buildBrandLogo(content));
   navbarHeader.append(buildTools(content));
-  navbarHeader.append(buildHamburger());
+  navbarHeader.append(buildHamburger(content));
 
   const headerWrapper = document.createElement('div');
   headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');

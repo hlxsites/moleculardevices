@@ -3,6 +3,7 @@ import { span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const wrapper = block.parentElement;
+  const body = document.querySelector('body');
 
   block.querySelectorAll(':scope > div > div > p:nth-of-type(2) > picture').forEach((picture) => {
     picture.parentElement.previousElementSibling.classList.add('thumbnail');
@@ -25,12 +26,13 @@ export default async function decorate(block) {
   left.addEventListener('click', () => { scroll(block.scrollLeft - wrapper.offsetWidth); });
   close.addEventListener('click', () => {
     wrapper.parentElement.classList.remove('overlay');
-    block.scrollIntoView({ behavior: 'instant', block: 'center' });
+    body.classList.remove('no-scroll');
   });
   wrapper.append(close, right, left);
   [...block.children].forEach((row, i) => {
     row.querySelector('img:first-of-type').addEventListener('click', () => {
       wrapper.parentElement.classList.add('overlay');
+      body.classList.add('no-scroll');
       scroll((wrapper.offsetWidth * (i)));
     });
   });

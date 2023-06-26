@@ -11,8 +11,9 @@ import { addCloseMenuButtonListener } from '../helpers.js';
 
 export function submitSearchForm(event, searchQueryId) {
   event.preventDefault();
-  const searchQuery = document.getElementById(searchQueryId).value;
-  const encodedQuery = encodeURIComponent(searchQuery);
+  const searchForm = document.getElementById(searchQueryId);
+  const searchInput = searchForm.querySelector('input');
+  const encodedQuery = encodeURIComponent(searchInput.value);
   const searchUrl = `/search-results#q=${encodedQuery}&t=All&sort=relevancy`;
   window.location.href = searchUrl;
 }
@@ -23,7 +24,9 @@ export function buildMobileSearch() {
     div(
       { class: 'search' },
       form(
-        { class: 'mobile-search-form', action: '/search-results', method: 'GET' },
+        {
+          id: 'mobileSearchForm', class: 'mobile-search-form', action: '/search-results', method: 'GET',
+        },
         input(
           {
             id: 'mobileSearchQuery', class: 'form-control', placeholder: 'Search moleculardevices.com', type: 'text',
@@ -38,12 +41,14 @@ export function buildMobileSearch() {
   );
 }
 
-export function buildSearchBar() {
+export function buildSearchBar(formId) {
   const searchForm = form(
-    { class: 'search-form', action: '/search-results', method: 'GET' },
+    {
+      id: formId, class: 'search-form', action: '/search-results', method: 'GET',
+    },
     input(
       {
-        id: 'searchQuery', class: 'form-control', type: 'text', placeholder: 'moleculardevices.com',
+        class: 'form-control', type: 'text', placeholder: 'moleculardevices.com',
       },
     ),
     button(
@@ -70,7 +75,7 @@ export default function buildSearch(content) {
 
   const closeButton = div({ class: 'menu-nav-submenu-close' });
 
-  const searchBar = buildSearchBar();
+  const searchBar = buildSearchBar('mainSearchForm');
 
   const search = li(
     { class: 'searchlink header-search', 'aria-expanded': 'false' },

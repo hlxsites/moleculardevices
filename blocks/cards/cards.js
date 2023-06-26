@@ -6,8 +6,7 @@ export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
-    const wrappingDiv = divHelper({ class: 'cards-card-wrapper' });
-    wrappingDiv.innerHTML = row.innerHTML;
+    const wrappingDiv = divHelper({ class: 'cards-card-wrapper' }, ...row.children);
     [...wrappingDiv.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';

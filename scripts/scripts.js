@@ -15,6 +15,8 @@ import {
   loadHeader,
   decorateBlock,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -32,7 +34,7 @@ const TEMPLATE_LIST = [
   'landing-page',
 ];
 
-const LCP_BLOCKS = ['hero', 'hero-advanced']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
@@ -40,8 +42,13 @@ let STICKY_ELEMENTS;
 let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
 
-export function loadScript(url, callback, type, async) {
+export function loadScript(url, callback, type, async, forceReload) {
   let script = document.querySelector(`head > script[src="${url}"]`);
+  if (forceReload && script) {
+    script.remove();
+    script = null;
+  }
+
   if (!script) {
     const head = document.querySelector('head');
     script = document.createElement('script');
@@ -139,7 +146,7 @@ export function embedVideo(link, url, type) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      loadScript('https://play.vidyard.com/embed/v4.js');
+      loadScript('https://play.vidyard.com/embed/v4.js', null, null, null, true);
       link.parentElement.innerHTML = `<img style="width: 100%; margin: auto; display: block;"
       class="vidyard-player-embed"
       src="https://play.vidyard.com/${videoId}.jpg"
@@ -161,7 +168,8 @@ export function videoButton(container, button, url) {
   }));
 
   container.prepend(overlay);
-  button.addEventListener('click', () => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
     loadScript('https://play.vidyard.com/embed/v4.js', () => {
       // eslint-disable-next-line no-undef
       VidyardV4.api.getPlayersByUUID(videoId)[0].showLightbox();
@@ -174,13 +182,17 @@ function decorateLinks(main) {
     const url = new URL(link.href);
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
-      const up = link.parentElement;
-      const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
-      const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-      const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-      if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
-      up.innerHTML = wrapper.outerHTML;
-      embedVideo(up.querySelector('a'), url, type);
+      if (link.closest('.block.cards')) {
+        videoButton(link.closest('div'), link, url);
+      } else {
+        const up = link.parentElement;
+        const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+        const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+        const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+        if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+        up.innerHTML = wrapper.outerHTML;
+        embedVideo(up.querySelector('a'), url, type);
+      }
     }
 
     // decorate RFQ page links with pid parameter
@@ -207,7 +219,9 @@ function decorateParagraphs(main) {
  */
 function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
   const activeHash = window.location.hash;
-  const active = activeHash ? activeHash.substring(1, activeHash.length) : nameOfFirstSection;
+  const active = activeHash
+    ? activeHash.substring(1, activeHash.length).toLowerCase()
+    : nameOfFirstSection;
 
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
@@ -379,7 +393,11 @@ export async function decorateMain(main) {
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  // automatic page translators like google translate may change the lang attribute
+  // so we store it in an additional attribute, to use the original value for the rendering
+  // logic later
+  document.documentElement.lang = document.documentElement.lang || 'en';
+  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -667,5 +685,18 @@ const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid']
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
+
+export function processSectionMetadata(element) {
+  const sectionMeta = element.querySelector('.section-metadata');
+  if (sectionMeta) {
+    const meta = readBlockConfig(sectionMeta);
+    const keys = Object.keys(meta);
+    keys.forEach((key) => {
+      if (key === 'style') element.classList.add(toClassName(meta.style));
+      else element.dataset[toCamelCase(key)] = meta[key];
+    });
+    sectionMeta.remove();
+  }
+}
 
 loadPage();

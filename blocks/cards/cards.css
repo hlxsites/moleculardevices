@@ -7,6 +7,20 @@
   padding: 0;
 }
 
+.cards .cards-card-body {
+  margin: 16px;
+  position: relative;
+}
+
+.cards.cell-reporter h3 {
+  font-family: var(--ff-proxima-xbold);
+}
+
+.cards .cards-card-body > h2:first-of-type,
+.cards .cards-card-body > h3:first-of-type {
+  margin-top: 0;
+}
+
 .cards.stacked-image-text {
   margin-top: 50px;
   font-size: 15px;
@@ -23,6 +37,33 @@
 .cards > ul > li {
   background-color: var(--background-color);
   border: 1px solid var(--highlight-background-color);
+}
+
+.cards.borderless li {
+  border: 0;
+}
+
+.cards.cell-reporter {
+  margin-bottom: 50px;
+}
+
+.cards.cell-reporter ul {
+  column-gap: 0;
+}
+
+.cards.cell-reporter .cards-card-wrapper {
+  height: 100%;
+}
+
+.cards.cell-reporter .cards-card-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards.cell-reporter .cards-card-body > p.button-container:last-child {
+  /* put at the end of flex */
+  margin-top: auto;
 }
 
 .cards.slim > ul {
@@ -91,6 +132,7 @@
 
 .cards.stacked-image-text img {
   aspect-ratio: auto;
+  width: auto;
 }
 
 .cards.stacked-image-text li {
@@ -131,15 +173,6 @@
 
 .cards.hover .cards-card-wrapper {
   transition: transform ease-in-out 0.3s;
-}
-
-.cards .cards-card-body {
-  margin: 16px;
-  position: relative;
-}
-
-.cards .cards-card-body > *:first-child {
-  margin-top: 0;
 }
 
 .cards.text-over-image ul {
@@ -187,12 +220,13 @@
 }
 
 /* ================ GALLERY BLOCK ================ */
-.cards.gallery ul > li > .cards-card-body {
+
+.cards.gallery ul > li .cards-card-body {
   margin: 0;
   background: rgb(0 117 141 / 80%);
 }
 
-.cards.gallery ul > li > .cards-card-body:not(:empty) {
+.cards.gallery ul > li .cards-card-body:not(:empty) {
   position: absolute;
   left: 0;
   top: 0;
@@ -209,7 +243,7 @@
   transition: all .2s;
 }
 
-.cards.gallery.hover-gradient ul > li > .cards-card-body {
+.cards.gallery.hover-gradient ul > li .cards-card-body {
   background: linear-gradient(
     to left,
     rgb(21 145 164 / 80%) 0,
@@ -218,89 +252,24 @@
   );
 }
 
-.cards.gallery ul > li:hover > .cards-card-body:not(:empty) {
+.cards.gallery ul > li:hover .cards-card-body:not(:empty) {
   opacity: 1;
   visibility: visible;
 }
 
 
-.cards.gallery ul > li > .cards-card-image picture img {
+.cards.gallery ul > li .cards-card-image picture img {
   aspect-ratio: unset;
   display: block;
 }
 
-.cards.gallery ul > li > .cards-card-body > a {
+.cards.gallery ul > li .cards-card-body > a {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
   color: var(--text-white);
 }
 
 /* ================ GALLERY BLOCK ================ */
-
-/* ================ WHO WE ARE BLOCK ================ */
-.cards.who-we-are ul {
-  gap: unset;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.cards.who-we-are ul > li > .cards-card-body code {
-  font-family: var(--ff-proxima-regular);
-  font-size: var(--body-font-size-m);
-}
-
-.cards.who-we-are ul > li > .cards-card-body:first-child > p{
-  margin-top: 0;
-  margin-bottom: 0;
-  transition: all 0.2s;
-}
-
-.cards.who-we-are ul > li > .cards-card-body:first-child > p:last-child{
-  position: absolute;
-  inset: 0;
-  margin: auto;
-}
-
-.cards.who-we-are ul > li:hover > .cards-card-body:first-child > p,
-.cards.who-we-are ul > li > .cards-card-body:first-child > p:first-child {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cards.who-we-are ul > li > .cards-card-body:first-child > p:last-child,
-.cards.who-we-are ul > li:hover > .cards-card-body:first-child > p:first-child{
-  opacity: 0;
-  visibility: hidden;
-}
-
-.cards.who-we-are ul > li:hover > .cards-card-body:first-child > p:last-child {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cards.who-we-are ul > li > .cards-card-body:first-child > p > picture img {
-  aspect-ratio: auto;
-  width: 152px;
-  display: block;
-  margin: auto;
-}
-
-@media only screen and (min-width: 768px) {
-  .cards.who-we-are ul > li {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .cards.who-we-are ul > li {
-    flex-basis: 33.33%;
-    max-width: 33.33%;
-  }
-}
-
-/* ================ WHO WE ARE BLOCK ================ */
 
 .cards.image-link {
   text-transform: uppercase;

@@ -84,9 +84,29 @@ main .compare-banner .gradiant-blue-btn.btn {
   text-align: center;
 }
 
+main .compare-banner .gradiant-blue-btn.btn:hover {
+  background: #fff;
+  box-shadow: 0 0 10px 1px rgba(0,0,0,.2);
+  color: #6eb43f;
+  cursor: pointer;
+}
+
+main .compare-banner .gradiant-blue-btn.btn:hover .btn_bdr {
+  display: block;
+  width: 50%;
+  margin-bottom: 0;
+  position: absolute;
+  margin-left: 0;
+  height: 4px;
+  background: #0066a4;
+  left: 25%;
+  bottom: -5px;
+}
+
 main .compare-banner .compare-data .gradiant-blue-btn.btn {
   font-size: 14px;
   padding-top: 8px;
+  margin-left: 2px;
   padding-bottom: 8px;
 }
 
@@ -108,4 +128,8 @@ main .compare-banner .compare-data .close {
   right: 8px;
   top: 2px;
   background: none;
+}
+
+main .compare-banner .compare-data .close:hover {
+  cursor: pointer;
 }

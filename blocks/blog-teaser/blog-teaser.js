@@ -5,6 +5,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { fetchFragment, formatDate } from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
+  /* eslint-disable indent */
   return (
     div({ class: 'blog-teaser-item' },
       div({ class: 'blog-teaser-thumb' },
@@ -17,16 +18,20 @@ function renderBlockTeaser(blogData) {
           a({ href: blogData.path }, blogData.header),
         ),
         div({ class: 'metadata' },
-          div(
-            i({ class: 'fa fa-calendar' }),
-            span({ class: 'blog-publish-date' },
-              formatDate(blogData.publicationDate, { month: 'long' }),
-            ),
-          ),
-          div(
-            i({ class: 'fa fa-user' }),
-            span({ class: 'blog-author' }, blogData.author),
-          ),
+          blogData.publicationDate
+            ? div(
+                i({ class: 'fa fa-calendar' }),
+                span({ class: 'blog-publish-date' },
+                  formatDate(blogData.publicationDate, { month: 'long' }),
+                ),
+              )
+            : '',
+          blogData.author
+            ? div(
+                i({ class: 'fa fa-user' }),
+                span({ class: 'blog-author' }, blogData.author),
+              )
+            : '',
         ),
         p(blogData.description),
         p({ class: 'button-container' },
@@ -41,6 +46,7 @@ function renderBlockTeaser(blogData) {
       ),
     )
   );
+  /* eslint-enable indent */
 }
 
 export default async function decorate(block) {
@@ -57,12 +63,18 @@ export default async function decorate(block) {
         .getAttribute('content');
       const description = fragmentElement.querySelector('meta[name="description"]')
         .getAttribute('content');
+
       const c2aButtonText = fragmentElement.querySelector('meta[name="card-c2a"]')
-        .getAttribute('content');
+        ? fragmentElement.querySelector('meta[name="card-c2a"]').getAttribute('content')
+        : 'Read More';
+
       const publicationDate = fragmentElement.querySelector('meta[name="publication-date"]')
-        .getAttribute('content');
+        ? fragmentElement.querySelector('meta[name="publication-date"]').getAttribute('content')
+        : '';
+
       const author = fragmentElement.querySelector('meta[name="author"]')
-        .getAttribute('content');
+        ? fragmentElement.querySelector('meta[name="author"]').getAttribute('content')
+        : '';
 
       blogPosts[blogPostLink.href] = {
         path: blogPostLink.href,

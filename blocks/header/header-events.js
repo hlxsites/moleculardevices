@@ -1,4 +1,3 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
 import { submitSearchForm } from './menus/search.js';
 import {
   addListeners,
@@ -32,7 +31,7 @@ function addEventListenersDesktop() {
       buildLazyMegaMenus();
     }
 
-    const menuId = toClassName(e.currentTarget.textContent);
+    const menuId = e.currentTarget.getAttribute('menu-id');
     const submenuClass = `${menuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
     expandMenu(menu.parentElement);
@@ -49,16 +48,17 @@ function addEventListenersDesktop() {
     }
   });
 
-  addListeners('.search-form', 'submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    submitSearchForm(e, 'searchQuery');
-  });
-
-  addListeners('.mobile-search-form', 'submit', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    submitSearchForm(e, 'mobileSearchQuery');
+  const searchFormsIds = [
+    'resourcesSearchForm',
+    'mainSearchForm',
+  ];
+  searchFormsIds.forEach((id) => {
+    const element = document.getElementById(id);
+    element.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, id);
+    });
   });
 }
 
@@ -76,6 +76,18 @@ function addEventListenersMobile() {
       e.preventDefault();
       e.stopPropagation();
       toggleMenu(linkElement);
+    });
+  });
+
+  const searchFormsIds = [
+    'mobileSearchForm',
+  ];
+  searchFormsIds.forEach((id) => {
+    const element = document.getElementById(id);
+    element.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, id);
     });
   });
 }

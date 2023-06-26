@@ -1,22 +1,28 @@
 /* eslint-disable import/prefer-default-export */
 
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
+import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';
 import {
   MAX_COMPARE_ITEMS,
+  getItemPath,
   getSelectedItems,
   unselectAllComparedItems,
+  unselectSpecificComparedItem,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+import { createCompareModalInterface } from './compare-modal.js';
 
 class CompareBanner {
-  constructor(config = {}) {
+  constructor(queryIndexProductData, config = {}) {
     this.cssFiles = [];
     this.currentCompareItemsCount = 0;
     this.compareButtonText = 'Compare ';
     this.banner = document.querySelector('.compare-banner');
+    this.selectedItemTitles = [];
+    this.queryIndexProductData = queryIndexProductData;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -36,6 +42,9 @@ class CompareBanner {
       span(
         { class: 'compare-total-count' },
         MAX_COMPARE_ITEMS,
+      ),
+      span(
+        { class: 'btn_bdr' },
       ),
     );
 
@@ -70,8 +79,20 @@ class CompareBanner {
       ),
     );
 
-    compareButton.addEventListener('click', () => {
-      // TODO: open modal with comparison
+    compareButton.addEventListener('click', async () => {
+      this.selectedItemTitles = getSelectedItems();
+      const comparePaths = this.selectedItemTitles.map((title) => {
+        const path = getItemPath(title);
+        return path;
+      });
+
+      const compareModalInterface = await createCompareModalInterface(
+        this, this.queryIndexProductData, comparePaths,
+      );
+
+      const main = document.querySelector('main');
+      main.appendChild(compareModalInterface.render());
+      compareModalInterface.showModal();
     });
 
     closeButton.addEventListener('click', () => {
@@ -95,8 +116,8 @@ class CompareBanner {
   }
 
   refreshBanner() {
-    const selectedItemTitles = getSelectedItems();
-    const numSelectedItems = selectedItemTitles.length;
+    this.selectedItemTitles = getSelectedItems();
+    const numSelectedItems = this.selectedItemTitles.length;
     if (numSelectedItems === 0) {
       this.hideBanner();
       return;
@@ -108,13 +129,18 @@ class CompareBanner {
     const cellRow = compareCell.querySelector('.compare-row');
     cellRow.innerHTML = '';
 
-    selectedItemTitles.forEach((title) => {
+    this.selectedItemTitles.forEach((title) => {
       const closeButton = a(
         { class: 'close greenstrip_close' },
         img(
           { src: '/images/close.png' },
         ),
       );
+
+      closeButton.addEventListener('click', () => {
+        unselectSpecificComparedItem(getItemPath(title));
+        this.refreshBanner();
+      });
 
       const compareCellItem = div(
         { class: 'compare-cell' },
@@ -126,6 +152,7 @@ class CompareBanner {
       );
       cellRow.appendChild(compareCellItem);
     });
+
     this.showBanner();
   }
 
@@ -161,7 +188,11 @@ class CompareBanner {
  * customizing the rendering and behaviour
  */
 export async function createCompareBannerInterface(config) {
-  const banner = new CompareBanner(config);
+  const queryIndexProductData = await ffetch('/query-index.json')
+    .sheet('products')
+    .all();
+
+  const banner = new CompareBanner(queryIndexProductData, config);
   await banner.loadCSSFiles();
   return banner;
 }
