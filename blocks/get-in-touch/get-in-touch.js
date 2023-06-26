@@ -21,8 +21,7 @@ function createFormRoot(hubspotUrl, mapUrl) {
 
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
-  const hubSearch = new URLSearchParams(hubUrl);
-  const searchParams = new URLSearchParams(hubUrl.searchParams.get('return_url'));
+  const searchParams = new URLSearchParams(hubUrl.searchParams);
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
@@ -30,10 +29,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
     const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
     searchParams.set(paramName, queryStringParam);
   }
-
-  hubSearch.set('return_url', searchParams.toString());
-  hubUrl.search = hubSearch.toString();
-  return hubUrl;
+  return new URL(`${hubspotUrl.pathname}?${searchParams.toString().replaceAll('&', '%3').replaceAll('=', '%2')}`, hubspotUrl);
 }
 
 function addIframe(hubspotUrl, mapUrl) {
@@ -70,7 +66,7 @@ export default function decorate(block) {
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
-      // observer.disconnect();
+      observer.disconnect();
       const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
       hubspotUrl.href = hubUrl.href;
       addIframe(hubspotUrl, mapUrl);
