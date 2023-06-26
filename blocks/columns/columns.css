@@ -52,6 +52,11 @@ main .section>div.columns-wrapper {
   height: 167px;
 }
 
+.columns.light-and-dark-grey > div > div {
+  margin-left: unset;
+  padding: 40px;
+}
+
 .columns.contact {
   padding: 80px 0;
 }
@@ -207,6 +212,32 @@ main .section>div.columns-wrapper {
 
 .columns.columns-3-cols > div:not(:only-child) > div {
   margin-left: 0;
+}
+
+.columns.light-and-dark-grey > div > div > p {
+  font-size: 20px;
+}
+
+.columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
+.columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) {
+  background-color: #aaa;
+  color: var(--text-white);
+}
+
+.columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a,
+.columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a {
+  border-color: var(--text-white);
+  color: var(--text-white);
+}
+
+.columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a:hover,
+.columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a:hover {
+  color: var(--button-hover-color);
+}
+
+.columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even),
+.columns.light-and-dark-grey > div:nth-child(even) div:nth-child(odd) {
+  background-color: var(--light-gray-background-color);
 }
 
 .columns.layout-20-80.extended-width > div > div:first-child {
@@ -468,6 +499,10 @@ main .section>div.columns-wrapper {
   .columns.line > div::after {
     padding-top: 30px;
   }
+  
+  .columns.light-and-dark-grey > div > div {
+    padding: 20px;
+  }
 
   .columns.contact > div > div:not(:last-child) {
     margin-bottom: 30px;
@@ -479,6 +514,28 @@ main .section>div.columns-wrapper {
 
   .columns.contact > div > div > ul > li:not(:last-child)::after {
     width: calc(100% - 44px);
+  }
+
+  .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
+  .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(odd) {
+    background-color: #aaa;
+    color: var(--text-white);
+  }
+
+  .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a,
+  .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(odd) .button-container a {
+    border-color: var(--text-white);
+    color: var(--text-white);
+  }
+
+  .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a:hover,
+  .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(odd) .button-container a:hover {
+    color: var(--button-hover-color);
+  }
+
+  .columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even),
+  .columns.light-and-dark-grey > div:nth-child(even) div:nth-child(even) {
+    background-color: var(--light-gray-background-color);
   }
 }
 
