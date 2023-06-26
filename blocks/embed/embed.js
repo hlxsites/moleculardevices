@@ -54,16 +54,21 @@ export function embedCerosFrame(url) {
 
 function embedFlippingBook(url) {
   return `
-  <div style="left: 0; width: 100%; position: relative; padding-top: 66.67%;">
+<div class="flippingbook-mobile">
+    <a href="${url.href}" title="View Publication" target="_blank">
+        <img src="https://online.flippingbook.com/Thumbnail.aspx?url=${encodeURIComponent(url.href)}&size=400" alt="Flippingbook thumbnail" >
+        <div></div>
+    </a>
+</div>
+<div class="flippingbook-desktop">
   <iframe
       allowfullscreen
       src="${url.href}"
-      style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
       scrolling="no"
       loading="lazy"
       title="Content from ${url.hostname}"
   ></iframe>
-  </div>
+</div>
   `;
 }
 
