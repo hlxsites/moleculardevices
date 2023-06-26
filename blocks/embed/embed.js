@@ -52,7 +52,27 @@ export function embedCerosFrame(url) {
   return embedHTML;
 }
 
-const loadEmbed = (block, link, autoplay) => {
+function embedFlippingBook(url) {
+  return `
+<div class="flippingbook-mobile">
+    <a href="${url.href}" title="View Publication" target="_blank">
+        <img src="https://online.flippingbook.com/Thumbnail.aspx?url=${encodeURIComponent(url.href)}&size=400" alt="Flippingbook thumbnail" >
+        <img src="/icons/flippingbook.svg" class="book-icon" >
+    </a>
+</div>
+<div class="flippingbook-desktop">
+  <iframe
+      allowfullscreen
+      src="${url.href}"
+      scrolling="no"
+      loading="lazy"
+      title="Content from ${url.hostname}"
+  ></iframe>
+</div>
+  `;
+}
+
+const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
@@ -70,12 +90,16 @@ const loadEmbed = (block, link, autoplay) => {
       match: ['ceros'],
       embed: embedCerosFrame,
     },
+    {
+      match: ['flippingbook'],
+      embed: embedFlippingBook,
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
   const embedBlock = document.createElement('div');
-  embedBlock.innerHTML = config ? config.embed(url, autoplay) : getDefaultEmbed(url);
+  embedBlock.innerHTML = config ? config.embed(url) : getDefaultEmbed(url);
   block.append(embedBlock);
   block.classList.add('block', 'embed', 'embed-is-loaded');
   if (config) block.classList.add(`embed-${config.match[0]}`);

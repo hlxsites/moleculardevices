@@ -39,6 +39,53 @@ main .embed.video > div {
   }
 }
 
+
+.flippingbook-desktop {
+  display: none;
+}
+
+.flippingbook-mobile {
+  display: block;
+  position: relative;
+}
+
+.flippingbook-mobile .book-icon {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 1;
+  color: rgb(0 0 0 / 70%);
+  transform: scale(0.9);
+  border-radius: 100%;
+  background-color: rgb(0 0 0 / 70%);
+  opacity: 0.8;
+}
+
+@media (min-width: 430px) {
+  .flippingbook-desktop {
+    display: block;
+    left: 0;
+    width: 100%;
+    position: relative;
+    padding-top: 66.67%;
+  }
+
+  .flippingbook-desktop iframe {
+    border: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .flippingbook-mobile {
+    display: none;
+  }
+}
+
 main .embed.embed-ceros {
   width: 100%;
 }
