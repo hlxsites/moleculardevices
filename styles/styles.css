@@ -1489,6 +1489,20 @@ main .section[aria-hidden="true"] {
 }
 
 /*
+  Service Support pages
+*/
+
+.service-support main .section.features-section .default-content-wrapper {
+  text-align: left;
+}
+
+.service-support main .section.media-gallery-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+}
+
+/*
   Video Gallery
 */
 .video-gallery .section {
