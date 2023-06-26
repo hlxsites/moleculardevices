@@ -153,6 +153,45 @@ header .actionable-card-submenu li {
   margin-bottom: 10px;
 }
 
+header .image-card-submenu {
+  background-color: rgba(0,0,0,.3);
+  color: #e6e6e6;
+  position: relative;
+  height: 100%;
+  margin-left: 5px;
+}
+
+header .image-card-submenu picture > img {
+  height: 190px;
+  max-height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  object-fit: cover;
+}
+
+header .image-card-submenu > div > div > h3 {
+  padding: 20px 20px 0 20px;
+  margin-top: 0;
+  font-size: 18px;
+}
+
+header .image-card-submenu > div > div > h3 > a {
+  color: var(--text-white);
+}
+
+header .image-card-submenu > div > div > p {
+  margin: 0;
+}
+
+header .image-card-submenu > div > div > p:last-child {
+  padding: 0 20px 20px 20px;
+  font-family: 'Proxima Nova Light';
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
+}
+
 header .mobile-menu li {
   float: none;
   position: relative;
