@@ -39,6 +39,15 @@ export function removeAllEventListeners() {
   elementsWithEventListener = [];
 }
 
+export function collapseAllSubmenus(menu) {
+  menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
+}
+
+export function expandMenu(element) {
+  collapseAllSubmenus(element.closest('ul'));
+  element.setAttribute('aria-expanded', 'true');
+}
+
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand > div > div > picture');
 
