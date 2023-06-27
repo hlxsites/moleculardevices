@@ -47,18 +47,16 @@ function buildTools(content) {
   );
   toolsWrapper.innerHTML = toolsList.innerHTML;
   decorateLanguagesTool(toolsWrapper);
-  if (detectStore()) {
-    const linksList = toolsWrapper.querySelector('ul');
-    linksList.prepend(renderStore());
-    linksList.prepend(renderCart());
-  }
 
   document.addEventListener('countryCodeUpdated', (event) => {
     const countryCode = event.detail;
     // Check if the country code is "US"
     if (countryCode === 'US') {
-      // Render the shopping cart icon or perform any desired actions
-      renderCart();
+      if (detectStore()) {
+        const linksList = toolsWrapper.querySelector('ul');
+        linksList.prepend(renderStore());
+        linksList.prepend(renderCart());
+      }
     }
   });
   return toolsWrapper;
