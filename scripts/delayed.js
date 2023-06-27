@@ -47,9 +47,9 @@ async function loadUserData() {
     if (response.ok) {
       const data = await response.json();
       if (data[attrCountryCode]) {
+        setCookie(attrCountryCode, data[attrCountryCode], 1);
         const event = new CustomEvent('countryCodeUpdated', { detail: data[attrCountryCode] });
         document.dispatchEvent(event);
-        setCookie(attrCountryCode, data[attrCountryCode], 1);
       }
     } else {
       throw new Error('Response not okay');
