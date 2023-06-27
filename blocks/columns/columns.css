@@ -24,6 +24,10 @@ main .section>div.columns-wrapper {
   margin-top: 0;
 }
 
+.columns.center {
+  text-align: center;
+}
+
 .columns.line > div {
   flex-wrap: wrap;
   padding: 40px 0;
