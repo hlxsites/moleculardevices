@@ -3,7 +3,7 @@ import {
   decorateIcons, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
-  a, div, h3, img, li, p, span, strong,
+  a, div, h3, img, li, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 
@@ -14,7 +14,7 @@ const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
-function getAriaIdentifier(tabName) {
+function getListIdentifier(tabName) {
   return toClassName(tabName);
 }
 
@@ -44,7 +44,7 @@ function renderIconItem(item, progressStep, callback) {
 async function renderIconCards(listArr, progressStep, tabName, callback) {
   const list = div({
     class: 'product-finder-list',
-    'data-card-type': getAriaIdentifier(tabName),
+    'data-card-type': getListIdentifier(tabName),
   });
 
   listArr.forEach((item) => {
@@ -136,12 +136,17 @@ function switchTab(tab, stepNum, prevStepNum, title) {
   return root;
 }
 
-/* step four */
-async function getProducts(categoryName) {
+async function getCategories(tab) {
+  const categories = await ffetch(PRODUCT_FINDER_URL).sheet('categories').all();
+  return categories.filter(({ type }) => type.includes(tab) > 0);
+}
+
+async function getProducts(filterType, filterCategory) {
   return ffetch('/query-index.json')
     .sheet('products')
     .withFetch(fetch)
-    .filter(({ category }) => category.includes(categoryName))
+    // .filter(({ type }) => type.includes(filterType))
+    .filter(({ category }) => category.includes(filterCategory))
     .filter(({ productShowInFinder }) => productShowInFinder === 'Yes')
     .all();
 }
@@ -150,43 +155,54 @@ async function getProducts(categoryName) {
 async function stepThree(e) {
   e.preventDefault();
 
-  const tab = getTabName(e.target);
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
-  const root = switchTab(tab, stepNum, prevStepNum, 'Select Product');
 
-  const products = await getProducts(tab);
+  const type = document.querySelector('.progress-step-1 + span > .step-custom-text > strong').innerHTML;
+  const category = getTabName(e.target);
+  const root = switchTab(category, stepNum, prevStepNum, 'Select Product');
 
-  const list = div({
-    class: 'product-finder-list',
-    'data-card-type': getAriaIdentifier(`${tab}-products`),
-  });
-
-  const cardRenderer = await createCard();
-  products.forEach((product) => {
-    list.append(cardRenderer.renderItem(product));
-  });
+  let list = root.querySelector(`.product-finder-list[data-card-type="${getListIdentifier(`${type}-${category}-products`)}"]`);
+  if (list) {
+    list.classList.remove(HIDDEN_CLASS);
+  } else {
+    const products = await getProducts(type, category);
+    list = div({
+      class: 'product-finder-list',
+      'data-card-type': getListIdentifier(`${type}-${category}-products`),
+    });
+    const cardRenderer = await createCard({
+      c2aLinkStyle: true,
+    });
+    products.forEach((product) => {
+      /*product.c2aLinkConfig = {
+        href: https://www.moleculardevices.com/quote-request?pid=${product.familyId},
+        'aria-label': 'Request Quote',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },*/
+      list.append(cardRenderer.renderItem(product));
+    });
+  }
   root.append(list);
-  return list;
 }
 
 /* step two */
 async function stepTwo(e) {
   e.preventDefault();
 
-  const tab = getTabName(e.target);
+  const type = getTabName(e.target);
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
-  const root = switchTab(tab, stepNum, prevStepNum, 'Select tab Category');
+  const root = switchTab(type, stepNum, prevStepNum, 'Select tab Category');
 
   // generate the icons only once
-  const list = root.querySelector(`.product-finder-list[data-card-type="${getAriaIdentifier(tab)}"]`);
+  const list = root.querySelector(`.product-finder-list[data-card-type="${getListIdentifier(type)}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {
-    const categories = await ffetch(PRODUCT_FINDER_URL).sheet('categories').all();
-    const filterData = categories.filter(({ type }) => type.includes(tab) > 0);
-    root.append(await renderIconCards(filterData, stepNum, tab, stepThree));
+    const categories = await getCategories(type);
+    root.append(await renderIconCards(categories, stepNum, type, stepThree));
   }
 }
 

@@ -123,6 +123,32 @@
   display: block;
 }
 
+.product-finder-container .card {
+  width: 25%;
+}
+
+.product-finder-container .card-caption {
+  padding: 15px 15px 0;
+}
+
+.product-finder-container .card-caption h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.product-finder-container .card-thumb img {
+  height: auto;
+  min-height: 1px;
+}
+
+.product-finder-container .card-caption h3 > a {
+  color: var(--link-color);
+}
+
+.product-finder-container .card-description {
+  font-size: 14px;
+}
+
 .product-finder-container .icon-card {
   display: flex;
   flex-direction: column;
