@@ -142,12 +142,16 @@ async function getCategories(tab) {
 }
 
 async function getProducts(filterType, filterCategory) {
+  let mappedType = filterType;
+  if (mappedType === 'Accessories &amp; Consumables') {
+    mappedType = 'Labware';
+  }
+
   return ffetch('/query-index.json')
-    .sheet('products')
+    .sheet('product-finder')
     .withFetch(fetch)
-    // .filter(({ type }) => type.includes(filterType))
+    .filter(({ productType }) => productType.includes(mappedType))
     .filter(({ category }) => category.includes(filterCategory))
-    .filter(({ productShowInFinder }) => productShowInFinder === 'Yes')
     .all();
 }
 
@@ -162,28 +166,37 @@ async function stepThree(e) {
   const category = getTabName(e.target);
   const root = switchTab(category, stepNum, prevStepNum, 'Select Product');
 
-  let list = root.querySelector(`.product-finder-list[data-card-type="${getListIdentifier(`${type}-${category}-products`)}"]`);
+  const dataCardType = getListIdentifier(`${type}-${category}-products`);
+  let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {
     const products = await getProducts(type, category);
     list = div({
       class: 'product-finder-list',
-      'data-card-type': getListIdentifier(`${type}-${category}-products`),
+      'data-card-type': dataCardType,
     });
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
+      defaultButtonText: 'Request Quote',
     });
     products.forEach((product) => {
-      /*product.c2aLinkConfig = {
-        href: https://www.moleculardevices.com/quote-request?pid=${product.familyId},
+      product.c2aLinkConfig = {
+        href: `https://www.moleculardevices.com/quote-request?pid=${product.familyID}`,
         'aria-label': 'Request Quote',
         target: '_blank',
         rel: 'noopener noreferrer',
-      },*/
+      };
       list.append(cardRenderer.renderItem(product));
     });
   }
+
+  const totalCount = span(
+    { class: 'result-count' },
+    `${list.children.length} Results`,
+  );
+
+  root.append(totalCount);
   root.append(list);
 }
 
@@ -197,7 +210,17 @@ async function stepTwo(e) {
   const root = switchTab(type, stepNum, prevStepNum, 'Select tab Category');
 
   // generate the icons only once
-  const list = root.querySelector(`.product-finder-list[data-card-type="${getListIdentifier(type)}"]`);
+  const dataCardType = getListIdentifier(`${type}`);
+
+  // get all product-finder-list
+  const lists = root.querySelectorAll('.product-finder-list');
+  lists.forEach((list) => {
+    if (list.attributes['data-card-type'].value !== dataCardType) {
+      list.remove();
+    }
+  });
+
+  const list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {

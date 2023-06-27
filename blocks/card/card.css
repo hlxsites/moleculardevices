@@ -98,7 +98,8 @@ main .card-caption .c2a .compare-button {
   display: none;
 }
 
-.product-compare main .card-caption .c2a .compare-button {
+.product-compare main .card-caption .c2a .compare-button,
+.product-finder .card-caption .c2a .compare-button {
   display: flex;
 }
 
