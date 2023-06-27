@@ -84,6 +84,9 @@ indices:
       productShowInFinder:
         select: head > meta[name="show-in-product-finder"]
         value: attribute(el, "content")
+      productType:
+        select: head > meta[name="product-type"]
+        value: attribute(el, "content")      
       familyID:
         select: head > meta[name="family-id"]
         value: attribute(el, "content")
