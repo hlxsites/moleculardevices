@@ -55,6 +55,7 @@ async function loadUserData() {
       throw new Error('Response not okay');
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.warn('Could not load user information.', err);
   }
 }

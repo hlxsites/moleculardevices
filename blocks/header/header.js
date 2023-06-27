@@ -53,7 +53,7 @@ function buildTools(content) {
     linksList.prepend(renderCart());
   }
 
-  document.addEventListener('countryCodeUpdated', (event) => {
+  document.addEventListener('countryCodeUpdated', () => {
     // Check if the country code is "US"
     if (detectStore()) {
       const linksList = toolsWrapper.querySelector('ul');
