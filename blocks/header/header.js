@@ -54,7 +54,6 @@ function buildTools(content) {
   }
 
   document.addEventListener('countryCodeUpdated', () => {
-    // Check if the country code is "US"
     if (detectStore()) {
       const linksList = toolsWrapper.querySelector('ul');
       linksList.prepend(renderStore());
