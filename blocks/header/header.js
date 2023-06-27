@@ -52,6 +52,15 @@ function buildTools(content) {
     linksList.prepend(renderStore());
     linksList.prepend(renderCart());
   }
+
+  document.addEventListener('countryCodeUpdated', (event) => {
+    const countryCode = event.detail;
+    // Check if the country code is "US"
+    if (countryCode === 'US') {
+      // Render the shopping cart icon or perform any desired actions
+      renderCart();
+    }
+  });
   return toolsWrapper;
 }
 

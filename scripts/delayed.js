@@ -38,26 +38,25 @@ Stores dedicated user data in a cookie.
 async function loadUserData() {
   const attrCountryCode = 'country_code';
   if (getCookie(attrCountryCode)) return;
-  fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
-    /* Referrer Policy is set to strict-origin-when-cross-origin by default
-       to avoid data leaking of private information.
-       See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy#directives
-       Set mode to 'cors' to allow cross-origin requests, see https://developer.mozilla.org/en-US/docs/Web/API/Request/mode.
-    */
-    mode: 'cors',
-  }).then((response) => {
+
+  try {
+    const response = await fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
+      mode: 'cors',
+    });
+
     if (response.ok) {
-      return response.json();
+      const data = await response.json();
+      if (data[attrCountryCode]) {
+        const event = new CustomEvent('countryCodeUpdated', { detail: data[attrCountryCode] });
+        document.dispatchEvent(event);
+        setCookie(attrCountryCode, data[attrCountryCode], 1);
+      }
+    } else {
+      throw new Error('Response not okay');
     }
-    return Promise.reject(response);
-  }).then((data) => {
-    if (data[attrCountryCode]) {
-      setCookie(attrCountryCode, data[attrCountryCode], 1);
-    }
-  }).catch((err) => {
-    // eslint-disable-next-line no-console
+  } catch (err) {
     console.warn('Could not load user information.', err);
-  });
+  }
 }
 
 loadUserData();
