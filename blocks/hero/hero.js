@@ -77,15 +77,10 @@ export function buildHero(block) {
   }
 
   // check if block containt Orange Buttons
-  const orangeButtons = block.querySelector('.orange-buttons');
+  const orangeButtons = block.classList.contains('orange-buttons');
   if (orangeButtons) {
-    console.log('Orange Buttons');
-    // check if countryCode is set to US
     if (detectStore()) {
-      console.log('US Store');
-      // Find the button-container element
       const buttonContainer = document.querySelector('.button-container');
-      // Check if the element exists and remove it
       if (buttonContainer) {
         buttonContainer.remove();
       }
