@@ -1353,10 +1353,6 @@ main .section[aria-hidden="true"] {
   font-size: 36px;
 }
 
-.application .section:not(:last-child) > div:last-child {
-  border-bottom: 1px solid var(--highlight-background-color);
-}
-
 .technology .section.tabs,
 .application .section.tabs {
   padding-top: 67px;
