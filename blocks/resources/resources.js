@@ -45,11 +45,12 @@ export default async function decorate(block) {
   const template = getMetadata('template');
   const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
   const includedResourceTypes = Object.keys(resourceMapping);
+  const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .chunks(2000)
-    .filter((resource) => resource[relatedResourcesHeaders[template]].includes(title)
+    .filter((resource) => resource[relatedResource].includes(title)
       && includedResourceTypes.includes(resource.type))
     .all();
   const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
