@@ -342,6 +342,16 @@ main .section>div.columns-wrapper {
 }
 /* stylelint-enable no-descending-specificity */
 
+.section .columns.image-figure > div p.picture,
+.section .columns.image-figure > div p.picture ~ p {
+  text-align: center;
+  font-size: var(--body-font-size-l);
+}
+
+.section .columns.image-figure > div p.picture img {
+  max-width: 50%;
+}
+
 .service-support .columns-wrapper {
   padding-top: 0;
   padding-bottom: 30px;
