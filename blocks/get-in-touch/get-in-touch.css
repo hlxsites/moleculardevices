@@ -34,6 +34,27 @@
   margin-right: -15px;
 }
 
+.get-in-touch .hubspot-success {
+  margin: 0 auto;
+  height: auto;
+  text-align: center;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+}
+
+.get-in-touch .hubspot-success img {
+  display: block;
+  margin: 0 auto 15px;
+  width: 45%;
+}
+
+.get-in-touch .hubspot-success strong {
+  font-weight: 700;
+  font-family: var(--ff-proxima-regular);
+}
+
 .get-in-touch > div > div:last-child iframe {
   height: 450px;
 }
@@ -75,6 +96,11 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .get-in-touch .hubspot-success {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
   .get-in-touch .hubspot-iframe-wrapper iframe {
     height: 870px;
   }
