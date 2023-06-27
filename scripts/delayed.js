@@ -37,6 +37,7 @@ Stores dedicated user data in a cookie.
 */
 async function loadUserData() {
   const attrCountryCode = 'country_code';
+  setCookie(attrCountryCode, 'US', 1); // only for testing
   if (getCookie(attrCountryCode)) return;
   fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
     /* Referrer Policy is set to strict-origin-when-cross-origin by default

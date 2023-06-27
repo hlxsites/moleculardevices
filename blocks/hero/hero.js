@@ -1,5 +1,5 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
-import { formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
+import { detectStore, formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
@@ -74,6 +74,22 @@ export function buildHero(block) {
     inner.prepend(picture.parentElement);
   } else {
     inner.classList.add('white-bg');
+  }
+
+  // check if block containt Orange Buttons
+  const orangeButtons = block.querySelector('.orange-buttons');
+  if (orangeButtons) {
+    console.log('Orange Buttons');
+    // check if countryCode is set to US
+    if (detectStore()) {
+      console.log('US Store');
+      // Find the button-container element
+      const buttonContainer = document.querySelector('.button-container');
+      // Check if the element exists and remove it
+      if (buttonContainer) {
+        buttonContainer.remove();
+      }
+    }
   }
 
   const rows = block.children.length;
