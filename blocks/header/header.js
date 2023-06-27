@@ -52,6 +52,14 @@ function buildTools(content) {
     linksList.prepend(renderStore());
     linksList.prepend(renderCart());
   }
+
+  document.addEventListener('countryCodeUpdated', () => {
+    if (detectStore()) {
+      const linksList = toolsWrapper.querySelector('ul');
+      linksList.prepend(renderStore());
+      linksList.prepend(renderCart());
+    }
+  });
   return toolsWrapper;
 }
 
