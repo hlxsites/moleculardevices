@@ -1,48 +1,50 @@
-import { getQueryParameter } from '../../scripts/scripts.js';
-
-function createFormRoot(hubspotUrl, mapUrl) {
-  const hubspotIframeWrapper = document.createElement('div');
-  const hubspotIframe = document.createElement('iframe');
-
-  hubspotIframeWrapper.className = 'hubspot-iframe-wrapper';
-  hubspotIframe.setAttribute('loading', 'lazy');
-  hubspotIframeWrapper.appendChild(hubspotIframe);
-
-  const mapIframeWrapper = document.createElement('div');
-  const mapIframe = document.createElement('iframe');
-
-  mapIframeWrapper.className = 'map-iframe-wrapper';
-  mapIframe.setAttribute('loading', 'lazy');
-  mapIframeWrapper.appendChild(mapIframe);
-
-  hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
-  mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
-}
-
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
-  const hubSearch = new URLSearchParams(hubUrl);
-  const searchParams = new URLSearchParams(hubUrl.searchParams.get('return_url'));
+  const searchParams = new URLSearchParams(hubUrl.searchParams);
+  const queryParams = new URLSearchParams(window.location.search);
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
-    const readQuery = getQueryParameter(paramName);
-    const queryStringParam = readQuery[paramName] ? readQuery[paramName] : '';
+    const queryStringParam = queryParams.has(paramName) ? queryParams.get(paramName) : '';
     searchParams.set(paramName, queryStringParam);
   }
-
-  hubSearch.set('return_url', searchParams.toString());
-  hubUrl.search = hubSearch.toString();
-  return hubUrl;
+  return new URL(`${hubspotUrl.pathname}?${searchParams.toString().replaceAll('&', '%3').replaceAll('=', '%2')}`, hubspotUrl);
 }
 
-function addIframe(hubspotUrl, mapUrl) {
-  const hubspotIframeWrapper = document.querySelector('.hubspot-iframe-wrapper');
-  const hubspotIframe = hubspotIframeWrapper.querySelector('iframe');
-  const mapIframeWrapper = document.querySelector('.map-iframe-wrapper');
-  const mapIframe = mapIframeWrapper.querySelector('iframe');
-  hubspotIframe.src = hubspotUrl.href;
-  mapIframe.src = mapUrl.href;
+function createForm(block, hubspotUrl) {
+  const hubspotIframeWrapper = document.createElement('div');
+  const hubspotIframe = document.createElement('iframe');
+  hubspotIframeWrapper.className = 'hubspot-iframe-wrapper';
+  hubspotIframe.setAttribute('loading', 'lazy');
+  hubspotIframeWrapper.appendChild(hubspotIframe);
+  hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
+      hubspotUrl.href = hubUrl.href;
+      hubspotIframe.src = hubspotUrl.href;
+    }
+  });
+  observer.observe(block);
+}
+
+function createMap(block, mapUrl) {
+  const mapIframeWrapper = document.createElement('div');
+  const mapIframe = document.createElement('iframe');
+  mapIframeWrapper.className = 'map-iframe-wrapper';
+  mapIframe.setAttribute('loading', 'lazy');
+  mapIframeWrapper.appendChild(mapIframe);
+  mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      mapIframe.src = mapUrl.href;
+    }
+  });
+  observer.observe(block);
 }
 
 function scrollToForm(link, hubspotUrl) {
@@ -64,19 +66,21 @@ function scrollToForm(link, hubspotUrl) {
 }
 
 export default function decorate(block) {
+  const queryParams = new URLSearchParams(window.location.search);
   const hubspotUrl = block.querySelector('[href*="https://info.moleculardevices.com"]');
   const mapUrl = block.querySelector('[href*="https://maps.google.com"]');
-  createFormRoot(hubspotUrl, mapUrl);
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      // observer.disconnect();
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
-      hubspotUrl.href = hubUrl.href;
-      addIframe(hubspotUrl, mapUrl);
-    }
-  });
-  observer.observe(block);
+  if (queryParams.has('msg') && queryParams.get('msg') === 'success') {
+    const successMsg = block.lastElementChild.firstElementChild;
+    successMsg.classList.add('hubspot-success');
+    hubspotUrl.closest('div').replaceWith(successMsg);
+    block.lastElementChild.remove();
+    createMap(block, mapUrl);
+  } else {
+    block.lastElementChild.remove(); // success message we don't need for this case
+    createForm(block, hubspotUrl);
+    createMap(block, mapUrl);
+  }
 
   const inquiryLinks = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
