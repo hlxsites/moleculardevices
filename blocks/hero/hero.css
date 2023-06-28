@@ -130,13 +130,16 @@ main .section .hero-advanced-wrapper {
   width: 1140px;
   height: 280px;
   position: relative;
-  border: 3px solid red;
+  display: inline-block;
 }
 
-.order-container select {
+.drop-down {
   position: relative;
   width: 500px;
   height: 60px;
+  border: 1px solid #000;
+  color: #000;
+  text-align: left;
   background-color: transparent;
   font-size: large;
   font-family: var(--body-font-size-m);
@@ -144,8 +147,33 @@ main .section .hero-advanced-wrapper {
   margin-left: 20px;
 }
 
-.order-container select:nth-child(2) {
-  color: var( --dark-gray-background-color);
+.product-options-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  margin-left: 20px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.product-options-content a {
+  color: black;
+  padding: 20px 16px;
+  display: block;
+  border: 1px solid #000;
+  border-top: none;
+  font-size: large;
+  font-family: var(--body-font-size-m);
+  width: 500px;
+  height: 60px;
+}
+
+.product-options-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
 }
 
 .price-label {

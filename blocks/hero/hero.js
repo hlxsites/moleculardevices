@@ -120,25 +120,58 @@ export function buildHero(block) {
   });
 
   function buildOrderingForm() {
+    function openDropdownMenu() {
+      document.getElementById('myDropdown').classList.toggle('show');
+    }
+    window.onclick = function CloseDropDownMenu(event) {
+      if (!event.target.matches('.drop-down')) {
+        const dropdowns = document.getElementsByClassName('product-options-content');
+        let i;
+        // eslint-disable-next-line no-plusplus
+        for (i = 0; i < dropdowns.length; i++) {
+          const openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    };
+
     const orderContainer = document.createElement('div');
     orderContainer.classList.add('order-container');
     container.appendChild(orderContainer);
 
-    const selectList = document.createElement('select');
-    selectList.id = 'ordering-options';
+    const selectList = document.createElement('button');
+    selectList.innerHTML = 'Product Options';
+    selectList.onclick = () => openDropdownMenu();
+    selectList.classList.add('drop-down');
     orderContainer.appendChild(selectList);
-    const option1 = document.createElement('option');
-    option1.value = 'product option';
-    option1.text = 'Product Option';
-    selectList.appendChild(option1);
 
-    const selectList2 = document.createElement('select');
-    selectList2.id = 'select-variation';
+    const productOptionsContent = document.createElement('div');
+    productOptionsContent.classList.add('product-options-content');
+    productOptionsContent.id = 'myDropdown';
+    orderContainer.appendChild(productOptionsContent);
+
+    const option1 = document.createElement('a');
+    option1.innerHTML = 'Option 1';
+    option1.classList.add('option');
+    productOptionsContent.appendChild(option1);
+
+    const selectList2 = document.createElement('button');
+    selectList2.innerHTML = 'Select Variant';
+    selectList2.onclick = () => openDropdownMenu();
+    selectList2.classList.add('drop-down');
     orderContainer.appendChild(selectList2);
-    const option2 = document.createElement('option');
-    option2.value = 'select variation';
-    option2.text = 'Select Variation';
-    selectList2.appendChild(option2);
+
+    const selectVariantDropDown = document.createElement('div');
+    selectVariantDropDown.classList.add('product-options-content');
+    selectVariantDropDown.id = 'myDropdown';
+    orderContainer.appendChild(selectVariantDropDown);
+
+    const option2 = document.createElement('a');
+    option2.innerHTML = 'Option 2';
+    option2.classList.add('option');
+    selectVariantDropDown.appendChild(option2);
 
     const priceLabel = document.createElement('label');
     priceLabel.classList.add('price-label');
