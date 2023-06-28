@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { detectStore, formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
@@ -210,7 +211,7 @@ export function buildHero(block) {
     // Create the quantity number display
     const quantityNumber = document.createElement('span');
     quantityNumber.classList.add('quantity-number');
-    quantityNumber.innerHTML = '1';
+    quantityNumber.innerHTML = '0';
     quantityContainer.appendChild(quantityNumber);
 
     const increaseButton = document.createElement('a');
@@ -218,6 +219,21 @@ export function buildHero(block) {
     increaseButton.innerHTML = '+';
     quantityContainer.appendChild(increaseButton);
 
+    // Increase button event listener
+    increaseButton.addEventListener('click', () => {
+      let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
+      currentQuantity++;
+      quantityNumber.innerHTML = currentQuantity;
+    });
+
+    // Decrease button event listener
+    decreaseButton.addEventListener('click', () => {
+      let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
+      if (currentQuantity > 0) {
+        currentQuantity--;
+        quantityNumber.innerHTML = currentQuantity;
+      }
+    });
     const addToCart = document.createElement('button');
     addToCart.classList.add('add-to-cart');
     addToCart.innerHTML = 'Add to cart';
