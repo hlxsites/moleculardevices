@@ -1,3 +1,8 @@
+main .section.hero-video-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 main .hero-video-wrapper {
   position: relative;
   width: 100% !important;

@@ -9,7 +9,8 @@ main div.carousel-wrapper.news-carousel-wrapper {
 }
 
 main .carousel.news-carousel {
-  padding: 0 calc((100vw - var(--news-items) * var(--news-item-width) - ((var(--news-items) - 1) * 20px)) / 2);
+  padding-left: calc((100vw - var(--news-items) * var(--news-item-width) - ((var(--news-items) - 1) * 20px)) / 2);
+  padding-right: calc((100vw - var(--news-items) * var(--news-item-width) - ((var(--news-items) - 1) * 20px)) / 2);
 }
 
 main .news-carousel .carousel-item {
