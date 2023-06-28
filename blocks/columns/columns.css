@@ -24,6 +24,10 @@ main .section>div.columns-wrapper {
   margin-top: 0;
 }
 
+.columns.center {
+  text-align: center;
+}
+
 .columns.line > div {
   flex-wrap: wrap;
   padding: 40px 0;
@@ -254,10 +258,6 @@ main .section>div.columns-wrapper {
   margin-bottom: 18px;
 }
 
-.columns.collaboration {
-  text-align: center;
-}
-
 .columns.collaboration .picture {
   justify-content: center;
   display: flex;
@@ -337,7 +337,6 @@ main .section>div.columns-wrapper {
 
 .section .columns.image-figure > div p.picture,
 .section .columns.image-figure > div p.picture ~ p {
-  text-align: center;
   font-size: var(--body-font-size-l);
 }
 
