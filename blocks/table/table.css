@@ -54,6 +54,10 @@ table td.vertical-align-bottom {
   vertical-align: bottom;
 }
 
+table i.fa.fa-circle {
+  font-size: 8px;
+}
+
 .options-compare table {
   font-size: small;
 }
