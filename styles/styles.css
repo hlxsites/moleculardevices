@@ -510,6 +510,12 @@ main .section>div {
   }
 }
 
+@media (max-width: 767px) {
+  main .section.wavecarousel {
+    padding-top: 200px;
+  }
+}
+
 /* Marked as !important as these should not get overriden */
 main .section.hero-container,
 main .section.hero-advanced-container,
@@ -576,7 +582,8 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr;
-    padding: 0 calc((100vw - 750px) / 2);
+    padding-left: calc((100vw - 750px) / 2);
+    padding-right: calc((100vw - 750px) / 2);
   }
 
   main .section.background-molecules .columns.columns-2-cols > div {
@@ -591,7 +598,8 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr 1fr;
-    padding: 0 calc((100vw - 970px) / 2);
+    padding-left: calc((100vw - 970px) / 2);
+    padding-right: calc((100vw - 970px) / 2);
   }
 }
 
@@ -602,7 +610,8 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr 1fr;
-    padding: 0 calc((100vw - 1170px) / 2);
+    padding-left: calc((100vw - 1170px) / 2);
+    padding-right: calc((100vw - 1170px) / 2);
   }
 }
 
@@ -814,7 +823,7 @@ main .section.features-section .button-container {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .section.features-section {
     padding-top: 30px;
   }
@@ -969,8 +978,6 @@ main div.section.wave {
   align-items: center;
   justify-content: center;
   overflow: visible;
-  padding-bottom: 0;
-  padding-top: 0;
   color: var(--text-white);
   text-align: center;
   clear: both;
@@ -989,6 +996,8 @@ main div.section.wave::after {
   margin: 0 0 -1px;
   background-position: bottom center;
   display: block;
+  position: relative;
+  bottom: -50px;
   width: 100%;
   content: "";
   flex-basis: 100%;
@@ -996,7 +1005,7 @@ main div.section.wave::after {
 }
 
 main div.section.wave .default-content-wrapper {
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 0 15px;
   padding-right: 15px;
 }
@@ -1031,7 +1040,6 @@ main div.section.wave .default-content-wrapper p:first-of-type {
 /* BlueGreen Variant */
 main div.section.wave.bluegreen {
   background-size: 100% 100%;
-  padding: 30px 0;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper {
@@ -1073,7 +1081,7 @@ main div.section.wave.bluegreen2::after {
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .section.bluegreen {
     background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
     background-image: none;
@@ -1180,7 +1188,7 @@ main .section.background-molecules {
   background-size: auto 90px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .section .default-content-wrapper {
     padding: 0 15px;
     overflow: hidden;
@@ -1382,6 +1390,13 @@ main .section[aria-hidden="true"] {
 
 .application .section h2 {
   font-size: 36px;
+}
+
+.products .section > div,
+.technology .section > div,
+.application .section > div {
+  padding-bottom: 20px;
+  padding-top: 20px
 }
 
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
