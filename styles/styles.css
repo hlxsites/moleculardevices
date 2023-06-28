@@ -488,7 +488,7 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section:not(.hero-video-container) {
+main .section {
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -499,7 +499,7 @@ main .section>div {
 }
 
 @media (max-width: 991px) {
-  main .section:not(.hero-video-container) {
+  main .section {
     padding-top: 20px;
     padding-bottom: 20px;
   }
