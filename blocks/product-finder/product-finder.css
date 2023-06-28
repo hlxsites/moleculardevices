@@ -124,6 +124,7 @@
 }
 
 .product-finder-container .card {
+  height: auto;
   width: 23%;
 }
 
@@ -209,8 +210,8 @@
 }
 
 .product-finder-container #step-3 .card-thumb {
-  height: 240px;
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: block;
   width: 100%;
   overflow: hidden;
