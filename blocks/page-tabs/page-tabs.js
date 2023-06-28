@@ -96,7 +96,7 @@ export default function decorate(block) {
 
     const targetTabName = findIdTabName(activeHash, block);
 
-    let targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
+    const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
     if (!targetTab) {
       return;
     }
@@ -109,25 +109,8 @@ export default function decorate(block) {
 
       return;
     }
-    if (!targetTab) {
-      console.log('not matching tab, hash:', rawActiveHash);
-      const hashElement = document.querySelector(rawActiveHash);
-      const tab = hashElement.closest('.tabs');
-      console.log('not matching tab, tab:', tab, hashElement);
-      const tabName = tab.getAttribute('aria-labelledby');
-      targetTab = block.querySelector(`a[href="#${tabName}"]`);
-      console.log('not matching tab name', tabName, targetTab);
 
-      openTab(targetTab);
-      setTimeout(() => {
-        hashElement.scrollIntoView();
-      }, 1000);
-
-      return;
-    }
-
-
-    // scroll conent into view
+    // scroll content into view
     const firstVisibleSection = main.querySelector(`div.section[aria-labelledby="${activeHash}"]`);
     if (!firstVisibleSection) return;
 
