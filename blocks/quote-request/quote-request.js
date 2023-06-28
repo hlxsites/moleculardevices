@@ -8,12 +8,12 @@ const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
 
-export async function rfqData(pid) {
+export async function getRFQData(pid) {
   if (pid) {
     const productRfq = await ffetch('/query-index.json')
       .sheet('rfq')
       .withFetch(fetch)
-      .filter(({ familyID }) => familyID.includes(pid))
+      .filter(({ familyID }) => familyID === pid)
       .first();
     return productRfq;
   }
@@ -214,7 +214,7 @@ function stepTwo(e) {
   const fetchRQFTypes = createRFQListBox(filterData, stepNum, stepThree);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3('Please select the Instrument category'));
+  root.appendChild(h3(`Please select the ${tab} category`));
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
   root.appendChild(createBackBtn(stepNum));
@@ -242,17 +242,17 @@ export default async function decorate(block) {
     );
   } else {
     const queryParams = new URLSearchParams(window.location.search);
-    const prfdData = await rfqData(queryParams.get('pid'));
+    const rfqData = await getRFQData(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
-    if (prfdData) {
+    if (rfqData) {
       block.appendChild(
         div({
           id: 'step-3',
           class: 'rfq-product-wrapper request-quote-form hide-back-btn',
         }),
       );
-      loadIframeForm('step-3', prfdData, 'Product');
+      loadIframeForm('step-3', rfqData, 'Product');
     } else {
       block.appendChild(
         div(
