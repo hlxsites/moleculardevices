@@ -129,8 +129,14 @@
 
 @media (max-width: 992px) {
   .product-finder-container .card {
-    width: 48%;
+    flex-basis: 45%;
   }
+}
+
+@media (max-width: 1200px) {
+  .product-finder-container .card {
+    width: 20%;
+  } 
 }
 
 .product-finder-container .card-caption {
@@ -158,7 +164,6 @@
 .product-finder-container .icon-card {
   display: flex;
   flex-direction: column;
-  flex: 1;
   height: unset;
   min-height: 1px;
   min-width: 1px;
