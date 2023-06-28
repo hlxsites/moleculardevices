@@ -214,7 +214,7 @@ function stepTwo(e) {
   const fetchRQFTypes = createRFQListBox(filterData, stepNum, stepThree);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3('Please select the Instrument category'));
+  root.appendChild(h3(`Please select the ${tab} category`));
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
   root.appendChild(createBackBtn(stepNum));
