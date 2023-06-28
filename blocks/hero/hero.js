@@ -55,6 +55,13 @@ export function buildHero(block) {
   const container = document.createElement('div');
   container.classList.add('container');
 
+  if (detectStore()) {
+    const buttonContainer = document.querySelector('.button-container');
+    if (buttonContainer) {
+      buttonContainer.parentElement.removeChild(buttonContainer);
+    }
+  }
+
   let picture = block.querySelector('picture');
   if (picture) {
     const originalHeroBg = picture.lastElementChild;
@@ -74,17 +81,6 @@ export function buildHero(block) {
     inner.prepend(picture.parentElement);
   } else {
     inner.classList.add('white-bg');
-  }
-
-  // check if block containt Orange Buttons
-  const orangeButtons = block.classList.contains('orange-buttons');
-  if (orangeButtons) {
-    if (detectStore()) {
-      const buttonContainer = document.querySelector('.button-container');
-      if (buttonContainer) {
-        buttonContainer.remove();
-      }
-    }
   }
 
   const rows = block.children.length;
@@ -122,6 +118,20 @@ export function buildHero(block) {
       row.remove();
     }
   });
+
+  function buildOrderingForm() {
+    const orderContainer = document.createElement('div');
+    orderContainer.classList.add('order-container');
+    container.appendChild(orderContainer);
+  }
+
+  // check if block containt Orange Buttons
+  const orangeButtons = block.classList.contains('orange-buttons');
+  if (orangeButtons) {
+    if (detectStore()) {
+      buildOrderingForm();
+    }
+  }
 
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');

@@ -126,6 +126,13 @@ main .section .hero-advanced-wrapper {
   font-size: var(--body-font-size-m);
 }
 
+.order-container {
+  width: 900px;
+  height: 500px;
+  background: #e31c3d;
+  position: relative;
+}
+
 .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 30px;
