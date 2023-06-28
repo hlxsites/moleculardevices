@@ -123,6 +123,64 @@ export function buildHero(block) {
     const orderContainer = document.createElement('div');
     orderContainer.classList.add('order-container');
     container.appendChild(orderContainer);
+
+    const selectList = document.createElement('select');
+    selectList.id = 'ordering-options';
+    orderContainer.appendChild(selectList);
+    const option1 = document.createElement('option');
+    option1.value = 'product option';
+    option1.text = 'Product Option';
+    selectList.appendChild(option1);
+
+    const selectList2 = document.createElement('select');
+    selectList2.id = 'select-variation';
+    orderContainer.appendChild(selectList2);
+    const option2 = document.createElement('option');
+    option2.value = 'select variation';
+    option2.text = 'Select Variation';
+    selectList2.appendChild(option2);
+
+    const priceLabel = document.createElement('label');
+    priceLabel.classList.add('price-label');
+    priceLabel.innerHTML = 'PRICE';
+    orderContainer.appendChild(priceLabel);
+
+    const quantityLabel = document.createElement('label');
+    quantityLabel.classList.add('quantity-label');
+    quantityLabel.innerHTML = 'QUANTITY';
+    orderContainer.appendChild(quantityLabel);
+
+    const price = document.createElement('span');
+    price.classList.add('price');
+    price.innerHTML = '$ 0.00';
+    orderContainer.appendChild(price);
+
+    // Create the quantity container
+    const quantityContainer = document.createElement('div');
+    quantityContainer.classList.add('quantity-container');
+    orderContainer.appendChild(quantityContainer);
+
+    // Create the decrease button
+    const decreaseButton = document.createElement('a');
+    decreaseButton.classList.add('quantity-button');
+    decreaseButton.innerHTML = '-';
+    quantityContainer.appendChild(decreaseButton);
+
+    // Create the quantity number display
+    const quantityNumber = document.createElement('span');
+    quantityNumber.classList.add('quantity-number');
+    quantityNumber.innerHTML = '1';
+    quantityContainer.appendChild(quantityNumber);
+
+    const increaseButton = document.createElement('a');
+    increaseButton.classList.add('quantity-button');
+    increaseButton.innerHTML = '+';
+    quantityContainer.appendChild(increaseButton);
+
+    const addToCart = document.createElement('button');
+    addToCart.classList.add('add-to-cart');
+    addToCart.innerHTML = 'Add to cart';
+    orderContainer.appendChild(addToCart);
   }
 
   // check if block containt Orange Buttons

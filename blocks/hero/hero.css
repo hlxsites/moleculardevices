@@ -127,10 +127,103 @@ main .section .hero-advanced-wrapper {
 }
 
 .order-container {
-  width: 900px;
-  height: 500px;
-  background: #e31c3d;
+  width: 1140px;
+  height: 280px;
   position: relative;
+  border: 3px solid red;
+}
+
+.order-container select {
+  position: relative;
+  width: 500px;
+  height: 60px;
+  background-color: transparent;
+  font-size: large;
+  font-family: var(--body-font-size-m);
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.order-container select:nth-child(2) {
+  color: var( --dark-gray-background-color);
+}
+
+.price-label {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--ff-proxima-xbold);
+}
+
+.price {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 25px;
+  font-family: var(--ff-proxima-xbold);
+}
+
+.add-to-cart {
+  width: 100px;
+  height: 50px;
+  background-color: var(--button-bg-color);
+  color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+  transform: all .3s ease-in-out;
+}
+
+.add-to-cart:hover {
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+.quantity-label {
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 540px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--ff-proxima-xbold);
+}
+
+.quantity-container {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 540px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--dark-gray-background-color);
+  font-family: var(--ff-proxima-light);
+}
+
+.quantity-button{
+  border: 1px solid gray;
+  color: black;
+  font-size: 30px;
+  width: 55px !important;
+  height: 55px !important;
+  padding-top: 5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.quantity-number {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  font-size: 30px;
+  padding-top: 10px;
+  width: 70px;
+  height: 55px;
+  text-align: center;
+  font-family: var(--ff-proxima-regular);
 }
 
 .hero-inner .container > div:nth-child(2) {
