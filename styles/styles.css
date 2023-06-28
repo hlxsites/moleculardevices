@@ -488,12 +488,22 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
+main .section:not(.hero-video-container) {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 main .section>div {
   margin: 0 auto;
   padding: 0 15px;
 }
 
 @media (max-width: 991px) {
+  main .section:not(.hero-video-container) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
   main .section .default-content-wrapper {
     padding-left: 15px;
     padding-right: 15px;
@@ -1338,12 +1348,6 @@ main .section[aria-hidden="true"] {
   }
 }
 
-.product main .section,
-.application main .section {
-  padding-top: 100px;
-  padding-bottom: 60px;
-}
-
 @media only screen and (max-width: 991px) {
   .product main .section {
     padding: 67px 0 70px;
@@ -1382,17 +1386,6 @@ main .section[aria-hidden="true"] {
 
 .application .section h2 {
   font-size: 36px;
-}
-
-.technology .section.tabs,
-.application .section.tabs {
-  padding-top: 67px;
-}
-
-.technology .section > div,
-.application .section > div {
-  padding-bottom: 40px;
-  padding-top: 60px
 }
 
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1518,8 +1511,8 @@ main .section[aria-hidden="true"] {
 }
 
 .service-support main .section.media-gallery-container {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   
 }
 
