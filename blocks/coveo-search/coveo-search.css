@@ -114,10 +114,6 @@
 }
 
 /* COVEO MAIN SECTION */
-.coveo-main-section-wrapper {
-  margin-top: 50px;
-}
-
 .coveo-main-title {
   font-size: 36px;
   color: var(--text-green);
