@@ -85,6 +85,14 @@ function buildActionableCardSubmenu(actionableCardContent) {
   return actionableCardContent;
 }
 
+function buildImageCardSubmenu(content) {
+  const link = content.querySelector('div a');
+  const picture = content.querySelector('div picture');
+  if (link && picture) {
+    wrapLinkAroundComponent(link, picture, false);
+  }
+}
+
 function buildImageWithTextSubmenu(imageWithTextContent) {
   return imageWithTextContent;
 }
@@ -96,6 +104,7 @@ function getRightSubmenuBuilder(className) {
   map.set('large-card-submenu', buildLargeCardsMenu);
   map.set('actionable-card-submenu', buildActionableCardSubmenu);
   map.set('image-with-text-submenu', buildImageWithTextSubmenu);
+  map.set('image-card-submenu', buildImageCardSubmenu);
   return map.get(className);
 }
 
