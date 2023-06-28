@@ -130,7 +130,7 @@ class LeadershipModal {
         prevText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', endPoint);
         nextText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', index + 1);
       } else if (index === endPoint) {
-        prevText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', index);
+        prevText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', index - 1);
         nextText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', startPoint);
       } else {
         prevText = LeadershipModal.getTextFromArrTag(this.leaderCardItems, 'h2', index - 1);
