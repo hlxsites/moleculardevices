@@ -23,6 +23,10 @@
   justify-content: center;
 }
 
+.cards.who-we-are a {
+  color: black;
+}
+
 .cards.who-we-are ul > li {
   border: 0;
   text-align: center;
@@ -64,7 +68,7 @@
   visibility: visible;
 }
 
-.cards.who-we-are ul > li .cards-card-body:first-child > p > picture img {
+.cards.who-we-are ul > li .cards-card-body:first-child img {
   aspect-ratio: auto;
   width: 152px;
   display: block;
