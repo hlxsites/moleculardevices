@@ -26,7 +26,8 @@ function renderIconItem(item, progressStep, callback) {
         class: 'icon-link',
         id: item.id,
         href: progressStep === 'step-1' ? '#step-2' : '#step-3',
-        'data-tab': item.title,
+        'data-tab': item.type,
+        'data-title': item.title,
         onclick: callback,
       },
       span({ class: 'icon-img' },
@@ -48,8 +49,8 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
   });
 
   listArr.forEach((item) => {
-    item.title = progressStep === `${STEP_PREFIX}-1` ? item.type : item.category;
-    item.id = toClassName(item.title);
+    item.title = progressStep === `${STEP_PREFIX}-1` ? item.title : item.category;
+    item.id = toClassName(item.type);
   });
 
   const cardRenderer = await createCard({
@@ -107,6 +108,11 @@ function getTabName(el) {
   return linkEl.getAttribute('data-tab');
 }
 
+function getTabTitle(el) {
+  const linkEl = el.classList.contains('.icon-link') ? el : el.closest('.icon-link');
+  return linkEl.getAttribute('data-title');
+}
+
 function switchTab(tab, stepNum, prevStepNum, title) {
   const root = document.getElementById(stepNum);
   const prevRoot = document.getElementById(prevStepNum);
@@ -142,15 +148,10 @@ async function getCategories(tab) {
 }
 
 async function getProducts(filterType, filterCategory) {
-  let mappedType = filterType;
-  if (mappedType === 'Accessories &amp; Consumables') {
-    mappedType = 'Labware';
-  }
-
   return ffetch('/query-index.json')
     .sheet('product-finder')
     .withFetch(fetch)
-    .filter(({ productType }) => productType.includes(mappedType))
+    .filter(({ productType }) => productType.includes(filterType))
     .filter(({ category }) => category.includes(filterCategory))
     .all();
 }
@@ -162,11 +163,24 @@ async function stepThree(e) {
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  const type = document.querySelector('.progress-step-1 + span > .step-custom-text > strong').innerHTML;
-  const category = getTabName(e.target);
+  const type = getTabName(e.target);
+  const category = getTabTitle(e.target);
   const root = switchTab(category, stepNum, prevStepNum, 'Select Product');
 
+  root.setAttribute('data-type', type);
+  root.setAttribute('data-category', category);
+
   const dataCardType = getListIdentifier(`${type}-${category}-products`);
+  const lists = root.querySelectorAll('.product-finder-list');
+  lists.forEach((list) => {
+    const listCardType = list.attributes['data-card-type'].value;
+    if (listCardType !== dataCardType) {
+      list.remove();
+      const count = root.querySelector(`.result-count[data-card-type="${listCardType}"]`);
+      count.remove();
+    }
+  });
+
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
@@ -191,8 +205,11 @@ async function stepThree(e) {
     });
   }
 
+  const count = root.querySelector(`.result-count[data-card-type="${dataCardType}"]`);
+  if (count) count.remove();
+
   const totalCount = span(
-    { class: 'result-count' },
+    { class: 'result-count', 'data-card-type': dataCardType },
     `${list.children.length} Results`,
   );
 
@@ -205,9 +222,10 @@ async function stepTwo(e) {
   e.preventDefault();
 
   const type = getTabName(e.target);
+  const title = getTabTitle(e.target);
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
-  const root = switchTab(type, stepNum, prevStepNum, 'Select tab Category');
+  const root = switchTab(title, stepNum, prevStepNum, 'Select tab Category');
 
   // generate the icons only once
   const dataCardType = getListIdentifier(`${type}`);
