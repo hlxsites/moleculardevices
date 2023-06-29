@@ -123,11 +123,23 @@ export function buildHero(block) {
   });
 
   function buildOrderingForm(options, variants) {
-    let selectedOption = null; // Variable to store the selected option
+    let selectedOption = null;
+    let selectedVariant = null;
+
+    function checkOptionValidity() {
+      if (selectedOption === 'Product Options') {
+        const variantsList = document.getElementById('variantsList');
+        variantsList.classList.add('not-allowed');
+      }
+      else if (selectedOption !== 'Product Options') {
+        const variantsList = document.getElementById('variantsList');
+        variantsList.classList.add('allowed');
+      }
+    }
 
     function openDropdownMenu(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
-      if (dropdown && (optionsList.innerHTML !== 'Product Options')) {
+      if (dropdown && optionsList.innerHTML !== 'Product Options') {
         dropdown.classList.toggle('show');
         if (dropdownId === 'variantsDropdown') {
           dropdown.style.left = '550px';
@@ -135,16 +147,29 @@ export function buildHero(block) {
       } else if (dropdownId === 'optionsDropdown') {
         dropdown.classList.toggle('show');
       }
+      checkOptionValidity();
     }
 
     function handleOptionSelection(option) {
       selectedOption = option;
+      checkOptionValidity(selectedOption);
       updateDropdownInnerHTML();
+    }
+
+    function handleVariantSelection(variant) {
+      selectedVariant = variant;
+      updateVariantsDropdownLabel();
     }
 
     function updateDropdownInnerHTML() {
       if (optionsList) {
-        optionsList.innerHTML = selectedOption || 'Product Options';
+        optionsList.innerHTML = selectedOption;
+      }
+    }
+
+    function updateVariantsDropdownLabel() {
+      if (variantsList) {
+        variantsList.innerHTML = selectedVariant;
       }
     }
 
@@ -201,6 +226,7 @@ export function buildHero(block) {
       const variant = document.createElement('a');
       variant.innerHTML = variants[i];
       variant.classList.add('option');
+      variant.addEventListener('click', () => handleVariantSelection(variants[i]));
       variantsContent.appendChild(variant);
     }
 
