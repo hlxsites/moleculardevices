@@ -122,6 +122,12 @@ export function buildHero(block) {
     }
   });
 
+  //Todo 
+  // remove US cookie when finished
+  // add to cart button functionality
+  // price calculation
+  // add real data to options and variants
+
   function buildOrderingForm(options, variants) {
     let selectedOption = null;
     let selectedVariant = null;
@@ -129,7 +135,9 @@ export function buildHero(block) {
     function checkOptionValidity() {
       if (selectedOption === 'Product Options') {
         const variantsList = document.getElementById('variantsList');
-        variantsList.classList.add('not-allowed');
+        variantsList.classList.toggle('not-allowed');
+        selectedVariant = 'Select Variant';
+        updateVariantsDropdownLabel();
       }
       else if (selectedOption !== 'Product Options') {
         const variantsList = document.getElementById('variantsList');
@@ -152,8 +160,8 @@ export function buildHero(block) {
 
     function handleOptionSelection(option) {
       selectedOption = option;
-      checkOptionValidity(selectedOption);
       updateDropdownInnerHTML();
+      checkOptionValidity();
     }
 
     function handleVariantSelection(variant) {
