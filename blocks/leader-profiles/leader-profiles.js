@@ -177,19 +177,21 @@ class LeadershipModal {
     this.modalOverlay.classList.add('show');
     document.getElementById(index).classList.add('active');
 
-    const modalNavObserver = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        entries.forEach((entry) => {
-          modalNavObserver.disconnect();
-          entry.target.addEventListener('click', () => {
-            this.modalNavHandler(entry.target);
+    if (this.modal && this.modal.getAttribute('data-modal-status') !== 'loaded') {
+      const modalNavObserver = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          entries.forEach((entry) => {
+            modalNavObserver.disconnect();
+            entry.target.addEventListener('click', () => {
+              this.modalNavHandler(entry.target);
+            });
           });
-        });
-      }
-    });
-
-    const modalSlides = document.querySelectorAll('[data-slide]');
-    modalSlides.forEach((item) => modalNavObserver.observe(item));
+        }
+      });
+      const modalSlides = document.querySelectorAll('[data-slide]');
+      modalSlides.forEach((item) => modalNavObserver.observe(item));
+      this.modal.setAttribute('data-modal-status', 'loaded');
+    }
   }
 
   modalNavHandler(dataSlide) {
