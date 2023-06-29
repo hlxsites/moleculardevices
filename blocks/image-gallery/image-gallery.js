@@ -27,6 +27,7 @@ export default async function decorate(block) {
   close.addEventListener('click', () => {
     wrapper.parentElement.classList.remove('overlay');
     body.classList.remove('no-scroll');
+    block.scrollIntoView({ behavior: 'instant', block: 'center' });
   });
   wrapper.append(close, right, left);
   [...block.children].forEach((row, i) => {
