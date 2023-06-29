@@ -758,6 +758,15 @@ main .section .default-content-wrapper h2:only-child {
   padding-bottom: 10px;
 }
 
+main .section .default-content-wrapper p.button-container {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+main .section .default-content-wrapper p.button-container + p.button-container {
+  margin-left: 20px;
+}
+
 main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
@@ -835,6 +844,14 @@ main .section.features-section .button-container {
   main .section.features-section .default-content-wrapper em {
     width: 100%;
     padding: 0 15px;
+  }
+
+  main .section .default-content-wrapper p.button-container {
+    display: block;
+  }
+
+  main .section .default-content-wrapper p.button-container + p.button-container {
+    margin-left: 0;
   }
 }
 
@@ -1132,11 +1149,6 @@ main div.section.wave.wavecarousel.bluegreen {
 }
 
 /* Orange Buttons */
-main div.orange-buttons p.button-container {
-  display: inline-block;
-  margin-top: 20px;
-}
-
 main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
@@ -1162,7 +1174,6 @@ main div.orange-buttons .button.secondary:visited {
   background: transparent;
   border: 2px solid #fff;
   text-transform: none;
-  margin-left: 20px;
 }
 
 main div.orange-buttons .button.secondary:hover,
@@ -1199,10 +1210,6 @@ main .section.background-molecules {
     height: 50px;
   }
 
-  main div.orange-buttons p.button-container {
-    display: block;
-  }
-
   main div.orange-buttons .button {
     min-width: 140px;
     max-width: 200px;
@@ -1210,12 +1217,6 @@ main .section.background-molecules {
     font-size: 12px;
     padding: 9px 12px 10px;
     height: 37px;
-  }
-
-  main div.orange-buttons .button.secondary:link,
-  main div.orange-buttons .button.secondary:visited {
-    margin-left: unset;
-    margin-top: 20px;
   }
 
   /* ------ */
