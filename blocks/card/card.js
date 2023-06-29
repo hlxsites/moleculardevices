@@ -90,6 +90,9 @@ class Card {
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
     }
+    if (item.c2aLinkConfig) {
+      c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
+    }
     if (this.c2aLinkStyle) {
       c2aLinkBlock.classList.remove('button', 'primary');
       c2aLinkBlock.append(
