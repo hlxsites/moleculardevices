@@ -1,6 +1,8 @@
 /* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
-import { detectStore, formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
+import {
+  detectStore, formatDate, isVideo, videoButton,
+} from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
@@ -121,13 +123,28 @@ export function buildHero(block) {
   });
 
   function buildOrderingForm(options, variants) {
+    let selectedOption = null; // Variable to store the selected option
+
     function openDropdownMenu(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
-      if (dropdown) {
+      if (dropdown && (optionsList.innerHTML !== 'Product Options')) {
         dropdown.classList.toggle('show');
         if (dropdownId === 'variantsDropdown') {
           dropdown.style.left = '550px';
         }
+      } else if (dropdownId === 'optionsDropdown') {
+        dropdown.classList.toggle('show');
+      }
+    }
+
+    function handleOptionSelection(option) {
+      selectedOption = option;
+      updateDropdownInnerHTML();
+    }
+
+    function updateDropdownInnerHTML() {
+      if (optionsList) {
+        optionsList.innerHTML = selectedOption || 'Product Options';
       }
     }
 
@@ -135,7 +152,6 @@ export function buildHero(block) {
       if (!event.target.matches('.drop-down')) {
         const dropdowns = document.getElementsByClassName('product-options-content');
         let i;
-        // eslint-disable-next-line no-plusplus
         for (i = 0; i < dropdowns.length; i++) {
           const openDropdown = dropdowns[i];
           if (openDropdown.classList.contains('show')) {
@@ -151,7 +167,7 @@ export function buildHero(block) {
 
     // Options dropdown
     const optionsList = document.createElement('button');
-    optionsList.innerHTML = 'Options';
+    optionsList.innerHTML = 'Product Options';
     optionsList.onclick = () => openDropdownMenu('optionsDropdown');
     optionsList.classList.add('drop-down');
     orderContainer.appendChild(optionsList);
@@ -165,12 +181,13 @@ export function buildHero(block) {
       const option = document.createElement('a');
       option.innerHTML = options[i];
       option.classList.add('option');
+      option.addEventListener('click', () => handleOptionSelection(options[i]));
       optionsContent.appendChild(option);
     }
-
     // Variants dropdown
     const variantsList = document.createElement('button');
-    variantsList.innerHTML = 'Variants';
+    variantsList.innerHTML = 'Select Variation';
+    variantsList.id = 'variantsList';
     variantsList.onclick = () => openDropdownMenu('variantsDropdown');
     variantsList.classList.add('drop-down');
     orderContainer.appendChild(variantsList);
@@ -244,8 +261,8 @@ export function buildHero(block) {
   const orangeButtons = block.classList.contains('orange-buttons');
   if (orangeButtons) {
     if (detectStore()) {
-      const options = ['Option 1', 'Option 2', 'Option 3'];
-      const variants = ['Variant 1', 'Variant 2', 'Variant 3'];
+      const options = ['Product Options', 'Option 1', 'Option 2'];
+      const variants = ['Select Variant', 'Variant 1', 'Variant 2'];
       buildOrderingForm(options, variants);
     }
   }

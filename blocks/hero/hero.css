@@ -157,6 +157,10 @@ main .section .hero-advanced-wrapper {
   filter: grayscale(100%);
 }
 
+.not-allowed {
+  cursor: not-allowed !important;
+}
+
 .product-options-content {
   display: none;
   position: absolute;
