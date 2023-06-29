@@ -120,13 +120,12 @@ export function buildHero(block) {
     }
   });
 
-  function buildOrderingForm() {
-
+  function buildOrderingForm(options, variants) {
     function openDropdownMenu(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
       if (dropdown) {
         dropdown.classList.toggle('show');
-        if (dropdownId === 'selectVariantDropdown') {
+        if (dropdownId === 'variantsDropdown') {
           dropdown.style.left = '550px';
         }
       }
@@ -150,37 +149,43 @@ export function buildHero(block) {
     orderContainer.classList.add('order-container');
     container.appendChild(orderContainer);
 
-    const selectList = document.createElement('button');
-    selectList.innerHTML = 'Product Options';
-    selectList.onclick = () => openDropdownMenu('myDropdown');
-    selectList.classList.add('drop-down');
-    orderContainer.appendChild(selectList);
+    // Options dropdown
+    const optionsList = document.createElement('button');
+    optionsList.innerHTML = 'Options';
+    optionsList.onclick = () => openDropdownMenu('optionsDropdown');
+    optionsList.classList.add('drop-down');
+    orderContainer.appendChild(optionsList);
 
-    const productOptionsContent = document.createElement('div');
-    productOptionsContent.classList.add('product-options-content');
-    productOptionsContent.id = 'myDropdown';
-    orderContainer.appendChild(productOptionsContent);
+    const optionsContent = document.createElement('div');
+    optionsContent.classList.add('product-options-content');
+    optionsContent.id = 'optionsDropdown';
+    orderContainer.appendChild(optionsContent);
 
-    const option1 = document.createElement('a');
-    option1.innerHTML = 'Option 1';
-    option1.classList.add('option');
-    productOptionsContent.appendChild(option1);
+    for (let i = 0; i < options.length; i++) {
+      const option = document.createElement('a');
+      option.innerHTML = options[i];
+      option.classList.add('option');
+      optionsContent.appendChild(option);
+    }
 
-    const selectList2 = document.createElement('button');
-    selectList2.innerHTML = 'Select Variant';
-    selectList2.onclick = () => openDropdownMenu('selectVariantDropdown');
-    selectList2.classList.add('drop-down');
-    orderContainer.appendChild(selectList2);
+    // Variants dropdown
+    const variantsList = document.createElement('button');
+    variantsList.innerHTML = 'Variants';
+    variantsList.onclick = () => openDropdownMenu('variantsDropdown');
+    variantsList.classList.add('drop-down');
+    orderContainer.appendChild(variantsList);
 
-    const selectVariantDropDown = document.createElement('div');
-    selectVariantDropDown.classList.add('product-options-content');
-    selectVariantDropDown.id = 'selectVariantDropdown'; // Unique ID for the select variant dropdown
-    orderContainer.appendChild(selectVariantDropDown);
+    const variantsContent = document.createElement('div');
+    variantsContent.classList.add('product-options-content');
+    variantsContent.id = 'variantsDropdown';
+    orderContainer.appendChild(variantsContent);
 
-    const option2 = document.createElement('a');
-    option2.innerHTML = 'Option 2';
-    option2.classList.add('option');
-    selectVariantDropDown.appendChild(option2);
+    for (let i = 0; i < variants.length; i++) {
+      const variant = document.createElement('a');
+      variant.innerHTML = variants[i];
+      variant.classList.add('option');
+      variantsContent.appendChild(variant);
+    }
 
     const priceLabel = document.createElement('label');
     priceLabel.classList.add('price-label');
@@ -197,18 +202,15 @@ export function buildHero(block) {
     price.innerHTML = '$ 0.00';
     orderContainer.appendChild(price);
 
-    // Create the quantity container
     const quantityContainer = document.createElement('div');
     quantityContainer.classList.add('quantity-container');
     orderContainer.appendChild(quantityContainer);
 
-    // Create the decrease button
     const decreaseButton = document.createElement('a');
     decreaseButton.classList.add('quantity-button');
     decreaseButton.innerHTML = '-';
     quantityContainer.appendChild(decreaseButton);
 
-    // Create the quantity number display
     const quantityNumber = document.createElement('span');
     quantityNumber.classList.add('quantity-number');
     quantityNumber.innerHTML = '0';
@@ -219,14 +221,12 @@ export function buildHero(block) {
     increaseButton.innerHTML = '+';
     quantityContainer.appendChild(increaseButton);
 
-    // Increase button event listener
     increaseButton.addEventListener('click', () => {
       let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
       currentQuantity++;
       quantityNumber.innerHTML = currentQuantity;
     });
 
-    // Decrease button event listener
     decreaseButton.addEventListener('click', () => {
       let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
       if (currentQuantity > 0) {
@@ -244,7 +244,9 @@ export function buildHero(block) {
   const orangeButtons = block.classList.contains('orange-buttons');
   if (orangeButtons) {
     if (detectStore()) {
-      buildOrderingForm();
+      const options = ['Option 1', 'Option 2', 'Option 3'];
+      const variants = ['Variant 1', 'Variant 2', 'Variant 3'];
+      buildOrderingForm(options, variants);
     }
   }
 
