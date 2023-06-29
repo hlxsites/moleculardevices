@@ -143,32 +143,13 @@ main .section .hero-advanced-wrapper {
   background-color: transparent;
   font-size: large;
   font-family: var(--body-font-size-m);
-    padding: 10px;
-    margin-left: 20px;
-    background-image: url("./images/down-arrow.svg");
-    background-repeat: no-repeat;
-    background-position: 460px center;
-    background-size: 20px;
-  }
-  
-  .drop-down {
-    position: relative;
-    width: 500px;
-    height: 60px;
-    border: 1px solid #000;
-    color: #000;
-    text-align: left;
-    background-color: transparent;
-    font-size: large;
-    font-family: var(--body-font-size-m);
-    padding: 10px;
-    margin-left: 20px;
-    background-image: url("./images/down-arrow.svg");
-    background-repeat: no-repeat;
-    background-position: 460px center;
-    background-size: 20px;
-    /* Adjust the size of the arrow image */
-  }
+  padding: 10px;
+  margin-left: 20px;
+  background-image: url("./images/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 460px center;
+  background-size: 20px;
+}
 
   .drop-down:nth-of-type(2) {
   color: gray !important;
