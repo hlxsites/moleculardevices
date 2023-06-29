@@ -33,7 +33,8 @@ export default async function decorate(block) {
     row.querySelector('img:first-of-type').addEventListener('click', () => {
       wrapper.parentElement.classList.add('overlay');
       body.classList.add('no-scroll');
-      scroll((wrapper.offsetWidth * (i)));
+
+      document.body.scrollLeft = wrapper.offsetWidth * i;
     });
   });
   await decorateIcons(wrapper);
