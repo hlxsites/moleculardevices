@@ -19,10 +19,6 @@ export default {
     image: 'citation',
     action: 'Download',
   },
-  COA: {
-    image: 'document',
-    action: 'Download',
-  },
   'Customer Breakthrough': {
     image: 'customer-breakthrough',
     action: 'Read',
