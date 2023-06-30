@@ -3,9 +3,6 @@
   Same as .products on the landing page.
   Variant stylings can be found below.
 */
-main .carousel-container {
-  padding: 0;
-}
 
 main div.carousel-wrapper {
   width: 100%;
