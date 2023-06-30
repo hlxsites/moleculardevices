@@ -228,7 +228,6 @@
 .cards.image-only.block img {
   max-width: 100%;
   height: auto;
-  width: 100%;
   object-fit: contain;
   width: 56.25%; 
 }
