@@ -85,7 +85,7 @@ export default function decorate(block) {
         if (element) {
           element.scrollIntoView();
         }
-      }, 1000);
+      }, 5000);
     }
   }
 
