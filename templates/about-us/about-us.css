@@ -16,13 +16,6 @@
 
 /* ================ WHO WE ARE BLOCK ================ */
 
-.cards.who-we-are ul {
-  gap: unset;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .cards.who-we-are ul > li .cards-card-body code {
   font-family: var(--ff-proxima-regular);
   font-size: var(--body-font-size-m);
