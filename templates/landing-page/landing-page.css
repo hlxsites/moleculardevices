@@ -43,6 +43,18 @@
   margin-top: 0;
 }
 
+.landing-page .hero-inner > div {
+  padding-top: 90px;
+}
+
+.landing-page .hero-inner .container {
+  padding-bottom: 45px;
+}
+
+.landing-page .hero-inner .two-column p {
+  color: var(--heading-color-blue);
+}
+
 .landing-page .hero-inner img {
   object-position: unset;
 }
@@ -184,7 +196,7 @@
 
   .landing-page .hero-inner .container {
     align-items: center;
-    padding: 15px 0 25px 0;
+    padding: 15px 0 55px 0;
   }
 
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {

@@ -1,6 +1,16 @@
 // eslint-disable-next-line object-curly-newline
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { loadScript } from '../../scripts/scripts.js';
+
+async function iframeResizeHandler() {
+  await new Promise((resolve) => {
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+  });
+
+  /* global iFrameResize */
+  iFrameResize({ log: false });
+}
 
 export default function buildAutoBlocks() {
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
@@ -14,4 +24,23 @@ export default function buildAutoBlocks() {
       if (i % 2 > 0) column.classList.add('odd');
     });
   }
+
+  const observer = new MutationObserver((mutations, obs) => {
+    const embed = document.querySelector('main .embed.block.embed-is-loaded');
+    if (embed) {
+      const iframe = embed.querySelector('iframe');
+      obs.disconnect();
+      setTimeout(() => {
+        if (iframe) {
+          iframeResizeHandler(embed);
+        }
+      },
+      10000,
+      );
+    }
+  });
+  observer.observe(document, {
+    childList: true,
+    subtree: true,
+  });
 }
