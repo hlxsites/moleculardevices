@@ -30,8 +30,9 @@
 
 .carousel.cards .carousel-item {
   display: block;
-  padding: 20px 15px 40px;
-  max-width: 317px;
+  width: 33.3%;
+  max-width: 33.3%;
+  padding: 20px 15px;
   margin: 0;
 }
 
@@ -108,7 +109,7 @@
   flex-direction: column;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
   .carousel-wrapper.cards {
     width: 940px;
   }
@@ -116,10 +117,31 @@
 
 @media only screen and (max-width: 991px) {
   .carousel-wrapper.cards {
+    width: 750px;
+  }
+
+  .carousel-wrapper.cards .carousel-item {
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .carousel-wrapper.cards {
     width: 100%;
+  }
+
+  .carousel.cards {
+    width: 100%;
+    padding: 0 10%;
   }
 
   .carousel-wrapper.cards .carousel-nav-button {
     display: none;
+  }
+
+  .carousel-wrapper.cards .carousel-item {
+    width: 100%;
+    max-width: 100%;
   }
 }
