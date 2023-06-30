@@ -132,31 +132,31 @@ export function buildHero(block) {
     let selectedOption = null;
     let selectedVariant = null;
 
-    const orderContainer = document.createElement('div');
-    orderContainer.classList.add('order-container');
-    container.appendChild(orderContainer);
+    const orderFormContainer = document.createElement('div');
+    orderFormContainer.classList.add('order-container');
+    container.appendChild(orderFormContainer);
 
     function checkOptionValidity() {
       if (selectedOption === 'Product Options') {
-        const variantsList = document.getElementById('variantsList');
-        variantsList.classList.toggle('not-allowed');
+        const variantDropDown = document.getElementById('variantDropDown');
+        variantDropDown.classList.toggle('not-allowed');
         selectedVariant = 'Select Variant';
         updateVariantsDropdownLabel();
       }
       else if (selectedOption !== 'Product Options') {
-        const variantsList = document.getElementById('variantsList');
-        variantsList.classList.add('allowed');
+        const variantDropDown = document.getElementById('variantDropDown');
+        variantDropDown.classList.add('allowed');
       }
     }
 
     function openDropdownMenu(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
-      if (dropdown && optionsList.innerHTML !== 'Product Options') {
+      if (dropdown && optionsDropdown.innerHTML !== 'Product Options') {
         dropdown.classList.toggle('show');
         if (dropdownId === 'variantsDropdown') {
           dropdown.style.left = '550px';
         }
-      } else if (dropdownId === 'optionsDropdown') {
+      } else if (dropdownId === 'optionsDropdownContent') {
         dropdown.classList.toggle('show');
       }
       checkOptionValidity();
@@ -174,14 +174,14 @@ export function buildHero(block) {
     }
 
     function updateDropdownInnerHTML() {
-      if (optionsList) {
-        optionsList.innerHTML = selectedOption;
+      if (optionsDropdown) {
+        optionsDropdown.innerHTML = selectedOption;
       }
     }
 
     function updateVariantsDropdownLabel() {
-      if (variantsList) {
-        variantsList.innerHTML = selectedVariant;
+      if (variantDropDown) {
+        variantDropDown.innerHTML = selectedVariant;
       }
     }
 
@@ -199,16 +199,16 @@ export function buildHero(block) {
     };
 
     // Options dropdown
-    const optionsList = document.createElement('button');
-    optionsList.innerHTML = 'Product Options';
-    optionsList.onclick = () => openDropdownMenu('optionsDropdown');
-    optionsList.classList.add('drop-down');
-    orderContainer.appendChild(optionsList);
+    const optionsDropdown = document.createElement('button');
+    optionsDropdown.innerHTML = 'Product Options';
+    optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
+    optionsDropdown.classList.add('drop-down');
+    orderFormContainer.appendChild(optionsDropdown);
 
     const optionsContent = document.createElement('div');
     optionsContent.classList.add('product-options-content');
-    optionsContent.id = 'optionsDropdown';
-    orderContainer.appendChild(optionsContent);
+    optionsContent.id = 'optionsDropdownContent';
+    orderFormContainer.appendChild(optionsContent);
 
     for (let i = 0; i < options.length; i++) {
       const option = document.createElement('a');
@@ -218,17 +218,17 @@ export function buildHero(block) {
       optionsContent.appendChild(option);
     }
     // Variants dropdown
-    const variantsList = document.createElement('button');
-    variantsList.innerHTML = 'Select Variation';
-    variantsList.id = 'variantsList';
-    variantsList.onclick = () => openDropdownMenu('variantsDropdown');
-    variantsList.classList.add('drop-down');
-    orderContainer.appendChild(variantsList);
+    const variantDropDown = document.createElement('button');
+    variantDropDown.innerHTML = 'Select Variation';
+    variantDropDown.id = 'variantDropDown';
+    variantDropDown.onclick = () => openDropdownMenu('variantsDropdown');
+    variantDropDown.classList.add('drop-down');
+    orderFormContainer.appendChild(variantDropDown);
 
     const variantsContent = document.createElement('div');
     variantsContent.classList.add('product-options-content');
     variantsContent.id = 'variantsDropdown';
-    orderContainer.appendChild(variantsContent);
+    orderFormContainer.appendChild(variantsContent);
 
     for (let i = 0; i < variants.length; i++) {
       const variant = document.createElement('a');
@@ -241,21 +241,21 @@ export function buildHero(block) {
     const priceLabel = document.createElement('label');
     priceLabel.classList.add('price-label');
     priceLabel.innerHTML = 'PRICE';
-    orderContainer.appendChild(priceLabel);
+    orderFormContainer.appendChild(priceLabel);
 
     const quantityLabel = document.createElement('label');
     quantityLabel.classList.add('quantity-label');
     quantityLabel.innerHTML = 'QUANTITY';
-    orderContainer.appendChild(quantityLabel);
+    orderFormContainer.appendChild(quantityLabel);
 
     const price = document.createElement('span');
     price.classList.add('price');
     price.innerHTML = '$ 0.00';
-    orderContainer.appendChild(price);
+    orderFormContainer.appendChild(price);
 
     const quantityContainer = document.createElement('div');
     quantityContainer.classList.add('quantity-container');
-    orderContainer.appendChild(quantityContainer);
+    orderFormContainer.appendChild(quantityContainer);
 
     const decreaseButton = document.createElement('a');
     decreaseButton.classList.add('quantity-button');
@@ -288,7 +288,7 @@ export function buildHero(block) {
     const addToCart = document.createElement('button');
     addToCart.classList.add('add-to-cart');
     addToCart.innerHTML = 'Add to cart';
-    orderContainer.appendChild(addToCart);
+    orderFormContainer.appendChild(addToCart);
   }
 
   // check if block containt Orange Buttons
