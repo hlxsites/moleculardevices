@@ -8,8 +8,11 @@ export default function decorate(block) {
   [...block.children].forEach((row) => {
     const wrappingDiv = divHelper({ class: 'cards-card-wrapper' }, ...row.children);
     [...wrappingDiv.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+      if (div.children.length === 1 && div.querySelector('picture')) {
+        div.className = 'cards-card-image';
+      } else {
+        div.className = 'cards-card-body';
+      }
     });
 
     const li = liHelper(wrappingDiv);
@@ -28,6 +31,16 @@ export default function decorate(block) {
         const newLink = a({ href: link.href }, pictureClone);
         picture.parentNode.replaceChild(newLink, picture);
       });
+    });
+  } else if (block.classList.contains('image-only')) {
+    block.querySelectorAll('li').forEach((li) => {
+      const link = li.querySelector('a');
+      const picture = li.querySelector('picture');
+      const pictureClone = picture.cloneNode(true);
+      const newLink = a({ href: link.href }, pictureClone);
+      picture.parentNode.replaceChild(newLink, picture);
+      const cardBody = li.querySelector('.cards-card-body');
+      cardBody.parentNode.removeChild(cardBody);
     });
   }
 }
