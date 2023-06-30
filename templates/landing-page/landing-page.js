@@ -12,6 +12,35 @@ async function iframeResizeHandler() {
   iFrameResize({ log: false });
 }
 
+function handleEmbed() {
+  const observer = new MutationObserver((mutations) => {
+    const embed = document.querySelector('main .embed.block.embed-is-loaded');
+    if (embed) {
+      iframeResizeHandler(embed);
+
+      // adjust parent div's height dynamically
+      mutations.forEach((record) => {
+        const grandGrandParent = record.target.parentElement.parentElement.parentElement;
+        if (record.target.tagName === 'IFRAME'
+            && grandGrandParent.classList.contains('embed')
+        ) {
+          const { height } = record.target.style;
+          if (height) {
+            const parent = record.target.parentElement;
+            parent.style.height = height;
+          }
+        }
+      });
+    }
+  });
+  observer.observe(document.querySelector('main'), {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['style'],
+  });
+}
+
 export default function buildAutoBlocks() {
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
   if (pageParam && pageParam === 'thankyou') {
@@ -24,23 +53,5 @@ export default function buildAutoBlocks() {
       if (i % 2 > 0) column.classList.add('odd');
     });
   }
-
-  const observer = new MutationObserver((mutations, obs) => {
-    const embed = document.querySelector('main .embed.block.embed-is-loaded');
-    if (embed) {
-      const iframe = embed.querySelector('iframe');
-      obs.disconnect();
-      setTimeout(() => {
-        if (iframe) {
-          iframeResizeHandler(embed);
-        }
-      },
-      10000,
-      );
-    }
-  });
-  observer.observe(document, {
-    childList: true,
-    subtree: true,
-  });
+  handleEmbed();
 }
