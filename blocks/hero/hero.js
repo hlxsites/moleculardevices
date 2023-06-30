@@ -132,6 +132,10 @@ export function buildHero(block) {
     let selectedOption = null;
     let selectedVariant = null;
 
+    const orderContainer = document.createElement('div');
+    orderContainer.classList.add('order-container');
+    container.appendChild(orderContainer);
+
     function checkOptionValidity() {
       if (selectedOption === 'Product Options') {
         const variantsList = document.getElementById('variantsList');
@@ -193,10 +197,6 @@ export function buildHero(block) {
         }
       }
     };
-
-    const orderContainer = document.createElement('div');
-    orderContainer.classList.add('order-container');
-    container.appendChild(orderContainer);
 
     // Options dropdown
     const optionsList = document.createElement('button');
