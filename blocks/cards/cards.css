@@ -230,6 +230,7 @@
   height: auto;
   width: 100%;
   object-fit: contain;
+  width: 56.25%; 
 }
 
 .cards.gallery ul > li .cards-card-image picture img {
@@ -262,10 +263,6 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   list-style: none;
-}
-
-.cards.image-only.block img {
-  width: 56.25%; 
 }
 
 .cards.image-only.block li {
