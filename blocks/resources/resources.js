@@ -11,6 +11,7 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
+const excludedResources = ['Videos and Webinars', 'Citation', 'COA'];
 
 function handleFilterClick(e) {
   e.preventDefault();
@@ -53,12 +54,11 @@ export default async function decorate(block) {
     .filter((resource) => resource[relatedResource].includes(title)
       && includedResourceTypes.includes(resource.type))
     .all();
-  const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
+  const otherResources = resources.filter((item) => !excludedResources.includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
   const filtersBlock = ul({ class: 'filters' });
-  const filters = [...new Set(otherResources.map((item) => item.type))]
-    .filter((item) => item !== 'Citation');
+  const filters = [...new Set(otherResources.map((item) => item.type))];
   if (videoResources.length > 0) {
     filters.push('Videos and Webinars');
   }
