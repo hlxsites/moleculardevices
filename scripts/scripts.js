@@ -182,7 +182,7 @@ function decorateLinks(main) {
     const url = new URL(link.href);
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
-      if (link.closest('.block.cards')) {
+      if (link.closest('.block.cards') || link.closest('.button-container')) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
