@@ -1,6 +1,7 @@
 main .section.wave.bluegreen.wave-teaser-container {
   background-size: 100% 80%;
   background-position-y: center;
+  background-color: #fff;
 }
 
 main .section .wave-teaser-wrapper {
