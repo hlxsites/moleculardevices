@@ -82,6 +82,10 @@
   padding-top: 25px;
 }
 
+.landing-page main .section.download-form.center .default-content-wrapper:first-child {
+  margin: auto;
+}
+
 .landing-page .download-form * {
   color: var(--text-gray);
 }
