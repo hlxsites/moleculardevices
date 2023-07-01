@@ -158,6 +158,7 @@ export default async function decorate(block) {
       const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
 
       const customClass = row.Type.split(' ').join('-').toLowerCase();
+      const email = row.Email;
 
       /* eslint operator-linebreak: ["error", "before"] */
       const supportLink = row.Link
@@ -173,6 +174,7 @@ export default async function decorate(block) {
         }
       });
 
+      newStr += `${email ? `Email:  <a href="javascript:void(0);">${email}</a>` : `${supportLink}`}\n`;
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
       if ((row.PrimaryProducts.length && row.Address.trim().length) === 0) {
@@ -182,10 +184,9 @@ export default async function decorate(block) {
         finalHtml += `
                       <div class="search-result-content ${customClass}-result">
                         <div class="type">${row.Type}</div>
-                        <div class="productfamily">${primeProduct}</div>
+                        ${!productFamily ? `<div class=productfamily>${primeProduct}</div>` : ''}
                         <div class="address">
                           ${molAddress}
-                          ${supportLink}
                           <p>
                             <a href="javascript:void(0);" title="Contact your local ${row.Type} Team">
                               Contact your local ${row.Type} Team
