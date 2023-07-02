@@ -181,7 +181,7 @@ export default async function decorate(block) {
       newStr += `${email ? `Email:  <a href="javascript:void(0);">${email}</a>` : `${supportLink}`}\n`;
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
-      if ((row.PrimaryProducts.length && row.Address.trim().length) === 0) {
+      if (row.PrimaryProducts.length <= 1 && row.Address.trim().length <= 1) {
         resultHeading.classList.add('no-result');
         resultHeading.textContent = 'NO RESULT FOUND';
       } else {
