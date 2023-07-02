@@ -153,6 +153,10 @@ export default async function decorate(block) {
     let finalHtml = '';
     const resultHeading = document.createElement('h3');
     const searchResultEl = document.querySelector('.local-distributor .search-result');
+    if (!filterdata.length) {
+      resultHeading.classList.add('no-result');
+      resultHeading.textContent = 'NO RESULT FOUND';
+    }
 
     filterdata.forEach((row) => {
       const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
@@ -178,6 +182,7 @@ export default async function decorate(block) {
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
       if ((row.PrimaryProducts.length && row.Address.trim().length) === 0) {
+        resultHeading.classList.add('no-result');
         resultHeading.textContent = 'NO RESULT FOUND';
       } else {
         resultHeading.textContent = row.Country;
