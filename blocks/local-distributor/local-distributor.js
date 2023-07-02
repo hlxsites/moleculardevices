@@ -170,7 +170,7 @@ export default async function decorate(block) {
         : '';
 
       let newStr = '';
-      row.Address.split().split('\n').forEach((add) => {
+      row.Address.split('\n').forEach((add) => {
         if (add.indexOf(':') > -1) {
           newStr += replaceHTMLTag(add);
         } else {
