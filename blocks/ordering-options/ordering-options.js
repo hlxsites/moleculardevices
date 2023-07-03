@@ -195,6 +195,11 @@ export default async function decorate(block) {
     .map((ref) => (ref.innerHTML).split(', '))
     .reduce((x, y) => x.concat(y), []);
 
+  const siblingDiv = Array.from(document.querySelectorAll('div')).find(div => div.textContent.trim() === 'shopify-handles');
+  const targetDiv = siblingDiv.nextElementSibling;
+  const targetDivInnerHTML = targetDiv.innerHTML;
+  console.log(targetDivInnerHTML);
+
   block.innerHTML = '';
 
   const container = div({ class: 'ordering-options-list' });
