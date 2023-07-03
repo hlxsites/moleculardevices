@@ -498,12 +498,12 @@ main .section > div {
   padding: 0 15px;
 }
 
-main .section.inline-buttons {
+main .section.buttons-in-row {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-main .section.inline-buttons > div {
+main .section.buttons-in-row > div {
   padding: 0;
 }
 
