@@ -91,7 +91,7 @@ export function summariseDescription(description, charCount) {
  */
 function optimiseHeroBlock(main) {
   const heroBlocks = main.querySelectorAll('.hero, .hero-advanced');
-  if (!heroBlocks || heroBlocks.length == 0) return;
+  if (!heroBlocks || heroBlocks.length === 0) return;
 
   const heroSection = document.createElement('div');
   heroSection.append(...heroBlocks);
