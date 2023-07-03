@@ -37,17 +37,21 @@ function createTabList(sections, active) {
   return ul;
 }
 
-function findIdTabName(id, block) {
-  if (!id) return null;
+function findIdTabName(id) {
+  if (!id) {
+    return null;
+  }
 
-  const targetTab = block.querySelector(`a[href="#${id}"]`);
+  const selectors = `a[href="#${id}"]`;
+  const targetTab = document.querySelector(selectors);
+  console.log('selectors, tab', selectors, targetTab);
   if (targetTab) {
     return id;
   }
 
   const element = document.getElementById(id);
   if (!element) {
-    return null;
+    return id;
   }
   const tab = element.closest('.tabs');
   return tab.getAttribute('aria-labelledby');
@@ -63,7 +67,7 @@ export default function decorate(block) {
       ? activeHash.substring(1, activeHash.length).toLocaleLowerCase()
       : namedSections[0].getAttribute('data-name');
 
-    const tabName = findIdTabName(active, block);
+    const tabName = findIdTabName(active);
     let foundSection = false;
     sections.forEach((section) => {
       if (tabName === section.getAttribute('aria-labelledby')) {
@@ -94,7 +98,7 @@ export default function decorate(block) {
     const activeHash = rawActiveHash ? rawActiveHash.substring(1) : namedSections[0].getAttribute('data-name');
     if (!activeHash) return;
 
-    const targetTabName = findIdTabName(activeHash, block);
+    const targetTabName = findIdTabName(activeHash);
 
     const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
     if (!targetTab) {
