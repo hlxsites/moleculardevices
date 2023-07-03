@@ -90,11 +90,11 @@ export function summariseDescription(description, charCount) {
  * If we have a hero block, move it into its own section, so it can be displayed faster
  */
 function optimiseHeroBlock(main) {
-  const heroBlock = main.querySelector('.hero, .hero-advanced');
-  if (!heroBlock) return;
+  const heroBlocks = main.querySelectorAll('.hero, .hero-advanced');
+  if (!heroBlocks || heroBlocks.length == 0) return;
 
   const heroSection = document.createElement('div');
-  heroSection.appendChild(heroBlock);
+  heroSection.append(...heroBlocks);
   main.prepend(heroSection);
 }
 
