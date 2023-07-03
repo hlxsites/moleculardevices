@@ -19,7 +19,9 @@ function wrapLinkAroundComponent(link, component, removeLink = false) {
 function buildLargeCardsMenu(cardContent) {
   const link = cardContent.querySelector('a');
   const picture = cardContent.querySelector('picture');
-  wrapLinkAroundComponent(link, picture);
+  if (link && picture) {
+    wrapLinkAroundComponent(link, picture);
+  }
   return cardContent;
 }
 
