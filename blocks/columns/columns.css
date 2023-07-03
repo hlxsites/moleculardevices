@@ -501,16 +501,12 @@ main .section>div.columns-wrapper {
   .columns.line > div::after {
     padding-top: 30px;
   }
-  
+
   .columns.light-and-dark-grey > div > div {
     padding: 20px;
   }
 
   .columns.contact > div > div:not(:last-child) {
-    margin-bottom: 30px;
-  }
-
-  .cards.who-we-are > ul > li {
     margin-bottom: 30px;
   }
 
