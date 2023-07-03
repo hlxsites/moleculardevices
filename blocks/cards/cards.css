@@ -164,6 +164,13 @@
   position: relative;
 }
 
+.cards.who-we-are ul > li {
+  border: 0;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+}
+
 .cards.hover .cards-card-wrapper {
   transition: transform ease-in-out 0.3s;
 }
