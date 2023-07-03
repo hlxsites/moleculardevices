@@ -191,14 +191,12 @@ async function renderList(refs, showStore, container) {
 }
 
 export default async function decorate(block) {
-  const refs = [...block.querySelectorAll('.ordering-options > div > div')]
-    .map((ref) => (ref.innerHTML).split(', '))
-    .reduce((x, y) => x.concat(y), []);
-
   const siblingDiv = Array.from(document.querySelectorAll('div')).find(div => div.textContent.trim() === 'shopify-handles');
   const targetDiv = siblingDiv.nextElementSibling;
   const targetDivInnerHTML = targetDiv.innerHTML;
-  console.log(targetDivInnerHTML);
+
+  // Split the innerHTML into individual handles
+  const refs = targetDivInnerHTML.split(', ').map(ref => ref.trim());
 
   block.innerHTML = '';
 
