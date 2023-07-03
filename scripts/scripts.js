@@ -407,6 +407,15 @@ async function loadEager(doc) {
     createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
+  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+
+  try {
+    if (sessionStorage.getItem('fonts-loaded')) {
+      loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+    }
+  } catch (e) {
+    // do nothing
+  }
 }
 
 /**
