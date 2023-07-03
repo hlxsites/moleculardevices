@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { loadScript, getCookie } from '../../scripts/scripts.js';
+import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
@@ -93,7 +93,7 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
-function loadIframeForm(stepNum, data, type) {
+async function loadIframeForm(stepNum, data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById(stepNum);
@@ -108,10 +108,17 @@ function loadIframeForm(stepNum, data, type) {
   if (type === 'Product') {
     const queryParams = new URLSearchParams(window.location.search);
     const typeParam = queryParams && queryParams.get('type');
+    tab = data.title;
     if (typeParam && typeParam.toLowerCase() === 'bundle' && data.productBundle && data.productBundle !== '0') {
       tab = `${data.productBundle} Bundle`;
-    } else {
-      tab = data.title;
+    } else if (data.type === 'Customer Breakthrough') {
+      const fragmentHtml = await fetchFragment(data.path, false);
+      if (fragmentHtml) {
+        const fragmentElement = div();
+        fragmentElement.innerHTML = fragmentHtml;
+        const relatedProducts = fragmentElement.querySelector('meta[name="related-products"]').getAttribute('content');
+        tab = (relatedProducts && relatedProducts.trim().length > 0) ? relatedProducts : data.title;
+      }
     }
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
