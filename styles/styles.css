@@ -493,9 +493,18 @@ main .section {
   padding-bottom: 50px;
 }
 
-main .section>div {
+main .section > div {
   margin: 0 auto;
   padding: 0 15px;
+}
+
+main .section.inline-buttons {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.inline-buttons > div {
+  padding: 0;
 }
 
 @media (max-width: 991px) {
@@ -758,17 +767,18 @@ main .section .default-content-wrapper h2:only-child {
   padding-bottom: 10px;
 }
 
-main .section .default-content-wrapper p.button-container {
-  display: inline-block;
-  margin-top: 20px;
-}
-
-main .section .default-content-wrapper p.button-container + p.button-container {
-  margin-left: 20px;
-}
-
 main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
+}
+
+main .section.inline-buttons .default-content-wrapper p.button-container {
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+main .section.inline-buttons .default-content-wrapper p.button-container + p.button-container {
+  margin-left: 20px;
 }
 
 /* services & support */
@@ -846,11 +856,11 @@ main .section.features-section .button-container {
     padding: 0 15px;
   }
 
-  main .section .default-content-wrapper p.button-container {
+  main .section.inline-buttons .default-content-wrapper p.button-container {
     display: block;
   }
 
-  main .section .default-content-wrapper p.button-container + p.button-container {
+  main .section.inline-buttons .default-content-wrapper p.button-container + p.button-container {
     margin-left: 0;
   }
 }
