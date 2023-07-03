@@ -780,6 +780,10 @@ main .section.wave.orange-buttons p.button-container {
   display: inline-block;
 }
 
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+}
+
 main .section.buttons-in-row p.button-container + p.button-container,
 main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
@@ -1168,10 +1172,6 @@ main div.section.wave.wavecarousel.bluegreen {
 main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
-}
-
-main .section.wave.orange-buttons p.button-container {
-  margin-top: 20px;
 }
 
 main div.orange-buttons .button.primary:link,
