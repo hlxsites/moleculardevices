@@ -771,18 +771,18 @@ main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
 
-main div.inline-buttons p.button-container,
-main div.orange-buttons p.button-container {
+main .section.inline-buttons p.button-container,
+main .section.wave.orange-buttons p.button-container {
   display: inline-block;
 }
 
-main div.inline-buttons p.button-container {
+main .section.inline-buttons p.button-container {
   margin-top: 15px;
   margin-bottom: 0;
 }
 
-main div.inline-buttons p.button-container + p.button-container,
-main div.orange-buttons p.button-container + p.button-container {
+main .section.inline-buttons p.button-container + p.button-container,
+main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
 }
 
@@ -861,13 +861,13 @@ main .section.features-section .button-container {
     padding: 0 15px;
   }
 
-  main div.inline-buttons p.button-container,
-  main div.orange-buttons p.button-container {
+  main .section.inline-buttons p.button-container,
+  main .section.wave.orange-buttons p.button-container {
     display: block;
   }
 
-  main div.inline-buttons p.button-container + p.button-container,
-  main div.orange-buttons p.button-container + p.button-container {
+  main .section.inline-buttons p.button-container + p.button-container,
+  main .section.wave.orange-buttons p.button-container + p.button-container {
     margin-left: 0;
   }
 }
