@@ -771,11 +771,6 @@ main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
 
-main .section.buttons-in-row p.button-container {
-  margin-top: 15px;
-  margin-bottom: 0;
-}
-
 main .section.buttons-in-row p.button-container,
 main .section.wave.orange-buttons p.button-container {
   display: inline-block;
@@ -1169,6 +1164,11 @@ main div.section.wave.wavecarousel.bluegreen {
 main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
+}
+
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 main div.orange-buttons .button.primary:link,
