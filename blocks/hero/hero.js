@@ -1,5 +1,7 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
-import { formatDate, isVideo, videoButton } from '../../scripts/scripts.js';
+import {
+  detectPricingRequestAvailable, formatDate, isVideo, videoButton,
+} from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
@@ -47,6 +49,20 @@ async function addBlockSticker(container) {
 async function loadBreadcrumbs(breadcrumbsContainer) {
   const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
   breadCrumbsModule.default(breadcrumbsContainer);
+}
+
+function showHidePricingRequestButton(block) {
+  const pricingRequestButton = block.querySelector('a[href*="/quote-request"]');
+  if (!pricingRequestButton) return;
+
+  const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
+  if (!pricintRequestButtonContainer) return;
+
+  if (!detectPricingRequestAvailable()) {
+    pricintRequestButtonContainer.style.display = 'none';
+  } else {
+    pricintRequestButtonContainer.style.display = '';
+  }
 }
 
 export function buildHero(block) {
@@ -124,6 +140,11 @@ export function buildHero(block) {
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
+
+  showHidePricingRequestButton(block);
+  document.addEventListener('continentCodeUpdated', () => {
+    showHidePricingRequestButton(block);
+  });
 
   loadBreadcrumbs(breadcrumbs);
 }

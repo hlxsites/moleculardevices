@@ -37,7 +37,8 @@ Stores dedicated user data in a cookie.
 */
 async function loadUserData() {
   const attrCountryCode = 'country_code';
-  if (getCookie(attrCountryCode)) return;
+  const attrContinentCode = 'continent_code';
+  if (getCookie(attrCountryCode) && getCookie(attrContinentCode)) return;
 
   try {
     const response = await fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
@@ -46,6 +47,11 @@ async function loadUserData() {
 
     if (response.ok) {
       const data = await response.json();
+      if (data[attrContinentCode]) {
+        setCookie(attrContinentCode, data[attrContinentCode], 1);
+        const event = new CustomEvent('continentCodeUpdated', { detail: data[attrContinentCode] });
+        document.dispatchEvent(event);
+      }
       if (data[attrCountryCode]) {
         setCookie(attrCountryCode, data[attrCountryCode], 1);
         const event = new CustomEvent('countryCodeUpdated', { detail: data[attrCountryCode] });

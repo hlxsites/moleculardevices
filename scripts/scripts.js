@@ -669,6 +669,11 @@ export function detectStore() {
   return getCookie('country_code') === 'US';
 }
 
+export function detectPricingRequestAvailable() {
+  const contient = getCookie('continent_code');
+  return contient === 'EU' || contient === 'NA';
+}
+
 /**
  * Get cart item total count
  */
