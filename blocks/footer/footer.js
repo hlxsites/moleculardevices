@@ -99,7 +99,7 @@ async function buildNewsEvents(container) {
 
 function iframeResizeHandler(formUrl, id, container) {
   const resizerPromise = new Promise((resolve) => {
-    loadScript('../../scripts/iframeResizer.min.js', () => { resolve(); });
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
   });
 
   container.querySelector('iframe').addEventListener('load', async () => {

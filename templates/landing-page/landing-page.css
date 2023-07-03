@@ -41,6 +41,19 @@
   margin-bottom: 20px;
   color: #5f696b;
   margin-top: 0;
+  padding-top: 40px;
+}
+
+.landing-page .hero-inner > div {
+  padding-top: 90px;
+}
+
+.landing-page .hero-inner .container {
+  padding-bottom: 45px;
+}
+
+.landing-page .hero-inner .two-column p {
+  color: var(--heading-color-blue);
 }
 
 .landing-page .hero-inner img {
@@ -57,12 +70,20 @@
 
 .landing-page .download-form {
   padding-bottom: 25px;
-  margin-top: 125px;
+  margin-top: 50px;
 }
 
-.landing-page main .section.download-form .default-content-wrapper:first-child {
+.landing-page .hero-container + .download-form {
+  margin-top: 0;
+}
+
+.landing-page main .section.download-form:not(.center) .default-content-wrapper:first-child {
   margin-left: calc((100vw - var(--section-div-width)) / 2);
   padding-top: 25px;
+}
+
+.landing-page main .section.download-form.center .default-content-wrapper:first-child {
+  margin: auto;
 }
 
 .landing-page .download-form * {
@@ -89,6 +110,7 @@
   font-size: 45px;
   font-weight: 600;
   margin-bottom: 40px;
+  padding-top: 0;
 }
 
 .landing-page .download-form h4 {
@@ -96,7 +118,7 @@
 }
 
 .landing-page main .section>div.embed-wrapper {
-  padding-top: 50px;
+  padding-top: 25px;
 }
 
 .landing-page main .embed {
@@ -184,7 +206,7 @@
 
   .landing-page .hero-inner .container {
     align-items: center;
-    padding: 15px 0 25px 0;
+    padding: 15px 0 55px 0;
   }
 
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {
@@ -204,6 +226,10 @@
   .landing-page header {
     height: 139px;
   }
+
+  .landing-page h3 {
+    font-size: 30px;
+  }  
 }
 
 .thank-you-page {
