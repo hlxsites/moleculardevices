@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './lib-franklin.js';
-// eslint-disable-next-line import/no-cycle
-import { getCookie, setCookie } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -36,9 +34,13 @@ IPStack Integration to get specific user information
 Stores dedicated user data in a cookie.
 */
 async function loadUserData() {
-  const attrCountryCode = 'country_code';
-  const attrContinentCode = 'continent_code';
-  if (getCookie(attrCountryCode) && getCookie(attrContinentCode)) return;
+  const geolocationData = localStorage.getItem('ipstack:geolocation')
+    ? JSON.parse(localStorage.getItem('ipstack:geolocation'))
+    : null;
+
+  if (geolocationData && geolocationData.expiry && geolocationData.expiry > new Date().getTime()) {
+    return;
+  }
 
   try {
     const response = await fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
@@ -47,16 +49,11 @@ async function loadUserData() {
 
     if (response.ok) {
       const data = await response.json();
-      if (data[attrContinentCode]) {
-        setCookie(attrContinentCode, data[attrContinentCode], 1);
-        const event = new CustomEvent('continentCodeUpdated', { detail: data[attrContinentCode] });
-        document.dispatchEvent(event);
-      }
-      if (data[attrCountryCode]) {
-        setCookie(attrCountryCode, data[attrCountryCode], 1);
-        const event = new CustomEvent('countryCodeUpdated', { detail: data[attrCountryCode] });
-        document.dispatchEvent(event);
-      }
+      const expiry = new Date();
+      expiry.setDate(expiry.getDate() + 1); // 1 day TTL
+      data.expiry = expiry.getTime();
+      localStorage.setItem('ipstack:geolocation', JSON.stringify(data));
+      document.dispatchEvent(new CustomEvent('geolocationUpdated'));
     } else {
       throw new Error('Response not okay');
     }

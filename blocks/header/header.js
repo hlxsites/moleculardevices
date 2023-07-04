@@ -53,9 +53,13 @@ function buildTools(content) {
     linksList.prepend(renderCart());
   }
 
-  document.addEventListener('countryCodeUpdated', () => {
+  document.addEventListener('geolocationUpdated', () => {
     if (detectStore()) {
       const linksList = toolsWrapper.querySelector('ul');
+      if (linksList.querySelector('.store-link')) {
+        return; // store and cart already rendered
+      }
+
       linksList.prepend(renderStore());
       linksList.prepend(renderCart());
     }

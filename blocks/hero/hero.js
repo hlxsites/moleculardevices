@@ -1,6 +1,6 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  detectPricingRequestAvailable, formatDate, isVideo, videoButton,
+  formatDate, isVideo, videoButton,
 } from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
 
@@ -49,6 +49,21 @@ async function addBlockSticker(container) {
 async function loadBreadcrumbs(breadcrumbsContainer) {
   const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
   breadCrumbsModule.default(breadcrumbsContainer);
+}
+
+function detectPricingRequestAvailable() {
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return false;
+  }
+
+  try {
+    const contient = JSON.parse(localStorage.getItem('ipstack:geolocation')).continent_code;
+    return contient === 'EU' || contient === 'NA';
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('Could not load user information.', err);
+    return false;
+  }
 }
 
 function showHidePricingRequestButton(block) {
@@ -142,7 +157,7 @@ export function buildHero(block) {
   }
 
   showHidePricingRequestButton(block);
-  document.addEventListener('continentCodeUpdated', () => {
+  document.addEventListener('geolocationUpdated', () => {
     showHidePricingRequestButton(block);
   });
 
