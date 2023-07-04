@@ -149,9 +149,9 @@ regionalTabs.forEach((tab, index) => {
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
-const tabID = params.region
-  ? params.region
-  : document.querySelector('.regional-contacts .tab-content').id;
+const tabID = params.region ?
+  params.region :
+  document.querySelector('.regional-contacts .tab-content').id;
 
 document.querySelector(`a[href="#${tabID}"]`).click();
 tabQueryString(tabID);
