@@ -103,7 +103,7 @@ function renderAddToCart(item) {
 }
 
 let count = 0;
-function renderItem(item, showStore, itemDescriptions) {
+function renderItem(item, showStore, itemDescriptionsMap) {
   if (!item) return '';
   return (
     div({ class: 'ordering-option-item', id: item.handle },
@@ -111,19 +111,21 @@ function renderItem(item, showStore, itemDescriptions) {
         h3({ class: 'title' }, item.title),
       ),
       div({ class: 'ordering-option-item-variants' },
-        ...item.variants.map((variant) => div({ class: 'variant-item' },
-          div({ class: 'title-variant' },
-            p({ class: 'legend' }, variant.public_title),
-          ),
-          div({ class: 'sku-variant' },
-            p({ class: 'legend' }, `#${variant.sku}`),
-          ),
-          div({ class: 'description' },
-            p({ class: 'legend' }, itemDescriptions[count++]),
-          ),
-          (showStore) ? renderAddToCart(variant) : '',
-        ),
-        ),
+        item.variants.map((variant) => {
+          const variantDescription = itemDescriptionsMap.get(variant.sku);
+          return div({ class: 'variant-item' },
+            div({ class: 'title-variant' },
+              p({ class: 'legend' }, variant.public_title),
+            ),
+            div({ class: 'sku-variant' },
+              p({ class: 'legend' }, `#${variant.sku}`),
+            ),
+            div({ class: 'description' },
+              p({ class: 'legend' }, variantDescription),
+            ),
+            (showStore) ? renderAddToCart(variant) : '',
+          );
+        }),
       ),
     )
   );
@@ -170,11 +172,11 @@ async function getOrderingOptions(refs) {
   return options;
 }
 
-async function renderList(refs, showStore, container, itemDescriptions) {
+async function renderList(refs, showStore, container, itemDescriptionsMap) {
   const options = await getOrderingOptions(refs);
   const items = [];
   options.forEach((option) => {
-    items.push(renderItem(option, showStore, itemDescriptions));
+    items.push(renderItem(option, showStore, itemDescriptionsMap));
   });
   container.append(...items);
 
@@ -200,21 +202,23 @@ export default async function decorate(block) {
 
   const refs = targetDivInnerHTML.split(', ').map((ref) => ref.trim());
 
-  // Fetch the descriptions and store them in an array
-  const itemDescriptions = [];
-  const descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
-  descDivs.forEach((div) => {
-    const cleanDescription = div.innerHTML.replace(/<[^>]*>?/gm, '').trim();
-    itemDescriptions.push(cleanDescription);
+  const itemDescriptionsMap = new Map();
+  const itemDivs = document.querySelectorAll('.ordering-options > div');
+  itemDivs.forEach((item) => {
+    const productCode = item.children[0].textContent.trim();
+    const productDescription = item.children[1].textContent.trim();
+    itemDescriptionsMap.set(productCode, productDescription);
   });
 
- // block.innerHTML = '';
+  console.log('Item Descriptions Map:', [...itemDescriptionsMap]);  // Debugging line
+
+  // block.innerHTML = '';
 
   const container = div({ class: 'ordering-options-list' });
   block.append(container);
 
   const showStore = detectStore();
-  renderList(refs, showStore, container, itemDescriptions);
+  renderList(refs, showStore, container, itemDescriptionsMap);
 
   if (showStore) {
     block.classList.add('cart-store');
