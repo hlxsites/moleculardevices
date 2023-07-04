@@ -4,10 +4,6 @@
   Variant stylings can be found below.
 */
 
-main div.section.carousel-container {
-  background-color: var(--grey-background-color);
-}
-
 main div.carousel-wrapper {
   width: 100%;
   position: relative;
@@ -15,7 +11,7 @@ main div.carousel-wrapper {
 }
 
 main div.carousel-wrapper:last-child {
-  margin-bottom: 30px;
+  margin-bottom: 0 !important;
 }
 
 main .carousel {

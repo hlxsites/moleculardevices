@@ -1011,7 +1011,6 @@ main div.section.wave {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-  background-color: var(--grey-background-color);
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -1023,6 +1022,7 @@ main div.section.wave {
 }
 
 main div.section.wave:last-child {
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
