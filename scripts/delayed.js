@@ -88,7 +88,9 @@ function loadGTM() {
 }
 
 loadUserData();
-loadGTM();
-if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page')) {
+  loadGTM();
+}
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
   LoadDriftWidget();
 }
