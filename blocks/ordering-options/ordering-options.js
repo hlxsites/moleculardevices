@@ -102,7 +102,7 @@ function renderAddToCart(item) {
   );
 }
 
-function renderItem(item, showStore) {
+function renderItem(item, showStore, itemDescriptions) {
   if (!item) return '';
 
   return (
@@ -117,6 +117,9 @@ function renderItem(item, showStore) {
           ),
           div({ class: 'sku-variant' },
             p({ class: 'legend' }, `#${variant.sku}`),
+          ),
+          div({ class: 'description' },
+            p({ class: 'legend' }, itemDescriptions[item.handle]),
           ),
           (showStore) ? renderAddToCart(variant) : '',
         ),
@@ -167,11 +170,11 @@ async function getOrderingOptions(refs) {
   return options;
 }
 
-async function renderList(refs, showStore, container) {
+async function renderList(refs, showStore, container, itemDescriptions) {
   const options = await getOrderingOptions(refs);
   const items = [];
   options.forEach((option) => {
-    items.push(renderItem(option, showStore));
+    items.push(renderItem(option, showStore, itemDescriptions));
   });
   container.append(...items);
 
@@ -191,12 +194,20 @@ async function renderList(refs, showStore, container) {
 }
 
 export default async function decorate(block) {
-  const siblingDiv = Array.from(document.querySelectorAll('div')).find(div => div.textContent.trim() === 'shopify-handles');
+  const siblingDiv = Array.from(document.querySelectorAll('div')).find((div) => div.textContent.trim() === 'shopify-handles');
   const targetDiv = siblingDiv.nextElementSibling;
   const targetDivInnerHTML = targetDiv.innerHTML;
 
-  // Split the innerHTML into individual handles
-  const refs = targetDivInnerHTML.split(', ').map(ref => ref.trim());
+  const refs = targetDivInnerHTML.split(', ').map((ref) => ref.trim());
+
+  const itemDescriptions = {};
+  let descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
+  descDivs.forEach((div, idx) => {
+    itemDescriptions[refs[idx]] = div.innerHTML.trim();
+  });
+
+
+  console.log(itemDescriptions);
 
   block.innerHTML = '';
 
@@ -204,7 +215,7 @@ export default async function decorate(block) {
   block.append(container);
 
   const showStore = detectStore();
-  renderList(refs, showStore, container);
+  renderList(refs, showStore, container, itemDescriptions);
 
   if (showStore) {
     block.classList.add('cart-store');
