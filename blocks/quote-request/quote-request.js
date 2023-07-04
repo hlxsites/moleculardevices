@@ -8,12 +8,24 @@ const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
 
-export async function getRFQData(pid) {
+export async function getRFQDataByFamilyID(pid) {
   if (pid) {
     const productRfq = await ffetch('/query-index.json')
       .sheet('rfq')
       .withFetch(fetch)
       .filter(({ familyID }) => familyID === pid)
+      .first();
+    return productRfq;
+  }
+  return false;
+}
+
+export async function getRFQDataByTitle(name) {
+  if (name) {
+    const productRfq = await ffetch('/query-index.json')
+      .sheet('rfq')
+      .withFetch(fetch)
+      .filter(({ title }) => title === name)
       .first();
     return productRfq;
   }
@@ -109,6 +121,11 @@ async function loadIframeForm(stepNum, data, type) {
     const queryParams = new URLSearchParams(window.location.search);
     const typeParam = queryParams && queryParams.get('type');
     tab = data.title;
+    sfdcProductFamily = data.productFamily;
+    sfdcProductSelection = data.title;
+    sfdcPrimaryApplication = data.title;
+
+    // special handling for bundles and customer breakthrough
     if (typeParam && typeParam.toLowerCase() === 'bundle' && data.productBundle && data.productBundle !== '0') {
       tab = `${data.productBundle} Bundle`;
     } else if (data.type === 'Customer Breakthrough') {
@@ -118,11 +135,15 @@ async function loadIframeForm(stepNum, data, type) {
         fragmentElement.innerHTML = fragmentHtml;
         const relatedProducts = fragmentElement.querySelector('meta[name="related-products"]').getAttribute('content');
         tab = (relatedProducts && relatedProducts.trim().length > 0) ? relatedProducts : data.title;
+        sfdcPrimaryApplication = tab;
+
+        const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
+        if (mainProduct) {
+          sfdcProductFamily = mainProduct.productFamily;
+          sfdcProductSelection = mainProduct.productFamily;
+        }
       }
     }
-    sfdcProductFamily = data.productFamily;
-    sfdcProductSelection = data.title;
-    sfdcPrimaryApplication = data.title;
   } else {
     tab = data;
     productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
@@ -249,7 +270,7 @@ export default async function decorate(block) {
     );
   } else {
     const queryParams = new URLSearchParams(window.location.search);
-    const rfqData = await getRFQData(queryParams.get('pid'));
+    const rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
     if (rfqData) {
