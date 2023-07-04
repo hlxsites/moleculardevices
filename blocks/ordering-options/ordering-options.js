@@ -201,13 +201,10 @@ export default async function decorate(block) {
   const refs = targetDivInnerHTML.split(', ').map((ref) => ref.trim());
 
   const itemDescriptions = {};
-  let descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
+  const descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
   descDivs.forEach((div, idx) => {
     itemDescriptions[refs[idx]] = div.innerHTML.trim();
   });
-
-
-  console.log(itemDescriptions);
 
   block.innerHTML = '';
 
