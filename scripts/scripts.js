@@ -1,22 +1,22 @@
 import {
-  sampleRUM,
-  loadFooter,
+  buildBlock,
+  decorateBlock,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
-  waitForLCP,
-  loadBlocks,
-  toClassName,
   getMetadata,
-  loadCSS,
   loadBlock,
+  loadBlocks,
+  loadCSS,
+  loadFooter,
   loadHeader,
-  decorateBlock,
-  buildBlock,
   readBlockConfig,
+  sampleRUM,
   toCamelCase,
+  toClassName,
+  waitForLCP,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -33,7 +33,6 @@ const TEMPLATE_LIST = [
   'newsroom',
   'landing-page',
   'category',
-  'category-product-compare',
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
@@ -357,9 +356,10 @@ function decorateLinkedPictures(container) {
  */
 async function decorateTemplates(main) {
   try {
-    const template = toClassName(getMetadata('template'));
-    const templates = TEMPLATE_LIST;
-    if (templates.includes(template)) {
+    const templateNames = getMetadata('template').split(',').map((s) => toClassName(s));
+    const template = templateNames.find((name) => TEMPLATE_LIST.includes(name));
+    if (template !== null) {
+      console.log('found template', template, 'in', templateNames, 'in', TEMPLATE_LIST);
       const mod = await import(`../templates/${template}/${template}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
       if (mod.default) {
