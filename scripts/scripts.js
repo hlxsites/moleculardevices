@@ -674,7 +674,7 @@ export function getCookie(cname) {
 function setCookieFromQueryParameters(paramName, exdays) {
   const readQuery = getQueryParameter();
   if (readQuery[paramName]) {
-    setCookie(paramName, readQuery[paramName], exdays);
+    setCookie(paramName === 'mdcmp' ? 'cmp' : paramName, readQuery[paramName], exdays);
   }
 }
 
@@ -697,7 +697,7 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
-const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
+const cookieParams = ['cmp', 'mdcmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
