@@ -87,9 +87,6 @@ function buildMegaMenu(block, content) {
       ),
     );
 
-    const backgroundImg = content.querySelector('.submenu-background img');
-    submenu.style.backgroundImage = `url(${backgroundImg.src})`;
-
     // Get the list item in the header block that contains a div with attribute menu-id
     // that matches the menuId
     const item = block.querySelector(`div[menu-id="${menuId}"]`).closest('li');

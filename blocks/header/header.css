@@ -482,7 +482,7 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: var(--background-color) url('/images/header-background-filler.jpg') no-repeat right bottom;
+  background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%) !important;
 }
 
 header .cards-submenu > div {
@@ -1726,7 +1726,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   }
 
   header .nav-tabs .menu-nav-submenu {
-    min-height: 782px;
+    min-height: 750px;
     padding-bottom: 9.4%;
     box-shadow: inset 0 19px 33px -28px #333F;
     background-repeat: no-repeat;
