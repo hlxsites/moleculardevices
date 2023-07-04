@@ -102,9 +102,9 @@ function renderAddToCart(item) {
   );
 }
 
+let count = 0;
 function renderItem(item, showStore, itemDescriptions) {
   if (!item) return '';
-
   return (
     div({ class: 'ordering-option-item', id: item.handle },
       div({ class: 'header' },
@@ -119,7 +119,7 @@ function renderItem(item, showStore, itemDescriptions) {
             p({ class: 'legend' }, `#${variant.sku}`),
           ),
           div({ class: 'description' },
-            p({ class: 'legend' }, itemDescriptions[item.handle]),
+            p({ class: 'legend' }, itemDescriptions[count++]),
           ),
           (showStore) ? renderAddToCart(variant) : '',
         ),
@@ -200,10 +200,11 @@ export default async function decorate(block) {
 
   const refs = targetDivInnerHTML.split(', ').map((ref) => ref.trim());
 
-  const itemDescriptions = {};
+  // Fetch the descriptions and store them in an array
+  const itemDescriptions = [];
   const descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
-  descDivs.forEach((div, idx) => {
-    itemDescriptions[refs[idx]] = div.innerHTML.trim();
+  descDivs.forEach((div) => {
+    itemDescriptions.push(div.innerHTML.trim());
   });
 
   block.innerHTML = '';
