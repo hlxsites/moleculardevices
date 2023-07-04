@@ -1107,6 +1107,19 @@ header .cards-submenu p {
   margin-top: 0;
 }
 
+header .cards-submenu p:first-child img {
+  transition: all .4s;
+}
+
+header .cards-submenu p:nth-child(2) {
+  min-height: 37px;
+}
+
+header .cards-submenu p:first-child:hover img{
+  transform: scale(1.15);
+  transition: all .4s;
+}
+
 header .cards-submenu p:nth-child(1) {
   background-color: var(--text-white);
   min-height: 114px;
