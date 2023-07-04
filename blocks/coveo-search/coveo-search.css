@@ -158,23 +158,55 @@
   font-weight: normal;
 }
 
-.coveo-dynamic-facet-value input[type='checkbox'].coveo-checkbox + button {
+.coveo-main-section .coveo-dynamic-facet-value input[type='checkbox'].coveo-checkbox + button {
+  width: 18px;
+  height: 18px;
+  box-sizing: content-box;
+  border: thin solid #bcc3ca;
+  border-radius: 2px;
   text-align: center;
   vertical-align: middle;
   margin-right: 15px;
+  background: var(--background-color);
+  position: relative;
   float: left;
-  top: 2px;
-  box-sizing: content-box;
+  top: 2px
 }
 
-.coveo-dynamic-facet-value .coveo-checkbox-label button + .coveo-checkbox-span-label {
+.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button + .coveo-checkbox-span-label {
   font-size: var(--body-font-size-xs);
   color: var(--text-light-gray);
   width: 400px;
   font-weight: normal;
 }
 
-/* COVEO RESULT */
+.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-span-label-suffix {
+  margin-left: 8px;
+  color: #67768b;
+  float: right;
+  font-weight: normal
+}
+
+.coveo-main-section .coveo-facet-value-count,
+.coveo-main-section .coveo-category-facet-value-count {
+  font-size: 14px;
+  color: #a5a6a8;
+  font-weight: normal;
+}
+
+.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button+.coveo-checkbox-span-label {
+  font-size: 14px;
+  color: #63666a;
+  width: 400px;
+  font-weight: normal;
+}
+
+.coveo-main-section .coveo-dynamic-facet-breadcrumb-value,
+.coveo-main-section .coveo-breadcrumb-clear-all.coveo-accessible-button {
+  color: #008da9;
+  font-weight: bold;
+}
+
 .coveo-main-section .coveo-results-header {
   box-shadow: none;
 }
@@ -211,7 +243,7 @@
 
 .coveo-main-section .coveo-result-cell .coveo-excerpt {
   font-size: 14px;
-  color: var(--text-light-gray);
+  color: #63666a;
   line-height: 20px;
 }
 
