@@ -8,7 +8,7 @@ function tabQueryString(tabID) {
 function tabHandler(event) {
   event.preventDefault();
 
-  const tabID = this.href.split('#')[1];
+  const tabID = decodeURI(this.href.split('#')[1]);
   const tabContents = document.querySelectorAll('.tab-content');
   const tabCount = this.parentElement.children.length;
 
@@ -81,7 +81,6 @@ function createAccordian(tab, plusIcon, index) {
   tab.addEventListener('click', accordianHandler);
 }
 /* ================ CREATE Accordian BUTTONS ===================== */
-
 const parent = document.querySelector('.regional-contacts-wrapper');
 const nextChild = parent.querySelector('.regional-contacts');
 const regionalTabs = parent.querySelectorAll('.regional-contacts > div > div:first-child');
@@ -150,7 +149,10 @@ regionalTabs.forEach((tab, index) => {
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
-const tabID = params.region ? params.region : 'americas';
+const tabID = params.region ?
+  params.region :
+  document.querySelector('.regional-contacts .tab-content').id;
+
 document.querySelector(`a[href="#${tabID}"]`).click();
 tabQueryString(tabID);
 
