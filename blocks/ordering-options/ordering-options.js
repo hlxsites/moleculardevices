@@ -204,10 +204,11 @@ export default async function decorate(block) {
   const itemDescriptions = [];
   const descDivs = Array.from(block.querySelectorAll('div > div:nth-child(2) div:last-child')).slice(1);
   descDivs.forEach((div) => {
-    itemDescriptions.push(div.innerHTML.trim());
+    const cleanDescription = div.innerHTML.replace(/<[^>]*>?/gm, '').trim();
+    itemDescriptions.push(cleanDescription);
   });
 
-  block.innerHTML = '';
+ // block.innerHTML = '';
 
   const container = div({ class: 'ordering-options-list' });
   block.append(container);
