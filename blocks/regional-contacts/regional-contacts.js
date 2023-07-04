@@ -4,6 +4,10 @@ function tabQueryString(tabID) {
   window.history.pushState({ path: newurl.href }, '', newurl.href);
 }
 
+function idFromRegion(country) {
+  return country.id.split('-')[0];
+}
+
 /* ================ TAB HANDLER ===================== */
 function tabHandler(event) {
   event.preventDefault();
@@ -29,16 +33,16 @@ function tabHandler(event) {
 /* ================ TAB HANDLER ===================== */
 
 /* ================ CREATE TAB BUTTONS ===================== */
-function createTabButtons(tabWrapper, tabName, tabClassName, index) {
+function createTabButtons(tabWrapper, tabName, tabId, tabClassName, index) {
   const tabBtn = document.createElement('a');
 
   tabBtn.textContent = tabName;
-  tabBtn.href = `#${tabName.toLowerCase()}`;
+  tabBtn.href = `#${tabId}`;
   tabBtn.classList.add(tabClassName);
 
   if (index === 0) {
     tabBtn.classList.add('active');
-    document.getElementById(tabName.toLowerCase()).style.display = 'block';
+    document.getElementById(tabId).style.display = 'block';
   }
 
   tabBtn.addEventListener('click', tabHandler);
@@ -80,6 +84,7 @@ function createAccordian(tab, plusIcon, index) {
   tab.appendChild(plusIcon);
   tab.addEventListener('click', accordianHandler);
 }
+
 /* ================ CREATE Accordian BUTTONS ===================== */
 const parent = document.querySelector('.regional-contacts-wrapper');
 const nextChild = parent.querySelector('.regional-contacts');
@@ -93,7 +98,9 @@ parent.insertBefore(tabWrapper, nextChild);
 const countryNames = [];
 
 regionalTabs.forEach((tab, index) => {
-  const country = tab.textContent;
+  const country = tab.querySelector('h4');
+  const countryName = country.textContent;
+  const countryId = idFromRegion(country);
   const tabParents = tab.parentElement;
   const grandParents = tab.parentElement.parentElement;
 
@@ -103,12 +110,12 @@ regionalTabs.forEach((tab, index) => {
   tabAccordianWrapper.classList.add('tab-accordian-wrapper');
   plusIcon.classList.add('fa', 'fa-plus');
 
-  if (!countryNames.includes(country)) {
+  if (!countryNames.includes(countryId)) {
     const tabClassName = 'tab-btn';
-    countryNames.push(country);
+    countryNames.push(countryId);
 
     tab.classList.add('accordian-btn');
-    tab.parentElement.id = country.toLowerCase();
+    tab.parentElement.id = countryId;
 
     [...tabParents.children].forEach((tabItem, i) => {
       if (i !== 0) {
@@ -124,7 +131,7 @@ regionalTabs.forEach((tab, index) => {
       tab.parentElement.style.display = 'none';
 
       /* create tab buttons */
-      createTabButtons(tabWrapper, country, tabClassName, index);
+      createTabButtons(tabWrapper, countryName, countryId, tabClassName, index);
     } else {
       tab.parentElement.classList.add('accordian-content');
       /* create accordian buttons */
@@ -134,7 +141,7 @@ regionalTabs.forEach((tab, index) => {
     /* remove duplicate country data */
     /* eslint no-plusplus: "error" */
     for (let i = 0; i < grandParents.children.length; i += 1) {
-      if (grandParents.children[i].id === country.toLowerCase()) {
+      if (grandParents.children[i].id === countryId) {
         [...tabParents.children].forEach((tabItem, ind) => {
           if (ind !== 0) {
             grandParents.children[i].children[1].appendChild(tabItem);
