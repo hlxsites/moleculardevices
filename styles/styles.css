@@ -190,6 +190,14 @@ body.appear {
   display: unset;
 }
 
+/* progressive section appearance */
+main .section[data-section-status='loading'],
+main .section[data-section-status='initialized'],
+main .section[aria-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 body.no-scroll {
   overflow: hidden;
 }
@@ -623,13 +631,6 @@ main .section.columns-2>div {
     padding-left: calc((100vw - 1170px) / 2);
     padding-right: calc((100vw - 1170px) / 2);
   }
-}
-
-
-/* progressive section appearance */
-main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
-  display: none !important;
 }
 
 main .section.highlight {
@@ -1245,11 +1246,6 @@ main .section.background-molecules {
   main div.section.wave h2 {
     font-size: 40px;
   }
-}
-
-main .section[aria-hidden="true"] {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 
