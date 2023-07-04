@@ -485,6 +485,17 @@ header .nav-tabs .menu-nav-submenu {
   background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%) !important;
 }
 
+header .nav-tabs .menu-nav-submenu::after {
+  background-image: url("/images/wave-background-bottom.webp"), url("/images/wave-background-bottom.png");
+  background-size: 100% 100%;
+  height: 82px;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  bottom: 0;
+  content: "";
+}
+
 header .cards-submenu > div {
   display: flex;
   flex-wrap: wrap;
