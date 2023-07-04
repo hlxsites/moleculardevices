@@ -399,6 +399,7 @@ async function loadEager(doc) {
   // logic later
   document.documentElement.lang = document.documentElement.lang || 'en';
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -682,7 +683,17 @@ function setCookieFromQueryParameters(paramName, exdays) {
  * Detect if page has store capability
  */
 export function detectStore() {
-  return getCookie('country_code') === 'US';
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return false;
+  }
+
+  try {
+    return JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('Could not load user information.', err);
+    return false;
+  }
 }
 
 /**
