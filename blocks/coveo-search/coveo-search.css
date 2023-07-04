@@ -173,13 +173,6 @@
   top: 2px
 }
 
-.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button + .coveo-checkbox-span-label {
-  font-size: var(--body-font-size-xs);
-  color: var(--text-light-gray);
-  width: 400px;
-  font-weight: normal;
-}
-
 .coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-span-label-suffix {
   margin-left: 8px;
   color: #67768b;
