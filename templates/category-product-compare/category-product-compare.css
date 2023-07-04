@@ -1,0 +1,8 @@
+h2 {
+    font-size: 34px;
+}
+
+p, h2 {
+    /* justify text center */
+    text-align: center;
+}

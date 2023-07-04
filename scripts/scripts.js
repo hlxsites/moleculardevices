@@ -32,6 +32,8 @@ const TEMPLATE_LIST = [
   'about-us',
   'newsroom',
   'landing-page',
+  'category',
+  'category-product-compare',
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
