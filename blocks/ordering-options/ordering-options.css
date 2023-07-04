@@ -76,6 +76,10 @@ main .section.ordering-options-container > div:last-child {
   margin: 0 0 10px;
 }
 
+.ordering-option-item-variants .variant-item .description .legend {
+  font-size: 14px;
+}
+
 .ordering-options.cart-store .legend {
   padding-left: unset;
 }
