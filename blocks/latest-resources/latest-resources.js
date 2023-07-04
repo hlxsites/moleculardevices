@@ -22,9 +22,7 @@ function onViewAllClick(e) {
 
 export default async function decorate(block) {
   const template = getMetadata('template');
-  let identifier = getMetadata('identifier');
-  // fallback
-  identifier = identifier ? identifier : ('.hero .container h1, .hero-advanced .container h1').textContent;
+  const identifier = getMetadata('identifier') || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
 
   const includedResourceTypes = Object.keys(resourceMapping);
   const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
