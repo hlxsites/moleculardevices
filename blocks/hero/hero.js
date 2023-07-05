@@ -1,9 +1,9 @@
 /* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  detectStore, formatDate, isVideo, videoButton,
+  detectStore, formatDate, isVideo, videoButton, getOrderingOptions,
 } from '../../scripts/scripts.js';
-import { div, img } from '../../scripts/dom-helpers.js';
+import { div, domEl, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -81,7 +81,7 @@ function showHidePricingRequestButton(block) {
   }
 }
 
-export function buildHero(block) {
+export async function buildHero(block) {
   const inner = document.createElement('div');
   inner.classList.add('hero-inner');
   const container = document.createElement('div');
@@ -157,7 +157,9 @@ export function buildHero(block) {
   // price calculation
   // add real data to options and variants
 
-  function buildOrderingForm(options, variants) {
+  async function buildOrderingForm(options) {
+    const optionTitles = options.map((option) => option.title);
+    const variants = [1, 2, 3];
     let selectedOption = null;
     let selectedVariant = null;
 
@@ -171,8 +173,7 @@ export function buildHero(block) {
         variantDropDown.classList.toggle('not-allowed');
         selectedVariant = 'Select Variant';
         updateVariantsDropdownLabel();
-      }
-      else if (selectedOption !== 'Product Options') {
+      } else if (selectedOption !== 'Product Options') {
         const variantDropDown = document.getElementById('variantDropDown');
         variantDropDown.classList.add('allowed');
       }
@@ -195,22 +196,33 @@ export function buildHero(block) {
       selectedOption = option;
       updateDropdownInnerHTML();
       checkOptionValidity();
+      const variantsContent = block.querySelector('#variantsDropdown');
+      variantsContent.replaceChildren();
+      for (let i = 0; i < variants.length; i++) {
+        const variant = document.createElement('a');
+        variant.innerHTML = option.variants[i].title;
+        variant.classList.add('option');
+        variant.addEventListener('click', () => handleVariantSelection(option.variants[i]));
+        variantsContent.appendChild(variant);
+      }
     }
 
     function handleVariantSelection(variant) {
       selectedVariant = variant;
       updateVariantsDropdownLabel();
+      const priceContent = block.querySelector('.price');
+      priceContent.innerHTML = `$ ${(variant.price / 100).toLocaleString('en-US')}.00`;
     }
 
     function updateDropdownInnerHTML() {
       if (optionsDropdown) {
-        optionsDropdown.innerHTML = selectedOption;
+        optionsDropdown.innerHTML = selectedOption.title;
       }
     }
 
     function updateVariantsDropdownLabel() {
       if (variantDropDown) {
-        variantDropDown.innerHTML = selectedVariant;
+        variantDropDown.innerHTML = selectedVariant.title;
       }
     }
 
@@ -238,10 +250,9 @@ export function buildHero(block) {
     optionsContent.classList.add('product-options-content');
     optionsContent.id = 'optionsDropdownContent';
     orderFormContainer.appendChild(optionsContent);
-
-    for (let i = 0; i < options.length; i++) {
+    for (let i = 0; i < optionTitles.length; i++) {
       const option = document.createElement('a');
-      option.innerHTML = options[i];
+      option.innerHTML = optionTitles[i];
       option.classList.add('option');
       option.addEventListener('click', () => handleOptionSelection(options[i]));
       optionsContent.appendChild(option);
@@ -258,14 +269,6 @@ export function buildHero(block) {
     variantsContent.classList.add('product-options-content');
     variantsContent.id = 'variantsDropdown';
     orderFormContainer.appendChild(variantsContent);
-
-    for (let i = 0; i < variants.length; i++) {
-      const variant = document.createElement('a');
-      variant.innerHTML = variants[i];
-      variant.classList.add('option');
-      variant.addEventListener('click', () => handleVariantSelection(variants[i]));
-      variantsContent.appendChild(variant);
-    }
 
     const priceLabel = document.createElement('label');
     priceLabel.classList.add('price-label');
@@ -305,6 +308,7 @@ export function buildHero(block) {
       let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
       currentQuantity++;
       quantityNumber.innerHTML = currentQuantity;
+      price.innerHTML = `$ ${((selectedVariant.price * currentQuantity) / 100).toLocaleString('en-US')}.00`;
     });
 
     decreaseButton.addEventListener('click', () => {
@@ -312,6 +316,7 @@ export function buildHero(block) {
       if (currentQuantity > 0) {
         currentQuantity--;
         quantityNumber.innerHTML = currentQuantity;
+        price.innerHTML = `$ ${((selectedVariant.price * currentQuantity) / 100).toLocaleString('en-US')}.00`;
       }
     });
     const addToCart = document.createElement('button');
@@ -322,11 +327,20 @@ export function buildHero(block) {
 
   // check if block containt Orange Buttons
   const orangeButtons = block.classList.contains('orange-buttons');
+
+  function hasOrderingOptions() {
+    return block.parentNode.parentNode.parentNode.querySelector('.ordering-options') !== null
+        && block.parentNode.parentNode.querySelector('.order');
+  }
+
   if (orangeButtons) {
-    if (detectStore()) {
-      const options = ['Product Options', 'Option 1', 'Option 2'];
-      const variants = ['Select Variant', 'Variant 1', 'Variant 2'];
-      buildOrderingForm(options, variants);
+    if (detectStore() && hasOrderingOptions()) {
+      const refs = [...block.parentNode.parentNode.parentNode.querySelectorAll('.ordering-options > div > div')]
+        .map((ref) => (ref.innerHTML).split(', '))
+        .reduce((x, y) => x.concat(y), []);
+      const orderingOptions = await getOrderingOptions(refs);
+      const options = orderingOptions.filter((o) => !!o);
+      buildOrderingForm(options);
     }
   }
 
@@ -352,5 +366,5 @@ export function buildHero(block) {
 }
 
 export default async function decorate(block) {
-  buildHero(block);
+  await buildHero(block);
 }

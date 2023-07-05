@@ -34,6 +34,7 @@ const TEMPLATE_LIST = [
   'landing-page',
 ];
 
+const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
@@ -701,6 +702,32 @@ export function detectStore() {
  */
 export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
+}
+
+function fetchOption(option) {
+  return fetch(`${SHOP_BASE_URL}/products/${option}.js`, {
+    mode: 'cors',
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.warn(`Could not fetch ordering details for option ${option}, got status ${err.status}.`, err.statusText);
+  });
+}
+
+async function fetchOptionIntoArray(array, idx, option) {
+  array[idx] = await fetchOption(option.trim());
+}
+
+export async function getOrderingOptions(refs) {
+  const options = new Array(refs.length);
+  await Promise.all(refs
+    .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
+  );
+  return options;
 }
 
 async function loadPage() {

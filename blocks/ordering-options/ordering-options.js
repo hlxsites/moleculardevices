@@ -1,4 +1,4 @@
-import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
+import { detectStore, getCartItemCount, setCookie, getOrderingOptions } from '../../scripts/scripts.js';
 import {
   a, div, domEl, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
@@ -139,32 +139,6 @@ function renderCartWidget() {
       ),
     )
   );
-}
-
-function fetchOption(option) {
-  return fetch(`${SHOP_BASE_URL}/products/${option}.js`, {
-    mode: 'cors',
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(response);
-  }).catch((err) => {
-    // eslint-disable-next-line no-console
-    console.warn(`Could not fetch ordering details for option ${option}, got status ${err.status}.`, err.statusText);
-  });
-}
-
-async function fetchOptionIntoArray(array, idx, option) {
-  array[idx] = await fetchOption(option.trim());
-}
-
-async function getOrderingOptions(refs) {
-  const options = new Array(refs.length);
-  await Promise.all(refs
-    .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
-  );
-  return options;
 }
 
 async function renderList(refs, showStore, container) {
