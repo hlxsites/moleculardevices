@@ -162,16 +162,4 @@ const tabID = params.region ?
 
 document.querySelector(`a[href="#${tabID}"]`).click();
 tabQueryString(tabID);
-
-const localTeamText = document.querySelectorAll('.tab-accordian-wrapper div:nth-child(odd) li');
-const txt = 'Contact Local Team';
-
-/* eslint operator-linebreak: ["error", "after"] */
-const updatedTxt =
-  '<a href="javascript:void(0);" title="Contact Local Team">Contact Local Team</a>';
-
-/* eslint no-return-assign: "error" */
-localTeamText.forEach(
-  (localText) => (localText.innerHTML = localText.innerHTML.replaceAll(txt, updatedTxt)),
-);
 /* ================ TAB HANDLER ===================== */
