@@ -40,6 +40,8 @@ main .embed.video > div {
 }
 
 
+
+
 .flippingbook-desktop {
   display: none;
 }
@@ -96,4 +98,8 @@ main .embed.embed-twitter {
 
 main .embed.embed-twitter > div {
   display: block;
+}
+
+main .embed.embed-info-moleculardevices-com {
+  height: 590px;
 }

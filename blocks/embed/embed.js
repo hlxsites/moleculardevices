@@ -1,3 +1,4 @@
+import { toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript, isVideo } from '../../scripts/scripts.js';
 
 const getDefaultEmbed = (url) => {
@@ -7,6 +8,15 @@ const getDefaultEmbed = (url) => {
       </iframe>
     </div>`;
 
+  return embedHTML;
+};
+
+const embedHubspot = (url) => {
+  const embedHTML = `<div style="left: 0; width: 100%; height: 166px; position: relative;">
+        <iframe src="${url.href}" 
+        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
+        frameborder="0" loading="lazy"></iframe>
+      </div>`;
   return embedHTML;
 };
 
@@ -94,6 +104,10 @@ const loadEmbed = (block, link) => {
       match: ['flippingbook'],
       embed: embedFlippingBook,
     },
+    {
+      match: ['info.moleculardevices.com'],
+      embed: embedHubspot,
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
@@ -102,7 +116,8 @@ const loadEmbed = (block, link) => {
   embedBlock.innerHTML = config ? config.embed(url) : getDefaultEmbed(url);
   block.append(embedBlock);
   block.classList.add('block', 'embed', 'embed-is-loaded');
-  if (config) block.classList.add(`embed-${config.match[0]}`);
+  const className = toClassName(config.match[0]);
+  if (config) block.classList.add(`embed-${className}`);
 };
 
 export default function decorate(block) {
