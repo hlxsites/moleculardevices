@@ -129,7 +129,6 @@
   li {
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
   padding: 10px 0;
   position: relative;
 }
@@ -389,7 +388,7 @@
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > p,
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul {
     margin-top: 0;
-    max-width: 300px;
+    max-width: 330px;
     padding-left: 48px;
   }
 
