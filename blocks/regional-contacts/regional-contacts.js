@@ -156,22 +156,10 @@ regionalTabs.forEach((tab, index) => {
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
-const tabID = params.region ?
-  params.region :
-  document.querySelector('.regional-contacts .tab-content').id;
+const tabID = params.region
+  ? params.region
+  : document.querySelector('.regional-contacts .tab-content').id;
 
 document.querySelector(`a[href="#${tabID}"]`).click();
 tabQueryString(tabID);
-
-const localTeamText = document.querySelectorAll('.tab-accordian-wrapper div:nth-child(odd) li');
-const txt = 'Contact Local Team';
-
-/* eslint operator-linebreak: ["error", "after"] */
-const updatedTxt =
-  '<a href="javascript:void(0);" title="Contact Local Team">Contact Local Team</a>';
-
-/* eslint no-return-assign: "error" */
-localTeamText.forEach(
-  (localText) => (localText.innerHTML = localText.innerHTML.replaceAll(txt, updatedTxt)),
-);
 /* ================ TAB HANDLER ===================== */
