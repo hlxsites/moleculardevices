@@ -64,6 +64,7 @@
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
   --heading-color: #00758d;
+  --heading-color-blue: #038296;
   --text-green: #6eb43f;
   --link-color: #337ab7;
   --link-hover-color: #0066a4;
@@ -187,6 +188,14 @@ body {
 
 body.appear {
   display: unset;
+}
+
+/* progressive section appearance */
+main .section[data-section-status='loading'],
+main .section[data-section-status='initialized'],
+main .section[aria-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 body.no-scroll {
@@ -493,9 +502,18 @@ main .section {
   padding-bottom: 50px;
 }
 
-main .section>div {
+main .section > div {
   margin: 0 auto;
   padding: 0 15px;
+}
+
+main .section.buttons-in-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.buttons-in-row > div {
+  padding: 0;
 }
 
 @media (max-width: 991px) {
@@ -613,13 +631,6 @@ main .section.columns-2>div {
     padding-left: calc((100vw - 1170px) / 2);
     padding-right: calc((100vw - 1170px) / 2);
   }
-}
-
-
-/* progressive section appearance */
-main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
-  display: none !important;
 }
 
 main .section.highlight {
@@ -762,6 +773,24 @@ main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
 
+main .section.buttons-in-row p.button-container {
+  margin-top: 0;
+}
+
+main .section.buttons-in-row p.button-container,
+main .section.wave.orange-buttons p.button-container {
+  display: inline-block;
+}
+
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+}
+
+main .section.buttons-in-row p.button-container + p.button-container,
+main .section.wave.orange-buttons p.button-container + p.button-container {
+  margin-left: 20px;
+}
+
 /* services & support */
 
 main .section.service-support .default-content-wrapper h2 {
@@ -835,6 +864,16 @@ main .section.features-section .button-container {
   main .section.features-section .default-content-wrapper em {
     width: 100%;
     padding: 0 15px;
+  }
+
+  main .section.buttons-in-row p.button-container,
+  main .section.wave.orange-buttons p.button-container {
+    display: block;
+  }
+
+  main .section.buttons-in-row p.button-container + p.button-container,
+  main .section.wave.orange-buttons p.button-container + p.button-container {
+    margin-left: 0;
   }
 }
 
@@ -1132,11 +1171,6 @@ main div.section.wave.wavecarousel.bluegreen {
 }
 
 /* Orange Buttons */
-main div.orange-buttons p.button-container {
-  display: inline-block;
-  margin-top: 20px;
-}
-
 main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
@@ -1162,7 +1196,6 @@ main div.orange-buttons .button.secondary:visited {
   background: transparent;
   border: 2px solid #fff;
   text-transform: none;
-  margin-left: 20px;
 }
 
 main div.orange-buttons .button.secondary:hover,
@@ -1199,10 +1232,6 @@ main .section.background-molecules {
     height: 50px;
   }
 
-  main div.orange-buttons p.button-container {
-    display: block;
-  }
-
   main div.orange-buttons .button {
     min-width: 140px;
     max-width: 200px;
@@ -1212,22 +1241,11 @@ main .section.background-molecules {
     height: 37px;
   }
 
-  main div.orange-buttons .button.secondary:link,
-  main div.orange-buttons .button.secondary:visited {
-    margin-left: unset;
-    margin-top: 20px;
-  }
-
   /* ------ */
 
   main div.section.wave h2 {
     font-size: 40px;
   }
-}
-
-main .section[aria-hidden="true"] {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 

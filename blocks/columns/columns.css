@@ -337,7 +337,7 @@ main .section>div.columns-wrapper {
 
 .section .columns.image-figure > div p.picture,
 .section .columns.image-figure > div p.picture ~ p {
-  font-size: var(--body-font-size-l);
+  text-align: center;
 }
 
 .section .columns.image-figure > div p.picture img {

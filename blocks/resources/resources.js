@@ -11,6 +11,7 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
+const excludedResources = ['Videos and Webinars', 'Citation', 'COA'];
 
 function handleFilterClick(e) {
   e.preventDefault();
@@ -43,22 +44,22 @@ function handleFilterClick(e) {
 
 export default async function decorate(block) {
   const template = getMetadata('template');
-  const title = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+  const identifier = getMetadata('identifier') || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+
   const includedResourceTypes = Object.keys(resourceMapping);
   const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .chunks(2000)
-    .filter((resource) => resource[relatedResource].includes(title)
+    .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .all();
-  const otherResources = resources.filter((item) => !['Videos and Webinars', 'Citation'].includes(item.type));
+  const otherResources = resources.filter((item) => !excludedResources.includes(item.type));
   const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
 
   const filtersBlock = ul({ class: 'filters' });
-  const filters = [...new Set(otherResources.map((item) => item.type))]
-    .filter((item) => item !== 'Citation');
+  const filters = [...new Set(otherResources.map((item) => item.type))];
   if (videoResources.length > 0) {
     filters.push('Videos and Webinars');
   }

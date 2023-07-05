@@ -90,11 +90,11 @@ export function summariseDescription(description, charCount) {
  * If we have a hero block, move it into its own section, so it can be displayed faster
  */
 function optimiseHeroBlock(main) {
-  const heroBlock = main.querySelector('.hero, .hero-advanced');
-  if (!heroBlock) return;
+  const heroBlocks = main.querySelectorAll('.hero, .hero-advanced');
+  if (!heroBlocks || heroBlocks.length === 0) return;
 
   const heroSection = document.createElement('div');
-  heroSection.appendChild(heroBlock);
+  heroSection.append(...heroBlocks);
   main.prepend(heroSection);
 }
 
@@ -182,7 +182,8 @@ function decorateLinks(main) {
     const url = new URL(link.href);
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
-      if (link.closest('.block.cards')) {
+      const closestButtonContainer = link.closest('.button-container');
+      if (link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong'))) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
@@ -398,6 +399,7 @@ async function loadEager(doc) {
   // logic later
   document.documentElement.lang = document.documentElement.lang || 'en';
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -405,6 +407,15 @@ async function loadEager(doc) {
     await decorateMain(main);
     createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
+  }
+  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+
+  try {
+    if (sessionStorage.getItem('fonts-loaded')) {
+      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+    }
+  } catch (e) {
+    // do nothing
   }
 }
 
@@ -580,6 +591,13 @@ async function loadLazy(doc) {
   loadBreadcrumbs(main);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
+    try {
+      if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+    } catch (e) {
+      // do nothing
+    }
+  });
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'apple-touch-icon');
   sampleRUM('lazy');
@@ -657,7 +675,7 @@ export function getCookie(cname) {
 function setCookieFromQueryParameters(paramName, exdays) {
   const readQuery = getQueryParameter();
   if (readQuery[paramName]) {
-    setCookie(paramName, readQuery[paramName], exdays);
+    setCookie(paramName === 'mdcmp' ? 'cmp' : paramName, readQuery[paramName], exdays);
   }
 }
 
@@ -665,7 +683,17 @@ function setCookieFromQueryParameters(paramName, exdays) {
  * Detect if page has store capability
  */
 export function detectStore() {
-  return getCookie('country_code') === 'US';
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return false;
+  }
+
+  try {
+    return JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('Could not load user information.', err);
+    return false;
+  }
 }
 
 /**
@@ -680,7 +708,7 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
-const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
+const cookieParams = ['cmp', 'mdcmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);

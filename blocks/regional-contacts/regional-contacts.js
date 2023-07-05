@@ -4,11 +4,15 @@ function tabQueryString(tabID) {
   window.history.pushState({ path: newurl.href }, '', newurl.href);
 }
 
+function idFromRegion(country) {
+  return country.id.split('-')[0];
+}
+
 /* ================ TAB HANDLER ===================== */
 function tabHandler(event) {
   event.preventDefault();
 
-  const tabID = this.href.split('#')[1];
+  const tabID = decodeURI(this.href.split('#')[1]);
   const tabContents = document.querySelectorAll('.tab-content');
   const tabCount = this.parentElement.children.length;
 
@@ -29,16 +33,16 @@ function tabHandler(event) {
 /* ================ TAB HANDLER ===================== */
 
 /* ================ CREATE TAB BUTTONS ===================== */
-function createTabButtons(tabWrapper, tabName, tabClassName, index) {
+function createTabButtons(tabWrapper, tabName, tabId, tabClassName, index) {
   const tabBtn = document.createElement('a');
 
   tabBtn.textContent = tabName;
-  tabBtn.href = `#${tabName.toLowerCase()}`;
+  tabBtn.href = `#${tabId}`;
   tabBtn.classList.add(tabClassName);
 
   if (index === 0) {
     tabBtn.classList.add('active');
-    document.getElementById(tabName.toLowerCase()).style.display = 'block';
+    document.getElementById(tabId).style.display = 'block';
   }
 
   tabBtn.addEventListener('click', tabHandler);
@@ -80,8 +84,8 @@ function createAccordian(tab, plusIcon, index) {
   tab.appendChild(plusIcon);
   tab.addEventListener('click', accordianHandler);
 }
-/* ================ CREATE Accordian BUTTONS ===================== */
 
+/* ================ CREATE Accordian BUTTONS ===================== */
 const parent = document.querySelector('.regional-contacts-wrapper');
 const nextChild = parent.querySelector('.regional-contacts');
 const regionalTabs = parent.querySelectorAll('.regional-contacts > div > div:first-child');
@@ -94,7 +98,9 @@ parent.insertBefore(tabWrapper, nextChild);
 const countryNames = [];
 
 regionalTabs.forEach((tab, index) => {
-  const country = tab.textContent;
+  const country = tab.querySelector('h4');
+  const countryName = country.textContent;
+  const countryId = idFromRegion(country);
   const tabParents = tab.parentElement;
   const grandParents = tab.parentElement.parentElement;
 
@@ -104,12 +110,12 @@ regionalTabs.forEach((tab, index) => {
   tabAccordianWrapper.classList.add('tab-accordian-wrapper');
   plusIcon.classList.add('fa', 'fa-plus');
 
-  if (!countryNames.includes(country)) {
+  if (!countryNames.includes(countryId)) {
     const tabClassName = 'tab-btn';
-    countryNames.push(country);
+    countryNames.push(countryId);
 
     tab.classList.add('accordian-btn');
-    tab.parentElement.id = country.toLowerCase();
+    tab.parentElement.id = countryId;
 
     [...tabParents.children].forEach((tabItem, i) => {
       if (i !== 0) {
@@ -125,7 +131,7 @@ regionalTabs.forEach((tab, index) => {
       tab.parentElement.style.display = 'none';
 
       /* create tab buttons */
-      createTabButtons(tabWrapper, country, tabClassName, index);
+      createTabButtons(tabWrapper, countryName, countryId, tabClassName, index);
     } else {
       tab.parentElement.classList.add('accordian-content');
       /* create accordian buttons */
@@ -135,7 +141,7 @@ regionalTabs.forEach((tab, index) => {
     /* remove duplicate country data */
     /* eslint no-plusplus: "error" */
     for (let i = 0; i < grandParents.children.length; i += 1) {
-      if (grandParents.children[i].id === country.toLowerCase()) {
+      if (grandParents.children[i].id === countryId) {
         [...tabParents.children].forEach((tabItem, ind) => {
           if (ind !== 0) {
             grandParents.children[i].children[1].appendChild(tabItem);
@@ -150,19 +156,10 @@ regionalTabs.forEach((tab, index) => {
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
-const tabID = params.region ? params.region : 'americas';
+const tabID = params.region
+  ? params.region
+  : document.querySelector('.regional-contacts .tab-content').id;
+
 document.querySelector(`a[href="#${tabID}"]`).click();
 tabQueryString(tabID);
-
-const localTeamText = document.querySelectorAll('.tab-accordian-wrapper div:nth-child(odd) li');
-const txt = 'Contact Local Team';
-
-/* eslint operator-linebreak: ["error", "after"] */
-const updatedTxt =
-  '<a href="javascript:void(0);" title="Contact Local Team">Contact Local Team</a>';
-
-/* eslint no-return-assign: "error" */
-localTeamText.forEach(
-  (localText) => (localText.innerHTML = localText.innerHTML.replaceAll(txt, updatedTxt)),
-);
 /* ================ TAB HANDLER ===================== */

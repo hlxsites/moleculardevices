@@ -1,4 +1,6 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import {
+  readBlockConfig, decorateIcons, decorateBlock,
+} from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, iframe, p,
@@ -99,7 +101,7 @@ async function buildNewsEvents(container) {
 
 function iframeResizeHandler(formUrl, id, container) {
   const resizerPromise = new Promise((resolve) => {
-    loadScript('../../scripts/iframeResizer.min.js', () => { resolve(); });
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
   });
 
   container.querySelector('iframe').addEventListener('load', async () => {
@@ -158,6 +160,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   const footerPath = cfg.footer || '/footer';
+
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
   const footer = document.createElement('div');
@@ -184,6 +187,7 @@ export default async function decorate(block) {
   });
 
   buildNewsEvents(block.querySelector('.footer-news-events'));
+  block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
 
   block.append(footer);
   await decorateIcons(block);

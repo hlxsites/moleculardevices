@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './lib-franklin.js';
-// eslint-disable-next-line import/no-cycle
-import { getCookie, setCookie } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -36,8 +34,13 @@ IPStack Integration to get specific user information
 Stores dedicated user data in a cookie.
 */
 async function loadUserData() {
-  const attrCountryCode = 'country_code';
-  if (getCookie(attrCountryCode)) return;
+  const geolocationData = localStorage.getItem('ipstack:geolocation')
+    ? JSON.parse(localStorage.getItem('ipstack:geolocation'))
+    : null;
+
+  if (geolocationData && geolocationData.expiry && geolocationData.expiry > new Date().getTime()) {
+    return;
+  }
 
   try {
     const response = await fetch('https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc', {
@@ -46,11 +49,11 @@ async function loadUserData() {
 
     if (response.ok) {
       const data = await response.json();
-      if (data[attrCountryCode]) {
-        setCookie(attrCountryCode, data[attrCountryCode], 1);
-        const event = new CustomEvent('countryCodeUpdated', { detail: data[attrCountryCode] });
-        document.dispatchEvent(event);
-      }
+      const expiry = new Date();
+      expiry.setDate(expiry.getDate() + 1); // 1 day TTL
+      data.expiry = expiry.getTime();
+      localStorage.setItem('ipstack:geolocation', JSON.stringify(data));
+      document.dispatchEvent(new CustomEvent('geolocationUpdated'));
     } else {
       throw new Error('Response not okay');
     }
@@ -60,8 +63,37 @@ async function loadUserData() {
   }
 }
 
-loadUserData();
+// google tag manager
+function loadGTM() {
+  const scriptTag = document.createElement('script');
+  scriptTag.innerHTML = `
+  // googleTagManager
+  (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+          'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-MTQV2H');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('set', {
+      'cookie_flags': 'SameSite=None;Secure'
+  });
+  `;
+  document.head.prepend(scriptTag);
+}
 
-if (!document.location.hostname.match('www.moleculardevices.com.cn') && !document.location.hostname.match('.hlx.page')) {
+loadUserData();
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page')) {
+  loadGTM();
+}
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
   LoadDriftWidget();
 }

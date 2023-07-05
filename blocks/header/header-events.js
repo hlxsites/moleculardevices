@@ -26,7 +26,9 @@ function addEventListenersDesktop() {
     }
 
     const menuId = e.currentTarget.getAttribute('menu-id');
-    const submenuClass = `${menuId}-right-submenu`;
+    // replace any -- by -
+    const cleanedMenuId = menuId.replace('--', '-');
+    const submenuClass = `${cleanedMenuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
     expandMenu(menu.parentElement);
     const rightMenu = document.querySelector(`.${submenuClass}`).parentElement.parentElement;

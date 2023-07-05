@@ -159,6 +159,13 @@
   color: var(--button-color);
 }
 
+.section.local-distributor-container h3.no-result {
+  color: red;
+  text-align: center;
+  width: 100%;
+  font-size: 18px;
+}
+
 @media only screen and (min-width: 641px) {
   .local-distributor .form .form-group .fields {
     display: -webkit-box;
