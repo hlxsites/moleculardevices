@@ -482,7 +482,7 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(90deg, rgba(97 178 73 / 100%) 0, rgba(50 159 121 / 100%) 50%, rgba(21 145 164 / 100%) 100%) !important;
 }
 
 header .nav-tabs .menu-nav-submenu::after {
