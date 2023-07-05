@@ -52,6 +52,35 @@ async function loadBreadcrumbs(breadcrumbsContainer) {
   breadCrumbsModule.default(breadcrumbsContainer);
 }
 
+function detectPricingRequestAvailable() {
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return false;
+  }
+
+  try {
+    const contient = JSON.parse(localStorage.getItem('ipstack:geolocation')).continent_code;
+    return contient === 'EU' || contient === 'NA';
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('Could not load user information.', err);
+    return false;
+  }
+}
+
+function showHidePricingRequestButton(block) {
+  const pricingRequestButton = block.querySelector('a[href*="/quote-request"]');
+  if (!pricingRequestButton) return;
+
+  const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
+  if (!pricintRequestButtonContainer) return;
+
+  if (!detectPricingRequestAvailable()) {
+    pricintRequestButtonContainer.style.display = 'none';
+  } else {
+    pricintRequestButtonContainer.style.display = '';
+  }
+}
+
 export function buildHero(block) {
   const inner = document.createElement('div');
   inner.classList.add('hero-inner');
@@ -313,6 +342,11 @@ export function buildHero(block) {
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
+
+  showHidePricingRequestButton(block);
+  document.addEventListener('geolocationUpdated', () => {
+    showHidePricingRequestButton(block);
+  });
 
   loadBreadcrumbs(breadcrumbs);
 }

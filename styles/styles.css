@@ -64,6 +64,7 @@
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
   --heading-color: #00758d;
+  --heading-color-blue: #038296;
   --text-green: #6eb43f;
   --link-color: #337ab7;
   --link-hover-color: #0066a4;
@@ -189,6 +190,14 @@ body.appear {
   display: unset;
 }
 
+/* progressive section appearance */
+main .section[data-section-status='loading'],
+main .section[data-section-status='initialized'],
+main .section[aria-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 body.no-scroll {
   overflow: hidden;
 }
@@ -220,12 +229,6 @@ h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
-  text-align: center;
-}
-
-header h1,
-.hero-inner h1 {
-  text-align: unset;
 }
 
 h2 {
@@ -494,15 +497,40 @@ main .breadcrumbs-wrapper {
   height: 86px;
 }
 
-main .section>div {
+main .section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+main .section > div {
   margin: 0 auto;
   padding: 0 15px;
 }
 
+main .section.buttons-in-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.buttons-in-row > div {
+  padding: 0;
+}
+
 @media (max-width: 991px) {
+  main .section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
   main .section .default-content-wrapper {
     padding-left: 15px;
     padding-right: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  main .section.wavecarousel {
+    padding-top: 200px;
   }
 }
 
@@ -572,7 +600,8 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr;
-    padding: 0 calc((100vw - 750px) / 2);
+    padding-left: calc((100vw - 750px) / 2);
+    padding-right: calc((100vw - 750px) / 2);
   }
 
   main .section.background-molecules .columns.columns-2-cols > div {
@@ -587,7 +616,8 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr 1fr;
-    padding: 0 calc((100vw - 970px) / 2);
+    padding-left: calc((100vw - 970px) / 2);
+    padding-right: calc((100vw - 970px) / 2);
   }
 }
 
@@ -598,15 +628,9 @@ main .section.columns-2>div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr 1fr;
-    padding: 0 calc((100vw - 1170px) / 2);
+    padding-left: calc((100vw - 1170px) / 2);
+    padding-right: calc((100vw - 1170px) / 2);
   }
-}
-
-
-/* progressive section appearance */
-main .section[data-section-status='loading'],
-main .section[data-section-status='initialized'] {
-  display: none !important;
 }
 
 main .section.highlight {
@@ -749,6 +773,24 @@ main .section.tabs .default-content-wrapper h2 {
   padding-bottom: 15px;
 }
 
+main .section.buttons-in-row p.button-container {
+  margin-top: 0;
+}
+
+main .section.buttons-in-row p.button-container,
+main .section.wave.orange-buttons p.button-container {
+  display: inline-block;
+}
+
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+}
+
+main .section.buttons-in-row p.button-container + p.button-container,
+main .section.wave.orange-buttons p.button-container + p.button-container {
+  margin-left: 20px;
+}
+
 /* services & support */
 
 main .section.service-support .default-content-wrapper h2 {
@@ -810,7 +852,7 @@ main .section.features-section .button-container {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .section.features-section {
     padding-top: 30px;
   }
@@ -822,6 +864,16 @@ main .section.features-section .button-container {
   main .section.features-section .default-content-wrapper em {
     width: 100%;
     padding: 0 15px;
+  }
+
+  main .section.buttons-in-row p.button-container,
+  main .section.wave.orange-buttons p.button-container {
+    display: block;
+  }
+
+  main .section.buttons-in-row p.button-container + p.button-container,
+  main .section.wave.orange-buttons p.button-container + p.button-container {
+    margin-left: 0;
   }
 }
 
@@ -965,8 +1017,6 @@ main div.section.wave {
   align-items: center;
   justify-content: center;
   overflow: visible;
-  padding-bottom: 0;
-  padding-top: 0;
   color: var(--text-white);
   text-align: center;
   clear: both;
@@ -985,6 +1035,8 @@ main div.section.wave::after {
   margin: 0 0 -1px;
   background-position: bottom center;
   display: block;
+  position: relative;
+  bottom: -50px;
   width: 100%;
   content: "";
   flex-basis: 100%;
@@ -992,7 +1044,7 @@ main div.section.wave::after {
 }
 
 main div.section.wave .default-content-wrapper {
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 0 15px;
   padding-right: 15px;
 }
@@ -1027,11 +1079,6 @@ main div.section.wave .default-content-wrapper p:first-of-type {
 /* BlueGreen Variant */
 main div.section.wave.bluegreen {
   background-size: 100% 100%;
-  padding: 30px 0;
-}
-
-.hero-container + .section > .default-content-wrapper:first-child {
-  margin-top: 50px;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper {
@@ -1050,9 +1097,40 @@ main div.section.wave.bluegreen::after {
   content: none;
 }
 
-@media only screen and (max-width: 768px) {
+/* BlueGreen2 Variant */
+
+main div.section.wave.bluegreen2 {
+  min-height: 350px;
+  padding-bottom: 150px;
+  position: relative;
+  background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%) !important;
+  background-image: none;
+}
+
+main div.section.wave.bluegreen2::after {
+  background-repeat: no-repeat;
+  background-image: url("/images/wave-background-bottom.webp"), url("/images/wave-background-bottom.png");
+  background-size: 100% 100%;
+  height: 82px;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  bottom: 0;
+  content: "";
+}
+
+
+@media only screen and (max-width: 767px) {
   main .section.bluegreen {
     background: linear-gradient(90deg, rgb(21 145 164 / 100%) 0, rgb(46 159 121 / 100%) 50%, rgb(97 178 73 / 100%) 100%) !important;
+    background-image: none;
+  }
+
+  main div.section.wave.bluegreen2 {
+    padding-bottom: 100px;
+  }
+
+  main div.section.wave.bluegreen2::after {
     background-image: none;
   }
 
@@ -1093,11 +1171,6 @@ main div.section.wave.wavecarousel.bluegreen {
 }
 
 /* Orange Buttons */
-main div.orange-buttons p.button-container {
-  display: inline-block;
-  margin-top: 20px;
-}
-
 main div.orange-buttons .button {
   height: 50px;
   min-width: 200px;
@@ -1123,7 +1196,6 @@ main div.orange-buttons .button.secondary:visited {
   background: transparent;
   border: 2px solid #fff;
   text-transform: none;
-  margin-left: 20px;
 }
 
 main div.orange-buttons .button.secondary:hover,
@@ -1149,7 +1221,7 @@ main .section.background-molecules {
   background-size: auto 90px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   main .section .default-content-wrapper {
     padding: 0 15px;
     overflow: hidden;
@@ -1158,10 +1230,6 @@ main .section.background-molecules {
   main .section.background-molecules .hero-wrapper::after {
     background-size: auto 50px;
     height: 50px;
-  }
-
-  main div.orange-buttons p.button-container {
-    display: block;
   }
 
   main div.orange-buttons .button {
@@ -1173,22 +1241,11 @@ main .section.background-molecules {
     height: 37px;
   }
 
-  main div.orange-buttons .button.secondary:link,
-  main div.orange-buttons .button.secondary:visited {
-    margin-left: unset;
-    margin-top: 20px;
-  }
-
   /* ------ */
 
   main div.section.wave h2 {
     font-size: 40px;
   }
-}
-
-main .section[aria-hidden="true"] {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 
@@ -1313,12 +1370,6 @@ main .section[aria-hidden="true"] {
   }
 }
 
-.product main .section,
-.application main .section {
-  padding-top: 100px;
-  padding-bottom: 60px;
-}
-
 @media only screen and (max-width: 991px) {
   .product main .section {
     padding: 67px 0 70px;
@@ -1359,19 +1410,11 @@ main .section[aria-hidden="true"] {
   font-size: 36px;
 }
 
-.application .section:not(:last-child) > div:last-child {
-  border-bottom: 1px solid var(--highlight-background-color);
-}
-
-.technology .section.tabs,
-.application .section.tabs {
-  padding-top: 67px;
-}
-
+.products .section > div,
 .technology .section > div,
 .application .section > div {
-  padding-bottom: 40px;
-  padding-top: 60px
+  padding-bottom: 20px;
+  padding-top: 20px
 }
 
 .technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1486,6 +1529,14 @@ main .section[aria-hidden="true"] {
 
 .customer-breakthrough main .default-content-wrapper p + h2 {
   margin-top: 50px;
+}
+
+/*
+  Service Support pages
+*/
+
+.service-support main .section.features-section .default-content-wrapper {
+  text-align: left;
 }
 
 /*

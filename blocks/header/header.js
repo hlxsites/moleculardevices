@@ -52,6 +52,18 @@ function buildTools(content) {
     linksList.prepend(renderStore());
     linksList.prepend(renderCart());
   }
+
+  document.addEventListener('geolocationUpdated', () => {
+    if (detectStore()) {
+      const linksList = toolsWrapper.querySelector('ul');
+      if (linksList.querySelector('.store-link')) {
+        return; // store and cart already rendered
+      }
+
+      linksList.prepend(renderStore());
+      linksList.prepend(renderCart());
+    }
+  });
   return toolsWrapper;
 }
 

@@ -1,3 +1,8 @@
+main .section.social-share-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* News and Publication Variant */
 .publication .share-event,
 .news .share-event {

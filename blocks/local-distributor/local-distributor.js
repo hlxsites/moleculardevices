@@ -153,11 +153,16 @@ export default async function decorate(block) {
     let finalHtml = '';
     const resultHeading = document.createElement('h3');
     const searchResultEl = document.querySelector('.local-distributor .search-result');
+    if (!filterdata.length) {
+      resultHeading.classList.add('no-result');
+      resultHeading.textContent = 'NO RESULT FOUND';
+    }
 
     filterdata.forEach((row) => {
       const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
 
       const customClass = row.Type.split(' ').join('-').toLowerCase();
+      const email = row.Email;
 
       /* eslint operator-linebreak: ["error", "before"] */
       const supportLink = row.Link
@@ -173,19 +178,20 @@ export default async function decorate(block) {
         }
       });
 
+      newStr += `${email ? `Email:  <a href="javascript:void(0);">${email}</a>` : `${supportLink}`}\n`;
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
-      if ((row.PrimaryProducts.length && row.Address.trim().length) === 0) {
+      if (row.PrimaryProducts.length <= 1 && row.Address.trim().length <= 1) {
+        resultHeading.classList.add('no-result');
         resultHeading.textContent = 'NO RESULT FOUND';
       } else {
         resultHeading.textContent = row.Country;
         finalHtml += `
                       <div class="search-result-content ${customClass}-result">
                         <div class="type">${row.Type}</div>
-                        <div class="productfamily">${primeProduct}</div>
+                        ${!productFamily ? `<div class=productfamily>${primeProduct}</div>` : ''}
                         <div class="address">
                           ${molAddress}
-                          ${supportLink}
                           <p>
                             <a href="javascript:void(0);" title="Contact your local ${row.Type} Team">
                               Contact your local ${row.Type} Team
