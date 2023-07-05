@@ -650,6 +650,16 @@ main .section.background-grey + .section.wave {
   }
 }
 
+main .section.full-width .default-content-wrapper {
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+main .section.full-width img {
+  width: 100%;
+}
+
 /* nav */
 nav {
   display: block;
