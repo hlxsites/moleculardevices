@@ -151,11 +151,9 @@ export async function buildHero(block) {
     }
   });
 
-  //Todo 
+  // TODO
   // remove US cookie when finished
   // add to cart button functionality
-  // price calculation
-  // add real data to options and variants
 
   async function buildOrderingForm(options) {
     const optionTitles = options.map((option) => option.title);
