@@ -198,10 +198,6 @@ function buildOrderingForm(options) {
   let selectedOption = null;
   let selectedVariant = null;
 
-  const orderFormContainer = div();
-  orderFormContainer.classList.add('order-container');
-  orderContainer.appendChild(orderFormContainer);
-
   function updateVariantsDropdownLabel() {
     const variantDropDown = document.querySelector('#variantDropDown');
     if (variantDropDown) {
@@ -256,9 +252,8 @@ function buildOrderingForm(options) {
     const variantsContent = document.querySelector('#variantsDropdown');
     variantsContent.replaceChildren();
     for (let j = 0; j < option.variants.length; j += 1) {
-      const variant = a();
+      const variant = a({ class: 'option'});
       variant.innerHTML = option.variants[j].title;
-      variant.classList.add('option');
       variant.addEventListener('click', () => handleVariantSelection(option.variants[j]));
       variantsContent.appendChild(variant);
     }
@@ -277,70 +272,40 @@ function buildOrderingForm(options) {
   };
 
   // Options dropdown
-  const optionsDropdown = button();
+  const optionsDropdown = button({ class: 'drop-down', id: 'optionsDropDown' });
   optionsDropdown.innerHTML = 'Product Options';
-  optionsDropdown.id = 'optionsDropDown';
   optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
-  optionsDropdown.classList.add('drop-down');
-  orderFormContainer.appendChild(optionsDropdown);
 
-  const optionsContent = div();
-  optionsContent.classList.add('product-options-content');
-  optionsContent.id = 'optionsDropdownContent';
-  orderFormContainer.appendChild(optionsContent);
+  const optionsContent = div({ class: 'product-options-content', id: 'optionsDropdownContent' });
+
   for (let l = 0; l < optionTitles.length; l += 1) {
-    const option = a();
+    const option = a({ class: 'option' });
     option.innerHTML = optionTitles[l];
-    option.classList.add('option');
     option.addEventListener('click', () => handleOptionSelection(options[l]));
     optionsContent.appendChild(option);
   }
   // Variants dropdown
-  const variantDropDown = button();
+  const variantDropDown = button({ class: 'drop-down', id: 'variantDropDown' });
   variantDropDown.innerHTML = 'Select Variation';
-  variantDropDown.id = 'variantDropDown';
   variantDropDown.onclick = () => openDropdownMenu('variantsDropdown');
-  variantDropDown.classList.add('drop-down');
-  orderFormContainer.appendChild(variantDropDown);
 
-  const variantsContent = div();
-  variantsContent.classList.add('product-options-content');
-  variantsContent.id = 'variantsDropdown';
-  orderFormContainer.appendChild(variantsContent);
-
-  const priceLabel = label();
-  priceLabel.classList.add('price-label');
+  const priceLabel = label({ class: 'price-label' });
   priceLabel.innerHTML = 'PRICE';
-  orderFormContainer.appendChild(priceLabel);
 
-  const quantityLabel = label();
-  quantityLabel.classList.add('quantity-label');
+  const quantityLabel = label({ class: 'quantity-label' });
   quantityLabel.innerHTML = 'QUANTITY';
-  orderFormContainer.appendChild(quantityLabel);
 
-  const price = span();
-  price.classList.add('price');
+  const price = span({ class: 'price' });
   price.innerHTML = '$ 0.00';
-  orderFormContainer.appendChild(price);
 
-  const quantityContainer = div();
-  quantityContainer.classList.add('quantity-container');
-  orderFormContainer.appendChild(quantityContainer);
-
-  const decreaseButton = a();
-  decreaseButton.classList.add('quantity-button');
+  const decreaseButton = a({ class: 'quantity-button' });
   decreaseButton.innerHTML = '-';
-  quantityContainer.appendChild(decreaseButton);
 
-  const quantityNumber = span();
-  quantityNumber.classList.add('quantity-number');
+  const quantityNumber = span({ class: 'quantity-number' });
   quantityNumber.innerHTML = '1';
-  quantityContainer.appendChild(quantityNumber);
 
-  const increaseButton = a();
-  increaseButton.classList.add('quantity-button');
+  const increaseButton = a({ class: 'quantity-button' });
   increaseButton.innerHTML = '+';
-  quantityContainer.appendChild(increaseButton);
 
   increaseButton.addEventListener('click', () => {
     let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
@@ -359,7 +324,19 @@ function buildOrderingForm(options) {
   addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
   addToCartButton.classList.add('add-to-cart');
   addToCartButton.innerHTML = 'Add to cart';
-  orderFormContainer.appendChild(addToCartButton);
+  const orderFormContainer = div(
+    { class: 'order-container' },
+    optionsDropdown,
+    optionsContent,
+    variantDropDown,
+    div({ class: 'product-options-content', id: 'variantsDropdown' }),
+    priceLabel,
+    quantityLabel,
+    price,
+    div({ class: 'quantity-container' }, decreaseButton, quantityNumber, increaseButton),
+    addToCartButton,
+  );
+  orderContainer.appendChild(orderFormContainer);
 }
 
 export default async function decorate(block) {
