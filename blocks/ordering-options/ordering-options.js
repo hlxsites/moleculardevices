@@ -1,6 +1,6 @@
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
-  a, div, domEl, h3, i, p, span,
+  a, button, div, domEl, h3, i, label, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -48,9 +48,7 @@ async function getCartDetails() {
   });
 }
 
-async function addToCart(event) {
-  const el = event.target;
-  const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
+async function addToCart(el, counterEl) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
   const itemId = el.getAttribute('id');
 
@@ -184,7 +182,9 @@ async function renderList(options, showStore, container) {
   const addToCartButtons = document.querySelectorAll('.ordering-options .variant-item-store-add-to-cart > a');
   [...addToCartButtons].forEach((addToCartButton) => {
     addToCartButton.addEventListener('click', (e) => {
-      addToCart(e);
+      const el = e.target;
+      const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
+      addToCart(el, counterEl);
     });
   });
 }
@@ -196,7 +196,7 @@ function buildOrderingForm(options) {
   let selectedOption = null;
   let selectedVariant = null;
 
-  const orderFormContainer = document.createElement('div');
+  const orderFormContainer = div();
   orderFormContainer.classList.add('order-container');
   orderContainer.appendChild(orderFormContainer);
 
@@ -254,7 +254,7 @@ function buildOrderingForm(options) {
     const variantsContent = document.querySelector('#variantsDropdown');
     variantsContent.replaceChildren();
     for (let j = 0; j < option.variants.length; j += 1) {
-      const variant = document.createElement('a');
+      const variant = a();
       variant.innerHTML = option.variants[j].title;
       variant.classList.add('option');
       variant.addEventListener('click', () => handleVariantSelection(option.variants[j]));
@@ -275,67 +275,67 @@ function buildOrderingForm(options) {
   };
 
   // Options dropdown
-  const optionsDropdown = document.createElement('button');
+  const optionsDropdown = button();
   optionsDropdown.innerHTML = 'Product Options';
   optionsDropdown.id = 'optionsDropDown';
   optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
   optionsDropdown.classList.add('drop-down');
   orderFormContainer.appendChild(optionsDropdown);
 
-  const optionsContent = document.createElement('div');
+  const optionsContent = div();
   optionsContent.classList.add('product-options-content');
   optionsContent.id = 'optionsDropdownContent';
   orderFormContainer.appendChild(optionsContent);
   for (let l = 0; l < optionTitles.length; l += 1) {
-    const option = document.createElement('a');
+    const option = a();
     option.innerHTML = optionTitles[l];
     option.classList.add('option');
     option.addEventListener('click', () => handleOptionSelection(options[l]));
     optionsContent.appendChild(option);
   }
   // Variants dropdown
-  const variantDropDown = document.createElement('button');
+  const variantDropDown = button();
   variantDropDown.innerHTML = 'Select Variation';
   variantDropDown.id = 'variantDropDown';
   variantDropDown.onclick = () => openDropdownMenu('variantsDropdown');
   variantDropDown.classList.add('drop-down');
   orderFormContainer.appendChild(variantDropDown);
 
-  const variantsContent = document.createElement('div');
+  const variantsContent = div();
   variantsContent.classList.add('product-options-content');
   variantsContent.id = 'variantsDropdown';
   orderFormContainer.appendChild(variantsContent);
 
-  const priceLabel = document.createElement('label');
+  const priceLabel = label();
   priceLabel.classList.add('price-label');
   priceLabel.innerHTML = 'PRICE';
   orderFormContainer.appendChild(priceLabel);
 
-  const quantityLabel = document.createElement('label');
+  const quantityLabel = label();
   quantityLabel.classList.add('quantity-label');
   quantityLabel.innerHTML = 'QUANTITY';
   orderFormContainer.appendChild(quantityLabel);
 
-  const price = document.createElement('span');
+  const price = span();
   price.classList.add('price');
   price.innerHTML = '$ 0.00';
   orderFormContainer.appendChild(price);
 
-  const quantityContainer = document.createElement('div');
+  const quantityContainer = div();
   quantityContainer.classList.add('quantity-container');
   orderFormContainer.appendChild(quantityContainer);
 
-  const decreaseButton = document.createElement('a');
+  const decreaseButton = a();
   decreaseButton.classList.add('quantity-button');
   decreaseButton.innerHTML = '-';
   quantityContainer.appendChild(decreaseButton);
 
-  const quantityNumber = document.createElement('span');
+  const quantityNumber = span();
   quantityNumber.classList.add('quantity-number');
   quantityNumber.innerHTML = '1';
   quantityContainer.appendChild(quantityNumber);
 
-  const increaseButton = document.createElement('a');
+  const increaseButton = a();
   increaseButton.classList.add('quantity-button');
   increaseButton.innerHTML = '+';
   quantityContainer.appendChild(increaseButton);
@@ -353,7 +353,7 @@ function buildOrderingForm(options) {
       quantityNumber.innerHTML = currentQuantity;
     }
   });
-  const addToCartButton = document.createElement('button');
+  const addToCartButton = button();
   addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
   addToCartButton.classList.add('add-to-cart');
   addToCartButton.innerHTML = 'Add to cart';

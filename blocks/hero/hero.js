@@ -164,7 +164,7 @@ export function buildHero(block) {
 
   if (orangeButtons) {
     if (detectStore() && hasOrderingOptions()) {
-      const productDataContainer = document.createElement('div');
+      const productDataContainer = div();
       productDataContainer.classList.add('order-container');
       container.appendChild(productDataContainer);
     }
