@@ -44,7 +44,6 @@ function findIdTabName(id) {
 
   const selectors = `a[href="#${id}"]`;
   const targetTab = document.querySelector(selectors);
-  console.log('selectors, tab', selectors, targetTab);
   if (targetTab) {
     return id;
   }
