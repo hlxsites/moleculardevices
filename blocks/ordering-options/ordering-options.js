@@ -250,7 +250,8 @@ function buildOrderingForm(options) {
     updateDropdownInnerHTML();
     checkOptionValidity();
     const variantsContent = document.querySelector('#variantsDropdown');
-    variantsContent.replaceChildren();
+    const firstChild = variantsContent.firstElementChild;
+    variantsContent.replaceChildren(firstChild);
     for (let j = 0; j < option.variants.length; j += 1) {
       const variant = a({ class: 'option' });
       variant.innerHTML = option.variants[j].title;
