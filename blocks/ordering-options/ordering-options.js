@@ -115,7 +115,7 @@ function renderItem(item, showStore, itemDescriptionsMap) {
             div({ class: 'title-variant' },
               p({ class: 'legend' }, variant.public_title || variant.name),
               div({ class: 'specs' },
-                p(itemDescriptionsMap.get(`#${variant.sku}`) || ''),
+                itemDescriptionsMap.get(`#${variant.sku}`) || '',
               ),
             ),
             div({ class: 'sku-variant' },
@@ -206,7 +206,7 @@ export default async function decorate(block) {
     if (!idx) return; // first line is with shopify handlers.
 
     const productCode = item.children[0].textContent.trim();
-    const productDescription = item.children[1].textContent.trim();
+    const productDescription = item.children[1];
     itemDescriptionsMap.set(productCode, productDescription);
   });
 
