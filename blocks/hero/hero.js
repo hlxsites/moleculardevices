@@ -1,9 +1,17 @@
 /* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  detectStore, formatDate, isVideo, videoButton, getOrderingOptions,
+  detectStore,
+  formatDate,
+  isVideo,
+  videoButton,
+  getOrderingOptions,
+  getCartDetails,
+  updateCounters,
 } from '../../scripts/scripts.js';
 import { div, domEl, img } from '../../scripts/dom-helpers.js';
+
+const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -29,6 +37,32 @@ function addMetadata(container) {
   }
 
   container.appendChild(metadataContainer);
+}
+
+async function addToCart(el, counterEl) {
+  const counter = parseInt(counterEl.textContent, 10) || 1;
+  const itemId = el.id;
+
+  await new Promise((resolve) => {
+    const script = domEl('script',
+      {
+        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+          id: itemId,
+          quantity: counter,
+          _: Date.now(),
+          callback: 'addToCart',
+        })}`,
+        onload: () => {
+          resolve();
+        },
+      },
+    );
+    document.getElementsByTagName('head')[0].appendChild(script);
+    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
+  });
+
+  await getCartDetails();
+  updateCounters();
 }
 
 async function addBlockSticker(container) {
@@ -294,7 +328,7 @@ export async function buildHero(block) {
 
     const quantityNumber = document.createElement('span');
     quantityNumber.classList.add('quantity-number');
-    quantityNumber.innerHTML = '0';
+    quantityNumber.innerHTML = '1';
     quantityContainer.appendChild(quantityNumber);
 
     const increaseButton = document.createElement('a');
@@ -306,21 +340,20 @@ export async function buildHero(block) {
       let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
       currentQuantity++;
       quantityNumber.innerHTML = currentQuantity;
-      price.innerHTML = `$ ${((selectedVariant.price * currentQuantity) / 100).toLocaleString('en-US')}.00`;
     });
 
     decreaseButton.addEventListener('click', () => {
       let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
-      if (currentQuantity > 0) {
+      if (currentQuantity > 1) {
         currentQuantity--;
         quantityNumber.innerHTML = currentQuantity;
-        price.innerHTML = `$ ${((selectedVariant.price * currentQuantity) / 100).toLocaleString('en-US')}.00`;
       }
     });
-    const addToCart = document.createElement('button');
-    addToCart.classList.add('add-to-cart');
-    addToCart.innerHTML = 'Add to cart';
-    orderFormContainer.appendChild(addToCart);
+    const addToCartButton = document.createElement('button');
+    addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
+    addToCartButton.classList.add('add-to-cart');
+    addToCartButton.innerHTML = 'Add to cart';
+    orderFormContainer.appendChild(addToCartButton);
   }
 
   // check if block containt Orange Buttons

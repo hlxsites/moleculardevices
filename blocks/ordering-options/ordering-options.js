@@ -1,10 +1,15 @@
-import { detectStore, getCartItemCount, setCookie, getOrderingOptions } from '../../scripts/scripts.js';
+import {
+  detectStore,
+  getCartItemCount,
+  getCartDetails,
+  getOrderingOptions,
+  updateCounters,
+} from '../../scripts/scripts.js';
 import {
   a, div, domEl, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
-const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
 
 function increaseAndDecreaseCounter(event) {
   const btnContainer = event.target.closest('span');
@@ -15,37 +20,6 @@ function increaseAndDecreaseCounter(event) {
   } else {
     counterEl.textContent = (counter > 1) ? counter - 1 : 1;
   }
-}
-
-async function updateCounters() {
-  const count = getCartItemCount();
-  const cartCounters = document.querySelectorAll('.cart-count');
-  if (cartCounters) {
-    cartCounters.forEach((cartCounter) => {
-      cartCounter.textContent = count;
-    });
-  }
-}
-
-async function getCartDetails() {
-  return new Promise((resolve) => {
-    const script = domEl('script',
-      {
-        src: `${SHOP_BASE_URL}/cart.json?callback=cartDetails`,
-      },
-    );
-
-    /* eslint-disable dot-notation */
-    window['cartDetails'] = (data) => {
-      document.getElementsByTagName('head')[0].removeChild(script);
-      delete window['cartDetails'];
-      setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
-      resolve(data);
-    };
-    /* eslint-enable dot-notation */
-
-    document.getElementsByTagName('head')[0].appendChild(script);
-  });
 }
 
 async function addToCart(event) {

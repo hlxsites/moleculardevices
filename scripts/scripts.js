@@ -18,7 +18,9 @@ import {
   readBlockConfig,
   toCamelCase,
 } from './lib-franklin.js';
-import { a, div, p } from './dom-helpers.js';
+import {
+  a, div, domEl, p,
+} from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -35,6 +37,7 @@ const TEMPLATE_LIST = [
 ];
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
+const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
@@ -728,6 +731,37 @@ export async function getOrderingOptions(refs) {
     .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
   );
   return options;
+}
+
+export async function getCartDetails() {
+  return new Promise((resolve) => {
+    const script = domEl('script',
+      {
+        src: `${SHOP_BASE_URL}/cart.json?callback=cartDetails`,
+      },
+    );
+
+    /* eslint-disable dot-notation */
+    window['cartDetails'] = (data) => {
+      document.getElementsByTagName('head')[0].removeChild(script);
+      delete window['cartDetails'];
+      setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
+      resolve(data);
+    };
+    /* eslint-enable dot-notation */
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
+}
+
+export function updateCounters() {
+  const count = getCartItemCount();
+  const cartCounters = document.querySelectorAll('.cart-count');
+  if (cartCounters) {
+    cartCounters.forEach((cartCounter) => {
+      cartCounter.textContent = count;
+    });
+  }
 }
 
 async function loadPage() {
