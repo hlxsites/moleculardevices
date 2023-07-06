@@ -320,9 +320,8 @@ function buildOrderingForm(options) {
       quantityNumber.innerHTML = currentQuantity;
     }
   });
-  const addToCartButton = button();
+  const addToCartButton = button({ class: 'add-to-cart' });
   addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
-  addToCartButton.classList.add('add-to-cart');
   addToCartButton.innerHTML = 'Add to cart';
   const orderFormContainer = div(
     { class: 'order-container' },
