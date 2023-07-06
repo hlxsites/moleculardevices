@@ -84,7 +84,7 @@ function showHidePricingRequestButton(block) {
   }
 }
 
-export async function buildHero(block) {
+export function buildHero(block) {
   const inner = document.createElement('div');
   inner.classList.add('hero-inner');
   const container = document.createElement('div');
@@ -192,5 +192,5 @@ export async function buildHero(block) {
 }
 
 export default async function decorate(block) {
-  await buildHero(block);
+  buildHero(block);
 }
