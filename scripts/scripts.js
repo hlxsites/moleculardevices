@@ -18,9 +18,7 @@ import {
   readBlockConfig,
   toCamelCase,
 } from './lib-franklin.js';
-import {
-  a, div, domEl, p,
-} from './dom-helpers.js';
+import { a, div, p } from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -36,8 +34,6 @@ const TEMPLATE_LIST = [
   'landing-page',
 ];
 
-const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
-const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
@@ -679,7 +675,7 @@ export function getCookie(cname) {
 function setCookieFromQueryParameters(paramName, exdays) {
   const readQuery = getQueryParameter();
   if (readQuery[paramName]) {
-    setCookie(paramName, readQuery[paramName], exdays);
+    setCookie(paramName === 'mdcmp' ? 'cmp' : paramName, readQuery[paramName], exdays);
   }
 }
 
@@ -707,69 +703,12 @@ export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
 }
 
-function fetchOption(option) {
-  return fetch(`${SHOP_BASE_URL}/products/${option}.js`, {
-    mode: 'cors',
-  }).then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(response);
-  }).catch((err) => {
-    // eslint-disable-next-line no-console
-    console.warn(`Could not fetch ordering details for option ${option}, got status ${err.status}.`, err.statusText);
-  });
-}
-
-async function fetchOptionIntoArray(array, idx, option) {
-  array[idx] = await fetchOption(option.trim());
-}
-
-export async function getOrderingOptions(refs) {
-  const options = new Array(refs.length);
-  await Promise.all(refs
-    .map((option, idx) => fetchOptionIntoArray(options, idx, option)),
-  );
-  return options;
-}
-
-export async function getCartDetails() {
-  return new Promise((resolve) => {
-    const script = domEl('script',
-      {
-        src: `${SHOP_BASE_URL}/cart.json?callback=cartDetails`,
-      },
-    );
-
-    /* eslint-disable dot-notation */
-    window['cartDetails'] = (data) => {
-      document.getElementsByTagName('head')[0].removeChild(script);
-      delete window['cartDetails'];
-      setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
-      resolve(data);
-    };
-    /* eslint-enable dot-notation */
-
-    document.getElementsByTagName('head')[0].appendChild(script);
-  });
-}
-
-export function updateCounters() {
-  const count = getCartItemCount();
-  const cartCounters = document.querySelectorAll('.cart-count');
-  if (cartCounters) {
-    cartCounters.forEach((cartCounter) => {
-      cartCounter.textContent = count;
-    });
-  }
-}
-
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
-const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
+const cookieParams = ['cmp', 'mdcmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);

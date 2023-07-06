@@ -5,13 +5,8 @@ import {
   formatDate,
   isVideo,
   videoButton,
-  getOrderingOptions,
-  getCartDetails,
-  updateCounters,
 } from '../../scripts/scripts.js';
-import { div, domEl, img } from '../../scripts/dom-helpers.js';
-
-const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
+import { div, img } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -37,32 +32,6 @@ function addMetadata(container) {
   }
 
   container.appendChild(metadataContainer);
-}
-
-async function addToCart(el, counterEl) {
-  const counter = parseInt(counterEl.textContent, 10) || 1;
-  const itemId = el.id;
-
-  await new Promise((resolve) => {
-    const script = domEl('script',
-      {
-        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-          id: itemId,
-          quantity: counter,
-          _: Date.now(),
-          callback: 'addToCart',
-        })}`,
-        onload: () => {
-          resolve();
-        },
-      },
-    );
-    document.getElementsByTagName('head')[0].appendChild(script);
-    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
-  });
-
-  await getCartDetails();
-  updateCounters();
 }
 
 async function addBlockSticker(container) {
@@ -185,193 +154,19 @@ export async function buildHero(block) {
     }
   });
 
-  async function buildOrderingForm(options) {
-    const optionTitles = options.map((option) => option.title);
-    const variants = [1, 2, 3];
-    let selectedOption = null;
-    let selectedVariant = null;
-
-    const orderFormContainer = document.createElement('div');
-    orderFormContainer.classList.add('order-container');
-    container.appendChild(orderFormContainer);
-
-    function updateVariantsDropdownLabel() {
-      const variantDropDown = document.querySelector('#variantDropDown');
-      if (variantDropDown) {
-        variantDropDown.innerHTML = selectedVariant.title;
-      }
-    }
-
-    function updateDropdownInnerHTML() {
-      const optionsDropdown = document.querySelector('#optionsDropDown');
-      if (optionsDropdown) {
-        optionsDropdown.innerHTML = selectedOption.title;
-      }
-    }
-
-    function handleVariantSelection(variant) {
-      selectedVariant = variant;
-      updateVariantsDropdownLabel();
-      const priceContent = block.querySelector('.price');
-      priceContent.innerHTML = `$ ${(variant.price / 100).toLocaleString('en-US')}.00`;
-    }
-
-    function checkOptionValidity() {
-      if (selectedOption === 'Product Options') {
-        const variantDropDown = document.getElementById('variantDropDown');
-        variantDropDown.classList.toggle('not-allowed');
-        selectedVariant = 'Select Variant';
-        updateVariantsDropdownLabel();
-      } else if (selectedOption !== 'Product Options') {
-        const variantDropDown = document.getElementById('variantDropDown');
-        variantDropDown.classList.add('allowed');
-      }
-    }
-
-    function openDropdownMenu(dropdownId) {
-      const dropdown = document.getElementById(dropdownId);
-      const optionsDropdown = document.querySelector('#optionsDropDown');
-      if (dropdown && optionsDropdown.innerHTML !== 'Product Options') {
-        dropdown.classList.toggle('show');
-        if (dropdownId === 'variantsDropdown') {
-          dropdown.style.left = '550px';
-        }
-      } else if (dropdownId === 'optionsDropdownContent') {
-        dropdown.classList.toggle('show');
-      }
-      checkOptionValidity();
-    }
-
-    function handleOptionSelection(option) {
-      selectedOption = option;
-      updateDropdownInnerHTML();
-      checkOptionValidity();
-      const variantsContent = block.querySelector('#variantsDropdown');
-      variantsContent.replaceChildren();
-      for (let i = 0; i < variants.length; i++) {
-        const variant = document.createElement('a');
-        variant.innerHTML = option.variants[i].title;
-        variant.classList.add('option');
-        variant.addEventListener('click', () => handleVariantSelection(option.variants[i]));
-        variantsContent.appendChild(variant);
-      }
-    }
-
-    window.onclick = function CloseDropDownMenu(event) {
-      if (!event.target.matches('.drop-down')) {
-        const dropdowns = document.getElementsByClassName('product-options-content');
-        let i;
-        for (i = 0; i < dropdowns.length; i++) {
-          const openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    };
-
-    // Options dropdown
-    const optionsDropdown = document.createElement('button');
-    optionsDropdown.innerHTML = 'Product Options';
-    optionsDropdown.id = 'optionsDropDown';
-    optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
-    optionsDropdown.classList.add('drop-down');
-    orderFormContainer.appendChild(optionsDropdown);
-
-    const optionsContent = document.createElement('div');
-    optionsContent.classList.add('product-options-content');
-    optionsContent.id = 'optionsDropdownContent';
-    orderFormContainer.appendChild(optionsContent);
-    for (let i = 0; i < optionTitles.length; i++) {
-      const option = document.createElement('a');
-      option.innerHTML = optionTitles[i];
-      option.classList.add('option');
-      option.addEventListener('click', () => handleOptionSelection(options[i]));
-      optionsContent.appendChild(option);
-    }
-    // Variants dropdown
-    const variantDropDown = document.createElement('button');
-    variantDropDown.innerHTML = 'Select Variation';
-    variantDropDown.id = 'variantDropDown';
-    variantDropDown.onclick = () => openDropdownMenu('variantsDropdown');
-    variantDropDown.classList.add('drop-down');
-    orderFormContainer.appendChild(variantDropDown);
-
-    const variantsContent = document.createElement('div');
-    variantsContent.classList.add('product-options-content');
-    variantsContent.id = 'variantsDropdown';
-    orderFormContainer.appendChild(variantsContent);
-
-    const priceLabel = document.createElement('label');
-    priceLabel.classList.add('price-label');
-    priceLabel.innerHTML = 'PRICE';
-    orderFormContainer.appendChild(priceLabel);
-
-    const quantityLabel = document.createElement('label');
-    quantityLabel.classList.add('quantity-label');
-    quantityLabel.innerHTML = 'QUANTITY';
-    orderFormContainer.appendChild(quantityLabel);
-
-    const price = document.createElement('span');
-    price.classList.add('price');
-    price.innerHTML = '$ 0.00';
-    orderFormContainer.appendChild(price);
-
-    const quantityContainer = document.createElement('div');
-    quantityContainer.classList.add('quantity-container');
-    orderFormContainer.appendChild(quantityContainer);
-
-    const decreaseButton = document.createElement('a');
-    decreaseButton.classList.add('quantity-button');
-    decreaseButton.innerHTML = '-';
-    quantityContainer.appendChild(decreaseButton);
-
-    const quantityNumber = document.createElement('span');
-    quantityNumber.classList.add('quantity-number');
-    quantityNumber.innerHTML = '1';
-    quantityContainer.appendChild(quantityNumber);
-
-    const increaseButton = document.createElement('a');
-    increaseButton.classList.add('quantity-button');
-    increaseButton.innerHTML = '+';
-    quantityContainer.appendChild(increaseButton);
-
-    increaseButton.addEventListener('click', () => {
-      let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
-      currentQuantity++;
-      quantityNumber.innerHTML = currentQuantity;
-    });
-
-    decreaseButton.addEventListener('click', () => {
-      let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
-      if (currentQuantity > 1) {
-        currentQuantity--;
-        quantityNumber.innerHTML = currentQuantity;
-      }
-    });
-    const addToCartButton = document.createElement('button');
-    addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
-    addToCartButton.classList.add('add-to-cart');
-    addToCartButton.innerHTML = 'Add to cart';
-    orderFormContainer.appendChild(addToCartButton);
-  }
-
   // check if block containt Orange Buttons
   const orangeButtons = block.classList.contains('orange-buttons');
 
   function hasOrderingOptions() {
-    return block.parentNode.parentNode.parentNode.querySelector('.ordering-options') !== null
-        && block.parentNode.parentNode.querySelector('.order');
+    return document.querySelector('.ordering-options') !== null
+        && document.querySelector('.order');
   }
 
   if (orangeButtons) {
     if (detectStore() && hasOrderingOptions()) {
-      const refs = [...block.parentNode.parentNode.parentNode.querySelectorAll('.ordering-options > div > div')]
-        .map((ref) => (ref.innerHTML).split(', '))
-        .reduce((x, y) => x.concat(y), []);
-      const orderingOptions = await getOrderingOptions(refs);
-      const options = orderingOptions.filter((o) => !!o);
-      buildOrderingForm(options);
+      const productDataContainer = document.createElement('div');
+      productDataContainer.classList.add('order-container');
+      container.appendChild(productDataContainer);
     }
   }
 
