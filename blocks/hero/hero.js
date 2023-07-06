@@ -199,6 +199,27 @@ export async function buildHero(block) {
     orderFormContainer.classList.add('order-container');
     container.appendChild(orderFormContainer);
 
+    function updateVariantsDropdownLabel() {
+      const variantDropDown = document.querySelector('#variantDropDown');
+      if (variantDropDown) {
+        variantDropDown.innerHTML = selectedVariant.title;
+      }
+    }
+
+    function updateDropdownInnerHTML() {
+      const optionsDropdown = document.querySelector('#optionsDropDown');
+      if (optionsDropdown) {
+        optionsDropdown.innerHTML = selectedOption.title;
+      }
+    }
+
+    function handleVariantSelection(variant) {
+      selectedVariant = variant;
+      updateVariantsDropdownLabel();
+      const priceContent = block.querySelector('.price');
+      priceContent.innerHTML = `$ ${(variant.price / 100).toLocaleString('en-US')}.00`;
+    }
+
     function checkOptionValidity() {
       if (selectedOption === 'Product Options') {
         const variantDropDown = document.getElementById('variantDropDown');
@@ -213,6 +234,7 @@ export async function buildHero(block) {
 
     function openDropdownMenu(dropdownId) {
       const dropdown = document.getElementById(dropdownId);
+      const optionsDropdown = document.querySelector('#optionsDropDown');
       if (dropdown && optionsDropdown.innerHTML !== 'Product Options') {
         dropdown.classList.toggle('show');
         if (dropdownId === 'variantsDropdown') {
@@ -239,25 +261,6 @@ export async function buildHero(block) {
       }
     }
 
-    function handleVariantSelection(variant) {
-      selectedVariant = variant;
-      updateVariantsDropdownLabel();
-      const priceContent = block.querySelector('.price');
-      priceContent.innerHTML = `$ ${(variant.price / 100).toLocaleString('en-US')}.00`;
-    }
-
-    function updateDropdownInnerHTML() {
-      if (optionsDropdown) {
-        optionsDropdown.innerHTML = selectedOption.title;
-      }
-    }
-
-    function updateVariantsDropdownLabel() {
-      if (variantDropDown) {
-        variantDropDown.innerHTML = selectedVariant.title;
-      }
-    }
-
     window.onclick = function CloseDropDownMenu(event) {
       if (!event.target.matches('.drop-down')) {
         const dropdowns = document.getElementsByClassName('product-options-content');
@@ -274,6 +277,7 @@ export async function buildHero(block) {
     // Options dropdown
     const optionsDropdown = document.createElement('button');
     optionsDropdown.innerHTML = 'Product Options';
+    optionsDropdown.id = 'optionsDropDown';
     optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
     optionsDropdown.classList.add('drop-down');
     orderFormContainer.appendChild(optionsDropdown);
