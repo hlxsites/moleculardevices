@@ -55,13 +55,15 @@ function renderMoreLink(text, link) {
 async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
     .sheet('events')
-    .chunks(5)
-    .slice(0, 3)
+    .filter((item) => item.eventEnd * 1000 > Date.now())
     .all();
+  const sortedEvents = events.sort((first, second) => first.eventStart - second.eventStart)
+    .slice(0, 3);
   container.innerHTML = '';
-  events.forEach(
-    (item) => container.append(renderEntry(item)),
-  );
+  sortedEvents.forEach((item) => {
+    item.date = item.eventStart;
+    container.append(renderEntry(item));
+  });
   container.append(renderMoreLink('More Events', '/events'));
 }
 
