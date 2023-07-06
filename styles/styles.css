@@ -1374,6 +1374,10 @@ main .section.background-molecules {
   padding: 70px 15px 0;
 }
 
+.application-note main .section:not(.hero-container) {
+  padding: 20px 0;
+}
+
 @media only screen and (max-width: 767px) {
   .homepage .section > div {
     padding: 50px 15px 0;

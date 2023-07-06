@@ -123,6 +123,21 @@ export function toCamelCase(name) {
   return toClassName(name).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
+/*
+ * Sanitizes the onelink class names to show/hide regional data.
+ * @param {string} name The unsanitized name
+ * @returns {string} The mapped onelink class
+ */
+function mapOnelinkClass(className) {
+  if (className.startsWith('onelinkshow')) {
+    return `OneLinkShow_${className.substring(className.lastIndexOf('-') + 1)}`;
+  }
+  if (className.startsWith('onelinkhide')) {
+    return `OneLinkHide_${className.substring(className.lastIndexOf('-') + 1)}`;
+  }
+  return className;
+}
+
 /**
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
@@ -325,7 +340,7 @@ export function decorateSections(main) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
-          const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
+          const styles = meta.style.split(',').map((style) => mapOnelinkClass(toClassName(style.trim())));
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'background') {
           const { background } = meta;
