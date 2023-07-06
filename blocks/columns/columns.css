@@ -304,6 +304,24 @@ main .section>div.columns-wrapper {
 }
 
 /* stylelint-disable no-descending-specificity */
+.section .columns p:has(>.video-wrapper),
+.section .columns p:has(>.video-wrapper) ~ p,
+.section .columns div:has(>picture),
+.section .columns p.picture,
+.section .columns p.picture ~ p {
+  text-align: center;
+}
+
+.section .columns.image-figure div:has(>picture) img,
+.section .columns.image-figure p.picture img {
+  max-width: 50%;
+}
+
+.section .columns.image-figure-large div:has(>picture) img,
+.section .columns.image-figure-large p.picture img {
+  max-width: 75%;
+}
+
 .columns.large-numbers {
   margin-top: 30px;
 }
@@ -334,15 +352,6 @@ main .section>div.columns-wrapper {
   margin-bottom: 18px;
 }
 /* stylelint-enable no-descending-specificity */
-
-.section .columns.image-figure > div p.picture,
-.section .columns.image-figure > div p.picture ~ p {
-  text-align: center;
-}
-
-.section .columns.image-figure > div p.picture img {
-  max-width: 50%;
-}
 
 .service-support .columns-wrapper {
   padding-top: 0;
