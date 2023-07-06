@@ -100,25 +100,28 @@ function renderAddToCart(item) {
   );
 }
 
-function renderItem(item, showStore) {
+function renderItem(item, showStore, itemDescriptionsMap) {
   if (!item) return '';
-
   return (
     div({ class: 'ordering-option-item', id: item.handle },
       div({ class: 'header' },
         h3({ class: 'title' }, item.title),
       ),
       div({ class: 'ordering-option-item-variants' },
-        ...item.variants.map((variant) => div({ class: 'variant-item' },
-          div({ class: 'title-variant' },
-            p({ class: 'legend' }, variant.public_title),
-          ),
-          div({ class: 'sku-variant' },
-            p({ class: 'legend' }, `#${variant.sku}`),
-          ),
-          (showStore) ? renderAddToCart(variant) : '',
-        ),
-        ),
+        ...item.variants.map((variant) => (
+          div({ class: 'variant-item' },
+            div({ class: 'title-variant' },
+              p({ class: 'legend' }, variant.public_title || variant.name),
+              div({ class: 'specs' },
+                itemDescriptionsMap.get(`#${variant.sku}`) || '',
+              ),
+            ),
+            div({ class: 'sku-variant' },
+              p({ class: 'legend' }, `#${variant.sku}`),
+            ),
+            (showStore) ? renderAddToCart(variant) : '',
+          )
+        )),
       ),
     )
   );
@@ -164,11 +167,10 @@ async function getOrderingOptions(refs) {
   );
   return options;
 }
-
-async function renderList(options, showStore, container) {
+async function renderList(options, showStore, container, itemDescriptionsMap) {
   const items = [];
   options.forEach((option) => {
-    items.push(renderItem(option, showStore));
+    items.push(renderItem(option, showStore, itemDescriptionsMap));
   });
   container.append(...items);
 
@@ -361,9 +363,21 @@ function buildOrderingForm(options) {
 }
 
 export default async function decorate(block) {
-  const refs = [...block.querySelectorAll('.ordering-options > div > div')]
-    .map((ref) => (ref.innerHTML).split(', '))
-    .reduce((x, y) => x.concat(y), []);
+  // first table should be  | shopify-handles | comma separated values |
+  const shopifyHandlesValues = block.children[0].children[1];
+  const refs = shopifyHandlesValues.textContent
+    .replace(' ', '')
+    .split(',')
+    .map((ref) => ref.trim());
+
+  const itemDescriptionsMap = new Map();
+  [...block.children].forEach((item, idx) => {
+    if (!idx) return; // first line is with shopify handlers.
+
+    const productCode = item.children[0].textContent.trim();
+    const productDescription = item.children[1];
+    itemDescriptionsMap.set(productCode, productDescription);
+  });
 
   block.innerHTML = '';
 
@@ -372,7 +386,7 @@ export default async function decorate(block) {
 
   const showStore = detectStore();
   const orderingOptions = await getOrderingOptions(refs);
-  renderList(orderingOptions, showStore, container);
+  await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
   const options = orderingOptions.filter((o) => !!o);
   buildOrderingForm(options);
   if (showStore) {

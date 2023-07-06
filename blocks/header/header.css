@@ -1107,6 +1107,19 @@ header .cards-submenu p {
   margin-top: 0;
 }
 
+header .cards-submenu p:first-child img {
+  transition: all .4s;
+}
+
+header .cards-submenu p:nth-child(2) {
+  min-height: 37px;
+}
+
+header .cards-submenu p:first-child:hover img{
+  transform: scale(1.15);
+  transition: all .4s;
+}
+
 header .cards-submenu p:nth-child(1) {
   background-color: var(--text-white);
   min-height: 114px;
@@ -1220,6 +1233,16 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   display: inline-block !important;
   text-align: center;
   min-width: 180px !important;
+}
+
+header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
+  border: 1px solid var(--button-bg-color);
+  background: transparent;
+}
+
+header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
+  background: var(--background-color);
+  color: var(--button-bg-color);
 }
 
 div.actionable-card-submenu.service-support-right-submenu.right-submenu-content.customercare-portal.btn-new-tab > div:nth-child(2) > div > p:nth-last-of-type(-n+2) > a:hover {

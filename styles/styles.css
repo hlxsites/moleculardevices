@@ -650,6 +650,16 @@ main .section.background-grey + .section.wave {
   }
 }
 
+main .section.full-width .default-content-wrapper {
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+main .section.full-width img {
+  width: 100%;
+}
+
 /* nav */
 nav {
   display: block;
@@ -1362,6 +1372,10 @@ main .section.background-molecules {
 
 .homepage .section > div {
   padding: 70px 15px 0;
+}
+
+.application-note main .section:not(.hero-container) {
+  padding: 20px 0;
 }
 
 @media only screen and (max-width: 767px) {

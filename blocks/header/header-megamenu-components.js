@@ -20,11 +20,6 @@ function buildLargeCardsMenu(cardContent) {
   const link = cardContent.querySelector('a');
   const picture = cardContent.querySelector('picture');
 
-  // DEBUG: italian header not showing
-  if (!link) {
-    console.log('link not found, cardContent: ', cardContent);
-  }
-
   if (link && picture) {
     wrapLinkAroundComponent(link, picture);
   }

@@ -4,6 +4,16 @@ main .section.ordering-options-container > div.ordering-options-wrapper {
   padding-top: 0;
 }
 
+main .section.ordering-options-container > div.ordering-options-wrapper::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+main .section.ordering-options-container > div.ordering-options-wrapper + div.default-content-wrapper {
+  margin-top: 50px;
+}
+
 main .section.ordering-options-container > div:last-child {
   padding-bottom: 55px;
 }
@@ -78,6 +88,11 @@ main .section.ordering-options-container > div:last-child {
 
 .ordering-options.cart-store .legend {
   padding-left: unset;
+}
+
+.ordering-option-item-variants .variant-item .specs {
+  font-size: 14px;
+  width: 600px;
 }
 
 .ordering-options.cart-store .variant-item-store .variant-item-store-header {
