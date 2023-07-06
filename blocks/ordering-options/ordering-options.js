@@ -102,7 +102,6 @@ function renderAddToCart(item) {
   );
 }
 
-let count = 0;
 function renderItem(item, showStore, itemDescriptionsMap) {
   if (!item) return '';
   return (
@@ -111,21 +110,20 @@ function renderItem(item, showStore, itemDescriptionsMap) {
         h3({ class: 'title' }, item.title),
       ),
       div({ class: 'ordering-option-item-variants' },
-        item.variants.map((variant) => {
-          const variantDescription = itemDescriptionsMap.get(variant.sku);
-          return div({ class: 'variant-item' },
+        ...item.variants.map((variant) => (
+          div({ class: 'variant-item' },
             div({ class: 'title-variant' },
-              p({ class: 'legend' }, variant.public_title),
+              p({ class: 'legend' }, variant.public_title || variant.name),
             ),
             div({ class: 'sku-variant' },
               p({ class: 'legend' }, `#${variant.sku}`),
             ),
             div({ class: 'description' },
-              p({ class: 'legend' }, variantDescription),
+              p({ class: 'legend' }, itemDescriptionsMap.get(`#${variant.sku}`) || ''),
             ),
             (showStore) ? renderAddToCart(variant) : '',
-          );
-        }),
+          )
+        )),
       ),
     )
   );
@@ -196,23 +194,23 @@ async function renderList(refs, showStore, container, itemDescriptionsMap) {
 }
 
 export default async function decorate(block) {
-  const siblingDiv = Array.from(document.querySelectorAll('div')).find((div) => div.textContent.trim() === 'shopify-handles');
-  const targetDiv = siblingDiv.nextElementSibling;
-  const targetDivInnerHTML = targetDiv.innerHTML;
-
-  const refs = targetDivInnerHTML.split(', ').map((ref) => ref.trim());
+  // first table should be  | shopify-handles | comma separated values |
+  const shopifyHandlesValues = block.children[0].children[1];
+  const refs = shopifyHandlesValues.textContent
+    .replace(' ', '')
+    .split(',')
+    .map((ref) => ref.trim());
 
   const itemDescriptionsMap = new Map();
-  const itemDivs = document.querySelectorAll('.ordering-options > div');
-  itemDivs.forEach((item) => {
+  [...block.children].forEach((item, idx) => {
+    if (!idx) return; // first line is with shopify handlers.
+
     const productCode = item.children[0].textContent.trim();
     const productDescription = item.children[1].textContent.trim();
     itemDescriptionsMap.set(productCode, productDescription);
   });
 
-  console.log('Item Descriptions Map:', [...itemDescriptionsMap]);  // Debugging line
-
-  // block.innerHTML = '';
+  block.innerHTML = '';
 
   const container = div({ class: 'ordering-options-list' });
   block.append(container);
