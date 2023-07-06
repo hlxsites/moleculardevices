@@ -129,12 +129,16 @@ export function toCamelCase(name) {
  * @returns {string} The mapped onelink class
  */
 function mapOnelinkClass(className) {
-  if (className.startsWith('onelinkshow')) {
+  if (className.startsWith('onelinkshow-')) {
     return `OneLinkShow_${className.substring(className.lastIndexOf('-') + 1)}`;
   }
   if (className.startsWith('onelinkhide')) {
-    return `OneLinkHide_${className.substring(className.lastIndexOf('-') + 1)}`;
+    if (className.indexOf('-') > -1) {
+      return `OneLinkHide_${className.substring(className.lastIndexOf('-') + 1)}`;
+    }
+    return 'OneLinkHide';
   }
+
   return className;
 }
 
