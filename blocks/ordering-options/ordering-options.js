@@ -216,7 +216,7 @@ export default async function decorate(block) {
   block.append(container);
 
   const showStore = detectStore();
-  renderList(refs, showStore, container, itemDescriptionsMap);
+  await renderList(refs, showStore, container, itemDescriptionsMap);
 
   if (showStore) {
     block.classList.add('cart-store');
