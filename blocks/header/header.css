@@ -1111,6 +1111,12 @@ header .cards-submenu p:first-child img {
   transition: all .4s;
 }
 
+header .menu-nav-submenu-section[submenu-id="3d-biology"] .cards-submenu p:first-child img {
+  padding: 0;
+  max-width: 110%;
+  width: 104%;
+}
+
 header .cards-submenu p:nth-child(2) {
   min-height: 37px;
 }
