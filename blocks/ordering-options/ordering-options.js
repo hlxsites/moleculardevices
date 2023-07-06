@@ -193,7 +193,6 @@ function buildOrderingForm(options) {
   const orderContainer = document.querySelector('.order-container');
   if (!orderContainer) return;
   const optionTitles = options.map((option) => option.title);
-  let variants = [];
   let selectedOption = null;
   let selectedVariant = null;
 
