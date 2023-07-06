@@ -185,10 +185,6 @@ export async function buildHero(block) {
     }
   });
 
-  // TODO
-  // remove US cookie when finished
-  // add to cart button functionality
-
   async function buildOrderingForm(options) {
     const optionTitles = options.map((option) => option.title);
     const variants = [1, 2, 3];
