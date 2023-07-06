@@ -3,4 +3,10 @@ h2 {
     text-align: center;
 }
 
-/* TODO p text centered for microplate */
+.default-content-wrapper h3 {
+    font-size: 34px;
+}
+
+.default-content-wrapper h3 a {
+    color: black;
+}
