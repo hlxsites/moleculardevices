@@ -359,7 +359,6 @@ async function decorateTemplates(main) {
     const templateNames = getMetadata('template').split(',').map((s) => toClassName(s));
     const template = templateNames.find((name) => TEMPLATE_LIST.includes(name));
     if (template !== null) {
-      console.log('found template', template, 'in', templateNames, 'in', TEMPLATE_LIST);
       const mod = await import(`../templates/${template}/${template}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
       if (mod.default) {
