@@ -556,11 +556,6 @@ main .section.columns-2>div {
   padding: 0 15px;
 }
 
-main .section.columns-2 .default-content-wrapper:has(.video-wrapper),
-main .section.columns-2 .default-content-wrapper:has(picture) {
-  text-align: center;
-}
-
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -1089,6 +1084,11 @@ main div.section.wave .default-content-wrapper p:first-of-type {
   margin-bottom: 10px;
 }
 
+main .section.columns-2 .default-content-wrapper:has(picture),
+main .section.columns-2 .default-content-wrapper:has(.video-wrapper) {
+  text-align: center;
+}
+
 /* WAVE sections variants */
 
 /* BlueGreen Variant */
@@ -1133,7 +1133,6 @@ main div.section.wave.bluegreen2::after {
   bottom: 0;
   content: "";
 }
-
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
