@@ -1,22 +1,22 @@
 import {
-  buildBlock,
-  decorateBlock,
-  decorateBlocks,
+  sampleRUM,
+  loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
+  decorateBlocks,
   decorateTemplateAndTheme,
-  getMetadata,
-  loadBlock,
-  loadBlocks,
-  loadCSS,
-  loadFooter,
-  loadHeader,
-  readBlockConfig,
-  sampleRUM,
-  toCamelCase,
-  toClassName,
   waitForLCP,
+  loadBlocks,
+  toClassName,
+  getMetadata,
+  loadCSS,
+  loadBlock,
+  loadHeader,
+  decorateBlock,
+  buildBlock,
+  readBlockConfig,
+  toCamelCase,
 } from './lib-franklin.js';
 import { a, div, p } from './dom-helpers.js';
 
@@ -355,9 +355,9 @@ function decorateLinkedPictures(container) {
  */
 async function decorateTemplates(main) {
   try {
-    const templateNames = getMetadata('template').split(',').map((s) => toClassName(s));
-    const template = templateNames.find((name) => TEMPLATE_LIST.includes(name));
-    if (template !== null) {
+    const template = toClassName(getMetadata('template'));
+    const templates = TEMPLATE_LIST;
+    if (templates.includes(template)) {
       const mod = await import(`../templates/${template}/${template}.js`);
       loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
       if (mod.default) {
