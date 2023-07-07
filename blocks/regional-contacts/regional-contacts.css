@@ -129,7 +129,6 @@
   li {
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
   padding: 10px 0;
   position: relative;
 }
@@ -258,7 +257,13 @@
   .tab-accordian-wrapper
   > div:nth-child(odd)
   > ul:not(:first-child)
-  li:not(:last-child)::after {
+  li:not(:last-child)::after,
+.regional-contacts-wrapper
+  .regional-contacts
+  .tab-accordian-wrapper
+  > div:nth-child(odd)
+  > ul:not(:first-child)
+  li:only-child::after   {
   background-color: var(--border-color-gray);
   bottom: 0;
   content: '';
