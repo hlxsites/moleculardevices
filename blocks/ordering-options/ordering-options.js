@@ -194,7 +194,6 @@ async function renderList(options, showStore, container, itemDescriptionsMap) {
 function buildOrderingForm(options) {
   const orderContainer = document.querySelector('.order-container');
   if (!orderContainer) return;
-  const optionTitles = options.map((option) => option.title);
   let selectedOption = null;
   let selectedVariant = null;
 
@@ -251,12 +250,11 @@ function buildOrderingForm(options) {
     checkOptionValidity();
     const variantsContent = document.querySelector('#variantsDropdown');
     variantsContent.replaceChildren();
-    for (let j = 0; j < option.variants.length; j += 1) {
-      const variant = a({ class: 'option' });
-      variant.innerHTML = option.variants[j].title;
-      variant.addEventListener('click', () => handleVariantSelection(option.variants[j]));
-      variantsContent.appendChild(variant);
-    }
+    option.variants.forEach((variant) => {
+      variantsContent.appendChild(
+        a({ class: 'option', onclick: () => handleVariantSelection(variant) }, variant.title),
+      );
+    });
   }
 
   window.onclick = function CloseDropDownMenu(event) {
@@ -271,70 +269,44 @@ function buildOrderingForm(options) {
     }
   };
 
-  // Options dropdown
-  const optionsDropdown = button({ class: 'drop-down', id: 'optionsDropDown' });
-  optionsDropdown.innerHTML = 'Product Options';
-  optionsDropdown.onclick = () => openDropdownMenu('optionsDropdownContent');
-
-  const optionsContent = div({ class: 'product-options-content', id: 'optionsDropdownContent' });
-
-  for (let l = 0; l < optionTitles.length; l += 1) {
-    const option = a({ class: 'option' });
-    option.innerHTML = optionTitles[l];
-    option.addEventListener('click', () => handleOptionSelection(options[l]));
-    optionsContent.appendChild(option);
-  }
-  // Variants dropdown
-  const variantDropDown = button({ class: 'drop-down', id: 'variantDropDown' });
-  variantDropDown.innerHTML = 'Select Variation';
-  variantDropDown.onclick = () => openDropdownMenu('variantsDropdown');
-
-  const priceLabel = label({ class: 'price-label' });
-  priceLabel.innerHTML = 'PRICE';
-
-  const quantityLabel = label({ class: 'quantity-label' });
-  quantityLabel.innerHTML = 'QUANTITY';
-
-  const price = span({ class: 'price' });
-  price.innerHTML = '$ 0.00';
-
-  const decreaseButton = a({ class: 'quantity-button' });
-  decreaseButton.innerHTML = '-';
-
-  const quantityNumber = span({ class: 'quantity-number' });
-  quantityNumber.innerHTML = '1';
-
-  const increaseButton = a({ class: 'quantity-button' });
-  increaseButton.innerHTML = '+';
-
-  increaseButton.addEventListener('click', () => {
-    let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
+  function increaseQuantity() {
+    let currentQuantity = parseInt(quantityNumber.innerHTML, 10); // TODO
     currentQuantity += 1;
     quantityNumber.innerHTML = currentQuantity;
-  });
+  };
 
-  decreaseButton.addEventListener('click', () => {
-    let currentQuantity = parseInt(quantityNumber.innerHTML, 10);
+  function decreaseQuantity() {
+    let currentQuantity = parseInt(quantityNumber.innerHTML, 10); // TODO
     if (currentQuantity > 1) {
       currentQuantity -= 1;
       quantityNumber.innerHTML = currentQuantity;
     }
-  });
-  const addToCartButton = button({ class: 'add-to-cart' });
-  addToCartButton.addEventListener('click', () => addToCart(selectedVariant, quantityNumber));
-  addToCartButton.innerHTML = 'Add to cart';
-  const orderFormContainer = div(
-    { class: 'order-container' },
-    optionsDropdown,
-    optionsContent,
-    variantDropDown,
-    div({ class: 'product-options-content', id: 'variantsDropdown' }),
-    priceLabel,
-    quantityLabel,
-    price,
-    div({ class: 'quantity-container' }, decreaseButton, quantityNumber, increaseButton),
-    addToCartButton,
-  );
+  };
+
+  const orderFormContainer = (
+    div({ class: 'order-container' },
+      button({ class: 'drop-down', id: 'optionsDropDown', onclick: () => openDropdownMenu('optionsDropdownContent') }, 'Product Options'),
+      div({ class: 'product-options-content', id: 'optionsDropdownContent' },
+        a({ class: 'option placeholder', onclick: () => handleOptionSelection('Product Options') }, 'Product Options'),
+        ...options.map((option) => {
+          return a({ class: 'option', onclick: () => handleOptionSelection(option) }, option.title);
+        }),
+      ),
+      button({ class: 'drop-down', id: 'variantDropDown', onclick: () => openDropdownMenu('variantsDropdown') }, 'Select Variation'),
+      div({ class: 'product-options-content', id: 'variantsDropdown' },
+        // TODO;
+      ),
+      label({ class: 'price-label' }, 'PRICE'),
+      label({ class: 'quantity-label' }, 'QUANTITY'),
+      span({ class: 'price' }, '$ 0.00'),
+      div({ class: 'quantity-container' }, 
+        a({ class: 'quantity-button', onclick: () => { decreaseQuantity() }}, '-'), 
+        span({ class: 'quantity-number' }, '1'), 
+        a({ class: 'quantity-button', onclick: () => { increaseQuantity() } }, '+'),
+      ),
+      button({ class: 'add-to-cart', onclick:() => addToCart(selectedVariant, quantityNumber) }, 'Add to cart'),
+    )
+  )
   orderContainer.appendChild(orderFormContainer);
 }
 
