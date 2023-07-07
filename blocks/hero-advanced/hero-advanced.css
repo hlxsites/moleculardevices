@@ -26,6 +26,10 @@
    border: 2px solid #fff;
    padding: 13px 18px;
   }
+
+  .hero-advanced .container > div{
+    max-width: 66.67%;
+  }
 }
 
 @media (max-width: 767px) {
