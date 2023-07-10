@@ -1,3 +1,5 @@
+/* eslint-disable object-curly-newline */
+
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
   a, button, div, domEl, h3, i, input, label, p, span,
@@ -199,7 +201,7 @@ function buildOrderingForm(options) {
 
   function closeAllDropDowns() {
     orderContainer.querySelectorAll('.drop-down-content.show')
-        .forEach(openDropdown => openDropdown.classList.remove('show'))
+      .forEach((openDropdown) => openDropdown.classList.remove('show'));
   }
 
   function updateVariantsDropdownLabel() {
@@ -212,10 +214,9 @@ function buildOrderingForm(options) {
   function updatePrice(price) {
     const priceContent = orderContainer.querySelector('.price');
     priceContent.textContent = `$ ${(price / 100).toLocaleString('en-US')}.00 USD`;
-
   }
 
-  function handleVariantSelection(variant, orderContainer) {
+  function handleVariantSelection(variant) {
     selectedVariant = variant;
     updateVariantsDropdownLabel(orderContainer);
     updatePrice(variant.price);
@@ -224,7 +225,7 @@ function buildOrderingForm(options) {
   }
 
   function checkOptionValidity() {
-    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down')
+    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down');
     if (!selectedOption || !selectedOption.variants || !selectedOption.variants.length) {
       selectedVariant = { title: 'Select Variation' };
       variantDropDown.classList.add('disabled');
@@ -241,7 +242,7 @@ function buildOrderingForm(options) {
 
     if (dropDownContent.children.length !== 0) {
       dropDownContent.classList.toggle('show');
-    }  
+    }
   }
 
   function handleOptionSelection(option) {
@@ -267,8 +268,7 @@ function buildOrderingForm(options) {
 
   window.addEventListener('click', (e) => {
     if (!e.target.closest('.drop-down')) {
-      document.querySelectorAll('.drop-down-content.show')
-        .forEach(openDropdown => openDropdown.classList.remove('show'));
+      closeAllDropDowns();
     }
   });
 
@@ -280,7 +280,7 @@ function buildOrderingForm(options) {
     qInput.value = parseInt(qInput.value, 10) + 1;
 
     qInput.dispatchEvent(new Event('change'));
-  };
+  }
 
   function decreaseQuantity(e) {
     const qInput = e.currentTarget
@@ -294,12 +294,12 @@ function buildOrderingForm(options) {
     }
 
     qInput.dispatchEvent(new Event('change'));
-  };
+  }
 
   function quantityChange(e) {
     const qInput = e.target;
-    let currentQuantity = parseInt(qInput.value, 10);
-    if (isNaN(currentQuantity) || currentQuantity < 0) {
+    const currentQuantity = parseInt(qInput.value, 10);
+    if (Number.isNaN(currentQuantity) || currentQuantity < 0) {
       qInput.value = 0;
     }
   }
@@ -310,9 +310,7 @@ function buildOrderingForm(options) {
         button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Product Options'),
         div({ class: 'drop-down-content' },
           a({ class: 'option placeholder', onclick: () => handleOptionSelection({ title: 'Product Options' }) }, 'Product Options'),
-          ...options.map((option) => {
-            return a({ class: 'option', onclick: () => handleOptionSelection(option) }, option.title);
-          }),
+          ...options.map((option) => a({ class: 'option', onclick: () => { handleOptionSelection(option); } }, option.title)),
         ),
       ),
       div({ class: 'drop-down variants-drop-down disabled' },
@@ -327,15 +325,15 @@ function buildOrderingForm(options) {
       ),
       div({ class: 'quantity-container' },
         label({ class: 'quantity-label' }, 'QUANTITY'),
-        div({class: 'quantity-counter'},
-          button({ class: 'quantity-button', onclick: (e) => { decreaseQuantity(e) }}, '-'), 
-          input({ class: 'quantity-number', onchange: (e) => { quantityChange(e) }, type: 'text', value: '0' }), 
-          button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e) } }, '+'),
+        div({ class: 'quantity-counter' },
+          button({ class: 'quantity-button', onclick: (e) => { decreaseQuantity(e); } }, '-'),
+          input({ class: 'quantity-number', onchange: (e) => quantityChange(e), type: 'text', value: '0' }),
+          button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
         ),
       ),
-      button({ class: 'add-to-cart', onclick:() => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
+      button({ class: 'add-to-cart', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
     )
-  )
+  );
   orderContainer.appendChild(orderFormContainer);
 }
 
