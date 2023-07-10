@@ -258,12 +258,6 @@ main .section.ordering-options-container > div:last-child {
   color: #000;
 }
 
-.drop-down:nth-of-type(2) {
-  color: gray;
-  border: 1px solid gray;
-  cursor: not-allowed;
-}
-
 .drop-down .drop-down-content {
   display: none;
   position: absolute;
@@ -315,18 +309,18 @@ main .section.ordering-options-container > div:last-child {
   box-shadow: inset 0 3px 5px rgba(0 0 0 / 12.5%);
 }
 
-.price-container {
+.order-container .price-container {
   font-family: var(--ff-proxima-xbold);
 }
 
-.price-label {
+.order-container .price-label {
   position: relative;
   display: block;
   font-size: 15px;
   font-weight: 600;
 }
 
-.price-currency {
+.order-container .price-currency {
   display: inline-block;
   border: 1px solid #34393d;
   height: 55px;
@@ -338,13 +332,13 @@ main .section.ordering-options-container > div:last-child {
   margin-right: 20px;
 }
 
-.price {
+.order-container .price {
   position: relative;
   margin-top: 20px;
   font-size: 25px;
 }
 
-.add-to-cart {
+.order-container .add-to-cart {
   width: 100px;
   height: 50px;
   background-color: var(--button-bg-color);
@@ -353,28 +347,28 @@ main .section.ordering-options-container > div:last-child {
   transform: all .3s ease-in-out;
 }
 
-.add-to-cart:hover {
+.order-container .add-to-cart:hover {
   cursor: pointer;
   background-color: #fff;
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-.quantity-label {
+.order-container .quantity-label {
   font-size: 15px;
   font-weight: 600;
   font-family: var(--ff-proxima-xbold);
 }
 
-.quantity-container button {
+.order-container .quantity-container button {
   color: var(--dark-gray-background-color);
   font-family: var(--ff-proxima-light);
 }
 
-.quantity-counter {
+.order-container .quantity-counter {
   display: flex;
 }
 
-.quantity-counter button.quantity-button {
+.order-container .quantity-counter button.quantity-button {
   display: block;
   border: 1px solid gray;
   color: black;
@@ -389,7 +383,7 @@ main .section.ordering-options-container > div:last-child {
   max-width: unset;
 }
 
-.quantity-number {
+.order-container .quantity-number {
   display: block;
   height: 55px;
   width: 70px;
@@ -406,7 +400,7 @@ main .section.ordering-options-container > div:last-child {
   color: var(--dark-gray-background-color);
 }
 
-.quantity-number:focus-visible,
-.quantity-number:hover {
+.order-container .quantity-number:focus-visible,
+.order-container .quantity-number:hover {
   border-radius: 0;
 }

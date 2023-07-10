@@ -332,7 +332,7 @@ function buildOrderingForm(options) {
           button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
         ),
       ),
-      button({ class: 'add-to-cart', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
+      button({ class: 'add-to-cart primary', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
     )
   );
   orderContainer.appendChild(orderFormContainer);
