@@ -321,7 +321,7 @@ function buildOrderingForm(options) {
       ),
       div({ class: 'price-container' },
         label({ class: 'price-label' }, 'PRICE'),
-        span({ class: 'price-currency'}, '$'),
+        span({ class: 'price-currency' }, '$'),
         span({ class: 'price' }, '0.00 USD'),
       ),
       div({ class: 'quantity-container' },
