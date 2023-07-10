@@ -13,7 +13,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   const returnURL = searchParams.get('return_url');
   searchParams.delete('cmp');
   searchParams.delete('return_url');
-  
+
   const queryStr = `?return_url=${returnURL}%3F${encodeURIComponent(searchParams.toString())}&cmp=${cmp}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
