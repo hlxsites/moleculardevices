@@ -8,7 +8,14 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
     const queryStringParam = queryParams.has(paramName) ? queryParams.get(paramName) : '';
     searchParams.set(paramName, queryStringParam);
   }
-  return new URL(`${hubspotUrl.pathname}?${searchParams.toString().replaceAll('&', '%3').replaceAll('=', '%2')}`, hubspotUrl);
+
+  const cmp = searchParams.get('cmp');
+  const returnURL = searchParams.get('return_url');
+  searchParams.delete('cmp');
+  searchParams.delete('return_url');
+
+  const queryStr = `?return_url=${returnURL}%3F${encodeURIComponent(searchParams.toString())}&cmp=${cmp}`;
+  return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
 function createForm(block, hubspotUrl) {
