@@ -1,6 +1,9 @@
 sitemaps:
   website:
-    origin: https://franklin.moleculardevices.com
     source: /query-index.json
-    destination: /sitemap.xml
+    destination: /content/sitemap.xml
+    lastmod: YYYY-MM-DD
+  files:
+    source: /sites/default/files/query-index.json
+    destination: /files/sitemap.xml
     lastmod: YYYY-MM-DD
