@@ -200,7 +200,7 @@ function buildOrderingForm(options) {
   let selectedVariant = null;
 
   function closeAllDropDowns() {
-    orderContainer.querySelectorAll('.drop-down-content.show')
+    orderContainer.querySelectorAll('.drop-down.show')
       .forEach((openDropdown) => openDropdown.classList.remove('show'));
   }
 
@@ -241,7 +241,7 @@ function buildOrderingForm(options) {
       .querySelector('.drop-down-content');
 
     if (dropDownContent.children.length !== 0) {
-      dropDownContent.classList.toggle('show');
+      dropDownContent.parentElement.classList.toggle('show');
     }
   }
 

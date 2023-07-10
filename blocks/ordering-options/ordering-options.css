@@ -191,17 +191,23 @@ main .section.ordering-options-container > div:last-child {
   gap: 30px;
 }
 
-@media only screen and (max-width: 480px) {
-  .order-container-inner {
-    flex-direction: column;
-  }
-}
-
-
 .order-container .price-container,
 .order-container .quantity-container,
 .order-container .drop-down {
  width: calc(50% - 30px);
+}
+
+@media only screen and (max-width: 480px) {
+  .order-container-inner {
+    flex-direction: column;
+  }
+
+  .order-container .price-container,
+  .order-container .quantity-container,
+  .order-container .drop-down {
+    width: unset;
+    max-width: 200px;
+  }
 }
 
 .order-container .drop-down {
@@ -219,13 +225,37 @@ main .section.ordering-options-container > div:last-child {
 .drop-down-btn {
   width: 100%;
   height: 100%;
+  max-width: unset;
   color: #000;
   background-color: transparent;
   text-align: left;
-  background-image: url("./images/down-arrow.svg");
   background-repeat: no-repeat;
-  background-position: 460px center;
-  background-size: 20px;
+}
+
+.drop-down-btn::before {
+  color: #000;
+  position: absolute;
+  right: 21px;
+  top: calc(50% - 5px);
+  content: "";
+  display: block;
+  height: 10px;
+  width: 10px;
+  background-image: url("/icons/down-arrow.svg");
+  background-size: 10px;
+  background-repeat: no-repeat;
+  z-index: 2;
+  transition: all 300ms ease-in-out;
+}
+
+.drop-down.show .drop-down-btn::before {
+  transform: rotate(180deg);
+}
+
+.drop-down .drop-down-btn:hover,
+.drop-down .drop-down-btn:visited,
+.drop-down .drop-down-btn:focus {
+  color: #000;
 }
 
 .drop-down:nth-of-type(2) {
@@ -277,8 +307,12 @@ main .section.ordering-options-container > div:last-child {
   background-color: #ddd;
 }
 
-.drop-down .show {
+.drop-down.show .drop-down-content {
   display: block !important;
+}
+
+.drop-down.show .drop-down-btn {
+  box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }
 
 .price-container {
