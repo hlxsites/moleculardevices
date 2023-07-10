@@ -1,9 +1,9 @@
 sitemaps:
   website:
     source: /query-index.json
-    destination: /content/sitemap.xml
+    destination: /content-sitemap.xml
     lastmod: YYYY-MM-DD
   files:
     source: /sites/default/files/query-index.json
-    destination: /files/sitemap.xml
+    destination: /files-sitemap.xml
     lastmod: YYYY-MM-DD
