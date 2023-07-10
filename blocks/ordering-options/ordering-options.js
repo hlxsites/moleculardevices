@@ -51,7 +51,7 @@ async function getCartDetails() {
 }
 
 async function addToCart(el, counterEl) {
-  const counter = parseInt(counterEl.textContent, 10) || 1;
+  const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
 
   await new Promise((resolve) => {
