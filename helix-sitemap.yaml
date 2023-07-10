@@ -1,9 +1,11 @@
 sitemaps:
   website:
+    origin: https://www.moleculardevices.com
     source: /query-index.json
     destination: /content-sitemap.xml
     lastmod: YYYY-MM-DD
   files:
+    origin: https://www.moleculardevices.com
     source: /sites/default/files/query-index.json
     destination: /files-sitemap.xml
     lastmod: YYYY-MM-DD
