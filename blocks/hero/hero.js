@@ -1,6 +1,10 @@
+/* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  formatDate, isVideo, videoButton,
+  detectStore,
+  formatDate,
+  isVideo,
+  videoButton,
 } from '../../scripts/scripts.js';
 import { div, img } from '../../scripts/dom-helpers.js';
 
@@ -154,6 +158,13 @@ export function buildHero(block) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
+  }
+
+  if (detectStore() && document.querySelector('main .block.ordering-options')) {
+    block.querySelectorAll('.button-container').forEach((buttonContainer) => {
+      buttonContainer.remove();
+    });
+    container.appendChild(div({ class: 'order-container' }));
   }
 
   showHidePricingRequestButton(block);

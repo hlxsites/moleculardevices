@@ -126,6 +126,19 @@ main .section .hero-advanced-wrapper {
   font-size: var(--body-font-size-m);
 }
 
+.order-container {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 480px) {
+  .order-container {
+    height: 500px;
+  }
+}
+
 .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 30px;
@@ -372,8 +385,8 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero-inner .container > div {
-    margin-left: 15px;
-    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .hero-inner h4 {

@@ -1,6 +1,8 @@
+/* eslint-disable object-curly-newline */
+
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
-  a, div, domEl, h3, i, p, span,
+  a, button, div, domEl, h3, i, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -48,11 +50,9 @@ async function getCartDetails() {
   });
 }
 
-async function addToCart(event) {
-  const el = event.target;
-  const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
+async function addToCart(el, counterEl) {
   const counter = parseInt(counterEl.textContent, 10) || 1;
-  const itemId = el.getAttribute('id');
+  const itemId = el.id || el.getAttribute('id');
 
   await new Promise((resolve) => {
     const script = domEl('script',
@@ -169,9 +169,7 @@ async function getOrderingOptions(refs) {
   );
   return options;
 }
-
-async function renderList(refs, showStore, container, itemDescriptionsMap) {
-  const options = await getOrderingOptions(refs);
+async function renderList(options, showStore, container, itemDescriptionsMap) {
   const items = [];
   options.forEach((option) => {
     items.push(renderItem(option, showStore, itemDescriptionsMap));
@@ -188,9 +186,156 @@ async function renderList(refs, showStore, container, itemDescriptionsMap) {
   const addToCartButtons = document.querySelectorAll('.ordering-options .variant-item-store-add-to-cart > a');
   [...addToCartButtons].forEach((addToCartButton) => {
     addToCartButton.addEventListener('click', (e) => {
-      addToCart(e);
+      const el = e.target;
+      const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
+      addToCart(el, counterEl);
     });
   });
+}
+
+function buildOrderingForm(options) {
+  const orderContainer = document.querySelector('.order-container');
+  if (!orderContainer) return;
+  let selectedOption = null;
+  let selectedVariant = null;
+
+  function closeAllDropDowns() {
+    orderContainer.querySelectorAll('.drop-down.show')
+      .forEach((openDropdown) => openDropdown.classList.remove('show'));
+  }
+
+  function updateVariantsDropdownLabel() {
+    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-btn');
+    if (variantDropDown) {
+      variantDropDown.innerHTML = selectedVariant.title;
+    }
+  }
+
+  function updatePrice(price) {
+    const priceContent = orderContainer.querySelector('.price');
+    priceContent.textContent = `$ ${(price / 100).toLocaleString('en-US')}.00 USD`;
+  }
+
+  function handleVariantSelection(variant) {
+    selectedVariant = variant;
+    updateVariantsDropdownLabel(orderContainer);
+    updatePrice(variant.price);
+
+    closeAllDropDowns();
+  }
+
+  function checkOptionValidity() {
+    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down');
+    if (!selectedOption || !selectedOption.variants || !selectedOption.variants.length) {
+      selectedVariant = { title: 'Select Variation' };
+      variantDropDown.classList.add('disabled');
+      updateVariantsDropdownLabel();
+    } else {
+      variantDropDown.classList.remove('disabled');
+    }
+  }
+
+  function openDropdownMenu(event) {
+    const dropDownContent = event.target
+      .closest('.drop-down')
+      .querySelector('.drop-down-content');
+
+    if (dropDownContent.children.length !== 0) {
+      dropDownContent.parentElement.classList.toggle('show');
+    }
+  }
+
+  function handleOptionSelection(option) {
+    selectedOption = option;
+    const optionsDropDown = orderContainer.querySelector('.drop-down.options-drop-down');
+    const optionsDropDownButton = optionsDropDown.querySelector('.drop-down-btn');
+    optionsDropDownButton.textContent = selectedOption.title;
+
+    checkOptionValidity();
+    updatePrice(0);
+    const variantsContent = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-content');
+    variantsContent.replaceChildren();
+    if (option.variants && option.variants.length) {
+      option.variants.forEach((variant) => {
+        variantsContent.appendChild(
+          a({ class: 'option', id: variant.id, onclick: () => handleVariantSelection(variant) }, variant.title),
+        );
+      });
+    }
+
+    closeAllDropDowns();
+  }
+
+  window.addEventListener('click', (e) => {
+    if (!e.target.closest('.drop-down')) {
+      closeAllDropDowns();
+    }
+  });
+
+  function increaseQuantity(e) {
+    const qInput = e.currentTarget
+      .closest('.quantity-counter')
+      .querySelector('.quantity-number');
+
+    qInput.value = parseInt(qInput.value, 10) + 1;
+
+    qInput.dispatchEvent(new Event('change'));
+  }
+
+  function decreaseQuantity(e) {
+    const qInput = e.currentTarget
+      .closest('.quantity-counter')
+      .querySelector('.quantity-number');
+
+    let currentQuantity = parseInt(qInput.value, 10);
+    if (currentQuantity > 1) {
+      currentQuantity -= 1;
+      qInput.value = currentQuantity;
+    }
+
+    qInput.dispatchEvent(new Event('change'));
+  }
+
+  function quantityChange(e) {
+    const qInput = e.target;
+    const currentQuantity = parseInt(qInput.value, 10);
+    if (Number.isNaN(currentQuantity) || currentQuantity < 0) {
+      qInput.value = 0;
+    }
+  }
+
+  const orderFormContainer = (
+    div({ class: 'order-container-inner' },
+      div({ class: 'drop-down options-drop-down' },
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Product Options'),
+        div({ class: 'drop-down-content' },
+          a({ class: 'option placeholder', onclick: () => handleOptionSelection({ title: 'Product Options' }) }, 'Product Options'),
+          ...options.map((option) => a({ class: 'option', onclick: () => { handleOptionSelection(option); } }, option.title)),
+        ),
+      ),
+      div({ class: 'drop-down variants-drop-down disabled' },
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Select Variation'),
+        div({ class: 'drop-down-content' },
+          // dynamically populated when selecting a product
+        ),
+      ),
+      div({ class: 'price-container' },
+        label({ class: 'price-label' }, 'PRICE'),
+        span({ class: 'price-currency' }, '$'),
+        span({ class: 'price' }, '0.00 USD'),
+      ),
+      div({ class: 'quantity-container' },
+        label({ class: 'quantity-label' }, 'QUANTITY'),
+        div({ class: 'quantity-counter' },
+          button({ class: 'quantity-button', onclick: (e) => { decreaseQuantity(e); } }, '-'),
+          input({ class: 'quantity-number', onchange: (e) => quantityChange(e), type: 'text', value: '0' }),
+          button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
+        ),
+      ),
+      button({ class: 'add-to-cart primary', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
+    )
+  );
+  orderContainer.appendChild(orderFormContainer);
 }
 
 export default async function decorate(block) {
@@ -216,8 +361,10 @@ export default async function decorate(block) {
   block.append(container);
 
   const showStore = detectStore();
-  await renderList(refs, showStore, container, itemDescriptionsMap);
-
+  const orderingOptions = await getOrderingOptions(refs);
+  await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
+  const options = orderingOptions.filter((o) => !!o);
+  buildOrderingForm(options);
   if (showStore) {
     block.classList.add('cart-store');
     await getCartDetails();
