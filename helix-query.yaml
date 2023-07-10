@@ -121,6 +121,15 @@ indices:
       specifications:
         select: head > meta[name="specifications"]
         value: attribute(el, "content")
+      productFinderFilter1:
+        select: head > meta[name="pf-filter-1"]
+        value: attribute(el, "content")
+      productFinderFilter2:
+        select: head > meta[name="pf-filter-2"]
+        value: attribute(el, "content")
+      productFinderFilter3:
+        select: head > meta[name="pf-filter-3"]
+        value: attribute(el, "content")
   citations:
     include:
       - '/resources/citations/**'
