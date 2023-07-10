@@ -5,7 +5,7 @@ main .section .related-products-wrapper {
 .related-products {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: stretch;
   align-content: stretch;
   gap: 20px;
