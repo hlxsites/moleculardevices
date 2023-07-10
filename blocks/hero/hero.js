@@ -90,13 +90,6 @@ export function buildHero(block) {
   const container = document.createElement('div');
   container.classList.add('container');
 
-  if (detectStore()) {
-    const buttonContainer = document.querySelector('.button-container');
-    if (buttonContainer) {
-      buttonContainer.parentElement.removeChild(buttonContainer);
-    }
-  }
-
   let picture = block.querySelector('picture');
   if (picture) {
     const originalHeroBg = picture.lastElementChild;
@@ -154,22 +147,6 @@ export function buildHero(block) {
     }
   });
 
-  // check if block containt Orange Buttons
-  const orangeButtons = block.classList.contains('orange-buttons');
-
-  function hasOrderingOptions() {
-    return document.querySelector('.ordering-options') !== null
-        && document.querySelector('.order');
-  }
-
-  if (orangeButtons) {
-    if (detectStore() && hasOrderingOptions()) {
-      const productDataContainer = div();
-      productDataContainer.classList.add('order-container');
-      container.appendChild(productDataContainer);
-    }
-  }
-
   const breadcrumbs = document.createElement('div');
   breadcrumbs.classList.add('breadcrumbs');
 
@@ -181,6 +158,13 @@ export function buildHero(block) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
+  }
+
+  if (detectStore() && document.querySelector('.ordering-options')) {
+    block.querySelectorAll('.button-container').forEach((buttonContainer) => {
+      buttonContainer.remove();
+    });
+    container.appendChild(div({ class: 'order-container' }));
   }
 
   showHidePricingRequestButton(block);
