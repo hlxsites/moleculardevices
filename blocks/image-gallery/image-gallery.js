@@ -35,7 +35,7 @@ export default async function decorate(block) {
       wrapper.parentElement.classList.add('overlay');
       body.classList.add('no-scroll');
 
-      document.body.scrollLeft = wrapper.offsetWidth * i;
+      block.scrollTo({ top: 0, left: wrapper.offsetWidth * i, behavior: 'instant' });
     });
   });
   await decorateIcons(wrapper);
