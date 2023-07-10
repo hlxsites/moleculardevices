@@ -160,7 +160,7 @@ export function buildHero(block) {
     block.parentElement.appendChild(container);
   }
 
-  if (detectStore() && document.querySelector('.ordering-options')) {
+  if (detectStore() && document.querySelector('main .block.ordering-options')) {
     block.querySelectorAll('.button-container').forEach((buttonContainer) => {
       buttonContainer.remove();
     });

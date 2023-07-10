@@ -281,20 +281,34 @@ main .section.ordering-options-container > div:last-child {
   display: block !important;
 }
 
+.price-container {
+  font-family: var(--ff-proxima-xbold);
+}
+
 .price-label {
   position: relative;
   display: block;
   font-size: 15px;
   font-weight: 600;
-  font-family: var(--ff-proxima-xbold);
+}
+
+.price-currency {
+  display: inline-block;
+  display: inline-block;
+  border: 1px solid #34393d;
+  height: 55px;
+  width: 55px;
+  font-size: 24px;
+  color: #34393d;
+  line-height: 54px;
+  text-align: center;
+  margin-right: 20px;
 }
 
 .price {
   position: relative;
-  display: block;
   margin-top: 20px;
   font-size: 25px;
-  font-family: var(--ff-proxima-xbold);
 }
 
 .add-to-cart {
@@ -327,18 +341,19 @@ main .section.ordering-options-container > div:last-child {
   display: flex;
 }
 
-.quantity-button {
+.quantity-counter button.quantity-button {
   display: block;
   border: 1px solid gray;
   color: black;
   font-size: 30px;
-  width: 55px !important;
-  height: 55px !important;
+  width: 55px;
+  height: 55px;
   margin: 0;
   padding: 0;
   cursor: pointer;
   user-select: none;
   min-width: unset;
+  max-width: unset;
 }
 
 .quantity-number {
