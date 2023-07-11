@@ -1527,6 +1527,14 @@ main .section.background-molecules {
     margin-bottom: 10px;
 }
 
+.blend-image img {
+  mix-blend-mode: darken;
+}
+
+.title-center h3 {
+  text-align: center;
+}
+
 /*
   Category page
 */
