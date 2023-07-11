@@ -60,6 +60,9 @@ const customBreadcrumbs = {
     name: 'Technology and Innovation',
     url_path: '/technology',
   },
+  'acquisition-and-analysis-software': {
+    name: 'Acquisition and Analysis Software',
+  },
 };
 
 function getCustomUrl(path, part) {
@@ -71,7 +74,7 @@ function getCustomUrl(path, part) {
     return customBreadcrumbs[path].url_path;
   }
 
-  return null;
+  return path;
 }
 
 function getName(pageIndex, path, part, current) {
@@ -119,7 +122,7 @@ export default async function createBreadcrumbs(container) {
       const url = urlForIndex(index);
       return {
         name: getName(pageIndex, url, part, false),
-        url_path: getCustomUrl(url, part) || url,
+        url_path: getCustomUrl(url, part),
       };
     }),
     { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
