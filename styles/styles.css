@@ -1519,6 +1519,14 @@ main .section.background-molecules {
   border: 1px solid #cbdce8;
 }
 
+.category .default-content-wrapper h3 {
+  font-size: 34px;
+}
+
+.category .default-content-wrapper h3 a {
+  color: black;
+}
+
 /*
   Customer breakthrough pages
 */
