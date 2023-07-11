@@ -19,7 +19,7 @@ function createBreadcrumbListItem(crumb) {
 }
 
 function skipParts(pathSplit) {
-  const partsToSkip = ['en', 'assets', 'br', 'img'];
+  const partsToSkip = ['en', 'assets', 'br', 'img', 'citations', 'dd', 'tutorials-videos', 'bpd'];
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
@@ -62,6 +62,9 @@ const customBreadcrumbs = {
   },
   'acquisition-and-analysis-software': {
     name: 'Acquisition and Analysis Software',
+  },
+  'igg-quantification-assays': {
+    name: 'IgG quantitation',
   },
 };
 
