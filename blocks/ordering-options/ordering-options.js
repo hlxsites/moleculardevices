@@ -92,6 +92,7 @@ async function addToCart(btn, el, counterEl) {
   updateCounters();
   spinner.remove();
 
+  document.querySelector('.cart-widget').classList.add('open');
   btn.classList.add('add-to-cart-success');
   setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
 }
@@ -151,14 +152,17 @@ function renderItem(item, showStore, itemDescriptionsMap) {
 
 function renderCartWidget() {
   return (
-    div({ class: 'cart-widget' },
+    div({ class: 'cart-widget', onclick: (e) => { e.target.closest('.cart-widget').classList.toggle('open'); } },
       span({ class: 'cart-count' }, getCartItemCount()),
+      i({ class: 'fa fa-shopping-cart' }),
       a({
+        class: 'view-cart-link',
         href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
-      }, i({ class: 'fa fa-shopping-cart' }),
+      },
+      'View Cart',
       ),
     )
   );

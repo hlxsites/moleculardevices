@@ -1304,8 +1304,8 @@ main .section.background-molecules {
   display: inline-block;
   margin-right: 8px;
   position: fixed;
-  right: -15px;
   top: 50%;
+  right: -110px;
   transform: translateY(-50%);
   background: var(--orange-background-color);
   padding: 16px 24px;
@@ -1315,8 +1315,21 @@ main .section.background-molecules {
   cursor: pointer;
 }
 
+.product .cart-widget.open {
+  right: -15px;
+}
+
 .product .cart-widget i {
+  margin-right: 15px;
   color: var(--text-white);
+}
+
+.product .cart-widget .view-cart-link {
+  color: var(--text-white);
+}
+
+.product .cart-widget .view-cart-link:hover {
+  text-decoration: underline;
 }
 
 .product .cart-widget .fa-shopping-cart::before {
@@ -1326,7 +1339,7 @@ main .section.background-molecules {
 .product .cart-widget .cart-count {
   position: absolute;
   top: -12px;
-  left: 31px;
+  left: 29px;
   background: var(--background-color);
   color: var(--orange-background-color);
   padding: 0;
