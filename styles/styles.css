@@ -1097,6 +1097,7 @@ main div.section.wave.bluegreen .default-content-wrapper {
 
 main div.section.wave.bluegreen .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
+  font-size: 60px;
 }
 
 main div.section.wave.bluegreen::after {
@@ -1145,9 +1146,13 @@ main div.section.wave.bluegreen2::after {
   }
 
   main div.section.wave.bluegreen .default-content-wrapper {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  main div.section.wave.bluegreen .default-content-wrapper h2 {
+    font-size: var(--heading-font-size-xxl);
+  }
 }
 
 /* Service Support Variant */
