@@ -1087,6 +1087,7 @@ main div.section.wave.bluegreen {
 }
 
 main div.section.wave.bluegreen .default-content-wrapper {
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 
@@ -1094,8 +1095,10 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-top: 15px;
 }
 
-main div.section.wave.bluegreen .default-content-wrapper h2 {
+main div.section.wave.bluegreen .default-content-wrapper h2,
+main div.section.wave.bluegreen2 .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
+  font-size: 60px;
 }
 
 main div.section.wave.bluegreen::after {
@@ -1141,6 +1144,16 @@ main div.section.wave.bluegreen2::after {
   main .section.blue {
     background: #116da7 !important;
     background-image: none;
+  }
+
+  main div.section.wave.bluegreen .default-content-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  main div.section.wave.bluegreen .default-content-wrapper h2,
+  main div.section.wave.bluegreen2 .default-content-wrapper h2 {
+    font-size: var(--heading-font-size-xxl);
   }
 }
 
