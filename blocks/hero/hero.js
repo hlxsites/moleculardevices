@@ -165,6 +165,7 @@ export function buildHero(block) {
       buttonContainer.remove();
     });
     container.appendChild(div({ class: 'order-container' }));
+    block.classList.add('order');
   }
 
   showHidePricingRequestButton(block);

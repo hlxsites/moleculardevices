@@ -205,7 +205,7 @@ function buildOrderingForm(options) {
   }
 
   function updateVariantsDropdownLabel() {
-    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-btn');
+    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-btn .drop-down-btn-text');
     if (variantDropDown) {
       variantDropDown.innerHTML = selectedVariant.title;
     }
@@ -213,7 +213,7 @@ function buildOrderingForm(options) {
 
   function updatePrice(price) {
     const priceContent = orderContainer.querySelector('.price');
-    priceContent.textContent = `$ ${(price / 100).toLocaleString('en-US')}.00 USD`;
+    priceContent.textContent = `${(price / 100).toLocaleString('en-US')}.00 USD`;
   }
 
   function handleVariantSelection(variant) {
@@ -248,7 +248,7 @@ function buildOrderingForm(options) {
   function handleOptionSelection(option) {
     selectedOption = option;
     const optionsDropDown = orderContainer.querySelector('.drop-down.options-drop-down');
-    const optionsDropDownButton = optionsDropDown.querySelector('.drop-down-btn');
+    const optionsDropDownButton = optionsDropDown.querySelector('.drop-down-btn .drop-down-btn-text');
     optionsDropDownButton.textContent = selectedOption.title;
 
     checkOptionValidity();
@@ -304,17 +304,32 @@ function buildOrderingForm(options) {
     }
   }
 
+  function heroAddToCartHandler(e) {
+    const quantity = orderContainer.querySelector('.quantity-number');
+    if (!parseInt(quantity.value, 10)) {
+      return;
+    }
+
+    addToCart(selectedVariant, quantity);
+    e.target.classList.add('add-to-cart-success');
+    setTimeout(() => { e.target.classList.remove('add-to-cart-success'); }, 1500);
+  }
+
   const orderFormContainer = (
     div({ class: 'order-container-inner' },
       div({ class: 'drop-down options-drop-down' },
-        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Product Options'),
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) },
+          span({ class: 'drop-down-btn-text' }, 'Product Options'),
+        ),
         div({ class: 'drop-down-content' },
           a({ class: 'option placeholder', onclick: () => handleOptionSelection({ title: 'Product Options' }) }, 'Product Options'),
           ...options.map((option) => a({ class: 'option', onclick: () => { handleOptionSelection(option); } }, option.title)),
         ),
       ),
       div({ class: 'drop-down variants-drop-down disabled' },
-        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Select Variation'),
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) },
+          span({ class: 'drop-down-btn-text' }, 'Select Variation'),
+        ),
         div({ class: 'drop-down-content' },
           // dynamically populated when selecting a product
         ),
@@ -332,7 +347,7 @@ function buildOrderingForm(options) {
           button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
         ),
       ),
-      button({ class: 'add-to-cart primary', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
+      button({ class: 'add-to-cart primary', onclick: (e) => { heroAddToCartHandler(e); } }, 'Add to cart'),
     )
   );
   orderContainer.appendChild(orderFormContainer);

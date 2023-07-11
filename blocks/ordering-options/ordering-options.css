@@ -222,7 +222,8 @@ main .section.ordering-options-container > div:last-child {
   padding: 0;
 }
 
-.drop-down-btn {
+.drop-down .drop-down-btn {
+  padding: 6px 35px 6px 12px;
   width: 100%;
   height: 100%;
   max-width: unset;
@@ -232,7 +233,7 @@ main .section.ordering-options-container > div:last-child {
   background-repeat: no-repeat;
 }
 
-.drop-down-btn::before {
+.drop-down .drop-down-btn::before {
   color: #000;
   position: absolute;
   right: 21px;
@@ -256,6 +257,12 @@ main .section.ordering-options-container > div:last-child {
 .drop-down .drop-down-btn:visited,
 .drop-down .drop-down-btn:focus {
   color: #000;
+}
+
+.drop-down .drop-down-btn .drop-down-btn-text {
+  display: block;
+  width: 100%;
+  overflow: hidden;
 }
 
 .drop-down .drop-down-content {
@@ -285,7 +292,7 @@ main .section.ordering-options-container > div:last-child {
   padding: 20px 16px;
   display: block;
   border-top: none;
-  font-size: large;
+  font-size: 16px;
   font-family: var(--body-font-size-m);
   white-space: nowrap;
   min-width: 100%;
@@ -345,12 +352,27 @@ main .section.ordering-options-container > div:last-child {
   color: #fff;
   padding: 10px;
   transform: all .3s ease-in-out;
+  position: relative;
 }
 
 .order-container .add-to-cart:hover {
   cursor: pointer;
   background-color: #fff;
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+.order-container .add-to-cart.add-to-cart-success::before {
+  background-color: #09b571;
+  color: #fff;
+  content: "Added...";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .order-container .quantity-label {
