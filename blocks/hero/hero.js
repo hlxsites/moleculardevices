@@ -71,7 +71,7 @@ function detectPricingRequestAvailable() {
 }
 
 function showHidePricingRequestButton(block) {
-  const pricingRequestButton = block.querySelector('a[href*="/quote-request"]');
+  const pricingRequestButton = block.querySelector('a[href*="/quote-request"][href*="type=quote"]');
   if (!pricingRequestButton) return;
 
   const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
