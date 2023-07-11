@@ -1087,6 +1087,7 @@ main div.section.wave.bluegreen {
 }
 
 main div.section.wave.bluegreen .default-content-wrapper {
+  margin-top: 100px;
   margin-bottom: 100px;
 }
 
@@ -1142,6 +1143,11 @@ main div.section.wave.bluegreen2::after {
     background: #116da7 !important;
     background-image: none;
   }
+
+  main div.section.wave.bluegreen .default-content-wrapper {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 }
 
 /* Service Support Variant */
