@@ -427,3 +427,28 @@ main .section.ordering-options-container > div:last-child {
   top: 0;
   left: 0;
 }
+
+.spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  filter: alpha(opacity=50);
+  -moz-opacity: .5;
+  -khtml-opacity: .5;
+  opacity: .5;
+  z-index: 10000;
+  display: block;
+}
+
+.spinner-container .spinner {
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 20000;
+}

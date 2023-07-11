@@ -2,7 +2,7 @@
 
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
-  a, button, div, domEl, h3, i, input, label, p, span,
+  a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -51,6 +51,22 @@ async function getCartDetails() {
 }
 
 async function addToCart(btn, el, counterEl) {
+  const spinner = (
+    div({class: 'spinner-container' },
+      img({
+        class: 'spinner',
+        src: '/images/ajax-common-loader-gray.gif',
+        alt: 'Image loading...',
+        height: '42',
+        width: '42',
+      }),
+    )
+  );
+
+  document.querySelector('body').appendChild(spinner);
+  // worst case scenario if somethig below fails, we should not block the page forever
+  setTimeout(() => { spinner.remove(); }, 5000);
+
   const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
 
@@ -74,6 +90,8 @@ async function addToCart(btn, el, counterEl) {
 
   await getCartDetails();
   updateCounters();
+  spinner.remove();
+
   btn.classList.add('add-to-cart-success');
   setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
 }
