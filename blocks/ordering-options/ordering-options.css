@@ -132,6 +132,7 @@ main .section.ordering-options-container > div:last-child {
   font-size: 18px;
   text-align: center;
   padding: 15px 18px 16px;
+  position: relative;
 }
 
 .ordering-options.cart-store .variant-item-store-content .variant-item-store-count, 
@@ -361,20 +362,6 @@ main .section.ordering-options-container > div:last-child {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-.order-container .add-to-cart.add-to-cart-success::before {
-  background-color: #09b571;
-  color: #fff;
-  content: "Added...";
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
 .order-container .quantity-label {
   font-size: 15px;
   font-weight: 600;
@@ -425,4 +412,18 @@ main .section.ordering-options-container > div:last-child {
 .order-container .quantity-number:focus-visible,
 .order-container .quantity-number:hover {
   border-radius: 0;
+}
+
+.add-to-cart-success::before {
+  background-color: #09b571;
+  color: #fff;
+  content: "Added...";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }

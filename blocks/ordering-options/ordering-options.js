@@ -50,7 +50,7 @@ async function getCartDetails() {
   });
 }
 
-async function addToCart(el, counterEl) {
+async function addToCart(btn, el, counterEl) {
   const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
 
@@ -74,6 +74,8 @@ async function addToCart(el, counterEl) {
 
   await getCartDetails();
   updateCounters();
+  btn.classList.add('add-to-cart-success');
+  setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
 }
 
 function renderAddToCart(item) {
@@ -188,7 +190,7 @@ async function renderList(options, showStore, container, itemDescriptionsMap) {
     addToCartButton.addEventListener('click', (e) => {
       const el = e.target;
       const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
-      addToCart(el, counterEl);
+      addToCart(el, el, counterEl);
     });
   });
 }
@@ -310,9 +312,7 @@ function buildOrderingForm(options) {
       return;
     }
 
-    addToCart(selectedVariant, quantity);
-    e.target.classList.add('add-to-cart-success');
-    setTimeout(() => { e.target.classList.remove('add-to-cart-success'); }, 1500);
+    addToCart(e.target, selectedVariant, quantity);
   }
 
   const orderFormContainer = (
