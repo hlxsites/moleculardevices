@@ -12,6 +12,7 @@ main .carousel.applications-carousel {
 .applications-carousel .carousel-item {
   display: block;
   width: 33.33%;
+  max-width: 33.3%;
   padding: 20px 15px;
   margin: 0;
 }
@@ -50,9 +51,14 @@ main .carousel.applications-carousel {
   color: #008ca8;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
   main .carousel-wrapper.applications-carousel-wrapper {
     width: 940px;
+  }
+
+  .applications-carousel .carousel-item {
+    width: 50%;
+    max-width: 50%;
   }
 }
 
@@ -63,6 +69,7 @@ main .carousel.applications-carousel {
 
   .applications-carousel .carousel-item {
     width: 50%;
+    max-width: 50%;
   }
 
   .carousel.applications-carousel .card-caption h3 {
