@@ -9,6 +9,10 @@ main .carousel.applications-carousel {
   padding: 0;
 }
 
+.applications-carousel:not(:has(.carousel-item:nth-child(3))) {
+  justify-content: center;
+}
+
 .applications-carousel .carousel-item {
   display: block;
   width: 33.33%;
