@@ -52,7 +52,7 @@ async function getCartDetails() {
 
 async function addToCart(btn, el, counterEl) {
   const spinner = (
-    div({class: 'spinner-container' },
+    div({ class: 'spinner-container' },
       img({
         class: 'spinner',
         src: '/images/ajax-common-loader-gray.gif',
