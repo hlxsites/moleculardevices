@@ -20,6 +20,10 @@ main .section>div.columns-wrapper {
   margin-right: 10px;
 }
 
+.columns ul + p.button-container {
+  margin-left: 40px;
+}
+
 .columns .video-wrapper {
   margin-top: 0;
 }
