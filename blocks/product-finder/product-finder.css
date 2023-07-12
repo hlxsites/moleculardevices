@@ -130,17 +130,17 @@
 
 .product-finder-container .finder-filters .filters-row-title {
   font-size: 25px;
-  margin: 45px 0 0 0;
+  margin: 45px 0 0;
   line-height: 1.4;
 }
 
 .product-finder-container .finder-filters .col-md-4 {
-  width: 33.33333333%;
+  width: 33.3333%;
   float: left;
 }
 
 .product-finder-container .finder-filters .col-md-8 {
-  width: 66.66666667%;
+  width: 66.6667%;
   float: left;
   position: relative;
   padding-right: 15px;
@@ -153,7 +153,7 @@
 
 @media (min-width: 768px) {
   .product-finder-container .finder-filters .col-sm-4 {
-    width: 33.33333333%;
+    width: 33.3333%;
     float: left;
     padding-left: 15px;
     padding-right: 15px;
@@ -191,6 +191,13 @@
   padding-bottom: 15px;
 }
 
+.product-finder-container a span {
+  font: var(--ff-proxima-light);
+  color: var(--text-color);
+  font-size: 24px;
+  width: 100%;
+}
+
 .product-finder-container .finder-filters .select-wrapper span {
   color: var(--dark-gray-background-color);
   position: absolute;
@@ -200,12 +207,12 @@
 
 .product-finder-container .finder-filters .fa {
   display: inline-block;
-  font: normal normal normal 14px/1 'FontAwesome';
+  font: normal normal normal 14px/1 FontAwesome, sans-serif;
   font-size: inherit;
   text-rendering: auto;
 }
 
-.product-finder-container .finder-filters .fa-chevron-down:before {
+.product-finder-container .finder-filters .fa-chevron-down::before {
   content: "\f078";
 }
 
@@ -276,13 +283,6 @@
   min-height: 1px;
   min-width: 1px;
   padding: 30px 20px;
-}
-
-.product-finder-container a span {
-  font: var(--ff-proxima-light);
-  color: var(--text-color);
-  font-size: 24px;
-  width: 100%;
 }
 
 .product-finder-container #step-1 a span,
