@@ -61,6 +61,7 @@
   --text-color: #34393d;
   --text-white: #fff;
   --text-gray: #6a747c;
+  --text-gray2: #606a6c;
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
   --heading-color: #00758d;
@@ -1438,6 +1439,23 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-xbold);
 }
 
+.product .section.tabs h2:has(+ h4) {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.product .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.product .section.tabs h4:last-child {
+  margin-bottom: 45px;
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1525,6 +1543,26 @@ main .section.background-molecules {
     color: var(--link-color);
     line-height: 21px;
     margin-bottom: 10px;
+}
+
+.technology .section.tabs h2:has(+ h4),
+.application .section.tabs h2:has(+ h4) {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.technology .section.tabs h4,
+.application .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.technology .section.tabs h4:last-child,
+.application .section.tabs h4:last-child {
+  margin-bottom: 45px;
 }
 
 /*
