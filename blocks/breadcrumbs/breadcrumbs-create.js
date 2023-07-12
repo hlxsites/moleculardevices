@@ -106,6 +106,10 @@ const customBreadcrumbs = {
   amplifiers: {
     name: 'Amplifiers',
   },
+  resources: {
+    name: 'Resources',
+    url_path: '/search-results',
+  },
 };
 
 function getCustomUrl(path, part) {
