@@ -25,7 +25,7 @@ export function getItemInformation(itemTitle) {
     thumbnail: itemEl.getAttribute('data-thumbnail'),
     familyID: itemEl.getAttribute('data-familyID'),
     specificationsPath: new URL(itemEl.getAttribute('data-specifications')).pathname,
-  }
+  };
 }
 
 export function getItemPath(itemTitle) {

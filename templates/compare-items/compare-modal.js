@@ -480,10 +480,7 @@ class CompareModal {
  * @param {Array}   infos              array of items to compare
  * customizing the rendering and behaviour
  */
-export async function createCompareModalInterface(
-  compareBanner, infos,
-) {
-
+export async function createCompareModalInterface(compareBanner, infos) {
   const modalInterface = new CompareModal(compareBanner, {});
   modalInterface.compareItemsMetadata = await modalInterface.createItems(infos);
   await modalInterface.loadCSSFiles();
