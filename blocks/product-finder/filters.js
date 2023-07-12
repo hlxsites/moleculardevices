@@ -86,6 +86,7 @@ function filterChange(filterNumber) {
 
   // Remove from the div with class .product-finder-list any card that contains a link
   // to a product that is not in the filteredProducts[n].path
+  let productsCount = 0;
   const productFinderList = document.querySelector('#step-3 .product-finder-list');
   const productFinderListCards = productFinderList.querySelectorAll('.card');
   productFinderListCards.forEach((card) => {
@@ -95,8 +96,13 @@ function filterChange(filterNumber) {
       card.style.display = 'none';
     } else {
       card.style.display = 'flex';
+      productsCount += 1;
     }
   });
+
+  // Update the products count
+  const totalCount = document.querySelector('#step-3 .result-count');
+  totalCount.innerHTML = `${productsCount} Results`;
 }
 
 function createFilterDropdown(filterID, filterOptionsArray, disabled) {
