@@ -121,6 +121,9 @@ class Card {
           onclick: handleCompareProducts,
           'data-title': cardTitle,
           'data-path': cardLink,
+          'data-thumbnail': itemImage,
+          'data-specifications': item.specifications,
+          'data-familyID': item.familyID,
         }),
       ));
     }

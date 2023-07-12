@@ -7,6 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   MAX_COMPARE_ITEMS,
+  getItemInformation,
   getItemPath,
   getSelectedItems,
   unselectAllComparedItems,
@@ -16,13 +17,12 @@ import {
 import { createCompareModalInterface } from './compare-modal.js';
 
 class CompareBanner {
-  constructor(queryIndexProductData, config = {}) {
+  constructor(config = {}) {
     this.cssFiles = [];
     this.currentCompareItemsCount = 0;
     this.compareButtonText = 'Compare ';
     this.banner = document.querySelector('.compare-banner');
     this.selectedItemTitles = [];
-    this.queryIndexProductData = queryIndexProductData;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -81,13 +81,12 @@ class CompareBanner {
 
     compareButton.addEventListener('click', async () => {
       this.selectedItemTitles = getSelectedItems();
-      const comparePaths = this.selectedItemTitles.map((title) => {
-        const path = getItemPath(title);
-        return path;
+      const compareItemInfos = this.selectedItemTitles.map((title) => {
+        return getItemInformation(title);
       });
 
       const compareModalInterface = await createCompareModalInterface(
-        this, this.queryIndexProductData, comparePaths,
+        this, compareItemInfos,
       );
 
       const main = document.querySelector('main');
@@ -188,11 +187,7 @@ class CompareBanner {
  * customizing the rendering and behaviour
  */
 export async function createCompareBannerInterface(config) {
-  const queryIndexProductData = await ffetch('/query-index.json')
-    .sheet('products')
-    .all();
-
-  const banner = new CompareBanner(queryIndexProductData, config);
+  const banner = new CompareBanner(config);
   await banner.loadCSSFiles();
   return banner;
 }

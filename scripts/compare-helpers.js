@@ -17,6 +17,17 @@ export function getSelectedItems() {
     .map((item) => getTitleFromNode(item));
 }
 
+export function getItemInformation(itemTitle) {
+  const itemEl = document.querySelector(`.compare-button .compare-checkbox[data-title="${itemTitle}"]`);
+  return {
+    title: itemTitle,
+    path: new URL(itemEl.getAttribute('data-path')).pathname,
+    thumbnail: itemEl.getAttribute('data-thumbnail'),
+    familyID: itemEl.getAttribute('data-familyID'),
+    specificationsPath: new URL(itemEl.getAttribute('data-specifications')).pathname,
+  }
+}
+
 export function getItemPath(itemTitle) {
   return [...document.querySelectorAll('.compare-button .compare-checkbox')]
     .filter((value) => getTitleFromNode(value) === itemTitle)[0]

@@ -17,10 +17,11 @@ import {
 import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
 
 class Item {
-  constructor(title, path, thumbnail, specifications) {
+  constructor(title, path, thumbnail, familyID, specifications) {
     this.title = title;
     this.path = path;
     this.thumbnail = thumbnail;
+    this.familyID = familyID;
     this.specifications = specifications;
   }
 
@@ -36,17 +37,20 @@ class Item {
     return this.thumbnail;
   }
 
+  getFamilyID() {
+    return this.familyID;
+  }
+
   getSpecs() {
     return this.specifications;
   }
 }
 
 class CompareModal {
-  constructor(queryIndexProductData, compareBanner, config = {}) {
+  constructor(compareBanner, config = {}) {
     this.cssFiles = [];
     this.compareItemsMetadata = [];
     this.modal = document.querySelector('.pro-comparison-result');
-    this.queryIndexProductData = queryIndexProductData;
     this.compareBanner = compareBanner;
 
     this.productSpecsBasePath = '/products/specifications';
@@ -65,9 +69,8 @@ class CompareModal {
     this.modal.classList.remove('show');
   }
 
-  async fetchItemSpecifications(path) {
-    const productPath = path.split('/').pop();
-    const resp = await fetch(`${this.productSpecsBasePath}/${productPath}.json`);
+  async fetchItemSpecifications(specificationsPath) {
+    const resp = await fetch(specificationsPath);
 
     if (!resp.ok) {
       return null;
@@ -77,11 +80,9 @@ class CompareModal {
     return json;
   }
 
-  parseSpecificationsSheet(path, json) {
-    // get product index that contains the path in the key path
+  parseSpecificationsSheet(info, json) {
     const products = json.product.data;
-    const productIndex = products.findIndex((row) => row.path === path);
-    const productData = products[productIndex];
+    const productData = products[0];
 
     // get all keys in the json that are in the 'categories' string inside the product data
     // this string is separated by commas.
@@ -90,16 +91,10 @@ class CompareModal {
       return categories.includes(key);
     });
 
-    // create array of specifications that contains all the specs that contain
-    // a path equal to the product path
-    // This is required because in the same product specifications json, we can have
-    // specifications for multiple similar products
+    // create array of specifications that contains all the specs
     const productSpecificationsObjects = [];
     specificationsObjects.forEach((spec) => {
-      const specIndex = json[spec].data.findIndex((row) => row.path === productData.path);
-      if (specIndex !== -1) {
-        productSpecificationsObjects.push(json[spec].data[specIndex]);
-      }
+      productSpecificationsObjects.push(json[spec].data[0]);
     });
 
     // create object with all specifications for this product
@@ -115,29 +110,25 @@ class CompareModal {
     return specifications;
   }
 
-  async createItem(indexProductData, path) {
-    const specificationsJson = await this.fetchItemSpecifications(path);
-    const specifications = this.parseSpecificationsSheet(path, specificationsJson);
+  async createItem(info) {
+    const specificationsJson = await this.fetchItemSpecifications(info.specificationsPath);
+    const specifications = this.parseSpecificationsSheet(info, specificationsJson);
 
     return new Item(
-      indexProductData[0].title,
-      indexProductData[0].path,
-      indexProductData[0].thumbnail,
+      info.title,
+      info.path,
+      info.thumbnail,
+      info.familyID,
       specifications,
     );
   }
 
-  async createItems(paths) {
+  async createItems(infos) {
     // use promises to fetch all items in parallel
     const promises = [];
-    paths.forEach((path) => {
-      // get the product data from the query-index.json
-      const queryIndexProductData = this.queryIndexProductData.filter(
-        (product) => product.path === path,
-      );
-
+    infos.forEach((info) => {
       promises.push(
-        this.createItem(queryIndexProductData, path),
+        this.createItem(info),
       );
     });
 
@@ -329,19 +320,15 @@ class CompareModal {
         ),
       );
 
-      // asynchronously fetch the family id for the item, and when complete
-      // append to the links div
-      this.fetchFamilyId(item.getPath()).then((familyId) => {
-        if (familyId) {
-          const familyLink = a(
-            { href: `/quote-request?pid=${familyId}`, class: 'linkBtn' },
-            'Request a Quote',
-            span({ class: 'icon icon-icon_link' }),
-          );
-          decorateIcons(familyLink);
-          links.appendChild(familyLink);
-        }
-      });
+      if (item.getFamilyID()) {
+        const familyLink = a(
+          { href: `/quote-request?pid=${item.getFamilyID()}`, class: 'linkBtn' },
+          'Request a Quote',
+          span({ class: 'icon icon-icon_link' }),
+        );
+
+        links.appendChild(familyLink);
+      }
 
       const removeButton = img(
         { class: 'trash-icon', src: '/images/trash.png', alt: 'Remove' },
@@ -490,20 +477,15 @@ class CompareModal {
 /**
  * Create and render default compare products modal.
  * @param {Object}  compareBanner     required - rendered compare banner
- * @param {Object}  queryIndexProductData   object containing the query-index.json data
- * @param {Array}   paths              array of paths to compare
+ * @param {Array}   infos              array of items to compare
  * customizing the rendering and behaviour
  */
 export async function createCompareModalInterface(
-  compareBanner, queryIndexProductData, paths,
+  compareBanner, infos,
 ) {
-  // filter the queryIndexProductData by the paths compared
-  const filteredQueryIndexData = queryIndexProductData.filter(
-    (item) => paths.includes(item.path),
-  );
 
-  const modalInterface = new CompareModal(filteredQueryIndexData, compareBanner, {});
-  modalInterface.compareItemsMetadata = await modalInterface.createItems(paths);
+  const modalInterface = new CompareModal(compareBanner, {});
+  modalInterface.compareItemsMetadata = await modalInterface.createItems(infos);
   await modalInterface.loadCSSFiles();
   return modalInterface;
 }
