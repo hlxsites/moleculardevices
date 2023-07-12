@@ -50,9 +50,6 @@
 .customer-breakthrough .quote {
   color: var(--link-hover-color);
   font-family: var(--ff-proxima-xbold);
-}
-
-.customer-breakthrough .quote {
   margin-top: 20px;
   margin-bottom: 20px;
 }
