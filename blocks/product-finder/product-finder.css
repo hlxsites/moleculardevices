@@ -128,9 +128,116 @@
   width: 23%;
 }
 
+.product-finder-container .finder-filters .filters-row-title {
+  font-size: 25px;
+  margin: 45px 0 0 0;
+  line-height: 1.4;
+}
+
+.product-finder-container .finder-filters .col-md-4 {
+  width: 33.33333333%;
+  float: left;
+}
+
+.product-finder-container .finder-filters .col-md-8 {
+  width: 66.66666667%;
+  float: left;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.product-finder-container .finder-filters .form-group {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+  .product-finder-container .finder-filters .col-sm-4 {
+    width: 33.33333333%;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.product-finder-container .finder-filters .result-filters {
+  margin-top: 0;
+}
+
+.product-finder-container .result-filters .filter-label {
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.product-finder-container .finder-filters .select-wrapper {
+  position: relative;
+}
+
+.product-finder-container .finder-filters .select-wrapper select {
+  width: 100%;
+  appearance: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
+  color: #34393d;
+  font-size: 18px;
+  height: 50px;
+  outline: 0;
+  padding: 15px 40px 15px 15px;
+  padding-bottom: 15px;
+}
+
+.product-finder-container .finder-filters .select-wrapper span {
+  color: var(--dark-gray-background-color);
+  position: absolute;
+  right: 20px;
+  top: 16px;
+}
+
+.product-finder-container .finder-filters .fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 'FontAwesome';
+  font-size: inherit;
+  text-rendering: auto;
+}
+
+.product-finder-container .finder-filters .fa-chevron-down:before {
+  content: "\f078";
+}
+
 @media (max-width: 992px) {
   .product-finder-container .card {
     flex-basis: 45%;
+  }
+
+  .product-finder-container .finder-filters .col-md-4,
+  .product-finder-container .finder-filters .col-md-8 {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .product-finder-container .finder-filters .select-wrapper {
+    width: 100%;
+  }
+
+  .product-finder-container .finder-filters .col-sm-4 {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .product-finder-container .finder-filters .select-wrapper select {
+    height: 40px;
+    padding: 10px 40px 10px 15px;
+  }
+
+  .product-finder-container .finder-filters .select-wrapper span {
+    top: 10px;
   }
 }
 

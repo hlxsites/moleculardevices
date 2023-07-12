@@ -6,6 +6,7 @@ import {
   a, div, h3, img, li, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
+import renderFiltersRow from './filters.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';
@@ -178,14 +179,17 @@ async function stepThree(e) {
       list.remove();
       const count = root.querySelector(`.result-count[data-card-type="${listCardType}"]`);
       count.remove();
+      const filters = root.querySelector(`.finder-filters[data-card-type="${listCardType}"]`);
+      if (filters) filters.remove();
     }
   });
+
+  const products = await getProducts(type, category);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {
-    const products = await getProducts(type, category);
     list = div({
       class: 'product-finder-list',
       'data-card-type': dataCardType,
@@ -201,18 +205,27 @@ async function stepThree(e) {
         target: '_blank',
         rel: 'noopener noreferrer',
       };
-      list.append(cardRenderer.renderItem(product));
+      const card = cardRenderer.renderItem(product);
+      // add product path attribute
+      card.setAttribute('data-product-path', product.path);
+      list.append(card);
     });
   }
 
   const count = root.querySelector(`.result-count[data-card-type="${dataCardType}"]`);
   if (count) count.remove();
 
+  let filters = root.querySelector(`.finder-filters[data-card-type="${dataCardType}"]`);
+  if (!filters) {
+    filters = await renderFiltersRow(category, type, products, dataCardType);
+  }
+
   const totalCount = span(
     { class: 'result-count', 'data-card-type': dataCardType },
     `${list.children.length} Results`,
   );
 
+  if (filters) root.append(filters);
   root.append(totalCount);
   root.append(list);
 }
