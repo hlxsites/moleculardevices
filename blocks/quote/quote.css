@@ -1,4 +1,3 @@
-
 .blog .quote-wrapper {
   padding: 0 15px;
   margin: 40px auto ;
@@ -48,9 +47,32 @@
   bottom: 0;
 }
 
+.customer-breakthrough .quote {
+  color: var(--link-hover-color);
+  font-family: var(--ff-proxima-xbold);
+}
+
+.customer-breakthrough .quote .quote-text {
+  font-size: var(--body-font-size-l);
+}
+
+.customer-breakthrough .quote .quote-author {
+  font-size: var(--body-font-size-xs);
+  padding: 10px 0 30px;
+}
+
+.quote.author-text-right .quote-author {
+  margin-right: 50px;
+  text-align: right;
+}
+
 @media only screen and (max-width: 767px) {
   .blog .quote .quote-text::before,
   .blog .quote .quote-text::after {
     width: 100%;
+  }
+
+  .quote.author-text-right .quote-author {
+    margin-right: 10px;
   }
 }
