@@ -52,13 +52,18 @@
   font-family: var(--ff-proxima-xbold);
 }
 
+.customer-breakthrough .quote {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .customer-breakthrough .quote .quote-text {
   font-size: var(--body-font-size-l);
 }
 
 .customer-breakthrough .quote .quote-author {
   font-size: var(--body-font-size-xs);
-  padding: 10px 0 30px;
+  padding: 10px 0;
 }
 
 .quote.author-text-right .quote-author {
