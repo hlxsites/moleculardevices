@@ -56,55 +56,6 @@ function updateFilterOptions(filterNumber) {
   addOptionsToSelect(dropdown, Array.from(filterOptions));
 }
 
-// function filterChange(filterNumber) {
-//   const selectedFilter = filterDropdowns[filterNumber - 1].value;
-//   const nextFilter = filterDropdowns[filterNumber];
-
-//   // If the first filter is reset, start with the original product list
-//   if (filterNumber === 1 && selectedFilter === '') {
-//     filteredProducts = products;
-//     if (nextFilter) {
-//       nextFilter.innerHTML = '<option value="">Please Select</option>';
-//       nextFilter.disabled = true;
-//     }
-//   } else if (filterNumber === 2 && selectedFilter === '') {
-//     // If the second filter is reset, start with the result of the first filter
-//     const selectedFirstFilter = filterDropdowns[0].value;
-//     filteredProducts = products.filter((product) => {
-//       const filters = product.productFinderFilter1.split(',');
-//       return filters.map((filter) => filter.trim()).includes(selectedFirstFilter);
-//     });
-//     if (nextFilter) {
-//       nextFilter.innerHTML = '<option value="">Please Select</option>';
-//       nextFilter.disabled = true;
-//     }
-//   } else {
-//     filteredProducts = filteredProducts.filter((product) => {
-//       const filters = product[`productFinderFilter${filterNumber}`].split(',');
-//       return filters.map((filter) => filter.trim()).includes(selectedFilter);
-//     });
-//   }
-
-//   if (filterNumber < filterDropdowns.length && selectedFilter !== '') {
-//     updateFilterOptions(filterNumber + 1);
-//     filterDropdowns[filterNumber].disabled = false;
-//   }
-
-//   // Remove from the div with class .product-finder-list any card that contains a link
-//   // to a product that is not in the filteredProducts[n].path
-//   const productFinderList = document.querySelector('#step-3 .product-finder-list');
-//   const productFinderListCards = productFinderList.querySelectorAll('.card');
-//   productFinderListCards.forEach((card) => {
-//     const cardPath = card.attributes['data-product-path'].value;
-//     const product = filteredProducts.find((p) => p.path === cardPath);
-//     if (!product) {
-//       card.style.display = 'none';
-//     } else {
-//       card.style.display = 'flex';
-//     }
-//   });
-// }
-
 function filterChange(filterNumber) {
   const selectedFilter = filterDropdowns[filterNumber - 1].value;
 
@@ -188,9 +139,6 @@ function initializeFilters(filterDict) {
       }
 
       const selection = createFilterDropdown(i, [], disabled);
-
-      // when changing the filter, update the filter options
-      // selection.addEventListener('change', () => filterChange(i));
 
       const filterForm = div(
         { class: 'form-group col-sm-4 col-xs-12', id: `filter${i}Container` },
