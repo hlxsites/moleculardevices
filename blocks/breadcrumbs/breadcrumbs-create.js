@@ -1,3 +1,4 @@
+import { a, li } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 
@@ -5,32 +6,21 @@ function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
-function createBreadcrumbListItem(crumb) {
-  const li = document.createElement('li');
-  if (crumb.url_path) {
-    const a = document.createElement('a');
-    a.textContent = crumb.name;
-    a.href = crumb.url_path;
-    li.appendChild(a);
-  } else {
-    li.textContent = crumb.name;
-  }
-  return li;
-}
-
 function skipParts(pathSplit) {
-  const partsToSkip = ['en', 'assets', 'br', 'img', 'citations', 'dd', 'tutorials-videos', 'bpd'];
+  const partsToSkip = ['en', 'assets', 'br', 'img', 'citations', 'dd', 'tutorials-videos', 'bpd', 'cns', 'flipr', 'contaminants', 'enzyme'];
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
 const customBreadcrumbs = {
   'app-note': {
     name: 'App Note',
-    url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D',
+    url_path:
+      'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D',
   },
   ebook: {
     name: 'EBook',
-    url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D',
+    url_path:
+      'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D',
   },
   'lab-notes': {
     name: 'Lab Notes',
@@ -60,11 +50,61 @@ const customBreadcrumbs = {
     name: 'Technology and Innovation',
     url_path: '/technology',
   },
+  'accessories-consumables': {
+    name: 'Accessories and Consumables',
+    url_path: '/products/accessories-consumables',
+  },
+  'customer-breakthrough': {
+    name: 'Customer Breakthrough ',
+    url_path: '/customer-breakthroughs',
+  },
   'acquisition-and-analysis-software': {
     name: 'Acquisition and Analysis Software',
   },
   'igg-quantification-assays': {
     name: 'IgG quantitation',
+  },
+  'dna-quantitation': {
+    name: 'DNA Quantitation',
+  },
+  elisa: {
+    name: 'ELISA',
+  },
+  'cell-viability': {
+    name: 'Cell Viability',
+  },
+  cardiotox: {
+    name: 'Cardiotox',
+  },
+  gpcrs: {
+    name: 'GPCR',
+  },
+  'ion-channel': {
+    name: 'Ion Channel',
+  },
+  'reporter-gene-assays': {
+    name: 'Reporter Gene',
+  },
+  'western-blot': {
+    name: 'Western Blot',
+  },
+  transporters: {
+    name: 'Transporter',
+  },
+  'mammalian-screening': {
+    name: 'Mammalian Screening',
+  },
+  'microbial-screening': {
+    name: 'Microbial Screening',
+  },
+  'high-content-imaging': {
+    name: 'High-Content Imaging',
+  },
+  digitizers: {
+    name: 'Digitizers',
+  },
+  amplifiers: {
+    name: 'Amplifiers',
   },
 };
 
@@ -131,10 +171,9 @@ export default async function createBreadcrumbs(container) {
     { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
   ];
 
-  const ol = document.createElement('ol');
+  const ol = container.querySelector('ol');
   breadcrumbs.forEach((crumb) => {
-    ol.appendChild(createBreadcrumbListItem(crumb));
+    ol.appendChild(li(crumb.url_path ? a({ href: crumb.url_path }, crumb.name) : crumb.name));
   });
-  container.appendChild(ol);
   await breadCrumbsCSS;
 }

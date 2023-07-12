@@ -25,12 +25,13 @@ main .hero-advanced-wrapper {
 }
 
 .hero-inner .breadcrumbs {
-  padding-top: 60px;
+  padding-top: 40px;
   padding-bottom: 42.5px;
 }
 
 .hero-inner .breadcrumbs ol {
   padding: 0 15px;
+  height: 13.5px;
 }
 
 .hero-inner p {
