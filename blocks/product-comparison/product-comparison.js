@@ -24,8 +24,8 @@ export default async function decorate(block) {
     return specData;
   }));
 
-  const attributeMapping = productSpecs['Identifier'];
-  delete productSpecs['Identifier'];
+  const attributeMapping = productSpecs.Identifier;
+  delete productSpecs.Identifier;
   const productIdentifiers = Object.keys(productSpecs);
 
   // render table head
