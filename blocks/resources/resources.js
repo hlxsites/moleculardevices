@@ -66,34 +66,17 @@ export default async function decorate(block) {
   const sortedFilters = filters.sort((x, y) => (x.toLowerCase() < y.toLowerCase() ? -1 : 1));
   sortedFilters.unshift('View All');
 
-  sortedFilters.forEach((filter, idx) => {
-    filtersBlock.append(
-      li({
-        class: 'filter',
-        'aria-labelledby': filter,
-        'aria-selected': idx === 0,
-        onclick: handleFilterClick,
-      },
-      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
-      a({
-        href: '#',
-      }, filter),
-      span({ class: 'icon icon-chevron-right-outline' }),
-      ),
-    );
-  });
-  if (window.matchMedia('only screen and (max-width: 767px)').matches) {
-    decorateIcons(filtersBlock);
-  }
-
-  block.append(filtersBlock);
+  const displayFilters = {};
 
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
     const resourceType = item.type;
+    const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
     const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
       ? item.gatedURL : item.path;
+    displayFilters[resourceType] = resourceDisplayType;
+
     const resourceBlock = div(
       {
         class: 'resource filtered-item',
@@ -136,19 +119,17 @@ export default async function decorate(block) {
     otherResourcesBlock.append(resourceBlock);
   });
 
-  block.append(otherResourcesBlock);
-
+  let videoResourcesBlock = null;
   if (videoResources.length > 0) {
-    const videoResourcesBlock = div({
+    videoResourcesBlock = div({
       class: 'videos-container filtered-item',
       'aria-hidden': false,
       'aria-labelledby': 'Videos and Webinars',
     });
-    videoResourcesBlock.append(h2({ class: 'video-resources-title' }, 'Videos & Webinars'));
 
     const videosContainerBlock = div({ class: 'resources-section' });
-
     await Promise.all(videoResources.map(async (item) => {
+      displayFilters[item.type] = item.displayType;
       const videoFragmentHtml = await fetchFragment(item.path);
       const videoFragment = document.createElement('div');
       videoFragment.innerHTML = videoFragmentHtml;
@@ -167,7 +148,35 @@ export default async function decorate(block) {
       }
     }));
 
+    videoResourcesBlock.append(h2({ class: 'video-resources-title' }, displayFilters['Videos and Webinars'] || 'Videos and Webinars'));
     videoResourcesBlock.append(videosContainerBlock);
+  }
+
+  sortedFilters.forEach((filter, idx) => {
+    console.log(filter);
+    console.log(displayFilters[filter]);
+    filtersBlock.append(
+      li({
+        class: 'filter',
+        'aria-labelledby': filter,
+        'aria-selected': idx === 0,
+        onclick: handleFilterClick,
+      },
+      span({ class: 'filter-divider' }, idx === 0 ? '' : '|'),
+      a({
+        href: '#',
+      }, displayFilters[filter] || filter),
+      span({ class: 'icon icon-chevron-right-outline' }),
+      ),
+    );
+  });
+  if (window.matchMedia('only screen and (max-width: 767px)').matches) {
+    decorateIcons(filtersBlock);
+  }
+
+  block.append(filtersBlock);
+  block.append(otherResourcesBlock);
+  if  (videoResourcesBlock) {
     block.append(videoResourcesBlock);
   }
 
