@@ -6,7 +6,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 export default async function decorate(block) {
   const specURLs = [...block.querySelectorAll('a')].map((link) => link.href);
   const attributes = [...block.querySelectorAll('.product-comparison > div:last-child > div:last-child > p')]
-    .map((attrP) => attrP.textContent.trim().toLowerCase());
+    .map((attrP) => attrP.textContent.trim());
 
   block.innerHTML = '';
   const productSpecs = {};
@@ -15,36 +15,28 @@ export default async function decorate(block) {
     const specData = await response.json();
     specData[':names'].forEach(((group) => {
       specData[group].data.forEach((item) => {
-        if (!productSpecs[item.path]) {
-          productSpecs[item.path] = {};
+        if (!productSpecs[item.identifier]) {
+          productSpecs[item.identifier] = {};
         }
-        productSpecs[item.path] = { ...productSpecs[item.path], ...item };
+        productSpecs[item.identifier] = { ...productSpecs[item.identifier], ...item };
       });
     }));
     return specData;
   }));
 
-  const productPaths = Object.keys(productSpecs);
-
-  // make all attribute keys lower case
-  productPaths.forEach((productPath) => {
-    productSpecs[productPath] = Object.entries(
-      productSpecs[productPath],
-    ).reduce((acc, [key, value]) => {
-      acc[key.toLowerCase()] = value;
-      return acc;
-    }, {});
-  });
+  const attributeMapping = productSpecs['Identifier'];
+  delete productSpecs['Identifier'];
+  const productIdentifiers = Object.keys(productSpecs);
 
   // render table head
   const headRow = domEl('tr',
     domEl('th', ''),
   );
-  productPaths.forEach((productPath) => {
-    const productSpec = productSpecs[productPath];
+  productIdentifiers.forEach((productIdentifier) => {
+    const productSpec = productSpecs[productIdentifier];
     headRow.append(domEl('th',
       div({ class: 'product-heading' },
-        a({ href: productPath },
+        a({ href: productSpec.path },
           createOptimizedPicture(productSpec.thumbnail),
           p(productSpec.title),
         ),
@@ -56,9 +48,9 @@ export default async function decorate(block) {
   const tBodyBlock = domEl('tbody');
   attributes.forEach((attribute) => {
     const thisRow = domEl('tr');
-    thisRow.append(domEl('td', attribute));
-    productPaths.forEach((productPath) => {
-      let rowValue = productSpecs[productPath][attribute] || '';
+    thisRow.append(domEl('td', attributeMapping[attribute]));
+    productIdentifiers.forEach((productIdentifier) => {
+      let rowValue = productSpecs[productIdentifier][attribute] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
       rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
       const rowBlock = span();
