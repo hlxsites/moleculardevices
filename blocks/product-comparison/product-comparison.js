@@ -1,7 +1,16 @@
 import {
-  domEl, div, span, a, p,
+  domEl, div, span, a,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+
+const PRODUCT_SPEC_MAP = {
+  'wavelength ranges': 'Wavelength ranges',
+  'microplate types': 'Plate type(s)',
+  'reading speed': 'Read times',
+  'cuvette port': 'Cuvette port',
+  'photometric accuracy (microplate/cuvette)': 'Photometric accuracy',
+  shaking: 'Plate shaking',
+};
 
 export default async function decorate(block) {
   const specURLs = [...block.querySelectorAll('a')].map((link) => link.href);
@@ -26,16 +35,6 @@ export default async function decorate(block) {
 
   const productPaths = Object.keys(productSpecs);
 
-  // make all attribute keys lower case
-  productPaths.forEach((productPath) => {
-    productSpecs[productPath] = Object.entries(
-      productSpecs[productPath],
-    ).reduce((acc, [key, value]) => {
-      acc[key.toLowerCase()] = value;
-      return acc;
-    }, {});
-  });
-
   // render table head
   const headRow = domEl('tr',
     domEl('th', ''),
@@ -44,21 +43,20 @@ export default async function decorate(block) {
     const productSpec = productSpecs[productPath];
     headRow.append(domEl('th',
       div({ class: 'product-heading' },
-        a({ href: productPath },
-          createOptimizedPicture(productSpec.thumbnail),
-          p(productSpec.title),
-        ),
-      ),
-    ));
+        div({ class: 'product-heading-title darkgrey' }, productSpec.title),
+        createOptimizedPicture(productSpec.thumbnail),
+        a({ href: productPath, class: 'product-info-btn' }, 'PRODUCT INFO'),
+      )),
+    );
   });
 
   // render table body
   const tBodyBlock = domEl('tbody');
   attributes.forEach((attribute) => {
     const thisRow = domEl('tr');
-    thisRow.append(domEl('td', attribute));
+    thisRow.append(domEl('td', { class: 'fixed' }, attribute));
     productPaths.forEach((productPath) => {
-      let rowValue = productSpecs[productPath][attribute] || '';
+      let rowValue = productSpecs[productPath][PRODUCT_SPEC_MAP[attribute]] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
       rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
       const rowBlock = span();
@@ -70,9 +68,39 @@ export default async function decorate(block) {
 
   const tHeadBlock = domEl('thead', { class: 'table-head' }, headRow,
   );
+  let moveBy = 0;
   block.append(div({ class: 'table-container' },
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
-  ));
+    div({ class: 'scroll-container' },
+      a({
+        class: 'scroll-left-button',
+        onclick: () => {
+          moveBy -= 50;
+          document.querySelectorAll('.scroll-dragger').forEach((el) => { el.style.left = `${moveBy}px`; });
+          document.querySelectorAll('td:not(.fixed)').forEach((el) => { el.style.left = `${moveBy}px`; });
+          document.querySelectorAll('.table-head').forEach((el) => { el.style.left = `${moveBy}px`; });
+        },
+      }),
+      div({
+        class: 'scroll-dragger',
+        onmousedown: (e) => {
+          e.preventDefault();
+          moveBy += e.offsetX;
+          e.target.style.left = moveBy;
+          document.querySelectorAll('td:not(.fixed)').forEach((el) => { el.style.left = `${moveBy}px`; });
+          document.querySelectorAll('.table-head').forEach((el) => { el.style.left = `${moveBy}px`; });
+        },
+      }),
+      a({
+        class: 'scroll-right-button',
+        onclick: () => {
+          moveBy += 50;
+          document.querySelectorAll('.scroll-dragger').forEach((el) => { el.style.left = `${moveBy}px`; });
+          document.querySelectorAll('td:not(.fixed)').forEach((el) => { el.style.left = `${moveBy}px`; });
+          document.querySelectorAll('.table-head').forEach((el) => { el.style.left = `${moveBy}px`; });
+        },
+      }),
+    )));
 
   return block;
 }
