@@ -1549,6 +1549,10 @@ main .section.background-molecules {
     color: white;
 }
 
+.category.family-3d-biology .default-content-wrapper h3 {
+  font-size: 36px;
+}
+
 /*
   Category page
 */
