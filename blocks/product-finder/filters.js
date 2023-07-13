@@ -147,7 +147,7 @@ function initializeFilters(filterDict) {
       const selection = createFilterDropdown(i, [], disabled);
 
       const filterForm = div(
-        { class: 'form-group col-sm-4 col-xs-12', id: `filter${i}Container` },
+        { class: 'form-group', id: `filter${i}Container` },
         label(
           { class: 'filter-label' },
           filterName,
@@ -210,18 +210,18 @@ export default async function renderFiltersRow(category, type, finderProducts, d
   updateFilterOptions(1);
 
   const finderFilters = div(
-    { class: 'col-xs-12 finder-filters' },
+    { class: 'finder-filters' },
     div(
       { class: 'row' },
       div(
-        { class: 'col-xs-12 col-md-4' },
+        { class: 'filters-title-container' },
         h4(
           { class: 'filters-row-title' },
           'Refine Products:',
         ),
       ),
       div(
-        { class: 'col-xs-12 col-md-8' },
+        { class: 'filters-container' },
         filters,
       ),
     ),
