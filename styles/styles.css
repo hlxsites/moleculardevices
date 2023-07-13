@@ -1535,6 +1535,20 @@ main .section.background-molecules {
   text-align: center;
 }
 
+.background-black,
+.background-black img {
+  background-color: black;
+}
+
+.background-black h2 {
+  color: greenyellow;
+}
+
+.background-black p,
+.background-black h3 {
+    color: white;
+}
+
 /*
   Category page
 */
