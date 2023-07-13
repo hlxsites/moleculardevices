@@ -1540,12 +1540,12 @@ main .section.background-molecules {
   background-color: black;
 }
 
-.background-black h2 {
-  color: greenyellow;
+.background-black h3 {
+  color: #6eb43f;
 }
 
 .background-black p,
-.background-black h3 {
+.background-black h4 {
     color: white;
 }
 
