@@ -400,14 +400,6 @@ async function loadEager(doc) {
   document.documentElement.lang = document.documentElement.lang || 'en';
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
 
-  const familyId = getMetadata('family-id');
-  if (familyId) {
-    `family-${familyId}`.split(',')
-      .forEach((v) => {
-        document.body.classList.add(toClassName(v.trim()));
-      });
-  }
-
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
