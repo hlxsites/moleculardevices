@@ -1,3 +1,8 @@
+.section.coveo-search-container,
+.section.coveo-tab-section-wrapper {
+  padding: 0;
+}
+
 .section.background-grey.coveo-search-container {
   background-color: transparent;
   position: relative;
