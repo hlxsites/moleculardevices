@@ -1465,6 +1465,11 @@ main .section.background-molecules {
   padding-top: 50px;
 }
 
+.technology .section.tabs .columns-wrapper p + h2,
+.application .section.tabs .columns-wrapper p + h2 {
+  padding-top: 20px;
+}
+
 .technology main .section.tabs h2,
 .application main .section.tabs h2 {
   margin: 20px 0 10px;
@@ -1498,6 +1503,11 @@ main .section.background-molecules {
 
 .technology .section.resources-container .default-content-wrapper:first-child h2,
 .application .section.resources-container .default-content-wrapper:first-child h2 { 
+  padding-bottom: 0;
+}
+
+.technology main .section:has(+ .horizontal-line),
+.application main .section:has(+ .horizontal-line) {
   padding-bottom: 0;
 }
 
