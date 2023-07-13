@@ -14,10 +14,6 @@
   position: relative;
 }
 
-.product-comparison .responsive-table .table-head tr:first-child th{
-  background-color: var(--accordion-color-white);
-}
-
 .product-comparison .responsive-table td {
   padding: 15px;
   position: relative;
@@ -82,6 +78,10 @@
   width: 200px;
 }
 
+.product-comparison .responsive-table .table-head tr:first-child th{
+  background-color: var(--accordion-color-white);
+}
+
 .product-comparison .responsive-table tbody td:first-child {
   background-color: #525b61;
   padding: 15px;
@@ -114,7 +114,7 @@
   text-decoration: none;
   text-transform: uppercase;
   margin: 5px 0 10px;
-  font-family: "Proxima Nova Rg";
+  font-family: var(--ff-proxima-regular);
   transition: all .3s;
 }
 
