@@ -1486,7 +1486,7 @@ main .section.background-molecules {
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child,
-.application .section.resources-container .default-content-wrapper:first-child, 
+.application .section.resources-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-products-container .default-content-wrapper:first-child,
 .application .section.tabs.related-products-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
@@ -1497,7 +1497,7 @@ main .section.background-molecules {
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child h2,
-.application .section.resources-container .default-content-wrapper:first-child h2 { 
+.application .section.resources-container .default-content-wrapper:first-child h2 {
   padding-bottom: 0;
 }
 
@@ -1537,16 +1537,16 @@ main .section.background-molecules {
 
 .background-black,
 .background-black img {
-  background-color: black;
+  background-color: var(--black-background-color);
 }
 
 .background-black h3 {
-  color: #6eb43f;
+  color: var(--text-green);
 }
 
 .background-black p,
 .background-black h4 {
-    color: white;
+    color: var(--text-white);
 }
 
 /*
