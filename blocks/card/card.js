@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable no-alert */
 
-import { decorateIcons, loadCSS, createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
@@ -172,6 +172,8 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config) {
+  const placeholders = await fetchPlaceholders();
+  config.defaultButtonText = placeholders.readMore;
   const card = new Card(config);
   await card.loadCSSFiles();
   return card;
