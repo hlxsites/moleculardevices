@@ -344,6 +344,9 @@ p.video-title {
     margin-top: calc(-426px/2);
   }
 
+  .vidyard-close-container:focus {
+    outline: none !important;
+  }
 }
 
 .vidyard-close-x {
