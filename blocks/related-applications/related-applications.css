@@ -55,6 +55,28 @@ li.related-link::marker {
   width: 100%;
 }
 
+.related-applications-container:has(.related-applications.toc-grey) .default-content-wrapper h2,
+.related-applications-container .related-applications.toc-grey > ul {
+  background-color: var(--grey-background-color);
+  margin-top: 0;
+}
+
+.related-applications-container:has(.related-applications.toc-grey),
+.related-applications-container:has(.related-applications.toc-grey) .default-content-wrapper,
+.related-applications-container:has(.related-applications.toc-grey) .related-applications-wrapper {
+  padding-top: 0;
+}
+
+.related-applications-container:has(.related-applications.toc-grey) .default-content-wrapper h2 {
+  padding-top: 26px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.related-applications-container .related-applications.toc-grey > ul {
+  padding-top: 26px;
+}
+
 @media (max-width: 992px) {
   .related-app {
     flex-basis: 100%;
