@@ -1029,10 +1029,7 @@ header .large-card-submenu {
   background-color: var(--header-mega-menu-product-cards-background-color);
   background-repeat: no-repeat;
   position: relative;
-  padding-top: 20px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-bottom: 10px;
+  padding: 20px 15px 10px;
   width: 60%;
   float: left;
   height: 100%;
