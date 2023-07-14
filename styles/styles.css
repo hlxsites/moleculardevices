@@ -1531,7 +1531,9 @@ main .section.background-molecules {
   mix-blend-mode: darken;
 }
 
-.title-center h3 {
+.title-center h2,
+.title-center h3,
+.title-center h4 {
   text-align: center;
 }
 
