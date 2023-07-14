@@ -1558,6 +1558,14 @@ main .section.background-molecules {
   mix-blend-mode: darken;
 }
 
+.section.title-h3-40 > .default-content-wrapper > h3 {
+  font-size: 40px;
+}
+
+.section.title-h4-30 > .default-content-wrapper > h4 {
+  font-size: 30px;
+}
+
 .section.title-center > .default-content-wrapper > h2,
 .section.title-center > .default-content-wrapper > h3,
 .section.title-center > .default-content-wrapper > h4 {
