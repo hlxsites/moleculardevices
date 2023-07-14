@@ -13,7 +13,7 @@ function openTab(target) {
     openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
     // open clicked tab
     parent.setAttribute('aria-selected', true);
-    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.id}"]`);
+    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.getAttribute('href').substring(1)}"]`);
     tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
   }
 }
@@ -31,7 +31,6 @@ async function createTabList(sections, active) {
         li({ 'aria-selected': sectionName === active },
           a({
             href: `#${sectionName}`,
-            id: sectionName,
             onclick: (e) => { openTab(e.target); },
           },
           section.title,
