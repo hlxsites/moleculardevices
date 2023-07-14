@@ -2,7 +2,7 @@ import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
@@ -67,6 +67,7 @@ export default async function decorate(block) {
   sortedFilters.unshift('View All');
 
   const displayFilters = {};
+  const placeholders = await fetchPlaceholders();
 
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
@@ -109,7 +110,7 @@ export default async function decorate(block) {
             { class: 'resource-link' },
             a(
               { href: resourceLink },
-              `${resourceMapping[resourceType].action} ${resourceType}`,
+              placeholders[resourceMapping[resourceType]?.action] || 'View Resource',
               i({ class: 'fa fa-chevron-circle-right' }),
             ),
           ),
