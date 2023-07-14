@@ -2,7 +2,9 @@ import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
+import {
+  createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata,
+} from '../../scripts/lib-franklin.js';
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
@@ -154,8 +156,6 @@ export default async function decorate(block) {
   }
 
   sortedFilters.forEach((filter, idx) => {
-    console.log(filter);
-    console.log(displayFilters[filter]);
     filtersBlock.append(
       li({
         class: 'filter',
@@ -177,7 +177,7 @@ export default async function decorate(block) {
 
   block.append(filtersBlock);
   block.append(otherResourcesBlock);
-  if  (videoResourcesBlock) {
+  if (videoResourcesBlock) {
     block.append(videoResourcesBlock);
   }
 
