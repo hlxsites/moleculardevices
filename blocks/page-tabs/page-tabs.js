@@ -1,3 +1,5 @@
+import { li, a, ul } from '../../scripts/dom-helpers.js';
+
 function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
@@ -15,32 +17,58 @@ function openTab(target) {
   }
 }
 
-function createTabList(sections, active) {
-  const ul = document.createElement('ul');
-  sections.forEach((section) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = `#${section.getAttribute('data-name')}`;
-    a.id = section.getAttribute('data-name');
-    a.textContent = section.title;
-    a.addEventListener('click', (e) => {
+function createTabList(block, namedSections, active) {
+  let list = block.querySelector('ul');
+  if (!list) {
+    block.append(list = ul());
+  }
+
+  // decorate links coming from the word document
+  block.querySelectorAll('li > a').forEach((tabLink) => {
+    if (!tabLink.getAttribute('href') || !tabLink.getAttribute('href').startsWith('#')) {
+      return;
+    }
+
+    const name = tabLink.getAttribute('href').substring(1);
+    tabLink.id = name;
+    tabLink.parentElement.setAttribute('aria-selected', name === active);
+    tabLink.addEventListener('click', (e) => {
       openTab(e.target);
     });
-    li.append(a);
-    if (section.getAttribute('data-name') === active) {
-      li.setAttribute('aria-selected', true);
-    } else {
-      li.setAttribute('aria-selected', false);
-    }
-    ul.append(li);
   });
-  return ul;
+
+  // best effort - if there are named sections which are in the document, but not in the list
+  // add them to the tab list, even if they are will not be translated
+  if (!namedSections || namedSections.length === 0) {
+    return;
+  }
+
+  namedSections.forEach((section) => {
+    const sectionName = section.getAttribute('data-name');
+
+    // tab already exists in the word document
+    if (block.querySelector(`li a[href="#${sectionName}"`)) {
+      return;
+    }
+
+    list.append(
+      li({ 'aria-selected': sectionName === active },
+        a({
+          id: sectionName,
+          href: `#${sectionName}`,
+          onclick: (e) => { openTab(e.target); },
+        },
+        section.title),
+      ),
+    );
+  });
 }
 
 export default function decorate(block) {
   const main = block.closest('main');
   const sections = main.querySelectorAll('div.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
+
   if (namedSections) {
     const activeHash = window.location.hash;
     const active = activeHash
@@ -55,7 +83,7 @@ export default function decorate(block) {
       }
     });
 
-    block.append(createTabList(namedSections, active));
+    createTabList(block, namedSections, active);
   }
 
   window.addEventListener('hashchange', () => {

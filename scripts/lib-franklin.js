@@ -365,7 +365,8 @@ export function decorateSections(main) {
         } else if (key === 'name') {
           // section.id = toClassName(meta[key]);
           section.dataset[toCamelCase(key)] = toClassName(meta[key]);
-          section.title = meta[key];
+          const tabLink = document.querySelector(`.page-tabs a[href="#${toClassName(meta[key])}"`);
+          section.title = tabLink ? tabLink.textContent : meta[key];
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
