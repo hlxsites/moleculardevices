@@ -32,6 +32,12 @@
   color: var(--text-dark-gray);
 }
 
+
+.product-comparison .product-heading p {
+  color: var(--text-dark-gray);
+  font-size: 14px;
+}
+
 .product-comparison .product-heading img {
   height: 78px;
   margin-bottom: 10px;
