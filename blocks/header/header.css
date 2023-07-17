@@ -1087,6 +1087,19 @@ header .image-with-text-submenu img {
   margin-top: 40px;
   margin-left: -30px;
 }
+header .image-without-text-submenu img {
+  width: 686px;
+  height: 322px;
+  margin-top: 40px;
+  margin-left: -55px;
+}
+header .image-without-text-submenu p {
+  color: var(--text-white);
+  font-size: 25px;
+  text-transform: none;
+  text-align: center;
+  font-family: Quicksand, sans-serif;
+}
 
 header .no-margin img {
   margin-top: 0;
