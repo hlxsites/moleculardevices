@@ -1736,6 +1736,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     background: var(--header-color-orange);
     font-size: 15px;
     transition: all .3s;
+    justify-content: center;
   }
 
   /* request quote */
