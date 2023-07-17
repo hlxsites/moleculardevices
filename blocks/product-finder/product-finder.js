@@ -6,6 +6,7 @@ import {
   a, div, h3, img, li, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
+import renderFiltersRow from './filters.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';
@@ -156,6 +157,20 @@ async function getProducts(filterType, filterCategory) {
     .all();
 }
 
+// This is needed because Reagents and Media categories use the same type and category
+// They are present in the same step as Assay Kits, which uses a different category and type
+// In order to solve this without code we would need a new column in the
+// product-finder categories sheet, to represent the name of the product finder card
+// and change category to 'Culture Media and Reagents' for the Reagents and Media
+// We would also need to change the types sheet because we need the type to be Media, but we also
+// need it to be present in the same second step as Assay kits. This is not supported by the logic.
+function handleReagentsAndMediaDataInconsistency(type, category) {
+  if (type === 'Assay Kits' && (category === 'Reagents' || category === 'Media')) {
+    return ['Media', 'Culture Media and Reagents'];
+  }
+  return [type, category];
+}
+
 /* step three */
 async function stepThree(e) {
   e.preventDefault();
@@ -163,9 +178,13 @@ async function stepThree(e) {
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  const type = getTabName(e.target);
-  const category = getTabTitle(e.target);
+  let type = getTabName(e.target);
+  let category = getTabTitle(e.target);
   const root = switchTab(category, stepNum, prevStepNum, 'Select Product');
+
+  const originalType = type;
+  const originalCategory = category;
+  [type, category] = handleReagentsAndMediaDataInconsistency(type, category);
 
   root.setAttribute('data-type', type);
   root.setAttribute('data-category', category);
@@ -178,14 +197,17 @@ async function stepThree(e) {
       list.remove();
       const count = root.querySelector(`.result-count[data-card-type="${listCardType}"]`);
       count.remove();
+      const filters = root.querySelector(`.finder-filters[data-card-type="${listCardType}"]`);
+      if (filters) filters.remove();
     }
   });
+
+  const products = await getProducts(type, category);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
     list.classList.remove(HIDDEN_CLASS);
   } else {
-    const products = await getProducts(type, category);
     list = div({
       class: 'product-finder-list',
       'data-card-type': dataCardType,
@@ -201,18 +223,27 @@ async function stepThree(e) {
         target: '_blank',
         rel: 'noopener noreferrer',
       };
-      list.append(cardRenderer.renderItem(product));
+      const card = cardRenderer.renderItem(product);
+      // add product path attribute
+      card.setAttribute('data-product-path', product.path);
+      list.append(card);
     });
   }
 
   const count = root.querySelector(`.result-count[data-card-type="${dataCardType}"]`);
   if (count) count.remove();
 
+  let filters = root.querySelector(`.finder-filters[data-card-type="${dataCardType}"]`);
+  if (!filters) {
+    filters = await renderFiltersRow(originalCategory, originalType, products, dataCardType);
+  }
+
   const totalCount = span(
     { class: 'result-count', 'data-card-type': dataCardType },
     `${list.children.length} Results`,
   );
 
+  if (filters) root.append(filters);
   root.append(totalCount);
   root.append(list);
 }
