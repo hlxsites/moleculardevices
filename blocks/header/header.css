@@ -1861,6 +1861,16 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     font-size: 12px;
   }
 
+  html[lang="de"] header .nav-tabs > li.header-rfq > a,
+  html[lang="it"] header .nav-tabs > li.header-rfq > a,
+  html[lang="es"] header .nav-tabs > li.header-rfq > a {
+    font-size: 13px;
+  }
+
+  html[lang="fr"] header .nav-tabs > li.header-rfq > a {
+    font-size: 14px;
+  }
+
   header .nav-tabs .menu-nav-submenu > div {
     width: 1140px;
   }
