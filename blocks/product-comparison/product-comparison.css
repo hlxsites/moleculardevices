@@ -143,3 +143,38 @@
 .product-comparison ::-webkit-scrollbar-thumb:hover {
   background: var(--button-bg-color);
 }
+
+@media only screen and (max-width: 1199px) {
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 20vw;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .product-comparison .responsive-table a {
+    display: block;
+  }
+
+  .product-comparison .responsive-table th,
+  .product-comparison .responsive-table td {
+    width: 30vw;
+  }
+
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 25vw;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .product-comparison .responsive-table th,
+  .product-comparison .responsive-table td {
+    width: 50vw;
+  }
+
+  .product-comparison .responsive-table th:first-child,
+  .product-comparison .responsive-table td:first-child {
+    width: 40vw;
+  }
+}
