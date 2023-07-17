@@ -81,8 +81,10 @@ class CompareModal {
   }
 
   parseSpecificationsSheet(info, json) {
+    // get product index that contains the path in the key path
     const products = json.product.data;
-    const productData = products[0];
+    const productIndex = products.findIndex((row) => row.identifier === info.identifier);
+    const productData = products[productIndex];
 
     // get all keys in the json that are in the 'categories' string inside the product data
     // this string is separated by commas.
@@ -91,18 +93,27 @@ class CompareModal {
       return categories.includes(key);
     });
 
-    // create array of specifications that contains all the specs
+    // create array of specifications that contains all the specs that contain
+    // a path equal to the product path
+    // This is required because in the same product specifications json, we can have
+    // specifications for multiple similar products
+    const productSpecificationsLabels = [];
     const productSpecificationsObjects = [];
     specificationsObjects.forEach((spec) => {
-      productSpecificationsObjects.push(json[spec].data[0]);
+      const specIndex = json[spec].data.findIndex((row) => row.identifier === info.identifier);
+      if (specIndex !== -1) {
+        productSpecificationsLabels.push(json[spec].data[0]);
+        productSpecificationsObjects.push(json[spec].data[specIndex]);
+      }
     });
 
     // create object with all specifications for this product
+    const reservedKeyNames = ['path', 'name', 'key', 'identifier', 'label'];
     const specifications = {};
-    productSpecificationsObjects.forEach((spec) => {
+    productSpecificationsObjects.forEach((spec, idx) => {
       Object.keys(spec).forEach((key) => {
-        if (key !== 'path' && key !== 'Name') {
-          specifications[key] = spec[key];
+        if (!reservedKeyNames.includes(key.toLowerCase())) {
+          specifications[productSpecificationsLabels[idx][key]] = spec[key];
         }
       });
     });

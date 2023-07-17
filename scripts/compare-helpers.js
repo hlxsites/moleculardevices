@@ -20,6 +20,7 @@ export function getSelectedItems() {
 export function getItemInformation(itemTitle) {
   const itemEl = document.querySelector(`.compare-button .compare-checkbox[data-title="${itemTitle}"]`);
   return {
+    identifier: itemEl.getAttribute('data-identifier'),
     title: itemTitle,
     path: new URL(itemEl.getAttribute('data-path')).pathname,
     thumbnail: itemEl.getAttribute('data-thumbnail'),

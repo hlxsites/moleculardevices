@@ -121,6 +121,7 @@ class Card {
         span({
           class: 'compare-checkbox',
           onclick: handleCompareProducts,
+          'data-identifier': item.identifier,
           'data-title': cardTitle,
           'data-path': cardLink,
           'data-thumbnail': itemImage,
