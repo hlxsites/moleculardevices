@@ -77,7 +77,7 @@ function searchFormHeader() {
 
 function searchMainSection() {
   return `
-            <div class="section coveo-tab-section-wrapper">
+            <div class="section coveo-tab-section-wrapper sticky-element sticky-desktop">
               <div class="coveo-tab-section">
                 <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Molecular Devices Website&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
                 <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Molecular Devices Website&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">

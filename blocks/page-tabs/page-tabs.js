@@ -1,3 +1,6 @@
+import { li, ul, a } from '../../scripts/dom-helpers.js';
+import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
+
 function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
@@ -10,34 +13,35 @@ function openTab(target) {
     openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
     // open clicked tab
     parent.setAttribute('aria-selected', true);
-    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.id}"]`);
+    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.getAttribute('href').substring(1)}"]`);
     tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
   }
 }
 
-function createTabList(sections, active) {
-  const ul = document.createElement('ul');
-  sections.forEach((section) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = `#${section.getAttribute('data-name')}`;
-    a.id = section.getAttribute('data-name');
-    a.textContent = section.title;
-    a.addEventListener('click', (e) => {
-      openTab(e.target);
-    });
-    li.append(a);
-    if (section.getAttribute('data-name') === active) {
-      li.setAttribute('aria-selected', true);
-    } else {
-      li.setAttribute('aria-selected', false);
-    }
-    ul.append(li);
-  });
-  return ul;
+async function createTabList(sections, active) {
+  const placeholders = await fetchPlaceholders();
+
+  return ul(
+    ...sections.map((section) => {
+      const sectionName = section.getAttribute('data-name');
+      // use placeholders if we have them, to make translations work, otherwise best effort
+      section.title = placeholders[toCamelCase(sectionName)] || section.title;
+
+      return (
+        li({ 'aria-selected': sectionName === active },
+          a({
+            href: `#${sectionName}`,
+            onclick: (e) => { openTab(e.target); },
+          },
+          section.title,
+          ),
+        )
+      );
+    }),
+  );
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const main = block.closest('main');
   const sections = main.querySelectorAll('div.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
@@ -55,7 +59,7 @@ export default function decorate(block) {
       }
     });
 
-    block.append(createTabList(namedSections, active));
+    block.append(await createTabList(namedSections, active));
   }
 
   window.addEventListener('hashchange', () => {

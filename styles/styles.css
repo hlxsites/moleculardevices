@@ -320,6 +320,7 @@ em strong {
   font-style: italic;
 }
 
+/* video player styles and overlays */
 .video-wrapper {
     margin: 40px auto;
     max-width: 700px;
@@ -334,6 +335,32 @@ p.video-title {
   background-color: var(--background-color);
   font-weight: 400;
   text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .vidyard-close-container {
+    top: 50% !important;
+    left: 50%;
+    margin-left: calc(680px/2);
+    margin-top: calc(-426px/2);
+  }
+
+  .vidyard-close-container:focus {
+    outline: none !important;
+  }
+}
+
+.vidyard-close-x {
+  cursor: pointer;
+  background-color: rgb(0 0 0 / 50%);
+  padding: 10px;
+  border-radius: 50%;
+  transform: rotate(0deg);
+  transition: all .3s ease-in-out;
+}
+
+.vidyard-close-x:hover {
+  transform: rotate(90deg);
 }
 
 /* buttons */
@@ -1469,9 +1496,9 @@ main .section.background-molecules {
   padding-top: 20px
 }
 
-.technology .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
-.application .section.tabs .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
@@ -1504,7 +1531,7 @@ main .section.background-molecules {
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child,
-.application .section.resources-container .default-content-wrapper:first-child, 
+.application .section.resources-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-products-container .default-content-wrapper:first-child,
 .application .section.tabs.related-products-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
@@ -1515,7 +1542,7 @@ main .section.background-molecules {
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child h2,
-.application .section.resources-container .default-content-wrapper:first-child h2 { 
+.application .section.resources-container .default-content-wrapper:first-child h2 {
   padding-bottom: 0;
 }
 
@@ -1565,6 +1592,30 @@ main .section.background-molecules {
   margin-bottom: 45px;
 }
 
+.blend-image img {
+  mix-blend-mode: darken;
+}
+
+.title-center h2,
+.title-center h3,
+.title-center h4 {
+  text-align: center;
+}
+
+.background-black,
+.background-black img {
+  background-color: var(--black-background-color);
+}
+
+.background-black h3 {
+  color: var(--text-green);
+}
+
+.background-black p,
+.background-black h4 {
+    color: var(--text-white);
+}
+
 /*
   Category page
 */
@@ -1589,6 +1640,10 @@ main .section.background-molecules {
 
 .category .default-content-wrapper h3 a {
   color: black;
+}
+
+.category-3d-biology .default-content-wrapper h3 {
+  font-size: 36px;
 }
 
 /*
