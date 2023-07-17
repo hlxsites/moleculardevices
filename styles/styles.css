@@ -1564,6 +1564,11 @@ main .section.background-molecules {
     margin-bottom: 10px;
 }
 
+.technology .columns.block.columns-2-cols .button-container:not(:first-child) > .video-wrapper .video-title,
+.application .columns.block.columns-2-cols .button-container:not(:first-child) > .video-wrapper .video-title {
+  font-family: var(--ff-proxima-regular);
+}
+
 .blend-image img {
   mix-blend-mode: darken;
 }
