@@ -105,7 +105,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
 }
 
 .product-comparison .responsive-table .product-info-btn  {
