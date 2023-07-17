@@ -1,82 +1,82 @@
 export default {
   'Application Note': {
     image: 'application-note',
-    action: 'Read',
+    action: 'readApplicationNote',
   },
   Blog: {
     image: 'blog',
-    action: 'Read',
+    action: 'readBlog',
   },
   Brochure: {
     image: 'brochure',
-    action: 'Download',
+    action: 'downloadBrochure',
   },
   'Cell Counter': {
     image: 'application-note',
-    action: 'Read',
+    action: 'readCellCounter',
   },
   Citation: {
     image: 'citation',
-    action: 'Download',
+    action: 'downloadCitation',
   },
   'Customer Breakthrough': {
     image: 'customer-breakthrough',
-    action: 'Read',
+    action: 'readCustomerBreakthrough',
   },
   'Data Sheet': {
     image: 'data-sheet',
-    action: 'Download',
+    action: 'downloadDataSheet',
   },
   eBook: {
     image: 'ebook',
-    action: 'Download',
+    action: 'downloadEBook',
   },
   Flyer: {
     image: 'flyer',
-    action: 'Download',
+    action: 'downloadFlyer',
   },
   Infographic: {
     image: 'infographic',
-    action: 'Download',
+    action: 'downloadInfographic',
   },
   Presentations: {
     image: 'presentations',
-    action: 'Download',
+    action: 'downloadPresentations',
   },
   'Product Insert': {
     image: 'document',
-    action: 'Download',
+    action: 'downloadProductInsert',
   },
   Publication: {
     image: 'document',
-    action: 'Read',
+    action: 'readPublication',
   },
   'Scientific Poster': {
     image: 'scientific-poster',
-    action: 'Download',
+    action: 'downloadScientificPoster',
   },
   SDS: {
     image: 'document',
-    action: 'Download',
+    action: 'downloadSDS',
   },
   'Technical Guide': {
     image: 'document',
-    action: 'Download',
+    action: 'downloadTechnicalGuide',
   },
   'Training Material': {
     image: 'document',
-    action: 'Download',
+    action: 'downloadTrainingMaterial',
   },
   'User Guide': {
     image: 'document',
-    action: 'Download',
+    action: 'downloadUserGuide',
   },
   'Videos and Webinars': {
     image: 'videos-and-webinars',
-    action: 'View',
+    action: 'viewVideosAndWebinars',
   },
   'White Paper': {
     image: 'document',
-    action: 'Download',
+    action: 'downloadWhitePaper',
   },
 };
