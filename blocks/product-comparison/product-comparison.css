@@ -130,58 +130,23 @@
   color: #fff;
 }
 
-.product-comparison .scroll-container {
-  display: flex;
-  position: relative;
+.product-comparison ::-webkit-scrollbar {
+  width: 20px;
   height: 24px;
-  width: auto;
-  top: auto;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
 
-.product-comparison a.scroll-left-button {
-  background-color: #008da9;
-  position: absolute;
-  display: block;
-  color: #008da9;
-  background-image: url('/images/scroll-minus-btn.png');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  opacity: 1;
-  background-position: center center;
-  width: 32px;
-  height: 24px;
-  z-index: 1;
-  left: 0;
+.product-comparison ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
 }
 
-.product-comparison .scroll-dragger {
-  background-color: #008da9;
-  position: absolute;
-  min-width: 30px;
-  display: block;
-  width: 297px;
-  max-width: 538px;
-  left: 251px;
-  cursor: pointer;
-  height: 30px;
-  z-index: 1;
+.product-comparison ::-webkit-scrollbar-thumb {
+  background-color: #00b0bd;
+  border-radius: 10px;
 }
 
-.product-comparison a.scroll-right-button {
-  display: block;
-  position: absolute;
-  background-image: url('/images/scroll-plus-btn.png');
-  background-color: #008da9;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  opacity: 1;
-  background-position: center center;
-  width: 32px;
-  height: 24px;
-  right: 0;
+.product-comparison ::-webkit-scrollbar-thumb:hover {
+  background: var(--button-bg-color);
 }
 
 @media only screen and (max-width: 1199px) {
