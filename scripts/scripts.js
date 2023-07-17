@@ -551,7 +551,7 @@ function enableStickyElements() {
     let stackedHeight = 0;
     STICKY_ELEMENTS.forEach((element, index) => {
       if (currentScrollPosition > offsets[index] - stackedHeight) {
-        if (element.classList.contains('mainmenu-wrapper') && !element.querySelector('[aria-expanded="true"]')) {
+        if (!document.querySelector('header .mainmenu-wrapper [aria-expanded="true"]')) {
           element.classList.add('sticky');
           element.style.top = `${stackedHeight}px`;
           stackedHeight += element.offsetHeight;
