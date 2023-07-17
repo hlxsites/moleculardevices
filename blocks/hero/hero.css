@@ -109,7 +109,7 @@ main .hero-advanced-wrapper {
   line-height: 1.5;
 }
 
-.hero-inner .two-column h6+p {
+.hero-inner .two-column h6~p {
   margin-bottom: 0;
 }
 
