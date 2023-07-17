@@ -84,7 +84,7 @@
   width: 200px;
 }
 
-.product-comparison .responsive-table .table-head tr:first-child th{
+.product-comparison .responsive-table .table-head tr:first-child th:first-child{
   background-color: var(--accordion-color-white);
 }
 
@@ -105,9 +105,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  overflow: hidden;
-  top: 0;
 }
 
 .product-comparison .responsive-table .product-info-btn  {
