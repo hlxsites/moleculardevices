@@ -68,8 +68,9 @@ export default async function decorate(block) {
   const sortedFilters = filters.sort((x, y) => (x.toLowerCase() < y.toLowerCase() ? -1 : 1));
   sortedFilters.unshift('View All');
 
-  const displayFilters = {};
   const placeholders = await fetchPlaceholders();
+  const displayFilters = {};
+  displayFilters['View All'] = placeholders['View All'] || 'View All';
 
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
