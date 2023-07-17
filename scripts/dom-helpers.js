@@ -69,6 +69,7 @@ export function h4(...items) { return domEl('h4', ...items); }
 export function h5(...items) { return domEl('h5', ...items); }
 export function h6(...items) { return domEl('h6', ...items); }
 export function ul(...items) { return domEl('ul', ...items); }
+export function ol(...items) { return domEl('ol', ...items); }
 export function li(...items) { return domEl('li', ...items); }
 export function i(...items) { return domEl('i', ...items); }
 export function img(...items) { return domEl('img', ...items); }
@@ -82,3 +83,5 @@ export function nav(...items) { return domEl('nav', ...items); }
 export function fieldset(...items) { return domEl('fieldset', ...items); }
 export function article(...items) { return domEl('article', ...items); }
 export function strong(...items) { return domEl('strong', ...items); }
+export function select(...items) { return domEl('select', ...items); }
+export function option(...items) { return domEl('option', ...items); }

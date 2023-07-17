@@ -7,6 +7,15 @@ import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
 
+const DEFAULT_REGIONS = [
+  'Africa',
+  'Asia Pacific',
+  'Central & South America',
+  'Europe',
+  'Middle East',
+  'North America',
+];
+
 function splitByComma(value) {
   return value.split(',').map((s) => s.trim());
 }
@@ -61,6 +70,10 @@ function createEventsDropdown(options, selected, name, placeholder) {
 }
 
 function createFilters(options) {
+  const existingEventRegions = Array.from(new Set(
+    options.data.flatMap((n) => splitByComma(n.eventRegion))
+      .filter((val) => val !== '0'),
+  ));
   return [
     createEventsDropdown(
       Array.from(new Set(
@@ -72,10 +85,9 @@ function createFilters(options) {
       'Event Type',
     ),
     createEventsDropdown(
-      Array.from(new Set(
-        options.data.flatMap((n) => splitByComma(n.eventRegion))
-          .filter((val) => val !== '0'),
-      )),
+      DEFAULT_REGIONS.concat(
+        existingEventRegions.filter((item) => DEFAULT_REGIONS.indexOf(item) < 0),
+      ).sort(),
       options.activeFilters.eventRegion,
       'event-region',
       'Region',

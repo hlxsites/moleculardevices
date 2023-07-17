@@ -2,7 +2,7 @@
 
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import {
-  a, button, div, domEl, h3, i, input, label, p, span,
+  a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -50,7 +50,23 @@ async function getCartDetails() {
   });
 }
 
-async function addToCart(el, counterEl) {
+async function addToCart(btn, el, counterEl) {
+  const spinner = (
+    div({ class: 'spinner-container' },
+      img({
+        class: 'spinner',
+        src: '/images/ajax-common-loader-gray.gif',
+        alt: 'Image loading...',
+        height: '42',
+        width: '42',
+      }),
+    )
+  );
+
+  document.querySelector('body').appendChild(spinner);
+  // worst case scenario if somethig below fails, we should not block the page forever
+  setTimeout(() => { spinner.remove(); }, 5000);
+
   const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
 
@@ -74,6 +90,11 @@ async function addToCart(el, counterEl) {
 
   await getCartDetails();
   updateCounters();
+  spinner.remove();
+
+  document.querySelector('.cart-widget').classList.add('open');
+  btn.classList.add('add-to-cart-success');
+  setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
 }
 
 function renderAddToCart(item) {
@@ -131,14 +152,17 @@ function renderItem(item, showStore, itemDescriptionsMap) {
 
 function renderCartWidget() {
   return (
-    div({ class: 'cart-widget' },
+    div({ class: 'cart-widget', onclick: (e) => { e.target.closest('.cart-widget').classList.toggle('open'); } },
       span({ class: 'cart-count' }, getCartItemCount()),
+      i({ class: 'fa fa-shopping-cart' }),
       a({
+        class: 'view-cart-link',
         href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
-      }, i({ class: 'fa fa-shopping-cart' }),
+      },
+      'View Cart',
       ),
     )
   );
@@ -188,7 +212,7 @@ async function renderList(options, showStore, container, itemDescriptionsMap) {
     addToCartButton.addEventListener('click', (e) => {
       const el = e.target;
       const counterEl = el.closest('.variant-item-store-content').querySelector('.variant-item-store-count .count');
-      addToCart(el, counterEl);
+      addToCart(el, el, counterEl);
     });
   });
 }
@@ -205,7 +229,7 @@ function buildOrderingForm(options) {
   }
 
   function updateVariantsDropdownLabel() {
-    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-btn');
+    const variantDropDown = orderContainer.querySelector('.drop-down.variants-drop-down .drop-down-btn .drop-down-btn-text');
     if (variantDropDown) {
       variantDropDown.innerHTML = selectedVariant.title;
     }
@@ -213,7 +237,7 @@ function buildOrderingForm(options) {
 
   function updatePrice(price) {
     const priceContent = orderContainer.querySelector('.price');
-    priceContent.textContent = `$ ${(price / 100).toLocaleString('en-US')}.00 USD`;
+    priceContent.textContent = `${(price / 100).toLocaleString('en-US')}.00 USD`;
   }
 
   function handleVariantSelection(variant) {
@@ -248,7 +272,7 @@ function buildOrderingForm(options) {
   function handleOptionSelection(option) {
     selectedOption = option;
     const optionsDropDown = orderContainer.querySelector('.drop-down.options-drop-down');
-    const optionsDropDownButton = optionsDropDown.querySelector('.drop-down-btn');
+    const optionsDropDownButton = optionsDropDown.querySelector('.drop-down-btn .drop-down-btn-text');
     optionsDropDownButton.textContent = selectedOption.title;
 
     checkOptionValidity();
@@ -304,17 +328,30 @@ function buildOrderingForm(options) {
     }
   }
 
+  function heroAddToCartHandler(e) {
+    const quantity = orderContainer.querySelector('.quantity-number');
+    if (!parseInt(quantity.value, 10)) {
+      return;
+    }
+
+    addToCart(e.target, selectedVariant, quantity);
+  }
+
   const orderFormContainer = (
     div({ class: 'order-container-inner' },
       div({ class: 'drop-down options-drop-down' },
-        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Product Options'),
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) },
+          span({ class: 'drop-down-btn-text' }, 'Product Options'),
+        ),
         div({ class: 'drop-down-content' },
           a({ class: 'option placeholder', onclick: () => handleOptionSelection({ title: 'Product Options' }) }, 'Product Options'),
           ...options.map((option) => a({ class: 'option', onclick: () => { handleOptionSelection(option); } }, option.title)),
         ),
       ),
       div({ class: 'drop-down variants-drop-down disabled' },
-        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) }, 'Select Variation'),
+        button({ class: 'drop-down-btn', onclick: (e) => openDropdownMenu(e) },
+          span({ class: 'drop-down-btn-text' }, 'Select Variation'),
+        ),
         div({ class: 'drop-down-content' },
           // dynamically populated when selecting a product
         ),
@@ -332,7 +369,7 @@ function buildOrderingForm(options) {
           button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
         ),
       ),
-      button({ class: 'add-to-cart primary', onclick: () => addToCart(selectedVariant, orderContainer.querySelector('.quantity-number')) }, 'Add to cart'),
+      button({ class: 'add-to-cart primary', onclick: (e) => { heroAddToCartHandler(e); } }, 'Add to cart'),
     )
   );
   orderContainer.appendChild(orderFormContainer);

@@ -6,7 +6,7 @@ import {
   isVideo,
   videoButton,
 } from '../../scripts/scripts.js';
-import { div, img } from '../../scripts/dom-helpers.js';
+import { div, img, ol } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
   const metadataContainer = document.createElement('div');
@@ -71,7 +71,7 @@ function detectPricingRequestAvailable() {
 }
 
 function showHidePricingRequestButton(block) {
-  const pricingRequestButton = block.querySelector('a[href*="/quote-request"]');
+  const pricingRequestButton = block.querySelector('a[href*="/quote-request"][href*="type=quote"]');
   if (!pricingRequestButton) return;
 
   const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
@@ -147,9 +147,7 @@ export function buildHero(block) {
     }
   });
 
-  const breadcrumbs = document.createElement('div');
-  breadcrumbs.classList.add('breadcrumbs');
-
+  const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
   block.appendChild(inner);
   inner.appendChild(breadcrumbs);
   inner.appendChild(container);
@@ -165,6 +163,7 @@ export function buildHero(block) {
       buttonContainer.remove();
     });
     container.appendChild(div({ class: 'order-container' }));
+    block.classList.add('order');
   }
 
   showHidePricingRequestButton(block);
