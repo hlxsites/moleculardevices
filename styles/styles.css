@@ -1545,8 +1545,8 @@ main .section.background-molecules {
     margin-bottom: 10px;
 }
 
-.technology .section.tabs h2:has(+ h4),
-.application .section.tabs h2:has(+ h4) {
+.technology .section.tabs h2 + h4,
+.application .section.tabs h2 + h4 {
   font-family: var(--ff-proxima-light);
   margin-bottom: 0;
   padding-bottom: 0;
