@@ -1,4 +1,4 @@
-import { li, ul, a } from '../../scripts/dom-helpers.js';
+import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
 
 function openTab(target) {
@@ -41,15 +41,6 @@ async function createTabList(sections, active) {
   );
 }
 
-function findTabFromId(id, namedSections) {
-  const find = namedSections.find((section) => section.getAttribute('data-name') === id);
-  if (find !== null) {
-    return id;
-  }
-
-  return null;
-}
-
 export default async function decorate(block) {
   const main = block.closest('main');
   const sections = main.querySelectorAll('div.section.tabs');
@@ -57,9 +48,9 @@ export default async function decorate(block) {
   if (namedSections) {
     const activeHash = window.location.hash;
     const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-    const foundTab = findTabFromId(id, namedSections);
-    const idExists = foundTab !== null;
-    const activeTab = foundTab ?? namedSections[0].getAttribute('data-name');
+
+    const foundTab = namedSections.some((section) => section.getAttribute('data-name') === id);
+    const activeTab = foundTab ? id : namedSections[0].getAttribute('data-name');
 
     sections.forEach((section) => {
       if (activeTab === section.getAttribute('aria-labelledby')) {
@@ -69,7 +60,7 @@ export default async function decorate(block) {
       }
     });
 
-    console.log('id exists?', idExists);
+    console.log('id exists?', foundTab);
 
     block.append(await createTabList(namedSections, activeTab));
   }
