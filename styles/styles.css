@@ -173,20 +173,6 @@ body {
   overflow-x: hidden;
 }
 
-.section.save-time div.default-content-wrapper h2 {
-  font-size: 70px;
-  font-family: "Proxima Nova Light", sans-serif;
-  text-align: center;
-}
-
-.section.save-time div.default-content-wrapper h2 strong {
-  font-family: "Proxima Nova Light", sans-serif;
-}
-
-.section.save-time .columns > div > div:first-child > ul {
-  padding-top: 20px;
-}
-
 .background-gray main {
   background-color: var(--grey-background-color);
 }
@@ -786,6 +772,20 @@ main .section.tabs[aria-labelledby="order"] strong {
 main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   display: block;
   margin: 0 auto;
+}
+
+.section.save-time div.default-content-wrapper h2 {
+  font-size: 70px;
+  font-family: "Proxima Nova Light", sans-serif;
+  text-align: center;
+}
+
+.section.save-time div.default-content-wrapper h2 strong {
+  font-family: "Proxima Nova Light", sans-serif;
+}
+
+.section.save-time .columns > div > div:first-child > ul {
+  padding-top: 20px;
 }
 
 main .event-container .text-strong {
