@@ -718,6 +718,10 @@ main .section.horizontal-line > div:first-of-type {
   padding-top: 45px;
 }
 
+main .section.horizontal-line {
+  padding-top: 0;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -1530,11 +1534,6 @@ main .section.background-molecules {
 
 .technology .section.resources-container .default-content-wrapper:first-child h2,
 .application .section.resources-container .default-content-wrapper:first-child h2 {
-  padding-bottom: 0;
-}
-
-.technology main .section:has(+ .horizontal-line),
-.application main .section:has(+ .horizontal-line) {
   padding-bottom: 0;
 }
 
