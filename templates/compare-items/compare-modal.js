@@ -17,7 +17,8 @@ import {
 import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
 
 class Item {
-  constructor(title, path, thumbnail, familyID, specifications) {
+  constructor(identifier, title, path, thumbnail, familyID, specifications) {
+    this.identifier = identifier;
     this.title = title;
     this.path = path;
     this.thumbnail = thumbnail;
@@ -31,6 +32,10 @@ class Item {
 
   getPath() {
     return this.path;
+  }
+
+  getIdentifier() {
+    return this.identifier;
   }
 
   getThumbnail() {
@@ -107,7 +112,8 @@ class CompareModal {
       }
     });
 
-    // create object with all specifications for this product
+    // create a map with from Specification Label -> Specification Value
+    // with all specifications for this product
     const reservedKeyNames = ['path', 'name', 'key', 'identifier', 'label'];
     const specifications = {};
     productSpecificationsObjects.forEach((spec, idx) => {
@@ -118,6 +124,7 @@ class CompareModal {
       });
     });
 
+    console.log(specifications);
     return specifications;
   }
 
@@ -126,6 +133,7 @@ class CompareModal {
     const specifications = this.parseSpecificationsSheet(info, specificationsJson);
 
     return new Item(
+      info.identifier,
       info.title,
       info.path,
       info.thumbnail,
