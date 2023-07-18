@@ -835,6 +835,10 @@ main .section.service-support.support-options h2 {
   font-size: 70px;
 }
 
+main .section.related-applications-container h2:first-child {
+  padding-top: 26px;
+}
+
 @media (max-width: 991px) {
   main .section.service-support.support-options h2 {
     font-size: 36px;
@@ -1475,9 +1479,9 @@ main .section.background-molecules {
   font-size: 36px;
 }
 
-.products .section > div,
-.technology .section > div,
-.application .section > div {
+.products .section:not(.related-applications-container) > div,
+.technology .section:not(.related-applications-container) > div,
+.application .section:not(.related-applications-container) > div {
   padding-bottom: 20px;
   padding-top: 20px
 }
@@ -1501,8 +1505,8 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
-.technology main .section.tabs h2,
-.application main .section.tabs h2 {
+.technology main .section.tabs:not(.related-applications-container) h2,
+.application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
 }
 
