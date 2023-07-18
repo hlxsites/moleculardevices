@@ -50,11 +50,18 @@ export default async function decorate(block) {
     const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
 
     const tabExists = namedSections.some((section) => section.getAttribute('data-name') === id);
-    console.log('tab exists?', tabExists);
-
-    console.log('id exists?', document.getElementById(id));
-
-    const activeTab = tabExists ? id : namedSections[0].getAttribute('data-name');
+    let activeTab = id;
+    if (!tabExists) {
+      const element = document.getElementById(id);
+      if (element) {
+        activeTab = element.closest('.tabs')?.getAttribute('aria-labelledby');
+        setTimeout(() => {
+          element.scrollIntoView();
+        }, 5000);
+      } else {
+        activeTab = namedSections[0].getAttribute('data-name');
+      }
+    }
 
     sections.forEach((section) => {
       if (activeTab === section.getAttribute('aria-labelledby')) {
