@@ -23,13 +23,14 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ul);
 
-  if (block.classList.contains('image-link')) {
+  if (block.classList.contains('image-link') || block.classList.contains('who-we-are')) {
     block.querySelectorAll('li').forEach((li) => {
       const link = li.querySelector('a');
-      const picture = li.querySelector('picture');
-      const pictureClone = picture.cloneNode(true);
-      const newLink = a({ href: link.href }, pictureClone);
-      picture.parentNode.replaceChild(newLink, picture);
+      li.querySelectorAll('picture').forEach((picture) => {
+        const pictureClone = picture.cloneNode(true);
+        const newLink = a({ href: link.href }, pictureClone);
+        picture.parentNode.replaceChild(newLink, picture);
+      });
     });
   } else if (block.classList.contains('image-only')) {
     block.querySelectorAll('li').forEach((li) => {
