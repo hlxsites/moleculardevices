@@ -22,9 +22,9 @@ export function getItemInformation(itemTitle) {
   return {
     identifier: itemEl.getAttribute('data-identifier'),
     title: itemTitle,
-    path: itemEl.getAttribute('data-path').startsWith('http') ?
-      new URL(itemEl.getAttribute('data-path')).pathname :
-      itemEl.getAttribute('data-path'),
+    path: itemEl.getAttribute('data-path').startsWith('http')
+      ? new URL(itemEl.getAttribute('data-path')).pathname
+      : itemEl.getAttribute('data-path'),
     thumbnail: itemEl.getAttribute('data-thumbnail'),
     familyID: itemEl.getAttribute('data-familyID'),
     specificationsPath: new URL(itemEl.getAttribute('data-specifications')).pathname,
