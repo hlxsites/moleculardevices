@@ -1227,21 +1227,31 @@ header .nav-tabs .menu-nav-category a:hover {
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   font-family: var(--ff-proxima-regular);
   transition: all .2s;
-  background: var(--button-bg-color);
   border: 0;
   color: var(--text-white);
   position: relative !important;
   height: auto;
   border-radius: 0;
-  padding: 10px 18px !important;
+  padding: 10px 18px 10px 0 !important;
   display: inline-block !important;
   text-align: center;
-  min-width: 180px !important;
 }
 
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
+header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a,
+header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
+  padding: 10px 18px !important;
+}
+
+header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a,
+header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a {
+  background: var(--button-bg-color);
+}
+
+header .actionable-card-submenu.blog-lab-notes-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
+header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
+header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
   border: 1px solid var(--button-bg-color);
-  background: transparent;
+  padding: 10px 18px !important;
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
@@ -1299,18 +1309,18 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   background-color: transparent;
   width: 300px;
   line-height: 10px;
-  margin-left: -12px;
   font-size: 13px;
   text-align: left;
   color: var(--header-actionable-submenu-text-color);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23e6e6e6' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: 230px center;
+  background-position: 205px center;
+  border: none;
+  padding: 0;
 }
 
-
 .actionable-card-submenu.service-support-right-submenu.right-submenu-content.text-only.proxima-nova-lt.uppercase > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
-  background-position: 180px center !important;
+  background-position: 160px center !important;
 }
 
 .actionable-card-submenu.service-support-right-submenu.right-submenu-content.text-only.proxima-nova-lt.uppercase > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a:hover,
@@ -1324,7 +1334,7 @@ header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:
   background: transparent;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: 120px center;
+  background-position: 60px center;
 }
 
 header .actionable-card-submenu.newsroom-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover,
@@ -1348,7 +1358,6 @@ header .actionable-card-submenu.customercare-portal h3,
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
   line-height: 1.5;
-  font-family: Quicksand, sans-serif;
   color: rgba(255 255 255 / 75%);
 }
 
@@ -1397,6 +1406,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
 @media (min-width: 1200px) {
   header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth-child(1) > p > a {
     min-width: 160px !important;
+    padding: 10px 18px !important;
   }
 }
 
