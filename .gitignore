@@ -5,4 +5,3 @@ node_modules/*
 
 helix-importer-ui
 .DS_Store
-/k8s-kubeconfig/
