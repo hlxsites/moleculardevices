@@ -1477,6 +1477,7 @@ main .section.background-molecules {
 .product p.video-title {
   font-size: 24px;
   font-family: var(--ff-proxima-xbold);
+  font-style: normal;
 }
 
 /* -- Technology -- */
