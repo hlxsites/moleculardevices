@@ -1609,12 +1609,12 @@ main .section.background-molecules {
 }
 
 
-.product-blue-titles .section:not(.columns-2,:nth-child(2),:nth-last-child(1), :nth-last-child(2), :nth-last-child(3)) .default-content-wrapper > h2 {
+.section.product-blue-titles .default-content-wrapper > h2 {
   font-size: 40px;
   color: #008da9;
 }
 
-.product-blue-titles .section:not(.columns-2) .default-content-wrapper > h4 {
+.section.product-blue-titles .default-content-wrapper > h4 {
   font-size: 30px;
 }
 
