@@ -1,9 +1,11 @@
 .related-links-container {
   column-count: 2;
+  column-gap: 30px;
 }
 
 .cols-3 {
   column-count: 3;
+  column-gap: 30px;
 }
 
 .related-apps-container {
@@ -37,6 +39,10 @@ li.related-link::marker {
 .related-app h3 {
   font-size: 36px;
   margin-top: 0;
+}
+
+.related-app h3 {
+  text-align: left;
 }
 
 .related-app strong {
