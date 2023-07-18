@@ -6,7 +6,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 export default async function decorate(block) {
   const specURLs = [...block.querySelectorAll('a')].map((link) => link.href);
   const attributes = [...block.querySelectorAll('.product-comparison > div:last-child > div:last-child > p')]
-    .map((attrP) => attrP.textContent);
+    .map((attrP) => attrP.textContent.trim());
 
   block.innerHTML = '';
   const productSpecs = {};
