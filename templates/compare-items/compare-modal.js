@@ -86,7 +86,6 @@ class CompareModal {
   }
 
   parseSpecificationsSheet(info, json) {
-    console.log(info);
     // get product index that contains the path in the key path
     const products = json.product.data;
     const productIndex = products.findIndex((row) => row.identifier === info.identifier);
