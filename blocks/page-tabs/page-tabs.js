@@ -49,8 +49,12 @@ export default async function decorate(block) {
     const activeHash = window.location.hash;
     const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
 
-    const foundTab = namedSections.some((section) => section.getAttribute('data-name') === id);
-    const activeTab = foundTab ? id : namedSections[0].getAttribute('data-name');
+    const tabExists = namedSections.some((section) => section.getAttribute('data-name') === id);
+    console.log('tab exists?', tabExists);
+
+    console.log('id exists?', document.getElementById(id));
+
+    const activeTab = tabExists ? id : namedSections[0].getAttribute('data-name');
 
     sections.forEach((section) => {
       if (activeTab === section.getAttribute('aria-labelledby')) {
@@ -60,8 +64,6 @@ export default async function decorate(block) {
       }
     });
 
-    console.log('id exists?', foundTab);
-
     block.append(await createTabList(namedSections, activeTab));
   }
 
@@ -70,12 +72,21 @@ export default async function decorate(block) {
     activeHash = activeHash ? activeHash.substring(1) : namedSections[0].getAttribute('data-name');
     if (!activeHash) return;
 
+    const element = document.getElementById(activeHash);
+    if (element) {
+      const targetTabName = element.closest('.tabs')?.getAttribute('aria-labelledby');
+      const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
+      if (!targetTab) return;
+      openTab(targetTab);
+      document.getElementById(activeHash).scrollIntoView();
+    }
+
     const targetTab = block.querySelector(`a[href="#${activeHash}"]`);
     if (!targetTab) return;
 
     openTab(targetTab);
 
-    // scroll conent into view
+    // scroll content into view
     const firstVisibleSection = main.querySelector(`div.section[aria-labelledby="${activeHash}"]`);
     if (!firstVisibleSection) return;
 
