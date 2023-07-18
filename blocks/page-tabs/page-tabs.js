@@ -1,4 +1,4 @@
-import { li, ul, a } from '../../scripts/dom-helpers.js';
+import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
 
 function openTab(target) {
@@ -47,19 +47,31 @@ export default async function decorate(block) {
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
     const activeHash = window.location.hash;
-    const active = activeHash
-      ? activeHash.substring(1, activeHash.length).toLocaleLowerCase()
-      : namedSections[0].getAttribute('data-name');
+    const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+
+    const tabExists = namedSections.some((section) => section.getAttribute('data-name') === id);
+    let activeTab = id;
+    if (!tabExists) {
+      const element = document.getElementById(id);
+      if (element) {
+        activeTab = element.closest('.tabs')?.getAttribute('aria-labelledby');
+        setTimeout(() => {
+          element.scrollIntoView();
+        }, 5000);
+      } else {
+        activeTab = namedSections[0].getAttribute('data-name');
+      }
+    }
 
     sections.forEach((section) => {
-      if (active === section.getAttribute('aria-labelledby')) {
+      if (activeTab === section.getAttribute('aria-labelledby')) {
         section.setAttribute('aria-hidden', false);
       } else {
         section.setAttribute('aria-hidden', true);
       }
     });
 
-    block.append(await createTabList(namedSections, active));
+    block.append(await createTabList(namedSections, activeTab));
   }
 
   window.addEventListener('hashchange', () => {
@@ -67,12 +79,21 @@ export default async function decorate(block) {
     activeHash = activeHash ? activeHash.substring(1) : namedSections[0].getAttribute('data-name');
     if (!activeHash) return;
 
+    const element = document.getElementById(activeHash);
+    if (element) {
+      const targetTabName = element.closest('.tabs')?.getAttribute('aria-labelledby');
+      const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
+      if (!targetTab) return;
+      openTab(targetTab);
+      document.getElementById(activeHash).scrollIntoView();
+    }
+
     const targetTab = block.querySelector(`a[href="#${activeHash}"]`);
     if (!targetTab) return;
 
     openTab(targetTab);
 
-    // scroll conent into view
+    // scroll content into view
     const firstVisibleSection = main.querySelector(`div.section[aria-labelledby="${activeHash}"]`);
     if (!firstVisibleSection) return;
 
