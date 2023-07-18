@@ -326,9 +326,10 @@ em strong {
 }
 
 p.video-title {
-  font-size: 24px;
+  font-size: 14px;
+  font-style: italic;
   color: #34393d;
-  font-family: var(--ff-proxima-xbold);
+  font-family: var(--ff-proxima-regular);
   margin-bottom: 20px;
   margin-top: 15px;
   background-color: var(--background-color);
@@ -1473,6 +1474,11 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-xbold);
 }
 
+.product p.video-title {
+  font-size: 24px;
+  font-family: var(--ff-proxima-xbold);
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1565,11 +1571,6 @@ main .section.background-molecules {
     color: var(--link-color);
     line-height: 21px;
     margin-bottom: 10px;
-}
-
-.technology .columns.block.columns-2-cols .button-container:not(:first-child) > .video-wrapper .video-title,
-.application .columns.block.columns-2-cols .button-container:not(:first-child) > .video-wrapper .video-title {
-  font-family: var(--ff-proxima-regular);
 }
 
 .blend-image img {
