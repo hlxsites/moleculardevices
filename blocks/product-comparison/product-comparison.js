@@ -50,7 +50,7 @@ export default async function decorate(block) {
     const thisRow = domEl('tr');
     thisRow.append(domEl('td', attributeMapping[attribute]));
     productIdentifiers.forEach((productIdentifier) => {
-      let rowValue = productSpecs[productIdentifier][attribute.toLowerCase()] || '';
+      let rowValue = productSpecs[productIdentifier][attribute] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
       rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
       if (!rowValue) rowValue = '<img src="/images/false-icon.png" alt="false" width="30" height="30">';
