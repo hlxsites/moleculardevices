@@ -551,9 +551,11 @@ function enableStickyElements() {
     let stackedHeight = 0;
     STICKY_ELEMENTS.forEach((element, index) => {
       if (currentScrollPosition > offsets[index] - stackedHeight) {
-        element.classList.add('sticky');
-        element.style.top = `${stackedHeight}px`;
-        stackedHeight += element.offsetHeight;
+        if (!document.querySelector('header .mainmenu-wrapper [aria-expanded="true"]')) {
+          element.classList.add('sticky');
+          element.style.top = `${stackedHeight}px`;
+          stackedHeight += element.offsetHeight;
+        }
       } else {
         element.classList.remove('sticky');
         element.style.top = '';

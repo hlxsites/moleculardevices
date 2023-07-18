@@ -1558,9 +1558,9 @@ main .section.background-molecules {
   mix-blend-mode: darken;
 }
 
-.title-center h2,
-.title-center h3,
-.title-center h4 {
+.section.title-center > .default-content-wrapper > h2,
+.section.title-center > .default-content-wrapper > h3,
+.section.title-center > .default-content-wrapper > h4 {
   text-align: center;
 }
 
@@ -1606,6 +1606,19 @@ main .section.background-molecules {
 
 .category-3d-biology .default-content-wrapper h3 {
   font-size: 36px;
+}
+
+
+.section.product-titles .default-content-wrapper > h2 {
+  font-size: 40px;
+}
+
+.section.product-titles .default-content-wrapper > h4 {
+  font-size: 30px;
+}
+
+.section.blue-title .default-content-wrapper > h2 {
+  color: #008da9;
 }
 
 /*
