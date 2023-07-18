@@ -148,7 +148,6 @@ header .actionable-card-submenu ul {
 
 header .actionable-card-submenu li {
   font-size: 14px;
-  font-family: Quicksand, sans-serif;
   font-weight: 100;
   margin-bottom: 10px;
 }
@@ -825,7 +824,6 @@ header .large-card-submenu ul {
   min-height: 1px;
   padding-left: 20px;
   margin-bottom: 40px;
-  font-family: Quicksand, sans-serif;
   font-weight: 200;
   font-size: 14px;
   text-align: left;
@@ -1097,10 +1095,10 @@ header .image-without-text-submenu img {
 
 header .image-without-text-submenu p {
   color: var(--text-white);
+  font-family: var(--ff-proxima-light);
   font-size: 25px;
   text-transform: none;
   text-align: center;
-  font-family: Quicksand, sans-serif;
 }
 
 header .no-margin img {
@@ -1290,7 +1288,6 @@ header .actionable-card-submenu.uppercase > div:nth-child(2) > div:nth-child(1) 
 }
 
 header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) > p {
-  font-family: Quicksand, sans-serif;
   font-weight: 100;
   font-size: 12px;
   line-height: 20px;
@@ -1300,10 +1297,6 @@ header .actionable-card-submenu.text-only.proxima-nova-lt > div:nth-child(2) > d
   font-family: var(--ff-proxima-light);
   font-weight: 100;
   font-size: 16px;
-}
-
-header .actionable-card-submenu strong {
-  font-family: QuickSand, sans-serif;
 }
 
 header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) > p:nth-child(1) {
@@ -1364,7 +1357,6 @@ header .actionable-card-submenu.customercare-portal h3,
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
   line-height: 1.5;
-  font-family: Quicksand, sans-serif;
   color: rgba(255 255 255 / 75%);
 }
 
