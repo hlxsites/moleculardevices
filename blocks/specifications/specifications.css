@@ -6,6 +6,7 @@ main .section .specifications-wrapper {
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  margin-bottom: 50px;
 }
 
 .specifications .table-container::-webkit-scrollbar {
