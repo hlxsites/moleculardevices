@@ -20,11 +20,11 @@ function alignTitles() {
       // get current heights
       cards.forEach((card, idx) => {
         const title = card.querySelector('h3');
-        // cleanup existing heights set on element
-        title.style.removeProperty('height');
         // define the new ones
         currHeights[idx] = 0;
         if (title) {
+          // cleanup existing heights set on element
+          title.style.removeProperty('height');
           currHeights[idx] = title.clientHeight;
         }
       });
