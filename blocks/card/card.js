@@ -182,7 +182,8 @@ class Card {
 export async function createCard(config) {
   placeholders = await fetchPlaceholders();
   config.defaultButtonText = config.defaultButtonText
-    ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText : placeholders.readMore;
+    ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText
+    : placeholders.readMore;
   const card = new Card(config);
   await card.loadCSSFiles();
   return card;
