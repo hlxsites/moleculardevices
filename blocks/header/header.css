@@ -148,7 +148,6 @@ header .actionable-card-submenu ul {
 
 header .actionable-card-submenu li {
   font-size: 14px;
-  font-family: Quicksand, sans-serif;
   font-weight: 100;
   margin-bottom: 10px;
 }
@@ -825,7 +824,6 @@ header .large-card-submenu ul {
   min-height: 1px;
   padding-left: 20px;
   margin-bottom: 40px;
-  font-family: Quicksand, sans-serif;
   font-weight: 200;
   font-size: 14px;
   text-align: left;
@@ -1088,6 +1086,21 @@ header .image-with-text-submenu img {
   margin-left: -30px;
 }
 
+header .image-without-text-submenu img {
+  width: 686px;
+  height: 322px;
+  margin-top: 40px;
+  margin-left: -55px;
+}
+
+header .image-without-text-submenu p {
+  color: var(--text-white);
+  font-family: var(--ff-proxima-light);
+  font-size: 25px;
+  text-transform: none;
+  text-align: center;
+}
+
 header .no-margin img {
   margin-top: 0;
 }
@@ -1275,7 +1288,6 @@ header .actionable-card-submenu.uppercase > div:nth-child(2) > div:nth-child(1) 
 }
 
 header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) > p {
-  font-family: Quicksand, sans-serif;
   font-weight: 100;
   font-size: 12px;
   line-height: 20px;
@@ -1285,10 +1297,6 @@ header .actionable-card-submenu.text-only.proxima-nova-lt > div:nth-child(2) > d
   font-family: var(--ff-proxima-light);
   font-weight: 100;
   font-size: 16px;
-}
-
-header .actionable-card-submenu strong {
-  font-family: QuickSand, sans-serif;
 }
 
 header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) > p:nth-child(1) {
@@ -1349,7 +1357,6 @@ header .actionable-card-submenu.customercare-portal h3,
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
   line-height: 1.5;
-  font-family: Quicksand, sans-serif;
   color: rgba(255 255 255 / 75%);
 }
 
@@ -1736,6 +1743,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     background: var(--header-color-orange);
     font-size: 15px;
     transition: all .3s;
+    justify-content: center;
   }
 
   /* request quote */
@@ -1859,6 +1867,16 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
 
   html[lang="de"] header .mainmenu-wrapper.sticky .menu-nav-category {
     font-size: 12px;
+  }
+
+  html[lang="de"] header .nav-tabs > li.header-rfq > a,
+  html[lang="it"] header .nav-tabs > li.header-rfq > a,
+  html[lang="es"] header .nav-tabs > li.header-rfq > a {
+    font-size: 13px;
+  }
+
+  html[lang="fr"] header .nav-tabs > li.header-rfq > a {
+    font-size: 14px;
   }
 
   header .nav-tabs .menu-nav-submenu > div {

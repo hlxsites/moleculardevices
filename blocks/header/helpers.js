@@ -44,6 +44,10 @@ export function collapseAllSubmenus(menu) {
 }
 
 export function expandMenu(element) {
+  if (element.closest('.sticky') && element.querySelector('.menu-nav-submenu')) {
+    window.scroll({ behavior: 'smooth', top: 0 });
+  }
+
   collapseAllSubmenus(element.closest('ul'));
   element.setAttribute('aria-expanded', 'true');
 }

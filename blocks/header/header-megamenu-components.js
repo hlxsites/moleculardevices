@@ -100,6 +100,9 @@ function buildImageCardSubmenu(content) {
 function buildImageWithTextSubmenu(imageWithTextContent) {
   return imageWithTextContent;
 }
+function buildImageWithoutTextSubmenu(imageWithoutTextContent) {
+  return imageWithoutTextContent;
+}
 
 function getRightSubmenuBuilder(className) {
   const map = new Map();
@@ -108,6 +111,7 @@ function getRightSubmenuBuilder(className) {
   map.set('large-card-submenu', buildLargeCardsMenu);
   map.set('actionable-card-submenu', buildActionableCardSubmenu);
   map.set('image-with-text-submenu', buildImageWithTextSubmenu);
+  map.set('image-without-text-submenu', buildImageWithoutTextSubmenu);
   map.set('image-card-submenu', buildImageCardSubmenu);
   return map.get(className);
 }

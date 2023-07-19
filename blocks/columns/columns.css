@@ -528,10 +528,6 @@ main .section>div.columns-wrapper {
     margin-bottom: 30px;
   }
 
-  .cards.who-we-are > ul > li {
-    margin-bottom: 30px;
-  }
-
   .columns.contact > div > div > ul > li:not(:last-child)::after {
     width: calc(100% - 44px);
   }
