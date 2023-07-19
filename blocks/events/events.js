@@ -1,4 +1,6 @@
-import { fetchPlaceholders, readBlockConfig, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
+import {
+  fetchPlaceholders, readBlockConfig, toCamelCase, toClassName,
+} from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   createList, renderPagination, swapData, toggleFilter,
