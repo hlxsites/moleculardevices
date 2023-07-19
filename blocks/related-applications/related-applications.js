@@ -9,6 +9,55 @@ async function renderFragment(fragment, block, className) {
   block.append(fragment);
 }
 
+function alignTitles() {
+  // eslint-disable-next-line consistent-return
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const currHeights = [];
+      let alignedHeights = [];
+      const cards = entry.target.querySelectorAll('.related-app');
+
+      // get current heights
+      cards.forEach((card, idx) => {
+        const title = card.querySelector('h3');
+        currHeights[idx] = 0;
+        if (title) {
+          currHeights[idx] = title.clientHeight;
+        }
+      });
+
+      // calculate new heights
+      if (window.innerWidth < 992) {
+        // 1 col per row
+        // eslint-disable-next-line no-const-assign
+        alignedHeights = [...currHeights];
+      } else {
+        // 2 cols per row
+        for (let i = 0; i < currHeights.length; i += 2) {
+          const curr = currHeights[i];
+          const next = (i + 1 < currHeights.length) ? currHeights[i + 1] : 0;
+          alignedHeights[i] = Math.max(curr, next);
+          alignedHeights[i + 1] = Math.max(curr, next);
+        }
+      }
+
+      // set heights
+      cards.forEach((card, idx) => {
+        const title = card.querySelector('h3');
+        if (title) {
+          title.style.height = `${alignedHeights[idx]}px`;
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body);
+  const relApps = document.querySelectorAll('.related-apps-container');
+  relApps.forEach((relApp) => {
+    observer.observe(relApp);
+  });
+}
+
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
   const hasTOC = block.classList.contains('toc');
@@ -60,6 +109,8 @@ export default async function decorate(block) {
     block.append(links);
   }
   block.append(apps);
+
+  alignTitles();
 
   return block;
 }
