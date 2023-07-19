@@ -928,6 +928,10 @@ main .section.features-section .button-container {
   font-style: italic;
 }
 
+main .section.center > div:not(.carousel-wrapper) {
+  text-align: center;
+}
+
 /* Featured Asset section */
 main div.section.featured-asset {
   background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
@@ -1251,10 +1255,6 @@ main div.orange-buttons .button.secondary:active {
 
 main div.orange-buttons .button.primary>.button-border {
   display: none;
-}
-
-main .section.center {
-  text-align: center;
 }
 
 main .section.background-molecules {
