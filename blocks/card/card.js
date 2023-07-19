@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 
 import {
-  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders,
+  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
@@ -180,7 +180,7 @@ class Card {
 export async function createCard(config) {
   const placeholders = await fetchPlaceholders();
   config.defaultButtonText = config.defaultButtonText
-    ? placeholders[config.defaultButtonText] || config.defaultButtonText : placeholders.readMore;
+    ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText : placeholders.readMore;
   const card = new Card(config);
   await card.loadCSSFiles();
   return card;
