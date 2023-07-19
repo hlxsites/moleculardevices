@@ -11,10 +11,10 @@ async function renderFragment(fragment, block, className) {
 
 function alignTitles() {
   // eslint-disable-next-line consistent-return
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new ResizeObserver((entries) => {
     entries.forEach((entry) => {
       const currHeights = [];
-      let alignedHeights = [];
+      const alignedHeights = [];
       const cards = entry.target.querySelectorAll('.related-app');
 
       // get current heights
@@ -27,11 +27,7 @@ function alignTitles() {
       });
 
       // calculate new heights
-      if (window.innerWidth < 992) {
-        // 1 col per row
-        // eslint-disable-next-line no-const-assign
-        alignedHeights = [...currHeights];
-      } else {
+      if (window.innerWidth > 991) {
         // 2 cols per row
         for (let i = 0; i < currHeights.length; i += 2) {
           const curr = currHeights[i];
@@ -45,7 +41,13 @@ function alignTitles() {
       cards.forEach((card, idx) => {
         const title = card.querySelector('h3');
         if (title) {
-          title.style.height = `${alignedHeights[idx]}px`;
+          if (window.innerWidth < 992) {
+            // 1 col per row - reset heights
+            title.style.removeProperty('height');
+          } else {
+            // 2 cols per row - set new heights
+            title.style.height = `${alignedHeights[idx]}px`;
+          }
         }
       });
     });
