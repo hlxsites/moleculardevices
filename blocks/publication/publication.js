@@ -4,7 +4,7 @@ import { createOverview, fetchData } from '../news/news.js';
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  const placeholders = fetchPlaceholders();
+  const placeholders = await fetchPlaceholders();
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,

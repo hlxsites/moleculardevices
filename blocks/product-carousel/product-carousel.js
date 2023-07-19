@@ -10,7 +10,7 @@ export default async function decorate(block) {
     .filter((product) => productPaths.includes(product.path))
     .all();
 
-  const placeholders = fetchPlaceholders();
+  const placeholders = await fetchPlaceholders();
 
   const cardRenderer = await createCard({
     titleLink: false,
