@@ -17,6 +17,8 @@ import {
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
 
+let placeholders = {};
+
 export async function handleCompareProducts(e) {
   const { target } = e;
   const clickedItemTitle = getTitleFromNode(target);
@@ -115,7 +117,7 @@ class Card {
       && item.specifications !== '0'
     ) {
       c2aBlock.append(div({ class: 'compare-button' },
-        'Compare (',
+        `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
         ')',
         span({
@@ -178,7 +180,7 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config) {
-  const placeholders = await fetchPlaceholders();
+  placeholders = await fetchPlaceholders();
   config.defaultButtonText = config.defaultButtonText
     ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText : placeholders.readMore;
   const card = new Card(config);
