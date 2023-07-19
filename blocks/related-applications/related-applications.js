@@ -23,7 +23,7 @@ function alignTitles() {
         // define the new ones
         currHeights[idx] = 0;
         if (title) {
-          // cleanup existing heights set on element
+          // cleanup existing heights before setting them
           title.style.removeProperty('height');
           currHeights[idx] = title.clientHeight;
         }
