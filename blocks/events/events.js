@@ -1,4 +1,4 @@
-import { readBlockConfig, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, readBlockConfig, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   createList, renderPagination, swapData, toggleFilter,
@@ -6,6 +6,8 @@ import {
 import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
+
+let placeholders = {};
 
 function splitByComma(value) {
   return value.split(',').map((s) => s.trim());
@@ -69,7 +71,7 @@ function createFilters(options) {
       )),
       options.activeFilters.eventType,
       'event-type',
-      'Event Type',
+      placeholders.eventType || 'Event Type',
     ),
     createEventsDropdown(
       Array.from(new Set(
@@ -78,7 +80,7 @@ function createFilters(options) {
       )),
       options.activeFilters.eventRegion,
       'event-region',
-      'Region',
+      placeholders.region || 'Region',
     ),
   ];
 }
@@ -165,12 +167,13 @@ export default async function decorate(block) {
   const relatedLink = block.querySelector('a');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
+  placeholders = await fetchPlaceholders();
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     title: title ? title.innerHTML : '',
-    panelTitle: 'Filter By :',
-    noResult: 'No Event found !',
+    panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
+    noResult: `${placeholders.noEventFound || 'No Event found'} !`,
     relatedLink,
     showDescription: false,
     showFutureEvents,

@@ -1,7 +1,7 @@
 import {
   a, div, domEl, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 
 function decorateDownloadButton() {
   const specsAnnotationBlock = document.querySelector('.section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child');
@@ -20,6 +20,8 @@ function decorateDownloadButton() {
 
 export default async function decorate(block) {
   decorateDownloadButton();
+
+  const placeholders = await fetchPlaceholders();
 
   const jsonFileBlock = block.querySelector('a');
   const jsonFile = jsonFileBlock?.href;
@@ -43,7 +45,7 @@ export default async function decorate(block) {
       div({ class: 'product-heading' },
         p(product.title),
         a({ href: `/quote-request?pid=${familyId}` },
-          'Request a Quote',
+          placeholders.requestAQuote || 'Request a Quote',
           i({ class: 'fa fa-chevron-circle-right' }),
         ),
       ),

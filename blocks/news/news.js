@@ -1,8 +1,11 @@
 import {
+  fetchPlaceholders,
   readBlockConfig,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createList, createDropdown } from '../../scripts/list.js';
+
+let placeholders = {};
 
 function formatDateFullYear(unixDateString) {
   return new Date(unixDateString * 1000).getFullYear();
@@ -11,7 +14,7 @@ function formatDateFullYear(unixDateString) {
 function createFilters(options) {
   const date = Array.from(new Set(options.data.map((n) => n.filterYear)));
   return [
-    createDropdown(date, options.activeFilters.year, 'year', 'Select Year'),
+    createDropdown(date, options.activeFilters.year, 'year', placeholders.selectYear || 'Select Year'),
   ];
 }
 
@@ -48,12 +51,13 @@ export async function fetchData(type) {
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
+  placeholders = fetchPlaceholders();
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     showDescription: false,
     viewMoreText: '',
-    panelTitle: 'Filter By :',
+    panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
   };
   options.activeFilters = new Map();
   options.activeFilters.set('year', '');

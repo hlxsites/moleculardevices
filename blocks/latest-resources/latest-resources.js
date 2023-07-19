@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateButtons, getMetadata } from '../../scripts/lib-franklin.js';
+import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import {
@@ -35,8 +35,9 @@ export default async function decorate(block) {
     .limit(9)
     .all();
 
+  const placeholders = fetchPlaceholders();
   const resourceCard = await createCard({
-    defaultButtonText: 'Learn more',
+    defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
 
@@ -78,7 +79,7 @@ export default async function decorate(block) {
           href: '#resources',
           class: 'button primary',
           onclick: onViewAllClick,
-        }, 'View all Resources'),
+        }, placeholders.viewAllResources || 'View all Resources'),
       ),
     ),
   );

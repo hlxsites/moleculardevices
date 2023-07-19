@@ -70,7 +70,8 @@ export default async function decorate(block) {
 
   const placeholders = await fetchPlaceholders();
   const displayFilters = {};
-  displayFilters['View All'] = placeholders['View All'] || 'View All';
+  displayFilters['View All'] = placeholders.viewAll || 'View All';
+  displayFilters['Videos and Webinars'] = placeholders.videosAndWebinars || 'Videos and Webinars';
 
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {

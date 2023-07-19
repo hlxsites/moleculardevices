@@ -9,6 +9,9 @@ import {
   p,
   a,
 } from '../../scripts/dom-helpers.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+
+let placeholders = {};
 
 function buildTopicCard(topic) {
   const cardDataCount = `${topic.count}+`;
@@ -25,13 +28,13 @@ function buildTopicCard(topic) {
         { class: 'card-data' },
         img({ src: '/images/resource-icons/citation.png' }),
         h2({ class: 'card-data-count' }, cardDataCount),
-        h3({ class: 'card-data-label' }, 'Citations'),
+        h3({ class: 'card-data-label' }, placeholders.citations || 'Citations'),
       ),
       p(
         { class: 'card-citations-link' },
         a(
           { href: topic.path },
-          'View Citation',
+          placeholders.viewCitation || 'View Citation',
           i({ class: 'fa fa-arrow-circle-o-right' }),
         ),
       ),
@@ -46,6 +49,7 @@ export default async function decorate(block) {
     .all();
 
   const topicsList = [];
+  placeholders = await fetchPlaceholders();
 
   topicItems.forEach((topic) => {
     const card = buildTopicCard(topic);
