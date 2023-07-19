@@ -409,6 +409,7 @@ const VARIANTS = {
   },
 
   'CUSTOMER-BREAKTHROUGHS': {
+    cardRenderer: defaultCardRender,
     clusterCategories: true,
 
     async getData() {
