@@ -101,7 +101,7 @@ export default async function decorate(block) {
         { class: 'resource-info' },
         div(
           { class: 'resource-header' },
-          p(item.type),
+          p(item.displayType),
           h3(item.title),
         ),
         div(

@@ -56,19 +56,26 @@ export default async function decorate(block) {
   const tBodyBlock = domEl('tbody');
   categories.forEach((dataName) => {
     const groupData = specData[dataName];
+    // do nothing if the group data does not contain at least one label and one value array
+    if (groupData.data.length < 2) {
+      return;
+    }
     const attrs = Object.keys(groupData.data[0] || {});
     attrs.forEach((attr) => {
-      if (attr === 'path') {
+      if (['key', 'path', 'identifier'].includes(attr)) {
         return;
       }
       const thisRow = domEl('tr');
-      if (attr === 'Name') {
+      if (attr === 'name') {
         thisRow.append(domEl('td',
-          h3(groupData.data[0].Name)),
+          h3(groupData.data[1].name)),
         );
       } else {
-        thisRow.append(domEl('td', attr));
+        thisRow.append(domEl('td', groupData.data[0][attr]));
         groupData.data.forEach((item) => {
+          if (item.key === 'label') {
+            return;
+          }
           let rowValue = item[attr];
           rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
           rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
