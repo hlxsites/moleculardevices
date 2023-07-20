@@ -13,50 +13,29 @@ function alignTitles() {
   // eslint-disable-next-line consistent-return
   const observer = new ResizeObserver((entries) => {
     entries.forEach((entry) => {
-      const currHeights = [];
-      const alignedHeights = [];
       const cards = entry.target.querySelectorAll('.related-app');
-
-      // get current heights
-      cards.forEach((card, idx) => {
+      // cleanup heights
+      cards.forEach((card) => {
         const title = card.querySelector('h3');
-        // define the new ones
-        currHeights[idx] = 0;
-        if (title) {
-          // cleanup existing heights before setting them
-          title.style.removeProperty('height');
-          currHeights[idx] = title.clientHeight;
-        }
+        if (title) title.style.removeProperty('height');
       });
-
-      // calculate new heights
+      // set heights for 2-column layout
       if (window.innerWidth > 991) {
-        // 2 cols per row
-        for (let i = 0; i < currHeights.length; i += 2) {
-          const curr = currHeights[i];
-          const next = (i + 1 < currHeights.length) ? currHeights[i + 1] : 0;
-          alignedHeights[i] = Math.max(curr, next);
-          alignedHeights[i + 1] = Math.max(curr, next);
-        }
-      }
-
-      // set heights
-      cards.forEach((card, idx) => {
-        const title = card.querySelector('h3');
-        if (title) {
-          if (window.innerWidth < 992) {
-            // 1 col per row - reset heights
-            title.style.removeProperty('height');
-          } else {
-            // 2 cols per row - set new heights
-            title.style.height = `${alignedHeights[idx]}px`;
+        let leftEl;
+        let rightEl;
+        for (let i = 0; i < cards.length; i += 2) {
+          leftEl = cards[i].querySelector('h3');
+          if (i + 1 < cards.length) rightEl = cards[i + 1].querySelector('h3');
+          if (leftEl && rightEl) {
+            const calcHeight = Math.max(leftEl.clientHeight, rightEl.clientHeight);
+            leftEl.style.height = `${calcHeight}px`;
+            rightEl.style.height = `${calcHeight}px`;
           }
         }
-      });
+      }
     });
   });
 
-  observer.observe(document.body);
   const relApps = document.querySelectorAll('.related-apps-container');
   relApps.forEach((relApp) => {
     observer.observe(relApp);
