@@ -38,7 +38,7 @@ export default async function decorate(block) {
       div({ class: 'product-heading' },
         div({ class: 'product-heading-title darkgrey' }, productSpec.title),
         createOptimizedPicture(productSpec.thumbnail),
-        p(productSpec.description),
+        productSpec.description ? p(productSpec.description) : '',
         a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
       )),
     );
