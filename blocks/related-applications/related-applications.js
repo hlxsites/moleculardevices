@@ -20,7 +20,7 @@ function alignTitles() {
         if (title) title.style.removeProperty('height');
       });
       // set heights for 2-column layout
-      if (window.innerWidth > 991) {
+      if (window.matchMedia('only screen and (min-width: 992px)').matches) {
         for (let i = 0; i < cards.length; i += 2) {
           const leftEl = cards[i].querySelector('h3');
           const rightEl = ((i + 1) < cards.length) ? cards[i + 1].querySelector('h3') : '';
