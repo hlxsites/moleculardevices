@@ -61,6 +61,7 @@
   --text-color: #34393d;
   --text-white: #fff;
   --text-gray: #6a747c;
+  --text-gray2: #606a6c;
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
   --heading-color: #00758d;
@@ -1480,6 +1481,23 @@ main .section.background-molecules {
   font-style: normal;
 }
 
+.product .section.tabs h2:has(+ h4) {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.product .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.product .section.tabs h4:last-child {
+  margin-bottom: 45px;
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1574,13 +1592,33 @@ main .section.background-molecules {
     margin-bottom: 10px;
 }
 
+.technology .section.tabs h2 + h4,
+.application .section.tabs h2 + h4 {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.technology .section.tabs h4,
+.application .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.technology .section.tabs h4:last-child,
+.application .section.tabs h4:last-child {
+  margin-bottom: 45px;
+}
+
 .blend-image img {
   mix-blend-mode: darken;
 }
 
-.title-center h2,
-.title-center h3,
-.title-center h4 {
+.section.title-center > .default-content-wrapper > h2,
+.section.title-center > .default-content-wrapper > h3,
+.section.title-center > .default-content-wrapper > h4 {
   text-align: center;
 }
 
@@ -1626,6 +1664,19 @@ main .section.background-molecules {
 
 .category-3d-biology .default-content-wrapper h3 {
   font-size: 36px;
+}
+
+
+.section.product-titles .default-content-wrapper > h2 {
+  font-size: 40px;
+}
+
+.section.product-titles .default-content-wrapper > h4 {
+  font-size: 30px;
+}
+
+.section.blue-title .default-content-wrapper > h2 {
+  color: #008da9;
 }
 
 /*
