@@ -71,7 +71,7 @@ li.related-link::marker {
   background-color: var(--grey-background-color);
 }
 
-.related-applications-container .related-applications-wrapper {
+.related-applications-container div.related-applications-wrapper {
   padding-top: 0;
 }
 
