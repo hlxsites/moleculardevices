@@ -111,9 +111,6 @@
 .product-comparison .responsive-table .product-info-btn  {
   color: var(--button-bg-color);
   border: 2px solid var(--button-bg-color);
-}
-
-.product-comparison .responsive-table a {
   padding: 6px 12px;
   font-size: 13px;
   display: inline-block;
@@ -124,7 +121,7 @@
   transition: all .3s;
 }
 
-.product-comparison .responsive-table a:hover {
+.product-comparison .responsive-table a.product-info-btn:hover {
   border-color: transparent;
   background-color: #008da9;
   color: #fff;
