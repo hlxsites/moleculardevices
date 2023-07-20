@@ -32,6 +32,10 @@
   scroll-behavior: smooth;
 }
 
+.media-gallery .overlay-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 .media-gallery .overlay-carousel > div.section {
   width: 100%;
   padding-top: 0;
@@ -94,7 +98,7 @@ main .media-gallery .overlay-carousel .section>div {
 }
 
 .media-gallery a.right, .media-gallery a.left {
-  top: 45vh;
+  top: 25vh;
   transform: translate(0, -50%);
   color: #fff;
   height: auto;

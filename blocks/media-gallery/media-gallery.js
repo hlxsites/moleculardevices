@@ -23,10 +23,19 @@ export async function buildMediaGallery(mg) {
   const left = a({ class: 'left' }, (span({ class: 'icon icon-chevron-left' })));
   carousel.after(close, right, left);
   decorateIcons(carousel.parentElement);
-  const scroll = (leftScroll) => carousel.scrollTo({ top: 0, left: leftScroll, behavior: 'smooth' });
+  const wrapper = carousel.parentElement;
+  const scroll = (leftScroll) => {
+    let resultingLeftScroll = leftScroll;
+    if (leftScroll < 0) {
+      resultingLeftScroll = leftScroll + wrapper.offsetWidth * carousel.children.length;
+    } else if (leftScroll + wrapper.offsetWidth > wrapper.offsetWidth * carousel.children.length) {
+      resultingLeftScroll = 0;
+    }
+    carousel.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });
+  };
   close.addEventListener('click', () => { overlay.classList.remove('open'); });
-  right.addEventListener('click', () => { scroll(carousel.scrollLeft + carousel.parentElement.offsetWidth); });
-  left.addEventListener('click', () => { scroll(carousel.scrollLeft - carousel.parentElement.offsetWidth); });
+  right.addEventListener('click', () => { scroll(carousel.scrollLeft + wrapper.offsetWidth); });
+  left.addEventListener('click', () => { scroll(carousel.scrollLeft - wrapper.offsetWidth); });
 
   const url = new URL(mg.href);
   const fragment = await loadFragment(url.pathname);
