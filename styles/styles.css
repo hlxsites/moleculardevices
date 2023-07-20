@@ -1504,9 +1504,9 @@ main .section.background-molecules {
   font-size: 36px;
 }
 
-.products .section:not(.related-applications-container) > div,
-.technology .section:not(.related-applications-container) > div,
-.application .section:not(.related-applications-container) > div {
+.products .section > div,
+.technology .section > div,
+.application .section > div {
   padding-bottom: 20px;
   padding-top: 20px
 }
