@@ -10,6 +10,10 @@
   justify-content: center;
 }
 
+.block.carousel.cards {
+  text-align: left;
+}
+
 .carousel-wrapper.cards .carousel-nav-button:hover {
   color: #adb3b7;
   border: 1.5px solid #adb3b7;
