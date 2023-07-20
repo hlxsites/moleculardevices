@@ -21,11 +21,9 @@ function alignTitles() {
       });
       // set heights for 2-column layout
       if (window.innerWidth > 991) {
-        let leftEl;
-        let rightEl;
         for (let i = 0; i < cards.length; i += 2) {
-          leftEl = cards[i].querySelector('h3');
-          if (i + 1 < cards.length) rightEl = cards[i + 1].querySelector('h3');
+          const leftEl = cards[i].querySelector('h3');
+          const rightEl = ((i + 1) < cards.length) ? cards[i + 1].querySelector('h3') : '';
           if (leftEl && rightEl) {
             const calcHeight = Math.max(leftEl.clientHeight, rightEl.clientHeight);
             leftEl.style.height = `${calcHeight}px`;
