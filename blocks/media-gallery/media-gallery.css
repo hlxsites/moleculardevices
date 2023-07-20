@@ -98,7 +98,7 @@ main .media-gallery .overlay-carousel .section>div {
 }
 
 .media-gallery a.right, .media-gallery a.left {
-  top: 25vh;
+  top: 30vh;
   transform: translate(0, -50%);
   color: #fff;
   height: auto;
