@@ -71,6 +71,10 @@ li.related-link::marker {
   background-color: var(--grey-background-color);
 }
 
+.related-applications-container .related-applications-wrapper {
+  padding-top: 0;
+}
+
 @media (max-width: 992px) {
   .related-app {
     flex-basis: 100%;
