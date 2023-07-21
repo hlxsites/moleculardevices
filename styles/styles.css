@@ -871,6 +871,14 @@ main .section.related-applications-container h2:first-child {
   }
 }
 
+.section.integrate-section {
+  padding-bottom: 0;
+}
+
+.section.integrate-section + .section {
+  padding-top: 0;
+}
+
 /* Features Section */
 main .section.features-section {
   padding-top: 50px;
