@@ -1130,6 +1130,11 @@ main .section.columns-2 .default-content-wrapper:has(.video-wrapper) {
   text-align: center;
 }
 
+main div.section.background-molecules-enhance {
+  background-image: url("/images/molecules-enhance.png");
+  background-repeat: no-repeat;
+}
+
 /* WAVE sections variants */
 
 /* BlueGreen Variant */

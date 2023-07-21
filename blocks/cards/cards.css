@@ -108,6 +108,10 @@
   font-size: 18px;
 }
 
+.cards.stacked-image-text > ul > li {
+  background-color: initial;
+}
+
 .cards.stacked-image-text .cards-card-wrapper {
   margin: auto;
   text-align: center;
