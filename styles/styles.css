@@ -780,7 +780,7 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
 
 .section.title-light > div.default-content-wrapper > h2,
 .section.title-light > div.default-content-wrapper > h2 > strong {
-  font-family: "Proxima Nova Light", sans-serif;
+  font-family: var(--ff-proxima-light);
 }
 
 .section .columns > div > div:first-child > h3 + ul {
