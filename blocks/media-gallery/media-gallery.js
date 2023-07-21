@@ -26,7 +26,7 @@ export async function buildMediaGallery(mg) {
   const wrapper = carousel.parentElement;
   const scroll = (leftScroll) => {
     let resultingLeftScroll = leftScroll;
-    if (leftScroll < 0) {
+    if (leftScroll < -100) {
       resultingLeftScroll = leftScroll + wrapper.offsetWidth * carousel.children.length;
     } else if (leftScroll + wrapper.offsetWidth > wrapper.offsetWidth * carousel.children.length) {
       resultingLeftScroll = 0;
