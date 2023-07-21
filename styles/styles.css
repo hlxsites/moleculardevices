@@ -657,7 +657,7 @@ main .section.highlight {
 }
 
 main .section.background-grey,
-main .section.background-grey + .section.background-grey.wave {
+main .section.background-grey + .section.wave:not(.background-grey-top-half) {
   background-color: var(--grey-background-color);
   margin-top: 0;
 }
