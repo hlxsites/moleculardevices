@@ -108,10 +108,6 @@
   font-size: 18px;
 }
 
-.cards.stacked-image-text > ul > li {
-  background-color: initial;
-}
-
 .cards.stacked-image-text .cards-card-wrapper {
   margin: auto;
   text-align: center;
@@ -148,6 +144,7 @@
   display: flex;
   flex-flow: column;
   border: 0;
+  background-color: initial;
 }
 
 .cards.stacked-image-text > ul > li > div > div:last-child {
@@ -263,7 +260,7 @@
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  width: 56.25%; 
+  width: 56.25%;
 }
 
 .cards.gallery ul > li .cards-card-image picture img {
@@ -317,6 +314,6 @@
     max-width: 100%;
     height: auto;
     width: auto;
-    margin-left: 0; 
+    margin-left: 0;
   }
 }
