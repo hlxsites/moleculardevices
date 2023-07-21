@@ -275,6 +275,17 @@ main .section>div.columns-wrapper {
   margin-bottom: 10px;
 }
 
+.columns.customization-automation h2 {
+  font-size: 40px;
+}
+
+.columns.customization-automation > div > div:nth-child(even) {
+  background-color: #6a747b;
+  color: var(--text-white);
+  margin-left: 0;
+  padding: 32px;
+}
+
 .columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even) > h3,
 .columns.light-and-dark-grey > div:nth-child(even) div:nth-child(odd) > h3 {
   color: #008da9;
