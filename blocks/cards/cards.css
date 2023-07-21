@@ -103,6 +103,11 @@
   border-left: 5px solid #008da9;
 }
 
+.cards.strong p {
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .cards.stacked-image-text .cards-card-wrapper {
   margin: auto;
   text-align: center;
