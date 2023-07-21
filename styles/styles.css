@@ -1707,11 +1707,16 @@ main .section.background-molecules {
   font-size: 40px;
 }
 
+.section.product-titles .default-content-wrapper > h3 {
+  font-size: 40px;
+}
+
 .section.product-titles .default-content-wrapper > h4 {
   font-size: 30px;
 }
 
-.section.blue-title .default-content-wrapper > h2 {
+.section.blue-title .default-content-wrapper > h2,
+.section.blue-title .default-content-wrapper > h3 {
   color: #008da9;
 }
 
