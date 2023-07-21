@@ -206,11 +206,11 @@ main .section>div.columns-wrapper {
   margin-left: 0;
 }
 
-.columns.customization-automation h2 {
+.columns.video-teaser h2 {
   font-size: 40px;
 }
 
-.columns.customization-automation > div > div:nth-child(even) {
+.columns.video-teaser > div > div:nth-child(even) {
   background-color: #6a747b;
   color: var(--text-white);
   margin-left: 0;
