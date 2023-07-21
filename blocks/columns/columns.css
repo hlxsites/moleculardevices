@@ -210,7 +210,7 @@ main .section>div.columns-wrapper {
   font-size: 40px;
 }
 
-.columns.video-teaser > div > div:nth-child(even) {
+.columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
   background-color: #6a747b;
   color: var(--text-white);
   margin-left: 0;
