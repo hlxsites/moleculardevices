@@ -327,9 +327,10 @@ em strong {
 }
 
 p.video-title {
-  font-size: 24px;
+  font-size: 14px;
+  font-style: italic;
   color: #34393d;
-  font-family: var(--ff-proxima-xbold);
+  font-family: var(--ff-proxima-regular);
   margin-bottom: 20px;
   margin-top: 15px;
   background-color: var(--background-color);
@@ -719,6 +720,10 @@ main .section.horizontal-line > div:first-of-type {
   padding-top: 45px;
 }
 
+main .section.horizontal-line {
+  padding-top: 0;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -830,6 +835,10 @@ main .section.service-support .default-content-wrapper h2 {
 
 main .section.service-support.support-options h2 {
   font-size: 70px;
+}
+
+main .section.related-applications-container h2:first-child {
+  padding-top: 26px;
 }
 
 @media (max-width: 991px) {
@@ -1466,6 +1475,12 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-xbold);
 }
 
+.product p.video-title {
+  font-size: 24px;
+  font-family: var(--ff-proxima-xbold);
+  font-style: normal;
+}
+
 .product .section.tabs h2:has(+ h4) {
   font-family: var(--ff-proxima-light);
   margin-bottom: 0;
@@ -1510,8 +1525,13 @@ main .section.background-molecules {
   padding-top: 50px;
 }
 
-.technology main .section.tabs h2,
-.application main .section.tabs h2 {
+.technology .section.tabs .columns-wrapper p + h2,
+.application .section.tabs .columns-wrapper p + h2 {
+  padding-top: 20px;
+}
+
+.technology main .section.tabs:not(.related-applications-container) h2,
+.application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
 }
 
