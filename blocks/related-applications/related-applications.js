@@ -9,6 +9,37 @@ async function renderFragment(fragment, block, className) {
   block.append(fragment);
 }
 
+function alignTitles() {
+  // eslint-disable-next-line consistent-return
+  const observer = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      const cards = entry.target.querySelectorAll('.related-app');
+      // cleanup heights
+      cards.forEach((card) => {
+        const title = card.querySelector('h3');
+        if (title) title.style.removeProperty('height');
+      });
+      // set heights for 2-column layout
+      if (window.matchMedia('only screen and (min-width: 992px)').matches) {
+        for (let i = 0; i < cards.length; i += 2) {
+          const leftEl = cards[i].querySelector('h3');
+          const rightEl = ((i + 1) < cards.length) ? cards[i + 1].querySelector('h3') : '';
+          if (leftEl && rightEl) {
+            const calcHeight = Math.max(leftEl.clientHeight, rightEl.clientHeight);
+            leftEl.style.height = `${calcHeight}px`;
+            rightEl.style.height = `${calcHeight}px`;
+          }
+        }
+      }
+    });
+  });
+
+  const relApps = document.querySelectorAll('.related-apps-container');
+  relApps.forEach((relApp) => {
+    observer.observe(relApp);
+  });
+}
+
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
   const hasTOC = block.classList.contains('toc');
@@ -57,6 +88,8 @@ export default async function decorate(block) {
     block.append(links);
   }
   block.append(apps);
+
+  alignTitles();
 
   return block;
 }
