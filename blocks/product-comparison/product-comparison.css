@@ -28,6 +28,9 @@
   color: var(--text-dark-gray);
 }
 
+.product-comparison .responsive-table tr th:last-child .product-heading-title {
+  background-color: var(--button-bg-color);
+}
 
 .product-comparison .product-heading p {
   color: var(--text-dark-gray);
@@ -101,6 +104,7 @@
 }
 
 .product-comparison .product-heading .product-heading-title  {
+  padding: 20px 15px;
   line-height: normal;
   min-height: 100px;
   display: flex;
