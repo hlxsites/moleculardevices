@@ -657,9 +657,25 @@ main .section.highlight {
 }
 
 main .section.background-grey,
-main .section.background-grey + .section.wave {
+main .section.background-grey + .section.wave:not(.background-grey-top-half) {
   background-color: var(--grey-background-color);
   margin-top: 0;
+}
+
+main .section.background-grey-top-half {
+  position: relative;
+}
+
+main .section.background-grey-top-half::before {
+  content: "";
+  background-color: var(--grey-background-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 100%;
+  z-index: -1;
+  margin-top: -50px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -860,6 +876,10 @@ main .section.related-applications-container h2:first-child {
     font-size: 36px;
     padding-top: 30px;
   }
+}
+
+.section.no-padding-bottom {
+  padding-bottom: 0;
 }
 
 /* Features Section */
@@ -1128,6 +1148,11 @@ main div.section.wave .default-content-wrapper p:first-of-type {
 main .section.columns-2 .default-content-wrapper:has(picture),
 main .section.columns-2 .default-content-wrapper:has(.video-wrapper) {
   text-align: center;
+}
+
+main div.section.background-molecules-enhance {
+  background-image: url("/images/molecules-enhance.png");
+  background-repeat: no-repeat;
 }
 
 /* WAVE sections variants */
@@ -1685,11 +1710,16 @@ main .section.background-molecules {
   font-size: 40px;
 }
 
+.section.product-titles .default-content-wrapper > h3 {
+  font-size: 40px;
+}
+
 .section.product-titles .default-content-wrapper > h4 {
   font-size: 30px;
 }
 
-.section.blue-title .default-content-wrapper > h2 {
+.section.blue-title .default-content-wrapper > h2,
+.section.blue-title .default-content-wrapper > h3 {
   color: #008da9;
 }
 
