@@ -7,9 +7,10 @@ import {
   option,
   span,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
+let placeholders = {};
 
 let products = [];
 let filteredProducts = [];
@@ -21,7 +22,7 @@ function addOptionsToSelect(selectPicker, optionsArray) {
 
   const defaultOpt = option(
     { value: '' },
-    'Please Select',
+    placeholders.pleaseSelect || 'Please Select',
   );
   defaultOpt.selected = true;
   selectPicker.appendChild(defaultOpt);
@@ -50,7 +51,7 @@ function updateFilterOptions(filterNumber) {
 
   // Clear the current filter options
   const dropdown = filterDropdowns[filterNumber - 1];
-  dropdown.innerHTML = '<option value="">Please Select</option>';
+  dropdown.innerHTML = `<option value="">${placeholders.pleaseSelect || 'Please Select'}</option>`;
 
   // Add the new filter options
   addOptionsToSelect(dropdown, Array.from(filterOptions));
@@ -61,7 +62,7 @@ function filterChange(filterNumber) {
 
   // Reset all filters that come after the one changed and disable them
   for (let i = filterNumber; i < filterDropdowns.length; i += 1) {
-    filterDropdowns[i].innerHTML = '<option value="">Please Select</option>';
+    filterDropdowns[i].innerHTML = `<option value="">${placeholders.pleaseSelect || 'Please Select'}</option>`;
     filterDropdowns[i].disabled = true;
   }
 
@@ -102,7 +103,7 @@ function filterChange(filterNumber) {
 
   // Update the products count
   const totalCount = document.querySelector('#step-3 .result-count');
-  totalCount.innerHTML = `${productsCount} Results`;
+  totalCount.innerHTML = `${productsCount} ${placeholders.results || 'Results'}`;
 }
 
 function createFilterDropdown(filterID, filterOptionsArray, disabled) {
@@ -199,6 +200,8 @@ export default async function renderFiltersRow(category, type, finderProducts, d
   products = finderProducts;
   filteredProducts = products;
   filterDropdowns = [];
+
+  placeholders = await fetchPlaceholders();
 
   const filtersDict = await getCategoryFilterDict(category, type);
   if (!filtersDict) {

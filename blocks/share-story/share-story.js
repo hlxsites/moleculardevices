@@ -1,6 +1,7 @@
 import {
   div, a, p, h3, span, button, iframe,
 } from '../../scripts/dom-helpers.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
 const SUBMIT_STORY_IFRAME_URL = 'https://info.moleculardevices.com/submit-your-story';
@@ -24,12 +25,13 @@ function hideSubmitStoryModal(e) {
   document.body.classList.remove('modal-open');
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const shareMessage = block.querySelector('h3').textContent;
   block.innerHTML = '';
+  const placeholders = await fetchPlaceholders();
 
   const socials = ['facebook', 'linkedin', 'twitter'];
-  const shareSocialBlock = socialShareBlock('share this story', socials);
+  const shareSocialBlock = socialShareBlock(placeholders.shareThisStory || 'share this story', socials);
   decorateIcons(shareSocialBlock);
   const shareMessageBlock = div({ class: 'share-message' },
     h3(shareMessage),
@@ -39,12 +41,12 @@ export default function decorate(block) {
       a({
         class: 'button primary',
         href: '#',
-        'aria-label': 'Submit your story',
+        'aria-label': placeholders.submitYourStory || 'Submit your story',
         target: '_blank',
         rel: 'noopener noreferrer',
         onclick: showSubmitStoryModal,
       },
-      'Submit your story',
+      placeholders.submitYourStory || 'Submit your story',
       span({ class: 'button-border' }),
       ),
     ),

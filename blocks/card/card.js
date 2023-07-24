@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 
 import {
-  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders,
+  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
@@ -16,6 +16,8 @@ import {
   getSelectedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+
+let placeholders = {};
 
 export async function handleCompareProducts(e) {
   const { target } = e;
@@ -117,7 +119,7 @@ class Card {
       && item.specifications !== '0'
     ) {
       c2aBlock.append(div({ class: 'compare-button' },
-        'Compare (',
+        `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
         ')',
         span({
@@ -180,8 +182,10 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config) {
-  const placeholders = await fetchPlaceholders();
-  config.defaultButtonText = placeholders.readMore;
+  placeholders = await fetchPlaceholders();
+  config.defaultButtonText = config.defaultButtonText
+    ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText
+    : placeholders.readMore;
   const card = new Card(config);
   await card.loadCSSFiles();
   return card;

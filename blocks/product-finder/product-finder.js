@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  decorateIcons, toClassName,
+  decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
   a, div, h3, img, li, span, strong,
@@ -14,6 +14,8 @@ const HIDDEN_CLASS = 'hidden';
 const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
+
+let placeholders = {};
 
 function getListIdentifier(tabName) {
   return toClassName(tabName);
@@ -76,7 +78,7 @@ function startOver(e) {
   currentTab.classList.remove(ACTIVE_CLASS);
 
   const titleEl = document.querySelector('.product-finder-wrapper .product-finder-tab-title');
-  titleEl.innerHTML = DEFAULT_TITLE;
+  titleEl.innerHTML = placeholders.selectProductType || DEFAULT_TITLE;
 
   const progressCheckList = document.querySelectorAll(`.product-finder-container a.${CHECKED_CLASS}`);
   progressCheckList.forEach((check) => {
@@ -100,7 +102,7 @@ function renderResetButton(callback) {
       onclick: callback,
     },
     span({ class: 'icon icon-fa-arrow-circle-left' }),
-    'Start Over',
+    placeholders.startOver || 'Start Over',
   );
 }
 
@@ -288,8 +290,9 @@ async function stepOne(callback) {
 }
 
 export default async function decorate(block) {
+  placeholders = await fetchPlaceholders();
   block.prepend(
-    h3({ class: 'product-finder-tab-title' }, DEFAULT_TITLE),
+    h3({ class: 'product-finder-tab-title' }, placeholders.selectProductType || DEFAULT_TITLE),
   );
 
   const progressSteps = block.querySelectorAll('ul li');
