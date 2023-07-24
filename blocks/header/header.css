@@ -491,7 +491,7 @@ header .cards-submenu > div {
 }
 
 header .cards-submenu > div > div {
-  margin: 0 10px 20px 0;
+  margin: 0 10px 20px;
   overflow: hidden;
 }
 
@@ -883,25 +883,25 @@ header .nav-tabs .menu-nav-submenu-sections > .line-divider {
 }
 
 header .col-1 {
-  flex-basis: calc(100% - 10px);
+  flex-basis: calc(100% - 20px);
   box-sizing: border-box;
   max-width: 100%;
 }
 
 header .col-2 > div > div {
-  flex-basis: calc(50% - 10px);
+  flex-basis: calc(50% - 20px);
   box-sizing: border-box;
   max-width: 100%;
 }
 
 header .col-3 > div > div {
-  flex-basis: calc(33% - 10px);
+  flex-basis: calc(33% - 20px);
   box-sizing: border-box;
   max-width: 100%;
 }
 
 header .col-4 > div > div {
-  flex-basis: calc(25% - 10px);
+  flex-basis: calc(25% - 20px);
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -1048,7 +1048,7 @@ header .large-card-submenu img {
 }
 
 header .image-right {
-  background-position: 110% 154%;
+  background-position: 115% 154%;
 }
 
 header .image-right img {
@@ -1219,11 +1219,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-ch
   font-size: 16px;
   font-family: var(--ff-proxima-light);
   margin-top: 0;
-  margin-bottom: 0;
-}
-
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+2) {
@@ -1244,6 +1240,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   color: var(--text-white);
   position: relative !important;
   height: auto;
+  width: 180px;
   border-radius: 0;
   padding: 10px 18px 10px 0 !important;
   display: inline-block !important;
@@ -1260,7 +1257,6 @@ header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:n
   background: var(--button-bg-color);
 }
 
-header .actionable-card-submenu.blog-lab-notes-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
 header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
 header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
   border: 1px solid var(--button-bg-color);
@@ -1270,6 +1266,11 @@ header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:n
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
   background: var(--background-color);
   color: var(--button-bg-color);
+}
+
+header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a:hover,
+header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a:hover {
+  background: var(--background-color);
 }
 
 div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {  
@@ -1528,7 +1529,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   }
 
   header .col-2.customercare-portal > div > div {
-    flex-basis: calc(50% - 10px);
+    flex-basis: calc(50% - 20px);
   }
 
   header .cards-submenu.customercare-portal > div > div > p {
