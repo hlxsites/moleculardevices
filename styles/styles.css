@@ -774,6 +774,20 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin: 0 auto;
 }
 
+.section.title-big > div.default-content-wrapper > h2 {
+  font-size: 70px;
+}
+
+.section.title-light > div.default-content-wrapper > h2,
+.section.title-light > div.default-content-wrapper > h2 > strong {
+  font-family: var(--ff-proxima-light);
+}
+
+.section .columns > div > div:first-child > h3 + ul {
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
 main .event-container .text-strong {
   padding-top: 15px;
 
