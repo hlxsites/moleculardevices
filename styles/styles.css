@@ -785,6 +785,7 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
 
 .section .columns > div > div:first-child > h3 + ul {
   padding-top: 20px;
+  padding-left: 20px;
 }
 
 main .event-container .text-strong {
