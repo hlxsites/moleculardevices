@@ -878,12 +878,8 @@ main .section.related-applications-container h2:first-child {
   }
 }
 
-.section.integrate-section {
+.section.no-padding-bottom {
   padding-bottom: 0;
-}
-
-.section.integrate-section + .section {
-  padding-top: 0;
 }
 
 /* Features Section */
