@@ -35,11 +35,16 @@ export default async function decorate(block) {
   productIdentifiers.forEach((productIdentifier) => {
     const productSpec = productSpecs[productIdentifier];
     headRow.append(domEl('th',
-      div({ class: 'product-heading' },
+      block.classList.contains('description') ? div({ class: 'product-heading' },
         div({ class: 'product-heading-title darkgrey' }, productSpec.title),
         createOptimizedPicture(productSpec.thumbnail),
         productSpec.description ? p(productSpec.description) : '',
         a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
+      ) : div({ class: 'product-heading' },
+        a({ href: productSpec.path },
+          createOptimizedPicture(productSpec.thumbnail),
+          p(productSpec.title),
+        ),
       )),
     );
   });
