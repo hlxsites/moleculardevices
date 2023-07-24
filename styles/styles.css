@@ -1683,6 +1683,25 @@ main .section.background-molecules {
     color: var(--text-white);
 }
 
+.section.multicolor-subtitle > div.default-content-wrapper > h3 {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:first-of-type {
+  color: var(--text-green);
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:nth-of-type(2) {
+  color: var(--orange-text-color);
+  display: inline;
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:last-of-type {
+  color: #007bc4;
+}
+
 /*
   Category page
 */
