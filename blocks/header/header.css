@@ -1348,6 +1348,7 @@ header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 60px center;
+  width: auto;
 }
 
 header .actionable-card-submenu.newsroom-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover,
