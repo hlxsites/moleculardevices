@@ -61,6 +61,7 @@
   --text-color: #34393d;
   --text-white: #fff;
   --text-gray: #6a747c;
+  --text-gray2: #606a6c;
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
   --heading-color: #00758d;
@@ -326,9 +327,10 @@ em strong {
 }
 
 p.video-title {
-  font-size: 24px;
+  font-size: 14px;
+  font-style: italic;
   color: #34393d;
-  font-family: var(--ff-proxima-xbold);
+  font-family: var(--ff-proxima-regular);
   margin-bottom: 20px;
   margin-top: 15px;
   background-color: var(--background-color);
@@ -718,6 +720,10 @@ main .section.horizontal-line > div:first-of-type {
   padding-top: 45px;
 }
 
+main .section.horizontal-line {
+  padding-top: 0;
+}
+
 /* news and publication */
 main .event-container {
   --heading-font-size-xxl: 36px;
@@ -766,6 +772,20 @@ main .section.tabs[aria-labelledby="order"] strong {
 main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   display: block;
   margin: 0 auto;
+}
+
+.section.title-big > div.default-content-wrapper > h2 {
+  font-size: 70px;
+}
+
+.section.title-light > div.default-content-wrapper > h2,
+.section.title-light > div.default-content-wrapper > h2 > strong {
+  font-family: var(--ff-proxima-light);
+}
+
+.section .columns > div > div:first-child > h3 + ul {
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 main .event-container .text-strong {
@@ -829,6 +849,10 @@ main .section.service-support .default-content-wrapper h2 {
 
 main .section.service-support.support-options h2 {
   font-size: 70px;
+}
+
+main .section.related-applications-container h2:first-child {
+  padding-top: 26px;
 }
 
 @media (max-width: 991px) {
@@ -1465,6 +1489,29 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-xbold);
 }
 
+.product p.video-title {
+  font-size: 24px;
+  font-family: var(--ff-proxima-xbold);
+  font-style: normal;
+}
+
+.product .section.tabs h2:has(+ h4) {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.product .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.product .section.tabs h4:last-child {
+  margin-bottom: 45px;
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1492,8 +1539,13 @@ main .section.background-molecules {
   padding-top: 50px;
 }
 
-.technology main .section.tabs h2,
-.application main .section.tabs h2 {
+.technology .section.tabs .columns-wrapper p + h2,
+.application .section.tabs .columns-wrapper p + h2 {
+  padding-top: 20px;
+}
+
+.technology main .section.tabs:not(.related-applications-container) h2,
+.application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
 }
 
@@ -1552,6 +1604,26 @@ main .section.background-molecules {
     color: var(--link-color);
     line-height: 21px;
     margin-bottom: 10px;
+}
+
+.technology .section.tabs h2 + h4,
+.application .section.tabs h2 + h4 {
+  font-family: var(--ff-proxima-light);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.technology .section.tabs h4,
+.application .section.tabs h4 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 30px;
+  color: var(--text-gray2);
+  margin-top: 0;
+}
+
+.technology .section.tabs h4:last-child,
+.application .section.tabs h4:last-child {
+  margin-bottom: 45px;
 }
 
 .blend-image img {

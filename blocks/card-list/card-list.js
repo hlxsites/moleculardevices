@@ -7,6 +7,7 @@ const viewAllCategory = 'viewall';
 
 const defaultCardRender = await createCard({
   defaultButtonText: 'Learn more',
+  useDefaultButtonText: true,
   descriptionLength: 100,
 });
 

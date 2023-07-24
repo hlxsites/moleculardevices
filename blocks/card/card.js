@@ -51,6 +51,7 @@ class Card {
     this.defaultStyling = true;
     this.defaultImage = '/images/default-card-thumbnail.webp';
     this.defaultButtonText = 'Read More';
+    this.useDefaultButtonText = false;
     this.showImageThumbnail = true;
     this.imageBlockReady = false;
     this.thumbnailLink = true;
@@ -87,7 +88,8 @@ class Card {
       cardLink = item.redirectPath;
     }
 
-    const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
+    const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
+      ? item.cardC2A : this.defaultButtonText;
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
