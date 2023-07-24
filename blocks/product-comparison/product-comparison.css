@@ -28,10 +28,6 @@
   color: var(--text-dark-gray);
 }
 
-.product-comparison .responsive-table tr th:last-child .product-heading-title {
-  background-color: var(--button-bg-color);
-}
-
 .product-comparison .product-heading p {
   color: var(--text-dark-gray);
   font-size: 14px;
@@ -110,6 +106,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.product-comparison .responsive-table tr th:last-child .product-heading-title {
+  background-color: var(--button-bg-color);
 }
 
 .product-comparison .responsive-table .product-info-btn  {
