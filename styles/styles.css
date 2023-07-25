@@ -64,6 +64,7 @@
   --text-gray2: #606a6c;
   --text-light-gray: #adb3b7;
   --text-dark-gray: #333;
+  --text-electric-blue: #007bc4;
   --heading-color: #00758d;
   --heading-color-blue: #038296;
   --text-green: #6eb43f;
@@ -1699,7 +1700,7 @@ main .section.background-molecules {
 }
 
 .section.multicolor-subtitle > div.default-content-wrapper > h3:last-of-type {
-  color: #007bc4;
+  color: var(--text-electric-blue);
 }
 
 /*
