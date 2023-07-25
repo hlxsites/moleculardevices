@@ -1,0 +1,57 @@
+/* stylelint-disable */
+
+.carousel.clone-screening-report-columns .carousel-item-2 .carousel-item-image,
+.carousel.clone-screening-report-columns .carousel-item-3 .carousel-item-image,
+.carousel.clone-screening-report-columns .carousel-item-4 .carousel-item-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-2 h3 {
+    grid-column: span 2;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-2 p:first-of-type,
+.carousel.clone-screening-report-columns .carousel-item-2  ul {
+    grid-column: 1;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-2 p:last-of-type {
+    grid-column: 2;
+    grid-row: 3 / 5;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-3 h3:first-of-type,
+.carousel.clone-screening-report-columns .carousel-item-4 h3:first-of-type {
+    grid-column: span 2;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-3 h3:nth-of-type(2),
+.carousel.clone-screening-report-columns .carousel-item-3 p,
+.carousel.clone-screening-report-columns .carousel-item-4 h3:nth-of-type(2),
+.carousel.clone-screening-report-columns .carousel-item-4 p
+{
+    grid-column: 1;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-3 h3:last-of-type,
+.carousel.clone-screening-report-columns .carousel-item-3 p:nth-of-type(3),
+.carousel.clone-screening-report-columns .carousel-item-3 p:nth-of-type(4),
+.carousel.clone-screening-report-columns .carousel-item-3 p:last-of-type,
+.carousel.clone-screening-report-columns .carousel-item-4 h3:last-of-type,
+.carousel.clone-screening-report-columns .carousel-item-4 p:nth-of-type(3),
+.carousel.clone-screening-report-columns .carousel-item-4 p:nth-of-type(4),
+.carousel.clone-screening-report-columns .carousel-item-4 p:last-of-type
+{
+    grid-column: 2;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-3 h3:last-of-type,
+.carousel.clone-screening-report-columns .carousel-item-4 h3:last-of-type {
+    grid-row: 3;
+}
+
+.carousel.clone-screening-report-columns .carousel-item-3 p:nth-of-type(3),
+.carousel.clone-screening-report-columns .carousel-item-4 p:nth-of-type(3) {
+    grid-row: 4;
+}
