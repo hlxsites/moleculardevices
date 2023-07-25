@@ -1768,6 +1768,11 @@ main .section.background-molecules {
   color: #008da9;
 }
 
+.section.green-title .default-content-wrapper > h2,
+.section.green-title .default-content-wrapper > h3 {
+  color: var(--text-green);
+}
+
 /*
   Customer breakthrough pages
 */
