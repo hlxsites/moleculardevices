@@ -1680,10 +1680,23 @@ main .section.background-molecules {
   color: black;
 }
 
+.category .default-content-wrapper h2 + h3 {
+  font-size: 24px;
+}
+
+.category main .columns-wrapper h3:first-child {
+  font-size: 40px;
+}
+
+.category .columns-wrapper h3 + h4,
+.category .columns-wrapper h4 + h4  {
+  font-size: 20px;
+  line-height: 1.5rem;
+}
+
 .category-3d-biology .default-content-wrapper h3 {
   font-size: 36px;
 }
-
 
 .section.product-titles .default-content-wrapper > h2 {
   font-size: 40px;
