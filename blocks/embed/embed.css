@@ -98,5 +98,5 @@ main .embed.embed-twitter > div {
 }
 
 main .embed.embed-info-moleculardevices-com {
-  height: 590px;
+  min-height: 590px;
 }
