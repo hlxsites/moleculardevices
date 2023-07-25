@@ -216,12 +216,12 @@ async function stepThree(e) {
     });
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
-      defaultButtonText: 'Request Quote',
+      defaultButtonText: 'Read More',
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
         href: `https://www.moleculardevices.com/quote-request?pid=${product.familyID}`,
-        'aria-label': 'Request Quote',
+        'aria-label': 'Read More',
         target: '_blank',
         rel: 'noopener noreferrer',
       };
@@ -239,6 +239,18 @@ async function stepThree(e) {
   if (!filters) {
     filters = await renderFiltersRow(originalCategory, originalType, products, dataCardType);
   }
+
+  if (list.children.length === 1) {
+    const compareButton = list.querySelector('.compare-button');
+    compareButton.style.display = 'none';
+  }
+
+  const cardTitles = list.querySelectorAll('.card-caption h3');
+  cardTitles.forEach((title) => {
+    title.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+  });
+
+  decorateIcons(list);
 
   const totalCount = span(
     { class: 'result-count', 'data-card-type': dataCardType },
