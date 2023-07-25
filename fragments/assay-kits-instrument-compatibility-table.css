@@ -79,7 +79,8 @@ a.req_quote {
 .feat strong {
     color: #008298;
     font-size: 14px;
-    font-weight: 600
+    font-weight: 600;
+    font-family: var(--ff-proxima-regular);
 }
 
 .feat_col_1 strong {
