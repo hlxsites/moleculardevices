@@ -1697,6 +1697,10 @@ main .section.background-molecules {
   color: #008da9;
 }
 
+.section.blue-subtitle div > h3 {
+  color: #008da9;
+}
+
 /*
   Customer breakthrough pages
 */
