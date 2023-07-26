@@ -177,7 +177,7 @@ export function videoButton(container, button, url) {
   });
 }
 
-function decorateLinks(main) {
+export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links

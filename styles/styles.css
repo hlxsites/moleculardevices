@@ -1655,9 +1655,9 @@ main .section.background-molecules {
   mix-blend-mode: darken;
 }
 
-.section.title-center > .default-content-wrapper > h2,
-.section.title-center > .default-content-wrapper > h3,
-.section.title-center > .default-content-wrapper > h4 {
+.section.title-center > h2,
+.section.title-center > h3,
+.section.title-center > h4 {
   text-align: center;
 }
 
