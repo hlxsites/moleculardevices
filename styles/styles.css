@@ -792,12 +792,14 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin: 0 auto;
 }
 
-.section.title-big > div.default-content-wrapper > h2 {
-  font-size: 70px;
-}
-
 .section.title-big > div.default-content-wrapper > h3 {
   font-size: 36px;
+}
+
+@media (min-width: 768px) {
+  .section.title-big > div.default-content-wrapper > h2 {
+    font-size: 70px;
+  }
 }
 
 .section.title-light > div.default-content-wrapper > h2,
@@ -882,10 +884,6 @@ main .section.related-applications-container h2:first-child {
     font-size: 36px;
     padding-top: 30px;
   }
-}
-
-.section.no-padding-bottom {
-  padding-bottom: 0;
 }
 
 /* Features Section */
@@ -1688,6 +1686,12 @@ main .section.background-molecules {
     color: var(--text-white);
 }
 
+.section.title-no-spacing > div.default-content-wrapper > h2,
+.section.title-no-spacing > div.default-content-wrapper > h3 {
+  margin: 0;
+  padding: 0;
+}
+
 .section.multicolor-subtitle > div.default-content-wrapper > h3 {
   display: inline-block;
   margin-left: 5px;
@@ -1850,4 +1854,8 @@ main .section.background-molecules {
 
 .section .block.main-title-bold h2 {
   font-family: var(--ff-proxima-xbold);
+}
+
+main .section.no-padding-bottom {
+  padding-bottom: 0;
 }
