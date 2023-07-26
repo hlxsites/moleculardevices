@@ -796,6 +796,10 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   font-size: 70px;
 }
 
+.section.title-big > div.default-content-wrapper > h3 {
+  font-size: 36px;
+}
+
 .section.title-light > div.default-content-wrapper > h2,
 .section.title-light > div.default-content-wrapper > h2 > strong {
   font-family: var(--ff-proxima-light);
@@ -1833,4 +1837,17 @@ main .section.background-molecules {
     padding-top: 100px;
     padding-bottom: 120px;
   }
+}
+
+.section.main-title-bold > div.default-content-wrapper > h2 {
+  font-family: var(--ff-proxima-xbold);
+}
+
+.section.title-regular > div.default-content-wrapper > h2,
+.section.title-regular > div.default-content-wrapper > h3 {
+  font-family: var(--ff-proxima-regular);
+}
+
+.section .block.main-title-bold h2 {
+  font-family: var(--ff-proxima-xbold);
 }
