@@ -18,7 +18,7 @@ function handleTabClick(e, idx) {
 
 function buildNav(block) {
   const titles = block.querySelectorAll('.tabs-horizontal > div > div:first-child');
-  const elemMaxWidth = Math.round(100 / titles.length) + 1;
+  const elemMaxWidth = Math.round(100 / titles.length);
   const navList = ul({ class: 'tabs-nav' });
   [...titles].forEach((title, idx) => {
     const tabTitle = title.textContent;
