@@ -1,12 +1,14 @@
-import { a, div, li, ul } from "../../scripts/dom-helpers.js";
-import { decorateButtons, decorateIcons } from "../../scripts/lib-franklin.js";
-import { decorateLinks, fetchFragment, processSectionMetadata } from "../../scripts/scripts.js";
+import {
+  div, li, ul,
+} from '../../scripts/dom-helpers.js';
+import { decorateButtons, decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateLinks, fetchFragment, processSectionMetadata } from '../../scripts/scripts.js';
 
 const classActive = 'active';
 
 function handleTabClick(e, idx) {
   e.preventDefault();
-  const target = e.target;
+  const { target } = e;
   [...target.closest('.tabs-nav').children].forEach((nav) => nav.classList.remove(classActive));
   target.closest('.tabs-nav-item').classList.add(classActive);
   const panes = target.closest('.tabs-horizontal').querySelectorAll('.tab-pane');
@@ -19,13 +21,13 @@ function buildNav(block) {
   const navList = ul({ class: 'tabs-nav' });
   [...titles].forEach((title, idx) => {
     const tabTitle = title.textContent;
-    const listItem = li({ class: 'tabs-nav-item' },
-      a({
-        href: '#',
+    const listItem = li(
+      {
+        class: 'tabs-nav-item',
+        onclick: (e) => { handleTabClick(e, idx); },
         'aria-label': tabTitle,
-        onclick: (e) => { handleTabClick(e, idx) },
       },
-      tabTitle)
+      tabTitle,
     );
     navList.append(listItem);
   });
@@ -59,7 +61,7 @@ async function buildTabs(block) {
     decorateLinks(pane);
     return pane;
   }));
-  hydratedPanes.forEach((pane) => { tabList.append(pane) });
+  hydratedPanes.forEach((pane) => { tabList.append(pane); });
   tabList.querySelector('.tab-pane').classList.add(classActive);
   return tabList;
 }
