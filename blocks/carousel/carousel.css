@@ -457,3 +457,7 @@ main .carousel blockquote::after {
 main .block.carousel.full-size .carousel-item-column {
   width: auto;
 }
+
+main .block.carousel.full-size .carousel-item-image img {
+  max-height: none;
+}
