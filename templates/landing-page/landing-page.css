@@ -67,6 +67,7 @@
 .landing-page .download-form {
   padding-bottom: 25px;
   margin-top: 50px;
+  background-size: cover;
 }
 
 .landing-page .hero-container + .download-form {

@@ -1,11 +1,13 @@
 import {
-  readBlockConfig, decorateIcons, decorateBlock,
+  readBlockConfig, decorateIcons, decorateBlock, fetchPlaceholders,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, iframe, p,
 } from '../../scripts/dom-helpers.js';
 import { formatDate, loadScript, unixDateToString } from '../../scripts/scripts.js';
+
+let placeholders = {};
 
 function toggleNewsEvents(container, target) {
   if (!target.parentElement.classList.contains('on')) {
@@ -64,7 +66,7 @@ async function renderEvents(container) {
     item.date = item.eventStart;
     container.append(renderEntry(item));
   });
-  container.append(renderMoreLink('More Events', '/events'));
+  container.append(renderMoreLink(placeholders.moreEvents || 'More Events', '/events'));
 }
 
 async function renderNews(container) {
@@ -77,7 +79,7 @@ async function renderNews(container) {
   news.forEach(
     (item) => container.append(renderEntry(item)),
   );
-  container.append(renderMoreLink('More News', '/newsroom/news'));
+  container.append(renderMoreLink(placeholders.moreNews || 'More News', '/newsroom/news'));
 }
 
 async function buildNewsEvents(container) {
@@ -174,6 +176,8 @@ export default async function decorate(block) {
   footerBottom.classList.add('footer-bottom');
   block.appendChild(footerWrap);
   block.appendChild(footerBottom);
+
+  placeholders = await fetchPlaceholders();
 
   [...footer.children].forEach((row, idx) => {
     row.classList.add(`row-${idx + 1}`);

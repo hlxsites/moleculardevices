@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  decorateIcons, toClassName,
+  decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
   a, div, h3, img, li, span, strong,
@@ -14,6 +14,10 @@ const HIDDEN_CLASS = 'hidden';
 const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
+
+let placeholders = {};
+let step2Type = '';
+let step2Title = '';
 
 function getListIdentifier(tabName) {
   return toClassName(tabName);
@@ -76,7 +80,7 @@ function startOver(e) {
   currentTab.classList.remove(ACTIVE_CLASS);
 
   const titleEl = document.querySelector('.product-finder-wrapper .product-finder-tab-title');
-  titleEl.innerHTML = DEFAULT_TITLE;
+  titleEl.innerHTML = placeholders.selectProductType || DEFAULT_TITLE;
 
   const progressCheckList = document.querySelectorAll(`.product-finder-container a.${CHECKED_CLASS}`);
   progressCheckList.forEach((check) => {
@@ -100,7 +104,7 @@ function renderResetButton(callback) {
       onclick: callback,
     },
     span({ class: 'icon icon-fa-arrow-circle-left' }),
-    'Start Over',
+    placeholders.startOver || 'Start Over',
   );
 }
 
@@ -203,6 +207,7 @@ async function stepThree(e) {
   });
 
   const products = await getProducts(type, category);
+  products.sort((item1, item2) => item2.productWeight - item1.productWeight);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
@@ -214,12 +219,12 @@ async function stepThree(e) {
     });
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
-      defaultButtonText: 'Request Quote',
+      defaultButtonText: 'Read More',
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
-        href: `https://www.moleculardevices.com/quote-request?pid=${product.familyID}`,
-        'aria-label': 'Request Quote',
+        href: `/quote-request?pid=${product.familyID}`,
+        'aria-label': 'Read More',
         target: '_blank',
         rel: 'noopener noreferrer',
       };
@@ -238,10 +243,31 @@ async function stepThree(e) {
     filters = await renderFiltersRow(originalCategory, originalType, products, dataCardType);
   }
 
+  if (list.children.length === 1) {
+    const compareButton = list.querySelector('.compare-button');
+    compareButton.style.display = 'none';
+  }
+
+  const cardTitles = list.querySelectorAll('.card-caption h3 a');
+  cardTitles.forEach((title) => {
+    title.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+  });
+
+  decorateIcons(list);
+
   const totalCount = span(
     { class: 'result-count', 'data-card-type': dataCardType },
     `${list.children.length} Results`,
   );
+
+  const categories = await getCategories(type);
+  const categoryData = categories.find((c) => c.category === category && c.type === type);
+  if (categoryData.displayImage === 'false') {
+    const cardThumbs = list.querySelectorAll('.card-thumb');
+    cardThumbs.forEach((thumb) => {
+      thumb.style.display = 'none';
+    });
+  }
 
   if (filters) root.append(filters);
   root.append(totalCount);
@@ -252,8 +278,11 @@ async function stepThree(e) {
 async function stepTwo(e) {
   e.preventDefault();
 
-  const type = getTabName(e.target);
-  const title = getTabTitle(e.target);
+  const type = step2Type || getTabName(e.target);
+  const title = step2Title || getTabTitle(e.target);
+  step2Title = title;
+  step2Type = type;
+
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
   const root = switchTab(title, stepNum, prevStepNum, 'Select tab Category');
@@ -288,17 +317,36 @@ async function stepOne(callback) {
 }
 
 export default async function decorate(block) {
+  placeholders = await fetchPlaceholders();
   block.prepend(
-    h3({ class: 'product-finder-tab-title' }, DEFAULT_TITLE),
+    h3({ class: 'product-finder-tab-title' }, placeholders.selectProductType || DEFAULT_TITLE),
   );
 
   const progressSteps = block.querySelectorAll('ul li');
   progressSteps.forEach((progressStep, idx) => {
+    const stepCheckbox = a({ class: `progress-step progress-step-${idx + 1}` });
     const step = li(
-      a({ class: `progress-step progress-step-${idx + 1}` }),
+      stepCheckbox,
       span({ class: 'step-text' }, progressStep.innerHTML),
     );
     progressStep.replaceWith(step);
+    // when the checkbox is checked and the user clicks on the label, the checkbox is unchecked
+    // and we return to that step
+    stepCheckbox.addEventListener('click', (e) => {
+      // if stepbox does not have the checked class
+      if (stepCheckbox.classList.contains(CHECKED_CLASS)) {
+        if (idx === 0) {
+          startOver(e);
+        } else if (idx === 1) {
+          stepCheckbox.classList.remove(CHECKED_CLASS);
+          const progressCustomTexts = document.querySelectorAll('.product-finder-container .step-custom-text');
+          progressCustomTexts.forEach((progressCustomText) => {
+            progressCustomText.remove();
+          });
+          stepTwo(e);
+        }
+      }
+    });
   });
 
   const resetBtn = renderResetButton(startOver);
