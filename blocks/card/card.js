@@ -3,7 +3,7 @@
 /* eslint-disable no-alert */
 
 import {
-  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders,
+  decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
 import { summariseDescription } from '../../scripts/scripts.js';
 import {
@@ -16,6 +16,8 @@ import {
   getSelectedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+
+let placeholders = {};
 
 export async function handleCompareProducts(e) {
   const { target } = e;
@@ -51,6 +53,7 @@ class Card {
     this.defaultStyling = true;
     this.defaultImage = '/images/default-card-thumbnail.webp';
     this.defaultButtonText = 'Read More';
+    this.useDefaultButtonText = false;
     this.showImageThumbnail = true;
     this.imageBlockReady = false;
     this.thumbnailLink = true;
@@ -87,7 +90,8 @@ class Card {
       cardLink = item.redirectPath;
     }
 
-    const buttonText = item.cardC2A && item.cardC2A !== '0' ? item.cardC2A : this.defaultButtonText;
+    const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
+      ? item.cardC2A : this.defaultButtonText;
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
@@ -115,7 +119,7 @@ class Card {
       && item.specifications !== '0'
     ) {
       c2aBlock.append(div({ class: 'compare-button' },
-        'Compare (',
+        `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
         ')',
         span({
@@ -178,8 +182,10 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config) {
-  const placeholders = await fetchPlaceholders();
-  config.defaultButtonText = placeholders.readMore;
+  placeholders = await fetchPlaceholders();
+  config.defaultButtonText = config.defaultButtonText
+    ? placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText
+    : placeholders.readMore;
   const card = new Card(config);
   await card.loadCSSFiles();
   return card;

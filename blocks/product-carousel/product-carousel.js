@@ -1,6 +1,7 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
   const productPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
@@ -9,10 +10,12 @@ export default async function decorate(block) {
     .filter((product) => productPaths.includes(product.path))
     .all();
 
+  const placeholders = await fetchPlaceholders();
+
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    defaultButtonText: 'Details',
+    defaultButtonText: placeholders.details || 'Details',
     c2aLinkStyle: true,
   });
 

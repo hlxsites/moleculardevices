@@ -206,6 +206,17 @@ main .section>div.columns-wrapper {
   margin-left: 0;
 }
 
+.columns.video-teaser h2 {
+  font-size: 40px;
+}
+
+.columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
+  background-color: #6a747b;
+  color: var(--text-white);
+  margin-left: 0;
+  padding: 32px;
+}
+
 .columns.light-and-dark-grey > div > div > p {
   font-size: 20px;
 }

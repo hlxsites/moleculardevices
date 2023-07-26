@@ -1,7 +1,7 @@
 import {
   a, div, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { fetchFragment, formatDate } from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
@@ -50,6 +50,7 @@ function renderBlockTeaser(blogData) {
 }
 
 export default async function decorate(block) {
+  const placeholders = await fetchPlaceholders();
   const blogPostLinks = [...block.querySelectorAll('a')];
 
   const blogPosts = {};
@@ -66,7 +67,7 @@ export default async function decorate(block) {
 
       const c2aButtonText = fragmentElement.querySelector('meta[name="card-c2a"]')
         ? fragmentElement.querySelector('meta[name="card-c2a"]').getAttribute('content')
-        : 'Read More';
+        : placeholders.readMore || 'Read More';
 
       const publicationDate = fragmentElement.querySelector('meta[name="publication-date"]')
         ? fragmentElement.querySelector('meta[name="publication-date"]').getAttribute('content')

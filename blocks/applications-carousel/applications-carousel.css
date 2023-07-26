@@ -89,6 +89,7 @@ main .carousel.applications-carousel {
 
   .applications-carousel .carousel-item {
     width: 100%;
+    max-width: 100%;
   }
 
   main .applications-carousel-wrapper .carousel-nav-button {

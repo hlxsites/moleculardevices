@@ -1,14 +1,16 @@
 .related-links-container {
   column-count: 2;
+  column-gap: 30px;
 }
 
 .cols-3 {
   column-count: 3;
+  column-gap: 30px;
 }
 
 .related-apps-container {
   --related-app-gap: 30px;
-  
+
   display: flex;
   flex-wrap: wrap;
   gap: var(--related-app-gap);
@@ -39,6 +41,10 @@ li.related-link::marker {
   margin-top: 0;
 }
 
+.related-app h3 {
+  text-align: left;
+}
+
 .related-app strong {
   font-family: unset;
   font-weight: 700;
@@ -49,13 +55,27 @@ li.related-link::marker {
 }
 
 .related-app img {
-  max-height: 100%;
+  max-height: 282px;
   object-fit: cover;
   height: auto;
   width: 100%;
 }
 
-@media (max-width: 992px) {
+.related-applications-container .related-links-container {
+  padding-top: 26px;
+  margin-top: 0;
+}
+
+.related-applications-container.toc-grey .default-content-wrapper h2,
+.related-applications-container.toc-grey .related-links-container {
+  background-color: var(--grey-background-color);
+}
+
+.related-applications-container div.related-applications-wrapper {
+  padding-top: 0;
+}
+
+@media (max-width: 991px) {
   .related-app {
     flex-basis: 100%;
     min-height: 1px;
@@ -71,7 +91,7 @@ li.related-link::marker {
   .related-links-container {
     padding-right: 15px;
     padding-left: 15px;
-  } 
+  }
 
   .related-links-container, .related-links-container.cols-3 {
     column-count: 1;

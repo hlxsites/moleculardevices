@@ -1,6 +1,8 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
+
+let placeholders = {};
 
 function viewLongDescription(citation) {
   const shortDescriptionBlock = citation.querySelector('.citation-short-description');
@@ -73,12 +75,12 @@ function buildCitation(fragment) {
 
   const viewMoreBlock = div({ class: 'view-change view-more' });
   viewMoreBlock.innerHTML = `
-    View more <i class="fa fa-angle-down" aria-hidden="true"></i>
+    ${placeholders.viewMore || 'View more'} <i class="fa fa-angle-down" aria-hidden="true"></i>
   `;
 
   const viewLessBlock = div({ class: 'view-change view-less' });
   viewLessBlock.innerHTML = `
-    View less <i class="fa fa-angle-up" aria-hidden="true"></i>
+    ${placeholders.viewLess || 'View less'} <i class="fa fa-angle-up" aria-hidden="true"></i>
   `;
 
   const citation = div(
@@ -124,6 +126,8 @@ export default async function decorate(block) {
   if (fragmentPaths.length === 0) {
     return '';
   }
+
+  placeholders = await fetchPlaceholders();
 
   const fragments = await parseCitationFragments(fragmentPaths);
 

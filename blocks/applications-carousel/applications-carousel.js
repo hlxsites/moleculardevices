@@ -1,6 +1,7 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 function onReadMoreClick(e) {
   e.preventDefault();
@@ -48,6 +49,8 @@ export default async function decorate(block) {
     return 0;
   });
 
+  const placeholders = await fetchPlaceholders();
+
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
@@ -55,7 +58,7 @@ export default async function decorate(block) {
     imageBlockReady: true,
     c2aLinkConfig: {
       href: '#applications',
-      'aria-label': 'Read More',
+      'aria-label': placeholders.readMore || 'Read More',
       onclick: onReadMoreClick,
       target: '_blank',
       rel: 'noopener noreferrer',
