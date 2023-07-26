@@ -1,6 +1,7 @@
 /* stylelint-disable */
 
-.clone-screening-carousel {
+.clone-screening-carousel .carousel-item {
+    align-items: start;
 }
 
 .clone-screening-carousel .carousel-item-2 .carousel-item-image,
