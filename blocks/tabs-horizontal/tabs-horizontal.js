@@ -18,14 +18,14 @@ function handleTabClick(e, idx) {
 
 function buildNav(block) {
   const titles = block.querySelectorAll('.tabs-horizontal > div > div:first-child');
-  const elemMaxWidth = Math.round(100 / titles.length);
+  const elemWidth = Math.floor(100 / titles.length);
   const navList = ul({ class: 'tabs-nav' });
   [...titles].forEach((title, idx) => {
     const tabTitle = title.textContent;
     const listItem = li(
       {
         class: 'tabs-nav-item',
-        style: `max-width: ${elemMaxWidth}%;`,
+        style: `width: ${elemWidth}%;`,
         onclick: (e) => { handleTabClick(e, idx); },
         'aria-label': tabTitle,
       },

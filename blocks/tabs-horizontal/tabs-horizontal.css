@@ -53,6 +53,5 @@
 @media only screen and (max-width: 767px) {
   .tabs-horizontal li.tabs-nav-item {
     width: 100% !important;
-    max-width: 100% !important;
   }
 }
