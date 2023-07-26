@@ -367,11 +367,6 @@
   bottom: -99999px;
 }
 
-.product-finder-container #step-3[data-type="Labware"] .card-thumb,
-.product-finder-container #step-3[data-type="Assay Kits"][data-category="Assay Kits"] .card-thumb {
-  display: none;
-}
-
 .product-finder-container #step-3 .card {
   width: 262px;
 }

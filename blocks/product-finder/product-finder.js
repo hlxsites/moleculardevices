@@ -220,7 +220,7 @@ async function stepThree(e) {
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
-        href: `https://www.moleculardevices.com/quote-request?pid=${product.familyID}`,
+        href: `/quote-request?pid=${product.familyID}`,
         'aria-label': 'Read More',
         target: '_blank',
         rel: 'noopener noreferrer',
@@ -245,7 +245,7 @@ async function stepThree(e) {
     compareButton.style.display = 'none';
   }
 
-  const cardTitles = list.querySelectorAll('.card-caption h3');
+  const cardTitles = list.querySelectorAll('.card-caption h3 a');
   cardTitles.forEach((title) => {
     title.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
   });
@@ -256,6 +256,15 @@ async function stepThree(e) {
     { class: 'result-count', 'data-card-type': dataCardType },
     `${list.children.length} Results`,
   );
+
+  const categories = await getCategories(type);
+  const categoryData = categories.find((c) => c.category === category && c.type === type);
+  if (categoryData.displayImage === 'false') {
+    const cardThumbs = list.querySelectorAll('.card-thumb');
+    cardThumbs.forEach((thumb) => {
+      thumb.style.display = 'none';
+    });
+  }
 
   if (filters) root.append(filters);
   root.append(totalCount);
