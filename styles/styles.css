@@ -556,7 +556,8 @@ main .section.buttons-in-row > div {
 /* Marked as !important as these should not get overriden */
 main .section.hero-container,
 main .section.hero-advanced-container,
-main .section.page-tabs-container {
+main .section.page-tabs-container,
+main .section.html-snippet-container {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -685,7 +686,7 @@ main .section.background-grey-top-half::before {
   }
 }
 
-main .section.full-width .default-content-wrapper {
+main .section.full-width .default-content-wrapper, main .section.full-width .html-snippet-wrapper {
   width: auto;
   padding-left: 0;
   padding-right: 0;
