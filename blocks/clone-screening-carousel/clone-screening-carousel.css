@@ -1,7 +1,9 @@
-/* stylelint-disable */
-
 .clone-screening-carousel .carousel-item {
     align-items: start;
+}
+
+.clone-screening-carousel p {
+    margin: 0;
 }
 
 .clone-screening-carousel .carousel-item-2 .carousel-item-image,
@@ -44,8 +46,4 @@
 .clone-screening-carousel .carousel-item-3 p:nth-of-type(3),
 .clone-screening-carousel .carousel-item-4 p:nth-of-type(3) {
     grid-row: 4;
-}
-
-.clone-screening-carousel p {
-    margin: 0;
 }
