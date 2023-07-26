@@ -16,6 +16,8 @@ const DEFAULT_TITLE = 'Select a Product Type';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
 let placeholders = {};
+let step2Type = '';
+let step2Title = '';
 
 function getListIdentifier(tabName) {
   return toClassName(tabName);
@@ -205,6 +207,7 @@ async function stepThree(e) {
   });
 
   const products = await getProducts(type, category);
+  products.sort((item1, item2) => item2.productWeight - item1.productWeight);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
@@ -275,8 +278,11 @@ async function stepThree(e) {
 async function stepTwo(e) {
   e.preventDefault();
 
-  const type = getTabName(e.target);
-  const title = getTabTitle(e.target);
+  const type = step2Type || getTabName(e.target);
+  const title = step2Title || getTabTitle(e.target);
+  step2Title = title;
+  step2Type = type;
+
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
   const root = switchTab(title, stepNum, prevStepNum, 'Select tab Category');
@@ -318,11 +324,29 @@ export default async function decorate(block) {
 
   const progressSteps = block.querySelectorAll('ul li');
   progressSteps.forEach((progressStep, idx) => {
+    const stepCheckbox = a({ class: `progress-step progress-step-${idx + 1}` });
     const step = li(
-      a({ class: `progress-step progress-step-${idx + 1}` }),
+      stepCheckbox,
       span({ class: 'step-text' }, progressStep.innerHTML),
     );
     progressStep.replaceWith(step);
+    // when the checkbox is checked and the user clicks on the label, the checkbox is unchecked
+    // and we return to that step
+    stepCheckbox.addEventListener('click', (e) => {
+      // if stepbox does not have the checked class
+      if (stepCheckbox.classList.contains(CHECKED_CLASS)) {
+        if (idx === 0) {
+          startOver(e);
+        } else if (idx === 1) {
+          stepCheckbox.classList.remove(CHECKED_CLASS);
+          const progressCustomTexts = document.querySelectorAll('.product-finder-container .step-custom-text');
+          progressCustomTexts.forEach((progressCustomText) => {
+            progressCustomText.remove();
+          });
+          stepTwo(e);
+        }
+      }
+    });
   });
 
   const resetBtn = renderResetButton(startOver);
