@@ -297,6 +297,22 @@
   padding: 30px 20px;
 }
 
+.product-finder-container .icon-card:hover {
+  background: var(--background-color-blue);
+  transform: none;
+}
+
+.product-finder-container .icon-card:hover a span {
+  color: var(--text-white);
+}
+
+.product-finder-container .card-caption svg {
+  height: 18px;
+  width: 18px;
+  color: #008da9;
+  vertical-align: middle;
+}
+
 .product-finder-container #step-1 a span,
 .product-finder-container #step-2 a span {
   margin-top: 10px;
@@ -349,11 +365,6 @@
   right: -99999px;
   top: -99999px;
   bottom: -99999px;
-}
-
-.product-finder-container #step-3[data-type="Labware"] .card-thumb,
-.product-finder-container #step-3[data-type="Assay Kits"][data-category="Assay Kits"] .card-thumb {
-  display: none;
 }
 
 .product-finder-container #step-3 .card {

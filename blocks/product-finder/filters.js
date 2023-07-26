@@ -104,6 +104,18 @@ function filterChange(filterNumber) {
   // Update the products count
   const totalCount = document.querySelector('#step-3 .result-count');
   totalCount.innerHTML = `${productsCount} ${placeholders.results || 'Results'}`;
+
+  const compareButtons = document.querySelectorAll('.compare-button');
+  let compareButtonsDisplay;
+  if (productsCount === 1) {
+    compareButtonsDisplay = 'none';
+  } else {
+    compareButtonsDisplay = 'flex';
+  }
+
+  compareButtons.forEach((button) => {
+    button.style.display = compareButtonsDisplay;
+  });
 }
 
 function createFilterDropdown(filterID, filterOptionsArray, disabled) {
