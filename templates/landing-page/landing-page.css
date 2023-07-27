@@ -229,6 +229,11 @@
   justify-content: center;
 }
 
+.thank-you-page .carousel.cards .carousel-item h3 {
+  font-size: 22px;
+  padding-top: 10px;
+}
+
 .thank-you-page h3 {
   color: var(--button-bg-color);
 }
