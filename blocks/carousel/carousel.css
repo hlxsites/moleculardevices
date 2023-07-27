@@ -54,14 +54,6 @@ main .carousel-item-image img {
   max-height: 400px; /* default - same as .products */
 }
 
-main .block.carousel.orange-title h2 {
-  color: var(--orange-text-color);
-}
-
-main .block.carousel.electric-blue-title h2 {
-  color: var(--text-electric-blue);
-}
-
 main .carousel-item-text h3 {
   font-size: 32px;
   font-weight: lighter;
