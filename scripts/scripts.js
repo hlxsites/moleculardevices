@@ -764,6 +764,7 @@ export async function processEmbedFragment(element) {
           processSectionMetadata(section);
         });
         decorateEmbeddedBlocks(block);
+        decorateSections(block);
         loadBlocks(block);
       }
     }
