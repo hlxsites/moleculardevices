@@ -260,6 +260,10 @@
   font-size: 40px;
 }
 
+.landing-page.thankyou .carousel.cards p.button-container a {
+  border-width: 1px;
+}
+
 @media (min-width: 768px) {
   .landing-page .download-form>div {
     width: calc(var(--section-div-width) / 2);
