@@ -351,8 +351,8 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner {
     min-height: 180px;
-    padding-top: 40px;
-    padding-bottom: 65px;
+    padding-top: 30px;
+    padding-bottom: 40px;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -415,7 +415,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     font-size: var(--body-font-size-m);
   }
 
-  .hero-inner .container.two-column > div:nth-child(2) {
+  .hero-inner .container.two-column > div.video-column {
     padding-top: 30px;
     padding-left: 0;
   }
@@ -472,10 +472,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin: 0 auto;
     line-height: 1.2;
     gap: 0
-  }
-
-  .hero-inner .container.two-column > div:nth-child(2) {
-    border-top: 2px solid #fff;
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
