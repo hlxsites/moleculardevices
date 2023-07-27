@@ -48,7 +48,7 @@
   padding-bottom: 45px;
 }
 
-.landing-page .hero-inner .two-column p {
+.landing-page .hero-inner .two-column p:first-child {
   color: var(--heading-color-blue);
 }
 

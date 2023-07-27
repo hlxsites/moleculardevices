@@ -217,10 +217,6 @@ display: none;
   font-weight: bold;
 }
 
-.thankyou .hero-inner .two-column p {
-  color: var(--text-white);
-}
-
 /* Citation Variant - Desktop -- Start */
 .citation main .hero {
   overflow: hidden
