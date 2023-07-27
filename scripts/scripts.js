@@ -186,7 +186,7 @@ export function videoButton(container, button, url) {
   });
 }
 
-export function decorateLinks(main) {
+function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links
