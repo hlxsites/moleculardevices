@@ -70,6 +70,26 @@ function detectPricingRequestAvailable() {
   }
 }
 
+function decoratePricingStyles(pricintRequestButtonContainer) {
+  if (!pricintRequestButtonContainer || !pricintRequestButtonContainer.closest('.pricing')) {
+    return;
+  }
+  const nextButtons = pricintRequestButtonContainer.parentElement.querySelectorAll('.button-container + .button-container');
+  nextButtons.forEach((button, idx) => {
+    // show only one button after pricing button
+    if (idx > 0) {
+      button.style.display = 'none';
+    } else {
+      // make sure next button is displayed as secondary button
+      const nextButton = button.querySelector('a.primary');
+      if (nextButton) {
+        nextButton.classList.remove('primary');
+        nextButton.classList.add('secondary');
+      }
+    }
+  });
+}
+
 function showHidePricingRequestButton(block) {
   const pricingRequestButton = block.querySelector('a[href*="/quote-request"][href*="type=quote"]');
   if (!pricingRequestButton) return;
@@ -81,6 +101,7 @@ function showHidePricingRequestButton(block) {
     pricintRequestButtonContainer.style.display = 'none';
   } else {
     pricintRequestButtonContainer.style.display = '';
+    decoratePricingStyles(pricintRequestButtonContainer);
   }
 }
 
