@@ -1868,6 +1868,8 @@ main .section.no-padding-top {
   font-family: var(--ff-proxima-xbold);
 }
 
-.section .block.mobile-subtitle-small h3 {
-  font-size: 16px;
+@media (max-width: 420px) {
+  .section .block.mobile-subtitle-small h3 {
+    font-size: 16px;
+  }
 }
