@@ -216,6 +216,10 @@
   color: var(--text-green);
 }
 
+.section.thank-you-page .carousel-item > .card > div > p:first-of-type {
+  color: var(--text-green);
+}
+
 .thank-you-page h3 {
   color: var(--button-bg-color);
 }
