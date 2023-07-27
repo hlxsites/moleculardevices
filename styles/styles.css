@@ -1851,7 +1851,8 @@ main .block.electric-blue-main-title h2 {
   }
 }
 
-.section.main-title-bold > div.default-content-wrapper > h2 {
+.section.main-title-bold > div.default-content-wrapper > h2,
+.section .block.main-title-bold h2 {
   font-family: var(--ff-proxima-xbold);
 }
 
@@ -1870,10 +1871,6 @@ main .section.no-padding-bottom {
 
 main .section.no-padding-top {
   padding-top: 0;
-}
-
-.section .block.main-title-bold h2 {
-  font-family: var(--ff-proxima-xbold);
 }
 
 @media (max-width: 420px) {
