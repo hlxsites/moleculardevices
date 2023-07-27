@@ -109,7 +109,7 @@ function decorateWaveSection(main) {
 /**
  * Decorate blocks in an embed fragment.
  */
-export function decorateEmbeddedBlocks(container) {
+function decorateEmbeddedBlocks(container) {
   container
     .querySelectorAll('div.section > div')
     .forEach(decorateBlock);
