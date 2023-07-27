@@ -1538,6 +1538,10 @@ main .section.background-molecules {
   margin-bottom: 45px;
 }
 
+.product .section.tabs:not(.feature-section) .default-content-wrapper + .image-list-wrapper {
+  margin-top: 50px;
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1702,10 +1706,23 @@ main .section.background-molecules {
   color: black;
 }
 
+.category .default-content-wrapper h2 + h3 {
+  font-size: 24px;
+}
+
+.category main .columns-wrapper h3:first-child {
+  font-size: 40px;
+}
+
+.category .columns-wrapper h3 + h4,
+.category .columns-wrapper h4 + h4  {
+  font-size: 20px;
+  line-height: 1.5rem;
+}
+
 .category-3d-biology .default-content-wrapper h3 {
   font-size: 36px;
 }
-
 
 .section.product-titles .default-content-wrapper > h2 {
   font-size: 40px;
@@ -1721,6 +1738,10 @@ main .section.background-molecules {
 
 .section.blue-title .default-content-wrapper > h2,
 .section.blue-title .default-content-wrapper > h3 {
+  color: #008da9;
+}
+
+.section.blue-subtitle div > h3 {
   color: #008da9;
 }
 

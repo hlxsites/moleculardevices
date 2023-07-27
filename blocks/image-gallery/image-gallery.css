@@ -10,6 +10,7 @@
 
 main .section > div.image-gallery-wrapper {
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .image-gallery-container.overlay > div {
@@ -224,6 +225,11 @@ main .section > div.image-gallery-wrapper {
 .section:not(.overlay) .image-gallery {
   display: grid;
   grid-gap: 20px;
+}
+
+.image-gallery-wrapper + .default-content-wrapper h6:last-child {
+  font-style: italic;
+  margin-top: 50px;
 }
 
 @media (max-width: 767px) {
