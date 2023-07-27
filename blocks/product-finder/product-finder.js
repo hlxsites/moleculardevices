@@ -3,7 +3,7 @@ import {
   decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
-  a, div, h3, img, li, span, strong,
+  a, div, h3, img, li, select, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
@@ -72,12 +72,17 @@ function startOver(e) {
 
   const currentTab = document.querySelector('.product-finder-step-wrapper.active');
   const firstTab = document.getElementById(`${STEP_PREFIX}-1`);
+  const productsTab = document.getElementById(`${STEP_PREFIX}-3`);
   const backBtn = document.querySelector('.product-finder-container .reset');
   currentTab.style.display = 'none';
   firstTab.style.display = 'block';
   backBtn.classList.add(HIDDEN_CLASS);
   firstTab.classList.add(ACTIVE_CLASS);
   currentTab.classList.remove(ACTIVE_CLASS);
+  currentTab.removeAttribute('data-type');
+  currentTab.removeAttribute('data-category');
+  currentTab.removeAttribute('data-card-type');
+  productsTab.innerHTML = '';
 
   const titleEl = document.querySelector('.product-finder-wrapper .product-finder-tab-title');
   titleEl.innerHTML = placeholders.selectProductType || DEFAULT_TITLE;
@@ -219,12 +224,12 @@ async function stepThree(e) {
     });
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
-      defaultButtonText: 'Read More',
+      defaultButtonText: placeholders.requestQuote || 'Request Quote',
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
         href: `/quote-request?pid=${product.familyID}`,
-        'aria-label': 'Read More',
+        'aria-label': placeholders.requestQuote || 'Request Quote',
         target: '_blank',
         rel: 'noopener noreferrer',
       };
