@@ -407,9 +407,9 @@ class Carousel {
     }
 
     this.block.innerHTML = '';
-    this.data.forEach((item) => {
+    this.data.forEach((item, index) => {
       const itemContainer = document.createElement('div');
-      itemContainer.className = 'carousel-item';
+      itemContainer.classList.add('carousel-item', `carousel-item-${index + 1}`);
 
       let renderedItem = this.cardRenderer.renderItem(item);
       renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
