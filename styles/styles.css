@@ -59,6 +59,7 @@
 :root {
   /* colors */
   --text-color: #34393d;
+  --text-blue: #008da9;
   --text-dark-gray: #333;
   --text-electric-blue: #007bc4;
   --text-gray2: #606a6c;
@@ -1785,12 +1786,9 @@ main .section.background-molecules {
 }
 
 .section.blue-title .default-content-wrapper > h2,
-.section.blue-title .default-content-wrapper > h3 {
-  color: #008da9;
-}
-
+.section.blue-title .default-content-wrapper > h3,
 .section.blue-subtitle div > h3 {
-  color: #008da9;
+  color: var(--text-blue);
 }
 
 .section.green-title .default-content-wrapper > h2,

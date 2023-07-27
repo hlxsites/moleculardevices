@@ -200,7 +200,7 @@
 }
 
 .thank-you-page h2 {
-  color: #008da9;
+  color: var(--text-blue);
   font-family: var(--ff-proxima-light);
   font-size: 54px;
   text-align: center;
