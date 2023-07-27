@@ -200,11 +200,15 @@
 }
 
 .thank-you-page h2 {
-  color: var(--text-green);
-  font-family: var(--ff-proxima-regular);
+  color: #008da9;
+  font-family: var(--ff-proxima-light);
   font-size: 54px;
   text-align: center;
   margin-bottom: 40px;
+}
+
+.section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
+  color: var(--text-green);
 }
 
 .thank-you-page h3 {
