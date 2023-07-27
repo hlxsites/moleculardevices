@@ -51,6 +51,15 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .tabs-horizontal h2 {
+    font-size: 36px;
+  }
+
+  .tabs-horizontal .tab-pane > div {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .tabs-horizontal li.tabs-nav-item {
     width: 100% !important;
   }

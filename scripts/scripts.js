@@ -107,6 +107,15 @@ function decorateWaveSection(main) {
 }
 
 /**
+ * Decorate blocks in an embed fragment.
+ */
+export function decorateEmbeddedBlocks(container) {
+  container
+    .querySelectorAll('div.section > div')
+    .forEach(decorateBlock);
+}
+
+/**
  * If breadcrumbs = auto in  Metadata, 1 create space for CLS, 2 load breadcrumbs block
  * Breadcrumb block created at the top of first section
  */
@@ -727,6 +736,51 @@ export function processSectionMetadata(element) {
     });
     sectionMeta.remove();
   }
+}
+
+export async function processEmbedFragment(element) {
+  const block = div({ class: 'embed-fragment' });
+  [...element.classList].forEach((className) => { block.classList.add(className); });
+  let found = false;
+  const link = element.querySelector('a');
+  if (link) {
+    const linkUrl = new URL(link.href);
+    let linkTextUrl;
+    try {
+      linkTextUrl = new URL(link.textContent);
+    } catch {
+      // not a url, ignore
+    }
+    if (linkTextUrl && linkTextUrl.pathname === linkUrl.pathname) {
+      const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.hlx.page', 'moleculardevices--hlxsites.hlx.live'];
+      found = fragmentDomains.find((domain) => linkUrl.hostname.endsWith(domain));
+      if (found) {
+        block.classList.remove('button-container');
+        const fragment = await fetchFragment(linkUrl);
+        block.innerHTML = fragment;
+        const sections = block.querySelectorAll('.embed-fragment > div');
+        [...sections].forEach((section) => {
+          section.classList.add('section');
+          processSectionMetadata(section);
+        });
+        decorateEmbeddedBlocks(block);
+        loadBlocks(block);
+      }
+    }
+  }
+
+  if (!found) {
+    const elementInner = element.innerHTML;
+    block.append(div({ class: 'section' }));
+    block.querySelector('.section').innerHTML = elementInner;
+  }
+
+  decorateButtons(block);
+  decorateIcons(block);
+  decorateLinks(block);
+  decorateParagraphs(block);
+
+  return block;
 }
 
 loadPage();

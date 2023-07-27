@@ -1,8 +1,7 @@
 import {
   div, li, ul,
 } from '../../scripts/dom-helpers.js';
-import { decorateButtons, decorateIcons } from '../../scripts/lib-franklin.js';
-import { decorateLinks, fetchFragment, processSectionMetadata } from '../../scripts/scripts.js';
+import { processEmbedFragment } from '../../scripts/scripts.js';
 
 const classActive = 'active';
 
@@ -40,30 +39,12 @@ function buildNav(block) {
 async function buildTabs(block) {
   const tabPanes = block.querySelectorAll('.tabs-horizontal > div > div:last-child');
   const tabList = div({ class: 'tabs-list' });
-  const hydratedPanes = await Promise.all([...tabPanes].map(async (pane) => {
+  const decoratedPanes = await Promise.all([...tabPanes].map(async (pane) => {
     pane.classList.add('tab-pane');
-    const fragmentLink = pane.querySelector('a')?.textContent;
-    if (fragmentLink && fragmentLink.includes('/fragments/')) {
-      pane.classList.remove('button-container');
-      const fragment = await fetchFragment(fragmentLink);
-      pane.innerHTML = fragment;
-      const sections = pane.querySelectorAll('.tab-pane > div');
-      [...sections].forEach((section) => {
-        section.classList.add('section');
-        processSectionMetadata(section);
-      });
-    } else {
-      const paneInner = pane.innerHTML;
-      pane.innerHTML = '';
-      pane.append(div({ class: 'section' }));
-      pane.querySelector('.section').innerHTML = paneInner;
-    }
-    decorateButtons(pane);
-    decorateIcons(pane);
-    decorateLinks(pane);
-    return pane;
+    const decoratedPane = await processEmbedFragment(pane);
+    return decoratedPane;
   }));
-  hydratedPanes.forEach((pane) => { tabList.append(pane); });
+  decoratedPanes.forEach((pane) => { tabList.append(pane); });
   tabList.querySelector('.tab-pane').classList.add(classActive);
   return tabList;
 }
