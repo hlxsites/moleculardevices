@@ -220,6 +220,15 @@
   color: var(--text-green);
 }
 
+.thank-you-page p.button-container span[aria-hidden=true] {
+  display: none;
+}
+
+.thank-you-page .carousel.cards p.button-container {
+  display: flex;
+  justify-content: center;
+}
+
 .thank-you-page h3 {
   color: var(--button-bg-color);
 }
