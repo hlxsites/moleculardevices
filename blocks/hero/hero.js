@@ -71,7 +71,7 @@ function detectPricingRequestAvailable() {
 }
 
 function decoratePricingStyles(pricintRequestButtonContainer) {
-  if (!pricintRequestButtonContainer || !pricintRequestButtonContainer.closest('.pricing')) {
+  if (!pricintRequestButtonContainer) {
     return;
   }
   const nextButtons = pricintRequestButtonContainer.parentElement.querySelectorAll('.button-container + .button-container');
@@ -97,11 +97,16 @@ function showHidePricingRequestButton(block) {
   const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
   if (!pricintRequestButtonContainer) return;
 
+  const pricingEl = pricintRequestButtonContainer.closest('.pricing');
   if (!detectPricingRequestAvailable()) {
     pricintRequestButtonContainer.style.display = 'none';
+    if (pricingEl) pricingEl.classList.remove('orange-buttons');
   } else {
     pricintRequestButtonContainer.style.display = '';
-    decoratePricingStyles(pricintRequestButtonContainer);
+    if (pricingEl) {
+      pricingEl.classList.add('orange-buttons');
+      decoratePricingStyles(pricintRequestButtonContainer);
+    }
   }
 }
 
