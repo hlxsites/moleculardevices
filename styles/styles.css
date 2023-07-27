@@ -1869,6 +1869,7 @@ main .section.no-padding-top {
 }
 
 @media (max-width: 420px) {
+  .section.mobile-subtitle-small > div.default-content-wrapper > h3,
   .section .block.mobile-subtitle-small h3 {
     font-size: 16px;
   }
