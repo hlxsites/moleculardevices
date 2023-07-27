@@ -850,7 +850,14 @@ main .section.wave.orange-buttons p.button-container {
   margin-top: 20px;
 }
 
-main .section.buttons-in-row p.button-container + p.button-container,
+main .section.buttons-in-row p.button-container + p.button-container {
+  margin-left: 20px;
+}
+
+main .section.columns-2 > div:last-child ul + p.button-container {
+  margin-left: 40px;
+}
+
 main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
 }
