@@ -1847,6 +1847,10 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-xbold);
 }
 
+.section.main-title-light > div.default-content-wrapper > h2 {
+  font-family: var(--ff-proxima-light);
+}
+
 .section.title-regular > div.default-content-wrapper > h2,
 .section.title-regular > div.default-content-wrapper > h3 {
   font-family: var(--ff-proxima-regular);
