@@ -70,6 +70,9 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
 function startOver(e) {
   e.preventDefault();
 
+  step2Type = '';
+  step2Title = '';
+
   const currentTab = document.querySelector('.product-finder-step-wrapper.active');
   const firstTab = document.getElementById(`${STEP_PREFIX}-1`);
   const productsTab = document.getElementById(`${STEP_PREFIX}-3`);
