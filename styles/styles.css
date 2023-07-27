@@ -571,9 +571,13 @@ main .section.columns-2 {
   margin: 0 auto;
 }
 
-main .section.columns-2>div {
+main .section.columns-2 > div {
   width: 100%;
   padding: 0 15px;
+}
+
+main .section.columns-2 > div:last-child ul + p.button-container {
+  margin-left: 40px;
 }
 
 @media only screen and (max-width: 390px) {
