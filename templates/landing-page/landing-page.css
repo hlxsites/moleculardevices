@@ -1,6 +1,6 @@
 .landing-page .hamburger,
 .landing-page header .mainmenu-wrapper,
-.landing-page header .navbar-header > .company-links,
+.landing-page header .navbar-header>.company-links,
 .landing-page main .breadcrumbs,
 .landing-page footer .footer-wrap,
 .landing-page main .thank-you-page {
@@ -70,7 +70,7 @@
   background-size: cover;
 }
 
-.landing-page .hero-container + .download-form {
+.landing-page .hero-container+.download-form {
   margin-top: 0;
 }
 
@@ -105,7 +105,7 @@
   padding-top: 0;
 }
 
-.landing-page .download-form h4 {
+.landing-page main .download-form h4 {
   font-size: 40px;
 }
 
@@ -113,23 +113,32 @@
   padding-top: 25px;
 }
 
-.landing-page main .embed {
+.landing-page main .download-form .embed {
   width: 100%;
   background-color: #f2f2f2;
   padding: 20px 5px 0;
   margin-top: 0;
 }
 
+.landing-page main .download-form.background-dark .embed {
+  background-color: rgba(0, 0, 0, .5);
+  color: #fff;
+}
+
 .landing-page .embed h3,
 .landing-page .embed h4 {
   color: var(--heading-color);
-  font-size: 30px;
-  text-align: left;
+  font-size: 30px !important;
+  text-align: center;
   padding: 0 20px;
   margin-bottom: 0;
 }
 
-.landing-page .embed > div > div {
+.landing-page main .download-form.orange-form-title .embed h4 {
+  color: #ee7624;
+}
+
+.landing-page .embed>div>div {
   height: 650px;
   padding-bottom: 0;
 }
@@ -176,44 +185,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .landing-page header {
-    height: 74px;
-  }
-
-  .landing-page .download-form > div{
-    width: calc(var(--section-div-width) / 2);
-    display: inline-block;
-    vertical-align:top;
-  }
-
-  .landing-page .hero-inner .container.two-column.right-image > div:nth-child(1) {
-      width: 58%;
-  }
-
-  .landing-page .hero-inner .container.two-column.right-image > div:nth-child(2) {
-    width: 42%;
-    padding: 0 15px;
-  }
-
-  .landing-page .hero-inner .container {
-    align-items: center;
-    padding: 15px 0 55px 0;
-  }
-
-  .landing-page .hero-inner .container.two-column > div:nth-child(2) {
-    border: 0;
-  }
-
-  .landing-page .hero-inner h1 {
-    margin-bottom: 15px;
-  }
-
-  .landing-page .hero-inner p {
-    font-size: 27px;
-  }
-}
-
 @media (min-width: 992px) {
   .landing-page header {
     height: 139px;
@@ -221,7 +192,7 @@
 
   .landing-page h3 {
     font-size: 30px;
-  }  
+  }
 }
 
 .thank-you-page {
@@ -254,13 +225,15 @@
   margin-bottom: 50px;
 }
 
-.thank-you-page .layout-40-60 > div > div:first-of-type {
+.thank-you-page .layout-40-60>div>div:first-of-type {
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .landing-page .hero-inner > div {
-    padding-top: 90px;
+  .landing-page .download-form>div {
+    width: calc(var(--section-div-width) / 2);
+    display: inline-block;
+    vertical-align: top;
   }
 
   .landing-page main .section.download-form:not(.center) .default-content-wrapper:first-child {
@@ -268,15 +241,53 @@
     padding-top: 25px;
   }
 
-  .thank-you-page .columns > div {
+  .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
+    margin-left: calc((100vw - var(--section-div-width)) / 2);
+  }
+
+  .landing-page main .section.download-form:not(.center) .default-content-wrapper:nth-child(2) {
+    padding-top: 25px;
+  }
+
+  .landing-page .hero-inner .container.two-column.right-image>div:nth-child(1) {
+    width: 58%;
+  }
+
+  .landing-page .hero-inner .container.two-column.right-image>div:nth-child(2) {
+    width: 42%;
+    padding: 0 15px;
+  }
+
+  .landing-page .hero-inner .container {
+    align-items: center;
+    padding: 15px 0 55px 0;
+  }
+
+  .landing-page .hero-inner .container.two-column>div:nth-child(2) {
+    border: 0;
+  }
+
+  .landing-page .hero-inner h1 {
+    margin-bottom: 15px;
+  }
+
+  .landing-page .hero-inner p {
+    font-size: 27px;
+  }
+
+  .landing-page .hero-inner>div {
+    padding-top: 90px;
+  }
+
+  .thank-you-page .columns>div {
     grid-template-columns: 35fr 65fr;
   }
 
-  .thank-you-page .columns.odd > div {
+  .thank-you-page .columns.odd>div {
     grid-template-columns: 65fr 35fr;
   }
-  
-  .thank-you-page .columns.odd > div > div:first-of-type {
+
+  .thank-you-page .columns.odd>div>div:first-of-type {
     order: 2;
   }
 }
