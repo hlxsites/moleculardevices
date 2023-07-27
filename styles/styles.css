@@ -1852,10 +1852,14 @@ main .section.background-molecules {
   font-family: var(--ff-proxima-regular);
 }
 
+main .section.no-padding-bottom {
+  padding-bottom: 0;
+}
+
 .section .block.main-title-bold h2 {
   font-family: var(--ff-proxima-xbold);
 }
 
-main .section.no-padding-bottom {
-  padding-bottom: 0;
+.section .block.mobile-subtitle-small h3 {
+  font-size: 16px;
 }

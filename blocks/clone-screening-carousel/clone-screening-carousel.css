@@ -47,3 +47,19 @@
 .clone-screening-carousel .carousel-item-4 p:nth-of-type(3) {
     grid-row: 4;
 }
+
+main .clone-screening-carousel-wrapper .carousel-nav-button {
+    top: 35%;
+}
+
+@media (max-width: 420px) {
+    main .clone-screening-carousel-wrapper .carousel-nav-button {
+        top: 30%;
+    }
+
+    .clone-screening-carousel .carousel-item-2 .carousel-item-image,
+    .clone-screening-carousel .carousel-item-3 .carousel-item-image,
+    .clone-screening-carousel .carousel-item-4 .carousel-item-image {
+        display: block;
+    }
+}
