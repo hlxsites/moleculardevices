@@ -3,7 +3,7 @@ import {
   decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
-  a, div, h3, img, li, select, span, strong,
+  a, div, h3, img, li, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
