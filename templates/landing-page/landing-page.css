@@ -229,6 +229,10 @@
   text-align: center;
 }
 
+.landing-page.thankyou .columns-container h3 {
+  font-size: 40px;
+}
+
 @media (min-width: 768px) {
   .landing-page .download-form>div {
     width: calc(var(--section-div-width) / 2);
