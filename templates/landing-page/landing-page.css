@@ -48,7 +48,7 @@
   padding-bottom: 45px;
 }
 
-.landing-page .hero-inner .two-column p {
+.landing-page .hero-inner .two-column p:first-child {
   color: var(--heading-color-blue);
 }
 
@@ -200,11 +200,49 @@
 }
 
 .thank-you-page h2 {
-  color: var(--text-green);
-  font-family: var(--ff-proxima-regular);
+  color: var(--text-blue);
+  font-family: var(--ff-proxima-light);
   font-size: 54px;
   text-align: center;
   margin-bottom: 40px;
+}
+
+.thank-you-page .carousel-wrapper {
+  padding: 0;
+}
+
+.thank-you-page .carousel.cards img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
+  color: var(--text-green);
+}
+
+.section.thank-you-page .carousel-item > .card > div > p:first-of-type {
+  color: var(--text-green);
+}
+
+.thank-you-page p.button-container span[aria-hidden=true] {
+  display: none;
+}
+
+.thank-you-page .carousel.cards p.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.thank-you-page .carousel.cards p.button-container a {
+  font-size: 14px;
+  padding: 8px 30px;
+  margin-bottom: 10px;
+}
+
+.thank-you-page .carousel.cards .carousel-item h3 {
+  font-size: 22px;
+  padding-top: 10px;
 }
 
 .thank-you-page h3 {
@@ -227,6 +265,14 @@
 
 .thank-you-page .layout-40-60>div>div:first-of-type {
   text-align: center;
+}
+
+.landing-page.thankyou .columns-container h3 {
+  font-size: 40px;
+}
+
+.landing-page.thankyou .carousel.cards p.button-container a {
+  border-width: 1px;
 }
 
 @media (min-width: 768px) {
@@ -280,6 +326,7 @@
   }
 
   .thank-you-page .columns>div {
+    display: grid;
     grid-template-columns: 35fr 65fr;
   }
 
@@ -287,17 +334,16 @@
     grid-template-columns: 65fr 35fr;
   }
 
-  .thank-you-page .columns.odd>div>div:first-of-type {
+  .thank-you-page .columns.layout-66-33.odd > div {
+    grid-template-columns: 33fr 66fr;
+  }
+
+  .thank-you-page .columns.odd > div > div:first-of-type {
     order: 2;
   }
 }
 
 @media (max-width: 767px) {
-  .thank-you-page {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
   .landing-page .download-form .default-content-wrapper {
     text-align: left;
   }

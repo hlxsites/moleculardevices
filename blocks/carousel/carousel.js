@@ -477,11 +477,11 @@ const cardStyleConfig = {
   visibleItems: [
     {
       items: 1,
-      condition: () => window.screen.width < 768,
+      condition: () => window.innerWidth < 768,
     },
     {
       items: 2,
-      condition: () => window.screen.width < 1200,
+      condition: () => window.innerWidth < 1200,
     }, {
       items: 3,
     },
