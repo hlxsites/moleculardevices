@@ -34,12 +34,12 @@
   padding: 0 20px 20px;
   text-align: left;
   font-weight: 600;
-  min-height: 220px;
   width: 220px;
 }
 
 .product-comparison .product-heading img {
   height: 78px;
+  margin-top: 15px;
   margin-bottom: 10px;
   object-fit: contain;
 }
@@ -90,6 +90,7 @@
 
 .product-comparison .responsive-table tbody td:first-child {
   background-color: #525b61;
+  min-width: 160px;
   padding: 15px;
   border-bottom: 1px solid #ccc;
   font-weight: 500;
