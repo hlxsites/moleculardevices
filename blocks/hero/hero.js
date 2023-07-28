@@ -70,6 +70,26 @@ function detectPricingRequestAvailable() {
   }
 }
 
+function decoratePricingStyles(pricintRequestButtonContainer) {
+  if (!pricintRequestButtonContainer) {
+    return;
+  }
+  const nextButtons = pricintRequestButtonContainer.parentElement.querySelectorAll('.button-container + .button-container');
+  nextButtons.forEach((button, idx) => {
+    // show only one button after pricing button
+    if (idx > 0) {
+      button.style.display = 'none';
+    } else {
+      // make sure next button is displayed as secondary button
+      const nextButton = button.querySelector('a.primary');
+      if (nextButton) {
+        nextButton.classList.remove('primary');
+        nextButton.classList.add('secondary');
+      }
+    }
+  });
+}
+
 function showHidePricingRequestButton(block) {
   const pricingRequestButton = block.querySelector('a[href*="/quote-request"][href*="type=quote"]');
   if (!pricingRequestButton) return;
@@ -77,10 +97,16 @@ function showHidePricingRequestButton(block) {
   const pricintRequestButtonContainer = pricingRequestButton.closest('.button-container');
   if (!pricintRequestButtonContainer) return;
 
+  const pricingEl = pricintRequestButtonContainer.closest('.pricing');
   if (!detectPricingRequestAvailable()) {
     pricintRequestButtonContainer.style.display = 'none';
+    if (pricingEl) pricingEl.classList.remove('orange-buttons');
   } else {
     pricintRequestButtonContainer.style.display = '';
+    if (pricingEl) {
+      pricingEl.classList.add('orange-buttons');
+      decoratePricingStyles(pricintRequestButtonContainer);
+    }
   }
 }
 
