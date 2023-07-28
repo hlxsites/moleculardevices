@@ -32,7 +32,6 @@ export default async function decorate(block) {
   const headRow = domEl('tr',
     domEl('th', ''),
   );
-  let maxLength = 0;
   let maxHeight = 0;
   productIdentifiers.forEach((productIdentifier) => {
     const productSpec = productSpecs[productIdentifier];
@@ -44,16 +43,15 @@ export default async function decorate(block) {
         a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
       )),
     );
-
-    if (maxLength < productSpecs[productIdentifier].description.length) {
-      maxLength = productSpecs[productIdentifier].description.length;
-      const pElem = headRow.querySelector('p').cloneNode(true);
-      pElem.style.visibility = 'hidden';
-      document.body.appendChild(pElem);
+    const pElem = headRow.querySelector('p').cloneNode(true);
+    pElem.style.visibility = 'hidden';
+    pElem.innerText = productSpec.description;
+    document.body.appendChild(pElem);
+    if (pElem.offsetHeight > maxHeight) {
       maxHeight = pElem.offsetHeight;
-      document.body.removeChild(pElem);
-      pElem.style.visibility = 'visible';
     }
+    document.body.removeChild(pElem);
+    pElem.style.visibility = 'visible';
   });
 
   // render table body
@@ -79,7 +77,7 @@ export default async function decorate(block) {
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
   ));
 
-  block.querySelectorAll('.product-comparison .product-heading p').forEach((paragraph) => { paragraph.style.minHeight = `${110 + 2 * maxHeight}px`; });
+  block.querySelectorAll('.product-comparison .product-heading p').forEach((paragraph) => { paragraph.style.minHeight = `${5.3 * maxHeight - 6}px`; });
 
   return block;
 }
