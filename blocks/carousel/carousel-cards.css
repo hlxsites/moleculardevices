@@ -148,4 +148,8 @@
     width: 100%;
     max-width: 100%;
   }
+
+  .carousel.cards .carousel-item img {
+    width: 100%;
+  }
 }
