@@ -1,6 +1,36 @@
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { createCard } from '../card/card.js';
+import { createCarousel } from '../carousel/carousel.js';
+
+class RelatedProductsList {
+  constructor(block, config, data) {
+    this.headings = false;
+    this.data = data;
+    this.block = block;
+    Object.assign(this, config);
+  }
+
+  async render() {
+    this.carousel = await createCarousel(
+      this.block,
+      this.data,
+      {
+        infiniteScroll: true,
+        navButtons: false,
+        dotButtons: false,
+        autoScroll: false,
+        renderItem: (item) => item,
+      },
+    );
+
+    window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
+      if (e.matches) {
+        this.carousel.setInitialScrollingPosition();
+      }
+    };
+  }
+}
 
 export default async function decorate(block) {
   const relatedProductsMeta = getMetadata('related-products');
@@ -28,7 +58,7 @@ export default async function decorate(block) {
     defaultButtonText: 'Details',
   });
 
-  allItems.forEach((product) => {
+  const renderedCards = allItems.map((product) => {
     product.type = product.category;
     if (product.subCategory && !['0', 'Other'].includes(product.subCategory)) {
       product.type = product.subCategory;
@@ -37,8 +67,15 @@ export default async function decorate(block) {
     } else {
       product.type = product.h1;
     }
-    block.append(cardRenderer.renderItem(product));
+    return cardRenderer.renderItem(product);
   });
 
-  return block;
+  const relatedProductsList = new RelatedProductsList(block, {
+    infiniteScroll: true,
+    navButtons: false,
+    dotButtons: false,
+    autoScroll: false,
+    renderItem: (item) => item,
+  }, renderedCards);
+  await relatedProductsList.render();
 }
