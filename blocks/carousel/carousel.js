@@ -489,10 +489,21 @@ const cardStyleConfig = {
   renderItem: renderCardItem,
 };
 
+const thankYouPageConfig = {
+  cssFiles: ['/blocks/carousel/carousel-cards.css'],
+  navButtons: true,
+  dotButtons: false,
+  infiniteScroll: true,
+  autoScroll: false,
+  renderItem: renderCardItem,
+};
+
 export default async function decorate(block) {
-  // cards style carousel
-  const useCardsStyle = block.classList.contains('cards');
-  if (useCardsStyle) {
+  if (block.classList.contains('thankyou')) {
+    await createCarousel(block, [...block.children], thankYouPageConfig);
+    return;
+  }
+  if (block.classList.contains('cards')) {
     await createCarousel(block, [...block.children], cardStyleConfig);
     return;
   }
