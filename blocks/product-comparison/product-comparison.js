@@ -32,16 +32,25 @@ export default async function decorate(block) {
   const headRow = domEl('tr',
     domEl('th', ''),
   );
+  let maxHeight = 0;
   productIdentifiers.forEach((productIdentifier) => {
     const productSpec = productSpecs[productIdentifier];
     headRow.append(domEl('th',
       div({ class: 'product-heading' },
-        a({ href: productSpec.path },
-          createOptimizedPicture(productSpec.thumbnail),
-          p(productSpec.title),
-        ),
-      ),
-    ));
+        div({ class: 'product-heading-title darkgrey' }, productSpec.title),
+        createOptimizedPicture(productSpec.thumbnail),
+        productSpec.description ? p(productSpec.description) : '',
+        a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
+      )),
+    );
+    const pElem = headRow.querySelector('p').cloneNode(true);
+    pElem.style.visibility = 'hidden';
+    pElem.innerText = productSpec.description;
+    document.body.appendChild(pElem);
+    if (pElem.offsetHeight > maxHeight) {
+      maxHeight = pElem.offsetHeight;
+    }
+    document.body.removeChild(pElem);
   });
 
   // render table body
@@ -53,6 +62,7 @@ export default async function decorate(block) {
       let rowValue = productSpecs[productIdentifier][attribute] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
       rowValue = rowValue.replace(/false/gi, '<img src="/images/false-icon.png" alt="false" width="30" height="30">');
+      if (!rowValue) rowValue = '<img src="/images/false-icon.png" alt="false" width="30" height="30">';
       const rowBlock = span();
       rowBlock.innerHTML = rowValue;
       thisRow.append(domEl('td', rowBlock));
@@ -65,6 +75,8 @@ export default async function decorate(block) {
   block.append(div({ class: 'table-container' },
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
   ));
+
+  block.querySelectorAll('.product-comparison .product-heading p').forEach((paragraph) => { paragraph.style.minHeight = `${5.3 * maxHeight - 6}px`; });
 
   return block;
 }
