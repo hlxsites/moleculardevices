@@ -489,22 +489,15 @@ const cardStyleConfig = {
   renderItem: renderCardItem,
 };
 
-const thankYouPageConfig = {
-  cssFiles: ['/blocks/carousel/carousel-cards.css'],
-  navButtons: true,
-  dotButtons: false,
-  infiniteScroll: true,
-  autoScroll: false,
-  renderItem: renderCardItem,
-};
-
 export default async function decorate(block) {
-  if (block.classList.contains('thankyou')) {
-    await createCarousel(block, [...block.children], thankYouPageConfig);
-    return;
-  }
+  const alwaysShowNavButtons = block.classList.contains('always-show-nav-buttons');
   if (block.classList.contains('cards')) {
-    await createCarousel(block, [...block.children], cardStyleConfig);
+    // eslint-disable-next-line prefer-const
+    let { visibleItems: _, ...config } = cardStyleConfig;
+    if (!alwaysShowNavButtons) {
+      config = cardStyleConfig;
+    }
+    await createCarousel(block, [...block.children], config);
     return;
   }
 
