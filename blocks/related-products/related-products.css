@@ -63,12 +63,8 @@ main .section .related-products-wrapper {
   color: #008ca8;
 }
 
-main .related-products .carousel-item.clone {
+.related-products .carousel-item.clone {
   display: none;
-}
-
-main .related-products .carousel-item .card {
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
 }
 
 @media only screen and (max-width: 992px) {
@@ -79,28 +75,21 @@ main .related-products .carousel-item .card {
 }
 
 @media only screen and (max-width: 767px) {
-  .related-products .carousel-item {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  main .related-products {
-    justify-content: start !important;
+  .related-products {
+    justify-content: start;
     flex-wrap: nowrap;
     overflow: hidden;
-    width: 100%;
-    margin: 0;
     padding: 0 10%;
     gap: 0;
   }
 
-  main .related-products .carousel-item {
+  .related-products .carousel-item {
+    max-width: 100%;
     flex: 1 0 100%;
-    width: 100%;
-    padding: 20px 15px 40px;
   }
 
-  main .related-products .carousel-item.clone {
+
+  .related-products .carousel-item.clone {
     display: block;
   }
 }
