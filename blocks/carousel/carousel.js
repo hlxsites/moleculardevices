@@ -490,14 +490,10 @@ const cardStyleConfig = {
 };
 
 export default async function decorate(block) {
-  const alwaysShowNavButtons = block.classList.contains('always-show-nav-buttons');
-  if (block.classList.contains('cards')) {
-    // eslint-disable-next-line prefer-const
-    let { visibleItems: _, ...config } = cardStyleConfig;
-    if (!alwaysShowNavButtons) {
-      config = cardStyleConfig;
-    }
-    await createCarousel(block, [...block.children], config);
+  // cards style carousel
+  const useCardsStyle = block.classList.contains('cards');
+  if (useCardsStyle) {
+    await createCarousel(block, [...block.children], cardStyleConfig);
     return;
   }
 
