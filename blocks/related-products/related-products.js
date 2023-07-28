@@ -3,34 +3,6 @@ import { getMetadata } from '../../scripts/lib-franklin.js';
 import { createCard } from '../card/card.js';
 import { createCarousel } from '../carousel/carousel.js';
 
-class RelatedProductsList {
-  constructor(block, config, data) {
-    this.data = data;
-    this.block = block;
-    Object.assign(this, config);
-  }
-
-  async render() {
-    this.carousel = await createCarousel(
-      this.block,
-      this.data,
-      {
-        infiniteScroll: true,
-        navButtons: false,
-        dotButtons: false,
-        autoScroll: false,
-        renderItem: (item) => item,
-      },
-    );
-
-    window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
-      if (e.matches) {
-        this.carousel.setInitialScrollingPosition();
-      }
-    };
-  }
-}
-
 export default async function decorate(block) {
   const relatedProductsMeta = getMetadata('related-products');
   const relatedProductsTitles = relatedProductsMeta.split(',').map((item) => item.trim());
@@ -69,12 +41,21 @@ export default async function decorate(block) {
     return cardRenderer.renderItem(product);
   });
 
-  const relatedProductsList = new RelatedProductsList(block, {
-    infiniteScroll: true,
-    navButtons: false,
-    dotButtons: false,
-    autoScroll: false,
-    renderItem: (item) => item,
-  }, renderedCards);
-  await relatedProductsList.render();
+  this.carousel = await createCarousel(
+    block,
+    renderedCards,
+    {
+      infiniteScroll: true,
+      navButtons: false,
+      dotButtons: false,
+      autoScroll: false,
+      renderItem: (item) => item,
+    },
+  );
+
+  window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
+    if (e.matches) {
+      this.carousel.setInitialScrollingPosition();
+    }
+  };
 }
