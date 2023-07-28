@@ -207,6 +207,10 @@
   margin-bottom: 40px;
 }
 
+.thank-you-page .carousel-wrapper {
+  padding: 0;
+}
+
 .thank-you-page .carousel.cards img {
   height: 200px;
   width: 100%;
@@ -340,11 +344,6 @@
 }
 
 @media (max-width: 767px) {
-  .thank-you-page {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
   .landing-page .download-form .default-content-wrapper {
     text-align: left;
   }
