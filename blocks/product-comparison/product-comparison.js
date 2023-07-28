@@ -51,7 +51,6 @@ export default async function decorate(block) {
       maxHeight = pElem.offsetHeight;
     }
     document.body.removeChild(pElem);
-    pElem.style.visibility = 'visible';
   });
 
   // render table body
