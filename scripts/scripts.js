@@ -761,9 +761,9 @@ export async function processEmbedFragment(element) {
         const sections = block.querySelectorAll('.embed-fragment > div');
         [...sections].forEach((section) => {
           section.classList.add('section');
-          processSectionMetadata(section);
         });
         decorateEmbeddedBlocks(block);
+        decorateSections(block);
         loadBlocks(block);
       }
     }
