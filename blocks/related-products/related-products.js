@@ -5,7 +5,6 @@ import { createCarousel } from '../carousel/carousel.js';
 
 class RelatedProductsList {
   constructor(block, config, data) {
-    this.headings = false;
     this.data = data;
     this.block = block;
     Object.assign(this, config);
