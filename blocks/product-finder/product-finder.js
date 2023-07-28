@@ -268,8 +268,10 @@ async function stepThree(e) {
     `${list.children.length} Results`,
   );
 
-  const categories = await getCategories(type);
-  const categoryData = categories.find((c) => c.category === category && c.type === type);
+  const categories = await getCategories(originalType);
+  const categoryData = categories.find(
+    (c) => c.category === originalCategory && c.type === originalType,
+  );
   if (categoryData.displayImage === 'false') {
     const cardThumbs = list.querySelectorAll('.card-thumb');
     cardThumbs.forEach((thumb) => {
