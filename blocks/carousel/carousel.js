@@ -407,9 +407,9 @@ class Carousel {
     }
 
     this.block.innerHTML = '';
-    this.data.forEach((item) => {
+    this.data.forEach((item, index) => {
       const itemContainer = document.createElement('div');
-      itemContainer.className = 'carousel-item';
+      itemContainer.classList.add('carousel-item', `carousel-item-${index + 1}`);
 
       let renderedItem = this.cardRenderer.renderItem(item);
       renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
@@ -477,11 +477,11 @@ const cardStyleConfig = {
   visibleItems: [
     {
       items: 1,
-      condition: () => window.screen.width < 768,
+      condition: () => window.innerWidth < 768,
     },
     {
       items: 2,
-      condition: () => window.screen.width < 1200,
+      condition: () => window.innerWidth < 1200,
     }, {
       items: 3,
     },

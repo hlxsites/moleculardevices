@@ -59,14 +59,17 @@
 :root {
   /* colors */
   --text-color: #34393d;
-  --text-white: #fff;
-  --text-gray: #6a747c;
-  --text-gray2: #606a6c;
-  --text-light-gray: #adb3b7;
+  --text-blue: #008da9;
   --text-dark-gray: #333;
+  --text-electric-blue: #007bc4;
+  --text-gray2: #606a6c;
+  --text-gray: #6a747c;
+  --text-green: #6eb43f;
+  --text-light-gray: #adb3b7;
+  --text-orange: #ee7624;
+  --text-white: #fff;
   --heading-color: #00758d;
   --heading-color-blue: #038296;
-  --text-green: #6eb43f;
   --link-color: #337ab7;
   --link-hover-color: #0066a4;
   --background-color: #fff;
@@ -91,7 +94,6 @@
   --light-border-color-gray: #ddd;
   --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
-  --orange-text-color: #ee7624;
   --border-color-gray: #ababab;
   --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #FFFFFF80;
@@ -556,7 +558,8 @@ main .section.buttons-in-row > div {
 /* Marked as !important as these should not get overriden */
 main .section.hero-container,
 main .section.hero-advanced-container,
-main .section.page-tabs-container {
+main .section.page-tabs-container,
+main .section.html-snippet-container {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -685,7 +688,7 @@ main .section.background-grey-top-half::before {
   }
 }
 
-main .section.full-width .default-content-wrapper {
+main .section.full-width .default-content-wrapper, main .section.full-width .html-snippet-wrapper {
   width: auto;
   padding-left: 0;
   padding-right: 0;
@@ -790,8 +793,14 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin: 0 auto;
 }
 
-.section.title-big > div.default-content-wrapper > h2 {
-  font-size: 70px;
+.section.title-big > div.default-content-wrapper > h3 {
+  font-size: 36px;
+}
+
+@media (min-width: 768px) {
+  .section.title-big > div.default-content-wrapper > h2 {
+    font-size: 70px;
+  }
 }
 
 .section.title-light > div.default-content-wrapper > h2,
@@ -849,7 +858,14 @@ main .section.wave.orange-buttons p.button-container {
   margin-top: 20px;
 }
 
-main .section.buttons-in-row p.button-container + p.button-container,
+main .section.buttons-in-row p.button-container + p.button-container {
+  margin-left: 20px;
+}
+
+main .section.columns-2 > div:last-child ul + p.button-container {
+  margin-left: 40px;
+}
+
 main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
 }
@@ -876,10 +892,6 @@ main .section.related-applications-container h2:first-child {
     font-size: 36px;
     padding-top: 30px;
   }
-}
-
-.section.no-padding-bottom {
-  padding-bottom: 0;
 }
 
 /* Features Section */
@@ -1263,6 +1275,15 @@ main div.section.wave.wavecarousel.bluegreen {
   }
 }
 
+/* Green secondary buttons */
+main div.green-secondary-buttons .button {
+  border-color: #6eb43f;
+}
+
+main div.green-secondary-buttons .button.secondary {
+  color: var(--text-color);
+}
+
 /* Orange Buttons */
 main div.orange-buttons .button {
   height: 50px;
@@ -1278,7 +1299,7 @@ main div.orange-buttons .button.primary:visited {
 
 main div.orange-buttons .button.primary:hover,
 main div.orange-buttons .button.primary:active {
-  color: var(--orange-text-color);
+  color: var(--text-orange);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
@@ -1293,7 +1314,7 @@ main div.orange-buttons .button.secondary:visited {
 
 main div.orange-buttons .button.secondary:hover,
 main div.orange-buttons .button.secondary:active {
-  color: var(--orange-text-color);
+  color: var(--text-orange);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
@@ -1537,6 +1558,10 @@ main .section.background-molecules {
   margin-bottom: 45px;
 }
 
+.product .section.tabs:not(.feature-section) .default-content-wrapper + .image-list-wrapper {
+  margin-top: 50px;
+}
+
 /* -- Technology -- */
 
 .application .section h2 {
@@ -1655,6 +1680,9 @@ main .section.background-molecules {
   mix-blend-mode: darken;
 }
 
+.section.title-center > h2,
+.section.title-center > h3,
+.section.title-center > h4,
 .section.title-center > .default-content-wrapper > h2,
 .section.title-center > .default-content-wrapper > h3,
 .section.title-center > .default-content-wrapper > h4 {
@@ -1673,6 +1701,31 @@ main .section.background-molecules {
 .background-black p,
 .background-black h4 {
     color: var(--text-white);
+}
+
+.section.title-no-spacing > div.default-content-wrapper > h2,
+.section.title-no-spacing > div.default-content-wrapper > h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3 {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:first-of-type {
+  color: var(--text-green);
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:nth-of-type(2) {
+  color: var(--text-orange);
+  display: inline;
+}
+
+.section.multicolor-subtitle > div.default-content-wrapper > h3:last-of-type {
+  color: var(--text-electric-blue);
 }
 
 /*
@@ -1701,10 +1754,23 @@ main .section.background-molecules {
   color: black;
 }
 
+.category .default-content-wrapper h2 + h3 {
+  font-size: 24px;
+}
+
+.category main .columns-wrapper h3:first-child {
+  font-size: 40px;
+}
+
+.category .columns-wrapper h3 + h4,
+.category .columns-wrapper h4 + h4  {
+  font-size: 20px;
+  line-height: 1.5rem;
+}
+
 .category-3d-biology .default-content-wrapper h3 {
   font-size: 36px;
 }
-
 
 .section.product-titles .default-content-wrapper > h2 {
   font-size: 40px;
@@ -1719,8 +1785,22 @@ main .section.background-molecules {
 }
 
 .section.blue-title .default-content-wrapper > h2,
-.section.blue-title .default-content-wrapper > h3 {
-  color: #008da9;
+.section.blue-title .default-content-wrapper > h3,
+.section.blue-subtitle div > h3 {
+  color: var(--text-blue);
+}
+
+.section.green-title .default-content-wrapper > h2,
+.section.green-title .default-content-wrapper > h3 {
+  color: var(--text-green);
+}
+
+main .block.orange-main-title h2 {
+  color: var(--text-orange);
+}
+
+main .block.electric-blue-main-title h2 {
+  color: var(--text-electric-blue);
 }
 
 /*
@@ -1782,5 +1862,34 @@ main .section.background-molecules {
   .contact main .section.hero-container .hero-inner .container {
     padding-top: 100px;
     padding-bottom: 120px;
+  }
+}
+
+.section.main-title-bold > div.default-content-wrapper > h2,
+.section .block.main-title-bold h2 {
+  font-family: var(--ff-proxima-xbold);
+}
+
+.section.main-title-light > div.default-content-wrapper > h2 {
+  font-family: var(--ff-proxima-light);
+}
+
+.section.title-regular > div.default-content-wrapper > h2,
+.section.title-regular > div.default-content-wrapper > h3 {
+  font-family: var(--ff-proxima-regular);
+}
+
+main .section.no-padding-bottom {
+  padding-bottom: 0;
+}
+
+main .section.no-padding-top {
+  padding-top: 0;
+}
+
+@media (max-width: 420px) {
+  .section.mobile-subtitle-small > div.default-content-wrapper > h3,
+  .section .block.mobile-subtitle-small h3 {
+    font-size: 16px;
   }
 }
