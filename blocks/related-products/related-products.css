@@ -11,10 +11,14 @@ main .section .related-products-wrapper {
   gap: 20px;
 }
 
-.related-products .card {
+.related-products .carousel-item {
   width: 30.7%;
   max-width: 30.7%;
   height: auto;
+  display: block;
+  flex: 0 1 auto;
+  padding: 20px 15px 40px;
+  margin: 0;
 }
 
 .related-products .card-thumb {
@@ -59,17 +63,33 @@ main .section .related-products-wrapper {
   color: #008ca8;
 }
 
+.related-products .carousel-item.clone {
+  display: none;
+}
+
 @media only screen and (max-width: 992px) {
-  .related-products .card {
+  .related-products .carousel-item {
     width: 45%;
     max-width: 45%;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .related-products .card {
-    width: 100%;
+  .related-products {
+    justify-content: start;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    padding: 0 10%;
+    gap: 0;
+  }
+
+  .related-products .carousel-item {
     max-width: 100%;
-    margin: 20px 0;
+    flex: 1 0 100%;
+  }
+
+
+  .related-products .carousel-item.clone {
+    display: block;
   }
 }
