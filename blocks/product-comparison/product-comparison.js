@@ -43,14 +43,16 @@ export default async function decorate(block) {
         a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
       )),
     );
-    const pElem = headRow.querySelector('p').cloneNode(true);
-    pElem.style.visibility = 'hidden';
-    pElem.innerText = productSpec.description;
-    document.body.appendChild(pElem);
-    if (pElem.offsetHeight > maxHeight) {
-      maxHeight = pElem.offsetHeight;
+    if (productSpec.description) {
+      const pElem = headRow.querySelector('p').cloneNode(true);
+      pElem.style.visibility = 'hidden';
+      pElem.innerText = productSpec.description;
+      document.body.appendChild(pElem);
+      if (pElem.offsetHeight > maxHeight) {
+        maxHeight = pElem.offsetHeight;
+      }
+      document.body.removeChild(pElem);
     }
-    document.body.removeChild(pElem);
   });
 
   // render table body
