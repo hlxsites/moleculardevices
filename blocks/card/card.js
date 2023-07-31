@@ -181,9 +181,8 @@ class Card {
  * @param {Object}  config   optional - config object for
  * customizing the rendering and behaviour
  */
-export async function createCard(config) {
+export async function createCard(config = {}) {
   placeholders = await fetchPlaceholders();
-  config = config || {};
 
   config.defaultButtonText = config.defaultButtonText
     ? (placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText)
