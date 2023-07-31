@@ -1305,15 +1305,25 @@ main div.orange-buttons .button.primary:active {
 }
 
 main div.orange-buttons .button.secondary:link,
-main div.orange-buttons .button.secondary:visited {
+main div.orange-buttons .button.secondary:visited,
+main div.orange-secondary-buttons .button.secondary:link,
+main div.orange-secondary-buttons .button.secondary:visited {
   color: var(--text-white);
   background: transparent;
   border: 2px solid #fff;
   text-transform: none;
 }
 
+main div.orange-secondary-buttons .button.secondary:link,
+main div.orange-secondary-buttons .button.secondary:visited {
+  color: var(--text-orange);
+  border: 2px solid var(--text-orange);
+}
+
 main div.orange-buttons .button.secondary:hover,
-main div.orange-buttons .button.secondary:active {
+main div.orange-buttons .button.secondary:active,
+main div.orange-secondary-buttons .button.secondary:hover,
+main div.orange-secondary-buttons .button.secondary:active {
   color: var(--text-orange);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
