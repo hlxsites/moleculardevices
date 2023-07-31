@@ -41,7 +41,7 @@ export default async function decorate(block) {
     return cardRenderer.renderItem(product);
   });
 
-  this.carousel = await createCarousel(
+  const carousel = await createCarousel(
     block,
     renderedCards,
     {
@@ -55,7 +55,7 @@ export default async function decorate(block) {
 
   window.matchMedia('only screen and (max-width: 767px)').onchange = (e) => {
     if (e.matches) {
-      this.carousel.setInitialScrollingPosition();
+      carousel.setInitialScrollingPosition();
     }
   };
 }
