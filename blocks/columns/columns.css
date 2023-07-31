@@ -286,6 +286,10 @@ main .section>div.columns-wrapper {
   margin-bottom: 10px;
 }
 
+.columns.collaboration > div h4 {
+  text-align: center;
+}
+
 .columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even) > h3,
 .columns.light-and-dark-grey > div:nth-child(even) div:nth-child(odd) > h3 {
   color: #008da9;
