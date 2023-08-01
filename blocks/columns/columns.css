@@ -185,6 +185,10 @@ main .section>div.columns-wrapper {
   padding-left: 70px;
 }
 
+.columns.contact > div ul li .fa-clock-o {
+  height: 75px;
+}
+
 .columns.collaboration.columns-3-cols {
   justify-content: center;
 }
