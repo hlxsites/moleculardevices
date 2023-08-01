@@ -39,6 +39,10 @@ export default {
     image: 'infographic',
     action: 'downloadInfographic',
   },
+  News: {
+    image: 'document',
+    action: 'readNews',
+  },
   Presentations: {
     image: 'presentations',
     action: 'downloadPresentations',
