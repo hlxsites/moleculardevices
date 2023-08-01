@@ -96,11 +96,6 @@ table i.fa.fa-circle {
   background-color: #f2f2f2;
 }
 
-.table table th:not(:first-child),
-.table table td:not(:first-child) {
-  text-align: center;
-}
-
 .table.order table td:first-child {
   padding: 8px 20px;
 }

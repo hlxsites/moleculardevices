@@ -81,6 +81,16 @@
   margin-top: 30px;
 }
 
+.blog .section.blog-wide {
+  padding: 0;
+}
+
+.blog .section.blog-wide > div {
+  max-width: 1170px;
+  width: unset;
+  margin: 0 auto;
+}
+
 .blog .section.blog-heading > div {
   max-width: unset;
   width: unset;
