@@ -1,5 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { a } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const newsUrls = [...block.querySelectorAll('a')].map((a) => a.href);
@@ -18,8 +19,15 @@ export default async function decorate(block) {
     div.classList.add(`post-${index + 1}`);
     div.firstElementChild.classList.add('zoom-effect-wrapper');
     if (newsItem && !div.firstElementChild.querySelector('img')) {
-      const img = createOptimizedPicture(newsItem.image, newsItem.title, false);
-      div.firstElementChild.append(img);
+      div.firstElementChild.append(
+        a({ href: link.getAttribute('href') },
+          createOptimizedPicture(newsItem.image, newsItem.title, false),
+        ),
+      );
+    } else {
+      div.firstElementChild.append(
+        a({ href: link.getAttribute('href') }, ...div.firstElementChild.children),
+      )
     }
 
     const textDiv = div.lastElementChild;
