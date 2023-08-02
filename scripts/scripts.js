@@ -361,6 +361,10 @@ function decorateLinkedPictures(container) {
 export function decorateExternalLinks(container) {
   const links = container.querySelectorAll('a');
   links.forEach((link) => {
+    if (link.hostname !== window.location.hostname) {
+      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute('target', '_blank');
+    }
     link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
   });
 }
