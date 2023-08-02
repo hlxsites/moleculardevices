@@ -18,7 +18,9 @@ import {
   readBlockConfig,
   toCamelCase,
 } from './lib-franklin.js';
-import { a, div, i, p } from './dom-helpers.js';
+import {
+  a, div, domEl, p,
+} from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -200,21 +202,19 @@ function decorateExternalLink(link) {
     'http://moldev.com',
     'http://go.pardot.com',
     'http://pi.pardot.com',
-  ]
+  ];
 
   if (url.origin === window.location.origin
     || internalLinks.includes(url.origin)
     // exclude links which have anything else other than text
-    || link.children.length !== 0
-    ) {
+    || link.children.length !== 0) {
     return;
   }
 
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
-  link.appendChild(i({ class: 'fa fa-external-link' }));
+  link.appendChild(domEl('i', { class: 'fa fa-external-link' }));
 }
-
 
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
