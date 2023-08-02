@@ -209,12 +209,9 @@ function decorateExternalLink(link) {
     return;
   }
 
-  const linkChildren = link.children;
   const acceptedTags = ['STRONG', 'EM', 'SPAN'];
-
-  const invalidChildren = Array.from(link.children).filter(child => {
-    return !acceptedTags.includes(child.tagName);
-  });
+  const invalidChildren = Array.from(link.children)
+    .filter((child) => !acceptedTags.includes(child.tagName));
   if (invalidChildren.length > 0) {
     return;
   }
