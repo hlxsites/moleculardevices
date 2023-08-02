@@ -205,10 +205,18 @@ function decorateExternalLink(link) {
   ];
 
   if (url.origin === window.location.origin
-    || internalLinks.includes(url.origin)
-    // exclude links which have anything else other than text
-    || link.children.length !== 0) {
+    || internalLinks.includes(url.origin)) {
     return;
+  }
+
+  const linkChildren = link.children;
+  if (linkChildren.length > 0) {
+    new Set(linkChildren).forEach((child) => {
+      const acceptedTags = ['STRONG', 'EM', 'SPAN'];
+      if (!acceptedTags.includes(child.tagName)) {
+        return;
+      }
+    });
   }
 
   link.setAttribute('target', '_blank');
