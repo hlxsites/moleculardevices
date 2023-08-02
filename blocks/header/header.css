@@ -9,6 +9,10 @@ header {
   width: 100%;
 }
 
+header a i.fa.fa-external-link {
+  color: inherit;
+}
+
 header .nav-tabs>li {
   flex-grow: 1;
   float: left;

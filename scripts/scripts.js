@@ -188,13 +188,14 @@ export function videoButton(container, button, url) {
   });
 }
 
-function decorateExternalLink(link) {
+export function decorateExternalLink(link) {
   const url = new URL(link.href);
 
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
     'https://vids.moleculardevices.com',
+    'https://support.moleculardevices.com',
     'https://moleculardevices.com',
     'https://main--moleculardevices--hlxsites.hlx.page',
     'https://main--moleculardevices--hlxsites.hlx.live',
@@ -205,20 +206,30 @@ function decorateExternalLink(link) {
   ];
 
   if (url.origin === window.location.origin
-    || internalLinks.includes(url.origin)) {
+    || internalLinks.includes(url.origin)
+    || !url.protocol.startsWith('http')
+    || link.querySelector('.icon')) {
     return;
   }
 
-  const acceptedTags = ['STRONG', 'EM', 'SPAN'];
+  const acceptedTags = ['STRONG', 'EM', 'SPAN', 'H2'];
   const invalidChildren = Array.from(link.children)
     .filter((child) => !acceptedTags.includes(child.tagName));
+
   if (invalidChildren.length > 0) {
     return;
   }
 
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
-  link.appendChild(domEl('i', { class: 'fa fa-external-link' }));
+
+  const heading = link.querySelector('h2');
+  const externalLinkIcon = domEl('i', { class: 'fa fa-external-link' });
+  if (!heading) {
+    link.appendChild(externalLinkIcon);
+  } else {
+    heading.appendChild(externalLinkIcon);
+  }
 }
 
 export function decorateLinks(main) {
