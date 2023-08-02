@@ -30,7 +30,8 @@
   padding-left: 20px;
 }
 
-.blog table ul {
+.blog table ul,
+.blog table ol {
   margin-left: 15px;
 }
 
