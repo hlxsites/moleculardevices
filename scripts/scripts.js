@@ -204,7 +204,8 @@ function decorateExternalLink(link) {
     'http://pi.pardot.com',
   ];
 
-  if (url.origin === window.location.origin
+  if (url.origin === 'null'
+    || url.origin === window.location.origin
     || internalLinks.includes(url.origin)) {
     return;
   }
