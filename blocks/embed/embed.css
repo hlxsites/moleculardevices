@@ -48,6 +48,14 @@ main .embed.video > div {
   position: relative;
 }
 
+.embed.small .flippingbook-desktop {
+  display: none;
+}
+
+.embed.small .flippingbook-mobile {
+  display: block;
+}
+
 .flippingbook-mobile .book-icon {
   width: 60px;
   height: 60px;
@@ -99,4 +107,8 @@ main .embed.embed-twitter > div {
 
 main .embed.embed-info-moleculardevices-com {
   min-height: 590px;
+}
+
+main .embed.small {
+  width: 100%;
 }

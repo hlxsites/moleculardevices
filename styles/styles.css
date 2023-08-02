@@ -1816,16 +1816,17 @@ main .section.background-molecules {
   color: var(--text-green);
 }
 
+main .section.white-title .default-content-wrapper > h2,
+main .section.white-title .default-content-wrapper > h3 {
+  color: var(--text-white);
+}
+
 main .block.orange-main-title h2 {
   color: var(--text-orange);
 }
 
 main .block.electric-blue-main-title h2 {
   color: var(--text-electric-blue);
-}
-
-main .block.white-title h3 {
-  color: var(--text-white);
 }
 
 /*
