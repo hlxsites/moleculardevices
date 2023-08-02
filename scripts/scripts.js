@@ -186,7 +186,7 @@ export function videoButton(container, button, url) {
   });
 }
 
-function decorateLinks(main) {
+export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links
@@ -209,6 +209,13 @@ function decorateLinks(main) {
     if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
+    }
+
+    // decorate external links
+    if (link.hostname !== window.location.hostname) {
+      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute('target', '_blank');
+      link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
     }
   });
 }
@@ -355,17 +362,6 @@ function decorateLinkedPictures(container) {
       link.className = '';
       link.appendChild(picture);
     }
-  });
-}
-
-export function decorateExternalLinks(container) {
-  const links = container.querySelectorAll('a');
-  links.forEach((link) => {
-    if (link.hostname !== window.location.hostname) {
-      link.setAttribute('rel', 'noopener noreferrer');
-      link.setAttribute('target', '_blank');
-    }
-    link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
   });
 }
 

@@ -1,4 +1,4 @@
-import { decorateExternalLinks, fetchFragment } from '../../scripts/scripts.js';
+import { decorateLinks, fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
@@ -112,7 +112,7 @@ function buildCitation(fragment) {
     ),
   );
 
-  decorateExternalLinks(citation);
+  decorateLinks(citation);
 
   return citation;
 }
@@ -150,8 +150,6 @@ export default async function decorate(block) {
       viewShortDescription(citation);
     });
   });
-
-  decorateExternalLinks(document.querySelector('.citations-container .default-content-wrapper'));
 
   return block;
 }
