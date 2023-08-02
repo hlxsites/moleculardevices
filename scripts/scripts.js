@@ -358,6 +358,13 @@ function decorateLinkedPictures(container) {
   });
 }
 
+export function decorateExternalLinks(container) {
+  const links = container.querySelectorAll('a');
+  links.forEach((link) => {
+    link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
+  });
+}
+
 /**
  * Run template specific decoration code.
  * @param {Element} main The container element

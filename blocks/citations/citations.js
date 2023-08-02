@@ -1,4 +1,4 @@
-import { fetchFragment } from '../../scripts/scripts.js';
+import { decorateExternalLinks, fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
@@ -104,18 +104,15 @@ function buildCitation(fragment) {
       ),
       div(
         { class: 'citation-long-description' },
-        descriptionBlock,
-        contributorsBlock,
-        gotToBlock,
+        descriptionBlock || '',
+        contributorsBlock || '',
+        gotToBlock || '',
         viewLessBlock,
       ),
     ),
   );
 
-  const links = citation.querySelectorAll('a');
-  links.forEach((link) => {
-    link.innerHTML += ' <i class="fa fa-external-link" aria-hidden="true"></i>';
-  });
+  decorateExternalLinks(citation);
 
   return citation;
 }
@@ -153,6 +150,8 @@ export default async function decorate(block) {
       viewShortDescription(citation);
     });
   });
+
+  decorateExternalLinks(document.querySelector('.citations-container .default-content-wrapper'));
 
   return block;
 }
