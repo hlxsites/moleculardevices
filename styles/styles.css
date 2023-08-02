@@ -673,20 +673,29 @@ main .section.background-grey + .section.wave:not(.background-grey-top-half) {
   margin-top: 0;
 }
 
-main .section.background-grey-top-half {
+main .section.background-grey-top-half,
+main .section.background-grey-bottom-half {
   position: relative;
 }
 
-main .section.background-grey-top-half::before {
+main .section.background-grey-top-half::before,
+main .section.background-grey-bottom-half::before {
   content: "";
   background-color: var(--grey-background-color);
   position: absolute;
-  top: 0;
   left: 0;
   height: 200px;
   width: 100%;
   z-index: -1;
   margin-top: -50px;
+}
+
+main .section.background-grey-top-half::before {
+    top: 0;
+}
+
+main .section.background-grey-bottom-half::before {
+  bottom: 0;
 }
 
 @media only screen and (max-width: 991px) {
