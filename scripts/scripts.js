@@ -18,7 +18,9 @@ import {
   readBlockConfig,
   toCamelCase,
 } from './lib-franklin.js';
-import { a, div, p } from './dom-helpers.js';
+import {
+  a, div, domEl, p,
+} from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -186,7 +188,40 @@ export function videoButton(container, button, url) {
   });
 }
 
-function decorateLinks(main) {
+function decorateExternalLink(link) {
+  const url = new URL(link.href);
+
+  const internalLinks = [
+    'https://view.ceros.com',
+    'https://share.vidyard.com',
+    'https://vids.moleculardevices.com',
+    'https://moleculardevices.com',
+    'https://main--moleculardevices--hlxsites.hlx.page',
+    'https://main--moleculardevices--hlxsites.hlx.live',
+    'http://molecular-devices.myshopify.com',
+    'http://moldev.com',
+    'http://go.pardot.com',
+    'http://pi.pardot.com',
+  ];
+
+  if (url.origin === window.location.origin
+    || internalLinks.includes(url.origin)) {
+    return;
+  }
+
+  const acceptedTags = ['STRONG', 'EM', 'SPAN'];
+  const invalidChildren = Array.from(link.children)
+    .filter((child) => !acceptedTags.includes(child.tagName));
+  if (invalidChildren.length > 0) {
+    return;
+  }
+
+  link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
+  link.appendChild(domEl('i', { class: 'fa fa-external-link' }));
+}
+
+export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links
@@ -210,6 +245,9 @@ function decorateLinks(main) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
+
+    // decorate external links
+    decorateExternalLink(link);
   });
 }
 
