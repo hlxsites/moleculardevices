@@ -62,6 +62,32 @@
   margin-bottom: 30px;
 }
 
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child,
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
+  flex-shrink: 0;
+}
+
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child {
+  height: 200px;
+}
+
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
+  height: 250px;
+}
+
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child picture,
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child picture {
+  display: block;
+  height: 100%;
+}
+
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child img,
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .carousel.cards .carousel-item h3 {
   font-size: var(--heading-font-size-l);
   margin-bottom: 8px;
@@ -78,6 +104,13 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.carousel.cards.gpx-compliance-resources .carousel-item p:first-child {
+  text-transform: uppercase;
+  color: #6eb43f;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .carousel.cards .carousel-item .button-container {
@@ -107,6 +140,14 @@
   color: #12141f;
   height: 100%;
   min-height: auto;
+}
+
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:last-child {
+  height: calc(100% - 200px);
+}
+
+.carousel.cards.microplate-related-products .carousel-item .card > div:last-child {
+  height: calc(100% - 250px);
 }
 
 .carousel.cards .carousel-item-columns-container {
