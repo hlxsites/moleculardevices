@@ -1815,6 +1815,10 @@ main .block.electric-blue-main-title h2 {
   color: var(--text-electric-blue);
 }
 
+main .block.white-title h3 {
+  color: var(--text-white);
+}
+
 /*
   Customer breakthrough pages
 */
