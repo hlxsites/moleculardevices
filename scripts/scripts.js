@@ -210,13 +210,13 @@ function decorateExternalLink(link) {
   }
 
   const linkChildren = link.children;
-  if (linkChildren.length > 0) {
-    new Set(linkChildren).forEach((child) => {
-      const acceptedTags = ['STRONG', 'EM', 'SPAN'];
-      if (!acceptedTags.includes(child.tagName)) {
-        return;
-      }
-    });
+  const acceptedTags = ['STRONG', 'EM', 'SPAN'];
+
+  const invalidChildren = Array.from(link.children).filter(child => {
+    return !acceptedTags.includes(child.tagName);
+  });
+  if (invalidChildren.length > 0) {
+    return;
   }
 
   link.setAttribute('target', '_blank');
