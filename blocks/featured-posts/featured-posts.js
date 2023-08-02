@@ -3,7 +3,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { a } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  const newsUrls = [...block.querySelectorAll('a')].map((a) => a.href);
+  const newsUrls = [...block.querySelectorAll('a')].map((link) => link.href);
   const newsItems = await ffetch('/query-index.json')
     .chunks(500)
     .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
@@ -27,7 +27,7 @@ export default async function decorate(block) {
     } else {
       div.firstElementChild.append(
         a({ href: link.getAttribute('href') }, ...div.firstElementChild.children),
-      )
+      );
     }
 
     const textDiv = div.lastElementChild;
