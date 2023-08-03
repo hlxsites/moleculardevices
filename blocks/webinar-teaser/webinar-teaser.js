@@ -1,7 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import {
-  div, span,
-} from '../../scripts/dom-helpers.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
   const container = block.querySelector(':scope > div > div');
