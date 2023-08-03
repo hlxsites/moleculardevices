@@ -189,25 +189,27 @@ export function videoButton(container, button, url) {
 }
 
 export function decorateExternalLink(link) {
+  if (!link.href) return;
+
   const url = new URL(link.href);
 
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
-    'https://vids.moleculardevices.com',
-    'https://support.moleculardevices.com',
-    'https://moleculardevices.com',
     'https://main--moleculardevices--hlxsites.hlx.page',
     'https://main--moleculardevices--hlxsites.hlx.live',
     'http://molecular-devices.myshopify.com',
     'http://moldev.com',
     'http://go.pardot.com',
     'http://pi.pardot.com',
+    'https://drift.me',
   ];
 
   if (url.origin === window.location.origin
+    || url.host.endsWith('moleculardevices.com')
     || internalLinks.includes(url.origin)
     || !url.protocol.startsWith('http')
+    || link.closest('.languages-dropdown')
     || link.querySelector('.icon')) {
     return;
   }

@@ -51,6 +51,10 @@ header .navbar-header {
   z-index: 99;
 }
 
+header .navbar-header a i.fa.fa-external-link {
+  display: none;
+}
+
 /* Hamburger menu */
 header button.hamburger {
   padding: 0;
