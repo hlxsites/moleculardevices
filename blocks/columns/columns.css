@@ -322,7 +322,7 @@ main .section>div.columns-wrapper {
 
 .columns.bullet-points > div > div:first-child > p + ul  {
   margin-bottom: 5px;
-  margin-left: 20px;
+  margin-left: 15px;
   padding-left: 0;
 }
 
