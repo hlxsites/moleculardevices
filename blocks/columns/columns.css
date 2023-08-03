@@ -65,6 +65,10 @@ main .section>div.columns-wrapper {
   padding: 40px;
 }
 
+.columns.bullet-points p {
+  display: block;
+}
+
 .columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
   margin-bottom: 5px;
   margin-left: 10px;
