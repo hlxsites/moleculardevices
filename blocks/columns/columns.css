@@ -65,6 +65,10 @@ main .section>div.columns-wrapper {
   padding: 40px;
 }
 
+.columns.bullet-points p {
+  display: flex;
+}
+
 .columns .icon.icon-chevron-right-outline {
   width: 20px;
   height: 20px;
