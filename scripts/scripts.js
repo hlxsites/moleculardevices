@@ -259,6 +259,11 @@ export function decorateLinks(main) {
       link.href = url.toString();
     }
 
+    if (url.pathname.endsWith('.pdf')) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+
     // decorate external links
     decorateExternalLink(link);
   });
