@@ -560,6 +560,17 @@ main .section>div.columns-wrapper {
   font-family: inherit;
 }
 
+.columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.columns.bullet-points ul {
+  margin-bottom: 5px;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
 .product .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;
   margin-bottom: 0;
