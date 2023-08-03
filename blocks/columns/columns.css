@@ -65,13 +65,15 @@ main .section>div.columns-wrapper {
   padding: 40px;
 }
 
-.columns.bullet-points p {
-  display: flex;
+.columns .icon.icon-chevron-right-outline {
+  width: 20px;
+  height: 20px;
 }
 
 .columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
   margin-bottom: 5px;
   margin-left: 10px;
+  margin-right: 0;
 }
 
 .columns.bullet-points ul {
@@ -128,6 +130,8 @@ main .section>div.columns-wrapper {
 
 .columns.bullet-points p.button-container a {
   font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .columns.contact > div ul li a:hover {
