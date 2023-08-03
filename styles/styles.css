@@ -1845,7 +1845,10 @@ main .section.background-molecules {
 }
 
 main .section.white-title .default-content-wrapper > h2,
-main .section.white-title .default-content-wrapper > h3 {
+main .section.white-title .default-content-wrapper > h3,
+main .section .block.white-title h2,
+main .section .block.white-title h3,
+main .section .block.white-title h4 {
   color: var(--text-white);
 }
 
