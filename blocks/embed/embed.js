@@ -1,5 +1,6 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript, isVideo } from '../../scripts/scripts.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 const getDefaultEmbed = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
@@ -82,6 +83,39 @@ function embedFlippingBook(url) {
   `;
 }
 
+function decorateFlippingBook(block, url) {
+  if (!block.classList.contains('desktop-modal') || window.innerWidth < 430) {
+    return;
+  }
+
+  const divContent = `<div>
+<span class="close-button"></span>
+<iframe
+    allowfullscreen
+    src="${url.href}"
+    scrolling="no"
+    loading="lazy"
+    title="Content from ${url.hostname}"
+></iframe></div>`;
+  const modalDiv = div({
+    class: 'flippingbook-modal-overlay',
+    'aria-hidden': true,
+  });
+  modalDiv.innerHTML = divContent;
+  document.body.append(modalDiv);
+
+  modalDiv.querySelector('.close-button').addEventListener('click', (e) => {
+    e.preventDefault();
+    modalDiv.setAttribute('aria-hidden', true);
+  });
+
+  block.querySelector('.flippingbook-mobile')
+    .addEventListener('click', (e) => {
+      e.preventDefault();
+      modalDiv.removeAttribute('aria-hidden');
+    });
+}
+
 const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -103,6 +137,7 @@ const loadEmbed = (block, link) => {
     {
       match: ['flippingbook'],
       embed: embedFlippingBook,
+      decorate: decorateFlippingBook,
     },
     {
       match: ['info.moleculardevices.com'],
@@ -118,6 +153,10 @@ const loadEmbed = (block, link) => {
   block.classList.add('block', 'embed', 'embed-is-loaded');
   const className = toClassName(config.match[0]);
   if (config) block.classList.add(`embed-${className}`);
+
+  if (config.decorate) {
+    config.decorate(block, url);
+  }
 };
 
 export default function decorate(block) {
