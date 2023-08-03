@@ -1936,3 +1936,8 @@ main .section.space-wrappers > div {
     font-size: 16px;
   }
 }
+
+.block.image-auto-size img {
+  width: auto;
+  height: auto;
+}
