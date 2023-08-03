@@ -1718,7 +1718,8 @@ main .section.background-molecules {
 .section.title-center > h4,
 .section.title-center > .default-content-wrapper > h2,
 .section.title-center > .default-content-wrapper > h3,
-.section.title-center > .default-content-wrapper > h4 {
+.section.title-center > .default-content-wrapper > h4,
+.section.button-center > .default-content-wrapper > p.button-container {
   text-align: center;
 }
 
@@ -1740,6 +1741,21 @@ main .section.background-molecules {
 .section.title-no-spacing > div.default-content-wrapper > h3 {
   margin: 0;
   padding: 0;
+}
+
+.section.image-title-inline > div.default-content-wrapper > p.picture:first-child,
+.section.image-title-inline > div.default-content-wrapper > p.picture:first-child + h2 {
+  display: inline;
+  vertical-align: middle;
+}
+
+.section.image-title-inline > div.default-content-wrapper > p.picture:first-child img {
+  height: 60px;
+  margin-left: -20px;
+}
+
+.section.image-title-inline > div.default-content-wrapper > p.picture:first-child + h2 {
+  margin-left: 10px;
 }
 
 .section.multicolor-subtitle > div.default-content-wrapper > h3 {

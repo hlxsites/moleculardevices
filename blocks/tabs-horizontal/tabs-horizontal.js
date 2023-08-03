@@ -28,7 +28,7 @@ function buildNav(block) {
         onclick: (e) => { handleTabClick(e, idx); },
         'aria-label': tabTitle,
       },
-      tabTitle,
+      div(tabTitle),
     );
     navList.append(listItem);
   });

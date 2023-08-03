@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.tabs-horizontal .section > div {
+  width: 100%;
+}
+
 .tabs-horizontal h2 {
   font-size: 42px;
   color: #5f696b;
@@ -40,10 +44,13 @@
 }
 
 .tabs-horizontal li.tabs-nav-item {
+  display: flex;
   list-style: none;
   flex-grow: 1;
-  padding: 30px 20px;
+  padding: 10px 20px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   color: var(--text-white);
   border: 1px solid var(--text-white);
   border-bottom-color: var(--dark-gray-background-color);
