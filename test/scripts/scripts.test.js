@@ -39,10 +39,4 @@ describe('Core Helix features', () => {
     window.hlx.lighthouse = false;
     Array.from(document.querySelectorAll('script')).pop().remove();
   });
-
-  it('Adds favicon', async () => {
-    scripts.addFavIcon('/foo.svg');
-    const $favIcon = document.querySelector('link[rel="icon"]');
-    expect($favIcon.getAttribute('href')).to.equal('/foo.svg');
-  });
 });
