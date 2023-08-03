@@ -24,7 +24,6 @@ export default function decorate(block) {
   if (registerButton) {
     registerButton.classList.add('button');
     registerButton.classList.add('secondary');
-    registerButton.append(span({ class: 'icon icon-fa-external-link' }));
     registerButton.setAttribute('target', '_blank');
   }
 
