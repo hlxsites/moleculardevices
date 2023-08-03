@@ -116,14 +116,6 @@ main .citations-container > .default-content-wrapper {
   max-height: 1000px; /* adjust the value to a large enough value to accommodate the content */
 }
 
-.citations .fa.fa-external-link {
-  position: relative;
-  top: -7px;
-  font-size: 13px;
-  margin-left: 2px;
-  color: var(--link-color);
-}
-
 @media (max-width: 767px) {
   .citations .citation-header > p:nth-child(1),
   .citations .citation-header > p:nth-child(2) {

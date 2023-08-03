@@ -9,6 +9,10 @@ header {
   width: 100%;
 }
 
+header a i.fa.fa-external-link {
+  color: inherit;
+}
+
 header .nav-tabs>li {
   flex-grow: 1;
   float: left;
@@ -45,6 +49,10 @@ header nav {
 header .navbar-header {
   position: relative;
   z-index: 99;
+}
+
+header .navbar-header a i.fa.fa-external-link {
+  display: none;
 }
 
 /* Hamburger menu */

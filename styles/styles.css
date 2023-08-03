@@ -457,6 +457,14 @@ a i.fa {
   margin-left: 5px;
 }
 
+a i.fa.fa-external-link {
+  position: relative;
+  top: -5px;
+  font-size: 13px;
+  margin-left: 2px;
+  color: var(--link-color);
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -626,6 +634,10 @@ main .section.columns-2>div {
     padding-right: calc((100vw - 750px) / 2);
   }
 
+  main .section.columns-2.layout-33-66 {
+    grid-template-columns: 33fr 66fr;
+  }
+
   main .section.background-molecules .columns.columns-2-cols > div {
     align-items: flex-start;
   }
@@ -665,20 +677,29 @@ main .section.background-grey + .section.wave:not(.background-grey-top-half) {
   margin-top: 0;
 }
 
-main .section.background-grey-top-half {
+main .section.background-grey-top-half,
+main .section.background-grey-bottom-half {
   position: relative;
 }
 
-main .section.background-grey-top-half::before {
+main .section.background-grey-top-half::before,
+main .section.background-grey-bottom-half::before {
   content: "";
   background-color: var(--grey-background-color);
   position: absolute;
-  top: 0;
   left: 0;
   height: 200px;
   width: 100%;
   z-index: -1;
   margin-top: -50px;
+}
+
+main .section.background-grey-top-half::before {
+    top: 0;
+}
+
+main .section.background-grey-bottom-half::before {
+  bottom: 0;
 }
 
 @media only screen and (max-width: 991px) {
@@ -810,6 +831,10 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
 
 .section .columns > div > div:first-child > h3 + ul {
   padding-top: 20px;
+}
+
+.section .columns > div > div:first-child > h3 + ul,
+.section .columns > div > div:first-child > p + ul {
   padding-left: 20px;
 }
 
@@ -826,12 +851,6 @@ main .event-container .event-date {
   display: block;
   padding-bottom: 30px;
   width: 100%;
-}
-
-main .event-container i.fa.fa-external-link {
-  position: relative;
-  top: -7px;
-  font-size: 13px;
 }
 
 main .section .default-content-wrapper h2:only-child {
@@ -860,6 +879,10 @@ main .section.wave.orange-buttons p.button-container {
 
 main .section.buttons-in-row p.button-container + p.button-container {
   margin-left: 20px;
+}
+
+main .section .columns > div > div:first-child > p.button-container {
+  margin-left: 0;
 }
 
 main .section.columns-2 > div:last-child ul + p.button-container {
@@ -1805,6 +1828,11 @@ main .section.background-molecules {
   color: var(--text-green);
 }
 
+main .section.white-title .default-content-wrapper > h2,
+main .section.white-title .default-content-wrapper > h3 {
+  color: var(--text-white);
+}
+
 main .block.orange-main-title h2 {
   color: var(--text-orange);
 }
@@ -1897,9 +1925,19 @@ main .section.no-padding-top {
   padding-top: 0;
 }
 
+main .section.space-wrappers > div {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
 @media (max-width: 420px) {
   .section.mobile-subtitle-small > div.default-content-wrapper > h3,
   .section .block.mobile-subtitle-small h3 {
     font-size: 16px;
   }
+}
+
+.block.image-auto-size img {
+  width: auto;
+  height: auto;
 }

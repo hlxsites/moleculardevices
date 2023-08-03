@@ -74,7 +74,7 @@ main .section>div.columns-wrapper {
   margin-left: 10px;
 }
 
-.columns.bullet-points ul {
+.columns.bullet-points ul, .columns.bullet-points > div > div:first-child > p + ul  {
   margin-bottom: 5px;
   margin-left: 20px;
   padding-left: 0;

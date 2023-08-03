@@ -30,6 +30,11 @@
   padding-left: 20px;
 }
 
+.blog table ul,
+.blog table ol {
+  margin-left: 15px;
+}
+
 .blog ul ul {
   margin-bottom: 0;
 }
@@ -132,6 +137,18 @@ main .section.sidebar h4,
   display: block;
   width: 178px;
 }
+
+
+.blog .section.green-secondary-buttons .button {
+  color: var(--text-green);
+}
+
+.blog .section.orange-buttons .button.secondary {
+  color: var(--text-orange);
+  border: 2px solid var(--text-orange);
+}
+
+
 
 @media only screen and (max-width: 767px) {
   .blog .section.blog-heading > div:first-of-type {

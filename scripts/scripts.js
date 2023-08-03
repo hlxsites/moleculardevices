@@ -18,7 +18,9 @@ import {
   readBlockConfig,
   toCamelCase,
 } from './lib-franklin.js';
-import { a, div, p } from './dom-helpers.js';
+import {
+  a, div, domEl, p,
+} from './dom-helpers.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -186,7 +188,53 @@ export function videoButton(container, button, url) {
   });
 }
 
-function decorateLinks(main) {
+export function decorateExternalLink(link) {
+  if (!link.href) return;
+
+  const url = new URL(link.href);
+
+  const internalLinks = [
+    'https://view.ceros.com',
+    'https://share.vidyard.com',
+    'https://main--moleculardevices--hlxsites.hlx.page',
+    'https://main--moleculardevices--hlxsites.hlx.live',
+    'http://molecular-devices.myshopify.com',
+    'http://moldev.com',
+    'http://go.pardot.com',
+    'http://pi.pardot.com',
+    'https://drift.me',
+  ];
+
+  if (url.origin === window.location.origin
+    || url.host.endsWith('moleculardevices.com')
+    || internalLinks.includes(url.origin)
+    || !url.protocol.startsWith('http')
+    || link.closest('.languages-dropdown')
+    || link.querySelector('.icon')) {
+    return;
+  }
+
+  const acceptedTags = ['STRONG', 'EM', 'SPAN', 'H2'];
+  const invalidChildren = Array.from(link.children)
+    .filter((child) => !acceptedTags.includes(child.tagName));
+
+  if (invalidChildren.length > 0) {
+    return;
+  }
+
+  link.setAttribute('target', '_blank');
+  link.setAttribute('rel', 'noopener noreferrer');
+
+  const heading = link.querySelector('h2');
+  const externalLinkIcon = domEl('i', { class: 'fa fa-external-link' });
+  if (!heading) {
+    link.appendChild(externalLinkIcon);
+  } else {
+    heading.appendChild(externalLinkIcon);
+  }
+}
+
+export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
     // decorate video links
@@ -210,6 +258,9 @@ function decorateLinks(main) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
+
+    // decorate external links
+    decorateExternalLink(link);
   });
 }
 
