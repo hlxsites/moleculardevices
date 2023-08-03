@@ -838,10 +838,6 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   padding-left: 20px;
 }
 
-.section .columns > div > div:first-child > p.button-container {
-  margin-left: 0;
-}
-
 main .event-container .text-strong {
   padding-top: 15px;
 
@@ -883,6 +879,10 @@ main .section.wave.orange-buttons p.button-container {
 
 main .section.buttons-in-row p.button-container + p.button-container {
   margin-left: 20px;
+}
+
+main .section .columns > div > div:first-child > p.button-container {
+  margin-left: 0;
 }
 
 main .section.columns-2 > div:last-child ul + p.button-container {
