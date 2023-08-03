@@ -2,6 +2,10 @@
   margin-top: 20px;
 }
 
+.tabs-horizontal .section > div {
+  width: 100%;
+}
+
 .tabs-horizontal h2 {
   font-size: 42px;
   color: #5f696b;
