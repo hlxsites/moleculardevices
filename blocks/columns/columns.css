@@ -74,7 +74,7 @@ main .section>div.columns-wrapper {
   margin-left: 10px;
 }
 
-.columns.bullet-points ul, .columns.bullet-points > div > div:first-child > p + ul  {
+.columns.bullet-points ul {
   margin-bottom: 5px;
   margin-left: 20px;
   padding-left: 0;
@@ -318,6 +318,12 @@ main .section>div.columns-wrapper {
   list-style: none;
   padding: 0;
   margin: 60px 0 0;
+}
+
+.columns.bullet-points > div > div:first-child > p + ul  {
+  margin-bottom: 5px;
+  margin-left: 20px;
+  padding-left: 0;
 }
 
 .columns.layout-20-80.partners-list-columns ul li {
