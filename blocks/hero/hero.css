@@ -66,6 +66,10 @@ main .hero-advanced-wrapper {
   line-height: 1;
 }
 
+.hero.blue-title .hero-inner h1 {
+  color: var(--text-blue);
+}
+
 .hero-inner h2 {
   font-size: var(--heading-font-size-m);
 }
