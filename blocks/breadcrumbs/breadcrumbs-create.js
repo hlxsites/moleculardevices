@@ -114,6 +114,10 @@ const customBreadcrumbs = {
     name: 'Events',
     url_path: '/events',
   },
+  brochures: {
+    name: 'Resources',
+    url_path: '/search-results',
+  },
 };
 
 function getCustomUrl(path, part) {

@@ -315,6 +315,10 @@ main.error .hero-wrapper .hero-inner {
 
 /* Blog Variant - Desktop -- End */
 
+.hero.blue-title .hero-inner h1 {
+  color: var(--text-blue);
+}
+
 /* Technology Variant - Desktop -- Start */
 
 .technology .hero .hero-inner.short {
