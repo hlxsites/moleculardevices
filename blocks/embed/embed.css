@@ -48,6 +48,18 @@ main .embed.video > div {
   position: relative;
 }
 
+.embed.small .flippingbook-desktop {
+  display: none;
+}
+
+.embed.small .flippingbook-mobile {
+  display: block;
+}
+
+main .embed.small {
+  width: 70%;
+}
+
 .flippingbook-mobile .book-icon {
   width: 60px;
   height: 60px;
