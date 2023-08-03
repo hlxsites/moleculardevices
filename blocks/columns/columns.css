@@ -65,6 +65,17 @@ main .section>div.columns-wrapper {
   padding: 40px;
 }
 
+.columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.columns.bullet-points ul {
+  margin-bottom: 5px;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
 .columns.contact {
   padding: 80px 0;
 }
@@ -558,17 +569,6 @@ main .section>div.columns-wrapper {
 
 .section .columns.collaboration > div h3 strong {
   font-family: inherit;
-}
-
-.columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
-  margin-bottom: 5px;
-  margin-left: 10px;
-}
-
-.columns.bullet-points ul {
-  margin-bottom: 5px;
-  margin-left: 20px;
-  padding-left: 0;
 }
 
 .product .section.columns-container .columns.columns-2-cols > div h3 {
