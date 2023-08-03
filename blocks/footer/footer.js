@@ -5,7 +5,9 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, iframe, p,
 } from '../../scripts/dom-helpers.js';
-import { formatDate, loadScript, unixDateToString } from '../../scripts/scripts.js';
+import {
+  decorateExternalLink, formatDate, loadScript, unixDateToString,
+} from '../../scripts/scripts.js';
 
 let placeholders = {};
 
@@ -196,6 +198,7 @@ export default async function decorate(block) {
   block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
 
   block.append(footer);
+  block.querySelectorAll('a').forEach(decorateExternalLink);
   await decorateIcons(block);
 
   /*

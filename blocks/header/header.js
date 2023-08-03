@@ -5,7 +5,7 @@ import { buildNavbar } from './header-megamenu.js';
 import {
   a, div, li, span, i,
 } from '../../scripts/dom-helpers.js';
-import { detectStore, getCartItemCount } from '../../scripts/scripts.js';
+import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
 
@@ -104,6 +104,7 @@ export default async function decorate(block) {
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();
+  block.querySelectorAll('a').forEach(decorateExternalLink);
 
   addIndividualComponents(block);
 
