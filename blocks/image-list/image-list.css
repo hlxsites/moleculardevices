@@ -22,6 +22,7 @@ main div.image-list-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 30px;
+  row-gap: 20px;
 }
 
 .image-list.block > div {
