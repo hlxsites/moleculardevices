@@ -66,7 +66,7 @@ main .section>div.columns-wrapper {
 }
 
 .columns.bullet-points p {
-  display: block;
+  display: flex;
 }
 
 .columns.bullet-points p.button-container, .columns.bullet-points ul + p.button-container {
