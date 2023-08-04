@@ -136,7 +136,7 @@ function searchMainSection() {
                             <div class="coveo-result-cell">
                               <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
-                                  <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/" target="_blank"> </a>
+                                  <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/\${raw.sfurlname}" target="_blank"> </a>
                                 </div>
                                 <div class="coveo-result-cell">
                                   <div class="coveo-result-row">
