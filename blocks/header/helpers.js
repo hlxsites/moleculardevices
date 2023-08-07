@@ -53,7 +53,8 @@ export function expandMenu(element) {
 }
 
 export function buildBrandLogo(content) {
-  const logoImg = content.querySelector('.nav-brand > div > div > picture');
+  const logoImg = content.querySelector('.nav-brand');
+  logoImg.innerHTML = '';
 
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },

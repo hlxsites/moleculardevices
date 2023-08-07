@@ -51,6 +51,14 @@ header .navbar-header {
   z-index: 99;
 }
 
+header .nav-brand {
+  background-image: url('/images/header-menus/logo.svg');
+  background-position: top;
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 73px;
+}
+
 header .navbar-header a i.fa.fa-external-link {
   display: none;
 }
@@ -437,17 +445,6 @@ header nav .nav-sections {
   display: block;
   visibility: visible;
   white-space: nowrap;
-}
-
-header #header-logo {
-  height:73px;
-}
-
-header #header-logo picture {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
 }
 
 /* tools */
@@ -1465,7 +1462,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   body.openmenu .mobile-menu {
     transform: translate(0,0);
     z-index: 99;
-}
+  }
 
   header .block {
     padding: 0;
@@ -1486,14 +1483,9 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     display: initial;
   }
 
-  header #header-logo {
-    height: auto;
-  }
-
-  header #header-logo img {
-    max-width: 100px;
-    max-height: 22px;
-    height: auto;
+  header .nav-brand {
+    width: 100px;
+    height: 27px;
   }
 }
 
@@ -1605,11 +1597,11 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     display: block;
   }
 
-  header .mainmenu-wrapper.sticky #header-logo img {
+  header .mainmenu-wrapper.sticky #header-logo .nav-brand {
     opacity: 1;
     transition: opacity 0.5s;
-    max-width: 100%;
     overflow: hidden;
+    height: 36px;
   }
 
   header .mainmenu-wrapper.sticky .menu-nav-category {
