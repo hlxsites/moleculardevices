@@ -74,10 +74,12 @@ function decoratePricingStyles(pricintRequestButtonContainer) {
   if (!pricintRequestButtonContainer) {
     return;
   }
+  const isStandaloneButton = pricintRequestButtonContainer.closest('.pricing.standalone-button');
   const nextButtons = pricintRequestButtonContainer.parentElement.querySelectorAll('.button-container + .button-container');
   nextButtons.forEach((button, idx) => {
-    // show only one button after pricing button
-    if (idx > 0) {
+    // in case pricing standalone button option is set, hide other buttons
+    // otherwise show max one button after pricing button
+    if (isStandaloneButton || idx > 0) {
       button.style.display = 'none';
     } else {
       // make sure next button is displayed as secondary button
