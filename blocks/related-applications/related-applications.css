@@ -50,10 +50,6 @@ li.related-link::marker {
   font-weight: 700;
 }
 
-.related-app p + p {
-  margin-top: 40px;
-}
-
 .related-app img {
   max-height: 282px;
   object-fit: cover;
