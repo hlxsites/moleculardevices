@@ -74,17 +74,24 @@ function decoratePricingStyles(pricintRequestButtonContainer) {
   if (!pricintRequestButtonContainer) {
     return;
   }
+  const singlePrimaryButton = pricintRequestButtonContainer.closest('.pricing.single-primary-button');
   const nextButtons = pricintRequestButtonContainer.parentElement.querySelectorAll('.button-container + .button-container');
-  nextButtons.forEach((button, idx) => {
-    // show only one button after pricing button
-    if (idx > 0) {
+  let cntButtons = 0;
+  nextButtons.forEach((button) => {
+    const primaryButton = button.querySelector('a.primary');
+    if (primaryButton && singlePrimaryButton) {
+      // in case upcoming primary buttons should be ignored, hide these primary buttons
       button.style.display = 'none';
     } else {
-      // make sure next button is displayed as secondary button
-      const nextButton = button.querySelector('a.primary');
-      if (nextButton) {
-        nextButton.classList.remove('primary');
-        nextButton.classList.add('secondary');
+      if (cntButtons > 0) {
+        // show max one button after primary button
+        button.style.display = 'none';
+      }
+      cntButtons++;
+      if (primaryButton) {
+        // make sure next button is displayed as secondary button
+        primaryButton.classList.remove('primary');
+        primaryButton.classList.add('secondary');
       }
     }
   });
