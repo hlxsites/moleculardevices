@@ -5,8 +5,6 @@ import { readFile } from '@web/test-runner-commands';
 import { expect } from '@esm-bundle/chai';
 import sinon from 'sinon';
 
-/** @type {import('./types').Scripts} */
-let scripts;
 /** @type {import('./types').LibFranklin} */
 let lib;
 
@@ -15,7 +13,6 @@ document.head.innerHTML = await readFile({ path: './head.html' });
 
 describe('Core Helix features', () => {
   before(async () => {
-    scripts = await import('../../scripts/scripts.js');
     lib = await import('../../scripts/lib-franklin.js');
 
     document.body.innerHTML = await readFile({ path: './body.html' });
