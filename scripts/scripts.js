@@ -485,23 +485,6 @@ async function loadEager(doc) {
 }
 
 /**
- * Adds the favicon.
- * @param {string} href The favicon URL
- */
-export function addFavIcon(href, rel = 'icon') {
-  const link = document.createElement('link');
-  link.rel = rel;
-  link.type = 'image/x-icon';
-  link.href = href;
-  const existingLink = document.querySelector(`head link[rel="${rel}"]`);
-  if (existingLink) {
-    existingLink.parentElement.replaceChild(link, existingLink);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-}
-
-/**
  * Format date expressed as string: mm/dd/yyyy
  * @param {string} dateStr date as string
  * @param {Object} options result string format options
@@ -665,8 +648,6 @@ async function loadLazy(doc) {
       // do nothing
     }
   });
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'apple-touch-icon');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
