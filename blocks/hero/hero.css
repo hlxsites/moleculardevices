@@ -313,6 +313,10 @@ main.error .hero-wrapper .hero-inner {
   padding: 10px 0;
 }
 
+.hero.green-category .hero-inner  p:first-of-type {
+  color: var(--text-green);
+}
+
 /* Blog Variant - Desktop -- End */
 
 .hero.blue-title .hero-inner h1 {
