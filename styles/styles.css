@@ -1509,7 +1509,7 @@ main .section.background-molecules {
   margin-top: 100px;
 }
 
-.videos-and-webinars .hero.wave .hero-inner.short p:first-of-type {
+.videos-and-webinars .hero.wave .hero-inner p:first-of-type {
   color: var(--heading-color-blue);
   font-size: 25px;
   font-weight: 600;
