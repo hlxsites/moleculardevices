@@ -2,6 +2,7 @@
 
 const https = require('https');
 const fs = require('fs');
+const BASE_URL = 'https://www.moleculardevices.com';
 
 const INDENTIFIER_MAPPING = new Map();
 
@@ -148,7 +149,7 @@ function createCoveoFields(index, icons) {
 
     item.path = isNotEmpty(item.gatedURL) ? item.gatedURL : item.internal_path;
     if (!item.path.startsWith('http')) {
-      const url = new URL('https://moduleculardevice.com');
+      const url = new URL(BASE_URL);
       url.pathname = item.path;
       item.path = url.toString();
     }
@@ -160,7 +161,7 @@ function createCoveoFields(index, icons) {
     item.filetype = item.internal_path.endsWith('.pdf') ? 'pdf' : 'html';
 
     item.md_rfq = item.familyid && item.familyid !== '0'
-      ? `https://www.moleculardevices.com/quote-request?pid=${item.familyid}`
+      ? `${BASE_URL}/quote-request?pid=${item.familyid}`
       : '';
 
     const isResource = RESOURCES.includes(item.type);
@@ -171,7 +172,7 @@ function createCoveoFields(index, icons) {
       ? isNotEmpty(item.thumbnail) ? item.thumbnail : item.image
       : icons[item.type] || '/images/resource-icons/document.png';
 
-    const coveoImageURL = new URL(coveoImage, 'https://moleculardevices.com');
+    const coveoImageURL = new URL(coveoImage, BASE_URL);
     coveoImageURL.search = '';
 
     item.md_img = coveoImageURL.toString();
