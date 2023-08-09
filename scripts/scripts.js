@@ -435,6 +435,125 @@ async function decorateTemplates(main) {
   }
 }
 
+function addPageSchema() {
+  if (document.querySelector('head > script[type="application/ld+json"]')) return;
+
+  const type = getMetadata('template');
+  if (type !== 'Product' && type !== 'Application' && !type.includes('Category')) {
+    return;
+  }
+
+  try {
+    const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
+
+    const h1 = document.querySelector('main h1');
+    const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
+
+    const heroImage = document.querySelector('.hero img');
+    const schemaImage = heroImage
+      ? heroImage.src
+      : getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
+
+    const keywords = getMetadata('keywords');
+
+    const schema = document.createElement('script');
+    schema.setAttribute('type', 'application/ld+json');
+
+    const logo = {
+      '@type': 'ImageObject',
+      representativeOfPage: 'True',
+      url: moleculardevicesLogoURL,
+    };
+
+    const brand = {
+      '@type': 'Brand',
+      name: 'Molecular Devices',
+      description: 'Molecular Devices is one of the leading provider of high-performance bioanalytical measurement solutions for life science research description pharmaceutical and biotherapeutic development.',
+      url: moleculardevicesRootURL,
+      sameAs: [
+        'http://www.linkedin.com/company/molecular-devices',
+        'https://www.facebook.com/MolecularDevices',
+        'http://www.youtube.com/user/MolecularDevicesInc',
+        'https://twitter.com/moldev',
+      ],
+      logo,
+    };
+
+    let schemaInfo = null;
+    if (type === 'Application') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            brand,
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
+
+    if (type === 'Product' || type.includes('Category')) {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Product',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            category: keywords,
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            brand,
+          },
+        ],
+      };
+    }
+
+    if (schemaInfo) {
+      schema.appendChild(document.createTextNode(
+        JSON.stringify(schemaInfo, null, 2),
+      ));
+
+      document.querySelector('head').appendChild(schema);
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -453,6 +572,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  addPageSchema();
 }
 
 /**
