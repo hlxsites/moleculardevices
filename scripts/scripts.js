@@ -436,26 +436,24 @@ async function decorateTemplates(main) {
 }
 
 function addPageSchema() {
-  if (document.querySelector('head > script[type="application/ld+json"]'))
-    return;
+  if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  console.log(type);
   if (type !== 'Product' && type !== 'Application' && !type.includes('Category')) {
     return;
   }
 
   try {
-    const moleculardevicesRootURL = 'https://www.moleculardevices.com/'
+    const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
     const h1 = document.querySelector('main h1');
     const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
 
     const heroImage = document.querySelector('.hero img');
     const schemaImage = heroImage ? heroImage.src : (getMetadata('thumbnail') || getMetadata('og:image'));
     const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
-    schemaImageUrl.origin = moleculardevicesRootURL;
+
     const keywords = getMetadata('keywords');
-  
+
     const schema = document.createElement('script');
     schema.setAttribute('type', 'application/ld+json');
 
@@ -463,7 +461,7 @@ function addPageSchema() {
       '@type': 'ImageObject',
       representativeOfPage: 'True',
       url: 'https://www.moleculardevices.com/images/header-menus/logo.svg',
-    }
+    };
 
     const brand = {
       '@type': 'Brand',
@@ -477,7 +475,7 @@ function addPageSchema() {
         'https://twitter.com/moldev',
       ],
       logo,
-    }
+    };
 
     let schemaInfo = null;
     if (type === 'Application') {
@@ -489,7 +487,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description: getMetadata('description'),
-            about: keywords ? keywords.split(',').map(k => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: document.querySelector("link[rel='canonical']").href,
             image: {
               '@type': 'ImageObject',
@@ -505,19 +503,19 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
-              logo: logo,
+              logo,
             },
-            brand: brand,
+            brand,
           },
           {
             '@type': 'ImageObject',
             name: schemaTitle,
             url: schemaImageUrl,
           },
-        ]
-      }
-    } 
-    
+        ],
+      };
+    }
+
     if (type === 'Product' || type.includes('Category')) {
       schemaInfo = {
         '@context': 'https://schema.org',
@@ -530,13 +528,13 @@ function addPageSchema() {
             url: document.querySelector("link[rel='canonical']").href,
             image: {
               '@type': 'ImageObject',
-              'representativeOfPage': 'True',
-              'url': schemaImageUrl,
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
             },
-            brand: brand,
-          }
-        ]
-      }
+            brand,
+          },
+        ],
+      };
     }
 
     if (schemaInfo) {
@@ -546,7 +544,8 @@ function addPageSchema() {
 
       document.querySelector('head').appendChild(schema);
     }
-  } catch(err) {
+  } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(err);
   }
 }
