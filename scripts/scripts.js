@@ -445,11 +445,15 @@ function addPageSchema() {
 
   try {
     const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
+
     const h1 = document.querySelector('main h1');
     const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
 
     const heroImage = document.querySelector('.hero img');
-    const schemaImage = heroImage ? heroImage.src : (getMetadata('thumbnail') || getMetadata('og:image'));
+    const schemaImage = heroImage
+      ? heroImage.src
+      : getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
     const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
 
     const keywords = getMetadata('keywords');
@@ -460,7 +464,7 @@ function addPageSchema() {
     const logo = {
       '@type': 'ImageObject',
       representativeOfPage: 'True',
-      url: 'https://www.moleculardevices.com/images/header-menus/logo.svg',
+      url: moleculardevicesLogoURL,
     };
 
     const brand = {
