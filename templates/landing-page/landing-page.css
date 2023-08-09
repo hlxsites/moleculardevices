@@ -276,6 +276,10 @@
   color: black;
 }
 
+.landing-page.thankyou .carousel.cards .card > div:last-child > p:first-child {
+  text-transform: uppercase;
+}
+
 @media (min-width: 768px) {
   .landing-page .download-form>div {
     width: calc(var(--section-div-width) / 2);
