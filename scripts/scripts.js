@@ -435,6 +435,51 @@ async function decorateTemplates(main) {
   }
 }
 
+function addPageSchema() {
+  if (document.querySelector('head > script[type="application/ld+json"]'))
+    return;
+
+  const type = getMetadata('template');
+  if (type !== 'Product' && type !== 'Application' && type !== 'Category') {
+    return;
+  }
+
+  try {
+    const heroImage = document.querySelector('.hero-background img');
+    const h1 = document.querySelector('main h1');
+
+    const schemaImage = heroImage ? heroImage.src : (getMetadata('thumbnail') || getMetadata('og:image'));
+  
+    const schema = document.createElement('script');
+    schema.setAttribute('type', 'application/ld+json');
+    schema.appendChild(document.createTextNode(
+      JSON.stringify(
+        {
+          '@context': 'https://schema.org',
+          '@graph': {
+            '@type': getMetadata('template'),
+            name: h1 ? h1.textContent : getMetadata('og:title'),
+            description: getMetadata('description'),
+            category: getMetadata('keywords'),
+            url: window.location.href,
+            image: {
+              '@type': 'ImageObject',
+              'representativeOfPage': 'True',
+              'url': new URL(schemaImage, document.baseURI),
+            },
+          }
+        },
+        null,
+        2
+      ),
+    ));
+
+    document.querySelector('head').appendChild(schema);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -453,6 +498,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  addPageSchema();
 }
 
 /**
