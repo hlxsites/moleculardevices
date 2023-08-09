@@ -63,6 +63,14 @@ main .embed.embed-twitter > div {
   display: block;
 }
 
+main .embed.embed-ceros > div > div {
+  padding-top:57%;
+}
+
+main .embed.embed-ceros.full-width > div > div {
+  padding: 0 0 109.38%;
+}
+
 main .embed.embed-info-moleculardevices-com {
   min-height: 590px;
 }
