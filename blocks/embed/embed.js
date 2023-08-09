@@ -46,7 +46,7 @@ const embedTwitterFeed = (url) => {
 
 export function embedCerosFrame(url) {
   const embedHTML = `
-  <div style="left: 0; width: 100%; position: relative; padding: 0 0 109.38%;">
+  <div style="left: 0; width: 100%; position: relative; padding-top:57%;">
   <iframe
       allowfullscreen
       src="${url.href}"
