@@ -164,9 +164,14 @@ function createCoveoFields(index, icons) {
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
 
-    item.md_img = item.md_pagetype === 'Product'
+    const coveoImage = item.md_img = item.md_pagetype === 'Product'
       ? isNotEmpty(item.thumbnail) ? item.thumbnail : item.image
       : icons[item.type] || '/images/resource-icons/document.png';
+
+    const coveoImageURL = new URL(coveoImage, 'https://moleculardevices.com');
+    coveoImageURL.search = '';
+
+    item.md_img = coveoImageURL.toString();
 
     if(item.type === 'Product') {
       const result = [ item.category ];
