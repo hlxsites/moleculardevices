@@ -1,4 +1,6 @@
-import { a, li } from '../../scripts/dom-helpers.js';
+import {
+  a, li, domEl, span,
+} from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 
@@ -184,8 +186,18 @@ export default async function createBreadcrumbs(container) {
   ];
 
   const ol = container.querySelector('ol');
-  breadcrumbs.forEach((crumb) => {
-    ol.appendChild(li(crumb.url_path ? a({ href: crumb.url_path }, crumb.name) : crumb.name));
+  ol.setAttribute('itemscope', '');
+  ol.setAttribute('itemtype', 'http://schema.org/BreadcrumbList');
+
+  breadcrumbs.forEach((crumb, idx) => {
+    ol.appendChild(
+      li({ itemprop: 'itemListElement', itemscope: '', itemtype: 'http://schema.org/ListItem' },
+        crumb.url_path
+          ? a({ itemprop: 'item', href: crumb.url_path }, crumb.name)
+          : span({ itemprop: 'name' }, crumb.name),
+        domEl('meta', { itemprop: 'position', content: `${idx + 1}` }),
+      ),
+    );
   });
   await breadCrumbsCSS;
 }
