@@ -271,7 +271,8 @@
 }
 
 .landing-page.thankyou .carousel.cards p.button-container a {
-  border-width: 1px;
+  border: 1px solid var(--border-color-green);
+  color: black;
 }
 
 @media (min-width: 768px) {
