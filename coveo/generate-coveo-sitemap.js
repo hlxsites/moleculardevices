@@ -32,26 +32,43 @@ const RESOURCES = [
 ]
 
 const PRIORITYMAPPING = {
-  
+  '/': 0.1,
+  '/contact': 0.1,
+  '/customer-breakthroughs': 0.1,
+  '/events': 0.1,
+  '/newsroom/in-the-news': 0.1,
+  '/newsroom/news': 0.1,
+  '/newsroom': 0.1,
+  '/product-finder': 0.1,
+  '/quote-request': 0.1,
+  '/search-results': 0.1,
+  '/video-gallery/microplate-readers': 0.1,
+  '/video-gallery/axon-patch-clamp': 0.1,
+  '/video-gallery/cellular-imaging-systems': 0.1,
+  '/video-gallery/clone-screening': 0.1,
+  '/video-gallery/flipr-system': 0.1,
+  '/applications': 0.1,
+  '/citations': 0.1,
+  '/service-support': 0.1,
+  '/lab-notes': 0.1,
+  '/applications/cell-counting/counting-cells-without-cell-staining': 0.1,
+  'Product': 0.2,
+  'Category': 0.2,
 }
-
-// TODO republish all products to get their searchTitle
 
 async function getData() {
   return new Promise(function(resolve) {
     https.get('https://main--moleculardevices--hlxsites.hlx.live/query-index.json?sheet=coveo-sitemap-source&limit=7000', res => {
       let data = [];
       const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
-      console.log('Status Code:', res.statusCode);
-      console.log('Date in Response header:', headerDate);
 
       res.on('data', chunk => {
         data.push(chunk);
       });
 
       res.on('end', () => {
-        console.log('Response ended: ');
         const entries = JSON.parse(Buffer.concat(data).toString());
+        console.log(`Successfully retrieved ${entries.data.length} items from index`);
         resolve(entries);
       });
     }).on('error', err => {
@@ -118,6 +135,7 @@ function itemSearchTitle(item) {
 }
 
 function createCoveoFields(index, icons) {
+  console.log('Procesing data...');
   index.data.forEach(item => {
     if (isNotEmpty(item.identifier)) {
       INDENTIFIER_MAPPING.set(item.identifier, item);
@@ -125,7 +143,7 @@ function createCoveoFields(index, icons) {
     
     const lastModified = new Date(0);
     lastModified.setUTCSeconds(isNotEmpty(item.date) ? item.date : item.lastModified);
-    item.lastmod = lastModified.toISOString(); // TODO check if correct format
+    item.lastmod = lastModified.toISOString();
 
     item.path = isNotEmpty(item.gatedURL) ? item.gatedURL : item.internal_path;
     if (!item.path.startsWith('http')) {
@@ -143,7 +161,7 @@ function createCoveoFields(index, icons) {
       : '';
 
     const isResource = RESOURCES.includes(item.type);
-    item.md_pagetype = isResource ? 'Resource' : item.type;
+    item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
 
     item.md_img = item.md_pagetype === 'Product'
@@ -160,6 +178,8 @@ function createCoveoFields(index, icons) {
     if (item.md_pagetype === 'Resource' || item.path.endsWith('.pdf')) {
       item.md_title = itemSearchTitle(item);
     }
+
+    item.priority = PRIORITYMAPPING[item.md_pagetype] || PRIORITYMAPPING[item.internal_path] || 0.5;
   });
 }
 
@@ -185,19 +205,19 @@ function createCoveoFieldsFromRelatedData(index) {
           .filter(application => !!application)
           .map(itemSearchTitle)
           .join(';');
-      } // TODO why are some related applications empty in the coveo sheet?
+      }
     }
   });
 }
 
-function debugQuery(index) {
-}
-
 async function writeCoveoSitemapXML(index) {
+  index.data.sort((item1, item2) => item1.priority - item2.priority);
+
   const EMPTY = '<![CDATA[ ]]>';
   let xmlData = [];
   xmlData.push('<urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:coveo="http://www.coveo.com/schemas/metadata" xsi:schemaLocation="http://www.google.com/schemas/sitemap/0.84 http://www.google.com/schemas/sitemap/0.84/sitemap.xsd">');
-  
+  let count = 0;
+
   index.data.forEach(item => {
     if (item.internal_path.startsWith('/products/series-products')) return;
 
@@ -205,7 +225,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`    <loc>${item.path}</loc>`);
     xmlData.push(`    <lastmod>${item.lastmod}</lastmod>`);
     xmlData.push(`    <changefreq>daily</changefreq>`);
-    xmlData.push(`    <priority>0.1</priority>`); // TODO understand priority mapping
+    xmlData.push(`    <priority>${item.priority}</priority>`);
     xmlData.push(`    <coveo:metadata>`);
     item.md_title && xmlData.push(`      <md_title><![CDATA[ ${itemSearchTitle(item)} ]]></md_title>`);
     xmlData.push(`      <md_contenttype><![CDATA[ ${item.md_contenttype || ''} ]]></md_contenttype>`);
@@ -215,19 +235,21 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
-    xmlData.push(`      <md_country><![CDATA[ ]]></md_country>`); // TODO
-    xmlData.push(`      <md_lang><![CDATA[ ]]></md_lang>`); // TODO
-    xmlData.push(`      <md_source><![CDATA[ ]]></md_source>`); // TODO
+    xmlData.push(`      <md_country><![CDATA[ ${ isNotEmpty(item.md_country) ? item.md_country : '' } ]]></md_country>`); // TODO
+    xmlData.push(`      <md_lang><![CDATA[ ${ isNotEmpty(item.md_lang) ? item.md_lang : '' } ]]></md_lang>`); // TODO
+    xmlData.push(`      <md_source><![CDATA[ ${ isNotEmpty(item.md_source) ? item.md_source : '' } ]]></md_source>`); // TODO
     xmlData.push(`    </coveo:metadata>`);
     xmlData.push(`    <md_pagesort>1</md_pagesort>`);
     xmlData.push('  </url>');
+
+    count++;
   });
 
   xmlData.push('</urlset>');
 
   try {
     fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
-    // file written successfully
+    console.log(`Successfully wrote ${count} items to coveo xml`);
   } catch (err) {
     console.error(err);
   }
@@ -239,7 +261,6 @@ async function main() {
 
   createCoveoFields(index, icons);
   createCoveoFieldsFromRelatedData(index);
-  // debugQuery(index);
   writeCoveoSitemapXML(index);
 }
 
