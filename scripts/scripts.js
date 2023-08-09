@@ -240,7 +240,7 @@ export function decorateLinks(main) {
     // decorate video links
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const closestButtonContainer = link.closest('.button-container');
-      if (link.closest('.block.cards') || (closestButtonContainer && (closestButtonContainer.querySelector('strong') || closestButtonContainer.querySelector('em')))) {
+      if (link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em')))) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
