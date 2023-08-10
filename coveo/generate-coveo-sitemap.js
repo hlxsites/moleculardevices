@@ -47,11 +47,7 @@ const PRIORITYMAPPING = {
   '/product-finder': 0.1,
   '/quote-request': 0.1,
   '/search-results': 0.1,
-  '/video-gallery/microplate-readers': 0.1,
-  '/video-gallery/axon-patch-clamp': 0.1,
-  '/video-gallery/cellular-imaging-systems': 0.1,
-  '/video-gallery/clone-screening': 0.1,
-  '/video-gallery/flipr-system': 0.1,
+  'video-gallery': 0.1,
   '/applications': 0.1,
   '/citations': 0.1,
   '/service-support': 0.1,
@@ -61,6 +57,7 @@ const PRIORITYMAPPING = {
   '/products/cellular-imaging-systems/high-content-imaging/pico/apoptosis-analysis-using-automated-cell-imaging': 0.5,
   Product: 0.2,
   Category: 0.2,
+
 };
 
 async function getData() {
@@ -117,6 +114,7 @@ async function getCoveoIcons() {
       'Declaration of Conformity': '/images/resource-icons/document.png',
       Category: '/images/resource-icons/technology.png',
       homepage: '/images/resource-icons/technology.png',
+      'Video Gallery': '/images/resource-icons/technology.png',
     }); // TODO get from sheet
   });
 }
@@ -178,6 +176,7 @@ function createCoveoFields(index, icons) {
       'Videos and Webinars': 'Videos & Webinars',
       'Publication': 'Publications',
       'homepage': 'home',
+      'Video Gallery': 'video-gallery',
     };
 
     item.type = TYPE_REMAP[item.type] || item.type;
