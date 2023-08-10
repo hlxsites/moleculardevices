@@ -57,6 +57,8 @@ const PRIORITYMAPPING = {
   '/service-support': 0.1,
   '/lab-notes': 0.1,
   '/applications/cell-counting/counting-cells-without-cell-staining': 0.1,
+  '/products/cellular-imaging-systems/high-content-imaging/pico/cell-counting-using-automated-cell-imaging': 0.5,
+  '/products/cellular-imaging-systems/high-content-imaging/pico/apoptosis-analysis-using-automated-cell-imaging': 0.5,
   Product: 0.2,
   Category: 0.2,
 };
@@ -197,7 +199,7 @@ function createCoveoFields(index, icons) {
       item.md_title = itemSearchTitle(item);
     }
 
-    item.priority = PRIORITYMAPPING[item.md_pagetype] || PRIORITYMAPPING[item.internal_path] || 0.5;
+    item.priority = PRIORITYMAPPING[item.internal_path] || PRIORITYMAPPING[item.md_pagetype] || 0.5;
   });
 }
 
