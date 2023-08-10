@@ -334,11 +334,11 @@
     padding-top: 90px;
   }
 
-  .thank-you-page > div.columns-wrapper > .block.columns > div:has(div:first-child picture) {
+  .thank-you-page > div.columns-wrapper > .block.columns > div.image-left {
     grid-template-columns: 35fr 65fr;
   }
 
-  .thank-you-page > div.columns-wrapper > .block.columns > div:has(div:last-child picture) {
+  .thank-you-page > div.columns-wrapper > .block.columns > div.image-right {
     grid-template-columns: 65fr 35fr;
   }
 
