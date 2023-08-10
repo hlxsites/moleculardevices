@@ -439,7 +439,7 @@ function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  if (type !== 'Product' && type !== 'Application' && !type.includes('Category')) {
+  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && type !== 'homepage') {
     return;
   }
 
@@ -467,21 +467,73 @@ function addPageSchema() {
       url: moleculardevicesLogoURL,
     };
 
+    const brandSameAs = [
+      'http://www.linkedin.com/company/molecular-devices',
+      'https://www.facebook.com/MolecularDevices',
+      'http://www.youtube.com/user/MolecularDevicesInc',
+      'https://twitter.com/moldev',
+    ];
+
     const brand = {
       '@type': 'Brand',
       name: 'Molecular Devices',
       description: 'Molecular Devices is one of the leading provider of high-performance bioanalytical measurement solutions for life science research description pharmaceutical and biotherapeutic development.',
       url: moleculardevicesRootURL,
-      sameAs: [
-        'http://www.linkedin.com/company/molecular-devices',
-        'https://www.facebook.com/MolecularDevices',
-        'http://www.youtube.com/user/MolecularDevicesInc',
-        'https://twitter.com/moldev',
-      ],
+      sameAs: brandSameAs,
       logo,
     };
 
     let schemaInfo = null;
+    if (type === 'homepage') {
+      const homepageName = getMetadata('title');
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            additionalType: 'Organization',
+            description: getMetadata('description'),
+            name: homepageName,
+            sameAs: [
+              ...brandSameAs,
+              'https://en.wikipedia.org/wiki/Molecular_Devices',
+            ],
+            url: moleculardevicesRootURL,
+            telephone: '+1 877-589-2214',
+            logo: {
+              '@type': 'ImageObject',
+              url: moleculardevicesLogoURL,
+            },
+            openingHoursSpecification: {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+              ],
+              opens: '08:00',
+              closes: '17:00',
+            },
+          },
+          {
+            '@type': 'WebSite',
+            name: homepageName,
+            url: moleculardevicesRootURL,
+            potentialAction: {
+              '@type': 'SearchAction',
+              'query-input': 'required name=search_term_string',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://www.moleculardevices.com/search-results#q={search_term_string}',
+              },
+            },
+          },
+        ],
+      };
+    }
+
     if (type === 'Application') {
       schemaInfo = {
         '@context': 'https://schema.org',
