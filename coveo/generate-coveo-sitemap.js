@@ -1,4 +1,4 @@
-/* eslint-disable no-console, no-unused-expressions, no-nested-ternary */
+/* eslint-disable no-console, no-unused-expressions, no-nested-ternary, quote-props */
 
 const https = require('https');
 const fs = require('fs');
