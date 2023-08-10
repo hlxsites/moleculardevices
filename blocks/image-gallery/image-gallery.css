@@ -1,3 +1,7 @@
+.section.image-gallery-container {
+  scroll-behavior: auto;
+}
+
 .section.image-gallery-container.overlay {
   position: fixed;
   top: 0;
