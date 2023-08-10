@@ -184,7 +184,7 @@ function createCoveoFields(index, icons) {
 
     item.md_img = coveoImageURL.toString();
 
-    if (item.type === 'Product') {
+    if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
