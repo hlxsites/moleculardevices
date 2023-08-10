@@ -116,6 +116,7 @@ async function getCoveoIcons() {
       'Cell Counter': '/images/resource-icons/document.png',
       'Declaration of Conformity': '/images/resource-icons/document.png',
       Category: '/images/resource-icons/technology.png',
+      homepage: '/images/resource-icons/technology.png',
     }); // TODO get from sheet
   });
 }
@@ -176,6 +177,7 @@ function createCoveoFields(index, icons) {
     const TYPE_REMAP = {
       'Videos and Webinars': 'Videos & Webinars',
       'Publication': 'Publications',
+      'homepage': 'home',
     };
 
     item.type = TYPE_REMAP[item.type] || item.type;
