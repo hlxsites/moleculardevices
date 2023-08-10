@@ -51,7 +51,7 @@
   max-width: unset;
 }
 
-.product-video-highlight .main > div > p, 
+.product-video-highlight .main > div > p,
 .product-video-highlight .main > div > p .video-wrapper,
 .product-video-highlight .main > div > p .video-container,
 .product-video-highlight .related > div > p,
@@ -70,6 +70,7 @@
   font-size: 14px;
   font-family: var(--ff-proxima-regular);
   text-align: left;
+  font-weight: bold;
 }
 
 .product-video-highlight a.reference-placeholder {
@@ -144,7 +145,7 @@
   }
 
   .product-video-highlight .related .vidyard-player-container .play-button {
-    width: 34%;
+    width: 20%;
   }
 }
 
