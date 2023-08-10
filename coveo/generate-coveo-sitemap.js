@@ -2,6 +2,7 @@
 
 const https = require('https');
 const fs = require('fs');
+const { type } = require('os');
 const BASE_URL = 'https://www.moleculardevices.com';
 
 const INDENTIFIER_MAPPING = new Map();
@@ -63,6 +64,7 @@ async function getData() {
   return new Promise((resolve) => {
     https.get('https://main--moleculardevices--hlxsites.hlx.live/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
       const data = [];
+      res.statusCode
 
       res.on('data', (chunk) => {
         data.push(chunk);
@@ -164,6 +166,11 @@ function createCoveoFields(index, icons) {
       ? `${BASE_URL}/quote-request?pid=${item.familyid}`
       : '';
 
+    const TYPE_REMAP = {
+      'Videos and Webinars': 'Videos & Webinars',
+    }
+
+    item.type = TYPE_REMAP[item.type] || item.type;
     const isResource = RESOURCES.includes(item.type);
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
@@ -265,12 +272,54 @@ async function writeCoveoSitemapXML(index) {
   }
 }
 
+async function checkItems(index) {
+  index.data.forEach((item) => {
+    if (item.md_pagetype === '0') {
+      console.log(item.internal_path);
+    }
+    
+    if (item.md_contenttype === '0') {
+      console.log(item.internal_path);
+    }
+  });
+
+
+  // idx = 0;
+  // for (const item of index.data) {
+  //   idx++;
+  //   if(idx > 2500) return;
+
+  //   await new Promise((resolve) => {
+  //     if(item.path.startsWith('http://')) {
+  //       console.log(item.path, item.internal_path);
+  //       resolve();
+  //       return;
+  //     }
+
+  //     console.log(`#### -> request ${idx}`);
+  //     https.get(item.path, (res) => {
+  //       console.log(`#### <- response ${idx}`);
+  //       if (res.statusCode != 200 && res.statusCode != 301)  {
+  //         console.log(res.statusCode, item.path);
+  //       }
+
+  //       resolve();
+  //     }).on('error', (err) => {
+  //       console.log(item.path, 'Error: ', err.message);
+  //       resolve();
+  //     });
+  //   });
+  //};
+
+}
+
 async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
 
   createCoveoFields(index, icons);
   createCoveoFieldsFromRelatedData(index);
+  await checkItems(index);
   writeCoveoSitemapXML(index);
 }
 
