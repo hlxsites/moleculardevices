@@ -438,10 +438,8 @@ async function decorateTemplates(main) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const theme = getMetadata('theme');
-
   const type = getMetadata('template');
-  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && theme !== 'homepage') {
+  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && type !== 'homepage') {
     return;
   }
 
@@ -486,7 +484,7 @@ function addPageSchema() {
     };
 
     let schemaInfo = null;
-    if (theme === 'homepage') {
+    if (type === 'homepage') {
       const homepageName = getMetadata('title');
       schemaInfo = {
         '@context': 'https://schema.org',
