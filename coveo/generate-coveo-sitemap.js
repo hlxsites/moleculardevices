@@ -33,6 +33,7 @@ const RESOURCES = [
   'Training Material',
   'Technical Guide',
   'White Paper',
+  'Declaration of Conformity',
 ];
 
 const PRIORITYMAPPING = {
@@ -165,18 +166,20 @@ function createCoveoFields(index, icons) {
       ? `${BASE_URL}/quote-request?pid=${item.familyid}`
       : '';
 
+    // image computation must happen before type remapping
+    const coveoImage = item.type === 'Product'
+      ? isNotEmpty(item.thumbnail) ? item.thumbnail : item.image
+      : icons[item.type] || '/images/resource-icons/document.png';
+
     const TYPE_REMAP = {
       'Videos and Webinars': 'Videos & Webinars',
+      'Publication': 'Publications',
     };
 
     item.type = TYPE_REMAP[item.type] || item.type;
     const isResource = RESOURCES.includes(item.type);
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
-
-    const coveoImage = item.md_pagetype === 'Product'
-      ? isNotEmpty(item.thumbnail) ? item.thumbnail : item.image
-      : icons[item.type] || '/images/resource-icons/document.png';
 
     const coveoImageURL = new URL(coveoImage, BASE_URL);
     coveoImageURL.search = '';
