@@ -89,8 +89,8 @@
 }
 
 .product-video-highlight a.reference-placeholder .video-icon::before {
-  width: 90px;
-  height: 90px;
+  width: 53px;
+  height: 53px;
   position: absolute;
   content: "";
   display: block;
