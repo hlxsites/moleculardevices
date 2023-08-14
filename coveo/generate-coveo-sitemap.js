@@ -121,7 +121,7 @@ async function getCoveoIcons() {
 }
 
 function isNotEmpty(field) {
-  return field && field !== '0';
+  return field && field !== '0' && field !== '#N/A';
 }
 
 function itemSearchTitle(item) {
