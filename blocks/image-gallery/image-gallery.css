@@ -1,8 +1,4 @@
-.section.image-gallery-container {
-  scroll-behavior: auto;
-}
-
-.section.image-gallery-container.overlay {
+.image-gallery-lightbox-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -17,12 +13,12 @@ main .section > div.image-gallery-wrapper {
   padding-bottom: 30px;
 }
 
-.image-gallery-container.overlay > div {
-  display: none;
+.image-gallery-lightbox-overlay {
+  display: block;
 }
 
-.image-gallery-container.overlay > div.image-gallery-wrapper {
-  display: block;
+.image-gallery-lightbox-overlay[aria-hidden="true"] {
+  display: none;
 }
 
 .image-gallery-wrapper {
@@ -32,7 +28,7 @@ main .section > div.image-gallery-wrapper {
   position: relative;
 }
 
-.overlay .image-gallery {
+.image-gallery-lightbox-overlay .image-gallery {
   display: flex;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
@@ -40,11 +36,11 @@ main .section > div.image-gallery-wrapper {
   position: relative;
 }
 
-.overlay .image-gallery .thumbnail {
+.image-gallery-lightbox-overlay .image-gallery .thumbnail {
   display: none;
 }
 
-.overlay .image-gallery > div {
+.image-gallery-lightbox-overlay .image-gallery > div {
   width: 100%;
   flex-shrink: 0;
   scroll-snap-align: start;
@@ -60,16 +56,16 @@ main .section > div.image-gallery-wrapper {
   transform: rotate(180deg);
 }
 
-.overlay .image-gallery-wrapper .icon svg {
+.image-gallery-lightbox-overlay .icon svg {
   width: 44px;
   height: auto;
 }
 
-.overlay .icon svg path {
+.image-gallery-lightbox-overlay  .icon svg path {
   fill: white;
 }
 
-.overlay .icon.gallery-button-close svg path {
+.image-gallery-lightbox-overlay .icon.gallery-button-close svg path {
   fill: none;
   color: white;
 }
@@ -94,20 +90,20 @@ main .section > div.image-gallery-wrapper {
   right: 0;
 }
 
-.overlay .image-gallery > div > div {
+.image-gallery-lightbox-overlay .image-gallery > div > div {
   display: grid;
 }
 
-.overlay .image-gallery picture {
+.image-gallery-lightbox-overlay  .image-gallery picture {
   display: none;
   text-align: center;
 }
 
-.overlay .image-gallery picture:last-of-type {
+.image-gallery-lightbox-overlay  .image-gallery picture:last-of-type {
   display: block;
 }
 
-.overlay .image-gallery img {
+.image-gallery-lightbox-overlay  .image-gallery img {
   max-height: 640px;
   max-width: 100%;
 }
@@ -202,12 +198,12 @@ main .section > div.image-gallery-wrapper {
   display: block;
 }
 
-.overlay .image-gallery > div > div > p:first-child {
+.image-gallery-lightbox-overlay .image-gallery > div > div > p:first-child {
   grid-column: 1 / 2;
   grid-row: 2 / 2;
 }
 
-.overlay .image-gallery > div > div > p:last-child {
+.image-gallery-lightbox-overlay .image-gallery > div > div > p:last-child {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   color: white;

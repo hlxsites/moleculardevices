@@ -1,9 +1,12 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { span } from '../../scripts/dom-helpers.js';
+import { div, span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const wrapper = block.parentElement;
   const body = document.querySelector('body');
+
+  const lightboxOverlay = div({ class: 'image-gallery-lightbox-overlay', 'aria-hidden': true });
+  body.append(lightboxOverlay);
 
   block.querySelectorAll(':scope > div > div > p:nth-of-type(2) > picture').forEach((picture) => {
     picture.parentElement.previousElementSibling.classList.add('thumbnail');
@@ -25,15 +28,16 @@ export default async function decorate(block) {
   right.addEventListener('click', () => { scroll(block.scrollLeft + wrapper.offsetWidth); });
   left.addEventListener('click', () => { scroll(block.scrollLeft - wrapper.offsetWidth); });
   close.addEventListener('click', () => {
-    wrapper.parentElement.classList.remove('overlay');
+    lightboxOverlay.setAttribute('aria-hidden', true);
     body.classList.remove('no-scroll');
-    block.scrollIntoView({ behavior: 'instant', block: 'center' });
+    // block.scrollIntoView({ behavior: 'instant', block: 'center' });
   });
-  wrapper.append(close, right, left);
+
+  lightboxOverlay.append(block, close, right, left);
   [...block.children].forEach((row, i) => {
     row.querySelector('img:first-of-type').addEventListener('click', () => {
-      wrapper.parentElement.classList.add('overlay');
       body.classList.add('no-scroll');
+      lightboxOverlay.removeAttribute('aria-hidden');
 
       block.scrollTo({ top: 0, left: wrapper.offsetWidth * i, behavior: 'instant' });
     });
