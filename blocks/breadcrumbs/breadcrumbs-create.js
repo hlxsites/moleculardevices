@@ -120,10 +120,6 @@ const customBreadcrumbs = {
     name: 'Resources',
     url_path: '/search-results',
   },
-  'videos-and-webinars': {
-    name: 'Resources',
-    url_path: '/resources',
-  },
 };
 
 function getCustomUrl(path, part) {
