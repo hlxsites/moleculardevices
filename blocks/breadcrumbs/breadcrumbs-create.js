@@ -178,7 +178,7 @@ export default async function createBreadcrumbs(container) {
       url_path: '/',
     },
   ];
-  if (includedResourceTypes.includes(pg.type)) {
+  if (pg && includedResourceTypes.includes(pg.type)) {
     breadcrumbs.push(
       {
         name: 'Resources',
