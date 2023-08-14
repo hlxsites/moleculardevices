@@ -3,6 +3,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
+import resourceMapping from '../resources/resource-mapping.js';
+
+const includedResourceTypes = Object.keys(resourceMapping);
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
@@ -168,23 +171,33 @@ export default async function createBreadcrumbs(container) {
   const pathSplit = skipParts(path.split('/'));
 
   const pageIndex = await ffetch('/query-index.json').all();
-  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
-
+  const pg = pageIndex.find((page) => page.path === path);
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...pathSplit.slice(1, -1).map((part, index) => {
-      const url = urlForIndex(index);
-      return {
-        name: getName(pageIndex, url, part, false),
-        url_path: getCustomUrl(url, part),
-      };
-    }),
-    { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
   ];
-
+  if (includedResourceTypes.includes(pg.type)) {
+    breadcrumbs.push(
+      {
+        name: 'Resources',
+        url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy',
+      },
+    );
+  } else {
+    const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
+    breadcrumbs.push(
+      ...pathSplit.slice(1, -1).map((part, index) => {
+        const url = urlForIndex(index);
+        return {
+          name: getName(pageIndex, url, part, false),
+          url_path: getCustomUrl(url, part),
+        };
+      }),
+      { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
+    );
+  }
   const ol = container.querySelector('ol');
   ol.setAttribute('itemscope', '');
   ol.setAttribute('itemtype', 'http://schema.org/BreadcrumbList');
