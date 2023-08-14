@@ -13,6 +13,7 @@ const ACTIVE_CLASS = 'active';
 const HIDDEN_CLASS = 'hidden';
 const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
+const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
 let placeholders = {};
@@ -138,7 +139,7 @@ function switchTab(tab, stepNum, prevStepNum, title) {
 
   if (title) {
     const titleEl = document.querySelector('.product-finder-wrapper .product-finder-tab-title');
-    titleEl.innerHTML = title.replace('tab', tab);
+    titleEl.innerHTML = title.replace('{{tab}}', tab);
   }
 
   document.querySelector(`.product-finder-container .progress-${prevStepNum}`).classList.add(CHECKED_CLASS);
@@ -295,7 +296,9 @@ async function stepTwo(e) {
 
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
-  const root = switchTab(title, stepNum, prevStepNum, 'Select tab Category');
+  // eslint-disable-next-line max-len
+  const root = switchTab(title, stepNum, prevStepNum, placeholders.selectTabCategory || DEFAULT_CATEGORY_TITLE,
+  );
 
   // generate the icons only once
   const dataCardType = getListIdentifier(`${type}`);
