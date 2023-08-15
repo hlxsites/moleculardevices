@@ -362,6 +362,7 @@ export default async function decorate(block) {
           activeSteps.forEach((activeStep) => {
             activeStep.classList.remove(ACTIVE_CLASS);
             activeStep.classList.add(HIDDEN_CLASS);
+            activeStep.style.removeProperty('display');
           });
           stepTwo(e);
         }
