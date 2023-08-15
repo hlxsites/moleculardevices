@@ -23,14 +23,15 @@ export default async function decorate(block) {
     } else if (leftScroll + innerBlock.offsetWidth > innerBlock.offsetWidth * childrenLength) {
       resultingLeftScroll = 0;
     }
-    lightboxOverlay.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });
+    innerBlock.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });
   };
 
-
   right.addEventListener('click', () => {
+    console.log('right');
     scroll(innerBlock.scrollLeft + innerBlock.offsetWidth);
   });
   left.addEventListener('click', () => {
+    console.log('left');
     scroll(innerBlock.scrollLeft - innerBlock.offsetWidth);
   });
   close.addEventListener('click', () => {
