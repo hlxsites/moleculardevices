@@ -2,7 +2,6 @@ import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { div, span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  const wrapper = block.parentElement;
   const body = document.querySelector('body');
 
   const lightboxOverlay = div({ class: 'image-gallery-lightbox-overlay', 'aria-hidden': true });
@@ -27,11 +26,9 @@ export default async function decorate(block) {
   };
 
   right.addEventListener('click', () => {
-    console.log('right');
     scroll(innerBlock.scrollLeft + innerBlock.offsetWidth);
   });
   left.addEventListener('click', () => {
-    console.log('left');
     scroll(innerBlock.scrollLeft - innerBlock.offsetWidth);
   });
   close.addEventListener('click', () => {
@@ -40,7 +37,6 @@ export default async function decorate(block) {
   });
 
   innerBlock.querySelectorAll('p.picture:nth-of-type(2)').forEach((element) => {
-    console.log('removing sibling for element', element, element.previousElementSibling);
     element.previousElementSibling.remove();
   });
   [...block.children].slice(5).forEach((row) => {
@@ -51,13 +47,8 @@ export default async function decorate(block) {
     row.querySelector('img:first-of-type').addEventListener('click', () => {
       body.classList.add('no-scroll');
       lightboxOverlay.removeAttribute('aria-hidden');
-
-      console.log('overlay offset width', lightboxOverlay.offsetWidth);
-      console.log('actual overlay offset width', innerBlock.offsetWidth);
-      console.log('i', i);
       innerBlock.scrollTo({ top: 0, left: innerBlock.offsetWidth * i, behavior: 'instant' });
-      console.log('clicked');
     });
   });
-  await decorateIcons(wrapper);
+  await decorateIcons(lightboxOverlay);
 }
