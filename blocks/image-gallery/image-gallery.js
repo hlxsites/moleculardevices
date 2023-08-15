@@ -49,6 +49,10 @@ export default async function decorate(block) {
       lightboxOverlay.removeAttribute('aria-hidden');
       innerBlock.scrollTo({ top: 0, left: innerBlock.offsetWidth * i, behavior: 'instant' });
     });
+
+    row.querySelectorAll('p:not(:first-of-type)').forEach((element) => {
+      element.parentElement.removeChild(element);
+    });
   });
   await decorateIcons(lightboxOverlay);
 }
