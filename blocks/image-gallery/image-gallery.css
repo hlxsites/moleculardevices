@@ -136,43 +136,43 @@ main .section > div.image-gallery-wrapper {
   grid-row: 1;
 }
 
-.section:not(.overlay) .image-gallery > div:nth-of-type(5) {
+.section .image-gallery > div:nth-of-type(5) {
   grid-column: 4 / 5;
   grid-row: 2;
 }
 
-.section:not(.overlay) .image-gallery > div:nth-of-type(-n+5) {
+.section .image-gallery > div:nth-of-type(-n+5) {
   display: block;
 }
 
-.section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(3)  {
+.section .image-gallery.showcase-right > div:nth-of-type(3)  {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
 
-.section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(4) {
+.section .image-gallery.showcase-right > div:nth-of-type(4) {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
 
-.section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(5) {
+.section .image-gallery.showcase-right > div:nth-of-type(5) {
   grid-column: 3 / 5;
   grid-row: 1 / 3;
 }
 
-.section:not(.overlay) .image-gallery > div:nth-of-type(3):hover {
+.section .image-gallery > div:nth-of-type(3):hover {
   transform: scale(var(--scale-big));
 }
 
-.section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(3):hover {
+.section .image-gallery.showcase-right > div:nth-of-type(3):hover {
   transform: scale(var(--scale-small));
 }
 
-.section:not(.overlay) .image-gallery.showcase-right > div:nth-of-type(5):hover {
+.section .image-gallery.showcase-right > div:nth-of-type(5):hover {
   transform: scale(var(--scale-big));
 }
 
-.section:not(.overlay) .image-gallery picture:nth-child(1) {
+.section .image-gallery picture:nth-child(1) {
   display: block;
 }
 
@@ -199,27 +199,27 @@ main .section > div.image-gallery-wrapper {
 }
 
 @media (max-width: 767px) {
-  .section:not(.overlay) .image-gallery > div:nth-of-type(1) {
+  .section .image-gallery > div:nth-of-type(1) {
     grid-column: 1 / 2;
     grid-row: 1;
   }
 
-  .section:not(.overlay) .image-gallery > div:nth-of-type(2) {
+  .section .image-gallery > div:nth-of-type(2) {
     grid-column: 2 / 3;
     grid-row: 1;
   }
 
-  .section:not(.overlay) .image-gallery > div:nth-of-type(3) {
+  .section .image-gallery > div:nth-of-type(3) {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
   }
 
-  .section:not(.overlay) .image-gallery > div:nth-of-type(4) {
+  .section .image-gallery > div:nth-of-type(4) {
     grid-column: 1 / 2;
     grid-row: 3;
   }
 
-  .section:not(.overlay) .image-gallery > div:nth-of-type(5) {
+  .section .image-gallery > div:nth-of-type(5) {
     grid-column: 2 / 3;
     grid-row: 3;
   }
