@@ -7,11 +7,9 @@ export default async function decorate(block) {
 
   const lightboxOverlay = div({ class: 'image-gallery-lightbox-overlay', 'aria-hidden': true });
   body.append(lightboxOverlay);
-  const actualLightboxOverlay = document.querySelector('.image-gallery-lightbox-overlay');
-
-  // block.querySelectorAll(':scope > div > div > p:nth-of-type(2) > picture').forEach((picture) => {
-  //   picture.parentElement.previousElementSibling.classList.add('thumbnail');
-  // });
+  const lightboxWrapper = div(block.cloneNode(true));
+  lightboxOverlay.append(lightboxWrapper);
+  const innerBlock = lightboxOverlay.querySelector('.block');
 
   const childrenLength = block.children.length;
   const scroll = (leftScroll) => {
@@ -28,7 +26,7 @@ export default async function decorate(block) {
   const close = span({ class: 'icon icon-close-circle-outline gallery-button-close' });
 
   right.addEventListener('click', () => { scroll(lightboxOverlay.scrollLeft + lightboxOverlay.offsetWidth); });
-  left.addEventListener('click', () => { scroll(actualLightboxOverlay.scrollLeft - actualLightboxOverlay.offsetWidth); });
+  left.addEventListener('click', () => { scroll(lightboxOverlay.scrollLeft - lightboxOverlay.offsetWidth); });
   close.addEventListener('click', () => {
     lightboxOverlay.setAttribute('aria-hidden', true);
     body.classList.remove('no-scroll');
@@ -39,7 +37,8 @@ export default async function decorate(block) {
     row.classList.add(`potato-${i}`);
   });
 
-  lightboxOverlay.append(div(block.cloneNode(true), close, right, left));
+  lightboxWrapper.append(close, right, left);
+
   lightboxOverlay.querySelectorAll(':scope > div > div > p.picture:nth-of-type(2)').forEach((element) => {
     element.remove();
   });
@@ -52,7 +51,6 @@ export default async function decorate(block) {
       body.classList.add('no-scroll');
       lightboxOverlay.removeAttribute('aria-hidden');
 
-      const innerBlock = actualLightboxOverlay.querySelector('.block');
 
       console.log('overlay offset width', lightboxOverlay.offsetWidth);
       console.log('actual overlay offset width', innerBlock.offsetWidth);
