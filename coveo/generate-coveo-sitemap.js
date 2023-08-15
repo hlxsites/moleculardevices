@@ -2,7 +2,6 @@
 
 const https = require('https');
 const fs = require('fs');
-const { Console } = require('console');
 
 const BASE_URL = 'https://www.moleculardevices.com';
 
@@ -296,11 +295,11 @@ async function writeCoveoSitemapXML(index) {
       '/archived-events',
       '/video-gallery-landing/de',
       '/video-gallery-landing/fr',
-    ]
+    ];
+
     if (excludedPaths.includes(item.internal_path)) {
       return;
     }
-
 
     xmlData.push('  <url>');
     xmlData.push(`    <loc>${item.path}</loc>`);
