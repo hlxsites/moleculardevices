@@ -2,6 +2,7 @@
 
 const https = require('https');
 const fs = require('fs');
+const { Console } = require('console');
 
 const BASE_URL = 'https://www.moleculardevices.com';
 
@@ -137,6 +138,18 @@ function itemSearchTitle(item) {
   }
 
   return '';
+}
+
+function preprocess(index) {
+  index.data.forEach((item) => {
+    // There are some technology pages that should also be indexed as applications
+    if (item.type === 'Technology' && isNotEmpty(item.category)) {
+      const deepClone = JSON.parse(JSON.stringify(item));
+      deepClone.type = 'Application';
+      deepClone.internal_path = deepClone.internal_path.replace('/technology/', '/applications/');
+      index.data.push(deepClone);
+    }
+  });
 }
 
 function createCoveoFields(index, icons) {
@@ -327,6 +340,7 @@ async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
 
+  preprocess(index);
   createCoveoFields(index, icons);
   createCoveoFieldsFromRelatedData(index);
   writeCoveoSitemapXML(index);
