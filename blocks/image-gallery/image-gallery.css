@@ -83,6 +83,15 @@ main .section > div.image-gallery-wrapper {
   right: 0;
 }
 
+.section .image-gallery > div {
+  --scale-small: 1.08;
+  --scale-big: 1.04;
+
+  cursor: pointer;
+  transition: all 0.3s;
+  aspect-ratio: 1/1;
+}
+
 .image-gallery-lightbox-overlay .image-gallery > div > div {
   display: grid;
 }
@@ -98,16 +107,6 @@ main .section > div.image-gallery-wrapper {
   width: auto;
   height: auto;
 }
-
-.section .image-gallery > div {
-  --scale-small: 1.08;
-  --scale-big: 1.04;
-
-  cursor: pointer;
-  transition: all 0.3s;
-  aspect-ratio: 1/1;
-}
-
 
 .section .image-gallery > div div,
 .section .image-gallery > div picture,
