@@ -179,9 +179,10 @@ function createCoveoFields(index, icons) {
       'homepage': 'home',
       'Video Gallery': 'video-gallery',
       'Integrity and Compliance': 'page',
+      'About Us': 'multi_pages',
     };
 
-    item.type = TYPE_REMAP[item.type] || item.type;
+    item.type = TYPE_REMAP[item.internal_path] || TYPE_REMAP[item.type] || item.type;
     const isResource = RESOURCES.includes(item.type);
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
