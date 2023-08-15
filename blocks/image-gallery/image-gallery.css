@@ -6,15 +6,18 @@
   height: 100%;
   background-color: rgb(0 0 0 / 100%);
   z-index: 1000;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.image-gallery-lightbox-overlay > div {
+  padding: 30px 15px;
+  margin: 0 105px;
 }
 
 main .section > div.image-gallery-wrapper {
   padding-top: 30px;
   padding-bottom: 30px;
-}
-
-.image-gallery-lightbox-overlay {
-  display: block;
 }
 
 .image-gallery-lightbox-overlay[aria-hidden="true"] {
