@@ -195,9 +195,10 @@ function createCoveoFields(index, icons) {
       '/customer-breakthroughs': 'customer-breakthroughs',
       '/events': 'Event',
       '/product-finder': 'product-finder',
-      '/quote-request': '/quote-request',
+      '/quote-request': 'quote-request',
       '/search-results': 'resources-search',
       '/service-support': 'Services and Support',
+      '/products/microplate-readers/softmax-pro-insider': 'page',
     };
 
     Object.keys(TYPE_REMAP_PREFIXES).forEach((prefix) => {
@@ -205,7 +206,9 @@ function createCoveoFields(index, icons) {
         item.type = TYPE_REMAP_PREFIXES[prefix];
       }
     });
-    item.type = TYPE_REMAP[item.internal_path] || TYPE_REMAP[item.type] || item.type || 'page';
+    item.type = TYPE_REMAP[item.internal_path] || TYPE_REMAP[item.type] || item.type;
+    item.type = isNotEmpty(item.type) ? item.type : 'page';
+
     const isResource = RESOURCES.includes(item.type);
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
@@ -268,7 +271,23 @@ async function writeCoveoSitemapXML(index) {
 
   index.data.forEach((item) => {
     if (item.internal_path.startsWith('/products/series-products')) return;
+    if (item.internal_path.startsWith('/fragments')) return;
+
     if (item.type === 'Landing Page') return;
+    const excludedPaths = [
+      '/nav',
+      '/nav-landing-page',
+      '/footer',
+      '/quote-request-success',
+      '/contact-search',
+      '/archived-events',
+      '/video-gallery-landing/de',
+      '/video-gallery-landing/fr',
+    ]
+    if (excludedPaths.includes(item.internal_path)) {
+      return;
+    }
+
 
     xmlData.push('  <url>');
     xmlData.push(`    <loc>${item.path}</loc>`);
