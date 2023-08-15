@@ -360,7 +360,8 @@ export default async function decorate(block) {
           });
           const activeSteps = document.querySelectorAll('.product-finder-step-wrapper.active');
           activeSteps.forEach((activeStep) => {
-            activeStep.classList.remove(ACTIVE_CLASS).add(HIDDEN_CLASS);
+            activeStep.classList.remove(ACTIVE_CLASS);
+            activeStep.classList.add(HIDDEN_CLASS);
           });
           stepTwo(e);
         }
