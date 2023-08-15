@@ -89,11 +89,14 @@ main .section > div.image-gallery-wrapper {
 
 .image-gallery-lightbox-overlay  .image-gallery picture {
   text-align: center;
+  display: block;
 }
 
-.image-gallery-lightbox-overlay  .image-gallery img {
+.image-gallery-lightbox-overlay  img {
   max-height: 640px;
   max-width: 100%;
+  width: auto;
+  height: auto;
 }
 
 .section .image-gallery > div {
