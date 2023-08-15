@@ -179,6 +179,7 @@ function createCoveoFields(index, icons) {
       '/en/assets/tutorials-videos/': 'Videos & Webinars',
       '/en/assets/customer-breakthrough/': 'Customer Breakthrough',
       '/en/assets/brochures/': 'Brochure',
+      '/en/assets/presentations': 'Presentations',
     };
 
     const TYPE_REMAP = {
@@ -188,6 +189,8 @@ function createCoveoFields(index, icons) {
       'Video Gallery': 'video-gallery',
       'Integrity and Compliance': 'page',
       'About Us': 'multi_pages',
+      '/applications': 'Application',
+      '/citations': 'Citation',
       '/leadership': 'multi_pages',
       '/customer-breakthroughs': 'customer-breakthroughs',
       '/events': 'Event',
