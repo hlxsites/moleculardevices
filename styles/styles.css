@@ -1649,7 +1649,8 @@ main .section.background-molecules {
 
 .application .section.tabs > div > p:has(div.video-wrapper) + p {
   font-size: 14px;
-  margin: 0 40px;
+  margin: 40px auto;
+  max-width: 700px;
   line-height: 1.33;
   color: var(--text-gray)
 }
