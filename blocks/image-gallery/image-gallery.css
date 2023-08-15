@@ -13,6 +13,7 @@
 .image-gallery-lightbox-overlay > div {
   padding: 30px 15px;
   margin: 0 105px;
+  position: relative;
 }
 
 main .section > div.image-gallery-wrapper {
