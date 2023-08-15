@@ -95,6 +95,7 @@
   --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --border-color-gray: #ababab;
+  --border-color-green: #6eb43f;
   --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #FFFFFF80;
   --header-mega-menu-font-color: #FFFFFFB2;
@@ -1300,7 +1301,7 @@ main div.section.wave.wavecarousel.bluegreen {
 
 /* Green secondary buttons */
 main div.green-secondary-buttons .button {
-  border-color: #6eb43f;
+  border-color: var(--border-color-green);
 }
 
 main div.green-secondary-buttons .button.secondary {
@@ -1507,6 +1508,18 @@ main .section.background-molecules {
 
 .videos-and-webinars main::after {
   margin-top: 100px;
+}
+
+.videos-and-webinars .hero.wave .hero-inner p:first-of-type {
+  color: var(--heading-color-blue);
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.videos-and-webinars .section.hero-container:has(.hero.wave) ~ .section h2 {
+  color: var(--text-blue);
+  font-family: var(--ff-proxima-regular);
+  font-size: 36px;
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -1845,7 +1858,10 @@ main .section.background-molecules {
 }
 
 main .section.white-title .default-content-wrapper > h2,
-main .section.white-title .default-content-wrapper > h3 {
+main .section.white-title .default-content-wrapper > h3,
+main .section .block.white-title h2,
+main .section .block.white-title h3,
+main .section .block.white-title h4 {
   color: var(--text-white);
 }
 

@@ -435,6 +435,177 @@ async function decorateTemplates(main) {
   }
 }
 
+function addPageSchema() {
+  if (document.querySelector('head > script[type="application/ld+json"]')) return;
+
+  const type = getMetadata('template');
+  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && type !== 'homepage') {
+    return;
+  }
+
+  try {
+    const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
+
+    const h1 = document.querySelector('main h1');
+    const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
+
+    const heroImage = document.querySelector('.hero img');
+    const schemaImage = heroImage
+      ? heroImage.src
+      : getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
+
+    const keywords = getMetadata('keywords');
+
+    const schema = document.createElement('script');
+    schema.setAttribute('type', 'application/ld+json');
+
+    const logo = {
+      '@type': 'ImageObject',
+      representativeOfPage: 'True',
+      url: moleculardevicesLogoURL,
+    };
+
+    const brandSameAs = [
+      'http://www.linkedin.com/company/molecular-devices',
+      'https://www.facebook.com/MolecularDevices',
+      'http://www.youtube.com/user/MolecularDevicesInc',
+      'https://twitter.com/moldev',
+    ];
+
+    const brand = {
+      '@type': 'Brand',
+      name: 'Molecular Devices',
+      description: 'Molecular Devices is one of the leading provider of high-performance bioanalytical measurement solutions for life science research description pharmaceutical and biotherapeutic development.',
+      url: moleculardevicesRootURL,
+      sameAs: brandSameAs,
+      logo,
+    };
+
+    let schemaInfo = null;
+    if (type === 'homepage') {
+      const homepageName = getMetadata('title');
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Organization',
+            additionalType: 'Organization',
+            description: getMetadata('description'),
+            name: homepageName,
+            sameAs: [
+              ...brandSameAs,
+              'https://en.wikipedia.org/wiki/Molecular_Devices',
+            ],
+            url: moleculardevicesRootURL,
+            telephone: '+1 877-589-2214',
+            logo: {
+              '@type': 'ImageObject',
+              url: moleculardevicesLogoURL,
+            },
+            openingHoursSpecification: {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+              ],
+              opens: '08:00',
+              closes: '17:00',
+            },
+          },
+          {
+            '@type': 'WebSite',
+            name: homepageName,
+            url: moleculardevicesRootURL,
+            potentialAction: {
+              '@type': 'SearchAction',
+              'query-input': 'required name=search_term_string',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://www.moleculardevices.com/search-results#q={search_term_string}',
+              },
+            },
+          },
+        ],
+      };
+    }
+
+    if (type === 'Application') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            brand,
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
+
+    if (type === 'Product' || type.includes('Category')) {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Product',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            category: keywords,
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            brand,
+          },
+        ],
+      };
+    }
+
+    if (schemaInfo) {
+      schema.appendChild(document.createTextNode(
+        JSON.stringify(schemaInfo, null, 2),
+      ));
+
+      document.querySelector('head').appendChild(schema);
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -453,6 +624,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  addPageSchema();
 }
 
 /**
@@ -481,23 +653,6 @@ async function loadEager(doc) {
     }
   } catch (e) {
     // do nothing
-  }
-}
-
-/**
- * Adds the favicon.
- * @param {string} href The favicon URL
- */
-export function addFavIcon(href, rel = 'icon') {
-  const link = document.createElement('link');
-  link.rel = rel;
-  link.type = 'image/x-icon';
-  link.href = href;
-  const existingLink = document.querySelector(`head link[rel="${rel}"]`);
-  if (existingLink) {
-    existingLink.parentElement.replaceChild(link, existingLink);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild(link);
   }
 }
 
@@ -665,8 +820,6 @@ async function loadLazy(doc) {
       // do nothing
     }
   });
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'icon');
-  addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`, 'apple-touch-icon');
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));

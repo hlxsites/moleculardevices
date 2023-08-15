@@ -5,7 +5,7 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
-import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
+import { embedVideo, fetchFragment, summariseDescription } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
 const relatedResourcesHeaders = {
@@ -106,7 +106,7 @@ export default async function decorate(block) {
         ),
         div(
           { class: 'resource-description' },
-          item.description && item.description !== '0' ? item.description : '',
+          item.description && item.description !== '0' ? summariseDescription(item.description, 230) : '',
         ),
         div(
           { class: 'resource-actions' },

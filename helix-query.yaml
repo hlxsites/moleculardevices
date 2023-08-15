@@ -124,6 +124,9 @@ indices:
       specifications:
         select: head > meta[name="specifications"]
         value: attribute(el, "content")
+      searchTitle:
+        select: head > meta[name="search-title"]
+        value: attribute(el, "content")
       productFinderFilter1:
         select: head > meta[name="pf-filter-1"]
         value: attribute(el, "content")
