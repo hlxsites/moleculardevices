@@ -39,7 +39,7 @@ export default async function decorate(block) {
     body.classList.remove('no-scroll');
   });
 
-  lightboxOverlay.querySelectorAll(':scope > div > div > p.picture:nth-of-type(2)').forEach((element) => {
+  innerBlock.querySelectorAll('p.picture:nth-of-type(2)').forEach((element) => {
     console.log('removing sibling for element', element, element.previousElementSibling);
     element.previousElementSibling.remove();
   });
@@ -51,7 +51,6 @@ export default async function decorate(block) {
     row.querySelector('img:first-of-type').addEventListener('click', () => {
       body.classList.add('no-scroll');
       lightboxOverlay.removeAttribute('aria-hidden');
-
 
       console.log('overlay offset width', lightboxOverlay.offsetWidth);
       console.log('actual overlay offset width', innerBlock.offsetWidth);
