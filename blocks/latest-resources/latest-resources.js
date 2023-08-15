@@ -20,20 +20,43 @@ function onViewAllClick(e) {
   document.querySelector('.page-tabs-container').scrollIntoView();
 }
 
-export default async function decorate(block) {
+async function getResourcesFromMetaTags() {
   const template = getMetadata('template');
   const identifier = getMetadata('identifier') || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
 
   const includedResourceTypes = Object.keys(resourceMapping);
   const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
 
-  const resources = await ffetch('/query-index.json')
+  return ffetch('/query-index.json')
     .sheet('resources')
     .chunks(2000)
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .limit(9)
     .all();
+}
+
+async function getFeaturedResources(paths) {
+  return ffetch('/query-index.json')
+    .sheet('resources')
+    .chunks(2000)
+    .filter((resource) => paths.includes(resource.path)
+      || paths.includes(resource.gatedURL)
+      || (resource.gatedURL && resource.gatedURL !== '0' && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname)),
+    )
+    .limit(9)
+    .all();
+}
+
+export default async function decorate(block) {
+  const blockLinks = block.querySelectorAll('a');
+  let resources = [];
+
+  if (blockLinks.length !== 0) {
+    resources = await getFeaturedResources([...blockLinks].map((link) => link.getAttribute('href')));
+  } else {
+    resources = await getResourcesFromMetaTags();
+  }
 
   const placeholders = await fetchPlaceholders();
   const resourceCard = await createCard({
@@ -72,17 +95,20 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
-  const viewAllBtn = div({ class: 'latest-resources-button' },
-    p({ class: 'button-container' },
-      strong(
-        a({
-          href: '#resources',
-          class: 'button primary',
-          onclick: onViewAllClick,
-        }, placeholders.viewAllResources || 'View all Resources'),
+
+  if (blockLinks.length !== 0) {
+    const viewAllBtn = div({ class: 'latest-resources-button' },
+      p({ class: 'button-container' },
+        strong(
+          a({
+            href: '#resources',
+            class: 'button primary',
+            onclick: onViewAllClick,
+          }, placeholders.viewAllResources || 'View all Resources'),
+        ),
       ),
-    ),
-  );
-  decorateButtons(viewAllBtn);
-  block.parentElement.parentElement.append(viewAllBtn);
+    );
+    decorateButtons(viewAllBtn);
+    block.parentElement.parentElement.append(viewAllBtn);
+  }
 }
