@@ -16,8 +16,6 @@ const DEFAULT_TITLE = 'Select a Product Type';
 const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
-const lang = (document.querySelector('html[lang]')) ? document.querySelector('html').getAttribute('lang') : 'en';
-
 let placeholders = {};
 let step2Type = '';
 let step2Title = '';
@@ -57,7 +55,7 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
   });
 
   listArr.forEach((item) => {
-    item.title = progressStep === `${STEP_PREFIX}-1` ? item.title : item.category;
+    item.title = progressStep === `${STEP_PREFIX}-1` ? item.title : item.displayCategory;
     item.id = toClassName(item.type);
   });
 
@@ -204,7 +202,7 @@ async function stepThree(e) {
   root.setAttribute('data-type', type);
   root.setAttribute('data-category', category);
 
-  const dataCardType = getListIdentifier(`${type}-${category}-products-${lang}`);
+  const dataCardType = getListIdentifier(`${type}-${category}-products`);
   const lists = root.querySelectorAll('.product-finder-list');
   lists.forEach((list) => {
     const listCardType = list.attributes['data-card-type'].value;
@@ -303,7 +301,7 @@ async function stepTwo(e) {
   );
 
   // generate the icons only once
-  const dataCardType = getListIdentifier(`${type}-${lang}`);
+  const dataCardType = getListIdentifier(`${type}`);
 
   // get all product-finder-list
   const lists = root.querySelectorAll('.product-finder-list');
