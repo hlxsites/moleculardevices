@@ -358,6 +358,10 @@ export default async function decorate(block) {
           progressCustomTexts.forEach((progressCustomText) => {
             progressCustomText.remove();
           });
+          const activeSteps = document.querySelectorAll('.product-finder-step-wrapper.active');
+          activeSteps.forEach((activeStep) => {
+            activeStep.classList.remove(ACTIVE_CLASS).add(HIDDEN_CLASS);
+          });
           stepTwo(e);
         }
       }
