@@ -57,7 +57,6 @@ const PRIORITYMAPPING = {
   '/products/cellular-imaging-systems/high-content-imaging/pico/apoptosis-analysis-using-automated-cell-imaging': 0.5,
   Product: 0.2,
   Category: 0.2,
-
 };
 
 async function getData() {
@@ -173,6 +172,15 @@ function createCoveoFields(index, icons) {
       ? isNotEmpty(item.thumbnail) ? item.thumbnail : item.image
       : icons[item.type] || '/images/resource-icons/document.png';
 
+    const TYPE_REMAP_PREFIXES = {
+      '/en/assets/app-note/': 'Application Note',
+      '/en/assets/ebook/': 'eBook',
+      '/en/assets/scientific-posters/': 'Scientific Poster',
+      '/en/assets/tutorials-videos/': 'Videos & Webinars',
+      '/en/assets/customer-breakthrough/': 'Customer Breakthrough',
+      '/en/assets/brochures/': 'Brochure',
+    };
+
     const TYPE_REMAP = {
       'Videos and Webinars': 'Videos & Webinars',
       'Publication': 'Publications',
@@ -180,9 +188,21 @@ function createCoveoFields(index, icons) {
       'Video Gallery': 'video-gallery',
       'Integrity and Compliance': 'page',
       'About Us': 'multi_pages',
+      '/leadership': 'multi_pages',
+      '/customer-breakthroughs': 'customer-breakthroughs',
+      '/events': 'Event',
+      '/product-finder': 'product-finder',
+      '/quote-request': '/quote-request',
+      '/search-results': 'resources-search',
+      '/service-support': 'Services and Support',
     };
 
-    item.type = TYPE_REMAP[item.internal_path] || TYPE_REMAP[item.type] || item.type;
+    Object.keys(TYPE_REMAP_PREFIXES).forEach((prefix) => {
+      if (item.internal_path.startsWith(prefix)) {
+        item.type = TYPE_REMAP_PREFIXES[prefix];
+      }
+    });
+    item.type = TYPE_REMAP[item.internal_path] || TYPE_REMAP[item.type] || item.type || 'page';
     const isResource = RESOURCES.includes(item.type);
     item.md_pagetype = isResource ? 'Resource' : (item.type.includes('Category') ? 'Category' : item.type);
     item.md_contenttype = isResource ? item.type : '';
@@ -245,6 +265,7 @@ async function writeCoveoSitemapXML(index) {
 
   index.data.forEach((item) => {
     if (item.internal_path.startsWith('/products/series-products')) return;
+    if (item.type === 'Landing Page') return;
 
     xmlData.push('  <url>');
     xmlData.push(`    <loc>${item.path}</loc>`);
