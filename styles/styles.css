@@ -1676,7 +1676,7 @@ main .section.background-molecules {
 
 .technology .section .related-links-container,
 .application .section .related-links-container {
-  padding-bottom: 35px;
+  padding-bottom: 32px;
 }
 
 .technology .section.section:not(.no-padding-top) .related-app,
