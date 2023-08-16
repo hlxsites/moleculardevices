@@ -1634,7 +1634,7 @@ main .section.background-molecules {
 }
 
 #what-are-the-benefits-of-synthetic-biology {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1681,7 +1681,7 @@ main .section.background-molecules {
 
 .technology .section.no-padding-bottom .related-links-container,
 .application .section.no-padding-bottom .related-links-container {
-  padding-bottom: 15px;
+  padding-bottom: 30px;
 }
 
 .technology .section.section:not(.no-padding-top) .related-app,
