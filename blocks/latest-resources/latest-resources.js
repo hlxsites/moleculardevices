@@ -96,7 +96,7 @@ export default async function decorate(block) {
     },
   );
 
-  if (blockLinks.length !== 0) {
+  if (blockLinks.length === 0) {
     const viewAllBtn = div({ class: 'latest-resources-button' },
       p({ class: 'button-container' },
         strong(
