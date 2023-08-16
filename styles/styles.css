@@ -1679,11 +1679,6 @@ main .section.background-molecules {
   padding-bottom: 35px;
 }
 
-.technology .section.no-padding-bottom .related-links-container,
-.application .section.no-padding-bottom .related-links-container {
-  padding-bottom: 30px;
-}
-
 .technology .section.section:not(.no-padding-top) .related-app,
 .application .section.section:not(.no-padding-top) .related-app {
   margin-top: 35px;
