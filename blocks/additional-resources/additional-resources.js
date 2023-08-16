@@ -22,7 +22,7 @@ export default async function decorate(block) {
     fragmentPaths.map(async (path) => {
       const fragmentHtml = await fetchFragment(path);
       if (fragmentHtml) {
-        const fragmentElement =  div();
+        const fragmentElement = div();
         fragmentElement.innerHTML = fragmentHtml;
         const img = fragmentElement.querySelector('picture');
         const imgAnchor = img.nextElementSibling;
