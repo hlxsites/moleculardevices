@@ -3,9 +3,12 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import resourceMapping from '../resources/resource-mapping.js';
 
-const includedResourceTypes = Object.keys(resourceMapping);
+const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
+const customResourcesBreadcrumb = {
+  name: 'Resources',
+  url_path: '/search-results',
+};
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
@@ -60,7 +63,7 @@ const customBreadcrumbs = {
     url_path: '/products/accessories-consumables',
   },
   'customer-breakthrough': {
-    name: 'Customer Breakthrough ',
+    name: 'Customer Breakthrough',
     url_path: '/customer-breakthroughs',
   },
   'acquisition-and-analysis-software': {
@@ -111,18 +114,12 @@ const customBreadcrumbs = {
   amplifiers: {
     name: 'Amplifiers',
   },
-  resources: {
-    name: 'Resources',
-    url_path: '/search-results',
-  },
+  resources: customResourcesBreadcrumb,
   events: {
     name: 'Events',
     url_path: '/events',
   },
-  brochures: {
-    name: 'Resources',
-    url_path: '/search-results',
-  },
+  brochures: customResourcesBreadcrumb,
 };
 
 function getCustomUrl(path, part) {
@@ -172,20 +169,22 @@ export default async function createBreadcrumbs(container) {
 
   const pageIndex = await ffetch('/query-index.json').all();
   const pg = pageIndex.find((page) => page.path === path);
+  // default Home breadcrumb
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
   ];
-  if (pg && includedResourceTypes.includes(pg.type)) {
-    breadcrumbs.push(
-      {
-        name: 'Resources',
-        url_path: 'https://www.moleculardevices.com/search-results#t=All&sort=relevancy',
-      },
-    );
+  // custom resource types restricting breadcrumb to Home > Resources
+  if (pg && customResourceTypes.includes(pg.type)) {
+    breadcrumbs.push(customResourcesBreadcrumb);
   } else {
+    // for Customer Breakthrough breadcrumb is Home > Resources > Customer Breakthrough > Title
+    if (pg && pg.type === 'Customer Breakthrough') {
+      breadcrumbs.push(customResourcesBreadcrumb);
+    }
+    // resolve rest of the path
     const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
     breadcrumbs.push(
       ...pathSplit.slice(1, -1).map((part, index) => {
