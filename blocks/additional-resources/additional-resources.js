@@ -1,4 +1,5 @@
 import { fetchFragment } from '../../scripts/scripts.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
@@ -21,7 +22,7 @@ export default async function decorate(block) {
     fragmentPaths.map(async (path) => {
       const fragmentHtml = await fetchFragment(path);
       if (fragmentHtml) {
-        const fragmentElement = document.createElement('div');
+        const fragmentElement =  div();
         fragmentElement.innerHTML = fragmentHtml;
         const img = fragmentElement.querySelector('picture');
         const imgAnchor = img.nextElementSibling;
@@ -29,15 +30,13 @@ export default async function decorate(block) {
           imgAnchor.innerHTML = '';
           imgAnchor.appendChild(img);
         }
-        const h3 = fragmentElement.querySelector('h3');
-        return { id: h3.id, title: h3.textContent, html: fragmentElement };
+        return { html: fragmentElement };
       }
       return null;
     }),
   );
 
-  const apps = document.createElement('div');
-  apps.classList.add('additional-resources-container');
+  const apps = div({ class: 'additional-resources-container' });
 
   fragments.forEach((fragment) => {
     renderFragment(fragment.html, apps, 'additional-resource');
