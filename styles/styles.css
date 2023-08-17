@@ -819,6 +819,19 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   font-size: 36px;
 }
 
+.section.small-text {
+  font-size: var(--body-font-size-xs);
+}
+
+.section.space-list li {
+  margin-top: 8px;
+}
+
+.section.no-paragraph-spacing p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
   .section.title-big > div.default-content-wrapper > h2 {
     font-size: 70px;

@@ -275,6 +275,10 @@
 }
 /* stylelint-enable selector-class-pattern */
 
+.coveo-dynamic-hierarchical-facet-value .coveo-dynamic-hierarchical-facet-value-arrow-right {
+  display: none;
+}
+
 @media only screen and (min-width: 768px) {
   .section.cover-banner-wrapper {
     min-height: 440px;
