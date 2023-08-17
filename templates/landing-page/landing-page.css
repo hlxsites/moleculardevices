@@ -229,6 +229,11 @@
   color: var(--text-green);
 }
 
+.section.thank-you-page .carousel-item > .card .card-caption .card-description {
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
+}
+
 .thank-you-page p.button-container span[aria-hidden=true] {
   display: none;
 }
@@ -244,9 +249,12 @@
   margin-bottom: 10px;
 }
 
-.thank-you-page .carousel.cards .carousel-item h3 {
+.thank-you-page .carousel.cards .carousel-item h3,
+.thank-you-page .block.latest-resources .carousel-item h3 {
   font-size: 22px;
   padding-top: 10px;
+  margin-top: 0;
+  color: var(--text-color);
 }
 
 .thank-you-page h3 {
