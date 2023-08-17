@@ -1627,14 +1627,14 @@ main .section.background-molecules {
   padding-bottom: 0
 }
 
-.products .section.no-padding-top > div > div:not(first-child),
-.technology .section.no-padding-top div > div:not(first-child),
-.application .section.no-padding-top div > div:not(first-child) {
+.products .section.no-padding-top > div,
+.technology .section.no-padding-top div,
+.application .section.no-padding-top div {
   padding-top: 0
 }
 
 #what-are-the-benefits-of-synthetic-biology {
-  padding-top: 40px;
+  padding-top: 50px;
 }
 
 .technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1674,18 +1674,13 @@ main .section.background-molecules {
   margin-top: 0;
 }
 
-.technology .section .related-links-container,
-.application .section .related-links-container {
+.technology .section:not(.no-padding-bottom) .related-app,
+.application .section:not(.no-padding-bottom) .related-app {
   padding-bottom: 32px;
 }
 
-.technology .section.no-padding-bottom .related-links-container,
-.application .section.no-padding-bottom .related-links-container {
-  padding-bottom: 15px;
-}
-
-.technology .section.section:not(.no-padding-top) .related-app,
-.application .section.section:not(.no-padding-top) .related-app {
+.technology .section:not(.no-padding-top) .related-app,
+.application .section:not(.no-padding-top) .related-app {
   margin-top: 35px;
 }
 
