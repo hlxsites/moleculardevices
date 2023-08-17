@@ -1674,8 +1674,8 @@ main .section.background-molecules {
   margin-top: 0;
 }
 
-.technology .section:not(.no-padding-bottom) .related-app,
-.application .section:not(.no-padding-bottom) .related-app {
+.technology .section:not(.no-padding-bottom) .related-links-container,
+.application .section:not(.no-padding-bottom) .related-links-container {
   padding-bottom: 32px;
 }
 
