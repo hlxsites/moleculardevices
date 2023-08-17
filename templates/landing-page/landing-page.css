@@ -49,7 +49,8 @@
 }
 
 .landing-page .hero-inner .two-column p:first-child {
-  color: var(--heading-color-blue);
+  color: var(--text-green);
+  font-weight: 600;
 }
 
 .landing-page .hero-inner img {
