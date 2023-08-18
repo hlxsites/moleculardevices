@@ -145,7 +145,7 @@ export default async function decorate(block) {
         const videoWrapper = div({ class: 'video-wrapper' },
           div({ class: 'video-container' },
             div({ class: 'vidyard-video-placeholder' },
-              img({ src: imageSrc, alt: item.title }),
+              createOptimizedPicture(imageSrc),
               a({ href: item.gatedURL, target: '_blank' },
                 div({ class: 'play-button' },
                   div({ class: 'play-button-size' }),
