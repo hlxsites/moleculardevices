@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
@@ -135,21 +137,46 @@ export default async function decorate(block) {
     const videosContainerBlock = div({ class: 'resources-section' });
     await Promise.all(videoResources.map(async (item) => {
       displayFilters[item.type] = item.displayType;
-      const videoFragmentHtml = await fetchFragment(item.path);
-      const videoFragment = document.createElement('div');
-      videoFragment.innerHTML = videoFragmentHtml;
-      const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
-      const videoHref = videoElement?.href;
-      if (videoElement && videoHref && videoHref.startsWith('https://')) {
-        const videoURL = new URL(videoHref);
+      if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
+        const imageSrc = item.thumbnail && item.thumbnail !== '0'
+          ? item.thumbnail
+          : (item.image && item.image !== '0'
+            ? item.image : '/images/default-card-thumbnail.webp');
         const videoWrapper = div({ class: 'video-wrapper' },
           div({ class: 'video-container' },
-            a({ href: videoHref }, videoHref),
+            div({ class: 'vidyard-video-placeholder' },
+              createOptimizedPicture(imageSrc),
+              a({ href: item.gatedURL, target: '_blank' },
+                div({ class: 'play-button' },
+                  div({ class: 'play-button-size' }),
+                  div({ class: 'arrow-size' },
+                    div({ class: 'arrow-size-ratio' }),
+                    div({ class: 'arrow' }),
+                  ),
+                ),
+              ),
+            ),
           ),
           p({ class: 'video-title' }, item.title),
         );
-        embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
         videosContainerBlock.append(videoWrapper);
+      } else {
+        const videoFragmentHtml = await fetchFragment(item.path);
+        const videoFragment = document.createElement('div');
+        videoFragment.innerHTML = videoFragmentHtml;
+        const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
+        const videoHref = videoElement?.href;
+        if (videoElement && videoHref && videoHref.startsWith('https://')) {
+          const videoURL = new URL(videoHref);
+          const videoWrapper = div({ class: 'video-wrapper' },
+            div({ class: 'video-container' },
+              a({ href: videoHref }, videoHref),
+            ),
+            p({ class: 'video-title' }, item.title),
+          );
+          embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
+          videosContainerBlock.append(videoWrapper);
+        }
       }
     }));
 
