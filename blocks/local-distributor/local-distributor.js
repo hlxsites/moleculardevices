@@ -147,7 +147,7 @@ export default async function decorate(block) {
     }
 
     const filterdata = distributors
-      .filter(({ Country }) => Country.includes(countryName) > 0)
+      .filter(({ Country }) => Country === countryName)
       .filter(({ PrimaryProducts }) => PrimaryProducts.includes(productFamily) > 0);
 
     let finalHtml = '';
