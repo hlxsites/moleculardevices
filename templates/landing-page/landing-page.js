@@ -1,7 +1,7 @@
 // eslint-disable-next-line object-curly-newline
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 async function iframeResizeHandler() {
   await new Promise((resolve) => {
@@ -13,6 +13,23 @@ async function iframeResizeHandler() {
 }
 
 function handleEmbed() {
+  try {
+    const cmpCookieValue = getCookie('cmp');
+    if (cmpCookieValue) {
+      document.querySelectorAll('.embed a').forEach((link) => {
+        const href = link.getAttribute('href');
+        const url = new URL(href);
+        if (url.searchParams.get('cmp')) {
+          url.searchParams.set('cmp', cmpCookieValue);
+          link.setAttribute('href', url.toString());
+        }
+      });
+    }
+  } catch (err) {
+    console.log(`Failed to change the campaing ID: ${err.message}`);
+  }
+
+
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
