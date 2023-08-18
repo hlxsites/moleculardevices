@@ -165,9 +165,8 @@ export default async function decorate(block) {
       const customClass = row.Type.split(' ').join('-').toLowerCase();
       const email = row.Email;
 
-      /* eslint operator-linebreak: ["error", "before"] */
       const supportLink = row.Link
-        ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request</a>`
+        ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>`
         : '';
 
       let newStr = '';

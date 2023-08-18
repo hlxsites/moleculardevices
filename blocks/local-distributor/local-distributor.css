@@ -33,6 +33,13 @@
 .local-distributor .icon {
   display: inline-block;
   width: 1em;
+  fill: currentcolor;
+}
+
+.local-distributor .icon.icon-external-link {
+  width: 0.8em;
+  position: relative;
+  bottom: 7px;
 }
 
 .local-distributor > div:nth-child(2) {
