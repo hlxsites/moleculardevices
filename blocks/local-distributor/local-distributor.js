@@ -1,4 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);
@@ -194,7 +195,7 @@ export default async function decorate(block) {
                           ${molAddress}
                           <p>
                             <a href="javascript:void(0);" title="Contact your local ${row.Type} Team">
-                              Contact your local ${row.Type} Team
+                              Contact your local ${row.Type} Team <span class="icon icon-chevron-right-outline"></span>
                             </a>
                           </p>
                         </div>
@@ -227,4 +228,6 @@ export default async function decorate(block) {
 
   hideResult();
   renderAddress();
+
+  await decorateIcons(block);
 }
