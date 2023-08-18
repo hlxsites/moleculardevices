@@ -26,9 +26,9 @@ function handleEmbed() {
       });
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log(`Failed to change the campaing ID: ${err.message}`);
   }
-
 
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
