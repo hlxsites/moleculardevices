@@ -27,7 +27,7 @@ function handleEmbed() {
     }
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.log(`Failed to change the campaing ID: ${err.message}`);
+    console.error(`Failed to change the campaing ID: ${err.message}`);
   }
 
   const observer = new MutationObserver((mutations) => {
