@@ -163,11 +163,6 @@ export default async function decorate(block) {
       const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
 
       const customClass = row.Type.split(' ').join('-').toLowerCase();
-      const email = row.Email;
-
-      const supportLink = row.Link
-        ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>`
-        : '';
 
       let newStr = '';
       row.Address.split('\n').forEach((add) => {
@@ -178,7 +173,17 @@ export default async function decorate(block) {
         }
       });
 
-      newStr += `${email ? `Email:  <a href="javascript:void(0);">${email}</a>` : `${supportLink}`}\n`;
+      if (row.Email) {
+        newStr += `Email:  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
+      }
+      if (row.Link) {
+        if (row.Link === 'https://mdc.custhelp.com/app/ask') {
+          newStr += `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>\n`;
+        } else {
+          newStr += `Website: <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
+        }
+      }
+
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
       if (row.PrimaryProducts.length <= 1 && row.Address.trim().length <= 1) {
