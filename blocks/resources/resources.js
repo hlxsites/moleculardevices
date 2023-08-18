@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 
 import {
-  div, a, p, h3, i, h2, span, ul, li, img,
+  div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
