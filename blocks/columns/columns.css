@@ -90,6 +90,52 @@ main .section>div.columns-wrapper {
   padding: 80px 0;
 }
 
+.columns.columns-sitemap h3 {
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.columns.columns-sitemap h4{
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--text-electric-blue);
+}
+
+.columns.columns-sitemap ul,
+.columns.columns-sitemap h4{
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns-sitemap ul{
+  margin-bottom: 30px;
+  color: var(--text-color);
+  padding-left: 40px;
+}
+
+.columns.columns-sitemap h4 + h4{
+  margin-top: 20px;
+}
+
+.columns.columns-sitemap a{
+  color: inherit;
+}
+
+.columns.columns-sitemap ul:has(ul),
+.columns.columns-sitemap ul:has(strong){
+  list-style: none;
+  padding-left: 20px;
+}
+
+.columns.columns-sitemap ul:has(ul){
+  margin-bottom: 0;
+}
+
+.columns.columns-sitemap ul ul{
+  padding-left: 20px;
+  list-style: disc;
+}
+
 .columns.contact > div > div {
   background-color: var(--background-color);
   width: 100%;
@@ -112,6 +158,7 @@ main .section>div.columns-wrapper {
   padding: 0 24px;
 }
 
+/* stylelint-disable no-descending-specificity */
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
@@ -364,7 +411,6 @@ main .section>div.columns-wrapper {
 
 }
 
-/* stylelint-disable no-descending-specificity */
 .section .columns p:has(>.video-wrapper),
 .section .columns p:has(>.video-wrapper) ~ p,
 .section .columns div:has(>picture),
