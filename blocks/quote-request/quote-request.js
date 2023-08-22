@@ -117,8 +117,8 @@ async function loadIframeForm(stepNum, data, type) {
   let sfdcPrimaryApplication = '';
   let productFamily = '';
 
+  const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
-    const queryParams = new URLSearchParams(window.location.search);
     const typeParam = queryParams && queryParams.get('type');
     tab = data.title;
     sfdcProductFamily = data.productFamily;
@@ -153,6 +153,7 @@ async function loadIframeForm(stepNum, data, type) {
   }
 
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  const requestTypeParam = queryParams && queryParams.get('request_type');
 
   const hubSpotQuery = {
     product_family__c: sfdcProductFamily,
@@ -164,7 +165,7 @@ async function loadIframeForm(stepNum, data, type) {
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
-    requested_qdc_discussion__c: 'Quote',
+    requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
   };
 
