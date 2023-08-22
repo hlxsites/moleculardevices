@@ -4,7 +4,7 @@ Allow: /
 Sitemap: https://www.moleculardevices.com/sitemap.xml
 
 
-
+Disallow: /fragments/
 
 
 # PDF (ebook PDF Block)
