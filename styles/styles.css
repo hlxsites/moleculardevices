@@ -1888,7 +1888,10 @@ main .section .block.white-title h4 {
   color: var(--text-white);
 }
 
-main .block.orange-main-title h2 {
+main .block.orange-main-title h2,
+main .section.orange-title h2,
+main .section.orange-title h3,
+main .section.orange-title h4 {
   color: var(--text-orange);
 }
 
