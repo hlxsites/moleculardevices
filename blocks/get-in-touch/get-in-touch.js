@@ -1,4 +1,4 @@
-import { getCookie } from "../../scripts/scripts.js";
+import { getCookie } from '../../scripts/scripts.js';
 
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
