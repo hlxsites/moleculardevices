@@ -1,3 +1,5 @@
+import { getCookie } from "../../scripts/scripts.js";
+
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const searchParams = new URLSearchParams(hubUrl.searchParams);
