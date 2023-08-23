@@ -439,7 +439,7 @@ function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
   if (!includedTypes.includes(type)) {
     return;
   }
@@ -613,6 +613,27 @@ function addPageSchema() {
               representativeOfPage: 'True',
               url: schemaImageUrl,
             },
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: document.querySelector("link[rel='canonical']").href,
+              logo,
+            },
+          },
+        ],
+      };
+    }
+
+    if (type === 'Application Note') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
