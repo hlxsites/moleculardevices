@@ -439,7 +439,8 @@ function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && type !== 'homepage') {
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage'];
+  if (!includedTypes.includes(type)) {
     return;
   }
 
