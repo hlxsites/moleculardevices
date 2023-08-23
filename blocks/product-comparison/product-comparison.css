@@ -53,6 +53,7 @@
 .product-comparison .responsive-table th {
   border-top: 1px solid var(--highlight-background-color);
   border-bottom: 1px solid var(--highlight-background-color);
+  vertical-align: top;
 }
 
 .product-comparison .responsive-table th:first-child {
