@@ -7,20 +7,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Regenerate coveo.xml
+        if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
         uses: actions/checkout@v3
-      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Run scripts
         working-directory: ./coveo
         run: |
           node generate-coveo-sitemap.js
-      - name: Commit and push
-        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ./coveo/coveo-xml.xml
+          git add ./coveo-xml.xml
           git commit -m "Update generated coveo.xml file"
           git push
