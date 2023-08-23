@@ -439,7 +439,7 @@ function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog'];
   if (!includedTypes.includes(type)) {
     return;
   }
@@ -589,6 +589,32 @@ function addPageSchema() {
               url: schemaImageUrl,
             },
             brand,
+          },
+        ],
+      };
+    }
+
+    if (type === 'Blog') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'BlogPosting',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: document.querySelector("link[rel='canonical']").href,
+              logo,
+            },
           },
         ],
       };
