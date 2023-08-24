@@ -375,6 +375,31 @@ function buildOrderingForm(options) {
   orderContainer.appendChild(orderFormContainer);
 }
 
+async function renderStore(block, productRefs, itemDescriptionsMap) {
+  let container = block.querySelector('div.ordering-options-list');
+  if (container) {
+    container.innerHTML = '';
+  } else {
+    container = div({ class: 'ordering-options-list' });
+    block.append(container);
+  }
+
+  const showStore = detectStore();
+  const orderingOptions = await getOrderingOptions(productRefs);
+  await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
+  const options = orderingOptions.filter((o) => !!o);
+  if (showStore) {
+    buildOrderingForm(options);
+    block.classList.add('cart-store');
+    await getCartDetails();
+    updateCounters();
+
+    // cart visible everywhere in product page
+    const productsMain = document.querySelector('.product main');
+    if (productsMain) productsMain.append(renderCartWidget());
+  }
+}
+
 export default async function decorate(block) {
   // first table should be  | shopify-handles | comma separated values |
   const shopifyHandlesValues = block.children[0].children[1];
@@ -394,21 +419,8 @@ export default async function decorate(block) {
 
   block.innerHTML = '';
 
-  const container = div({ class: 'ordering-options-list' });
-  block.append(container);
-
-  const showStore = detectStore();
-  const orderingOptions = await getOrderingOptions(refs);
-  await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
-  const options = orderingOptions.filter((o) => !!o);
-  buildOrderingForm(options);
-  if (showStore) {
-    block.classList.add('cart-store');
-    await getCartDetails();
-    updateCounters();
-
-    // cart visible everywhere in product page
-    const productsMain = document.querySelector('.product main');
-    if (productsMain) productsMain.append(renderCartWidget());
-  }
+  document.addEventListener('geolocationUpdated', () => {
+    renderStore(block, refs, itemDescriptionsMap);
+  });
+  renderStore(block, refs, itemDescriptionsMap);
 }
