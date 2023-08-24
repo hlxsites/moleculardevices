@@ -388,8 +388,8 @@ async function renderStore(block, productRefs, itemDescriptionsMap) {
   const orderingOptions = await getOrderingOptions(productRefs);
   await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
   const options = orderingOptions.filter((o) => !!o);
-  buildOrderingForm(options);
   if (showStore) {
+    buildOrderingForm(options);
     block.classList.add('cart-store');
     await getCartDetails();
     updateCounters();
