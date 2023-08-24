@@ -1,1 +1,11 @@
-/* empty css */
+.toc-container .toc-wrapper {
+  margin-top: 20px;
+}
+
+.toc-container .columns-wrapper {
+  margin-bottom: 20px;
+}
+
+.toc-container .button-container {
+  margin-bottom: 40px;
+}
