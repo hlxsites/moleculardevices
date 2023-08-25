@@ -692,7 +692,7 @@ function addHreflangTags() {
 
   const includedPaths = ['/leadership', '/products', '/applications', '/customer-breakthroughs'];
   const path = window.location.pathname;
-  if ((!includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
+  if (!(includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
     return;
   }
 
