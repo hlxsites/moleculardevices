@@ -4,6 +4,8 @@ import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
 
+const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
+
 const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
@@ -271,16 +273,20 @@ export default async function decorate(block) {
     );
   } else {
     const queryParams = new URLSearchParams(window.location.search);
-    const rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
+    const pid = queryParams.get('pid');
+    let rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
-    if (rfqData) {
+    if (rfqData || window.location.host.includes(PREVIEW_DOMAIN)) {
       block.appendChild(
         div({
           id: 'step-3',
           class: 'rfq-product-wrapper request-quote-form hide-back-btn',
         }),
       );
+      if (!rfqData) {
+        rfqData = { title: pid, familyId: pid };
+      }
       loadIframeForm('step-3', rfqData, 'Product');
     } else {
       block.appendChild(
