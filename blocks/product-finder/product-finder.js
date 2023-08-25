@@ -197,7 +197,7 @@ async function stepThree(e) {
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  let title = getTabTitle(e.target);
+  const title = getTabTitle(e.target);
   let type = getTabType(e.target);
   let category = getTabCategory(e.target);
   const root = switchTab(title, stepNum, prevStepNum, 'Select Product');
@@ -265,8 +265,8 @@ async function stepThree(e) {
   }
 
   const cardTitles = list.querySelectorAll('.card-caption h3 a');
-  cardTitles.forEach((title) => {
-    title.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+  cardTitles.forEach((titleEl) => {
+    titleEl.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
   });
 
   decorateIcons(list);
