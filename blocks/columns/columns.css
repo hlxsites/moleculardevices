@@ -99,7 +99,7 @@ main .section>div.columns-wrapper {
 
 .columns.columns-sitemap h4{
   color: var(--text-electric-blue);
-  font-family: var(--ff-proxima-xbold);
+  font-weight: bold;
   font-size: var(--list-font-size-l);
   text-transform: uppercase;
 }
