@@ -581,7 +581,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Product' || type.includes('Category') || path === '/products') {
+    if (type === 'Product' || type.includes('Category')) {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -597,6 +597,26 @@ function addPageSchema() {
               url: schemaImageUrl,
             },
             brand,
+          },
+        ],
+      };
+    }
+
+    if (path === '/products') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Product',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            category: keywords,
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
           },
         ],
       };
