@@ -441,7 +441,10 @@ function addPageSchema() {
   const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
-  if (!includedTypes.some((r) => spTypes.indexOf(r) !== -1)) {
+
+  const includedPaths = ['/products'];
+  const path = window.location.pathname;
+  if (!(includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
     return;
   }
 
@@ -578,7 +581,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Product' || type.includes('Category')) {
+    if (type === 'Product' || type.includes('Category') || path === '/products') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
