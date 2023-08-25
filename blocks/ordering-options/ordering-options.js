@@ -382,12 +382,10 @@ function renderHeroOrder(heroBlock) {
   if (heroBlock) {
     const heroContainer = heroBlock.querySelector('.container');
     if (heroContainer) {
-      if (!heroContainer.querySelector('.order-container')) {
-        const heroOrder = div({ class: 'order-container' });
-        heroOrder.classList.add(STORE_HIDDEN_CLASS);
-        heroContainer.appendChild(heroOrder);
-        heroBlock.classList.add('order');
-      }
+      const heroOrder = div({ class: 'order-container' });
+      heroOrder.classList.add(STORE_HIDDEN_CLASS);
+      heroContainer.appendChild(heroOrder);
+      heroBlock.classList.add('order');
     }
   }
 }

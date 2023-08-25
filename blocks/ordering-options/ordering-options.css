@@ -27,6 +27,12 @@ main .section.ordering-options-container > div:last-child {
   display: none;
 }
 
+.ordering-options .title-variant {
+  float: left;
+  font-size: 24px;
+  padding-right: 15px;
+}
+
 .ordering-options.store-hidden .title-variant {
   width: 83.33%;
 }
@@ -35,23 +41,11 @@ main .section.ordering-options-container > div:last-child {
   width: 33.33%;
 }
 
-.ordering-options .title-variant {
-  float: left;
-  font-size: 24px;
-  padding-right: 15px;
-}
-
 .ordering-options .sku-variant {
   float: left;
   width: 16.67%;
   font-size: 24px;
   padding: 0 15px;
-}
-
-.ordering-options .variant-item-store {
-  display: flex;
-  width: 50%;
-  flex-direction: row;
 }
 
 .ordering-options .variant-item-store-content {
