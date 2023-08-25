@@ -191,6 +191,10 @@ main .section .hero-advanced-wrapper {
   color: var(--text-color);
 }
 
+.hero.order .order-container.store-hidden {
+  display: none;
+}
+
 #overlay {
 display: none;
 }
@@ -585,10 +589,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     height: auto;
     display: flex;
     padding-bottom: 45px;
-  }
-
-  .hero.order .order-container.store-hidden {
-    display: none;
   }
 
   .hero.order .hero-inner .container {
