@@ -438,9 +438,10 @@ async function decorateTemplates(main) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const type = getMetadata('template');
   const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
-  if (!includedTypes.includes(type)) {
+  const type = getMetadata('template');
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+  if (!includedTypes.some((r) => spTypes.indexOf(r) !== -1)) {
     return;
   }
 
@@ -685,11 +686,13 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
   const type = getMetadata('template');
-  const includedTypes = ['homepage', 'Product', 'Application', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+
+  const includedPaths = ['/leadership', '/products', '/applications', '/customer-breakthroughs'];
   const path = window.location.pathname;
-  const includedPaths = ['/leadership'];
-  if (!(includedTypes.includes(type) || includedPaths.includes(path))) {
+  if ((!includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
     return;
   }
 
