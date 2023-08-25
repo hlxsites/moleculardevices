@@ -31,6 +31,7 @@ main .section.ordering-options-container > div:last-child {
   float: left;
   font-size: 24px;
   padding-right: 15px;
+  width: 83.33%;
 }
 
 .ordering-options .sku-variant {
