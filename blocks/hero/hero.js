@@ -191,15 +191,6 @@ export function buildHero(block) {
     block.parentElement.appendChild(container);
   }
 
-  if (detectStore() && document.querySelector('main .block.ordering-options')) {
-    // TODO clean this up
-    block.querySelectorAll('.button-container').forEach((buttonContainer) => {
-      buttonContainer.remove();
-    });
-    container.appendChild(div({ class: 'order-container' }));
-    block.classList.add('order');
-  }
-
   showHidePricingRequestButton(block);
   document.addEventListener('geolocationUpdated', () => {
     showHidePricingRequestButton(block);

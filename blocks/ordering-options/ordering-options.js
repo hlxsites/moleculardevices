@@ -1,12 +1,14 @@
 /* eslint-disable object-curly-newline */
 
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
+import { loadUserData } from '../../scripts/delayed.js';
 import {
   a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
+const STORE_HIDDEN_CLASS = 'store-hidden';
 
 function increaseAndDecreaseCounter(event) {
   const btnContainer = event.target.closest('span');
@@ -123,7 +125,7 @@ function renderAddToCart(item) {
   );
 }
 
-function renderItem(item, showStore, itemDescriptionsMap) {
+function renderItem(item, itemDescriptionsMap) {
   if (!item) return '';
   return (
     div({ class: 'ordering-option-item', id: item.handle },
@@ -142,7 +144,7 @@ function renderItem(item, showStore, itemDescriptionsMap) {
             div({ class: 'sku-variant' },
               p({ class: 'legend' }, `#${variant.sku}`),
             ),
-            (showStore) ? renderAddToCart(variant) : '',
+            renderAddToCart(variant),
           )
         )),
       ),
@@ -193,10 +195,11 @@ async function getOrderingOptions(refs) {
   );
   return options;
 }
-async function renderList(options, showStore, container, itemDescriptionsMap) {
+
+function renderList(options, container, itemDescriptionsMap) {
   const items = [];
   options.forEach((option) => {
-    items.push(renderItem(option, showStore, itemDescriptionsMap));
+    items.push(renderItem(option, itemDescriptionsMap));
   });
   container.append(...items);
 
@@ -375,32 +378,59 @@ function buildOrderingForm(options) {
   orderContainer.appendChild(orderFormContainer);
 }
 
-async function renderStore(block, productRefs, itemDescriptionsMap) {
-  let container = block.querySelector('div.ordering-options-list');
-  if (container) {
-    container.innerHTML = '';
-  } else {
-    container = div({ class: 'ordering-options-list' });
-    block.append(container);
+function renderHeroOrder(heroBlock) {
+  if (heroBlock) {
+    const heroContainer = heroBlock.querySelector('.container');
+    if (heroContainer) {
+      const heroOrder = div({ class: 'order-container' });
+      heroOrder.classList.add(STORE_HIDDEN_CLASS);
+      heroContainer.appendChild(heroOrder);
+      heroBlock.classList.add('order');
+    }
   }
+}
 
-  const showStore = detectStore();
+async function renderOptions(orderBlock, heroBlock, productRefs, itemDescriptionsMap) {
+  const container = div({ class: 'ordering-options-list' });
+  container.classList.add(STORE_HIDDEN_CLASS);
+  orderBlock.append(container);
+
+  renderHeroOrder(heroBlock);
+
   const orderingOptions = await getOrderingOptions(productRefs);
-  await renderList(orderingOptions, showStore, container, itemDescriptionsMap);
+  renderList(orderingOptions, container, itemDescriptionsMap);
   const options = orderingOptions.filter((o) => !!o);
-  if (showStore) {
-    buildOrderingForm(options);
-    block.classList.add('cart-store');
-    await getCartDetails();
-    updateCounters();
 
-    // cart visible everywhere in product page
-    const productsMain = document.querySelector('.product main');
-    if (productsMain) productsMain.append(renderCartWidget());
+  buildOrderingForm(options);
+
+  await getCartDetails();
+  updateCounters();
+
+  // cart visible everywhere in product page
+  const productsMain = document.querySelector('.product main');
+  if (productsMain) productsMain.append(renderCartWidget());
+}
+
+function showHideStoreFeature(showStore, orderBlock, heroBlock) {
+  const heroOrder = heroBlock.querySelector('.order-container');
+  if (showStore) {
+    orderBlock.classList.remove(STORE_HIDDEN_CLASS);
+    if (heroOrder) heroOrder.classList.remove(STORE_HIDDEN_CLASS);
+    // hide buttons in hero and instead show cart
+    if (showStore && heroBlock) {
+      heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
+        buttonContainer.remove();
+      });
+    }
+  } else {
+    orderBlock.classList.add(STORE_HIDDEN_CLASS);
+    if (heroOrder) heroOrder.classList.add(STORE_HIDDEN_CLASS);
   }
 }
 
 export default async function decorate(block) {
+  // initiate geolocation if not available yet
+  await loadUserData();
   // first table should be  | shopify-handles | comma separated values |
   const shopifyHandlesValues = block.children[0].children[1];
   const refs = shopifyHandlesValues.textContent
@@ -416,11 +446,16 @@ export default async function decorate(block) {
     const productDescription = item.children[1];
     itemDescriptionsMap.set(productCode, productDescription);
   });
-
   block.innerHTML = '';
 
+  // order content in hero
+  const heroBlock = document.querySelector('.hero.block');
+  renderOptions(block, heroBlock, refs, itemDescriptionsMap);
+
+  const showStore = detectStore();
+  showHideStoreFeature(showStore, block, heroBlock);
+
   document.addEventListener('geolocationUpdated', () => {
-    renderStore(block, refs, itemDescriptionsMap);
+    showHideStoreFeature(block, showStore);
   });
-  renderStore(block, refs, itemDescriptionsMap);
 }
