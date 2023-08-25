@@ -686,6 +686,8 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  if (document.querySelectorAll('head link[hreflang]').length > 0) return;
+
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
