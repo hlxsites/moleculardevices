@@ -438,9 +438,13 @@ async function decorateTemplates(main) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const type = getMetadata('template');
   const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
-  if (!includedTypes.includes(type)) {
+  const type = getMetadata('template');
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+
+  const includedPaths = ['/products'];
+  const path = window.location.pathname;
+  if (!(includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
     return;
   }
 
@@ -598,6 +602,26 @@ function addPageSchema() {
       };
     }
 
+    if (path === '/products') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Product',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            category: keywords,
+            url: document.querySelector("link[rel='canonical']").href,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+          },
+        ],
+      };
+    }
+
     if (type === 'Blog') {
       schemaInfo = {
         '@context': 'https://schema.org',
@@ -685,11 +709,15 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  if (document.querySelectorAll('head link[hreflang]').length > 0) return;
+
+  const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
   const type = getMetadata('template');
-  const includedTypes = ['homepage', 'Product', 'Application', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+
+  const includedPaths = ['/leadership', '/products', '/applications', '/customer-breakthroughs'];
   const path = window.location.pathname;
-  const includedPaths = ['/leadership'];
-  if (!(includedTypes.includes(type) || includedPaths.includes(path))) {
+  if (!(includedTypes.some((r) => spTypes.indexOf(r) !== -1) || includedPaths.includes(path))) {
     return;
   }
 
