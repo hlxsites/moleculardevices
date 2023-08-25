@@ -439,7 +439,8 @@ function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
   const type = getMetadata('template');
-  if (type !== 'Product' && type !== 'Application' && !type.includes('Category') && type !== 'homepage') {
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
+  if (!includedTypes.includes(type)) {
     return;
   }
 
@@ -473,6 +474,10 @@ function addPageSchema() {
       'http://www.youtube.com/user/MolecularDevicesInc',
       'https://twitter.com/moldev',
     ];
+
+    const eventStart = getMetadata('event-start');
+    const eventEnd = getMetadata('event-end');
+    const eventAddress = getMetadata('event-address');
 
     const brand = {
       '@type': 'Brand',
@@ -588,6 +593,79 @@ function addPageSchema() {
               url: schemaImageUrl,
             },
             brand,
+          },
+        ],
+      };
+    }
+
+    if (type === 'Blog') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'BlogPosting',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: document.querySelector("link[rel='canonical']").href,
+              logo,
+            },
+          },
+        ],
+      };
+    }
+
+    if (type === 'Application Note') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description: getMetadata('description'),
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: document.querySelector("link[rel='canonical']").href,
+              logo,
+            },
+          },
+        ],
+      };
+    }
+
+    if (type === 'Event') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Event',
+            name: schemaTitle,
+            url: document.querySelector("link[rel='canonical']").href,
+            description: getMetadata('description'),
+            eventAttendanceMode: getMetadata('event-type'),
+            startDate: (eventStart) ? eventStart.split(',')[0] : '',
+            endDate: (eventEnd) ? eventEnd.split(',')[0] : '',
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            location: {
+              '@type': 'City',
+              name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+            },
           },
         ],
       };
