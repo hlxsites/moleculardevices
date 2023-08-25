@@ -37,6 +37,7 @@ const TEMPLATE_LIST = [
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
+const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
@@ -86,6 +87,12 @@ export function summariseDescription(description, charCount) {
     }
   }
   return `${result}…`;
+}
+
+export function isGatedResource(item) {
+  const supportCookie = getCookie('STYXKEY_PortalUserRole');
+  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
+  return !authorizedUser && item.gated === 'Yes';
 }
 
 /*

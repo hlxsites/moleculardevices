@@ -7,7 +7,7 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
-import { embedVideo, fetchFragment, summariseDescription } from '../../scripts/scripts.js';
+import { embedVideo, fetchFragment, isGatedResource, summariseDescription } from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
 const relatedResourcesHeaders = {
@@ -80,7 +80,7 @@ export default async function decorate(block) {
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
+    const resourceLink = (isGatedResource(item) && item.gatedURL && item.gatedURL !== '0')
       ? item.gatedURL : item.path;
     displayFilters[resourceType] = resourceDisplayType;
 
@@ -137,7 +137,7 @@ export default async function decorate(block) {
     const videosContainerBlock = div({ class: 'resources-section' });
     await Promise.all(videoResources.map(async (item) => {
       displayFilters[item.type] = item.displayType;
-      if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
+      if (isGatedResource(item) && item.gatedURL && item.gatedURL !== '0') {
         const imageSrc = item.thumbnail && item.thumbnail !== '0'
           ? item.thumbnail
           : (item.image && item.image !== '0'
