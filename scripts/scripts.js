@@ -89,12 +89,6 @@ export function summariseDescription(description, charCount) {
   return `${result}…`;
 }
 
-export function isGatedResource(item) {
-  const supportCookie = getCookie('STYXKEY_PortalUserRole');
-  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
-  return !authorizedUser && item.gated === 'Yes';
-}
-
 /*
  * If we have a hero block, move it into its own section, so it can be displayed faster
  */
@@ -1067,6 +1061,15 @@ const cookieParams = ['cmp', 'mdcmp', 'utm_medium', 'utm_source', 'utm_keyword',
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
+
+/**
+ * Check if a resource should be served as gated or original
+ */
+export function isGatedResource(item) {
+  const supportCookie = getCookie('STYXKEY_PortalUserRole');
+  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
+  return !authorizedUser && item.gated === 'Yes';
+}
 
 export function processSectionMetadata(element) {
   const sectionMeta = element.querySelector('.section-metadata');

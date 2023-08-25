@@ -7,7 +7,9 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
-import { embedVideo, fetchFragment, isGatedResource, summariseDescription } from '../../scripts/scripts.js';
+import {
+  embedVideo, fetchFragment, isGatedResource, summariseDescription,
+} from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
 const relatedResourcesHeaders = {
