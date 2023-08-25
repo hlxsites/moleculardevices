@@ -152,22 +152,31 @@ function renderItem(item, itemDescriptionsMap) {
   );
 }
 
-function renderCartWidget() {
-  return (
-    div({ class: 'cart-widget', onclick: (e) => { e.target.closest('.cart-widget').classList.toggle('open'); } },
-      span({ class: 'cart-count' }, getCartItemCount()),
-      i({ class: 'fa fa-shopping-cart' }),
-      a({
-        class: 'view-cart-link',
-        href: `${SHOP_BASE_URL}/cart`,
-        target: '_blank',
-        name: 'Cart',
-        rel: 'noopener noreferrer',
-      },
-      'View Cart',
-      ),
-    )
-  );
+function renderCartWidget(showStore) {
+  // cart visible everywhere in product page
+  const productsMain = document.querySelector('.product main');
+  if (!productsMain) return;
+  let cartWidget = productsMain.querySelector('.cart-widget');
+  if (showStore && !cartWidget) {
+    cartWidget = (
+      div({ class: 'cart-widget', onclick: (e) => { e.target.closest('.cart-widget').classList.toggle('open'); } },
+        span({ class: 'cart-count' }, getCartItemCount()),
+        i({ class: 'fa fa-shopping-cart' }),
+        a({
+          class: 'view-cart-link',
+          href: `${SHOP_BASE_URL}/cart`,
+          target: '_blank',
+          name: 'Cart',
+          rel: 'noopener noreferrer',
+        },
+        'View Cart',
+        ),
+      )
+    );
+    productsMain.append(cartWidget);
+  } else if (!showStore && cartWidget) {
+    cartWidget.remove();
+  }
 }
 
 function fetchOption(option) {
@@ -405,19 +414,16 @@ async function renderOptions(orderBlock, heroBlock, productRefs, itemDescription
 
   await getCartDetails();
   updateCounters();
-
-  // cart visible everywhere in product page
-  const productsMain = document.querySelector('.product main');
-  if (productsMain) productsMain.append(renderCartWidget());
 }
 
 function showHideStoreFeature(showStore, orderBlock, heroBlock) {
+  renderCartWidget(showStore);
   const heroOrder = heroBlock.querySelector('.order-container');
   if (showStore) {
     orderBlock.classList.remove(STORE_HIDDEN_CLASS);
     if (heroOrder) heroOrder.classList.remove(STORE_HIDDEN_CLASS);
-    // hide buttons in hero and instead show cart
-    if (showStore && heroBlock) {
+    // hide buttons in hero and instead show option form
+    if (heroBlock) {
       heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
         buttonContainer.remove();
       });
