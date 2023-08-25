@@ -684,6 +684,54 @@ function addPageSchema() {
   }
 }
 
+function addHreflangTags() {
+  const type = getMetadata('template');
+  const includedTypes = ['homepage', 'Product', 'Application', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
+  const path = window.location.pathname;
+  const includedPaths = ['/leadership'];
+  if (!(includedTypes.includes(type) || includedPaths.includes(path))) {
+    return;
+  }
+
+  const baseHreflangs = [
+    {
+      lang: 'x-default',
+      href: 'https://www.moleculardevices.com',
+    },
+    {
+      lang: 'de',
+      href: 'https://de.moleculardevices.com',
+    },
+    {
+      lang: 'es',
+      href: 'https://es.moleculardevices.com',
+    },
+    {
+      lang: 'fr',
+      href: 'https://fr.moleculardevices.com',
+    },
+    {
+      lang: 'it',
+      href: 'https://it.moleculardevices.com',
+    },
+    {
+      lang: 'ko',
+      href: 'https://ko.moleculardevices.com',
+    },
+    {
+      lang: 'zh',
+      href: 'https://www.moleculardevices.com.cn',
+    },
+  ];
+  baseHreflangs.forEach((hl) => {
+    const ln = document.createElement('link');
+    ln.setAttribute('rel', 'alternate');
+    ln.setAttribute('hreflang', hl.lang);
+    ln.setAttribute('href', hl.href + path);
+    document.querySelector('head').appendChild(ln);
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -703,6 +751,7 @@ export async function decorateMain(main) {
   decorateLinks(main);
   decorateParagraphs(main);
   addPageSchema();
+  addHreflangTags();
 }
 
 /**
