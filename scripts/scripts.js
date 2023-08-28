@@ -483,15 +483,6 @@ function addPageSchema() {
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
 
-    const brand = {
-      '@type': 'Brand',
-      name: 'Molecular Devices',
-      description: 'Molecular Devices is one of the leading provider of high-performance bioanalytical measurement solutions for life science research description pharmaceutical and biotherapeutic development.',
-      url: moleculardevicesRootURL,
-      sameAs: brandSameAs,
-      logo,
-    };
-
     let schemaInfo = null;
     if (type === 'homepage') {
       const homepageName = getMetadata('title');
