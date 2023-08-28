@@ -164,7 +164,7 @@ export default async function decorate(block) {
         const videoFragmentHtml = await fetchFragment(item.path);
         const videoFragment = document.createElement('div');
         videoFragment.innerHTML = videoFragmentHtml;
-        const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
+        const videoElement = videoFragment.querySelector('a[href^="https://share.vidyard.com/watch/"]');
         const videoHref = videoElement?.href;
         if (videoElement && videoHref && videoHref.startsWith('https://')) {
           const videoURL = new URL(videoHref);
