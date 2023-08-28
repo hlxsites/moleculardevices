@@ -581,41 +581,24 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Product' || type.includes('Category')) {
+    if (type === 'Product' || type.includes('Category') || path === '/products') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
           {
-            '@type': 'Product',
+            '@type': 'WebPage',
             name: schemaTitle,
             description: getMetadata('description'),
-            category: keywords,
             url: document.querySelector("link[rel='canonical']").href,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
               url: schemaImageUrl,
             },
-            brand,
-          },
-        ],
-      };
-    }
-
-    if (path === '/products') {
-      schemaInfo = {
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'Product',
-            name: schemaTitle,
-            description: getMetadata('description'),
-            category: keywords,
-            url: document.querySelector("link[rel='canonical']").href,
-            image: {
-              '@type': 'ImageObject',
-              representativeOfPage: 'True',
-              url: schemaImageUrl,
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
             },
           },
         ],
