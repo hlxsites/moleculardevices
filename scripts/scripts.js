@@ -1068,7 +1068,7 @@ cookieParams.forEach((param) => {
 export function isGatedResource(item) {
   const supportCookie = getCookie('STYXKEY_PortalUserRole');
   const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
-  return !authorizedUser && item.gated === 'Yes';
+  return !authorizedUser && item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0';
 }
 
 export function processSectionMetadata(element) {

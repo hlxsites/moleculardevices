@@ -84,7 +84,7 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     let cardLink = item.path;
-    if (isGatedResource(item) && item.gatedURL && item.gatedURL !== '0') {
+    if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;

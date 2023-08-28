@@ -82,8 +82,7 @@ export default async function decorate(block) {
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = (isGatedResource(item) && item.gatedURL && item.gatedURL !== '0')
-      ? item.gatedURL : item.path;
+    const resourceLink = isGatedResource(item) ? item.gatedURL : item.path;
     displayFilters[resourceType] = resourceDisplayType;
 
     const resourceBlock = div(
@@ -139,7 +138,7 @@ export default async function decorate(block) {
     const videosContainerBlock = div({ class: 'resources-section' });
     await Promise.all(videoResources.map(async (item) => {
       displayFilters[item.type] = item.displayType;
-      if (isGatedResource(item) && item.gatedURL && item.gatedURL !== '0') {
+      if (isGatedResource(item)) {
         const imageSrc = item.thumbnail && item.thumbnail !== '0'
           ? item.thumbnail
           : (item.image && item.image !== '0'
