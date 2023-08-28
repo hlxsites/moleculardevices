@@ -65,6 +65,10 @@ main .section .resources-wrapper {
   height: 309px;
 }
 
+.resources .vidyard-player-container img {
+  height: 309px;
+}
+
 .resources .vidyard-video-placeholder {
   position: relative;
   width: 100%;
@@ -198,7 +202,7 @@ main .section .resources-wrapper {
 }
 
 @media only screen and (max-width: 1199px) {
-  .resources .video-container {
+  .resources .video-container, .resources .vidyard-player-container img {
     height: 253px;
   }
 }
@@ -213,7 +217,7 @@ main .section .resources-wrapper {
     max-width: 100%;
   }
 
-  .resources .video-container {
+  .resources .video-container, .resources .vidyard-player-container img {
     height: auto;
   }
 
