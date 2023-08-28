@@ -483,15 +483,6 @@ function addPageSchema() {
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
 
-    const brand = {
-      '@type': 'Brand',
-      name: 'Molecular Devices',
-      description: 'Molecular Devices is one of the leading provider of high-performance bioanalytical measurement solutions for life science research description pharmaceutical and biotherapeutic development.',
-      url: moleculardevicesRootURL,
-      sameAs: brandSameAs,
-      logo,
-    };
-
     let schemaInfo = null;
     if (type === 'homepage') {
       const homepageName = getMetadata('title');
@@ -563,14 +554,16 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
+              sameAs: brandSameAs,
+              logo,
             },
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
+              sameAs: brandSameAs,
               logo,
             },
-            brand,
           },
           {
             '@type': 'ImageObject',
@@ -581,41 +574,26 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Product' || type.includes('Category')) {
+    if (type === 'Product' || type.includes('Category') || path === '/products') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
           {
-            '@type': 'Product',
+            '@type': 'WebPage',
             name: schemaTitle,
             description: getMetadata('description'),
-            category: keywords,
             url: document.querySelector("link[rel='canonical']").href,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
               url: schemaImageUrl,
             },
-            brand,
-          },
-        ],
-      };
-    }
-
-    if (path === '/products') {
-      schemaInfo = {
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'Product',
-            name: schemaTitle,
-            description: getMetadata('description'),
-            category: keywords,
-            url: document.querySelector("link[rel='canonical']").href,
-            image: {
-              '@type': 'ImageObject',
-              representativeOfPage: 'True',
-              url: schemaImageUrl,
+            author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: moleculardevicesRootURL,
+              sameAs: brandSameAs,
+              logo,
             },
           },
         ],
@@ -641,6 +619,7 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: document.querySelector("link[rel='canonical']").href,
+              sameAs: brandSameAs,
               logo,
             },
           },
@@ -662,6 +641,7 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: document.querySelector("link[rel='canonical']").href,
+              sameAs: brandSameAs,
               logo,
             },
           },
