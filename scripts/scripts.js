@@ -599,6 +599,7 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
+              sameAs: brandSameAs,
             },
           },
         ],
