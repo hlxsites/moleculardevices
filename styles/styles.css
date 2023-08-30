@@ -57,8 +57,6 @@
 /* stylelint-enable */
 
 :root {
-  --stacked-height: 0;
-
   /* colors */
   --text-color: #34393d;
   --text-blue: #008da9;
