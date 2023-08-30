@@ -1068,7 +1068,8 @@ cookieParams.forEach((param) => {
 export function isGatedResource(item) {
   const supportCookie = getCookie('STYXKEY_PortalUserRole');
   const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
-  return !authorizedUser && item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0';
+  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
+    && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }
 
 export function processSectionMetadata(element) {
