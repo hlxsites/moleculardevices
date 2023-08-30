@@ -9,8 +9,21 @@ main .section .specifications-wrapper {
   scrollbar-width: none;
 }
 
+@media only screen and (min-width: 767px) {
+  .specifications .table-container {
+    overflow-x: visible;
+  }
+}
+
 .specifications .table-container::-webkit-scrollbar {
   display: none;
+}
+
+.specifications thead th {
+  top: var(--stacked-height);
+  position: sticky;
+  z-index: 20;
+  background-color: white;
 }
 
 .specifications .responsive-table {
@@ -42,9 +55,15 @@ main .section .specifications-wrapper {
 
 .specifications .responsive-table th {
   text-align: left;
-  padding: 15px;
+  padding: 0 5px;
   font-weight: 100;
 }
+
+/* Table with only one product */
+.specifications .responsive-table th:last-child:nth-child(2) {
+  padding: 0;
+}
+
 
 .specifications .responsive-table td {
   padding: 15px;
@@ -69,7 +88,7 @@ main .section .specifications-wrapper {
   position: sticky;
   left: 0;
   background-color: var(--background-color);
-  z-index: 1;
+  z-index: 4;
   width: 380px;
 }
 
