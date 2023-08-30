@@ -1,7 +1,8 @@
 // eslint-disable-next-line object-curly-newline
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
+import ffetch from '../../scripts/ffetch.js';
 
 async function iframeResizeHandler() {
   await new Promise((resolve) => {
@@ -12,7 +13,18 @@ async function iframeResizeHandler() {
   iFrameResize({ log: false });
 }
 
-function handleEmbed() {
+async function handleEmbed() {
+  if (isAuthorizedUser()) {
+    const path = window.location.pathname;
+    const pageIndex = await ffetch('/query-index.json').all();
+    const foundPage = pageIndex.find((page) => page.gated === 'Yes'
+      && page.gatedURL
+      && page.gatedURL.includes(`moleculardevices.com${path}`));
+    if (foundPage) {
+      window.location.replace(foundPage.path);
+    }
+  }
+
   try {
     const cmpCookieValue = getCookie('cmp');
     if (cmpCookieValue) {

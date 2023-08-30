@@ -1070,12 +1070,16 @@ cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
 
+export function isAuthorizedUser() {
+  const supportCookie = getCookie('STYXKEY_PortalUserRole');
+  return supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
+}
+
 /**
  * Check if a resource should be served as gated or original
  */
 export function isGatedResource(item) {
-  const supportCookie = getCookie('STYXKEY_PortalUserRole');
-  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie) && window.location.hostname.endsWith('moleculardevices.com');
+  const authorizedUser = isAuthorizedUser() && window.location.hostname.endsWith('moleculardevices.com');
   return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
     && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }
