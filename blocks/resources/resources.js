@@ -5,9 +5,12 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  createOptimizedPicture, decorateIcons, fetchPlaceholders, getMetadata,
+  createOptimizedPicture, decorateBlock, decorateIcons,
+  fetchPlaceholders, getMetadata, loadBlock,
 } from '../../scripts/lib-franklin.js';
-import { embedVideo, fetchFragment, summariseDescription } from '../../scripts/scripts.js';
+import {
+  embedVideo, fetchFragment, isGatedResource, summariseDescription,
+} from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
 const relatedResourcesHeaders = {
@@ -15,7 +18,8 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
-const excludedResources = ['Videos and Webinars', 'Citation', 'COA'];
+const videoResourceTypes = ['Videos and Webinars', 'Interactive Demo'];
+const excludedResources = ['Citation', 'COA', ...videoResourceTypes];
 
 function handleFilterClick(e) {
   e.preventDefault();
@@ -60,7 +64,7 @@ export default async function decorate(block) {
       && includedResourceTypes.includes(resource.type))
     .all();
   const otherResources = resources.filter((item) => !excludedResources.includes(item.type));
-  const videoResources = resources.filter((item) => item.type === 'Videos and Webinars');
+  const videoResources = resources.filter((item) => videoResourceTypes.includes(item.type));
 
   const filtersBlock = ul({ class: 'filters' });
   const filters = [...new Set(otherResources.map((item) => item.type))];
@@ -80,8 +84,7 @@ export default async function decorate(block) {
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
-      ? item.gatedURL : item.path;
+    const resourceLink = isGatedResource(item) ? item.gatedURL : item.path;
     displayFilters[resourceType] = resourceDisplayType;
 
     const resourceBlock = div(
@@ -137,11 +140,11 @@ export default async function decorate(block) {
     const videosContainerBlock = div({ class: 'resources-section' });
     await Promise.all(videoResources.map(async (item) => {
       displayFilters[item.type] = item.displayType;
-      if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
-        const imageSrc = item.thumbnail && item.thumbnail !== '0'
-          ? item.thumbnail
-          : (item.image && item.image !== '0'
-            ? item.image : '/images/default-card-thumbnail.webp');
+      const imageSrc = item.thumbnail && item.thumbnail !== '0'
+        ? item.thumbnail
+        : (item.image && item.image !== '0'
+          ? item.image : '/images/default-card-thumbnail.webp');
+      if (isGatedResource(item)) {
         const videoWrapper = div({ class: 'video-wrapper' },
           div({ class: 'video-container' },
             div({ class: 'vidyard-video-placeholder' },
@@ -164,17 +167,30 @@ export default async function decorate(block) {
         const videoFragmentHtml = await fetchFragment(item.path);
         const videoFragment = document.createElement('div');
         videoFragment.innerHTML = videoFragmentHtml;
-        const videoElement = videoFragment.querySelector('p a[href^="https://share.vidyard.com/watch/"]');
+        const videoElement = videoFragment.querySelector('a[href^="https://share.vidyard.com/watch/"], a[href^="https://view.ceros.com/molecular-devices/"]');
         const videoHref = videoElement?.href;
         if (videoElement && videoHref && videoHref.startsWith('https://')) {
           const videoURL = new URL(videoHref);
           const videoWrapper = div({ class: 'video-wrapper' },
-            div({ class: 'video-container' },
-              a({ href: videoHref }, videoHref),
-            ),
+            div({ class: 'video-container' }),
             p({ class: 'video-title' }, item.title),
           );
-          embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
+          const videoContainer = videoWrapper.querySelector('.video-container');
+          const videoLinkElement = a({ href: videoHref }, videoHref);
+          if (item.type === 'Interactive Demo') {
+            videoContainer.append(
+              div({ class: 'ceros' },
+                createOptimizedPicture(imageSrc),
+                videoLinkElement,
+              ),
+            );
+            const cerosBlock = videoContainer.querySelector('.ceros');
+            decorateBlock(cerosBlock);
+            await loadBlock(cerosBlock);
+          } else {
+            videoContainer.append(videoLinkElement);
+            embedVideo(videoWrapper.querySelector('a'), videoURL, 'lightbox');
+          }
           videosContainerBlock.append(videoWrapper);
         }
       }

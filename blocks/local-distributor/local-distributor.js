@@ -228,6 +228,7 @@ export default async function decorate(block) {
   searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-unused-expressions
     window.location.pathname === '/contact' ? redirectToContactSearch() : renderAddress();
+    decorateIcons(block);
   });
 
   hideResult();
