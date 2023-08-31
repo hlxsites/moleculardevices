@@ -5,6 +5,10 @@ import {
 
 const openAttribute = 'aria-expanded';
 
+function isFaq(block) {
+  return block.classList.contains('faq');
+}
+
 function applyColumnLayout(contentNodes) {
   let applyLayout = false;
   contentNodes.forEach((elem) => {
@@ -28,7 +32,7 @@ function renderColumnLayout(row) {
   return rowContent;
 }
 
-async function renderContent(container, content) {
+async function renderContent(container, content, isBlockFaq) {
   // prepare content
   const rows = [];
   content.forEach((elem) => {
@@ -41,9 +45,6 @@ async function renderContent(container, content) {
 
   // render content
   const contentDiv = div({ class: 'accordion-content' });
-  contentDiv.setAttribute('itemprop', 'acceptedAnswer');
-  contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
-  contentDiv.setAttribute('itemscope', '');
   rows.forEach((row) => {
     const hasColumnLayout = applyColumnLayout(row);
     if (hasColumnLayout) {
@@ -55,15 +56,23 @@ async function renderContent(container, content) {
       });
     }
   });
-  const accordionChild = contentDiv.firstChild;
-  accordionChild.setAttribute('itemprop', 'text');
+  if (isBlockFaq) {
+    contentDiv.setAttribute('itemprop', 'acceptedAnswer');
+    contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+    contentDiv.setAttribute('itemscope', '');
+    const accordionChild = contentDiv.firstChild;
+    accordionChild.setAttribute('itemprop', 'text');
+  }
   container.append(contentDiv);
 }
 
 export default async function decorate(block) {
+  const isBlockFaq = isFaq(block);
   const isTypeNumbers = block.classList.contains('numbers');
-  block.setAttribute('itemtype', 'https://schema.org/FAQPage');
-  block.setAttribute('itemscope', '');
+  if (isBlockFaq) {
+    block.setAttribute('itemtype', 'https://schema.org/FAQPage');
+    block.setAttribute('itemscope', '');
+  }
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
@@ -77,12 +86,14 @@ export default async function decorate(block) {
     );
 
     const item = div({ class: 'accordion-item' });
-    item.setAttribute('itemtype', 'https://schema.org/Question');
-    item.setAttribute('itemscope', '');
-    header.setAttribute('itemProp', 'name');
+    if (isBlockFaq) {
+      item.setAttribute('itemtype', 'https://schema.org/Question');
+      item.setAttribute('itemscope', '');
+      header.setAttribute('itemProp', 'name');
+    }
 
     item.appendChild(header);
-    renderContent(item, rest);
+    renderContent(item, rest, isBlockFaq);
 
     if (idx === 0) item.setAttribute(openAttribute, '');
 
