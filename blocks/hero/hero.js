@@ -1,7 +1,6 @@
 /* eslint-disable no-plusplus */
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  detectStore,
   formatDate,
   isVideo,
   videoButton,
@@ -191,27 +190,9 @@ export function buildHero(block) {
     block.parentElement.appendChild(container);
   }
 
-  if (detectStore() && document.querySelector('main .block.ordering-options')) {
-    // TODO clean this up
-    block.querySelectorAll('.button-container').forEach((buttonContainer) => {
-      buttonContainer.remove();
-    });
-    container.appendChild(div({ class: 'order-container' }));
-    block.classList.add('order');
-  }
-
   showHidePricingRequestButton(block);
   document.addEventListener('geolocationUpdated', () => {
     showHidePricingRequestButton(block);
-
-    // TODO optimize and make sure no race condition
-    if (detectStore() && document.querySelector('main .block.ordering-options')) {
-      block.querySelectorAll('.button-container').forEach((buttonContainer) => {
-        buttonContainer.remove();
-      });
-      container.appendChild(div({ class: 'order-container' }));
-      block.classList.add('order');
-    }
   });
 
   loadBreadcrumbs(breadcrumbs);
