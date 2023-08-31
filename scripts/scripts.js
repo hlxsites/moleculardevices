@@ -37,6 +37,7 @@ const TEMPLATE_LIST = [
 ];
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
+const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
@@ -1068,6 +1069,16 @@ const cookieParams = ['cmp', 'mdcmp', 'utm_medium', 'utm_source', 'utm_keyword',
 cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
+
+/**
+ * Check if a resource should be served as gated or original
+ */
+export function isGatedResource(item) {
+  const supportCookie = getCookie('STYXKEY_PortalUserRole');
+  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie) && window.location.hostname.endsWith('moleculardevices.com');
+  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
+    && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
+}
 
 export function processSectionMetadata(element) {
   const sectionMeta = element.querySelector('.section-metadata');
