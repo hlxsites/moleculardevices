@@ -89,7 +89,11 @@ export default async function decorate(block) {
   });
 
   const tHeadBlock = domEl('thead', headRow);
-  block.append(div({ class: 'table-container' },
+  const tableContainerClasses = ['table-container'];
+  if (specData.product?.data?.length > 1) {
+    tableContainerClasses.push('multiple-products');
+  }
+  block.append(div({ class: tableContainerClasses },
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
   ));
 

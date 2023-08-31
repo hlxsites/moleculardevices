@@ -3,14 +3,14 @@ main .section .specifications-wrapper {
   margin-bottom: 50px;
 }
 
-.specifications .table-container {
+.specifications .table-container.multiple-products {
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-@media only screen and (min-width: 767px) {
-  .specifications .table-container {
+@media only screen and (min-width: 991px) {
+  .specifications .table-container.multiple-products {
     overflow-x: visible;
   }
 }
