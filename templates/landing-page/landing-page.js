@@ -16,10 +16,8 @@ async function iframeResizeHandler() {
 async function handleEmbed() {
   if (isAuthorizedUser()) {
     const path = window.location.pathname;
-    const pageIndex = await ffetch('/query-index.json').all();
-    const foundPage = pageIndex.find((page) => page.gated === 'Yes'
-      && page.gatedURL
-      && page.gatedURL.includes(`moleculardevices.com${path}`));
+    const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
+    const foundPage = pageIndex.find((page) => page.gatedURL === path || page.gatedURL.endsWith(`moleculardevices.com${path}`));
     if (foundPage) {
       window.location.replace(foundPage.path);
     }
