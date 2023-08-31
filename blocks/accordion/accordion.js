@@ -41,6 +41,9 @@ async function renderContent(container, content) {
 
   // render content
   const contentDiv = div({ class: 'accordion-content' });
+  contentDiv.setAttribute('itemprop', 'acceptedAnswer');
+  contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+  contentDiv.setAttribute('itemscope', '');
   rows.forEach((row) => {
     const hasColumnLayout = applyColumnLayout(row);
     if (hasColumnLayout) {
@@ -52,12 +55,15 @@ async function renderContent(container, content) {
       });
     }
   });
+  const accordionChild = contentDiv.firstChild;
+  accordionChild.setAttribute('itemprop', 'text');
   container.append(contentDiv);
 }
 
 export default async function decorate(block) {
   const isTypeNumbers = block.classList.contains('numbers');
   block.setAttribute('itemtype', 'https://schema.org/FAQPage');
+  block.setAttribute('itemscope', '');
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
@@ -72,13 +78,12 @@ export default async function decorate(block) {
 
     const item = div({ class: 'accordion-item' });
     item.setAttribute('itemtype', 'https://schema.org/Question');
-    item.setAttribute('name', header.textContent);
+    item.setAttribute('itemscope', '');
+    header.setAttribute('itemProp', 'name');
 
     item.appendChild(header);
     renderContent(item, rest);
 
-    const accordionContent = item.querySelector('.accordion-content');
-    item.setAttribute('acceptedAnswer', JSON.stringify({ itemType: 'https://schema.org/Answer', text: accordionContent.textContent }));
     if (idx === 0) item.setAttribute(openAttribute, '');
 
     decorateIcons(item);
