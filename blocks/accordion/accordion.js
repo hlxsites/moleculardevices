@@ -57,6 +57,7 @@ async function renderContent(container, content) {
 
 export default async function decorate(block) {
   const isTypeNumbers = block.classList.contains('numbers');
+  block.setAttribute('itemtype', 'https://schema.org/FAQPage');
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
@@ -70,9 +71,14 @@ export default async function decorate(block) {
     );
 
     const item = div({ class: 'accordion-item' });
+    item.setAttribute('itemtype', 'https://schema.org/Question');
+    item.setAttribute('name', header.textContent);
+
     item.appendChild(header);
     renderContent(item, rest);
 
+    const accordionContent = item.querySelector('.accordion-content');
+    item.setAttribute('acceptedAnswer', JSON.stringify({ itemType: 'https://schema.org/Answer', text: accordionContent.textContent }));
     if (idx === 0) item.setAttribute(openAttribute, '');
 
     decorateIcons(item);
