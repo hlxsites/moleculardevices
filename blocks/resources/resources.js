@@ -8,7 +8,9 @@ import {
   createOptimizedPicture, decorateBlock, decorateIcons,
   fetchPlaceholders, getMetadata, loadBlock,
 } from '../../scripts/lib-franklin.js';
-import { embedVideo, fetchFragment, summariseDescription } from '../../scripts/scripts.js';
+import {
+  embedVideo, fetchFragment, isGatedResource, summariseDescription,
+} from '../../scripts/scripts.js';
 import resourceMapping from './resource-mapping.js';
 
 const relatedResourcesHeaders = {
@@ -82,8 +84,7 @@ export default async function decorate(block) {
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0')
-      ? item.gatedURL : item.path;
+    const resourceLink = isGatedResource(item) ? item.gatedURL : item.path;
     displayFilters[resourceType] = resourceDisplayType;
 
     const resourceBlock = div(
@@ -143,7 +144,7 @@ export default async function decorate(block) {
         ? item.thumbnail
         : (item.image && item.image !== '0'
           ? item.image : '/images/default-card-thumbnail.webp');
-      if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
+      if (isGatedResource(item)) {
         const videoWrapper = div({ class: 'video-wrapper' },
           div({ class: 'video-container' },
             div({ class: 'vidyard-video-placeholder' },
