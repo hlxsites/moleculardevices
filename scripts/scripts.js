@@ -767,15 +767,6 @@ function isHomepage() {
   return window.location.pathname === '/';
 }
 
-function decorateHead(head) {
-  if (!isHomepage()) {
-    const title = head.querySelector('title');
-    if (title) {
-      title.text += ' | Molecular Devices';
-    }
-  }
-}
-
 /**
  * loads everything needed to get to LCP.
  */
@@ -786,9 +777,8 @@ async function loadEager(doc) {
   document.documentElement.lang = document.documentElement.lang || 'en';
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
 
-  const head = doc.querySelector('head');
-  if (head) {
-    decorateHead(head);
+  if (!isHomepage()) {
+    document.title = `${document.title ?? ''} | Molecular Devices`;
   }
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
