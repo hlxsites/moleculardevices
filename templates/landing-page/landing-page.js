@@ -13,16 +13,7 @@ async function iframeResizeHandler() {
   iFrameResize({ log: false });
 }
 
-async function handleEmbed() {
-  if (isAuthorizedUser()) {
-    const path = window.location.pathname;
-    const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
-    const foundPage = pageIndex.find((page) => page.gatedURL === path || page.gatedURL.endsWith(`moleculardevices.com${path}`));
-    if (foundPage) {
-      window.location.replace(foundPage.path);
-    }
-  }
-
+function handleEmbed() {
   try {
     const cmpCookieValue = getCookie('cmp');
     if (cmpCookieValue) {
@@ -69,6 +60,15 @@ async function handleEmbed() {
 }
 
 export default async function buildAutoBlocks() {
+  if (isAuthorizedUser()) {
+    const path = window.location.pathname;
+    const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
+    const foundPage = pageIndex.find((page) => page.gatedURL === path || page.gatedURL.endsWith(`moleculardevices.com${path}`));
+    if (foundPage) {
+      window.location.replace(foundPage.path);
+    }
+  }
+
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
   if (pageParam && pageParam === 'thankyou') {
     document.body.classList.add('thankyou');
@@ -77,5 +77,5 @@ export default async function buildAutoBlocks() {
       div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
     ));
   }
-  await handleEmbed();
+  handleEmbed();
 }
