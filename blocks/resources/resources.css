@@ -155,6 +155,11 @@ main .section .resources-wrapper {
   border-color: transparent transparent transparent white;
 }
 
+.resources .video-container .ceros, .resources .video-container .ceros img {
+  width: 100%;
+  height: 100%;
+}
+
 .resources ul.filters {
   list-style: none;
   text-align: center;
