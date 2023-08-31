@@ -22,7 +22,7 @@ main .section .specifications-wrapper {
 .specifications thead th {
   top: var(--stacked-height);
   position: sticky;
-  z-index: 20;
+  z-index: 1;
   background-color: white;
 }
 
@@ -55,15 +55,9 @@ main .section .specifications-wrapper {
 
 .specifications .responsive-table th {
   text-align: left;
-  padding: 0 5px;
+  padding: 15px 15px 0;
   font-weight: 100;
 }
-
-/* Table with only one product */
-.specifications .responsive-table th:last-child:nth-child(2) {
-  padding: 0;
-}
-
 
 .specifications .responsive-table td {
   padding: 15px;
@@ -88,8 +82,21 @@ main .section .specifications-wrapper {
   position: sticky;
   left: 0;
   background-color: var(--background-color);
-  z-index: 4;
+  z-index: 1;
   width: 380px;
+}
+
+.specifications .table-container.multiple-products thead th {
+  z-index: 0;
+}
+
+/* Table with only one product */
+.specifications .responsive-table th:last-child:nth-child(2) {
+  padding: 0;
+}
+
+.specifications .multiple-products .responsive-table th:first-child {
+  z-index: 1;
 }
 
 .section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child .download-button {
