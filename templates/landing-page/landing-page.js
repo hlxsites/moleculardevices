@@ -68,7 +68,7 @@ async function handleEmbed() {
   });
 }
 
-export default function buildAutoBlocks() {
+export default async function buildAutoBlocks() {
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
   if (pageParam && pageParam === 'thankyou') {
     document.body.classList.add('thankyou');
@@ -77,5 +77,5 @@ export default function buildAutoBlocks() {
       div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
     ));
   }
-  handleEmbed();
+  await handleEmbed();
 }
