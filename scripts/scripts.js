@@ -41,6 +41,7 @@ const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
+let LAST_STACKED_HEIGHT = 0;
 let STICKY_ELEMENTS;
 let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
@@ -933,6 +934,10 @@ function enableStickyElements() {
     });
 
     LAST_SCROLL_POSITION = currentScrollPosition;
+    if (stackedHeight !== LAST_STACKED_HEIGHT) {
+      LAST_STACKED_HEIGHT = stackedHeight;
+      document.querySelector(':root').style.setProperty('--stacked-height', `${stackedHeight}px`);
+    }
   });
 }
 
