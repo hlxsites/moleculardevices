@@ -436,4 +436,12 @@
     width: 33.35%;
     border-left: unset;
   }
+
+  .product-finder-container #step-3 .card {
+    width: 300px;
+  }
+
+  .product-finder-container #step-3 .card-caption .compare-button {
+    margin-top: 7px;
+  }
 }
