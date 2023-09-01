@@ -71,7 +71,9 @@ export default async function decorate(block) {
           h3(groupData.data[1].name)),
         );
       } else {
-        thisRow.append(domEl('td', groupData.data[0][attr]));
+        const rowHeadBlock = span();
+        rowHeadBlock.innerHTML = groupData.data[0][attr];
+        thisRow.append(domEl('td', rowHeadBlock));
         groupData.data.forEach((item) => {
           if (item.key === 'label') {
             return;
