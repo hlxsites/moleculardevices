@@ -339,6 +339,7 @@ em strong {
     max-width: 700px;
 }
 
+
 p.video-title {
   font-size: 14px;
   font-style: italic;
@@ -1645,22 +1646,6 @@ main .section.background-molecules {
   padding-top: 20px
 }
 
-.products .section.no-padding-bottom div,
-.technology .section.no-padding-bottom div,
-.application .section.no-padding-bottom div{
-  padding-bottom: 0
-}
-
-.products .section.no-padding-top > div,
-.technology .section.no-padding-top div,
-.application .section.no-padding-top div {
-  padding-top: 0
-}
-
-#what-are-the-benefits-of-synthetic-biology, #what-are-some-synthetic-biology-applications, #cellular-agriculture, #cultured-meat {
-  padding-top: 50px;
-}
-
 .technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
 .application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
@@ -1675,12 +1660,29 @@ main .section.background-molecules {
   padding-top: 50px;
 }
 
-.application .section.tabs > div > p:has(div.video-wrapper) + p {
-  font-size: 14px;
+.section.video-caption.no-padding-top >  div {
+  padding-top: 0;
+}
+
+.section.video-caption.no-padding-bottom >  div > p > .video-wrapper  {
+  margin-bottom: 0;
+}
+
+.section.video-caption.no-padding-top >  div >  p > .video-wrapper {
+  margin-top: 0;
+}
+
+.video-caption p {
   margin: 40px auto;
   max-width: 700px;
-  line-height: 1.33;
-  color: var(--text-gray)
+}
+
+.video-caption p:first-child {
+  margin-top:0;
+}
+
+.video-caption p:last-child {
+  margin-bottom: 0;
 }
 
 .technology .section.tabs .columns-wrapper p + h2,
@@ -1688,24 +1690,25 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
-.technology main .section.tabs:not(.related-applications-container) h2,
-.application main .section.tabs:not(.related-applications-container) h2 {
+.technology main .section.tabs:not(.related-applications-container):not(no-spacing-title) h2,
+.application main .section.tabs:not(.related-applications-container):not(no-spacing-title) h2{
   margin: 20px 0 10px;
+}
+
+.technology main .section.tabs:not(.related-applications-container):not(.no-spacing-title-top) h2,
+.application main .section.tabs:not(.related-applications-container):not(.no-spacing-title-top) h2 {
+  margin: 0 0 10px;
+}
+
+.technology main .section.tabs:not(.related-applications-container):not(.no-spacing-title-bottom) h2,
+.application main .section.tabs:not(.related-applications-container):not(.no-spacing-title-bottom) h2{
+  margin: 20px 0 0;
+  padding-bottom: 0;
 }
 
 .technology .section.tabs h2 + p,
 .application .section.tabs h2 + p {
   margin-top: 0;
-}
-
-.technology .section:not(.no-padding-bottom) .related-links-container,
-.application .section:not(.no-padding-bottom) .related-links-container {
-  padding-bottom: 32px;
-}
-
-.technology .section:not(.no-padding-top) .related-app,
-.application .section:not(.no-padding-top) .related-app {
-  margin-top: 35px;
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child,
@@ -1802,6 +1805,18 @@ main .section.background-molecules {
 .section.title-no-spacing > div.default-content-wrapper > h3 {
   margin: 0;
   padding: 0;
+}
+
+.title-no-spacing-top h2,
+.title-no-spacing-top h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.title-no-spacing-bottom h2,
+.title-no-spacing-bottom h3 {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .section.image-title-inline > div.default-content-wrapper > p.picture:first-child,
