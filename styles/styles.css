@@ -1705,7 +1705,7 @@ main .section.background-molecules {
 }
 
 .technology main .section.tabs:not(.related-applications-container).title-no-spacing h2,
-.application main .section.tabs:not(.related-applications-container).no-spacing-title h2 {
+.application main .section.tabs:not(.related-applications-container).title-no-spacing h2 {
   margin: 0;
   padding: 0;
 }
