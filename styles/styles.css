@@ -339,7 +339,6 @@ em strong {
     max-width: 700px;
 }
 
-
 p.video-title {
   font-size: 14px;
   font-style: italic;
@@ -1691,7 +1690,7 @@ main .section.background-molecules {
 }
 
 .technology main .section.tabs:not(.related-applications-container) h2,
-.application main .section.tabs:not(.related-applications-container) h2{
+.application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
 }
 
