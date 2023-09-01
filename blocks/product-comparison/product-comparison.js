@@ -59,7 +59,9 @@ export default async function decorate(block) {
   const tBodyBlock = domEl('tbody');
   attributes.forEach((attribute) => {
     const thisRow = domEl('tr');
-    thisRow.append(domEl('td', attributeMapping[attribute]));
+    const rowHeadBlock = span();
+    rowHeadBlock.innerHTML = attributeMapping[attribute];
+    thisRow.append(domEl('td', rowHeadBlock));
     productIdentifiers.forEach((productIdentifier) => {
       let rowValue = productSpecs[productIdentifier][attribute] || '';
       rowValue = rowValue.replace(/true/gi, '<img src="/images/check-icon.png" alt="true" width="30" height="30">');
