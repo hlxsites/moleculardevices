@@ -778,6 +778,7 @@ async function loadEager(doc) {
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
 
   if (!isHomepage()) {
+    document.originalTitle = document.title;
     document.title = `${document.title ?? ''} | Molecular Devices`;
   }
   decorateTemplateAndTheme();
