@@ -1690,25 +1690,32 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
-.technology main .section.tabs:not(.related-applications-container):not(no-spacing-title) h2,
-.application main .section.tabs:not(.related-applications-container):not(no-spacing-title) h2{
+.technology main .section.tabs:not(.related-applications-container) h2,
+.application main .section.tabs:not(.related-applications-container) h2{
   margin: 20px 0 10px;
 }
 
-.technology main .section.tabs:not(.related-applications-container):not(.no-spacing-title-top) h2,
-.application main .section.tabs:not(.related-applications-container):not(.no-spacing-title-top) h2 {
-  margin: 0 0 10px;
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing h2,
+.application main .section.tabs:not(.related-applications-container).no-spacing-title h2 {
+  margin: 0;
+  padding: 0;
 }
 
-.technology main .section.tabs:not(.related-applications-container):not(.no-spacing-title-bottom) h2,
-.application main .section.tabs:not(.related-applications-container):not(.no-spacing-title-bottom) h2{
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing-title h2,
+.application main .section.tabs:not(.related-applications-container).title-no-spacing-top h2 {
+  margin: 0 0 10px;
+  padding-top: 0;
+}
+
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing-bottom h2,
+.application main .section.tabs:not(.related-applications-container).title-no-spacing-bottom h2 {
   margin: 20px 0 0;
   padding-bottom: 0;
 }
 
-.technology .section.tabs h2 + p,
-.application .section.tabs h2 + p {
-  margin-top: 0;
+.technology .section .related-app,
+.application .section .related-app {
+  margin-top: 35px;
 }
 
 .technology .section.resources-container .default-content-wrapper:first-child,
