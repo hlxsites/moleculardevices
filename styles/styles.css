@@ -1694,6 +1694,16 @@ main .section.background-molecules {
   margin: 20px 0 10px;
 }
 
+.technology .section.tabs h2 + p,
+.application .section.tabs h2 + p {
+  margin-top: 0;
+}
+
+.technology .section .related-links-container,
+.application .section .related-links-container {
+  padding-bottom: 32px;
+}
+
 .technology main .section.tabs:not(.related-applications-container).title-no-spacing h2,
 .application main .section.tabs:not(.related-applications-container).no-spacing-title h2 {
   margin: 0;
