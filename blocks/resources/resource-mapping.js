@@ -39,6 +39,10 @@ export default {
     image: 'infographic',
     action: 'downloadInfographic',
   },
+  'Interactive Demo': {
+    image: 'videos-and-webinars',
+    action: 'viewVideosAndWebinars',
+  },
   News: {
     image: 'document',
     action: 'readNews',

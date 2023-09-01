@@ -1,4 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);
@@ -147,7 +148,7 @@ export default async function decorate(block) {
     }
 
     const filterdata = distributors
-      .filter(({ Country }) => Country.includes(countryName) > 0)
+      .filter(({ Country }) => Country === countryName)
       .filter(({ PrimaryProducts }) => PrimaryProducts.includes(productFamily) > 0);
 
     let finalHtml = '';
@@ -162,12 +163,6 @@ export default async function decorate(block) {
       const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
 
       const customClass = row.Type.split(' ').join('-').toLowerCase();
-      const email = row.Email;
-
-      /* eslint operator-linebreak: ["error", "before"] */
-      const supportLink = row.Link
-        ? `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request</a>`
-        : '';
 
       let newStr = '';
       row.Address.split('\n').forEach((add) => {
@@ -178,7 +173,17 @@ export default async function decorate(block) {
         }
       });
 
-      newStr += `${email ? `Email:  <a href="javascript:void(0);">${email}</a>` : `${supportLink}`}\n`;
+      if (row.Email) {
+        newStr += `Email:  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
+      }
+      if (row.Link) {
+        if (row.Link === 'https://mdc.custhelp.com/app/ask') {
+          newStr += `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>\n`;
+        } else {
+          newStr += `Website: <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
+        }
+      }
+
       const molAddress = `${newStr.replace(/\n/g, '<br>')}<br>`;
 
       if (row.PrimaryProducts.length <= 1 && row.Address.trim().length <= 1) {
@@ -194,7 +199,7 @@ export default async function decorate(block) {
                           ${molAddress}
                           <p>
                             <a href="javascript:void(0);" title="Contact your local ${row.Type} Team">
-                              Contact your local ${row.Type} Team
+                              Contact your local ${row.Type} Team <span class="icon icon-chevron-right-outline"></span>
                             </a>
                           </p>
                         </div>
@@ -223,8 +228,11 @@ export default async function decorate(block) {
   searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-unused-expressions
     window.location.pathname === '/contact' ? redirectToContactSearch() : renderAddress();
+    decorateIcons(block);
   });
 
   hideResult();
   renderAddress();
+
+  await decorateIcons(block);
 }

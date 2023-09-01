@@ -191,6 +191,10 @@ main .section .hero-advanced-wrapper {
   color: var(--text-color);
 }
 
+.hero.order .order-container.store-hidden {
+  display: none;
+}
+
 #overlay {
 display: none;
 }
@@ -219,7 +223,7 @@ display: none;
 
 /* Citation Variant - Desktop -- Start */
 .citation main .hero {
-  overflow: hidden 
+  overflow: hidden
 }
 
 .citation main .hero-wrapper h1 {
@@ -346,6 +350,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 /* Service Support Variant - Desktop -- End */
+
+.hero.green-category .hero-inner .container > div > p:first-child {
+  color: var(--text-green);
+}
 
 @media (max-width: 767px) {
   /* duplicated from breadcrumbs.css for performance reasons */
@@ -552,7 +560,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .hero-inner {
     min-height: 450px;
   }
-  
+
   .hero-inner.short {
     min-height: unset;
   }
@@ -568,7 +576,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner > div {
     width: 750px
-  }  
+  }
 
   .hero-inner h1 {
     font-size: 45px;
@@ -627,7 +635,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .video-column {
     width: 100%;
   }
-  
+
   .video-icon {
     position: relative;
     display: block;
@@ -642,7 +650,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner > div {
     width: 970px
-  }  
+  }
 
   .hero-inner .container > div {
     float:left;
@@ -675,7 +683,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     padding: 0 0 40px;
   }
 
-  /* Citation Variant - Mobile -- End */  
+  /* Citation Variant - Mobile -- End */
 
   .video-icon {
     height: 320px;

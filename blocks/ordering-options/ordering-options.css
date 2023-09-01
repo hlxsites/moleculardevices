@@ -23,11 +23,15 @@ main .section.ordering-options-container > div:last-child {
   width: 100%;
 }
 
+.ordering-options.store-hidden .variant-item-store {
+  display: none;
+}
+
 .ordering-options .title-variant {
   float: left;
-  width: 83.33%;
   font-size: 24px;
   padding-right: 15px;
+  width: 83.33%;
 }
 
 .ordering-options .sku-variant {
@@ -37,17 +41,17 @@ main .section.ordering-options-container > div:last-child {
   padding: 0 15px;
 }
 
-.ordering-options.cart-store .title-variant {
+.ordering-options:not(.store-hidden) .title-variant {
   width: 33.33%;
 }
 
-.ordering-options.cart-store .variant-item-store {
+.ordering-options:not(.store-hidden) .variant-item-store {
   display: flex;
   width: 50%;
   flex-direction: row;
 }
 
-.ordering-options.cart-store .variant-item-store-content {
+.ordering-options:not(.store-hidden) .variant-item-store-content {
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -76,7 +80,7 @@ main .section.ordering-options-container > div:last-child {
   margin-top: 20px;
 }
 
-.ordering-options.cart-store .variant-item {
+.ordering-options:not(.store-hidden) .variant-item {
   display: flex;
 }
 
@@ -86,7 +90,7 @@ main .section.ordering-options-container > div:last-child {
   margin: 0 0 10px;
 }
 
-.ordering-options.cart-store .legend {
+.ordering-options:not(.store-hidden) .legend {
   padding-left: unset;
 }
 
@@ -94,18 +98,18 @@ main .section.ordering-options-container > div:last-child {
   font-size: 14px;
 }
 
-.ordering-options.cart-store .variant-item-store .variant-item-store-header {
+.ordering-options:not(.store-hidden) .variant-item-store .variant-item-store-header {
   float: left;
 }
 
-.ordering-options.cart-store .variant-item-store-count,
-.ordering-options.cart-store .variant-item-store-add-to-cart {
+.ordering-options:not(.store-hidden) .variant-item-store-count,
+.ordering-options:not(.store-hidden) .variant-item-store-add-to-cart {
   float: left;
   width: 155px;
   margin-left: 5px;
 }
 
-.ordering-options.cart-store .variant-item-store .variant-item-store-count {
+.ordering-options:not(.store-hidden) .variant-item-store .variant-item-store-count {
   font-size: 14px;
   height: 40px;
   margin-bottom: 3px;
@@ -135,8 +139,8 @@ main .section.ordering-options-container > div:last-child {
   position: relative;
 }
 
-.ordering-options.cart-store .variant-item-store-content .variant-item-store-count, 
-.ordering-options.cart-store .variant-item-store-content .variant-item-store-add-to-cart {
+.ordering-options:not(.store-hidden) .variant-item-store-content .variant-item-store-count, 
+.ordering-options:not(.store-hidden) .variant-item-store-content .variant-item-store-add-to-cart {
   margin-left: auto;
   order: 2;
 }
@@ -153,33 +157,33 @@ main .section.ordering-options-container > div:last-child {
     max-height: 49px;
   }
 
-  .ordering-options.cart-store .variant-item-store-content .variant-item-store-count,
-  .ordering-options.cart-store .variant-item-store-content .variant-item-store-add-to-cart {
+  .ordering-options:not(.store-hidden) .variant-item-store-content .variant-item-store-count,
+  .ordering-options:not(.store-hidden) .variant-item-store-content .variant-item-store-add-to-cart {
     margin-left: unset;
   }
 }
 
 @media(max-width: 991px) {
-  .ordering-options.cart-store .variant-item {
+  .ordering-options:not(.store-hidden) .variant-item {
     display: inline-block;
   }
 
-  .ordering-options:not(.cart-store) .variant-item {
+  .ordering-options.store-hidden .variant-item {
     display: inline-block;
     width: 100%;
   }
 
-  .ordering-options.cart-store .variant-item > div, 
-  .ordering-options:not(.cart-store) .variant-item > div {
+  .ordering-options:not(.store-hidden) .variant-item > div, 
+  .ordering-options.store-hidden .variant-item > div {
     width: 100%;
     padding: 0;
   }
 
-  .ordering-options.cart-store .variant-item-store {
+  .ordering-options:not(.store-hidden) .variant-item-store {
     display: inline-block;
   }
 
-  .ordering-options.cart-store .variant-item-store-content {
+  .ordering-options:not(.store-hidden) .variant-item-store-content {
     display: flex;
     width: 100%;
     flex-direction: column;

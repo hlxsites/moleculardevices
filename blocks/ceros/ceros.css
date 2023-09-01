@@ -47,6 +47,10 @@
   position: relative;
 }
 
+.ceros .ceros-modal .ceros-modal-content > div{
+  padding-top: 70%;
+}
+
 .ceros .ceros-modal .ceros-modal-content button.close {
   position: absolute;
   top: 0;

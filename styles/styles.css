@@ -95,6 +95,7 @@
   --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --border-color-gray: #ababab;
+  --border-color-green: #6eb43f;
   --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #FFFFFF80;
   --header-mega-menu-font-color: #FFFFFFB2;
@@ -152,6 +153,16 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 header {
@@ -818,6 +829,19 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   font-size: 36px;
 }
 
+.section.small-text {
+  font-size: var(--body-font-size-xs);
+}
+
+.section.space-list li {
+  margin-top: 8px;
+}
+
+.section.no-paragraph-spacing p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
   .section.title-big > div.default-content-wrapper > h2 {
     font-size: 70px;
@@ -1300,7 +1324,7 @@ main div.section.wave.wavecarousel.bluegreen {
 
 /* Green secondary buttons */
 main div.green-secondary-buttons .button {
-  border-color: #6eb43f;
+  border-color: var(--border-color-green);
 }
 
 main div.green-secondary-buttons .button.secondary {
@@ -1456,6 +1480,7 @@ main .section.background-molecules {
   transition: right .3s;
   z-index: 1;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .product .cart-widget.open {
@@ -1864,7 +1889,10 @@ main .section .block.white-title h4 {
   color: var(--text-white);
 }
 
-main .block.orange-main-title h2 {
+main .block.orange-main-title h2,
+main .section.orange-title h2,
+main .section.orange-title h3,
+main .section.orange-title h4 {
   color: var(--text-orange);
 }
 
