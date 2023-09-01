@@ -370,6 +370,10 @@
 }
 
 @media (max-width: 767px) {
+  .landing-page h3 {
+    font-size: 28px;
+  }
+
   .landing-page .download-form .default-content-wrapper {
     text-align: left;
   }

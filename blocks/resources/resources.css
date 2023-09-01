@@ -62,6 +62,102 @@ main .section .resources-wrapper {
 
 .resources .video-container {
   box-shadow: 0 1px 15px rgba(0 0 0 / 20%);
+  height: 309px;
+}
+
+.resources .vidyard-player-container img {
+  height: 309px;
+}
+
+.resources .vidyard-video-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.resources .vidyard-video-placeholder img {
+  width: 100%;
+  height: 100%;
+}
+
+.resources .vidyard-video-placeholder a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.resources .vidyard-video-placeholder .play-button {
+  position: absolute;
+  width: 16%;
+  height: auto;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--text-dark-gray);
+  opacity: .65;
+  transition: opacity .2s linear;
+  overflow: hidden;
+  font-size: 0;
+  padding: 0;
+  min-width: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.resources .vidyard-video-placeholder .play-button .play-button-size {
+  padding-top: 100%;
+  width: 100%;
+}
+
+.resources .vidyard-video-placeholder .play-button .arrow-size {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  height: auto;
+  margin: -25% 0 0 -12%;
+  overflow: hidden;
+}
+
+.resources .vidyard-video-placeholder .play-button .arrow-size-ratio {
+  padding-top: 150%;
+  width: 100%;
+}
+
+.resources .vidyard-video-placeholder .play-button .arrow {
+  position: absolute;
+  top: 50%;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  width: 0;
+  height: 0;
+  margin: -200px 0 -200px -300px;
+  border: 200px solid transparent;
+  border-left: 300px solid #fff;
+  border-right: none;
+}
+
+.resources .vidyard-video-placeholder a:hover .play-button {
+  opacity: 1;
+}
+
+.resources .vidyard-video-placeholder .play-button .play-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent white;
+}
+
+.resources .video-container .ceros, .resources .video-container .ceros img {
+  width: 100%;
+  height: 100%;
 }
 
 .resources ul.filters {
@@ -110,6 +206,12 @@ main .section .resources-wrapper {
   display: none;
 }
 
+@media only screen and (max-width: 1199px) {
+  .resources .video-container, .resources .vidyard-player-container img {
+    height: 253px;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   main .section .resources-wrapper {
     padding: 0;
@@ -120,16 +222,14 @@ main .section .resources-wrapper {
     max-width: 100%;
   }
 
+  .resources .video-container, .resources .vidyard-player-container img {
+    height: auto;
+  }
+
   .resources .resource-icon {
     width: 35px;
   }
 
-  .resources li.filter {
-    margin-bottom: 5px;
-  }
-}
-
-@media only screen and (max-width: 991px) {
   .resources .filters {
     display: flex;
     flex-direction: column;
@@ -143,6 +243,7 @@ main .section .resources-wrapper {
     display: none;
     text-align: left;
     padding: 5px 30px;
+    margin-bottom: 5px;
   }
 
   .resources .filters.dropdown li.filter {

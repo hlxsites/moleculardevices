@@ -3,8 +3,8 @@ Allow: /
 
 Sitemap: https://www.moleculardevices.com/sitemap.xml
 
-
-
+Disallow: /sites/default/files/en/assets/app-note/
+Disallow: /fragments/
 
 
 # PDF (ebook PDF Block)
@@ -162,6 +162,11 @@ Disallow: /en/assets/tutorials-videos/br/how-move-from-time-consuming-processes-
 Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3D-models
 Disallow: /en/assets/tutorials-videos/dd/img/are-organoids-future-of-drug-discovery
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
+Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
+
+
+
+
 
 #EU webinars to imaging video gallery page
 
@@ -279,7 +284,7 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
 
 
-Disallow: /web-design-style-guide
+
 Disallow: /contact/thank-you
 
 

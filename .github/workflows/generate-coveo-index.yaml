@@ -1,0 +1,25 @@
+name: Regenerate the Coveo index XML
+on:
+  repository_dispatch:
+    types:
+      - resource-published
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Run scripts and commit changes
+        if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
+        working-directory: ./coveo
+        run: |
+          node generate-coveo-sitemap.js
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./coveo-xml.xml
+          git commit -m "Update generated coveo.xml file"
+          git push

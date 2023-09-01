@@ -295,6 +295,7 @@ async function writeCoveoSitemapXML(index) {
       '/archived-events',
       '/video-gallery-landing/de',
       '/video-gallery-landing/fr',
+      '/cp-request',
     ];
 
     if (excludedPaths.includes(item.internal_path)) {
