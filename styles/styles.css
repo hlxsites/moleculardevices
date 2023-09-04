@@ -95,6 +95,7 @@
   --dark-border-color-gray: #adb3b7;
   --orange-background-color: #ee7624;
   --border-color-gray: #ababab;
+  --border-color-green: #6eb43f;
   --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #FFFFFF80;
   --header-mega-menu-font-color: #FFFFFFB2;
@@ -152,6 +153,16 @@
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 header {
@@ -545,6 +556,11 @@ main .section.buttons-in-row > div {
   padding: 0;
 }
 
+main .default-content-wrapper ol li:not(:last-child),
+main .default-content-wrapper ul li:not(:last-child){
+  margin-bottom: 8px;
+}
+
 @media (max-width: 991px) {
   main .section {
     padding-top: 20px;
@@ -816,6 +832,19 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
 
 .section.title-big > div.default-content-wrapper > h3 {
   font-size: 36px;
+}
+
+.section.small-text {
+  font-size: var(--body-font-size-xs);
+}
+
+.section.space-list li {
+  margin-top: 8px;
+}
+
+.section.no-paragraph-spacing p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
@@ -1206,6 +1235,15 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-top: 15px;
 }
 
+.application .section.tabs:not(.wave) .default-content-wrapper h2 ~ h2:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
+  margin-top: 0;
+}
+
 main div.section.wave.bluegreen .default-content-wrapper h2,
 main div.section.wave.bluegreen2 .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
@@ -1300,7 +1338,7 @@ main div.section.wave.wavecarousel.bluegreen {
 
 /* Green secondary buttons */
 main div.green-secondary-buttons .button {
-  border-color: #6eb43f;
+  border-color: var(--border-color-green);
 }
 
 main div.green-secondary-buttons .button.secondary {
@@ -1456,6 +1494,7 @@ main .section.background-molecules {
   transition: right .3s;
   z-index: 1;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .product .cart-widget.open {
@@ -1864,7 +1903,10 @@ main .section .block.white-title h4 {
   color: var(--text-white);
 }
 
-main .block.orange-main-title h2 {
+main .block.orange-main-title h2,
+main .section.orange-title h2,
+main .section.orange-title h3,
+main .section.orange-title h4 {
   color: var(--text-orange);
 }
 
