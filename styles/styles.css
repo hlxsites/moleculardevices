@@ -57,8 +57,6 @@
 /* stylelint-enable */
 
 :root {
-  --stacked-height: 0;
-
   /* colors */
   --text-color: #34393d;
   --text-blue: #008da9;
@@ -839,6 +837,11 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin-top: 8px;
 }
 
+main .default-content-wrapper ol li:not(:last-child),
+main .default-content-wrapper ul li:not(:last-child){
+  margin-bottom: 8px;
+}
+
 .section.no-paragraph-spacing p {
   margin-top: 0;
   margin-bottom: 0;
@@ -1232,6 +1235,10 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-top: 15px;
 }
 
+.application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
+  margin-top: 0;
+}
+
 main div.section.wave.bluegreen .default-content-wrapper h2,
 main div.section.wave.bluegreen2 .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
@@ -1546,6 +1553,11 @@ main .section.background-molecules {
   color: var(--text-blue);
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
+}
+
+.application .section.tabs:not(.wave) .default-content-wrapper h2 ~ h2:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* stylelint-disable no-descending-specificity */
