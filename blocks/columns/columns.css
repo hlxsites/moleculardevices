@@ -417,15 +417,12 @@ main .section>div.columns-wrapper {
   margin-bottom: 18px;
 }
 
-.layout-25-75.collaborators-column p:first-child {
+.columns.layout-25-75 p {
+  margin-top: 0;
   margin-bottom: 0;
 }
 
-.layout-25-75.collaborators-column p:last-child {
-  margin-top: 0;
-}
-
-.layout-25-75.collaborators-column > div:not(:last-child) {
+.columns.layout-25-75 > div:not(:last-child) {
   margin-bottom: 30px;
 }
 /* stylelint-enable no-descending-specificity */
