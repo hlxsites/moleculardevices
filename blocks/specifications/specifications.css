@@ -3,14 +3,27 @@ main .section .specifications-wrapper {
   margin-bottom: 50px;
 }
 
-.specifications .table-container {
+.specifications .table-container.multiple-products {
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+@media only screen and (min-width: 991px) {
+  .specifications .table-container.multiple-products {
+    overflow-x: visible;
+  }
+}
+
 .specifications .table-container::-webkit-scrollbar {
   display: none;
+}
+
+.specifications thead th {
+  top: var(--stacked-height);
+  position: sticky;
+  z-index: 1;
+  background-color: white;
 }
 
 .specifications .responsive-table {
@@ -42,7 +55,7 @@ main .section .specifications-wrapper {
 
 .specifications .responsive-table th {
   text-align: left;
-  padding: 15px;
+  padding: 15px 15px 0;
   font-weight: 100;
 }
 
@@ -71,6 +84,19 @@ main .section .specifications-wrapper {
   background-color: var(--background-color);
   z-index: 1;
   width: 380px;
+}
+
+.specifications .table-container.multiple-products thead th {
+  z-index: 0;
+}
+
+/* Table with only one product */
+.specifications .responsive-table th:last-child:nth-child(2) {
+  padding: 0;
+}
+
+.specifications .multiple-products .responsive-table th:first-child {
+  z-index: 1;
 }
 
 .section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child .download-button {

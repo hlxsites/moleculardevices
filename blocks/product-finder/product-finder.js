@@ -13,6 +13,7 @@ const ACTIVE_CLASS = 'active';
 const HIDDEN_CLASS = 'hidden';
 const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
+const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 
 let placeholders = {};
@@ -31,8 +32,9 @@ function renderIconItem(item, progressStep, callback) {
         class: 'icon-link',
         id: item.id,
         href: progressStep === 'step-1' ? '#step-2' : '#step-3',
-        'data-tab': item.type,
-        'data-title': item.title,
+        'data-type': item.type || '',
+        'data-title': item.title || '',
+        'data-category': item.category || '',
         onclick: callback,
       },
       span({ class: 'icon-img' },
@@ -54,8 +56,8 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
   });
 
   listArr.forEach((item) => {
-    item.title = progressStep === `${STEP_PREFIX}-1` ? item.title : item.category;
-    item.id = toClassName(item.type);
+    item.title = progressStep === `${STEP_PREFIX}-1` ? item.title : item.displayCategory;
+    item.id = toClassName(item.category || item.type);
   });
 
   const cardRenderer = await createCard({
@@ -116,9 +118,14 @@ function renderResetButton(callback) {
   );
 }
 
-function getTabName(el) {
+function getTabType(el) {
   const linkEl = el.classList.contains('.icon-link') ? el : el.closest('.icon-link');
-  return linkEl.getAttribute('data-tab');
+  return linkEl.getAttribute('data-type');
+}
+
+function getTabCategory(el) {
+  const linkEl = el.classList.contains('.icon-link') ? el : el.closest('.icon-link');
+  return linkEl.getAttribute('data-category');
 }
 
 function getTabTitle(el) {
@@ -138,7 +145,7 @@ function switchTab(tab, stepNum, prevStepNum, title) {
 
   if (title) {
     const titleEl = document.querySelector('.product-finder-wrapper .product-finder-tab-title');
-    titleEl.innerHTML = title.replace('tab', tab);
+    titleEl.innerHTML = title.replace('{{tab}}', tab);
   }
 
   document.querySelector(`.product-finder-container .progress-${prevStepNum}`).classList.add(CHECKED_CLASS);
@@ -190,9 +197,10 @@ async function stepThree(e) {
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  let type = getTabName(e.target);
-  let category = getTabTitle(e.target);
-  const root = switchTab(category, stepNum, prevStepNum, 'Select Product');
+  const title = getTabTitle(e.target);
+  let type = getTabType(e.target);
+  let category = getTabCategory(e.target);
+  const root = switchTab(title, stepNum, prevStepNum, 'Select Product');
 
   const originalType = type;
   const originalCategory = category;
@@ -257,8 +265,8 @@ async function stepThree(e) {
   }
 
   const cardTitles = list.querySelectorAll('.card-caption h3 a');
-  cardTitles.forEach((title) => {
-    title.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+  cardTitles.forEach((titleEl) => {
+    titleEl.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
   });
 
   decorateIcons(list);
@@ -288,14 +296,16 @@ async function stepThree(e) {
 async function stepTwo(e) {
   e.preventDefault();
 
-  const type = step2Type || getTabName(e.target);
+  const type = step2Type || getTabType(e.target);
   const title = step2Title || getTabTitle(e.target);
   step2Title = title;
   step2Type = type;
 
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
-  const root = switchTab(title, stepNum, prevStepNum, 'Select tab Category');
+  // eslint-disable-next-line max-len
+  const root = switchTab(title, stepNum, prevStepNum, placeholders.selectTabCategory || DEFAULT_CATEGORY_TITLE,
+  );
 
   // generate the icons only once
   const dataCardType = getListIdentifier(`${type}`);
@@ -352,6 +362,11 @@ export default async function decorate(block) {
           const progressCustomTexts = document.querySelectorAll('.product-finder-container .step-custom-text');
           progressCustomTexts.forEach((progressCustomText) => {
             progressCustomText.remove();
+          });
+          const activeSteps = document.querySelectorAll('.product-finder-step-wrapper.active');
+          activeSteps.forEach((activeStep) => {
+            activeStep.classList.remove(ACTIVE_CLASS);
+            activeStep.style.display = 'none';
           });
           stepTwo(e);
         }

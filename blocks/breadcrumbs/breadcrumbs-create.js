@@ -4,6 +4,12 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 
+const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
+const customResourcesBreadcrumb = {
+  name: 'Resources',
+  url_path: '/search-results',
+};
+
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
@@ -57,7 +63,7 @@ const customBreadcrumbs = {
     url_path: '/products/accessories-consumables',
   },
   'customer-breakthrough': {
-    name: 'Customer Breakthrough ',
+    name: 'Customer Breakthrough',
     url_path: '/customer-breakthroughs',
   },
   'acquisition-and-analysis-software': {
@@ -108,18 +114,12 @@ const customBreadcrumbs = {
   amplifiers: {
     name: 'Amplifiers',
   },
-  resources: {
-    name: 'Resources',
-    url_path: '/search-results',
-  },
+  resources: customResourcesBreadcrumb,
   events: {
     name: 'Events',
     url_path: '/events',
   },
-  brochures: {
-    name: 'Resources',
-    url_path: '/search-results',
-  },
+  brochures: customResourcesBreadcrumb,
 };
 
 function getCustomUrl(path, part) {
@@ -153,7 +153,7 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    return document.title;
+    return document.originalTitle ? document.originalTitle : document.title;
   }
 
   return part;
@@ -168,23 +168,35 @@ export default async function createBreadcrumbs(container) {
   const pathSplit = skipParts(path.split('/'));
 
   const pageIndex = await ffetch('/query-index.json').all();
-  const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
-
+  const pg = pageIndex.find((page) => page.path === path);
+  // default Home breadcrumb
   const breadcrumbs = [
     {
       name: 'Home',
       url_path: '/',
     },
-    ...pathSplit.slice(1, -1).map((part, index) => {
-      const url = urlForIndex(index);
-      return {
-        name: getName(pageIndex, url, part, false),
-        url_path: getCustomUrl(url, part),
-      };
-    }),
-    { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
   ];
-
+  // custom resource types restricting breadcrumb to Home > Resources
+  if (pg && customResourceTypes.includes(pg.type)) {
+    breadcrumbs.push(customResourcesBreadcrumb);
+  } else {
+    // for Customer Breakthrough breadcrumb is Home > Resources > Customer Breakthrough > Title
+    if (pg && pg.type === 'Customer Breakthrough') {
+      breadcrumbs.push(customResourcesBreadcrumb);
+    }
+    // resolve rest of the path
+    const urlForIndex = (index) => prependSlash(pathSplit.slice(1, index + 2).join('/'));
+    breadcrumbs.push(
+      ...pathSplit.slice(1, -1).map((part, index) => {
+        const url = urlForIndex(index);
+        return {
+          name: getName(pageIndex, url, part, false),
+          url_path: getCustomUrl(url, part),
+        };
+      }),
+      { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
+    );
+  }
   const ol = container.querySelector('ol');
   ol.setAttribute('itemscope', '');
   ol.setAttribute('itemtype', 'http://schema.org/BreadcrumbList');
@@ -193,7 +205,7 @@ export default async function createBreadcrumbs(container) {
     ol.appendChild(
       li({ itemprop: 'itemListElement', itemscope: '', itemtype: 'http://schema.org/ListItem' },
         crumb.url_path
-          ? a({ itemprop: 'item', href: crumb.url_path }, crumb.name)
+          ? a({ itemprop: 'item', href: crumb.url_path }, span({ itemprop: 'name' }, crumb.name))
           : span({ itemprop: 'name' }, crumb.name),
         domEl('meta', { itemprop: 'position', content: `${idx + 1}` }),
       ),

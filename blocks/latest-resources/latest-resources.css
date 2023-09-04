@@ -21,23 +21,6 @@ main .carousel.latest-resources {
   padding: 0;
 }
 
-main .carousel.latest-resources.list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  align-items: stretch;
-  align-content: stretch;
-  width: 100%;
-}
-
-main .carousel-wrapper.latest-resources-wrapper.list .carousel-nav-button {
-  display: none;
-}
-
-main .latest-resources.list .carousel-item.clone {
-  display: none;
-}
-
 main .latest-resources .carousel-item {
   display: block;
   width: 33.3%;
@@ -63,6 +46,25 @@ main .latest-resources .card .card-thumb {
 
 main .latest-resources .card .card-thumb img {
   height: 190px;
+}
+
+@media only screen and (min-width: 767px) {
+  main .carousel.latest-resources.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+    width: 100%;
+  }
+
+  main .carousel-wrapper.latest-resources-wrapper.list .carousel-nav-button {
+    display: none;
+  }
+  
+  main .latest-resources.list .carousel-item.clone {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 1199px) {
@@ -95,10 +97,6 @@ main .latest-resources .card .card-thumb img {
     width: 85%;
   }
 
-  main .carousel.latest-resources.list {
-    width: 100%;
-  }
-
   main .carousel.latest-resources .carousel-item {
     width: 50%;
     max-width: 50%;
@@ -108,15 +106,12 @@ main .latest-resources .card .card-thumb img {
 @media only screen and (max-width: 767px) {
   main .carousel-wrapper.latest-resources-wrapper {
     width: 100%;
+    padding: 0;
   }
 
   main .carousel.latest-resources {
     width: 100%;
     padding: 0 10%;
-  }
-
-  main .carousel.latest-resources.list {
-    padding: 0;
   }
 
   main .carousel.latest-resources .carousel-item, main .carousel.latest-resources.list .carousel-item {

@@ -214,7 +214,12 @@
 
 .thank-you-page .carousel.cards img {
   height: 200px;
+  width: 100%;
   object-fit: cover;
+}
+
+.section.thank-you-page > div.default-content-wrapper:nth-last-child(2) {
+  padding-top: 50px;
 }
 
 .section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
@@ -223,6 +228,11 @@
 
 .section.thank-you-page .carousel-item > .card > div > p:first-of-type {
   color: var(--text-green);
+}
+
+.section.thank-you-page .carousel-item > .card .card-caption .card-description {
+  color: var(--text-color);
+  font-size: var(--body-font-size-xs);
 }
 
 .thank-you-page p.button-container span[aria-hidden=true] {
@@ -240,9 +250,12 @@
   margin-bottom: 10px;
 }
 
-.thank-you-page .carousel.cards .carousel-item h3 {
+.thank-you-page .carousel.cards .carousel-item h3,
+.thank-you-page .block.latest-resources .carousel-item h3 {
   font-size: 22px;
   padding-top: 10px;
+  margin-top: 0;
+  color: var(--text-color);
 }
 
 .thank-you-page h3 {
@@ -272,7 +285,12 @@
 }
 
 .landing-page.thankyou .carousel.cards p.button-container a {
-  border-width: 1px;
+  border: 1px solid var(--border-color-green);
+  color: black;
+}
+
+.landing-page.thankyou .carousel.cards .card > div:last-child > p:first-child {
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
@@ -325,6 +343,14 @@
     padding-top: 90px;
   }
 
+  .thank-you-page > div.columns-wrapper > .block.columns > div.image-left {
+    grid-template-columns: 35fr 65fr;
+  }
+
+  .thank-you-page > div.columns-wrapper > .block.columns > div.image-right {
+    grid-template-columns: 65fr 35fr;
+  }
+
   .thank-you-page .columns>div {
     display: grid;
     grid-template-columns: 35fr 65fr;
@@ -344,6 +370,10 @@
 }
 
 @media (max-width: 767px) {
+  .landing-page h3 {
+    font-size: 28px;
+  }
+
   .landing-page .download-form .default-content-wrapper {
     text-align: left;
   }

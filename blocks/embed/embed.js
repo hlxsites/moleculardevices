@@ -1,5 +1,5 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript, isVideo } from '../../scripts/scripts.js';
+import { isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 const getDefaultEmbed = (url) => {
@@ -13,8 +13,10 @@ const getDefaultEmbed = (url) => {
 };
 
 const embedHubspot = (url) => {
+  // clean up hubspot url query paramaters
+  const urlStr = url.href.replaceAll('%20', ' ');
   const embedHTML = `<div style="left: 0; width: 100%; height: 166px; position: relative;">
-        <iframe src="${url.href}" 
+        <iframe src="${urlStr}" 
         style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
         frameborder="0" loading="lazy"></iframe>
       </div>`;
@@ -116,6 +118,14 @@ function decorateFlippingBook(block, url) {
     });
 }
 
+function embedAdobeIndesign(url) {
+  return `<div class="adobe-indesign" style="left: 0; height: 566px; width: 100%; max-width: 800px; position: relative;">
+      <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen
+        scrolling="no" title="Content from ${url.hostname}" loading="lazy">
+      </iframe>
+    </div>`;
+}
+
 const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
@@ -138,6 +148,10 @@ const loadEmbed = (block, link) => {
       match: ['flippingbook'],
       embed: embedFlippingBook,
       decorate: decorateFlippingBook,
+    },
+    {
+      match: ['indd.adobe'],
+      embed: embedAdobeIndesign,
     },
     {
       match: ['info.moleculardevices.com'],

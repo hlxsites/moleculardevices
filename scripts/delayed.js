@@ -33,7 +33,8 @@ function LoadDriftWidget() {
 IPStack Integration to get specific user information
 Stores dedicated user data in a cookie.
 */
-async function loadUserData() {
+// eslint-disable-next-line import/prefer-default-export
+export async function loadUserData() {
   const geolocationData = localStorage.getItem('ipstack:geolocation')
     ? JSON.parse(localStorage.getItem('ipstack:geolocation'))
     : null;

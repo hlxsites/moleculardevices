@@ -3,6 +3,24 @@
   <head>
     <title>404: Page Not Found !</title>
     <script type="text/javascript">
+      const locationURL = new URL(window.location.href);
+      let urlAdjusted = false;
+      if (locationURL.pathname.endsWith('/')) {
+        locationURL.pathname = locationURL.pathname.substring(0, locationURL.pathname.length -1);
+        urlAdjusted = true;
+      }
+
+      if (locationURL.pathname.toLowerCase() !== locationURL.pathname) {
+        locationURL.pathname = locationURL.pathname.toLowerCase();
+        urlAdjusted = true;
+      }
+
+      if (urlAdjusted) {
+        window.location.href = locationURL.href;
+      }
+    </script>
+
+    <script type="text/javascript">
       window.isErrorPage = true;
       window.errorCode = '404';
     </script>
