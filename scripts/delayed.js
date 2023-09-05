@@ -1,8 +1,12 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './lib-franklin.js';
 
+const isSidekickLibrary = (window.location.href === 'about:srcdoc');
+
 // Core Web Vitals RUM collection
-sampleRUM('cwv');
+if (!isSidekickLibrary) {
+  sampleRUM('cwv');
+}
 
 /* eslint-disable */
 function LoadDriftWidget() {
@@ -91,10 +95,12 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
-loadUserData();
-if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page')) {
+if (!isSidekickLibrary) {
+  loadUserData();
+}
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page') && !isSidekickLibrary) {
   loadGTM();
 }
-if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn') && !isSidekickLibrary) {
   LoadDriftWidget();
 }
