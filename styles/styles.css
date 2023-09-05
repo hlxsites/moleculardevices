@@ -1195,7 +1195,7 @@ main div.section.wave p {
   margin: 0;
 }
 
-main.error div.section.wave {
+main:not(.sidekick-library).error div.section.wave {
   color: var(--text-color);
   text-align: unset;
 }
