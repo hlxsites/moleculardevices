@@ -1143,7 +1143,7 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
 
 /* Wave sections */
 
-main div.section.wave {
+main:not(.sidekick-library) div.section.wave {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -1157,12 +1157,12 @@ main div.section.wave {
   clear: both;
 }
 
-main div.section.wave:last-child {
+main:not(.sidekick-library) div.section.wave:last-child {
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-main div.section.wave::after {
+main:not(.sidekick-library) div.section.wave::after {
   background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -1195,7 +1195,7 @@ main div.section.wave p {
   margin: 0;
 }
 
-main.error div.section.wave {
+main:not(.sidekick-library).error div.section.wave {
   color: var(--text-color);
   text-align: unset;
 }
