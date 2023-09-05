@@ -5,6 +5,7 @@ indices:
       - /**
     exclude:
       - '/drafts/**'
+      - '/tools/sidekick/**'
       - '/fragments/**'
       - '/sites/default/files/**'
     target: /query-index.json
