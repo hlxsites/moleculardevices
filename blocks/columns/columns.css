@@ -125,6 +125,10 @@ main .section>div.columns-wrapper {
   color: inherit;
 }
 
+.columns.columns-sitemap a:hover{
+  color: var(--link-hover-color);
+}
+
 .columns.columns-sitemap h4 + h4{
   margin-top: 20px;
 }
