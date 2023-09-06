@@ -94,10 +94,11 @@ main .section>div.columns-wrapper {
   color: var(--text-electric-blue);
   font-size: 36px;
   margin-bottom: 30px;
-  font-family: 'Proxima Nova Light';
+  font-family: var(--ff-proxima-light);
 }
 
 .columns.columns-sitemap h4{
+  font-family: var(--ff-proxima-regular);
   color: var(--text-electric-blue);
   font-weight: bold;
   font-size: var(--list-font-size-l);
