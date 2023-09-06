@@ -90,10 +90,6 @@
   width: 200px;
 }
 
-.product-comparison .responsive-table .table-head tr:first-child th:first-child{
-  background-color: var(--accordion-color-white);
-}
-
 .product-comparison .responsive-table tbody td:first-child {
   background-color: #525b61;
   min-width: 160px;
