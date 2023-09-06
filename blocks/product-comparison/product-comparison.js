@@ -33,6 +33,7 @@ export default async function decorate(block) {
 
   // render table head
   const headRow = domEl('tr', domEl('th', ''));
+  headRow.querySelector('th').style.background = 'transparent';
   let maxHeight = 0;
   productIdentifiers.forEach((productIdentifier) => {
     const productSpec = productSpecs[productIdentifier];
