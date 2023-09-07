@@ -40,6 +40,7 @@ async function renderContent(container, content) {
     if (rows.length - 1 < 0) rows.push([]);
     rows[rows.length - 1].push(elem);
   });
+  
   // render content
   const contentDiv = div({ class: 'accordion-content' });
   rows.forEach((row) => {
