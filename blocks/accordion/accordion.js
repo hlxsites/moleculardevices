@@ -57,11 +57,20 @@ async function renderContent(container, content, isBlockFaq) {
     }
   });
   if (isBlockFaq) {
-    contentDiv.setAttribute('itemprop', 'acceptedAnswer');
-    contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
-    contentDiv.setAttribute('itemscope', '');
+    // Add these lines to represent 'acceptedAnswer' and 'text' for each Question
+    const answerDiv = div({ class: 'answer' });
+    answerDiv.setAttribute('itemprop', 'acceptedAnswer');
+    answerDiv.setAttribute('itemscope', '');
+    answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+    contentDiv.append(answerDiv);
+
+    const textDiv = div({ class: 'text' });
+    textDiv.setAttribute('itemprop', 'text');
+    answerDiv.append(textDiv);
+
     const accordionChild = contentDiv.firstChild;
-    accordionChild.setAttribute('itemprop', 'text');
+    // Make sure to append existing content into 'text'
+    textDiv.append(accordionChild);
   }
   container.append(contentDiv);
 }
@@ -87,9 +96,12 @@ export default async function decorate(block) {
 
     const item = div({ class: 'accordion-item' });
     if (isBlockFaq) {
-      item.setAttribute('itemtype', 'https://schema.org/Question');
+      // Set this item as a 'mainEntity' of FAQPage
+      item.setAttribute('itemprop', 'mainEntity');
       item.setAttribute('itemscope', '');
+      item.setAttribute('itemtype', 'https://schema.org/Question');
       header.setAttribute('itemProp', 'name');
+      decorateIcons(header);
     }
 
     item.appendChild(header);
