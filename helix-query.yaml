@@ -171,6 +171,8 @@ indices:
   files:
     include:
       - '/sites/default/files/en/**'
+    exclude:
+      - '/sites/default/files/en/assets/app-note/**'
     target: /sites/default/files/query-index.json
     properties:
       lastModified:
