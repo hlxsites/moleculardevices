@@ -53,6 +53,20 @@ async function renderContent(container, content) {
       });
     }
   });
+  if (isBlockFaq) {
+    const answerDiv = div({ class: 'answer' });
+    answerDiv.setAttribute('itemprop', 'acceptedAnswer');
+    answerDiv.setAttribute('itemscope', '');
+    answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+    contentDiv.append(answerDiv);
+
+    const textDiv = div({ class: 'text' });
+    textDiv.setAttribute('itemprop', 'text');
+    answerDiv.append(textDiv);
+
+    const accordionChild = contentDiv.firstChild;
+    textDiv.append(accordionChild);
+  }
   container.append(contentDiv);
 }
 
@@ -71,6 +85,14 @@ export default async function decorate(block) {
     );
 
     const item = div({ class: 'accordion-item' });
+    if (isBlockFaq) {
+      item.setAttribute('itemprop', 'mainEntity');
+      item.setAttribute('itemscope', '');
+      item.setAttribute('itemtype', 'https://schema.org/Question');
+      header.setAttribute('itemProp', 'name');
+      decorateIcons(header);
+    }
+
     item.appendChild(header);
     renderContent(item, rest);
 
