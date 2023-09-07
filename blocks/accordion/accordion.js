@@ -57,7 +57,6 @@ async function renderContent(container, content, isBlockFaq) {
     }
   });
   if (isBlockFaq) {
-    // Add these lines to represent 'acceptedAnswer' and 'text' for each Question
     const answerDiv = div({ class: 'answer' });
     answerDiv.setAttribute('itemprop', 'acceptedAnswer');
     answerDiv.setAttribute('itemscope', '');
@@ -69,7 +68,6 @@ async function renderContent(container, content, isBlockFaq) {
     answerDiv.append(textDiv);
 
     const accordionChild = contentDiv.firstChild;
-    // Make sure to append existing content into 'text'
     textDiv.append(accordionChild);
   }
   container.append(contentDiv);
@@ -96,7 +94,6 @@ export default async function decorate(block) {
 
     const item = div({ class: 'accordion-item' });
     if (isBlockFaq) {
-      // Set this item as a 'mainEntity' of FAQPage
       item.setAttribute('itemprop', 'mainEntity');
       item.setAttribute('itemscope', '');
       item.setAttribute('itemtype', 'https://schema.org/Question');
