@@ -9,7 +9,7 @@
   padding: 0.5em 0.5em 0.5em 0.7em;
 }
 
-.accordion .accordion-trigger h2, 
+.accordion .accordion-trigger h2,
 .accordion .accordion-trigger h3 {
   font-family: var(--ff-proxima-regular);
   font-size: 18px;
@@ -104,8 +104,8 @@
   padding: 0 15px;
 }
 
-.accordion .accordion-content-col-right p {
-  margin-bottom: 50px;
+.accordion .accordion-content-col-right .button-container {
+  margin-top: 50px;
 }
 
 @media(max-width: 767px) {
@@ -118,7 +118,7 @@
   .accordion .accordion-content-col-left {
     width: 100%;
   }
-  
+
   .accordion .accordion-content-col-right {
     width: 100%;
   }

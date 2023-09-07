@@ -5,10 +5,6 @@ import {
 
 const openAttribute = 'aria-expanded';
 
-function isFaq(block) {
-  return block.classList.contains('faq');
-}
-
 function applyColumnLayout(contentNodes) {
   let applyLayout = false;
   contentNodes.forEach((elem) => {
@@ -22,8 +18,10 @@ function applyColumnLayout(contentNodes) {
 
 function renderColumnLayout(row) {
   const picture = row[0];
-  const text = row[1];
-  const link = row[2];
+  const textArr = row.slice(1, -1);
+  const link = row[row.length - 1];
+  const text = div();
+  textArr.forEach((t) => text.appendChild(t));
   if (link) link.querySelector('a').append(span({ class: 'icon icon-fa-arrow-circle-right' }));
 
   const leftCol = div({ class: 'accordion-content-col-left' }, picture);
@@ -32,7 +30,7 @@ function renderColumnLayout(row) {
   return rowContent;
 }
 
-async function renderContent(container, content, isBlockFaq) {
+async function renderContent(container, content) {
   // prepare content
   const rows = [];
   content.forEach((elem) => {
@@ -56,23 +54,11 @@ async function renderContent(container, content, isBlockFaq) {
       });
     }
   });
-  if (isBlockFaq) {
-    contentDiv.setAttribute('itemprop', 'acceptedAnswer');
-    contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
-    contentDiv.setAttribute('itemscope', '');
-    const accordionChild = contentDiv.firstChild;
-    accordionChild.setAttribute('itemprop', 'text');
-  }
   container.append(contentDiv);
 }
 
 export default async function decorate(block) {
-  const isBlockFaq = isFaq(block);
   const isTypeNumbers = block.classList.contains('numbers');
-  if (isBlockFaq) {
-    block.setAttribute('itemtype', 'https://schema.org/FAQPage');
-    block.setAttribute('itemscope', '');
-  }
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
@@ -86,14 +72,8 @@ export default async function decorate(block) {
     );
 
     const item = div({ class: 'accordion-item' });
-    if (isBlockFaq) {
-      item.setAttribute('itemtype', 'https://schema.org/Question');
-      item.setAttribute('itemscope', '');
-      header.setAttribute('itemProp', 'name');
-    }
-
     item.appendChild(header);
-    renderContent(item, rest, isBlockFaq);
+    renderContent(item, rest);
 
     if (idx === 0) item.setAttribute(openAttribute, '');
 
