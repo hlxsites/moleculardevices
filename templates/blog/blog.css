@@ -96,6 +96,10 @@
   margin: 0 auto;
 }
 
+.blog .section.blog-heading{
+  padding-top: 0;
+}
+
 .blog .section.blog-heading > div {
   max-width: unset;
   width: unset;
