@@ -17,7 +17,7 @@ export default {
   },
   Citation: {
     image: 'citation',
-    action: 'downloadCitation',
+    action: 'readCitation',
   },
   'Customer Breakthrough': {
     image: 'customer-breakthrough',

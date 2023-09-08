@@ -19,7 +19,8 @@ const relatedResourcesHeaders = {
   Application: 'relatedApplications',
 };
 const videoResourceTypes = ['Videos and Webinars', 'Interactive Demo'];
-const excludedResources = ['Citation', 'COA', ...videoResourceTypes];
+const excludedResourcesProducts = ['Citation', 'COA', ...videoResourceTypes];
+const excludedResourcesApplications = ['COA', ...videoResourceTypes];
 
 function handleFilterClick(e) {
   e.preventDefault();
@@ -63,6 +64,7 @@ export default async function decorate(block) {
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .all();
+  const excludedResources = template === 'Application' ? excludedResourcesApplications : excludedResourcesProducts;
   const otherResources = resources.filter((item) => !excludedResources.includes(item.type));
   const videoResources = resources.filter((item) => videoResourceTypes.includes(item.type));
 
