@@ -8,6 +8,7 @@ indices:
       - '/tools/sidekick/**'
       - '/fragments/**'
       - '/sites/default/files/**'
+      - '/en/assets/promotion/**'
     target: /query-index.json
     properties:
       title:
