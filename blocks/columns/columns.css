@@ -91,7 +91,6 @@ main .section>div.columns-wrapper {
 }
 
 .columns.columns-sitemap h3 {
-  color: var(--text-electric-blue);
   font-size: 36px;
   margin-bottom: 30px;
   font-family: var(--ff-proxima-light);
@@ -99,7 +98,6 @@ main .section>div.columns-wrapper {
 
 .columns.columns-sitemap h4{
   font-family: var(--ff-proxima-regular);
-  color: var(--text-electric-blue);
   font-weight: bold;
   font-size: var(--list-font-size-l);
   text-transform: uppercase;
@@ -122,7 +120,8 @@ main .section>div.columns-wrapper {
   margin-top: 4px;
 }
 
-.columns.columns-sitemap a{
+.columns.columns-sitemap a,
+.columns.columns-sitemap a .fa-external-link{
   color: inherit;
 }
 
