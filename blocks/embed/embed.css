@@ -29,6 +29,10 @@ main .embed > div {
   justify-content: center;
 }
 
+main .embed.embed-facebook > div{
+  display: block;
+}
+
 main .embed.video > div {
   display: block;
 }

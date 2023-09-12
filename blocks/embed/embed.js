@@ -16,8 +16,8 @@ const embedHubspot = (url) => {
   // clean up hubspot url query paramaters
   const urlStr = url.href.replaceAll('%20', ' ');
   const embedHTML = `<div style="left: 0; width: 100%; height: 166px; position: relative;">
-        <iframe src="${urlStr}" 
-        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
+        <iframe src="${urlStr}"
+        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
         frameborder="0" loading="lazy"></iframe>
       </div>`;
   return embedHTML;
@@ -25,8 +25,8 @@ const embedHubspot = (url) => {
 
 const embedSoundcloud = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; height: 166px; position: relative;">
-        <iframe src="${url.href}" 
-        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
+        <iframe src="${url.href}"
+        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
         frameborder="0" loading="lazy"></iframe>
       </div>`;
   return embedHTML;
@@ -42,6 +42,18 @@ const embedTwitterFeed = (url) => {
     </a>
   `;
   loadScript('https://platform.twitter.com/widgets.js', null, null, true);
+
+  return embedHTML;
+};
+
+const embedFacebookFeed = (url) => {
+  const embedHTML = `
+  <div id="fb-root"></div>
+  <div class="fb-page" data-href="${url}" data-tabs="timeline" data-width="385" data-height="600" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+    <blockquote cite="${url}" class="fb-xfbml-parse-ignore"><a href="${url}">Molecular Devices LLC</a></blockquote>
+  </div>
+  `;
+  loadScript('https://connect.facebook.net/hi_IN/sdk.js#xfbml=1&version=v17.0', null, null, true);
 
   return embedHTML;
 };
@@ -139,6 +151,10 @@ const loadEmbed = (block, link) => {
     {
       match: ['twitter'],
       embed: embedTwitterFeed,
+    },
+    {
+      match: ['facebook'],
+      embed: embedFacebookFeed,
     },
     {
       match: ['ceros'],
