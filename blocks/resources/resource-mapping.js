@@ -29,7 +29,7 @@ export default {
   },
   eBook: {
     image: 'ebook',
-    action: 'downloadEBook',
+    action: 'downloadEbook',
   },
   Flyer: {
     image: 'flyer',
