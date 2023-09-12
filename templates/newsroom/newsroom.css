@@ -18,11 +18,13 @@
 .newsroom main .section.right .default-content-wrapper:last-of-type {
   background-color: var(--overlay-background-color);
   padding: 15px;
+  margin-top: 50px;
 }
 
 .newsroom main .section .default-content-wrapper:last-of-type h2 {
   color: var(--text-color);
   font-size: 32px;
+  padding-top: 0;
 }
 
 .newsroom main .section .default-content-wrapper:last-of-type .button-container {
@@ -42,7 +44,7 @@
   .newsroom main .section {
     --newsroom-section-width: 750px;
   }
-  
+
   .newsroom main .section.left,
   .newsroom main .section.right {
     display: inline-block;
@@ -53,7 +55,7 @@
     width: calc(var(--newsroom-section-width) * 0.66);
     margin-left: calc((100vW / 2) - (var(--newsroom-section-width) / 2))
   }
-  
+
   .newsroom main .section.right {
     width: calc(var(--newsroom-section-width) * 0.33);
   }
@@ -66,15 +68,15 @@
   .newsroom main .section.hero-container .hero-inner .container {
     padding-bottom: 220px;
   }
-  
+
   .newsroom main .section.hero-container .hero-inner .container.two-column {
     padding-bottom: 80px;
-  }  
+  }
 
   .newsroom main .section.hero-container .hero-inner .container.two-column > div:nth-child(1) {
     width: 35%;
   }
-  
+
   .newsroom main .section.hero-container .hero-inner .container.two-column > div:nth-child(2) {
     width: 65%;
   }
@@ -86,6 +88,11 @@
   }
 }
 
-.newsroom main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper:first-child {
+.newsroom main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper h2 {
   padding-top: 50px;
+}
+
+.newsroom main .section .default-content-wrapper:last-of-type h2:first-of-type,
+.newsroom main .left.latest-publications-container.latest-news-container{
+  padding-top: 0;
 }
