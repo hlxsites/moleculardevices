@@ -53,7 +53,7 @@ const embedFacebookFeed = (url) => {
     <blockquote cite="${url}" class="fb-xfbml-parse-ignore"><a href="${url}">Molecular Devices LLC</a></blockquote>
   </div>
   `;
-  loadScript('https://connect.facebook.net/hi_IN/sdk.js#xfbml=1&version=v17.0', null, null, true);
+  loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0', null, null, true);
 
   return embedHTML;
 };
