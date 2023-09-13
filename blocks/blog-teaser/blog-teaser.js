@@ -3,6 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { fetchFragment, formatDate } from '../../scripts/scripts.js';
+import ffetch from '../../scripts/ffetch.js';
 
 function renderBlockTeaser(blogData) {
   /* eslint-disable indent */
@@ -52,6 +53,20 @@ function renderBlockTeaser(blogData) {
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
   const blogPostLinks = [...block.querySelectorAll('a')];
+  block.innerHTML = '';
+
+  if (!blogPostLinks.length) {
+    // get top 3 blog posts from index
+    const data = await ffetch('/query-index.json')
+      .sheet('blog')
+      .chunks(5)
+      .limit(3)
+      .all();
+    data.forEach((post) => {
+      const link = a({ href: post.path });
+      blogPostLinks.push(link);
+    });
+  }
 
   const blogPosts = {};
   await Promise.all(blogPostLinks.map(async (blogPostLink) => {
@@ -90,8 +105,6 @@ export default async function decorate(block) {
   }));
 
   blogPostLinks.forEach((blogPostLink) => {
-    blogPostLink.parentElement.parentElement.replaceWith(
-      renderBlockTeaser(blogPosts[blogPostLink.href]),
-    );
+    block.append(renderBlockTeaser(blogPosts[blogPostLink.href]));
   });
 }
