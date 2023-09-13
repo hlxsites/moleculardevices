@@ -21,9 +21,14 @@
   margin-top: 50px;
 }
 
+.newsroom main .section.right h2,
 .newsroom main .section .default-content-wrapper:last-of-type h2 {
   color: var(--text-color);
   font-size: 32px;
+  padding-top: 0;
+}
+
+.newsroom main .section .default-content-wrapper:last-of-type h2:first-of-type {
   padding-top: 0;
 }
 
@@ -58,6 +63,7 @@
 
   .newsroom main .section.right {
     width: calc(var(--newsroom-section-width) * 0.33);
+    margin-top: 20px;
   }
 }
 @media (min-width: 992px) {
