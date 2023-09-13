@@ -952,26 +952,28 @@ async function loadLazy(doc) {
 
   await loadBlocks(main);
 
-  enableStickyElements();
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    enableStickyElements();
 
-  const { hash } = window.location;
-  const element = hash ? doc.getElementById(hash.substring(1)) : false;
-  if (hash && element) element.scrollIntoView();
+    const { hash } = window.location;
+    const element = hash ? doc.getElementById(hash.substring(1)) : false;
+    if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('footer'));
-  loadBreadcrumbs(main);
+    loadFooter(doc.querySelector('footer'));
+    loadBreadcrumbs(main);
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
-    try {
-      if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-    } catch (e) {
-      // do nothing
-    }
-  });
-  sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
+    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
+      try {
+        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+      } catch (e) {
+        // do nothing
+      }
+    });
+    sampleRUM('lazy');
+    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+    sampleRUM.observe(main.querySelectorAll('picture > img'));
+  }
 }
 
 /**
@@ -979,8 +981,10 @@ async function loadLazy(doc) {
  * the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    // eslint-disable-next-line import/no-cycle
+    window.setTimeout(() => import('./delayed.js'), 3000);
+  }
   // load anything that can be postponed to the latest here
 }
 
