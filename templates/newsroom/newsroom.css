@@ -88,11 +88,16 @@
   }
 }
 
-.newsroom main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper h2 {
-  padding-top: 50px;
-}
-
+.newsroom main .section > div.embed-wrapper,
 .newsroom main .section .default-content-wrapper:last-of-type h2:first-of-type,
 .newsroom main .left.latest-publications-container.latest-news-container{
   padding-top: 0;
+}
+
+.newsroom main .section > .embed-wrapper .embed.embed-facebook {
+  margin-top: 10px;
+}
+
+.newsroom main .section:not(.tabs, .wave.bluegreen) .default-content-wrapper h2 {
+  padding-top: 50px;
 }
