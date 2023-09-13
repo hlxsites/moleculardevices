@@ -153,7 +153,7 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    return document.title;
+    return document.originalTitle ? document.originalTitle : document.title;
   }
 
   return part;
@@ -205,7 +205,7 @@ export default async function createBreadcrumbs(container) {
     ol.appendChild(
       li({ itemprop: 'itemListElement', itemscope: '', itemtype: 'http://schema.org/ListItem' },
         crumb.url_path
-          ? a({ itemprop: 'item', href: crumb.url_path }, crumb.name)
+          ? a({ itemprop: 'item', href: crumb.url_path }, span({ itemprop: 'name' }, crumb.name))
           : span({ itemprop: 'name' }, crumb.name),
         domEl('meta', { itemprop: 'position', content: `${idx + 1}` }),
       ),

@@ -71,7 +71,9 @@ export default async function decorate(block) {
           h3(groupData.data[1].name)),
         );
       } else {
-        thisRow.append(domEl('td', groupData.data[0][attr]));
+        const rowHeadBlock = span();
+        rowHeadBlock.innerHTML = groupData.data[0][attr];
+        thisRow.append(domEl('td', rowHeadBlock));
         groupData.data.forEach((item) => {
           if (item.key === 'label') {
             return;
@@ -88,9 +90,12 @@ export default async function decorate(block) {
     });
   });
 
-  const tHeadBlock = domEl('thead', { class: 'table-head' }, headRow,
-  );
-  block.append(div({ class: 'table-container' },
+  const tHeadBlock = domEl('thead', headRow);
+  const tableContainerClasses = ['table-container'];
+  if (specData.product?.data?.length > 1) {
+    tableContainerClasses.push('multiple-products');
+  }
+  block.append(div({ class: tableContainerClasses },
     domEl('table', { class: 'responsive-table' }, tHeadBlock, tBodyBlock),
   ));
 

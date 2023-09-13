@@ -1,7 +1,8 @@
 // eslint-disable-next-line object-curly-newline
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
+import ffetch from '../../scripts/ffetch.js';
 
 async function iframeResizeHandler() {
   await new Promise((resolve) => {
@@ -58,7 +59,16 @@ function handleEmbed() {
   });
 }
 
-export default function buildAutoBlocks() {
+export default async function buildAutoBlocks() {
+  if (isAuthorizedUser()) {
+    const path = window.location.pathname;
+    const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
+    const foundPage = pageIndex.find((page) => page.gatedURL === path || page.gatedURL.endsWith(`moleculardevices.com${path}`));
+    if (foundPage) {
+      window.location.replace(foundPage.path);
+    }
+  }
+
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
   if (pageParam && pageParam === 'thankyou') {
     document.body.classList.add('thankyou');

@@ -4,6 +4,8 @@ import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
 
+const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
+
 const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
 const rfqCategories = await ffetch(url).sheet('categories').all();
@@ -117,8 +119,8 @@ async function loadIframeForm(stepNum, data, type) {
   let sfdcPrimaryApplication = '';
   let productFamily = '';
 
+  const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
-    const queryParams = new URLSearchParams(window.location.search);
     const typeParam = queryParams && queryParams.get('type');
     tab = data.title;
     sfdcProductFamily = data.productFamily;
@@ -153,6 +155,7 @@ async function loadIframeForm(stepNum, data, type) {
   }
 
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  const requestTypeParam = queryParams && queryParams.get('request_type');
 
   const hubSpotQuery = {
     product_family__c: sfdcProductFamily,
@@ -164,8 +167,8 @@ async function loadIframeForm(stepNum, data, type) {
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
-    requested_qdc_discussion__c: 'Quote',
-    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${tab}&cmp=${cmpValue}`,
+    requested_qdc_discussion__c: requestTypeParam || 'Quote',
+    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`,
   };
 
   root.appendChild(
@@ -270,16 +273,20 @@ export default async function decorate(block) {
     );
   } else {
     const queryParams = new URLSearchParams(window.location.search);
-    const rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
+    const pid = queryParams.get('pid');
+    let rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
-    if (rfqData) {
+    if (rfqData || window.location.host.includes(PREVIEW_DOMAIN)) {
       block.appendChild(
         div({
           id: 'step-3',
           class: 'rfq-product-wrapper request-quote-form hide-back-btn',
         }),
       );
+      if (!rfqData) {
+        rfqData = { title: pid, familyId: pid };
+      }
       loadIframeForm('step-3', rfqData, 'Product');
     } else {
       block.appendChild(

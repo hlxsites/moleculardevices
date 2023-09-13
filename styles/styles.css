@@ -837,6 +837,11 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin-top: 8px;
 }
 
+main .default-content-wrapper ol li:not(:last-child),
+main .default-content-wrapper ul li:not(:last-child){
+  margin-bottom: 8px;
+}
+
 .section.no-paragraph-spacing p {
   margin-top: 0;
   margin-bottom: 0;
@@ -1138,7 +1143,7 @@ main .section.background-parallax .default-content-wrapper .button-container>a {
 
 /* Wave sections */
 
-main div.section.wave {
+main:not(.sidekick-library) div.section.wave {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -1152,12 +1157,12 @@ main div.section.wave {
   clear: both;
 }
 
-main div.section.wave:last-child {
+main:not(.sidekick-library) div.section.wave:last-child {
   margin-top: 30px;
   margin-bottom: 10px;
 }
 
-main div.section.wave::after {
+main:not(.sidekick-library) div.section.wave::after {
   background-image: url("/images/wave-footer-bg-top.webp"), url("/images/wave-footer-bg-top.png");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -1190,7 +1195,7 @@ main div.section.wave p {
   margin: 0;
 }
 
-main.error div.section.wave {
+main:not(.sidekick-library).error div.section.wave {
   color: var(--text-color);
   text-align: unset;
 }
@@ -1228,6 +1233,10 @@ main div.section.wave.bluegreen .default-content-wrapper {
 
 .application .hero-container + .section > .default-content-wrapper:first-child {
   margin-top: 15px;
+}
+
+.application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
+  margin-top: 0;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper h2,
@@ -1480,6 +1489,7 @@ main .section.background-molecules {
   transition: right .3s;
   z-index: 1;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .product .cart-widget.open {
@@ -1543,6 +1553,11 @@ main .section.background-molecules {
   color: var(--text-blue);
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
+}
+
+.application .section.tabs:not(.wave) .default-content-wrapper h2 ~ h2:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -1888,7 +1903,10 @@ main .section .block.white-title h4 {
   color: var(--text-white);
 }
 
-main .block.orange-main-title h2 {
+main .block.orange-main-title h2,
+main .section.orange-title h2,
+main .section.orange-title h3,
+main .section.orange-title h4 {
   color: var(--text-orange);
 }
 

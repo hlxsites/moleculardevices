@@ -11,6 +11,10 @@ main .section>div.columns-wrapper {
   margin-top: 0;
 }
 
+.columns[class*='layout-'] > div {
+  gap: 30px;
+}
+
 .columns img {
   width: 100%;
 }
@@ -475,6 +479,15 @@ main .section>div.columns-wrapper {
   text-align: center;
   margin-bottom: 18px;
 }
+
+.columns.layout-25-75 p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.columns.layout-25-75 > div:not(:last-child) {
+  margin-bottom: 30px;
+}
 /* stylelint-enable no-descending-specificity */
 
 .service-support .columns-wrapper {
@@ -508,7 +521,6 @@ main .section>div.columns-wrapper {
   }
 
   .columns[class*='layout-'] > div {
-    gap: 30px;
     display: grid;
     align-items: unset;
   }

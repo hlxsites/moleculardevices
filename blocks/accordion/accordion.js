@@ -5,6 +5,10 @@ import {
 
 const openAttribute = 'aria-expanded';
 
+function isFaq(block) {
+  return block.classList.contains('faq');
+}
+
 function applyColumnLayout(contentNodes) {
   let applyLayout = false;
   contentNodes.forEach((elem) => {
@@ -28,7 +32,7 @@ function renderColumnLayout(row) {
   return rowContent;
 }
 
-async function renderContent(container, content) {
+async function renderContent(container, content, isBlockFaq) {
   // prepare content
   const rows = [];
   content.forEach((elem) => {
@@ -52,11 +56,30 @@ async function renderContent(container, content) {
       });
     }
   });
+  if (isBlockFaq) {
+    const answerDiv = div({ class: 'answer' });
+    answerDiv.setAttribute('itemprop', 'acceptedAnswer');
+    answerDiv.setAttribute('itemscope', '');
+    answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+    contentDiv.append(answerDiv);
+
+    const textDiv = div({ class: 'text' });
+    textDiv.setAttribute('itemprop', 'text');
+    answerDiv.append(textDiv);
+
+    const accordionChild = contentDiv.firstChild;
+    textDiv.append(accordionChild);
+  }
   container.append(contentDiv);
 }
 
 export default async function decorate(block) {
+  const isBlockFaq = isFaq(block);
   const isTypeNumbers = block.classList.contains('numbers');
+  if (isBlockFaq) {
+    block.setAttribute('itemtype', 'https://schema.org/FAQPage');
+    block.setAttribute('itemscope', '');
+  }
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
@@ -70,8 +93,16 @@ export default async function decorate(block) {
     );
 
     const item = div({ class: 'accordion-item' });
+    if (isBlockFaq) {
+      item.setAttribute('itemprop', 'mainEntity');
+      item.setAttribute('itemscope', '');
+      item.setAttribute('itemtype', 'https://schema.org/Question');
+      header.setAttribute('itemProp', 'name');
+      decorateIcons(header);
+    }
+
     item.appendChild(header);
-    renderContent(item, rest);
+    renderContent(item, rest, isBlockFaq);
 
     if (idx === 0) item.setAttribute(openAttribute, '');
 

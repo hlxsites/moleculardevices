@@ -191,6 +191,10 @@ main .section .hero-advanced-wrapper {
   color: var(--text-color);
 }
 
+.hero.order .order-container.store-hidden {
+  display: none;
+}
+
 #overlay {
 display: none;
 }

@@ -17,7 +17,7 @@ export default {
   },
   Citation: {
     image: 'citation',
-    action: 'downloadCitation',
+    action: 'readCitation',
   },
   'Customer Breakthrough': {
     image: 'customer-breakthrough',
@@ -29,7 +29,7 @@ export default {
   },
   eBook: {
     image: 'ebook',
-    action: 'downloadEBook',
+    action: 'downloadEbook',
   },
   Flyer: {
     image: 'flyer',
@@ -38,6 +38,10 @@ export default {
   Infographic: {
     image: 'infographic',
     action: 'downloadInfographic',
+  },
+  'Interactive Demo': {
+    image: 'videos-and-webinars',
+    action: 'viewVideosAndWebinars',
   },
   News: {
     image: 'document',

@@ -1,3 +1,5 @@
+import { getCookie } from '../../scripts/scripts.js';
+
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const searchParams = new URLSearchParams(hubUrl.searchParams);
@@ -9,7 +11,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
     searchParams.set(paramName, queryStringParam);
   }
 
-  const cmp = searchParams.get('cmp');
+  const cmp = getCookie('cmp') || searchParams.get('cmp');
   const returnURL = searchParams.get('return_url');
   searchParams.delete('cmp');
   searchParams.delete('return_url');

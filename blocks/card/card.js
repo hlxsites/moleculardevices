@@ -5,7 +5,7 @@
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
-import { summariseDescription } from '../../scripts/scripts.js';
+import { isGatedResource, summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
@@ -84,7 +84,7 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     let cardLink = item.path;
-    if (item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0') {
+    if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;

@@ -3,8 +3,8 @@ Allow: /
 
 Sitemap: https://www.moleculardevices.com/sitemap.xml
 
-
-
+Disallow: /sites/default/files/en/assets/app-note/
+Disallow: /fragments/
 
 
 # PDF (ebook PDF Block)
@@ -75,10 +75,9 @@ Disallow: /en/assets/app-note/dd/img/neural-outgrowth-analysis-in-3d-human-brain
 Disallow: /en/assets/app-note/br/quantify-tnfa-secretion-by-thp-1-derived-macrophages-with-alphalisa-assay
 Disallow: /en/assets/app-note/dd/img/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
 Disallow: /en/assets/app-note/dd/img/automating-patient-derived-organoid-high-content-assays
+Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
 
-# PDF (White Paper PDF Block)
-Disallow: /sites/default/files/en/assets/white-paper/br/gxp-regulated-industry-assessments-of-microplate-readers.pdf
-Disallow: /sites/default/files/en/assets/white-paper/br/gxp-regulated-industry-assessments-of-softmax-pro-software.pdf
+
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
@@ -162,6 +161,11 @@ Disallow: /en/assets/tutorials-videos/br/how-move-from-time-consuming-processes-
 Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3D-models
 Disallow: /en/assets/tutorials-videos/dd/img/are-organoids-future-of-drug-discovery
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
+Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
+
+
+
+
 
 #EU webinars to imaging video gallery page
 
