@@ -221,7 +221,7 @@ main .section.sidebar h4::after {
 }
 
 .blog main .section.sidebar .embed-wrapper {
-  padding: 0;
+  padding-top: 0;
 }
 
 .blog main .section.sidebar .embed-twitter {
@@ -253,4 +253,8 @@ main .section.sidebar h4::after {
 .blog .card-caption h3 {
   line-height: 1.1;
   margin-top: 0;
+}
+
+.blog .section > div.embed-wrapper > div.embed{
+  margin-top: 10px;
 }
