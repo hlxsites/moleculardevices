@@ -1,4 +1,4 @@
-.blog .section div.social-media-buttons-wrapper {
+.section div.social-media-buttons-wrapper {
   margin-bottom: 70px;
   padding: 0;
 }
@@ -7,6 +7,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .social-media-buttons > div {
@@ -20,12 +22,7 @@
   display: block;
 }
 
-.newsroom .social-media-buttons {
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.newsroom .social-media-buttons a:any-link {
-  color: var(--text-color);
+.newsroom main .section.right{
+  padding-left: 15px;
+  padding-right: 15px;
 }
