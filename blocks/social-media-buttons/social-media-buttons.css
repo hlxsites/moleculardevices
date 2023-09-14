@@ -1,5 +1,5 @@
-.blog .section div.social-media-buttons-wrapper {
-  margin-bottom: 70px;
+.section div.social-media-buttons-wrapper {
+  margin-bottom: 50px;
   padding: 0;
 }
 
@@ -7,6 +7,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .social-media-buttons > div {
@@ -18,14 +20,4 @@
 .social-media-buttons .button-container span,
 .social-media-buttons .button-container img {
   display: block;
-}
-
-.newsroom .social-media-buttons {
-  display: flex;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.newsroom .social-media-buttons a:any-link {
-  color: var(--text-color);
 }
