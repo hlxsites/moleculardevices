@@ -3,7 +3,7 @@ main .card {
   background: var(--background-color);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
+  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
   transition: all .3s;
   display: flex;
   align-items: stretch;
