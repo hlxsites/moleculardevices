@@ -1,3 +1,7 @@
+.resources-carousel.carousel .card:hover{
+  transform: scale(1.03);
+}
+
 .resources-carousel.carousel .card-type {
 	display: block;
 	color: var(--text-green);
