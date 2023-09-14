@@ -1,3 +1,7 @@
+:root {
+  --blog-underline-gradient: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+}
+
 .newsroom main .section h2 {
   --heading-font-size-xl: 42px;
 
@@ -87,6 +91,23 @@
   .newsroom main .section {
     --newsroom-section-width: 1170px;
   }
+}
+
+.newsroom main .section.right .default-content-wrapper h3 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0 0 50px;
+  position: relative;
+}
+
+.newsroom main .section.right .default-content-wrapper h3::after {
+  content: "";
+  position: absolute;
+  bottom: -33px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: var(--blog-underline-gradient);
 }
 
 .newsroom main .section.right{
