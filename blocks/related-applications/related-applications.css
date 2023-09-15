@@ -1,6 +1,12 @@
 .related-links-container {
   column-count: 2;
   column-gap: 30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
+}
+
+.product .section .related-app{
+  margin-top: 35px;
 }
 
 .cols-3 {

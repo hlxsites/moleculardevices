@@ -11,6 +11,10 @@ main .section>div.columns-wrapper {
   margin-top: 0;
 }
 
+.columns > div:not(:last-child) {
+  margin-bottom: 40px;
+}
+
 .columns[class*='layout-'] > div {
   gap: 30px;
 }
