@@ -168,7 +168,7 @@ async function loadIframeForm(stepNum, data, type) {
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: 'NA',
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
-    return_url: `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`,
+    return_url: data.familyID ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}` : 'https://www.moleculardevices.com/quote-request-success',
   };
 
   root.appendChild(
