@@ -57,7 +57,7 @@ export default async function decorate(block) {
   block.innerHTML = '';
 
   // if (!blogPostLinks.length) {
-  if (featuredBlog.length) {
+if (!featuredBlog.length) {
   // get top 3 blog posts from index
     const data = await ffetch('/query-index.json')
       .sheet('blog')
