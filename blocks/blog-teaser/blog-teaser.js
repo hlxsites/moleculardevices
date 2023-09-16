@@ -53,9 +53,9 @@ function renderBlockTeaser(blogData) {
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
   const blogPostLinks = [...block.querySelectorAll('a')];
-  const featuredBlog = [...block.querySelector('meta[name="featured-post"]')];
+  const featuredBlog = document.querySelector('meta[name="featured-post"]');
   block.innerHTML = '';
-
+  console.log(featuredBlog);
   // if (!blogPostLinks.length) {
   if (!featuredBlog.length) {
   // get top 3 blog posts from index
