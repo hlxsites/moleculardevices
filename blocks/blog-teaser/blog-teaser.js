@@ -53,14 +53,16 @@ function renderBlockTeaser(blogData) {
 export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
   const blogPostLinks = [...block.querySelectorAll('a')];
+  const featuredBlog = fragmentElement.querySelector('meta[name="featured-post"]');
   block.innerHTML = '';
 
-  if (!blogPostLinks.length) {
+  //if (!blogPostLinks.length) {
+    if (!featuredBlog.length) {
     // get top 3 blog posts from index
     const data = await ffetch('/query-index.json')
       .sheet('blog')
       .chunks(5)
-      .limit(3)
+      .limit(4)
       .all();
     data.forEach((post) => {
       const link = a({ href: post.path });
