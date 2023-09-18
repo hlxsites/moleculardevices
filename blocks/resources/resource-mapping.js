@@ -17,7 +17,7 @@ export default {
   },
   Citation: {
     image: 'citation',
-    action: 'downloadCitation',
+    action: 'readCitation',
   },
   'Customer Breakthrough': {
     image: 'customer-breakthrough',
@@ -29,7 +29,7 @@ export default {
   },
   eBook: {
     image: 'ebook',
-    action: 'downloadEBook',
+    action: 'downloadEbook',
   },
   Flyer: {
     image: 'flyer',

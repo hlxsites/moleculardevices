@@ -22,8 +22,13 @@ function applyColumnLayout(contentNodes) {
 
 function renderColumnLayout(row) {
   const picture = row[0];
-  const text = row[1];
-  const link = row[2];
+  const textArr = row.slice(1, -1);
+  const link = row[row.length - 1];
+  link.children[0].setAttribute('target', '_blank');
+  link.children[0].setAttribute('rel', 'noopener noreferrer');
+
+  const text = div();
+  textArr.forEach((t) => text.appendChild(t));
   if (link) link.querySelector('a').append(span({ class: 'icon icon-fa-arrow-circle-right' }));
 
   const leftCol = div({ class: 'accordion-content-col-left' }, picture);
@@ -57,11 +62,18 @@ async function renderContent(container, content, isBlockFaq) {
     }
   });
   if (isBlockFaq) {
-    contentDiv.setAttribute('itemprop', 'acceptedAnswer');
-    contentDiv.setAttribute('itemtype', 'https://schema.org/Answer');
-    contentDiv.setAttribute('itemscope', '');
+    const answerDiv = div({ class: 'answer' });
+    answerDiv.setAttribute('itemprop', 'acceptedAnswer');
+    answerDiv.setAttribute('itemscope', '');
+    answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+    contentDiv.append(answerDiv);
+
+    const textDiv = div({ class: 'text' });
+    textDiv.setAttribute('itemprop', 'text');
+    answerDiv.append(textDiv);
+
     const accordionChild = contentDiv.firstChild;
-    accordionChild.setAttribute('itemprop', 'text');
+    textDiv.append(accordionChild);
   }
   container.append(contentDiv);
 }
@@ -87,9 +99,11 @@ export default async function decorate(block) {
 
     const item = div({ class: 'accordion-item' });
     if (isBlockFaq) {
-      item.setAttribute('itemtype', 'https://schema.org/Question');
+      item.setAttribute('itemprop', 'mainEntity');
       item.setAttribute('itemscope', '');
+      item.setAttribute('itemtype', 'https://schema.org/Question');
       header.setAttribute('itemProp', 'name');
+      decorateIcons(header);
     }
 
     item.appendChild(header);

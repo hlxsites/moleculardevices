@@ -41,6 +41,7 @@ const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
 let LAST_SCROLL_POSITION = 0;
+let LAST_STACKED_HEIGHT = 0;
 let STICKY_ELEMENTS;
 let PREV_STICKY_ELEMENTS;
 const mobileDevice = window.matchMedia('(max-width: 991px)');
@@ -778,6 +779,7 @@ async function loadEager(doc) {
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
 
   if (!isHomepage()) {
+    document.originalTitle = document.title;
     document.title = `${document.title ?? ''} | Molecular Devices`;
   }
   decorateTemplateAndTheme();
@@ -932,6 +934,10 @@ function enableStickyElements() {
     });
 
     LAST_SCROLL_POSITION = currentScrollPosition;
+    if (stackedHeight !== LAST_STACKED_HEIGHT) {
+      LAST_STACKED_HEIGHT = stackedHeight;
+      document.querySelector(':root').style.setProperty('--stacked-height', `${stackedHeight}px`);
+    }
   });
 }
 
@@ -946,26 +952,28 @@ async function loadLazy(doc) {
 
   await loadBlocks(main);
 
-  enableStickyElements();
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    enableStickyElements();
 
-  const { hash } = window.location;
-  const element = hash ? doc.getElementById(hash.substring(1)) : false;
-  if (hash && element) element.scrollIntoView();
+    const { hash } = window.location;
+    const element = hash ? doc.getElementById(hash.substring(1)) : false;
+    if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('footer'));
-  loadBreadcrumbs(main);
+    loadFooter(doc.querySelector('footer'));
+    loadBreadcrumbs(main);
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
-    try {
-      if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-    } catch (e) {
-      // do nothing
-    }
-  });
-  sampleRUM('lazy');
-  sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-  sampleRUM.observe(main.querySelectorAll('picture > img'));
+    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
+      try {
+        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+      } catch (e) {
+        // do nothing
+      }
+    });
+    sampleRUM('lazy');
+    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+    sampleRUM.observe(main.querySelectorAll('picture > img'));
+  }
 }
 
 /**
@@ -973,8 +981,10 @@ async function loadLazy(doc) {
  * the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    // eslint-disable-next-line import/no-cycle
+    window.setTimeout(() => import('./delayed.js'), 3000);
+  }
   // load anything that can be postponed to the latest here
 }
 
@@ -1077,12 +1087,16 @@ cookieParams.forEach((param) => {
   setCookieFromQueryParameters(param, 0);
 });
 
+export function isAuthorizedUser() {
+  const supportCookie = getCookie('STYXKEY_PortalUserRole');
+  return supportCookie && SUPPORT_CHANNELS.includes(supportCookie) && window.location.hostname.endsWith('moleculardevices.com');
+}
+
 /**
  * Check if a resource should be served as gated or original
  */
 export function isGatedResource(item) {
-  const supportCookie = getCookie('STYXKEY_PortalUserRole');
-  const authorizedUser = supportCookie && SUPPORT_CHANNELS.includes(supportCookie) && window.location.hostname.endsWith('moleculardevices.com');
+  const authorizedUser = isAuthorizedUser();
   return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
     && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }

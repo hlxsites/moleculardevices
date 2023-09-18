@@ -5,8 +5,10 @@ indices:
       - /**
     exclude:
       - '/drafts/**'
+      - '/tools/sidekick/**'
       - '/fragments/**'
       - '/sites/default/files/**'
+      - '/en/assets/promotion/**'
     target: /query-index.json
     properties:
       title:
@@ -170,6 +172,8 @@ indices:
   files:
     include:
       - '/sites/default/files/en/**'
+    exclude:
+      - '/sites/default/files/en/assets/app-note/**'
     target: /sites/default/files/query-index.json
     properties:
       lastModified:

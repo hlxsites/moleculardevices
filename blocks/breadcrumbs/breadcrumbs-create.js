@@ -153,7 +153,7 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    return document.title;
+    return document.originalTitle ? document.originalTitle : document.title;
   }
 
   return part;

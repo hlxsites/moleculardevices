@@ -5,10 +5,15 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
   const productPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
-  const products = await ffetch('/query-index.json')
+  const unsortedProducts = await ffetch('/query-index.json')
     .sheet('products')
     .filter((product) => productPaths.includes(product.path))
     .all();
+  const products = unsortedProducts.sort((a, b) => {
+    const indexA = productPaths.indexOf(a.path);
+    const indexB = productPaths.indexOf(b.path);
+    return indexA - indexB;
+  });
 
   const placeholders = await fetchPlaceholders();
 

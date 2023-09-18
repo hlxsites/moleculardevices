@@ -42,13 +42,14 @@
 
 .ceros .ceros-modal .ceros-modal-content {
   max-width: 1170px;
-  margin: 30px auto;
+  margin: 0 auto;
   padding: 60px 50px 15px;
   position: relative;
 }
 
 .ceros .ceros-modal .ceros-modal-content > div{
-  padding-top: 70%;
+  padding: 50% 0 0;
+  margin: 0;
 }
 
 .ceros .ceros-modal .ceros-modal-content button.close {

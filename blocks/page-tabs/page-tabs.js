@@ -80,8 +80,9 @@ export default async function decorate(block) {
     if (!activeHash) return;
 
     const element = document.getElementById(activeHash);
-    if (element) {
-      const targetTabName = element.closest('.tabs')?.getAttribute('aria-labelledby');
+    const tab = element?.closest('.tabs');
+    if (tab) {
+      const targetTabName = tab.getAttribute('aria-labelledby');
       const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
       if (!targetTab) return;
       openTab(targetTab);

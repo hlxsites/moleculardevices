@@ -1,0 +1,19 @@
+.resources-carousel.carousel .card:hover{
+  transform: scale(1.03);
+}
+
+.resources-carousel.carousel .card-type {
+	display: block;
+	color: var(--text-green);
+	text-transform: uppercase;
+	font-size: var(--body-font-size-xs);
+}
+
+.resources-carousel.carousel .card-thumb {
+  height: 200px;
+  min-height: 200px;
+}
+
+.resources-carousel.carousel .card-caption h3 {
+	min-height: auto;
+}
