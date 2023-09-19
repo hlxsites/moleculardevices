@@ -55,6 +55,8 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/automated-workfl
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-cell-lines-for-monoclonality-verification.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-and-morphological-characterization-of-healthy-and-epilepsy-related-3d-neurospheres-assembled.pdf
 
 # HTML Page (App Note HTML Page Block)
 
@@ -76,7 +78,8 @@ Disallow: /en/assets/app-note/br/quantify-tnfa-secretion-by-thp-1-derived-macrop
 Disallow: /en/assets/app-note/dd/img/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
 Disallow: /en/assets/app-note/dd/img/automating-patient-derived-organoid-high-content-assays
 Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
-
+Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
+Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
 
 
 # ISSER 2021 presentations poster and video
