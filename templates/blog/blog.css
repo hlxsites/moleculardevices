@@ -27,6 +27,11 @@
 .blog ol {
   margin-top: 0;
   margin-bottom: 10px;
+  padding-left: 40px;
+}
+
+.blog .no-indent ul,
+.blog .no-indent ol {
   padding-left: 20px;
 }
 
@@ -37,6 +42,11 @@
 
 .blog ul ul {
   margin-bottom: 0;
+}
+
+.blog ol li > picture img, .blog ul li > picture img {
+    display: block;
+    margin: 20px auto;
 }
 
 .blog ol.text-caption {
@@ -70,6 +80,11 @@
   margin-bottom: 10px;
   font-size: 30px;
   line-height: 30px;
+}
+
+.blog h3 + ol,
+.blog h3 + ul{
+  margin-top: 10px;
 }
 
 .blog .section > div:not(.hero-wrapper) {
