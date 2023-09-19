@@ -154,7 +154,10 @@ async function loadIframeForm(stepNum, data, type) {
     sfdcPrimaryApplication = sfdcProductFamily;
   }
 
-  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
+  const mpCmpValue = queryParams && queryParams.get('mdcmp');
+  let cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
+  if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
 
   const hubSpotQuery = {
