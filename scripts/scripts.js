@@ -487,7 +487,7 @@ function addPageSchema() {
 
     let schemaInfo = null;
     if (type === 'homepage') {
-      const homepageName = getMetadata('title');
+      const homepageName = 'Molecular Devices';
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
