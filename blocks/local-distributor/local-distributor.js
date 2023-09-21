@@ -84,10 +84,10 @@ function hideResult() {
   }
 }
 
-function redirectToContactSearch() {
+function redirectToContactSearch(distributorsMap, productFamilyMap) {
   const countryName = document.getElementById('country').value;
   const primeProduct = document.getElementById('product_family').value;
-  window.open(`/contact-search?country=${countryName}&product_family=${primeProduct}`, '_blank');
+  window.open(`/contact-search?country=${distributorsMap[countryName]}&product_family=${primeProduct ? productFamilyMap[primeProduct] : ''}`, '_blank');
   Event.preventDefault();
 }
 
@@ -97,8 +97,17 @@ export default async function decorate(block) {
   const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
   const productFamilyList = await ffetch('/contact/local-distibutors.json')
     .sheet('PF')
-    .map(({ PrimaryProducts }) => PrimaryProducts)
     .all();
+  const distributorsMap = {};
+  const productFamilyMap = {};
+  distributors.forEach(
+    (distributor) => {
+      distributorsMap[distributor.DisplayCountry] = distributor.Country;
+    });
+  productFamilyList.forEach(
+    (family) => {
+      productFamilyMap[family.DisplayPrimaryProducts] = family.PrimaryProducts;
+    });
 
   let countryList = '';
   if (window.location.pathname === '/contact') {
@@ -106,23 +115,23 @@ export default async function decorate(block) {
       ...new Set(
         distributors
           .filter(({ Region }) => Region.toLowerCase().includes(params.region.toLowerCase()) > 0)
-          .map(({ Country }) => Country),
+          .map(({ DisplayCountry }) => DisplayCountry),
       ),
     ];
   } else {
-    countryList = [...new Set(distributors.map(({ Country }) => Country))];
+    countryList = [...new Set(distributors.map(({ DisplayCountry }) => DisplayCountry))];
   }
 
-  const searchButtdon = document.querySelector('.tab-wrapper');
+  const searchButtton = document.querySelector('.tab-wrapper');
 
-  if (searchButtdon) {
-    searchButtdon.addEventListener('click', () => {
+  if (searchButtton) {
+    searchButtton.addEventListener('click', () => {
       const params2 = queryString();
       const countryList2 = [
         ...new Set(
           distributors
             .filter(({ Region }) => Region.toLowerCase().includes(params2.region.toLowerCase()) > 0)
-            .map(({ Country }) => Country),
+            .map(({ DisplayCountry }) => DisplayCountry),
         ),
       ];
       const formWrapper = getSelectOptions(countryList2);
@@ -133,18 +142,20 @@ export default async function decorate(block) {
     });
   }
   const renderAddress = () => {
-    let countryName = document.getElementById('country').value;
-    let productFamily = document.getElementById('product_family').value;
+    const displayCountryName = document.getElementById('country').value;
+    const displayProductFamily = document.getElementById('product_family').value;
+    let countryName = distributorsMap[displayCountryName];
+    let productFamily = displayProductFamily ? productFamilyMap[displayProductFamily] : '';
 
     if (!countryName && params.country) {
       countryName = params.country;
       productFamily = params.product_family;
-      document.getElementById('country').value = params.country;
-      document.getElementById('product_family').value = params.product_family;
+      [document.getElementById('country').value] = Object.entries(distributorsMap).find(([, value]) => value === params.country);
+      [document.getElementById('product_family').value] = Object.entries(productFamilyMap).find(([, value]) => value === params.product_family) || [''];
     }
     if (!countryName) {
-      countryName = 'United States';
-      document.querySelector('#country').value = countryName;
+      countryName = 'united-states';
+      document.querySelector('#country').value = 'United States';
     }
 
     const filterdata = distributors
@@ -190,7 +201,7 @@ export default async function decorate(block) {
         resultHeading.classList.add('no-result');
         resultHeading.textContent = 'NO RESULT FOUND';
       } else {
-        resultHeading.textContent = row.Country;
+        resultHeading.textContent = displayCountryName;
         finalHtml += `
                       <div class="search-result-content ${customClass}-result">
                         <div class="type">${row.Type}</div>
@@ -220,14 +231,15 @@ export default async function decorate(block) {
 
   const searchResult = document.createElement('div');
   searchResult.setAttribute('class', 'search-result');
-  const formWrapper = searchDistributorForm(countryList, productFamilyList);
+  const formWrapper = searchDistributorForm(countryList,
+    productFamilyList.map((family) => family.DisplayPrimaryProducts));
   document.querySelector('.local-distributor > div').lastElementChild.innerHTML = formWrapper;
   document.querySelector('.local-distributor').appendChild(searchResult);
   const searchButton = document.getElementById('searchButton');
 
   searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-unused-expressions
-    window.location.pathname === '/contact' ? redirectToContactSearch() : renderAddress();
+    window.location.pathname === '/contact' ? redirectToContactSearch(distributorsMap, productFamilyMap) : renderAddress();
     decorateIcons(block);
   });
 
