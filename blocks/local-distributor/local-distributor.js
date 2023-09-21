@@ -94,8 +94,8 @@ function redirectToContactSearch(distributorsMap, productFamilyMap) {
 export default async function decorate(block) {
   const params = queryString();
 
-  const distributors = await ffetch('/drafts/mhaack/local-distibutors.json').withFetch(fetch).all();
-  const productFamilyList = await ffetch('/drafts/mhaack/local-distibutors.json')
+  const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
+  const productFamilyList = await ffetch('/contact/local-distibutors.json')
     .sheet('PF')
     .all();
   const distributorsMap = {};
