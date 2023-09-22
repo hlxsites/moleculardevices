@@ -1,5 +1,5 @@
 import {
-  readBlockConfig, decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
+  decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
