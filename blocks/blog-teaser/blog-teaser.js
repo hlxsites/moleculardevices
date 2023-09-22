@@ -60,15 +60,8 @@ export default async function decorate(block) {
   const isFeaturedBlock = block.classList.contains('featured');
 
   if (isFeaturedBlock) {
-    const featuredPostLinks = await ffetch('/query-index.json')
-      .sheet('blog')
-      .filter((post) => featuredPostUrl.indexOf(post.path) !== -1)
-      .limit(1)
-      .all();
-    featuredPostLinks.forEach((post) => {
-      const link = a({ href: post.path });
-      blogPostLinks.push(link);
-    });
+    const link = a({ href: (new URL(featuredPostUrl)).pathname });
+    blogPostLinks.push(link);
   } else {
     const recentPostLinks = await ffetch('/query-index.json')
       .sheet('blog')
