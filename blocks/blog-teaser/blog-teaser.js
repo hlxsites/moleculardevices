@@ -59,25 +59,23 @@ export default async function decorate(block) {
   block.innerHTML = '';
   const isFeaturedBlock = block.classList.contains('featured');
 
-  const featuredPostLinks = await ffetch('/query-index.json')
+  if (isFeaturedBlock) {
+    const featuredPostLinks = await ffetch('/query-index.json')
     .sheet('blog')
     .filter((post) => featuredPostUrl.indexOf(post.path) !== -1)
     .limit(1)
     .all();
-
-  const recentPostLinks = await ffetch('/query-index.json')
-    .sheet('blog')
-    .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
-    .chunks(5)
-    .limit(3)
-    .all();
-
-  if (isFeaturedBlock) {
     featuredPostLinks.forEach((post) => {
       const link = a({ href: post.path });
       blogPostLinks.push(link);
     });
   } else {
+    const recentPostLinks = await ffetch('/query-index.json')
+    .sheet('blog')
+    .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
+    .chunks(5)
+    .limit(3)
+    .all();
     recentPostLinks.forEach((post) => {
       const link = a({ href: post.path });
       blogPostLinks.push(link);
