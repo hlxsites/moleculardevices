@@ -1,5 +1,5 @@
 import {
-  readBlockConfig, decorateIcons, decorateBlock, fetchPlaceholders,
+  decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -162,10 +162,9 @@ function decorateSocialMediaLinks(socialIconsContainer) {
  */
 
 export default async function decorate(block) {
-  const cfg = readBlockConfig(block);
   block.textContent = '';
 
-  const footerPath = cfg.footer || '/footer';
+  const footerPath = getMetadata('footer') || '/footer';
 
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
