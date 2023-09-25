@@ -1,4 +1,6 @@
-import { div, img, span, iframe, h3, p, button } from '../../scripts/dom-helpers.js';
+import {
+  div, img, span, iframe, h3, p, button,
+} from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
 
 function showNewsletterModal() {
@@ -19,7 +21,7 @@ function stopProp(e) {
 
 function triggerModalBtn() {
   const scrollFromTop = window.scrollY;
-  const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 2);
+  const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 2.25);
 
   const modalBtn = document.getElementById('show-newsletter-modal');
 
