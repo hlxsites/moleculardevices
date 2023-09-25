@@ -283,8 +283,6 @@ main .section.sidebar h4::after {
   z-index: 1000;
   padding: 80px 20px;
   overflow-y: auto;
-  display: flex;
-  align-items: center;
 }
 
 .newsletter-modal-overlay[aria-hidden="true"] {
