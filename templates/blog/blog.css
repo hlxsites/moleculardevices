@@ -1,5 +1,9 @@
 :root {
-  --blog-underline-gradient: linear-gradient(90deg,rgba(21,145,164,1) 0,rgba(46,159,121,1) 50%,rgba(97,178,73,1) 100%);
+  --blog-gradient: linear-gradient(90deg,
+      rgba(21, 145, 164, 1) 0,
+      rgba(46, 159, 121, 1) 50%,
+      rgba(97, 178, 73, 1) 100%);
+  --blog-gradient-left: linear-gradient(to left, rgba(21, 145, 164, 1) 0, rgba(50, 159, 121, 1) 50%, rgba(97, 178, 73, 1) 100%);
 }
 
 .blog {
@@ -14,17 +18,17 @@
   margin-bottom: 0;
 }
 
-.blog strong {
+.blog main strong {
   font-family: var(--ff-proxima-regular);
 }
 
-.blog p {
+.blog main p {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-.blog ul,
-.blog ol {
+.blog main ul,
+.blog main ol {
   margin-top: 0;
   margin-bottom: 10px;
   padding-left: 40px;
@@ -35,26 +39,27 @@
   padding-left: 20px;
 }
 
-.blog table ul,
-.blog table ol {
+.blog main table ul,
+.blog main table ol {
   margin-left: 15px;
 }
 
-.blog ul ul {
+.blog main ul ul {
   margin-bottom: 0;
 }
 
-.blog ol li > picture img, .blog ul li > picture img {
+.blog main ol li > picture img,
+.blog main ul li > picture img {
     display: block;
     margin: 20px auto;
 }
 
-.blog ol.text-caption {
+.blog main ol.text-caption {
   margin-top: 40px;
   position: relative;
 }
 
-.blog ol.text-caption::before {
+.blog main ol.text-caption::before {
   content: "";
   top: -21px;
   left: 0;
@@ -64,17 +69,17 @@
   position: absolute;
 }
 
-.blog h2 {
+.blog main h2 {
   font-size: 54px;
   color: #008da9;
   font-family: inherit;
   line-height: 1;
-  font-weight: 100;;
+  font-weight: 100;
   margin-top: 43px;
   margin-bottom: 20px;
 }
 
-.blog h3 {
+.blog main h3 {
   display: inline-block;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -82,8 +87,8 @@
   line-height: 30px;
 }
 
-.blog h3 + ol,
-.blog h3 + ul{
+.blog main h3 + ol,
+.blog main h3 + ul{
   margin-top: 10px;
 }
 
@@ -97,7 +102,7 @@
   width: unset;
 }
 
-.blog .columns-wrapper:has(h3) { /* ?? */
+.blog .columns-wrapper:has(h3) {
   margin-top: 30px;
 }
 
@@ -132,8 +137,8 @@
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: #61b249;
-  background: var(--blog-underline-gradient);
+  background-color: var(--background-color-green);
+  background: var(--blog-gradient);
 }
 
 .blog .section.blog-heading > div:first-of-type p {
@@ -153,7 +158,6 @@ main .section.sidebar h4,
   width: 178px;
 }
 
-
 .blog .section.green-secondary-buttons .button {
   color: var(--text-green);
 }
@@ -162,8 +166,6 @@ main .section.sidebar h4,
   color: var(--text-orange);
   border: 2px solid var(--text-orange);
 }
-
-
 
 @media only screen and (max-width: 767px) {
   .blog .section.blog-heading > div:first-of-type {
@@ -231,8 +233,8 @@ main .section.sidebar h4::after {
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: #61b249;
-  background: var(--blog-underline-gradient);
+  background-color: var(--background-color-green)
+  background: var(--blog-gradient);
 }
 
 .blog main .section.sidebar .embed-wrapper {
@@ -261,10 +263,6 @@ main .section.sidebar h4::after {
   }
 }
 
-.blog .card-thumb a[href*="3d-organoids-and-automation-of-complex-cell-assays"] img {
-  object-position: right;
-}
-
 .blog .card-caption h3 {
   line-height: 1.1;
   margin-top: 0;
@@ -272,4 +270,146 @@ main .section.sidebar h4::after {
 
 .blog .section > div.embed-wrapper > div.embed{
   margin-top: 10px;
+}
+
+/* POPUP */
+.newsletter-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 60%);
+  z-index: 1000;
+  padding: 80px 20px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+}
+
+.newsletter-modal-overlay[aria-hidden="true"] {
+  display: none;
+}
+
+.newsletter-inner-wrapper {
+  margin: 0 auto;
+  position: relative;
+  background-color: rgba(50, 159, 121, 1);
+  background-image: var(--blog-gradient-left);
+}
+
+.newsletter-inner-wrapper,
+.newsletter-inner-wrapper .modal-iframe-wrapper {
+  padding: 20px;
+}
+
+.newsletter-inner-wrapper .modal-iframe-wrapper > div {
+  border-radius: 8px;
+  position: relative;
+  border: 2px solid #fff;
+  padding: 20px 20px 0;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.43);
+  text-align: center;
+}
+
+.newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.newsletter-inner-wrapper .modal-iframe-wrapper > div p {
+  font-size: 15px;
+}
+
+.newsletter-inner-wrapper .modal-iframe-wrapper > div iframe,
+.blog .section > div.embed-wrapper > div.embed.spectra-newsletter iframe {
+  border: 0;
+  width: 100%;
+  min-height: 300px;
+}
+
+.newsletter-modal-overlay .newsletter-button-close {
+  position: absolute;
+  top: -50px;
+  right: -5px;
+  display: block;
+  cursor: pointer;
+}
+
+.newsletter-modal-overlay .newsletter-button-close svg {
+  width: 44px;
+  height: auto;
+}
+
+.newsletter-modal-overlay .newsletter-button-close svg path {
+  fill: none;
+  color: #fff;
+}
+
+.newsletter-inner-wrapper .columns-2-cols {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.newsletter-inner-wrapper .columns-2-cols .newsletter-col {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.newsletter-inner-wrapper .columns-2-cols .newsletter-col img {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
+.blog .section > div.embed-wrapper > div.embed.spectra-newsletter {
+  padding: 20px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: var(--blog-gradient-left);
+  color: #fff;
+  margin-top: -17px;
+  min-height: 460px;
+  position: relative;
+  z-index: -1;
+  margin-bottom: 50px;
+}
+
+.blog .section > div.embed-wrapper > div.embed.spectra-newsletter h5 {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 992px) {
+  .newsletter-inner-wrapper {
+    width: 900px;
+  }
+
+  .newsletter-inner-wrapper .columns-2-cols {
+    align-items: center;
+  }
+
+  .newsletter-inner-wrapper .columns-2-cols .newsletter-col {
+    width: 50%;
+  }
+
+  .newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
+    font-size: 36px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .newsletter-inner-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .newsletter-modal-overlay {
+    display: block;
+  }
 }
