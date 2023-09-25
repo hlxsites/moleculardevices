@@ -2014,3 +2014,15 @@ main .section.space-wrappers > div {
   width: auto;
   height: auto;
 }
+
+.list-spacing-8 ul li:not(:last-child){
+  margin-bottom: 8px;
+}
+
+.list-spacing-10 ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+
+.list-spacing-16 ul li:not(:last-child){
+  margin-bottom: 16px;
+}
