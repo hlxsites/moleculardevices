@@ -51,8 +51,8 @@
 
 .blog .footer-contact ol li > picture img,
 .blog .footer-contact ul li > picture img {
-  display: unset;
-  margin: unset;
+  display: inline-block;
+  margin: 0;
 }
 
 .blog ol.text-caption {
@@ -94,7 +94,7 @@
 }
 
 .blog .footer .row-1 h3 + ul {
-  margin-top: unset;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
