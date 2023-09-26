@@ -94,6 +94,69 @@ main .section>div.columns-wrapper {
   padding: 80px 0;
 }
 
+.columns.columns-sitemap h3 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-family: var(--ff-proxima-light);
+}
+
+.columns.columns-sitemap h4{
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+  font-size: var(--list-font-size-l);
+  text-transform: uppercase;
+}
+
+.columns.columns-sitemap h5{
+  font-weight: bold;
+  font-size: var(--body-font-size-m);
+}
+
+.columns.columns-sitemap ul,
+.columns.columns-sitemap h4{
+  margin: 0;
+  padding: 0;
+}
+
+.columns.columns-sitemap ul{
+  margin-bottom: 30px;
+  color: var(--text-color);
+  margin-top: 4px;
+}
+
+.columns.columns-sitemap a,
+.columns.columns-sitemap a .fa-external-link{
+  color: inherit;
+}
+
+.columns.columns-sitemap a:hover{
+  color: var(--link-hover-color);
+}
+
+.columns.columns-sitemap h4 + h4{
+  margin-top: 20px;
+}
+
+.columns.columns-sitemap h4 ~ h3 {
+  margin-top: 40px;
+}
+
+.columns.columns-sitemap h4 ~ h5{
+  padding-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 4px;
+}
+
+.columns.columns-sitemap h4 ~ ul{
+  padding-left: 40px;
+}
+
+.columns.columns-sitemap ul ul{
+  padding-left: 20px;
+  list-style: disc;
+  margin-bottom: 0;
+}
+
 .columns.contact > div > div {
   background-color: var(--background-color);
   width: 100%;
@@ -116,6 +179,7 @@ main .section>div.columns-wrapper {
   padding: 0 24px;
 }
 
+/* stylelint-disable no-descending-specificity */
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
@@ -368,7 +432,6 @@ main .section>div.columns-wrapper {
 
 }
 
-/* stylelint-disable no-descending-specificity */
 .section .columns p:has(>.video-wrapper),
 .section .columns p:has(>.video-wrapper) ~ p,
 .section .columns div:has(>picture),
