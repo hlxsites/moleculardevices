@@ -69,7 +69,10 @@ function buildTools(content) {
 
 function addIndividualComponents(block) {
   // search for div with menu-id resources
-  const resources = block.querySelector('div[menu-id="resources"]').parentElement;
+  const resourceEl = block.querySelector('div[menu-id="resources"]');
+  if (!resourceEl) return;
+
+  const resources = resourceEl.parentElement;
   const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
 
   // add search bar to right submenu

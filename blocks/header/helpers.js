@@ -111,6 +111,8 @@ export function buildRequestQuote(classes) {
 
 export function decorateLanguagesTool(tools) {
   const languageTool = tools.querySelector('li:nth-child(2)');
+  if (!languageTool) return;
+
   const languagesList = languageTool.querySelector('ul');
   languagesList.classList.add('languages-dropdown');
 
