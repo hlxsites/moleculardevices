@@ -51,7 +51,7 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .nav-brand {
+header .nav-brand:not(.custom-logo) {
   background-image: url('/images/header-menus/logo.svg');
   background-position: top;
   background-repeat: no-repeat;
@@ -1483,7 +1483,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     display: initial;
   }
 
-  header .nav-brand {
+  header .nav-brand:not(.custom-logo) {
     width: 100px;
     height: 27px;
   }

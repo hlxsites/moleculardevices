@@ -54,12 +54,13 @@ export function expandMenu(element) {
 
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-  logoImg.innerHTML = '';
 
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );
+
   logoLink.innerHTML = logoImg.outerHTML;
+  logoImg.innerHTML = '';
 
   const logoWrapper = div(
     { id: 'header-logo' },
