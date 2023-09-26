@@ -49,6 +49,11 @@
     margin: 20px auto;
 }
 
+.blog .footer-contact ul li > picture img {
+  display: unset;
+  margin: unset;
+}
+
 .blog ol.text-caption {
   margin-top: 40px;
   position: relative;
