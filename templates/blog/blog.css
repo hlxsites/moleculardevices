@@ -95,9 +95,12 @@
 
 .blog .footer .row-1 h3 + ul {
   margin-top: unset;
-  margin-bottom: unset;
+  margin-bottom: 0;
 }
 
+.blog .footer .row-1 h3+h3 {
+  margin-top: 0;
+}
 
 .blog .section > div:not(.hero-wrapper) {
   max-width: 800px;
