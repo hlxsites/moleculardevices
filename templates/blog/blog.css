@@ -49,6 +49,12 @@
     margin: 20px auto;
 }
 
+.blog .footer-contact ol li > picture img,
+.blog .footer-contact ul li > picture img {
+  display: unset;
+  margin: unset;
+}
+
 .blog ol.text-caption {
   margin-top: 40px;
   position: relative;
@@ -85,6 +91,15 @@
 .blog h3 + ol,
 .blog h3 + ul{
   margin-top: 10px;
+}
+
+.blog .footer .row-1 h3 + ul {
+  margin-top: unset;
+  margin-bottom: 0;
+}
+
+.blog .footer .row-1 h3+h3 {
+  margin-top: 0;
 }
 
 .blog .section > div:not(.hero-wrapper) {
