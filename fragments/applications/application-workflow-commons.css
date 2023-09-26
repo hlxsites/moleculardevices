@@ -89,6 +89,10 @@
   margin: 0 auto;
 }
 
+#conference-timeline.plasmid-production-timeline .conference-center-line {
+  height: 74%;
+}
+
 #conference-timeline .conference-timeline-content {
   padding-top: 67px;
   padding-bottom: 67px;
