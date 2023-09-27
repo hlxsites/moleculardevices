@@ -1,11 +1,6 @@
 <link rel="stylesheet" href="/fragments/applications/application-workflow-commons.css" />
-<style>
-  #conference-timeline .conference-center-line {
-    height: 74%;
-  }
-</style>
 
-<section class="workflow_elisa" id="conference-timeline">
+<section class="workflow_elisa plasmid-production-timeline" id="conference-timeline">
   <div class="timeline-start">Workflow: Plasmid Production</div>
   <div class="conference-center-line">&nbsp;</div>
   <div class="conference-timeline-content pb-0">
@@ -92,7 +87,7 @@
       <div class="content-right-container">
         <div class="content-right image-section ">
           <div class="image_part">
-            <img src="/images/workflows/qpix-microbial-colony-picker.jpg" alt="Colony Picking" loading="lazy" style="height: 150px;" />
+            <img src="/images/workflows/colony-picking.png" alt="Colony Picking" loading="lazy" />
           </div>
           <div class="text-part add_detection">
             <h3>Colony Picking</h3>
