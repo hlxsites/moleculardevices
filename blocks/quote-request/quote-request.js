@@ -280,7 +280,7 @@ export default async function decorate(block) {
     let rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
-    if (rfqData || window.location.host.includes(PREVIEW_DOMAIN)) {
+    if (rfqData || (window.location.host.includes(PREVIEW_DOMAIN) && pid)) {
       block.appendChild(
         div({
           id: 'step-3',
