@@ -260,7 +260,7 @@ function stepTwo(tab, event) {
   const fetchRQFTypes = createRFQListBox(filterData, stepNum);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3(`Please select field of interest`));
+  root.appendChild(h3('Please select field of interest'));
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
   root.appendChild(createBackBtn(stepNum));
