@@ -5,6 +5,8 @@ Sitemap: https://www.moleculardevices.com/sitemap.xml
 
 Disallow: /sites/default/files/en/assets/app-note/
 Disallow: /fragments/
+Disallow: /modal/nojs/view/node/
+Disallow: /node/
 
 
 # PDF (ebook PDF Block)
