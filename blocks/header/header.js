@@ -91,6 +91,8 @@ export default async function decorate(block) {
   // fetch nav content
   const content = await fetchHeaderContent();
 
+  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
+
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
@@ -102,8 +104,10 @@ export default async function decorate(block) {
   headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
   headerWrapper.append(navbarHeader);
 
-  const megaMenu = buildNavbar(content);
-  const mobileMenu = buildMobileMenu(content);
+  const hideSearch = hasCustomLogo;
+  const hideGlobalRFQ = hasCustomLogo;
+  const megaMenu = buildNavbar(content, hideSearch, hideGlobalRFQ);
+  const mobileMenu = buildMobileMenu(content, hideSearch, hideGlobalRFQ);
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();
