@@ -220,6 +220,11 @@
   max-height: 100%;
 }
 
+.footer .row-1 h3:first-child,
+.footer .row-4 h3:first-child {
+  margin-top: 0;
+}
+
 @media (max-width: 767px) {
   .footer h3+h3 {
     margin-top: 20px;
