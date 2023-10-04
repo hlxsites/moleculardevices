@@ -54,12 +54,13 @@ export function expandMenu(element) {
 
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-  logoImg.innerHTML = '';
 
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );
+
   logoLink.innerHTML = logoImg.outerHTML;
+  logoImg.innerHTML = '';
 
   const logoWrapper = div(
     { id: 'header-logo' },
@@ -111,6 +112,8 @@ export function buildRequestQuote(classes) {
 
 export function decorateLanguagesTool(tools) {
   const languageTool = tools.querySelector('li:nth-child(2)');
+  if (!languageTool) return;
+
   const languagesList = languageTool.querySelector('ul');
   languagesList.classList.add('languages-dropdown');
 

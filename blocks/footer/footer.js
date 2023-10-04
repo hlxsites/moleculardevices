@@ -85,6 +85,7 @@ async function renderNews(container) {
 }
 
 async function buildNewsEvents(container) {
+  if (!container) return;
   [...container.children].forEach((row, j) => {
     [...row.children].forEach((column, k) => {
       column.classList.add('toggle');
@@ -209,18 +210,19 @@ export default async function decorate(block) {
    In most cases it is expected that the newsletter is already present when the user has
    scrolled down to it.
   */
-  const newsletterContainter = block.querySelector('.footer-newsletter-form');
+  const newsletterContainer = block.querySelector('.footer-newsletter-form');
+  if (newsletterContainer) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        observer.disconnect();
+        buildNewsletter(newsletterContainer);
+      }
+    });
+    observer.observe(newsletterContainer);
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
+    setTimeout(() => {
       observer.disconnect();
-      buildNewsletter(newsletterContainter);
-    }
-  });
-  observer.observe(newsletterContainter);
-
-  setTimeout(() => {
-    observer.disconnect();
-    buildNewsletter(newsletterContainter);
-  }, 3000);
+      buildNewsletter(newsletterContainer);
+    }, 3000);
+  }
 }

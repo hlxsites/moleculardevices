@@ -50,7 +50,7 @@ function addEventListenersDesktop() {
   ];
   searchFormsIds.forEach((id) => {
     const element = document.getElementById(id);
-    element.addEventListener('submit', (e) => {
+    element?.addEventListener('submit', (e) => {
       e.preventDefault();
       e.stopPropagation();
       submitSearchForm(e, id);
@@ -81,7 +81,7 @@ function addEventListenersMobile() {
   ];
   searchFormsIds.forEach((id) => {
     const element = document.getElementById(id);
-    element.addEventListener('submit', (e) => {
+    element?.addEventListener('submit', (e) => {
       e.preventDefault();
       e.stopPropagation();
       submitSearchForm(e, id);

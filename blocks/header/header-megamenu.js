@@ -164,7 +164,7 @@ export async function buildLazyMegaMenus() {
   body.setAttribute('built-lazy-megamenus', 'true');
 }
 
-export function buildNavbar(content) {
+export function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   // link section
   const navMenuUl = ul({ class: 'nav-tabs' });
 
@@ -193,8 +193,12 @@ export function buildNavbar(content) {
     navMenuUl.append(item);
   });
 
-  navMenuUl.append(buildSearch(content));
-  navMenuUl.append(buildRequestQuote('header-rfq'));
+  if (!hideSearch) {
+    navMenuUl.append(buildSearch(content));
+  }
+  if (!hideGlobalRFQ) {
+    navMenuUl.append(buildRequestQuote('header-rfq'));
+  }
 
   const megaMenu = div(
     { class: 'mainmenu-wrapper sticky-element sticky-desktop' },
