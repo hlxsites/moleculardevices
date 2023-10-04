@@ -140,7 +140,6 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
 
   .tabs-vertical-list .nav-tabs li.active a {
     font-family: var(--ff-proxima-xbold);
-    cursor: unset;
   }
 
   .tabs-vertical-main-content h3 {
@@ -293,6 +292,8 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
 
   .tabs-vertical-main-content .button.secondary {
     padding: 16px 24px;
-    margin-top: 40px;
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
   }
 }
