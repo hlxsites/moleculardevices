@@ -149,13 +149,13 @@ main .carousel-dot-button.selected {
     border: 1px solid #fff;
   }
 
+  main .carousel.full-bg .primary:focus {
+    color: #fff;
+  }
+
   main .carousel.full-bg .primary:hover {
     color: var(--link-hover-color);
     background-color: #fff;
-  }
-
-  main .carousel.full-bg .primary:focus {
-    color: #fff;
   }
 
   main .carousel.full-bg .primary:hover .button-border{
