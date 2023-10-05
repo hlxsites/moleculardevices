@@ -154,6 +154,10 @@ main .carousel-dot-button.selected {
     background-color: #fff;
   }
 
+  main .carousel.full-bg .primary:focus {
+    color: #fff;
+  }
+
   main .carousel.full-bg .primary:hover .button-border{
     display: none;
   }
@@ -182,7 +186,7 @@ main .carousel-dot-button.selected {
 
   main .carousel.full-bg .carousel-item-columns-container {
     justify-content: flex-end;
-    min-height: 590px;
+    min-height: 500px;
   }
 
   main .carousel.full-bg .carousel-item-image img {
