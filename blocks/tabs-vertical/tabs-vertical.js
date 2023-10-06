@@ -68,8 +68,7 @@ function buildNav(block) {
     const a = document.createElement('a');
     a.textContent = title.textContent;
     a.setAttribute('aria-label', title.textContent);
-    console.log(title.children.length > 0);
-    if(title.children.length > 0){
+    if (title.children.length > 0) {
       a.classList.add('cursor-pointer');
       a.href = title.children[0].href;
 
@@ -82,7 +81,7 @@ function buildNav(block) {
           toggleNav(block, e.target, i);
         });
       }
-    }else{
+    } else {
       a.classList.add('cursor-unset');
       a.addEventListener('click', (e) => {
         toggleNav(block, e.target, i);
