@@ -73,8 +73,8 @@ export default async function decorate(block) {
       const observer = new MutationObserver(() => {
         const el = document.getElementById(id);
         if (el) {
-          el.scrollIntoView();
           observer.disconnect();
+          window.dispatchEvent(new Event('hashchange'));
         }
       });
       observer.observe(document.body, {
