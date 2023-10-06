@@ -67,6 +67,7 @@ main .carousel-item-text h3 {
 
 main .carousel-item-text .button-container {
   display: inline-block;
+  margin-top: 0;
 }
 
 main .carousel-item-text .button-container .secondary {
@@ -237,6 +238,7 @@ main .carousel-dot-button.selected {
 
   main .carousel-item-text .button-container {
     margin-top: 30px;
+    margin-bottom: 0;
     max-width: 200px !important;
     width: 100% !important;
   }
