@@ -18,6 +18,27 @@ function openTab(target) {
   }
 }
 
+function getActiveTabId(namedSections) {
+  const activeHash = window.location.hash;
+  let activeTabId = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const tabExists = namedSections.some((section) => section.getAttribute('data-name') === activeTabId);
+  if (!tabExists) {
+    activeTabId = namedSections[0].getAttribute('data-name');
+  }
+  return activeTabId;
+}
+
+function followInternalAnchor(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    window.scrollTo({
+      left: 0,
+      top: el.offsetTop - 10,
+      behavior: 'smooth',
+    });
+  }
+}
+
 async function createTabList(sections, active) {
   const placeholders = await fetchPlaceholders();
 
@@ -46,32 +67,32 @@ export default async function decorate(block) {
   const sections = main.querySelectorAll('div.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
+    const activeTabId = getActiveTabId(namedSections);
+    if (activeTabId) {
+      sections.forEach((section) => {
+        if (activeTabId === section.getAttribute('aria-labelledby')) {
+          section.setAttribute('aria-hidden', false);
+        } else {
+          section.setAttribute('aria-hidden', true);
+        }
+      });
+      block.append(await createTabList(namedSections, activeTabId));
+    }
     const activeHash = window.location.hash;
     const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-
-    const tabExists = namedSections.some((section) => section.getAttribute('data-name') === id);
-    let activeTab = id;
-    if (!tabExists) {
-      const element = document.getElementById(id);
-      if (element) {
-        activeTab = element.closest('.tabs')?.getAttribute('aria-labelledby');
-        setTimeout(() => {
-          element.scrollIntoView();
-        }, 5000);
-      } else {
-        activeTab = namedSections[0].getAttribute('data-name');
-      }
+    if (id && activeTabId !== id) {
+      const observer = new MutationObserver(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          followInternalAnchor(id);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.querySelector('main'), {
+        subtree: true,
+        childList: true,
+      });
     }
-
-    sections.forEach((section) => {
-      if (activeTab === section.getAttribute('aria-labelledby')) {
-        section.setAttribute('aria-hidden', false);
-      } else {
-        section.setAttribute('aria-hidden', true);
-      }
-    });
-
-    block.append(await createTabList(namedSections, activeTab));
   }
 
   window.addEventListener('hashchange', () => {
