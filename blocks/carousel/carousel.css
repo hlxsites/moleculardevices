@@ -4,6 +4,8 @@
   Variant stylings can be found below.
 */
 
+/* stylelint-disable no-descending-specificity */
+
 main div.carousel-wrapper {
   width: 100%;
   position: relative;
@@ -44,7 +46,6 @@ main .carousel-item-columns-container {
 
 main .carousel-item-column {
   width: 50%;
-  padding: 0 15px;
 }
 
 main .carousel-item-image img {
@@ -54,6 +55,11 @@ main .carousel-item-image img {
   max-height: 400px; /* default - same as .products */
 }
 
+main .carousel.full-bg .carousel-item {
+  position: relative;
+  border-width: 1px;
+}
+
 main .carousel-item-text h3 {
   font-size: 32px;
   font-weight: lighter;
@@ -61,6 +67,16 @@ main .carousel-item-text h3 {
 
 main .carousel-item-text .button-container {
   display: inline-block;
+  margin-top: 0;
+}
+
+main .carousel.full-bg .carousel-item-text .button-container {
+  width: 100%;
+  max-width: 80%;
+}
+
+main .carousel.full-bg .primary {
+  width: 100%;
 }
 
 main .carousel-item-text .button-container .secondary {
@@ -137,10 +153,67 @@ main .carousel-dot-button.selected {
   }
 }
 
+@media only screen and (min-width: 992px) {
+  main .carousel.full-bg .primary {
+    background-color: transparent;
+    border: 1px solid #fff;
+  }
+
+  main .carousel.full-bg .primary:focus {
+    color: #fff;
+  }
+
+  main .carousel.full-bg .primary:hover {
+    color: var(--link-hover-color);
+    background-color: #fff;
+  }
+
+  main .carousel.full-bg .primary:hover .button-border{
+    display: none;
+  }
+
+  main .carousel.full-bg .carousel-item-column:first-child {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+  }
+
+  main .carousel.full-bg .carousel-item-column:last-child {
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  main .carousel.full-bg .carousel-item-column:first-child ,
+  main .carousel.full-bg .carousel-item-image,
+  main .carousel.full-bg .carousel-item-image .picture,
+  main .carousel.full-bg .carousel-item-image img {
+    height: 100%;
+  }
+
+  main .carousel.full-bg .carousel-item-columns-container {
+    justify-content: flex-end;
+    min-height: 500px;
+  }
+
+  main .carousel.full-bg .carousel-item-image img {
+    object-fit: cover;
+    max-height: 100%;
+  }
+
+  main .carousel.full-bg .carousel-item-column:first-child .picture:last-child {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   main .carousel-item-columns-container {
     flex-direction: column;
     gap: 30px;
+    padding: 30px 50px;
   }
 
   main .carousel-item-column {
@@ -151,6 +224,10 @@ main .carousel-dot-button.selected {
 
   main .carousel-item-image img {
     max-height: 300px;
+  }
+
+  main .carousel.full-bg .carousel-item-column:first-child .picture:first-child {
+    display: none;
   }
 }
 
@@ -170,6 +247,7 @@ main .carousel-dot-button.selected {
 
   main .carousel-item-text .button-container {
     margin-top: 30px;
+    margin-bottom: 0;
     max-width: 200px !important;
     width: 100% !important;
   }
