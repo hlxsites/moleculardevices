@@ -73,12 +73,7 @@ export default async function decorate(block) {
       const observer = new MutationObserver(() => {
         const el = document.getElementById(id);
         if (el) {
-          console.log('elem exists');
-          window.scrollTo({
-            left: 0,
-            top: el.offsetTop - 10,
-            behavior: 'smooth',
-          });
+          el.scrollIntoView();
           observer.disconnect();
         }
       });
