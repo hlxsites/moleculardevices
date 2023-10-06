@@ -69,7 +69,8 @@ export default async function decorate(block) {
         }
       });
       block.append(await createTabList(namedSections, activeTabId));
-    } else {
+    
+    if (!tabExists(namedSections, activeTabId)) {
       const activeHash = window.location.hash;
       const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
       const observer = new MutationObserver(() => {
