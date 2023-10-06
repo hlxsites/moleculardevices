@@ -34,6 +34,7 @@ main .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 50px 80px;     /* default - same as .products */
 }
 
 main .carousel-item-columns-container {
@@ -41,7 +42,6 @@ main .carousel-item-columns-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 80px;
 }
 
 main .carousel-item-column {
