@@ -28,17 +28,6 @@ function getActiveTabId(namedSections) {
   return activeTabId;
 }
 
-function followInternalAnchor(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    window.scrollTo({
-      left: 0,
-      top: el.offsetTop - 10,
-      behavior: 'smooth',
-    });
-  }
-}
-
 async function createTabList(sections, active) {
   const placeholders = await fetchPlaceholders();
 
@@ -84,11 +73,16 @@ export default async function decorate(block) {
       const observer = new MutationObserver(() => {
         const el = document.getElementById(id);
         if (el) {
-          followInternalAnchor(id);
+          console.log('elem exists');
+          window.scrollTo({
+            left: 0,
+            top: el.offsetTop - 10,
+            behavior: 'smooth',
+          });
           observer.disconnect();
         }
       });
-      observer.observe(document.querySelector('main'), {
+      observer.observe(document.body, {
         subtree: true,
         childList: true,
       });
