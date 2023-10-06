@@ -18,11 +18,14 @@ function openTab(target) {
   }
 }
 
+function tabExists(namedSections, tabId) {
+  return namedSections.some((section) => section.getAttribute('data-name') === tabId);
+}
+
 function getActiveTabId(namedSections) {
   const activeHash = window.location.hash;
   let activeTabId = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const tabExists = namedSections.some((section) => section.getAttribute('data-name') === activeTabId);
-  if (!tabExists) {
+  if (!tabExists(namedSections, activeTabId)) {
     activeTabId = namedSections[0].getAttribute('data-name');
   }
   return activeTabId;
@@ -57,7 +60,7 @@ export default async function decorate(block) {
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
   if (namedSections) {
     const activeTabId = getActiveTabId(namedSections);
-    if (activeTabId) {
+    if (tabExists(namedSections, activeTabId)) {
       sections.forEach((section) => {
         if (activeTabId === section.getAttribute('aria-labelledby')) {
           section.setAttribute('aria-hidden', false);
@@ -66,10 +69,9 @@ export default async function decorate(block) {
         }
       });
       block.append(await createTabList(namedSections, activeTabId));
-    }
-    const activeHash = window.location.hash;
-    const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-    if (id && activeTabId !== id) {
+    } else {
+      const activeHash = window.location.hash;
+      const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
       const observer = new MutationObserver(() => {
         const el = document.getElementById(id);
         if (el) {
