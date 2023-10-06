@@ -70,6 +70,15 @@ main .carousel-item-text .button-container {
   margin-top: 0;
 }
 
+main .carousel.full-bg .carousel-item-text .button-container {
+  width: 100%;
+  max-width: 80%;
+}
+
+main .carousel.full-bg .primary {
+  width: 100%;
+}
+
 main .carousel-item-text .button-container .secondary {
   margin-left: 15px;
 }
