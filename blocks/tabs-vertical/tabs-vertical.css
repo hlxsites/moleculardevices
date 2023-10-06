@@ -34,7 +34,7 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
 .tabs-vertical-main-content .button.secondary {
   border: 1px solid #fff;
   color: var(--text-white);
-  padding: 16px 30px;
+  padding: 16px;
   margin-top: 15px;
   width: 80%;
   white-space: break-spaces;
