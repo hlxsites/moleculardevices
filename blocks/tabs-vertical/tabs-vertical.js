@@ -68,9 +68,26 @@ function buildNav(block) {
     const a = document.createElement('a');
     a.textContent = title.textContent;
     a.setAttribute('aria-label', title.textContent);
-    a.addEventListener('click', (e) => {
-      toggleNav(block, e.target, i);
-    });
+    if (title.children.length > 0) {
+      a.classList.add('cursor-pointer');
+      a.href = title.children[0].href;
+
+      if (window.innerWidth > 768) {
+        a.addEventListener('mouseover', (e) => {
+          toggleNav(block, e.target, i);
+        });
+      } else {
+        a.addEventListener('click', (e) => {
+          toggleNav(block, e.target, i);
+        });
+      }
+    } else {
+      a.classList.add('cursor-unset');
+      a.addEventListener('click', (e) => {
+        toggleNav(block, e.target, i);
+      });
+    }
+
     li.appendChild(a);
     ul.appendChild(li);
   });
