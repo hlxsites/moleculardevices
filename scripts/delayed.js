@@ -90,6 +90,14 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
+function laodSalessoft(){
+  (function(i,s,o,g,r,a,m){i['SLScoutObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://scout-cdn.salesloft.com/sl.js','slscout');
+    slscout(["init", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoxMTA4OTF9.VTtiOYLfvqPpOmg9SD5Pl4uz7Zmn-achb0JFgYmfFs0"])
+}
+
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
   loadUserData();
@@ -99,10 +107,9 @@ if (!isSidekickLibrary) {
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
   }
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+    laodSalessoft();
+  }
+  
 }
 
-(function(i,s,o,g,r,a,m){i['SLScoutObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://scout-cdn.salesloft.com/sl.js','slscout');
-    slscout(["init", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoxMTA4OTF9.VTtiOYLfvqPpOmg9SD5Pl4uz7Zmn-achb0JFgYmfFs0"])
