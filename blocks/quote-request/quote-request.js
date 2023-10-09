@@ -149,6 +149,7 @@ async function loadIframeForm(data, type) {
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
+    sfdcproduct_image = data.thumbnail;
 
     // special handling for bundles and customer breakthrough
     if (typeParam
@@ -207,7 +208,7 @@ async function loadIframeForm(data, type) {
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: 'NA',
+    product_image: sfdcproduct_image,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: data.familyID
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
