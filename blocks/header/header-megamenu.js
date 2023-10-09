@@ -167,6 +167,10 @@ export async function buildLazyMegaMenus() {
 export function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   // link section
   const navMenuUl = ul({ class: 'nav-tabs' });
+  const isCellescePage = document.querySelector('meta[content="nav-cellesce-page"]');
+  if (isCellescePage) {
+    document.body.classList.add('cellesce-page');
+  }
 
   [...content.querySelectorAll('h1')].forEach((menu) => {
     const id = menu.getAttribute('id');
