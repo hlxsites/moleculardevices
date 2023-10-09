@@ -152,13 +152,15 @@ async function loadIframeForm(data, type) {
     sfdcPrimaryApplication = data.title;
 
     // prepare the product image url
-    if (data.thumbnail && !data.thumbnail.includes('https')) {
-      if (data.thumbnail.startsWith('.')) {
-        data.thumbnail = data.thumbnail.substring(1);
+    if (data.thumbnail) {
+      if (!data.thumbnail.startsWith('https')) {
+        if (data.thumbnail.startsWith('.')) {
+          data.thumbnail = data.thumbnail.substring(1);
+        }
+        data.thumbnail = `https://www.moleculardevices.com${data.thumbnail}`;
       }
-      data.thumbnail = `https://www.moleculardevices.com${data.thumbnail}`;
+      productImage = data.thumbnail;
     }
-    productImage = data.thumbnail;
 
     // special handling for bundles and customer breakthrough
     if (typeParam
