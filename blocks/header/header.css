@@ -812,7 +812,7 @@ header .spectra-accessories {
     margin-left: 60%;
     width: 320px;
     height: 306px;
-  } 
+  }
 }
 
 header .cards-submenu ul {
@@ -1057,7 +1057,7 @@ header .image-right {
 }
 
 header .image-right img {
-  position: absolute; 
+  position: absolute;
   bottom: -60px;
 }
 
@@ -1278,7 +1278,7 @@ header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:n
   background: var(--background-color);
 }
 
-div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {  
+div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {
   margin-bottom: 20px;
 }
 
@@ -1370,7 +1370,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
 header .actionable-card-submenu.customercare-portal {
   margin-right: 20px;
-  
+
 }
 
 header .actionable-card-submenu.customercare-portal h3,
@@ -1437,7 +1437,27 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   border: 1px solid var(--background-color-green);
 }
 
+/* cellesce-page */
+.cellesce-menu header {
+  height: 100%;
+}
+
+.cellesce-menu header img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+.cellesce-menu header button.hamburger,
+.cellesce-menu header .mainmenu-wrapper {
+  display: none;
+}
+
 @media (min-width: 768px) {
+  .cellesce-menu header img {
+    max-width: 420px;
+  }
+
   header .container {
     width: 750px;
   }
@@ -1792,7 +1812,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     transition: all .1s ease;
     min-width: 12.5rem;
   }
-    
+
   header .nav-tabs li .menu-nav-submenu {
     display: none;
   }
