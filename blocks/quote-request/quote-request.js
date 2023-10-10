@@ -134,7 +134,7 @@ async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
-  const rfqRUM = { source: 'global'};
+  const rfqRUM = { source: 'global' };
   root.innerHTML = '';
 
   let tab = '';
