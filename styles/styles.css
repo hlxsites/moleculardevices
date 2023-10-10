@@ -45,13 +45,13 @@
 
 /* stylelint-disable */
 /* Translations classes from One Link */
-.OneLinkShow_jp { display:none;}
-.OneLinkShow_de { display:none;}
-.OneLinkShow_fr { display:none;}
-.OneLinkShow_ko { display:none;}
-.OneLinkShow_it { display:none;}
-.OneLinkShow_es { display:none;}
-.OneLinkShow_zh { display:none;}
+.OneLinkShow_jp { display:none !important;}
+.OneLinkShow_de { display:none !important;}
+.OneLinkShow_fr { display:none !important;}
+.OneLinkShow_ko { display:none !important;}
+.OneLinkShow_it { display:none !important;}
+.OneLinkShow_es { display:none !important;}
+.OneLinkShow_zh { display:none !important;}
 /* Will be hidden on translated pages */
 .OneLinkHide { display: block;}
 /* stylelint-enable */
