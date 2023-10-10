@@ -1438,24 +1438,24 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
 }
 
 /* cellesce-page */
-.cellesce-page header {
+.cellesce-menu header {
   height: 100%;
 }
 
-.cellesce-page header img {
+.cellesce-menu header img {
   width: 100%;
   max-width: 350px;
   height: auto;
 }
 
-.cellesce-page header button.hamburger,
-.cellesce-page header .mainmenu-wrapper {
+.cellesce-menu header button.hamburger,
+.cellesce-menu header .mainmenu-wrapper {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .cellesce-page header img {
-    max-width: 100%;
+  .cellesce-menu header img {
+    max-width: 420px;
   }
 
   header .container {
