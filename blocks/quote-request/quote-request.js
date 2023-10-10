@@ -3,6 +3,7 @@ import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
+import { sampleRUM } from '../../scripts/lib-franklin.js';
 
 const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
 
@@ -133,6 +134,7 @@ async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
+  const rfqRUM = { source: 'global'};
   root.innerHTML = '';
 
   let tab = '';
@@ -146,6 +148,8 @@ async function loadIframeForm(data, type) {
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
+    rfqRUM.source = 'product';
+    if (data.familyID) rfqRUM.value = data.familyID;
     tab = data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
@@ -241,6 +245,8 @@ async function loadIframeForm(data, type) {
     ),
   );
   root.appendChild(createBackBtn('step-3'));
+  rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
+  sampleRUM('rfq', rfqRUM);
   iframeResizehandler(formUrl, '#contactQuoteRequest', root);
 }
 
