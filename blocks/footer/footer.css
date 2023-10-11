@@ -247,6 +247,13 @@
   padding: 8px;
 }
 
+.footer-wrap .social-media-list ul li a img {
+  display: inline-block;
+  width: 30px;
+  height: 26px;
+  vertical-align: middle;
+}
+
 .footer-wrap .social-media-list ul li a i {
   margin-left: 0;
 }
