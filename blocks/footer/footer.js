@@ -152,9 +152,15 @@ async function buildNewsletter(container) {
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
-  socialIconsContainer.querySelectorAll('a').forEach((iconLink) => {
+  socialIconsContainer.querySelectorAll('.social-media-list a').forEach((iconLink) => {
     iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
   });
+}
+
+function decorateImageWithLink(wrapper, link, title) {
+  const img = wrapper.innerHTML;
+  const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
+  wrapper.innerHTML = newWrapper;
 }
 
 /**
@@ -189,8 +195,19 @@ export default async function decorate(block) {
       footerBottom.appendChild(row);
     }
 
-    if (idx === 4) {
+    if (idx === 3) {
       decorateSocialMediaLinks(row);
+    }
+
+    if (idx === 4) {
+      const mainUrl = 'https://main--moleculardevices--hlxsites.hlx.page/';
+      decorateImageWithLink(row, mainUrl, 'Molecular Devices');
+    }
+
+    if (idx === 5) {
+      const imgWrapper = row.getElementsByTagName('p')[0];
+      const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
+      decorateImageWithLink(imgWrapper, danaherUrl, 'Danaher');
     }
   });
 
