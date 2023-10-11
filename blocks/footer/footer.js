@@ -200,7 +200,7 @@ export default async function decorate(block) {
     }
 
     if (idx === 4) {
-      const mainUrl = 'https://main--moleculardevices--hlxsites.hlx.page/';
+      const mainUrl = 'https://www.moleculardevices.com/';
       decorateImageWithLink(row, mainUrl, 'Molecular Devices');
     }
 
