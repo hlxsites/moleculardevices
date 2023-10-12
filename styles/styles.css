@@ -45,15 +45,15 @@
 
 /* stylelint-disable */
 /* Translations classes from One Link */
-.OneLinkShow_jp { display:none;}
-.OneLinkShow_de { display:none;}
-.OneLinkShow_fr { display:none;}
-.OneLinkShow_ko { display:none;}
-.OneLinkShow_it { display:none;}
-.OneLinkShow_es { display:none;}
-.OneLinkShow_zh { display:none;}
+.OneLinkShow_jp, main .section.OneLinkShow_jp.columns-2 { display:none; }
+.OneLinkShow_de, main .section.OneLinkShow_de.columns-2 { display:none; }
+.OneLinkShow_fr, main .section.OneLinkShow_fr.columns-2 { display:none; }
+.OneLinkShow_ko, main .section.OneLinkShow_ko.columns-2 { display:none; }
+.OneLinkShow_it, main .section.OneLinkShow_it.columns-2 { display:none; }
+.OneLinkShow_es, main .section.OneLinkShow_es.columns-2 { display:none; }
+.OneLinkShow_zh, main .section.OneLinkShow_zh.columns-2 { display:none; }
 /* Will be hidden on translated pages */
-.OneLinkHide { display: block;}
+.OneLinkHide { display: block; }
 /* stylelint-enable */
 
 :root {
