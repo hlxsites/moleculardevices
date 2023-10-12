@@ -3,6 +3,7 @@ import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
+import { sampleRUM } from '../../scripts/lib-franklin.js';
 
 const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
 
@@ -133,6 +134,7 @@ async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
+  const rfqRUM = { source: 'global' };
   root.innerHTML = '';
 
   let tab = '';
@@ -141,14 +143,28 @@ async function loadIframeForm(data, type) {
   let sfdcPrimaryApplication = '';
   let productFamily = '';
   let primaryProductFamily = '';
+  let productImage = '';
 
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
+    rfqRUM.source = 'product';
+    if (data.familyID) rfqRUM.value = data.familyID;
     tab = data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
+
+    // prepare the product image url
+    if (data.thumbnail) {
+      if (!data.thumbnail.startsWith('https')) {
+        if (data.thumbnail.startsWith('.')) {
+          data.thumbnail = data.thumbnail.substring(1);
+        }
+        data.thumbnail = `https://www.moleculardevices.com${data.thumbnail}`;
+      }
+      productImage = data.thumbnail;
+    }
 
     // special handling for bundles and customer breakthrough
     if (typeParam
@@ -207,7 +223,7 @@ async function loadIframeForm(data, type) {
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: 'NA',
+    product_image: productImage,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: data.familyID
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
@@ -229,6 +245,8 @@ async function loadIframeForm(data, type) {
     ),
   );
   root.appendChild(createBackBtn('step-3'));
+  rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
+  sampleRUM('rfq', rfqRUM);
   iframeResizehandler(formUrl, '#contactQuoteRequest', root);
 }
 
