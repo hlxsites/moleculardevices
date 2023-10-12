@@ -75,8 +75,13 @@ main .embed.embed-ceros.full-width > div > div {
   padding: 0 0 109.38%;
 }
 
-main .embed.embed-info-moleculardevices-com {
-  min-height: 590px;
+main .embed .iframe-content {
+  width: 100%;
+  border: 0;
+}
+
+.videos-and-webinars main .embed-info-moleculardevices-com {
+  margin-top: 0;
 }
 
 .flippingbook-desktop {
