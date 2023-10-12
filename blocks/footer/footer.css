@@ -107,6 +107,7 @@
 
 .footer-news-events > div:first-of-type > div {
   border-bottom: 2px solid var(--highlight-background-color);
+  margin-left: 0;
 }
 
 .footer-news-events > div:nth-child(1) > div:nth-child(1) {
@@ -249,7 +250,7 @@
 
 .footer-wrap .social-media-list ul li a img {
   display: inline-block;
-  width: 24px;
+  width: 30px;
   height: 23px;
   vertical-align: middle;
 }

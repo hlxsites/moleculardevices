@@ -507,6 +507,7 @@ header .cards-submenu img {
   width: auto;
   display: block;
   max-width: 100%;
+  object-fit: cover;
 }
 
 /* Mobile Menu */
@@ -812,7 +813,7 @@ header .spectra-accessories {
     margin-left: 60%;
     width: 320px;
     height: 306px;
-  } 
+  }
 }
 
 header .cards-submenu ul {
@@ -1057,7 +1058,7 @@ header .image-right {
 }
 
 header .image-right img {
-  position: absolute; 
+  position: absolute;
   bottom: -60px;
 }
 
@@ -1129,8 +1130,8 @@ header .cards-submenu p:first-child img {
 
 header .menu-nav-submenu-section[submenu-id="3d-biology"] .cards-submenu p:first-child img {
   padding: 0;
-  max-width: 110%;
-  width: 104%;
+  max-width: 100%;
+  width: 100%;
 }
 
 header .cards-submenu p:nth-child(2) {
@@ -1278,7 +1279,7 @@ header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:n
   background: var(--background-color);
 }
 
-div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {  
+div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {
   margin-bottom: 20px;
 }
 
@@ -1370,7 +1371,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
 header .actionable-card-submenu.customercare-portal {
   margin-right: 20px;
-  
+
 }
 
 header .actionable-card-submenu.customercare-portal h3,
@@ -1437,7 +1438,146 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   border: 1px solid var(--background-color-green);
 }
 
+/* PRODUCT/APPLICATION MENU */
+header .products-right-submenu,
+header .applications-right-submenu {
+  background-color: rgba(0 0 0 / 30%);
+  color: var(--header-actionable-submenu-text-color);
+  padding: 0;
+  position: relative;
+  height: 100%;
+  min-height: auto;
+  border: none;
+}
+
+header .products-right-submenu h3,
+header .applications-right-submenu h3 {
+  font-size: 20px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 24px;
+}
+
+header .products-right-submenu p,
+header .applications-right-submenu p {
+  font-size: 1rem;
+}
+
+header .products-right-submenu p strong > a,
+header .applications-right-submenu p strong > a,
+header .applications-right-submenu p em > a {
+  font-family: var(--ff-proxima-regular);
+  transition: all .2s;
+  color: var(--text-white);
+  position: relative;
+  border-radius: 0;
+  padding: 10px 18px;
+  display: inline-block;
+  text-align: center;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-bg-color);
+  min-width: 230px;
+  font-weight: normal;
+}
+
+header .applications-right-submenu p em > a {
+  background-color: transparent;
+  border-color: #fff;
+  font-style: normal;
+}
+
+header .products-right-submenu p strong > a:hover,
+header .applications-right-submenu p strong > a:hover,
+header .applications-right-submenu p em > a:hover {
+  color: var(--button-bg-color);
+  background-color: var(--text-white);
+}
+
+header .products-right-submenu > div,
+header .applications-right-submenu > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header .products-right-submenu > div > div,
+header .applications-right-submenu > div > div {
+  flex-basis: 50%;
+  max-width: 50%;
+  width: 100%;
+  padding: 24px;
+  min-height: 320px;
+  position: relative;
+}
+
+header .products-right-submenu > div > div:last-child,
+header .applications-right-submenu > div > div:last-child {
+  padding: 0;
+}
+
+header .products-right-submenu > div > div:last-child p,
+header .applications-right-submenu > div > div:last-child p {
+  margin: 0;
+}
+
+header .products-right-submenu > div > div:last-child p:last-child picture:first-child img,
+header .applications-right-submenu > div > div:last-child picture:first-child img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  max-height: 100%;
+  object-position: left;
+}
+
+header .products-right-submenu > div > div:last-child p:last-child picture:last-child img,
+header .applications-right-submenu > div > div:last-child picture:last-child img {
+  position: absolute;
+  left: -70px;
+  right: auto;
+  top: 60%;
+  z-index: 1;
+  pointer-events: none;
+  width: auto;
+}
+
+header .applications-right-submenu > div > div:last-child picture:last-child img  {
+  left: -30%;
+  top: 45%;
+}
+
+header .products-right-submenu > div > div:last-child p:first-child img{
+  position: absolute;
+  max-height: 100%;
+  max-width: 85%;
+  width: 100%;
+  bottom: -80px;
+  height: auto;
+  right: 0;
+  z-index: 1;
+}
+
+/* cellesce-page */
+.cellesce-menu header {
+  height: 100%;
+}
+
+.cellesce-menu header img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+.cellesce-menu header button.hamburger,
+.cellesce-menu header .mainmenu-wrapper {
+  display: none;
+}
+
 @media (min-width: 768px) {
+  .cellesce-menu header img {
+    max-width: 420px;
+  }
+
   header .container {
     width: 750px;
   }
@@ -1792,7 +1932,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     transition: all .1s ease;
     min-width: 12.5rem;
   }
-    
+
   header .nav-tabs li .menu-nav-submenu {
     display: none;
   }
