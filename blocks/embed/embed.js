@@ -86,11 +86,10 @@ export function embedCerosFrame(url) {
   return embedHTML;
 }
 
-function decorateCeros (block) {
+function decorateCeros(block) {
   block.classList.forEach((cls) => {
     if (cls.indexOf('padding-top') > -1) {
       const paddiingValue = cls.split('-')[2];
-      console.log(block.children[0]);
       block.children[0].children[0].style.paddingTop = `${paddiingValue}%`;
     }
   });
