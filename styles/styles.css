@@ -597,10 +597,6 @@ main .section.columns-2 > div {
   padding: 0 15px;
 }
 
-main .section .columns.columns-2-cols > div:not(:last-child) {
-  margin-bottom: 50px;
-}
-
 @media only screen and (max-width: 390px) {
   :root {
     --heading-font-size-xxl: 30px;
@@ -1078,6 +1074,10 @@ main div.section.featured-asset .columns h3 {
 
 main div.section.featured-asset .columns > div {
   align-items: unset;
+}
+
+main .section .columns.columns-2-cols > div:not(:last-child) {
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 767px) {
