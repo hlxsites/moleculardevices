@@ -1321,16 +1321,22 @@ main div.section.wave.wavecarousel {
   background-size: 100% 100%;
 }
 
+main div.section.wave.wavecarousel.blue:not(.no-margin-bottom),
+main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
+  margin-bottom: 40px;
+}
+
+main div.section.wave.wavecarousel.blue:not(.no-margin-top),
+main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
+  margin-top: 30px;
+}
+
 main div.section.wave.wavecarousel.blue {
   background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
-  margin-bottom: 40px;
-  margin-top: 30px;
 }
 
 main div.section.wave.wavecarousel.bluegreen {
   background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
-  margin-bottom: 40px;
-  margin-top: 30px;
 }
 
 @media only screen and (max-width: 767px) {
