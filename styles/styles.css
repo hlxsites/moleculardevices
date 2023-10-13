@@ -592,9 +592,13 @@ main .section.columns-2 {
   margin: 0 auto;
 }
 
-main .section.columns-2>div {
+main .section.columns-2 > div {
   width: 100%;
   padding: 0 15px;
+}
+
+main .section .columns.columns-2-cols > div:not(:last-child) {
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 390px) {
