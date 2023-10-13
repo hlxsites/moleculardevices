@@ -86,6 +86,15 @@ export function embedCerosFrame(url) {
   return embedHTML;
 }
 
+function decorateCeros(block) {
+  block.classList.forEach((cls) => {
+    if (cls.indexOf('padding-top') > -1) {
+      const paddiingValue = cls.split('-')[2];
+      block.children[0].children[0].style.paddingTop = `${paddiingValue}%`;
+    }
+  });
+}
+
 function embedFlippingBook(url) {
   return `
 <div class="flippingbook-mobile">
@@ -168,6 +177,7 @@ const loadEmbed = (block, link) => {
     {
       match: ['ceros'],
       embed: embedCerosFrame,
+      decorate: decorateCeros,
     },
     {
       match: ['flippingbook'],
