@@ -111,7 +111,7 @@ main .overlay p:last-of-type a {
 }
 
 main .overlay p:last-of-type a:hover {
-  color: #fff;
+  color: var(--text-white);
 }
 
 main .overlay p:last-of-type a:not(:last-child) {
