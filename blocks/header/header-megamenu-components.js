@@ -1,5 +1,7 @@
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
-import { img, div, a, p } from '../../scripts/dom-helpers.js';
+import {
+  img, div, a, p,
+} from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
@@ -108,54 +110,65 @@ function buildImageWithoutTextSubmenu(imageWithoutTextContent) {
   return imageWithoutTextContent;
 }
 
-async function blogPosts(featuredPostUrl, featuredPost) {
-  let recentPostLinks;
-  if (featuredPost) {
-    recentPostLinks = await ffetch('/query-index.json')
-      .sheet('blog')
-      .filter((post) => featuredPostUrl.indexOf(post.path) > -1)
-      .chunks(5)
-      .limit(1)
-      .all();
-  } else {
-    recentPostLinks = await ffetch('/query-index.json')
-      .sheet('blog')
-      .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
-      .chunks(5)
-      .limit(4)
-      .all();
-  }
-  return recentPostLinks;
+function getRecentBlogPosts(featuredPostUrl, isFeaturedPost) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (isFeaturedPost) {
+        resolve(
+          ffetch('/query-index.json')
+            .sheet('blog')
+            .filter((post) => featuredPostUrl.indexOf(post.path) > -1)
+            .chunks(5)
+            .limit(1)
+            .all(),
+        );
+      } else {
+        resolve(
+          ffetch('/query-index.json')
+            .sheet('blog')
+            .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
+            .chunks(5)
+            .limit(4)
+            .all(),
+        );
+      }
+    }, 100);
+  });
 }
 
-async function buildBlogCardSubmenu(block) {
+async function getRecentBlogPostsHandler(featuredPostUrl) {
+  const recentPosts = div({ class: 'recent-blog-posts-block' });
+  const featuredpost = div({ class: 'featured-blog-posts-block' });
+  const blogPostMenu = div({ class: 'blog-posts-block' }, recentPosts, featuredpost);
+
+  const recentPostLinks = await getRecentBlogPosts(featuredPostUrl, false);
+  const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
+
+  document.querySelector('.blog-lab-notes-right-submenu').appendChild(blogPostMenu);
+
+  setTimeout(() => {
+    recentPostLinks.forEach((post) => {
+      const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
+      const title = p(a({ href: post.path }, `${post.h1.trim().substring(0, 22)}...`));
+      const postWrapper = div(link, title);
+      recentPosts.appendChild(postWrapper);
+    });
+    featuredPostLink.forEach((post) => {
+      const postTitle = post.title.length > 200
+        ? `${post.h1.trim().substring(0, 200)}...`
+        : post.h1;
+      const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
+      const title = p(a({ href: post.path }, postTitle));
+      const postWrapper = div(link, title);
+      featuredpost.appendChild(postWrapper);
+    });
+  }, 300);
+}
+
+function buildBlogCardSubmenu(block) {
   const featuredPostUrl = block.querySelector('a').getAttribute('href');
   block.querySelector('a').remove();
-  let recentPosts = div({ class: 'recent-blog-posts-block' });
-  let featuredpost = div({ class: 'featured-blog-posts-block' });
-  let blogPostMenu = div({class: 'blog-posts-block'}, recentPosts, featuredpost);
-
-  const recentPostLinks = await blogPosts(featuredPostUrl, false);
-  const featuredPostLink = await blogPosts(featuredPostUrl, true);
-
-  recentPostLinks.forEach((post) => {
-    const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
-    const title = p(a({ href: post.path }, `${post.title.trim().substring(0, 15)}...`));
-    const postWrapper = div(link, title);
-    recentPosts.appendChild(postWrapper);
-  });
-
-  featuredPostLink.forEach((post) => {
-    const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
-    const title = p(a({ href: post.path }, `${post.title.trim().substring(0, 20)}...`));
-    const postWrapper = div(link, title);
-    featuredpost.appendChild(postWrapper);
-  });
-
-
-  block.append(blogPostMenu);
-  console.log(blogPostMenu);
-  return blogPostMenu;
+  getRecentBlogPostsHandler(featuredPostUrl);
 }
 
 function getRightSubmenuBuilder(className) {
