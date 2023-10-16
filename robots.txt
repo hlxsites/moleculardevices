@@ -82,7 +82,7 @@ Disallow: /en/assets/app-note/dd/img/automating-patient-derived-organoid-high-co
 Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
 Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
 Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
-
+Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
