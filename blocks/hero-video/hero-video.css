@@ -64,6 +64,13 @@ main .overlay {
   z-index: 1;
   width: 1170px;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main .overlay .button-container:has(em) {
+  display: none;
 }
 
 main .overlay h1 {
@@ -73,6 +80,7 @@ main .overlay h1 {
   margin-bottom: 40px;
   line-height: 1;
   font-weight: 100;
+  order: 1;
 }
 
 main .overlay .video-banner-btn {
@@ -86,10 +94,28 @@ main .overlay .video-banner-btn {
   outline: 0;
   letter-spacing: 1px;
   text-transform: uppercase;
+  order: 2;
 }
 
 main .overlay .video-banner-btn:hover {
   background-color: #000;
+}
+
+main .overlay p:last-of-type {
+  order: 3;
+}
+
+main .overlay p:last-of-type a {
+  color: #00B8DD;
+  display: inline-block;
+}
+
+main .overlay p:last-of-type a:hover {
+  color: var(--text-white);
+}
+
+main .overlay p:last-of-type a:not(:last-child) {
+  margin-right: 30px;
 }
 
 /* TODO figure out why we have a ~1px difference */
