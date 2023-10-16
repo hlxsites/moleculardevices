@@ -2058,6 +2058,11 @@ header .products-right-submenu > div > div:last-child p:first-child img{
   max-width: 100%;
   vertical-align: top;
   height: auto;
+  transition: all .4s;
+}
+
+.blog-cards-submenu .blog-posts-block img:hover {
+  transform: scale(1.15);
 }
 
 .blog-cards-submenu .blog-posts-block p {
@@ -2065,7 +2070,8 @@ header .products-right-submenu > div > div:last-child p:first-child img{
   margin-top: 0;
 }
 
-.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child {
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child  {
   background-color: var(--text-white);
   min-height: 114px;
   overflow: hidden;
@@ -2132,7 +2138,11 @@ header .products-right-submenu > div > div:last-child p:first-child img{
   height: 100%;
 }
 
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child,
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
   min-height: 230px;
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
   object-fit: cover;
 }
