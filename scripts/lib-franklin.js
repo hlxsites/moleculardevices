@@ -189,9 +189,8 @@ export function detectAnchor(block) {
   if (!activeHash) return;
 
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.getElementById(id);
+  const el = block.querySelector(`#${activeHash}`);
   if (el) {
-    console.log(`element available: ${id}`);
     window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
   }
 }
