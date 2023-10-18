@@ -90,14 +90,13 @@ export default async function decorate(block) {
   }
   block.append(apps);
 
-  detectAnchor(block);
-
   window.addEventListener('anchorDetected', (priorId) => {
     const currId = window.location.hash?.substring(1);
-    console.log(`anchorDetected: ${currId}:${priorId}`);
     if (!currId || priorId === currId) return;
     window.dispatchEvent(new Event('hashchange'));
   });
+
+  detectAnchor(block);
 
   alignTitles();
 
