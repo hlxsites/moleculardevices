@@ -197,7 +197,9 @@ export function detectAnchor(block) {
       window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
     }
   });
-  observer.observe(block);
+  observer.observe(block, {
+    childList: true,
+  });
 
   setTimeout(() => {
     observer.disconnect();
