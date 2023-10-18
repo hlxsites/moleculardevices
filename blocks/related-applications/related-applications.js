@@ -1,4 +1,5 @@
 import { addLinkIcon, fetchFragment } from '../../scripts/scripts.js';
+import { detectAnchor } from '../../scripts/lib-franklin.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
@@ -88,6 +89,15 @@ export default async function decorate(block) {
     block.append(links);
   }
   block.append(apps);
+
+  detectAnchor(block);
+
+  window.addEventListener('anchorDetected', (priorId) => {
+    const currId = window.location.hash?.substring(1);
+    console.log(`anchorDetected: ${currId}:${priorId}`);
+    if (!currId || priorId === currId) return;
+    window.dispatchEvent(new Event('hashchange'));
+  });
 
   alignTitles();
 

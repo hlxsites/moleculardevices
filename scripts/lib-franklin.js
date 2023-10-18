@@ -182,6 +182,29 @@ export function decorateIcons(element = document) {
 }
 
 /**
+ * Detect anchor
+ */
+export function detectAnchor(block) {
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const observer = new MutationObserver(() => {
+    const el = block.getElementById(id);
+    if (el) {
+      console.log(`element available: ${id}`);
+      observer.disconnect();
+      window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
+    }
+  });
+  observer.observe(block);
+
+  setTimeout(() => {
+    observer.disconnect();
+  }, 3000);
+}
+
+/**
  * Gets placeholders object
  * @param {string} prefix
  */
