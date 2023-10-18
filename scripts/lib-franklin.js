@@ -191,7 +191,7 @@ export function detectAnchor(block) {
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
   const el = block.querySelector(`#${id}`);
   if (el) {
-    window.dispatchEvent(new CustomEvent('anchorDetected', { detail: { priorId: id } }));
+    window.dispatchEvent(new CustomEvent('anchorDetected'));
   }
 }
 
