@@ -92,7 +92,7 @@ export default async function decorate(block) {
 
   window.addEventListener('anchorDetected', (event) => {
     const currId = window.location.hash?.substring(1);
-    if (!currId || event.priorId === currId) return;
+    if (!currId || event.detail.priorId === currId) return;
     window.dispatchEvent(new Event('hashchange'));
   });
 
