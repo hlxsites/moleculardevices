@@ -90,6 +90,8 @@ export default async function decorate(block) {
   }
   block.append(apps);
 
+  alignTitles();
+
   window.addEventListener('anchorDetected', () => {
     const currId = window.location.hash?.substring(1);
     if (!currId) return;
@@ -97,8 +99,6 @@ export default async function decorate(block) {
   });
 
   detectAnchor(block);
-
-  alignTitles();
 
   return block;
 }
