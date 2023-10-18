@@ -90,9 +90,9 @@ export default async function decorate(block) {
   }
   block.append(apps);
 
-  window.addEventListener('anchorDetected', (priorId) => {
+  window.addEventListener('anchorDetected', (event) => {
     const currId = window.location.hash?.substring(1);
-    if (!currId || priorId === currId) return;
+    if (!currId || event.priorId === currId) return;
     window.dispatchEvent(new Event('hashchange'));
   });
 
