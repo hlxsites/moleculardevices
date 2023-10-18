@@ -189,7 +189,7 @@ export function detectAnchor(block) {
   if (!activeHash) return;
 
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${activeHash}`);
+  const el = block.querySelector(`#${id}`);
   if (el) {
     window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
   }
