@@ -86,7 +86,6 @@ export default async function decorate(block) {
       const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
       if (!targetTab) return;
       openTab(targetTab);
-      console.log(document.getElementById(activeHash));
       document.getElementById(activeHash).scrollIntoView();
     }
 
