@@ -189,21 +189,11 @@ export function detectAnchor(block) {
   if (!activeHash) return;
 
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const observer = new MutationObserver(() => {
-    const el = block.getElementById(id);
-    if (el) {
-      console.log(`element available: ${id}`);
-      observer.disconnect();
-      window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
-    }
-  });
-  observer.observe(block, {
-    childList: true,
-  });
-
-  setTimeout(() => {
-    observer.disconnect();
-  }, 3000);
+  const el = block.getElementById(id);
+  if (el) {
+    console.log(`element available: ${id}`);
+    window.dispatchEvent(new Event('anchorDetected', { priorId: id }));
+  }
 }
 
 /**
