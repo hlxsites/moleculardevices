@@ -1,0 +1,43 @@
+main .hero-carousel-wrapper.carousel-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+main .carousel.hero-carousel .carousel-item {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+main .carousel.hero-carousel .carousel-item-columns-container {
+  display: block;
+}
+
+main .carousel.hero-carousel .carousel-item-column:first-child {
+  width: 100%;
+}
+
+main .carousel.hero-carousel .carousel-item-column .carousel-item-text {
+  padding: 20px;
+  background-color: rgb(0 0 0 / 60%);
+  color: #fff;
+}
+
+main .carousel.hero-carousel .carousel-item-column .carousel-item-text h3 {
+  margin-top: 0;
+}
+
+main .carousel.hero-carousel .carousel-item-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+main .carousel.hero-carousel .carousel-item-image img {
+  max-height: 100%;
+  height: 100%;
+  object-fit: cover;
+}
