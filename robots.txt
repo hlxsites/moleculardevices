@@ -62,12 +62,8 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-
 
 # HTML Page (App Note HTML Page Block)
 
-Disallow: /en/assets/app-note/br/low-volume-nucleic-acid-quantitation-on-the-spectramax-mini-multi-mode-microplate-reader
-Disallow: /en/assets/app-note/br/measure-dual-luciferase-reporter-gene-activity-with-the-spectramax-mini-multi-mode-microplate-reader
-Disallow: /en/assets/app-note/br/detect-endotoxin-with-the-kinetic-qcl-kinetic-chromogenic-lal-assay
-Disallow: /en/assets/app-note/br/rapidly-assess-drug-response-in-2d-and-3d-breast-cancer-model-systems-with-luminescent-viability-assay
+
 Disallow: /en/assets/app-note/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model
-Disallow: /en/assets/app-note/br/sensitive-rna-fluorescent-quantitation-with-quant-it-ribogreen-rna-assay-kit
 Disallow: /en/assets/app-note/bpd/high-sensitive-and-affordable-single-cell-rna-sequencing
 Disallow: /en/assets/app-note/bpd/achieve-over-5-fold-of-human-igg-protein-detection-signal-with-clonedetect-k8495-assay-optimization
 Disallow: /en/assets/app-note/dd/img/novel-patient-derived-colorectal-cancer-organoid-platform-for-high-throughput-drug-discovery
@@ -77,12 +73,12 @@ Disallow: /en/assets/app-note/dd/img/understanding-organoid-morphology-organoid-
 Disallow: /en/assets/app-note/dd/img/high-throughput-modeling-of-inflammatory-bowel-disease-using-human-intestina-organoids
 Disallow: /en/assets/app-note/dd/img/neural-outgrowth-analysis-in-3d-human-brain-micro-tissues-for-compound-screening-applications
 Disallow: /en/assets/app-note/br/quantify-tnfa-secretion-by-thp-1-derived-macrophages-with-alphalisa-assay
-Disallow: /en/assets/app-note/dd/img/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
+Disallow: /en/assets/app-note/dd/flipr/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
 Disallow: /en/assets/app-note/dd/img/automating-patient-derived-organoid-high-content-assays
 Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
 Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
 Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
-
+Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
