@@ -1553,10 +1553,6 @@ header .company-right-submenu div:first-child > div h3 {
   border: none;
 }
 
-header .company-right-submenu div:nth-child(2) {
-  display: block;
-}
-
 header .company-right-submenu div:nth-child(2){
   width: 100%;
   position: relative;
