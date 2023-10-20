@@ -92,12 +92,6 @@ export default async function decorate(block) {
 
   alignTitles();
 
-  window.addEventListener('anchorDetected', () => {
-    const currId = window.location.hash?.substring(1);
-    if (!currId) return;
-    window.dispatchEvent(new Event('hashchange'));
-  });
-
   detectAnchor(block);
 
   return block;

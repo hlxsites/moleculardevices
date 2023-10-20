@@ -198,7 +198,7 @@ export function detectAnchor(block) {
           && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
           observer.disconnect();
           setTimeout(() => {
-            window.dispatchEvent(new Event('anchorDetected'));
+            window.dispatchEvent(new Event('hashchange'));
           },
           3500,
           );
