@@ -200,7 +200,7 @@ export function detectAnchor(block) {
           setTimeout(() => {
             window.dispatchEvent(new Event('anchorDetected'));
           },
-          1000,
+          3500,
           );
         }
       });
