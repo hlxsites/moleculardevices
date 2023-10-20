@@ -19,7 +19,7 @@ async function getFeaturedResources(paths) {
 }
 
 export default async function decorate(block) {
-   const blockLinks = block.querySelectorAll('a');
+  const blockLinks = block.querySelectorAll('a');
   let resources = [];
 
   if (blockLinks.length !== 0) {
