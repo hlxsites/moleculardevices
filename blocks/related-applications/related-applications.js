@@ -1,5 +1,4 @@
-import { addLinkIcon, fetchFragment } from '../../scripts/scripts.js';
-import { detectAnchor } from '../../scripts/lib-franklin.js';
+import { addLinkIcon, fetchFragment, detectAnchor } from '../../scripts/scripts.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
