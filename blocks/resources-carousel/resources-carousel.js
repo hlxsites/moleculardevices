@@ -2,7 +2,6 @@ import ffetch from '../../scripts/ffetch.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { fetchFragment } from '../../scripts/scripts.js';
 
 async function getFeaturedResources(paths) {
   return ffetch('/query-index.json')
@@ -14,7 +13,7 @@ async function getFeaturedResources(paths) {
         || paths.includes(resource.gatedURL)
         || (resource.gatedURL
           && resource.gatedURL !== '0'
-          && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname))
+        && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname))
       ))
     .all();
 }
