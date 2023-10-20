@@ -2,6 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { fetchFragment } from '../../scripts/scripts.js';
 
 async function getFeaturedResources(paths) {
   return ffetch('/query-index.json')
@@ -20,6 +21,15 @@ async function getFeaturedResources(paths) {
 }
 
 export default async function decorate(block) {
+  const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
+  await Promise.all(
+    fragmentPaths.map(async (path) => {
+      const fragmentHtml = await fetchFragment(path, false);
+      console.log(fragmentHtml);
+    })
+  );
+
+
   const blockLinks = block.querySelectorAll('a');
   let resources = [];
 
