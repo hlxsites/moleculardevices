@@ -191,22 +191,21 @@ export function detectAnchor(block) {
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
   const el = block.querySelector(`#${id}`);
   if (el) {
-    const section = block.closest('.section');
     const observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-section-status'
-          && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
+          && mutation.attributeName === 'data-block-status'
+          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
           observer.disconnect();
           setTimeout(() => {
-            window.dispatchEvent(new CustomEvent('anchorDetected'));
+            window.dispatchEvent(new Event('anchorDetected'));
           },
           1000,
           );
         }
       });
     });
-    observer.observe(section, { attributes: true });
+    observer.observe(block, { attributes: true });
   }
 }
 
