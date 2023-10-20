@@ -16,21 +16,11 @@ async function getFeaturedResources(paths) {
           && resource.gatedURL !== '0'
           && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname))
       ))
-    .limit(9)
     .all();
 }
 
 export default async function decorate(block) {
-  const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
-  await Promise.all(
-    fragmentPaths.map(async (path) => {
-      const fragmentHtml = await fetchFragment(path, false);
-      console.log(fragmentHtml);
-    })
-  );
-
-
-  const blockLinks = block.querySelectorAll('a');
+   const blockLinks = block.querySelectorAll('a');
   let resources = [];
 
   if (blockLinks.length !== 0) {
