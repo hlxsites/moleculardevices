@@ -1076,6 +1076,34 @@ export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
 }
 
+/**
+ * Detect anchor
+ */
+export function detectAnchor(block) {
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const el = block.querySelector(`#${id}`);
+  if (el) {
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.type === 'attributes'
+          && mutation.attributeName === 'data-block-status'
+          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
+          observer.disconnect();
+          setTimeout(() => {
+            window.dispatchEvent(new Event('hashchange'));
+          },
+          3500,
+          );
+        }
+      });
+    });
+    observer.observe(block, { attributes: true });
+  }
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
