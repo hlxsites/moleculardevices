@@ -1542,53 +1542,45 @@ header .company-right-submenu {
   border: none;
 }
 
-header .company-right-submenu div:first-child > div {
-  background-color: #231f20;
-  padding: 20px;
-}
-
-header .company-right-submenu div:first-child > div h3 {
-  padding-bottom: 0;
-  margin-bottom: 0;
-  border: none;
-}
-
-header .company-right-submenu div:nth-child(2){
+header .company-right-submenu div:first-child{
   width: 100%;
   position: relative;
   display: flex;
   justify-content: flex-end;
 }
 
-header .company-right-submenu div:nth-child(2) > div:nth-child(1) {
+header .company-right-submenu div:first-child > div:nth-child(1) {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  display: block;
 }
 
-header .company-right-submenu div:nth-child(2) > div:nth-child(1) picture img {
-  width: 70%;
+header .company-right-submenu div:first-child > div:nth-child(1) picture img {
+  width: 66%;
   height: 100%;
   object-fit: cover;
   object-position: 0;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
 }
 
-header .company-right-submenu > div:nth-child(2) > div:nth-child(2) {
-  background-color: var(--background-color-green);
-  clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
-  font-size: 18px;
+header .company-right-submenu > div:first-child > div:nth-child(2) {
+  font-size: 16px;
   display: block;
   text-align: right;
-  padding: 24px;
-  padding-left: 10%;
+  padding: 32px 24px;
+  padding-left: 11%;
   width: 45%;
   position: relative;
 }
 
-header .company-right-submenu > div:nth-child(3) {
-  left: 320px;
+header .company-right-submenu > div:nth-child(2) {
+  position: absolute;
+  bottom: -50px;
+  z-index: 100;
+  left: 50%;
 }
 
 /* cellesce-page */
