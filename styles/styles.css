@@ -2102,3 +2102,20 @@ main .columns-separator-line .columns-wrapper .columns {
   margin-top: 0;
   padding-top: 0;
 }
+
+.application-note main .picture img {
+  display: block;
+  margin: auto;
+}
+
+.image-position-right img {
+  object-position: right;
+}
+
+.image-position-left img {
+  object-position: left;
+}
+
+.image-position-center img {
+  object-position:  center;
+}
