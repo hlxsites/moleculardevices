@@ -7,7 +7,7 @@ Disallow: /sites/default/files/en/assets/app-note/
 Disallow: /fragments/
 Disallow: /modal/nojs/view/node/
 Disallow: /node/
-Disallow: /tools/sidekick/blocks/toc
+
 
 # PDF (ebook PDF Block)
 Disallow: /sites/default/files/en/assets/ebook/br/explore-cells-from-the-inside-out.pdf
