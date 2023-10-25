@@ -1591,11 +1591,15 @@ header .company-right-submenu > div:first-child > div:nth-child(2) {
   position: relative;
 }
 
-header .company-right-submenu div:first-child > div:last-child picture img {
+header .company-right-submenu div:nth-child(2) > div:last-child {
   position: absolute;
   bottom: -50px;
-  z-index: 100;
-  left: -170%;
+  width: 100%;
+}
+
+header .company-right-submenu div:nth-child(2) > div:last-child picture img {
+  transform: none;
+  pointer-events: none;
   width: 200px;
   height: 201px;
   max-height: 100%;
