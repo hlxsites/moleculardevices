@@ -149,7 +149,7 @@ async function loadIframeForm(data, type) {
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
     rfqRUM.source = 'product';
-    if (data.familyID) rfqRUM.value = data.familyID;
+    if (data.familyID) rfqRUM.target = data.familyID;
     tab = data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
