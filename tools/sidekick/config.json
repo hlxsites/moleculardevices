@@ -11,7 +11,7 @@
       {
         "id": "insights",
         "title": "Insights",
-        "environments": ["preview", "production", "live"],
+        "environments": ["prev", "prod", "live"],
         "passConfig": true,
         "passReferrer": true,
         "url": "https://sk-insight--franklin-dashboard--adobe.hlx.page/views/sidekick-index",
