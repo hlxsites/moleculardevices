@@ -422,12 +422,14 @@ function showHideStoreFeature(showStore, orderBlock, heroBlock) {
   if (heroOrder && heroBlock.querySelector('img')) heroOrder = undefined;
   if (showStore) {
     orderBlock.classList.remove(STORE_HIDDEN_CLASS);
-    if (heroOrder) heroOrder.classList.remove(STORE_HIDDEN_CLASS);
-    // hide buttons in hero and instead show option form
-    if (heroBlock) {
-      heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
-        buttonContainer.remove();
-      });
+    if (heroOrder) {
+      heroOrder.classList.remove(STORE_HIDDEN_CLASS);
+      // hide buttons in hero and instead show option form
+      if (heroBlock) {
+        heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
+          buttonContainer.remove();
+        });
+      }
     }
   } else {
     orderBlock.classList.add(STORE_HIDDEN_CLASS);
