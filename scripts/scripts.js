@@ -35,6 +35,7 @@ const TEMPLATE_LIST = [
   'newsroom',
   'landing-page',
 ];
+window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
@@ -416,27 +417,6 @@ function decorateLinkedPictures(container) {
   });
 }
 
-/**
- * Run template specific decoration code.
- * @param {Element} main The container element
- */
-async function decorateTemplates(main) {
-  try {
-    const template = toClassName(getMetadata('template'));
-    const templates = TEMPLATE_LIST;
-    if (templates.includes(template)) {
-      const mod = await import(`../templates/${template}/${template}.js`);
-      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`);
-      if (mod.default) {
-        await mod.default(main);
-      }
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
-}
-
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
@@ -785,7 +765,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    await decorateTemplates(main);
+    await window.hlx.plugins.run('loadEager');
     await decorateMain(main);
     createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
@@ -963,13 +943,16 @@ async function loadLazy(doc) {
     loadBreadcrumbs(main);
 
     loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`, () => {
+    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
       try {
         if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
       } catch (e) {
         // do nothing
       }
     });
+
+    window.hlx.plugins.run('loadLazy');
+
     sampleRUM('lazy');
     sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
     sampleRUM.observe(main.querySelectorAll('picture > img'));
@@ -982,8 +965,12 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   if (!window.location.pathname.startsWith('/cp-request')) {
-    // eslint-disable-next-line import/no-cycle
-    window.setTimeout(() => import('./delayed.js'), 3000);
+    window.setTimeout(() => {
+      window.hlx.plugins.load('delayed');
+      window.hlx.plugins.run('loadDelayed');
+      // eslint-disable-next-line import/no-cycle
+      return import('./delayed.js');
+    }, 3000);
   }
   // load anything that can be postponed to the latest here
 }
@@ -1105,7 +1092,9 @@ export function detectAnchor(block) {
 }
 
 async function loadPage() {
+  await window.hlx.plugins.load('eager');
   await loadEager(document);
+  await window.hlx.plugins.load('lazy');
   await loadLazy(document);
   loadDelayed();
 }
