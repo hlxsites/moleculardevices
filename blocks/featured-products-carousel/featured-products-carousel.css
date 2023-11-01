@@ -116,19 +116,8 @@ main .featured-products-carousel .carousel-item-text .button-container {
   display: block;
 }
 
-main .featured-products-carousel .carousel-item-text .button-container .button {
-  width: 100%;
-  white-space: normal;
-}
-
 main .featured-products-carousel .carousel-item-text .button-container .secondary {
   margin-left: 0;
-}
-
-@media only screen and (min-width: 992px) {
-  main .featured-products-carousel .carousel-item-text .button-container {
-    max-width: 80%;
-  }
 }
 
 @media only screen and (max-width: 991px) {
