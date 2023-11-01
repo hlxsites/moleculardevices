@@ -37,6 +37,8 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/how-to-implement-colony-picki
 Disallow: /sites/default/files/en/assets/ebook/br/elisa.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/img/generate-application-specific-high-content-imaging-and-analysis.pdf
 Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
+
+
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
 
@@ -79,6 +81,9 @@ Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyse
 Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
 Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
 Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
+Disallow: /en/assets/app-note/dd/img/3d-quantitative-measurement-of-t-cell-penetration-into-cancer-spheroids
+
+
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
@@ -100,6 +105,12 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-disp
 Disallow: /en/assets/tutorials-videos/dd/img/automating-3d-organoid-models-and-assay-workflows
 Disallow: /en/assets/tutorials-videos/dd/img/using-differentiated-ipscs-to-build-ready-to-use-3d-models
 
+# Infographic Block
+
+Disallow: /sites/default/files/en/assets/infographics/br/microplate-readers-in-neurodegenerative-research.pdf
+
+# Flyer Block web and Google
+Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
 
 # Tutorials Videos Block
 
@@ -163,7 +174,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for
 Disallow: /en/assets/tutorials-videos/dd/img/are-organoids-future-of-drug-discovery
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
 Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
-
+Disallow: /en/assets/tutorials-videos/dd/img/scale-up-3d-model-drug-screening-using-robotic-platform-with-xeno-free-hydrogel
 
 
 
