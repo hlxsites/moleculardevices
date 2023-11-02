@@ -2103,19 +2103,9 @@ main .columns-separator-line .columns-wrapper .columns {
   padding-top: 0;
 }
 
-.application-note main .picture img {
-  display: block;
-  margin: auto;
-}
-
-.image-position-right img {
-  object-position: right;
-}
-
-.image-position-left img {
-  object-position: left;
-}
-
-.image-position-center img {
-  object-position:  center;
+/* title with green highlight */
+.title-with-green-highlight h2:first-child em,
+.title-with-green-highlight h3:first-child em {
+  font-style: normal;
+  color: var(--text-green);
 }
