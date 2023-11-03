@@ -1219,8 +1219,8 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) p {
   margin-top: 0;
 }
 
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(1),
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
+header .actionable-card-submenu:not(.company-right-submenu) > div:nth-child(2) > div:nth-child(1) > p:nth-child(1),
+header .actionable-card-submenu:not(.company-right-submenu) > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
   line-height: 1.3;
   font-size: 16px;
   font-family: var(--ff-proxima-light);
@@ -1253,30 +1253,9 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   text-align: center;
 }
 
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
-  padding: 10px 18px !important;
-}
-
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a {
-  background: var(--button-bg-color);
-}
-
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
-  border: 1px solid var(--button-bg-color);
-  padding: 10px 18px !important;
-}
-
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
   background: var(--background-color);
   color: var(--button-bg-color);
-}
-
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a:hover,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a:hover {
-  background: var(--background-color);
 }
 
 div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {
@@ -1439,6 +1418,36 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
 }
 
 /* PRODUCT/APPLICATION MENU */
+header .right-submenu-content p strong > a,
+header .right-submenu-content p em > a {
+  font-family: var(--ff-proxima-regular);
+  transition: all .2s;
+  color: var(--text-white);
+  position: relative;
+  border-radius: 0;
+  padding: 10px 18px;
+  display: inline-block;
+  text-align: center;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-bg-color);
+  min-width: 230px;
+  max-width: 80%;
+  width: 100%;
+  font-weight: normal;
+}
+
+header .right-submenu-content p em > a {
+  background-color: transparent;
+  border-color: var(--text-white);
+  font-style: normal;
+}
+
+header .right-submenu-content p strong > a:hover,
+header .right-submenu-content p em > a:hover {
+  color: var(--button-bg-color);
+  background-color: var(--text-white);
+}
+
 header .products-right-submenu,
 header .applications-right-submenu {
   background-color: rgba(0 0 0 / 30%);
@@ -1461,36 +1470,6 @@ header .applications-right-submenu h3 {
 header .products-right-submenu p,
 header .applications-right-submenu p {
   font-size: 1rem;
-}
-
-header .products-right-submenu p strong > a,
-header .applications-right-submenu p strong > a,
-header .applications-right-submenu p em > a {
-  font-family: var(--ff-proxima-regular);
-  transition: all .2s;
-  color: var(--text-white);
-  position: relative;
-  border-radius: 0;
-  padding: 10px 18px;
-  display: inline-block;
-  text-align: center;
-  background-color: var(--button-bg-color);
-  border: 1px solid var(--button-bg-color);
-  min-width: 230px;
-  font-weight: normal;
-}
-
-header .applications-right-submenu p em > a {
-  background-color: transparent;
-  border-color: #fff;
-  font-style: normal;
-}
-
-header .products-right-submenu p strong > a:hover,
-header .applications-right-submenu p strong > a:hover,
-header .applications-right-submenu p em > a:hover {
-  color: var(--button-bg-color);
-  background-color: var(--text-white);
 }
 
 header .products-right-submenu > div,
@@ -1555,6 +1534,68 @@ header .products-right-submenu > div > div:last-child p:first-child img{
   height: auto;
   right: 0;
   z-index: 1;
+}
+
+/* COMPANY MENU */
+header .company-right-submenu {
+  padding: 0;
+  border: none;
+  background-color: rgba(0 0 0 / 30%);
+  color: var(--header-actionable-submenu-text-color);
+  position: relative;
+  height: 100%;
+  min-height: auto;
+}
+
+header .company-right-submenu div:first-child > div:first-child p{
+  margin: 0;
+}
+
+header .company-right-submenu > div:first-child {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header .company-right-submenu > div:first-child > div:first-child {
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+header .company-right-submenu div:first-child > div:first-child picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  max-height: 100%;
+  margin: 0;
+  transition: all .3s ease-in-out;
+}
+
+header .company-right-submenu > div:first-child > div:nth-child(2) {
+  font-size: 16px;
+  display: block;
+  text-align: right;
+  padding: 32px 24px;
+  width: 35%;
+  position: relative;
+}
+
+header .company-right-submenu div:nth-child(2) > div:last-child {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+header .company-right-submenu div:nth-child(2) > div:last-child picture img {
+  transform: none;
+  pointer-events: none;
+  width: 200px;
+  height: 201px;
+  max-height: 100%;
 }
 
 /* cellesce-page */
