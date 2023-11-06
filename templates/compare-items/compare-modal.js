@@ -480,15 +480,11 @@ class CompareModal {
   }
 
   async loadCSSFiles() {
-    let defaultCSSPromise;
+    let defaultCSSPromise = Promise.resolve();
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-      defaultCSSPromise = new Promise((resolve) => {
-        this.cssFiles.forEach((cssFile) => {
-          loadCSS(cssFile, (e) => resolve(e));
-        });
-      });
+      defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
     }
-    this.cssFiles && (await defaultCSSPromise);
+    return defaultCSSPromise;
   }
 }
 

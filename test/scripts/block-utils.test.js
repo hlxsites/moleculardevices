@@ -34,23 +34,18 @@ describe('Utils methods', () => {
 
   it('Loads CSS', async () => {
     // loads a css file and calls callback
-    const load = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
-    });
-    expect(load).to.equal('load');
+    await blockUtils.loadCSS('/test/scripts/test.css');
+    expect(document.querySelectorAll('link[href="/test/scripts/test.css"]').length).to.equal(1);
     expect(getComputedStyle(document.body).color).to.equal('rgb(255, 0, 0)');
 
     // does nothing if css already loaded
-    const noop = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/test.css', (e) => resolve(e));
-    });
-    expect(noop).to.equal('noop');
+    await blockUtils.loadCSS('/test/scripts/test.css');
+    expect(document.querySelectorAll('link[href="/test/scripts/test.css"]').length).to.equal(1);
 
     // calls callback in case of error
-    const error = await new Promise((resolve) => {
-      blockUtils.loadCSS('/test/scripts/nope.css', (e) => resolve(e));
-    });
-    expect(error).to.equal('error');
+    expect(async () => {
+      await blockUtils.loadCSS('/test/scripts/nope.css');
+    }).to.throw;
   });
 
   it('Collects RUM data', async () => {
@@ -91,6 +86,10 @@ describe('Utils methods', () => {
 });
 
 describe('Sections and blocks', () => {
+  before(async () => {
+    window.hlx.codeBasePath = '';
+  });
+
   it('Decorates sections', async () => {
     blockUtils.decorateSections(document.querySelector('main'));
     expect(document.querySelectorAll('main .section').length).to.equal(2);

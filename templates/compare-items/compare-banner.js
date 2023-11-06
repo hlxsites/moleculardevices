@@ -165,16 +165,11 @@ class CompareBanner {
   }
 
   async loadCSSFiles() {
-    let defaultCSSPromise;
+    let defaultCSSPromise = Promise.resolve();
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-      defaultCSSPromise = new Promise((resolve) => {
-        this.cssFiles.forEach((cssFile) => {
-          loadCSS(cssFile, (e) => resolve(e));
-        });
-      });
+      defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
     }
-    // eslint-disable-next-line no-unused-expressions
-    this.cssFiles && (await defaultCSSPromise);
+    return defaultCSSPromise;
   }
 }
 

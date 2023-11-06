@@ -160,9 +160,7 @@ function getName(pageIndex, path, part, current) {
 }
 
 export default async function createBreadcrumbs(container) {
-  const breadCrumbsCSS = new Promise((resolve) => {
-    loadCSS('/blocks/breadcrumbs/breadcrumbs.css', (e) => resolve(e));
-  });
+  const breadCrumbsCSS = loadCSS('/blocks/breadcrumbs/breadcrumbs.css');
 
   const path = window.location.pathname;
   const pathSplit = skipParts(path.split('/'));

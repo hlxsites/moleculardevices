@@ -397,11 +397,7 @@ class Carousel {
     let defaultCSSPromise;
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       // add default carousel classes to apply default CSS
-      defaultCSSPromise = new Promise((resolve) => {
-        this.cssFiles.forEach((cssFile) => {
-          loadCSS(cssFile, (e) => resolve(e));
-        });
-      });
+      defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
       this.block.parentElement.classList.add('carousel-wrapper');
       this.block.classList.add('carousel');
     }

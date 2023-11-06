@@ -309,9 +309,7 @@ export async function createList(
   options,
   root,
 ) {
-  const listCSSPromise = new Promise((resolve) => {
-    loadCSS('../styles/list.css', (e) => resolve(e));
-  });
+  const listCSSPromise = loadCSS('../styles/list.css');
 
   if (options.data) {
     const container = div({ class: 'list' },
