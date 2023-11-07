@@ -104,7 +104,10 @@ indices:
         value: attribute(el, "content")
       productBundle:
         select: head > meta[name="bundle-products"]
-        value: attribute(el, "content")            
+        value: attribute(el, "content")
+      bundleThumbnail:
+        select: head > meta[name="bundle-thumbnail"]
+        value: attribute(el, "content")               
       productLandingPageOrder:
         select: head > meta[name="landing-page-order"]
         value: attribute(el, "content")
