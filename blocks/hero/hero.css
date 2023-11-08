@@ -496,7 +496,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     gap: 0
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
     padding: 6px;
