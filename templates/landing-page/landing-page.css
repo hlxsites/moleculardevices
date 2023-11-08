@@ -144,7 +144,7 @@
   padding-bottom: 0;
 }
 
-.landing-page main .section>div.columns-wrapper {
+.landing-page main .section:not(.horizontal-line) > div.columns-wrapper {
   padding-top: 10px;
 }
 
