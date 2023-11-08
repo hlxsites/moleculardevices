@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main .hero-container,
 main .hero-advanced-container {
   --hero-breadcrumbs-separator-color: #ccc;
