@@ -23,7 +23,7 @@ function redirectedNav() {
     tab.click();
     window.scroll({
       top: tabSection.getBoundingClientRect().top + window.screenY - 150,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }, 1000);
 }
