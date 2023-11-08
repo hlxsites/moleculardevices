@@ -505,7 +505,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin-right: 20px;
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper h1 {
     font-family: var(--ff-proxima-light);
     font-size: 36px;
@@ -626,7 +625,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: 220px;
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .citation main .hero .container {
     padding: 0 0 40px;
   }
