@@ -236,7 +236,7 @@ async function loadIframeForm(data, type) {
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: productImage,
-    product_bundle_image: bundleThumbnail,
+    product_bundle_image: bundleThumbnail ? bundleThumbnail : 'NA',
     product_bundle: productBundle,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: data.familyID
