@@ -175,7 +175,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/are-organoids-future-of-drug-discov
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
 Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-3d-model-drug-screening-using-robotic-platform-with-xeno-free-hydrogel
-
+Disallow: /en/assets/tutorials-videos/dd/img/scaling-up-organoid-research-new-approach-with-assay-ready-organoids
 
 
 
