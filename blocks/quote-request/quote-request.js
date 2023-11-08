@@ -185,7 +185,6 @@ async function loadIframeForm(data, type) {
         }
         bundleThumbnail = data.bundleThumbnail;
       }
-
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
       if (fragmentHtml) {
