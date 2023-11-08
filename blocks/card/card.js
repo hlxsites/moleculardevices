@@ -151,7 +151,7 @@ class Card {
         ) : '',
         item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
         div({ class: 'card-caption' },
-          item.type ? div({ class: 'card-type' }, item.type) : '',
+          item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
           h3(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
