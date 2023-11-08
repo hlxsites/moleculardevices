@@ -15,6 +15,19 @@ function handleTabClick(e, idx) {
   panes[idx].classList.add(classActive);
 }
 
+function redirectedNav() {
+  const hashUrl = window.location.hash.split('#')[1];
+  setTimeout(() => {
+    const tab = document.getElementById(hashUrl);
+    const tabSection = tab.closest('.section');
+    tab.click();
+    window.scroll({
+      top: tabSection.getBoundingClientRect().top + window.screenY - 150,
+      behavior: 'smooth'
+    });
+  }, 1000);
+}
+
 function buildNav(block) {
   const titles = block.querySelectorAll('.tabs-horizontal > div > div:first-child');
   const elemWidth = Math.floor(100 / titles.length);
@@ -24,6 +37,7 @@ function buildNav(block) {
     const listItem = li(
       {
         class: 'tabs-nav-item',
+        id: tabTitle.toLowerCase().split(' ').join('-'),
         style: `width: ${elemWidth}%;`,
         onclick: (e) => { handleTabClick(e, idx); },
         'aria-label': tabTitle,
@@ -56,6 +70,6 @@ export default async function decorate(block) {
 
   block.append(nav);
   block.append(tabs);
-
+  redirectedNav();
   return block;
 }
