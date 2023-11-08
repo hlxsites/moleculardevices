@@ -146,7 +146,6 @@ async function loadIframeForm(data, type) {
   let productImage = '';
   let bundleThumbnail = '';
   let productBundle = '';
-  
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
@@ -176,16 +175,16 @@ async function loadIframeForm(data, type) {
     ) {
       tab = `${data.productBundle} Bundle`;
       productBundle = data.productBundle;
-        // prepare the product bundle thumbnail url
-    if (data.bundleThumbnail) {
-      if (!data.bundleThumbnail.startsWith('https')) {
-        if (data.bundleThumbnail.startsWith('.')) {
-          data.bundleThumbnail = data.bundleThumbnail.substring(1);
+      // prepare the product bundle thumbnail url
+      if (data.bundleThumbnail) {
+        if (!data.bundleThumbnail.startsWith('https')) {
+          if (data.bundleThumbnail.startsWith('.')) {
+            data.bundleThumbnail = data.bundleThumbnail.substring(1);
+          }
+          data.bundleThumbnail = `https://www.moleculardevices.com${data.bundleThumbnail}`;
         }
-        data.bundleThumbnail = `https://www.moleculardevices.com${data.bundleThumbnail}`;
+        bundleThumbnail = data.bundleThumbnail;
       }
-      bundleThumbnail = data.bundleThumbnail;
-    }
 
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
