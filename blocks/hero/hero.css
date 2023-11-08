@@ -204,17 +204,26 @@ display: none;
   max-width: 700px;
 }
 
-.wave .hero-inner {
-  background-image: url('/images/curve.webp'), url('/images/curve.png');
+.wave .hero-inner,
+.wave-reverse .hero-inner {
   background-repeat: no-repeat;
   background-size: 100%;
-  padding-bottom: 10%;
   background-position: bottom center;
 }
 
+.wave .hero-inner {
+  background-image: url('/images/curve.webp'), url('/images/curve.png');
+  padding-bottom: 10%;
+}
+
+.wave-reverse .hero-inner,
 .thankyou .hero-inner {
   background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
   padding-top: 50px;
+}
+
+.wave-reverse .hero-inner .container {
+  align-items: flex-start;
 }
 
 .thankyou .hero-inner h1 {
@@ -563,6 +572,18 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner.short {
     min-height: unset;
+  }
+
+  .wave-reverse .hero-inner > div {
+    padding-top: 40px;
+  }
+
+  .wave-reverse .hero-inner .container.two-column.right-image > div:first-child {
+    width: 62%;
+  }
+
+  .wave-reverse .hero-inner .container.two-column.right-image > div:nth-child(2) {
+    width: 38%;
   }
 
   /* Video Gallery Variant - Desktop -- Start */

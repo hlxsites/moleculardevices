@@ -1230,9 +1230,23 @@ main div.section.wave.bluegreen {
   background-size: 100% 100%;
 }
 
+main div.section.wave.wave-bottom-section {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 main div.section.wave.bluegreen .default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 100px;
+}
+
+main div.section.wave.wave-bottom-section .default-content-wrapper{
+  margin-bottom: 0;
 }
 
 .application .hero-container + .section > .default-content-wrapper:first-child {
@@ -1274,6 +1288,18 @@ main div.section.wave.bluegreen2::after {
   padding: 0;
   bottom: 0;
   content: "";
+}
+
+@media only screen and (min-width: 768px) {
+  main div.section.wave.wave-bottom-section {
+    min-height: 549px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  main div.section.wave.wave-bottom-section {
+    min-height: 700px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
