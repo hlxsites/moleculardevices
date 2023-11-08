@@ -144,7 +144,9 @@ async function loadIframeForm(data, type) {
   let productFamily = '';
   let primaryProductFamily = '';
   let productImage = '';
-
+  let bundleThumbnail = '';
+  let productBundle = '';
+  
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
@@ -173,6 +175,18 @@ async function loadIframeForm(data, type) {
       && data.productBundle !== '0'
     ) {
       tab = `${data.productBundle} Bundle`;
+      productBundle = data.productBundle;
+        // prepare the product bundle thumbnail url
+    if (data.bundleThumbnail) {
+      if (!data.bundleThumbnail.startsWith('https')) {
+        if (data.bundleThumbnail.startsWith('.')) {
+          data.bundleThumbnail = data.bundleThumbnail.substring(1);
+        }
+        data.bundleThumbnail = `https://www.moleculardevices.com${data.bundleThumbnail}`;
+      }
+      bundleThumbnail = data.bundleThumbnail;
+    }
+
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
       if (fragmentHtml) {
@@ -224,6 +238,8 @@ async function loadIframeForm(data, type) {
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
     product_image: productImage,
+    bundle_thumbnail: bundleThumbnail,
+    product_bundle: productBundle,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: data.familyID
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
