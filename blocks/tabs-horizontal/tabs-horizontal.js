@@ -20,7 +20,7 @@ function redirectedNav() {
   const hashUrl = window.location.hash.split('#')[1];
   setTimeout(() => {
     const tab = document.getElementById(hashUrl);
-    if(tab){
+    if (tab){ 
       const tabSection = tab.closest('.section');
       tab.click();
       window.scroll({
