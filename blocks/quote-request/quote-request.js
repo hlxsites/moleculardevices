@@ -130,6 +130,16 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
+function hasThumbnailImage(thumbImage) {
+  if (!thumbImage.startsWith('https')) {
+    if (thumbImage.startsWith('.')) {
+      thumbImage = thumbImage.substring(1);
+    }
+    thumbImage = `https://www.moleculardevices.com${thumbImage}`;
+  }
+  return thumbImage;
+}
+
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq-bundle';
@@ -158,13 +168,7 @@ async function loadIframeForm(data, type) {
 
     // prepare the product image url
     if (data.thumbnail) {
-      if (!data.thumbnail.startsWith('https')) {
-        if (data.thumbnail.startsWith('.')) {
-          data.thumbnail = data.thumbnail.substring(1);
-        }
-        data.thumbnail = `https://www.moleculardevices.com${data.thumbnail}`;
-      }
-      productImage = data.thumbnail;
+      productImage = hasThumbnailImage(data.thumbnail);
     }
 
     // special handling for bundles and customer breakthrough
@@ -177,13 +181,7 @@ async function loadIframeForm(data, type) {
       productBundle = data.productBundle;
       // prepare the product bundle thumbnail url
       if (data.bundleThumbnail) {
-        if (!data.bundleThumbnail.startsWith('https')) {
-          if (data.bundleThumbnail.startsWith('.')) {
-            data.bundleThumbnail = data.bundleThumbnail.substring(1);
-          }
-          data.bundleThumbnail = `https://www.moleculardevices.com${data.bundleThumbnail}`;
-        }
-        bundleThumbnail = data.bundleThumbnail;
+        bundleThumbnail = hasThumbnailImage(data.bundleThumbnail);
       }
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
@@ -244,12 +242,8 @@ async function loadIframeForm(data, type) {
       : 'https://www.moleculardevices.com/quote-request-success',
   };
 
-  if (data) {
-    if (data.path) {
-      hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
-    } else {
-      hubSpotQuery.website = `https://www.moleculardevices.com${data.toLowerCase()}`;
-    }
+  if (data.path) {
+    hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
 
   root.appendChild(
