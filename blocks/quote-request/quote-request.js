@@ -130,7 +130,7 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
-function hasThumbnailImage(thumbImage) {
+function prepImageUrl(thumbImage) {
   let thumbImg = thumbImage;
   if (!thumbImg.startsWith('https')) {
     if (thumbImg.startsWith('.')) {
@@ -169,7 +169,7 @@ async function loadIframeForm(data, type) {
 
     // prepare the product image url
     if (data.thumbnail) {
-      productImage = hasThumbnailImage(data.thumbnail);
+      productImage = prepImageUrl(data.thumbnail);
     }
 
     // special handling for bundles and customer breakthrough
@@ -182,7 +182,7 @@ async function loadIframeForm(data, type) {
       productBundle = data.productBundle;
       // prepare the product bundle thumbnail url
       if (data.bundleThumbnail) {
-        bundleThumbnail = hasThumbnailImage(data.bundleThumbnail);
+        bundleThumbnail = prepImageUrl(data.bundleThumbnail);
       }
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
