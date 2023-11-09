@@ -131,6 +131,7 @@ function iframeResizehandler(formUrl, id, root) {
 }
 
 function hasThumbnailImage(thumbImage) {
+  /* eslint no-param-reassign: "error" */
   if (!thumbImage.startsWith('https')) {
     if (thumbImage.startsWith('.')) {
       thumbImage = thumbImage.substring(1);
