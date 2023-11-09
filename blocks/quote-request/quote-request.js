@@ -132,7 +132,7 @@ function iframeResizehandler(formUrl, id, root) {
 
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
-  const formUrl = 'https://info.moleculardevices.com/rfq-bundle';//https://info.moleculardevices.com/rfq
+  const formUrl = 'https://info.moleculardevices.com/rfq-bundle'; //https://info.moleculardevices.com/rfq
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -235,8 +235,8 @@ async function loadIframeForm(data, type) {
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: productImage ? productImage : 'NA',
-    product_bundle_image: bundleThumbnail ? bundleThumbnail : 'NA',
+    product_image: productImage || 'NA',
+    product_bundle_image: bundleThumbnail || 'NA',
     product_bundle: productBundle,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
     return_url: data.familyID
