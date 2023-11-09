@@ -1,6 +1,7 @@
 import {
   div, li, ul,
 } from '../../scripts/dom-helpers.js';
+import { toClassName } from '../../scripts/lib-franklin.js';
 import { processEmbedFragment } from '../../scripts/scripts.js';
 
 const classActive = 'active';
@@ -19,13 +20,15 @@ function redirectedNav() {
   const hashUrl = window.location.hash.split('#')[1];
   setTimeout(() => {
     const tab = document.getElementById(hashUrl);
-    const tabSection = tab.closest('.section');
-    tab.click();
-    window.scroll({
-      top: tabSection.getBoundingClientRect().top + window.screenY - 150,
-      behavior: 'smooth',
-    });
-  }, 1000);
+    if(tab){
+      const tabSection = tab.closest('.section');
+      tab.click();
+      window.scroll({
+        top: tabSection.getBoundingClientRect().top + window.screenY - 150,
+        behavior: 'smooth',
+      });
+    }
+  }, 500);
 }
 
 function buildNav(block) {
@@ -37,7 +40,7 @@ function buildNav(block) {
     const listItem = li(
       {
         class: 'tabs-nav-item',
-        id: tabTitle.toLowerCase().split(' ').join('-'),
+        id: toClassName(tabTitle),
         style: `width: ${elemWidth}%;`,
         onclick: (e) => { handleTabClick(e, idx); },
         'aria-label': tabTitle,
