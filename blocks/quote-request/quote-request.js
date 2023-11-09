@@ -132,7 +132,7 @@ function iframeResizehandler(formUrl, id, root) {
 
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
-  const formUrl = 'https://info.moleculardevices.com/rfq-bundle';
+  const formUrl = 'https://info.moleculardevices.com/rfq-bundle'; //https://info.moleculardevices.com/rfq
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -246,9 +246,9 @@ async function loadIframeForm(data, type) {
 
   if (data) {
     if (data.path) {
-      hubSpotQuery.website = `https://www.moleculardevices.com/${data.path}`;
+      hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
     } else {
-      hubSpotQuery.website = `https://www.moleculardevices.com/${data.toLowerCase()}`;
+      hubSpotQuery.website = `https://www.moleculardevices.com${data.toLowerCase()}`;
     }
   }
 
