@@ -235,7 +235,7 @@ async function loadIframeForm(data, type) {
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: productImage,
+    product_image: productImage ? productImage : 'NA',
     product_bundle_image: bundleThumbnail ? bundleThumbnail : 'NA',
     product_bundle: productBundle,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
@@ -245,7 +245,11 @@ async function loadIframeForm(data, type) {
   };
 
   if (data) {
-    hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
+    if (data.path) {
+      hubSpotQuery.website = `https://www.moleculardevices.com/${data.path}`;
+    } else {
+      hubSpotQuery.website = `https://www.moleculardevices.com/${data.toLowerCase()}`;
+    }
   }
 
   root.appendChild(
