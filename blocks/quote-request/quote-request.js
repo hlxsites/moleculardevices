@@ -168,7 +168,7 @@ async function loadIframeForm(data, type) {
     sfdcPrimaryApplication = data.title;
 
     // prepare the product image url
-    if (data.thumbnail) {
+    if (data.thumbnail && data.thumbnail !== '0') {
       productImage = prepImageUrl(data.thumbnail);
     }
 
