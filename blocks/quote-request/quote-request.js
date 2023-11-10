@@ -168,7 +168,7 @@ async function loadIframeForm(data, type) {
     sfdcPrimaryApplication = data.title;
 
     // prepare the product image url
-    if (data.thumbnail) {
+    if (data.thumbnail && data.thumbnail !== '0') {
       productImage = prepImageUrl(data.thumbnail);
     }
 
@@ -181,7 +181,7 @@ async function loadIframeForm(data, type) {
       tab = `${data.productBundle} Bundle`;
       productBundle = data.productBundle;
       // prepare the product bundle thumbnail url
-      if (data.bundleThumbnail) {
+      if (data.bundleThumbnail && data.bundleThumbnail !== '0') {
         bundleThumbnail = prepImageUrl(data.bundleThumbnail);
       }
     } else if (data.type === 'Customer Breakthrough') {
