@@ -25,6 +25,15 @@ function LoadDriftWidget() {
     }
     drift.SNIPPET_VERSION = '0.3.1';
     drift.load('pyupvvckemp9');
+    // dreamdata script
+    drift.on("emailCapture", function(payload) {
+  if (payload.data && payload.data.email && window.analytics) {
+      window.analytics.identify(null, {
+          email: payload.data.email,
+      });
+      window.analytics.track("chat_converted");
+  }
+});
 };
 /* eslint-enable */
 
