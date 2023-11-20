@@ -37,7 +37,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/how-to-implement-colony-picki
 Disallow: /sites/default/files/en/assets/ebook/br/elisa.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/img/generate-application-specific-high-content-imaging-and-analysis.pdf
 Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
-
+Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-processes.pdf
 
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
