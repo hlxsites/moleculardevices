@@ -18,7 +18,7 @@ function decorateTitle(parentElem, titleElem) {
 function decorateCite(parentElem) {
   const dt = getMetadata('publication-date');
   if (dt) {
-    const cite = span( { class: 'event-date' }, formatDate(dt));
+    const cite = span({ class: 'event-date' }, formatDate(dt));
     parentElem.append(cite);
   }
 }
@@ -48,7 +48,7 @@ function decorateReadMore(linkElem) {
     linkElem.setAttribute('target', '_blank');
     linkElem.setAttribute('rel', 'noopener noreferrer');
 
-    const extLinkBtn = i( { class: 'fa fa-external-link', 'aria-hidden': 'true' } );
+    const extLinkBtn = i({ class: 'fa fa-external-link', 'aria-hidden': 'true' });
     linkElem.append(extLinkBtn);
   }
 }
@@ -66,7 +66,7 @@ export function decorateAutoBlock(content) {
     return;
   }
 
-  const contentWrapper = span( {class: 'event-container'} );
+  const contentWrapper = span({ class: 'event-container' });
 
   decorateTitle(contentWrapper, content.querySelector('h1'));
   decorateCite(contentWrapper);
@@ -78,7 +78,7 @@ export function decorateAutoBlock(content) {
     contentWrapper.append(pic);
   }
 
-  const txt = div( { class: 'right-col'} );
+  const txt = div({ class: 'right-col' });
 
   let isInleftCol = hasLeftCol;
   [...content.children].forEach((child) => {
