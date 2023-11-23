@@ -1,4 +1,5 @@
 import { formatDate } from '../../scripts/scripts.js';
+import { loadEmbed } from './blocks/embed/embed.js';
 
 import {
   getMetadata, buildBlock,
@@ -54,6 +55,14 @@ function decorateReadMore(linkElem) {
   }
 }
 
+function decorateEmbed(elems) {
+  elems.forEach((elem) => {
+    const embedUrl = elem.querySelector('a');
+    loadEmbed(elem, embedUrl.href);
+    embedUrl.remove();
+  });
+}
+
 export function decorateAutoBlock(content) {
   if (!content) {
     return;
@@ -88,6 +97,7 @@ export function decorateAutoBlock(content) {
   contentWrapper.append(txt);
   content.append(contentWrapper);
 
+  decorateEmbed(contentWrapper.querySelectorAll('.embed'));
   decorateStrong(contentWrapper.querySelectorAll('.right-col p > strong'));
   decorateCaption(contentWrapper.querySelectorAll('.left-col p > picture'));
   decorateCaption(contentWrapper.querySelectorAll('.right-col p > picture'));
