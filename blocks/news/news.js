@@ -1,6 +1,6 @@
 import { formatDate } from '../../scripts/scripts.js';
 import { loadEmbed } from './blocks/embed/embed.js';
-
+// import metadata nd build block
 import {
   getMetadata, buildBlock,
 } from '../../scripts/lib-franklin.js';
