@@ -1,5 +1,5 @@
 import { formatDate } from '../../scripts/scripts.js';
-import { loadEmbed } from '/blocks/embed/embed.js';
+import { loadEmbed } from '../../blocks/embed/embed.js';
 
 import {
   getMetadata, buildBlock,
