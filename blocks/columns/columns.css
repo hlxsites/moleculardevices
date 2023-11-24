@@ -488,7 +488,6 @@ main .section > div.columns-wrapper {
 .columns.layout-25-75 > div:not(:last-child) {
   margin-bottom: 30px;
 }
-/* stylelint-enable no-descending-specificity */
 
 .service-support .columns-wrapper {
   padding-top: 0;
