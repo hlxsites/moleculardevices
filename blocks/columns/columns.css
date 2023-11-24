@@ -1,4 +1,5 @@
-main .section>div.columns-wrapper {
+/* stylelint-disable no-descending-specificity */
+main .section > div.columns-wrapper {
   margin-top: 20px;
 }
 
