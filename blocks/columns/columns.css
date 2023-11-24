@@ -682,3 +682,15 @@ main .section>div.columns-wrapper {
   margin-bottom: 10px;
   line-height: 20px;
 }
+
+main .columns.columns-align-bottom > div {
+  align-items: flex-end;
+}
+
+main .columns .embed.embed-ceros {
+  margin-bottom: 0;
+}
+
+main .columns .embed.embed-ceros > div {
+  padding-top: 57%;
+}

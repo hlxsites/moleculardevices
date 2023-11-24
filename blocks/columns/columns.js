@@ -1,4 +1,20 @@
+import { embedCerosFrame } from '../embed/embed.js';
+
+function decorateEmbed(elems) {
+  elems.forEach((elem) => {
+    const embedHTML = embedCerosFrame(elem);
+    const parentEl = elem.parentElement;
+    const GrandParentEl = parentEl.parentElement;
+    GrandParentEl.classList.add('embed', 'embed-ceros');
+    GrandParentEl.insertAdjacentHTML('afterbegin', embedHTML);
+    parentEl.remove();
+  });
+}
+
 export default function decorate(block) {
+  const embedUrls = block.querySelectorAll('a[href*="ceros.com"]');
+  decorateEmbed(embedUrls);
+
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
