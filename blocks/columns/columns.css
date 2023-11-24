@@ -1,4 +1,5 @@
-main .section>div.columns-wrapper {
+/* stylelint-disable no-descending-specificity */
+main .section > div.columns-wrapper {
   margin-top: 20px;
 }
 
@@ -179,7 +180,6 @@ main .section>div.columns-wrapper {
   padding: 0 24px;
 }
 
-/* stylelint-disable no-descending-specificity */
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
@@ -488,7 +488,6 @@ main .section>div.columns-wrapper {
 .columns.layout-25-75 > div:not(:last-child) {
   margin-bottom: 30px;
 }
-/* stylelint-enable no-descending-specificity */
 
 .service-support .columns-wrapper {
   padding-top: 0;
@@ -681,4 +680,16 @@ main .section>div.columns-wrapper {
 .product .section.columns-container .columns.columns-2-cols > div ul li {
   margin-bottom: 10px;
   line-height: 20px;
+}
+
+main .columns.columns-align-bottom > div {
+  align-items: flex-end;
+}
+
+main .columns .embed.embed-ceros {
+  margin-bottom: 0;
+}
+
+main .columns .embed.embed-ceros > div {
+  padding-top: 57%;
 }
