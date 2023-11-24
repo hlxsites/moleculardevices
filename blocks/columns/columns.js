@@ -4,10 +4,9 @@ function decorateEmbed(elems) {
   elems.forEach((elem) => {
     const embedHTML = embedCerosFrame(elem);
     const parentEl = elem.parentElement;
-    const GrandParentEl = parentEl.parentElement;
-    GrandParentEl.classList.add('embed', 'embed-ceros');
-    GrandParentEl.insertAdjacentHTML('afterbegin', embedHTML);
-    parentEl.remove();
+    parentEl.classList.add('embed', 'embed-ceros');
+    parentEl.innerHTML = embedHTML;
+    elem.remove();
   });
 }
 
