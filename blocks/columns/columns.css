@@ -180,7 +180,6 @@ main .section > div.columns-wrapper {
   padding: 0 24px;
 }
 
-/* stylelint-disable no-descending-specificity */
 .columns.contact > div h3 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
