@@ -156,7 +156,7 @@ function embedAdobeIndesign(url) {
     </div>`;
 }
 
-const loadEmbed = (block, link) => {
+export const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }

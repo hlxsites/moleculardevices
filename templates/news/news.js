@@ -1,4 +1,8 @@
 import { formatDate } from '../../scripts/scripts.js';
+import { loadEmbed } from '../../blocks/embed/embed.js';
+import {
+  div, i, span,
+} from '../../scripts/dom-helpers.js';
 
 import {
   getMetadata, buildBlock,
@@ -14,9 +18,7 @@ function decorateTitle(parentElem, titleElem) {
 function decorateCite(parentElem) {
   const dt = getMetadata('publication-date');
   if (dt) {
-    const cite = document.createElement('cite');
-    cite.classList.add('event-date');
-    cite.innerHTML = formatDate(dt);
+    const cite = span({ class: 'event-date' }, formatDate(dt));
     parentElem.append(cite);
   }
 }
@@ -46,12 +48,17 @@ function decorateReadMore(linkElem) {
     linkElem.setAttribute('target', '_blank');
     linkElem.setAttribute('rel', 'noopener noreferrer');
 
-    const extLinkBtn = document.createElement('i');
-    extLinkBtn.classList.add('fa', 'fa-external-link');
-    extLinkBtn.setAttribute('aria-hidden', 'true');
-
+    const extLinkBtn = i({ class: 'fa fa-external-link', 'aria-hidden': 'true' });
     linkElem.append(extLinkBtn);
   }
+}
+
+function decorateEmbed(elems) {
+  elems.forEach((elem) => {
+    const embedUrl = elem.querySelector('a');
+    loadEmbed(elem, embedUrl.href);
+    embedUrl.remove();
+  });
 }
 
 export function decorateAutoBlock(content) {
@@ -59,21 +66,19 @@ export function decorateAutoBlock(content) {
     return;
   }
 
-  const contentWrapper = document.createElement('span');
-  contentWrapper.classList.add('event-container');
+  const contentWrapper = span({ class: 'event-container' });
 
   decorateTitle(contentWrapper, content.querySelector('h1'));
   decorateCite(contentWrapper);
 
   const hasLeftCol = content.querySelector('p:first-child picture');
-  const pic = document.createElement('div');
+  const pic = div();
   if (hasLeftCol) {
     pic.classList.add('left-col');
     contentWrapper.append(pic);
   }
 
-  const txt = document.createElement('div');
-  txt.classList.add('right-col');
+  const txt = div({ class: 'right-col' });
 
   let isInleftCol = hasLeftCol;
   [...content.children].forEach((child) => {
@@ -88,6 +93,7 @@ export function decorateAutoBlock(content) {
   contentWrapper.append(txt);
   content.append(contentWrapper);
 
+  decorateEmbed(contentWrapper.querySelectorAll('.embed'));
   decorateStrong(contentWrapper.querySelectorAll('.right-col p > strong'));
   decorateCaption(contentWrapper.querySelectorAll('.left-col p > picture'));
   decorateCaption(contentWrapper.querySelectorAll('.right-col p > picture'));
