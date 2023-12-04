@@ -82,7 +82,7 @@ Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content
 Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
 Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
 Disallow: /en/assets/app-note/dd/img/3d-quantitative-measurement-of-t-cell-penetration-into-cancer-spheroids
-
+Disallow: /en/assets/app-note/br/assessing-reader-capability-for-nanobret-technology
 
 
 # ISSER 2021 presentations poster and video
@@ -176,7 +176,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-
 Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
 Disallow: /en/assets/tutorials-videos/dd/img/scale-up-3d-model-drug-screening-using-robotic-platform-with-xeno-free-hydrogel
 Disallow: /en/assets/tutorials-videos/dd/img/scaling-up-organoid-research-new-approach-with-assay-ready-organoids
-
+Disallow: /en/assets/tutorials-videos/bpd/mastering-monoclonality-of-single-cell-dispensing-and-imaging-with-dispencell-and-csi
 
 
 #EU webinars to imaging video gallery page
