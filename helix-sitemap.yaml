@@ -10,7 +10,6 @@ sitemaps:
     destination: /files-sitemap.xml
     lastmod: YYYY-MM-DD
   hubspot:
-    origin: https://www.moleculardevices.com
     source: /sites/default/files/hubspot/query-index.json
     destination: /hubspot-sitemap.xml
     lastmod: YYYY-MM-DD 
