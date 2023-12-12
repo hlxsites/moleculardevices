@@ -182,3 +182,14 @@ indices:
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+  hubspot:
+    include:
+      - '/en/assets/newsletters/**'
+    target: /sites/default/files/hubspot/query-index.json
+    properties:
+      path:
+        select: head > meta[name="gated-url"]
+        value: attribute(el, "content")
+       lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")     
