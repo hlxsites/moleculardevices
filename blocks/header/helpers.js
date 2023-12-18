@@ -1,8 +1,6 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a,
-  div,
-  li,
+  a, div, li,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
@@ -116,6 +114,11 @@ export function decorateLanguagesTool(tools) {
 
   const languagesList = languageTool.querySelector('ul');
   languagesList.classList.add('languages-dropdown');
+
+  const pathLocation = window.location.pathname;
+  languagesList.querySelectorAll('a').forEach((link) => {
+    link.href = `${link.href}${pathLocation.slice(1)}`;
+  });
 
   languageTool.addEventListener('click', () => {
     languagesList.classList.toggle('show');
