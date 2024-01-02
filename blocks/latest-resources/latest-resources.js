@@ -71,9 +71,22 @@ export default async function decorate(block) {
     }
   });
 
+  const sortedResources = resources.filter((item) => !!item).sort((x, y) => {
+    if (x.date < y.date) {
+      return 1;
+    }
+    if (x.date > y.date) {
+      return -1;
+    }
+    return 0;
+  });
+
+
+  console.log(resources);
+
   await createCarousel(
     block,
-    resources,
+    sortedResources,
     {
       defaultStyling: true,
       navButtons: true,
