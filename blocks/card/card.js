@@ -62,7 +62,7 @@ class Card {
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
     this.c2aLinkIconFull = false;
-    this.showDate = true,
+    this.showDate = true;
 
     // Apply overwrites
     Object.assign(this, config);
