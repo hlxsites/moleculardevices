@@ -121,6 +121,16 @@ main .card-type {
   display: none;
 }
 
+main .card-date {
+  font-size: var(--body-font-size-xs);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
 main .card a .icon.icon-chevron-right-outline {
   margin-left: 5px;
   vertical-align: text-top;

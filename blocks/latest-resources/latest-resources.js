@@ -58,8 +58,19 @@ export default async function decorate(block) {
     resources = await getResourcesFromMetaTags();
   }
 
+  const sortedResources = resources.filter((item) => !!item).sort((x, y) => {
+    if (x.date < y.date) {
+      return 1;
+    }
+    if (x.date > y.date) {
+      return -1;
+    }
+    return 0;
+  });
+
   const placeholders = await fetchPlaceholders();
   const resourceCard = await createCard({
+    showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
@@ -73,7 +84,7 @@ export default async function decorate(block) {
 
   await createCarousel(
     block,
-    resources,
+    sortedResources,
     {
       defaultStyling: true,
       navButtons: true,

@@ -5,7 +5,7 @@
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
-import { isGatedResource, summariseDescription } from '../../scripts/scripts.js';
+import { formatDateUTCSeconds, isGatedResource, summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
@@ -62,6 +62,7 @@ class Card {
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
     this.c2aLinkIconFull = false;
+    this.showDate = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -152,6 +153,7 @@ class Card {
         item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
         div({ class: 'card-caption' },
           item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
+          this.showDate ? div({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
           h3(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
