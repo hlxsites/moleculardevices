@@ -25,6 +25,14 @@ main .tabs-vertical-container .cursor-pointer {
   position: relative;
 }
 
+.tabs-vertical-content a {
+  color: inherit;
+}
+
+.tabs-vertical-content a:hover {
+  text-decoration: underline;
+}
+
 .tabs-vertical-main-content {
     background-color: var(--tabs-vertical-background-color);
     color: var(--text-white);
