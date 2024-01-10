@@ -83,7 +83,7 @@ Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-comp
 Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
 Disallow: /en/assets/app-note/dd/img/3d-quantitative-measurement-of-t-cell-penetration-into-cancer-spheroids
 Disallow: /en/assets/app-note/br/assessing-reader-capability-for-nanobret-technology
-
+Disallow: /en/assets/app-note/dd/img/matrigel-dome-assays-and-drug-screening-of-colorectal-cancer-organoids
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
@@ -254,6 +254,7 @@ Disallow: /en/assets/promotion/dd/img/high-throughput-organoid-imaging-analysis-
 Disallow: /en/assets/promotion/dd/img/slas-2023
 Disallow: /en/assets/promotion/bpd/colony-picking-automation
 Disallow: /en/assets/promotion/dd/img/slas-eu-2023
+Disallow: /en/assets/promotion/dd/img/slas-2024
 
 #EU BPD Campaign Page block 
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
