@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './lib-franklin.js';
+import { sampleRUM, loadScript } from './lib-franklin.js';
 
 const isSidekickLibrary = (window.location.href === 'about:srcdoc');
 
@@ -98,6 +98,10 @@ function loadGTM() {
   `;
   document.head.prepend(scriptTag);
 }
+
+// Fathom Analytics Code
+const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
+loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
