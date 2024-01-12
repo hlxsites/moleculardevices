@@ -6,10 +6,15 @@
 
 /* stylelint-disable no-descending-specificity */
 
-main div.carousel-wrapper:not(.press-release-carousel-wrapper) {
+main div.carousel-wrapper:not(.container-width-carousel) {
   width: 100%;
   position: relative;
   max-width: unset;
+}
+
+main div.carousel-wrapper:not(.container-width-carousel),
+main div.carousel-wrapper.container-width-carousel {
+  position: relative;
 }
 
 main div.carousel-wrapper:last-child {

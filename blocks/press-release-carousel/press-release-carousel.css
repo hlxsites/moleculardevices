@@ -1,7 +1,3 @@
-main .press-release-carousel-wrapper {
-  position: relative;
-}
-
 main .carousel.press-release-carousel {
   padding: 0;
 }
@@ -20,27 +16,3 @@ main .press-carousel-item h3 {
   color: #34393d;
   font-family: var(--ff-proxima-regular);
 }
-
-/* main .press-release-carousel-container .press-release-carousel-wrapper {
-  max-width: unset;
-  width: unset;
-  margin: 0;
-}
-
-@media only screen and (min-width: 768px) {
-  main div.press-release-carousel-wrapper {
-    width: 750px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  main div.press-release-carousel-wrapper {
-    width: 970px;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-  main div.press-release-carousel-wrapper {
-    width: 1170px;
-  }
-} */
