@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-expressions, linebreak-style */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
-import { div, img, p, span } from '../../scripts/dom-helpers.js';
+import {
+  div, img, p, span,
+} from '../../scripts/dom-helpers.js';
 import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;

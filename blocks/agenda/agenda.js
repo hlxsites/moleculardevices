@@ -14,4 +14,4 @@ export default function decorate(block) {
     list.appendChild(listItem);
   });
   block.querySelector(':scope > div').replaceWith(list);
-};
+}
