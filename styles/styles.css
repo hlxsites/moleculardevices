@@ -825,6 +825,11 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin: 0 auto;
 }
 
+.section.title-small > div.default-content-wrapper > h2 {
+  font-size: var(--heading-font-size-l);
+  font-family: var(--ff-proxima-xbold);
+}
+
 .section.title-big > div.default-content-wrapper > h3 {
   font-size: 36px;
 }
