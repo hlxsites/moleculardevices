@@ -37,7 +37,7 @@ const TEMPLATE_LIST = [
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
-const LCP_BLOCKS = ['hero', 'hero-advanced', 'hero-video', 'featured-highlights']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
