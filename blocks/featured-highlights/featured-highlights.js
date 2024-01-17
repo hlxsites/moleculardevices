@@ -1,5 +1,5 @@
 // eslint-disable-next-line object-curly-newline
-import { div, ul, li, span, a } from '../../scripts/dom-helpers.js';
+import { div, ul, li, span, a, strong } from '../../scripts/dom-helpers.js';
 import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 function activeItem(slider, item, diff) {
@@ -24,7 +24,7 @@ export default async function decorate(block) {
   const heroSection = block.closest('main').querySelector('.section.hero-container, .section.hero-advanced-container');
   heroSection.appendChild(block.parentElement);
   const carousel = div({ class: 'carousel' });
-  const slider = div({ class: 'slider' }, div(span(placeholders.featuredHighlights || 'Featured Highlights')));
+  const slider = div({ class: 'slider' }, div(strong(placeholders.featuredHighlights || 'Featured Highlights')));
   const sliderInner = slider.querySelector('div');
   const left = span({ class: 'icon icon-icon_link icon-flip' });
   const right = span({ class: 'icon icon-icon_link' });

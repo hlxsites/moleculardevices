@@ -115,6 +115,10 @@ table i.fa.fa-circle {
   border: none;
 }
 
+.options-compare.ebook-options-compare table th {
+  width: 20%;
+}
+
 .table.order table tr.apparent-heading th {
   border: none;
   background: none;
