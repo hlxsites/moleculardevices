@@ -928,7 +928,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
-  loadHeader(doc.querySelector('header'));
+  //loadHeader(doc.querySelector('header'));
 
   await loadBlocks(main);
 
@@ -940,7 +940,7 @@ async function loadLazy(doc) {
     if (hash && element) element.scrollIntoView();
 
     loadFooter(doc.querySelector('footer'));
-    loadBreadcrumbs(main);
+    //loadBreadcrumbs(main);
 
     loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
     loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
