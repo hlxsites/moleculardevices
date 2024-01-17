@@ -5,6 +5,7 @@ import { a, h3, span } from '../../scripts/dom-helpers.js';
 export default async function decorate(block) {
   const newsUrls = [...block.querySelectorAll('a')].map((link) => link.href);
   const newsItems = await ffetch('/query-index.json')
+    .sheet('publications')
     .chunks(500)
     .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
     .all();
