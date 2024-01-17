@@ -2220,6 +2220,7 @@ main .section.no-margin-top {
 .slas-page .slas-resource-list .columns > div > div h3 + ul {
   padding-top: 0;
   padding-left: 20px;
+}
 
   /* eBook contact */
 .section.ebook-contact {
