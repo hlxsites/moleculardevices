@@ -1,0 +1,18 @@
+main .carousel.press-release-carousel {
+  padding: 0;
+}
+
+main .press-carousel-item h4 {
+  color: var(--text-green);
+  font-size: var(--heading-font-size-m);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+main .press-carousel-item h3 {
+  padding-top: 0;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #34393d;
+  font-family: var(--ff-proxima-regular);
+}

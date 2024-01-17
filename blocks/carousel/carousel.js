@@ -1,6 +1,8 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-expressions, linebreak-style */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
-import { div, p, span } from '../../scripts/dom-helpers.js';
+import {
+  div, img, p, span,
+} from '../../scripts/dom-helpers.js';
 import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -39,6 +41,7 @@ class Carousel {
     this.counterText = '';
     this.counterNavButtons = true;
     this.cardRenderer = this;
+    this.hasImageInDots = false;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -317,13 +320,22 @@ class Carousel {
 
   createDotButtons() {
     const buttons = document.createElement('div');
-    buttons.className = 'carousel-dot-buttons';
+    buttons.className = `carousel-dot-buttons ${this.hasImageInDots ? 'carousel-dot-img-buttons' : ''}`;
     const items = [...this.block.children];
 
     items.forEach((item, i) => {
       const button = document.createElement('button');
       button.ariaLabel = `Scroll to item ${i + 1}`;
       button.classList.add('carousel-dot-button');
+
+      if (this.hasImageInDots) {
+        const imgPath = item.querySelector('img').getAttribute('src');
+        const customPath = imgPath.split('?')[0];
+        const imgFormat = customPath.split('.')[1];
+        const imgPrefix = `${customPath}?width=100&format=${imgFormat}&optimize=medium`;
+        button.appendChild(img({ src: imgPrefix }));
+      }
+
       if (i === this.currentIndex) {
         button.classList.add('selected');
       }

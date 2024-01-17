@@ -12,6 +12,11 @@ main div.carousel-wrapper {
   max-width: unset;
 }
 
+main div.carousel-wrapper.container-width-carousel {
+  position: relative;
+  width: 90%;
+}
+
 main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
@@ -21,8 +26,8 @@ main .carousel {
   display: flex;
   overflow: hidden;
   margin: auto;
-  width: 100%;          /* default - same as .products */
-  padding-left: 200px;  /* default - same as .products */
+  width: 100%; /* default - same as .products */
+  padding-left: 200px; /* default - same as .products */
   padding-right: 200px; /* default - same as .products */
 }
 
@@ -34,7 +39,7 @@ main .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 80px;     /* default - same as .products */
+  padding: 50px 80px; /* default - same as .products */
 }
 
 main .carousel-item-columns-container {
@@ -51,7 +56,7 @@ main .carousel-item-column {
 main .carousel-item-image img {
   display: block;
   object-fit: contain;
-  width: 100%;       /* default - same as .products */
+  width: 100%; /* default - same as .products */
   max-height: 400px; /* default - same as .products */
 }
 
@@ -94,9 +99,9 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #adb3b7;               /* default - same as .products */
-  border: 1.5px solid #adb3b7;  /* default - same as .products */
-  background-color: inherit;      /* default - same as .products */
+  color: #adb3b7; /* default - same as .products */
+  border: 1.5px solid #adb3b7; /* default - same as .products */
+  background-color: inherit; /* default - same as .products */
 }
 
 main .carousel-nav-button.disabled {
@@ -146,6 +151,33 @@ main .carousel-dot-button.selected {
   border: 0;
 }
 
+main .carousel-dot-img-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+main .carousel-dot-img-buttons .carousel-dot-button {
+  max-width: 100px;
+  background: #fff;
+  padding: 10px;
+  margin-right: 10px;
+  opacity: 0.7;
+  width: 100%;
+  border-radius: inherit;
+  height: 100%;
+  border: none;
+}
+
+main .carousel-dot-img-buttons .carousel-dot-button img {
+  display: block;
+}
+
+main .carousel-dot-img-buttons .carousel-dot-button.selected {
+  opacity: 1;
+}
+
 @media only screen and (max-width: 1400px) {
   main .carousel {
     padding-left: 100px;
@@ -153,7 +185,17 @@ main .carousel-dot-button.selected {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 750px;
+  }
+}
+
 @media only screen and (min-width: 992px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 970px;
+  }
+
   main .carousel.full-bg .primary {
     background-color: transparent;
     border: 1px solid #fff;
@@ -168,7 +210,7 @@ main .carousel-dot-button.selected {
     background-color: #fff;
   }
 
-  main .carousel.full-bg .primary:hover .button-border{
+  main .carousel.full-bg .primary:hover .button-border {
     display: none;
   }
 
@@ -187,7 +229,7 @@ main .carousel-dot-button.selected {
     align-items: center;
   }
 
-  main .carousel.full-bg .carousel-item-column:first-child ,
+  main .carousel.full-bg .carousel-item-column:first-child,
   main .carousel.full-bg .carousel-item-image,
   main .carousel.full-bg .carousel-item-image .picture,
   main .carousel.full-bg .carousel-item-image img {
@@ -206,6 +248,12 @@ main .carousel-dot-button.selected {
 
   main .carousel.full-bg .carousel-item-column:first-child .picture:last-child {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 1170px;
   }
 }
 
@@ -306,7 +354,7 @@ main .carousel.wave .carousel-item-columns-container {
   gap: 2em;
 }
 
-main .carousel.wave .carousel-item  {
+main .carousel.wave .carousel-item {
   padding: 20px 15px;
   height: 100%;
 }
@@ -442,6 +490,37 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   main .carousel-wrapper.wave .carousel-dot-buttons {
     margin-bottom: 25px;
   }
+
+  .slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
+    font-size: 24px;
+  }
+
+  .slas-page main .section.slas-resource-list .columns > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  main .carousel-dot-img-buttons .carousel-dot-button {
+    max-width: 60px;
+    padding: 5px;
+    margin-right: 0;
+  }
+
+  .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
+    margin-top: 20px;
+  }
+
+  .slas-page main div.carousel-wrapper.container-width-carousel .columns > div > div:first-child {
+    margin-bottom: 24px;
+  }
+
+  main div.carousel-wrapper.container-width-carousel .carousel-nav-left {
+    left: -10px;
+  }
+
+  main div.carousel-wrapper.container-width-carousel .carousel-nav-right {
+    right: -10px;
+  }
 }
 
 /* WAVE Blue Variant */
@@ -474,7 +553,7 @@ main .carousel .carousel-item .carousel-item-text blockquote > p::after {
 
 main .carousel blockquote::before,
 main .carousel blockquote::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100px;
   height: 100px;
@@ -531,3 +610,4 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
+

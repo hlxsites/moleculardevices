@@ -45,15 +45,39 @@
 
 /* stylelint-disable */
 /* Translations classes from One Link */
-.OneLinkShow_jp, main .section.OneLinkShow_jp.columns-2 { display:none; }
-.OneLinkShow_de, main .section.OneLinkShow_de.columns-2 { display:none; }
-.OneLinkShow_fr, main .section.OneLinkShow_fr.columns-2 { display:none; }
-.OneLinkShow_ko, main .section.OneLinkShow_ko.columns-2 { display:none; }
-.OneLinkShow_it, main .section.OneLinkShow_it.columns-2 { display:none; }
-.OneLinkShow_es, main .section.OneLinkShow_es.columns-2 { display:none; }
-.OneLinkShow_zh, main .section.OneLinkShow_zh.columns-2 { display:none; }
+.OneLinkShow_jp, main .section.OneLinkShow_jp.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_de, main .section.OneLinkShow_de.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_fr, main .section.OneLinkShow_fr.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_ko, main .section.OneLinkShow_ko.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_it, main .section.OneLinkShow_it.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_es, main .section.OneLinkShow_es.columns-2 {
+  display: none;
+}
+
+.OneLinkShow_zh, main .section.OneLinkShow_zh.columns-2 {
+  display: none;
+}
+
 /* Will be hidden on translated pages */
-.OneLinkHide { display: block; }
+.OneLinkHide {
+  display: block;
+}
+
 /* stylelint-enable */
 
 :root {
@@ -335,8 +359,8 @@ em strong {
 
 /* video player styles and overlays */
 .video-wrapper {
-    margin: 40px auto;
-    max-width: 700px;
+  margin: 40px auto;
+  max-width: 700px;
 }
 
 p.video-title {
@@ -583,7 +607,7 @@ main .section.html-snippet-container {
   padding-bottom: 0 !important;
 }
 
-main .section>.featured-posts-wrapper {
+main .section > .featured-posts-wrapper {
   padding-top: 40px;
 }
 
@@ -635,7 +659,7 @@ main .section.columns-2 > div {
     --heading-font-size-xl: 70px;
   }
 
-  main .section>div {
+  main .section > div {
     width: 750px;
   }
 
@@ -655,7 +679,7 @@ main .section.columns-2 > div {
 }
 
 @media (min-width: 992px) {
-  main .section>div {
+  main .section > div {
     width: 970px;
   }
 
@@ -667,7 +691,7 @@ main .section.columns-2 > div {
 }
 
 @media (min-width: 1200px) {
-  main .section>div {
+  main .section > div {
     width: 1170px;
   }
 
@@ -706,7 +730,7 @@ main .section.background-grey-bottom-half::before {
 }
 
 main .section.background-grey-top-half::before {
-    top: 0;
+  top: 0;
 }
 
 main .section.background-grey-bottom-half::before {
@@ -838,7 +862,7 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
 }
 
 main .default-content-wrapper ol li:not(:last-child),
-main .default-content-wrapper ul li:not(:last-child){
+main .default-content-wrapper ul li:not(:last-child) {
   margin-bottom: 8px;
 }
 
@@ -1114,7 +1138,7 @@ main .section.background-parallax .default-content-wrapper .button-container {
   margin: 60px 30px;
 }
 
-main .section.background-parallax .default-content-wrapper .button-container>a {
+main .section.background-parallax .default-content-wrapper .button-container > a {
   color: var(--text-white);
   border-radius: 0;
   padding: 18px 18px 16px;
@@ -1245,7 +1269,7 @@ main div.section.wave.bluegreen .default-content-wrapper {
   margin-bottom: 100px;
 }
 
-main div.section.wave.wave-bottom-section .default-content-wrapper{
+main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-bottom: 0;
 }
 
@@ -1273,7 +1297,7 @@ main div.section.wave.bluegreen2 {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(90deg, rgba(21 145 164 / 100%) 0, rgba(50 159 121 / 100%) 50%, rgba(97 178 73 / 100%) 100%) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1426,7 +1450,7 @@ main div.orange-secondary-buttons .button.secondary:active {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main div.orange-buttons .button.primary>.button-border {
+main div.orange-buttons .button.primary > .button-border {
   display: none;
 }
 
@@ -1776,9 +1800,9 @@ main .section.background-molecules {
 
 .technology .columns.block.columns-1-cols ul li,
 .application .columns.block.columns-1-cols ul li {
-    color: var(--link-color);
-    line-height: 21px;
-    margin-bottom: 10px;
+  color: var(--link-color);
+  line-height: 21px;
+  margin-bottom: 10px;
 }
 
 .technology .section.tabs h2 + h4,
@@ -1826,7 +1850,7 @@ main .section.background-molecules {
 
 .background-black p,
 .background-black h4 {
-    color: var(--text-white);
+  color: var(--text-white);
 }
 
 .section.title-no-spacing > div.default-content-wrapper > h2,
@@ -1904,7 +1928,7 @@ main .section.background-molecules {
 }
 
 .category .columns-wrapper h3 + h4,
-.category .columns-wrapper h4 + h4  {
+.category .columns-wrapper h4 + h4 {
   font-size: 20px;
   line-height: 1.5rem;
 }
@@ -2060,15 +2084,15 @@ main .section.space-wrappers > div {
   height: auto;
 }
 
-.list-spacing-8 ul li:not(:last-child){
+.list-spacing-8 ul li:not(:last-child) {
   margin-bottom: 8px;
 }
 
-.list-spacing-10 ul li:not(:last-child){
+.list-spacing-10 ul li:not(:last-child) {
   margin-bottom: 10px;
 }
 
-.list-spacing-16 ul li:not(:last-child){
+.list-spacing-16 ul li:not(:last-child) {
   margin-bottom: 16px;
 }
 
@@ -2136,7 +2160,70 @@ main .columns-separator-line .columns-wrapper .columns {
   color: var(--text-green);
 }
 
-/* eBook contact */
+/* SLAS PAGES */
+main .block.no-margin-top,
+main .section.no-margin-top {
+  margin-top: 0;
+}
+
+.slas-page .section .columns.tutorials-posters > div:not(:last-child) {
+  margin: 0;
+}
+
+.slas-page .section .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) {
+  padding: 20px 0;
+  border-bottom: 1px solid;
+}
+
+.slas-page .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) p:first-of-type {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.slas-page .section .default-content-wrapper h2 + h3,
+.slas-page .columns.tutorials-posters h3,
+.slas-page .columns.tutorials-posters h4 {
+  font-family: var(--ff-proxima-regular);
+  color: #34393d;
+}
+
+.slas-page main .section h3 {
+  padding-top: 0;
+}
+
+.slas-page main .section:not(.slas-resource-list,.carousel-container) h3 {
+  font-size: 36px;
+}
+
+.slas-page .section .default-content-wrapper h2 + h3 {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.slas-page .columns.tutorials-posters h4 {
+  margin: 10px 0;
+  color: var(--text-green);
+}
+
+.slas-page .columns.tutorials-posters p {
+  margin: 0;
+}
+
+.slas-page .slas-resource-list .columns > div > div h3 {
+  padding-top: 0;
+  font-size: 24px;
+  color: inherit;
+  font-weight: bold;
+}
+
+.slas-page .slas-resource-list .columns > div > div h3 + ul {
+  padding-top: 0;
+  padding-left: 20px;
+}
+
+  /* eBook contact */
+.section.background-teal,
 .section.ebook-contact {
   background-color: var(--button-secondary-color);
   color: var(--text-white);
