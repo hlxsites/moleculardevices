@@ -825,11 +825,6 @@ main .section.tabs[aria-labelledby="order"] .default-content-wrapper img {
   margin: 0 auto;
 }
 
-.section.title-small > div.default-content-wrapper > h2 {
-  font-size: var(--heading-font-size-l);
-  font-family: var(--ff-proxima-xbold);
-}
-
 .section.title-big > div.default-content-wrapper > h3 {
   font-size: 36px;
 }
@@ -2139,4 +2134,55 @@ main .columns-separator-line .columns-wrapper .columns {
 .title-with-green-highlight h3:first-child em {
   font-style: normal;
   color: var(--text-green);
+}
+
+/* eBook contact */
+.section.ebook-contact {
+  background-color: var(--button-secondary-color);
+  color: var(--text-white);
+}
+
+.section.ebook-contact h3,
+.section.ebook-contact a {
+  color: inherit;
+}
+
+.section.ebook-contact h3 {
+  padding-top: 0;
+}
+
+.section.ebook-contact .columns > div > div:last-child {
+  text-align: center;
+}
+
+.section.ebook-contact em > a {
+  box-sizing: border-box;
+  font-family: var(--ff-proxima-regular);
+  font-weight: 400;
+  font-size: var(--body-font-size-l);
+  font-style: normal;
+  line-height: 18px;
+  display: inline-block;
+  border-radius: 0;
+  transition: all .2s;
+  position: relative;
+  padding: 15px 18px 16px;
+  margin-bottom: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  height: 50px;
+  min-width: 200px;
+  color: var(--text-blue);
+  background: var(--background-color);
+  border: 2px solid #fff;
+  text-transform: none;
+}
+
+.section.ebook-contact em > a:hover{
+  color: var(--text-white);
+  background: transparent;
+  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
