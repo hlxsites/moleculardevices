@@ -301,7 +301,7 @@
     vertical-align: top;
   }
 
-  .landing-page main .section.download-form:not(.center) .default-content-wrapper:first-child {
+  .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
     margin-left: calc((100vw - var(--section-div-width)) / 2);
     padding-top: 25px;
   }
@@ -387,7 +387,7 @@
     font-size: 16px;
   }
 
-  .landing-page main .section.download-form:not(.center) .default-content-wrapper:first-child {
+  .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
     padding-top: 90px;
   }
 
