@@ -13,8 +13,8 @@ main div.carousel-wrapper {
 }
 
 main div.carousel-wrapper.container-width-carousel {
-  width: 1170px;
   position: relative;
+  width: 90%;
 }
 
 main div.carousel-wrapper:last-child {
@@ -153,6 +153,7 @@ main .carousel-dot-button.selected {
 
 main .carousel-dot-img-buttons {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 50px;
   justify-content: center;
 }
@@ -184,7 +185,17 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 750px;
+  }
+}
+
 @media only screen and (min-width: 992px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 970px;
+  }
+
   main .carousel.full-bg .primary {
     background-color: transparent;
     border: 1px solid #fff;
@@ -237,6 +248,12 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
 
   main .carousel.full-bg .carousel-item-column:first-child .picture:last-child {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main div.carousel-wrapper.container-width-carousel {
+    width: 1170px;
   }
 }
 
@@ -473,6 +490,37 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   main .carousel-wrapper.wave .carousel-dot-buttons {
     margin-bottom: 25px;
   }
+
+  .slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
+    font-size: 24px;
+  }
+
+  .slas-page main .section.slas-resource-list .columns > div {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  main .carousel-dot-img-buttons .carousel-dot-button {
+    max-width: 60px;
+    padding: 5px;
+    margin-right: 0;
+  }
+
+  .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
+    margin-top: 20px;
+  }
+
+  .slas-page main div.carousel-wrapper.container-width-carousel .columns > div > div:first-child {
+    margin-bottom: 24px;
+  }
+
+  main div.carousel-wrapper.container-width-carousel .carousel-nav-left {
+    left: -10px;
+  }
+
+  main div.carousel-wrapper.container-width-carousel .carousel-nav-right {
+    right: -10px;
+  }
 }
 
 /* WAVE Blue Variant */
@@ -562,3 +610,4 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
+
