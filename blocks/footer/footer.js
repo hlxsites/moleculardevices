@@ -228,7 +228,7 @@ export default async function decorate(block) {
    scrolled down to it.
   */
   const newsletterContainer = block.querySelector('.footer-newsletter-form');
-  if (newsletterContainer) {
+  /*if (newsletterContainer) {
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
         observer.disconnect();
@@ -241,5 +241,5 @@ export default async function decorate(block) {
       observer.disconnect();
       buildNewsletter(newsletterContainer);
     }, 3000);
-  }
+  } */
 }
