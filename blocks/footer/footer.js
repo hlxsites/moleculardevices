@@ -101,7 +101,7 @@ async function buildNewsEvents(container) {
   });
 
   renderNews(container.querySelector('.news-list'));
-  renderEvents(container.querySelector('.events-list'));
+  // renderEvents(container.querySelector('.events-list'));
 
   addEventListeners(container);
 }
