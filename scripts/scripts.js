@@ -731,13 +731,13 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  optimiseHeroBlock(main);
+  // optimiseHeroBlock(main);
   decorateSections(main);
-  decorateWaveSection(main);
+  // decorateWaveSection(main);
   decorateBlocks(main);
-  decoratePageNav(main);
-  detectSidebar(main);
-  decorateLinkedPictures(main);
+  // decoratePageNav(main);
+  // detectSidebar(main);
+  // decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
   addPageSchema();
@@ -766,7 +766,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     await window.hlx.plugins.run('loadEager');
-    // await decorateMain(main);
+    await decorateMain(main);
     // createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
@@ -1096,7 +1096,7 @@ async function loadPage() {
   await loadEager(document);
   await window.hlx.plugins.load('lazy');
   await loadLazy(document);
-  loadDelayed();
+  // loadDelayed();
 }
 const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
