@@ -930,7 +930,7 @@ async function loadLazy(doc) {
   // eslint-disable-next-line no-unused-vars
   loadHeader(doc.querySelector('header'));
 
-  // await loadBlocks(main);
+  await loadBlocks(main);
 
   if (!window.location.pathname.startsWith('/cp-request')) {
     enableStickyElements();
