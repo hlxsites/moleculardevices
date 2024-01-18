@@ -37,7 +37,7 @@ const TEMPLATE_LIST = [
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
-const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
+const LCP_BLOCKS = []; // add your LCP blocks to the list
 const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
 window.hlx.RUM_GENERATION = 'molecular-devices'; // add your RUM generation information here
 
@@ -766,8 +766,8 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     await window.hlx.plugins.run('loadEager');
-    await decorateMain(main);
-    createBreadcrumbsSpace(main);
+    // await decorateMain(main);
+    // createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
   if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
@@ -928,9 +928,9 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
-  loadHeader(doc.querySelector('header'));
+  // loadHeader(doc.querySelector('header'));
 
-  await loadBlocks(main);
+  // await loadBlocks(main);
 
   if (!window.location.pathname.startsWith('/cp-request')) {
     enableStickyElements();
