@@ -731,13 +731,13 @@ export async function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // optimiseHeroBlock(main);
+  optimiseHeroBlock(main);
   decorateSections(main);
-  // decorateWaveSection(main);
+  decorateWaveSection(main);
   decorateBlocks(main);
-  // decoratePageNav(main);
-  // detectSidebar(main);
-  // decorateLinkedPictures(main);
+  decoratePageNav(main);
+  detectSidebar(main);
+  decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
   addPageSchema();
@@ -767,7 +767,7 @@ async function loadEager(doc) {
   if (main) {
     await window.hlx.plugins.run('loadEager');
     await decorateMain(main);
-    // createBreadcrumbsSpace(main);
+    createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
   if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
