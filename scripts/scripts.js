@@ -940,7 +940,7 @@ async function loadLazy(doc) {
     if (hash && element) element.scrollIntoView();
 
     // loadFooter(doc.querySelector('footer'));
-    // loadBreadcrumbs(main);
+    loadBreadcrumbs(main);
 
     loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
     loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
