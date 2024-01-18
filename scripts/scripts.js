@@ -930,7 +930,7 @@ async function loadLazy(doc) {
   // eslint-disable-next-line no-unused-vars
   loadHeader(doc.querySelector('header'));
 
-  await loadBlocks(main);
+  // await loadBlocks(main);
 
   if (!window.location.pathname.startsWith('/cp-request')) {
     enableStickyElements();
@@ -939,8 +939,8 @@ async function loadLazy(doc) {
     const element = hash ? doc.getElementById(hash.substring(1)) : false;
     if (hash && element) element.scrollIntoView();
 
-    loadFooter(doc.querySelector('footer'));
-    loadBreadcrumbs(main);
+    // loadFooter(doc.querySelector('footer'));
+    // loadBreadcrumbs(main);
 
     loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
     loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
