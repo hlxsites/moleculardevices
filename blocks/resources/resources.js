@@ -1,5 +1,4 @@
-/* eslint-disable no-nested-ternary */
-
+/* eslint-disable no-nested-ternary, linebreak-style */
 import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
@@ -60,7 +59,6 @@ export default async function decorate(block) {
 
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
-    .chunks(2000)
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .all();

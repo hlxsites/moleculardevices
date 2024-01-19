@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
   reverseElementLinkTagRelation,
   buildRequestQuote,
@@ -207,7 +208,7 @@ export function buildMobileMenuTools(menuItems, content, hideGlobalRFQ) {
   menuItems.append(toolsWrapper);
 }
 
-export function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
+export async function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
   const navigation = nav(
     { class: 'mobile-menu' },
     ul(
@@ -258,7 +259,7 @@ export function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
   return navigation;
 }
 
-export function buildHamburger(content) {
+export async function buildHamburger(content) {
   const hamburger = button(
     { class: 'hamburger' },
     span(
