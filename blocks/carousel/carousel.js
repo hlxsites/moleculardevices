@@ -284,22 +284,32 @@ class Carousel {
   }
 
   setInitialScrollingPosition() {
+    const item = this.block.querySelector('.carousel-item.selected');
+    let iterations=0;
+    const step=10;
+    let increaseStep =Math.round((item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft)/step);
+    let positionLeft=increaseStep;
     const scrollToSelectedItem = () => {
-      const item = this.block.querySelector('.carousel-item.selected');
+      //console.log(positionLeft);
       item.parentNode.scrollTo({
         top: 0,
-        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+        left: positionLeft,
       });
+      if(iterations<10){
+        positionLeft +=increaseStep;
+        iterations +=1;
+       requestAnimationFrame(scrollToSelectedItem);}
     };
 
     const section = this.block.closest('.section');
 
     const observer = new MutationObserver((mutationList) => {
+
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes'
           && mutation.attributeName === 'data-section-status'
           && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
-          scrollToSelectedItem();
+            requestAnimationFrame(scrollToSelectedItem);
           observer.disconnect();
         }
       });
@@ -314,6 +324,7 @@ class Carousel {
     // if the animation has kicked in, we for sure no longer need it
     setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
   }
+
 
   createDotButtons() {
     const buttons = document.createElement('div');
