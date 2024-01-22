@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
   a, div, li,
@@ -50,7 +51,7 @@ export function expandMenu(element) {
   element.setAttribute('aria-expanded', 'true');
 }
 
-export function buildBrandLogo(content) {
+export async function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
 
   const logoLink = a(

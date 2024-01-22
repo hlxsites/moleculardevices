@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import ffetch from '../../scripts/ffetch.js';
 import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
@@ -29,7 +30,6 @@ async function getResourcesFromMetaTags() {
 
   return ffetch('/query-index.json')
     .sheet('resources')
-    .chunks(2000)
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .limit(9)
@@ -39,7 +39,6 @@ async function getResourcesFromMetaTags() {
 async function getFeaturedResources(paths) {
   return ffetch('/query-index.json')
     .sheet('resources')
-    .chunks(2000)
     .filter((resource) => paths.includes(resource.path)
       || paths.includes(resource.gatedURL)
       || (resource.gatedURL && resource.gatedURL !== '0' && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname)),
