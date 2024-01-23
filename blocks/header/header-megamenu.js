@@ -218,6 +218,8 @@ export function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   decorateIcons(megaMenu);
 
   // Get submenu builder, and build submenu
+ setTimeout(()=> {
   buildMegaMenu(navMenuUl, content);
+ }, 3000); 
   return megaMenu;
 }
