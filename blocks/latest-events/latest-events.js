@@ -1,6 +1,6 @@
+/* eslint-disable linebreak-style */
 import ffetch from '../../scripts/ffetch.js';
 import { formatDateUTCSeconds } from '../../scripts/scripts.js';
-// eslint-disable-next-line object-curly-newline
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatEventDates(startUnixStr, endUnixStr) {
@@ -31,10 +31,27 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const data = await ffetch('/query-index.json')
+  const currentDate = Date.now();
+
+  let events = await ffetch('/query-index.json')
     .sheet('events')
-    .chunks(5)
-    .limit(4)
     .all();
-  buildList(data, block);
+
+  const sortedEvents = events.sort((x, y) => {
+    if (x.eventEnd < y.eventEnd) {
+      return -1;
+    }
+    if (x.eventEnd > y.eventEnd) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const upcomingEvents = sortedEvents.filter((item) => item.eventEnd * 1000 > currentDate);
+
+  if (upcomingEvents.length > 5) {
+    events = upcomingEvents;
+  }
+
+  buildList(events.slice(0, 4), block);
 }
