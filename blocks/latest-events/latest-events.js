@@ -35,18 +35,23 @@ export default async function decorate(block) {
 
   let events = await ffetch('/query-index.json')
     .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > currentDate)
     .all();
 
-  if (events.length > 4) {
-    events = events.sort((first, second) => first.eventStart - second.eventStart)
-      .slice(0, 4);
-  } else {
-    events = await ffetch('/query-index.json')
-      .sheet('events')
-      .chunks(5)
-      .limit(4)
-      .all();
+  const sortedEvents = events.sort((x, y) => {
+    if (x.eventEnd < y.eventEnd) {
+      return -1;
+    }
+    if (x.eventEnd > y.eventEnd) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const upcomingEvents = sortedEvents.filter((item) => item.eventEnd * 1000 > currentDate);
+
+  if (upcomingEvents.length > 5) {
+    events = upcomingEvents;
   }
-  buildList(events, block);
+
+  buildList(events.slice(0, 4), block);
 }
