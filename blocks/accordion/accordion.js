@@ -84,6 +84,7 @@ async function renderContent(container, content, isBlockFaq) {
 
 export default async function decorate(block) {
   const isBlockFaq = isFaq(block);
+  const isMultiBlockFaq = block.classList.contains('multi-block-accordion');
   const isTypeNumbers = block.classList.contains('numbers');
   if (isBlockFaq) {
     block.setAttribute('itemtype', 'https://schema.org/FAQPage');
@@ -108,6 +109,10 @@ export default async function decorate(block) {
         item.setAttribute('itemtype', 'https://schema.org/Question');
         header.setAttribute('itemProp', 'name');
         decorateIcons(header);
+      }
+
+      if (isMultiBlockFaq) {
+        if (idx === 1) item.setAttribute(openAttribute, '');
       }
 
       if (idx === 0) item.setAttribute(openAttribute, '');
