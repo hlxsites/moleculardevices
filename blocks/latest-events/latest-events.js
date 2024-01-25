@@ -5,9 +5,7 @@ import { a, div, p } from '../../scripts/dom-helpers.js';
 export function formatEventDates(startUnixStr, endUnixStr) {
   let eventDates = '';
   if (startUnixStr && endUnixStr) {
-    let startDate = formatDate(unixDateToString(startUnixStr));
-    // eslint-disable-next-line prefer-destructuring
-    startDate = startDate.split(',')[0];
+    const [startDate] = formatDate(unixDateToString(startUnixStr)).split(',');
     const endDate = formatDate(unixDateToString(endUnixStr));
     eventDates = `${startDate} - ${endDate}`;
   }
