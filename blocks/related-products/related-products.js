@@ -19,7 +19,7 @@ export default async function decorate(block) {
   const categories = await ffetch('/query-index.json')
     .sheet('categories')
     .filter((category) => relatedCategoriesTitles.includes(category.identifier)
-     || relatedCategoriesTitles.includescategory.h1)).all();
+     || relatedCategoriesTitles.includes(category.h1)).all();
 
   const allItems = [...products, ...categories];
 
