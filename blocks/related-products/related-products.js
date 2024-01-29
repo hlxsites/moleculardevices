@@ -14,7 +14,7 @@ export default async function decorate(block) {
   const products = await ffetch('/query-index.json')
     .sheet('products')
     .filter((product) => allProductTitles.includes(product.identifier)
-     || allProductTitles.include(product.h1)).all();
+     || allProductTitles.includes(product.h1)).all();
 
   const categories = await ffetch('/query-index.json')
     .sheet('categories')
