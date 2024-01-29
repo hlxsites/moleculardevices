@@ -89,6 +89,7 @@
 .accordion [aria-expanded] .accordion-content {
   display: block;
   max-height: 1000px;
+  overflow-y: auto;
 }
 
 .accordion .accordion-content-row {
