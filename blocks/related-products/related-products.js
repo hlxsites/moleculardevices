@@ -13,13 +13,13 @@ export default async function decorate(block) {
 
   const products = await ffetch('/query-index.json')
     .sheet('products')
-    .filter((product) => allProductTitles.includes(product.identifier || product.h1))
-    .all();
+    .filter((product) => allProductTitles.includes(product.identifier)
+     || allProductTitles.includes(product.h1)).all();
 
   const categories = await ffetch('/query-index.json')
     .sheet('categories')
-    .filter((category) => relatedCategoriesTitles.includes(category.identifier || category.h1))
-    .all();
+    .filter((category) => relatedCategoriesTitles.includes(category.identifier)
+     || relatedCategoriesTitles.includes(category.h1)).all();
 
   const allItems = [...products, ...categories];
 
