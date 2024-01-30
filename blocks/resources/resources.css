@@ -98,15 +98,15 @@ main .section .resources-wrapper {
   border: none;
   cursor: pointer;
   background-color: var(--text-dark-gray);
-  opacity: .65;
-  transition: opacity .2s linear;
+  opacity: 0.65;
+  transition: opacity 0.2s linear;
   overflow: hidden;
   font-size: 0;
   padding: 0;
   min-width: 20px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .resources .vidyard-video-placeholder .play-button .play-button-size {
@@ -155,7 +155,8 @@ main .section .resources-wrapper {
   border-color: transparent transparent transparent white;
 }
 
-.resources .video-container .ceros, .resources .video-container .ceros img {
+.resources .video-container .ceros,
+.resources .video-container .ceros img {
   width: 100%;
   height: 100%;
 }
@@ -206,8 +207,20 @@ main .section .resources-wrapper {
   display: none;
 }
 
+.coveo-breadcrumb-items div.coveo-breadcrumb-item,
+.coveo-facet-column .coveo-dynamic-hierarchical-facet,
+.coveo-facet-column div[data-title="Article Type"],
+.section.coveo-tab-section-wrapper {
+  height: 0;
+  min-height: auto;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 @media only screen and (max-width: 1199px) {
-  .resources .video-container, .resources .vidyard-player-container img {
+  .resources .video-container,
+  .resources .vidyard-player-container img {
     height: 253px;
   }
 }
@@ -217,12 +230,14 @@ main .section .resources-wrapper {
     padding: 0;
   }
 
-  .resources .resource, .resources .video-wrapper {
+  .resources .resource,
+  .resources .video-wrapper {
     width: 100%;
     max-width: 100%;
   }
 
-  .resources .video-container, .resources .vidyard-player-container img {
+  .resources .video-container,
+  .resources .vidyard-player-container img {
     height: auto;
   }
 

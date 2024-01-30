@@ -1,5 +1,5 @@
 import { a, li, ul } from '../../scripts/dom-helpers.js';
-import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 
 function openTab(target) {
   const parent = target.parentNode;
@@ -16,6 +16,17 @@ function openTab(target) {
     const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.getAttribute('href').substring(1)}"]`);
     tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
   }
+
+  /* COVEO RESOURCES */
+  const coveoTabName = 'resources';
+  const url = new URL(window.location.href);
+  if (target.hash.toLowerCase() === `#${coveoTabName}`) {
+    const category = encodeURIComponent(getMetadata('category').trim());
+    const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
+    const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
+    url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
+  }
+  window.history.replaceState(null, null, url);
 }
 
 async function createTabList(sections, active) {
@@ -32,9 +43,7 @@ async function createTabList(sections, active) {
           a({
             href: `#${sectionName}`,
             onclick: (e) => { openTab(e.target); },
-          },
-          section.title,
-          ),
+          }, section.title),
         )
       );
     }),
