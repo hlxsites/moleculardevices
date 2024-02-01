@@ -21,9 +21,6 @@ function searchFormHeader() {
 }
 
 export default function decorate(block) {
-  // const url = new URL(window.location.href);
-  // url.hash = '#t=Resources&sort=relevancy';
-  // window.history.replaceState(null, null, url);
   block.innerHTML = searchFormHeader();
   const cRange = document.createRange();
   /* eslint-disable no-new */

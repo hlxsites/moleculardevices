@@ -207,10 +207,32 @@ main .section .resources-wrapper {
   display: none;
 }
 
-.coveo-breadcrumb-items div.coveo-breadcrumb-item,
-.coveo-facet-column .coveo-dynamic-hierarchical-facet,
-.coveo-facet-column div[data-title="Article Type"],
-.section.coveo-tab-section-wrapper {
+.section .resources .coveo-results-column div[role="navigation"],
+.section .resources .cover-banner,
+.section .resources .coveo-main-section-wrapper .coveo-main-section,
+.section .resources .section.coveo-main-section-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.section.resources-container .default-content-wrapper {
+  padding-top: 20px;
+}
+
+.section .resources .cover-banner .coveo-search-section {
+  margin: 50px auto;
+}
+
+.application .section .resources .cover-banner,
+.application .magic-box .magic-box-clear,
+.technology .section .resources .cover-banner,
+.technology .magic-box .magic-box-clear,
+.section .resources .coveo-main-title,
+.section .resources .coveo-breadcrumb-clear-all,
+.section .resources .coveo-breadcrumb-items div.coveo-breadcrumb-item,
+.section .resources .coveo-facet-column .coveo-dynamic-hierarchical-facet,
+.section .resources .coveo-facet-column div[data-title="Article Type"],
+.section .resources .section.coveo-tab-section-wrapper {
   height: 0;
   min-height: auto;
   visibility: hidden;
