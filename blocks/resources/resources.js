@@ -20,7 +20,7 @@ function searchFormHeader() {
   `;
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   block.innerHTML = searchFormHeader();
   const cRange = document.createRange();
   /* eslint-disable no-new */
