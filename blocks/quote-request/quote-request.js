@@ -242,7 +242,7 @@ async function loadIframeForm(data, type) {
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
       : 'https://www.moleculardevices.com/quote-request-success',
   };
-console.log('product_image' + product_image);
+console.log('product_image' + bundleThumbnail);
   if (data.path) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
