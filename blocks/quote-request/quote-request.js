@@ -131,7 +131,6 @@ function iframeResizehandler(formUrl, id, root) {
 }
 
 function prepImageUrl(thumbImage) {
-  console.log('thumbImg1' + thumbImage);
   let thumbImg = thumbImage;
   let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
@@ -141,7 +140,7 @@ function prepImageUrl(thumbImage) {
     thumbImgnew = `https://www.moleculardevices.com${thumbImage}`;
     }
   }
-  console.log('thumbImg' + thumbImgnew);
+  
   return thumbImgnew;
 }
 
@@ -174,7 +173,6 @@ async function loadIframeForm(data, type) {
     // prepare the product image url
     if (data.thumbnail && data.thumbnail !== '0') {
       productImage = prepImageUrl(data.thumbnail);
-      console.log('product_image' + productImage);
     }
 
     // special handling for bundles and customer breakthrough
