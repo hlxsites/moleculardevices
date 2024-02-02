@@ -132,15 +132,12 @@ function iframeResizehandler(formUrl, id, root) {
 
 function prepImageUrl(thumbImage) {
   let thumbImg = thumbImage;
-  let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
     if (thumbImg.startsWith('.')) {
       thumbImgnew = thumbImage.substring(1);
-    }else{
-    thumbImgnew = `https://www.moleculardevices.com${thumbImage}`;
     }
+    thumbImgnew = `https://www.moleculardevices.com${thumbImgnew}`;
   }
-  
   return thumbImgnew;
 }
 
