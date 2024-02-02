@@ -132,6 +132,7 @@ function iframeResizehandler(formUrl, id, root) {
 
 function prepImageUrl(thumbImage) {
   let thumbImg = thumbImage;
+  let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
     if (thumbImg.startsWith('.')) {
       thumbImgnew = thumbImage.substring(1);
