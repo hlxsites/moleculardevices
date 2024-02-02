@@ -135,12 +135,13 @@ function prepImageUrl(thumbImage) {
   let thumbImg = thumbImage;
   if (!thumbImg.startsWith('https')) {
     if (thumbImg.startsWith('.')) {
-      thumbImg = thumbImage.substring(1);
+      thumbImgnew = thumbImage.substring(1);
+    }else{
+    thumbImgnew = `https://www.moleculardevices.com${thumbImage}`;
     }
-    thumbImg = `https://www.moleculardevices.com${thumbImage}`;
   }
-  console.log('thumbImg' + thumbImg);
-  return thumbImg;
+  console.log('thumbImg' + thumbImgnew);
+  return thumbImgnew;
 }
 
 async function loadIframeForm(data, type) {
