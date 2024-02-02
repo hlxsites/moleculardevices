@@ -170,6 +170,7 @@ async function loadIframeForm(data, type) {
     // prepare the product image url
     if (data.thumbnail && data.thumbnail !== '0') {
       productImage = prepImageUrl(data.thumbnail);
+      console.log('product_image' + productImage);
     }
 
     // special handling for bundles and customer breakthrough
@@ -242,7 +243,7 @@ async function loadIframeForm(data, type) {
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
       : 'https://www.moleculardevices.com/quote-request-success',
   };
-console.log('product_image' + bundleThumbnail);
+
   if (data.path) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
