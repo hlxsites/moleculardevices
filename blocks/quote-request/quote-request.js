@@ -138,6 +138,7 @@ function prepImageUrl(thumbImage) {
     }
     thumbImg = `https://www.moleculardevices.com${thumbImage}`;
   }
+  console.log('thumbImg' + thumbImg);
   return thumbImg;
 }
 
