@@ -136,6 +136,7 @@ function prepImageUrl(thumbImage) {
     if (thumbImg.startsWith('.')) {
       thumbImg = thumbImage.substring(1);
     }
+    console.log('image url'+thumbImg);
     thumbImg = `https://www.moleculardevices.com${thumbImage}`;
   }
   return thumbImg;
