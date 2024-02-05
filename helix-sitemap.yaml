@@ -18,7 +18,7 @@ sitemaps:
         source: https://fr.moleculardevices.com/sitemap.xml
         destination: /content-sitemap.xml
         hreflang: fr
-        alternate: https://de.moleculardevices.com{path}
+        alternate: https://fr.moleculardevices.com{path}
   files:
     origin: https://www.moleculardevices.com
     source: /sites/default/files/query-index.json
