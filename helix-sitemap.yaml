@@ -8,7 +8,7 @@ sitemaps:
         source: /query-index.json
         destination: /content-sitemap.xml
         lastmod: YYYY-MM-DD
-         hreflang: en
+        hreflang: en
       de:
         source: https://de.moleculardevices.com/content-sitemap.xml
         destination: /content-sitemap.xml
