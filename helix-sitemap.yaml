@@ -1,9 +1,39 @@
 sitemaps:
   website:
     origin: https://www.moleculardevices.com
-    source: /query-index.json
-    destination: /content-sitemap.xml
-    lastmod: YYYY-MM-DD
+    default: en
+    languages:
+      en:
+        origin: https://www.moleculardevices.com
+        source: /query-index.json
+        destination: /content-sitemap.xml
+        lastmod: YYYY-MM-DD
+        hreflang: en
+      de:
+        source: https://de.moleculardevices.com/sitemap.xml
+        destination: /content-sitemap.xml
+        hreflang: de
+        alternate: https://de.moleculardevices.com{path}
+      fr:
+        source: https://fr.moleculardevices.com/sitemap.xml
+        destination: /content-sitemap.xml
+        hreflang: fr
+        alternate: https://fr.moleculardevices.com{path}
+      es:
+        source: https://es.moleculardevices.com/sitemap.xml
+        destination: /content-sitemap.xml
+        hreflang: es
+        alternate: https://es.moleculardevices.com{path}
+      ko:
+        source: https://ko.moleculardevices.com/sitemap.xml
+        destination: /content-sitemap.xml
+        hreflang: ko
+        alternate: https://ko.moleculardevices.com{path}  
+      zh:
+        source: https://www.moleculardevices.com.cn/sitemap.xml
+        destination: /content-sitemap.xml
+        hreflang: zh
+        alternate: https://www.moleculardevices.com.cn{path}    
   files:
     origin: https://www.moleculardevices.com
     source: /sites/default/files/query-index.json
