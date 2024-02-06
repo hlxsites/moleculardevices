@@ -171,7 +171,7 @@ export default async function decorate(block) {
     }
 
     filterdata.forEach((row) => {
-      const primeProduct = row.PrimaryProducts.replace(/,/g, ' | ');
+      const primeProduct = row.DisplayPrimaryProducts.replace(/,/g, ' | ').replace(/-/g, ', ');
 
       const customClass = row.Type.split(' ').join('-').toLowerCase();
 
@@ -185,13 +185,13 @@ export default async function decorate(block) {
       });
 
       if (row.Email) {
-        newStr += `Email:  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
+        newStr += `<strong>Email:</strong>  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
       }
       if (row.Link) {
         if (row.Link === 'https://mdc.custhelp.com/app/ask') {
           newStr += `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>\n`;
         } else {
-          newStr += `Website: <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
+          newStr += `<strong>Website:</strong> <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
         }
       }
 

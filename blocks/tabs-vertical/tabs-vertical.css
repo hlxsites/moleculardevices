@@ -12,9 +12,25 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
   padding-right: 0;
 }
 
+main .tabs-vertical-container .cursor-unset {
+  cursor: unset;
+}
+
+main .tabs-vertical-container .cursor-pointer {
+  cursor: pointer;
+}
+
 .tabs-vertical-list,
 .tabs-vertical-main-content .tabs-vertical-pane {
   position: relative;
+}
+
+.tabs-vertical-content a {
+  color: inherit;
+}
+
+.tabs-vertical-content a:hover {
+  text-decoration: underline;
 }
 
 .tabs-vertical-main-content {
@@ -34,8 +50,11 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
 .tabs-vertical-main-content .button.secondary {
   border: 1px solid #fff;
   color: var(--text-white);
-  padding: 16px 30px;
+  padding: 16px;
   margin-top: 30px;
+  width: 100%;
+  max-width: 80%;
+  white-space: break-spaces;
 }
 
 .tabs-vertical-main-content .button.secondary:hover {
@@ -121,7 +140,6 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
     display: block;
     margin-right: 0;
     padding: 15px;
-    cursor: pointer;
     line-height: 1.39;
   }
 
@@ -140,7 +158,6 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
 
   .tabs-vertical-list .nav-tabs li.active a {
     font-family: var(--ff-proxima-xbold);
-    cursor: unset;
   }
 
   .tabs-vertical-main-content h3 {
@@ -194,7 +211,7 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
   }
 
   .tabs-vertical-content {
-    max-width: 45%;
+    max-width: 48%;
 }
 }
 
@@ -292,7 +309,8 @@ main .tabs-vertical-container .tabs-vertical-wrapper {
   }
 
   .tabs-vertical-main-content .button.secondary {
-    padding: 16px 24px;
     margin-top: 40px;
+    width: auto;
+    max-width: 100%;
   }
 }

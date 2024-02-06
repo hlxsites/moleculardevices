@@ -51,7 +51,7 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .nav-brand {
+header .nav-brand:not(.custom-logo) {
   background-image: url('/images/header-menus/logo.svg');
   background-position: top;
   background-repeat: no-repeat;
@@ -507,6 +507,7 @@ header .cards-submenu img {
   width: auto;
   display: block;
   max-width: 100%;
+  object-fit: cover;
 }
 
 /* Mobile Menu */
@@ -812,7 +813,7 @@ header .spectra-accessories {
     margin-left: 60%;
     width: 320px;
     height: 306px;
-  } 
+  }
 }
 
 header .cards-submenu ul {
@@ -1057,7 +1058,7 @@ header .image-right {
 }
 
 header .image-right img {
-  position: absolute; 
+  position: absolute;
   bottom: -60px;
 }
 
@@ -1129,8 +1130,8 @@ header .cards-submenu p:first-child img {
 
 header .menu-nav-submenu-section[submenu-id="3d-biology"] .cards-submenu p:first-child img {
   padding: 0;
-  max-width: 110%;
-  width: 104%;
+  max-width: 100%;
+  width: 100%;
 }
 
 header .cards-submenu p:nth-child(2) {
@@ -1218,8 +1219,8 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) p {
   margin-top: 0;
 }
 
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(1),
-header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
+header .actionable-card-submenu:not(.company-right-submenu) > div:nth-child(2) > div:nth-child(1) > p:nth-child(1),
+header .actionable-card-submenu:not(.company-right-submenu) > div:nth-child(2) > div:nth-child(1) > p:nth-child(2) {
   line-height: 1.3;
   font-size: 16px;
   font-family: var(--ff-proxima-light);
@@ -1252,33 +1253,12 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   text-align: center;
 }
 
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
-  padding: 10px 18px !important;
-}
-
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a {
-  background: var(--button-bg-color);
-}
-
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-of-type > a {
-  border: 1px solid var(--button-bg-color);
-  padding: 10px 18px !important;
-}
-
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
   background: var(--background-color);
   color: var(--button-bg-color);
 }
 
-header .actionable-card-submenu.applications-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(2) > a:hover,
-header .actionable-card-submenu.company-right-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-of-type(3) > a:hover {
-  background: var(--background-color);
-}
-
-div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {  
+div.actionable-card-submenu.service-support-right-submenu.right-submenu-content > div:nth-child(2) > div > p:nth-child(1) {
   margin-bottom: 20px;
 }
 
@@ -1370,7 +1350,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
 
 header .actionable-card-submenu.customercare-portal {
   margin-right: 20px;
-  
+
 }
 
 header .actionable-card-submenu.customercare-portal h3,
@@ -1437,7 +1417,208 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   border: 1px solid var(--background-color-green);
 }
 
+/* PRODUCT/APPLICATION MENU */
+header .right-submenu-content p strong > a,
+header .right-submenu-content p em > a {
+  font-family: var(--ff-proxima-regular);
+  transition: all .2s;
+  color: var(--text-white);
+  position: relative;
+  border-radius: 0;
+  padding: 10px 18px;
+  display: inline-block;
+  text-align: center;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--button-bg-color);
+  min-width: 230px;
+  max-width: 80%;
+  width: 100%;
+  font-weight: normal;
+}
+
+header .right-submenu-content p em > a {
+  background-color: transparent;
+  border-color: var(--text-white);
+  font-style: normal;
+}
+
+header .right-submenu-content p strong > a:hover,
+header .right-submenu-content p em > a:hover {
+  color: var(--button-bg-color);
+  background-color: var(--text-white);
+}
+
+header .products-right-submenu,
+header .applications-right-submenu {
+  background-color: rgba(0 0 0 / 30%);
+  color: var(--header-actionable-submenu-text-color);
+  padding: 0;
+  position: relative;
+  height: 100%;
+  min-height: auto;
+  border: none;
+}
+
+header .products-right-submenu h3,
+header .applications-right-submenu h3 {
+  font-size: 20px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 24px;
+}
+
+header .products-right-submenu p,
+header .applications-right-submenu p {
+  font-size: 1rem;
+}
+
+header .products-right-submenu > div,
+header .applications-right-submenu > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+header .products-right-submenu > div > div,
+header .applications-right-submenu > div > div {
+  flex-basis: 50%;
+  max-width: 50%;
+  width: 100%;
+  padding: 24px;
+  min-height: 320px;
+  position: relative;
+}
+
+header .products-right-submenu > div > div:last-child,
+header .applications-right-submenu > div > div:last-child {
+  padding: 0;
+}
+
+header .products-right-submenu > div > div:last-child p,
+header .applications-right-submenu > div > div:last-child p {
+  margin: 0;
+}
+
+header .products-right-submenu > div > div:last-child p:last-child picture:first-child img,
+header .applications-right-submenu > div > div:last-child picture:first-child img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  max-height: 100%;
+  object-position: left;
+}
+
+header .products-right-submenu > div > div:last-child p:last-child picture:last-child img,
+header .applications-right-submenu > div > div:last-child picture:last-child img {
+  position: absolute;
+  left: -70px;
+  right: auto;
+  top: 60%;
+  z-index: 1;
+  pointer-events: none;
+  width: auto;
+}
+
+header .applications-right-submenu > div > div:last-child picture:last-child img  {
+  left: -30%;
+  top: 45%;
+}
+
+header .products-right-submenu > div > div:last-child p:first-child img{
+  position: absolute;
+  max-height: 100%;
+  max-width: 85%;
+  width: 100%;
+  bottom: -80px;
+  height: auto;
+  right: 0;
+  z-index: 1;
+}
+
+/* COMPANY MENU */
+header .company-right-submenu {
+  padding: 0;
+  border: none;
+  background-color: rgba(0 0 0 / 30%);
+  color: var(--header-actionable-submenu-text-color);
+  position: relative;
+  height: 100%;
+  min-height: auto;
+}
+
+header .company-right-submenu div:first-child > div:first-child p{
+  margin: 0;
+}
+
+header .company-right-submenu > div:first-child {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+header .company-right-submenu > div:first-child > div:first-child {
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
+
+header .company-right-submenu div:first-child > div:first-child picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+  max-height: 100%;
+  margin: 0;
+  transition: all .3s ease-in-out;
+}
+
+header .company-right-submenu > div:first-child > div:nth-child(2) {
+  font-size: 16px;
+  display: block;
+  text-align: right;
+  padding: 32px 24px;
+  width: 35%;
+  position: relative;
+}
+
+header .company-right-submenu div:nth-child(2) > div:last-child {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+header .company-right-submenu div:nth-child(2) > div:last-child picture img {
+  transform: none;
+  pointer-events: none;
+  width: 200px;
+  height: 201px;
+  max-height: 100%;
+}
+
+/* cellesce-page */
+.cellesce-menu header {
+  height: 100%;
+}
+
+.cellesce-menu header img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+.cellesce-menu header button.hamburger,
+.cellesce-menu header .mainmenu-wrapper {
+  display: none;
+}
+
 @media (min-width: 768px) {
+  .cellesce-menu header img {
+    max-width: 420px;
+  }
+
   header .container {
     width: 750px;
   }
@@ -1483,7 +1664,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     display: initial;
   }
 
-  header .nav-brand {
+  header .nav-brand:not(.custom-logo) {
     width: 100px;
     height: 27px;
   }
@@ -1792,7 +1973,7 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
     transition: all .1s ease;
     min-width: 12.5rem;
   }
-    
+
   header .nav-tabs li .menu-nav-submenu {
     display: none;
   }
@@ -1898,4 +2079,111 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div:nth
   header .nav-tabs .menu-nav-submenu > div {
     width: 1170px;
   }
+}
+
+
+/* Lab notes | mega menu changes */
+.blog-cards-submenu {
+  padding: 0 10px;
+}
+
+.blog-cards-submenu .blog-posts-block,
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  margin: 0;
+  grid-gap: 20px;
+}
+
+.blog-cards-submenu .blog-posts-block img {
+  max-width: 100%;
+  vertical-align: top;
+  height: auto;
+  transition: all .4s;
+}
+
+.blog-cards-submenu .blog-posts-block img:hover {
+  transform: scale(1.15);
+}
+
+.blog-cards-submenu .blog-posts-block p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child  {
+  background-color: var(--text-white);
+  min-height: 114px;
+  overflow: hidden;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child img,
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child picture {
+  max-height: 114px;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 114px;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p a {
+  display: block;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child,
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child {
+  min-height: 37px;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child {
+  background-color: var(--background-color);
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child {
+  background: rgb(0 0 0 / 30%);
+  height: 100%;
+  padding: 15px;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child a,
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child a {
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 2px 5px;
+}
+
+.blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child a {
+  color: var(--text-color);
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child a {
+  color: var(--text-white);
+  display: block;
+  text-align: left;
+  text-transform: none;
+  font-size: 16px;
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child,
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
+  min-height: 230px;
+}
+
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
+  object-fit: cover;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
 import { buildBrandLogo, fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
@@ -40,7 +41,7 @@ function renderStore() {
   );
 }
 
-function buildTools(content) {
+async function buildTools(content) {
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = div(
     { class: 'company-links' },
@@ -69,7 +70,10 @@ function buildTools(content) {
 
 function addIndividualComponents(block) {
   // search for div with menu-id resources
-  const resources = block.querySelector('div[menu-id="resources"]').parentElement;
+  const resourceEl = block.querySelector('div[menu-id="resources"]');
+  if (!resourceEl) return;
+
+  const resources = resourceEl.parentElement;
   const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
 
   // add search bar to right submenu
@@ -88,19 +92,23 @@ export default async function decorate(block) {
   // fetch nav content
   const content = await fetchHeaderContent();
 
+  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
+
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
-  navbarHeader.append(buildBrandLogo(content));
-  navbarHeader.append(buildTools(content));
-  navbarHeader.append(buildHamburger(content));
+  navbarHeader.append(await buildBrandLogo(content));
+  navbarHeader.append(await buildTools(content));
+  navbarHeader.append(await buildHamburger(content));
 
   const headerWrapper = document.createElement('div');
   headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
   headerWrapper.append(navbarHeader);
 
-  const megaMenu = buildNavbar(content);
-  const mobileMenu = buildMobileMenu(content);
+  const hideSearch = hasCustomLogo;
+  const hideGlobalRFQ = hasCustomLogo;
+  const megaMenu = await buildNavbar(content, hideSearch, hideGlobalRFQ);
+  const mobileMenu = await buildMobileMenu(content, hideSearch, hideGlobalRFQ);
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();

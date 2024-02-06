@@ -1,11 +1,9 @@
+/* eslint-disable linebreak-style */
 import buildRightSubmenu from './header-megamenu-components.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
-  div,
-  li,
-  nav,
-  ul,
+  div, li, nav, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   reverseElementLinkTagRelation,
@@ -164,7 +162,7 @@ export async function buildLazyMegaMenus() {
   body.setAttribute('built-lazy-megamenus', 'true');
 }
 
-export function buildNavbar(content) {
+export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   // link section
   const navMenuUl = ul({ class: 'nav-tabs' });
 
@@ -193,14 +191,18 @@ export function buildNavbar(content) {
     navMenuUl.append(item);
   });
 
-  navMenuUl.append(buildSearch(content));
-  navMenuUl.append(buildRequestQuote('header-rfq'));
+  if (!hideSearch) {
+    navMenuUl.append(buildSearch(content));
+  }
+  if (!hideGlobalRFQ) {
+    navMenuUl.append(buildRequestQuote('header-rfq'));
+  }
 
   const megaMenu = div(
     { class: 'mainmenu-wrapper sticky-element sticky-desktop' },
     div(
       { class: 'container' },
-      buildBrandLogo(content),
+      await buildBrandLogo(content),
       nav(
         { id: 'nav' },
         div(

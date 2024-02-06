@@ -1,10 +1,11 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { a } from '../../scripts/dom-helpers.js';
+import { a, h3, span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
   const newsUrls = [...block.querySelectorAll('a')].map((link) => link.href);
   const newsItems = await ffetch('/query-index.json')
+    .sheet('publications')
     .chunks(500)
     .filter(({ path }) => newsUrls.find((newsUrl) => newsUrl.indexOf(path) >= 0))
     .all();
@@ -14,9 +15,10 @@ export default async function decorate(block) {
     const newsItem = newsItems.find((news) => link.href.indexOf(news.path) >= 0);
     if (newsItem) {
       link.textContent = newsItem.title;
+      link.setAttribute('data-publisher', newsItem.publisher);
     }
 
-    div.classList.add(`post-${index + 1}`);
+    div.classList.add('post', `post-${index + 1}`);
     div.firstElementChild.classList.add('zoom-effect-wrapper');
     if (newsItem && !div.firstElementChild.querySelector('img')) {
       div.firstElementChild.append(
@@ -31,8 +33,7 @@ export default async function decorate(block) {
     }
 
     const textDiv = div.lastElementChild;
-    const p = document.createElement('p');
-    p.innerHTML = textDiv.innerHTML;
-    textDiv.replaceWith(p);
+    const para = h3(textDiv.firstChild, span(` | ${textDiv.firstChild.getAttribute('data-publisher')}`));
+    textDiv.replaceWith(para);
   });
 }

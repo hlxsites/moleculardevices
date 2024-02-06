@@ -1,0 +1,310 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.moleculardevices.com/sitemap.xml
+
+Disallow: /sites/default/files/en/assets/app-note/
+Disallow: /fragments/
+Disallow: /modal/nojs/view/node/
+Disallow: /node/
+
+
+# PDF (ebook PDF Block)
+Disallow: /sites/default/files/en/assets/ebook/br/explore-cells-from-the-inside-out.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/ultimate-guide-to-microplate-reader-solutions.pdf
+Disallow: /sites/default/files/en/assets/ebook/bpd/tips-from-the-cell-line-development-front.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/count-cells-like-a-pro.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/acquire-and-analyze-3d-images-like-a-pro.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/streamline-absorbance-assays-for-nucleic-acid-and-protein-quantitation.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/streamline-beer-wine-and-food-quality-control-and-safety-analyses.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/explore-pathways-like-a-pro.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/cellular-imaging-made-easy.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/cns/humsilencer-eliminating-line-frequency-noises-across-wide-range-of-electrophysiological-applications.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/quantitate-neuron-potential.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/from-elisa-to-epigenetics-with-htrf.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/get-a-front-row-view-of-your-cells.pdf
+Disallow: /sites/default/files/en/assets/ebook/bpd/optimize-your-high-value-cell-lines.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/high-content-imaging-for-diverse-3d-cell-culture-models.pdf
+Disallow: /sites/default/files/en/assets/ebook/bpd/accelerate-vaccine-development.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/transform-your-cell-imaging.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/essential-guide-to-organoids-in-drug-discovery.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/virology-and-vaccine-research-microplate-reader-solutions.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/capture-true-3d-cell-culture-insights.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/cellular-imaging-insights.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/flipr/phenotypic-screening-with-ipsc-derived-cardiomyocytes-and-neurons.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/stem-cell-imaging.pdf
+Disallow: /sites/default/files/en/assets/ebook/bpd/how-to-implement-colony-picking-workflows-with-automation.pdf
+Disallow: /sites/default/files/en/assets/ebook/br/elisa.pdf
+Disallow: /sites/default/files/en/assets/ebook/dd/img/generate-application-specific-high-content-imaging-and-analysis.pdf
+Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
+# User Guide
+Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
+
+# PDF (Scientific Posters PDF Block)
+
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-organoid-culture-workflow-with-deep-learning-based-image-analysis.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/intestinal-organoids-for-automated-screening-assays.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-the-organ-on-a-chip-assay.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automated-workflow-for-phenotypic-profiling-based-on-cell-painting-assay.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/br/assessing-thrombin-generation-using-technothrombin-tga-kit-spectramax-i3x-multi-mode-microplate-reader.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-growth-and-characterization-of-compound-effects-in-3d-intestinal-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/structural-organization-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/evaluation-of-fluorescent-approach-to-implement-monoclonality-assurance-using-calcein-am-viability-dye.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-for-organoid-assays-an-integrated-system-with-high-content-imaging.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/image-based-phenotypic-profiling-using-cell-painting-in-3d-breast-cancer-spheroid-model.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/automated-workflow-for-screening-of-crispr-edited-cell-lines.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-cell-lines-for-monoclonality-verification.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-and-morphological-characterization-of-healthy-and-epilepsy-related-3d-neurospheres-assembled.pdf
+
+# HTML Page (App Note HTML Page Block)
+
+
+Disallow: /en/assets/app-note/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model
+Disallow: /en/assets/app-note/bpd/high-sensitive-and-affordable-single-cell-rna-sequencing
+Disallow: /en/assets/app-note/bpd/achieve-over-5-fold-of-human-igg-protein-detection-signal-with-clonedetect-k8495-assay-optimization
+Disallow: /en/assets/app-note/dd/img/novel-patient-derived-colorectal-cancer-organoid-platform-for-high-throughput-drug-discovery
+Disallow: /en/assets/app-note/dd/img/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids
+Disallow: /en/assets/app-note/dd/img/3d-cell-culture-systems-reveal-drug-efficacy-that-is-undetectable-in-flat-culture-systems
+Disallow: /en/assets/app-note/dd/img/understanding-organoid-morphology-organoid-size-and-cell-count-from-3d-image-analysis
+Disallow: /en/assets/app-note/dd/img/high-throughput-modeling-of-inflammatory-bowel-disease-using-human-intestina-organoids
+Disallow: /en/assets/app-note/dd/img/neural-outgrowth-analysis-in-3d-human-brain-micro-tissues-for-compound-screening-applications
+Disallow: /en/assets/app-note/br/quantify-tnfa-secretion-by-thp-1-derived-macrophages-with-alphalisa-assay
+Disallow: /en/assets/app-note/dd/flipr/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
+Disallow: /en/assets/app-note/dd/img/automating-patient-derived-organoid-high-content-assays
+Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
+Disallow: /en/assets/app-note/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
+Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
+Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
+
+# ISSER 2021 presentations poster and video
+Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/high-throughput-assessment-of-compound-induced-pro-arrhythmic-effects-in-human-ipsc-derived-cardiomyocytes.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/organoids-for-disease-modeling-and-in-vitro-drug-screening.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-organoid-development-and-characterization-of-calcium-oscillation-activities-in-ipsc-derived-3d-cerebral-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/deep-learning-based-image-analysis-for-label-free-live-monitoring-of-ipsc-3d-organoid-cultures.pdf
+
+Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
+
+# SLAS 2023 poster and video
+
+Disallow: /en/assets/scientific-posters/dd/img/slas-2023-resources
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/optimizing-animal-free-clonedetect-assay-of-real-time-detection-of-human-igg-antibody-production-using-clonepix-system.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/leveraging-automated-workflows-to-enable-complex-organoid-assays.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-bioprinting-assays-for-high-content-imaging-and-assessment-of-compound-effects.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-analysis-of-neural-outgrowth-in-3d-human-brain-micro-tissues.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-cell-lines-for-monoclonality-verification-using-impedance-based-single-cell-dispenser.pdf
+Disallow: /en/assets/tutorials-videos/dd/img/automating-3d-organoid-models-and-assay-workflows
+Disallow: /en/assets/tutorials-videos/dd/img/using-differentiated-ipscs-to-build-ready-to-use-3d-models
+
+
+# Tutorials Videos Block
+
+Disallow: /en/assets/tutorials-videos/dd/img/high-content-analysis-and-phenotypic-characterization-of-2d-and-3d-cellular-models
+Disallow: /en/assets/tutorials-videos/br/performing-advanced-statistical-analyses-in-softmax-pro-software
+Disallow: /en/assets/tutorials-videos/br/how-to-perform-parallel-line-analysis-in-softmax-pro-software
+Disallow: /en/assets/tutorials-videos/br/gmp-glp-labs-meet-data-integrity-guidelines-in-softmax-pro-gxp-7-1-1
+Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-software
+Disallow: /en/assets/tutorials-videos/dd/img/developing-high-throughput-organ-on-a-chip-tissue-models-for-drug-discovery-using-high-content-imaging
+Disallow: /en/assets/tutorials-videos/br/exploring-absorbance-based-assay-applications-from-virus-to-cannabis-research
+Disallow: /en/assets/tutorials-videos/dd/img/magnetic-3d-bioprinting-3d-cell-culture-in-2d-workflow
+Disallow: /en/assets/tutorials-videos/dd/img/accelerating-study-of-viral-infection-and-therapeutics-with-microplate-based-detection-and-high-throughput-screening
+Disallow: /en/assets/tutorials-videos/br/how-to-set-up-elisa-assay-and-basic-analysis-using-softmax-pro
+Disallow: /en/assets/tutorials-videos/dd/img/optimizing-high-content-screening-tools-for-physiologically-relevant-3d-in-vitro-models
+Disallow: /en/assets/tutorials-videos/dd/img/cellular-images-to-results-in-minutes-with-the-automated-imaging
+Disallow: /en/assets/tutorials-videos/dd/img/3d-neural-spheroids-implementation-in-drug-discovery
+Disallow: /en/assets/tutorials-videos/dd/img/ai-based-approach-to-high-content-phenotypic-characterization-of-human-ipsc-derived-neuronal-cells
+Disallow: /en/assets/tutorials-videos/br/expanding-assay-applications-with-multi-mode-readers-from-elisa-to-alphascreen
+Disallow: /en/assets/tutorials-videos/dd/img/water-immersion-objectives-and-high-content-imaging-system
+Disallow: /en/assets/tutorials-videos/bpd/optimized-workflow-for-rapid-identification-of-neutralizing-antibodies-against-viral-particles
+Disallow: /en/assets/tutorials-videos/dd/cns/empower-your-electrophysiology-studies-using-new-axon-pclamp-11-software-suite
+Disallow: /en/assets/tutorials-videos/dd/img/imaging-challenges-for-transitioning-high-content-assays-to-3d
+Disallow: /en/assets/tutorials-videos/dd/img/3d-cell-culture-tissue-clearing-and-high-content-imaging-in-quest-of-solutions-to-nafld
+Disallow: /en/assets/tutorials-videos/br/urban-myths-of-microplate-readers-od-rfu-rlu-why-bigger-not-better
+Disallow: /en/assets/tutorials-videos/br/how-to-be-less-confused-about-microplate-readers
+Disallow: /en/assets/tutorials-videos/br/urban-myths-of-microplate-readers-how-to-optimize
+Disallow: /en/assets/tutorials-videos/br/urban-myths-of-microplate-readers-beyond-the-basics-real-time-resolving-time-and-transferring-energy
+Disallow: /en/assets/tutorials-videos/br/urban-myths-of-microplate-readers-read-copy-paste-analyze-repeat
+Disallow: /en/assets/tutorials-videos/dd/img/disease-modeling-in-21st-century-automated-organoid-assays-with-3d-imaging
+Disallow: /en/assets/tutorials-videos/br/microplate-analysis-technology-for-food-and-beverage-quality-testing
+Disallow: /en/assets/tutorials-videos/dd/img/capturing-complexity-of-3d-biology
+Disallow: /en/assets/tutorials-videos/dd/img/explore-more-complex-biology-with-automated-imaging-of-3d-assay-models
+Disallow: /en/assets/tutorials-videos/bpd/tips-for-automating-molecular-cloning-and-strain-engineering-applications
+Disallow: /en/assets/tutorials-videos/dd/img/capturing-complexity-of-cell-biology
+Disallow: /en/assets/tutorials-videos/dd/img/getting-started-with-3d-human-tissue-models-and-imaging
+Disallow: /en/assets/tutorials-videos/dd/img/automated-culture-and-high-content-imaging-of-3d-lung-and-cardiac
+Disallow: /en/assets/tutorials-videos/dd/img/monitoring-organoid-development-in-ipsc-derived-3d-cerebral-organoids
+Disallow: /en/assets/tutorials-videos/dd/img/deep-learning-based-image-analysis-for-label-free-monitoring-of-ipsc-3d-organoid-cultures
+Disallow: /en/assets/tutorials-videos/dd/img/automated-culture-monitoring-and-analysis-of-complex-biological-systems
+Disallow: /en/assets/tutorials-videos/bpd/monoclonality-assurance-using-cloneselect-single-cell-printer-and-cloneselect-imager-in-human-stem-cell-workflow
+Disallow: /en/assets/tutorials-videos/dd/img/automating-culture-and-high-content-imaging-of-3d-organoids-for-in-vitro-compound-effects
+Disallow: /en/assets/tutorials-videos/br/high-throughput-igg-quantitation-platform-for-clone-screening-during-drug-discovery-and-development
+Disallow: /en/assets/tutorials-videos/dd/img/application-and-imaging-analysis-of-organoid-systems
+Disallow: /en/assets/tutorials-videos/br/critical-considerations-for-choosing-right-microplate-reader
+Disallow: /en/assets/tutorials-videos/dd/img/automation-high-content-imaging-for-organoid-research
+Disallow: /en/assets/tutorials-videos/dd/img/fast-and-simple-3d-spheroid-analysis-using-the-automated-high-content-imaging
+Disallow: /en/assets/tutorials-videos/dd/img/high-content-phenotypic-profiling-screening
+Disallow: /en/assets/tutorials-videos/dd/img/enhancing-3d-disease-models-with-organ-on-a-chip
+Disallow: /en/assets/tutorials-videos/dd/img/level-up-3d-cell-culture-from-research-to-high-throughput
+Disallow: /en/assets/tutorials-videos/dd/img/enhance-high-content-3d-biology-imaging-with-an-automated-sample-preparation
+Disallow: /en/assets/tutorials-videos/br/how-right-reader-can-impact-productivity
+Disallow: /en/assets/tutorials-videos/dd/img/3d-tissue-models-imaging-and-automation-of-organ-on-a-chip
+Disallow: /en/assets/tutorials-videos/dd/img/leverage-automated-end-to-end-workflows-enable-complex-organoid-assays
+Disallow: /en/assets/tutorials-videos/dd/img/automate-3d-biology-high-throughput-workflows
+Disallow: /en/assets/tutorials-videos/dd/img/standard-in-organoid-culture-and-image-based-analyses
+Disallow: /en/assets/tutorials-videos/dd/img/streamline-your-end-to-end-cell-painting-workflow
+Disallow: /en/assets/tutorials-videos/dd/img/ananda-neurite-untangled-neuronal-phenotypes
+Disallow: /en/assets/tutorials-videos/dd/img/lab-automation-with-patient-derived-tumoroids-to-find-clinically-aggressive-cancers
+Disallow: /en/assets/tutorials-videos/br/how-move-from-time-consuming-processes-to-efficient-workflows-with-lab-automation-solutions
+Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3D-models
+Disallow: /en/assets/tutorials-videos/dd/img/are-organoids-future-of-drug-discovery
+Disallow: /en/assets/tutorials-videos/dd/img/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
+Disallow: /en/assets/tutorials-videos/dd/img/slas-2023-keynote-session
+
+
+
+
+
+#EU webinars to imaging video gallery page
+
+Disallow: /video-gallery/microplate-readers/fr
+Disallow: /video-gallery/cellular-imaging-systems/fr
+Disallow: /video-gallery/flipr-system/fr
+Disallow: /video-gallery/clone-screening/fr
+Disallow: /video-gallery/axon-patch-clamp/fr
+Disallow: /video-gallery/microplate-readers/de
+Disallow: /video-gallery/cellular-imaging-systems/de
+Disallow: /video-gallery/flipr-system/de
+Disallow: /video-gallery/clone-screening/de
+Disallow: /video-gallery/axon-patch-clamp/de
+
+#Promotion Page block
+Disallow: /en/assets/promotion/br/spectramax-i-series-microplate-readers
+Disallow: /en/assets/promotion/br/softmax-pro-gxp-software
+Disallow: /en/assets/promotion/dd/img/on-demand-virtual-presentations
+Disallow: /en/assets/promotion/dd/img/imagexpress-micro-confocal-3d-imaging
+Disallow: /en/assets/promotion/br/explore-cells-from-inside-out
+Disallow: /en/assets/promotion/br/spectramax-i3x
+Disallow: /en/assets/promotion/dd/img/confocal-imaging-of-spheroids-for-cancer-therapeutics
+Disallow: /en/assets/promotion/bpd/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/br/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/sanofi/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/abm/sanofi/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/sanofi/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/novartis/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/abm/novartis/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/novartis/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/boehringer/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/abm/boehringer/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/boehringer/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/gilead/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/abm/gilead/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/gilead/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/pfizer/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/abm/pfizer/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/pfizer/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/pharma/gxp/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/promotion/abm/pharma/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
+Disallow: /en/assets/promotion/abm/pharma/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
+Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-absorbance-readers
+Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-i-series
+Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-m-series
+Disallow: /en/assets/promotion/br/spectramax-microplate-reader-and-aquamax-washer-bundle
+Disallow: /en/assets/promotion/bpd/qpix-400-microbial-colony-picker
+Disallow: /en/assets/promotion/bpd/qpix-microbial-colony-picker
+Disallow: /en/assets/promotion/bpd/qpix-automated-colony-picker
+Disallow: /en/assets/promotion/br/maximize-your-discovery-i-series
+Disallow: /en/assets/promotion/br/maximize-your-discovery-absorbance-readers
+Disallow: /en/assets/promotion/bpd/qpix-microbial-colony-picker-synbiobeta
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-and-synthetic-biology-workflows
+Disallow: /en/assets/promotion/bpd/clonepix-2
+Disallow: /en/assets/promotion/general/advance-your-discovery
+Disallow: /en/assets/promotion/dd/img/imagexpress-pico-cell-imaging
+Disallow: /en/assets/promotion/bpd/qpix-colony-picker
+Disallow: /en/assets/promotion/bpd/cloneselect-monoclonality-workflow
+Disallow: /en/assets/promotion/dd/img/slas-2022
+Disallow: /en/assets/promotion/general/bioincubator-solutions
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows
+Disallow: /en/assets/promotion/br/discovery-starts-here
+Disallow: /en/assets/promotion/dd/img/slas-eu-2022
+Disallow: /en/assets/promotion/dd/img/add-another-dimension-to-your-research
+Disallow: /en/assets/promotion/bpd/abm/tanvex/scale-up-biosimilar-pipelines-with-cell-line-development-automation
+Disallow: /en/assets/promotion/bpd/abm/inovio/scale-up-dna-medicines-with-plasmid-cloning-automation
+Disallow: /en/assets/promotion/br/real-discovery-starts-here
+Disallow: /en/assets/promotion/br/automated-elisa-workcells
+Disallow: /eu/assets/promotion/bpd/qpix-colony-picker
+Disallow: /en/assets/promotion/dd/img/high-throughput-organoid-imaging-and-screening
+Disallow: /en/assets/promotion/dd/img/streamline-your-path-to-drug-development
+Disallow: /en/assets/promotion/dd/img/pegs-europe
+Disallow: /en/assets/promotion/dd/img/high-throughput-organoid-imaging-analysis-and-screening
+Disallow: /en/assets/promotion/dd/img/slas-2023
+Disallow: /en/assets/promotion/bpd/colony-picking-automation
+Disallow: /en/assets/promotion/dd/img/slas-eu-2023
+
+#EU BPD Campaign Page block 
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-fr
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-it
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-es
+Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-nl
+Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-de
+Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-fr
+Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-it
+Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-es
+Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-nl
+
+#Promotion Flyer blocked
+Disallow: /sites/default/files/en/assets/flyer/br/spectramax-id5-with-western-blot-and-injectors.pdf
+
+
+#Replica Pages 
+Disallow: /en/assets/ln/ebook/br/explore-cells-from-the-inside-out
+Disallow: /en/assets/ln/ebook/br/software-compliance-for-gmp-glp-labs
+Disallow: /en/assets/ln/ebook/dd/img/3d-cellular-imaging
+Disallow: /en/assets/ln/ebook/bpd/optimize-your-high-value-cell-lines
+Disallow: /en/assets/ln/user-guide/dd/cns/axon-guide-to-electrophysiology-and-biophysics-laboratory-techniques
+Disallow: /en/assets/ln/ebook/dd/flipr/phenotypic-screening-with-ipsc-derived-cardiomyocytes-and-neurons
+
+
+#No need to index only for KB
+Disallow: /sites/default/files/en/assets/user-guide/dd/img/connecting-to-stratominer.pdf
+Disallow: /sites/default/files/en/assets/user-guide/dd/img/stratominer-troubleshooting-guide.pdf
+Disallow: /sites/default/files/en/assets/user-guide/dd/img/stratominer-requirements.pdf
+Disallow: /sites/default/files/en/assets/user-guide/dd/img/stratominer-login-details.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-da-dk.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-de-de.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-es-es.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-fr-fr.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-it-it.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-no-no.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-pt-pt.pdf
+Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
+
+
+
+Disallow: /contact/thank-you
+
+
+#Block veiw
+Disallow: /current-year-resources
+
+#Block
+Disallow: /search
+Disallow: /coveo-xml
+Disallow: /coveo-xml.xml
+
+User-agent: dotbot
+Disallow: /
+User-agent: PetalBot
+Disallow: /
+User-agent: PowerMapper
+Disallow: /
+User-agent: RavenCrawler
+Disallow: /
+User-agent: rogerbot
+Disallow: /
+User-agent: Swiftbot
+Disallow: /

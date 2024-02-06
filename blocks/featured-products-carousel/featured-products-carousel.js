@@ -25,5 +25,6 @@ export default async function decorate(block) {
   }
   createCarousel(block, [...block.children], {
     defaultStyling: true,
+    autoScroll: false,
   });
 }

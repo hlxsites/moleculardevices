@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import {
   div, span,
@@ -49,37 +50,41 @@ async function renderContent(container, content, isBlockFaq) {
   });
 
   // render content
-  const contentDiv = div({ class: 'accordion-content' });
-  rows.forEach((row) => {
-    const hasColumnLayout = applyColumnLayout(row);
-    if (hasColumnLayout) {
-      const rowContent = renderColumnLayout(row);
-      contentDiv.appendChild(rowContent);
-    } else {
-      row.forEach((elem) => {
-        contentDiv.append(elem);
-      });
+  if (rows.length > 0) {
+    const contentDiv = div({ class: 'accordion-content' });
+    rows.forEach((row) => {
+      const hasColumnLayout = applyColumnLayout(row);
+      if (hasColumnLayout) {
+        const rowContent = renderColumnLayout(row);
+        contentDiv.appendChild(rowContent);
+      } else {
+        row.forEach((elem) => {
+          contentDiv.append(elem);
+        });
+      }
+    });
+
+    if (isBlockFaq) {
+      const answerDiv = div({ class: 'answer' });
+      answerDiv.setAttribute('itemprop', 'acceptedAnswer');
+      answerDiv.setAttribute('itemscope', '');
+      answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
+      contentDiv.append(answerDiv);
+
+      const textDiv = div({ class: 'text' });
+      textDiv.setAttribute('itemprop', 'text');
+      answerDiv.append(textDiv);
+
+      const accordionChild = contentDiv.firstChild;
+      textDiv.append(accordionChild);
     }
-  });
-  if (isBlockFaq) {
-    const answerDiv = div({ class: 'answer' });
-    answerDiv.setAttribute('itemprop', 'acceptedAnswer');
-    answerDiv.setAttribute('itemscope', '');
-    answerDiv.setAttribute('itemtype', 'https://schema.org/Answer');
-    contentDiv.append(answerDiv);
-
-    const textDiv = div({ class: 'text' });
-    textDiv.setAttribute('itemprop', 'text');
-    answerDiv.append(textDiv);
-
-    const accordionChild = contentDiv.firstChild;
-    textDiv.append(accordionChild);
+    container.append(contentDiv);
   }
-  container.append(contentDiv);
 }
 
 export default async function decorate(block) {
   const isBlockFaq = isFaq(block);
+  const isMultiBlockFaq = block.classList.contains('multi-block-accordion');
   const isTypeNumbers = block.classList.contains('numbers');
   if (isBlockFaq) {
     block.setAttribute('itemtype', 'https://schema.org/FAQPage');
@@ -91,29 +96,31 @@ export default async function decorate(block) {
     const titleText = nodes[0];
     const rest = Array.prototype.slice.call(nodes, 1);
 
-    const header = div({ class: 'accordion-trigger' },
-      (isTypeNumbers) ? span({ class: 'number' }, (idx + 1)) : '',
-      titleText,
-      span({ class: 'icon icon-fa-chevron-right' }),
-    );
+    if (nodes.length !== 1 && titleText.tagName !== 'H2') {
+      const header = div({ class: 'accordion-trigger' },
+        (isTypeNumbers) ? span({ class: 'number' }, (idx + 1)) : '',
+        titleText,
+        span({ class: 'icon icon-fa-chevron-right' }),
+      );
+      const item = div({ class: 'accordion-item' });
+      if (isBlockFaq) {
+        item.setAttribute('itemprop', 'mainEntity');
+        item.setAttribute('itemscope', '');
+        item.setAttribute('itemtype', 'https://schema.org/Question');
+        header.setAttribute('itemProp', 'name');
+        decorateIcons(header);
+      }
 
-    const item = div({ class: 'accordion-item' });
-    if (isBlockFaq) {
-      item.setAttribute('itemprop', 'mainEntity');
-      item.setAttribute('itemscope', '');
-      item.setAttribute('itemtype', 'https://schema.org/Question');
-      header.setAttribute('itemProp', 'name');
-      decorateIcons(header);
+      if (isMultiBlockFaq) {
+        if (idx === 1) item.setAttribute(openAttribute, '');
+      }
+
+      if (idx === 0) item.setAttribute(openAttribute, '');
+      item.appendChild(header);
+      renderContent(item, rest, isBlockFaq);
+      decorateIcons(item);
+      accordionItem.replaceWith(item);
     }
-
-    item.appendChild(header);
-    renderContent(item, rest, isBlockFaq);
-
-    if (idx === 0) item.setAttribute(openAttribute, '');
-
-    decorateIcons(item);
-
-    accordionItem.replaceWith(item);
   });
 
   const triggers = block.querySelectorAll('.accordion-trigger');

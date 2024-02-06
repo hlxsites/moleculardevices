@@ -1,4 +1,4 @@
-// eslint-disable-next-line object-curly-newline
+/* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
@@ -40,7 +40,7 @@ function handleEmbed() {
       mutations.forEach((record) => {
         const grandGrandParent = record.target.parentElement.parentElement.parentElement;
         if (record.target.tagName === 'IFRAME'
-            && grandGrandParent.classList.contains('embed')
+          && grandGrandParent.classList.contains('embed')
         ) {
           const { height } = record.target.style;
           if (height) {
@@ -72,10 +72,18 @@ export default async function buildAutoBlocks() {
   const pageParam = (new URLSearchParams(window.location.search)).get('page');
   if (pageParam && pageParam === 'thankyou') {
     document.body.classList.add('thankyou');
-    document.querySelector('.hero > div:nth-of-type(2)').replaceWith(div(
-      div(h1('Thank you.'), p(`Your ${getMetadata('download-title') || 'document'} is on its way.`)),
-      div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
-    ));
+    const isThankyouBanner = document.querySelector('.hero.thankyou-banner');
+    if (!isThankyouBanner) {
+      document.querySelector('.hero > div:nth-of-type(2)').replaceWith(div(
+        div(h1('Thank you.'), p(`Your ${getMetadata('download-title') || 'document'} is on its way.`)),
+        div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
+      ));
+    } else {
+      document.querySelector('.thankyou-banner > div:nth-of-type(2)').replaceWith(div(
+        div(h1('Thank you for your inquiry'), p('An expert from our team will be in touch shortly!')),
+        div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
+      ));
+    }
   }
   handleEmbed();
 }

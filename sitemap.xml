@@ -6,4 +6,7 @@
     <sitemap>
         <loc>https://www.moleculardevices.com/files-sitemap.xml</loc>
     </sitemap>
+    <sitemap>
+        <loc>https://www.moleculardevices.com/hubspot-sitemap.xml</loc>
+    </sitemap>
 </sitemapindex>
