@@ -17,6 +17,22 @@
   margin-bottom: 0;
 }
 
+.accordion .accordion-trigger > h2,
+.accordion .accordion-trigger > h3 {
+  display: inline-flex;
+  width: calc(100% - 40px);
+}
+
+.accordion.numbers .accordion-trigger > h2,
+.accordion.numbers .accordion-trigger > h3 {
+  width: calc(92% - 40px);
+  margin: auto 0;
+}
+
+.accordion.faq div h2:only-child {
+  margin: 30px 0 15px;
+}
+
 .accordion [aria-expanded] .accordion-trigger {
   background-color: var(--background-color-blue);
   color: var(--text-white);
@@ -60,18 +76,6 @@
   padding-right: 10px;
 }
 
-.accordion .accordion-trigger > h2,
-.accordion .accordion-trigger > h3 {
-  display: inline-flex;
-  width: calc(100% - 40px);
-}
-
-.accordion.numbers .accordion-trigger > h2,
-.accordion.numbers .accordion-trigger > h3 {
-  width: calc(92% - 40px);
-  margin: auto 0;
-}
-
 .accordion .accordion-content {
   display: none;
   overflow: hidden;
@@ -85,6 +89,7 @@
 .accordion [aria-expanded] .accordion-content {
   display: block;
   max-height: 1000px;
+  overflow-y: auto;
 }
 
 .accordion .accordion-content-row {

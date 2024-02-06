@@ -85,6 +85,7 @@ async function renderNews(container) {
 }
 
 async function buildNewsEvents(container) {
+  if (!container) return;
   [...container.children].forEach((row, j) => {
     [...row.children].forEach((column, k) => {
       column.classList.add('toggle');
@@ -151,9 +152,15 @@ async function buildNewsletter(container) {
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
-  socialIconsContainer.querySelectorAll('a').forEach((iconLink) => {
+  socialIconsContainer.querySelectorAll('.social-media-list a').forEach((iconLink) => {
     iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
   });
+}
+
+function decorateImageWithLink(wrapper, link, title) {
+  const img = wrapper.innerHTML;
+  const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
+  wrapper.innerHTML = newWrapper;
 }
 
 /**
@@ -188,8 +195,19 @@ export default async function decorate(block) {
       footerBottom.appendChild(row);
     }
 
-    if (idx === 4) {
+    if (idx === 3) {
       decorateSocialMediaLinks(row);
+    }
+
+    if (idx === 4) {
+      const mainUrl = 'https://www.moleculardevices.com/';
+      decorateImageWithLink(row, mainUrl, 'Molecular Devices');
+    }
+
+    if (idx === 5) {
+      const imgWrapper = row.getElementsByTagName('p')[0];
+      const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
+      decorateImageWithLink(imgWrapper, danaherUrl, 'Danaher');
     }
   });
 
@@ -209,18 +227,19 @@ export default async function decorate(block) {
    In most cases it is expected that the newsletter is already present when the user has
    scrolled down to it.
   */
-  const newsletterContainter = block.querySelector('.footer-newsletter-form');
+  const newsletterContainer = block.querySelector('.footer-newsletter-form');
+  if (newsletterContainer) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        observer.disconnect();
+        buildNewsletter(newsletterContainer);
+      }
+    });
+    observer.observe(newsletterContainer);
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
+    setTimeout(() => {
       observer.disconnect();
-      buildNewsletter(newsletterContainter);
-    }
-  });
-  observer.observe(newsletterContainter);
-
-  setTimeout(() => {
-    observer.disconnect();
-    buildNewsletter(newsletterContainter);
-  }, 3000);
+      buildNewsletter(newsletterContainer);
+    }, 3000);
+  }
 }

@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 
-.featured-posts>div {
+.featured-posts > .post {
   position: relative;
   overflow: hidden;
   margin: 10px;
@@ -15,13 +15,18 @@
   width: 100%;
   height: 256px;
   object-fit: cover;
+  vertical-align: middle;
 }
 
 .featured-posts p {
   margin: 0;
 }
 
-.featured-posts p a {
+.featured-posts a {
+  display: block;
+}
+
+.featured-posts h3 {
   position: absolute;
   color: var(--text-white);
   text-align: center;
@@ -33,9 +38,13 @@
   bottom: 37px;
 }
 
-.featured-posts .post-1 a {
+.featured-posts h3 a {
+  color: inherit;
+  display: inline;
+}
+
+.featured-posts .post-1 h3 {
   font-size: var(--body-font-size-xl);
-  max-width: 410px;
 }
 
 .featured-posts .post-1 {
@@ -45,6 +54,21 @@
 .featured-posts .post-1 img {
   height: auto;
   min-height: 256px;
+}
+
+.featured-posts .post picture {
+  display: block;
+  position: relative;
+}
+
+.featured-posts .post picture::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
 }
 
 @media only screen and (min-width: 768px) {
@@ -73,29 +97,24 @@
     grid-area: 2 / 4 / 3 / 5
   }
 
-  .featured-posts img {
+  .featured-posts img,
+  .featured-posts .post-1 img,
+  .featured-posts .post > div,
+  .featured-posts .post picture,
+  .featured-posts .post a {
     height: 100%;
   }
 
-  .featured-posts .post-1 img {
-    height: 100%;
-  }
-
-  .featured-posts>div {
+  .featured-posts > .post {
     height: 100%;
     margin: 0;
   }
-
-  .featured-posts>div>div {
-    height: 100%;
-  }
 }
 
-.featured-posts .zoom-effect-wrapper {
+.featured-posts .post .zoom-effect-wrapper > a{
   transition: all .4s;
 }
 
-.featured-posts .zoom-effect-wrapper:hover {
+.featured-posts .post:hover .zoom-effect-wrapper > a{
   transform: scale(1.15);
-  transition: all .4s;
 }

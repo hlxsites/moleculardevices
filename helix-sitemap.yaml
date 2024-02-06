@@ -9,3 +9,8 @@ sitemaps:
     source: /sites/default/files/query-index.json
     destination: /files-sitemap.xml
     lastmod: YYYY-MM-DD
+  hubspot:
+    source: /sites/default/files/hubspot/query-index.json
+    origin:
+    destination: /hubspot-sitemap.xml
+    lastmod: YYYY-MM-DD 

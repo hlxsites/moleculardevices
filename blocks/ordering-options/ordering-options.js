@@ -5,6 +5,7 @@ import { loadUserData } from '../../scripts/delayed.js';
 import {
   a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
+import { toClassName } from '../../scripts/lib-franklin.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';
@@ -128,9 +129,9 @@ function renderAddToCart(item) {
 function renderItem(item, itemDescriptionsMap) {
   if (!item) return '';
   return (
-    div({ class: 'ordering-option-item', id: item.handle },
+    div({ class: 'ordering-option-item', id: `${item.handle}-option-item` },
       div({ class: 'header' },
-        h3({ class: 'title' }, item.title),
+        h3({ class: 'title', id: toClassName(item.title) }, item.title),
       ),
       div({ class: 'ordering-option-item-variants' },
         ...item.variants.map((variant) => (
@@ -418,15 +419,18 @@ async function renderOptions(orderBlock, heroBlock, productRefs, itemDescription
 
 function showHideStoreFeature(showStore, orderBlock, heroBlock) {
   renderCartWidget(showStore);
-  const heroOrder = heroBlock.querySelector('.order-container');
+  let heroOrder = heroBlock?.querySelector('.order-container');
+  if (heroOrder && heroBlock.querySelector('img')) heroOrder = undefined;
   if (showStore) {
     orderBlock.classList.remove(STORE_HIDDEN_CLASS);
-    if (heroOrder) heroOrder.classList.remove(STORE_HIDDEN_CLASS);
-    // hide buttons in hero and instead show option form
-    if (heroBlock) {
-      heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
-        buttonContainer.remove();
-      });
+    if (heroOrder) {
+      heroOrder.classList.remove(STORE_HIDDEN_CLASS);
+      // hide buttons in hero and instead show option form
+      if (heroBlock) {
+        heroBlock.querySelectorAll('.button-container').forEach((buttonContainer) => {
+          buttonContainer.remove();
+        });
+      }
     }
   } else {
     orderBlock.classList.add(STORE_HIDDEN_CLASS);
@@ -462,6 +466,6 @@ export default async function decorate(block) {
   showHideStoreFeature(showStore, block, heroBlock);
 
   document.addEventListener('geolocationUpdated', () => {
-    showHideStoreFeature(block, showStore);
+    showHideStoreFeature(showStore, block, heroBlock);
   });
 }

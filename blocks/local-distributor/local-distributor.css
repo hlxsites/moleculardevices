@@ -114,7 +114,11 @@
 }
 
 .local-distributor > div.search-result .sales-result .type::before {
-  content: '\f025';
+  content: '';
+  background-image: url('/icons/sales.png');
+  width: 32px;
+  height: 32px;
+  background-size: contain;
 }
 
 .local-distributor > div.search-result .tech-support-result .type::before {

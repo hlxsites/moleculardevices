@@ -3,6 +3,7 @@ import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, p, ul, li, img, a, span, i, iframe, button,
 } from '../../scripts/dom-helpers.js';
+import { sampleRUM } from '../../scripts/lib-franklin.js';
 
 const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
 
@@ -35,21 +36,38 @@ export async function getRFQDataByTitle(name) {
 }
 
 /* CREATE RFQ LIST BOX */
-function createRFQListBox(listArr, checkStep, callback) {
+function createRFQListBox(listArr, checkStep) {
   const list = ul({ class: 'rfq-icon-list' });
 
   listArr.forEach((rfq) => {
     const id = rfq.Type.toLowerCase().replace(',', '').trim();
+    const dataTabValue = checkStep === 'step-1' ? rfq.Type : rfq.Category;
+    const filterData = rfqCategories.filter(({ Type }) => Type.includes(dataTabValue) > 0);
+    const hasCateg = checkStep === 'step-1' && filterData.length > 0;
+    const hashValue = hasCateg ? '#step-2' : '#step-3';
+    // eslint-disable-next-line no-use-before-define
+    const callback = hasCateg ? stepTwo : stepThree;
+
+    let classes;
+    if (filterData.length > 0 && !rfq.Category) {
+      classes = 'rfq-icon-link has-categ';
+    } else {
+      classes = 'rfq-icon-link no-categ';
+    }
+    if (rfq.Category) {
+      classes = 'rfq-icon-link';
+    }
+
     list.appendChild(
       li(
         { class: 'rfq-icon-item' },
         a(
           {
-            class: 'rfq-icon-link',
-            id: id.split(' ').join('-'),
-            href: checkStep === 'step-1' ? '#step-2' : '#step-3',
-            'data-tab': checkStep === 'step-1' ? rfq.Type : rfq.Category,
-            onclick: callback,
+            class: classes,
+            'data-id': id.split(' ').join('-'),
+            href: hashValue,
+            'data-tab': dataTabValue,
+            onclick: callback.bind(null, dataTabValue),
           },
           img({
             class: 'rfq-icon-img',
@@ -80,10 +98,15 @@ function createProgessBar(val, checkStep) {
 
 function backOneStep(stepNum) {
   const currentTab = document.getElementById(stepNum);
-  const prevTab = currentTab.previousElementSibling;
+  if (currentTab.classList.contains('no-categ-form')) {
+    const rfqTypeTab = document.getElementById('step-1');
+    rfqTypeTab.style.display = 'block';
+  } else {
+    const prevTab = currentTab.previousElementSibling;
+    prevTab.style.display = 'block';
+  }
 
   currentTab.style.display = 'none';
-  prevTab.style.display = 'block';
 }
 
 function createBackBtn(stepNum) {
@@ -107,10 +130,23 @@ function iframeResizehandler(formUrl, id, root) {
   });
 }
 
-async function loadIframeForm(stepNum, data, type) {
+function prepImageUrl(thumbImage) {
+  const thumbImg = thumbImage;
+  let thumbImgnew = '';
+  if (!thumbImg.startsWith('https')) {
+    if (thumbImg.startsWith('.')) {
+      thumbImgnew = thumbImage.substring(1);
+    }
+    thumbImgnew = `https://www.moleculardevices.com${thumbImgnew}`;
+  }
+  return thumbImgnew;
+}
+
+async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq';
-  const root = document.getElementById(stepNum);
+  const root = document.getElementById('step-3');
+  const rfqRUM = { source: 'global' };
   root.innerHTML = '';
 
   let tab = '';
@@ -118,25 +154,46 @@ async function loadIframeForm(stepNum, data, type) {
   let sfdcProductSelection = '';
   let sfdcPrimaryApplication = '';
   let productFamily = '';
-
+  let primaryProductFamily = '';
+  let productImage = '';
+  let bundleThumbnail = '';
+  let productBundle = '';
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
+    rfqRUM.source = 'product';
+    if (data.familyID) rfqRUM.target = data.familyID;
     tab = data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
 
+    // prepare the product image url
+    if (data.thumbnail && data.thumbnail !== '0') {
+      productImage = prepImageUrl(data.thumbnail);
+    }
+
     // special handling for bundles and customer breakthrough
-    if (typeParam && typeParam.toLowerCase() === 'bundle' && data.productBundle && data.productBundle !== '0') {
+    if (typeParam
+      && typeParam.toLowerCase() === 'bundle'
+      && data.productBundle
+      && data.productBundle !== '0'
+    ) {
       tab = `${data.productBundle} Bundle`;
+      productBundle = data.productBundle;
+      // prepare the product bundle thumbnail url
+      if (data.bundleThumbnail && data.bundleThumbnail !== '0') {
+        bundleThumbnail = prepImageUrl(data.bundleThumbnail);
+      }
     } else if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
       if (fragmentHtml) {
         const fragmentElement = div();
         fragmentElement.innerHTML = fragmentHtml;
-        const relatedProducts = fragmentElement.querySelector('meta[name="related-products"]').getAttribute('content');
-        tab = (relatedProducts && relatedProducts.trim().length > 0) ? relatedProducts : data.title;
+        const relatedProducts = fragmentElement
+          .querySelector('meta[name="related-products"]')
+          .getAttribute('content');
+        tab = relatedProducts && relatedProducts.trim().length > 0 ? relatedProducts : data.title;
         sfdcPrimaryApplication = tab;
 
         const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
@@ -148,10 +205,19 @@ async function loadIframeForm(stepNum, data, type) {
     }
   } else {
     tab = data;
+
+    primaryProductFamily = rfqTypes.filter(({ Type }) => Type.includes(tab) > 0);
+    if (primaryProductFamily.length > 0) {
+      sfdcProductFamily = primaryProductFamily[0].PrimaryProductFamily;
+    }
+
     productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
-    sfdcProductFamily = productFamily[0].ProductFamily;
-    sfdcProductSelection = sfdcProductFamily;
-    sfdcPrimaryApplication = sfdcProductFamily;
+    if (productFamily.length > 0) {
+      sfdcProductFamily = productFamily[0].ProductFamily;
+    }
+
+    sfdcProductSelection = tab;
+    sfdcPrimaryApplication = tab;
   }
 
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
@@ -169,10 +235,18 @@ async function loadIframeForm(stepNum, data, type) {
     google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
     keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
     gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: 'NA',
+    product_image: productImage || 'NA',
+    product_bundle_image: bundleThumbnail || 'NA',
+    product_bundle: productBundle,
     requested_qdc_discussion__c: requestTypeParam || 'Quote',
-    return_url: data.familyID ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}` : 'https://www.moleculardevices.com/quote-request-success',
+    return_url: data.familyID
+      ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
+      : 'https://www.moleculardevices.com/quote-request-success',
   };
+
+  if (data.path) {
+    hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
+  }
 
   root.appendChild(
     div(
@@ -188,55 +262,29 @@ async function loadIframeForm(stepNum, data, type) {
       }),
     ),
   );
-  root.appendChild(createBackBtn(stepNum));
+  root.appendChild(createBackBtn('step-3'));
+  rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
+  sampleRUM('rfq', rfqRUM);
   iframeResizehandler(formUrl, '#contactQuoteRequest', root);
 }
 
 /* step one */
-function stepOne(callback) {
+function stepOne() {
   const stepNum = 'step-1';
   const root = document.getElementById(stepNum);
   const defaultProgessValue = 40;
 
-  const fetchRQFTypes = createRFQListBox(rfqTypes, stepNum, callback);
+  const fetchRQFTypes = createRFQListBox(rfqTypes, stepNum);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3('What type of product are you interested in?'));
+  root.appendChild(h3('What type of product or service are you interested in?'));
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
 }
 
-/* step three */
-function stepThree(e) {
-  e.preventDefault();
-  let tab = '';
-  if (e.target.getAttribute('data-tab')) {
-    tab = e.target.getAttribute('data-tab');
-  } else {
-    tab = e.target.closest('.rfq-icon-link').getAttribute('data-tab');
-  }
-
-  const stepNum = 'step-3';
-  const prevRoot = document.getElementById('step-2');
-  const root = document.getElementById(stepNum);
-  root.innerHTML = '';
-
-  loadIframeForm(stepNum, tab, 'Global');
-
-  root.style.display = 'block';
-  prevRoot.style.display = 'none';
-}
-
 /* step two */
-function stepTwo(e) {
-  e.preventDefault();
-
-  let tab = '';
-  if (e.target.getAttribute('data-tab')) {
-    tab = e.target.getAttribute('data-tab');
-  } else {
-    tab = e.target.closest('.rfq-icon-link').getAttribute('data-tab');
-  }
+function stepTwo(tab, event) {
+  event.preventDefault();
 
   const stepNum = 'step-2';
   const prevRoot = document.getElementById('step-1');
@@ -245,15 +293,38 @@ function stepTwo(e) {
   const filterData = rfqCategories.filter(({ Type }) => Type.includes(tab) > 0);
 
   const defaultProgessValue = 70;
-  const fetchRQFTypes = createRFQListBox(filterData, stepNum, stepThree);
+  const fetchRQFTypes = createRFQListBox(filterData, stepNum);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3(`Please select the ${tab} category`));
+  root.appendChild(h3('Please select field of interest'));
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
   root.appendChild(createBackBtn(stepNum));
   root.style.display = 'block';
   prevRoot.style.display = 'none';
+}
+
+/* step three */
+function stepThree(tab, event) {
+  event.preventDefault();
+
+  const stepNum = 'step-3';
+  const prevRoot1 = document.getElementById('step-1');
+  const prevRoot2 = document.getElementById('step-2');
+  const root = document.getElementById(stepNum);
+  root.innerHTML = '';
+
+  loadIframeForm(tab, 'Global');
+
+  if (event.target.closest('.rfq-icon-link').classList.contains('no-categ')) {
+    root.classList.add('no-categ-form');
+  } else {
+    root.classList.remove('no-categ-form');
+  }
+
+  root.style.display = 'block';
+  prevRoot1.style.display = 'none';
+  prevRoot2.style.display = 'none';
 }
 
 export default async function decorate(block) {
@@ -280,7 +351,7 @@ export default async function decorate(block) {
     let rfqData = await getRFQDataByFamilyID(queryParams.get('pid'));
     parentSection.prepend(htmlContentRoot);
     block.innerHTML = '';
-    if (rfqData || window.location.host.includes(PREVIEW_DOMAIN)) {
+    if ((rfqData || window.location.host.includes(PREVIEW_DOMAIN)) && pid) {
       block.appendChild(
         div({
           id: 'step-3',
@@ -290,7 +361,7 @@ export default async function decorate(block) {
       if (!rfqData) {
         rfqData = { title: pid, familyId: pid };
       }
-      loadIframeForm('step-3', rfqData, 'Product');
+      loadIframeForm(rfqData, 'Product');
     } else {
       block.appendChild(
         div(

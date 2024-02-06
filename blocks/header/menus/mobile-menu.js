@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {
   reverseElementLinkTagRelation,
   buildRequestQuote,
@@ -190,9 +191,11 @@ function addHamburgerListener(content, hamburger) {
   });
 }
 
-export function buildMobileMenuTools(menuItems, content) {
+export function buildMobileMenuTools(menuItems, content, hideGlobalRFQ) {
   // create Request Quote button
-  menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
+  if (!hideGlobalRFQ) {
+    menuItems.append(buildRequestQuote('mobile-menu-item request-quote'));
+  }
 
   // create Tools buttons
   const toolsList = content.querySelector('div:nth-child(2)');
@@ -205,15 +208,17 @@ export function buildMobileMenuTools(menuItems, content) {
   menuItems.append(toolsWrapper);
 }
 
-export function buildMobileMenu(content) {
+export async function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
   const navigation = nav(
     { class: 'mobile-menu' },
     ul(
       { class: 'mobile-menu-items' },
-      li(
-        { class: 'headersearch-item' },
-        buildMobileSearch(),
-      ),
+      (!hideSearch)
+        ? li(
+          { class: 'headersearch-item' },
+          buildMobileSearch(),
+        )
+        : '',
     ),
   );
 
@@ -250,11 +255,11 @@ export function buildMobileMenu(content) {
     navigation.querySelector('ul').append(listItem);
   });
 
-  buildMobileMenuTools(navigation.querySelector('ul'), content);
+  buildMobileMenuTools(navigation.querySelector('ul'), content, hideGlobalRFQ);
   return navigation;
 }
 
-export function buildHamburger(content) {
+export async function buildHamburger(content) {
   const hamburger = button(
     { class: 'hamburger' },
     span(

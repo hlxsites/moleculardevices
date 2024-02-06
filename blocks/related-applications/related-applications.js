@@ -1,4 +1,4 @@
-import { addLinkIcon, fetchFragment } from '../../scripts/scripts.js';
+import { addLinkIcon, fetchFragment, detectAnchor } from '../../scripts/scripts.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
@@ -90,6 +90,8 @@ export default async function decorate(block) {
   block.append(apps);
 
   alignTitles();
+
+  detectAnchor(block);
 
   return block;
 }

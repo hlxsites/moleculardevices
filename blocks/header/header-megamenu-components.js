@@ -1,9 +1,12 @@
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
-import { img } from '../../scripts/dom-helpers.js';
+import {
+  img, div, a, p,
+} from '../../scripts/dom-helpers.js';
+import ffetch from '../../scripts/ffetch.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
-  const linkCopy = document.createElement('a');
-  linkCopy.href = link.href;
+  const linkCopy = a({ href: link.href });
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
   // Move the existing div inside the new div
@@ -72,7 +75,9 @@ function buildTextSubmenu(textContent) {
 
 function buildActionableCardSubmenu(actionableCardContent) {
   const link = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > a');
-  const picture = actionableCardContent.querySelector('div:nth-child(2) > div:nth-child(2) > p > picture');
+  const picture = actionableCardContent.querySelector(
+    'div:nth-child(2) > div:nth-child(2) > p > picture',
+  );
   if (link && picture) {
     wrapLinkAroundComponent(link, picture, true);
   }
@@ -100,8 +105,70 @@ function buildImageCardSubmenu(content) {
 function buildImageWithTextSubmenu(imageWithTextContent) {
   return imageWithTextContent;
 }
+
 function buildImageWithoutTextSubmenu(imageWithoutTextContent) {
   return imageWithoutTextContent;
+}
+
+function getRecentBlogPosts(featuredPostUrl, isFeaturedPost) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      if (isFeaturedPost) {
+        resolve(
+          ffetch('/query-index.json')
+            .sheet('blog')
+            .filter((post) => featuredPostUrl.indexOf(post.path) > -1)
+            .chunks(5)
+            .limit(1)
+            .all(),
+        );
+      } else {
+        resolve(
+          ffetch('/query-index.json')
+            .sheet('blog')
+            .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
+            .chunks(5)
+            .limit(4)
+            .all(),
+        );
+      }
+    }, 100);
+  });
+}
+
+async function getRecentBlogPostsHandler(featuredPostUrl) {
+  const recentPosts = div({ class: 'recent-blog-posts-block' });
+  const featuredpost = div({ class: 'featured-blog-posts-block' });
+  const blogPostMenu = div({ class: 'blog-posts-block' }, recentPosts, featuredpost);
+
+  const recentPostLinks = await getRecentBlogPosts(featuredPostUrl, false);
+  const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
+
+  document.querySelector('.blog-lab-notes-right-submenu').appendChild(blogPostMenu);
+
+  setTimeout(() => {
+    recentPostLinks.forEach((post) => {
+      const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
+      const title = p(a({ href: post.path }, `${post.h1.trim().substring(0, 40)}...`));
+      const postWrapper = div(link, title);
+      recentPosts.appendChild(postWrapper);
+    });
+    featuredPostLink.forEach((post) => {
+      const postTitle = post.title.length > 200
+        ? `${post.h1.trim().substring(0, 200)}...`
+        : post.h1;
+      const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
+      const title = p(a({ href: post.path }, postTitle));
+      const postWrapper = div(link, title);
+      featuredpost.appendChild(postWrapper);
+    });
+  }, 300);
+}
+
+function buildBlogCardSubmenu(block) {
+  const featuredPostUrl = block.querySelector('a').getAttribute('href');
+  block.querySelector('a').remove();
+  getRecentBlogPostsHandler(featuredPostUrl);
 }
 
 function getRightSubmenuBuilder(className) {
@@ -113,6 +180,7 @@ function getRightSubmenuBuilder(className) {
   map.set('image-with-text-submenu', buildImageWithTextSubmenu);
   map.set('image-without-text-submenu', buildImageWithoutTextSubmenu);
   map.set('image-card-submenu', buildImageCardSubmenu);
+  map.set('blog-cards-submenu', buildBlogCardSubmenu);
   return map.get(className);
 }
 
@@ -131,21 +199,21 @@ function addIndividualComponents(rightSubMenu, submenuId) {
 
   if (submenuId === 'accessories--consumables') {
     rightSubMenu.parentElement.appendChild(
-      img(
-        { class: 'spectra-accessories', src: '/images/header-menus/spectra-accessories.png', alt: 'Spectra Accessories' },
-      ),
+      img({
+        class: 'spectra-accessories',
+        src: '/images/header-menus/spectra-accessories.png',
+        alt: 'Spectra Accessories',
+      }),
     );
   }
 }
 
 export default function buildRightSubmenu(contentHeader, subMenuId) {
   // get products-megamenu-head-wrapper located in the parent div of the div containing h1
-  const rightSubmenuWrapper = document.createElement('div');
-  rightSubmenuWrapper.classList.add('right-submenu');
+  const rightSubmenuWrapper = div({ class: 'right-submenu' });
 
   // insert a div inside products-megamenu-head containing all its content
-  const rightSubmenuRow = document.createElement('div');
-  rightSubmenuRow.classList.add('right-submenu-row', 'flex-space-between');
+  const rightSubmenuRow = div({ class: 'right-submenu-row flex-space-between' });
 
   // get div in the parent of the H2/H1 header
   const headerParentDiv = contentHeader.parentElement;
@@ -155,7 +223,9 @@ export default function buildRightSubmenu(contentHeader, subMenuId) {
   // add all right-submenu divs to the H2
   rightSubmenus.forEach((rightSubmenu) => {
     // get the class name that has a suffix -submenu
-    const rightSubmenuClass = rightSubmenu.classList.value.split(' ').find((className) => className.endsWith('-submenu'));
+    const rightSubmenuClass = rightSubmenu.classList.value
+      .split(' ')
+      .find((className) => className.endsWith('-submenu'));
     const rightSubmenuBuilder = getRightSubmenuBuilder(rightSubmenuClass);
     if (rightSubmenuBuilder) {
       rightSubmenuBuilder(rightSubmenu);

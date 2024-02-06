@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './lib-franklin.js';
+import { sampleRUM, loadScript } from './lib-franklin.js';
 
 const isSidekickLibrary = (window.location.href === 'about:srcdoc');
 
@@ -25,6 +25,15 @@ function LoadDriftWidget() {
     }
     drift.SNIPPET_VERSION = '0.3.1';
     drift.load('pyupvvckemp9');
+    // dreamdata script
+    drift.on("emailCapture", function(payload) {
+  if (payload.data && payload.data.email && window.analytics) {
+      window.analytics.identify(null, {
+          email: payload.data.email,
+      });
+      window.analytics.track("chat_converted");
+  }
+});
 };
 /* eslint-enable */
 
@@ -89,6 +98,10 @@ function loadGTM() {
   `;
   document.head.prepend(scriptTag);
 }
+
+// Fathom Analytics Code
+const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
+loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
 if (!isSidekickLibrary) {
   sampleRUM('cwv');

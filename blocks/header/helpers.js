@@ -1,8 +1,7 @@
+/* eslint-disable linebreak-style */
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a,
-  div,
-  li,
+  a, div, li,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
@@ -52,14 +51,15 @@ export function expandMenu(element) {
   element.setAttribute('aria-expanded', 'true');
 }
 
-export function buildBrandLogo(content) {
+export async function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-  logoImg.innerHTML = '';
 
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );
+
   logoLink.innerHTML = logoImg.outerHTML;
+  logoImg.innerHTML = '';
 
   const logoWrapper = div(
     { id: 'header-logo' },
@@ -111,8 +111,15 @@ export function buildRequestQuote(classes) {
 
 export function decorateLanguagesTool(tools) {
   const languageTool = tools.querySelector('li:nth-child(2)');
+  if (!languageTool) return;
+
   const languagesList = languageTool.querySelector('ul');
   languagesList.classList.add('languages-dropdown');
+
+  const pathLocation = window.location.pathname;
+  languagesList.querySelectorAll('a').forEach((link) => {
+    link.href = `${link.href}${pathLocation.slice(1)}`;
+  });
 
   languageTool.addEventListener('click', () => {
     languagesList.classList.toggle('show');

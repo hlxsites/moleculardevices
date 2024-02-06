@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main .hero-container,
 main .hero-advanced-container {
   --hero-breadcrumbs-separator-color: #ccc;
@@ -204,17 +205,26 @@ display: none;
   max-width: 700px;
 }
 
-.wave .hero-inner {
-  background-image: url('/images/curve.webp'), url('/images/curve.png');
+.wave .hero-inner,
+.wave-reverse .hero-inner {
   background-repeat: no-repeat;
   background-size: 100%;
-  padding-bottom: 10%;
   background-position: bottom center;
 }
 
+.wave .hero-inner {
+  background-image: url('/images/curve.webp'), url('/images/curve.png');
+  padding-bottom: 10%;
+}
+
+.wave-reverse .hero-inner,
 .thankyou .hero-inner {
   background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
   padding-top: 50px;
+}
+
+.wave-reverse .hero-inner .container {
+  align-items: flex-start;
 }
 
 .thankyou .hero-inner h1 {
@@ -486,7 +496,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     gap: 0
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
     padding: 6px;
@@ -496,7 +505,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin-right: 20px;
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .blog main .hero-wrapper h1 {
     font-family: var(--ff-proxima-light);
     font-size: 36px;
@@ -565,6 +573,18 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: unset;
   }
 
+  .wave-reverse .hero-inner > div {
+    padding-top: 40px;
+  }
+
+  .wave-reverse .hero-inner .container.two-column.right-image > div:first-child {
+    width: 62%;
+  }
+
+  .wave-reverse .hero-inner .container.two-column.right-image > div:nth-child(2) {
+    width: 38%;
+  }
+
   /* Video Gallery Variant - Desktop -- Start */
   .hero.video-gallery .hero-inner,
   .hero.video-gallery .hero-inner.short {
@@ -605,7 +625,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: 220px;
   }
 
-  /* stylelint-disable-next-line no-descending-specificity */
   .citation main .hero .container {
     padding: 0 0 40px;
   }
