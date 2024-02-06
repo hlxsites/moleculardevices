@@ -577,6 +577,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     padding-top: 40px;
   }
 
+  .hero.hero-wrapped .container > div {
+    max-width: 50%;
+  }
+
   .wave-reverse .hero-inner .container.two-column.right-image > div:first-child {
     width: 62%;
   }
