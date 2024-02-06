@@ -50,8 +50,14 @@
 
 .blog main ol li > picture img,
 .blog main ul li > picture img {
-    display: block;
-    margin: 20px auto;
+  display: block;
+  margin: 20px auto;
+}
+
+.blog .footer-contact ol li > picture img,
+.blog .footer-contact ul li > picture img {
+  display: inline-block;
+  margin: 0;
 }
 
 .blog main ol.text-caption {
@@ -88,8 +94,18 @@
 }
 
 .blog main h3 + ol,
-.blog main h3 + ul{
+.blog main h3 + ul {
   margin-top: 10px;
+}
+
+.blog .footer .row-1 h3 + ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.blog .footer .row-1 h3 + h3 {
+  margin-top: 9px;
+  width: 100%;
 }
 
 .blog .section > div:not(.hero-wrapper) {
@@ -233,8 +249,7 @@ main .section.sidebar h4::after {
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green)
-  background: var(--blog-gradient);
+  background-color: var(--background-color-green) background: var(--blog-gradient);
 }
 
 .blog main .section.sidebar .embed-wrapper {
@@ -268,7 +283,7 @@ main .section.sidebar h4::after {
   margin-top: 0;
 }
 
-.blog .section > div.embed-wrapper > div.embed{
+.blog .section > div.embed-wrapper > div.embed {
   margin-top: 10px;
 }
 
