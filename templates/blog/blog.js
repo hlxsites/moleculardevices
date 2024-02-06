@@ -2,6 +2,7 @@ import {
   div, img, span, iframe, h3, p, button,
 } from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
+import ffetch from '../../scripts/ffetch.js';
 
 function showNewsletterModal() {
   const newsletterModalOverlay = document.querySelector('.newsletter-modal-overlay');
@@ -33,8 +34,8 @@ function triggerModalBtn() {
   }
 }
 
-function newsletterModal() {
-  const iframeSrc = 'https://info.moleculardevices.com/lab-notes-popup';
+function newsletterModal(latestNewsletter) {
+  const iframeSrc = `https://info.moleculardevices.com/lab-notes-popup?latest_newsletter=${latestNewsletter[0].gatedURL}`;
   const body = document.querySelector('body');
 
   const modalBtn = button({ id: 'show-newsletter-modal' }, 'Show Modal');
@@ -72,9 +73,21 @@ function newsletterModal() {
 
 window.addEventListener('scroll', triggerModalBtn);
 
-export default function buildAutoBlocks() {
+async function getLatestNewsletter() {
+  return ffetch('/query-index.json')
+    .sheet('resources')
+    .filter((resource) => resource.type === 'Newsletter')
+    .limit(1)
+    .all();
+}
+
+export default async function decorate() {
+  const latestNewsletter = await getLatestNewsletter();
+
   loadScript('../../scripts/iframeResizer.min.js');
-  newsletterModal();
+  setTimeout(() => {
+    newsletterModal(latestNewsletter);
+  }, 500);
 
   // add social share block
   const blogCarousel = document.querySelector('.recent-blogs-carousel');
