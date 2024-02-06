@@ -12,24 +12,27 @@ sitemaps:
         source: https://de.moleculardevices.com/content-sitemap.xml
         destination: /content-sitemap.xml
         hreflang: de
+        alternate: https://de.moleculardevices.com/{path}
       fr:
         source: https://fr.moleculardevices.com/content-sitemap.xml
         destination: /content-sitemap.xml
+        hreflang: fr
+        alternate: https://fr.moleculardevices.com/{path}
       es:
         source: https://es.moleculardevices.com/content-sitemap.xml
         destination: /content-sitemap.xml
         hreflang: es
-        alternate: https://es.moleculardevices.com{path}
+        alternate: https://es.moleculardevices.com/{path}
       ko:
         source: https://ko.moleculardevices.com/content-sitemap.xml
         destination: /content-sitemap.xml
         hreflang: ko
-        alternate: https://ko.moleculardevices.com{path}  
+        alternate: https://ko.moleculardevices.com/{path}  
       zh:
         source: https://www.moleculardevices.com.cn/content-sitemap.xml
         destination: /content-sitemap.xml
         hreflang: zh
-        alternate: https://www.moleculardevices.com.cn{path}    
+        alternate: https://www.moleculardevices.com.cn/{path}    
   files:
     origin: https://www.moleculardevices.com
     source: /sites/default/files/query-index.json
