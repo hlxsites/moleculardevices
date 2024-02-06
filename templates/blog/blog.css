@@ -60,12 +60,6 @@
   margin: 0;
 }
 
-.blog .footer-contact ol li > picture img,
-.blog .footer-contact ul li > picture img {
-  display: inline-block;
-  margin: 0;
-}
-
 .blog main ol.text-caption {
   margin-top: 40px;
   position: relative;
@@ -109,11 +103,7 @@
   margin-bottom: 0;
 }
 
-<<<<<<< HEAD
 .blog .footer .row-1 h3 + h3 {
-=======
-.blog .footer .row-1 h3+h3 {
->>>>>>> 702b1346c40dd10dbb0b41c4f96a83c1c95c07b4
   margin-top: 9px;
   width: 100%;
 }
