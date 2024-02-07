@@ -188,6 +188,11 @@
   margin: 0;
 }
 
+main .section.sidebar p.picture {
+  position: relative;
+  z-index: 2;
+}
+
 main .section.sidebar h4,
 .blog .section.blog-heading h4 {
   font-size: 30px;
@@ -410,8 +415,6 @@ body.no-scroll {
   color: #fff;
   margin-top: -17px;
   min-height: 460px;
-  position: relative;
-  z-index: -1;
   margin-bottom: 50px;
 }
 
