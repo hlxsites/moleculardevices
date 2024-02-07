@@ -49,6 +49,9 @@ function newsletterModal(latestNewsletter) {
   const leftColumn = div(
     { class: 'newsletter-left-col newsletter-col' },
     img({ src: '/images/spectra-lab-notes.png', alt: 'Spectra' }),
+    p(
+      "Each month, we'll share trends our customers are setting in science and breakthroughs we're enabling together with promises of a brighter, healthier future.",
+    ),
   );
   const rightColumn = div(
     { class: 'newsletter-right-col newsletter-col' },
@@ -56,15 +59,12 @@ function newsletterModal(latestNewsletter) {
       { class: 'modal-iframe-wrapper' },
       div(
         h3('Join our journey of scientific discovery'),
-        p(
-          "Each month, we'll share trends our customers are setting in science and breakthroughs we're enabling together with promises of a brighter, healthier future.",
-        ),
         iframe({ src: iframeSrc }),
       ),
     ),
   );
   const columnsWrapper = div({ class: 'columns columns-2-cols' }, leftColumn, rightColumn);
-  const closeBtn = span({ class: 'icon icon-close-circle-outline newsletter-button-close' });
+  const closeBtn = span({ class: 'fa fa-times-circle fa-2x newsletter-button-close' });
   closeBtn.addEventListener('click', hideNewsletterModal);
   const innerWrapper = div({ class: 'newsletter-inner-wrapper' }, columnsWrapper, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
