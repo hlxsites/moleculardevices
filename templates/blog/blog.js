@@ -35,7 +35,11 @@ function triggerModalBtn() {
 }
 
 function newsletterModal(latestNewsletter) {
-  const iframeSrc = `https://info.moleculardevices.com/lab-notes-popup?latest_newsletter=${latestNewsletter[0].gatedURL}`;
+  const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
+  const queryString = window.location.search;
+  let cmpID = new URLSearchParams(queryString).get('cmp');
+  if (!cmpID) cmpID = '';
+  const iframeSrc = `${formURL}?latest_newsletter=${latestNewsletter[0].gatedURL}&cmp=${cmpID}`;
   const body = document.querySelector('body');
 
   const modalBtn = button({ id: 'show-newsletter-modal' }, 'Show Modal');
