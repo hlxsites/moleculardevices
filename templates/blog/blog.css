@@ -112,7 +112,7 @@
 
 .newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
   line-height: 1.15;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .blog .footer .row-1 h3 + ul {
@@ -386,6 +386,14 @@ body.no-scroll {
 .newsletter-modal-overlay .newsletter-button-close svg {
   width: 44px;
   height: auto;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 50%;
+  opacity: .7;
+}
+
+.newsletter-modal-overlay .newsletter-button-close:hover svg{
+  opacity: 1;
 }
 
 .newsletter-modal-overlay .newsletter-button-close svg path {
@@ -428,9 +436,9 @@ body.no-scroll {
     align-items: center;
   }
 
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col img {
-    max-width: 270px;
-    margin-right: -10%;
+  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col img + p{
+    margin-left: -130px;
+    margin-top: 60px;
   }
 }
 
@@ -449,17 +457,17 @@ body.no-scroll {
   }
 
   .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
-    width: 60%;
+    width: 55%;
     padding-left: 40px;
   }
 
   .newsletter-inner-wrapper .columns-2-cols .newsletter-right-col {
-    width: 40%;
-    padding-right: 40px;
+    width: 45%;
+    padding-right: 30px;
   }
 
   .newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
-    font-size: 24px;
+    font-size: 30px;
   }
 }
 
@@ -477,10 +485,6 @@ body.no-scroll {
   .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
     max-width: 420px;
     margin-bottom: 20px;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-col img {
-    max-width: 250px;
   }
 }
 

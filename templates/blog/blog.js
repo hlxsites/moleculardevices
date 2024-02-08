@@ -58,13 +58,21 @@ function newsletterModal(latestNewsletter) {
     div(
       { class: 'modal-iframe-wrapper' },
       div(
-        h3('Join our journey of scientific discovery'),
+        h3('Join our journey'),
+        h3('of scientific discovery'),
         iframe({ src: iframeSrc }),
       ),
     ),
   );
   const columnsWrapper = div({ class: 'columns columns-2-cols' }, leftColumn, rightColumn);
-  const closeBtn = span({ class: 'fa fa-times-circle fa-2x newsletter-button-close' });
+  const closeIconSvg = `<svg viewBox="0 0 20.71 20.71" class="close-video-icon">
+  <polygon
+    fill="#fff"
+    points="20.71 0.71 20 0 10.35 9.65 0.71 0 0 0.71 9.65 10.35 0 20 0.71 20.71 10.35 11.06 20 20.71 20.71 20 11.06 10.35 20.71 0.71"
+  ></polygon>
+</svg>`;
+  const closeBtn = span({ class: 'icon icon-close newsletter-button-close' });
+  closeBtn.innerHTML = closeIconSvg;
   closeBtn.addEventListener('click', hideNewsletterModal);
   const innerWrapper = div({ class: 'newsletter-inner-wrapper' }, columnsWrapper, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
