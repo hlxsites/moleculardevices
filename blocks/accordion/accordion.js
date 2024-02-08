@@ -1,4 +1,3 @@
-
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import {
   div, span,
