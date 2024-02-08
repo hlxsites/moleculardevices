@@ -9,18 +9,18 @@
   padding: 0.5em 0.5em 0.5em 0.7em;
 }
 
-.accordion .accordion-trigger h2,
-.accordion .accordion-trigger h3 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 18px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .accordion .accordion-trigger > h2,
 .accordion .accordion-trigger > h3 {
   display: inline-flex;
   width: calc(100% - 40px);
+}
+
+.accordion .accordion-trigger h2,
+.accordion .accordion-trigger h3 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 18px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .accordion.numbers .accordion-trigger > h2,
@@ -31,6 +31,12 @@
 
 .accordion.faq div h2:only-child {
   margin: 30px 0 15px;
+}
+
+.section.tabs .accordion .accordion-item .accordion-trigger > h2,
+.section.tabs .accordion .accordion-item .accordion-trigger > h3 {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .accordion [aria-expanded] .accordion-trigger {
