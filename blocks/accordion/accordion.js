@@ -1,4 +1,4 @@
-/* eslint-disable linebreak-style */
+
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import {
   div, span,
@@ -90,13 +90,14 @@ export default async function decorate(block) {
     block.setAttribute('itemtype', 'https://schema.org/FAQPage');
     block.setAttribute('itemscope', '');
   }
+
   const accordionItems = block.querySelectorAll(':scope > div > div');
   accordionItems.forEach((accordionItem, idx) => {
     const nodes = accordionItem.children;
     const titleText = nodes[0];
     const rest = Array.prototype.slice.call(nodes, 1);
 
-    if (nodes.length !== 1 && titleText.tagName !== 'H2') {
+    if (nodes.length !== 1) {
       const header = div({ class: 'accordion-trigger' },
         (isTypeNumbers) ? span({ class: 'number' }, (idx + 1)) : '',
         titleText,
