@@ -70,10 +70,6 @@
     --newsroom-section-width: 970px;
   }
 
-  .newsroom main .section.hero-container .hero-inner .container {
-    padding-bottom: 220px;
-  }
-
   .newsroom main .section.hero-container .hero-inner .container.two-column {
     padding-bottom: 80px;
   }
