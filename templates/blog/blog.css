@@ -369,7 +369,7 @@ body.no-scroll {
 }
 
 .newsletter-inner-wrapper .modal-iframe-wrapper > div iframe,
-.blog .section > div.embed-wrapper > div.embed.spectra-newsletter iframe {
+.blog .section div.spectra-newsletter iframe {
   border: 0;
   width: 100%;
   min-height: 300px;
@@ -415,7 +415,9 @@ body.no-scroll {
   width: 100%;
 }
 
-.blog .section > div.embed-wrapper > div.embed.spectra-newsletter {
+.blog .section div.spectra-newsletter {
+  display: block;
+  text-align: center;
   padding: 20px 16px;
   border-radius: 10px;
   font-size: 15px;
@@ -426,7 +428,7 @@ body.no-scroll {
   margin-bottom: 50px;
 }
 
-.blog .section > div.embed-wrapper > div.embed.spectra-newsletter h5 {
+.blog .section div.spectra-newsletter h5 {
   margin-bottom: 0;
 }
 

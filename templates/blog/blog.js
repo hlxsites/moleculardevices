@@ -1,5 +1,5 @@
 import {
-  div, img, span, iframe, h3, p, button,
+  div, img, span, iframe, h3, p, button, h5,
 } from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
@@ -34,13 +34,40 @@ function triggerModalBtn() {
   }
 }
 
-function newsletterModal(latestNewsletter) {
-  const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
+async function getLatestNewsletter() {
+  return ffetch('/query-index.json')
+    .sheet('resources')
+    .filter((resource) => resource.type === 'Newsletter')
+    .limit(1)
+    .all();
+}
+
+async function setParams(formURL) {
+  const latestNewsletter = await getLatestNewsletter();
   const queryString = window.location.search;
   let cmpID = new URLSearchParams(queryString).get('cmp');
   if (!cmpID) cmpID = '';
   const iframeSrc = `${formURL}?latest_newsletter=${latestNewsletter[0].gatedURL}&cmp=${cmpID}`;
+  return iframeSrc;
+}
+
+// function iframeResizeHandler(formUrl, id, container) {
+//   const resizerPromise = new Promise((resolve) => {
+//     loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+//   });
+
+//   container.querySelector('iframe').addEventListener('load', async () => {
+//     if (formUrl) {
+//       await resizerPromise;
+//       /* global iFrameResize */
+//       iFrameResize({ log: false }, id);
+//     }
+//   });
+// }
+
+async function newsletterModal(formURL, modalIframeID) {
   const body = document.querySelector('body');
+  const iframeSrc = await setParams(formURL);
 
   const modalBtn = button({ id: 'show-newsletter-modal' }, 'Show Modal');
   modalBtn.addEventListener('click', showNewsletterModal);
@@ -64,7 +91,12 @@ function newsletterModal(latestNewsletter) {
       div(
         h3('Join our journey'),
         h3('of scientific discovery'),
-        iframe({ src: iframeSrc }),
+        iframe({
+          src: iframeSrc,
+          id: modalIframeID,
+          loading: 'lazy',
+          title: 'Modal Newsletter',
+        }),
       ),
     ),
   );
@@ -81,24 +113,33 @@ function newsletterModal(latestNewsletter) {
   const innerWrapper = div({ class: 'newsletter-inner-wrapper' }, columnsWrapper, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
   newsletterOverlay.append(innerWrapper);
+  // iframeResizeHandler(formURL, modalIframeID, rightColumn);
 }
 
 window.addEventListener('scroll', triggerModalBtn);
 
-async function getLatestNewsletter() {
-  return ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Newsletter')
-    .limit(1)
-    .all();
-}
-
 export default async function decorate() {
-  const latestNewsletter = await getLatestNewsletter();
+  const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
+  const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
+  const modalIframeID = 'newsletter-modal';
+  const sidebarIframeID = 'newsletter-sidebar';
+  const iframeSrc = await setParams(formURL);
+  const sidebar = div(
+    { class: 'spectra-newsletter' },
+    h3('Join our journey of scientific discovery'),
+    h5('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
+    iframe({
+      src: iframeSrc,
+      id: sidebarIframeID,
+      loading: 'lazy',
+      title: 'Newsletter',
+    }),
+  );
+  spectraNewsletter.appendChild(sidebar);
+  // iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
 
-  loadScript('../../scripts/iframeResizer.min.js');
-  setTimeout(() => {
-    newsletterModal(latestNewsletter);
+  setTimeout(async () => {
+    newsletterModal(formURL, modalIframeID);
   }, 500);
 
   // add social share block
