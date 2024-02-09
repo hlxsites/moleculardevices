@@ -1,7 +1,7 @@
 import {
   div, img, span, iframe, h3, p, button, h5,
 } from '../../scripts/dom-helpers.js';
-// import { loadScript } from '../../scripts/scripts.js';
+import { loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
 function showNewsletterModal() {
@@ -122,21 +122,24 @@ export default async function decorate() {
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
   const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
   const modalIframeID = 'newsletter-modal';
-  const sidebarIframeID = 'newsletter-sidebar';
-  const iframeSrc = await setParams(formURL);
-  const sidebar = div(
-    { class: 'spectra-newsletter' },
-    h3('Join our journey of scientific discovery'),
-    h5('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
-    iframe({
-      src: iframeSrc,
-      id: sidebarIframeID,
-      loading: 'lazy',
-      title: 'Newsletter',
-    }),
-  );
-  spectraNewsletter.appendChild(sidebar);
-  // iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
+
+  if (spectraNewsletter) {
+    const sidebarIframeID = 'newsletter-sidebar';
+    const iframeSrc = await setParams(formURL);
+    const sidebar = div(
+      { class: 'spectra-newsletter' },
+      h3('Join our journey of scientific discovery'),
+      h5('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
+      iframe({
+        src: iframeSrc,
+        id: sidebarIframeID,
+        loading: 'lazy',
+        title: 'Newsletter',
+      }),
+    );
+    spectraNewsletter.appendChild(sidebar);
+    // iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
+  }
 
   setTimeout(async () => {
     newsletterModal(formURL, modalIframeID);
