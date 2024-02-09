@@ -1,7 +1,7 @@
 import {
   div, img, span, iframe, h3, p, button, h5,
 } from '../../scripts/dom-helpers.js';
-//import { loadScript } from '../../scripts/scripts.js';
+// import { loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
 function showNewsletterModal() {
