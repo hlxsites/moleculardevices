@@ -105,6 +105,12 @@ const customBreadcrumbs = {
   'microbial-screening': {
     name: 'Microbial Screening',
   },
+  stacker: {
+    name: 'Stacker',
+  },
+  'single-cell-isolation': {
+    name: 'Single-Cell Isolation',
+  },
   digitizers: {
     name: 'Digitizers',
   },
