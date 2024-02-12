@@ -3,6 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
+import { getMetadata } from '../../scripts/lib-franklin.js';
 
 function showNewsletterModal() {
   const newsletterModalOverlay = document.querySelector('.newsletter-modal-overlay');
@@ -51,25 +52,20 @@ async function setParams(formURL) {
   return iframeSrc;
 }
 
-// function iframeResizeHandler(formUrl, id, container) {
-//   const resizerPromise = new Promise((resolve) => {
-//     loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-//   });
-
-//   container.querySelector('iframe').addEventListener('load', async () => {
-//     if (formUrl) {
-//       await resizerPromise;
-//       /* global iFrameResize */
-//       iFrameResize({ log: false }, id);
-//     }
-//   });
-// }
+function iframeResizeHandler(formUrl, id, container) {
+  container.querySelector('iframe').addEventListener('load', async () => {
+    if (formUrl) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${id}`);
+    }
+  });
+}
 
 async function newsletterModal(formURL, modalIframeID) {
   const body = document.querySelector('body');
   const iframeSrc = await setParams(formURL);
 
-  const modalBtn = button({ id: 'show-newsletter-modal' }, 'Show Modal');
+  const modalBtn = button({ id: 'show-newsletter-modal', style: 'display: none;' }, 'Show Modal');
   modalBtn.addEventListener('click', showNewsletterModal);
   body.append(modalBtn);
 
@@ -113,12 +109,14 @@ async function newsletterModal(formURL, modalIframeID) {
   const innerWrapper = div({ class: 'newsletter-inner-wrapper' }, columnsWrapper, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
   newsletterOverlay.append(innerWrapper);
-  // iframeResizeHandler(formURL, modalIframeID, rightColumn);
+  iframeResizeHandler(formURL, modalIframeID, rightColumn);
 }
 
 window.addEventListener('scroll', triggerModalBtn);
 
 export default async function decorate() {
+  loadScript('/scripts/iframeResizer.min.js');
+  const isblogListingPage = getMetadata('blog-type') === 'Listing';
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
   const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
   const modalIframeID = 'newsletter-modal';
@@ -138,12 +136,14 @@ export default async function decorate() {
       }),
     );
     spectraNewsletter.appendChild(sidebar);
-    // iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
+    iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
   }
 
-  setTimeout(async () => {
-    newsletterModal(formURL, modalIframeID);
-  }, 500);
+  if (!isblogListingPage) {
+    setTimeout(async () => {
+      newsletterModal(formURL, modalIframeID);
+    }, 500);
+  }
 
   // add social share block
   const blogCarousel = document.querySelector('.recent-blogs-carousel');
