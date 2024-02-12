@@ -108,7 +108,7 @@ const customBreadcrumbs = {
   stacker: {
     name: 'Stacker',
   },
-  single-cell-isolation: {
+  'single-cell-isolation': {
     name: 'Single-Cell Isolation',
   },
   digitizers: {
