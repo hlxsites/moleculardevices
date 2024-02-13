@@ -116,7 +116,10 @@ window.addEventListener('scroll', triggerModalBtn);
 
 export default async function decorate() {
   loadScript('/scripts/iframeResizer.min.js');
-  const isblogListingPage = getMetadata('blog-type') === 'Listing';
+
+  const newsletterMetaData = getMetadata('newsletter-modal');
+  const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
+
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
   const formURL = 'https://info.moleculardevices.com/lab-notes-popup';
   const modalIframeID = 'newsletter-modal';
@@ -139,7 +142,7 @@ export default async function decorate() {
     iframeResizeHandler(formURL, sidebarIframeID, spectraNewsletter);
   }
 
-  if (!isblogListingPage) {
+  if (!hasNewsletterMetaData) {
     setTimeout(async () => {
       newsletterModal(formURL, modalIframeID);
     }, 500);
