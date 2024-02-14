@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+// eslint-disable-next-line import/no-unresolved
 import convert from 'xml-js';
 import path from 'path';
 
