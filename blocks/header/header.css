@@ -486,7 +486,18 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: var(--background-color) url('/images/header-background-filler.jpg') no-repeat right bottom;
+  background: linear-gradient(90deg, rgb(64, 172, 100) 0, rgba(70 146 140) 50%, rgb(17, 149, 185) 100%) !important;
+}
+
+header .nav-tabs .menu-nav-submenu::after {
+  background-image: url("/images/wave-background-bottom.webp"), url("/images/wave-background-bottom.png");
+  background-size: 100% 100%;
+  height: 82px;
+  width: 100%;
+  position: absolute;
+  padding: 0;
+  bottom: 0;
+  content: "";
 }
 
 header .cards-submenu > div {
@@ -1964,7 +1975,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   header .nav-tabs .menu-nav-submenu {
-    min-height: 782px;
+    min-height: 750px;
     padding-bottom: 9.4%;
     box-shadow: inset 0 19px 33px -28px #333F;
     background-repeat: no-repeat;
