@@ -1,7 +1,6 @@
 module.exports = {
   root: true,
   extends: 'airbnb-base',
-  'plugin:import/typescript',
   env: {
     browser: true,
   },
