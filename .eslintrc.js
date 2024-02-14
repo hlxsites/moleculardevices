@@ -20,9 +20,9 @@ module.exports = {
     'function-paren-newline': 'off',
   },
   settings: {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx']
       }
     }
   },
