@@ -19,7 +19,7 @@ module.exports = {
     }],
     'function-paren-newline': 'off',
   },
-  "settings": {
+  settings: {
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
