@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: 'airbnb-base',
+  'plugin:import/typescript',
   env: {
     browser: true,
   },
@@ -18,12 +19,5 @@ module.exports = {
       js: 'always',
     }],
     'function-paren-newline': 'off',
-  },
-  settings: {
-    'import/resolver': {
-      'node': {
-        'extensions': ['.js', '.jsx', '.ts', '.tsx']
-      }
-    }
   },
 };
