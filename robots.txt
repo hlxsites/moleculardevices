@@ -62,7 +62,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-disp
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-and-morphological-characterization-of-healthy-and-epilepsy-related-3d-neurospheres-assembled.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-healthy-and-disease-related-3d-neurospheres-using-human-ipsc-derived-neurons-and-astrocytes.pdf 
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
 
 # HTML Page (App Note HTML Page Block)
 
