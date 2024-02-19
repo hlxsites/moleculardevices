@@ -112,6 +112,15 @@
   text-transform: uppercase;
 }
 
+.product-comparison-container .product-comparison .responsive-table th:first-child {
+  background: #fff !important;
+}
+
+.background-gray.product-comparison-container .product-comparison .responsive-table th:first-child,
+.background-grey.product-comparison-container .product-comparison .responsive-table th:first-child {
+  background: var(--light-gray-background-color) !important;
+}
+
 .product-comparison .product-heading .product-heading-title  {
   padding: 20px 5px;
   line-height: normal;
