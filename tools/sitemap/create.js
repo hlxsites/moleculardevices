@@ -20,7 +20,7 @@ const hreflangMap = [
 try {
   const response = await fetch(QUERY_INDEX_URL);
   const json = await response.json();
-  const sitemapPath = path.join(process.cwd(), '../sitemap.xml');
+  const sitemapPath = path.join(process.cwd(), '../geo-sitemap.xml');
 
   const output = {
     urlset: {
