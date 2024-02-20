@@ -3,7 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 
 function showNewsletterModal() {
   const newsletterModalOverlay = document.querySelector('.newsletter-modal-overlay');
@@ -97,10 +97,10 @@ async function newsletterModal(formURL, modalIframeID) {
     ),
   );
   const columnsWrapper = div({ class: 'columns columns-2-cols' }, leftColumn, rightColumn);
-  const closeIconSvg = `<img class="close-video-icon" src="/icons/close-circle-outline.svg" alt="close-video-icon">
-`;
-  const closeBtn = span({ class: 'icon icon-close newsletter-button-close' });
-  closeBtn.innerHTML = closeIconSvg;
+  const closeBtn = span(
+    { class: 'icon icon-close newsletter-button-close' },
+    createOptimizedPicture('/icons/close-video.svg', 'Close Video'),
+  );
   closeBtn.addEventListener('click', hideNewsletterModal);
   const innerWrapper = div({ class: 'newsletter-inner-wrapper' }, columnsWrapper, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
