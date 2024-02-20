@@ -1,0 +1,54 @@
+.onetrust .otnotice-content {
+	padding: 0;
+}
+
+.onetrust .otnotice-content .otnotice-sections > .otnotice-section:not(:last-child) {
+	margin-bottom: 40px;
+}
+
+.onetrust .otnotice-content .otnotice-section-content h1,
+.onetrust .otnotice-content .otnotice-section-header {
+	font-size: var(--heading-font-size-l);
+	font-family: var(--ff-proxima-xbold);
+	margin-top: 0;
+}
+
+.onetrust .otnotice-content .otnotice-section-header{
+  font-size: var(--heading-font-size-m);
+}
+
+.onetrust .otnotice-content .otnotice-sections .otnotice-section-content ul {
+	padding-left: 20px;
+	padding-right: 0;
+}
+
+.onetrust .otnotice-content .otnotice-sections .otnotice-section-content p:last-child {
+	margin-bottom: 0;
+}
+
+.onetrust .otnotice-content div:has(> table) {
+	width: 100%;
+	overflow-x: auto;
+	margin-top: 25px;
+	margin-bottom: 35px;
+}
+
+.onetrust .otnotice-content table {
+	width: 100%;
+	max-width: 100%;
+	border-collapse: collapse;
+	font-size: var(--body-font-size-m);
+}
+
+.onetrust .otnotice-content table thead tr,
+.onetrust .otnotice-content table tbody tr:first-child {
+	background: var(--light-gray-background-color);
+}
+
+.onetrust .otnotice-content table th,
+.onetrust .otnotice-content table td {
+	border: 1px solid var(--light-border-color-gray);
+	padding: 8px;
+	text-align: left;
+	vertical-align: top;
+}
