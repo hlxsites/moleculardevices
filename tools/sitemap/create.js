@@ -7,14 +7,14 @@ const QUERY_INDEX_URL = 'https://www.moleculardevices.com/query-index.json?sheet
 const LOCALE_URL = 'https://www.moleculardevices.com';
 
 const hreflangMap = [
-  ['de', { baseUrl: 'https://de.moleculardevices.com', pageType: '.html' }],
-  ['it', { baseUrl: 'https://it.moleculardevices.com', pageType: '.html' }],
-  ['es', { baseUrl: 'https://es.moleculardevices.com', pageType: '.html' }],
-  ['fr', { baseUrl: 'https://fr.moleculardevices.com', pageType: '.html' }],
-  ['ko', { baseUrl: 'https://ko.moleculardevices.com', pageType: '.html' }],
-  ['en', { baseUrl: 'https://www.moleculardevices.com', pageType: '.html' }],
-  ['zh', { baseUrl: 'https://www.moleculardevices.com.cn', pageType: '.html' }],
-  ['x-default', { baseUrl: 'https://www.moleculardevices.com', pageType: '.html' }],
+  ['de', { baseUrl: 'https://de.moleculardevices.com'}],
+  ['it', { baseUrl: 'https://it.moleculardevices.com' }],
+  ['es', { baseUrl: 'https://es.moleculardevices.com'}],
+  ['fr', { baseUrl: 'https://fr.moleculardevices.com'}],
+  ['ko', { baseUrl: 'https://ko.moleculardevices.com'}],
+  ['en', { baseUrl: 'https://www.moleculardevices.com' }],
+  ['zh', { baseUrl: 'https://www.moleculardevices.com.cn' }],
+  ['x-default', { baseUrl: 'https://www.moleculardevices.com'}],
 ];
 
 try {
