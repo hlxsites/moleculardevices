@@ -1,6 +1,7 @@
-import { loadCSS } from '../../scripts/lib-franklin.js';
+import { getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import { getCoveoToken, searchMainSection } from '../coveo-search/coveo-search.js';
+import decorateResources from './relatedResources.js';
 
 function searchFormHeader() {
   return `
@@ -21,15 +22,22 @@ function searchFormHeader() {
 }
 
 export default async function decorate(block) {
-  block.innerHTML = searchFormHeader();
-  const cRange = document.createRange();
-  /* eslint-disable no-new */
-  new Promise(() => {
-    block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
-    loadCSS('/blocks/coveo-search/coveo-search.css');
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10104/css/CoveoFullSearch.min.css');
-  });
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', null, null, true);
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', null, null, true);
-  setTimeout(getCoveoToken, 1000);
+  const pageType = getMetadata('template');
+  if (pageType === 'Product') {
+    block.innerHTML = searchFormHeader();
+    const cRange = document.createRange();
+    /* eslint-disable no-new */
+    new Promise(() => {
+      block.children[0].children[0].appendChild(
+        cRange.createContextualFragment(searchMainSection()),
+      );
+      loadCSS('/blocks/coveo-search/coveo-search.css');
+      loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+    });
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js', null, null, true);
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js', null, null, true);
+    setTimeout(getCoveoToken, 1000);
+  } else {
+    decorateResources(block);
+  }
 }
