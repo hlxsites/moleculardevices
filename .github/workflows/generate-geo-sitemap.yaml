@@ -1,8 +1,5 @@
 name: Regenerate the Geo sitemap XML
-on:
-  repository_dispatch:
-    types:
-      - resource-published
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
