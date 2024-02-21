@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import convert from 'xml-js';
 import path from 'path';
 
-const QUERY_INDEX_URL = 'https://www.moleculardevices.com/query-index.json';
+const QUERY_INDEX_URL = 'https://www.moleculardevices.com/query-index.json?sheet=sitemap&limit=5000';
 const LOCALE_URL = 'https://www.moleculardevices.com';
 
 const hreflangMap = [
@@ -20,7 +20,7 @@ const hreflangMap = [
 try {
   const response = await fetch(QUERY_INDEX_URL);
   const json = await response.json();
-  const sitemapPath = path.join(process.cwd(), '../geo-sitemap.xml');
+  const sitemapPath = path.join(process.cwd(), '../../content-sitemap.xml');
 
   const output = {
     urlset: {
@@ -32,7 +32,7 @@ try {
         loc: `${LOCALE_URL}${row.path}`,
         'xhtml:link': Object.keys(hreflangMap).map((key) => {
           const hreflang = hreflangMap[key][0];
-          const href = `${hreflangMap[key][1].baseUrl}${row.path}${hreflangMap[key][1].pageType}`;
+          const href = `${hreflangMap[key][1].baseUrl}${row.path}`;
           return {
             _attributes: {
               rel: 'alternate',
@@ -41,6 +41,7 @@ try {
             },
           };
         }),
+        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,        
       })),
     },
   };
