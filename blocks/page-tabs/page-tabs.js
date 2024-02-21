@@ -20,16 +20,13 @@ function openTab(target) {
   /* COVEO RESOURCES */
   const coveoTabName = 'resources';
   const url = new URL(window.location.href);
-  const landingPageType = url.pathname.split('/')[1];
-  if (target.hash.toLowerCase() === `#${coveoTabName}`) {
-    const category = encodeURIComponent(getMetadata('category').trim());
-    const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
-    const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
-    const pageIdentifier = encodeURIComponent(getMetadata('identifier').trim());
-    if (landingPageType === 'products') {
+  const landingPageType = getMetadata('template');
+  if (landingPageType === 'Product') {
+    if (target.hash.toLowerCase() === `#${coveoTabName}`) {
+      const category = encodeURIComponent(getMetadata('category').trim());
+      const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
+      const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
       url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
-    } else {
-      url.hash = `q=${pageIdentifier}&t=Resources&sort=relevancy`;
     }
   }
   window.history.replaceState(null, null, url);
