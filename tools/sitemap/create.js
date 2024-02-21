@@ -7,14 +7,14 @@ const QUERY_INDEX_URL = 'https://www.moleculardevices.com/query-index.json?sheet
 const LOCALE_URL = 'https://www.moleculardevices.com';
 
 const hreflangMap = [
-  ['de', { baseUrl: 'https://de.moleculardevices.com'}],
+  ['de', { baseUrl: 'https://de.moleculardevices.com' }],
   ['it', { baseUrl: 'https://it.moleculardevices.com' }],
-  ['es', { baseUrl: 'https://es.moleculardevices.com'}],
-  ['fr', { baseUrl: 'https://fr.moleculardevices.com'}],
-  ['ko', { baseUrl: 'https://ko.moleculardevices.com'}],
+  ['es', { baseUrl: 'https://es.moleculardevices.com' }],
+  ['fr', { baseUrl: 'https://fr.moleculardevices.com' }],
+  ['ko', { baseUrl: 'https://ko.moleculardevices.com' }],
   ['en', { baseUrl: 'https://www.moleculardevices.com' }],
   ['zh', { baseUrl: 'https://www.moleculardevices.com.cn' }],
-  ['x-default', { baseUrl: 'https://www.moleculardevices.com'}],
+  ['x-default', { baseUrl: 'https://www.moleculardevices.com' }],
 ];
 
 try {
@@ -41,7 +41,7 @@ try {
             },
           };
         }),
-        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,        
+        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,
       })),
     },
   };
