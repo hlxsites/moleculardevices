@@ -1,4 +1,4 @@
-name: Regenerate the Coveo index XML
+name: Regenerate the Geo sitemap XML
 on:
   repository_dispatch:
     types:
@@ -15,11 +15,11 @@ jobs:
           node-version: '18'
       - name: Run scripts and commit changes
         if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
-        working-directory: ./coveo
+        working-directory: ./tools/sitemap
         run: |
-          node generate-coveo-sitemap.js
+          node create.js
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add ./coveo-xml.xml
-          git commit -m "Update generated coveo.xml file"
+          git add ./geo-sitemap.xml
+          git commit -m "Update generated geo-sitemap.xml file"
           git push
