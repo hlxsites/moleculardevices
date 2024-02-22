@@ -135,7 +135,7 @@ async function getLatestNewsletter() {
   newsletters.forEach((newsletter) => {
     let title = newsletter.path.split('/').slice(-1)[0];
     title = capitalize(title).split('-').join(' ');
-    list.appendChild(li(a({ href: newsletter.path }, title, i({ class: 'fa fa-chevron-circle-right' }))));
+    list.appendChild(li(a({ href: newsletter.gatedURL }, title, i({ class: 'fa fa-chevron-circle-right' }))));
   });
   return list;
 }
