@@ -245,26 +245,53 @@ function searchFormHeader() {
   `;
 }
 
-export default async function decorate(block) {
-  const pageType = getMetadata('template');
+export async function initializeCoveo(block) {
+  block.innerHTML = searchFormHeader();
+  const cRange = document.createRange();
+  /* eslint-disable no-new */
+  new Promise(() => {
+    block.children[0].children[0].appendChild(
+      cRange.createContextualFragment(searchMainSection()),
+    );
+    loadCSS('/blocks/coveo-search/coveo-search.css');
+    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+  });
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
+  setTimeout(getCoveoToken, 500);
+}
 
-  if (pageType === 'Product') {
-    block.innerHTML = searchFormHeader();
-    const cRange = document.createRange();
-    /* eslint-disable no-new */
-    new Promise(() => {
-      block.children[0].children[0].appendChild(
-        cRange.createContextualFragment(searchMainSection()),
-      );
-      loadCSS('/blocks/coveo-search/coveo-search.css');
-      loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-    });
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js', null, null, true);
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js', null, null, true);
-    setTimeout(getCoveoToken, 300);
+export function coveoResources(target) {
+  const coveoTabName = 'resources';
+  const resourcesBlock = document.getElementsByClassName(coveoTabName)[0];
+  const url = new URL(window.location.href);
+  const landingPageType = getMetadata('template');
+  if (landingPageType === 'Product') {
+    if (target.hash.toLowerCase() === `#${coveoTabName}`) {
+      const category = encodeURIComponent(getMetadata('category').trim());
+      const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
+      const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
+      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
+      window.history.replaceState(null, null, url);
+      resourcesBlock.classList.add('loading-coveo');
+      setTimeout(() => {
+        resourcesBlock.classList.remove('loading-coveo');
+      }, 3000);
+    }
+  }
+}
+
+export default async function decorate(block) {
+  const landingPageType = getMetadata('template');
+
+  if (landingPageType === 'Product') {
+    setTimeout(() => {
+      if (!window.location.hash) {
+        window.location.hash = 't=All&sort=relevancy';
+        initializeCoveo(block);
+      }
+    }, 300);
   } else {
-    console.log('START');
     await decorateResources(block);
-    console.log('END');
   }
 }

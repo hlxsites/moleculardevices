@@ -240,6 +240,25 @@ main .section .resources-wrapper {
   padding: 0;
 }
 
+.resources-container {
+  position: relative;
+  z-index: -1;
+}
+
+.loading-coveo::before{
+  content: '';
+  position: absolute;
+  background-image: url('/images/ajax-common-loader-gray.gif');
+  background-color: #fff;
+  background-size: 50px;
+  background-position: center 100px;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  left: 0;
+}
+
 @media only screen and (max-width: 1199px) {
   .resources .video-container,
   .resources .vidyard-player-container img {

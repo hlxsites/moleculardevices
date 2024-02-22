@@ -1,5 +1,6 @@
 import { a, li, ul } from '../../scripts/dom-helpers.js';
-import { fetchPlaceholders, getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
+import { coveoResources } from '../resources/resources.js';
 
 function openTab(target) {
   const parent = target.parentNode;
@@ -18,18 +19,7 @@ function openTab(target) {
   }
 
   /* COVEO RESOURCES */
-  const coveoTabName = 'resources';
-  const url = new URL(window.location.href);
-  const landingPageType = getMetadata('template');
-  if (landingPageType === 'Product') {
-    if (target.hash.toLowerCase() === `#${coveoTabName}`) {
-      const category = encodeURIComponent(getMetadata('category').trim());
-      const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
-      const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
-      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
-    }
-  }
-  window.history.replaceState(null, null, url);
+  coveoResources(target);
 }
 
 async function createTabList(sections, active) {
