@@ -67,6 +67,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
 
 
 # HTML Page (App Note HTML Page Block)
