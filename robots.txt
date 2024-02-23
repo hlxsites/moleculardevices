@@ -69,7 +69,6 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
 
 
-
 # HTML Page (App Note HTML Page Block)
 
 Disallow: /en/assets/app-note/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model
