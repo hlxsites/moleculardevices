@@ -285,12 +285,10 @@ export default async function decorate(block) {
   const landingPageType = getMetadata('template');
 
   if (landingPageType === 'Product') {
-    setTimeout(() => {
-      if (!window.location.hash || window.location.hash.indexOf('t=Resources') !== -1) {
-        window.location.hash = 't=All&sort=relevancy';
-        initializeCoveo(block);
-      }
-    }, 500);
+    if (!window.location.hash || window.location.hash.indexOf('t=Resources') !== -1) {
+      window.location.hash = 't=All&sort=relevancy';
+      await initializeCoveo(block);
+    }
   } else {
     await decorateResources(block);
   }
