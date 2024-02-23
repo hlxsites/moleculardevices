@@ -276,7 +276,7 @@ export function coveoResources(target) {
       resourcesBlock.classList.add('loading-coveo');
       setTimeout(() => {
         resourcesBlock.classList.remove('loading-coveo');
-      }, 3000);
+      }, 1500);
     }
   }
 }
@@ -286,11 +286,11 @@ export default async function decorate(block) {
 
   if (landingPageType === 'Product') {
     setTimeout(() => {
-      if (!window.location.hash) {
+      if (!window.location.hash || window.location.hash.indexOf('t=Resources') !== -1) {
         window.location.hash = 't=All&sort=relevancy';
         initializeCoveo(block);
       }
-    }, 300);
+    }, 500);
   } else {
     await decorateResources(block);
   }

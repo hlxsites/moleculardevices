@@ -240,7 +240,7 @@ main .section .resources-wrapper {
   padding: 0;
 }
 
-.resources-container {
+.resources-container:has(.loading-coveo) {
   position: relative;
   z-index: -1;
 }
