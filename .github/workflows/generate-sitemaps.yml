@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: |
           echo "Status: ${{ github.event.client_payload.status }}"
           echo "Path: ${{ github.event.client_payload.path }}"
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
       - name: Run scripts and commit changes
         if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
         working-directory: ./coveo
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: |
           echo "Status: ${{ github.event.client_payload.status }}"
           echo "Path: ${{ github.event.client_payload.path }}"
@@ -43,9 +43,9 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
       - name: Install dependencies
         working-directory: ./tools/sitemap
         run: npm install
