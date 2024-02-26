@@ -30,6 +30,6 @@ jobs:
         working-directory: ./tools/sitemap
         run: |
           node create.js
-          git add ./content-sitemap.xml
+          git add ../../content-sitemap.xml
           git commit -m "Update generated content-sitemap.xml file"
           git push
