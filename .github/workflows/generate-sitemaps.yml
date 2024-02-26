@@ -54,5 +54,6 @@ jobs:
         run: |
           node create.js
           git add ../../content-sitemap.xml
-          git commit -m "Update generated content-sitemap.xml file"
+          timestamp=$(date -u)
+          git commit -m "Update generated content-sitemap.xml file" || exit 0
           git push
