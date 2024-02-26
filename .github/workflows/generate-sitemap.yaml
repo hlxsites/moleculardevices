@@ -13,8 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - run: |
-        echo "Status: ${{ github.event.client_payload.status }}"
-        echo "Path: ${{ github.event.client_payload.path }}"
+          echo "Status: ${{ github.event.client_payload.status }}"
+          echo "Path: ${{ github.event.client_payload.path }}"
       - name: Configure git
         run: |
           git config --local user.email "action@github.com"
