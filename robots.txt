@@ -2,8 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.moleculardevices.com/sitemap.xml
-https://www.moleculardevices.com/content-sitemap.xml
-https://www.moleculardevices.com/files-sitemap.xml
+Sitemap: https://www.moleculardevices.com/content-sitemap.xml
+Sitemap: https://www.moleculardevices.com/files-sitemap.xml
 
 Disallow: /sites/default/files/en/assets/app-note/
 Disallow: /fragments/
