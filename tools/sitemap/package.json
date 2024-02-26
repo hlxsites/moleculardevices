@@ -1,0 +1,16 @@
+{
+    "name": "moldev-sitemap-creator",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "create.js",
+    "scripts": {
+        "start": "node create.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "xml-js": "^1.6.11"
+    }
+}
