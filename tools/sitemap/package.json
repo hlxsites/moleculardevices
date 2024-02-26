@@ -11,6 +11,6 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "xml-js": "1.6.11"
+        "xml-js": "^1.6.11"
     }
-  }
+}
