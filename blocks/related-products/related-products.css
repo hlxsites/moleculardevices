@@ -12,12 +12,12 @@ main .section .related-products-wrapper {
 }
 
 .related-products .carousel-item {
-  width: 30.7%;
-  max-width: 30.7%;
+  width: 32%;
+  max-width: 32%;
   height: auto;
   display: block;
   flex: 0 1 auto;
-  padding: 20px 15px 40px;
+  padding: 10px 10px 20px;
   margin: 0;
 }
 

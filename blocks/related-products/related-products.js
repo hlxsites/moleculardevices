@@ -27,6 +27,7 @@ export default async function decorate(block) {
     descriptionLength: 75,
     c2aLinkStyle: true,
     defaultButtonText: 'Details',
+    showCategory: true,
   });
 
   const renderedCards = allItems.map((product) => {

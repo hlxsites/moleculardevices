@@ -4,7 +4,7 @@ main .card {
   margin: 0;
   position: relative;
   box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
-  transition: all .3s;
+  transition: all 0.3s;
   display: flex;
   align-items: stretch;
   align-content: stretch;
@@ -21,7 +21,7 @@ main .carousel .card {
 main .card:hover {
   z-index: 1;
   transform: scale(1.07);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 main .card-thumb {
@@ -39,7 +39,22 @@ main .card-thumb img {
   width: 100%;
   min-width: auto;
   object-fit: cover;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+main .card .card-category{
+  background: var(--background-color-green);
+  color: #fff;
+  font-family: var(--ff-proxima-light);
+  text-transform: uppercase;
+  line-height: 1;
+  font-weight: 100;
+  padding: 10px 15px;
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 
 main .card-caption {
@@ -92,7 +107,7 @@ main .card-caption .button.primary {
 
 main .card-caption .c2a .compare-button {
   color: var(--text-light-gray);
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   align-items: center;
   float: right;
   display: none;
@@ -153,5 +168,9 @@ main .card a .icon.icon-chevron-right-outline svg path {
 
   main .card-thumb img {
     height: 150px;
+  }
+
+  main .card .card-category{
+    font-size: 14px;
   }
 }
