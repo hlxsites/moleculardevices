@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/events/elrig-drug-discovery-2024</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/elrig-drug-discovery-2024"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/elrig-drug-discovery-2024"/>
+        <lastmod>2024-02-27</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/events/isscr-2014</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.moleculardevices.com/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/isscr-2014"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/isscr-2014"/>
+        <lastmod>2024-02-27</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/events/organ-modelling-and-3d-cell-culture</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/organ-modelling-and-3d-cell-culture"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/organ-modelling-and-3d-cell-culture"/>
