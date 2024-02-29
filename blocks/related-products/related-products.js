@@ -14,12 +14,12 @@ export default async function decorate(block) {
   const products = await ffetch('/query-index.json')
     .sheet('products')
     .filter((product) => allProductTitles.includes(product.identifier)
-     || allProductTitles.includes(product.h1)).all();
+      || allProductTitles.includes(product.h1)).all();
 
   const categories = await ffetch('/query-index.json')
     .sheet('categories')
     .filter((category) => relatedCategoriesTitles.includes(category.identifier)
-     || relatedCategoriesTitles.includes(category.h1)).all();
+      || relatedCategoriesTitles.includes(category.h1)).all();
 
   const allItems = [...products, ...categories];
 
@@ -27,6 +27,7 @@ export default async function decorate(block) {
     descriptionLength: 75,
     c2aLinkStyle: true,
     defaultButtonText: 'Details',
+    showCategory: true,
   });
 
   const renderedCards = allItems.map((product) => {
