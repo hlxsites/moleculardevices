@@ -3,13 +3,11 @@ main .section.hero-video-container {
   padding-bottom: 0;
 }
 
-main .hero-video-wrapper {
+main .section.hero-video-container > div.hero-video-wrapper {
   position: relative;
-  width: 100% !important;
-  padding: 0 !important;
-  max-width: unset;
+  width: 100%;
+  padding: 0;
   height: 750px;
-  min-height: auto;
 }
 
 main .hero-video {
@@ -49,7 +47,7 @@ main .teaser-video-container p {
 }
 
 main .teaser-video-container::before {
-  content: "";
+  content: '';
   top: 0;
   left: 0;
   right: 0;
@@ -75,7 +73,7 @@ main .overlay .button-container:has(em) {
 
 main .overlay h1 {
   font-family: var(--ff-proxima-light);
-  color: #fff;
+  color: var(--text-white);
   text-align: center;
   margin-bottom: 40px;
   line-height: 1;
@@ -86,8 +84,8 @@ main .overlay h1 {
 main .overlay .video-banner-btn {
   background-color: transparent;
   font-size: 18px;
-  color: #fff;
-  border: 1px solid #fff;
+  color: var(--text-white);
+  border: 1px solid var(--text-white);
   padding: 16px 32px;
   display: inline-flex;
   align-items: center;
@@ -98,7 +96,7 @@ main .overlay .video-banner-btn {
 }
 
 main .overlay .video-banner-btn:hover {
-  background-color: #000;
+  background-color: var(--black-background-color);
 }
 
 main .overlay p:last-of-type {
@@ -106,7 +104,7 @@ main .overlay p:last-of-type {
 }
 
 main .overlay p:last-of-type a {
-  color: #00B8DD;
+  color: #00b8dd;
   display: inline-block;
 }
 
@@ -165,7 +163,18 @@ main .full-video-container .close-video {
   padding: 10px;
   border-radius: 50%;
   transform: rotate(0deg);
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+main .full-video-container .close-video .icon-close-video {
+  display: block;
+}
+
+main .full-video-container .close-video .icon-close-video img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: block;
 }
 
 main .full-video-container .close-video-icon {
@@ -173,23 +182,27 @@ main .full-video-container .close-video-icon {
   width: 20px;
   height: 20px;
   transform: rotate(-90deg) scale(1);
-  transition: .6s transform cubic-bezier(0.19,1,.22,1);
+  transition: 0.6s transform cubic-bezier(0.19, 1, 0.22, 1);
   cursor: pointer;
   z-index: 3;
   display: block;
 }
 
 main .full-video-container .close-video:hover {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+main .full-video-container .play-pause-fullscreen-button,
+main .full-video-container .play-pause-fullscreen-button svg {
+  position: absolute;
+  right: 0;
+  left: 0;
 }
 
 main .full-video-container .play-pause-fullscreen-button {
   width: 170px;
   height: 170px;
-  position: absolute;
   top: 50%;
-  right: 0;
-  left: 0;
   margin: 0 auto;
   z-index: 2;
   transform: translateY(-50%);
@@ -197,10 +210,7 @@ main .full-video-container .play-pause-fullscreen-button {
 
 main .full-video-container .play-pause-fullscreen-button svg {
   display: block !important;
-  position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
   cursor: pointer;
   transform: scale(0.9);
@@ -208,7 +218,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   height: 150px;
   margin: auto;
   opacity: 0;
-  transition: .4s all linear;
+  transition: 0.4s all linear;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -217,7 +227,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   }
 
   main .full-video-container {
-    background-color: #000;
+    background-color: var(--black-background-color);
   }
 
   main .full-video-container .video-cover {
@@ -236,7 +246,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   }
 }
 
-@media only screen and (max-width: 768px)  {
+@media only screen and (max-width: 768px) {
   main .hero-video-wrapper {
     height: unset;
     min-height: 450px;
