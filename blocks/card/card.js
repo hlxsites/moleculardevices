@@ -48,7 +48,7 @@ export async function handleCompareProducts(e) {
 }
 
 class Card {
-  constructor(config = {}) {
+  constructor (config = {}) {
     this.cssFiles = [];
     this.defaultStyling = true;
     this.defaultImage = '/images/default-card-thumbnail.webp';

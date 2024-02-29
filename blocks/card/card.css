@@ -42,7 +42,7 @@ main .card-thumb img {
   transition: all 0.5s ease-in-out;
 }
 
-main .card .card-category{
+main .card .card-category {
   background: var(--background-color-green);
   color: #fff;
   font-family: var(--ff-proxima-light);
@@ -170,7 +170,7 @@ main .card a .icon.icon-chevron-right-outline svg path {
     height: 150px;
   }
 
-  main .card .card-category{
+  main .card .card-category {
     font-size: 14px;
   }
 }
