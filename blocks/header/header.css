@@ -13,13 +13,10 @@ header a i.fa.fa-external-link {
   color: inherit;
 }
 
-header .nav-tabs>li {
+header .nav-tabs > li {
   flex-grow: 1;
-  float: left;
   border: 0;
-  position: static;
   display: block;
-  min-width: inherit !important;
   margin: 0;
   padding: 0;
   box-shadow: none;
@@ -66,14 +63,10 @@ header .navbar-header a i.fa.fa-external-link {
 /* Hamburger menu */
 header button.hamburger {
   padding: 0;
-  position: absolute;
-  right: 15px;
-  top: 7px;
-  cursor: pointer;
-  min-width: 37px;
-  width: 37px;
-  height: 37px;
-  margin-top: 8px;
+  min-width: 48px;
+  width: 48px;
+  height: 48px;
+  margin-top: 0;
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: transparent;
@@ -86,7 +79,7 @@ header .sr-only {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
@@ -97,6 +90,7 @@ header .hamburger .icon-bar {
   background: #008296;
   width: 35px;
   line-height: 1;
+  margin: auto;
 }
 
 header .hamburger > .icon-bar + .icon-bar {
@@ -106,12 +100,13 @@ header .hamburger > .icon-bar + .icon-bar {
 body.openmenu header .hamburger .icon-bar {
   transform: rotate(45deg);
   position: absolute;
-  top: 17px;
+  top: 24px;
+  left: 6px;
 }
 
 body.openmenu header .hamburger > .icon-bar + .icon-bar {
   transform: rotate(-45deg);
-  top: 12px;
+  top: 18px;
 }
 
 /* Company Links (carrers/languages/...) */
@@ -392,6 +387,10 @@ header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
   border-bottom: 1px solid #f1f2f3;
 }
 
+header .mobile-menu .mobile-menu-items .mobile-menu-subcategories > li {
+  border-color: var(--light-border-color-gray);
+}
+
 header .nav-tabs .menu-nav-submenu-section h2 {
   border-bottom: 0;
   color: var(--background-color);
@@ -414,13 +413,11 @@ header .mainmenu-wrapper {
 header .nav-tabs {
   display: flex;
   width: 100%;
-  float: right;
   list-style: none;
   padding: 0;
-  position: static !important;
   height: auto;
   border: 0;
-  margin-top: 0;
+  margin: 0;
 }
 
 header .nav-tabs .menu-nav-category {
@@ -433,7 +430,7 @@ header .nav-tabs .menu-nav-category {
   background-color: transparent;
   font-weight: 300;
   cursor: default;
-  transform: scale(1.06,1);
+  transform: scale(1.06, 1);
 }
 
 header .nav-tabs .menu-nav-category:hover {
@@ -517,10 +514,11 @@ header .mobile-menu {
   width: 100%;
   max-width: 100%;
   background: #fff;
-  height: calc(100% - 63px);
-  top: 63px;
-  overflow: auto;
-  transform: translate(-100%,0);
+  height: calc(100vh - var(--nav-height-mobile));
+  top: var(--nav-height-mobile);
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(-100%, 0);
   transition: transform .4s ease;
   z-index: -9;
 }
@@ -593,7 +591,7 @@ header .mobile-menu li a {
   position: relative;
   white-space: nowrap;
   display: block;
-  padding: 18px 70px 19px 15px;
+  padding: 19px 65px 19px 15px;
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -649,15 +647,15 @@ header .mobile-menu-subcategories {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  transform: translate(100%,0);
+  transform: translate(100%, 0);
 }
 
 header .mobile-menu-item.submenu-open > .mobile-menu-subcategories {
-  transform: translate(0%,0);
+  transform: translate(0%, 0);
 }
 
 header .mobile-menu-subcategory-item.submenu-open > .mobile-menu-subcategories {
-  transform: translate(0%,0);
+  transform: translate(0%, 0);
 }
 
 header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
@@ -702,12 +700,14 @@ header .languages-dropdown a:hover {
 
 header .mobile-menu .back-to-parent a {
   padding-left: 55px;
+  padding-right: 15px;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 header .mobile-menu .mobile-menu-subcategory-item > a {
   background: var(--grey-background-color);
   position: relative;
-  white-space: nowrap;
   display: block;
   padding: 4px 70px 15px 15px;
   color: #34393d;
@@ -718,7 +718,8 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   font-weight: 300;
   text-shadow: none;
   text-decoration: none;
-  line-height: 29px;
+  line-height: 1.2;
+  white-space: break-spaces;
 }
 
 header .mobile-menu-subcategory-item .mobile-menu-subcategory-item > a {
@@ -763,7 +764,7 @@ header .mobile-menu .caret {
   padding: 18px 50px 18px 15px;
   position: absolute;
   top: 0;
-  right: 20px;
+  right: 0;
   bottom: 0;
   height: 100%;
   width: 45px;
@@ -1062,7 +1063,7 @@ header .image-right img {
   bottom: -60px;
 }
 
-header .image-center  {
+header .image-center {
   background-position: 50% 250%;
   background-size: 80%;
 }
@@ -1138,7 +1139,7 @@ header .cards-submenu p:nth-child(2) {
   min-height: 37px;
 }
 
-header .cards-submenu p:first-child:hover img{
+header .cards-submenu p:first-child:hover img {
   transform: scale(1.15);
   transition: all .4s;
 }
@@ -1520,12 +1521,12 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
   width: auto;
 }
 
-header .applications-right-submenu > div > div:last-child picture:last-child img  {
+header .applications-right-submenu > div > div:last-child picture:last-child img {
   left: -30%;
   top: 45%;
 }
 
-header .products-right-submenu > div > div:last-child p:first-child img{
+header .products-right-submenu > div > div:last-child p:first-child img {
   position: absolute;
   max-height: 100%;
   max-width: 85%;
@@ -1547,7 +1548,7 @@ header .company-right-submenu {
   min-height: auto;
 }
 
-header .company-right-submenu div:first-child > div:first-child p{
+header .company-right-submenu div:first-child > div:first-child p {
   margin: 0;
 }
 
@@ -1625,23 +1626,18 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 
   header .navbar-header {
     margin: 0;
-    padding:30px 0 20px;
-  }
-}
-
-@media (min-width: 900px) {
-  header nav {
-    justify-content: space-between;
+    padding: 30px 0 20px;
   }
 }
 
 @media (max-width: 991px) {
   body.openmenu {
-      overflow-y: hidden;
+    overflow-y: hidden;
+    padding-right: 17px;
   }
 
   body.openmenu .mobile-menu {
-    transform: translate(0,0);
+    transform: translate(0, 0);
     z-index: 99;
   }
 
@@ -1651,9 +1647,12 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 
   header .navbar-header {
     position: relative;
-    padding: 20px 15px;
+    padding: 11px 15px;
     width: 100%;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   header .hamburger {
@@ -1665,8 +1664,8 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   header .nav-brand:not(.custom-logo) {
-    width: 100px;
-    height: 27px;
+    width: 170px;
+    height: 48px;
   }
 }
 
@@ -1789,12 +1788,13 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     transition: all 0.3s ease-in-out;
   }
 
-  header .mainmenu-wrapper>nav {
+  header .mainmenu-wrapper > nav {
     width: 100%;
   }
 
   header .searchlink {
-    background-image: url('/images/orange-search.webp');;
+    background-image: url('/images/orange-search.webp');
+    ;
     display: block;
     background-repeat: no-repeat;
     height: 42px;
@@ -1830,7 +1830,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     max-width: 100%;
   }
 
-  header .nav-tabs>li>div {
+  header .nav-tabs > li > div {
     font-size: 12px;
   }
 
@@ -1859,11 +1859,11 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     width: 18px;
     height: 18px;
     position: absolute;
-    transform: translate(-2px,-12px);
+    transform: translate(-2px, -12px);
     line-height: 18px;
   }
 
-  header .nav-tabs > li.searchlink>a {
+  header .nav-tabs > li.searchlink > a {
     display: none;
     font-size: 12px;
   }
@@ -1951,7 +1951,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     position: relative;
     margin-left: -12px;
     overflow: hidden;
-    transform: translate(6px,0);
+    transform: translate(6px, 0);
   }
 
   header nav .nav-menu {
@@ -2008,7 +2008,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   .header .nav-tabs .menu-nav-submenu > div > h2 {
-    transform: perspective(500px) translate3d(0,0,0);
+    transform: perspective(500px) translate3d(0, 0, 0);
     position: relative;
     font-weight: 300;
   }
@@ -2044,7 +2044,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     bottom: -30px;
   }
 
-  header .green-blue-circle img  {
+  header .green-blue-circle img {
     bottom: -10px;
   }
 
@@ -2112,7 +2112,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
-.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child  {
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child {
   background-color: var(--text-white);
   min-height: 114px;
   overflow: hidden;
