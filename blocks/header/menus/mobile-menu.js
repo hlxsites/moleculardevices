@@ -100,8 +100,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
         let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a')];
 
         if (subcategoryItems.length === 0) {
-          const linkWrapperParagraphs = subcategoryContent.parentElement.querySelectorAll('div div p + ul > li a');
-          subcategoryItems = [...linkWrapperParagraphs];
+          subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p + ul > li a')];
         }
 
         // create clone of subcategoryContent to avoid modifying the original
