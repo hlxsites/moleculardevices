@@ -17,6 +17,7 @@ import {
   buildBlock,
   readBlockConfig,
   toCamelCase,
+  createOptimizedPicture,
 } from './lib-franklin.js';
 import {
   a, div, domEl, p,
@@ -107,8 +108,16 @@ function optimiseHeroBlock(main) {
  * Append default wave section to pages
  */
 function decorateWaveSection(main) {
+  const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
+    { media: '(min-width: 992px)', width: '1663' },
+    { width: '900' },
+  ]);
+  waveImage.querySelector('img').setAttribute('width', '1663');
+  waveImage.querySelector('img').setAttribute('height', '180');
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
-  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }));
+  const waveSection = document.querySelector('.section.wave:not(.bluegreen):last-of-type');
+  if (waveSection && !waveSection.querySelector('picture')) { waveSection.appendChild(waveImage); }
+  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
 /**

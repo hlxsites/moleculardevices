@@ -232,6 +232,7 @@
 .row-3 .hubspot-iframe-wrapper {
   margin-left: -15px;
   margin-right: -15px;
+  min-height: 298px;
 }
 
 .row-3 .hubspot-iframe-wrapper iframe {
@@ -241,7 +242,7 @@
   display: block;
   width: 1px;
   min-width: 100%;
-  height: 1px;
+  height: 290px;
   max-height: 100%;
 }
 
