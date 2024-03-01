@@ -1194,11 +1194,19 @@ main.error div.section.wave:last-child {
   margin-top: 0;
 }
 
+main .section.wave.orange-buttons,
 main:not(.sidekick-library) div.section.wave:not(.bluegreen):last-child {
   margin: 0;
   padding-bottom: 0;
 }
 
+main .section.wave.orange-buttons {
+  padding-bottom: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.wave.orange-buttons > picture,
+main .section.wave.orange-buttons > picture > img,
 main:not(.sidekick-library) div.section.wave:last-child picture,
 main:not(.sidekick-library) div.section.wave:last-child img {
   width: 100%;
