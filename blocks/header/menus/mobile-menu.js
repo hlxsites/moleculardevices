@@ -57,7 +57,6 @@ async function buildMobileMenuItem(menuItem, menuId) {
 
   await fetch(`/fragments/megamenu/${menuId}`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
     if (response.ok) {
-      // eslint-disable-next-line no-await-in-loop
       const content = await response.text();
 
       const submenuContent = div();
@@ -101,7 +100,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
         let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a')];
 
         if (subcategoryItems.length === 0) {
-          subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p')];
+          subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p + ul > li a')];
         }
 
         // create clone of subcategoryContent to avoid modifying the original

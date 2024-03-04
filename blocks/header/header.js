@@ -110,7 +110,8 @@ export default async function decorate(block) {
   const megaMenu = await buildNavbar(content, hideSearch, hideGlobalRFQ);
   const mobileMenu = await buildMobileMenu(content, hideSearch, hideGlobalRFQ);
 
-  block.append(headerWrapper, megaMenu, mobileMenu);
+  block.append(headerWrapper, megaMenu);
+  block.parentElement.append(mobileMenu);
   decorateIcons();
   block.querySelectorAll('a').forEach(decorateExternalLink);
 
