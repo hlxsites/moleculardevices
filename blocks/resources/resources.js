@@ -265,19 +265,23 @@ export function coveoResources(target) {
   const resourcesBlock = document.getElementsByClassName(coveoTabName)[0];
   const url = new URL(window.location.href);
   const landingPageType = getMetadata('template');
-  if (landingPageType === 'Product') {
-    if (target.hash.toLowerCase() === `#${coveoTabName}`) {
-      const category = encodeURIComponent(getMetadata('category').trim());
-      const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
-      const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
-      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
-      window.history.replaceState(null, null, url);
-      resourcesBlock.classList.add('loading-coveo');
-      setTimeout(() => {
-        resourcesBlock.classList.remove('loading-coveo');
-      }, 1500);
+
+  setTimeout(() => {
+    if (landingPageType === 'Product') {
+      if (target.hash.toLowerCase() === `#${coveoTabName}`) {
+        const category = encodeURIComponent(getMetadata('category').trim());
+        const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
+        const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
+        url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
+        window.history.replaceState(null, null, url);
+        resourcesBlock.classList.add('loading-coveo');
+        setTimeout(() => {
+          resourcesBlock.classList.remove('loading-coveo');
+          initializeCoveo(resourcesBlock);
+        }, 500);
+      }
     }
-  }
+  }, 1000);
 }
 
 export default async function decorate(block) {
@@ -286,7 +290,7 @@ export default async function decorate(block) {
   if (landingPageType === 'Product') {
     if (!window.location.hash || window.location.hash.indexOf('t=Resources') !== -1) {
       window.location.hash = 't=All&sort=relevancy';
-      await initializeCoveo(block);
+      // await initializeCoveo(block);
     }
   } else {
     await decorateResources(block);
