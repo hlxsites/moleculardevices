@@ -278,7 +278,7 @@ export function coveoResources(target) {
         setTimeout(() => {
           resourcesBlock.classList.remove('loading-coveo');
           initializeCoveo(resourcesBlock);
-        }, 500);
+        }, 200);
       }
     }
   }, 1000);
