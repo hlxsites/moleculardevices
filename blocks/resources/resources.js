@@ -278,10 +278,10 @@ export function coveoResources(target) {
         setTimeout(() => {
           resourcesBlock.classList.remove('loading-coveo');
           initializeCoveo(resourcesBlock);
-        }, 200);
+        }, 100);
       }
     }
-  }, 1000);
+  }, 500);
 }
 
 export default async function decorate(block) {
