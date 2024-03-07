@@ -275,13 +275,18 @@ main .section .resources-wrapper {
   z-index: -1;
 }
 
+.product .resources.block,
+.product .resources.loading-coveo {
+  min-height: 600px;
+}
+
 .loading-coveo::before {
   content: '';
   position: absolute;
   background-image: url('/images/ajax-common-loader-gray.gif');
   background-color: #fff;
   background-size: 50px;
-  background-position: center 100px;
+  background-position: center 200px;
   background-repeat: no-repeat;
   height: 100%;
   width: 100%;
