@@ -232,6 +232,12 @@ main .section .resources-wrapper {
   border: none;
 }
 
+.section .resources .coveo-search-box > .coveo-accessible-button svg,
+.section .resources .coveo-search-box > .coveo-search-button-loading-svg svg {
+  position: relative;
+  top: 3px;
+}
+
 .section .resources .coveo-search-box .magic-box {
   border: none;
 }
@@ -268,6 +274,12 @@ main .section .resources-wrapper {
   visibility: hidden;
   margin: 0;
   padding: 0;
+}
+
+.section .resources .coveo-search-box .magic-box .magic-box-clear {
+  background: transparent;
+  height: 35px;
+  line-height: 34px;
 }
 
 .resources-container:has(.loading-coveo) {
