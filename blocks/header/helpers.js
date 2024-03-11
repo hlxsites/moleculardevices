@@ -51,7 +51,7 @@ export function expandMenu(element) {
   element.setAttribute('aria-expanded', 'true');
 }
 
-export async function buildBrandLogo(content) {
+export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
 
   const logoLink = a(
