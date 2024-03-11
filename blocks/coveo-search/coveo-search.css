@@ -133,9 +133,11 @@
   border-bottom: none;
 }
 
-.coveo-dynamic-facet-header .coveo-dynamic-facet-header-title {
+.coveo-dynamic-facet-header .coveo-dynamic-facet-header-title,
+.section.tabs .coveo-dynamic-facet-header h2.coveo-dynamic-facet-header-title {
   color: var(--black-background-color);
   text-transform: uppercase;
+  font-size: 15px;
 }
 
 .coveo-dynamic-facet-header .coveo-dynamic-facet-header-title span {

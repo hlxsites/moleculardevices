@@ -1,5 +1,6 @@
 import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
+import { coveoResources } from '../resources/resources.js';
 
 function openTab(target) {
   const parent = target.parentNode;
@@ -16,6 +17,9 @@ function openTab(target) {
     const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.getAttribute('href').substring(1)}"]`);
     tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
   }
+
+  /* COVEO RESOURCES */
+  coveoResources(target);
 }
 
 async function createTabList(sections, active) {
@@ -32,9 +36,7 @@ async function createTabList(sections, active) {
           a({
             href: `#${sectionName}`,
             onclick: (e) => { openTab(e.target); },
-          },
-          section.title,
-          ),
+          }, section.title),
         )
       );
     }),
