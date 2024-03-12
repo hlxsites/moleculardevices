@@ -58,7 +58,7 @@ export function buildBrandLogo(content) {
   );
 
   const headerPhone = ul({ class: 'cn-header-phone-list' },
-    li({ class: 'OneLinkTxShow_zh' },
+    li({ class: 'OneLinkShow_zh' },
       div({ class: 'cn-header-phone' },
         i({ class: 'fa fa-phone' }),
         a({ href: 'tel:400-821-3787', title: 'tel:400-821-3787' },

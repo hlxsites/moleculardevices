@@ -1,144 +1,120 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+/* eslint-disable linebreak-style */
+import handleViewportChanges from './header-events.js';
+import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
+import { buildBrandLogo, fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
+import { buildNavbar } from './header-megamenu.js';
 import {
-  a, div, i, li, span, ul,
+  a, div, li, span, i,
 } from '../../scripts/dom-helpers.js';
+import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { buildSearchBar } from './menus/search.js';
 
-let elementsWithEventListener = [];
+const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 
-export function getElementsWithEventListener() {
-  return elementsWithEventListener;
+function renderCart() {
+  return (
+    li({ class: 'cart-link' },
+      i({ class: 'fa fa-shopping-cart' }),
+      span({ class: 'cart-count' }, getCartItemCount()),
+      a({
+        href: `${SHOP_BASE_URL}/cart`,
+        target: '_blank',
+        name: 'Cart',
+        rel: 'noopener noreferrer',
+      }, 'CART'),
+    )
+  );
 }
 
-export function addListeners(selector, eventType, callback) {
-  const elements = document.querySelectorAll(selector);
-
-  elements.forEach((element) => {
-    elementsWithEventListener.push(element);
-    element.addEventListener(eventType, callback);
-  });
+function renderStore() {
+  return (
+    li({ class: 'store-link' },
+      span({ class: 'icon icon-store' }),
+      a({
+        href: `${SHOP_BASE_URL}/`,
+        target: '_blank',
+        name: 'Store',
+        rel: 'noopener noreferrer',
+      }, 'STORE'),
+    )
+  );
 }
 
-export function addCloseMenuButtonListener(button) {
-  button.addEventListener('mousedown', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.currentTarget.closest('ul').querySelectorAll(
-      '*[aria-expanded="true"]',
-    ).forEach(
-      (el) => el.setAttribute('aria-expanded', 'false'),
-    );
-  });
-}
-
-export function removeAllEventListeners() {
-  elementsWithEventListener.forEach((el) => {
-    el.replaceWith(el.cloneNode(true));
-  });
-  elementsWithEventListener = [];
-}
-
-export function collapseAllSubmenus(menu) {
-  menu.querySelectorAll('*[aria-expanded="true"]').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-}
-
-export function expandMenu(element) {
-  if (element.closest('.sticky') && element.querySelector('.menu-nav-submenu')) {
-    window.scroll({ behavior: 'smooth', top: 0 });
+function buildTools(content) {
+  const toolsList = content.querySelector('div:nth-child(2)');
+  const toolsWrapper = div(
+    { class: 'company-links' },
+  );
+  toolsWrapper.innerHTML = toolsList.innerHTML;
+  decorateLanguagesTool(toolsWrapper);
+  if (detectStore()) {
+    const linksList = toolsWrapper.querySelector('ul');
+    linksList.prepend(renderStore());
+    linksList.prepend(renderCart());
   }
 
-  collapseAllSubmenus(element.closest('ul'));
-  element.setAttribute('aria-expanded', 'true');
-}
+  document.addEventListener('geolocationUpdated', () => {
+    if (detectStore()) {
+      const linksList = toolsWrapper.querySelector('ul');
+      if (linksList.querySelector('.store-link')) {
+        return; // store and cart already rendered
+      }
 
-export function buildBrandLogo(content) {
-  const logoImg = content.querySelector('.nav-brand');
-
-  const logoLink = a(
-    { href: '/', 'aria-label': 'Home' },
-  );
-
-  const headerPhone = ul({ class: 'cn-header-phone-list' },
-    li({ class: 'OneLinkShow_zh' },
-      div({ class: 'cn-header-phone' },
-        i({ class: 'fa fa-phone' }),
-        a({ href: 'tel:400-821-3787', title: 'tel:400-821-3787' },
-          span('美谷分子仪器（上海）有限公司'),
-          span('咨询服务热线：400-821-3787'),
-        ),
-      )));
-
-  logoLink.innerHTML = logoImg.outerHTML;
-  logoImg.innerHTML = '';
-
-  const logoWrapper = div(
-    { id: 'header-logo', class: 'header-logo-wrapper' },
-    logoLink,
-    headerPhone,
-  );
-  return logoWrapper;
-}
-
-export async function fetchHeaderContent() {
-  const navPath = getMetadata('nav') || '/nav';
-  const resp = await fetch(`${navPath}.plain.html`, window.location.pathname.endsWith('/nav') ? { cache: 'reload' } : {});
-  if (!resp.ok) return {};
-
-  const html = await resp.text();
-
-  const content = document.createElement('div');
-  content.innerHTML = html;
-  return content;
-}
-
-export function reverseElementLinkTagRelation(element) {
-  const linkElement = element.querySelector('a');
-  if (linkElement) {
-    element.removeChild(linkElement);
-
-    const newLinkElement = a({ href: linkElement.href });
-
-    element.innerHTML = linkElement.innerHTML;
-    element.parentNode.replaceChild(newLinkElement, element);
-
-    newLinkElement.appendChild(element);
-    return newLinkElement;
-  }
-
-  return element;
-}
-
-export function buildRequestQuote(classes) {
-  const familyId = getMetadata('family-id');
-  const link = familyId ? `/quote-request?pid=${familyId}` : '/quote-request';
-  return li(
-    { class: classes },
-    a(
-      { href: link, 'aria-label': 'Request Quote' },
-      'Request Quote',
-    ),
-  );
-}
-
-export function decorateLanguagesTool(tools) {
-  const languageTool = tools.querySelector('li:nth-child(2)');
-  if (!languageTool) return;
-
-  const languagesList = languageTool.querySelector('ul');
-  languagesList.classList.add('languages-dropdown');
-
-  const pathLocation = window.location.pathname;
-  languagesList.querySelectorAll('a').forEach((link) => {
-    link.href = `${link.href}${pathLocation.slice(1)}`;
-  });
-
-  languageTool.addEventListener('click', () => {
-    languagesList.classList.toggle('show');
-  });
-
-  const body = document.querySelector('body');
-  body.addEventListener('click', (e) => {
-    if (e.target !== languageTool) {
-      languagesList.classList.remove('show');
+      linksList.prepend(renderStore());
+      linksList.prepend(renderCart());
     }
   });
+  return toolsWrapper;
+}
+
+function addIndividualComponents(block) {
+  // search for div with menu-id resources
+  const resourceEl = block.querySelector('div[menu-id="resources"]');
+  if (!resourceEl) return;
+
+  const resources = resourceEl.parentElement;
+  const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
+
+  // add search bar to right submenu
+  const searchBar = buildSearchBar('resourcesSearchForm');
+  searchBar.classList.add('resources-submenu-search');
+  rightSubMenu.appendChild(searchBar);
+}
+
+/**
+ * decorates the header, mainly the nav
+ * @param {Element} block The header block element
+ */
+export default async function decorate(block) {
+  block.textContent = '';
+
+  // fetch nav content
+  const content = await fetchHeaderContent();
+
+  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
+
+  // Create wrapper for logo header part
+  const navbarHeader = document.createElement('div');
+  navbarHeader.classList.add('navbar-header');
+  navbarHeader.append(buildBrandLogo(content));
+  navbarHeader.append(buildTools(content));
+  navbarHeader.append(buildHamburger(content));
+
+  const headerWrapper = document.createElement('div');
+  headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
+  headerWrapper.append(navbarHeader);
+
+  const hideSearch = hasCustomLogo;
+  const hideGlobalRFQ = hasCustomLogo;
+  const megaMenu = await buildNavbar(content, hideSearch, hideGlobalRFQ);
+  const mobileMenu = await buildMobileMenu(content, hideSearch, hideGlobalRFQ);
+
+  block.append(headerWrapper, megaMenu, mobileMenu);
+  decorateIcons();
+  block.querySelectorAll('a').forEach(decorateExternalLink);
+
+  addIndividualComponents(block);
+
+  handleViewportChanges(block);
 }
