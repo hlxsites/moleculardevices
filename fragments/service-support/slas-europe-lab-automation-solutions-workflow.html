@@ -1,0 +1,337 @@
+<style type="text/css">
+  .cm-infographic-wrapper {
+    padding: 50px 15px;
+    position: relative
+  }
+
+  .cm-info-link {
+    display: block;
+    margin-bottom: 20px
+  }
+
+  .cm-infographic-img {
+    position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center
+  }
+
+  .cm-infographic-container .cm-infographic-img .cm-info-link {
+    padding: 0 15px
+  }
+
+  .cm-robot-img-2 img {
+    margin: auto
+  }
+
+  .cm-infographic-img img {
+    transition: all .2s ease-in-out;
+    transform: scale(1);
+    width: 100%;
+    display: block;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden
+  }
+
+  .cm-infographic-img:hover img {
+    transform: scale(1.04)
+  }
+
+  .cm-infographic-container .cm-infographic-img img {
+    max-width: 305px
+  }
+
+  .cm-infographic-wrapper .cm-infographic-img.hide-mob img {
+    max-width: 460px
+  }
+
+  .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 img {
+    width: 100%;
+    max-width: 132px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden
+  }
+
+  .cm-infographic-wrapper .lab-robot-container .cm-robot-img-2 img {
+    width: 100%;
+    max-width: 212px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden
+  }
+
+  .cm-infographic-wrapper .lab-robot-container .cm-robot-img img {
+    display: block;
+    width: 100%;
+    max-width: 227px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden
+  }
+
+  .show-mob {
+    display: none !important
+  }
+
+  .cm-infographic-wrapper .cm-infographic-img:not(.hide-mob)::before,
+  .cm-infographic-wrapper .cm-infographic-img.hide-mob::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    height: 30px;
+    width: 1px;
+    border-left: 1px dashed #6a757d;
+    bottom: 0
+  }
+
+  .cm-infographic-wrapper .cm-infographic-img.hide-mob::before {
+    bottom: auto;
+    top: -30px
+  }
+
+  .cm-infographic-wrapper .read-comp-btn-part.text-center {
+    margin-top: -20px;
+    margin-left: 45px
+  }
+
+  @media only screen and (min-width: 768px) {
+    .cm-infographic-container {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start
+    }
+
+    .cm-infographic-wrapper .cm-infographic-img:not(.hide-mob)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      border-bottom: 1px dashed #6a757d;
+      bottom: 0;
+      z-index: -1
+    }
+
+    .cm-infographic-wrapper .cm-infographic-img:first-child::after {
+      left: 50%;
+      width: 50%
+    }
+
+    .cm-infographic-wrapper .cm-infographic-img:nth-child(3)::after {
+      width: 50%
+    }
+
+    .cm-infographic-container .cm-infographic-img {
+      max-width: 33.33%;
+      width: 100%
+    }
+
+    .cm-infographic-wrapper .cm-infographic-img.hide-mob,
+    .cm-infographic-wrapper .lab-robot-container {
+      width: 60%;
+      display: flex;
+      justify-content: center
+    }
+
+    .cm-infographic-wrapper .cm-infographic-img.hide-mob {
+      width: 60%
+    }
+
+    .cm-infographic-wrapper .lab-robot-container {
+      width: 40%;
+      position: relative;
+      flex-direction: column
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 {
+      position: absolute;
+      right: 0;
+      top: -54px
+    }
+
+    .cm-infographic-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-around
+    }
+  }
+
+  @media only screen and (max-width: 1199px) {
+
+    .cm-infographic-wrapper .cm-infographic-img.hide-mob,
+    .cm-infographic-wrapper .lab-robot-container {
+      width: 50%
+    }
+  }
+
+  @media only screen and (max-width: 991px) and (min-width:768px) {
+    .cm-robot-img-2 img {
+      margin: 0
+    }
+
+    .cm-infographic-wrapper .read-comp-btn-part.text-center {
+      margin-left: -70px
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 {
+      right: 20px
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 img {
+      max-width: 120px
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .show-mob {
+      display: block !important
+    }
+
+    .hide-mob,
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img::before,
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img::after {
+      display: none !important
+    }
+
+    .cm-infographic-wrapper .read-comp-btn-part {
+      text-align: center
+    }
+
+    .banner_instrument_detail h1.hero-heading {
+      font-size: 28px
+    }
+
+    .cm-infographic-img {
+      margin-bottom: 0
+    }
+
+    .cm-infographic-img img {
+      margin: auto
+    }
+
+    .cm-infographic-wrapper .lab-robot-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-top: 30px;
+      position: relative
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img img {
+      position: relative
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img::before {
+      content: "";
+      width: 74px;
+      position: absolute;
+      height: 1px;
+      border-bottom: 1px dashed #6a757d;
+      left: 85px;
+      top: 0;
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img::after {
+      content: "";
+      width: 1px;
+      position: absolute;
+      height: 30px;
+      border-left: 1px dashed #6a757d;
+      left: 85px;
+      top: 0;
+    }
+
+    .cm-infographic-wrapper .read-comp-btn-part.text-center {
+      margin-top: 0;
+      margin-left: 0;
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    .cm-infographic-wrapper .lab-robot-container .cm-robot-img {
+      display: flex;
+      justify-content: center
+    }
+  }
+</style>
+<div class="cm-infographic-wrapper">
+  <div class="cm-infographic-container">
+    <div class="cm-infographic-img">
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Cellular Imaging" data-di-id="di-id-d6980a85-af8d480d">
+        <img
+          src="/fragments/service-support/lab-automation-solutions/cell-imaging-lab.png"
+          alt="Cellular Imaging"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div class="cm-infographic-img">
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-clone-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Clone Screening" data-di-id="di-id-409f2e2a-a687e259">
+        <img
+          src="/fragments/service-support/lab-automation-solutions/slas-europe-cell-line-developement.jpg"
+          alt="Clone Screening"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div class="cm-infographic-img">
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-plate-based-assays" data-responsive-image-style="applications_mm_covid_19_webp" title="Protein and Cell Biology" data-di-id="di-id-b09f6d7c-b79fbb19">
+        <img
+          src="/fragments/service-support/lab-automation-solutions/microplate-technology-lab.png"
+          alt="Microplate Technology"
+          loading="lazy"
+        />
+      </a>
+    </div>
+    <div class="cm-infographic-img show-mob">
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Lab Components" data-di-id="di-id-d6980a85-af8d480d">
+        <img
+          src="/fragments/service-support/lab-automation-solutions/lab-components-mob.png"
+          alt="Lab Components"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  </div>
+  <div class="lab-robot-container show-mob">
+    <div class="cm-robot-img">
+      <img
+        src="/fragments/service-support/lab-automation-solutions/robotic-arm-mob.png"
+        alt="Robot Precise Automation"
+        loading="lazy"
+      />
+      <br>
+      <div class="read-comp-btn-part text-center"><p class="button-container"><strong><a href="/quote-request?request_type=Call&pid=laboratory-automation-customization-solutions" title="Speak to a specialist" class="button primary">Speak to a specialist<span class="button-border"></span></a></strong></p></div>
+    </div>
+  </div>
+  <div class="lab-robot-container hide-mob">
+    <div class="cm-robot-img-1">
+      <img
+        src="/fragments/service-support/lab-automation-solutions/robotic-arm-precision.png"
+        alt="Robot Precise Automation"
+        loading="lazy"
+      />
+    </div>
+    <div class="cm-robot-img-2">
+      <img
+        src="/fragments/service-support/lab-automation-solutions/interested-in-automated-workflow.png"
+        alt="Interested in Automating"
+        loading="lazy"
+      />
+    </div>
+    <div class="read-comp-btn-part text-center"><p class="button-container"><strong><a href="/quote-request?pid=laboratory-automation-customization-solutions" title="Speak to a specialist" class="button primary">Speak to a specialist<span class="button-border"></span></a></strong></p></div>
+  </div>
+  <div class="cm-infographic-img hide-mob">
+    <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Lab Components" data-di-id="di-id-206b6724-4c855d88">
+      <img
+        src="/fragments/service-support/lab-automation-solutions/lab-component.png"
+        alt="Lab Components"
+        loading="lazy"
+      />
+    </a>
+  </div>
+</div>
