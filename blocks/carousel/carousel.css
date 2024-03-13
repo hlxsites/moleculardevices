@@ -7,7 +7,6 @@
 /* stylelint-disable no-descending-specificity */
 
 main div.carousel-wrapper {
-  width: 100%;
   position: relative;
   max-width: unset;
 }
@@ -22,24 +21,19 @@ main div.carousel-wrapper:last-child {
 }
 
 main .carousel {
-  box-sizing: border-box;
   display: flex;
   overflow: hidden;
   margin: auto;
-  width: 100%; /* default - same as .products */
-  padding-left: 200px; /* default - same as .products */
-  padding-right: 200px; /* default - same as .products */
 }
 
 main .carousel-item {
-  box-sizing: border-box;
   width: 100%;
   margin-right: 30px;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 80px; /* default - same as .products */
+  padding: 50px 80px;
 }
 
 main .carousel-item-columns-container {
@@ -53,11 +47,15 @@ main .carousel-item-column {
   width: 50%;
 }
 
+main .carousel-item-column:empty {
+  display: none;
+}
+
 main .carousel-item-image img {
   display: block;
   object-fit: contain;
-  width: 100%; /* default - same as .products */
-  max-height: 400px; /* default - same as .products */
+  width: 100%;
+  max-height: 400px;
 }
 
 main .carousel.full-bg .carousel-item {
@@ -99,9 +97,9 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #adb3b7; /* default - same as .products */
-  border: 1.5px solid #adb3b7; /* default - same as .products */
-  background-color: inherit; /* default - same as .products */
+  color: #adb3b7;
+  border: 1.5px solid #adb3b7;
+  background-color: inherit;
 }
 
 main .carousel-nav-button.disabled {
@@ -176,6 +174,35 @@ main .carousel-dot-img-buttons .carousel-dot-button img {
 
 main .carousel-dot-img-buttons .carousel-dot-button.selected {
   opacity: 1;
+}
+
+main .section:not(.global-carousel) div.carousel-wrapper:not(.cards),
+main .section:not(.global-carousel) .carousel:not(.cards) {
+  width: 100%;
+}
+
+main .section:not(.global-carousel) .carousel:not(.cards) {
+  padding-inline: 200px;
+}
+
+main .section.global-carousel .carousel:not(.cards) h2 + h3 {
+  margin-bottom: 48px;
+}
+
+main .section.global-carousel .carousel-item-column:has(+ .carousel-item-column:empty) {
+  width: 100%;
+}
+
+main .section.global-carousel.blue-title h2 {
+  color: var(--text-blue);
+}
+
+main .section.global-carousel.title-center h2 {
+  text-align: center;
+}
+
+main .section.global-carousel.title-center .carousel-item{
+  padding-block: 0;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -610,4 +637,3 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
-

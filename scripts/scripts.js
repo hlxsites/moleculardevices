@@ -17,10 +17,12 @@ import {
   buildBlock,
   readBlockConfig,
   toCamelCase,
+  createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, p,
+  a, div, domEl, p, span,
 } from './dom-helpers.js';
+import { createCarousel } from '../blocks/carousel/carousel.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -107,8 +109,18 @@ function optimiseHeroBlock(main) {
  * Append default wave section to pages
  */
 function decorateWaveSection(main) {
+  const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
+    { media: '(min-width: 992px)', width: '1663' },
+    { width: '900' },
+  ]);
+  waveImage.querySelector('img').setAttribute('width', '1663');
+  waveImage.querySelector('img').setAttribute('height', '180');
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
-  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }));
+  const waveSection = document.querySelector('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons');
+  const waveSection2 = document.querySelector('.section.wave.orange-buttons');
+  if (waveSection && !waveSection.querySelector('picture')) { waveSection.appendChild(waveImage); }
+  if (waveSection2 && !waveSection2.querySelector(':scope > picture')) { waveSection2.appendChild(waveImage); }
+  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
 /**
@@ -722,6 +734,35 @@ function addHreflangTags() {
   });
 }
 
+async function decorateCarousel(main) {
+  const carouselSectionContainers = main.querySelectorAll('.section.carousel');
+
+  carouselSectionContainers.forEach(async (carousel) => {
+    const parentClasses = ['carousel-wrapper'];
+    const classes = ['carousel', 'block'];
+    const carouselOptions = [...carousel.classList].filter((cls) => classes.includes(cls));
+    carousel.classList.remove(...carouselOptions);
+
+    const wrapper = div({ class: parentClasses });
+    const innerWrapper = div({ class: classes });
+    innerWrapper.innerHTML = carousel.innerHTML;
+    carousel.innerHTML = '';
+
+    wrapper.appendChild(innerWrapper);
+    carousel.append(wrapper);
+
+    await createCarousel(innerWrapper, [...innerWrapper.children], {
+      autoScroll: false,
+    });
+
+    const vidyardLinks = carousel.querySelectorAll('a[href*="vids.moleculardevices.com"]');
+    vidyardLinks.forEach((link) => {
+      const url = new URL(link.href);
+      embedVideo(link, url, 'inline');
+    });
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -740,6 +781,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  decorateCarousel(main);
   addPageSchema();
   addHreflangTags();
 }
@@ -1082,7 +1124,7 @@ export function detectAnchor(block) {
           setTimeout(() => {
             window.dispatchEvent(new Event('hashchange'));
           },
-          3500,
+            3500,
           );
         }
       });
