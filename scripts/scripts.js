@@ -20,8 +20,9 @@ import {
   createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, p, span,
+  a, div, domEl, p,
 } from './dom-helpers.js';
+// eslint-disable-next-line import/no-cycle
 import { createCarousel } from '../blocks/carousel/carousel.js';
 
 /**
@@ -1123,9 +1124,7 @@ export function detectAnchor(block) {
           observer.disconnect();
           setTimeout(() => {
             window.dispatchEvent(new Event('hashchange'));
-          },
-            3500,
-          );
+          }, 3500);
         }
       });
     });
