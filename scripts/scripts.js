@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   sampleRUM,
   loadFooter,
@@ -20,10 +21,10 @@ import {
   createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, p,
+  a, div, domEl, iframe, p,
 } from './dom-helpers.js';
-// eslint-disable-next-line import/no-cycle
 import { createCarousel } from '../blocks/carousel/carousel.js';
+import { decorateModal, showModalWithUrl } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -735,6 +736,10 @@ function addHreflangTags() {
   });
 }
 
+/**
+ * Decorates the Carousel element.
+ * @param {Element} main The main element
+ */
 async function decorateCarousel(main) {
   const carouselSectionContainers = main.querySelectorAll('.section.carousel');
 
@@ -765,6 +770,47 @@ async function decorateCarousel(main) {
 }
 
 /**
+ * Decorates the SLAS 2024 form modal element.
+ * @param {Element} main The main element
+ */
+async function formInModalHandler(main) {
+  const slasFormModals = main.querySelectorAll('.section.form-in-modal');
+  const modalIframeID = 'modal-iframe';
+
+  if (slasFormModals) {
+    loadCSS('/blocks/modal/modal.css');
+
+    slasFormModals.forEach((slasForm) => {
+      const showModalButtons = slasForm.querySelectorAll('a.button');
+      const defaultForm = slasForm.getAttribute('data-modal-form');
+
+      const modalBody = div(
+        { class: 'slas-form-col' },
+        div(
+          { class: 'modal-iframe-wrapper' },
+          iframe({
+            src: defaultForm,
+            id: modalIframeID,
+            loading: 'lazy',
+            title: 'SLAS Modal',
+          }),
+        ),
+      );
+
+      decorateModal(defaultForm, modalIframeID, modalBody, 'custom-class-name');
+
+      showModalButtons.forEach((link) => {
+        link.classList.add('modal-form-toggler');
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          showModalWithUrl(event.target.href);
+        });
+      });
+    });
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -783,6 +829,7 @@ export async function decorateMain(main) {
   decorateLinks(main);
   decorateParagraphs(main);
   decorateCarousel(main);
+  formInModalHandler(main);
   addPageSchema();
   addHreflangTags();
 }

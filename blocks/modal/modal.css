@@ -1,0 +1,99 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 70%);
+  z-index: 1000;
+  padding: 100px 20px;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-inner-wrapper {
+  margin: 0 auto;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.4s;
+  margin-top: 0;
+  color: var(--accordion-color-white);
+}
+
+.modal-inner-wrapper .modal-body {
+  padding: 20px;
+  background-color: var(--text-blue);
+  text-align: center;
+}
+
+.modal-inner-wrapper,
+.modal-inner-wrapper .modal-iframe-wrapper {
+  text-align: center;
+}
+
+.modal-overlay,
+.modal-overlay .modal-inner-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay[aria-hidden='true'] .modal-inner-wrapper {
+  margin-top: -40px;
+}
+
+.modal-overlay[aria-hidden='true'],
+.modal-overlay[aria-hidden='true'] .modal-inner-wrapper {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-inner-wrapper .modal-iframe-wrapper iframe {
+  border: 0;
+  width: 100%;
+}
+
+.modal-overlay .icon-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  display: block;
+  cursor: pointer;
+}
+
+.modal-overlay .icon-close picture,
+.modal-overlay .icon-close img {
+  display: block;
+}
+
+.modal-overlay .icon-close img,
+.modal-overlay .icon-close svg {
+  width: 44px;
+  height: auto;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.modal-overlay .icon-close img:hover,
+.modal-overlay .icon-close:hover svg {
+  opacity: 1;
+}
+
+
+.modal-overlay .icon-close svg path {
+  fill: none;
+  color: #fff;
+}
+
+@media only screen and (min-width: 992px) {
+  .modal-inner-wrapper {
+    width: 900px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .modal-inner-wrapper {
+    width: 100%;
+  }
+}
