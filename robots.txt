@@ -46,12 +46,18 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-p
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
 
 # PDF (Scientific Posters PDF Block)
-
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/optimizing-animal-free-clonedetect-assay-of-real-time-detection-of-human-igg-antibody-production-using-clonepix-system.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/br/rapid-assessment-of-viability-in-patient-derived-colorectal-cancer-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-and-high-content-imaging-of-3d-triple-negative-breast-cancer-patient-derived-tumoroids-assay-for-compound-screening.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-bioprinting-assays-for-high-content-imaging-and-assessment-of-compound-effects.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/disease-modeling-methods-with-cancer-patient-derived-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/leveraging-automated-workflows-to-enable-complex-organoid-assays.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-analysis-of-neural-outgrowth-in-3d-human-brain-micro-tissues.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-assay-methods-for-cancer-patient-derived-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-organoid-culture-workflow-with-deep-learning-based-image-analysis.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/intestinal-organoids-for-automated-screening-assays.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-the-organ-on-a-chip-assay.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automated-workflow-for-phenotypic-profiling-based-on-cell-painting-assay.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/br/assessing-thrombin-generation-using-technothrombin-tga-kit-spectramax-i3x-multi-mode-microplate-reader.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-growth-and-characterization-of-compound-effects-in-3d-intestinal-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/structural-organization-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues.pdf
