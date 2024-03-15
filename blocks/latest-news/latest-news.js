@@ -6,7 +6,6 @@ import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
-    // let dateLine = formatDateUTCSeconds(item.date);
     let dateLine = formatDate(unixDateToString(item.date));
     if (item.publisher) dateLine += ` | ${item.publisher}`;
     block.append(article({},
