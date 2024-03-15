@@ -39,6 +39,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/how-to-implement-colony-picki
 Disallow: /sites/default/files/en/assets/ebook/br/elisa.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/img/generate-application-specific-high-content-imaging-and-analysis.pdf
 Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
+Disallow: /sites/default/files/en/assets/ebook/br/microplate-readers-in-cancer-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-processes.pdf
 
 # User Guide
@@ -68,7 +69,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/transform-com
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
 
 # HTML Page (App Note HTML Page Block)
 
@@ -103,7 +104,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/high-throug
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/organoids-for-disease-modeling-and-in-vitro-drug-screening.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-organoid-development-and-characterization-of-calcium-oscillation-activities-in-ipsc-derived-3d-cerebral-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/deep-learning-based-image-analysis-for-label-free-live-monitoring-of-ipsc-3d-organoid-cultures.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
 
 # SLAS 2023 poster and video
@@ -266,7 +267,7 @@ Disallow: /en/assets/promotion/dd/img/slas-2023
 Disallow: /en/assets/promotion/bpd/colony-picking-automation
 Disallow: /en/assets/promotion/dd/img/slas-eu-2023
 Disallow: /en/assets/promotion/dd/img/slas-2024
-
+Disallow: /en/assets/promotion/dd/img/slas-europe
 #EU BPD Campaign Page block 
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-fr
