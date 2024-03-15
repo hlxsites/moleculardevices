@@ -302,6 +302,7 @@
   .footer-bottom,
   .footer-bottom .row-6 {
     display: flex;
+    justify-content: space-between;
   }
 
   .footer-bottom {
