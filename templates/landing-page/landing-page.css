@@ -227,6 +227,10 @@
   padding-top: 50px;
 }
 
+.section.thank-you-page > div.default-content-wrapper:nth-last-child(2) h2 + p {
+  padding-bottom: 2rem;
+}
+
 .section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
   color: var(--text-green);
 }
