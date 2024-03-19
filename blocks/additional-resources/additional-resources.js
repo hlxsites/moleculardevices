@@ -3,9 +3,19 @@ import { div } from '../../scripts/dom-helpers.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
-  const actionLink = fragment.querySelector('div > p:last-child:last-of-type a:only-child');
-  if (actionLink) {
-    actionLink.classList.add('button', 'primary');
+  const primaryButton = fragment.querySelector('div > p strong > a:only-child');
+  const secondaryButton = fragment.querySelector('div > p em > a:only-child');
+
+  if (primaryButton && secondaryButton) {
+    primaryButton.closest('p').classList.add('button-container');
+    secondaryButton.closest('p').classList.add('button-container');
+  }
+
+  if (primaryButton) {
+    primaryButton.classList.add('button', 'primary');
+  }
+  if (secondaryButton) {
+    secondaryButton.classList.add('button', 'secondary');
   }
   block.append(fragment);
 }
