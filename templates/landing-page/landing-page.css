@@ -45,6 +45,10 @@
   padding-top: 40px;
 }
 
+.landing-page h3:first-child {
+  padding-top: 0;
+}
+
 .landing-page .hero-inner .container {
   padding-bottom: 45px;
 }
@@ -269,7 +273,7 @@
   font-family: var(--ff-proxima-regular);
 }
 
-.thank-you-page .columns img {
+.thank-you-page .columns:not(.image-size-auto) img {
   max-width: 350px;
 }
 
@@ -325,7 +329,7 @@
 
   .landing-page .hero-inner .container {
     align-items: center;
-    padding: 15px 0 55px 0;
+    padding: 15px 0 55px;
   }
 
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {
