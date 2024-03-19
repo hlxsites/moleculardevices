@@ -1,22 +1,10 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
+import { decorateButtons } from '../../scripts/lib-franklin.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
-  const primaryButton = fragment.querySelector('div > p strong > a:only-child');
-  const secondaryButton = fragment.querySelector('div > p em > a:only-child');
-
-  if (primaryButton && secondaryButton) {
-    primaryButton.closest('p').classList.add('button-container');
-    secondaryButton.closest('p').classList.add('button-container');
-  }
-
-  if (primaryButton) {
-    primaryButton.classList.add('button', 'primary');
-  }
-  if (secondaryButton) {
-    secondaryButton.classList.add('button', 'secondary');
-  }
+  decorateButtons(fragment);
   block.append(fragment);
 }
 
