@@ -4,8 +4,10 @@ import {
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
 
 const modalParentClass = 'modal-overlay';
+let timer;
 
 export function hideModal() {
+  clearTimeout(timer);
   const modal = document.querySelector(`.${modalParentClass}`);
   modal.setAttribute('aria-hidden', true);
   document.body.classList.remove('no-scroll');
@@ -20,7 +22,7 @@ export function showModal() {
 export function triggerModalWithUrl(url) {
   const modal = document.querySelector(`.${modalParentClass}`);
   modal.querySelector('iframe').setAttribute('src', url);
-  setTimeout(() => {
+  timer = setTimeout(() => {
     modal.setAttribute('aria-hidden', false);
     document.body.classList.add('no-scroll');
   }, 200);
@@ -77,7 +79,7 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
   formOverlay.append(innerWrapper);
 
   body.append(formOverlay);
-  setTimeout(() => {
+  timer = setTimeout(() => {
     formOverlay.removeAttribute('style');
   }, 500);
   iframeResizeHandler(formURL, iframeID, modalBody);
