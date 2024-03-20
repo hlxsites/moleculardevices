@@ -1,4 +1,3 @@
-/* stylelint-disable no-descending-specificity */
 :root {
   --blog-gradient: linear-gradient(90deg,
       rgb(21 145 164) 0,
@@ -194,17 +193,17 @@ main .section.sidebar p.picture {
   z-index: 2;
 }
 
+main .section.sidebar h4 {
+  margin-bottom: 50px;
+  position: relative;
+}
+
 main .section.sidebar h4,
 .blog .section.blog-heading h4 {
   font-size: 30px;
   font-weight: bold;
   margin: 0;
   margin-bottom: 10px;
-}
-
-main .section.sidebar h4 {
-  margin-bottom: 50px;
-  position: relative;
 }
 
 .newsletter-inner-wrapper .columns-2-cols .newsletter-col img {
@@ -226,6 +225,19 @@ main .section.sidebar h4 {
 .blog .section.orange-buttons .button.secondary {
   color: var(--text-orange);
   border: 2px solid var(--text-orange);
+}
+
+.blog .columns p.video-title {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
+.blog .columns .video-wrapper,
+.blog .toc-container .columns .button-container {
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 767px) {
@@ -316,22 +328,9 @@ main .section.sidebar h4::after {
   }
 }
 
-/* POPUP */
+/* POPUP START */
 body.no-scroll {
   padding-right: 17px;
-}
-
-.newsletter-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0 0 0 / 70%);
-  z-index: 1000;
-  padding: 100px 20px;
-  overflow-y: auto;
-  transition: all .3s ease-in-out;
 }
 
 .newsletter-inner-wrapper {
@@ -342,64 +341,15 @@ body.no-scroll {
   text-align: center;
   color: var(--accordion-color-white);
   padding: 40px 20px;
-  transition: all .3s ease-in-out;
-  transition-delay: .4s;
+  transition: all 0.3s ease-in-out;
+  transition-delay: 0.4s;
   margin-top: 0;
-}
-
-.newsletter-inner-wrapper,
-.newsletter-inner-wrapper .modal-iframe-wrapper {
-  text-align: center;
-}
-
-.newsletter-modal-overlay,
-.newsletter-modal-overlay .newsletter-inner-wrapper {
-  opacity: 1;
-  visibility: visible;
-}
-
-.newsletter-modal-overlay[aria-hidden='true'] .newsletter-inner-wrapper {
-  margin-top: -40px;
-}
-
-.newsletter-modal-overlay[aria-hidden='true'],
-.newsletter-modal-overlay[aria-hidden='true'] .newsletter-inner-wrapper {
-  opacity: 0;
-  visibility: hidden;
 }
 
 .newsletter-inner-wrapper .modal-iframe-wrapper > div iframe,
 .blog .section div.spectra-newsletter iframe {
   border: 0;
   width: 100%;
-}
-
-.newsletter-modal-overlay .newsletter-button-close {
-  position: absolute;
-  top: -50px;
-  right: -5px;
-  display: block;
-  cursor: pointer;
-}
-
-.newsletter-modal-overlay .newsletter-button-close img,
-.newsletter-modal-overlay .newsletter-button-close svg {
-  width: 44px;
-  height: auto;
-  border: 1px solid;
-  padding: 10px;
-  border-radius: 50%;
-  opacity: .7;
-}
-
-.newsletter-modal-overlay .newsletter-button-close img:hover,
-.newsletter-modal-overlay .newsletter-button-close:hover svg{
-  opacity: 1;
-}
-
-.newsletter-modal-overlay .newsletter-button-close svg path {
-  fill: none;
-  color: #fff;
 }
 
 .newsletter-inner-wrapper .columns-2-cols {
@@ -438,24 +388,19 @@ body.no-scroll {
     align-items: center;
   }
 
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col img + p{
+  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col img + p {
     margin-left: -130px;
     margin-top: 60px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .newsletter-inner-wrapper {
-    width: 100%;
-  }
-
   .newsletter-inner-wrapper .columns-2-cols {
     align-items: center;
   }
 
   .newsletter-inner-wrapper .columns-2-cols .newsletter-col {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-inline: 20px;
   }
 
   .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
@@ -473,25 +418,11 @@ body.no-scroll {
   }
 }
 
-@media only screen and (min-width: 992px) {
-  .newsletter-inner-wrapper {
-    width: 900px;
-  }
-}
-
 @media only screen and (max-width: 767px) {
-  .newsletter-inner-wrapper {
-    width: 100%;
-  }
-
   .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
     max-width: 420px;
     margin-bottom: 20px;
   }
 }
 
-@media only screen and (max-width: 575px) {
-  .newsletter-modal-overlay {
-    display: block;
-  }
-}
+/* POPUP END */
