@@ -46,7 +46,7 @@ export default async function decorate() {
 
   if (spectraNewsletter) {
     const sidebarIframeID = 'newsletter-sidebar';
-    const iframeSrc = await setParams(formURL);
+    const iframeSrc = await addNewsletterInParams(formURL);
     const sidebar = div(
       { class: 'spectra-newsletter' },
       h3('Join our journey of scientific discovery'),
