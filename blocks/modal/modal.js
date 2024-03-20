@@ -1,18 +1,9 @@
 import {
   button, div, iframe, span,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
 
 const modalParentClass = 'modal-overlay';
-
-export async function getLatestNewsletter() {
-  return ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Newsletter')
-    .limit(1)
-    .all();
-}
 
 export function hideModal() {
   const modal = document.querySelector(`.${modalParentClass}`);
@@ -26,7 +17,7 @@ export function showModal() {
   document.body.classList.add('no-scroll');
 }
 
-export function showModalWithUrl(url) {
+export function triggerModalWithUrl(url) {
   const modal = document.querySelector(`.${modalParentClass}`);
   modal.querySelector('iframe').setAttribute('src', url);
   setTimeout(() => {
@@ -48,7 +39,7 @@ export function stopProp(e) {
   e.stopPropagation();
 }
 
-export function triggerModalBtn() {
+function triggerModalBtn() {
   const scrollFromTop = window.scrollY;
   const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 2.25);
 
@@ -60,15 +51,6 @@ export function triggerModalBtn() {
       modalBtn.remove();
     }
   }
-}
-
-export async function addNewsletterInParams(formURL) {
-  const latestNewsletter = await getLatestNewsletter();
-  const queryString = window.location.search;
-  let cmpID = new URLSearchParams(queryString).get('cmp');
-  if (!cmpID) cmpID = '';
-  const iframeSrc = `${formURL}?latest_newsletter=${latestNewsletter[0].gatedURL}&cmp=${cmpID}`;
-  return iframeSrc;
 }
 
 export async function decorateModal(formURL, iframeID, modalBody, modalClass, isFormModal) {
@@ -85,11 +67,6 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 
   const formOverlay = div({ 'aria-hidden': true, class: modalParentClass, style: 'display:none;' });
   formOverlay.addEventListener('click', hideModal);
-  body.append(formOverlay);
-  setTimeout(() => {
-    formOverlay.removeAttribute('style');
-  }, 500);
-
   const closeBtn = span(
     { class: 'icon icon-close' },
     createOptimizedPicture('/icons/close-video.svg', 'Close Video'),
@@ -98,10 +75,15 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
   const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
   innerWrapper.addEventListener('click', stopProp);
   formOverlay.append(innerWrapper);
+
+  body.append(formOverlay);
+  setTimeout(() => {
+    formOverlay.removeAttribute('style');
+  }, 500);
   iframeResizeHandler(formURL, iframeID, modalBody);
 }
 
-export default async function decorate(block) {
+export default function decorate(block) {
   const isFormModal = block.classList.contains('form-modal');
   if (isFormModal) {
     const modalContent = block.querySelector(':scope > div > div');
