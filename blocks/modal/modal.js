@@ -113,4 +113,6 @@ export default async function decorate(block) {
     modalBody.appendChild(iframeWrapper);
     await decorateModal(formURL, iframeID, modalBody, '', isFormModal);
   }
+
+  block.closest('.section').remove();
 }
