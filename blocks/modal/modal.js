@@ -29,7 +29,7 @@ export function triggerModalWithUrl(url) {
   timer = setTimeout(() => {
     modal.setAttribute('aria-hidden', false);
     document.body.classList.add('no-scroll');
-  }, 500);
+  }, 200);
 }
 
 export function stopProp(event) {

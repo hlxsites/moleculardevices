@@ -776,20 +776,18 @@ async function formInModalHandler(main) {
         ),
       );
 
-      // const modal = new Modal(defaultForm, modalIframeID, modalBody);
-      // createModal(defaultForm, modalIframeID, modalBody);
       await decorateModal(defaultForm, modalIframeID, modalBody);
 
-      setTimeout(() => {
-        const showModalButtons = slasForm.querySelectorAll('a.button');
-        showModalButtons.forEach(async (link) => {
-          link.classList.add('modal-form-toggler');
-          link.addEventListener('click', (event) => {
-            event.preventDefault();
-            triggerModalWithUrl(event.target.href);
-          });
-        });
-      }, 1000);
+      // setTimeout(() => {
+      //   const showModalButtons = slasForm.querySelectorAll('a.button');
+      //   showModalButtons.forEach(async (link) => {
+      //     link.classList.add('modal-form-toggler');
+      //     link.addEventListener('click', (event) => {
+      //       event.preventDefault();
+      //       triggerModalWithUrl(event.target.href);
+      //     });
+      //   });
+      // }, 1000);
     });
   }
 }
