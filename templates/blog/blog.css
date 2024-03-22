@@ -228,6 +228,19 @@ main .section.sidebar h4 {
   border: 2px solid var(--text-orange);
 }
 
+.blog .columns p.video-title {
+  margin: 15px 0 25px;
+  font-size: var(--body-font-size-xs);
+  display: block;
+  color: var(--text-gray);
+  font-style: italic;
+}
+
+.blog .columns .video-wrapper,
+.blog .toc-container .columns .button-container {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 767px) {
   .blog .section.blog-heading > div:first-of-type {
     overflow: visible;

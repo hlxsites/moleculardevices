@@ -2221,17 +2221,6 @@ main .section.no-margin-top {
   padding-left: 20px;
 }
 
-/* SLAS MODAL FORM */
-.modal-inner-wrapper .slas-form-col {
-  padding: 40px 20px 0;
-  border-radius: 10%;
-  overflow: hidden;
-  background-color: var(--text-blue);
-  text-align: center;
-}
-
-/* SLAS MODAL FORM */
-
 /* eBook contact */
 .section.background-teal,
 .section.ebook-contact {
