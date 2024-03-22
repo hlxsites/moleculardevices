@@ -23,8 +23,7 @@ import {
 import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
-import { createCarousel } from '../blocks/carousel/carousel.js';
-import { decorateModal, showModalWithUrl } from '../blocks/modal/modal.js';
+import { decorateModal, triggerModalWithUrl } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -737,35 +736,18 @@ function addHreflangTags() {
 }
 
 /**
- * Decorates the Carousel element.
- * @param {Element} main The main element
+ * iframe resize handler
+ * @param {Element} iframeURL The iframe url
+ * @param {Element} iframeID The iframe id
+ * @param {Element} root The parent element of iframe
  */
-async function decorateCarousel(main) {
-  const carouselSectionContainers = main.querySelectorAll('.section.carousel');
-
-  carouselSectionContainers.forEach(async (carousel) => {
-    const parentClasses = ['carousel-wrapper'];
-    const classes = ['carousel', 'block'];
-    const carouselOptions = [...carousel.classList].filter((cls) => classes.includes(cls));
-    carousel.classList.remove(...carouselOptions);
-
-    const wrapper = div({ class: parentClasses });
-    const innerWrapper = div({ class: classes });
-    innerWrapper.innerHTML = carousel.innerHTML;
-    carousel.innerHTML = '';
-
-    wrapper.appendChild(innerWrapper);
-    carousel.append(wrapper);
-
-    await createCarousel(innerWrapper, [...innerWrapper.children], {
-      autoScroll: false,
-    });
-
-    const vidyardLinks = carousel.querySelectorAll('a[href*="vids.moleculardevices.com"]');
-    vidyardLinks.forEach((link) => {
-      const url = new URL(link.href);
-      embedVideo(link, url, 'inline');
-    });
+export function iframeResizeHandler(iframeURL, iframeID, root) {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', async () => {
+    if (iframeURL) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${iframeID}`);
+    }
   });
 }
 
@@ -777,17 +759,14 @@ async function formInModalHandler(main) {
   const slasFormModals = main.querySelectorAll('.section.form-in-modal');
   const modalIframeID = 'modal-iframe';
 
-  if (slasFormModals) {
-    loadCSS('/blocks/modal/modal.css');
-
-    slasFormModals.forEach((slasForm) => {
-      const showModalButtons = slasForm.querySelectorAll('a.button');
-      const defaultForm = slasForm.getAttribute('data-modal-form');
+  if (slasFormModals.length > 0) {
+    slasFormModals.forEach(async (slasForm) => {
+      const defaultForm = slasForm.getAttribute('data-default-form');
 
       const modalBody = div(
-        { class: 'slas-form-col' },
+        { class: 'slas-form' },
         div(
-          { class: 'modal-iframe-wrapper' },
+          { class: 'iframe-wrapper' },
           iframe({
             src: defaultForm,
             id: modalIframeID,
@@ -797,15 +776,20 @@ async function formInModalHandler(main) {
         ),
       );
 
-      decorateModal(defaultForm, modalIframeID, modalBody, 'custom-class-name');
+      // const modal = new Modal(defaultForm, modalIframeID, modalBody);
+      // createModal(defaultForm, modalIframeID, modalBody);
+      await decorateModal(defaultForm, modalIframeID, modalBody);
 
-      showModalButtons.forEach((link) => {
-        link.classList.add('modal-form-toggler');
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          showModalWithUrl(event.target.href);
+      setTimeout(() => {
+        const showModalButtons = slasForm.querySelectorAll('a.button');
+        showModalButtons.forEach(async (link) => {
+          link.classList.add('modal-form-toggler');
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            triggerModalWithUrl(event.target.href);
+          });
         });
-      });
+      }, 1000);
     });
   }
 }
@@ -828,7 +812,6 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
-  decorateCarousel(main);
   formInModalHandler(main);
   addPageSchema();
   addHreflangTags();
