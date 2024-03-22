@@ -23,7 +23,6 @@ import {
 import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
-import { decorateModal, triggerModalWithUrl } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
