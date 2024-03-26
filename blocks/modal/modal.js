@@ -25,11 +25,10 @@ export function showModal() {
 export function triggerModalWithUrl(url) {
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
-  iframeElement.src = url;
-  timer = setTimeout(() => {
-    modal.setAttribute('aria-hidden', false);
-    document.body.classList.add('no-scroll');
+  setTimeout(() => {
+    iframeElement.src = url;
   }, 200);
+  timer = setTimeout(showModal, 500);
 }
 
 export function stopProp(event) {

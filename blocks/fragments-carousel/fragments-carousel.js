@@ -12,6 +12,7 @@ async function renderFragment(fragment, block, className) {
 
 // eslint-disable-next-line consistent-return
 export default async function decorate(block) {
+  block.closest('.section').classList.remove('carousel');
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
   block.innerHTML = '';
 

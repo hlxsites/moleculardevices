@@ -755,7 +755,7 @@ export function iframeResizeHandler(iframeURL, iframeID, root) {
  * Decorates the SLAS 2024 form modal element.
  * @param {Element} main The main element
  */
-async function formInModalHandler(main) {
+function formInModalHandler(main) {
   const slasFormModals = main.querySelectorAll('.section.form-in-modal');
   const modalIframeID = 'modal-iframe';
 

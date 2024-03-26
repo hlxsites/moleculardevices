@@ -178,10 +178,6 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
 }
 
 /* GLOBAL CAROUSEL */
-main .global-carousel {
-  padding-inline: 0;
-}
-
 main .global-carousel .carousel-item-column:has(+ .carousel-item-column:empty) {
   width: 100%;
 }
