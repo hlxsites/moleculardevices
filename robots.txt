@@ -41,6 +41,9 @@ Disallow: /sites/default/files/en/assets/ebook/dd/img/generate-application-speci
 Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
 Disallow: /sites/default/files/en/assets/ebook/br/microplate-readers-in-cancer-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-processes.pdf
+Disallow: /sites/default/files/en/assets/ebook/reagents/optimized-cell-based-assays-for-breakthrough-research.pdf
+
+
 
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
