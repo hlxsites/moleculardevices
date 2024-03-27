@@ -241,11 +241,13 @@ display: none;
 }
 
 /* Blog Variant - Desktop -- Start */
-.blog main .hero-container {
+.blog main .hero-container,
+.full-article.publication main .hero-container {
   margin-top: 0;
 }
 
-.blog main .hero-wrapper {
+.blog main .hero-wrapper,
+.full-article.publication main .hero-wrapper {
   margin-top: 0;
   margin-bottom: 60px;
   position: relative;
@@ -257,11 +259,13 @@ display: none;
 }
 
 .hero.blog,
+.hero.newsroom,
 .hero.blog-overview {
   margin-top: 0;
 }
 
-.hero.blog .hero-inner {
+.hero.blog .hero-inner,
+.hero.newsroom .hero-inner {
   padding: 0 0 41.2%;
   height: 555px;
   overflow: hidden;
@@ -269,11 +273,13 @@ display: none;
 }
 
 .hero.blog .hero-inner img,
+.hero.newsroom .hero-inner img,
 .hero.blog-overview .hero-inner img {
   object-position: center center;
 }
 
-.blog main .hero-wrapper h1 {
+.blog main .hero-wrapper h1,
+.full-article.publication main .hero-wrapper h1 {
   font-family: var(--ff-proxima-regular);
   font-size: 48px;
   line-height: 1;
@@ -301,7 +307,8 @@ main .hero.blog .sticker {
   position: absolute;
 }
 
-.blog main .hero-wrapper .container {
+.blog main .hero-wrapper .container,
+.full-article.publication main .hero-wrapper .container {
   position: absolute;
   bottom: 35px;
   left: 50%;
@@ -311,7 +318,8 @@ main .hero.blog .sticker {
   padding: 0;
 }
 
-.blog main .hero-wrapper .container .metadata {
+.blog main .hero-wrapper .container .metadata,
+.full-article.publication main .hero-wrapper .container .metadata{
   clear: both;
   display: flex;
   justify-content: center;
