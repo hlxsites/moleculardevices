@@ -26,9 +26,8 @@ main .carousel {
   display: flex;
   overflow: hidden;
   margin: auto;
-  width: 100%; /* default - same as .products */
-  padding-left: 200px; /* default - same as .products */
-  padding-right: 200px; /* default - same as .products */
+  width: 100%;
+  padding-inline: 200px;
 }
 
 main .carousel-item {
@@ -39,7 +38,7 @@ main .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 50px 80px; /* default - same as .products */
+  padding: 50px 80px;
 }
 
 main .carousel-item-columns-container {
@@ -56,8 +55,8 @@ main .carousel-item-column {
 main .carousel-item-image img {
   display: block;
   object-fit: contain;
-  width: 100%; /* default - same as .products */
-  max-height: 400px; /* default - same as .products */
+  width: 100%;
+  max-height: 400px;
 }
 
 main .carousel.full-bg .carousel-item {
@@ -99,9 +98,9 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #adb3b7; /* default - same as .products */
-  border: 1.5px solid #adb3b7; /* default - same as .products */
-  background-color: inherit; /* default - same as .products */
+  color: var(--text-light-gray);
+  border: 1.5px solid var(--text-light-gray);
+  background-color: inherit;
 }
 
 main .carousel-nav-button.disabled {
@@ -109,7 +108,7 @@ main .carousel-nav-button.disabled {
 }
 
 main .carousel-nav-button:hover {
-  background-color: #adb3b7;
+  background-color: var(--text-light-gray);
   color: var(--text-white);
   border: 1.5px solid var(--background-color);
 }
@@ -160,7 +159,7 @@ main .carousel-dot-img-buttons {
 
 main .carousel-dot-img-buttons .carousel-dot-button {
   max-width: 100px;
-  background: #fff;
+  background: var(--background-color);
   padding: 10px;
   margin-right: 10px;
   opacity: 0.7;
@@ -178,36 +177,52 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
   opacity: 1;
 }
 
-@media only screen and (max-width: 1400px) {
-  main .carousel {
-    padding-left: 100px;
-    padding-right: 100px;
-  }
+/* GLOBAL CAROUSEL */
+main .global-carousel .carousel-item-column:has(+ .carousel-item-column:empty) {
+  width: 100%;
+}
+
+main .global-carousel .carousel-item-column:empty {
+  display: none;
+}
+
+main .global-carousel.blue-title h2 {
+  color: var(--text-blue);
+}
+
+main .global-carousel.title-center h2 {
+  text-align: center;
+}
+
+main .section.global-carousel .carousel h2 + h3 {
+  margin-bottom: 48px;
 }
 
 @media only screen and (min-width: 768px) {
+  main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 750px;
   }
 }
 
 @media only screen and (min-width: 992px) {
+  main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 970px;
   }
 
   main .carousel.full-bg .primary {
     background-color: transparent;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-white);
   }
 
   main .carousel.full-bg .primary:focus {
-    color: #fff;
+    color: var(--text-white);
   }
 
   main .carousel.full-bg .primary:hover {
     color: var(--link-hover-color);
-    background-color: #fff;
+    background-color: var(--background-color);
   }
 
   main .carousel.full-bg .primary:hover .button-border {
@@ -223,7 +238,7 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
   }
 
   main .carousel.full-bg .carousel-item-column:last-child {
-    color: #fff;
+    color: var(--text-white);
     position: relative;
     display: flex;
     align-items: center;
@@ -252,8 +267,15 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
 }
 
 @media only screen and (min-width: 1200px) {
+  main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 1170px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  main .carousel {
+    padding-inline: 100px;
   }
 }
 
@@ -398,8 +420,8 @@ main .carousel-wrapper.wave .carousel-dot-button {
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
-  color: #adb3b7;
-  border: 1.5px solid #adb3b7;
+  color: var(--text-light-gray);
+  border: 1.5px solid var(--text-light-gray);
   background-color: inherit;
 }
 
@@ -610,4 +632,3 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
-
