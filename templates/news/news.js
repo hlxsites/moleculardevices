@@ -2,7 +2,7 @@ import { formatDate } from '../../scripts/scripts.js';
 import { loadEmbed } from '../../blocks/embed/embed.js';
 import {
   a,
-  div, i, p, span,
+  div, i, p, span, strong,
 } from '../../scripts/dom-helpers.js';
 
 import {
@@ -63,7 +63,9 @@ function decorateEmbed(elems) {
 }
 
 export function decorateAutoBlock(content) {
-  const isFullArticlePage = getMetadata('type') === 'Full Article';
+  const isFullArticlePage = getMetadata('display-type') === 'Full Article';
+  const signatureCTA = ' If you\'re inspired by what you\'ve read and want to connect with us, let\'s get in touch!';
+  const contactURL = 'https://main--moleculardevices--hlxsites.hlx.page/contact?region=americas#get-in-touch';
 
   if (!content) {
     return;
@@ -71,8 +73,13 @@ export function decorateAutoBlock(content) {
 
   if (isFullArticlePage) {
     const publisher = getMetadata('publisher');
-    const gatedUrl = getMetadata('gated-url');
-    const creditParagraph = p({}, 'This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), '.');
+    const gatedUrl = getMetadata('article-url');
+    const creditParagraph = div({ style: 'margin-block: 30px;' },
+      p(strong(
+        i('This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), ' and reprinted here with permission.'),
+      )),
+      p(a({ href: contactURL, class: 'button primary' }, signatureCTA)),
+    );
     content.append(creditParagraph);
   } else {
     const contentWrapper = span({ class: 'event-container' });

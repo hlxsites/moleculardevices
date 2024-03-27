@@ -25,10 +25,6 @@ main .section .default-content-wrapper {
   display: none;
 }
 
-.publication.full-article .section > .social-share-wrapper {
-  margin-top: 2rem;
-}
-
 .publication.full-article .section.carousel-heading > div {
   max-width: 100%;
 }
