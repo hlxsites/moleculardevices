@@ -31,7 +31,7 @@ export default async function decorate(block) {
         if (vidyardLinks) {
           vidyardLinks.forEach((link) => {
             const url = new URL(link.href);
-            embedVideo(link, url, 'inline');
+            embedVideo(link, url, 'lightbox');
           });
         }
 

@@ -35,9 +35,20 @@ export function stopProp(event) {
   event.stopPropagation();
 }
 
-function triggerModalBtn() {
+function triggerModalBtnInHalf() {
   const scrollFromTop = window.scrollY;
   const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 2.25);
+  const modalBtn = document.getElementById('show-modal');
+
+  if (scrollFromTop > midHeightOfViewport && modalBtn) {
+    modalBtn.click();
+    modalBtn.remove();
+  }
+}
+
+function triggerModalBtnInQuarter() {
+  const scrollFromTop = window.scrollY;
+  const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 3.5);
   const modalBtn = document.getElementById('show-modal');
 
   if (scrollFromTop > midHeightOfViewport && modalBtn) {
@@ -63,7 +74,7 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
       const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
       modalBtn.addEventListener('click', showModal);
       document.body.append(modalBtn);
-      window.addEventListener('scroll', triggerModalBtn);
+      window.addEventListener('scroll', triggerModalBtnInHalf);
     }
 
     formOverlay.addEventListener('click', hideModal);
@@ -88,6 +99,7 @@ export default async function decorate(block) {
     const link = modalContent.querySelector('p > a:only-child, a:only-child');
     const formURL = link.href;
     await newsletterModal(formURL, 'form-modal');
+    window.addEventListener('scroll', triggerModalBtnInQuarter);
   }
 
   if (isFormModal) {

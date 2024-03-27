@@ -54,7 +54,6 @@ export async function newsletterModal(formURL, iframeID) {
     ),
   );
 
-  // await createModal(formURL, modalIframeID, modalBody, 'newsletter-inner-wrapper', true);
   await decorateModal(formURL, iframeID, modalBody, 'newsletter-inner-wrapper', true);
 }
 
