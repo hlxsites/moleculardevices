@@ -1,40 +1,31 @@
 import ffetch from '../../scripts/ffetch.js';
-import { createCarousel } from '../carousel/carousel.js';
-import { createCard } from '../card/card.js';
+import { createRecentResourceCarousel } from '../recent-blogs-carousel/recent-blogs-carousel.js';
 
 export default async function decorate(block) {
-  let publications = await ffetch('/query-index.json')
+  let data = [];
+  const publications = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Publication')
-    .limit(6)
+    .limit(7)
     .all();
 
-  publications = publications.filter(
-    (publication) => publication.path !== window.location.pathname).slice(0, 5);
-  const publicationCard = await createCard();
+  const blogs = await ffetch('/query-index.json')
+    .sheet('blog')
+    .limit(7)
+    .all();
 
-  await createCarousel(
-    block,
-    publications,
-    {
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      defaultStyling: true,
-      visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
-      ],
-      cardRenderer: publicationCard,
-    },
-  );
+  data = [...publications, ...blogs];
+
+  data.sort((x, y) => {
+    if (x.date > y.date) {
+      return -1;
+    }
+    if (x.date < y.date) {
+      return 1;
+    }
+    return 0;
+  });
+  data = data.slice(0, 7);
+
+  await createRecentResourceCarousel(block, data);
 }
