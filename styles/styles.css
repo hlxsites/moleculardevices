@@ -120,6 +120,14 @@ main .section.OneLinkShow_zh.columns-2 {
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
   --carousel-slider-background-color: #b3d8e0;
+  --blog-gradient: linear-gradient(90deg,
+      rgb(21 145 164) 0,
+      rgb(46 159 121) 50%,
+      rgb(97 178 73) 100%);
+  --blog-gradient-left: linear-gradient(to left,
+      rgb(21 145 164) 0,
+      rgb(50 159 121) 50%,
+      rgb(97 178 73) 100%);
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
@@ -294,6 +302,10 @@ pre,
 blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+ul ul {
+  margin-top: 0;
 }
 
 p:first-child {
@@ -2071,7 +2083,7 @@ main .section.space-wrappers > div {
   margin-top: 50px;
 }
 
-@media (max-width: 420px) {
+@media only screen and (max-width: 420px) {
   .section .block.mobile-subtitle-small h3,
   .section.mobile-subtitle-small > div.default-content-wrapper > h3 {
     font-size: 16px;
