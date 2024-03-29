@@ -27,23 +27,18 @@ export default async function decorate(block) {
         const fragmentElement = div();
         fragmentElement.innerHTML = fragmentHtml;
 
-        const vidyardLinks = fragmentElement.querySelectorAll('a[href*="vids.moleculardevices.com"]');
+        const vidyardLinks = fragmentElement.querySelector('a[href*="vids.moleculardevices.com"]');
         if (vidyardLinks) {
-          vidyardLinks.forEach((link) => {
-            const url = new URL(link.href);
-            embedVideo(link, url, 'lightbox');
-          });
+          const url = new URL(vidyardLinks.href);
+          embedVideo(vidyardLinks, url, 'lightbox');
         }
 
         const isFormModal = block.closest('.section').classList.contains('form-in-modal');
         if (isFormModal) {
-          const showModalButtons = fragmentElement.querySelectorAll('a[href*="info.moleculardevices.com"]');
-          showModalButtons.forEach(async (link) => {
-            link.classList.add('modal-form-toggler');
-            link.addEventListener('click', (event) => {
-              event.preventDefault();
-              triggerModalWithUrl(event.target.href);
-            });
+          const showModalBtn = fragmentElement.querySelector('a[href*="info.moleculardevices.com"]');
+          showModalBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            triggerModalWithUrl(event.target.href);
           });
         }
 
