@@ -14,7 +14,7 @@ function addMetadata(container) {
   const author = getMetadata('author');
   const publisher = getMetadata('publisher');
   const publisherDate = formatDate(getMetadata('publication-date'), { month: 'short' });
-  const metadataStyling = 'display: flex;gap: 4px;align-items;center;';
+  const metadataStyling = 'display: flex;gap: 4px;align-items;center;min-width: 120px;';
 
   const metadataContainer = div({ class: 'metadata' },
     div({ style: metadataStyling },
