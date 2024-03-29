@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
 import {
-  button, div, span,
+  button, div, iframe, span,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, loadCSS } from '../../scripts/lib-franklin.js';
 import { iframeResizeHandler } from '../../scripts/scripts.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
@@ -86,7 +86,7 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 
 export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
-  // const isFormModal = block.classList.contains('form-modal');
+  const isFormModal = block.classList.contains('form-modal');
 
   if (isBlogModal) {
     const modalContent = block.querySelector(':scope > div > div');
@@ -96,28 +96,28 @@ export default async function decorate(block) {
     window.addEventListener('scroll', triggerModalBtnInQuarter);
   }
 
-  // if (isFormModal) {
-  //   const elementsToMove = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
-  //   const modalContent = block.querySelector(':scope > div > div');
-  //   const link = modalContent.querySelector('p > a:only-child');
-  //   const formURL = link.href;
-  //   const iframeID = 'form-modal';
-  //   const modalBody = div({ class: 'modal-form-col' });
-  //   const iframeWrapper = div({ class: 'modal-iframe-wrapper' },
-  //     iframe({
-  //       src: formURL,
-  //       id: iframeID,
-  //       loading: 'lazy',
-  //       title: 'Modal',
-  //     }),
-  //   );
+  if (isFormModal) {
+    const elementsToMove = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
+    const modalContent = block.querySelector(':scope > div > div');
+    const link = modalContent.querySelector('p > a:only-child');
+    const formURL = link.href;
+    const iframeID = 'form-modal';
+    const modalBody = div({ class: 'modal-form-col' });
+    const iframeWrapper = div({ class: 'modal-iframe-wrapper' },
+      iframe({
+        src: formURL,
+        id: iframeID,
+        loading: 'lazy',
+        title: 'Modal',
+      }),
+    );
 
-  //   link.closest('p').remove();
-  //   elementsToMove.forEach((element) => modalBody.append(element));
+    link.closest('p').remove();
+    elementsToMove.forEach((element) => modalBody.append(element));
 
-  //   modalBody.appendChild(iframeWrapper);
-  //   await decorateModal(formURL, iframeID, modalBody, '', isFormModal);
-  // }
+    modalBody.appendChild(iframeWrapper);
+    await decorateModal(formURL, iframeID, modalBody, '', isFormModal);
+  }
 
   block.closest('.section').remove();
 }
