@@ -1,15 +1,3 @@
-/* stylelint-disable no-descending-specificity */
-:root {
-  --blog-gradient: linear-gradient(90deg,
-      rgb(21 145 164) 0,
-      rgb(46 159 121) 50%,
-      rgb(97 178 73) 100%);
-  --blog-gradient-left: linear-gradient(to left,
-      rgb(21 145 164) 0,
-      rgb(50 159 121) 50%,
-      rgb(97 178 73) 100%);
-}
-
 .blog {
   font-family: var(--ff-proxima-regular);
 }
@@ -21,10 +9,6 @@
 .blog main p {
   margin-top: 0;
   margin-bottom: 10px;
-}
-
-.newsletter-inner-wrapper .modal-iframe-wrapper > div p {
-  font-size: 15px;
 }
 
 .blog .section .default-content-wrapper > p:last-child {
@@ -79,7 +63,7 @@
 }
 
 .blog main ol.text-caption::before {
-  content: '';
+  content: "";
   top: -21px;
   left: 0;
   height: 1px;
@@ -111,11 +95,6 @@
   margin-top: 0;
 }
 
-.newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
-  line-height: 1.15;
-  margin: 0;
-}
-
 .blog .footer .row-1 h3 + ul {
   margin-top: 0;
   margin-bottom: 0;
@@ -124,15 +103,6 @@
 .blog .footer .row-1 h3 + h3 {
   margin-top: 9px;
   width: 100%;
-}
-
-.newsletter-inner-wrapper .modal-iframe-wrapper > div {
-  border-radius: 18px;
-  position: relative;
-  padding: 20px 20px 0;
-  color: #fff;
-  background-color: rgb(0 0 0 / 50%);
-  text-align: center;
 }
 
 .blog .section > div:not(.hero-wrapper) {
@@ -175,7 +145,7 @@
 }
 
 .blog .section.blog-heading > div:first-of-type::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -21px;
   left: 0;
@@ -202,16 +172,9 @@ main .section.sidebar h4,
   margin-bottom: 10px;
 }
 
-main .section.sidebar h4 {
+.blog main .section.sidebar h4 {
   margin-bottom: 50px;
   position: relative;
-}
-
-.newsletter-inner-wrapper .columns-2-cols .newsletter-col img {
-  width: 100%;
-  height: auto;
-  margin: auto;
-  display: block;
 }
 
 .blog .section.blog-heading .icon-view-all-posts img {
@@ -293,7 +256,7 @@ main.sidebar .section.sidebar .default-content-wrapper {
 }
 
 main .section.sidebar h4::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -33px;
   left: 0;
@@ -309,124 +272,6 @@ main .section.sidebar h4::after {
 
 .blog main .section.sidebar .embed-twitter {
   margin-top: 0;
-}
-
-@media only screen and (max-width: 991px) {
-  main.sidebar {
-    grid-template-columns: auto 750px auto;
-  }
-
-  main.sidebar .section.sidebar {
-    grid-column: 2;
-    grid-row: unset;
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  main.sidebar {
-    grid-template-columns: repeat(3, auto);
-  }
-}
-
-/* POPUP */
-body.no-scroll {
-  padding-right: 17px;
-}
-
-.newsletter-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0 0 0 / 70%);
-  z-index: 1000;
-  padding: 100px 20px;
-  overflow-y: auto;
-  transition: all .3s ease-in-out;
-}
-
-.newsletter-inner-wrapper {
-  margin: 0 auto;
-  position: relative;
-  background-color: rgb(50 159 121);
-  background-image: var(--blog-gradient-left);
-  text-align: center;
-  color: var(--accordion-color-white);
-  padding: 40px 20px;
-  transition: all .3s ease-in-out;
-  transition-delay: .4s;
-  margin-top: 0;
-}
-
-.newsletter-inner-wrapper,
-.newsletter-inner-wrapper .modal-iframe-wrapper {
-  text-align: center;
-}
-
-.newsletter-modal-overlay,
-.newsletter-modal-overlay .newsletter-inner-wrapper {
-  opacity: 1;
-  visibility: visible;
-}
-
-.newsletter-modal-overlay[aria-hidden='true'] .newsletter-inner-wrapper {
-  margin-top: -40px;
-}
-
-.newsletter-modal-overlay[aria-hidden='true'],
-.newsletter-modal-overlay[aria-hidden='true'] .newsletter-inner-wrapper {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.newsletter-inner-wrapper .modal-iframe-wrapper > div iframe,
-.blog .section div.spectra-newsletter iframe {
-  border: 0;
-  width: 100%;
-}
-
-.newsletter-modal-overlay .newsletter-button-close {
-  position: absolute;
-  top: -50px;
-  right: -5px;
-  display: block;
-  cursor: pointer;
-}
-
-.newsletter-modal-overlay .newsletter-button-close img,
-.newsletter-modal-overlay .newsletter-button-close svg {
-  width: 44px;
-  height: auto;
-  border: 1px solid;
-  padding: 10px;
-  border-radius: 50%;
-  opacity: .7;
-}
-
-.newsletter-modal-overlay .newsletter-button-close img:hover,
-.newsletter-modal-overlay .newsletter-button-close:hover svg{
-  opacity: 1;
-}
-
-.newsletter-modal-overlay .newsletter-button-close svg path {
-  fill: none;
-  color: #fff;
-}
-
-.newsletter-inner-wrapper .columns-2-cols {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.newsletter-inner-wrapper .columns-2-cols .newsletter-col {
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
 }
 
 .blog .section div.spectra-newsletter {
@@ -445,66 +290,20 @@ body.no-scroll {
   margin-bottom: 0;
 }
 
-@media only screen and (min-width: 567px) {
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
-    display: flex;
-    align-items: center;
+@media only screen and (max-width: 991px) {
+  main.sidebar {
+    grid-template-columns: auto 750px auto;
   }
 
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col img + p{
-    margin-left: -130px;
-    margin-top: 60px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .newsletter-inner-wrapper {
-    width: 100%;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols {
-    align-items: center;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-col {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
-    width: 55%;
-    padding-left: 40px;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-right-col {
-    width: 45%;
-    padding-right: 30px;
-  }
-
-  .newsletter-inner-wrapper .modal-iframe-wrapper > div h3 {
-    font-size: 30px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .newsletter-inner-wrapper {
-    width: 900px;
+  main.sidebar .section.sidebar {
+    grid-column: 2;
+    grid-row: unset;
+    display: block;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .newsletter-inner-wrapper {
-    width: 100%;
-  }
-
-  .newsletter-inner-wrapper .columns-2-cols .newsletter-left-col {
-    max-width: 420px;
-    margin-bottom: 20px;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  .newsletter-modal-overlay {
-    display: block;
+  main.sidebar {
+    grid-template-columns: repeat(3, auto);
   }
 }
