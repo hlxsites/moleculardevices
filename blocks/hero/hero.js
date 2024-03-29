@@ -41,7 +41,7 @@ function addMetadata(container) {
     } else {
       authorContainer = div({ style: metadataStyling },
         i({ class: ['fa', 'fa-user'] }),
-        span({ class: 'blog-author' }, `${author} at ${publisher}`),
+        span({ class: 'blog-author' }, author),
       );
     }
     metadataContainer.appendChild(authorContainer);
