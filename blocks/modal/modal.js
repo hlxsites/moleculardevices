@@ -63,8 +63,6 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
   const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
 
   iframeResizeHandler(formURL, iframeID, modalBody);
-
-  loadScript('/scripts/iframeResizer.min.js');
   loadCSS('/blocks/modal/modal.css');
 
   if (isFormModal) {
