@@ -753,34 +753,6 @@ export function iframeResizeHandler(iframeURL, iframeID, root) {
 }
 
 /**
- * Decorates the SLAS 2024 form modal element.
- * @param {Element} main The main element
- */
-async function formInModalHandler(main) {
-  const slasFormModal = main.querySelector('.section.form-in-modal');
-  const modalIframeID = 'modal-iframe';
-
-  if (slasFormModal) {
-    const defaultForm = slasFormModal.getAttribute('data-default-form');
-
-    const modalBody = div(
-      { class: 'slas-form' },
-      div(
-        { class: 'iframe-wrapper' },
-        iframe({
-          src: defaultForm,
-          id: modalIframeID,
-          loading: 'lazy',
-          title: 'SLAS Modal',
-        }),
-      ),
-    );
-
-    await decorateModal(defaultForm, modalIframeID, modalBody);
-  }
-}
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
