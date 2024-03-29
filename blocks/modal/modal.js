@@ -87,16 +87,16 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 }
 
 export default async function decorate(block) {
-  // const isBlogModal = block.classList.contains('blog-popup');
+  const isBlogModal = block.classList.contains('blog-popup');
   // const isFormModal = block.classList.contains('form-modal');
 
-  // if (isBlogModal) {
-  //   const modalContent = block.querySelector(':scope > div > div');
-  //   const link = modalContent.querySelector('p > a:only-child, a:only-child');
-  //   const formURL = link.href;
-  //   await newsletterModal(formURL, 'form-modal');
-  //   window.addEventListener('scroll', triggerModalBtnInQuarter);
-  // }
+  if (isBlogModal) {
+    const modalContent = block.querySelector(':scope > div > div');
+    const link = modalContent.querySelector('p > a:only-child, a:only-child');
+    const formURL = link.href;
+    await newsletterModal(formURL, 'form-modal');
+    window.addEventListener('scroll', triggerModalBtnInQuarter);
+  }
 
   // if (isFormModal) {
   //   const elementsToMove = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
@@ -121,5 +121,5 @@ export default async function decorate(block) {
   //   await decorateModal(formURL, iframeID, modalBody, '', isFormModal);
   // }
 
-  // block.closest('.section').remove();
+  block.closest('.section').remove();
 }
