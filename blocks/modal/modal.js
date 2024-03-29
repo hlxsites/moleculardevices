@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import {
-  button, div, iframe, span,
+  button, div, span,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
 import { iframeResizeHandler } from '../../scripts/scripts.js';
