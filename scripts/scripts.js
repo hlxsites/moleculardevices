@@ -21,9 +21,8 @@ import {
   createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, iframe, p,
+  a, div, domEl, p,
 } from './dom-helpers.js';
-import { decorateModal } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -770,7 +769,6 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
-  formInModalHandler(main);
   addPageSchema();
   addHreflangTags();
 }
