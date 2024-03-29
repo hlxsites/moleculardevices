@@ -342,6 +342,10 @@ em strong {
   font-weight: 700;
 }
 
+ul ul {
+  margin-top: 0;
+}
+
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
@@ -1301,6 +1305,11 @@ main div.section.wave.bluegreen2 {
       rgba(97 178 73 / 100%) 100%) !important;
   background-image: none;
   margin-bottom: 30px;
+}
+
+main div.section.wave.customer-story-container:not([style]) img[src*='wave-footer-bg-top'],
+main div.section.wave.bluegreen2:not(.customer-story-container) img[src*='wave-footer-bg-top'] {
+  display: none;
 }
 
 main div.section.wave.bluegreen2::after {
