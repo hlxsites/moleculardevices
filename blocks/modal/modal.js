@@ -58,34 +58,32 @@ function triggerModalBtnInQuarter() {
 }
 
 export async function decorateModal(formURL, iframeID, modalBody, modalClass, isFormModal) {
-  window.addEventListener('DOMContentLoaded', () => {
-    const formOverlay = div({ 'aria-hidden': true, class: modalParentClass, style: 'display:none;' });
-    const closeBtn = span({ class: 'icon icon-close' }, createOptimizedPicture('/icons/close-video.svg', 'Close Video'));
-    const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
+  const formOverlay = div({ 'aria-hidden': true, class: modalParentClass, style: 'display:none;' });
+  const closeBtn = span({ class: 'icon icon-close' }, createOptimizedPicture('/icons/close-video.svg', 'Close Video'));
+  const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
 
-    iframeResizeHandler(formURL, iframeID, modalBody);
+  iframeResizeHandler(formURL, iframeID, modalBody);
 
-    loadScript('/scripts/iframeResizer.min.js');
-    loadCSS('/blocks/modal/modal.css');
+  loadScript('/scripts/iframeResizer.min.js');
+  loadCSS('/blocks/modal/modal.css');
 
-    if (isFormModal) {
-      const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
-      modalBtn.addEventListener('click', showModal);
-      document.body.append(modalBtn);
-      window.addEventListener('scroll', triggerModalBtnInHalf);
-    }
+  if (isFormModal) {
+    const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
+    modalBtn.addEventListener('click', showModal);
+    document.body.append(modalBtn);
+    window.addEventListener('scroll', triggerModalBtnInHalf);
+  }
 
-    formOverlay.addEventListener('click', hideModal);
-    closeBtn.addEventListener('click', hideModal);
-    innerWrapper.addEventListener('click', stopProp);
+  formOverlay.addEventListener('click', hideModal);
+  closeBtn.addEventListener('click', hideModal);
+  innerWrapper.addEventListener('click', stopProp);
 
-    formOverlay.append(innerWrapper);
-    document.body.append(formOverlay);
+  formOverlay.append(innerWrapper);
+  document.body.append(formOverlay);
 
-    timer = setTimeout(() => {
-      formOverlay.removeAttribute('style');
-    }, 500);
-  });
+  timer = setTimeout(() => {
+    formOverlay.removeAttribute('style');
+  }, 500);
 }
 
 export default async function decorate(block) {
