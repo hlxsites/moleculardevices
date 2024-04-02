@@ -1,13 +1,22 @@
 /* eslint-disable import/no-cycle */
 import {
-  button, div, iframe, span,
+  button, div, span,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
-import { iframeResizeHandler } from '../../scripts/scripts.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
 const modalParentClass = 'modal-overlay';
+
+export function iframeResizeHandler(iframeURL, iframeID, root) {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', async () => {
+    if (iframeURL) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${iframeID}`);
+    }
+  });
+}
 
 export function hideModal() {
   const modal = document.querySelector(`.${modalParentClass}`);
@@ -35,22 +44,11 @@ export function stopProp(event) {
   event.stopPropagation();
 }
 
-function triggerModalBtnInHalf() {
-  const scrollFromTop = window.scrollY;
-  const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 2.25);
+function triggerModalBtn(scrollThreshold) {
   const modalBtn = document.getElementById('show-modal');
-
-  if (scrollFromTop > midHeightOfViewport && modalBtn) {
-    modalBtn.click();
-    modalBtn.remove();
-  }
-}
-
-function triggerModalBtnInQuarter() {
   const scrollFromTop = window.scrollY;
-  const midHeightOfViewport = Math.floor(document.body.getBoundingClientRect().height / 3.5);
-  const modalBtn = document.getElementById('show-modal');
-
+  const midHeightOfViewport = Math.floor(
+    document.body.getBoundingClientRect().height / scrollThreshold);
   if (scrollFromTop > midHeightOfViewport && modalBtn) {
     modalBtn.click();
     modalBtn.remove();
@@ -58,6 +56,7 @@ function triggerModalBtnInQuarter() {
 }
 
 export async function decorateModal(formURL, iframeID, modalBody, modalClass, isFormModal) {
+  loadCSS('/blocks/modal/modal.css');
   const modal = document.querySelector(`.${modalParentClass}`);
 
   if (!modal) {
@@ -67,14 +66,11 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 
     iframeResizeHandler(formURL, iframeID, modalBody);
 
-    loadScript('/scripts/iframeResizer.min.js');
-    loadCSS('/blocks/modal/modal.css');
-
     if (isFormModal) {
       const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
       modalBtn.addEventListener('click', showModal);
       document.body.append(modalBtn);
-      window.addEventListener('scroll', triggerModalBtnInHalf);
+      window.addEventListener('scroll', () => triggerModalBtn(2.25, modalBtn));
     }
 
     formOverlay.addEventListener('click', hideModal);
@@ -92,37 +88,14 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 
 export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
-  const isFormModal = block.classList.contains('form-modal');
 
   if (isBlogModal) {
     const modalContent = block.querySelector(':scope > div > div');
     const link = modalContent.querySelector('p > a:only-child, a:only-child');
     const formURL = link.href;
     await newsletterModal(formURL, 'form-modal');
-    window.addEventListener('scroll', triggerModalBtnInQuarter);
-  }
-
-  if (isFormModal) {
-    const elementsToMove = block.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
-    const modalContent = block.querySelector(':scope > div > div');
-    const link = modalContent.querySelector('p > a:only-child');
-    const formURL = link.href;
-    const iframeID = 'form-modal';
-    const modalBody = div({ class: 'modal-form-col' });
-    const iframeWrapper = div({ class: 'modal-iframe-wrapper' },
-      iframe({
-        src: formURL,
-        id: iframeID,
-        loading: 'lazy',
-        title: 'Modal',
-      }),
-    );
-
-    link.closest('p').remove();
-    elementsToMove.forEach((element) => modalBody.append(element));
-
-    modalBody.appendChild(iframeWrapper);
-    await decorateModal(formURL, iframeID, modalBody, '', isFormModal);
+    const modalBtn = document.getElementById('show-modal');
+    window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }
 
   block.closest('.section').remove();

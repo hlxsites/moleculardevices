@@ -1,8 +1,9 @@
-.blog {
+.blog,
+.blog main strong  {
   font-family: var(--ff-proxima-regular);
 }
 
-.blog .section .default-content-wrapper {
+.blog main .section .default-content-wrapper {
   padding: 0;
 }
 
@@ -11,12 +12,8 @@
   margin-bottom: 10px;
 }
 
-.blog .section .default-content-wrapper > p:last-child {
+.blog main .section .default-content-wrapper > p:last-child {
   margin-bottom: 0;
-}
-
-.blog main strong {
-  font-family: var(--ff-proxima-regular);
 }
 
 .blog main ul,
@@ -40,8 +37,8 @@
   margin-top: 10px;
 }
 
-.blog .no-indent ul,
-.blog .no-indent ol {
+.blog main .no-indent ul,
+.blog main .no-indent ol {
   padding-left: 20px;
 }
 
@@ -49,12 +46,6 @@
 .blog main ul li > picture img {
   display: block;
   margin: 20px auto;
-}
-
-.blog .footer-contact ol li > picture img,
-.blog .footer-contact ul li > picture img {
-  display: inline-block;
-  margin: 0;
 }
 
 .blog main ol.text-caption {
@@ -90,53 +81,43 @@
   line-height: 30px;
 }
 
-.blog .card-caption h3 {
+.blog main .card-caption h3 {
   line-height: 1.1;
   margin-top: 0;
 }
 
-.blog .footer .row-1 h3 + ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.blog .footer .row-1 h3 + h3 {
-  margin-top: 9px;
-  width: 100%;
-}
-
-.blog .section > div:not(.hero-wrapper) {
+.blog main .section > div:not(.hero-wrapper) {
   max-width: 800px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.blog .section > div.embed-wrapper > div.embed {
+.blog main .section > div.embed-wrapper > div.embed {
   margin-top: 10px;
   width: unset;
 }
 
-.blog .columns-wrapper:has(h3) {
+.blog main .columns-wrapper:has(h3) {
   margin-top: 30px;
 }
 
-.blog .section.blog-wide {
+.blog main .section.blog-wide {
   padding: 0;
 }
 
-.blog .section.blog-wide > div {
+.blog main .section.blog-wide > div {
   max-width: 1170px;
   width: unset;
   margin: 0 auto;
 }
 
-.blog .section.blog-heading > div {
+.blog main .section.blog-heading > div {
   max-width: unset;
   width: unset;
   margin: 0;
 }
 
-.blog .section.blog-heading > div.default-content-wrapper:first-of-type {
+.blog main .section.blog-heading > div.default-content-wrapper:first-of-type {
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -144,7 +125,7 @@
   padding: 0;
 }
 
-.blog .section.blog-heading > div:first-of-type::after {
+.blog main .section.blog-heading > div:first-of-type::after {
   content: "";
   position: absolute;
   bottom: -21px;
@@ -155,7 +136,7 @@
   background-image: var(--blog-gradient);
 }
 
-.blog .section.blog-heading > div:first-of-type p {
+.blog main .section.blog-heading > div:first-of-type p {
   margin: 0;
 }
 
@@ -177,21 +158,21 @@ main .section.sidebar h4,
   position: relative;
 }
 
-.blog .section.blog-heading .icon-view-all-posts img {
+.blog main .section.blog-heading .icon-view-all-posts img {
   display: block;
   width: 178px;
 }
 
-.blog .section.green-secondary-buttons .button {
+.blog main .section.green-secondary-buttons .button {
   color: var(--text-green);
 }
 
-.blog .section.orange-buttons .button.secondary {
+.blog main .section.orange-buttons .button.secondary {
   color: var(--text-orange);
   border: 2px solid var(--text-orange);
 }
 
-.blog .columns p.video-title {
+.blog main .columns p.video-title {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
@@ -199,17 +180,17 @@ main .section.sidebar h4,
   font-style: italic;
 }
 
-.blog .columns .video-wrapper,
-.blog .toc-container .columns .button-container {
+.blog main .columns .video-wrapper,
+.blog main .toc-container .columns .button-container {
   margin-bottom: 0;
 }
 
 @media only screen and (max-width: 767px) {
-  .blog .section.blog-heading > div:first-of-type {
+  .blog main .section.blog-heading > div:first-of-type {
     overflow: visible;
   }
 
-  .blog .section.blog-heading .icon-view-all-posts img {
+  .blog main .section.blog-heading .icon-view-all-posts img {
     width: 120px;
   }
 }
@@ -274,7 +255,7 @@ main .section.sidebar h4::after {
   margin-top: 0;
 }
 
-.blog .section div.spectra-newsletter {
+.blog main .section div.spectra-newsletter {
   display: block;
   text-align: center;
   padding: 20px 16px;
@@ -286,7 +267,7 @@ main .section.sidebar h4::after {
   margin-bottom: 50px;
 }
 
-.blog .section div.spectra-newsletter h5 {
+.blog main .section div.spectra-newsletter h5 {
   margin-bottom: 0;
 }
 
