@@ -42,7 +42,7 @@
 
 .onetrust .otnotice-content table thead tr,
 .onetrust .otnotice-content table tbody tr:first-child {
-  background: var(--light-gray-background-color);
+  background: var(--background-color-blue);
 }
 
 .onetrust .otnotice-content table th,
