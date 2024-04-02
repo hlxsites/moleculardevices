@@ -43,6 +43,7 @@
 .onetrust .otnotice-content table thead tr,
 .onetrust .otnotice-content table tbody tr:first-child {
   background: var(--background-color-blue);
+  color: var(--text-white);
 }
 
 .onetrust .otnotice-content table th,
