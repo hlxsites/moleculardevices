@@ -120,6 +120,8 @@ main .section.OneLinkShow_zh.columns-2 {
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
   --carousel-slider-background-color: #b3d8e0;
+  --blog-gradient: linear-gradient(90deg, #1591A4 0, #2E9F79 50%, #61B249 100%);
+  --blog-gradient-left: linear-gradient(to left, #1591A4 0, #2E9F79 50%, #61B249 100%);
 
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
@@ -210,6 +212,18 @@ body.appear {
   display: unset;
 }
 
+/* SCREEN READER TEXT */
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 /* progressive section appearance */
 main .section[data-section-status='loading'],
 main .section[data-section-status='initialized'],
@@ -220,6 +234,7 @@ main .section[aria-hidden='true'] {
 
 body.no-scroll {
   overflow: hidden;
+  padding-right: 17px;
 }
 
 h1,
@@ -352,6 +367,11 @@ ul ul {
   display: block;
   color: var(--text-gray);
   font-style: italic;
+}
+
+iframe {
+  border: 0;
+  width: 100%;
 }
 
 /* video player styles and overlays */
@@ -527,7 +547,6 @@ main blockquote {
   font-style: italic;
   margin: 3rem;
   text-indent: -1rem;
-  hanging-punctuation: first;
 }
 
 main blockquote p::before {
@@ -2080,7 +2099,7 @@ main .section.space-wrappers > div {
   margin-top: 50px;
 }
 
-@media (max-width: 420px) {
+@media only scrren and (max-width: 420px) {
   .section .block.mobile-subtitle-small h3,
   .section.mobile-subtitle-small > div.default-content-wrapper > h3 {
     font-size: 16px;
