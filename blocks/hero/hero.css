@@ -287,6 +287,7 @@ display: none;
   margin-bottom: 35px;
 }
 
+main .hero.newsroom  .sticker,
 main .hero.blog .sticker {
   width: auto;
   position: absolute;
@@ -294,15 +295,18 @@ main .hero.blog .sticker {
   right: 15px;
 }
 
+.hero.newsroom .sticker img,
 .hero.blog .sticker img {
   width: auto;
   height: auto;
 }
 
+.hero.newsroom .breadcrumbs,
 .hero.blog .breadcrumbs {
   position: relative;
 }
 
+.hero.newsroom .breadcrumbs > ol,
 .hero.blog .breadcrumbs > ol {
   position: absolute;
 }

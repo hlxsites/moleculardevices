@@ -200,6 +200,7 @@ export function buildHero(block) {
 
   if (block.classList.contains('newsroom')) {
     addMetadata(container);
+    addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
   }
 
