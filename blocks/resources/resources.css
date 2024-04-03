@@ -292,7 +292,7 @@ main .section .resources-wrapper {
   min-height: 600px;
 }
 
-.resources:empty::before {
+.product .resources:empty::before {
   content: '';
   position: absolute;
   background-image: url('/images/ajax-common-loader-gray.gif');
