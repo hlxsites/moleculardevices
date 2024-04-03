@@ -292,7 +292,7 @@ main .section .resources-wrapper {
   min-height: 600px;
 }
 
-.loading-coveo::before {
+.resources:empty::before {
   content: '';
   position: absolute;
   background-image: url('/images/ajax-common-loader-gray.gif');

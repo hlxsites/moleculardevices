@@ -249,16 +249,16 @@ export async function initializeCoveo(block) {
   if (!block.querySelector('#search')) {
     block.innerHTML = searchFormHeader();
     const cRange = document.createRange();
-    setTimeout(() => {
-      block.children[0].children[0].appendChild(
-        cRange.createContextualFragment(searchMainSection()),
-      );
-      loadCSS('/blocks/coveo-search/coveo-search.css');
-      loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
-      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
-      getCoveoToken();
-    }, 500);
+    // setTimeout(() => {
+    block.children[0].children[0].appendChild(
+      cRange.createContextualFragment(searchMainSection()),
+    );
+    loadCSS('/blocks/coveo-search/coveo-search.css');
+    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
+    await getCoveoToken();
+    // }, 500);
   }
 }
 
