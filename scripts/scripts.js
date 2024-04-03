@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   sampleRUM,
   loadFooter,
@@ -20,8 +21,9 @@ import {
   createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, p,
+  a, div, domEl, iframe, p,
 } from './dom-helpers.js';
+import { decorateModal } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -177,6 +179,7 @@ export function embedVideo(link, url, type) {
       src="https://play.vidyard.com/${videoId}.jpg"
       data-uuid="${videoId}"
       data-v="4"
+      allowfullscreen="${type === 'inline'}"
       data-width="${type === 'lightbox' ? '700' : ''}"
       data-height="${type === 'lightbox' ? '394' : ''}"
       data-autoplay="${type === 'lightbox' ? '1' : '0'}"
@@ -734,6 +737,50 @@ function addHreflangTags() {
 }
 
 /**
+ * iframe resize handler
+ * @param {Element} iframeURL The iframe url
+ * @param {Element} iframeID The iframe id
+ * @param {Element} root The parent element of iframe
+ */
+export function iframeResizeHandler(iframeURL, iframeID, root) {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', async () => {
+    if (iframeURL) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${iframeID}`);
+    }
+  });
+}
+
+/**
+ * Decorates the SLAS 2024 form modal element.
+ * @param {Element} main The main element
+ */
+async function formInModalHandler(main) {
+  const slasFormModal = main.querySelector('.section.form-in-modal');
+  const modalIframeID = 'modal-iframe';
+
+  if (slasFormModal) {
+    const defaultForm = slasFormModal.getAttribute('data-default-form');
+
+    const modalBody = div(
+      { class: 'slas-form' },
+      div(
+        { class: 'iframe-wrapper' },
+        iframe({
+          src: defaultForm,
+          id: modalIframeID,
+          loading: 'lazy',
+          title: 'SLAS Modal',
+        }),
+      ),
+    );
+
+    await decorateModal(defaultForm, modalIframeID, modalBody);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -751,6 +798,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  formInModalHandler(main);
   addPageSchema();
   addHreflangTags();
 }
@@ -1092,9 +1140,7 @@ export function detectAnchor(block) {
           observer.disconnect();
           setTimeout(() => {
             window.dispatchEvent(new Event('hashchange'));
-          },
-          3500,
-          );
+          }, 3500);
         }
       });
     });
