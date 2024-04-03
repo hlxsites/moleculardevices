@@ -5,7 +5,7 @@ export default async function decorate(block) {
   let data = [];
   const publications = await ffetch('/query-index.json')
     .sheet('resources')
-    .filter((resource) => resource.type === 'Publication')
+    .filter((resource) => resource.type === 'Publication' && resource.publicationType === 'Full Article')
     .limit(7)
     .all();
 

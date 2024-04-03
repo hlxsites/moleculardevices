@@ -63,7 +63,7 @@ function decorateEmbed(elems) {
 }
 
 export function decorateAutoBlock(content) {
-  const isFullArticlePage = getMetadata('display-type') === 'Full Article';
+  const isFullArticlePage = getMetadata('publication-type') === 'Full Article';
   const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
   const contactURL = 'https://main--moleculardevices--hlxsites.hlx.page/contact?region=americas#get-in-touch';
 
