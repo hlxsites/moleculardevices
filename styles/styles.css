@@ -362,10 +362,6 @@ em strong {
   font-weight: 700;
 }
 
-ul ul {
-  margin-top: 0;
-}
-
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
