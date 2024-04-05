@@ -292,6 +292,7 @@ main .section .resources-wrapper {
   min-height: 600px;
 }
 
+.product .resources.loading-coveo:empty::before,
 .product .resources:empty::before {
   content: '';
   position: absolute;

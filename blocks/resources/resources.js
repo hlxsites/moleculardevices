@@ -246,40 +246,49 @@ function searchFormHeader() {
 }
 
 export async function initializeCoveo(block) {
+  block.classList.add('loading-coveo');
   if (!block.querySelector('#search')) {
     block.innerHTML = searchFormHeader();
     const cRange = document.createRange();
-    // setTimeout(() => {
-    block.children[0].children[0].appendChild(
-      cRange.createContextualFragment(searchMainSection()),
-    );
-    loadCSS('/blocks/coveo-search/coveo-search.css');
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
-    await getCoveoToken();
-    // }, 500);
+    setTimeout(() => {
+      block.children[0].children[0].appendChild(
+        cRange.createContextualFragment(searchMainSection()),
+      );
+      loadCSS('/blocks/coveo-search/coveo-search.css');
+      loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
+      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
+      getCoveoToken();
+    }, 500);
   }
 }
 
-export function coveoResources(target) {
+export async function coveoResources(target) {
   const coveoTabName = 'resources';
   const resourcesBlock = document.getElementsByClassName(coveoTabName)[0];
   const url = new URL(window.location.href);
   const landingPageType = getMetadata('template');
 
   if (landingPageType === 'Product') {
-    resourcesBlock.classList.add('loading-coveo');
     if (target.hash.toLowerCase() === `#${coveoTabName}`) {
       const category = encodeURIComponent(getMetadata('category').trim());
       const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
       const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
-      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${category},${subCategory},${searchTitle}]`;
+      // let params;
+      // if (category === subCategory) {
+      //   params = `${category},${searchTitle}`;
+      // } else if (subCategory === searchTitle) {
+      //   params = `${category},${subCategory}`;
+      // } else {
+      //   params = `${category},${subCategory},${searchTitle}`;
+      // }
+      const params = `${category},${subCategory},${searchTitle}`;
+      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
       window.history.replaceState(null, null, url);
       setTimeout(() => {
         initializeCoveo(resourcesBlock);
         resourcesBlock.classList.remove('loading-coveo');
-      }, 500);
+      }, 700);
     }
   }
 }
