@@ -202,6 +202,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/scale-up-3d-model-drug-screening-us
 Disallow: /en/assets/tutorials-videos/dd/img/scaling-up-organoid-research-new-approach-with-assay-ready-organoids
 Disallow: /en/assets/tutorials-videos/bpd/mastering-monoclonality-of-single-cell-dispensing-and-imaging-with-dispencell-and-csi
 Disallow: /en/assets/tutorials-videos/dd/img/transforming-the-complexities-of-3d-cell-culture-into-reliable-and-translatable-science
+Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potentials-using-axon-pclamp-software
 
 #EU webinars to imaging video gallery page
 
