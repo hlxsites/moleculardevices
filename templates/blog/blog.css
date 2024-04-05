@@ -92,7 +92,7 @@
   padding-right: 15px;
 }
 
-.blog main .section > div.embed-wrapper > div.embed {
+.blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
   margin-top: 10px;
   width: unset;
 }
