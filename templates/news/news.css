@@ -1,5 +1,60 @@
 main .section .default-content-wrapper {
-    padding: 0;
+  padding: 0;
+}
+
+.publication.full-article .section > div:not(.hero-wrapper) {
+  max-width: 800px;
+  padding-inline: 15px;
+}
+
+.publication.full-article .section .columns-wrapper {
+  margin-bottom: 20px;
+}
+
+.publication.full-article .section .default-content-wrapper h3 {
+  margin-block: 20px 10px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.publication.full-article .section .default-content-wrapper p {
+  margin-block: 0 10px;
+}
+
+.publication.full-article .section.hero-container > .breadcrumbs-wrapper {
+  display: none;
+}
+
+.publication.full-article .section.carousel-heading > div {
+  max-width: 100%;
+}
+
+.publication.full-article .section.carousel-heading > div:first-of-type {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 15px 50px;
+  padding: 0;
+  max-width: unset;
+  width: unset;
+}
+
+.publication.full-article .section.carousel-heading > div:first-of-type::after {
+  content: '';
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: var(--background-color-green);
+  background-image: var(--blog-gradient);
+}
+
+.publication.full-article .section.carousel-heading h4 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 main .event-container {
@@ -7,18 +62,14 @@ main .event-container {
   flex-wrap: wrap;
 }
 
-main .event-container .left-col {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
+main .event-container .left-col,
 main .event-container .right-col {
   width: 100%;
   margin-bottom: 15px;
 }
 
 main .section > div.social-share-wrapper {
-  padding: 0px 15px;
+  padding: 0 15px;
 }
 
 main .social-share-wrapper .social-share {
@@ -26,20 +77,18 @@ main .social-share-wrapper .social-share {
 }
 
 @media (min-width: 768px) {
-
   main .event-container .left-col {
-    float:left;
-    flex: 33.33333333%;
+    float: left;
+    flex: 33.33%;
     padding-right: 15px;
   }
-  
+
   main .event-container .right-col {
     float: left;
   }
 
   main .event-container .left-col + .right-col {
     padding-left: 15px;
-    flex: 66.66666667%;
-  }  
+    flex: 66.637%;
+  }
 }
-

@@ -86,7 +86,7 @@
   margin-top: 0;
 }
 
-.blog main .section > div:not(.hero-wrapper) {
+.blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
   max-width: 800px;
   padding-left: 15px;
   padding-right: 15px;

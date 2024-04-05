@@ -123,6 +123,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --blog-gradient: linear-gradient(90deg, #1591A4 0, #2E9F79 50%, #61B249 100%);
   --blog-gradient-left: linear-gradient(to left, #1591A4 0, #2E9F79 50%, #61B249 100%);
 
+
   /* fonts */
   --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
     helvetica, arial, sans-serif;
@@ -311,6 +312,10 @@ blockquote {
   margin-bottom: 1em;
 }
 
+ul ul {
+  margin-top: 0;
+}
+
 p:first-child {
   margin-top: 0;
 }
@@ -355,10 +360,6 @@ em {
 em strong {
   font-family: var(--ff-proxima-regular);
   font-weight: 700;
-}
-
-ul ul {
-  margin-top: 0;
 }
 
 .text-caption {
@@ -2099,7 +2100,7 @@ main .section.space-wrappers > div {
   margin-top: 50px;
 }
 
-@media only scrren and (max-width: 420px) {
+@media only screen and (max-width: 420px) {
   .section .block.mobile-subtitle-small h3,
   .section.mobile-subtitle-small > div.default-content-wrapper > h3 {
     font-size: 16px;
