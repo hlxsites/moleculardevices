@@ -1,12 +1,10 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
+import { decorateButtons } from '../../scripts/lib-franklin.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
-  const actionLink = fragment.querySelector('div > p:last-child:last-of-type a:only-child');
-  if (actionLink) {
-    actionLink.classList.add('button', 'primary');
-  }
+  decorateButtons(fragment);
   block.append(fragment);
 }
 

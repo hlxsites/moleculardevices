@@ -13,7 +13,7 @@ header a i.fa.fa-external-link {
   color: inherit;
 }
 
-header .nav-tabs>li {
+header .nav-tabs > li {
   flex-grow: 1;
   float: left;
   border: 0;
@@ -63,6 +63,38 @@ header .navbar-header a i.fa.fa-external-link {
   display: none;
 }
 
+/* CHINA PHONE NUMBER */
+header .navbar-header > .header-logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+header .sticky-desktop .cn-header-phone-list {
+  display: none;
+}
+
+header .navbar-header > .header-logo-wrapper .cn-header-phone-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+header .navbar-header > .header-logo-wrapper .cn-header-phone {
+  display: flex;
+  gap: 10px;
+}
+
+header .navbar-header > .header-logo-wrapper .cn-header-phone i,
+header .navbar-header > .header-logo-wrapper .cn-header-phone a,
+header .navbar-header > .header-logo-wrapper .cn-header-phone span {
+  display: block;
+  color: #6a747c;
+}
+
+header .navbar-header > .header-logo-wrapper .cn-header-phone i {
+  font-size: 20px;
+}
+
 /* Hamburger menu */
 header button.hamburger {
   padding: 0;
@@ -86,7 +118,7 @@ header .sr-only {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   border: 0;
 }
 
@@ -433,7 +465,7 @@ header .nav-tabs .menu-nav-category {
   background-color: transparent;
   font-weight: 300;
   cursor: default;
-  transform: scale(1.06,1);
+  transform: scale(1.06, 1);
 }
 
 header .nav-tabs .menu-nav-category:hover {
@@ -520,7 +552,7 @@ header .mobile-menu {
   height: calc(100% - 63px);
   top: 63px;
   overflow: auto;
-  transform: translate(-100%,0);
+  transform: translate(-100%, 0);
   transition: transform .4s ease;
   z-index: -9;
 }
@@ -649,15 +681,15 @@ header .mobile-menu-subcategories {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  transform: translate(100%,0);
+  transform: translate(100%, 0);
 }
 
 header .mobile-menu-item.submenu-open > .mobile-menu-subcategories {
-  transform: translate(0%,0);
+  transform: translate(0%, 0);
 }
 
 header .mobile-menu-subcategory-item.submenu-open > .mobile-menu-subcategories {
-  transform: translate(0%,0);
+  transform: translate(0%, 0);
 }
 
 header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
@@ -1062,7 +1094,7 @@ header .image-right img {
   bottom: -60px;
 }
 
-header .image-center  {
+header .image-center {
   background-position: 50% 250%;
   background-size: 80%;
 }
@@ -1138,7 +1170,7 @@ header .cards-submenu p:nth-child(2) {
   min-height: 37px;
 }
 
-header .cards-submenu p:first-child:hover img{
+header .cards-submenu p:first-child:hover img {
   transform: scale(1.15);
   transition: all .4s;
 }
@@ -1520,12 +1552,12 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
   width: auto;
 }
 
-header .applications-right-submenu > div > div:last-child picture:last-child img  {
+header .applications-right-submenu > div > div:last-child picture:last-child img {
   left: -30%;
   top: 45%;
 }
 
-header .products-right-submenu > div > div:last-child p:first-child img{
+header .products-right-submenu > div > div:last-child p:first-child img {
   position: absolute;
   max-height: 100%;
   max-width: 85%;
@@ -1547,7 +1579,7 @@ header .company-right-submenu {
   min-height: auto;
 }
 
-header .company-right-submenu div:first-child > div:first-child p{
+header .company-right-submenu div:first-child > div:first-child p {
   margin: 0;
 }
 
@@ -1625,7 +1657,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 
   header .navbar-header {
     margin: 0;
-    padding:30px 0 20px;
+    padding: 30px 0 20px;
   }
 }
 
@@ -1637,11 +1669,11 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 
 @media (max-width: 991px) {
   body.openmenu {
-      overflow-y: hidden;
+    overflow-y: hidden;
   }
 
   body.openmenu .mobile-menu {
-    transform: translate(0,0);
+    transform: translate(0, 0);
     z-index: 99;
   }
 
@@ -1651,9 +1683,15 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 
   header .navbar-header {
     position: relative;
-    padding: 20px 15px;
+    padding: 16px 15px;
     width: 100%;
     margin: 0;
+  }
+
+  header .navbar-header > .header-logo-wrapper .cn-header-phone i,
+  header .navbar-header > .header-logo-wrapper .cn-header-phone a,
+  header .navbar-header > .header-logo-wrapper .cn-header-phone span {
+    font-size: 14px;
   }
 
   header .hamburger {
@@ -1789,12 +1827,12 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     transition: all 0.3s ease-in-out;
   }
 
-  header .mainmenu-wrapper>nav {
+  header .mainmenu-wrapper > nav {
     width: 100%;
   }
 
   header .searchlink {
-    background-image: url('/images/orange-search.webp');;
+    background-image: url('/images/orange-search.webp');
     display: block;
     background-repeat: no-repeat;
     height: 42px;
@@ -1830,7 +1868,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     max-width: 100%;
   }
 
-  header .nav-tabs>li>div {
+  header .nav-tabs > li > div {
     font-size: 12px;
   }
 
@@ -1859,11 +1897,11 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     width: 18px;
     height: 18px;
     position: absolute;
-    transform: translate(-2px,-12px);
+    transform: translate(-2px, -12px);
     line-height: 18px;
   }
 
-  header .nav-tabs > li.searchlink>a {
+  header .nav-tabs > li.searchlink > a {
     display: none;
     font-size: 12px;
   }
@@ -1951,7 +1989,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     position: relative;
     margin-left: -12px;
     overflow: hidden;
-    transform: translate(6px,0);
+    transform: translate(6px, 0);
   }
 
   header nav .nav-menu {
@@ -1974,30 +2012,15 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     min-width: 12.5rem;
   }
 
-  header .nav-tabs li .menu-nav-submenu {
-    display: none;
-  }
-
+  header .nav-tabs li .menu-nav-submenu,
   header .nav-tabs > li .menu-nav-submenu-close {
     display: none;
   }
 
-  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu {
-    display: initial;
-  }
-
-  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu-close {
-    display: initial;
-  }
-
-  header .right-submenu[aria-expanded="true"] {
-    display: initial;
-  }
-
-  header .right-submenu-content[aria-expanded="true"] {
-    display: initial;
-  }
-
+  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu,
+  header .nav-tabs > li[aria-expanded="true"] .menu-nav-submenu-close,
+  header .right-submenu[aria-expanded="true"],
+  header .right-submenu-content[aria-expanded="true"],
   header .searchlink[aria-expanded="true"] > div {
     display: initial;
   }
@@ -2008,7 +2031,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   .header .nav-tabs .menu-nav-submenu > div > h2 {
-    transform: perspective(500px) translate3d(0,0,0);
+    transform: perspective(500px) translate3d(0, 0, 0);
     position: relative;
     font-weight: 300;
   }
@@ -2044,7 +2067,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     bottom: -30px;
   }
 
-  header .green-blue-circle img  {
+  header .green-blue-circle img {
     bottom: -10px;
   }
 
@@ -2081,6 +2104,16 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 }
 
+@media only screen and (max-width: 480px) {
+  header .navbar-header > .header-logo-wrapper {
+    display: block;
+  }
+
+  header .navbar-header > .header-logo-wrapper .cn-header-phone-list {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+}
 
 /* Lab notes | mega menu changes */
 .blog-cards-submenu {
@@ -2112,7 +2145,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
-.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child  {
+.blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child {
   background-color: var(--text-white);
   min-height: 114px;
   overflow: hidden;

@@ -1,37 +1,66 @@
 .additional-resources-container {
-	margin-top: 40px;
+  margin-top: 40px;
 }
 
 .additional-resource h3 {
-	font-size: 40px;
-	margin-bottom: 20px;
-	margin-top: 0;
-	padding: 0;
+  font-size: 40px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.additional-resource .columns > div .button-container,
+.additional-resource .columns > div .button-container > strong,
+.additional-resource .columns > div .button-container > em {
+  display: inline-block;
+}
+
+.additional-resource .columns > div .button-container:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.additional-resource .columns > div .button-container a.button.secondary {
+  padding: 13px 18px 14px;
+}
+
+.additional-resource .columns > div ul {
+  padding-left: 1rem;
+}
+
+.additional-resource .columns > div ul li:not(:last-child) {
+  margin-bottom: 8px;
 }
 
 @media only screen and (min-width: 768px) {
   .additional-resource .columns > div {
     display: flex;
+    align-items: center;
   }
 
-  .additional-resource .columns > div > div:nth-child(odd){
+  .additional-resource .columns > div > div:nth-child(odd) {
     flex-basis: 70%;
-    padding-right: 20px;
+    padding-right: 50px;
   }
 
-  .additional-resource .columns > div > div:nth-child(even){
+  .additional-resource .columns > div > div:nth-child(even) {
     flex-basis: 30%;
     text-align: center;
   }
 
-  .additional-resource .columns > div > div:nth-child(even) img{
+  .additional-resource .columns > div > div:nth-child(even) img {
     display: block;
     margin: auto;
   }
 
-  .additional-resource:nth-child(even) .columns > div > div:nth-child(odd) {
-		order: 2;
-    padding-right: 0; 
-    padding-left: 20px;
-	}
+  .additional-resource:nth-child(odd) .columns > div > div:nth-child(odd) {
+    order: 2;
+    padding-right: 0;
+    padding-left: 50px;
+  }
+
+  /* .additional-resource:nth-child(even) .columns > div > div:nth-child(odd) {
+    order: 2;
+    padding-right: 0;
+    padding-left: 50px;
+  } */
 }

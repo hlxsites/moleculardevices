@@ -95,6 +95,7 @@ function blogHideSocialShareOnHero(block) {
 
 export default function decorate(block) {
   const template = getMetadata('template').toLowerCase();
+  const theme = getMetadata('theme');
 
   let title = '';
   if (block.querySelector('.social-share p')) {
@@ -109,7 +110,7 @@ export default function decorate(block) {
   block.appendChild(socialShareBlock(title, socials));
 
   decorateIcons(block);
-  if (template === 'blog') {
+  if (template === 'blog' || theme === 'Full Article') {
     blogHideSocialShareOnHero(block);
   }
 }

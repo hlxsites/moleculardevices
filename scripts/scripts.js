@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   sampleRUM,
   loadFooter,
@@ -17,10 +18,12 @@ import {
   buildBlock,
   readBlockConfig,
   toCamelCase,
+  createOptimizedPicture,
 } from './lib-franklin.js';
 import {
-  a, div, domEl, p,
+  a, div, domEl, iframe, p,
 } from './dom-helpers.js';
+import { decorateModal } from '../blocks/modal/modal.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -107,8 +110,18 @@ function optimiseHeroBlock(main) {
  * Append default wave section to pages
  */
 function decorateWaveSection(main) {
+  const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
+    { media: '(min-width: 992px)', width: '1663' },
+    { width: '900' },
+  ]);
+  waveImage.querySelector('img').setAttribute('width', '1663');
+  waveImage.querySelector('img').setAttribute('height', '180');
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
-  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }));
+  const waveSection = document.querySelector('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons');
+  const waveSection2 = document.querySelector('.section.wave.orange-buttons');
+  if (waveSection && !waveSection.querySelector('picture')) { waveSection.appendChild(waveImage); }
+  if (waveSection2 && !waveSection2.querySelector(':scope > picture')) { waveSection2.appendChild(waveImage); }
+  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
 /**
@@ -166,6 +179,7 @@ export function embedVideo(link, url, type) {
       src="https://play.vidyard.com/${videoId}.jpg"
       data-uuid="${videoId}"
       data-v="4"
+      allowfullscreen="${type === 'inline'}"
       data-width="${type === 'lightbox' ? '700' : ''}"
       data-height="${type === 'lightbox' ? '394' : ''}"
       data-autoplay="${type === 'lightbox' ? '1' : '0'}"
@@ -723,6 +737,50 @@ function addHreflangTags() {
 }
 
 /**
+ * iframe resize handler
+ * @param {Element} iframeURL The iframe url
+ * @param {Element} iframeID The iframe id
+ * @param {Element} root The parent element of iframe
+ */
+export function iframeResizeHandler(iframeURL, iframeID, root) {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', async () => {
+    if (iframeURL) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${iframeID}`);
+    }
+  });
+}
+
+/**
+ * Decorates the SLAS 2024 form modal element.
+ * @param {Element} main The main element
+ */
+async function formInModalHandler(main) {
+  const slasFormModal = main.querySelector('.section.form-in-modal');
+  const modalIframeID = 'modal-iframe';
+
+  if (slasFormModal) {
+    const defaultForm = slasFormModal.getAttribute('data-default-form');
+
+    const modalBody = div(
+      { class: 'slas-form' },
+      div(
+        { class: 'iframe-wrapper' },
+        iframe({
+          src: defaultForm,
+          id: modalIframeID,
+          loading: 'lazy',
+          title: 'SLAS Modal',
+        }),
+      ),
+    );
+
+    await decorateModal(defaultForm, modalIframeID, modalBody);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -740,6 +798,7 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  formInModalHandler(main);
   addPageSchema();
   addHreflangTags();
 }
@@ -1081,9 +1140,7 @@ export function detectAnchor(block) {
           observer.disconnect();
           setTimeout(() => {
             window.dispatchEvent(new Event('hashchange'));
-          },
-          3500,
-          );
+          }, 3500);
         }
       });
     });

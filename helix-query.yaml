@@ -9,6 +9,7 @@ indices:
       - '/fragments/**'
       - '/sites/default/files/**'
       - '/en/assets/promotion/**'
+      - '/eu/assets/promotion/**'
     target: /query-index.json
     properties:
       title:
@@ -26,6 +27,9 @@ indices:
       type:
         select: head > meta[name="template"]
         value: attribute(el, "content")
+      publicationType:
+        select: head > meta[name="publication-type"]
+        value: attribute(el, "content")  
       identifier:
         select: head > meta[name="identifier"]
         value: attribute(el, "content")

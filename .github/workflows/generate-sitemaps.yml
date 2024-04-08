@@ -1,0 +1,59 @@
+name: Regenerate the Sitemaps
+
+on:
+  repository_dispatch:
+    types:
+      - resource-published
+  workflow_dispatch:
+
+jobs:
+  build-coveo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - run: |
+          echo "Status: ${{ github.event.client_payload.status }}"
+          echo "Path: ${{ github.event.client_payload.path }}"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Run scripts and commit changes
+        if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
+        working-directory: ./coveo
+        run: |
+          node generate-coveo-sitemap.js
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./coveo-xml.xml
+          git commit -m "Update generated coveo.xml file"
+          git push
+
+  build-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - run: |
+          echo "Status: ${{ github.event.client_payload.status }}"
+          echo "Path: ${{ github.event.client_payload.path }}"
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        working-directory: ./tools/sitemap
+        run: npm install
+      - name: Run scripts and commit changes
+        working-directory: ./tools/sitemap
+        run: |
+          node create.js
+          git add ../../content-sitemap.xml
+          timestamp=$(date -u)
+          git commit -m "Update generated content-sitemap.xml file" || exit 0
+          git push

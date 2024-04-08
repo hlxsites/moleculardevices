@@ -259,7 +259,7 @@ export async function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
   return navigation;
 }
 
-export async function buildHamburger(content) {
+export function buildHamburger(content) {
   const hamburger = button(
     { class: 'hamburger' },
     span(

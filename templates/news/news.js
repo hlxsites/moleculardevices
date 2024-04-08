@@ -1,7 +1,8 @@
 import { formatDate } from '../../scripts/scripts.js';
 import { loadEmbed } from '../../blocks/embed/embed.js';
 import {
-  div, i, span,
+  a,
+  div, i, p, span, strong,
 } from '../../scripts/dom-helpers.js';
 
 import {
@@ -62,43 +63,59 @@ function decorateEmbed(elems) {
 }
 
 export function decorateAutoBlock(content) {
+  const isFullArticlePage = getMetadata('publication-type') === 'Full Article';
+  const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
+  const contactURL = 'https://www.moleculardevices.com/contact?region=americas#get-in-touch';
+
   if (!content) {
     return;
   }
 
-  const contentWrapper = span({ class: 'event-container' });
+  if (isFullArticlePage) {
+    const publisher = getMetadata('publisher');
+    const gatedUrl = getMetadata('article-url');
+    const creditParagraph = div({ style: 'margin-block: 30px;' },
+      p(strong(
+        i('This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), ' and reprinted here with permission.'),
+      )),
+      p(a({ href: contactURL, class: 'button primary' }, signatureCTA)),
+    );
+    content.append(creditParagraph);
+  } else {
+    const contentWrapper = span({ class: 'event-container' });
 
-  decorateTitle(contentWrapper, content.querySelector('h1'));
-  decorateCite(contentWrapper);
+    decorateTitle(contentWrapper, content.querySelector('h1'));
+    decorateCite(contentWrapper);
 
-  const hasLeftCol = content.querySelector('p:first-child picture');
-  const pic = div();
-  if (hasLeftCol) {
-    pic.classList.add('left-col');
-    contentWrapper.append(pic);
-  }
-
-  const txt = div({ class: 'right-col' });
-
-  let isInleftCol = hasLeftCol;
-  [...content.children].forEach((child) => {
-    if (isInleftCol && child.matches('p') && child.querySelector('picture')) {
-      pic.append(child);
-    } else if (!child.matches('h1') && !child.matches('cite')) {
-      isInleftCol = false;
-      txt.append(child);
+    const hasLeftCol = content.querySelector('p:first-child picture');
+    const pic = div();
+    if (hasLeftCol) {
+      pic.classList.add('left-col');
+      contentWrapper.append(pic);
     }
-  });
 
-  contentWrapper.append(txt);
-  content.append(contentWrapper);
+    const txt = div({ class: 'right-col' });
 
-  decorateEmbed(contentWrapper.querySelectorAll('.embed'));
-  decorateStrong(contentWrapper.querySelectorAll('.right-col p > strong'));
-  decorateCaption(contentWrapper.querySelectorAll('.left-col p > picture'));
-  decorateCaption(contentWrapper.querySelectorAll('.right-col p > picture'));
+    let isInleftCol = hasLeftCol;
+    [...content.children].forEach((child) => {
+      if (isInleftCol && child.matches('p') && child.querySelector('picture')) {
+        pic.append(child);
+      } else if (!child.matches('h1') && !child.matches('cite')) {
+        isInleftCol = false;
+        txt.append(child);
+      }
+    });
 
-  decorateReadMore(contentWrapper.querySelector('p:last-child a'));
+    contentWrapper.append(txt);
+    content.append(contentWrapper);
+
+    decorateEmbed(contentWrapper.querySelectorAll('.embed'));
+    decorateStrong(contentWrapper.querySelectorAll('.right-col p > strong'));
+    decorateCaption(contentWrapper.querySelectorAll('.left-col p > picture'));
+    decorateCaption(contentWrapper.querySelectorAll('.right-col p > picture'));
+
+    decorateReadMore(contentWrapper.querySelector('p:last-child a'));
+  }
 }
 
 export default function buildAutoBlocks() {

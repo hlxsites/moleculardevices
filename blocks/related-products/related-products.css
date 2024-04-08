@@ -12,12 +12,12 @@ main .section .related-products-wrapper {
 }
 
 .related-products .carousel-item {
-  width: 30.7%;
-  max-width: 30.7%;
+  width: 32%;
+  max-width: 32%;
   height: auto;
   display: block;
   flex: 0 1 auto;
-  padding: 20px 15px 40px;
+  padding: 10px 10px 20px;
   margin: 0;
 }
 
@@ -40,7 +40,7 @@ main .section .related-products-wrapper {
   top: 0;
   left: 0;
   color: var(--text-white);
-  background-color: #6eb43f;
+  background-color: var(--background-color-green);
   padding: 5px 15px;
   text-transform: uppercase;
   font-family: var(--ff-proxima-light);
@@ -87,7 +87,6 @@ main .section .related-products-wrapper {
     max-width: 100%;
     flex: 1 0 100%;
   }
-
 
   .related-products .carousel-item.clone {
     display: block;
