@@ -16,6 +16,10 @@ main .featured-products-carousel .carousel-item {
   border: 3px solid #efefef;
 }
 
+main .featured-products-carousel .carousel-item-columns-container {
+  gap: 20px;
+}
+
 main .featured-products-carousel .carousel-item-text {
   text-align: left;
 }

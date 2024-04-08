@@ -204,7 +204,9 @@ export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
       { class: 'container' },
       await buildBrandLogo(content),
       nav(
-        { id: 'nav' },
+        {
+          id: 'nav',
+        },
         div(
           { class: 'nav-menu' },
           navMenuUl,

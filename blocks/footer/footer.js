@@ -3,7 +3,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, iframe, p,
+  a, div, i, iframe, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateExternalLink, formatDate, loadScript, unixDateToString,
@@ -120,6 +120,26 @@ function iframeResizeHandler(formUrl, id, container) {
   });
 }
 
+function capitalize(sting) {
+  return sting[0].toUpperCase() + sting.slice(1);
+}
+
+async function getLatestNewsletter() {
+  const newsletters = await ffetch('/query-index.json')
+    .sheet('resources')
+    .filter((resource) => resource.type === 'Newsletter')
+    .limit(3)
+    .all();
+
+  const list = ul();
+  newsletters.forEach((newsletter) => {
+    let title = newsletter.path.split('/').slice(-1)[0];
+    title = capitalize(title).split('-').join(' ');
+    list.appendChild(li(a({ href: newsletter.gatedURL }, title, i({ class: 'fa fa-chevron-circle-right' }))));
+  });
+  return list;
+}
+
 async function buildNewsletter(container) {
   const newsletterId = 'enewsletter';
   if (container.querySelector(`#${newsletterId} iframe`)) {
@@ -133,8 +153,7 @@ async function buildNewsletter(container) {
       id: newsletterId,
       class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
-    },
-    div(
+    }, div(
       iframe({
         id: formId,
         src: formUrl,
@@ -144,11 +163,13 @@ async function buildNewsletter(container) {
     ),
     )
   );
+
+  const newsletterList = await getLatestNewsletter();
+
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
+  container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   iframeResizeHandler(formUrl, `#${formId}`, container);
-  // remove terms from plain footer, they are provided as part of the iframe
-  container.querySelector(`#${newsletterId} + p`).remove();
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {

@@ -47,10 +47,12 @@ main .section.social-share-container {
 }
 
 /* Blog Variant */
+.full-article .share-event p,
 .blog .share-event p {
   display: none;
 }
 
+.full-article .share-event ul.button-container,
 .blog .share-event ul.button-container {
   list-style: none;
   margin: 0;
@@ -69,12 +71,14 @@ main .section.social-share-container {
   margin-top: 0;
 }
 
+.full-article .social-share-hidden .share-event ul.button-container,
 .blog .social-share-hidden .share-event ul.button-container {
   visibility: hidden;
   opacity: 0;
   margin-top: 20px;
 }
 
+.full-article .share-event ul.button-container li,
 .blog .share-event ul.button-container li {
   clear: both;
   padding: 0;
@@ -90,25 +94,30 @@ main .section.social-share-container {
   background-image: linear-gradient(to left,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%);
 }
 
+.full-article .share-event ul.button-container li:hover,
 .blog .share-event ul.button-container li:hover {
   background-image: none;
   box-shadow: 4px 2px 4px rgba(0 0 0 / 50%);
 }
 
+.full-article .share-event ul.button-container li a,
 .blog .share-event ul.button-container li a {
   display: block;
 }
 
+.full-article .share-event ul.button-container li i,
 .blog .share-event ul.button-container li i {
   color: #fff;
   font-size: 30px;
 }
 
 @media only screen and (max-width: 767px) {
+  .full-article .social-share,
   .blog .social-share {
     margin-top: 60px;
   }
 
+  .full-article .share-event ul.button-container,
   .blog .share-event ul.button-container {
     position: static;
     flex-direction: row;
