@@ -2,16 +2,18 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { formatDateUTCSeconds } from '../../scripts/scripts.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
-    let dateLine = formatDate(unixDateToString(item.date));
+    const thumbImage = item.thumbnail !== '0' ? item.thumbnail : item.image;
+    let dateLine = formatDateUTCSeconds(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
+
     block.append(article({},
       div({ class: 'image' },
         a({ href: item.path, title: item.title },
-          createOptimizedPicture(item.image, item.title, (idx === 0), [{ width: '500' }]),
+          createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }]),
         ),
       ),
       div({ class: 'title' },

@@ -45,12 +45,13 @@ function renderListItem(item, idx) {
     dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
 
+  const thumbImage = item.thumbnail !== '0' ? item.thumbnail : item.image;
   return article({ class: 'item' },
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
         href: item.path,
         title: item.title,
-      }, createOptimizedPicture(item.image, item.title, (idx === 0), [{ width: '500' }])),
+      }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }])),
     ) : '',
     div({ class: 'content' },
       p({ class: 'cite' }, (item.publisher && item.publisher !== '0') ? `${dt} | ${item.publisher}` : dt),
