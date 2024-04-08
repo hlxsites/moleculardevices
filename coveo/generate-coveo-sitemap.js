@@ -123,7 +123,7 @@ function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
 }
 
-function itemSearchTitle(item) {
+export default function itemSearchTitle(item) {
   if (isNotEmpty(item.searchTitle)) {
     return item.searchTitle;
   }
@@ -234,12 +234,6 @@ function createCoveoFields(index, icons) {
       const result = [item.category];
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
-      item.mdproductsdatacategory = result.join(';');
-    }
-
-    if (item.type === 'Product') {
-      const result = [item.category];
-      !isNotEmpty(item.subcategory) && result.push(`${item.category}|${itemSearchTitle(item)}`);
       item.mdproductsdatacategory = result.join(';');
     }
 

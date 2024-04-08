@@ -273,16 +273,17 @@ export async function coveoResources(target) {
     if (target.hash.toLowerCase() === `#${coveoTabName}`) {
       const category = encodeURIComponent(getMetadata('category').trim());
       const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
-      const searchTitle = encodeURIComponent(getMetadata('search-title').trim());
-      // let params;
-      // if (category === subCategory) {
-      //   params = `${category},${searchTitle}`;
-      // } else if (subCategory === searchTitle) {
-      //   params = `${category},${subCategory}`;
-      // } else {
-      //   params = `${category},${subCategory},${searchTitle}`;
-      // }
-      const params = `${category},${subCategory},${searchTitle}`;
+      let searchTitle = encodeURIComponent(getMetadata('search-title').trim());
+      if (!searchTitle) {
+        searchTitle = document.querySelector('main h1').textContent;
+      }
+      let params;
+      if (!subCategory) {
+        params = `${category},${searchTitle}`;
+      } else {
+        params = `${category},${subCategory},${searchTitle}`;
+      }
+
       url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
       window.history.replaceState(null, null, url);
       setTimeout(() => {
