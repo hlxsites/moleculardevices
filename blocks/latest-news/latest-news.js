@@ -9,6 +9,7 @@ export function buildList(data, block) {
     const thumbImage = item.thumbnail !== '0' ? item.thumbnail : item.image;
     let dateLine = formatDateUTCSeconds(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
+
     block.append(article({},
       div({ class: 'image' },
         a({ href: item.path, title: item.title },
