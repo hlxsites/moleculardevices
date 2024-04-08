@@ -123,7 +123,7 @@ function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
 }
 
-export default function itemSearchTitle(item) {
+function itemSearchTitle(item) {
   if (isNotEmpty(item.searchTitle)) {
     return item.searchTitle;
   }
