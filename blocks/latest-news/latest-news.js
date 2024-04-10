@@ -6,7 +6,7 @@ import { formatDateUTCSeconds } from '../../scripts/scripts.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
-    const thumbImage = item.thumbnail !== '0' ? item.thumbnail : item.image;
+    const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
     let dateLine = formatDateUTCSeconds(item.date);
     if (item.publisher) dateLine += ` | ${item.publisher}`;
 
