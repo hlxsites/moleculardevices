@@ -236,6 +236,12 @@ function createCoveoFields(index, icons) {
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
       item.mdproductsdatacategory = result.join(';');
     }
+     if (item.type === 'Application' && isNotEmpty(item.category)) {
+      const result = [item.category];
+      //isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+      result.push(`${item.category}|${itemSearchTitle(item)}`);
+      item.mdproductsdatacategory = result.join(';');
+    }
 
     if (item.md_pagetype === 'Resource' || item.path.endsWith('.pdf')) {
       item.md_title = itemSearchTitle(item);
@@ -329,7 +335,7 @@ async function writeCoveoSitemapXML(index) {
   xmlData.push('</urlset>');
 
   try {
-    fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
+    fs.writeFileSync('coveo-xml2.xml', xmlData.join('\n'));
     console.log(`Successfully wrote ${count} items to coveo xml`);
   } catch (err) {
     console.error(err);
