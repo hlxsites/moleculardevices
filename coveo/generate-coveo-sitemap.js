@@ -240,7 +240,7 @@ function createCoveoFields(index, icons) {
       const result = [item.category];
       //isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
       result.push(`${item.category}|${itemSearchTitle(item)}`);
-      item.mdproductsdatacategory = result.join(';');
+      item.mdapplicationsdatacategory = result.join(';');
     }
 
     if (item.md_pagetype === 'Resource' || item.path.endsWith('.pdf')) {
@@ -268,13 +268,25 @@ function createCoveoFieldsFromRelatedData(index) {
       }
 
       // set related application info
-      if (isNotEmpty(item.relatedApplications)) {
+      /*if (isNotEmpty(item.relatedApplications)) {
         item.md_application = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
           .filter((application) => !!application)
           .map(itemSearchTitle)
           .join(';');
+      }*/
+      if (isNotEmpty(item.relatedApplications)) {
+        const relatedApplications = item.relatedApplications.split(',')
+          .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
+          .filter((application) => !!application);
+
+        item.md_application = relatedApplications.map(itemSearchTitle).join(';');
+        item.mdapplicationsdatacategory = relatedApplications
+          .map((application) => application.mdapplicationsdatacategory)
+          .filter((category) => !!category)
+          .join(';');
       }
+
     }
   });
 }
@@ -321,6 +333,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_product><![CDATA[ ${item.md_product || ''}  ]]></md_product>`);
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
+    xmlData.push(`      <mdapplicationsdatacategory><![CDATA[ ${item.mdapplicationsdatacategory || ''} ]]></mdapplicationsdatacategory>`);
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO
