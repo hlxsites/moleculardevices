@@ -45,7 +45,7 @@ function renderListItem(item, idx) {
     dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
 
-  const thumbImage = item.thumbnail !== '0' ? item.thumbnail : item.image;
+  const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
   return article({ class: 'item' },
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
