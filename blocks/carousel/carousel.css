@@ -199,7 +199,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 768px) {
-
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 750px;
@@ -207,7 +206,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 992px) {
-
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 970px;
@@ -269,7 +267,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 1200px) {
-
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 1170px;
@@ -604,7 +601,6 @@ main .carousel blockquote::after {
 }
 
 @media only screen and (max-width: 992px) {
-
   main .carousel blockquote::before,
   main .carousel blockquote::after {
     width: 33px;
