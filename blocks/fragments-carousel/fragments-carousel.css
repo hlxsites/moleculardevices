@@ -1,8 +1,27 @@
 main .carousel.fragments-carousel {
-	padding-inline: 0;
+  padding-inline: 0;
   align-items: flex-start;
 }
 
 main .carousel.fragments-carousel .carousel-item {
   padding-block: 0;
+}
+
+main .fragments-carousel-wrapper .carousel-dot-button.selected {
+  background-color: var(--text-color);
+}
+
+main .fragments-carousel-wrapper .carousel-nav-button {
+  color: var(--text-color);
+  border-color: var(--text-color);
+}
+
+@media only screen and (max-width: 767px) {
+  main .fragments-carousel .carousel-item-text .button-container {
+    margin-bottom: 2rem;
+  }
+
+  main .fragments-carousel .carousel-item-columns-container {
+    padding: 30px;
+  }
 }

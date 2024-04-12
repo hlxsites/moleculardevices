@@ -54,9 +54,6 @@ export default async function decorate(block) {
 
   await createCarousel(block, fragments.html, {
     defaultStyling: true,
-    navButtons: true,
-    dotButtons: true,
-    infiniteScroll: true,
     autoScroll: false,
   });
 }
