@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/applications/3d-cell-models/spheroids</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/3d-cell-models/spheroids"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/3d-cell-models/spheroids"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/applications/disease-modeling</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/disease-modeling"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/disease-modeling"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/applications/cancer-research</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cancer-research"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cancer-research"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/applications/drug-discovery-and-development</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/drug-discovery-and-development"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/drug-discovery-and-development"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/applications/organoid-innovation-center</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/organoid-innovation-center"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/organoid-innovation-center"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/general/carola-mancini-applications-scientist"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
+        <lastmod>2024-04-15</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/rapid-efficient-selection-of-high-producing-mammalian-cells-secreting-non-mab-proteins</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/app-note/bpd/rapid-efficient-selection-of-high-producing-mammalian-cells-secreting-non-mab-proteins"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/app-note/bpd/rapid-efficient-selection-of-high-producing-mammalian-cells-secreting-non-mab-proteins"/>
@@ -306,28 +427,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/3d-biology/3d-ready-organoid-expansion-service"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/3d-biology/3d-ready-organoid-expansion-service"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/3d-biology/3d-ready-organoid-expansion-service"/>
-        <lastmod>2024-04-11</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
-        <lastmod>2024-04-11</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/3d-biology/3d-bioprinting-bab400-bioprinter-automation-solution"/>
         <lastmod>2024-04-11</lastmod>
     </url>
     <url>
@@ -683,6 +782,17 @@
         <lastmod>2024-03-31</lastmod>
     </url>
     <url>
+        <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
+        <lastmod>2024-03-29</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/en/assets/brochures/dd/img/a-life-sciences-company</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/brochures/dd/img/a-life-sciences-company"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/brochures/dd/img/a-life-sciences-company"/>
@@ -801,17 +911,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/service-support/service-plans"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/service-support/service-plans"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/service-support/service-plans"/>
-        <lastmod>2024-03-20</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/gxp-compliance-solutions/softmax-pro-gxp-software"/>
         <lastmod>2024-03-20</lastmod>
     </url>
     <url>
@@ -1629,17 +1728,6 @@
         <lastmod>2024-02-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/applications/3d-cell-models/spheroids</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/3d-cell-models/spheroids"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/3d-cell-models/spheroids"/>
-        <lastmod>2024-02-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/applications/3d-cell-models/organoids</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/3d-cell-models/organoids"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/3d-cell-models/organoids"/>
@@ -1970,17 +2058,6 @@
         <lastmod>2024-02-05</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-confocal-ht-ai"/>
-        <lastmod>2024-02-01</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/products/clone-screening/single-cell-isolation/dispencell-single-cell-dispenser</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/clone-screening/single-cell-isolation/dispencell-single-cell-dispenser"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/clone-screening/single-cell-isolation/dispencell-single-cell-dispenser"/>
@@ -2089,17 +2166,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/microplate-readers/harnessing-microplate-assays-for-high-throughput-drug-screening-in-cancer-research"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/microplate-readers/harnessing-microplate-assays-for-high-throughput-drug-screening-in-cancer-research"/>
         <lastmod>2024-01-19</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/general/carola-mancini-applications-scientist"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/general/carola-mancini-applications-scientist"/>
-        <lastmod>2024-01-18</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/flipr/functional-characterization-of-healthy-and-disease-related-3d-neurospheres-using-human-ipsc-derived-neurons-and-astrocytes</loc>
@@ -2528,17 +2594,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/tutorials-videos/dd/img/organoid-innovation-center-walkthrough"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/img/organoid-innovation-center-walkthrough"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/organoid-innovation-center-walkthrough"/>
-        <lastmod>2023-12-28</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/clone-screening/the-role-of-monoclonal-antibodies-against-covid-19"/>
         <lastmod>2023-12-28</lastmod>
     </url>
     <url>
@@ -3015,17 +3070,6 @@
         <lastmod>2023-11-07</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/applications/disease-modeling</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/disease-modeling"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/disease-modeling"/>
-        <lastmod>2023-11-07</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/en/assets/customer-breakthrough/dd/img/newcells-biotech</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/customer-breakthrough/dd/img/newcells-biotech"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/customer-breakthrough/dd/img/newcells-biotech"/>
@@ -3320,17 +3364,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/technology/agileoptix-high-content-screening"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/technology/agileoptix-high-content-screening"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/technology/agileoptix-high-content-screening"/>
-        <lastmod>2023-10-03</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/drug-discovery-and-development</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/drug-discovery-and-development"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/drug-discovery-and-development"/>
         <lastmod>2023-10-03</lastmod>
     </url>
     <url>
@@ -3980,17 +4013,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/monoclonal-antibodies-mabs"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/monoclonal-antibodies-mabs"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/monoclonal-antibodies-mabs"/>
-        <lastmod>2023-09-07</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/app-note/bpd/cloneselect-imager-fl-fluorescence-and-rapid-day-zero-monoclonality-assurance"/>
         <lastmod>2023-09-07</lastmod>
     </url>
     <url>
@@ -7063,17 +7085,6 @@
         <lastmod>2023-08-16</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/applications/organoid-innovation-center</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/organoid-innovation-center"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/organoid-innovation-center"/>
-        <lastmod>2023-08-16</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/applications/3d-cell-models/organoids/intestinal-organoids</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/3d-cell-models/organoids/intestinal-organoids"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/3d-cell-models/organoids/intestinal-organoids"/>
@@ -7082,17 +7093,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/3d-cell-models/organoids/intestinal-organoids"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/3d-cell-models/organoids/intestinal-organoids"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/3d-cell-models/organoids/intestinal-organoids"/>
-        <lastmod>2023-08-16</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/cancer-research</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cancer-research"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cancer-research"/>
         <lastmod>2023-08-16</lastmod>
     </url>
     <url>
