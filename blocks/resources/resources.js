@@ -295,6 +295,8 @@ export async function coveoResources(target) {
       window.history.replaceState(null, null, url);
       setTimeout(() => {
         initializeCoveo(resourcesBlock);
+      }, 500);
+      setTimeout(() => {
         resourcesBlock.classList.remove('loading-coveo');
       }, 1000);
     }
@@ -304,7 +306,7 @@ export async function coveoResources(target) {
 export default async function decorate(block) {
   const landingPageType = getMetadata('template');
 
-  if (landingPageType !== 'Product' || landingPageType !== 'Application') {
+  if (landingPageType === 'Technology') {
     await decorateResources(block);
   }
 }
