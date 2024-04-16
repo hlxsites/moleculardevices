@@ -236,9 +236,9 @@ function createCoveoFields(index, icons) {
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
       item.mdproductsdatacategory = result.join(';');
     }
-     if (item.type === 'Application' && isNotEmpty(item.category)) {
+    if (item.type === 'Application' && isNotEmpty(item.category)) {
       const result = [item.category];
-      //isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+      // isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
       result.push(`${item.category}|${itemSearchTitle(item)}`);
       item.mdapplicationsdatacategory = result.join(';');
     }
@@ -268,13 +268,14 @@ function createCoveoFieldsFromRelatedData(index) {
       }
 
       // set related application info
-      /*if (isNotEmpty(item.relatedApplications)) {
+      /* if (isNotEmpty(item.relatedApplications)) {
         item.md_application = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
           .filter((application) => !!application)
           .map(itemSearchTitle)
           .join(';');
-      }*/
+      } */
+
       if (isNotEmpty(item.relatedApplications)) {
         const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
@@ -286,7 +287,6 @@ function createCoveoFieldsFromRelatedData(index) {
           .filter((category) => !!category)
           .join(';');
       }
-
     }
   });
 }
