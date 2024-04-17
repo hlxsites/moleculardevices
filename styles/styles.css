@@ -723,10 +723,6 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-main .section.wave:not(.background-grey-top-half, .bluegreen) {
-  padding-bottom: 0;
-}
-
 main .section.background-grey + .section.wave,
 main .section.background-grey-top-half,
 main .section.background-grey-bottom-half {
@@ -1330,6 +1326,12 @@ main div.section.wave.bluegreen2 {
       rgba(97 178 73 / 100%) 100%) !important;
   background-image: none;
   margin-bottom: 30px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.wave:not(.background-grey-top-half, .bluegreen),
+main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
+  padding-bottom: 0;
 }
 
 @media only screen and (min-width: 768px) {
