@@ -118,7 +118,7 @@ function decorateWaveSection(main) {
   waveImage.querySelector('img').setAttribute('height', '180');
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
   const waveSections = document.querySelectorAll('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons:not(.bluegreen)');
-  const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen)');
+  const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen, .wavecarousel)');
   waveSections.forEach((section) => {
     if (section && !section.querySelector('picture')) { section.appendChild(waveImage); }
   });
