@@ -1226,6 +1226,7 @@ main:not(.sidekick-library) div.section.wave:not(.bluegreen):last-child {
 
 main .section.wave.orange-buttons {
   padding-bottom: 0;
+  margin-bottom: 48px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -1327,22 +1328,10 @@ main div.section.wave.bluegreen2 {
   margin-bottom: 30px;
 }
 
-main div.section.wave.customer-story-container:not([style]) img[src*='wave-footer-bg-top'],
-main div.section.wave.bluegreen2:not(.customer-story-container) img[src*='wave-footer-bg-top'] {
-  display: none;
-}
-
-main div.section.wave.bluegreen2::after {
-  background-repeat: no-repeat;
-  background-image: url('/images/wave-background-bottom.webp'),
-    url('/images/wave-background-bottom.png');
-  background-size: 100% 100%;
-  height: 82px;
-  width: 100%;
-  position: absolute;
-  padding: 0;
-  bottom: 0;
-  content: '';
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.wave:not(.background-grey-top-half, .bluegreen),
+main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
+  padding-bottom: 0;
 }
 
 @media only screen and (min-width: 768px) {

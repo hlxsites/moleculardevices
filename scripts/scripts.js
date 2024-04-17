@@ -117,10 +117,14 @@ function decorateWaveSection(main) {
   waveImage.querySelector('img').setAttribute('width', '1663');
   waveImage.querySelector('img').setAttribute('height', '180');
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
-  const waveSection = document.querySelector('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons');
-  const waveSection2 = document.querySelector('.section.wave.orange-buttons');
-  if (waveSection && !waveSection.querySelector('picture')) { waveSection.appendChild(waveImage); }
-  if (waveSection2 && !waveSection2.querySelector(':scope > picture')) { waveSection2.appendChild(waveImage); }
+  const waveSections = document.querySelectorAll('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons:not(.bluegreen)');
+  const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen, .wavecarousel)');
+  waveSections.forEach((section) => {
+    if (section && !section.querySelector('picture')) { section.appendChild(waveImage); }
+  });
+  waveSections2.forEach((section) => {
+    if (section && !section.querySelector(':scope > picture')) { section.appendChild(waveImage); }
+  });
   if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
