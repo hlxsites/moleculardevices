@@ -2,6 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, iframe, button,
+  p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 
@@ -253,6 +254,7 @@ async function loadIframeForm(data, type) {
     div(
       h3('Request Quote or Information for:'),
       h3(tab),
+      p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
       iframe({
         class: 'contact-quote-request',
         id: 'contactQuoteRequest',
