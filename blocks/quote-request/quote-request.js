@@ -144,7 +144,7 @@ function prepImageUrl(thumbImage) {
 
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
-  const formUrl = 'https://info.moleculardevices.com/rfq';
+  const formUrl = 'https://info.moleculardevices.com/rfq-new-test';
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -250,9 +250,9 @@ async function loadIframeForm(data, type) {
 
   root.appendChild(
     div(
-      h3("Got it. Now, let's get in touch."),
+      h3("Request Quote or Information for:"),
       p(
-        'A team member will contact you within 24-business hours regarding your product inquiry for: ',
+        'Request Quote or Information for:',
         span({ style: 'display: block;font-weight: bold;' }, tab),
       ),
       iframe({
