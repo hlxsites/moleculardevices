@@ -145,6 +145,7 @@ function prepImageUrl(thumbImage) {
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
   const formUrl = 'https://info.moleculardevices.com/rfq-new-test';
+  // const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -250,11 +251,8 @@ async function loadIframeForm(data, type) {
 
   root.appendChild(
     div(
-      h3("Request Quote or Information for:"),
-      p(
-        '',
-        span({ style: 'display: block;font-weight: bold;' }, tab),
-      ),
+      h3('Request Quote or Information for:'),
+      h3(tab),
       iframe({
         class: 'contact-quote-request',
         id: 'contactQuoteRequest',
