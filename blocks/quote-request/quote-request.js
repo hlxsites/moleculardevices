@@ -252,7 +252,7 @@ async function loadIframeForm(data, type) {
     div(
       h3("Request Quote or Information for:"),
       p(
-        'Request Quote or Information for:',
+        '',
         span({ style: 'display: block;font-weight: bold;' }, tab),
       ),
       iframe({
