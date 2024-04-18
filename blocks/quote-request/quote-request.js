@@ -5,6 +5,7 @@ import {
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { iframeResizeHandler } from '../modal/modal.js';
 
 const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
 
@@ -122,15 +123,6 @@ function createBackBtn(stepNum) {
   );
 }
 
-function iframeResizehandler(formUrl, id, root) {
-  root.querySelector('iframe').addEventListener('load', () => {
-    if (formUrl) {
-      /* global iFrameResize */
-      iFrameResize({ log: false }, id);
-    }
-  });
-}
-
 function prepImageUrl(thumbImage) {
   const thumbImg = thumbImage;
   let thumbImgnew = '';
@@ -145,8 +137,7 @@ function prepImageUrl(thumbImage) {
 
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
-  const formUrl = 'https://info.moleculardevices.com/rfq-new-test';
-  // const formUrl = 'https://info.moleculardevices.com/rfq';
+  const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -265,7 +256,7 @@ async function loadIframeForm(data, type) {
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
   sampleRUM('rfq', rfqRUM);
-  iframeResizehandler(formUrl, '#contactQuoteRequest', root);
+  iframeResizeHandler(formUrl, 'contactQuoteRequest', root);
 }
 
 /* step one */
