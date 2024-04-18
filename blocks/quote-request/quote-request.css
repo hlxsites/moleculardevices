@@ -1,4 +1,4 @@
-main{
+main {
   position: relative;
 }
 
@@ -42,7 +42,7 @@ main div.section.quote-request-container + .section.wave {
   color: var(--text-white);
   margin: auto;
   max-width: 100%;
-  padding: 30px 50px 100px;
+  padding: 50px 50px 100px;
   position: relative;
   text-align: center;
   width: 100%;
@@ -52,7 +52,7 @@ main div.section.quote-request-container + .section.wave {
   padding-bottom: 0;
 }
 
-.quote-request-wrapper .quote-request{
+.quote-request-wrapper .quote-request {
   padding-bottom: 100px;
 }
 
@@ -60,9 +60,12 @@ main div.section.quote-request-container + .section.wave {
   color: var(--text-white);
   font-family: var(--ff-proxima-light);
   font-size: 35px;
-  margin-bottom: 35px;
-  margin-top: 20px;
+  margin: 10px 0;
   width: 100%;
+}
+
+.quote-request h3:last-of-type {
+  margin-bottom: 35px;
 }
 
 .rfq-icon-list {
@@ -105,7 +108,7 @@ main div.section.quote-request-container + .section.wave {
   color: var(--text-white);
 }
 
-.rfq-product-wrapper:nth-child(2) .rfq-icon-list{
+.rfq-product-wrapper:nth-child(2) .rfq-icon-list {
   justify-content: center;
 }
 
@@ -201,7 +204,6 @@ main div.section.quote-request-container + .section.wave {
 .contact-quote-request {
   border: none;
   width: 100%;
-  height: 574px;
 }
 
 .progress-wrapper {
