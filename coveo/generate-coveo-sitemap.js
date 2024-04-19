@@ -253,7 +253,7 @@ function createCoveoFields(index, icons) {
 
 function createCoveoFieldsFromRelatedData(index) {
   index.data.forEach((item) => {
-    if (item.md_pagetype === 'Resource') {
+    if (item.md_pagetype === 'Resource' && item.md_source !== 'KB') {
       // set related product info
       if (isNotEmpty(item.relatedProducts)) {
         const relatedProducts = item.relatedProducts.split(',')
@@ -268,14 +268,6 @@ function createCoveoFieldsFromRelatedData(index) {
       }
 
       // set related application info
-      /* if (isNotEmpty(item.relatedApplications)) {
-        item.md_application = item.relatedApplications.split(',')
-          .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application)
-          .map(itemSearchTitle)
-          .join(';');
-      } */
-
       if (isNotEmpty(item.relatedApplications)) {
         const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
