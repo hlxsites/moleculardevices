@@ -1,9 +1,11 @@
 import ffetch from '../../scripts/ffetch.js';
 import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
-  div, h3, p, ul, li, img, a, span, i, iframe, button,
+  div, h3, ul, li, img, a, span, i, iframe, button,
+  p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { iframeResizeHandler } from '../modal/modal.js';
 
 const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
 
@@ -119,15 +121,6 @@ function createBackBtn(stepNum) {
     },
     i({ class: 'fa-angle-left fa' }),
   );
-}
-
-function iframeResizehandler(formUrl, id, root) {
-  root.querySelector('iframe').addEventListener('load', () => {
-    if (formUrl) {
-      /* global iFrameResize */
-      iFrameResize({ log: false }, id);
-    }
-  });
 }
 
 function prepImageUrl(thumbImage) {
@@ -250,11 +243,9 @@ async function loadIframeForm(data, type) {
 
   root.appendChild(
     div(
-      h3("Got it. Now, let's get in touch."),
-      p(
-        'A team member will contact you within 24-business hours regarding your product inquiry for: ',
-        span({ style: 'display: block;font-weight: bold;' }, tab),
-      ),
+      h3('Request Quote or Information for:'),
+      h3(tab),
+      p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
       iframe({
         class: 'contact-quote-request',
         id: 'contactQuoteRequest',
@@ -265,7 +256,7 @@ async function loadIframeForm(data, type) {
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
   sampleRUM('rfq', rfqRUM);
-  iframeResizehandler(formUrl, '#contactQuoteRequest', root);
+  iframeResizeHandler(formUrl, 'contactQuoteRequest', root);
 }
 
 /* step one */

@@ -108,7 +108,15 @@ Disallow: /en/assets/app-note/bpd/dispencell-reaches-98-percent-probability-of-c
 Disallow: /en/assets/app-note/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification-using-impedance-based-single-cell-dispenser
 Disallow: /en/assets/app-note/dd/img/cell-culture-automation-of-3d-cancer-spheroid-assay-with-cellxpress-ai-cell-culture-system
 Disallow: /en/assets/app-note/dd/img/automation-of-3d-intestinal-organoids-culture-with-cellxpress-ai-system
-
+Disallow: /en/assets/app-note/bpd/enhanced-develpment-of-virus-specific-hybridomas-using-clonepix-and-cloneselect-imager
+Disallow: /en/assets/app-note/bpd/rapid-automated-selection-of-mammalian-cell-colonies-by-cell-surface-protein
+Disallow: /en/assets/app-note/bpd/rapid-and-efficient-selection-of-high-producing-mammalian-cells-secreting-non-mab-proteins
+Disallow: /en/assets/app-note/bpd/automation-of-the-crispr-based-cell-line-development-workflow
+Disallow: /en/assets/app-note/bpd/accelerating-gene-edited-cell-lines-with-the-cloneselect-imager-fl
+Disallow: /en/assets/app-note/bpd/expanded-fluorescence-screening-using-qpix-400-series
+Disallow: /en/assets/app-note/bpd/automated-colorimetric-colony-selection-blue-white-colony-screening-with-qpix-400-series
+Disallow: /en/assets/app-note/bpd/fluorescent-bacterial-colony-selection-using-qpix-400-system
+Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expressing-mammalian-cell-lines-using-novel-clonepix
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations

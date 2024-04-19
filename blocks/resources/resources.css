@@ -259,6 +259,8 @@ main .section .resources-wrapper {
   margin-bottom: 0;
 }
 
+.application .section .resources .cover-banner,
+.application .magic-box .magic-box-clear,
 .technology .section .resources .cover-banner,
 .technology .magic-box .magic-box-clear,
 .section .resources .coveo-main-title,
@@ -285,15 +287,13 @@ main .section .resources-wrapper {
   z-index: -1;
 }
 
-.application .resources.block,
-.application .resources.loading-coveo,
 .product .resources.block,
 .product .resources.loading-coveo {
   min-height: 600px;
 }
 
-.application .resources.loading-coveo::before,
-.product .resources.loading-coveo::before {
+.product .resources.loading-coveo:empty::before,
+.product .resources:empty::before {
   content: '';
   position: absolute;
   background-image: url('/images/ajax-common-loader-gray.gif');

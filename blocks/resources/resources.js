@@ -250,14 +250,16 @@ export async function initializeCoveo(block) {
   if (!block.querySelector('#search')) {
     block.innerHTML = searchFormHeader();
     const cRange = document.createRange();
-    block.children[0].children[0].appendChild(
-      cRange.createContextualFragment(searchMainSection()),
-    );
-    loadCSS('/blocks/coveo-search/coveo-search.css');
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
-    await getCoveoToken();
+    setTimeout(() => {
+      block.children[0].children[0].appendChild(
+        cRange.createContextualFragment(searchMainSection()),
+      );
+      loadCSS('/blocks/coveo-search/coveo-search.css');
+      loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
+      loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
+      getCoveoToken();
+    }, 500);
   }
 }
 
@@ -267,7 +269,7 @@ export async function coveoResources(target) {
   const url = new URL(window.location.href);
   const landingPageType = getMetadata('template');
 
-  if (landingPageType === 'Product' || landingPageType === 'Application') {
+  if (landingPageType === 'Product') {
     if (target.hash.toLowerCase() === `#${coveoTabName}`) {
       const category = encodeURIComponent(getMetadata('category').trim());
       const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
@@ -282,22 +284,12 @@ export async function coveoResources(target) {
         params = `${category},${subCategory},${searchTitle}`;
       }
 
-      if (landingPageType === 'Product') {
-        url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
-      }
-
-      if (landingPageType === 'Application') {
-        url.hash = `t=Resources&sort=relevancy&f:@mdapplicationsdatacategory=[${params}]`;
-      }
-
+      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
       window.history.replaceState(null, null, url);
-      await initializeCoveo(resourcesBlock);
-      // setTimeout(() => {
-      //   initializeCoveo(resourcesBlock);
-      // }, 500);
       setTimeout(() => {
+        initializeCoveo(resourcesBlock);
         resourcesBlock.classList.remove('loading-coveo');
-      }, 1000);
+      }, 700);
     }
   }
 }
@@ -305,7 +297,7 @@ export async function coveoResources(target) {
 export default async function decorate(block) {
   const landingPageType = getMetadata('template');
 
-  if (landingPageType === 'Technology') {
+  if (landingPageType !== 'Product') {
     await decorateResources(block);
   }
 }
