@@ -253,7 +253,7 @@ function createCoveoFields(index, icons) {
 
 function createCoveoFieldsFromRelatedData(index) {
   index.data.forEach((item) => {
-    if (item.md_pagetype === 'Resource' && item.md_source !== 'KB') {
+    if (item.md_pagetype === 'Resource') {
       // set related product info
       if (isNotEmpty(item.relatedProducts)) {
         const relatedProducts = item.relatedProducts.split(',')
@@ -292,6 +292,7 @@ function createCoveoFieldsFromRelatedData(index) {
 }
 
 async function writeCoveoSitemapXML(index) {
+  //index.data.filter((item) => item.md_source !== 'KB');
   index.data.sort((item1, item2) => item1.priority - item2.priority);
 
   const EMPTY = '<![CDATA[ ]]>';
