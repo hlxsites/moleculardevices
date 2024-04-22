@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
+        <lastmod>2024-04-22</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/products/microplate-readers/stacker/stakmax-microplate-handling-system</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/microplate-readers/stacker/stakmax-microplate-handling-system"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/microplate-readers/stacker/stakmax-microplate-handling-system"/>
@@ -3299,17 +3310,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/customer-breakthrough/dd/img/mimetas"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/customer-breakthrough/dd/img/mimetas"/>
         <lastmod>2023-11-14</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/microplate-readers/washers/aquamax-microplate-washer"/>
-        <lastmod>2023-11-09</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/scaling-up-organoid-research-a-new-approach-with-assay-ready-organoids</loc>
