@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
 import { createRecentResourceCarousel } from '../recent-blogs-carousel/recent-blogs-carousel.js';
 

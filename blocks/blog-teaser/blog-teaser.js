@@ -7,7 +7,6 @@ import {
   getMetadata,
 } from '../../scripts/lib-franklin.js';
 import { fetchFragment, formatDate } from '../../scripts/scripts.js';
-import ffetch from '../../scripts/ffetch.js';
 import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
 
 function renderBlockTeaser(blogData) {
