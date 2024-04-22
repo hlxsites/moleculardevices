@@ -32,12 +32,16 @@
   transition: transform .5s ease-in-out;
   width: 100%;
   height: auto;
-  max-height: 575px;
+  max-height: 290px;
   object-fit: cover;
 }
 
 .blog-teaser-item .blog-teaser-thumb:hover img {
   transform: scale(1.1);
+}
+
+.blog-teaser.featured .blog-teaser-item .blog-teaser-thumb img{
+  max-height: 575px;
 }
 
 .blog-teaser-item .blog-teaser-caption {

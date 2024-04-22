@@ -266,10 +266,14 @@ const VARIANTS = {
     },
 
     getCategories(item) {
-      const category = item.path
+      let category = item.path
         .split('/')[2];
 
       if (!category || category === 'blog') return null;
+
+      if (category === 'in-the-news' && item.category !== '0') {
+        category = item.category.split(' ').join('-');
+      }
 
       const filterableCategory = category.split('-')
         .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
