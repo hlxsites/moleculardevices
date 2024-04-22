@@ -1,17 +1,15 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createRecentResourceCarousel } from '../recent-blogs-carousel/recent-blogs-carousel.js';
 
-export default async function decorate(block) {
+export async function getBlogsAndPublications() {
   let data = [];
   const publications = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Publication' && resource.publicationType === 'Full Article')
-    .limit(7)
     .all();
 
   const blogs = await ffetch('/query-index.json')
     .sheet('blog')
-    .limit(7)
     .all();
 
   data = [...publications, ...blogs];
@@ -25,6 +23,11 @@ export default async function decorate(block) {
     }
     return 0;
   });
+  return data;
+}
+
+export default async function decorate(block) {
+  let data = await getBlogsAndPublications();
   data = data.slice(0, 7);
 
   await createRecentResourceCarousel(block, data);

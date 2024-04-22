@@ -1,6 +1,7 @@
-import ffetch from '../../scripts/ffetch.js';
+/* eslint-disable import/no-cycle */
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
+import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
 
 export async function createRecentResourceCarousel(block, data) {
   const cardRenderer = await createCard({
@@ -33,29 +34,7 @@ export async function createRecentResourceCarousel(block, data) {
 }
 
 export default async function decorate(block) {
-  let data = [];
-  const publications = await ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Publication' && resource.publicationType === 'Full Article')
-    .limit(7)
-    .all();
-
-  const blogs = await ffetch('/query-index.json')
-    .sheet('blog')
-    .limit(7)
-    .all();
-
-  data = [...publications, ...blogs];
-
-  data.sort((x, y) => {
-    if (x.date > y.date) {
-      return -1;
-    }
-    if (x.date < y.date) {
-      return 1;
-    }
-    return 0;
-  });
+  let data = await getBlogsAndPublications();
   data = data.slice(0, 7);
 
   await createRecentResourceCarousel(block, data);
