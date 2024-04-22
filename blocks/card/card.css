@@ -132,10 +132,6 @@ main .card-caption .c2a .compare-checkbox.selected {
   border-color: var(--background-color-green);
 }
 
-main .card-type {
-  display: none;
-}
-
 main .card-date {
   font-size: var(--body-font-size-xs);
   font-family: var(--ff-proxima-light);

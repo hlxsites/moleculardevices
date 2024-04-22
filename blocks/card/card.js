@@ -65,6 +65,8 @@ class Card {
     this.c2aLinkIconFull = false;
     this.showDate = false;
     this.showCategory = false;
+    this.showType = false,
+    this.showDisplayType = false,
 
     // Apply overwrites
     Object.assign(this, config);
@@ -155,7 +157,8 @@ class Card {
         item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
         this.showCategory ? span({ class: 'card-category' }, item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
         div({ class: 'card-caption' },
-          item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
+          this.showDisplayType ? div({ class: 'card-display-type' }, item.displayType) : '',
+          this.showType ? div({ class: 'card-type' }, item.type) : '',
           this.showDate ? div({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
           h3(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
