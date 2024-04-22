@@ -65,8 +65,8 @@ class Card {
     this.c2aLinkIconFull = false;
     this.showDate = false;
     this.showCategory = false;
-    this.showType = false,
-    this.showDisplayType = false,
+    this.showType = false;
+    this.showDisplayType = false;
 
     // Apply overwrites
     Object.assign(this, config);

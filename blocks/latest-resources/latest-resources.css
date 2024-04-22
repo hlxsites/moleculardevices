@@ -29,15 +29,6 @@ main .latest-resources .carousel-item {
   margin: 0;
 }
 
-main .latest-resources .card .card-type {
-  display: block;
-  text-align: left;
-  text-transform: uppercase;
-  color: #6eb43f;
-  font-size: 14px;
-  margin: 5px 0;
-}
-
 main .latest-resources .card .card-thumb {
   height: 190px;
   min-height: 190px;

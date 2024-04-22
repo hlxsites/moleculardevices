@@ -244,12 +244,10 @@ const VARIANTS = {
       const publications = await ffetch('/query-index.json')
         .sheet('resources')
         .filter((resource) => resource.type === 'Publication' && resource.publicationType === 'Full Article')
-        .limit(7)
         .all();
 
       const blogs = await ffetch('/query-index.json')
         .sheet('blog')
-        .limit(7)
         .all();
 
       data = [...publications, ...blogs];

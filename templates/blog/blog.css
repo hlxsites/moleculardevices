@@ -83,7 +83,10 @@
 
 .blog main .card-caption h3 {
   line-height: 1.1;
-  margin-top: 0;
+}
+
+.blog main .card-caption p.button-container {
+  margin-bottom: 0;
 }
 
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
