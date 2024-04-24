@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/products/additional-products/certified-refurbished-instruments</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/additional-products/certified-refurbished-instruments"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
+        <lastmod>2024-04-24</lastmod>
+    </url>
+    <url>
+        <loc>https://www.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
+        <lastmod>2024-04-24</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/products/axon-patch-clamp-system/digitizers/axon-digidata-1550b-plus-humsilencer</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/axon-patch-clamp-system/digitizers/axon-digidata-1550b-plus-humsilencer"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/axon-patch-clamp-system/digitizers/axon-digidata-1550b-plus-humsilencer"/>
@@ -1604,17 +1626,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/tutorials-videos/dd/img/automation-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/img/automation-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/automation-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai"/>
-        <lastmod>2024-03-19</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/axon-patch-clamp-system/amplifiers/axon-instruments-patch-clamp-amplifiers"/>
         <lastmod>2024-03-19</lastmod>
     </url>
     <url>
@@ -3673,17 +3684,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/cns/university-sao-paulo-uses-axon-instruments-for-patch-clamp-recordings-in-brain-slices"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/cns/university-sao-paulo-uses-axon-instruments-for-patch-clamp-recordings-in-brain-slices"/>
         <lastmod>2023-10-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/additional-products/certified-refurbished-instruments</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/additional-products/certified-refurbished-instruments"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/additional-products/certified-refurbished-instruments"/>
-        <lastmod>2023-10-04</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/applications/patch-clamp-electrophysiology</loc>
