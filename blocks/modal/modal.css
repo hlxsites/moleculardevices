@@ -1,6 +1,6 @@
 :root {
-  --overlay:  rgb(0 0 0 / 70%);
-  --form-bg:  rgb(0 0 0 / 50%);
+  --overlay: rgb(0 0 0 / 70%);
+  --form-bg: rgb(0 0 0 / 50%);
 }
 
 .modal-overlay {
@@ -92,7 +92,7 @@
   padding: 40px 20px;
   border-radius: 20px;
   overflow: hidden;
-  background-color: var(--text-green);;
+  background-color: var(--text-green);
   background-image: var(--blog-gradient-left);
   text-align: center;
 }
@@ -153,9 +153,8 @@
     align-items: center;
   }
 
-  .newsletter-inner-wrapper .columns-2-cols .col-left img + p {
-    margin-left: -130px;
-    margin-top: 60px;
+  .newsletter-inner-wrapper .columns-2-cols .col img {
+    width: 361px;
   }
 }
 
@@ -180,6 +179,11 @@
 
   .modal-inner-wrapper .modal-form h3 {
     font-size: 30px;
+  }
+
+  .newsletter-inner-wrapper .columns-2-cols .col-left img + p {
+    margin-left: -130px;
+    margin-top: 60px;
   }
 }
 

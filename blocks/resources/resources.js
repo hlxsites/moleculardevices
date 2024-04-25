@@ -428,9 +428,6 @@ export async function coveoResources(target) {
 
       window.history.replaceState(null, null, url);
       await initializeCoveo(resourcesBlock);
-      // setTimeout(() => {
-      //   initializeCoveo(resourcesBlock);
-      // }, 500);
       setTimeout(() => {
         resourcesBlock.classList.remove('loading-coveo');
       }, 1000);
