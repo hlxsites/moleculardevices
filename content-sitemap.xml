@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
+        <lastmod>2024-04-25</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/products/assay-kits/transporters/qbt-fatty-acid-uptake</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/assay-kits/transporters/qbt-fatty-acid-uptake"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/assay-kits/transporters/qbt-fatty-acid-uptake"/>
@@ -3255,17 +3266,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/customer-breakthrough/dd/flipr/oxford-drug-discovery-institute"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/customer-breakthrough/dd/flipr/oxford-drug-discovery-institute"/>
         <lastmod>2023-11-28</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-duoluc-reporter"/>
-        <lastmod>2023-11-23</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/products/assay-kits/reporter-gene-assays/spectramax-glo-steady-luciferase-reporter</loc>
