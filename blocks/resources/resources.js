@@ -209,7 +209,7 @@ export async function coveoResources(target) {
         url.hash = `t=Resources&sort=relevancy&f:@mdapplicationsdatacategory=[${params}]`;
       }
 
-      if (landingPageType === 'Technology') {
+      if (landingPageType === 'technology') {
         url.hash = `t=Resources&sort=relevancy&f:@mdtechnologydatacategory=[${params}]`;
       }
 
