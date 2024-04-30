@@ -283,6 +283,7 @@ function createCoveoFieldsFromRelatedData(index) {
           .filter((category) => !!category)
           .join(';');
       }
+
       if (isNotEmpty(item.relatedTechnologies)) {
         const relatedTechnologies = item.relatedTechnologies.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))

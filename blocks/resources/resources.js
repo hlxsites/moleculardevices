@@ -184,7 +184,11 @@ export async function coveoResources(target) {
   const url = new URL(window.location.href);
   const landingPageType = getMetadata('template');
 
-  if (landingPageType === 'Product' || landingPageType === 'Application') {
+  if (
+    landingPageType === 'Product'
+    || landingPageType === 'Application'
+    || landingPageType === 'Technology'
+  ) {
     if (target.hash.toLowerCase() === `#${coveoTabName}`) {
       const category = encodeURIComponent(getMetadata('category').trim());
       const subCategory = encodeURIComponent(
