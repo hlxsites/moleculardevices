@@ -288,7 +288,7 @@ function createCoveoFieldsFromRelatedData(index) {
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
           .filter((technology) => !!technology);
 
-        item.md_technology= relatedTechnologies.map(itemSearchTitle).join(';');
+        item.md_technology = relatedTechnologies.map(itemSearchTitle).join(';');
         item.mdtechnologydatacategory = relatedTechnologies
           .map((technology) => technology.mdtechnologydatacategory)
           .filter((category) => !!category)
