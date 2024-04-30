@@ -403,7 +403,7 @@ export async function coveoResources(target) {
   const url = new URL(window.location.href);
   const landingPageType = getMetadata('template');
 
-  if (landingPageType === 'Product') {
+  if (landingPageType === 'Product' || landingPageType === 'Application') {
     if (target.hash.toLowerCase() === `#${coveoTabName}`) {
       const category = encodeURIComponent(getMetadata('category').trim());
       const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
@@ -418,7 +418,14 @@ export async function coveoResources(target) {
         params = `${category},${subCategory},${searchTitle}`;
       }
 
-      url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
+      if (landingPageType === 'Product') {
+        url.hash = `t=Resources&sort=relevancy&f:@mdproductsdatacategory=[${params}]`;
+      }
+
+      if (landingPageType === 'Application') {
+        url.hash = `t=Resources&sort=relevancy&f:@mdapplicationsdatacategory=[${params}]`;
+      }
+
       window.history.replaceState(null, null, url);
       await initializeCoveo(resourcesBlock);
       setTimeout(() => {
@@ -431,7 +438,7 @@ export async function coveoResources(target) {
 export default async function decorate(block) {
   const landingPageType = getMetadata('template');
 
-  if (landingPageType !== 'Product') {
+  if (landingPageType === 'Technology') {
     await decorateResources(block);
   }
 }
