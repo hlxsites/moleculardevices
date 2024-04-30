@@ -210,7 +210,7 @@ export async function coveoResources(target) {
       }
 
       if (landingPageType === 'Technology') {
-        url.hash = `t=Resources&sort=relevancy&f:@mdtechnologiesdatacategory=[${params}]`;
+        url.hash = `t=Resources&sort=relevancy&f:@mdtechnologydatacategory=[${params}]`;
       }
 
       window.history.replaceState(null, null, url);
