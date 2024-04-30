@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console, no-unused-expressions, no-nested-ternary, quote-props */
 
 const https = require('https');
@@ -139,17 +140,17 @@ function itemSearchTitle(item) {
   return '';
 }
 
-function preprocess(index) {
-  index.data.forEach((item) => {
-    // There are some technology pages that should also be indexed as applications
-    if (item.type === 'Technology' && isNotEmpty(item.category)) {
-      const deepClone = JSON.parse(JSON.stringify(item));
-      deepClone.type = 'Application';
-      deepClone.internal_path = deepClone.internal_path.replace('/technology/', '/applications/');
-      index.data.push(deepClone);
-    }
-  });
-}
+// function preprocess(index) {
+//   index.data.forEach((item) => {
+//     // There are some technology pages that should also be indexed as applications
+//     if (item.type === 'Technology' && isNotEmpty(item.category)) {
+//       const deepClone = JSON.parse(JSON.stringify(item));
+//       deepClone.type = 'Application';
+//       deepClone.internal_path = deepClone.internal_path.replace('/technology/', '/applications/');
+//       index.data.push(deepClone);
+//     }
+//   });
+// }
 
 function createCoveoFields(index, icons) {
   console.log('Procesing data...');
@@ -283,7 +284,6 @@ function createCoveoFieldsFromRelatedData(index) {
           .filter((category) => !!category)
           .join(';');
       }
-
       if (isNotEmpty(item.relatedTechnologies)) {
         const relatedTechnologies = item.relatedTechnologies.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
@@ -369,7 +369,7 @@ async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
 
-  preprocess(index);
+  // preprocess(index);
   createCoveoFields(index, icons);
   createCoveoFieldsFromRelatedData(index);
   writeCoveoSitemapXML(index);
