@@ -283,7 +283,6 @@ function createCoveoFieldsFromRelatedData(index) {
 }
 
 async function writeCoveoSitemapXML(index) {
-  //index.data.filter((item) => item.md_source !== 'KB');
   index.data.sort((item1, item2) => item1.priority - item2.priority);
 
   const EMPTY = '<![CDATA[ ]]>';
