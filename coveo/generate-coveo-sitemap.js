@@ -301,7 +301,6 @@ async function writeCoveoSitemapXML(index) {
   let count = 0;
 
   index.data.forEach((item) => {
-    // if (item.md_source === 'KB') return;
     if (item.internal_path.startsWith('/products/series-products')) return;
     if (item.internal_path.startsWith('/fragments')) return;
 
