@@ -267,15 +267,6 @@ function createCoveoFieldsFromRelatedData(index) {
           .join(';');
       }
 
-      // set related application info
-      /* if (isNotEmpty(item.relatedApplications)) {
-        item.md_application = item.relatedApplications.split(',')
-          .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application)
-          .map(itemSearchTitle)
-          .join(';');
-      } */
-
       if (isNotEmpty(item.relatedApplications)) {
         const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
