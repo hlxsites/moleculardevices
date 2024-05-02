@@ -225,7 +225,7 @@ export default async function decorate(block) {
 
     if (idx === 5) {
       const copyrightTextEn = p({ class: 'en OneLinkHide footer-copyright-text' }, `©${new Date().getFullYear()} Molecular Devices, LLC. All rights reserved.`);
-      const copyrightTextZh = p({ class: 'zh OneLinkShow_zh footer-copyright-text' },
+      const copyrightTextZh = p({ class: 'zh OneLinkShow_zh1 footer-copyright-text' },
         `©${new Date().getFullYear()} Molecular Devices, LLC. 保留所有权利。`,
         a({ href: 'https://beian.miit.gov.cn/' }, '沪ICP备05056171号-2'),
         ' ',
