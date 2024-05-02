@@ -177,14 +177,27 @@ function buildBlogCardSubmenu(block) {
 }
 
 /* RECENT EVENTS */
-async function recentEventHandler() {
+async function recentEventHandler(block) {
+  const featuredEventUrl = block.querySelectorAll('a');
   const eventsMenu = div({ class: ['flex-space-between'] });
-  document.querySelector('.events-right-submenu').appendChild(eventsMenu);
+  document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
 
-  const events = await ffetch('/query-index.json')
+  let events = await ffetch('/query-index.json')
     .sheet('events')
     .filter((item) => item.eventEnd * 1000 > Date.now())
     .all();
+
+  const featuredEvents = [];
+
+  if (featuredEventUrl.length > 0) {
+    featuredEventUrl.forEach(async (event) => {
+      const eventUrl = new URL(event).pathname;
+      const fe = events.filter((ev) => ev.path === eventUrl)[0];
+      featuredEvents.push(fe);
+    });
+  }
+
+  events = featuredEvents;
 
   const sortedEvents = events.sort((first, second) => first.eventStart - second.eventStart)
     .slice(0, 2);
@@ -195,8 +208,7 @@ async function recentEventHandler() {
       div(
         p(
           strong(
-            `${event.eventType} | ${event.eventRegion} | ${
-              event.eventAddress
+            `${event.eventType} | ${event.eventRegion} | ${event.eventAddress
             } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
           ),
         ),
@@ -222,9 +234,9 @@ async function recentEventHandler() {
   });
 }
 
-function buildEventCardSubmenu() {
+function buildEventCardSubmenu(block) {
   setTimeout(async () => {
-    await recentEventHandler();
+    await recentEventHandler(block);
   }, 300);
 }
 
