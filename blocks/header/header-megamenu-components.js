@@ -195,9 +195,8 @@ async function recentEventHandler(block) {
       const fe = events.filter((ev) => ev.path === eventUrl)[0];
       featuredEvents.push(fe);
     });
+    events = featuredEvents;
   }
-
-  events = featuredEvents;
 
   const sortedEvents = events.sort((first, second) => first.eventStart - second.eventStart)
     .slice(0, 2);
