@@ -5,6 +5,7 @@
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
+// eslint-disable-next-line import/no-cycle
 import { formatDateUTCSeconds, isGatedResource, summariseDescription } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,

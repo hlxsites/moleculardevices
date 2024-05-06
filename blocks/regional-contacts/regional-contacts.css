@@ -78,11 +78,7 @@
   padding: 0;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:first-child {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child {
   display: flex;
   flex-wrap: wrap;
   margin-top: 0;
@@ -90,87 +86,50 @@
   padding-left: 0;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li {
   position: relative;
+  font-size: var(--body-font-size-m);
+  line-height: 1.2;
+  margin-bottom: 0;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li:nth-child(2) {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:has(em) {
+  padding-top: 10px;
+  margin-top: 5px;
+}
+
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:has(em) ~ li:has(em) {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) {
   margin: 15px 0 0;
   min-height: 40px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:first-child
-  > li {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child > li {
   align-items: center;
   display: flex;
   font-size: var(--body-font-size-xl);
   margin-bottom: 0;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li {
   align-items: center;
   display: flex;
   padding: 10px 0;
   position: relative;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li:nth-child(3) {
-  font-size: var(--body-font-size-m);
-  font-style: italic;
-  line-height: 1.2;
-  margin-bottom: 0;
-  margin-top: 5px;
-  padding-bottom: 10px;
-}
-
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > picture,
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li
-  > picture {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > picture,
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture {
   border: 2px solid var(--border-color-gray);
   display: block;
   padding: 10px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li
-  > picture {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture {
   border-radius: 50%;
   height: 140px;
   margin: 0 auto;
@@ -179,14 +138,7 @@
   width: 140px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li
-  > picture
-  + picture {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture + picture {
   border: 0;
   border-radius: 0;
   bottom: 5px;
@@ -198,14 +150,7 @@
   width: 30px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li
-  > picture
-  > img {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture > img {
   border-radius: 50%;
   height: 100%;
   object-fit: cover;
@@ -213,57 +158,22 @@
   width: 100%;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li
-  > picture
-  + picture
-  > img {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture + picture > img {
   border-radius: 0;
   padding: 0;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:first-child
-  > li:not(:last-child),
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:first-child
-  > li
-  img {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child > li:not(:last-child),
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child > li img {
   margin-right: 16px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:first-child
-  > li
-  img {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child > li img {
   width: 30px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li:not(:last-child)::after,
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li:only-child::after   {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li:not(:last-child)::after,
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li:only-child::after {
   background-color: var(--border-color-gray);
   bottom: 0;
   content: '';
@@ -274,65 +184,29 @@
   width: 100%;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  a {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a {
   color: inherit;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  a:hover {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a:hover {
   color: var(--text-green);
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  picture,
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  i {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li picture,
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li i {
   display: inline-block;
   padding-right: 8px;
   vertical-align: top;
   width: 36px;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  i {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li i {
   color: var(--text-green);
   float: left;
   font-size: var(--body-font-size-xl);
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(odd)
-  > ul:not(:first-child)
-  li
-  img {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li img {
   display: inline-block;
   height: 32px;
   vertical-align: middle;
@@ -346,13 +220,7 @@
   text-align: center;
 }
 
-.regional-contacts-wrapper
-  .regional-contacts
-  .tab-accordian-wrapper
-  > div:nth-child(even)
-  > ul
-  > li:nth-child(2)
-  strong {
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) strong {
   font-family: var(--ff-proxima-regular);
   font-size: var(--body-font-size-m);
   font-weight: 600;
@@ -398,11 +266,7 @@
     padding-left: 48px;
   }
 
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(odd)
-    > ul:first-child {
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child {
     left: 0;
     margin: 0;
     min-width: 750px;
@@ -456,48 +320,21 @@
 }
 
 @media only screen and (max-width: 575px) {
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(even)
-    > ul
-    > li
-    > picture {
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture {
     height: 100px;
     width: 100px;
   }
 
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(even)
-    > ul
-    > li,
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(even)
-    > ul
-    > li:nth-child(3) {
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li,
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(3) {
     font-size: var(--body-font-size-xs);
   }
 
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(even)
-    > ul
-    > li:nth-child(2) {
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) {
     min-height: auto;
   }
 
-  .regional-contacts-wrapper
-    .regional-contacts
-    .tab-accordian-wrapper
-    > div:nth-child(even)
-    > ul
-    > li:nth-child(2)
-    strong {
+  .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) strong {
     font-size: 12px;
   }
 }

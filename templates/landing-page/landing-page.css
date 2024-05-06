@@ -45,6 +45,10 @@
   padding-top: 40px;
 }
 
+.landing-page h3:first-child {
+  padding-top: 0;
+}
+
 .landing-page .hero-inner .container {
   padding-bottom: 45px;
 }
@@ -223,6 +227,10 @@
   padding-top: 50px;
 }
 
+.section.thank-you-page > div.default-content-wrapper:nth-last-child(2) h2 + p {
+  padding-bottom: 2rem;
+}
+
 .section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
   color: var(--text-green);
 }
@@ -269,7 +277,7 @@
   font-family: var(--ff-proxima-regular);
 }
 
-.thank-you-page .columns img {
+.thank-you-page .columns:not(.image-size-auto) img {
   max-width: 350px;
 }
 
@@ -325,7 +333,7 @@
 
   .landing-page .hero-inner .container {
     align-items: center;
-    padding: 15px 0 55px 0;
+    padding: 15px 0 55px;
   }
 
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {

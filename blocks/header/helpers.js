@@ -1,7 +1,6 @@
-/* eslint-disable linebreak-style */
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a, div, li,
+  a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
 
 let elementsWithEventListener = [];
@@ -51,19 +50,30 @@ export function expandMenu(element) {
   element.setAttribute('aria-expanded', 'true');
 }
 
-export async function buildBrandLogo(content) {
+export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
 
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );
 
+  const headerPhone = ul({ class: 'cn-header-phone-list' },
+    li({ class: 'OneLinkShow_zh' },
+      div({ class: 'cn-header-phone' },
+        i({ class: 'fa fa-phone' }),
+        a({ href: 'tel:400-821-3787', title: 'tel:400-821-3787' },
+          span('美谷分子仪器（上海）有限公司'),
+          span('咨询服务热线：400-821-3787'),
+        ),
+      )));
+
   logoLink.innerHTML = logoImg.outerHTML;
   logoImg.innerHTML = '';
 
   const logoWrapper = div(
-    { id: 'header-logo' },
+    { id: 'header-logo', class: 'header-logo-wrapper' },
     logoLink,
+    headerPhone,
   );
   return logoWrapper;
 }
