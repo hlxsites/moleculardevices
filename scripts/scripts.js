@@ -1162,7 +1162,7 @@ async function loadPage() {
 const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
 cookieParams.forEach((param) => {
-  setCookieFromQueryParameters(param, 0);
+  setCookieFromQueryParameters(param, 1);
 });
 
 export function isAuthorizedUser() {
