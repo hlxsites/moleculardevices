@@ -1060,8 +1060,10 @@ export function setCookie(cname, cvalue, exdays) {
   let domain = '';
   let expires = '';
   // date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
-  date.setTime(date.getTime() + exdays * 60 * 1000);
   if (exdays !== 0) {
+    // expires = `expires=${date.toUTCString()}`;
+
+    date.setTime(date.getTime() + (exdays * 60 * 1000));
     expires = `expires=${date.toUTCString()}`;
   }
 
