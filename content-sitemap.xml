@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/contact</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/contact"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/contact"/>
+        <lastmod>2024-05-06</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/newsroom</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/newsroom"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/newsroom"/>
@@ -14970,17 +14981,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/technology/humsilencer"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/technology/humsilencer"/>
         <lastmod>2023-06-27</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/contact</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/contact"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/contact"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/contact"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/contact"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/contact"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/contact"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/contact"/>
-        <lastmod>2023-06-26</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/lab-notes/general/lab-automation-inside-access-from-our-subject-matter-expert</loc>
