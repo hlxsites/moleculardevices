@@ -1,9 +1,13 @@
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import {
   img, div, a, p,
+  h3,
+  strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
+import { formatEventDates } from '../latest-events/latest-events.js';
+import { summariseDescription } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   const linkCopy = a({ href: link.href });
@@ -110,6 +114,7 @@ function buildImageWithoutTextSubmenu(imageWithoutTextContent) {
   return imageWithoutTextContent;
 }
 
+/* RECENT BLOGS */
 function getRecentBlogPosts(featuredPostUrl, isFeaturedPost) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -171,6 +176,69 @@ function buildBlogCardSubmenu(block) {
   getRecentBlogPostsHandler(featuredPostUrl);
 }
 
+/* RECENT EVENTS */
+async function recentEventHandler(block) {
+  const featuredEventUrl = block.querySelectorAll('a');
+  const eventsMenu = div({ class: ['flex-space-between'] });
+  document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
+
+  let events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((item) => item.eventEnd * 1000 > Date.now())
+    .all();
+
+  const featuredEvents = [];
+
+  if (featuredEventUrl.length > 0) {
+    featuredEventUrl.forEach(async (event) => {
+      const eventUrl = new URL(event).pathname;
+      const fe = events.filter((ev) => ev.path === eventUrl)[0];
+      featuredEvents.push(fe);
+    });
+    events = featuredEvents;
+  }
+
+  const sortedEvents = events.sort((first, second) => first.eventStart - second.eventStart)
+    .slice(0, 2);
+
+  sortedEvents.forEach((event) => {
+    const title = div(h3({ id: toClassName(event.title) }, event.title));
+    const eventContent = div(
+      div(
+        p(
+          strong(
+            `${event.eventType} | ${event.eventRegion} | ${event.eventAddress
+            } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
+          ),
+        ),
+        p(summariseDescription(event.description, 180)),
+        p(a({ href: event.path }, 'Read more')),
+      ),
+    );
+
+    const eventsBlock = div(
+      {
+        class: [
+          'actionable-card-submenu',
+          'col-1',
+          'events-right-submenu',
+          'right-submenu-content',
+          'text-only',
+        ],
+      },
+      title,
+      eventContent,
+    );
+    eventsMenu.appendChild(eventsBlock);
+  });
+}
+
+function buildEventCardSubmenu(block) {
+  setTimeout(async () => {
+    await recentEventHandler(block);
+  }, 300);
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
@@ -181,6 +249,7 @@ function getRightSubmenuBuilder(className) {
   map.set('image-without-text-submenu', buildImageWithoutTextSubmenu);
   map.set('image-card-submenu', buildImageCardSubmenu);
   map.set('blog-cards-submenu', buildBlogCardSubmenu);
+  map.set('event-cards-submenu', buildEventCardSubmenu);
   return map.get(className);
 }
 

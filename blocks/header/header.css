@@ -205,11 +205,10 @@ header .image-card-submenu {
   color: #e6e6e6;
   position: relative;
   height: 100%;
-  margin-left: 5px;
 }
 
 header .image-card-submenu picture > img {
-  height: 190px;
+  height: 170px;
   max-height: 100%;
   margin: 0 auto;
   padding: 0;
@@ -252,7 +251,7 @@ header .text-submenu > div {
 }
 
 header .text-submenu p {
-  min-height: auto;
+  min-height: inherit;
   color: #fff;
   padding-left: 0;
   text-transform: uppercase;
@@ -519,17 +518,6 @@ header .nav-tabs .menu-nav-submenu {
   visibility: visible;
   position: absolute;
   background: var(--background-color) url('/images/header-background-filler.jpg') no-repeat right bottom;
-}
-
-header .cards-submenu > div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-header .cards-submenu > div > div {
-  margin: 0 10px 20px;
-  overflow: hidden;
 }
 
 header .cards-submenu img {
@@ -920,28 +908,24 @@ header .nav-tabs .menu-nav-submenu-sections > .line-divider {
   list-style: none;
 }
 
-header .col-1 {
-  flex-basis: calc(100% - 20px);
-  box-sizing: border-box;
-  max-width: 100%;
+header .cards-submenu,
+header .col-2 > div, 
+header .col-3 > div, 
+header .col-4 > div{
+  display: grid;
+  gap: 20px;
+} 
+
+header .col-2 > div {
+  grid-template-columns: repeat(2, 1fr);
 }
 
-header .col-2 > div > div {
-  flex-basis: calc(50% - 20px);
-  box-sizing: border-box;
-  max-width: 100%;
+header .col-3 > div {
+  grid-template-columns: repeat(3, 1fr);
 }
 
-header .col-3 > div > div {
-  flex-basis: calc(33% - 20px);
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-header .col-4 > div > div {
-  flex-basis: calc(25% - 20px);
-  box-sizing: border-box;
-  max-width: 100%;
+header .col-4 > div {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 header .nav-tabs .menu-nav-submenu > div {
@@ -1046,7 +1030,6 @@ header .nav-tabs .right-submenu {
 header .nav-tabs .right-submenu-row {
   width: 100%;
   position: static;
-  min-height: 500px;
   margin-left: 0;
   margin-right: 0;
   float: left;
@@ -1055,6 +1038,7 @@ header .nav-tabs .right-submenu-row {
 header .flex-space-between {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 
 header .large-card-submenu {
@@ -1300,7 +1284,8 @@ div.actionable-card-submenu.service-support-right-submenu.right-submenu-content.
 }
 
 header .actionable-card-submenu.text-only {
-  max-width: 375px;
+  height: auto;
+  max-width: 390px;
 }
 
 header .actionable-card-submenu.text-only h3 {
@@ -1380,11 +1365,6 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(2) img {
   max-height: 127px;
 }
 
-header .actionable-card-submenu.customercare-portal {
-  margin-right: 20px;
-
-}
-
 header .actionable-card-submenu.customercare-portal h3,
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+2),
 header .actionable-card-submenu.customercare-portal p:nth-child(4n+3) {
@@ -1417,12 +1397,6 @@ header .actionable-card-submenu.customercare-portal > div:nth-child(1) {
 
 header .actionable-card-submenu.customercare-portal > div:nth-child(2) > div {
   width: 100%;
-}
-
-header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(-n+2) {
-  width: auto;
-  float: left;
-  margin-bottom: 0;
 }
 
 header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
@@ -1487,7 +1461,7 @@ header .applications-right-submenu {
   padding: 0;
   position: relative;
   height: 100%;
-  min-height: auto;
+  min-height: inherit;
   border: none;
 }
 
@@ -1576,7 +1550,7 @@ header .company-right-submenu {
   color: var(--header-actionable-submenu-text-color);
   position: relative;
   height: 100%;
-  min-height: auto;
+  min-height: inherit;
 }
 
 header .company-right-submenu div:first-child > div:first-child p {
@@ -1744,25 +1718,6 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     font-size: 11px;
   }
 
-  header .cards-submenu.customercare-portal {
-    width: 90%;
-  }
-
-  header .col-2.customercare-portal > div > div {
-    flex-basis: calc(50% - 20px);
-  }
-
-  header .cards-submenu.customercare-portal > div > div > p {
-    width: 115px;
-    margin-right: 0;
-  }
-
-  @media (min-width: 1200px) {
-    header .cards-submenu.customercare-portal > div > div > p {
-      width: 154px;
-    }
-  }
-
   header .cards-submenu.customercare-portal > div > div > p:nth-child(1) {
     min-height: 154px;
   }
@@ -1773,7 +1728,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   header .cards-submenu.cards-submenu.customercare-portal p > a > picture img:hover {
-    scale: 1.2;
+    transform: scale(1.2);
   }
 
   header .cards-submenu p:nth-child(2) a {
@@ -2026,7 +1981,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   }
 
   header .nav-tabs .menu-nav-submenu > div {
-    min-height: auto !important;
+    min-height: inherit !important;
     width: 970px;
   }
 
@@ -2051,10 +2006,7 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
     width: 1140px;
   }
 
-  header .cards-submenu ul li a {
-    font-size: 13px;
-  }
-
+  header .cards-submenu ul li a,
   header .text-submenu ul > li > a {
     font-size: 13px;
   }
@@ -2116,10 +2068,6 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 }
 
 /* Lab notes | mega menu changes */
-.blog-cards-submenu {
-  padding: 0 10px;
-}
-
 .blog-cards-submenu .blog-posts-block,
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block {
   display: grid;
