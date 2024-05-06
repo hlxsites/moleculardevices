@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console, no-unused-expressions, no-nested-ternary, quote-props */
 
 const https = require('https');
@@ -139,17 +140,17 @@ function itemSearchTitle(item) {
   return '';
 }
 
-function preprocess(index) {
-  index.data.forEach((item) => {
-    // There are some technology pages that should also be indexed as applications
-    if (item.type === 'Technology' && isNotEmpty(item.category)) {
-      const deepClone = JSON.parse(JSON.stringify(item));
-      deepClone.type = 'Application';
-      deepClone.internal_path = deepClone.internal_path.replace('/technology/', '/applications/');
-      index.data.push(deepClone);
-    }
-  });
-}
+// function preprocess(index) {
+//   index.data.forEach((item) => {
+//     // There are some technology pages that should also be indexed as applications
+//     if (item.type === 'Technology' && isNotEmpty(item.category)) {
+//       const deepClone = JSON.parse(JSON.stringify(item));
+//       deepClone.type = 'Application';
+//       deepClone.internal_path = deepClone.internal_path.replace('/technology/', '/applications/');
+//       index.data.push(deepClone);
+//     }
+//   });
+// }
 
 function createCoveoFields(index, icons) {
   console.log('Procesing data...');
@@ -236,7 +237,18 @@ function createCoveoFields(index, icons) {
       isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
       item.mdproductsdatacategory = result.join(';');
     }
-
+    if (item.type === 'Application' && isNotEmpty(item.category)) {
+      const result = [item.category];
+      // isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+      result.push(`${item.category}|${itemSearchTitle(item)}`);
+      item.mdapplicationsdatacategory = result.join(';');
+    }
+    if (item.type === 'Technology' && isNotEmpty(item.category)) {
+      const result = [item.category];
+      // isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+      result.push(`${item.category}|${itemSearchTitle(item)}`);
+      item.mdtechnologydatacategory = result.join(';');
+    }
     if (item.md_pagetype === 'Resource' || item.path.endsWith('.pdf')) {
       item.md_title = itemSearchTitle(item);
     }
@@ -261,12 +273,26 @@ function createCoveoFieldsFromRelatedData(index) {
           .join(';');
       }
 
-      // set related application info
       if (isNotEmpty(item.relatedApplications)) {
-        item.md_application = item.relatedApplications.split(',')
+        const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application)
-          .map(itemSearchTitle)
+          .filter((application) => !!application);
+
+        item.md_application = relatedApplications.map(itemSearchTitle).join(';');
+        item.mdapplicationsdatacategory = relatedApplications
+          .map((application) => application.mdapplicationsdatacategory)
+          .filter((category) => !!category)
+          .join(';');
+      }
+      if (isNotEmpty(item.relatedTechnologies)) {
+        const relatedTechnologies = item.relatedTechnologies.split(',')
+          .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
+          .filter((technology) => !!technology);
+
+        item.md_technology = relatedTechnologies.map(itemSearchTitle).join(';');
+        item.mdtechnologydatacategory = relatedTechnologies
+          .map((technology) => technology.mdtechnologydatacategory)
+          .filter((category) => !!category)
           .join(';');
       }
     }
@@ -314,7 +340,10 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_img>${item.md_img}</md_img>`);
     xmlData.push(`      <md_product><![CDATA[ ${item.md_product || ''}  ]]></md_product>`);
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
+    xmlData.push(`      <md_technology><![CDATA[ ${item.md_technology || ''} ]]></md_technology>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
+    xmlData.push(`      <mdapplicationsdatacategory><![CDATA[ ${item.mdapplicationsdatacategory || ''} ]]></mdapplicationsdatacategory>`);
+    xmlData.push(`      <mdtechnologydatacategory><![CDATA[ ${item.mdtechnologydatacategory || ''} ]]></mdtechnologydatacategory>`);
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO
@@ -329,7 +358,7 @@ async function writeCoveoSitemapXML(index) {
   xmlData.push('</urlset>');
 
   try {
-    fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
+    fs.writeFileSync('coveo-xml2.xml', xmlData.join('\n'));
     console.log(`Successfully wrote ${count} items to coveo xml`);
   } catch (err) {
     console.error(err);
@@ -340,7 +369,7 @@ async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
 
-  preprocess(index);
+  // preprocess(index);
   createCoveoFields(index, icons);
   createCoveoFieldsFromRelatedData(index);
   writeCoveoSitemapXML(index);
