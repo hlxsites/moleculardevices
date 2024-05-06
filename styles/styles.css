@@ -1339,6 +1339,7 @@ main div.section.wave.bluegreen2::after {
   padding: 0;
   bottom: 0;
   content: '';
+}
 
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.wave:not(.background-grey-top-half, .bluegreen),
