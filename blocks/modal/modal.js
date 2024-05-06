@@ -32,10 +32,12 @@ export function showModal() {
 }
 
 export function triggerModalWithUrl(url) {
+  const queryParams = new URLSearchParams(window.location.search);
+  const cmpID = queryParams.get('cmp') || '';
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
   setTimeout(() => {
-    iframeElement.src = url;
+    iframeElement.src = `${url}?cmp=${cmpID}`;
   }, 200);
   timer = setTimeout(showModal, 500);
 }

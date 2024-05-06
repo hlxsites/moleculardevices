@@ -1059,11 +1059,8 @@ export function setCookie(cname, cvalue, exdays) {
   let hostName = '';
   let domain = '';
   let expires = '';
-  // date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
+  date.setTime(date.getTime() + exdays * 24 * 60 * 60 * 1000);
   if (exdays !== 0) {
-    // expires = `expires=${date.toUTCString()}`;
-
-    date.setTime(date.getTime() + (exdays * 60 * 1000));
     expires = `expires=${date.toUTCString()}`;
   }
 
@@ -1165,7 +1162,7 @@ async function loadPage() {
 const cookieParams = ['cmp', 'utm_medium', 'utm_source', 'utm_keyword', 'gclid'];
 
 cookieParams.forEach((param) => {
-  setCookieFromQueryParameters(param, 60);
+  setCookieFromQueryParameters(param, 1);
 });
 
 export function isAuthorizedUser() {

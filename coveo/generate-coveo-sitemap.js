@@ -248,7 +248,7 @@ function createCoveoFields(index, icons) {
 function createCoveoFieldsFromRelatedData(index) {
   index.data.forEach((item) => {
     if (item.md_pagetype === 'Resource') {
-      // set related product info
+      // set related product info.
       if (isNotEmpty(item.relatedProducts)) {
         const relatedProducts = item.relatedProducts.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
