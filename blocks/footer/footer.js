@@ -226,10 +226,9 @@ export default async function decorate(block) {
     if (idx === 5) {
       const copyrightTextEn = p({ class: 'en OneLinkHide footer-copyright-text' }, `©${new Date().getFullYear()} Molecular Devices, LLC. All rights reserved.`);
       const copyrightTextZh = p({ class: 'zh OneLinkShow_zh1 footer-copyright-text' },
-        `©${new Date().getFullYear()} Molecular Devices, LLC. 保留所有权利。`,
-        a({ href: 'https://beian.miit.gov.cn/' }, '沪ICP备05056171号-2'),
-        ' ',
-        a({ href: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E6%B2%AA%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%87%2031010502001469%E5%8F%B7' }, '沪公网安备 31010502001469号'),
+        `©${new Date().getFullYear()} Molecular Devices, LLC. 保留所有权利`,
+        a({ href: 'https://beian.miit.gov.cn/', style: 'margin-left: 4px;' }, ' 沪ICP备05056171号-2'),
+        a({ href: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E6%B2%AA%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%87%2031010502001469%E5%8F%B7', style: 'margin-left: 4px;' }, ' 沪公网安备 31010502001469号'),
       );
       const imgWrapper = row.getElementsByTagName('p')[0];
       const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
