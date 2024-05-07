@@ -172,7 +172,7 @@ export function isVideo(url) {
   return isV;
 }
 
-export function embedVideo(link, url, type) {
+export function embedVideo(link, url, type, hasAutoplay) {
   const videoId = url.pathname.substring(url.pathname.lastIndexOf('/') + 1).replace('.html', '');
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
@@ -186,7 +186,7 @@ export function embedVideo(link, url, type) {
       allowfullscreen="${type === 'inline'}"
       data-width="${type === 'lightbox' ? '700' : ''}"
       data-height="${type === 'lightbox' ? '394' : ''}"
-      data-autoplay="${type === 'lightbox' ? '1' : '0'}"
+      data-autoplay="${type === 'lightbox' || hasAutoplay ? '1' : '0'}"
       data-type="${type === 'lightbox' ? 'lightbox' : 'inline'}"/>`;
     }
   });
@@ -265,12 +265,13 @@ export function decorateLinks(main) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
+        const hasAutoplay = link.closest('.block.autoplay-video');
         const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
         const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
         const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
         if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
         up.innerHTML = wrapper.outerHTML;
-        embedVideo(up.querySelector('a'), url, type);
+        embedVideo(up.querySelector('a'), url, type, hasAutoplay);
       }
     }
 
