@@ -104,7 +104,6 @@ Disallow: /en/assets/app-note/dd/img/matrigel-dome-assays-and-drug-screening-of-
 Disallow: /en/assets/app-note/br/fast-and-scalable-fc-quantitation-in-supernatants-with-paia-fc-titer-assay
 Disallow: /en/assets/app-note/br/assessing-viability-and-real-time-apoptosis-necrosis-in-an-in-vitro-model-of-malignant-glioma
 Disallow: /en/assets/app-note/dd/img/functional-characterization-of-3d-neurospheres-assembled-using-ipsc-derived-neurons-and-astrocytes
-Disallow: /en/assets/app-note/bpd/dispencell-reaches-98-percent-probability-of-clonality-for-robust-cell-line-development
 Disallow: /en/assets/app-note/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification-using-impedance-based-single-cell-dispenser
 Disallow: /en/assets/app-note/dd/img/cell-culture-automation-of-3d-cancer-spheroid-assay-with-cellxpress-ai-cell-culture-system
 Disallow: /en/assets/app-note/dd/img/automation-of-3d-intestinal-organoids-culture-with-cellxpress-ai-system
@@ -211,6 +210,8 @@ Disallow: /en/assets/tutorials-videos/dd/img/scaling-up-organoid-research-new-ap
 Disallow: /en/assets/tutorials-videos/bpd/mastering-monoclonality-of-single-cell-dispensing-and-imaging-with-dispencell-and-csi
 Disallow: /en/assets/tutorials-videos/dd/img/transforming-the-complexities-of-3d-cell-culture-into-reliable-and-translatable-science
 Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potentials-using-axon-pclamp-software
+Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-screening-on-standardized-pancreatic-cancer-organoids
+
 
 #EU webinars to imaging video gallery page
 

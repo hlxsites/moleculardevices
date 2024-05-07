@@ -120,17 +120,22 @@ main .section.OneLinkShow_zh.columns-2 {
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
   --carousel-slider-background-color: #b3d8e0;
-  --blog-gradient: linear-gradient(90deg, #1591A4 0, #2E9F79 50%, #61B249 100%);
-  --blog-gradient-left: linear-gradient(to left, #1591A4 0, #2E9F79 50%, #61B249 100%);
-
+  --blog-gradient: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  --blog-gradient-left: linear-gradient(
+    to left,
+    #1591a4 0,
+    #2e9f79 50%,
+    #61b249 100%
+  );
 
   /* fonts */
-  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
-  --ff-proxima-xbold: 'Proxima Nova ExtraBold', 'Proxima Nova ExtraBold Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
-  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback', 'helvetica neue',
-    helvetica, arial, sans-serif;
+  --ff-proxima-regular: 'Proxima Nova Regular', 'Proxima Nova Regular Fallback',
+    'helvetica neue', helvetica, arial, sans-serif;
+  --ff-proxima-xbold: 'Proxima Nova ExtraBold',
+    'Proxima Nova ExtraBold Fallback', 'helvetica neue', helvetica, arial,
+    sans-serif;
+  --ff-proxima-light: 'Proxima Nova Light', 'Proxima Nova Light Fallback',
+    'helvetica neue', helvetica, arial, sans-serif;
   --fixed-font-family: menlo, monaco, consolas, 'courier new', monospace;
 
   /* font size */
@@ -734,7 +739,9 @@ main .section.background-grey + .section.wave {
 }
 
 main .section.background-grey,
-main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
+main
+  .section.background-grey
+  + .section.wave:not(.background-grey-top-half, .bluegreen) {
   background-color: var(--grey-background-color);
   margin-top: 0;
 }
@@ -999,7 +1006,8 @@ main .section.features-section {
   padding-top: 50px;
   padding-bottom: 30px;
   background: url('/images/molecules-left.webp') left bottom,
-    url('/images/molecules-right.webp') right top, url('/images/molecules-left.png') left bottom,
+    url('/images/molecules-right.webp') right top,
+    url('/images/molecules-left.png') left bottom,
     url('/images/molecules-right.png') right top;
   background-repeat: no-repeat;
   background-color: var(--light-gray-background-color2);
@@ -1146,7 +1154,8 @@ main .section .columns.columns-2-cols > div:not(:last-child) {
 /* Parallax section */
 
 main .section.background-parallax {
-  background-image: url('/images/parallax-background.webp'), url('/images/parallax-background.png');
+  background-image: url('/images/parallax-background.webp'),
+    url('/images/parallax-background.png');
   background-position: center top;
   background-size: cover;
   color: var(--text-white);
@@ -1162,7 +1171,11 @@ main .section.background-parallax .default-content-wrapper .button-container {
   margin: 60px 30px;
 }
 
-main .section.background-parallax .default-content-wrapper .button-container > a {
+main
+  .section.background-parallax
+  .default-content-wrapper
+  .button-container
+  > a {
   color: var(--text-white);
   border-radius: 0;
   padding: 18px 18px 16px;
@@ -1175,7 +1188,10 @@ main .section.background-parallax .default-content-wrapper .button-container > a
     padding-bottom: 67px;
   }
 
-  main div.section.background-parallax .default-content-wrapper .button-container {
+  main
+    div.section.background-parallax
+    .default-content-wrapper
+    .button-container {
     margin-left: 0;
   }
 }
@@ -1300,7 +1316,10 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-top: 15px;
 }
 
-.application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  + .columns-wrapper {
   margin-top: 0;
 }
 
@@ -1320,10 +1339,12 @@ main div.section.wave.bluegreen2 {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(90deg,
-      rgba(21 145 164 / 100%) 0,
-      rgba(50 159 121 / 100%) 50%,
-      rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(21 145 164 / 100%) 0,
+    rgba(50 159 121 / 100%) 50%,
+    rgba(97 178 73 / 100%) 100%
+  ) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1348,10 +1369,12 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,
-        rgb(21 145 164 / 100%) 0,
-        rgb(46 159 121 / 100%) 50%,
-        rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(
+      90deg,
+      rgb(21 145 164 / 100%) 0,
+      rgb(46 159 121 / 100%) 50%,
+      rgb(97 178 73 / 100%) 100%
+    ) !important;
     background-image: none;
   }
 
@@ -1644,7 +1667,11 @@ main .section.background-molecules {
   font-size: 36px;
 }
 
-.application .section.tabs:not(.wave) .default-content-wrapper h2 ~ h2:last-child {
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2
+  ~ h2:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
 }
@@ -1731,7 +1758,10 @@ main .section.background-molecules {
   margin-bottom: 45px;
 }
 
-.product .section.tabs:not(.feature-section) .default-content-wrapper + .image-list-wrapper {
+.product
+  .section.tabs:not(.feature-section)
+  .default-content-wrapper
+  + .image-list-wrapper {
   margin-top: 50px;
 }
 
@@ -1748,9 +1778,15 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
-.technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
-.application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
@@ -1789,17 +1825,35 @@ main .section.background-molecules {
 
 .technology .section.resources-container .default-content-wrapper:first-child,
 .application .section.resources-container .default-content-wrapper:first-child,
-.technology .section.tabs.related-products-container .default-content-wrapper:first-child,
-.application .section.tabs.related-products-container .default-content-wrapper:first-child,
-.technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
-.application .section.tabs.related-applications-container .default-content-wrapper:first-child,
-.technology .section.tabs.latest-resources-container .default-content-wrapper:first-child,
-.application .section.tabs.latest-resources-container .default-content-wrapper:first-child {
+.technology
+  .section.tabs.related-products-container
+  .default-content-wrapper:first-child,
+.application
+  .section.tabs.related-products-container
+  .default-content-wrapper:first-child,
+.technology
+  .section.tabs.related-applications-container
+  .default-content-wrapper:first-child,
+.application
+  .section.tabs.related-applications-container
+  .default-content-wrapper:first-child,
+.technology
+  .section.tabs.latest-resources-container
+  .default-content-wrapper:first-child,
+.application
+  .section.tabs.latest-resources-container
+  .default-content-wrapper:first-child {
   padding-bottom: 0;
 }
 
-.technology .section.resources-container .default-content-wrapper:first-child h2,
-.application .section.resources-container .default-content-wrapper:first-child h2 {
+.technology
+  .section.resources-container
+  .default-content-wrapper:first-child
+  h2,
+.application
+  .section.resources-container
+  .default-content-wrapper:first-child
+  h2 {
   padding-bottom: 0;
 }
 
@@ -1883,18 +1937,29 @@ main .section.background-molecules {
   padding: 0;
 }
 
-.section.image-title-inline > div.default-content-wrapper > p.picture:first-child,
-.section.image-title-inline > div.default-content-wrapper > p.picture:first-child + h2 {
+.section.image-title-inline
+  > div.default-content-wrapper
+  > p.picture:first-child,
+.section.image-title-inline
+  > div.default-content-wrapper
+  > p.picture:first-child
+  + h2 {
   display: inline;
   vertical-align: middle;
 }
 
-.section.image-title-inline > div.default-content-wrapper > p.picture:first-child img {
+.section.image-title-inline
+  > div.default-content-wrapper
+  > p.picture:first-child
+  img {
   height: 60px;
   margin-left: -20px;
 }
 
-.section.image-title-inline > div.default-content-wrapper > p.picture:first-child + h2 {
+.section.image-title-inline
+  > div.default-content-wrapper
+  > p.picture:first-child
+  + h2 {
   margin-left: 10px;
 }
 
@@ -2008,7 +2073,11 @@ main .block.electric-blue-main-title h2 {
   margin-bottom: 50px;
 }
 
-.customer-breakthrough main .hero-container + .section > .default-content-wrapper:first-child {
+.customer-breakthrough
+  main
+  .hero-container
+  + .section
+  > .default-content-wrapper:first-child {
   margin: 0 auto;
 }
 
@@ -2187,12 +2256,20 @@ main .section.no-margin-top {
   margin: 0;
 }
 
-.slas-page .section .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) {
+.slas-page
+  .section
+  .columns.tutorials-posters
+  > div:not(.image-left)
+  > div:not(:empty) {
   padding: 20px 0;
   border-bottom: 1px solid;
 }
 
-.slas-page .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) p:first-of-type {
+.slas-page
+  .columns.tutorials-posters
+  > div:not(.image-left)
+  > div:not(:empty)
+  p:first-of-type {
   font-weight: bold;
   margin-bottom: 10px;
   text-align: left;
@@ -2289,4 +2366,32 @@ main .section.no-margin-top {
   color: var(--text-white);
   background: transparent;
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+/* COMMON STYLING */
+.blog main .section.hero-container + .section:not(.background-molecules),
+.publication.full-article main .section.hero-container + .section:not(.background-molecules) {
+  padding-top: 0;
+}
+
+.blog main .section.block,
+.publication.full-article main .section.block {
+  padding: 20px 0;
+}
+
+.blog main .section.block > div,
+.publication.full-article main .section.block > div {
+  width: 100%;
+}
+
+
+.blog main .section .default-content-wrapper p.picture,
+.publication.full-article main .section .default-content-wrapper p.picture {
+  margin-top: 20px;
+}
+
+.blog main .section .default-content-wrapper img,
+.publication.full-article main .section .default-content-wrapper img {
+  display: inline-block;
+  vertical-align: middle;
 }
