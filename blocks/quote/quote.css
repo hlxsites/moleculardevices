@@ -48,14 +48,20 @@
 }
 
 .customer-breakthrough .quote {
-  color: var(--link-hover-color);
   font-family: var(--ff-proxima-xbold);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
 }
 
 .customer-breakthrough .quote .quote-text {
   font-size: var(--body-font-size-l);
+  color: var(--link-hover-color);
+}
+
+.customer-breakthrough .quote .quote-text::before,
+.customer-breakthrough .quote .quote-text::after {
+  display: none;
 }
 
 .customer-breakthrough .quote .quote-author {
