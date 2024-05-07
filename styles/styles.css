@@ -2368,10 +2368,6 @@ main .section.no-margin-top {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-.application .vidyard-player-container img {
-  object-fit: cover;
-}
-
 /* COMMON STYLING */
 .blog main .section.hero-container + .section:not(.background-molecules),
 .publication.full-article main .section.hero-container + .section:not(.background-molecules) {
