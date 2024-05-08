@@ -1,5 +1,5 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
-import { isVideo, loadScript } from '../../scripts/scripts.js';
+import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 const getDefaultEmbed = (url) => {
@@ -26,8 +26,18 @@ function decorateHubspot(block) {
 const embedHubspot = (url) => {
   // clean up hubspot url query paramaters
   loadScript('/scripts/iframeResizer.min.js');
-  const urlStr = url.href.replaceAll('%20', ' ');
   const formID = 'iframeContent';
+  const cmpCookieValue = getCookie('cmp');
+  let urlStr = url.href.replaceAll('%20', ' ');
+
+  if (cmpCookieValue) {
+    const embededURL = new URL(urlStr);
+    if (embededURL.searchParams.get('cmp')) {
+      embededURL.searchParams.set('cmp', cmpCookieValue);
+      urlStr = embededURL.toString();
+    }
+  }
+
   const embedHTML = `<iframe src="${urlStr}" id='${formID}' loading="lazy" class="iframe-content"></iframe>`;
   return embedHTML;
 };
