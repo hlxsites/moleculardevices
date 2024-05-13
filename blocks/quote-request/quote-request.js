@@ -287,7 +287,12 @@ function stepTwo(tab, event) {
   const fetchRQFTypes = createRFQListBox(filterData, stepNum);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
 
-  root.appendChild(h3('Please select field of interest'));
+  if (tab === 'Services') {
+    root.appendChild(h3('Please select service of interest'));
+  } else {
+    root.appendChild(h3('Please select field of interest'));
+  }
+
   root.appendChild(fetchRQFTypes);
   root.appendChild(progressBarHtml);
   root.appendChild(createBackBtn(stepNum));
@@ -305,7 +310,21 @@ function stepThree(tab, event) {
   const root = document.getElementById(stepNum);
   root.innerHTML = '';
 
-  loadIframeForm(tab, 'Global');
+  let tabName = tab;
+
+  if (tabName === 'Automated Cell Culture System') {
+    tabName = 'CellXpress.ai Automated Cell Culture System';
+  }
+
+  if (tabName === '3D Bioprinter') {
+    tabName = '3D Bioprinter – BAB400 Automated Bioprinting Solution';
+  }
+
+  if (tabName === 'Preventative Maintenance') {
+    tabName = 'IQ/OQ/PM Services';
+  }
+
+  loadIframeForm(tabName, 'Global');
 
   if (event.target.closest('.rfq-icon-link').classList.contains('no-categ')) {
     root.classList.add('no-categ-form');
