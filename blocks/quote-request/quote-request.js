@@ -206,17 +206,17 @@ async function loadIframeForm(data, type) {
 
     productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
 
-    if (productFamily[0].Category === 'Automated Cell Culture System') {
+    if (productFamily[0]?.Category === 'Automated Cell Culture System') {
       productFamily[0].Category = 'CellXpress.ai Automated Cell Culture System';
       tab = 'CellXpress.ai Automated Cell Culture System';
     }
 
-    if (productFamily[0].Category === '3D Bioprinter') {
+    if (productFamily[0]?.Category === '3D Bioprinter') {
       productFamily[0].Category = '3D Bioprinter – BAB400 Automated Bioprinting Solution';
       tab = '3D Bioprinter – BAB400 Automated Bioprinting Solution';
     }
 
-    if (productFamily[0].Category === 'Preventative Maintenance') {
+    if (productFamily[0]?.Category === 'Preventative Maintenance') {
       productFamily[0].Category = 'IQ/OQ/PM Services';
       tab = 'IQ/OQ/PM Services';
     }
