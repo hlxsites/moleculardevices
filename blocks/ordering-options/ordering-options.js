@@ -24,6 +24,7 @@ function increaseAndDecreaseCounter(event) {
 
 function updateCounters() {
   const count = getCartItemCount();
+  console.log(count);
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters.length > 0) {
     cartCounters.forEach((cartCounter) => {
@@ -75,6 +76,9 @@ async function addToCart(btn, el, counterEl) {
       }),
     )
   );
+  console.log(btn);
+  console.log(el);
+  console.log(counterEl);
 
   document.querySelector('body').appendChild(spinner);
   // worst case scenario if somethig below fails, we should not block the page forever
@@ -104,12 +108,14 @@ async function addToCart(btn, el, counterEl) {
     }
   }
 
-  getCartDetails();
-  updateCounters();
-  spinner.remove();
+  setTimeout(() => {
+    getCartDetails();
+    updateCounters();
+    spinner.remove();
 
-  document.getElementsByClassName('cart-widget')[0].classList.add('open');
-  btn.classList.add('add-to-cart-success');
+    document.getElementsByClassName('cart-widget')[0].classList.add('open');
+    btn.classList.add('add-to-cart-success');
+  }, 2000);
 
   setTimeout(() => {
     document.getElementsByClassName('cart-widget')[0].classList.remove('open');
