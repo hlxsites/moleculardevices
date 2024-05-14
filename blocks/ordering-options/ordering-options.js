@@ -53,7 +53,7 @@ async function getCartDetails() {
   });
 }
 
-function createSpinner() {
+async function addToCart(btn, el, counterEl) {
   const spinner = (
     div({ class: 'spinner-container' },
       img({
@@ -65,72 +65,39 @@ function createSpinner() {
       }),
     )
   );
-  return spinner;
-}
 
-async function loadCartScript(itemId, counter) {
-  const src = `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-    id: itemId,
-    quantity: counter,
-    _: Date.now(),
-    callback: 'addToCart',
-  })}`;
+  document.querySelector('body').appendChild(spinner);
+  // worst case scenario if somethig below fails, we should not block the page forever
+  setTimeout(() => { spinner.remove(); }, 5000);
 
-  const script = document.createElement('script');
-  script.src = src;
+  const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
+  const itemId = el.id || el.getAttribute('id');
 
-  return new Promise((resolve, reject) => {
-    script.onload = resolve;
-    script.onerror = (errorEvent) => {
-      reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
-    };
-    document.head.appendChild(script);
-    setTimeout(() => document.head.removeChild(script), 1500);
+  await new Promise((resolve) => {
+    const script = domEl('script',
+      {
+        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+          id: itemId,
+          quantity: counter,
+          _: Date.now(),
+          callback: 'addToCart',
+        })}`,
+        onload: () => {
+          resolve();
+        },
+      },
+    );
+    document.getElementsByTagName('head')[0].appendChild(script);
+    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
   });
-}
 
-function showSuccessMessage(btn) {
-  const cartWidget = document.querySelector('.cart-widget');
-  const successClass = 'add-to-cart-success';
+  await getCartDetails();
+  updateCounters();
+  spinner.remove();
 
-  cartWidget.classList.add('open');
-  btn.classList.add(successClass);
-
-  setTimeout(() => {
-    cartWidget.classList.remove('open');
-    btn.classList.remove(successClass);
-  }, 1500);
-}
-
-async function addToCart(btn, el, counterEl) {
-  let spinner;
-
-  try {
-    spinner = createSpinner();
-    document.body.appendChild(spinner);
-
-    const itemId = el.id || el.getAttribute('id');
-    const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
-
-    await loadCartScript(itemId, counter);
-
-    await getCartDetails();
-    updateCounters();
-
-    showSuccessMessage(btn);
-
-    setTimeout(() => {
-      document.querySelector('.cart-widget').classList.remove('open');
-      btn.classList.remove('add-to-cart-success');
-    }, 1500);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error adding to cart:', error);
-  } finally {
-    if (spinner) {
-      spinner.remove();
-    }
-  }
+  document.querySelector('.cart-widget').classList.add('open');
+  btn.classList.add('add-to-cart-success');
+  setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
 }
 
 function renderAddToCart(item) {
