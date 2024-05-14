@@ -100,15 +100,16 @@ async function addToCart(btn, el, counterEl) {
     if (script) {
       setTimeout(() => {
         script.parentNode.removeChild(script);
-        getCartDetails();
-        updateCounters();
-        spinner.remove();
-
-        document.getElementsByClassName('cart-widget')[0].classList.add('open');
-        btn.classList.add('add-to-cart-success');
       }, 1500);
     }
   }
+
+  getCartDetails();
+  updateCounters();
+  spinner.remove();
+
+  document.getElementsByClassName('cart-widget')[0].classList.add('open');
+  btn.classList.add('add-to-cart-success');
 
   setTimeout(() => {
     document.getElementsByClassName('cart-widget')[0].classList.remove('open');
