@@ -27,7 +27,7 @@ function updateCounters(counter) {
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters.length > 0) {
     cartCounters.forEach((cartCounter) => {
-     cartCounter.textContent = count;
+      cartCounter.textContent = count;
     });
   }
 }
