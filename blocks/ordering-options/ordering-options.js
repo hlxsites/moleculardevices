@@ -24,7 +24,6 @@ function increaseAndDecreaseCounter(event) {
 
 async function updateCounters() {
   const count = getCartItemCount();
-  console.log(count);
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters) {
     cartCounters.forEach((cartCounter) => {
@@ -204,7 +203,7 @@ function renderCartWidget(showStore) {
           name: 'Cart',
           rel: 'noopener noreferrer',
         },
-          'View Cart',
+        'View Cart',
         ),
       )
     );
