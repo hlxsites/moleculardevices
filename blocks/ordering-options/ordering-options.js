@@ -22,8 +22,8 @@ function increaseAndDecreaseCounter(event) {
   }
 }
 
-function updateCounters(counter) {
-  const count = counter || getCartItemCount();
+function updateCounters() {
+  const count = getCartItemCount();
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters.length > 0) {
     cartCounters.forEach((cartCounter) => {
@@ -101,7 +101,7 @@ async function addToCart(btn, el, counterEl) {
       setTimeout(() => {
         script.parentNode.removeChild(script);
         getCartDetails();
-        updateCounters(counter);
+        updateCounters();
         spinner.remove();
 
         document.getElementsByClassName('cart-widget')[0].classList.add('open');
@@ -185,9 +185,7 @@ function renderCartWidget(showStore) {
           target: '_blank',
           name: 'Cart',
           rel: 'noopener noreferrer',
-        },
-        'View Cart',
-        ),
+        }, 'View Cart'),
       )
     );
     productsMain.append(cartWidget);
@@ -430,7 +428,7 @@ async function renderOptions(orderBlock, heroBlock, productRefs, itemDescription
   buildOrderingForm(options);
 
   await getCartDetails();
-  updateCounters(0);
+  updateCounters();
 }
 
 function showHideStoreFeature(showStore, orderBlock, heroBlock) {
