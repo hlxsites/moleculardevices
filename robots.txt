@@ -79,6 +79,10 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
+
+
 
 # HTML Page (App Note HTML Page Block)
 
