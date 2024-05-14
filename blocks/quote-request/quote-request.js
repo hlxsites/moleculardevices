@@ -61,12 +61,8 @@ function createRFQListBox(listArr, checkStep) {
       classes = 'rfq-icon-link';
     }
 
-    if (rfq?.Category === 'CellXpress.ai Automated Cell Culture System') {
-      tabName = 'Automated Cell Culture System';
-    } else if (rfq?.Category === '3D Bioprinter – BAB400 Automated Bioprinting Solution') {
-      tabName = '3D Bioprinter';
-    } else if (rfq?.Category === 'IQ/OQ/PM Services') {
-      tabName = 'Preventative Maintenance';
+    if (rfq?.DisplayText) {
+      tabName = rfq.DisplayText;
     } else {
       tabName = rfq.Category;
     }
@@ -294,21 +290,9 @@ function stepTwo(tab, event) {
   root.innerHTML = '';
   const filterData = rfqCategories.filter(({ Type }) => Type.includes(tab) > 0);
 
-  // filterData.forEach((data) => {
-  //   if (data?.Category === 'CellXpress.ai Automated Cell Culture System') {
-  //     data.Category = 'Automated Cell Culture System';
-  //   } else if (data?.Category === '3D Bioprinter – BAB400 Automated Bioprinting Solution') {
-  //     data.Category = '3D Bioprinter';
-  //   } else if (data?.Category === 'IQ/OQ/PM Services') {
-  //     data.Category = 'Preventative Maintenance';
-  //   }
-  // });
-
   const defaultProgessValue = 70;
   const fetchRQFTypes = createRFQListBox(filterData, stepNum);
   const progressBarHtml = createProgessBar(defaultProgessValue, stepNum);
-
-  console.log(fetchRQFTypes);
 
   if (tab === 'Services') {
     root.appendChild(h3('Please select service of interest'));
