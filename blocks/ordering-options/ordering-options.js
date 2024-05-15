@@ -114,10 +114,10 @@ async function addToCart(btn, el, counterEl) {
 
   setTimeout(() => {
     loadShopScript(src, timer);
-    getCartDetails();
   }, timer);
 
   setTimeout(() => {
+    getCartDetails();
     updateCounters();
     spinner.remove();
     showSuccessMessage(btn, timer);
