@@ -22,8 +22,8 @@ function increaseAndDecreaseCounter(event) {
   }
 }
 
-function updateCounters(counter) {
-  const count = counter || getCartItemCount();
+function updateCounters() {
+  const count = getCartItemCount();
   console.log(count);
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters.length > 0) {
@@ -114,7 +114,7 @@ async function addToCart(btn, el, counterEl) {
   setTimeout(() => {
     loadShopScript(src, timer);
     getCartDetails();
-    updateCounters(counter);
+    updateCounters();
     spinner.remove();
 
     showSuccessMessage(btn, timer);
