@@ -69,7 +69,7 @@ function createSpinner() {
   return spinner;
 }
 
-function loadShopScript(src, timer) {
+async function loadShopScript(src) {
   const script = document.createElement('script');
   script.src = src;
 
@@ -79,7 +79,6 @@ function loadShopScript(src, timer) {
       reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
     };
     document.head.appendChild(script);
-    setTimeout(() => document.head.removeChild(script), timer);
   });
 }
 
@@ -111,14 +110,22 @@ async function addToCart(btn, el, counterEl) {
     callback: 'addToCart',
   })}`;
 
+  const script = document.querySelector(`script[src="${src}"]`);
+
   setTimeout(() => {
     loadShopScript(src, timer);
     getCartDetails();
+  }, timer);
+
+  setTimeout(() => {
     updateCounters();
     spinner.remove();
-
     showSuccessMessage(btn, timer);
-  }, timer);
+
+    if (script) {
+      script.remove();
+    }
+  }, 2000);
 }
 
 function renderAddToCart(item) {
