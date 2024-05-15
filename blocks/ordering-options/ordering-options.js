@@ -43,8 +43,10 @@ async function getCartDetails() {
 
     /* eslint-disable dot-notation */
     window['cartDetails'] = (data) => {
+      console.log(script);
       document.getElementsByTagName('head')[0].removeChild(script);
       delete window['cartDetails'];
+      console.log(data.item_count);
       setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
       resolve(data);
     };
@@ -73,11 +75,11 @@ async function loadShopScript(src) {
   const script = document.createElement('script');
   script.src = src;
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     script.onload = resolve;
-    // script.onerror = (errorEvent) => {
-    //   reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
-    // };
+    script.onerror = (errorEvent) => {
+      reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
+    };
     document.head.appendChild(script);
   });
 }
@@ -128,7 +130,7 @@ async function addToCart(btn, el, counterEl) {
     if (script) {
       script.remove();
     }
-  }, 2500);
+  }, 2000);
 }
 
 function renderAddToCart(item) {
