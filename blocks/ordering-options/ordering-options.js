@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import { loadUserData } from '../../scripts/delayed.js';
 import {
@@ -46,6 +44,7 @@ async function getCartDetails() {
       console.log(script);
       document.getElementsByTagName('head')[0].removeChild(script);
       delete window['cartDetails'];
+      console.log(data);
       console.log(data.item_count);
       setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
       resolve(data);
@@ -116,11 +115,12 @@ async function addToCart(btn, el, counterEl) {
 
   setTimeout(() => {
     loadShopScript(src, timer);
+    getCartDetails();
   }, timer);
 
-  setTimeout(() => {
-    getCartDetails();
-  }, 2000);
+  // setTimeout(() => {
+  //   getCartDetails();
+  // }, 2000);
 
   setTimeout(() => {
     updateCounters();
@@ -130,7 +130,7 @@ async function addToCart(btn, el, counterEl) {
     if (script) {
       script.remove();
     }
-  }, 2000);
+  }, 2500);
 }
 
 function renderAddToCart(item) {
