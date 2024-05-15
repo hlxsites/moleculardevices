@@ -73,11 +73,11 @@ async function loadShopScript(src) {
   const script = document.createElement('script');
   script.src = src;
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     script.onload = resolve;
-    script.onerror = (errorEvent) => {
-      reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
-    };
+    // script.onerror = (errorEvent) => {
+    //   reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
+    // };
     document.head.appendChild(script);
   });
 }
@@ -118,6 +118,9 @@ async function addToCart(btn, el, counterEl) {
 
   setTimeout(() => {
     getCartDetails();
+  }, 2000);
+
+  setTimeout(() => {
     updateCounters();
     spinner.remove();
     showSuccessMessage(btn, timer);
@@ -125,7 +128,7 @@ async function addToCart(btn, el, counterEl) {
     if (script) {
       script.remove();
     }
-  }, 2000);
+  }, 2500);
 }
 
 function renderAddToCart(item) {
