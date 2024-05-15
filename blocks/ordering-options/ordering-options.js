@@ -54,17 +54,7 @@ async function getCartDetails() {
   });
 }
 
-function loadShopScript(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  });
-}
-
-async function addToCart(btn, el, counterEl) {
+function createSpinner() {
   const spinner = (
     div({ class: 'spinner-container' },
       img({
@@ -76,13 +66,40 @@ async function addToCart(btn, el, counterEl) {
       }),
     )
   );
-  console.log(btn);
-  console.log(el);
-  console.log(counterEl);
+  return spinner;
+}
 
-  document.querySelector('body').appendChild(spinner);
-  // worst case scenario if somethig below fails, we should not block the page forever
-  setTimeout(() => { spinner.remove(); }, 5000);
+function loadShopScript(src, timer) {
+  const script = document.createElement('script');
+  script.src = src;
+
+  return new Promise((resolve, reject) => {
+    script.onload = resolve;
+    script.onerror = (errorEvent) => {
+      reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
+    };
+    document.head.appendChild(script);
+    setTimeout(() => document.head.removeChild(script), timer);
+  });
+}
+
+function showSuccessMessage(btn, timer) {
+  const cartWidget = document.querySelector('.cart-widget');
+  const successClass = 'add-to-cart-success';
+
+  cartWidget.classList.add('open');
+  btn.classList.add(successClass);
+
+  setTimeout(() => {
+    cartWidget.classList.remove('open');
+    btn.classList.remove(successClass);
+  }, timer);
+}
+
+async function addToCart(btn, el, counterEl) {
+  const timer = 1500;
+  const spinner = createSpinner();
+  document.body.appendChild(spinner);
 
   const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
@@ -94,33 +111,14 @@ async function addToCart(btn, el, counterEl) {
     callback: 'addToCart',
   })}`;
 
-  try {
-    await loadShopScript(src);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Error loading script:', error);
-  } finally {
-    const script = document.querySelector(`script[src="${src}"]`);
-    if (script) {
-      setTimeout(() => {
-        script.parentNode.removeChild(script);
-      }, 1500);
-    }
-  }
-
   setTimeout(() => {
+    loadShopScript(src, timer);
     getCartDetails();
     updateCounters(counter);
     spinner.remove();
 
-    document.getElementsByClassName('cart-widget')[0].classList.add('open');
-    btn.classList.add('add-to-cart-success');
-  }, 2000);
-
-  setTimeout(() => {
-    document.getElementsByClassName('cart-widget')[0].classList.remove('open');
-    btn.classList.remove('add-to-cart-success');
-  }, 3000);
+    showSuccessMessage(btn, timer);
+  }, timer);
 }
 
 function renderAddToCart(item) {
