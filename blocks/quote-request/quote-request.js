@@ -63,6 +63,8 @@ function createRFQListBox(listArr, checkStep) {
 
     if (rfq?.DisplayText) {
       tabName = rfq.DisplayText;
+    } else if (checkStep === 'step-1') {
+      tabName = rfq.Type;
     } else {
       tabName = rfq.Category;
     }
@@ -83,7 +85,7 @@ function createRFQListBox(listArr, checkStep) {
             src: rfq['RFQ-Image'],
             alt: checkStep === 'step-1' ? rfq.Type : rfq.Category,
           }),
-          span({ class: 'rfq-icon-title' }, checkStep === 'step-1' ? rfq.Type : tabName),
+          span({ class: 'rfq-icon-title' }, tabName),
         ),
       ),
     );
