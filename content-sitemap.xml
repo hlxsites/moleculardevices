@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/applications/plasmid/aav-plasmids</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/plasmid/aav-plasmids"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/plasmid/aav-plasmids"/>
+        <lastmod>2024-05-15</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/applications/food-and-beverage/cellular-agriculture</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/food-and-beverage/cellular-agriculture"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/food-and-beverage/cellular-agriculture"/>
@@ -64,17 +75,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/plasmid/plasmids-3d-culture-organoid-screening"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/plasmid/plasmids-3d-culture-organoid-screening"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/plasmid/plasmids-3d-culture-organoid-screening"/>
-        <lastmod>2024-05-15</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/plasmid/aav-plasmids</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/plasmid/aav-plasmids"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/plasmid/aav-plasmids"/>
         <lastmod>2024-05-15</lastmod>
     </url>
     <url>
