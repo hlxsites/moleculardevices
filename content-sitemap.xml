@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/applications/food-and-beverage</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/food-and-beverage"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/food-and-beverage"/>
+        <lastmod>2024-05-15</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/lab-notes/clone-screening/crispr-cas9-gene-editing</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/lab-notes/clone-screening/crispr-cas9-gene-editing"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/lab-notes/clone-screening/crispr-cas9-gene-editing"/>
@@ -306,17 +317,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/lab-notes/cellular-imaging-systems/using-pdos-to-prevent-and-treat-cancer-in-fap-and-map-patients"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/cellular-imaging-systems/using-pdos-to-prevent-and-treat-cancer-in-fap-and-map-patients"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/cellular-imaging-systems/using-pdos-to-prevent-and-treat-cancer-in-fap-and-map-patients"/>
-        <lastmod>2024-05-03</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/food-and-beverage</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/food-and-beverage"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/food-and-beverage"/>
         <lastmod>2024-05-03</lastmod>
     </url>
     <url>
