@@ -30,11 +30,8 @@ async function getCartDetails() {
 
     /* eslint-disable dot-notation */
     window['cartDetails'] = (data) => {
-      console.log(script);
       document.getElementsByTagName('head')[0].removeChild(script);
       delete window['cartDetails'];
-      console.log(data);
-      console.log(data.item_count);
       setCookie(COOKIE_NAME_CART_ITEM_COUNT, data.item_count || 0);
       resolve(data);
     };
@@ -44,10 +41,12 @@ async function getCartDetails() {
   });
 }
 
-async function updateCounters() {
+async function updateCounters(counter) {
   await getCartDetails();
-  const count = getCartItemCount();
-  console.log(count);
+  let count = getCartItemCount();
+  if (count === '0') {
+    count = counter;
+  }
   const cartCounters = document.querySelectorAll('.cart-count');
   if (cartCounters.length > 0) {
     cartCounters.forEach((cartCounter) => {
@@ -77,9 +76,6 @@ async function loadShopScript(src) {
 
   return new Promise((resolve) => {
     script.onload = resolve;
-    // script.onerror = (errorEvent) => {
-    //   reject(new Error(`Error loading script "${src}": ${errorEvent.message}`));
-    // };
     document.head.appendChild(script);
   });
 }
@@ -119,7 +115,7 @@ async function addToCart(btn, el, counterEl) {
   }, timer);
 
   setTimeout(() => {
-    updateCounters();
+    updateCounters(counter);
     spinner.remove();
     showSuccessMessage(btn, timer);
 
