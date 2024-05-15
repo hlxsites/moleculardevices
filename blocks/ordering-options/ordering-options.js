@@ -441,8 +441,7 @@ async function renderOptions(orderBlock, heroBlock, productRefs, itemDescription
 
   buildOrderingForm(options);
 
-  // await getCartDetails();
-  await updateCounters();
+  await updateCounters(0);
 }
 
 function showHideStoreFeature(showStore, orderBlock, heroBlock) {
