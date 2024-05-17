@@ -58,7 +58,7 @@ function searchFormHeader() {
   return `
           <div id="search" class="CoveoSearchInterface mdcoveo" data-enable-history="true" data-excerpt-length="350">
             <div class="CoveoFolding"></div>
-            <div class="CoveoAnalytics"></div>
+            <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
             <div class="section cover-banner-wrapper">
               <div class="cover-banner">
                 <div class="cover-banner-content">
