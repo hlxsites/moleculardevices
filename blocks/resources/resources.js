@@ -240,7 +240,7 @@ function searchFormHeader() {
         </div>
       </div>
       <div class="CoveoFolding"></div>
-      <div class="CoveoAnalytics"></div>
+      <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
     </div>
   `;
 }
