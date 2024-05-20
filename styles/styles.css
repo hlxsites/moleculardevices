@@ -2182,6 +2182,19 @@ main .section.space-wrappers > div {
   margin-bottom: 16px;
 }
 
+.no-indented-list ul,
+.no-indented-list ol {
+  padding-left: 20px;
+}
+
+.disc-sub-heading ol > li > ol {
+  list-style: disc;
+}
+
+.lower-alpha-sub-heading ol > li > ol {
+  list-style: lower-alpha;
+}
+
 /* QA LIST */
 main .qa-list ul,
 .blog main .qa-list ul {
