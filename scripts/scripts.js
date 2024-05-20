@@ -43,6 +43,16 @@ const AUDIENCES = {
   desktop: () => window.innerWidth >= 600,
   // define your custom audiences here as needed
 };
+export function getAllMetadata(scope) {
+  return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
+    .reduce((res, meta) => {
+      const id = toClassName(meta.name
+        ? meta.name.substring(scope.length + 1)
+        : meta.getAttribute('property').split(':')[1]);
+      res[id] = meta.getAttribute('content');
+      return res;
+    }, {});
+}
 
 window.hlx.plugins.add('experimentation', {
   condition: () => getMetadata('experiment')
