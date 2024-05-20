@@ -72,6 +72,33 @@ async function loadEager(doc) {
     const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
     await runEager(document, { audiences: AUDIENCES }, pluginContext);
   }
+  // automatic page translators like google translate may change the lang attribute
+  // so we store it in an additional attribute, to use the original value for the rendering
+  // logic later
+  document.documentElement.lang = document.documentElement.lang || 'en';
+  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
+
+  if (!isHomepage()) {
+    document.originalTitle = document.title;
+    document.title = `${document.title ?? ''} | Molecular Devices`;
+  }
+  decorateTemplateAndTheme();
+  const main = doc.querySelector('main');
+  if (main) {
+    await window.hlx.plugins.run('loadEager');
+    await decorateMain(main);
+    createBreadcrumbsSpace(main);
+    await waitForLCP(LCP_BLOCKS);
+  }
+  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+
+  try {
+    if (sessionStorage.getItem('fonts-loaded')) {
+      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+    }
+  } catch (e) {
+    // do nothing
+  }
 
 }
 async function loadLazy(doc) {
@@ -864,35 +891,6 @@ function isHomepage() {
 /**
  * loads everything needed to get to LCP.
  */
-async function loadEager(doc) {
-  // automatic page translators like google translate may change the lang attribute
-  // so we store it in an additional attribute, to use the original value for the rendering
-  // logic later
-  document.documentElement.lang = document.documentElement.lang || 'en';
-  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
-
-  if (!isHomepage()) {
-    document.originalTitle = document.title;
-    document.title = `${document.title ?? ''} | Molecular Devices`;
-  }
-  decorateTemplateAndTheme();
-  const main = doc.querySelector('main');
-  if (main) {
-    await window.hlx.plugins.run('loadEager');
-    await decorateMain(main);
-    createBreadcrumbsSpace(main);
-    await waitForLCP(LCP_BLOCKS);
-  }
-  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-
-  try {
-    if (sessionStorage.getItem('fonts-loaded')) {
-      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-    }
-  } catch (e) {
-    // do nothing
-  }
-}
 
 /**
  * Format date expressed as string: mm/dd/yyyy
