@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/events/society-for-neuroscience-sfn</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/society-for-neuroscience-sfn"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/society-for-neuroscience-sfn"/>
+        <lastmod>2024-05-20</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/events/mps-world-summit-2024</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/mps-world-summit-2024"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/mps-world-summit-2024"/>
