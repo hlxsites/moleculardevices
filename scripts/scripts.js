@@ -111,6 +111,38 @@ async function loadLazy(doc) {
     const { loadLazy: runLazy } = await import('../plugins/experimentation/src/index.js');
     await runLazy(document, { audiences: AUDIENCES }, pluginContext);
   }
+  const main = doc.querySelector('main');
+
+  // eslint-disable-next-line no-unused-vars
+  loadHeader(doc.querySelector('header'));
+
+  await loadBlocks(main);
+
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    enableStickyElements();
+
+    const { hash } = window.location;
+    const element = hash ? doc.getElementById(hash.substring(1)) : false;
+    if (hash && element) element.scrollIntoView();
+
+    loadFooter(doc.querySelector('footer'));
+    loadBreadcrumbs(main);
+
+    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
+      try {
+        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+      } catch (e) {
+        // do nothing
+      }
+    });
+
+    window.hlx.plugins.run('loadLazy');
+
+    sampleRUM('lazy');
+    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+    sampleRUM.observe(main.querySelectorAll('picture > img'));
+  }
 }
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 // Add you plugins below
@@ -1035,40 +1067,7 @@ function enableStickyElements() {
 /**
  * loads everything that doesn't need to be delayed.
  */
-async function loadLazy(doc) {
-  const main = doc.querySelector('main');
 
-  // eslint-disable-next-line no-unused-vars
-  loadHeader(doc.querySelector('header'));
-
-  await loadBlocks(main);
-
-  if (!window.location.pathname.startsWith('/cp-request')) {
-    enableStickyElements();
-
-    const { hash } = window.location;
-    const element = hash ? doc.getElementById(hash.substring(1)) : false;
-    if (hash && element) element.scrollIntoView();
-
-    loadFooter(doc.querySelector('footer'));
-    loadBreadcrumbs(main);
-
-    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
-      try {
-        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-      } catch (e) {
-        // do nothing
-      }
-    });
-
-    window.hlx.plugins.run('loadLazy');
-
-    sampleRUM('lazy');
-    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-    sampleRUM.observe(main.querySelectorAll('picture > img'));
-  }
-}
 
 /**
  * loads everything that happens a lot later, without impacting
