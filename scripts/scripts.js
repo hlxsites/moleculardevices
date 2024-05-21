@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import {
   sampleRUM,
@@ -62,26 +63,7 @@ window.hlx.plugins.add('experimentation', {
   url: '/plugins/experimentation/src/index.js',
 });
 
-// Define an execution context
-const pluginContext = {
-  getAllMetadata,
-  getMetadata,
-  loadCSS,
-  loadScript,
-  sampleRUM,
-  toCamelCase,
-  toClassName,
-};
 async function loadEager(doc) {
-
-  // Add below snippet early in the eager phase
-  if (getMetadata('experiment')
-    || Object.keys(getAllMetadata('campaign')).length
-    || Object.keys(getAllMetadata('audience')).length) {
-    // eslint-disable-next-line import/no-relative-packages
-    const { loadEager: runEager } = await import('../plugins/experimentation/src/index.js');
-    await runEager(document, { audiences: AUDIENCES }, pluginContext);
-  }
   // automatic page translators like google translate may change the lang attribute
   // so we store it in an additional attribute, to use the original value for the rendering
   // logic later
@@ -109,18 +91,9 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
-
 }
+
 async function loadLazy(doc) {
-  
-  // Add below snippet at the end of the lazy phase
-  if ((getMetadata('experiment')
-    || Object.keys(getAllMetadata('campaign')).length
-    || Object.keys(getAllMetadata('audience')).length)) {
-    // eslint-disable-next-line import/no-relative-packages
-    const { loadLazy: runLazy } = await import('../plugins/experimentation/src/index.js');
-    await runLazy(document, { audiences: AUDIENCES }, pluginContext);
-  }
   const main = doc.querySelector('main');
 
   // eslint-disable-next-line no-unused-vars
@@ -1077,7 +1050,6 @@ function enableStickyElements() {
 /**
  * loads everything that doesn't need to be delayed.
  */
-
 
 /**
  * loads everything that happens a lot later, without impacting
