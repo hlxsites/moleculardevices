@@ -120,8 +120,6 @@ async function loadLazy(doc) {
   }
 }
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
-// Add you plugins below
-window.hlx.plugins.add('/plugins/experimentation');
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
 const SUPPORT_CHANNELS = ['DISTRIBUTOR', 'INTEGRATOR', 'SALES', 'TECH'];
