@@ -41,10 +41,27 @@ const TEMPLATE_LIST = [
   'landing-page',
 ];
 
+// GET GEO LOCATION
+const getGeoLocation = async () => {
+  const url = 'https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc';
+
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching data:', error);
+    });
+};
+
+const geoData = await getGeoLocation();
+console.log(geoData.country_code);
+
 const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
   desktop: () => window.innerWidth >= 600,
-  // define your custom audiences here as needed
+  us: async () => geoData.country_code.toLowerCase() === 'us',
+  eu: async () => geoData.country_code.toLowerCase() === 'eu',
 };
 
 window.hlx.plugins.add('experimentation', {
@@ -54,6 +71,7 @@ window.hlx.plugins.add('experimentation', {
   options: { audiences: AUDIENCES },
   url: '/plugins/experimentation/src/index.js',
 });
+window.localStorage.setItem('aem-domainkey', 'https://www.moleculardevices.com/');
 
 async function loadEager(doc) {
   // automatic page translators like google translate may change the lang attribute
