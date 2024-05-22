@@ -61,7 +61,13 @@ const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
   desktop: () => window.innerWidth >= 600,
   us: async () => geoData.country_code.toLowerCase() === 'us',
-  eu: async () => geoData.country_code.toLowerCase() === 'eu',
+  de: async () => geoData.country_code.toLowerCase() === 'de',
+  cn: async () => geoData.country_code.toLowerCase() === 'cn',
+  jp: async () => geoData.country_code.toLowerCase() === 'jp',
+  fr: async () => geoData.country_code.toLowerCase() === 'fr',
+  ko: async () => geoData.country_code.toLowerCase() === 'ko',
+  it: async () => geoData.country_code.toLowerCase() === 'it',
+  es: async () => geoData.country_code.toLowerCase() === 'es',
 };
 
 window.hlx.plugins.add('experimentation', {
