@@ -128,6 +128,9 @@ export function decorateLanguagesTool(tools) {
 
   const pathLocation = window.location.pathname;
   languagesList.querySelectorAll('a').forEach((link) => {
+    if (link.href === 'https://www.moleculardevices.com/') {
+      link.classList.add('OneLinkKeepLinks');
+    }
     link.href = `${link.href}${pathLocation.slice(1)}`;
   });
 
