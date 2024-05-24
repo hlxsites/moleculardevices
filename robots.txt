@@ -145,6 +145,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/using-differentiated-ipscs-to-build
 
 Disallow: /sites/default/files/en/assets/infographics/br/microplate-readers-in-neurodegenerative-research.pdf
 Disallow: /sites/default/files/en/assets/infographics/br/cell-viability-assays.pdf
+Disallow: /sites/default/files/en/assets/infographics/br/5-essential-factors-for-gxp-compliance-in-regulated-laboratory.pdf
 # Flyer Block web and Google
 Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
 
@@ -215,7 +216,7 @@ Disallow: /en/assets/tutorials-videos/bpd/mastering-monoclonality-of-single-cell
 Disallow: /en/assets/tutorials-videos/dd/img/transforming-the-complexities-of-3d-cell-culture-into-reliable-and-translatable-science
 Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potentials-using-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-screening-on-standardized-pancreatic-cancer-organoids
-
+Disallow: /en/assets/tutorials-videos/bpd/advancing-global-food-sustainability-with-molecular-devices
 
 #EU webinars to imaging video gallery page
 
