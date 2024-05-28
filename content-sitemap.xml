@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
+        <lastmod>2024-05-28</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids"/>
@@ -351,17 +362,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/lab-notes/clone-screening/crispr-cas9-gene-editing"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/lab-notes/clone-screening/crispr-cas9-gene-editing"/>
         <lastmod>2024-05-15</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids"/>
-        <lastmod>2024-05-14</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction</loc>
