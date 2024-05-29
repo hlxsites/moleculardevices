@@ -220,8 +220,8 @@ main .section .resources-wrapper {
 }
 
 .section .resources .cover-banner .coveo-search-section {
-  margin: 50px auto 20px;
-  margin-right: -60px;
+  margin: 50px 0 20px 10px;
+  padding: 0;
   max-width: 450px;
 }
 
