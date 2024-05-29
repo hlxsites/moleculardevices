@@ -238,12 +238,12 @@ function createCoveoFields(index, icons) {
     }
     if (item.type === 'Application' && isNotEmpty(item.category)) {
       const result = [item.category];
-     if (isNotEmpty(item.subcategory)) {
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
-    }else{
-      result.push(`${item.category}|${itemSearchTitle(item)}`);
-    }
+      if (isNotEmpty(item.subcategory)) {
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      } else {
+        result.push(`${item.category}|${itemSearchTitle(item)}`);
+      }
 
       item.mdapplicationsdatacategory = result.join(';');
     }
