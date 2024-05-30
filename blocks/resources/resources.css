@@ -214,6 +214,7 @@ main .section .resources-wrapper {
 .section .resources .section.coveo-main-section-wrapper {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 0;
 }
 
 .section.resources-container .default-content-wrapper {
@@ -237,6 +238,10 @@ main .section .resources-wrapper {
 .section .resources .coveo-search-box > .coveo-search-button-loading-svg svg {
   position: relative;
   top: 3px;
+}
+
+.section .resources .coveo-search-box {
+  margin: 8px auto 34px;
 }
 
 .section .resources .coveo-search-box .magic-box {
@@ -269,7 +274,7 @@ main .section .resources-wrapper {
 .section .resources .coveo-facet-column div[data-title="Article Type"],
 .section .resources .section.coveo-tab-section-wrapper {
   height: 0;
-  min-height: auto;
+  min-height: min-content;
   visibility: hidden;
   margin: 0;
   padding: 0;

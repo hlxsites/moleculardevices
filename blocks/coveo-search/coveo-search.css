@@ -1,4 +1,5 @@
 /* stylelint-disable selector-class-pattern */
+/* stylelint-disable no-descending-specificity */
 .section.coveo-search-container,
 .section.coveo-tab-section-wrapper {
   padding: 0;
@@ -269,7 +270,6 @@
   font-size: 12px;
 }
 
-/* stylelint-disable selector-class-pattern */
 .coveo-filetype-custom,
 .coveo-icon.objecttype,
 .coveo-icon.filetype,
@@ -401,6 +401,10 @@
 
 .coveo-dynamic-hierarchical-facet-value .coveo-dynamic-hierarchical-facet-value-arrow-right {
   display: none;
+}
+
+.mdcoveo .coveo-main-section-wrapper .coveo-facet-column {
+  padding-left: 0;
 }
 
 @media only screen and (min-width: 768px) {
