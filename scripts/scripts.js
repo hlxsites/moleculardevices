@@ -213,6 +213,13 @@ export function decorateExternalLink(link) {
   if (!link.href) return;
 
   const url = new URL(link.href);
+  // const innerLink = link.closest('.add-external-link') ? link : '';
+
+  if (link.closest('.add-external-link')) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+    return;
+  }
 
   const internalLinks = [
     'https://view.ceros.com',
