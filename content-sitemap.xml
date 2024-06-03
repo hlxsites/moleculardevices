@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou"/>
-        <lastmod>2024-05-31</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/cellxpress-ai-automated-cell-culture-system"/>
@@ -3298,17 +3287,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/tutorials-videos/dd/img/introduction-to-bioassemblybot-400"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/img/introduction-to-bioassemblybot-400"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/introduction-to-bioassemblybot-400"/>
-        <lastmod>2024-02-07</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/tutorials-videos/dd/img/bioassembly-bot-400-demo"/>
         <lastmod>2024-02-07</lastmod>
     </url>
     <url>
@@ -17238,17 +17216,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/bpi-europe</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/bpi-europe"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/bpi-europe"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/sbi2-virtual</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/sbi2-virtual"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/sbi2-virtual"/>
@@ -17279,28 +17246,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/ascb-embo-2019"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/ascb-embo-2019"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/ascb-embo-2019"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/events/advances-cell-based-screening</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/advances-cell-based-screening"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/advances-cell-based-screening"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/events/cell-line-development-and-engineering-2019</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/cell-line-development-and-engineering-2019"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/cell-line-development-and-engineering-2019"/>
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
@@ -17370,17 +17315,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/microbiome-rd-and-business-collaboration-forum"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/microbiome-rd-and-business-collaboration-forum"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/wrib-2019</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/wrib-2019"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/wrib-2019"/>
@@ -17433,17 +17367,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/uk-light-microscopy-facility-managers-meeting-2019"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/uk-light-microscopy-facility-managers-meeting-2019"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/uk-light-microscopy-facility-managers-meeting-2019"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/events/bioassays-2019</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/bioassays-2019"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/bioassays-2019"/>
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
@@ -17576,17 +17499,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/fens"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/fens"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/fens"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/events/annual-bio-innovation-leaders-summit</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/annual-bio-innovation-leaders-summit"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/annual-bio-innovation-leaders-summit"/>
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
@@ -18074,17 +17986,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/emerging-applications-microbes</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/emerging-applications-microbes"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/emerging-applications-microbes"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/life-sciences-2019-post-translational-modification-and-cell-signalling</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/life-sciences-2019-post-translational-modification-and-cell-signalling"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/life-sciences-2019-post-translational-modification-and-cell-signalling"/>
@@ -18228,17 +18129,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/annual-conference-2019-association-general-and-applied-microbiology"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/sbi2-boston</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/sbi2-boston"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/sbi2-boston"/>
@@ -18349,17 +18239,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/advanced-analytical-technologies-proteins</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/advanced-analytical-technologies-proteins"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/advanced-analytical-technologies-proteins"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/society-for-neuroscience-50th-annual-meeting-2021</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/society-for-neuroscience-50th-annual-meeting-2021"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/society-for-neuroscience-50th-annual-meeting-2021"/>
@@ -18393,17 +18272,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/6th-novalix-conference-biophysics-drug-discovery"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/ein-einstieg-die-bildgebung-von-3d-zellmodellen-alles-was-sie-wissen-mussen</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/ein-einstieg-die-bildgebung-von-3d-zellmodellen-alles-was-sie-wissen-mussen"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/ein-einstieg-die-bildgebung-von-3d-zellmodellen-alles-was-sie-wissen-mussen"/>
@@ -18426,17 +18294,6 @@
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
-        <loc>https://www.moleculardevices.com/events/global-discovery-development-innovation-forum</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/global-discovery-development-innovation-forum"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/global-discovery-development-innovation-forum"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
         <loc>https://www.moleculardevices.com/events/antibody-engineering-therapeutics</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/antibody-engineering-therapeutics"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/antibody-engineering-therapeutics"/>
@@ -18456,17 +18313,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/cell-bio"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/cell-bio"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/cell-bio"/>
-        <lastmod>2023-05-09</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/events/bps-2019-annual-meeting</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/events/bps-2019-annual-meeting"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/events/bps-2019-annual-meeting"/>
         <lastmod>2023-05-09</lastmod>
     </url>
     <url>
