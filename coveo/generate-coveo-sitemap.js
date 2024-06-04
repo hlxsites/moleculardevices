@@ -232,18 +232,24 @@ function createCoveoFields(index, icons) {
 
     if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      if (isNotEmpty(item.subcategory)) {
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      } else {
+        result.push(`${item.category}|${itemSearchTitle(item)}`);
+      }
+
       item.mdproductsdatacategory = result.join(';');
     }
+
     if (item.type === 'Application' && isNotEmpty(item.category)) {
       const result = [item.category];
-     if (isNotEmpty(item.subcategory)) {
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
-    }else{
-      result.push(`${item.category}|${itemSearchTitle(item)}`);
-    }
+      if (isNotEmpty(item.subcategory)) {
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      } else {
+        result.push(`${item.category}|${itemSearchTitle(item)}`);
+      }
 
       item.mdapplicationsdatacategory = result.join(';');
     }
@@ -259,7 +265,7 @@ function createCoveoFields(index, icons) {
 function createCoveoFieldsFromRelatedData(index) {
   index.data.forEach((item) => {
     if (item.md_pagetype === 'Resource') {
-      // set related product info
+      // set related product info.
       if (isNotEmpty(item.relatedProducts)) {
         const relatedProducts = item.relatedProducts.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
@@ -272,15 +278,12 @@ function createCoveoFieldsFromRelatedData(index) {
           .join(';');
       }
 
+      // set related application info
       if (isNotEmpty(item.relatedApplications)) {
-        const relatedApplications = item.relatedApplications.split(',')
+        item.md_application = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application);
-
-        item.md_application = relatedApplications.map(itemSearchTitle).join(';');
-        item.mdapplicationsdatacategory = relatedApplications
-          .map((application) => application.mdapplicationsdatacategory)
-          .filter((category) => !!category)
+          .filter((application) => !!application)
+          .map(itemSearchTitle)
           .join(';');
       }
     }
@@ -329,7 +332,6 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_product><![CDATA[ ${item.md_product || ''}  ]]></md_product>`);
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
-    xmlData.push(`      <mdapplicationsdatacategory><![CDATA[ ${item.mdapplicationsdatacategory || ''} ]]></mdapplicationsdatacategory>`);
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO
@@ -344,7 +346,7 @@ async function writeCoveoSitemapXML(index) {
   xmlData.push('</urlset>');
 
   try {
-    fs.writeFileSync('coveo-xml2.xml', xmlData.join('\n'));
+    fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
     console.log(`Successfully wrote ${count} items to coveo xml`);
   } catch (err) {
     console.error(err);

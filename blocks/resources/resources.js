@@ -233,9 +233,7 @@ function searchFormHeader() {
       <div class="section cover-banner-wrapper no-padding-top">
         <div class="cover-banner">
           <div class="not-fixed-search">
-            <div class="coveo-search-section">
-              <div class="CoveoSearchbox coveo-search-box" data-enable-omnibox="true" data-enable-search-as-you-type="true" data-number-of-suggestions="5" data-partial-match-keywords="" data-enable-partial-match="true" data-inline="true" data-placeholder="" data-enable-query-suggest-addon="true"></div>
-            </div>
+            <div class="coveo-search-section"></div>
           </div>
         </div>
       </div>
@@ -263,6 +261,7 @@ function searchMainSection() {
       <div class="coveo-main-section">
         <p class='coveoMainTitle coveo-main-title'></p>
         <div class="coveo-facet-column">
+        <div class="CoveoSearchbox coveo-search-box" data-enable-omnibox="true" data-enable-search-as-you-type="true" data-number-of-suggestions="5" data-partial-match-keywords="" data-enable-partial-match="true" data-inline="true" data-placeholder="" data-enable-query-suggest-addon="true"></div>
           <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Country" data-field="@md_country" data-tab="SDS" data-id="Country" data-number-of-values="" data-enable-facet-search="false"></div>
           <div class="CoveoDynamicHierarchicalFacet coveo-dynamic-hierarchical-facet" data-enable-facet-search="false" data-delimiting-character="|" data-title="Products" data-field="@mdproductsdatacategory" data-tab="Products, All, Resources, KBArticles, Videos" data-number-of-values="8" data-enable-collapse="true" data-enable-scroll-to-top="false" data-filter-facet-count="false"></div>
           <div class="CoveoDynamicHierarchicalFacet coveo-dynamic-hierarchical-facet" data-enable-facet-search="false" data-delimiting-character="|" data-title="Applications" data-field="@mdapplicationsdatacategory" data-tab="Applications, All, Resources, KBArticles, Videos" data-number-of-values="8" data-enable-collapse="true" data-enable-scroll-to-top="false" data-filter-facet-count="false"></div>
