@@ -379,6 +379,6 @@ main .section .resources-wrapper {
 
 @media only screen and (max-width: 767px) {
   .CoveoSearchInterface .coveo-results-column {
-    padding: 10px 0;
+    padding: 10px 10px 10px 15px;
   }
 }

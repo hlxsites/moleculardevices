@@ -473,7 +473,7 @@
   }
 
   .coveo-result-frame .coveo-result-cell,
-  .CoveoResult.coveo-result-frame .coveo-result-cell {
+  .coveo-list-layout .coveo-result-frame .coveo-result-cell {
     display: block !important;
   }
 
