@@ -280,10 +280,14 @@ function createCoveoFieldsFromRelatedData(index) {
 
       // set related application info
       if (isNotEmpty(item.relatedApplications)) {
-        item.md_application = item.relatedApplications.split(',')
+        const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application)
-          .map(itemSearchTitle)
+          .filter((application) => !!application);
+
+        item.md_application = relatedApplications.map(itemSearchTitle).join(';');
+        item.mdapplicationsdatacategory = relatedApplications
+          .map((application) => application.mdapplicationsdatacategory)
+          .filter((category) => !!category)
           .join(';');
       }
     }
@@ -332,6 +336,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_product><![CDATA[ ${item.md_product || ''}  ]]></md_product>`);
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
+    xmlData.push(` <mdapplicationsdatacategory><![CDATA[ ${item.mdapplicationsdatacategory || ''} ]]></mdapplicationsdatacategory>`);
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO
@@ -346,7 +351,7 @@ async function writeCoveoSitemapXML(index) {
   xmlData.push('</urlset>');
 
   try {
-    fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
+    fs.writeFileSync('coveo-xml2.xml', xmlData.join('\n'));
     console.log(`Successfully wrote ${count} items to coveo xml`);
   } catch (err) {
     console.error(err);
