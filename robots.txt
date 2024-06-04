@@ -120,6 +120,10 @@ Disallow: /en/assets/app-note/bpd/expanded-fluorescence-screening-using-qpix-400
 Disallow: /en/assets/app-note/bpd/automated-colorimetric-colony-selection-blue-white-colony-screening-with-qpix-400-series
 Disallow: /en/assets/app-note/bpd/fluorescent-bacterial-colony-selection-using-qpix-400-system
 Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expressing-mammalian-cell-lines-using-novel-clonepix
+Disallow: /en/assets/app-note/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination
+
+
+
 
 # ISSER 2021 presentations poster and video
 Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
