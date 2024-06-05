@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable no-descending-specificity */
 .section.coveo-search-container,
 .section.coveo-tab-section-wrapper {
   padding: 0;
@@ -38,7 +40,7 @@
   height: 100%;
 }
 
-.cover-banner-wrapper picture img{
+.cover-banner-wrapper picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -165,7 +167,7 @@
   font-weight: normal;
 }
 
-.coveo-main-section .coveo-dynamic-facet-value input[type='checkbox'].coveo-checkbox + button {
+.coveo-main-section .coveo-dynamic-facet-value input[type="checkbox"].coveo-checkbox + button {
   width: 18px;
   height: 18px;
   box-sizing: content-box;
@@ -177,14 +179,14 @@
   background: var(--background-color);
   position: relative;
   float: left;
-  top: 2px
+  top: 2px;
 }
 
 .coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-span-label-suffix {
   margin-left: 8px;
   color: #67768b;
   float: right;
-  font-weight: normal
+  font-weight: normal;
 }
 
 .coveo-main-section .coveo-facet-value-count,
@@ -194,7 +196,7 @@
   font-weight: normal;
 }
 
-.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button+.coveo-checkbox-span-label {
+.coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button + .coveo-checkbox-span-label {
   font-size: 14px;
   color: #63666a;
   width: 400px;
@@ -268,12 +270,132 @@
   font-size: 12px;
 }
 
-/* stylelint-disable selector-class-pattern */
-.coveo-filetype-custom,.coveo-icon.objecttype,.coveo-icon.filetype,.coveo-icon.filetype.Exchangefreebusy,.coveo-icon.filetype.exchangefreebusy,.coveo-icon.filetype.Exchangemdn,.coveo-icon.filetype.exchangemdn,.coveo-icon.filetype.Exchangeobject,.coveo-icon.filetype.exchangeobject,.coveo-icon.filetype.Sc_cat_item,.coveo-icon.filetype.sc_cat_item,.coveo-icon.filetype.Sparea,.coveo-icon.filetype.sparea,.coveo-icon.filetype.Spcustomlist,.coveo-icon.filetype.spcustomlist,.coveo-icon.filetype.Spsurvey,.coveo-icon.filetype.spsurvey,.coveo-icon.filetype.Spsurveylist,.coveo-icon.filetype.spsurveylist,.coveo-icon.filetype.Spcustomgridlist,.coveo-icon.filetype.spcustomgridlist,.coveo-icon.filetype.Spdecision,.coveo-icon.filetype.spdecision,.coveo-icon.filetype.Spdecisionlist,.coveo-icon.filetype.spdecisionlist,.coveo-icon.filetype.Spobjective,.coveo-icon.filetype.spobjective,.coveo-icon.filetype.Spobjectivelist,.coveo-icon.filetype.spobjectivelist,.coveo-icon.filetype.Spthingstobring,.coveo-icon.filetype.spthingstobring,.coveo-icon.filetype.Spthingstobringlist,.coveo-icon.filetype.spthingstobringlist,.coveo-icon.filetype.Sparealisting,.coveo-icon.filetype.sparealisting,.coveo-icon.filetype.Spunknownlist,.coveo-icon.filetype.spunknownlist,.coveo-icon.filetype.Spdistributiongroup,.coveo-icon.filetype.spdistributiongroup,.coveo-icon.filetype.Spdistributiongrouplist,.coveo-icon.filetype.spdistributiongrouplist,.coveo-icon.filetype.Spkeyperformanceindicator,.coveo-icon.filetype.spkeyperformanceindicator,.coveo-icon.filetype.Spkeyperformanceindicatorlist,.coveo-icon.filetype.spkeyperformanceindicatorlist,.coveo-icon.filetype.Sptab,.coveo-icon.filetype.sptab,.coveo-icon.filetype.Sptablist,.coveo-icon.filetype.sptablist,.coveo-icon.filetype.Spworkflowprocess,.coveo-icon.filetype.spworkflowprocess,.coveo-icon.filetype.Spworkflowprocesslist,.coveo-icon.filetype.spworkflowprocesslist,.coveo-icon.filetype.Spcirculation,.coveo-icon.filetype.spcirculation,.coveo-icon.filetype.Spcirculationlist,.coveo-icon.filetype.spcirculationlist,.coveo-icon.filetype.Spwhereabout,.coveo-icon.filetype.spwhereabout,.coveo-icon.filetype.Spwhereaboutlist,.coveo-icon.filetype.spwhereaboutlist,.coveo-filetype-custom-small,.coveo-icon.objecttype.coveo-small,.coveo-icon.filetype.coveo-small,.coveo-icon.filetype.coveo-small.Exchangefreebusy,.coveo-icon.filetype.coveo-small.exchangefreebusy,.coveo-icon.filetype.coveo-small.Exchangemdn,.coveo-icon.filetype.coveo-small.exchangemdn,.coveo-icon.filetype.coveo-small.Exchangeobject,.coveo-icon.filetype.coveo-small.exchangeobject,.coveo-icon.filetype.coveo-small.Sc_cat_item,.coveo-icon.filetype.coveo-small.sc_cat_item,.coveo-icon.filetype.coveo-small.Sparea,.coveo-icon.filetype.coveo-small.sparea,.coveo-icon.filetype.coveo-small.Spcustomlist,.coveo-icon.filetype.coveo-small.spcustomlist,.coveo-icon.filetype.coveo-small.Spsurvey,.coveo-icon.filetype.coveo-small.spsurvey,.coveo-icon.filetype.coveo-small.Spsurveylist,.coveo-icon.filetype.coveo-small.spsurveylist,.coveo-icon.filetype.coveo-small.Spcustomgridlist,.coveo-icon.filetype.coveo-small.spcustomgridlist,.coveo-icon.filetype.coveo-small.Spdecision,.coveo-icon.filetype.coveo-small.spdecision,.coveo-icon.filetype.coveo-small.Spdecisionlist,.coveo-icon.filetype.coveo-small.spdecisionlist,.coveo-icon.filetype.coveo-small.Spobjective,.coveo-icon.filetype.coveo-small.spobjective,.coveo-icon.filetype.coveo-small.Spobjectivelist,.coveo-icon.filetype.coveo-small.spobjectivelist,.coveo-icon.filetype.coveo-small.Spthingstobring,.coveo-icon.filetype.coveo-small.spthingstobring,.coveo-icon.filetype.coveo-small.Spthingstobringlist,.coveo-icon.filetype.coveo-small.spthingstobringlist,.coveo-icon.filetype.coveo-small.Sparealisting,.coveo-icon.filetype.coveo-small.sparealisting,.coveo-icon.filetype.coveo-small.Spunknownlist,.coveo-icon.filetype.coveo-small.spunknownlist,.coveo-icon.filetype.coveo-small.Spdistributiongroup,.coveo-icon.filetype.coveo-small.spdistributiongroup,.coveo-icon.filetype.coveo-small.Spdistributiongrouplist,.coveo-icon.filetype.coveo-small.spdistributiongrouplist,.coveo-icon.filetype.coveo-small.Spkeyperformanceindicator,.coveo-icon.filetype.coveo-small.spkeyperformanceindicator,.coveo-icon.filetype.coveo-small.Spkeyperformanceindicatorlist,.coveo-icon.filetype.coveo-small.spkeyperformanceindicatorlist,.coveo-icon.filetype.coveo-small.Sptab,.coveo-icon.filetype.coveo-small.sptab,.coveo-icon.filetype.coveo-small.Sptablist,.coveo-icon.filetype.coveo-small.sptablist,.coveo-icon.filetype.coveo-small.Spworkflowprocess,.coveo-icon.filetype.coveo-small.spworkflowprocess,.coveo-icon.filetype.coveo-small.Spworkflowprocesslist,.coveo-icon.filetype.coveo-small.spworkflowprocesslist,.coveo-icon.filetype.coveo-small.Spcirculation,.coveo-icon.filetype.coveo-small.spcirculation,.coveo-icon.filetype.coveo-small.Spcirculationlist,.coveo-icon.filetype.coveo-small.spcirculationlist,.coveo-icon.filetype.coveo-small.Spwhereabout,.coveo-icon.filetype.coveo-small.spwhereabout,.coveo-icon.filetype.coveo-small.Spwhereaboutlist,.coveo-icon.filetype.coveo-small.spwhereaboutlist {
-    background-image: url('/icons/wrench.svg') !important;
-    background-size: 100% 100% !important;
-    width: 100px !important;
-    height: 60px !important
+.coveo-filetype-custom,
+.coveo-icon.objecttype,
+.coveo-icon.filetype,
+.coveo-icon.filetype.Exchangefreebusy,
+.coveo-icon.filetype.exchangefreebusy,
+.coveo-icon.filetype.Exchangemdn,
+.coveo-icon.filetype.exchangemdn,
+.coveo-icon.filetype.Exchangeobject,
+.coveo-icon.filetype.exchangeobject,
+.coveo-icon.filetype.Sc_cat_item,
+.coveo-icon.filetype.sc_cat_item,
+.coveo-icon.filetype.Sparea,
+.coveo-icon.filetype.sparea,
+.coveo-icon.filetype.Spcustomlist,
+.coveo-icon.filetype.spcustomlist,
+.coveo-icon.filetype.Spsurvey,
+.coveo-icon.filetype.spsurvey,
+.coveo-icon.filetype.Spsurveylist,
+.coveo-icon.filetype.spsurveylist,
+.coveo-icon.filetype.Spcustomgridlist,
+.coveo-icon.filetype.spcustomgridlist,
+.coveo-icon.filetype.Spdecision,
+.coveo-icon.filetype.spdecision,
+.coveo-icon.filetype.Spdecisionlist,
+.coveo-icon.filetype.spdecisionlist,
+.coveo-icon.filetype.Spobjective,
+.coveo-icon.filetype.spobjective,
+.coveo-icon.filetype.Spobjectivelist,
+.coveo-icon.filetype.spobjectivelist,
+.coveo-icon.filetype.Spthingstobring,
+.coveo-icon.filetype.spthingstobring,
+.coveo-icon.filetype.Spthingstobringlist,
+.coveo-icon.filetype.spthingstobringlist,
+.coveo-icon.filetype.Sparealisting,
+.coveo-icon.filetype.sparealisting,
+.coveo-icon.filetype.Spunknownlist,
+.coveo-icon.filetype.spunknownlist,
+.coveo-icon.filetype.Spdistributiongroup,
+.coveo-icon.filetype.spdistributiongroup,
+.coveo-icon.filetype.Spdistributiongrouplist,
+.coveo-icon.filetype.spdistributiongrouplist,
+.coveo-icon.filetype.Spkeyperformanceindicator,
+.coveo-icon.filetype.spkeyperformanceindicator,
+.coveo-icon.filetype.Spkeyperformanceindicatorlist,
+.coveo-icon.filetype.spkeyperformanceindicatorlist,
+.coveo-icon.filetype.Sptab,
+.coveo-icon.filetype.sptab,
+.coveo-icon.filetype.Sptablist,
+.coveo-icon.filetype.sptablist,
+.coveo-icon.filetype.Spworkflowprocess,
+.coveo-icon.filetype.spworkflowprocess,
+.coveo-icon.filetype.Spworkflowprocesslist,
+.coveo-icon.filetype.spworkflowprocesslist,
+.coveo-icon.filetype.Spcirculation,
+.coveo-icon.filetype.spcirculation,
+.coveo-icon.filetype.Spcirculationlist,
+.coveo-icon.filetype.spcirculationlist,
+.coveo-icon.filetype.Spwhereabout,
+.coveo-icon.filetype.spwhereabout,
+.coveo-icon.filetype.Spwhereaboutlist,
+.coveo-icon.filetype.spwhereaboutlist,
+.coveo-filetype-custom-small,
+.coveo-icon.objecttype.coveo-small,
+.coveo-icon.filetype.coveo-small,
+.coveo-icon.filetype.coveo-small.Exchangefreebusy,
+.coveo-icon.filetype.coveo-small.exchangefreebusy,
+.coveo-icon.filetype.coveo-small.Exchangemdn,
+.coveo-icon.filetype.coveo-small.exchangemdn,
+.coveo-icon.filetype.coveo-small.Exchangeobject,
+.coveo-icon.filetype.coveo-small.exchangeobject,
+.coveo-icon.filetype.coveo-small.Sc_cat_item,
+.coveo-icon.filetype.coveo-small.sc_cat_item,
+.coveo-icon.filetype.coveo-small.Sparea,
+.coveo-icon.filetype.coveo-small.sparea,
+.coveo-icon.filetype.coveo-small.Spcustomlist,
+.coveo-icon.filetype.coveo-small.spcustomlist,
+.coveo-icon.filetype.coveo-small.Spsurvey,
+.coveo-icon.filetype.coveo-small.spsurvey,
+.coveo-icon.filetype.coveo-small.Spsurveylist,
+.coveo-icon.filetype.coveo-small.spsurveylist,
+.coveo-icon.filetype.coveo-small.Spcustomgridlist,
+.coveo-icon.filetype.coveo-small.spcustomgridlist,
+.coveo-icon.filetype.coveo-small.Spdecision,
+.coveo-icon.filetype.coveo-small.spdecision,
+.coveo-icon.filetype.coveo-small.Spdecisionlist,
+.coveo-icon.filetype.coveo-small.spdecisionlist,
+.coveo-icon.filetype.coveo-small.Spobjective,
+.coveo-icon.filetype.coveo-small.spobjective,
+.coveo-icon.filetype.coveo-small.Spobjectivelist,
+.coveo-icon.filetype.coveo-small.spobjectivelist,
+.coveo-icon.filetype.coveo-small.Spthingstobring,
+.coveo-icon.filetype.coveo-small.spthingstobring,
+.coveo-icon.filetype.coveo-small.Spthingstobringlist,
+.coveo-icon.filetype.coveo-small.spthingstobringlist,
+.coveo-icon.filetype.coveo-small.Sparealisting,
+.coveo-icon.filetype.coveo-small.sparealisting,
+.coveo-icon.filetype.coveo-small.Spunknownlist,
+.coveo-icon.filetype.coveo-small.spunknownlist,
+.coveo-icon.filetype.coveo-small.Spdistributiongroup,
+.coveo-icon.filetype.coveo-small.spdistributiongroup,
+.coveo-icon.filetype.coveo-small.Spdistributiongrouplist,
+.coveo-icon.filetype.coveo-small.spdistributiongrouplist,
+.coveo-icon.filetype.coveo-small.Spkeyperformanceindicator,
+.coveo-icon.filetype.coveo-small.spkeyperformanceindicator,
+.coveo-icon.filetype.coveo-small.Spkeyperformanceindicatorlist,
+.coveo-icon.filetype.coveo-small.spkeyperformanceindicatorlist,
+.coveo-icon.filetype.coveo-small.Sptab,
+.coveo-icon.filetype.coveo-small.sptab,
+.coveo-icon.filetype.coveo-small.Sptablist,
+.coveo-icon.filetype.coveo-small.sptablist,
+.coveo-icon.filetype.coveo-small.Spworkflowprocess,
+.coveo-icon.filetype.coveo-small.spworkflowprocess,
+.coveo-icon.filetype.coveo-small.Spworkflowprocesslist,
+.coveo-icon.filetype.coveo-small.spworkflowprocesslist,
+.coveo-icon.filetype.coveo-small.Spcirculation,
+.coveo-icon.filetype.coveo-small.spcirculation,
+.coveo-icon.filetype.coveo-small.Spcirculationlist,
+.coveo-icon.filetype.coveo-small.spcirculationlist,
+.coveo-icon.filetype.coveo-small.Spwhereabout,
+.coveo-icon.filetype.coveo-small.spwhereabout,
+.coveo-icon.filetype.coveo-small.Spwhereaboutlist,
+.coveo-icon.filetype.coveo-small.spwhereaboutlist {
+  background-image: url("/icons/wrench.svg") !important;
+  background-size: 100% 100% !important;
+  width: 100px !important;
+  height: 60px !important;
 }
 /* stylelint-enable selector-class-pattern */
 
@@ -281,12 +403,16 @@
   display: none;
 }
 
+.mdcoveo .coveo-main-section-wrapper .coveo-facet-column {
+  padding-left: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .section.cover-banner-wrapper {
     min-height: 440px;
   }
 
-  .coveo-main-section-wrapper .coveo-main-section{
+  .coveo-main-section-wrapper .coveo-main-section {
     padding-left: 0;
     padding-right: 0;
   }
@@ -305,7 +431,7 @@
 }
 
 @media only screen and (min-width: 1240px) {
-  .coveo-main-section-wrapper .coveo-main-section{
+  .coveo-main-section-wrapper .coveo-main-section {
     width: 1200px;
   }
 }
@@ -344,5 +470,35 @@
 
   .mdcoveo.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-content {
     height: 100%;
+  }
+
+  .coveo-result-frame .coveo-result-cell,
+  .coveo-list-layout .coveo-result-frame .coveo-result-cell {
+    display: block !important;
+  }
+
+  .coveo-result-frame .coveo-result-cell:not(:first-child) {
+    padding-left: 0;
+  }
+
+  .coveo-result-frame .coveo-result-cell > .coveo-result-row:first-child .coveo-result-cell:last-child,
+  .coveo-main-section .coveo-result-cell .product-img {
+    text-align: left;
+  }
+
+  .coveo-results-column .coveo-results-header,
+  .coveo-main-section .coveo-list-layout.coveo-list-layout {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .coveo-result-frame > .coveo-result-cell:first-child {
+    position: absolute;
+  }
+
+  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row [role="heading"] {
+    padding-left: 80px;
+    min-height: 80px;
+    margin-bottom: 10px;
   }
 }
