@@ -221,6 +221,8 @@ Disallow: /en/assets/tutorials-videos/dd/img/transforming-the-complexities-of-3d
 Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potentials-using-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-screening-on-standardized-pancreatic-cancer-organoids
 Disallow: /en/assets/tutorials-videos/bpd/advancing-global-food-sustainability-with-molecular-devices
+Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traumatic-brain-injuries
+
 
 #EU webinars to imaging video gallery page
 
