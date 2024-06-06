@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { formatDateUTCSeconds } from '../../scripts/scripts.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 
 function renderItem(item) {
@@ -22,7 +22,7 @@ function renderItem(item) {
   const newsCaptionText = document.createElement('div');
   newsCaptionText.classList.add('news-carousel-caption-text');
   newsCaptionText.innerHTML = `
-    <p>${formatDateUTCSeconds(item.date)}</p>
+    <p>${formatDate(unixDateToString(item.date))}</p>
     <p>${item.title}</p>
   `;
 
