@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { formatDate, formatDateUTCSeconds, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 
 function renderItem(item) {
