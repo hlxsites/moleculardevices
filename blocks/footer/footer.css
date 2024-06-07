@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .footer-wrapper {
   background-color: #fff;
   background-image: url("../../images/research-bg.png");
@@ -159,15 +160,31 @@
 
 .row-4 li {
   margin-top: -5px;
-  position:relative;
+  position: relative;
   top: -30px;
   left: 36px;
 }
 
-.row-4 picture {
+.row-4 picture,
+.row-4 li i {
   position: relative;
   top: 30px;
   left: -36px;
+}
+
+.row-4 li i {
+  font-size: 1rem;
+  background: var(--button-bg-color);;
+  color: #fff;
+  border-radius: 50%;
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+  top: 21px;
+}
+
+.row-4 li:has(i):not(img){
+  margin-top: 3px;
 }
 
 .footer-wrap .footer-contact img {
@@ -175,7 +192,7 @@
 }
 
 .row-5 > a[aria-label="Molecular Devices"],
-.row-6 a[aria-label='Danaher'] {
+.row-6 a[aria-label="Danaher"] {
   background-position: top;
   background-repeat: no-repeat;
   background-size: contain;
@@ -183,21 +200,21 @@
 }
 
 .row-5 > a[aria-label="Molecular Devices"] {
-  background-image: url('/images/header-menus/logo.svg');
+  background-image: url("/images/header-menus/logo.svg");
 }
 
-.row-6 a[aria-label='Danaher'] {
-  background-image: url('/images/danaher.svg');
+.row-6 a[aria-label="Danaher"] {
+  background-image: url("/images/danaher.svg");
 }
 
 .row-5 > a[aria-label="Molecular Devices"] img,
-.row-6 a[aria-label='Danaher'] img{
+.row-6 a[aria-label="Danaher"] img {
   opacity: 0;
 }
 
 .row-5 ul {
   display: flex;
-  font-size:21px;
+  font-size: 21px;
   margin: 0;
   padding: 12px 0 5px;
 }
@@ -218,7 +235,7 @@
 }
 
 .row-5 li:not(:last-child) {
-  padding-right:32px;
+  padding-right: 32px;
 }
 
 .row-6 i {
@@ -357,7 +374,7 @@
 }
 
 @media (max-width: 767px) {
-  .footer h3+h3 {
+  .footer h3 + h3 {
     margin-top: 20px;
   }
 }
