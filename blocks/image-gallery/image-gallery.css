@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .image-gallery-lightbox-overlay {
   position: fixed;
   top: 0;
@@ -8,6 +9,7 @@
   z-index: 1000;
   padding-top: 20px;
   padding-bottom: 20px;
+  overflow-y: auto;
 }
 
 .image-gallery-lightbox-overlay > div {
@@ -45,7 +47,7 @@ main .section > div.image-gallery-wrapper {
   cursor: pointer;
 }
 
-.gallery-button-left.icon svg  {
+.gallery-button-left.icon svg {
   transform: rotate(180deg);
 }
 
@@ -54,7 +56,7 @@ main .section > div.image-gallery-wrapper {
   height: auto;
 }
 
-.image-gallery-lightbox-overlay  .icon svg path {
+.image-gallery-lightbox-overlay .icon svg path {
   fill: white;
 }
 
@@ -96,12 +98,12 @@ main .section > div.image-gallery-wrapper {
   display: grid;
 }
 
-.image-gallery-lightbox-overlay  .image-gallery picture {
+.image-gallery-lightbox-overlay .image-gallery picture {
   text-align: center;
   display: block;
 }
 
-.image-gallery-lightbox-overlay  img {
+.image-gallery-lightbox-overlay img {
   max-height: 640px;
   max-width: 100%;
   width: auto;
@@ -143,11 +145,11 @@ main .section > div.image-gallery-wrapper {
   grid-row: 2;
 }
 
-.section .image-gallery > div:nth-of-type(-n+5) {
+.section .image-gallery > div:nth-of-type(-n + 5) {
   display: block;
 }
 
-.section .image-gallery.showcase-right > div:nth-of-type(3)  {
+.section .image-gallery.showcase-right > div:nth-of-type(3) {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
 }
@@ -200,6 +202,35 @@ main .section > div.image-gallery-wrapper {
   margin-top: 50px;
 }
 
+/* SINGLE IMAGE */
+.section .image-gallery.single-image > div {
+  transform: scale(0.97);
+  aspect-ratio: auto;
+}
+
+.section .image-gallery.single-image,
+.section .image-gallery.single-image > div img,
+.image-gallery.single-image.block img  {
+  display: block;
+}
+
+.section .image-gallery.single-image > div:hover {
+  transform: scale(1);
+}
+
+.image-gallery.single-image.block {
+  overflow-x: auto;
+}
+
+.image-gallery-lightbox-overlay .image-gallery.single-image img {
+  padding-top: 50px;
+  margin: auto;
+}
+
+.image-gallery-lightbox-overlay .icon:not(.gallery-button-close) {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .section .image-gallery > div:nth-of-type(1) {
     grid-column: 1 / 2;
@@ -244,4 +275,3 @@ main .section > div.image-gallery-wrapper {
     width: 1170px;
   }
 }
-
