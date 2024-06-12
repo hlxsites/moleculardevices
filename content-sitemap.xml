@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
+        <lastmod>2024-06-12</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/products/3d-biology/3d-ready-organoid-expansion-service</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/3d-biology/3d-ready-organoid-expansion-service"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/3d-biology/3d-ready-organoid-expansion-service"/>
@@ -4421,17 +4432,6 @@
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflow"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflow"/>
         <lastmod>2023-10-18</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/products/microplate-readers/acquisition-and-analysis-software/softmax-pro-software"/>
-        <lastmod>2023-10-17</lastmod>
     </url>
     <url>
         <loc>https://www.moleculardevices.com/newsroom/news/molecular-devices-launches-custom-organoid-line-expansion-service-using-unique-bioprocess-technology-for-high-throughput-applications</loc>
