@@ -817,7 +817,7 @@ function initATJS(path, config) {
   window.targetGlobalSettings = config;
   window.targetPageParams = function getTargetPageParams() {
     return {
-      at_property: '08436c44-3085-b335-a1c4-03f14ae5226a',
+      at_property: 'e16bf999-0c8d-7270-6252-fe4e2f4a9523',
     };
   };
   return new Promise((resolve) => {
@@ -929,7 +929,6 @@ async function loadEager(doc) {
         resolve();
       });
     });
-  }
   }
   if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
 
