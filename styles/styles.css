@@ -10,6 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
+ /* stylelint-disable no-descending-specificity */
 @font-face {
   font-family: 'Proxima Nova Regular Fallback';
   font-style: normal;
@@ -969,6 +970,7 @@ main .section .columns > div > div:first-child > p.button-container {
   margin-left: 0;
 }
 
+main .section .columns > div > div:first-child ul + p.button-container,
 main .section.columns-2 > div:last-child ul + p.button-container {
   margin-left: 40px;
 }
@@ -2257,6 +2259,12 @@ main .columns-separator-line .columns-wrapper .columns {
 .title-with-green-highlight h3:first-child em {
   font-style: normal;
   color: var(--text-green);
+}
+
+.section.title-with-green-highlight .default-content-wrapper h2:first-child, 
+.section.title-with-green-highlight .default-content-wrapper h3:first-child {
+  margin: 0;
+  padding-bottom: 20px;
 }
 
 /* SLAS PAGES */
