@@ -36,14 +36,12 @@ function renderIconItem(item, progressStep, callback) {
         'data-title': item.title || '',
         'data-category': item.category || '',
         onclick: callback,
-      },
-      span({ class: 'icon-img' },
+      }, span({ class: 'icon-img' },
         img({
           src: item.image,
           alt: item.title,
         }),
-      ),
-      span({ class: 'icon-title' }, item.title),
+      ), span({ class: 'icon-title' }, item.title),
       ),
     )
   );
@@ -261,7 +259,9 @@ async function stepThree(e) {
 
   if (list.children.length === 1) {
     const compareButton = list.querySelector('.compare-button');
-    compareButton.style.display = 'none';
+    if (compareButton) {
+      compareButton.style.display = 'none';
+    }
   }
 
   const cardTitles = list.querySelectorAll('.card-caption h3 a');
