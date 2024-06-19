@@ -42,6 +42,21 @@ try {
         }),
         lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,
       })),
+       url: json?.data.map((row) => ({
+        loc: 'https://de.moleculardevices.com'.`${row.path}`,
+        'xhtml:link': Object.keys(hreflangMap).map((key) => {
+          const hreflang = hreflangMap[key][0];
+          const href = `${hreflangMap[key][1].baseUrl}${row.path}`;
+          return {
+            _attributes: {
+              rel: 'alternate',
+              hreflang,
+              href,
+            },
+          };
+        }),
+        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,
+      })),
     },
   };
 
