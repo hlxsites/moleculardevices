@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
+        <lastmod>2024-06-24</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/applications/3d-cell-models/organoids/colorectal-cancer-crc-organoids</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/3d-cell-models/organoids/colorectal-cancer-crc-organoids"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/3d-cell-models/organoids/colorectal-cancer-crc-organoids"/>
@@ -16608,17 +16619,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/cell-counter-a431-cells"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/cell-counter-a431-cells"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/cell-counter-a431-cells"/>
-        <lastmod>2023-06-08</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/counting-cells-without-cell-staining"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
         <lastmod>2023-06-08</lastmod>
     </url>
     <url>
