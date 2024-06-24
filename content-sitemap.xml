@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells</loc>
+        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/cell-counter-rbl-cells"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
+        <lastmod>2024-06-24</lastmod>
+    </url>
+    <url>
         <loc>https://www.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining</loc>
         <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
         <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cell-counting/counting-cells-without-cell-staining"/>
@@ -16465,17 +16476,6 @@
         <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/cell-counter-u937-cells"/>
         <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/cell-counter-u937-cells"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/cell-counter-u937-cells"/>
-        <lastmod>2023-06-08</lastmod>
-    </url>
-    <url>
-        <loc>https://www.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="https://de.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="it" href="https://it.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://es.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://fr.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ko.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://www.moleculardevices.com.cn/applications/cell-counting/cell-counter-rbl-cells"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.moleculardevices.com/applications/cell-counting/cell-counter-rbl-cells"/>
         <lastmod>2023-06-08</lastmod>
     </url>
     <url>
