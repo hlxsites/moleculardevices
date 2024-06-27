@@ -42,7 +42,7 @@ Disallow: /en/assets/ebook/dd/img/building-complexity-organoid-models
 Disallow: /sites/default/files/en/assets/ebook/br/microplate-readers-in-cancer-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-processes.pdf
 Disallow: /sites/default/files/en/assets/ebook/reagents/optimized-cell-based-assays-for-breakthrough-research.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/bpd/advanced-plasmid-production.pdf
 
 
 # User Guide
@@ -81,7 +81,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/br/walkaway-solution
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification.pdf
 
 
 # HTML Page (App Note HTML Page Block)
@@ -150,6 +150,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/using-differentiated-ipscs-to-build
 Disallow: /sites/default/files/en/assets/infographics/br/microplate-readers-in-neurodegenerative-research.pdf
 Disallow: /sites/default/files/en/assets/infographics/br/cell-viability-assays.pdf
 Disallow: /sites/default/files/en/assets/infographics/br/5-essential-factors-for-gxp-compliance-in-regulated-laboratory.pdf
+Disallow: /sites/default/files/en/assets/infographics/bpd/greener-lab-with-qpix.pdf
 # Flyer Block web and Google
 Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
 
@@ -222,7 +223,7 @@ Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potenti
 Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-screening-on-standardized-pancreatic-cancer-organoids
 Disallow: /en/assets/tutorials-videos/bpd/advancing-global-food-sustainability-with-molecular-devices
 Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traumatic-brain-injuries
-
+Disallow: /en/assets/tutorials-videos/dd/img/advancing-toxicity-research-with-3d-tissue-models-and-imaging-techniques
 
 #EU webinars to imaging video gallery page
 
