@@ -209,12 +209,12 @@ display: none;
 .wave-reverse .hero-inner {
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: bottom center;
+  background-position: 0 100.5%;
 }
 
 .wave .hero-inner {
   background-image: url('/images/curve.webp'), url('/images/curve.png');
-  padding-bottom: 10%;
+  padding-bottom: 11%;
 }
 
 .wave-reverse .hero-inner,
