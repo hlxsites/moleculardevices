@@ -209,7 +209,7 @@ display: none;
 .wave-reverse .hero-inner {
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: 0 100%;
+  background-position: 0 100.5%;
 }
 
 .wave .hero-inner {
