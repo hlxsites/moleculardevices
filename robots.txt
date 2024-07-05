@@ -121,7 +121,7 @@ Disallow: /en/assets/app-note/bpd/automated-colorimetric-colony-selection-blue-w
 Disallow: /en/assets/app-note/bpd/fluorescent-bacterial-colony-selection-using-qpix-400-system
 Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expressing-mammalian-cell-lines-using-novel-clonepix
 Disallow: /en/assets/app-note/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination
-
+Disallow: /en/assets/app-note/dd/flipr/functional-characterization-of-healthy-alzheimer-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic-neurons
 
 
 
@@ -302,7 +302,9 @@ Disallow: /en/assets/promotion/bpd/colony-picking-automation
 Disallow: /en/assets/promotion/dd/img/slas-eu-2023
 Disallow: /en/assets/promotion/dd/img/slas-2024
 Disallow: /en/assets/promotion/dd/img/slas-europe
-
+Disallow: /en/assets/promotion/dd/img/label-free-cell-segmentation-with-in-carta-sinap
+Disallow: /en/assets/promotion/dd/img/screening-of-neuronal-toxicity-using-ipsc-derived-neurons
+Disallow: /en/assets/promotion/dd/img/phenotypic-profiling-using-cell-painting-assay
 
 
 #EU BPD Campaign Page block 
