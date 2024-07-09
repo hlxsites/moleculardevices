@@ -405,6 +405,7 @@
 }
 
 .thankyou main .section,
+.thankyou main div.section.wave.wave-bottom-section,
 .landing-page:not(.thankyou) main .thankyou-banner {
   display: none;
 }
