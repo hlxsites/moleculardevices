@@ -82,7 +82,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model.pdf
 
 # HTML Page (App Note HTML Page Block)
 
@@ -224,6 +224,10 @@ Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-scr
 Disallow: /en/assets/tutorials-videos/bpd/advancing-global-food-sustainability-with-molecular-devices
 Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traumatic-brain-injuries
 Disallow: /en/assets/tutorials-videos/dd/img/advancing-toxicity-research-with-3d-tissue-models-and-imaging-techniques
+Disallow: /en/assets/tutorials-videos/br/microplate-reader-based-viability-analysis-for-rapid-drug-candidate-identification-in-patient-derived-organoids
+
+
+
 
 #EU webinars to imaging video gallery page
 
