@@ -371,12 +371,13 @@
 
 .product-finder-container #step-3 .card-thumb img {
   object-position: center;
+  /* object-fit: scale-down; */
   height: unset;
   width: unset;
   max-height: 200px;
 }
 
-.product-finder-step-wrapper[data-type="3D Biology"]#step-3 .card-thumb img {
+.product-finder-step-wrapper[data-type="3D Biology Solutions"]#step-3 .card-thumb img {
   height: 100%;
   width: 100%;
 }
