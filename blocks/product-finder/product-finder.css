@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .hero-inner {
   min-height: inherit;
 }
@@ -75,7 +76,7 @@
   content: "\f14a";
 }
 
-.product-finder-container ul li > .progress-step { 
+.product-finder-container ul li > .progress-step {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -83,7 +84,7 @@
   text-align: center;
   display: block;
   left: 0;
-  font-family: FontAwesome,sans-serif;
+  font-family: FontAwesome, sans-serif;
   font-size: 14px;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -210,7 +211,9 @@
 
 .product-finder-container .finder-filters .fa {
   display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome, sans-serif;
+  font:
+    normal normal normal 14px/1 FontAwesome,
+    sans-serif;
   font-size: inherit;
   text-rendering: auto;
 }
@@ -263,7 +266,7 @@
 @media (max-width: 1200px) {
   .product-finder-container .card {
     width: 20%;
-  } 
+  }
 }
 
 .product-finder-container .card-caption {
@@ -272,7 +275,7 @@
 
 .product-finder-container .card-caption h3 {
   font-size: 18px;
-  margin: 0;
+  margin: 0 0 10px;
 }
 
 .product-finder-container .card-thumb img {
@@ -282,6 +285,7 @@
 
 .product-finder-container .card-caption h3 > a {
   color: var(--link-color);
+  line-height: 1.2;
 }
 
 .product-finder-container .card-description {
@@ -324,6 +328,7 @@
 
 .product-finder-container .card a .icon.icon-chevron-right-outline {
   vertical-align: middle;
+  font-size: inherit;
 }
 
 .product-finder-container.icon-title {
@@ -345,26 +350,36 @@
 }
 
 .product-finder-container #step-3 .card-thumb {
-  margin-top: 20px;
-  margin-bottom: 20px;
   display: block;
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 
+.product-finder-container #step-3 .card-thumb a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.product-finder-container #step-3 .card-thumb picture {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .product-finder-container #step-3 .card-thumb img {
-  vertical-align: middle;
-  height: auto;
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  position: absolute;
-  left: -99999px;
-  right: -99999px;
-  top: -99999px;
-  bottom: -99999px;
+  object-position: center;
+  object-fit: scale-down;
+  height: unset;
+  width: unset;
+  max-height: 210px;
+}
+
+.product-finder-step-wrapper[data-type="3D Biology Solutions"]#step-3 .card-thumb img {
+  height: 100%;
+  width: 100%;
 }
 
 .product-finder-container #step-3 .card {
@@ -390,7 +405,7 @@
 
 .product-finder-container #step-3 .card-caption .button-container {
   width: 50%;
-  float:left;
+  float: left;
   margin-left: 0;
   margin-bottom: 10px;
 }
