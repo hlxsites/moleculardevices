@@ -74,8 +74,10 @@ export default async function buildAutoBlocks() {
     document.body.classList.add('thankyou');
     const isThankyouBanner = document.querySelector('.hero.thankyou-banner');
     if (!isThankyouBanner) {
+      const thankyouHeading = getMetadata('thankyou-heading') || 'Thank you.';
+      const thankyouSubHeading = getMetadata('thankyou-sub-heading') || `Your ${getMetadata('download-title') || 'document'} is on its way.`;
       document.querySelector('.hero > div:nth-of-type(2)').replaceWith(div(
-        div(h1('Thank you.'), p(`Your ${getMetadata('download-title') || 'document'} is on its way.`)),
+        div(h1(thankyouHeading), p(thankyouSubHeading)),
         div(createOptimizedPicture('/images/thank-you-spectra.png', 'Thank you Spectra', false, [{ width: '750' }])),
       ));
     } else {

@@ -971,10 +971,7 @@ main .section .columns > div > div:first-child > p.button-container {
 }
 
 main .section .columns > div > div:first-child ul + p.button-container,
-main .section.columns-2 > div:last-child ul + p.button-container {
-  margin-left: 40px;
-}
-
+main .section.columns-2 > div:last-child ul + p.button-container,
 main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
 }
