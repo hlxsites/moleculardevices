@@ -36,7 +36,7 @@
   font-family: var(--ff-proxima-light);
 }
 
-.landing-page h3 {
+.landing-page:not(.thankyou) h3 {
   font-size: 42px;
   font-weight: normal;
   margin-bottom: 20px;
@@ -267,11 +267,11 @@
   color: var(--text-color);
 }
 
-.thank-you-page h3 {
+body:not(.thankyou) .thank-you-page h3 {
   color: var(--button-bg-color);
 }
 
-.thank-you-page h4 {
+body:not(.thankyou) .thank-you-page h4 {
   font-size: 30px;
   color: var(--text-gray);
   font-family: var(--ff-proxima-regular);
