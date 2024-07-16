@@ -83,7 +83,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflo
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model.pdf
-
+Disallow: /sites/default/files/en/assets/app-note/dd/flipr/functional-characterization-of-alzheimers-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic.pdf
 # HTML Page (App Note HTML Page Block)
 
 Disallow: /en/assets/app-note/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model
@@ -225,7 +225,7 @@ Disallow: /en/assets/tutorials-videos/bpd/advancing-global-food-sustainability-w
 Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traumatic-brain-injuries
 Disallow: /en/assets/tutorials-videos/dd/img/advancing-toxicity-research-with-3d-tissue-models-and-imaging-techniques
 Disallow: /en/assets/tutorials-videos/br/microplate-reader-based-viability-analysis-for-rapid-drug-candidate-identification-in-patient-derived-organoids
-
+Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 
 
 
@@ -309,6 +309,8 @@ Disallow: /en/assets/promotion/dd/img/slas-europe
 Disallow: /en/assets/promotion/dd/img/label-free-cell-segmentation-with-in-carta-sinap
 Disallow: /en/assets/promotion/dd/img/screening-of-neuronal-toxicity-using-ipsc-derived-neurons
 Disallow: /en/assets/promotion/dd/img/phenotypic-profiling-using-cell-painting-assay
+Disallow: /en/assets/promotion/dd/img/explore-cardiac-function-by-measuring-calcium-oscillation
+
 
 
 #EU BPD Campaign Page block 
