@@ -84,7 +84,7 @@
   margin: auto;
 }
 
-.landing-page .download-form * {
+.landing-page .download-form:not(.text-dark) *:not(a) {
   color: var(--text-gray);
 }
 
@@ -318,6 +318,10 @@ body .thank-you-page h4 {
   .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
     margin-left: calc((100vw - var(--section-div-width)) / 2);
     padding-top: 25px;
+  }
+
+  .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child h2:first-child {
+    margin-top: 0;
   }
 
   .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
