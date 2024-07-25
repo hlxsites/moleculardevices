@@ -65,6 +65,7 @@ class Card {
     this.c2aLinkIconFull = false;
     this.showDate = false;
     this.showCategory = false;
+    this.requestQuoteBtn = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -117,6 +118,16 @@ class Card {
         c2aLinkBlock,
       ),
     );
+
+    if (this.requestQuoteBtn) {
+      c2aBlock.prepend(p({ class: 'button-container' },
+        a({ href: `/quote-request?pid=${item.familyID}`, target: '_blank' },
+          'Request Quote',
+          span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
+        ),
+      ));
+    }
+
     if (
       item.specifications
       && item.specifications !== '0'

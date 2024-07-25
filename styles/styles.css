@@ -1299,8 +1299,20 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-top: 15px;
 }
 
+.product .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
+.technology .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
+.application .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
+.product .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2,
+.technology .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2,
+.application .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2 {
+  padding-bottom: 0;
+}
+
+.product .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper,
+.technology .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper,
 .application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
   margin-top: 0;
+  padding-top: 0;
 }
 
 main div.section.wave.bluegreen .default-content-wrapper h2,
@@ -1742,13 +1754,18 @@ main .section.background-molecules {
   font-size: 36px;
 }
 
-.products .section > div,
+.product .section > div,
 .technology .section > div,
 .application .section > div {
   padding-bottom: 20px;
   padding-top: 20px;
 }
 
+.product
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
+.product .section.tabs .columns-wrapper h2,
 .technology
   .section.tabs:not(.wave)
   .default-content-wrapper
@@ -1774,6 +1791,7 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
+.product main .section.tabs:not(.related-applications-container) h2,
 .technology main .section.tabs:not(.related-applications-container) h2,
 .application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
@@ -1805,6 +1823,7 @@ main .section.background-molecules {
   padding-bottom: 0;
 }
 
+.product .section.resources-container .default-content-wrapper:first-child h2,
 .technology .section.resources-container .default-content-wrapper:first-child h2,
 .application .section.resources-container .default-content-wrapper:first-child h2 {
   padding-bottom: 0;
@@ -1836,6 +1855,7 @@ main .section.background-molecules {
   margin-bottom: 10px;
 }
 
+.product .section.tabs h2 + h4,
 .technology .section.tabs h2 + h4,
 .application .section.tabs h2 + h4 {
   font-family: var(--ff-proxima-light);
@@ -1843,6 +1863,7 @@ main .section.background-molecules {
   padding-bottom: 0;
 }
 
+.product .section.tabs h4,
 .technology .section.tabs h4,
 .application .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
@@ -1851,6 +1872,7 @@ main .section.background-molecules {
   margin-top: 0;
 }
 
+.product .section.tabs h4:last-child,
 .technology .section.tabs h4:last-child,
 .application .section.tabs h4:last-child {
   margin-bottom: 45px;
