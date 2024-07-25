@@ -126,6 +126,7 @@ class Card {
           span({ class: 'icon icon-chevron-right-outline', 'aria-hidden': true }),
         ),
       ));
+      decorateIcons(c2aBlock);
     }
 
     if (

@@ -1761,6 +1761,11 @@ main .section.background-molecules {
   padding-top: 20px;
 }
 
+.product .section > div.default-content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .product
   .section.tabs:not(.wave)
   .default-content-wrapper

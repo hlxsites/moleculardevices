@@ -27,13 +27,6 @@ export default async function decorate(block) {
     thumbnailLink: false,
     descriptionLength: 100,
     defaultButtonText: placeholders.learnMore || 'Learn more',
-    //   'aria-label': placeholders.learnMore || 'Learn more',
-    // c2aLinkConfig: {
-    //   href: '#applications',
-    //   // onclick: onReadMoreClick,
-    //   target: '_blank',
-    //   rel: 'noopener noreferrer',
-    // },
     c2aLinkStyle: true,
     requestQuoteBtn: true,
   });
