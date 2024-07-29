@@ -71,7 +71,7 @@ export default async function decorate(block) {
   const resourceCard = await createCard({
     showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
-    descriptionLength: block.classList.contains('list') ? 180 : 65,
+    descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
 
   // citations has default thumbnail image
