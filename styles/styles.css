@@ -1299,9 +1299,6 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-top: 15px;
 }
 
-.product .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
-.technology .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
-.application .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper),
 .product .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2,
 .technology .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2,
 .application .section.tabs:not(.wave) .default-content-wrapper:has( + .columns-wrapper) h2 {
