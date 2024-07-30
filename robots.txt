@@ -45,7 +45,7 @@ Disallow: /sites/default/files/en/assets/ebook/br/microplate-readers-in-cancer-r
 Disallow: /sites/default/files/en/assets/ebook/bpd/grow-your-synthetic-biology-processes.pdf
 Disallow: /sites/default/files/en/assets/ebook/reagents/optimized-cell-based-assays-for-breakthrough-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/advanced-plasmid-production.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
@@ -155,7 +155,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/using-differentiated-ipscs-to-build
 Disallow: /sites/default/files/en/assets/infographics/br/microplate-readers-in-neurodegenerative-research.pdf
 Disallow: /sites/default/files/en/assets/infographics/br/cell-viability-assays.pdf
 Disallow: /sites/default/files/en/assets/infographics/bpd/greener-lab-with-qpix.pdf
-Disallow: /sites/default/files/en/assets/infographics/br/5-essential-factors-for-gxp-compliance-in-regulated-laboratory.pdf
+
 
 
 # Flyer Block web and Google
@@ -364,7 +364,6 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 
 
 
-Disallow: /applications/3d-cell-models/organoids/breast-cancer-organoids
 
 Disallow: /contact/thank-you
 
