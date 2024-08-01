@@ -48,6 +48,14 @@ main .latest-resources .card .card-thumb img {
   height: 190px;
 }
 
+main .latest-resources .card .card-description {
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 @media only screen and (min-width: 767px) {
   main .carousel.latest-resources.list {
     display: flex;
