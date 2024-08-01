@@ -55,6 +55,10 @@ main .carousel.request-quote-carousel {
   margin-top: 10px;
 }
 
+.carousel.request-quote-carousel.no-description .card-caption .c2a {
+  margin-top: 0;
+}
+
 .carousel.request-quote-carousel .card .button-container {
   width: 100%;
   margin-top: auto;

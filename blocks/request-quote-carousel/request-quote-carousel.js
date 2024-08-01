@@ -4,6 +4,7 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 
 export default async function decorate(block) {
+  const noDescription = block.classList.contains('no-description');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
 
   const fragments = await ffetch('/query-index.json')
@@ -25,9 +26,9 @@ export default async function decorate(block) {
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    descriptionLength: 100,
-    defaultButtonText: placeholders.learnMore || 'Learn more',
+    defaultButtonText: placeholders.requestQuote || 'Request Quote',
     c2aLinkStyle: true,
+    hideDescription: noDescription,
     requestQuoteBtn: true,
   });
 
