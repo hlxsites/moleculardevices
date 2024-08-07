@@ -102,6 +102,10 @@ const customBreadcrumbs = {
   'mammalian-screening': {
     name: 'Mammalian Screening',
   },
+  'microbial-screening': {
+    name: 'Microbial Screening',
+    url_path:'/products/clone-screening/microbial-screening',
+    },
   stacker: {
     name: 'Stacker',
   },
