@@ -102,9 +102,6 @@ const customBreadcrumbs = {
   'mammalian-screening': {
     name: 'Mammalian Screening',
   },
-  'microbial-screening': {
-    name: 'Microbial Screening',
-  },
   stacker: {
     name: 'Stacker',
   },
