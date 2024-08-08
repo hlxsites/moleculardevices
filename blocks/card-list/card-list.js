@@ -83,17 +83,18 @@ class FilterableCardList {
     }
 
     const viewAllCardList = [];
-    this.data.forEach((item) => {
-      const xmlsm = this.cardRenderer.renderItem(item);
-      this.dataIndex.set(viewAllCategory, xmlsm);
-      viewAllCardList.push(xmlsm);
-    });
-
-    // categoryOrder.forEach((category) => {
-    //   if (!this.dataIndex.has(category)) return;
-
-    //   viewAllCardList.push(...this.dataIndex.get(category));
-    // });
+    if (this.block.classList.contains('customer-breakthroughs')) {
+      this.data.forEach((item) => {
+        const xmlsm = this.cardRenderer.renderItem(item);
+        this.dataIndex.set(viewAllCategory, xmlsm);
+        viewAllCardList.push(xmlsm);
+      });
+    } else {
+      categoryOrder.forEach((category) => {
+        if (!this.dataIndex.has(category)) return;
+        viewAllCardList.push(...this.dataIndex.get(category));
+      });
+    }
 
     return viewAllCardList;
   }
