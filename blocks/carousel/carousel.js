@@ -214,6 +214,8 @@ class Carousel {
 
     this.block.firstChild.before(createClone(initialChildren[initialChildren.length - 1]));
     this.block.firstChild.before(createClone(initialChildren[initialChildren.length - 2]));
+
+    decorateIcons(this.block);
   }
 
   /**
