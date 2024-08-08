@@ -60,6 +60,22 @@ function handleEmbed() {
 }
 
 export default async function buildAutoBlocks() {
+  // const downloadResourceSection = document.querySelector('.download-resource');
+  // console.log(downloadResourceSection);
+  // if (downloadResourceSection) {
+  //   const thankyouUrl = `${window.location.pathname}?page=thankyou`;
+  //   const resourceUrl = new URL(getMetadata('resource-url')).pathname;
+
+  //   const anchor = downloadResourceSection.querySelector('.default-content-wrapper > a');
+  //   console.log(anchor);
+  //   anchor.setAttribute('download', resourceUrl.split('/').pop());
+  //   anchor.addEventListener('click', () => {
+  //     setTimeout(() => {
+  //       window.location.href = thankyouUrl;
+  //     }, 800);
+  //   });
+  // }
+
   if (isAuthorizedUser()) {
     const path = window.location.pathname;
     const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
@@ -87,5 +103,20 @@ export default async function buildAutoBlocks() {
       ));
     }
   }
+
   handleEmbed();
+
+  setTimeout(() => {
+    const pdfAnchors = document.querySelectorAll('a[href$=".pdf"]');
+    const thankyouUrl = `${window.location.pathname}?page=thankyou`;
+    pdfAnchors.forEach((anchor) => {
+      const href = new URL(anchor.href).pathname;
+      anchor.setAttribute('download', href);
+      anchor.addEventListener('click', () => {
+        setTimeout(() => {
+          window.location.href = thankyouUrl;
+        }, 1000);
+      });
+    });
+  }, 800);
 }
