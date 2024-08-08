@@ -126,14 +126,6 @@ function showHidePricingRequestButton(block) {
   }
 }
 
-function downloadResources(thankyouUrl, resourceUrl) {
-  const anchor = a({ href: resourceUrl, download: resourceUrl.split('/').pop() });
-  anchor.click();
-  setTimeout(() => {
-    window.location.href = thankyouUrl;
-  }, 800);
-}
-
 export function buildHero(block) {
   const inner = div({ class: 'hero-inner' });
   const container = div({ class: 'container' });
@@ -171,13 +163,6 @@ export function buildHero(block) {
             image.addEventListener('click', () => {
               const downloadForm = document.querySelector('.download-form');
               if (downloadForm) downloadForm.scrollIntoView(true);
-
-              const noFormEmbed = document.querySelector('.no-form-embed');
-              if (noFormEmbed) {
-                const thankyouUrl = `${window.location.pathname}?page=thankyou`;
-                const resourceUrl = new URL(getMetadata('resource-url')).pathname;
-                downloadResources(thankyouUrl, resourceUrl);
-              }
             });
           }
           [...column.querySelectorAll('a')].forEach((link) => {
