@@ -65,6 +65,8 @@ class Card {
     this.c2aLinkIconFull = false;
     this.showDate = false;
     this.showCategory = false;
+    this.hideDescription = false;
+    this.requestQuoteBtn = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -86,7 +88,7 @@ class Card {
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
-    let cardLink = item.path;
+    let cardLink = this.requestQuoteBtn ? `/quote-request?pid=${item.familyID}` : item.path;
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (item.redirectPath && item.redirectPath !== '0') {
@@ -117,6 +119,7 @@ class Card {
         c2aLinkBlock,
       ),
     );
+
     if (
       item.specifications
       && item.specifications !== '0'
@@ -139,9 +142,9 @@ class Card {
     }
 
     let cardDescription = '';
-    if (item.cardDescription && item.cardDescription !== '0') {
+    if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
-    } else if (item.description && item.description !== '0') {
+    } else if (item.description && item.description !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.description, this.descriptionLength);
     }
 

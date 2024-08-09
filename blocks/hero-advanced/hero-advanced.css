@@ -1,10 +1,6 @@
 @import url("../hero/hero.css");
 @import url("../media-gallery/media-gallery.css");
 
-.hero-advanced .hero-inner .container > div:nth-child(1) .button-container {
-  margin-top: 0;
-}
-
 .hero-advanced .hero-inner .two-column p {
   margin-bottom: 18px;
 }
