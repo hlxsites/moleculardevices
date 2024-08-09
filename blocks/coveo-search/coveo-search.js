@@ -1,7 +1,7 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, getCookie } from '../../scripts/scripts.js';
 
-const coveoAdminId = 'kapil.dhiman@moldev.com';
+const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xx46ddf302-8f31-4286-bab7-c06aec617186';
 

@@ -169,6 +169,13 @@ function createCoveoFields(index, icons) {
       item.path = url.toString();
     }
 
+    item.nongated = isNotEmpty(item.gatedURL) ? item.internal_path : '';
+    if (!item.nongated.startsWith('http') && isNotEmpty(item.nongated)) {
+      const url = new URL(BASE_URL);
+      url.pathname = item.nongated;
+      item.nongated = url.toString();
+    }
+
     item.description = isNotEmpty(item.internal_description)
       ? item.internal_description
       : item.title;
@@ -325,6 +332,7 @@ async function writeCoveoSitemapXML(index) {
 
     xmlData.push('  <url>');
     xmlData.push(`    <loc>${item.path}</loc>`);
+    xmlData.push(`    <nongated>${item.nongated}</nongated>`);
     xmlData.push(`    <lastmod>${item.lastmod}</lastmod>`);
     xmlData.push('    <changefreq>daily</changefreq>');
     xmlData.push(`    <priority>${item.priority}</priority>`);
