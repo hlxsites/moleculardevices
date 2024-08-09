@@ -87,5 +87,20 @@ export default async function buildAutoBlocks() {
       ));
     }
   }
+
   handleEmbed();
+
+  setTimeout(() => {
+    const pdfAnchors = document.querySelectorAll('a[href$=".pdf"]');
+    const thankyouUrl = `${window.location.pathname}?page=thankyou`;
+    pdfAnchors.forEach((anchor) => {
+      const href = new URL(anchor.href).pathname;
+      anchor.setAttribute('download', href);
+      anchor.addEventListener('click', () => {
+        setTimeout(() => {
+          window.location.href = thankyouUrl;
+        }, 1000);
+      });
+    });
+  }, 800);
 }
