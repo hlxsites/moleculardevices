@@ -83,11 +83,18 @@ class FilterableCardList {
     }
 
     const viewAllCardList = [];
-    categoryOrder.forEach((category) => {
-      if (!this.dataIndex.has(category)) return;
-
-      viewAllCardList.push(...this.dataIndex.get(category));
-    });
+    if (this.block.classList.contains('customer-breakthroughs')) {
+      this.data.forEach((item) => {
+        const xmlsm = this.cardRenderer.renderItem(item);
+        this.dataIndex.set(viewAllCategory, xmlsm);
+        viewAllCardList.push(xmlsm);
+      });
+    } else {
+      categoryOrder.forEach((category) => {
+        if (!this.dataIndex.has(category)) return;
+        viewAllCardList.push(...this.dataIndex.get(category));
+      });
+    }
 
     return viewAllCardList;
   }
@@ -317,8 +324,8 @@ const VARIANTS = {
 
       products = products.filter(
         (product) => product.subCategory === 'Accessories and Consumables'
-            && product.locale !== 'ZH'
-            && product.path !== '/products/accessories-consumables',
+          && product.locale !== 'ZH'
+          && product.path !== '/products/accessories-consumables',
       );
 
       products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));
