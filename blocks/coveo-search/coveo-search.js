@@ -80,14 +80,14 @@ export function searchMainSection() {
   return `
             <div class="section coveo-tab-section-wrapper sticky-element sticky-desktop">
               <div class="coveo-tab-section">
-                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Molecular Devices Franklin&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
-                <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">
+                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;For Gated Test&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
+                <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;For Gated Test&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">
                 </div>
-                <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
+                <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;For Gated Test&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
                 </div>
                 <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot;"></div>
-                <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==CoA"></div>
-                <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==SDS"></div>
+                <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;For Gated Test&quot; AND @md_contenttype==CoA"></div>
+                <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;For Gated Test&quot; AND @md_contenttype==SDS"></div>
               </div>
             </div>
             <div class="section coveo-main-section-wrapper">
