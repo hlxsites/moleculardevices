@@ -1299,7 +1299,6 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-top: 15px;
 }
 
-.product .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper,
 .technology .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper,
 .application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
   margin-top: 0;
@@ -1757,10 +1756,6 @@ main .section.background-molecules {
   padding-bottom: 0;
 }
 
-.product
-  .section.tabs:not(.wave)
-  .default-content-wrapper
-  h2:not(#latest-resources, #features, .video-resources-title),
 .product .section.tabs .columns-wrapper h2,
 .technology
   .section.tabs:not(.wave)
