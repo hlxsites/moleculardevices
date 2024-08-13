@@ -159,7 +159,7 @@ function select_product(){
       'Plus 384':{
           'img':'SpectraMaxPlus384 TPBG.png',
           'link':'http://go.moleculardevices.com/l/83942/2016-05-03/4hb4vc?cmp=70170000000dHvq',
-          'name':'SpectraMax Plus 384 Microplate Reader',
+          'name':'SpectraMax Plus ABS Plus Microplate Reader',
           'description':'Get absorbance measurements from 190 to 1000 nm quickly for samples in test tubes, cuvettes, and 96- or 384-well microplates. '
         },
       '340 PC 384':{
@@ -192,14 +192,14 @@ function select_product(){
           'name':'EMax Plus Microplate Reader',
           'description':'The EMax® Plus Microplate Reader gives you simple, walk-up access to the data you need to make your next decision. Eight filter modes enable visible-wavelength absorption measurement applications such as protein quantification, cell viability and ELISA.'
        },
-		'QuickDrop':{
+        'QuickDrop':{
           'img':'quickdrop.png',
           'link':'https://www.moleculardevices.com/spectramax-quickdrop-micro-volume-spectrophotometer',
           'name':'SpectraMax QuickDrop Micro-Volume Spectrophotometer',
           'description':'Rapid, accurate DNA, RNA, and protein quantitation in a one-touch, full-spectrum micro-volume absorbance reader.'
         
-		  
-	  }
+          
+      }
     };
     
     $.ajax({
