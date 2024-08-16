@@ -79,6 +79,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
+<<<<<<< HEAD
 Disallow: /sites/default/files/en/assets/scientific-posters/br/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction.pdf
@@ -87,6 +88,9 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-disp
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-alzheimers-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination.pdf
+=======
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
+>>>>>>> 5cb11696712056813fea687116ec83005721bc1c
 
 
 # HTML Page (App Note HTML Page Block)
@@ -113,6 +117,7 @@ Disallow: /en/assets/app-note/dd/img/matrigel-dome-assays-and-drug-screening-of-
 Disallow: /en/assets/app-note/br/fast-and-scalable-fc-quantitation-in-supernatants-with-paia-fc-titer-assay
 Disallow: /en/assets/app-note/br/assessing-viability-and-real-time-apoptosis-necrosis-in-an-in-vitro-model-of-malignant-glioma
 Disallow: /en/assets/app-note/dd/img/functional-characterization-of-3d-neurospheres-assembled-using-ipsc-derived-neurons-and-astrocytes
+<<<<<<< HEAD
 Disallow: /en/assets/app-note/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification-using-impedance-based-single-cell-dispenser
 Disallow: /en/assets/app-note/dd/img/cell-culture-automation-of-3d-cancer-spheroid-assay-with-cellxpress-ai-cell-culture-system
 Disallow: /en/assets/app-note/dd/img/automation-of-3d-intestinal-organoids-culture-with-cellxpress-ai-system
@@ -128,6 +133,9 @@ Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expres
 Disallow: /en/assets/app-note/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination
 Disallow: /en/assets/app-note/dd/flipr/functional-characterization-of-healthy-alzheimer-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic-neurons
 Disallow: /en/assets/app-note/dd/img/automation-of-ipsc-culture-passaging-and-expansion-with-cellxpress-ai-automated-cell-culture-system
+=======
+Disallow: /en/assets/app-note/bpd/dispencell-reaches-98-percent-probability-of-clonality-for-robust-cell-line-development
+>>>>>>> 5cb11696712056813fea687116ec83005721bc1c
 
 
 # ISSER 2021 presentations poster and video
