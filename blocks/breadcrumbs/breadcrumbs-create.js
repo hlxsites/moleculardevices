@@ -101,6 +101,7 @@ const customBreadcrumbs = {
   },
   'mammalian-screening': {
     name: 'Mammalian Screening',
+    url_path: '/products/clone-screening/mammalian-screening',
   },
   'microbial-screening': {
     name: 'Microbial Screening',
