@@ -4,8 +4,8 @@ import { createRecentResourceCarousel } from '../recent-blogs-carousel/recent-bl
 export default async function decorate(block) {
   let data = [];
   const publications = await ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Publication' && resource.publicationType === 'Full Article')
+    .sheet('publications')
+    .filter((resource) => resource.publicationType === 'Full Article')
     .limit(7)
     .all();
 
