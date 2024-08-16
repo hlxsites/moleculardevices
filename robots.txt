@@ -85,8 +85,8 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflo
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model.pdf
-Disallow: /sites/default/files/en/assets/app-note/dd/flipr/functional-characterization-of-alzheimers-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-alzheimers-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination.pdf
 
 
 # HTML Page (App Note HTML Page Block)
