@@ -143,7 +143,7 @@ function select_product(){
           'description':'With advanced dual optical systems operating above and below your microplates, the FlexStation® 3 Reader measures absorbance, fluorescence intensity, fluorescence polarization, luminescence, and time-resolved fluorescence.  '
         },
       'M-series':{
-          'img':'SpectraMaxM5e_web_image.png',
+          'img':'spectramax-m-series-transp-shadow.png',
           'link':'http://go.moleculardevices.com/l/83942/2016-05-02/4gk881?cmp=70170000001LWlb',
           'name':'SpectraMax M Series',
           'description':'With six different models to choose from, it\'s easy to find the one you want for your lab. Every SpectraMax® M Series Multi-Mode Microplate Reader does UV and visible absorbance, and fluorescence intensity measurements on microplates and cuvettes, standard.'
@@ -157,7 +157,7 @@ function select_product(){
           'link':''
         },*/
       'Plus 384':{
-          'img':'SpectraMaxPlus384 TPBG.png',
+          'img':'spectramax-abs-plus.png',
           'link':'http://go.moleculardevices.com/l/83942/2016-05-03/4hb4vc?cmp=70170000000dHvq',
           'name':'SpectraMax Plus ABS Plus Microplate Reader',
           'description':'Get absorbance measurements from 190 to 1000 nm quickly for samples in test tubes, cuvettes, and 96- or 384-well microplates. '
