@@ -1,9 +1,9 @@
-# Your Project's Title...
-Franklin Site for https://www.moleculardevices.com/
+# AEM Project for Molecular Devices
 
 ## Environments
-- Preview: https://main--moleculardevices--hlxsites.hlx.page/
-- Live: https://main--moleculardevices--hlxsites.hlx.live/
+- Public https://www.moleculardevices.com/
+- Preview: https://main--moleculardevices--hlxsites.aem.page/
+- Live: https://main--moleculardevices--hlxsites.aem.live/
 
 ## Installation
 

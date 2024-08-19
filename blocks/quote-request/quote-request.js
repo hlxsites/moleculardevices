@@ -7,7 +7,7 @@ import {
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { iframeResizeHandler } from '../modal/modal.js';
 
-const PREVIEW_DOMAIN = 'hlxsites.hlx.page';
+const PREVIEW_DOMAIN = '.aem.page';
 
 const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();

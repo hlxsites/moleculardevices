@@ -222,8 +222,8 @@ export function decorateExternalLink(link) {
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
-    'https://main--moleculardevices--hlxsites.hlx.page',
-    'https://main--moleculardevices--hlxsites.hlx.live',
+    'https://main--moleculardevices--hlxsites.aem.page',
+    'https://main--moleculardevices--hlxsites.aem.live',
     'http://molecular-devices.myshopify.com',
     'http://moldev.com',
     'http://go.pardot.com',
@@ -1212,7 +1212,7 @@ export async function processEmbedFragment(element) {
       // not a url, ignore
     }
     if (linkTextUrl && linkTextUrl.pathname === linkUrl.pathname) {
-      const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.hlx.page', 'moleculardevices--hlxsites.hlx.live'];
+      const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.aem.page', 'moleculardevices--hlxsites.aem.live'];
       found = fragmentDomains.find((domain) => linkUrl.hostname.endsWith(domain));
       if (found) {
         block.classList.remove('button-container');

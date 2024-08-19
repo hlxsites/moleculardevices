@@ -61,7 +61,7 @@ const PRIORITYMAPPING = {
 
 async function getData() {
   return new Promise((resolve) => {
-    https.get('https://main--moleculardevices--hlxsites.hlx.live/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
+    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
       const data = [];
 
       res.on('data', (chunk) => {
