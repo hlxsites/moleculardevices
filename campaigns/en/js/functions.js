@@ -126,25 +126,25 @@ function select_product(){
     var products = {
       'i3x':{
           'img':'result-i3x.png', 
-          'link':'http://go.moleculardevices.com/l/83942/2016-04-22/4d2y91?cmp=70170000001LWlW',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-i3x-multi-mode-microplate-reader?cmp=70170000001LWlW',
           'name':'SpectraMax i3x Multi-Mode Microplate Reader',
           'description':'The SpectraMax® i3x is a multi-mode microplate reader system that evolves with your future needs and offers an unlimited breadth of application possibilities.'
         },
       'Paradigm':{
           'img':'SpectraMax Paradigm_cartinsert-TUNE.png', 
-          'link':'http://go.moleculardevices.com/l/83942/2016-04-28/4fxy31?cmp=70170000000dHvR',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-paradigm-multi-mode-microplate-reader?cmp=70170000000dHvR',
           'name':'SpectraMax Paradigm Multi-Mode Microplate Reader',
           'description':'The SpectraMax Paradigm is a compact, capable, and user-upgradeable microplate reader that enables you to do more, with less.'
         },
       'FlexStation3':{
           'img':'FlexStation3 TPBG.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-02/4gk7yy?cmp=70170000001LWlq',
+          'link':'https://www.moleculardevices.com/quote-request?pid=flexstation-3-microplate-readers?cmp=70170000001LWlq',
           'name':'FlexStation 3 Multi-Mode Microplate Reader',
           'description':'With advanced dual optical systems operating above and below your microplates, the FlexStation® 3 Reader measures absorbance, fluorescence intensity, fluorescence polarization, luminescence, and time-resolved fluorescence.  '
         },
       'M-series':{
           'img':'spectramax-m-series-transp-shadow.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-02/4gk881?cmp=70170000001LWlb',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-m-series-multi-mode-microplate-readers?cmp=70170000001LWlb',
           'name':'SpectraMax M Series',
           'description':'With six different models to choose from, it\'s easy to find the one you want for your lab. Every SpectraMax® M Series Multi-Mode Microplate Reader does UV and visible absorbance, and fluorescence intensity measurements on microplates and cuvettes, standard.'
         },
@@ -158,43 +158,43 @@ function select_product(){
         },*/
       'Plus 384':{
           'img':'spectramax-abs-plus.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-03/4hb4vc?cmp=70170000000dHvq',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-abs-and-abs-plus-absorbance-elisa-microplate-readers?cmp=70170000000dHvq',
           'name':'SpectraMax Plus ABS Plus Microplate Reader',
           'description':'Get absorbance measurements from 190 to 1000 nm quickly for samples in test tubes, cuvettes, and 96- or 384-well microplates. '
         },
       '340 PC 384':{
           'img':'SpectraMax340PC384 TPBG.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-03/4h9rm1?cmp=70170000000dHvR',
+          'link':'https://www.moleculardevices.com/quote-request?cmp=70170000000dHvR',
           'name':'SpectraMax 340PC384 Microplate Reader',
           'description':'Acquire data in endpoint, kinetic, and spectral scan modes using wavelegths from 340-850 nm, tunable in 1 nm increments. The SpectraMax® 340PC384 Microplate Reader comes with temperature control up to 45 °C, a robotics-compatible interface, and  SoftMax® Pro Data Analysis Software. PathCheck® Sensor technology automatically measures the liquid depth of each well, and can also be used to calculate concentrations without a standard curve and expand the dynamic range of your readings to 6+ OD.'
         },
       'versamax':{
           'img':'VersaMax TPBG.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-02/4gk881?cmp=70170000001LWlb',
+          'link':'https://www.moleculardevices.com/quote-request?cmp=70170000001LWlb',
           'name':'VersaMax Microplate Reader',
           'description':'Make the most of your budget with the VersaMax™ ELISA Microplate Reader, our affordable, visible spectrum absorbance reader for 96-well microplates. This richly featured reader gives you the speed, convenience, and economy of monochromator-based wavelength selection for visible absorbance measurements between 340 nm and 850 nm, so you can accomplish more, with less'
         },
       'Gemini':{
           'img':'Gemini_0.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-19/4mq2tp?cmp=70170000000dHtf',
+          'link':'https://www.moleculardevices.com/quote-request?pid=gemini-xps-and-em-microplate%20readers?cmp=70170000000dHtf',
           'name':'Gemini EM Microplate Reader',
           'description':'Create custom fluorescence assays without having to purchase expensive filter sets. The top- and bottom-reading Gemini EM Microplate Reader with dual monochromators lets you determine the optimal excitation and emission settings for your creative new fluorescence intensity assays. '
         },
       'SpectraMax L':{
           'img':'SpectraMaxL-Lumi+ TPBG_edit.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-03/4h74v7?cmp=70170000000dHuE',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-l-microplate-readers?cmp=70170000000dHuE',
           'name':'SpectraMax L Microplate Reader',
           'description':'Measure flash and glow assays, including dual luciferase reporter gene, G protein-coupled receptor (GPCR) via aequorin, bioluminsescence resonance energy transfer (BRET), and acridinium ester flash assays, in both 96- and 384-well plates.'
         },
       'Emax Plus':{
           'img':'EMax Plus-1_NoBckgd.png',
-          'link':'http://go.moleculardevices.com/l/83942/2016-05-02/4gk96y?cmp=70170000001LWlg',
+          'link':'https://www.moleculardevices.com/quote-request?pid=emax-plus-microplate-reader?cmp=70170000001LWlg',
           'name':'EMax Plus Microplate Reader',
           'description':'The EMax® Plus Microplate Reader gives you simple, walk-up access to the data you need to make your next decision. Eight filter modes enable visible-wavelength absorption measurement applications such as protein quantification, cell viability and ELISA.'
        },
         'QuickDrop':{
           'img':'quickdrop.png',
-          'link':'https://www.moleculardevices.com/spectramax-quickdrop-micro-volume-spectrophotometer',
+          'link':'https://www.moleculardevices.com/quote-request?pid=spectramax-quickdrop-micro-volume-spectrophotometers',
           'name':'SpectraMax QuickDrop Micro-Volume Spectrophotometer',
           'description':'Rapid, accurate DNA, RNA, and protein quantitation in a one-touch, full-spectrum micro-volume absorbance reader.'
         
