@@ -7,6 +7,11 @@
   margin-top: 30px;
 }
 
+.table-container, 
+.table-container .responsive-table {
+  transform: rotateX(180deg);
+}
+
 .product-comparison .table-container {
   overflow-x: auto;
   -ms-overflow-style: none;
