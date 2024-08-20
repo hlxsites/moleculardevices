@@ -106,10 +106,10 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
   loadUserData();
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page')) {
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
   }
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.hlx.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
   }
 }
