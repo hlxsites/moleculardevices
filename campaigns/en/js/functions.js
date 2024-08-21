@@ -131,13 +131,13 @@ function select_product() {
             'description': 'The SpectraMax® i3x is a multi-mode microplate reader system that evolves with your future needs and offers an unlimited breadth of application possibilities.'
         },
         'Paradigm': {
-            'img': 'SpectraMax Paradigm_cartinsert-TUNE.png',
+            'img': 'spectramax-paradigm_cartinsert.png',
             'link': 'https://www.moleculardevices.com/quote-request?pid=spectramax-paradigm-multi-mode-microplate-reader&cmp=70170000000dHvR',
             'name': 'SpectraMax Paradigm Multi-Mode Microplate Reader',
             'description': 'The SpectraMax Paradigm is a compact, capable, and user-upgradeable microplate reader that enables you to do more, with less.'
         },
         'FlexStation3': {
-            'img': 'FlexStation3 TPBG.png',
+            'img': 'flexstation-3.png',
             'link': 'https://www.moleculardevices.com/quote-request?pid=flexstation-3-microplate-readers&cmp=70170000001LWlq',
             'name': 'FlexStation 3 Multi-Mode Microplate Reader',
             'description': 'With advanced dual optical systems operating above and below your microplates, the FlexStation® 3 Reader measures absorbance, fluorescence intensity, fluorescence polarization, luminescence, and time-resolved fluorescence.  '
@@ -181,13 +181,13 @@ function select_product() {
             'description': 'Create custom fluorescence assays without having to purchase expensive filter sets. The top- and bottom-reading Gemini EM Microplate Reader with dual monochromators lets you determine the optimal excitation and emission settings for your creative new fluorescence intensity assays. '
         },
         'SpectraMax L': {
-            'img': 'SpectraMaxL-Lumi+ TPBG_edit.png',
+            'img': 'spectraMax-l-lumi.png',
             'link': 'https://www.moleculardevices.com/quote-request?pid=spectramax-l-microplate-readers&cmp=70170000000dHuE',
             'name': 'SpectraMax L Microplate Reader',
             'description': 'Measure flash and glow assays, including dual luciferase reporter gene, G protein-coupled receptor (GPCR) via aequorin, bioluminsescence resonance energy transfer (BRET), and acridinium ester flash assays, in both 96- and 384-well plates.'
         },
         'Emax Plus': {
-            'img': 'EMax Plus-1_NoBckgd.png',
+            'img': 'emax-plus.png',
             'link': 'https://www.moleculardevices.com/quote-request?pid=emax-plus-microplate-reader&cmp=70170000001LWlg',
             'name': 'EMax Plus Microplate Reader',
             'description': 'The EMax® Plus Microplate Reader gives you simple, walk-up access to the data you need to make your next decision. Eight filter modes enable visible-wavelength absorption measurement applications such as protein quantification, cell viability and ELISA.'
