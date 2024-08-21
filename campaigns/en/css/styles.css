@@ -111,7 +111,8 @@ display: inline-block; display:-ms-flexbox; display:-webkit-flex; display:flex; 
   .main-nav-menu>li>ul>li>ul>li>ul>li>a{background:#008198; border-bottom:1px solid #008ea8;}
 }
 /**********************************FOOTER**********************************/
-#footer {background:#ced4dc url(../img/moldev-circles.png) no-repeat 98.5% center; padding:2.5em 5em 2em; min-height:85px}
+/* #footer {background:#ced4dc url(../img/moldev-circles.png) no-repeat 98.5% center; padding:2.5em 5em 2em; min-height:85px} */
+#footer {background: #ced4dc; padding:2.5em 5em 2em;}
 #footer .footer-menu ul{padding:0 0 2.5em;}
 #footer .footer-menu li{margin:0 .75em; display:inline-block;}
 #footer .footer-menu li:first-child{margin-left:0;}
@@ -211,6 +212,10 @@ progress::-ms-fill{border-radius:4px; background:#fff;}
 #result-spotlight .pic-holder{max-width:36%;}
 #result-spotlight .text{text-align:left; max-width:62%; background:none; padding:25px 0 0 30px; box-sizing:border-box;}
 #quiz #quiz-cta{margin:0 auto; width:auto; padding:0 45px;}
+#footer .row {display: flex;align-items: center;flex-direction: column;gap: 16px;}
+@media only screen and (min-width:768px){
+  #footer .row {justify-content: space-between;flex-direction: row;}
+}
 @media only screen and (max-width:800px){
   #result-spotlight p{line-height:1.5;}
 }
@@ -285,9 +290,9 @@ vertical-align:top; position:relative; text-align:center; width:25%; margin:0 10
 .vid a{font-size:.875em; color:#fff; position:relative; margin-bottom:25px;}
 .vid .vidyard_wrapper{float:none;}
 .vid a div, .vid .vidyard_wrapper div{height:10.714em; background:no-repeat center / cover;}
-.vid #video1 div{background-image:url(../img/vid-thumb1.jpg);}
+.vid #video1 div{background-image:url(../img/spectramax-abs-and-abs-plus-microplate-readers.jpg);}
 .vid #video2 div{background-image:url(../img/vid-thumb2.jpg);}
-.vid #video3 div{background-image:url(../img/vid-thumb3.jpg);}
+.vid #video3 div{background-image:url(../img/spectramax-id5-multi-mode-microplate-reader.png);}
 .vid #video4 div{background-image:url(../img/vid-thumb4.jpg);}
 .vid a {padding-left:.421em; line-height:2; position:relative; vertical-align:middle; background:#02248b;}
 .vid a .fa-play-circle{font-size:1.21em; line-height:1.654em; margin-right:.413em;}
