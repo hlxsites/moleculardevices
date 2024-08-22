@@ -37,6 +37,7 @@ export default async function decorate(block) {
   let maxHeight = 0;
   productIdentifiers.forEach((productIdentifier) => {
     const productSpec = productSpecs[productIdentifier];
+    const productRfq = productSpec.rfq;
 
     const productPathName = productSpec.path.split('#')[0];
     const cmPathName = window.location.pathname;
@@ -55,6 +56,7 @@ export default async function decorate(block) {
           productPathName === cmPathName
             ? ''
             : a({ href: productSpec.path, class: 'product-info-btn' }, 'PRODUCT INFO'),
+          productRfq ? a({ href: `/quote-request?pid=${productRfq}`, target: '_blank', class: 'product-info-btn' }, 'Request Quote') : '',
         ),
       ),
     );
