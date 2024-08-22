@@ -84,9 +84,14 @@
   margin: auto;
 }
 
-.landing-page .no-form-embed:not(.text-dark) .default-content-wrapper *:not(a, h2),
-.landing-page .download-form:not(.text-dark) .default-content-wrapper *:not(a, h2) {
+.landing-page .no-form-embed .default-content-wrapper *:not(a, h2),
+.landing-page .download-form .default-content-wrapper *:not(a, h2) {
   color: var(--text-gray);
+}
+
+.landing-page .no-form-embed.text-dark .default-content-wrapper *:not(a, h2),
+.landing-page .download-form.text-dark .default-content-wrapper *:not(a, h2) {
+  color: var(--text-dark-gray);
 }
 
 .landing-page .download-form .embed h2,
