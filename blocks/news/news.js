@@ -50,6 +50,7 @@ export async function fetchData(type) {
 }
 
 export default async function decorate(block) {
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
   const options = {
@@ -63,7 +64,12 @@ export default async function decorate(block) {
   options.activeFilters.set('year', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchData('news');
+  if (isCuntryCodeZH) {
+    options.data = await fetchData('china-news');
+  } else {
+    options.data = await fetchData('news');
+  }
+
   await createOverview(
     block,
     options);
