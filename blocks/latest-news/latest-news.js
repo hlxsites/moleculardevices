@@ -1,9 +1,8 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import { fetchData } from '../news/news.js';
+import { getNewsData } from '../news/news.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
@@ -26,14 +25,7 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'en';
-  let data = [];
+  const data = await getNewsData(3);
 
-  if (isCuntryCodeZH) {
-    data = await fetchData('china-news');
-  } else {
-    data = await fetchData('news');
-  }
-
-  buildList(data.slice(0, 3), block);
+  buildList(data, block);
 }

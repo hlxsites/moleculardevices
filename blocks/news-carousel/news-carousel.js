@@ -1,8 +1,7 @@
-import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
-import { fetchData } from '../news/news.js';
+import { getNewsData } from '../news/news.js';
 
 function renderItem(item) {
   const newsItem = document.createElement('div');
@@ -34,15 +33,7 @@ function renderItem(item) {
 }
 
 export default async function decorate(block) {
-  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'en';
-  let newsItems = [];
-
-  if (isCuntryCodeZH) {
-    newsItems = await fetchData('china-news');
-  } else {
-    newsItems = await fetchData('news');
-  }
-  newsItems = newsItems.slice(0, 5);
+  const newsItems = await getNewsData(5);
 
   await createCarousel(
     block,

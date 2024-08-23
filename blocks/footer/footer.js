@@ -8,6 +8,7 @@ import {
 import {
   decorateExternalLink, formatDate, loadScript, unixDateToString,
 } from '../../scripts/scripts.js';
+import { getNewsData } from '../news/news.js';
 
 let placeholders = {};
 
@@ -72,11 +73,7 @@ async function renderEvents(container) {
 }
 
 async function renderNews(container) {
-  const news = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .slice(0, 3)
-    .all();
+  const news = await getNewsData(3);
   container.innerHTML = '';
   news.forEach(
     (item) => container.append(renderEntry(item)),
