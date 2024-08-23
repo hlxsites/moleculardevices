@@ -3,6 +3,7 @@ import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { fetchData } from '../news/news.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
@@ -25,10 +26,14 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const data = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .limit(3)
-    .all();
-  buildList(data, block);
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
+  let data = [];
+
+  if (isCuntryCodeZH) {
+    data = await fetchData('china-news');
+  } else {
+    data = await fetchData('news');
+  }
+
+  buildList(data.slice(0, 3), block);
 }

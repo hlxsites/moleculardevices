@@ -65,7 +65,7 @@ export default async function decorate(block) {
   options.activeFilters.set('year', '');
   options.activeFilters.set('page', 1);
 
-  if (isCuntryCodeZH==='zh') {
+  if (isCuntryCodeZH === 'zh') {
     options.data = await fetchData('china-news');
   } else {
     options.data = await fetchData('news');
