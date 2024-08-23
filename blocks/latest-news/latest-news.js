@@ -26,7 +26,7 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'en';
   let data = [];
 
   if (isCuntryCodeZH) {
