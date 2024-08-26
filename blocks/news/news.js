@@ -50,7 +50,7 @@ export async function fetchData(type) {
 }
 
 export async function getNewsData(newsCount) {
-  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'en';
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
   let data = [];
   if (isCuntryCodeZH) {
     data = await fetchData('china-news');

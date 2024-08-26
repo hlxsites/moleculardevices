@@ -1,5 +1,6 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
+  createOptimizedPicture,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -218,6 +219,9 @@ export default async function decorate(block) {
     }
 
     if (idx === 4) {
+      row.innerHTML = '';
+      const moldevLogo = createOptimizedPicture('/images/molecular-devices.png');
+      row.appendChild(moldevLogo);
       const mainUrl = 'https://www.moleculardevices.com/';
       decorateImageWithLink(row, mainUrl, 'Molecular Devices');
     }
