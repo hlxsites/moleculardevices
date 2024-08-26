@@ -589,6 +589,14 @@ function addPageSchema() {
             name: schemaTitle,
             description: getMetadata('description'),
             url: document.querySelector("link[rel='canonical']").href,
+             potentialAction: {
+              '@type': 'SearchAction',
+              'query-input': 'required name=search_term_string',
+              target: {
+                '@type': 'EntryPoint',
+                urlTemplate: 'https://www.moleculardevices.com/search-results#q={search_term_string}',
+              },
+            },
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
