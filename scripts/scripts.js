@@ -589,7 +589,7 @@ function addPageSchema() {
             name: schemaTitle,
             description: getMetadata('description'),
             url: document.querySelector("link[rel='canonical']").href,
-             potentialAction: {
+            potentialAction: {
               '@type': 'SearchAction',
               'query-input': 'required name=search_term_string',
               target: {
