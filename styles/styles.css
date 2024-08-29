@@ -333,6 +333,18 @@ a:hover {
   color: var(--link-hover-color);
 }
 
+a i.fa {
+  margin-left: 5px;
+}
+
+a i.fa.fa-external-link {
+  position: relative;
+  top: -5px;
+  font-size: 13px;
+  margin-left: 2px;
+  color: var(--link-color);
+}
+
 code,
 pre,
 samp {
@@ -444,8 +456,10 @@ button {
   cursor: pointer;
 }
 
-a.button .fa {
+a.button .fa,
+a.button i.fa {
   padding: 0 0.25rem;
+  color: inherit;
 }
 
 a.button:hover,
@@ -504,18 +518,6 @@ button.secondary:focus {
   color: var(--button-secondary-hover-color);
   background-color: var(--button-secondary-bg-hover-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
-}
-
-a i.fa {
-  margin-left: 5px;
-}
-
-a i.fa.fa-external-link {
-  position: relative;
-  top: -5px;
-  font-size: 13px;
-  margin-left: 2px;
-  color: var(--link-color);
 }
 
 main input {
@@ -2122,15 +2124,15 @@ main .section.space-wrappers > div {
 }
 
 .list-spacing-8 ul li:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 8px !important;
 }
 
 .list-spacing-10 ul li:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 
 .list-spacing-16 ul li:not(:last-child) {
-  margin-bottom: 16px;
+  margin-bottom: 16px !important;
 }
 
 .no-indented-list ul,
@@ -2203,17 +2205,36 @@ main .columns-separator-line .columns-wrapper .columns {
   padding-top: 0;
 }
 
-/* title with green highlight */
+/* title with green/theme highlight */
+.title-with-green-highlight h2:first-child em,
+.title-with-green-highlight h3:first-child em,
+.title-with-theme-highlight h2:first-child em,
+.title-with-theme-highlight h3:first-child em {
+  font-style: normal;
+}
+
 .title-with-green-highlight h2:first-child em,
 .title-with-green-highlight h3:first-child em {
-  font-style: normal;
   color: var(--text-green);
 }
 
+.title-with-theme-highlight h2:first-child em,
+.title-with-theme-highlight h3:first-child em {
+  color: var(--text-blue);
+}
+
 .section.title-with-green-highlight .default-content-wrapper h2:first-child,
-.section.title-with-green-highlight .default-content-wrapper h3:first-child {
+.section.title-with-green-highlight .default-content-wrapper h3:first-child,
+.section.title-with-theme-highlight .default-content-wrapper h2:first-child,
+.section.title-with-theme-highlight .default-content-wrapper h3:first-child {
   margin: 0;
   padding-bottom: 20px;
+}
+
+.columns.image-center div:has(picture:only-of-type) img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* SLAS PAGES */
