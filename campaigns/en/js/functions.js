@@ -187,10 +187,10 @@ function select_product() {
             'description': 'Measure flash and glow assays, including dual luciferase reporter gene, G protein-coupled receptor (GPCR) via aequorin, bioluminsescence resonance energy transfer (BRET), and acridinium ester flash assays, in both 96- and 384-well plates.'
         },
         'Emax Plus': {
-            'img': 'emax-plus.png',
-            'link': 'https://www.moleculardevices.com/quote-request?pid=emax-plus-microplate-reader&cmp=70170000001LWlg',
-            'name': 'EMax Plus Microplate Reader',
-            'description': 'The EMax® Plus Microplate Reader gives you simple, walk-up access to the data you need to make your next decision. Eight filter modes enable visible-wavelength absorption measurement applications such as protein quantification, cell viability and ELISA.'
+            'img': 'spectramax-abs-plus.png',
+            'link': 'https://www.moleculardevices.com/quote-request?pid=spectramax-abs-and-abs-plus-absorbance-elisa-microplate-readers&cmp=70170000000dHvq',
+            'name': 'SpectraMax Plus ABS Plus Microplate Reader',
+            'description': 'Get absorbance measurements from 190 to 1000 nm quickly for samples in test tubes, cuvettes, and 96- or 384-well microplates. '
         },
         'QuickDrop': {
             'img': 'quickdrop.png',
