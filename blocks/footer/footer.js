@@ -194,13 +194,11 @@ export default async function decorate(block) {
 
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = document.createElement('div');
+  const footer = div();
   footer.innerHTML = html;
 
-  const footerWrap = document.createElement('div');
-  const footerBottom = document.createElement('div');
-  footerWrap.classList.add('footer-wrap');
-  footerBottom.classList.add('footer-bottom');
+  const footerWrap = div({ class: 'footer-wrap' });
+  const footerBottom = div({ class: 'footer-bottom' });
   block.appendChild(footerWrap);
   block.appendChild(footerBottom);
 
@@ -227,9 +225,17 @@ export default async function decorate(block) {
     }
 
     if (idx === 5) {
+      const copyrightTextEn = p({ class: 'en OneLinkHide footer-copyright-text' }, `©${new Date().getFullYear()} Molecular Devices, LLC. All rights reserved.`);
+      const copyrightTextZh = p({ class: 'zh OneLinkShow_zh1 footer-copyright-text' },
+        `©${new Date().getFullYear()} Molecular Devices, LLC. 保留所有权利`,
+        a({ href: 'https://beian.miit.gov.cn/', style: 'margin-left: 4px;' }, ' 沪ICP备05056171号-2'),
+        a({ href: 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=%E6%B2%AA%E5%85%AC%E7%BD%91%E5%AE%89%E5%A4%87%2031010502001469%E5%8F%B7', style: 'margin-left: 4px;' }, ' 沪公网安备 31010502001469号'),
+      );
       const imgWrapper = row.getElementsByTagName('p')[0];
       const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
       decorateImageWithLink(imgWrapper, danaherUrl, 'Danaher');
+      row.appendChild(copyrightTextEn);
+      row.appendChild(copyrightTextZh);
     }
   });
 
@@ -238,7 +244,7 @@ export default async function decorate(block) {
 
   block.append(footer);
   block.querySelectorAll('a').forEach(decorateExternalLink);
-  await decorateIcons(block);
+  decorateIcons(block);
 
   /*
    Creating the Newsletter has high TBT due to a high number of external scripts it brings.

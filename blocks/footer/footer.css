@@ -344,9 +344,11 @@
     margin: 0;
   }
 
-  .footer-bottom .row-6 p:last-of-type {
+  .footer-bottom .row-6 .footer-copyright-text {
     margin-top: 40px;
     position: absolute;
+    max-width: 400px;
+    top: 10px;
     left: 15px;
   }
 }
@@ -354,6 +356,11 @@
 @media (min-width: 1200px) {
   .footer.block {
     width: 1170px;
+  }
+
+  .footer-bottom .row-6 .footer-copyright-text {
+    max-width: 100%;
+    top: auto;
   }
 }
 
