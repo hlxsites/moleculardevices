@@ -223,9 +223,9 @@ async function loadIframeForm(data, type) {
   }
 
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
-  const mpCmpValue = queryParams && queryParams.get('mdcmp');
+  //const mpCmpValue = queryParams && queryParams.get('mdcmp');
   let cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
-  if (mpCmpValue) cmpValue = mpCmpValue;
+  //if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
 
   const hubSpotQuery = {
