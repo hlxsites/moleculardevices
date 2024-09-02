@@ -790,6 +790,27 @@ async function formInModalHandler(main) {
   }
 }
 
+/* ============================ scrollToHashSection ============================ */
+function scrollToHashSection() {
+  const hashInterval = setTimeout(() => {
+    const activeHash = window.location.hash;
+    if (activeHash) {
+      const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+      const targetElement = document.getElementById(id);
+      window.scrollTo({
+        left: 0,
+        top: targetElement.offsetTop - 250,
+        behavior: 'smooth',
+      });
+      clearInterval(hashInterval);
+    }
+  }, 1000);
+}
+
+window.addEventListener('load', scrollToHashSection);
+window.addEventListener('hashchange', scrollToHashSection);
+/* ============================ scrollToHashSection ============================ */
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
