@@ -7,7 +7,9 @@ import {
 
 import {
   getMetadata, buildBlock,
+  loadCSS,
 } from '../../scripts/lib-franklin.js';
+import decorate from '../../blocks/table/table.js';
 
 function decorateTitle(parentElem, titleElem) {
   titleElem.classList.add('event-title');
@@ -102,6 +104,10 @@ export function decorateAutoBlock(content) {
         pic.append(child);
       } else if (!child.matches('h1') && !child.matches('cite')) {
         isInleftCol = false;
+        if (child.classList.contains('table')) {
+          loadCSS('/blocks/table/table.css');
+          decorate(child);
+        }
         txt.append(child);
       }
     });
