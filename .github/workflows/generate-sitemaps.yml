@@ -3,7 +3,7 @@ name: Regenerate the Sitemaps
 on:
   repository_dispatch:
     types:
-      - index-published
+      - resource-published
   workflow_dispatch:
 
 jobs:
