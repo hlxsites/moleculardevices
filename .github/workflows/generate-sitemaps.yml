@@ -24,11 +24,13 @@ jobs:
         working-directory: ./coveo
         run: |
           node generate-coveo-sitemap.js
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add ./coveo-xml.xml
-          git commit -m "Update generated coveo.xml file"
-          git push
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update generated coveo.xml file"
+          repository: aemedge
+          file_pattern: "./coveo-xml.xml"
+          push_options: --force
 
   build-sitemap:
     needs: build-coveo
@@ -54,7 +56,10 @@ jobs:
         working-directory: ./tools/sitemap
         run: |
           node create.js
-          git add ../../content-sitemap.xml
-          timestamp=$(date -u)
-          git commit -m "Update generated content-sitemap.xml file" || exit 0
-          git push
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update generated content-sitemap.xml file"
+          repository: aemedge
+          file_pattern: "../../content-sitemap.xml"
+          push_options: --force
