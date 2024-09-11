@@ -28,8 +28,8 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update generated coveo.xml file"
-          repository: aemedge
-          file_pattern: "./coveo-xml.xml"
+          repository: coveo
+          file_pattern: "coveo-xml.xml"
           push_options: --force
 
   build-sitemap:
@@ -60,6 +60,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update generated content-sitemap.xml file"
-          repository: aemedge
-          file_pattern: "../../content-sitemap.xml"
+          file_pattern: "content-sitemap.xml"
           push_options: --force
