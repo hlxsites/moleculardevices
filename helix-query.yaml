@@ -154,7 +154,7 @@ indices:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
       relatedProducts:
-        select: head > meta[property="og:related-products"]
+        select: head > meta[name="related-products"]
         value: attribute(el, "content")  
       count:
         select: head > meta[name="citation-number"]
