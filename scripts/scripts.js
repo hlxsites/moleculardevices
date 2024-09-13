@@ -426,7 +426,7 @@ function detectSidebar(main) {
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
-function decorateLinkedPictures(container) {
+export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
     const br = link.previousElementSibling;
     let picture = br.previousElementSibling;
@@ -752,12 +752,16 @@ function addHreflangTags() {
  * @param {Element} iframeID The iframe id
  * @param {Element} root The parent element of iframe
  */
-export function iframeResizeHandler(iframeURL, iframeID, root) {
-  loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', async () => {
-    if (iframeURL) {
+export function iframeResizeHandler(formUrl, id, container) {
+  const resizerPromise = new Promise((resolve) => {
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+  });
+
+  container.querySelector('iframe').addEventListener('load', async () => {
+    if (formUrl) {
+      await resizerPromise;
       /* global iFrameResize */
-      iFrameResize({ log: false }, `#${iframeID}`);
+      iFrameResize({ log: false }, id);
     }
   });
 }
