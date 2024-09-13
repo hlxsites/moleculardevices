@@ -170,6 +170,9 @@ indices:
       type:
         select: head > meta[name="type"]
         value: attribute(el, "content")
+      relatedProducts:
+        select: head > meta[name="related-products"]
+        value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
