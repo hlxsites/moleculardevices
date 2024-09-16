@@ -2,21 +2,12 @@
 import {
   button, div, span,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, loadCSS } from '../../scripts/lib-franklin.js';
+import { iframeResizeHandler } from '../../scripts/scripts.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
 const modalParentClass = 'modal-overlay';
-
-export function iframeResizeHandler(iframeURL, iframeID, root) {
-  loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', async () => {
-    if (iframeURL) {
-      /* global iFrameResize */
-      iFrameResize({ log: false }, `#${iframeID}`);
-    }
-  });
-}
 
 export function hideModal() {
   const modal = document.querySelector(`.${modalParentClass}`);

@@ -1,11 +1,12 @@
 import ffetch from '../../scripts/ffetch.js';
-import { loadScript, getCookie, fetchFragment } from '../../scripts/scripts.js';
+import {
+  loadScript, getCookie, fetchFragment, iframeResizeHandler,
+} from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, iframe, button,
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
-import { iframeResizeHandler } from '../modal/modal.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
