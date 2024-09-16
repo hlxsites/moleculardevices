@@ -180,10 +180,14 @@ function citationDetails(count, gatedUrl) {
 }
 
 async function getResourcesFromMetaTags(heading) {
-  const fragmentCitations = await ffetch('/fragments/query-index.json')
+  let fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
     .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
     .all();
+
+  if (window.location.pathname.includes('/resources/citations/')) {
+    fragmentCitations = [...fragmentCitations].slice(0, 3);
+  }
 
   return sortDataByDate(fragmentCitations);
 }
