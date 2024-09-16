@@ -153,6 +153,9 @@ indices:
       title:
         select: head > meta[property="og:title"]
         value: attribute(el, "content")
+      gatedUrl:
+        select: head > meta[name="gated-url"]
+        value: attribute(el, "content")  
       count:
         select: head > meta[name="citation-number"]
         value: attribute(el, "content")
