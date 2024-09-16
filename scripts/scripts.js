@@ -801,11 +801,13 @@ function scrollToHashSection() {
     if (activeHash) {
       const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
       const targetElement = document.getElementById(id);
-      window.scrollTo({
-        left: 0,
-        top: targetElement.offsetTop - 250,
-        behavior: 'smooth',
-      });
+      if (targetElement) {
+        window.scrollTo({
+          left: 0,
+          top: targetElement.offsetTop - 250,
+          behavior: 'smooth',
+        });
+      }
       clearInterval(hashInterval);
     }
   }, 1000);
@@ -1266,6 +1268,28 @@ export async function processEmbedFragment(element) {
   decorateParagraphs(block);
 
   return block;
+}
+
+/**
+ * Format a number using US number formatting.
+ * @param {number} number - The number to format.
+ * @returns {string} - The formatted number in US style.
+ */
+export function formatNumberInUs(number) {
+  return new Intl.NumberFormat('en-US').format(number);
+}
+
+/**
+ * Sorts an array of objects by the 'date' property in descending order.
+ * @param {Array} Array - The array of objects to sort. Each object must have a 'date' property.
+ * @returns {void} - The original array is sorted in place.
+ */
+export function sortDataByDate(array) {
+  return array.sort((x, y) => {
+    const dateX = parseInt(x.date, 10);
+    const dateY = parseInt(y.date, 10);
+    return dateY - dateX;
+  });
 }
 
 loadPage();
