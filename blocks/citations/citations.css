@@ -73,6 +73,7 @@ main .citations-container > .default-content-wrapper {
 
 .citations .citation-header h2,
 .product .section.tabs .citations .citation-header h2 {
+  font-family: var(--ff-proxima-regular);
   padding-bottom: 15px;
   margin-bottom: 10px;
   margin-top: 10px;

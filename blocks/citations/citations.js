@@ -179,10 +179,7 @@ function citationDetails(count, gatedUrl) {
   return header;
 }
 
-async function getResourcesFromMetaTags() {
-  const heading = getMetadata('identifier')
-    || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
-
+async function getResourcesFromMetaTags(heading) {
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
     .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
@@ -193,14 +190,28 @@ async function getResourcesFromMetaTags() {
 
 export default async function decorate(block) {
   placeholders = await fetchPlaceholders();
-  const resources = await getResourcesFromMetaTags();
+  const heading = getMetadata('identifier')
+    || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+  const resources = await getResourcesFromMetaTags(heading);
   const fragmentPaths = resources.map((resource) => resource.path);
+  const fragments = await parseCitationFragments(fragmentPaths);
+
+  // fetch citation details
+  const resourceCitations = await ffetch('/resources/citations/query-index.json')
+    .filter((citation) => heading.includes(citation.title))
+    .all();
+
+  if (resourceCitations && resourceCitations.length > 0) {
+    resourceCitations.forEach((citation) => {
+      block.parentElement.parentElement.prepend(citationDetails(citation.count, citation.gatedUrl));
+    });
+  }
+
   block.innerHTML = '';
   if (fragmentPaths.length === 0) {
     return '';
   }
 
-  const fragments = await parseCitationFragments(fragmentPaths);
   fragmentPaths.forEach((path) => {
     const fragment = fragments[path];
     if (fragment) {
@@ -215,20 +226,6 @@ export default async function decorate(block) {
       viewLongDescription(citation, viewChangeBlock);
     });
   });
-
-  // fetch citation details
-  const heading = getMetadata('identifier')
-    || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
-
-  const resourceCitations = await ffetch('/resources/citations/query-index.json')
-    .filter((citation) => heading.includes(citation.title))
-    .all();
-
-  if (resourceCitations && resourceCitations.length > 0) {
-    resourceCitations.forEach((citation) => {
-      block.parentElement.parentElement.prepend(citationDetails(citation.count, citation.gatedUrl));
-    });
-  }
 
   return block;
 }

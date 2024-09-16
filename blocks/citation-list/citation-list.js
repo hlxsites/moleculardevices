@@ -1,13 +1,7 @@
 import { createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  div,
-  img,
-  i,
-  h2,
-  h3,
-  p,
-  a,
+  div, img, i, h2, h3, p, a,
 } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { formatNumberInUs } from '../../scripts/scripts.js';
