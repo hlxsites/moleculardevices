@@ -1,13 +1,12 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
-  createOptimizedPicture,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
   a, div, i, iframe, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, formatDate, loadScript, unixDateToString,
+  decorateExternalLink, decorateLinkedPictures, formatDate, iframeResizeHandler, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
 
@@ -104,20 +103,6 @@ async function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
-function iframeResizeHandler(formUrl, id, container) {
-  const resizerPromise = new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-  });
-
-  container.querySelector('iframe').addEventListener('load', async () => {
-    if (formUrl) {
-      await resizerPromise;
-      /* global iFrameResize */
-      iFrameResize({ log: false }, id);
-    }
-  });
-}
-
 function capitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
@@ -129,7 +114,7 @@ async function getLatestNewsletter() {
     .limit(3)
     .all();
 
-  const list = ul();
+  const list = ul({ class: 'newsletter-list' });
   newsletters.forEach((newsletter) => {
     let title = newsletter.path.split('/').slice(-1)[0];
     title = capitalize(title).split('-').join(' ');
@@ -163,10 +148,13 @@ async function buildNewsletter(container) {
   );
 
   const newsletterList = await getLatestNewsletter();
+  const isNewsletterListExist = document.querySelector('.newsletter-list');
 
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
-  container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
+  if (!isNewsletterListExist) {
+    container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
+  }
   iframeResizeHandler(formUrl, `#${formId}`, container);
 }
 
@@ -176,11 +164,11 @@ function decorateSocialMediaLinks(socialIconsContainer) {
   });
 }
 
-function decorateImageWithLink(wrapper, link, title) {
-  const img = wrapper.innerHTML;
-  const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
-  wrapper.innerHTML = newWrapper;
-}
+// function decorateImageWithLink(wrapper, link, title) {
+//   const img = wrapper.innerHTML;
+//   const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
+//   wrapper.innerHTML = newWrapper;
+// }
 
 /**
  * loads and decorates the footer
@@ -191,45 +179,53 @@ export default async function decorate(block) {
   block.textContent = '';
 
   const footerPath = getMetadata('footer') || '/footer';
-
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = document.createElement('div');
+  const footer = div();
   footer.innerHTML = html;
 
-  const footerWrap = document.createElement('div');
-  const footerBottom = document.createElement('div');
-  footerWrap.classList.add('footer-wrap');
-  footerBottom.classList.add('footer-bottom');
+  const footerWrap = div({ class: 'footer-wrap' });
+  const footerBottom = div({ class: 'footer-bottom' });
+  const wrapContainer = div({ class: 'container' });
+  const bottomContainer = div({ class: 'container' });
+  footerWrap.appendChild(wrapContainer);
+  footerBottom.appendChild(bottomContainer);
   block.appendChild(footerWrap);
   block.appendChild(footerBottom);
 
   placeholders = await fetchPlaceholders();
 
-  [...footer.children].forEach((row, idx) => {
+  const rows = Array.from(footer.children);
+  rows.forEach((row, idx) => {
+    decorateLinkedPictures(row);
     row.classList.add(`row-${idx + 1}`);
+    if (row.querySelector('.section-metadata')) {
+      row.querySelector('.section-metadata').remove();
+    }
+
     if (idx <= 3) {
-      footerWrap.appendChild(row);
+      wrapContainer.appendChild(row);
     } else {
-      footerBottom.appendChild(row);
+      bottomContainer.appendChild(row);
     }
 
     if (idx === 3) {
-      decorateSocialMediaLinks(row);
+      const innerWrapper = div({ class: `row-${idx + 1}-inner-wrapper` });
+      while (row.firstChild) {
+        innerWrapper.appendChild(row.firstChild);
+      }
+      row.appendChild(innerWrapper);
+      const hasSocialMediaIcons = document.querySelector('.social-media-list');
+      if (!hasSocialMediaIcons) {
+        decorateSocialMediaLinks(row);
+      }
     }
 
     if (idx === 4) {
-      row.innerHTML = '';
-      const moldevLogo = createOptimizedPicture('/images/molecular-devices.png');
-      row.appendChild(moldevLogo);
-      const mainUrl = 'https://www.moleculardevices.com/';
-      decorateImageWithLink(row, mainUrl, 'Molecular Devices');
-    }
-
-    if (idx === 5) {
-      const imgWrapper = row.getElementsByTagName('p')[0];
-      const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
-      decorateImageWithLink(imgWrapper, danaherUrl, 'Danaher');
+      const row4 = rows[4];
+      if (row4) {
+        rows[3].appendChild(row4);
+      }
     }
   });
 
@@ -238,7 +234,7 @@ export default async function decorate(block) {
 
   block.append(footer);
   block.querySelectorAll('a').forEach(decorateExternalLink);
-  await decorateIcons(block);
+  decorateIcons(block);
 
   /*
    Creating the Newsletter has high TBT due to a high number of external scripts it brings.
