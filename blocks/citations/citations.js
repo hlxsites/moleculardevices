@@ -185,9 +185,9 @@ async function getResourcesFromMetaTags(heading) {
     .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
     .all();
 
-  if (window.location.pathname.includes('/resources/citations/')) {
+  /*if (window.location.pathname.includes('/resources/citations/')) {
     fragmentCitations = [...fragmentCitations].slice(0, 3);
-  }
+  }*/
 
   return sortDataByDate(fragmentCitations);
 }
