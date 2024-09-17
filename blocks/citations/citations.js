@@ -182,7 +182,8 @@ function citationDetails(count, gatedUrl) {
 async function getResourcesFromMetaTags(heading) {
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
-    .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
+    .filter((citation) => citation.relatedProducts
+      && citation.relatedProducts.indexOf(heading) > -1)
     .all();
 
   /*
