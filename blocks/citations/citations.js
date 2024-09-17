@@ -12,7 +12,7 @@ import ffetch from '../../scripts/ffetch.js';
 
 const lineHeightOfPage = 1.33 * 18;
 const truncateLines = 3;
-const truncateHeight = Math.floor(lineHeightOfPage * truncateLines);
+const truncateHeight = Math.floor(lineHeightOfPage * truncateLines) - 3;
 
 function viewLongDescription(citation, toggleButton) {
   const citationDescription = citation.querySelector('.citation-description');
@@ -224,6 +224,12 @@ export default async function decorate(block) {
       block.append(buildCitation(fragment));
     }
   });
+
+  // set default height for truncate description
+  // const citationDescriptions = block.querySelectorAll('.citation-description');
+  // citationDescriptions.forEach((desc) => {
+  //   console.log(desc.children[0]);
+  // });
 
   // add listener for when the user clicks on view more
   block.querySelectorAll('.view-change').forEach((viewChangeBlock) => {
