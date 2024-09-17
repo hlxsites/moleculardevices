@@ -182,7 +182,7 @@ function citationDetails(count, gatedUrl) {
 async function getResourcesFromMetaTags(heading) {
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
-    .filter((citation) => citation.relatedProducts && citation.relatedProducts.includes(heading))
+    .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
     .all();
 
   /*
@@ -204,7 +204,7 @@ export default async function decorate(block) {
 
   // fetch citation details
   const resourceCitations = await ffetch('/resources/citations/query-index.json')
-    .filter((citation) => citation.relatedProducts.includes(heading))
+    .filter((citation) => heading.includes(citation.title))
     .all();
 
   if (resourceCitations && resourceCitations.length > 0) {
