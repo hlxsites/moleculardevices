@@ -180,7 +180,10 @@ async function getResourcesFromMetaTags(heading) {
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
     .filter((citation) => citation.relatedProducts
-      && citation.relatedProducts.indexOf(heading) > -1)
+      && (
+        citation.relatedProducts.indexOf(heading) > -1
+        || heading.includes(citation.relatedProducts)
+      ))
     .all();
 
   /*
