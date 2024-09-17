@@ -164,12 +164,6 @@ function decorateSocialMediaLinks(socialIconsContainer) {
   });
 }
 
-// function decorateImageWithLink(wrapper, link, title) {
-//   const img = wrapper.innerHTML;
-//   const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
-//   wrapper.innerHTML = newWrapper;
-// }
-
 /**
  * loads and decorates the footer
  * @param {Element} block The header block element
@@ -235,6 +229,9 @@ export default async function decorate(block) {
   block.append(footer);
   block.querySelectorAll('a').forEach(decorateExternalLink);
   decorateIcons(block);
+  block.querySelectorAll('a > picture').forEach((link) => {
+    link.parentElement.setAttribute('target', '_blank');
+  });
 
   /*
    Creating the Newsletter has high TBT due to a high number of external scripts it brings.
