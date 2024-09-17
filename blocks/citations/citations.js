@@ -180,14 +180,16 @@ function citationDetails(count, gatedUrl) {
 }
 
 async function getResourcesFromMetaTags(heading) {
-  let fragmentCitations = await ffetch('/fragments/query-index.json')
+  const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
-    .filter((citation) => citation.relatedProducts && heading.includes(citation.relatedProducts))
+    .filter((citation) => citation.relatedProducts && citation.relatedProducts.includes(heading))
     .all();
 
-  /*if (window.location.pathname.includes('/resources/citations/')) {
+  /*
+  if (window.location.pathname.includes('/resources/citations/')) {
     fragmentCitations = [...fragmentCitations].slice(0, 3);
-  }*/
+  }
+  */
 
   return sortDataByDate(fragmentCitations);
 }
@@ -202,7 +204,7 @@ export default async function decorate(block) {
 
   // fetch citation details
   const resourceCitations = await ffetch('/resources/citations/query-index.json')
-    .filter((citation) => heading.includes(citation.title))
+    .filter((citation) => citation.relatedProducts.includes(heading))
     .all();
 
   if (resourceCitations && resourceCitations.length > 0) {
