@@ -6,27 +6,26 @@ import {
   span,
 } from '../../scripts/dom-helpers.js';
 import {
-  createOptimizedPicture, fetchPlaceholders, getMetadata, toClassName,
+  createOptimizedPicture, getMetadata, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 
-let placeholders = {};
 const lineHeightOfPage = 1.33 * 18;
 const truncateLines = 3;
+const truncateHeight = Math.floor(lineHeightOfPage * truncateLines);
 
 function viewLongDescription(citation, toggleButton) {
   const citationDescription = citation.querySelector('.citation-description');
-  const truncateHeight = lineHeightOfPage * truncateLines;
-  const maxHeight = citationDescription.scrollHeight;
+  const maxHeight = Math.floor(citationDescription.scrollHeight);
 
   if (citationDescription.classList.contains('show-less')) {
     citationDescription.classList.remove('show-less');
     citationDescription.style.maxHeight = `${maxHeight}px`;
-    toggleButton.innerHTML = `${placeholders.viewLess || 'View less'} <i class="fa fa-angle-up" aria-hidden="true"></i>`;
+    toggleButton.innerHTML = 'View less <i class="fa fa-angle-up" aria-hidden="true"></i>';
   } else {
     citationDescription.style.maxHeight = `${truncateHeight}px`;
     citationDescription.classList.add('show-less');
-    toggleButton.innerHTML = `${placeholders.viewMore || 'View more'} <i class="fa fa-angle-down" aria-hidden="true"></i>`;
+    toggleButton.innerHTML = 'View more <i class="fa fa-angle-down" aria-hidden="true"></i>';
   }
 }
 
@@ -115,9 +114,7 @@ function buildCitation(fragment) {
   }
 
   const toggleButton = div({ class: 'view-change view-less' });
-  toggleButton.innerHTML = `
-    ${placeholders.viewLess || 'View less'} <i class="fa fa-angle-up" aria-hidden="true"></i>
-  `;
+  toggleButton.innerHTML = 'View more <i class="fa fa-angle-down" aria-hidden="true"></i>';
 
   const citation = div(
     { class: 'citation' },
@@ -136,7 +133,7 @@ function buildCitation(fragment) {
       div(
         {
           class: ['citation-description', 'show-less'],
-          style: `max-height: ${lineHeightOfPage * truncateLines}px`,
+          style: `max-height: ${truncateHeight}px`,
         },
         descriptionBlock || '',
         contributorsBlock || '',
@@ -196,7 +193,6 @@ async function getResourcesFromMetaTags(heading) {
 }
 
 export default async function decorate(block) {
-  placeholders = await fetchPlaceholders();
   const heading = getMetadata('identifier')
     || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
   const resources = await getResourcesFromMetaTags(heading);
