@@ -191,24 +191,26 @@ async function getResourcesFromMetaTags(heading, identifier) {
   }
   */
 
+  console.log(heading);
+  console.log(fragmentCitations);
   return sortDataByDate(fragmentCitations);
 }
 
 export default async function decorate(block) {
   let heading = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
-  const identifier = getMetadata('identifier');
-  const resources = await getResourcesFromMetaTags(heading, identifier);
-  const fragmentPaths = resources.map((resource) => resource.path);
-  const fragments = await parseCitationFragments(fragmentPaths);
-
   if (heading.indexOf('Citations') > -1) {
     heading = heading.replace('Citations: ', '');
     heading = heading.replace('Citations : ', '');
   }
 
+  const identifier = getMetadata('identifier');
+  const resources = await getResourcesFromMetaTags(heading, identifier);
+  const fragmentPaths = resources.map((resource) => resource.path);
+  const fragments = await parseCitationFragments(fragmentPaths);
+
   // fetch citation details
   const resourceCitations = await ffetch('/resources/citations/query-index.json')
-    .filter((citation) => heading.includes(citation.title) || heading.includes(citation.identifier))
+    .filter((citation) => heading.includes(citation.identifier) || heading.includes(citation.title))
     .all();
 
   if (resourceCitations && resourceCitations.length > 0) {
