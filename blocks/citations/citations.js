@@ -176,13 +176,20 @@ function citationDetails(count, gatedUrl) {
   return header;
 }
 
-async function getResourcesFromMetaTags(heading) {
+async function getResourcesFromMetaTags(heading, identifier) {
+  let newHeading = heading;
+  if (heading.indexOf('Citation: ') > -1) {
+    newHeading = heading.replace('Citations: ', '');
+  }
+  if (heading.indexOf('Citation : ') > -1) {
+    newHeading = heading.replace('Citations : ', '');
+  }
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
     .filter((citation) => citation.relatedProducts
       && (
-        citation.relatedProducts.indexOf(heading) > -1
-        || heading.includes(citation.relatedProducts)
+        citation.relatedProducts.indexOf(identifier || newHeading) > -1
+        || newHeading.includes(citation.relatedProducts)
       ))
     .all();
 
@@ -196,9 +203,9 @@ async function getResourcesFromMetaTags(heading) {
 }
 
 export default async function decorate(block) {
-  const heading = getMetadata('identifier')
-    || document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
-  const resources = await getResourcesFromMetaTags(heading);
+  const heading = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+  const identifier = getMetadata('identifier');
+  const resources = await getResourcesFromMetaTags(heading, identifier);
   const fragmentPaths = resources.map((resource) => resource.path);
   const fragments = await parseCitationFragments(fragmentPaths);
 
@@ -224,12 +231,6 @@ export default async function decorate(block) {
       block.append(buildCitation(fragment));
     }
   });
-
-  // set default height for truncate description
-  // const citationDescriptions = block.querySelectorAll('.citation-description');
-  // citationDescriptions.forEach((desc) => {
-  //   console.log(desc.children[0]);
-  // });
 
   // add listener for when the user clicks on view more
   block.querySelectorAll('.view-change').forEach((viewChangeBlock) => {
