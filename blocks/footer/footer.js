@@ -155,7 +155,7 @@ async function buildNewsletter(container) {
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   }
-  iframeResizeHandler(formUrl, `#${formId}`, container);
+  iframeResizeHandler(formUrl, formId, container);
 }
 
 function decorateSocialMediaLinks(socialIconsContainer) {
