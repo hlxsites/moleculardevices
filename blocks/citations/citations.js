@@ -2,8 +2,7 @@ import {
   decorateLinks, fetchFragment, formatNumberInUs, sortDataByDate,
 } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p,
-  span,
+  a, div, h3, p, span,
 } from '../../scripts/dom-helpers.js';
 import {
   createOptimizedPicture, getMetadata, toClassName,
@@ -177,19 +176,12 @@ function citationDetails(count, gatedUrl) {
 }
 
 async function getResourcesFromMetaTags(heading, identifier) {
-  let newHeading = heading;
-  if (heading.indexOf('Citation: ') > -1) {
-    newHeading = heading.replace('Citations: ', '');
-  }
-  if (heading.indexOf('Citation : ') > -1) {
-    newHeading = heading.replace('Citations : ', '');
-  }
   const fragmentCitations = await ffetch('/fragments/query-index.json')
     .sheet('citations')
     .filter((citation) => citation.relatedProducts
       && (
-        citation.relatedProducts.indexOf(identifier || newHeading) > -1
-        || newHeading.includes(citation.relatedProducts)
+        citation.relatedProducts.indexOf(identifier || heading) > -1
+        || heading.includes(citation.relatedProducts)
       ))
     .all();
 
@@ -203,15 +195,20 @@ async function getResourcesFromMetaTags(heading, identifier) {
 }
 
 export default async function decorate(block) {
-  const heading = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
+  let heading = document.querySelector('.hero .container h1, .hero-advanced .container h1').textContent;
   const identifier = getMetadata('identifier');
   const resources = await getResourcesFromMetaTags(heading, identifier);
   const fragmentPaths = resources.map((resource) => resource.path);
   const fragments = await parseCitationFragments(fragmentPaths);
 
+  if (heading.indexOf('Citations') > -1) {
+    heading = heading.replace('Citations: ', '');
+    heading = heading.replace('Citations : ', '');
+  }
+
   // fetch citation details
   const resourceCitations = await ffetch('/resources/citations/query-index.json')
-    .filter((citation) => heading.includes(citation.title))
+    .filter((citation) => heading.includes(citation.title) || heading.includes(citation.identifier))
     .all();
 
   if (resourceCitations && resourceCitations.length > 0) {
