@@ -42,6 +42,18 @@
   width: auto;
 }
 
+.footer .columns.copyright-text  picture {
+  background-image: url('/images/header-menus/logo.svg');
+  background-repeat: no-repeat;
+  display: block;
+  background-position: top left;
+}
+
+.columns.copyright-text picture img {
+  opacity: 0;
+  display: block;
+}
+
 .footer-wrapper {
   background-color: var(--background-color);
   background-image: url("../../images/research-bg.png");
@@ -149,6 +161,7 @@
 .footer-newsletter-form .hubspot-iframe-wrapper {
   margin-left: -15px;
   margin-right: -15px;
+  min-height: 298px;
 }
 
 .footer-newsletter-form .hubspot-iframe-wrapper iframe {
@@ -312,6 +325,10 @@
 @media only screen and (min-width: 992px) {
   .footer .container {
     width: 970px;
+  }
+
+  .footer .columns.copyright-text  picture {
+    background-position: top right;
   }
 
   .footer-wrap .container {
