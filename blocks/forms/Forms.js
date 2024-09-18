@@ -1,7 +1,7 @@
 import { button, div } from '../../scripts/dom-helpers.js';
 import { loadScript } from '../../scripts/scripts.js';
 
-/* EXTRACT DATA FROM TABLE */
+/* EXTRACT DATA FROM TABLE  ***/
 async function extractTableData(table) {
   const tableData = {};
   table.querySelectorAll('tbody tr').forEach((row) => {
