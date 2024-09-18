@@ -156,6 +156,9 @@ indices:
       gatedUrl:
         select: head > meta[name="gated-url"]
         value: attribute(el, "content")  
+      identifier:
+        select: head > meta[name="identifier"]
+        value: attribute(el, "content") 
       count:
         select: head > meta[name="citation-number"]
         value: attribute(el, "content")
