@@ -186,13 +186,12 @@ async function getResourcesFromMetaTags(heading, identifier) {
     .all();
 
   /*
+  // set 3 citations for citation resource page
   if (window.location.pathname.includes('/resources/citations/')) {
     fragmentCitations = [...fragmentCitations].slice(0, 3);
   }
   */
 
-  console.log(heading);
-  console.log(fragmentCitations);
   return sortDataByDate(fragmentCitations);
 }
 
