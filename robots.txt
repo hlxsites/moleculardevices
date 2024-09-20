@@ -49,7 +49,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
 
-
+3d-biology
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
 
@@ -57,11 +57,10 @@ Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/optimizing-animal-free-clonedetect-assay-of-real-time-detection-of-human-igg-antibody-production-using-clonepix-system.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/rapid-assessment-of-viability-in-patient-derived-colorectal-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-and-high-content-imaging-of-3d-triple-negative-breast-cancer-patient-derived-tumoroids-assay-for-compound-screening.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-bioprinting-assays-for-high-content-imaging-and-assessment-of-compound-effects.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automation-of-3d-bioprinting-assays-for-high-content-imaging-and-assessment-of-compound-effects.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/disease-modeling-methods-with-cancer-patient-derived-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/leveraging-automated-workflows-to-enable-complex-organoid-assays.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-analysis-of-neural-outgrowth-in-3d-human-brain-micro-tissues.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-assay-methods-for-cancer-patient-derived-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-3d-organoid-culture-workflow-with-deep-learning-based-image-analysis.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/intestinal-organoids-for-automated-screening-assays.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-the-organ-on-a-chip-assay.pdf
@@ -70,20 +69,20 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-gr
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automated-monitoring-of-development-and-activity-analysis-of-ipsc-derived-3d-cerebral-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/structural-organization-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/evaluation-of-fluorescent-approach-to-implement-monoclonality-assurance-using-calcein-am-viability-dye.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-for-organoid-assays-an-integrated-system-with-high-content-imaging.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automation-for-organoid-assays-an-integrated-system-with-high-content-imaging.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/image-based-phenotypic-profiling-using-cell-painting-in-3d-breast-cancer-spheroid-model.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/automated-workflow-for-screening-of-crispr-edited-cell-lines.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-cell-lines-for-monoclonality-verification.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-and-morphological-characterization-of-healthy-and-epilepsy-related-3d-neurospheres-assembled.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-healthy-and-disease-related-3d-neurospheres-using-human-ipsc-derived-neurons-and-astrocytes.pdf 
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/walkaway-solution-for-assessing-drug-effects-in-patient-derived-colorectal-cancer-organoids.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/novel-workflow-to-assess-t-cell-and-patient-derived-organoid-interaction.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-enabled-hit-selection-of-drug-screening-on-human-pancreatic-cancer-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification.pdf
@@ -236,7 +235,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traum
 Disallow: /en/assets/tutorials-videos/dd/img/advancing-toxicity-research-with-3d-tissue-models-and-imaging-techniques
 Disallow: /en/assets/tutorials-videos/br/microplate-reader-based-viability-analysis-for-rapid-drug-candidate-identification-in-patient-derived-organoids
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
-
+Disallow: /en/assets/tutorials-videos/dd/img/future-of-disease-modeling-for-precision-medicine
 
 
 #EU webinars to imaging video gallery page
