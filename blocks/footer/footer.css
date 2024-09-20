@@ -42,16 +42,18 @@
   width: auto;
 }
 
-.footer .columns.copyright-text  picture {
+.footer .site-logo .footer-site-logo a {
+  font-size: 0;
   background-image: url('/images/header-menus/logo.svg');
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
 }
 
-.columns.copyright-text picture img {
+.footer .site-logo picture img {
   opacity: 0;
   display: block;
+  max-width: 210px;
 }
 
 .footer-wrapper {
@@ -327,7 +329,7 @@
     width: 970px;
   }
 
-  .footer .columns.copyright-text  picture {
+  .footer .copyright-text .footer-site-logo a {
     background-position: top right;
   }
 
