@@ -1,6 +1,5 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
-  createOptimizedPicture,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -159,13 +158,9 @@ async function buildNewsletter(container) {
   iframeResizeHandler(formUrl, formId, container);
 }
 
-/* decorate social icons */
-function decorateSocialIcons(element, className) {
-  element.querySelectorAll(`${className} a`).forEach((link) => {
-    const social = link.children[0].classList[1].split('-').pop();
-    link.setAttribute('aria-label', `Share to ${social}`);
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
+function decorateSocialMediaLinks(socialIconsContainer) {
+  socialIconsContainer.querySelectorAll('.social-media-list a').forEach((iconLink) => {
+    iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
   });
 }
 
@@ -177,81 +172,59 @@ function decorateSocialIcons(element, className) {
 export default async function decorate(block) {
   block.textContent = '';
 
-  const template = getMetadata('template');
-  let footerPath = getMetadata('footer') || '/footer';
-  if (template === 'Landing Page') {
-    footerPath = '/footer-landing-page';
-  }
-
+  const footerPath = getMetadata('footer') || '/footer';
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = div({ class: 'footer-landing-page' });
+  const footer = div();
   footer.innerHTML = html;
 
-  const currentYear = new Date().getFullYear();
-  const siteLogoPath = '/images/header-menus/logo.svg';
-  const footerSiteLogo = p(
-    { class: 'footer-site-logo' },
-    a({ href: '/' },
-      createOptimizedPicture(siteLogoPath),
-    ));
-  const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
-  footer.querySelector('.site-logo').appendChild(footerSiteLogo);
-  footer.querySelector('.copyright-text').appendChild(copyrightInfo);
+  const footerWrap = div({ class: 'footer-wrap' });
+  const footerBottom = div({ class: 'footer-bottom' });
+  const wrapContainer = div({ class: 'container' });
+  const bottomContainer = div({ class: 'container' });
+  footerWrap.appendChild(wrapContainer);
+  footerBottom.appendChild(bottomContainer);
+  block.appendChild(footerWrap);
+  block.appendChild(footerBottom);
 
-  if (template === 'Landing Page') {
-    const container = div({ class: 'container' });
-    const rows = Array.from(footer.children);
-    rows.forEach((row) => {
-      container.appendChild(row);
-    });
-    footer.appendChild(container);
-  } else {
-    const footerWrap = div({ class: 'footer-wrap' });
-    const footerBottom = div({ class: 'footer-bottom' });
-    const wrapContainer = div({ class: 'container' });
-    const bottomContainer = div({ class: 'container' });
-    footerWrap.appendChild(wrapContainer);
-    footerBottom.appendChild(bottomContainer);
-    block.appendChild(footerWrap);
-    block.appendChild(footerBottom);
+  placeholders = await fetchPlaceholders();
 
-    placeholders = await fetchPlaceholders();
+  const rows = Array.from(footer.children);
+  rows.forEach((row, idx) => {
+    decorateLinkedPictures(row);
+    row.classList.add(`row-${idx + 1}`);
+    if (row.querySelector('.section-metadata')) {
+      row.querySelector('.section-metadata').remove();
+    }
 
-    const rows = Array.from(footer.children);
-    rows.forEach((row, idx) => {
-      decorateLinkedPictures(row);
-      row.classList.add(`row-${idx + 1}`);
-      if (row.querySelector('.section-metadata')) {
-        row.querySelector('.section-metadata').remove();
+    if (idx <= 3) {
+      wrapContainer.appendChild(row);
+    } else {
+      bottomContainer.appendChild(row);
+    }
+
+    if (idx === 3) {
+      const innerWrapper = div({ class: `row-${idx + 1}-inner-wrapper` });
+      while (row.firstChild) {
+        innerWrapper.appendChild(row.firstChild);
       }
-
-      if (idx <= 3) {
-        wrapContainer.appendChild(row);
-      } else {
-        bottomContainer.appendChild(row);
+      row.appendChild(innerWrapper);
+      const hasSocialMediaIcons = document.querySelector('.social-media-list');
+      if (!hasSocialMediaIcons) {
+        decorateSocialMediaLinks(row);
       }
+    }
 
-      if (idx === 3) {
-        const innerWrapper = div({ class: `row-${idx + 1}-inner-wrapper` });
-        while (row.firstChild) {
-          innerWrapper.appendChild(row.firstChild);
-        }
-        row.appendChild(innerWrapper);
-        decorateSocialIcons(row, '.social-media-list');
+    if (idx === 4) {
+      const row4 = rows[4];
+      if (row4) {
+        rows[3].appendChild(row4);
       }
+    }
+  });
 
-      if (idx === 4) {
-        const row4 = rows[4];
-        if (row4) {
-          rows[3].appendChild(row4);
-        }
-      }
-    });
-
-    buildNewsEvents(block.querySelector('.footer-news-events'));
-    block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
-  }
+  buildNewsEvents(block.querySelector('.footer-news-events'));
+  block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
 
   block.append(footer);
   block.querySelectorAll('a').forEach(decorateExternalLink);
