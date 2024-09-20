@@ -44,7 +44,7 @@
 
 .footer .site-logo .footer-site-logo a {
   font-size: 0;
-  background-image: url('/images/header-menus/logo.svg');
+  background-image: url("/images/header-menus/logo.svg");
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
@@ -53,6 +53,7 @@
 .footer .site-logo picture img {
   opacity: 0;
   display: block;
+  width: 100%;
   max-width: 210px;
 }
 
@@ -277,8 +278,8 @@
   column-gap: 0;
 }
 
-.row-7 ul li:not(:last-child)::after{
-  content: '|';
+.row-7 ul li:not(:last-child)::after {
+  content: "|";
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -301,7 +302,7 @@
   margin: 0;
 }
 
-.row-8 p img[alt*='beckman coulter']{
+.row-8 p img[alt*="beckman coulter"] {
   position: relative;
   top: 8px;
 }
@@ -309,6 +310,49 @@
 .row-6 img,
 .row-8 img {
   display: block;
+}
+
+/* footer landing page */
+.footer .footer-landing-page {
+  font-size: 13px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.footer-landing-page .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0 32px;
+  border-top: 1px solid #ccc;
+}
+
+.footer .footer-landing-page ul {
+  margin-top: 8px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .footer-landing-page ul li {
+  position: relative;
+  padding-right: 24px;
+  line-height: 1;
+}
+
+.footer .footer-landing-page ul li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 0;
+  background-color: #6b737b;
+  width: 1px;
+  height: 100%;
+}
+
+.footer .footer-landing-page .site-logo picture img {
+  max-width: 150px;
 }
 
 /* MEDIA QUERY */
@@ -321,6 +365,15 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+  }
+
+  .footer-landing-page .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer .footer-landing-page ul {
+    justify-content: flex-start;
   }
 }
 

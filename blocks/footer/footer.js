@@ -185,7 +185,7 @@ export default async function decorate(block) {
 
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = div();
+  const footer = div({ class: 'footer-landing-page' });
   footer.innerHTML = html;
 
   const currentYear = new Date().getFullYear();
@@ -193,14 +193,19 @@ export default async function decorate(block) {
   const footerSiteLogo = p(
     { class: 'footer-site-logo' },
     a({ href: '/' },
-      createOptimizedPicture(siteLogoPath, 'Molecular Devices'),
+      createOptimizedPicture(siteLogoPath),
     ));
   const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
   footer.querySelector('.site-logo').appendChild(footerSiteLogo);
   footer.querySelector('.copyright-text').appendChild(copyrightInfo);
 
   if (template === 'Landing Page') {
-    //
+    const container = div({ class: 'container' });
+    const rows = Array.from(footer.children);
+    rows.forEach((row) => {
+      container.appendChild(row);
+    });
+    footer.appendChild(container);
   } else {
     const footerWrap = div({ class: 'footer-wrap' });
     const footerBottom = div({ class: 'footer-bottom' });
