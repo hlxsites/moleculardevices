@@ -182,7 +182,7 @@
 
 .row-4 ul:first-of-type {
   border-bottom: 1px solid var(--highlight-background-color);
-  margin: 5px 0 15px;
+  margin: 15px 0;
 }
 
 .row-4 li {
@@ -246,7 +246,7 @@
 
 /* footer bottom */
 .footer-bottom {
-  margin-top: 32px;
+  margin-top: 40px;
   padding: 44px 0;
   background-color: var(--footer-bg);
   color: var(--text-white);

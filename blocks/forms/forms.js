@@ -3,7 +3,7 @@ import { toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 
 /* Helper functions */
-const keys = ['heading', 'region', 'portalId', 'formId', 'redirectUrl'];
+const keys = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
 function getDefaultForKey(key) {
   switch (key) {
     case 'heading':
@@ -38,19 +38,37 @@ async function extractFormData(block) {
 
 /* create hubspot form */
 function createHubSpotForm(formConfig, target) {
-  // console.log(formConfig);
+  console.log(formConfig);
   if (window.hbspt) {
     hbspt.forms.create({ // eslint-disable-line
       portalId: formConfig.portalId,
       formId: formConfig.formId,
       target: `#${target}`,
-      product_family__c: formConfig.product_family__c,
-      productPrimaryApplicationC: formConfig.productPrimaryApplicationC,
-      cmp: formConfig.cmp,
       onFormSubmit: () => {
         window.location.href = formConfig.redirectUrl;
       },
       onFormReady: ($form) => {
+        // Get CMP value
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+          get: (searchParams, prop) => searchParams.get(prop),
+        });
+        const valuecmp = params.cmp;
+
+        // Set values for existing hidden fields
+        const hiddenFields = [
+          { name: 'product_family__c', value: formConfig.productFamily },
+          { name: 'product_primary_application__c', value: formConfig.productPrimaryApplication },
+          { name: 'cmp', value: valuecmp || formConfig.cmp },
+        ];
+
+        hiddenFields.forEach((field) => {
+          const hiddenInput = $form.querySelector(`input[name="${field.name}"]`);
+          if (hiddenInput && !hiddenInput.value) {
+            hiddenInput.value = field.value;
+          }
+        });
+
+        // Customize the submit button
         const submitInput = $form.querySelector('input[type="submit"]');
         if (submitInput) {
           const submitButton = button({
