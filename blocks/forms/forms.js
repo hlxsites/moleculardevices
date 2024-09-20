@@ -6,10 +6,12 @@ import { loadScript } from '../../scripts/scripts.js';
 const keys = ['heading', 'region', 'portalId', 'formId', 'redirectUrl'];
 function getDefaultForKey(key) {
   switch (key) {
-    case 'region':
-      return 'na1';
     case 'heading':
       return '';
+    case 'region':
+      return 'na1';
+    case 'portalId':
+      return '20222769 ';
     case 'redirectUrl':
       return 'https://www.moleculardevices.com/';
     default:
@@ -42,6 +44,9 @@ function createHubSpotForm(formConfig, target) {
       portalId: formConfig.portalId,
       formId: formConfig.formId,
       target: `#${target}`,
+      product_family__c: formConfig.product_family__c,
+      productPrimaryApplicationC: formConfig.productPrimaryApplicationC,
+      cmp: formConfig.cmp,
       onFormSubmit: () => {
         window.location.href = formConfig.redirectUrl;
       },
