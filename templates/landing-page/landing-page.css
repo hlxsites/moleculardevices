@@ -140,6 +140,8 @@
   color: #fff;
 }
 
+.landing-page main .section > div.forms-wrapper h3,
+.landing-page main .section > div.forms-wrapper h4 ,
 .landing-page .embed h3,
 .landing-page .embed h4 {
   color: var(--heading-color);
@@ -165,6 +167,19 @@
 .landing-page main .section > div.columns-wrapper:has(.columns-no-spacing) {
   padding-top: 0;
   margin-top: 0;
+}
+
+/* huspot form */
+
+
+.landing-page main .section > div.forms-wrapper{
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.landing-page main .section > div.forms-wrapper h3,
+.landing-page main .section > div.forms-wrapper h4 {
+  margin-top: 10px;
 }
 
 @media (max-width: 767px) {
