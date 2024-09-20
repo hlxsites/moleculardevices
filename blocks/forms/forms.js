@@ -48,23 +48,30 @@ function createHubSpotForm(formConfig, target) {
         window.location.href = formConfig.redirectUrl;
       },
       onFormReady: ($form) => {
-        // Get CMP value
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-          get: (searchParams, prop) => searchParams.get(prop),
-        });
-        const valuecmp = params.cmp;
+        // Handle Salesforce hidden fields via message event listener
+        window.addEventListener('message', (event) => {
+          if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+            // Get the cmp parameters
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+              get: (searchParams, prop) => searchParams.get(prop),
+            });
+            const valuecmp = params.cmp;
 
-        // Set values for existing hidden fields
-        const hiddenFields = [
-          { name: 'product_family__c', value: formConfig.productFamily },
-          { name: 'product_primary_application__c', value: formConfig.productPrimaryApplication },
-          { name: 'cmp', value: valuecmp || formConfig.cmp },
-        ];
+            // Salesforce form fields
+            const mProductFamily = formConfig.product_family__c || '{{ module.product_family }}';
+            const mPrimaryApplication = formConfig.productPrimaryApplicationC || '{{ module.primary_application }}';
+            const mCmp = valuecmp || formConfig.cmp || '{{ module.cmp }}';
 
-        hiddenFields.forEach((field) => {
-          const hiddenInput = $form.querySelector(`input[name="${field.name}"]`);
-          if (hiddenInput && !hiddenInput.value) {
-            hiddenInput.value = field.value;
+            // Update the form with SFDC values if they exist
+            if ($form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
+              $form.querySelector('input[name="product_family__c"]').value = mProductFamily;
+            }
+            if ($form.querySelector('input[name="product_primary_application__c"]') && mPrimaryApplication !== '') {
+              $form.querySelector('input[name="product_primary_application__c"]').value = mPrimaryApplication;
+            }
+            if ($form.querySelector('input[name="cmp"]') && mCmp) {
+              $form.querySelector('input[name="cmp"]').value = mCmp;
+            }
           }
         });
 
