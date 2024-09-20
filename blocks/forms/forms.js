@@ -58,9 +58,9 @@ function createHubSpotForm(formConfig, target) {
             const valuecmp = params.cmp;
 
             // Salesforce form fields
-            const mProductFamily = formConfig.product_family__c || '{{ module.product_family }}';
-            const mPrimaryApplication = formConfig.productPrimaryApplicationC || '{{ module.primary_application }}';
-            const mCmp = valuecmp || formConfig.cmp || '{{ module.cmp }}';
+            const mProductFamily = formConfig.productFamily;
+            const mPrimaryApplication = formConfig.productPrimaryApplication;
+            const mCmp = valuecmp || formConfig.cmp;
 
             // Update the form with SFDC values if they exist
             if ($form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
