@@ -274,7 +274,7 @@ main .section .resources-wrapper {
 .section .resources .coveo-facet-column div[data-title="Article Type"],
 .section .resources .section.coveo-tab-section-wrapper {
   height: 0;
-  min-height: min-content;
+  min-height: 0;
   visibility: hidden;
   margin: 0;
   padding: 0;
