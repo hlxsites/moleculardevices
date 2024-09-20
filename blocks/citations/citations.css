@@ -32,7 +32,7 @@ main .citations-container > .default-content-wrapper {
 }
 
 @media (min-width: 1200px) {
-  main .citations-container > .default-content-wrapper{
+  main .citations-container > .default-content-wrapper {
     width: 1170px;
   }
 }
@@ -54,13 +54,6 @@ main .citations-container > .default-content-wrapper {
   margin-left: 20px;
 }
 
-.citations .citation-short-description > p:nth-child(1),
-.citations .citation-long-description > p:nth-child(1),
-.citations .citation-long-description > p:nth-child(2) {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .citations .citation-header > p:nth-child(1),
 .citations .citation-header > p:nth-child(2) {
   font-size: 18px;
@@ -71,6 +64,7 @@ main .citations-container > .default-content-wrapper {
   margin: 1em 0;
 }
 
+.citations-container span,
 .citation em,
 .citations-container em {
   color: var(--text-green);
@@ -79,6 +73,7 @@ main .citations-container > .default-content-wrapper {
 
 .citations .citation-header h2,
 .product .section.tabs .citations .citation-header h2 {
+  font-family: var(--ff-proxima-regular);
   padding-bottom: 15px;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -92,28 +87,16 @@ main .citations-container > .default-content-wrapper {
 .citations .view-change {
   position: relative;
   text-align: right;
-  float: right;
   color: var(--link-color);
   cursor: pointer;
 }
 
-.citations .view-more {
-  margin-top: 5px;
-}
-
-.citations .view-less {
-  margin-top: -50px;
-}
-
-.citations .citation-long-description {
-  display: block;
-  max-height: 0;
+.citation-description {
   overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
-.citations .citation-long-description.show {
-  max-height: 1000px; /* adjust the value to a large enough value to accommodate the content */
+  text-overflow: ellipsis;
+  transition: max-height 0.3s ease-in-out;
+  margin-bottom: 1rem;
+  line-height: 1.33;
 }
 
 @media (max-width: 767px) {
