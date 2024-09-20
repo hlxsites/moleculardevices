@@ -200,12 +200,14 @@ export default async function decorate(block) {
   footer.querySelector('.copyright-text').appendChild(copyrightInfo);
 
   if (template === 'Landing Page') {
-    const container = div({ class: 'container footer-landing-page' });
+    const footerWrapper = div({ class: 'footer-landing-page' });
+    const container = div({ class: 'container' });
     const rows = Array.from(footer.children);
     rows.forEach((row) => {
       container.appendChild(row);
     });
-    footer.appendChild(container);
+    footerWrapper.appendChild(container);
+    footer.appendChild(footerWrapper);
   } else {
     const footerWrap = div({ class: 'footer-wrap' });
     const footerBottom = div({ class: 'footer-bottom' });
