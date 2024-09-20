@@ -185,7 +185,7 @@ export default async function decorate(block) {
 
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = div({ class: 'footer-landing-page' });
+  const footer = div();
   footer.innerHTML = html;
 
   const currentYear = new Date().getFullYear();
@@ -200,12 +200,14 @@ export default async function decorate(block) {
   footer.querySelector('.copyright-text').appendChild(copyrightInfo);
 
   if (template === 'Landing Page') {
+    const footerWrapper = div({ class: 'footer-landing-page' });
     const container = div({ class: 'container' });
     const rows = Array.from(footer.children);
     rows.forEach((row) => {
       container.appendChild(row);
     });
-    footer.appendChild(container);
+    footerWrapper.appendChild(container);
+    footer.appendChild(footerWrapper);
   } else {
     const footerWrap = div({ class: 'footer-wrap' });
     const footerBottom = div({ class: 'footer-bottom' });
