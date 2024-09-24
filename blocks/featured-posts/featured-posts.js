@@ -15,20 +15,22 @@ export default async function decorate(block) {
     const newsItem = newsItems.find((news) => link.href.indexOf(news.path) >= 0);
     if (newsItem) {
       link.textContent = newsItem.title;
+      link.title = newsItem.title;
       link.setAttribute('data-publisher', newsItem.publisher);
     }
-
     div.classList.add('post', `post-${index + 1}`);
     div.firstElementChild.classList.add('zoom-effect-wrapper');
     if (newsItem && !div.firstElementChild.querySelector('img')) {
       div.firstElementChild.append(
-        a({ href: link.getAttribute('href') },
-          createOptimizedPicture(newsItem.image, newsItem.title, false),
+        a({ href: link.getAttribute('href'), title: newsItem.title },
+          createOptimizedPicture(newsItem.image, newsItem.title),
         ),
       );
     } else {
+      const newsThumbImage = div.firstElementChild.children[0];
+      newsThumbImage.querySelector('img').setAttribute('alt', newsItem.title);
       div.firstElementChild.append(
-        a({ href: link.getAttribute('href') }, ...div.firstElementChild.children),
+        a({ href: link.getAttribute('href'), title: newsItem.title }, newsThumbImage),
       );
     }
 
