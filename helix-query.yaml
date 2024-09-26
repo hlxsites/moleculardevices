@@ -203,6 +203,6 @@ indices:
       path:
         select: head > meta[name="gated-url"]
         value: attribute(el, "content")
-       lastModified:
+      lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")     
