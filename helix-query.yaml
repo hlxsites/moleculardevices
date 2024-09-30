@@ -5,12 +5,12 @@ indices:
     include:
       - /**
     exclude:
-      - /drafts/**
-      - /tools/sidekick/**
-      - /fragments/**
-      - /sites/default/files/**
-      - /en/assets/promotion/**
-      - /eu/assets/promotion/**
+      - '/drafts/**'
+      - '/tools/sidekick/**'
+      - '/fragments/**'
+      - '/sites/default/files/**'
+      - '/en/assets/promotion/**'
+      - '/eu/assets/promotion/**'
     target: /query-index.json
     properties:
       title:
