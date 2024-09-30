@@ -1288,4 +1288,21 @@ export function sortDataByDate(array) {
   });
 }
 
+/**
+ * Sorts an array of objects by the 'title' property in descending order.
+ * @param {Array} Array - The array of objects to sort. Each object must have a 'title' property.
+ * @returns {void} - The original array is sorted in place.
+ */
+export function sortDataByTitle(array) {
+  return array.sort((x, y) => {
+    if (x.title < y.title) {
+      return -1;
+    }
+    if (x.title > y.title) {
+      return 1;
+    }
+    return 0;
+  });
+}
+
 loadPage();

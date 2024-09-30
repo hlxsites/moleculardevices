@@ -1,40 +1,53 @@
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
+import { sortDataByTitle } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
-  const noDescription = block.classList.contains('no-description');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return;
+  }
 
-  const fragments = await ffetch('/query-index.json')
-    .filter((product) => fragmentPaths.includes(product.path))
-    .all();
-
-  const sortedFragments = fragments.filter((item) => !!item).sort((x, y) => {
-    if (x.title < y.title) {
-      return -1;
-    }
-    if (x.title > y.title) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const placeholders = await fetchPlaceholders();
-
-  const cardRenderer = await createCard({
+  const country = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code;
+  const orderCC = 'US';
+  const cardConfig = {
     titleLink: false,
     thumbnailLink: false,
-    defaultButtonText: placeholders.requestQuote || 'Request Quote',
     c2aLinkStyle: true,
-    hideDescription: noDescription,
-    requestQuoteBtn: true,
-  });
+  };
+  let fragments;
+  let cardRenderer;
+
+  if (country === orderCC) {
+    fragments = await ffetch('/query-index.json')
+      .sheet('applications')
+      .filter((frag) => fragmentPaths.includes(frag.path))
+      .all();
+  } else {
+    fragments = await ffetch('/query-index.json')
+      .filter((frag) => fragmentPaths.includes(frag.path))
+      .all();
+  }
+
+  if (country === orderCC) {
+    cardRenderer = await createCard({
+      ...cardConfig,
+      isShopifyCard: true,
+    });
+  } else {
+    cardRenderer = await createCard({
+      ...cardConfig,
+      defaultButtonText: 'Request Quote',
+      requestQuoteBtn: true,
+    });
+  }
+
+  console.log(fragments);
 
   await createCarousel(
     block,
-    sortedFragments,
+    sortDataByTitle(fragments),
     {
       defaultStyling: true,
       navButtons: true,
