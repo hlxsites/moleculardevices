@@ -1643,6 +1643,10 @@ main .section.background-molecules {
   font-weight: 600;
 }
 
+.videos-and-webinars .hero.wave.green-category .hero-inner p:first-of-type {
+  color: var(--text-green);
+}
+
 .videos-and-webinars .section.hero-container:has(.hero.wave) ~ .section h2 {
   color: var(--text-blue);
   font-family: var(--ff-proxima-regular);
