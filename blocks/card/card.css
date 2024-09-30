@@ -154,6 +154,7 @@ main .card a .icon.icon-chevron-right-outline {
 main .card a .icon.icon-chevron-right-outline svg {
   height: 18px;
   width: 18px;
+  display: block;
 }
 
 main .card a .icon.icon-chevron-right-outline svg path {

@@ -67,12 +67,19 @@ class Card {
     this.showCategory = false;
     this.hideDescription = false;
     this.requestQuoteBtn = false;
+    this.isShopifyCard = false;
 
     // Apply overwrites
     Object.assign(this, config);
 
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/card/card.css');
+    }
+
+    if (this.isShopifyCard) {
+      this.descriptionLength = 130;
+      // this.requestQuoteBtn = true;
+      // this.defaultButtonText = 'Request Quote';
     }
   }
 
@@ -88,13 +95,27 @@ class Card {
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
-    let cardLink = this.requestQuoteBtn ? `/quote-request?pid=${item.familyID}` : item.path;
+    /* shopify card */
+    let cardLink = '';
+    if (this.isShopifyCard && !this.requestQuoteBtn) {
+      this.defaultButtonText = item.shopifyUrl ? 'Order' : 'Request Quote';
+      if (item.shopifyUrl) {
+        cardLink = item.shopifyUrl;
+      } else if (item.redirectPath && item.redirectPath !== '0') {
+        cardLink = `/quote-request?pid=${item.familyID}`;
+      }
+    }
+
+    /* set request quote btn */
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
+    } else if (this.requestQuoteBtn) {
+      cardLink = item.familyID ? `/quote-request?pid=${item.familyID}` : item.path;
     }
 
+    /* default button */
     const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
       ? item.cardC2A : this.defaultButtonText;
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
@@ -120,10 +141,7 @@ class Card {
       ),
     );
 
-    if (
-      item.specifications
-      && item.specifications !== '0'
-    ) {
+    if (item.specifications && item.specifications !== '0') {
       c2aBlock.append(div({ class: 'compare-button' },
         `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
@@ -141,8 +159,11 @@ class Card {
       ));
     }
 
+    /* hide description */
     let cardDescription = '';
-    if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
+    if (item.shopifyDescription) {
+      cardDescription = summariseDescription(item.shopifyDescription, this.descriptionLength);
+    } else if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
     } else if (item.description && item.description !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.description, this.descriptionLength);
