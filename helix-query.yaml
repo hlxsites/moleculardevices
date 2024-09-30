@@ -150,7 +150,7 @@ indices:
         value: attribute(el, "content")
   citations:
     include:
-      - /resources/citations/**
+      - '/resources/citations/**'
     target: /resources/citations/query-index.json
     properties:
       title:
@@ -170,7 +170,7 @@ indices:
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
   fragments:
     include:
-      - /fragments/**
+      - '/fragments/**'
     target: /fragments/query-index.json
     properties:
       title:
