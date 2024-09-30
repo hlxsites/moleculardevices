@@ -15,6 +15,7 @@ export default async function decorate(block) {
     titleLink: false,
     thumbnailLink: false,
     c2aLinkStyle: true,
+    descriptionLength: 130,
   };
   let fragments;
   let cardRenderer;
