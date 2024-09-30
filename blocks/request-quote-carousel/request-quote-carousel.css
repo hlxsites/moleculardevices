@@ -81,6 +81,10 @@ main .carousel.request-quote-carousel {
   align-items: center;
 }
 
+.carousel.request-quote-carousel .card .button-container a span svg {
+  display: block;
+}
+
 @media only screen and (max-width: 1199px) {
   main .carousel-wrapper.request-quote-carousel-wrapper {
     width: 940px;
