@@ -190,9 +190,9 @@ indices:
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
   files:
     include:
-      - /sites/default/files/en/**
+      - '/sites/default/files/en/**'
     exclude:
-      - /sites/default/files/en/assets/app-note/**
+      - '/sites/default/files/en/assets/app-note/**'
     target: /sites/default/files/query-index.json
     properties:
       lastModified:
@@ -200,7 +200,7 @@ indices:
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
   hubspot:
     include:
-      - /en/assets/newsletters/**
+      - '/en/assets/newsletters/**'
     target: /sites/default/files/hubspot/query-index.json
     properties:
       path:
