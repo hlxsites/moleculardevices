@@ -1,40 +1,29 @@
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import ffetch from '../../scripts/ffetch.js';
-import { sortDataByTitle } from '../../scripts/scripts.js';
+import { getCountryCode, sortDataByTitle } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
-  if (!localStorage.getItem('ipstack:geolocation')) {
-    return;
-  }
-
-  let fragments;
-  let cardRenderer;
-  const isCountryCodeUS = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
-  const cardConfig = {
+  const isCountryCodeUS = await getCountryCode() === 'US';
+  const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
     c2aLinkStyle: true,
-  };
+    isShopifyCard: isCountryCodeUS,
+    isRequestQuoteCard: !isCountryCodeUS,
+  });
 
+  let fragments;
   if (isCountryCodeUS) {
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
-    cardRenderer = await createCard({
-      ...cardConfig,
-      isShopifyCard: true,
-    });
   } else {
     fragments = await ffetch('/query-index.json')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
-    cardRenderer = await createCard({
-      ...cardConfig,
-      isRequestQuoteCard: true,
-    });
   }
 
   await createCarousel(
