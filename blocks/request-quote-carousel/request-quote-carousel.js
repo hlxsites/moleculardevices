@@ -19,7 +19,6 @@ export default async function decorate(block) {
   };
 
   if (isCountryCodeUS) {
-    console.log('US');
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
@@ -29,7 +28,6 @@ export default async function decorate(block) {
       isShopifyCard: true,
     });
   } else {
-    console.log('IN');
     fragments = await ffetch('/query-index.json')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
