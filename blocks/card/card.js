@@ -149,7 +149,9 @@ class Card {
 
     /* hide description */
     let cardDescription = '';
-    if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
+    if ((this.isRequestQuoteCard || this.isShopifyCard) && item.cardDescription) {
+      cardDescription = item.cardDescription;
+    } else if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
     } else if (item.description && item.description !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.description, this.descriptionLength);

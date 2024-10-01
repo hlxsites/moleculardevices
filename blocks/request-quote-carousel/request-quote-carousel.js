@@ -16,10 +16,10 @@ export default async function decorate(block) {
     titleLink: false,
     thumbnailLink: false,
     c2aLinkStyle: true,
-    descriptionLength: 140,
   };
 
   if (isCountryCodeUS) {
+    console.log('US');
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
@@ -29,6 +29,7 @@ export default async function decorate(block) {
       isShopifyCard: true,
     });
   } else {
+    console.log('IN');
     fragments = await ffetch('/query-index.json')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
