@@ -1305,4 +1305,21 @@ export function sortDataByTitle(array) {
   });
 }
 
+/**
+ * Fetches the user's country code
+ * Returns an empty string if the request fails.
+ *
+ * @returns {Promise<string>} The country code or an empty string on failure.
+ */
+export async function getCountryCode() {
+  const url = 'https://api.ipstack.com/check';
+  const accessCode = '7d5a41f8a619751e2548545f56b29dbc';
+  const response = await fetch(`${url}?access_key=${accessCode}`, { mode: 'cors' });
+  if (!response.ok) {
+    return '';
+  }
+  const data = await response.json();
+  return data.country_code;
+}
+
 loadPage();
