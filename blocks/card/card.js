@@ -66,7 +66,7 @@ class Card {
     this.showDate = false;
     this.showCategory = false;
     this.hideDescription = false;
-    this.requestQuoteBtn = false;
+    this.isRequestQuoteCard = false;
     this.isShopifyCard = false;
 
     // Apply overwrites
@@ -74,6 +74,14 @@ class Card {
 
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/card/card.css');
+    }
+
+    if (this.isShopifyCard) {
+      this.defaultButtonText = 'Order';
+    }
+
+    if (this.isRequestQuoteCard) {
+      this.defaultButtonText = 'Request Quote';
     }
   }
 
@@ -89,19 +97,12 @@ class Card {
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
-    /* shopify card */
-    let cardLink = '';
-    if (this.isShopifyCard) {
-      this.defaultButtonText = item.shopifyUrl ? 'Order' : 'Request Quote';
-      if (item.shopifyUrl) {
-        cardLink = item.shopifyUrl;
-      }
-    }
-
     /* default button */
-    cardLink = this.requestQuoteBtn ? `/quote-request?pid=${item.familyID}` : item.path;
+    let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
+    } else if (this.isShopifyCard && item.shopifyUrl) {
+      cardLink = item.shopifyUrl;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
     }
@@ -111,9 +112,6 @@ class Card {
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
-    }
-    if (item.c2aLinkConfig) {
-      c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
       c2aLinkBlock.classList.remove('button', 'primary');

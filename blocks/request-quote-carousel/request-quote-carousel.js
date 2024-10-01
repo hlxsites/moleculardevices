@@ -34,8 +34,7 @@ export default async function decorate(block) {
       .all();
     cardRenderer = await createCard({
       ...cardConfig,
-      defaultButtonText: 'Request Quote',
-      requestQuoteBtn: true,
+      isRequestQuoteCard: true,
     });
   }
 

@@ -47,12 +47,12 @@ main .carousel.request-quote-carousel {
   font-size: var(--body-font-size-s);
   color: var(--text-color);
   margin-bottom: 10px;
-  /* display: block;
+  display: block;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   line-clamp: 4;
   -webkit-box-orient: vertical;
-  overflow: hidden; */
+  overflow: hidden;
 }
 
 .carousel.request-quote-carousel .card-caption .c2a {
