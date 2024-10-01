@@ -239,6 +239,8 @@ Disallow: /en/assets/tutorials-videos/br/microplate-reader-based-viability-analy
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/img/future-of-disease-modeling-for-precision-medicine
 Disallow: /en/assets/tutorials-videos/bpd/clonepix-2-enhanced-monoclonality-verification
+Disallow: /en/assets/tutorials-videos/dd/cns/minis-search-analysis-axon-pclamp-software
+
 
 #EU webinars to imaging video gallery page
 
