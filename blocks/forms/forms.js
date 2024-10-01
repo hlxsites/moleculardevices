@@ -202,7 +202,7 @@ function createHubSpotForm(formConfig, target) {
         }
 
         // /* redircted to thank you page */
-        // window.location.href = new URL(formConfig.redirectUrl).pathname;
+        window.location.href = new URL(formConfig.redirectUrl).pathname;
       },
     });
   } else {
