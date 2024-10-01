@@ -1,4 +1,4 @@
-import { fetchFragment } from '../../scripts/scripts.js';
+import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
@@ -39,15 +39,7 @@ export default async function decorate(block) {
     }
     return null;
   }));
-  const sortedFragments = fragments.filter((item) => !!item).sort((x, y) => {
-    if (x.title < y.title) {
-      return -1;
-    }
-    if (x.title > y.title) {
-      return 1;
-    }
-    return 0;
-  });
+  const sortedFragments = sortDataByTitle(fragments);
 
   const placeholders = await fetchPlaceholders();
 

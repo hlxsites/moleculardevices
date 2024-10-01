@@ -9,42 +9,35 @@ export default async function decorate(block) {
     return;
   }
 
-  const country = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code;
-  const orderCC = 'US';
+  let fragments;
+  let cardRenderer;
+  const isCountryCodeUS = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
   const cardConfig = {
     titleLink: false,
     thumbnailLink: false,
     c2aLinkStyle: true,
     descriptionLength: 130,
   };
-  let fragments;
-  let cardRenderer;
 
-  if (country === orderCC) {
+  if (isCountryCodeUS) {
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
-  } else {
-    fragments = await ffetch('/query-index.json')
-      .filter((frag) => fragmentPaths.includes(frag.path))
-      .all();
-  }
-
-  if (country === orderCC) {
     cardRenderer = await createCard({
       ...cardConfig,
       isShopifyCard: true,
     });
   } else {
+    fragments = await ffetch('/query-index.json')
+      .filter((frag) => fragmentPaths.includes(frag.path))
+      .all();
     cardRenderer = await createCard({
       ...cardConfig,
       defaultButtonText: 'Request Quote',
       requestQuoteBtn: true,
     });
   }
-
-  console.log(fragments);
 
   await createCarousel(
     block,
