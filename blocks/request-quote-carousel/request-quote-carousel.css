@@ -47,6 +47,12 @@ main .carousel.request-quote-carousel {
   font-size: var(--body-font-size-s);
   color: var(--text-color);
   margin-bottom: 10px;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .carousel.request-quote-carousel .card-caption .c2a {
@@ -71,8 +77,12 @@ main .carousel.request-quote-carousel {
   color: #008ca8;
   font-size: var(--body-font-size-s);
   display: flex;
-  width: 135px;
+  min-width: 135px;
   align-items: center;
+}
+
+.carousel.request-quote-carousel .card .button-container a span svg {
+  display: block;
 }
 
 @media only screen and (max-width: 1199px) {

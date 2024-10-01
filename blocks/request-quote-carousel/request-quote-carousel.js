@@ -1,40 +1,45 @@
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
+import { sortDataByTitle } from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
-  const noDescription = block.classList.contains('no-description');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
+  if (!localStorage.getItem('ipstack:geolocation')) {
+    return;
+  }
 
-  const fragments = await ffetch('/query-index.json')
-    .filter((product) => fragmentPaths.includes(product.path))
-    .all();
-
-  const sortedFragments = fragments.filter((item) => !!item).sort((x, y) => {
-    if (x.title < y.title) {
-      return -1;
-    }
-    if (x.title > y.title) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const placeholders = await fetchPlaceholders();
-
-  const cardRenderer = await createCard({
+  let fragments;
+  let cardRenderer;
+  const isCountryCodeUS = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
+  const cardConfig = {
     titleLink: false,
     thumbnailLink: false,
-    defaultButtonText: placeholders.requestQuote || 'Request Quote',
     c2aLinkStyle: true,
-    hideDescription: noDescription,
-    requestQuoteBtn: true,
-  });
+  };
+
+  if (isCountryCodeUS) {
+    fragments = await ffetch('/query-index.json')
+      .sheet('applications')
+      .filter((frag) => fragmentPaths.includes(frag.path))
+      .all();
+    cardRenderer = await createCard({
+      ...cardConfig,
+      isShopifyCard: true,
+    });
+  } else {
+    fragments = await ffetch('/query-index.json')
+      .filter((frag) => fragmentPaths.includes(frag.path))
+      .all();
+    cardRenderer = await createCard({
+      ...cardConfig,
+      isRequestQuoteCard: true,
+    });
+  }
 
   await createCarousel(
     block,
-    sortedFragments,
+    sortDataByTitle(fragments),
     {
       defaultStyling: true,
       navButtons: true,

@@ -66,13 +66,22 @@ class Card {
     this.showDate = false;
     this.showCategory = false;
     this.hideDescription = false;
-    this.requestQuoteBtn = false;
+    this.isRequestQuoteCard = false;
+    this.isShopifyCard = false;
 
     // Apply overwrites
     Object.assign(this, config);
 
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/card/card.css');
+    }
+
+    if (this.isShopifyCard) {
+      this.defaultButtonText = 'Order';
+    }
+
+    if (this.isRequestQuoteCard) {
+      this.defaultButtonText = 'Request Quote';
     }
   }
 
@@ -88,9 +97,12 @@ class Card {
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
-    let cardLink = this.requestQuoteBtn ? `/quote-request?pid=${item.familyID}` : item.path;
+    /* default button */
+    let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
+    } else if (this.isShopifyCard && item.shopifyUrl) {
+      cardLink = item.shopifyUrl;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
     }
@@ -100,9 +112,6 @@ class Card {
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
-    }
-    if (item.c2aLinkConfig) {
-      c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
       c2aLinkBlock.classList.remove('button', 'primary');
@@ -120,10 +129,7 @@ class Card {
       ),
     );
 
-    if (
-      item.specifications
-      && item.specifications !== '0'
-    ) {
+    if (item.specifications && item.specifications !== '0') {
       c2aBlock.append(div({ class: 'compare-button' },
         `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
@@ -141,8 +147,11 @@ class Card {
       ));
     }
 
+    /* hide description */
     let cardDescription = '';
-    if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
+    if ((this.isRequestQuoteCard || this.isShopifyCard) && item.cardDescription) {
+      cardDescription = item.cardDescription;
+    } else if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
     } else if (item.description && item.description !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.description, this.descriptionLength);
