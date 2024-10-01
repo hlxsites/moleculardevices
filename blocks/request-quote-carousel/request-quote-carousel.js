@@ -16,7 +16,7 @@ export default async function decorate(block) {
     titleLink: false,
     thumbnailLink: false,
     c2aLinkStyle: true,
-    descriptionLength: 130,
+    descriptionLength: 140,
   };
 
   if (isCountryCodeUS) {

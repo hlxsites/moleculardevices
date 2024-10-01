@@ -91,25 +91,21 @@ class Card {
 
     /* shopify card */
     let cardLink = '';
-    if (this.isShopifyCard && !this.requestQuoteBtn) {
+    if (this.isShopifyCard) {
       this.defaultButtonText = item.shopifyUrl ? 'Order' : 'Request Quote';
       if (item.shopifyUrl) {
         cardLink = item.shopifyUrl;
-      } else if (item.redirectPath && item.redirectPath !== '0') {
-        cardLink = `/quote-request?pid=${item.familyID}`;
       }
     }
 
-    /* set request quote btn */
+    /* default button */
+    cardLink = this.requestQuoteBtn ? `/quote-request?pid=${item.familyID}` : item.path;
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
-    } else if (this.requestQuoteBtn) {
-      cardLink = item.familyID ? `/quote-request?pid=${item.familyID}` : item.path;
     }
 
-    /* default button */
     const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
       ? item.cardC2A : this.defaultButtonText;
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
