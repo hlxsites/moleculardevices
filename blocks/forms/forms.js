@@ -192,17 +192,17 @@ function createHubSpotForm(formConfig, target) {
         const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
         form.appendChild(elementprodprimapp);
 
-        console.log(form);
+        // console.log(form);
         document.body.appendChild(form);
 
-        console.log(qdc);
+        // console.log(qdc);
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           form.submit();
         }
 
         // /* redircted to thank you page */
-        window.location.href = new URL(formConfig.redirectUrl).pathname;
+        // window.location.href = new URL(formConfig.redirectUrl).pathname;
       },
     });
   } else {
