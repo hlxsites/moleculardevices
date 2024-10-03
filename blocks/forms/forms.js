@@ -22,6 +22,7 @@ function getDefaultForKey(key) {
 }
 
 /* custom field */
+const OID = '00D70000000IRvr';
 const timelineValue = '00N70000003iu0b';
 const serialLotNumber = '00N70000003TZlz';
 const productFamily = '00N70000001oP3y';
@@ -83,6 +84,7 @@ function createCustomField(hubspotFormData, fieldName, newName) {
   }
   return 0;
 }
+
 /* extract data from table  */
 async function extractFormData(block) {
   const blockData = {};
@@ -102,13 +104,12 @@ async function extractFormData(block) {
 
 /* create hubspot form */
 function createHubSpotForm(formConfig, target) {
-  // console.log(formConfig);
   if (window.hbspt) {
     hbspt.forms.create({ // eslint-disable-line
       portalId: formConfig.portalId,
       formId: formConfig.formId,
       target: `#${target}`,
-      onFormReady: (hubspotForm) => {
+      onFormReady: (form) => {
         // Handle Salesforce hidden fields via message event listener
         window.addEventListener('message', (event) => {
           if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
@@ -124,37 +125,36 @@ function createHubSpotForm(formConfig, target) {
             const mCmp = valuecmp || formConfig.cmp;
 
             // Update the form with SFDC values if they exist
-            if (hubspotForm.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
-              hubspotForm.querySelector('input[name="product_family__c"]').value = mProductFamily;
+            if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
+              form.querySelector('input[name="product_family__c"]').value = mProductFamily;
             }
-            if (hubspotForm.querySelector('input[name="product_primary_application__c"]') && mPrimaryApplication !== '') {
-              hubspotForm.querySelector('input[name="product_primary_application__c"]').value = mPrimaryApplication;
+            if (form.querySelector('input[name="product_primary_application__c"]') && mPrimaryApplication !== '') {
+              form.querySelector('input[name="product_primary_application__c"]').value = mPrimaryApplication;
             }
-            if (hubspotForm.querySelector('input[name="cmp"]') && mCmp) {
-              hubspotForm.querySelector('input[name="cmp"]').value = mCmp;
+            if (form.querySelector('input[name="cmp"]') && mCmp) {
+              form.querySelector('input[name="cmp"]').value = mCmp;
+            }
+
+            // Customize the submit button
+            const submitInput = form.querySelector('input[type="submit"]');
+            if (submitInput) {
+              const submitButton = button({
+                type: 'submit',
+                class: 'button primary',
+              }, submitInput.value || 'Submit');
+              submitInput.replaceWith(submitButton);
             }
           }
         });
-
-        // Customize the submit button
-        const submitInput = hubspotForm.querySelector('input[type="submit"]');
-        if (submitInput) {
-          const submitButton = button({
-            type: 'submit',
-            class: 'button primary',
-          }, submitInput.value || 'Submit');
-          submitInput.replaceWith(submitButton);
-        }
       },
       onFormSubmit: (hubspotForm) => {
-        // console.log(hubspotForm);
         const hubspotFormData = new FormData(hubspotForm);
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
 
         // Your org ID
-        const elementOID = input({ name: 'oid', value: '00D70000000IRvr', type: 'hidden' });
+        const elementOID = input({ name: 'oid', value: OID, type: 'hidden' });
         form.appendChild(elementOID);
 
         // generate a form from Customize | Leads | Web-to-Lead to figure out more
@@ -165,22 +165,33 @@ function createHubSpotForm(formConfig, target) {
           }
         });
 
-        let qdc = hubspotFormData.get('requested_a_salesperson_to_call__c');
-        if (qdc !== undefined && qdc !== '') { qdc = 'Call'; }
+        // test case
+        const qdcCall = hubspotFormData.get('requested_a_salesperson_to_call__c');
+        let qdc;
+        if (qdcCall === undefined || qdcCall === '') {
+          qdc = 'Call';
+        } else {
+          qdc = qdcCall;
+        }
         const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
         form.appendChild(elementqdcrequest);
 
         let subscribe = hubspotFormData.get('subscribe');
-        if (subscribe === undefined && subscribe === '') { subscribe = 'Call'; }
+        if (subscribe === undefined || subscribe === '') { subscribe = 'Call'; }
         const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
         form.appendChild(elementmarketingoptin);
 
         // SFDC redirects to retURL in the response to the form post
         let returnURL = hubspotFormData.get('return_url');
+        if (returnURL === undefined || returnURL === '') {
+          returnURL = formConfig.redirectUrl;
+        }
+
         if (returnURL !== undefined && returnURL !== '') {
           const hsmduri = returnURL;
           const hsmdkey = 'rfq';
           const hsmdvalue = qdc;
+
           const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
           const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
           if (hsmduri.match(re)) {
@@ -189,8 +200,6 @@ function createHubSpotForm(formConfig, target) {
             returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
           }
           returnURL = `${returnURL}&subscribe=${subscribe}`;
-        } else {
-          returnURL = new URL(formConfig.redirectUrl).pathname;
         }
         const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
         form.appendChild(elementRetURL);
@@ -219,10 +228,11 @@ function createHubSpotForm(formConfig, target) {
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           form.submit();
+        } else {
+          setTimeout(() => {
+            window.top.location.href = returnURL;
+          }, 2000);
         }
-
-        // /* redircted to thank you page */
-        // window.location.href = new URL(formConfig.redirectUrl).pathname;
       },
     });
   } else {
