@@ -53,16 +53,26 @@ function createHubSpotForm(formConfig, target) {
 
             // Salesforce form fields
             const mProductFamily = formConfig.productFamily;
+            const mResearchArea = formConfig.researchArea;
             const mPrimaryApplication = formConfig.productPrimaryApplication;
+            const mRequestedQdcDiscussionC = formConfig.qdc;
             const mCmp = valuecmp || formConfig.cmp;
 
             // Update the form with SFDC values if they exist
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
               form.querySelector('input[name="product_family__c"]').value = mProductFamily;
             }
+            if (form.querySelector('input[name="research_area"]') && mResearchArea !== '') {
+              form.querySelector('input[name="research_area"]').value = mResearchArea;
+            }
+
             if (form.querySelector('input[name="product_primary_application__c"]') && mPrimaryApplication !== '') {
               form.querySelector('input[name="product_primary_application__c"]').value = mPrimaryApplication;
             }
+            if (form.querySelector('input[name="requested_qdc_discussion__c"]') && mRequestedQdcDiscussionC !== '') {
+              form.querySelector('input[name="requested_qdc_discussion__c"]').value = mRequestedQdcDiscussionC;
+            }
+
             if (form.querySelector('input[name="cmp"]') && mCmp) {
               form.querySelector('input[name="cmp"]').value = mCmp;
             }
@@ -98,12 +108,12 @@ function createHubSpotForm(formConfig, target) {
         });
 
         // test case
-        const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
+        const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
         let qdc = '';
-        if (qdcCall !== undefined || qdcCall !== '') {
+        if (qdcCall) {
           qdc = 'Call';
         } else {
-          qdc = hubspotFormData.get('requested_qdc_discussion__c');
+          qdc = hubspotFormData.get('requested_qdc_discussion__c') || '';
         }
         if (qdc === undefined || qdc === '') {
           qdc = formConfig.qdc || '';
@@ -111,8 +121,8 @@ function createHubSpotForm(formConfig, target) {
         const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
         form.appendChild(elementqdcrequest);
 
-        let subscribe = hubspotForm.querySelector('input[name="subscribe"]').value;
-        if (subscribe === undefined || subscribe === '') { subscribe = 'false'; }
+        let subscribe = hubspotForm.querySelector('input[name="subscribe"]').checked;
+        if (!subscribe) { subscribe = 'false'; }
         const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
         form.appendChild(elementmarketingoptin);
 
@@ -167,11 +177,10 @@ function createHubSpotForm(formConfig, target) {
         } else {
           setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
+        /* END */
       },
     });
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('HubSpot form API is not available.');
     setTimeout(() => createHubSpotForm(formConfig, target), 200);
   }
 }
