@@ -3,77 +3,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
-
-/* Helper functions */
-const keys = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
-function getDefaultForKey(key) {
-  switch (key) {
-    case 'heading':
-      return '';
-    case 'region':
-      return 'na1';
-    case 'portalId':
-      return '20222769 ';
-    case 'redirectUrl':
-      return 'https://www.moleculardevices.com/';
-    default:
-      return '';
-  }
-}
-
-/* custom field */
-const OID = '00D70000000IRvr';
-const timelineValue = '00N70000003iu0b';
-const serialLotNumber = '00N70000003TZlz';
-const productFamily = '00N70000001oP3y';
-const productSelection = '00N0g000003c6tn';
-const fseSalesRepInsideSales = '00N70000003RaEK';
-const euFseSalesRepInsideSales = '00N70000003RaEK';
-const usFas = '00N70000003RaEK';
-const euFas = '00N70000003RaEK';
-const customSolutionsOpportunity = '00N70000003ScgU';
-const preQualifiedForSalesrep = '00N0g000003YFXF';
-const QDCRrequest = '00N70000003iu65';
-const marketingOptin = '00N70000003ipQF';
-const prodPrimApp = '00N700000030jhQ';
-const fields = [
-  { newName: 'first_name', fieldName: 'firstname' },
-  { newName: 'last_name', fieldName: 'lastname' },
-  { newName: 'email', fieldName: 'email' },
-  { newName: 'phone', fieldName: '0-2/phone' },
-  { newName: 'company', fieldName: 'company' },
-  { newName: 'country', fieldName: 'country' },
-  { newName: 'country_code', fieldName: 'country_code' }, // TEST CASE
-  { newName: 'state', fieldName: 'state_dropdown, state' }, // TEST CASE
-  { newName: 'zip', fieldName: 'zip' },
-  { newName: timelineValue, fieldName: 'timelineValue' },
-  { newName: 'title', fieldName: 'jobtitle' },
-  { newName: 'city', fieldName: 'city' },
-  { newName: 'Danaher_Partner_Rep__c', fieldName: 'danaher_partner_rep__c' },
-  { newName: 'Danaher_Partner_Rep_Email__c', fieldName: 'danaher_partner_rep_email__c' },
-  { newName: 'EU_Lead_Finder_Agent__c', fieldName: 'eu_lead_finder_agent__c' },
-  { newName: 'Contact_Region__c', fieldName: 'contact_region__c' },
-  { newName: 'Region__c', fieldName: 'region__c' },
-  { newName: 'na_lead_finder_agent__c', fieldName: 'na_lead_finder_agent__c' },
-  { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
-  { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
-  { newName: productFamily, fieldName: 'product_family__c' }, // TEST CASE
-  { newName: productSelection, fieldName: 'product_selection__c' },
-  { newName: 'description', fieldName: 'description' },
-  { newName: fseSalesRepInsideSales, fieldName: 'fse_sales_rep_inside_sales__c' },
-  { newName: euFseSalesRepInsideSales, fieldName: 'eu_fse_sales_rep_inside_sales' },
-  { newName: usFas, fieldName: 'us_fas' },
-  { newName: euFas, fieldName: 'eu_fas' },
-  { newName: customSolutionsOpportunity, fieldName: 'custom_solutions_opportunity__c' },
-  { newName: preQualifiedForSalesrep, fieldName: 'pre_qualified_for_salesrep__c' },
-  { newName: 'Lead_Source_2__c', fieldName: 'lead_source_2__c' },
-  { newName: 'GCLID__c', fieldName: 'gclid__c' },
-  { newName: 'Keyword_PPC__c', fieldName: 'keyword_ppc__c' },
-  { newName: 'Google_Analytics_Medium__c', fieldName: 'google_analytics_medium__c' },
-  { newName: 'Google_Analytics_Source__c', fieldName: 'google_analytics_source__c' },
-  { newName: 'Campaign_ID', fieldName: 'cmp' },
-  { newName: 'cmp', fieldName: 'cmp' },
-];
+import {
+  fieldsObj, getDefaultForKey, marketingOptin, OID, prodPrimApp, QDCRrequest, RESOURCEKEYS,
+} from './formHelper.js';
 
 /* custom form fields */
 function createCustomField(hubspotFormData, fieldName, newName) {
@@ -94,7 +26,7 @@ async function extractFormData(block) {
     blockData[key] = value;
   });
 
-  keys.forEach((key) => {
+  RESOURCEKEYS.forEach((key) => {
     if (!blockData[key]) {
       blockData[key] = getDefaultForKey(key);
     }
@@ -158,7 +90,7 @@ function createHubSpotForm(formConfig, target) {
         form.appendChild(elementOID);
 
         // generate a form from Customize | Leads | Web-to-Lead to figure out more
-        fields.forEach(({ newName, fieldName }) => {
+        fieldsObj.forEach(({ newName, fieldName }) => {
           const inputField = createCustomField(hubspotFormData, fieldName, newName);
           if (inputField && inputField !== 0) {
             form.appendChild(inputField);
@@ -166,9 +98,9 @@ function createHubSpotForm(formConfig, target) {
         });
 
         // test case
-        const qdcCall = hubspotFormData.get('requested_a_salesperson_to_call__c');
-        let qdc;
-        if (qdcCall !== undefined && qdcCall !== '') {
+        const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
+        let qdc = '';
+        if (qdcCall !== undefined || qdcCall !== '') {
           qdc = 'Call';
         } else {
           qdc = hubspotFormData.get('requested_qdc_discussion__c');
@@ -179,18 +111,18 @@ function createHubSpotForm(formConfig, target) {
         const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
         form.appendChild(elementqdcrequest);
 
-        let subscribe = hubspotFormData.get('subscribe');
-        if (subscribe === undefined || subscribe === '') { subscribe = 'Call'; }
+        let subscribe = hubspotForm.querySelector('input[name="subscribe"]').value;
+        if (subscribe === undefined || subscribe === '') { subscribe = 'false'; }
         const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
         form.appendChild(elementmarketingoptin);
 
-        // SFDC redirects to retURL in the response to the form post
+        // SFDC redirects to returnURL in the response to the form post
         let returnURL = hubspotFormData.get('return_url');
-        if (returnURL === undefined || returnURL === '') {
+        if (!returnURL) {
           returnURL = formConfig.redirectUrl;
         }
 
-        if (returnURL !== undefined && returnURL !== '') {
+        if (returnURL) {
           const hsmduri = returnURL;
           const hsmdkey = 'rfq';
           const hsmdvalue = qdc;
@@ -226,16 +158,14 @@ function createHubSpotForm(formConfig, target) {
         const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
         form.appendChild(elementprodprimapp);
 
+        // Append the form to the body
         document.body.appendChild(form);
 
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           form.submit();
-          window.top.location.href = returnURL;
         } else {
-          setTimeout(() => {
-            window.top.location.href = returnURL;
-          }, 2000);
+          setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
       },
     });
