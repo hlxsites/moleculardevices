@@ -27,7 +27,7 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update generated coveo.xml file"
+          commit_message: "Update generated coveo.xml file."
           repository: coveo
           file_pattern: "coveo-xml.xml"
           push_options: --force
