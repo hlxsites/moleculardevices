@@ -56,7 +56,7 @@ function createHubSpotForm(formConfig, target) {
             const mResearchArea = formConfig.researchArea;
             const mPrimaryApplication = formConfig.productPrimaryApplication;
             const mRequestedQdcDiscussionC = formConfig.qdc;
-            const mCmp = valuecmp || formConfig.cmp;
+            const mCmp = formConfig.cmp || valuecmp;
 
             // Update the form with SFDC values if they exist
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
@@ -107,20 +107,23 @@ function createHubSpotForm(formConfig, target) {
           }
         });
 
-        // test case
+        /* qdc */ // test case
         const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
         let qdc = '';
+
         if (qdcCall) {
           qdc = 'Call';
         } else {
-          qdc = hubspotFormData.get('requested_qdc_discussion__c') || '';
+          qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
         }
-        if (qdc === undefined || qdc === '') {
+        if (qdc === '') {
           qdc = formConfig.qdc || '';
         }
+
         const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
         form.appendChild(elementqdcrequest);
 
+        /* subscribe */
         let subscribe = hubspotForm.querySelector('input[name="subscribe"]').checked;
         if (!subscribe) { subscribe = 'false'; }
         const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
@@ -181,6 +184,8 @@ function createHubSpotForm(formConfig, target) {
       },
     });
   } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('HubSpot form API is not available.');
     setTimeout(() => createHubSpotForm(formConfig, target), 200);
   }
 }

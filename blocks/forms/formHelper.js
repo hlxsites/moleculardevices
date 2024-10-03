@@ -41,7 +41,7 @@ export const fieldsObj = [
   { newName: 'country_code', fieldName: 'country_code' }, // TEST CASE
   { newName: 'state', fieldName: 'state_dropdown, state' }, // TEST CASE
   { newName: 'zip', fieldName: 'zip' },
-  { newName: timelineValue, fieldName: 'timelineValue' },
+  { newName: timelineValue, fieldName: 'timeline__c' },
   { newName: 'title', fieldName: 'jobtitle' },
   { newName: 'city', fieldName: 'city' },
   { newName: 'Danaher_Partner_Rep__c', fieldName: 'danaher_partner_rep__c' },
