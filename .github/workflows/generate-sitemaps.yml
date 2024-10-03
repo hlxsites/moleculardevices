@@ -1,3 +1,5 @@
+env:
+  NODE_VERSION: '20.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
@@ -18,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
       - name: Run scripts and commit changes
         if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
         working-directory: ./coveo
@@ -48,7 +50,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
         working-directory: ./tools/sitemap
         run: npm install
