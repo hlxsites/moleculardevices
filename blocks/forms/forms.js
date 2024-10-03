@@ -104,7 +104,7 @@ async function extractFormData(block) {
 
 /* create hubspot form */
 function createHubSpotForm(formConfig, target) {
-  if (window.hbspt) {
+  try {
     hbspt.forms.create({ // eslint-disable-line
       portalId: formConfig.portalId,
       formId: formConfig.formId,
@@ -168,10 +168,13 @@ function createHubSpotForm(formConfig, target) {
         // test case
         const qdcCall = hubspotFormData.get('requested_a_salesperson_to_call__c');
         let qdc;
-        if (qdcCall === undefined || qdcCall === '') {
+        if (qdcCall !== undefined && qdcCall !== '') {
           qdc = 'Call';
         } else {
-          qdc = qdcCall;
+          qdc = hubspotFormData.get('requested_qdc_discussion__c');
+        }
+        if (qdc === undefined || qdc === '') {
+          qdc = formConfig.qdc || '';
         }
         const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
         form.appendChild(elementqdcrequest);
@@ -194,11 +197,13 @@ function createHubSpotForm(formConfig, target) {
 
           const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
           const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
+
           if (hsmduri.match(re)) {
             returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
           } else {
             returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
           }
+
           returnURL = `${returnURL}&subscribe=${subscribe}`;
         }
         const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
@@ -221,13 +226,12 @@ function createHubSpotForm(formConfig, target) {
         const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
         form.appendChild(elementprodprimapp);
 
-        // console.log(form);
         document.body.appendChild(form);
 
-        // console.log(qdc);
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           form.submit();
+          window.top.location.href = returnURL;
         } else {
           setTimeout(() => {
             window.top.location.href = returnURL;
@@ -235,9 +239,10 @@ function createHubSpotForm(formConfig, target) {
         }
       },
     });
-  } else {
+  } catch (e) {
     // eslint-disable-next-line no-console
     console.error('HubSpot form API is not available.');
+    setTimeout(() => createHubSpotForm(formConfig, target), 200);
   }
 }
 
