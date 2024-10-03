@@ -175,6 +175,26 @@ function createHubSpotForm(formConfig, target) {
         const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
         form.appendChild(elementmarketingoptin);
 
+        // SFDC redirects to retURL in the response to the form post
+        let returnURL = hubspotFormData.get('return_url');
+        if (returnURL !== undefined && returnURL !== '') {
+          const hsmduri = returnURL;
+          const hsmdkey = 'rfq';
+          const hsmdvalue = qdc;
+          const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
+          const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
+          if (hsmduri.match(re)) {
+            returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
+          } else {
+            returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
+          }
+          returnURL = `${returnURL}&subscribe=${subscribe}`;
+        } else {
+          returnURL = new URL(formConfig.redirectUrl).pathname;
+        }
+        const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+        form.appendChild(elementRetURL);
+
         // test case
         const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
         const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts');
