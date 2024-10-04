@@ -23,6 +23,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   if (!returnURL.toString().includes('msg')) {
     returnURL = `${returnURL}?msg=success`;
   }
+  console.log(returnURL);
 
   const queryStr = `?return_url=${encodeURIComponent(returnURL)}&${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
@@ -66,14 +67,14 @@ function createMap(block, mapUrl) {
 
 function scrollToForm(link, hubspotUrl) {
   const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
+  const cmpFromUrl = hubspotUrl.href.split('&').filter((item) => item.includes('cmp')).toString().split('=')[1];
+  DEFAULT_CMP = cmpFromUrl;
   if (hubspotUrl) {
     if (link.getAttribute('title') === 'Sales Inquiry Form') {
       const hubUrl = hubSpotFinalUrl(hubspotUrl, 'comments');
       hubspotUrl.href = hubUrl.href;
     } else {
       const [href] = hubspotUrl.href.split('&');
-      const cmpFromUrl = hubspotUrl.href.split('&').filter((item) => item.includes('cmp')).toString().split('=')[1];
-      DEFAULT_CMP = cmpFromUrl;
       hubspotUrl.href = href;
     }
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
