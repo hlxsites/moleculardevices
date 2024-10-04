@@ -1,22 +1,26 @@
+/* eslint-disable max-len */
 import { getCookie } from '../../scripts/scripts.js';
+
+let DEFAULT_CMP = '';
 
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
-  const searchParams = new URLSearchParams(hubUrl.searchParams);
+  const { searchParams } = hubUrl;
+  const returnURL = searchParams.get('return_url');
+  const cmp = getCookie('cmp') || searchParams.get('cmp');
   const queryParams = new URLSearchParams(window.location.search);
+
   if (paramName === 'comments') {
     searchParams.set(paramName, 'Sales');
   } else {
-    const queryStringParam = queryParams.has(paramName) ? queryParams.get(paramName) : '';
+    const queryStringParam = queryParams.get(paramName) || '';
     searchParams.set(paramName, queryStringParam);
   }
 
-  const cmp = getCookie('cmp') || searchParams.get('cmp');
-  const returnURL = searchParams.get('return_url');
   searchParams.delete('cmp');
   searchParams.delete('return_url');
 
-  const queryStr = `?return_url=${returnURL}%3F${encodeURIComponent(searchParams.toString())}&cmp=${cmp}`;
+  const queryStr = `?return_url=${returnURL}%3F${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -64,6 +68,8 @@ function scrollToForm(link, hubspotUrl) {
       hubspotUrl.href = hubUrl.href;
     } else {
       const [href] = hubspotUrl.href.split('&');
+      const cmpFromUrl = hubspotUrl.href.split('&')[1];
+      DEFAULT_CMP = cmpFromUrl;
       hubspotUrl.href = href;
     }
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
