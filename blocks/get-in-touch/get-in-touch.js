@@ -6,7 +6,7 @@ let DEFAULT_CMP = '';
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
-  const returnURL = searchParams.get('return_url');
+  let returnURL = searchParams.get('return_url');
   const cmp = getCookie('cmp') || searchParams.get('cmp');
   const queryParams = new URLSearchParams(window.location.search);
 
@@ -20,7 +20,11 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   searchParams.delete('cmp');
   searchParams.delete('return_url');
 
-  const queryStr = `?return_url=${returnURL}%3F${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
+  if (!returnURL.toString().includes('msg')) {
+    returnURL = `${returnURL}?msg=success`;
+  }
+
+  const queryStr = `?return_url=${encodeURIComponent(returnURL)}&${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -68,7 +72,7 @@ function scrollToForm(link, hubspotUrl) {
       hubspotUrl.href = hubUrl.href;
     } else {
       const [href] = hubspotUrl.href.split('&');
-      const cmpFromUrl = hubspotUrl.href.split('&')[1];
+      const cmpFromUrl = hubspotUrl.href.split('&').filter((item) => item.includes('cmp')).toString().split('=')[1];
       DEFAULT_CMP = cmpFromUrl;
       hubspotUrl.href = href;
     }
