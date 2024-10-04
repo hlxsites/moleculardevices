@@ -67,9 +67,11 @@ function createMap(block, mapUrl) {
 
 function scrollToForm(link, hubspotUrl) {
   const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
-  const cmpFromUrl = hubspotUrl.href.split('&').filter((item) => item.includes('cmp')).toString().split('=')[1];
-  DEFAULT_CMP = cmpFromUrl;
   if (hubspotUrl) {
+    const url = new URLSearchParams(hubspotUrl.href);
+    if (!DEFAULT_CMP) {
+      DEFAULT_CMP = url.get('cmp');
+    }
     if (link.getAttribute('title') === 'Sales Inquiry Form') {
       const hubUrl = hubSpotFinalUrl(hubspotUrl, 'comments');
       hubspotUrl.href = hubUrl.href;
