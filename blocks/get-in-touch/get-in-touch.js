@@ -3,6 +3,14 @@ import { getCookie } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';
 
+function copySearchParamsToReturnURL(searchParams, returnUrl) {
+  const returnUrlObj = new URL(returnUrl);
+  searchParams.forEach((value, key) => {
+    returnUrlObj.searchParams.set(key, value);
+  });
+  return returnUrlObj.href;
+}
+
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
@@ -20,12 +28,9 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   searchParams.delete('cmp');
   searchParams.delete('return_url');
 
-  if (!returnURL.toString().includes('msg')) {
-    returnURL = `${returnURL}?msg=success`;
-  }
-  console.log(returnURL);
+  returnURL = copySearchParamsToReturnURL(searchParams, returnURL);
 
-  const queryStr = `?return_url=${encodeURIComponent(returnURL)}&${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
+  const queryStr = `?return_url=${encodeURIComponent(returnURL)}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -79,6 +84,7 @@ function scrollToForm(link, hubspotUrl) {
       const [href] = hubspotUrl.href.split('&');
       hubspotUrl.href = href;
     }
+    console.log(decodeURIComponent(hubspotUrl.href));
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }
   window.scroll({
