@@ -240,7 +240,7 @@ Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/img/future-of-disease-modeling-for-precision-medicine
 Disallow: /en/assets/tutorials-videos/bpd/clonepix-2-enhanced-monoclonality-verification
 Disallow: /en/assets/tutorials-videos/dd/cns/minis-search-analysis-axon-pclamp-software
-
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/3d-organoid-culture-and-assays-powered-by-machine-learning-and-image-analysis
 
 #EU webinars to imaging video gallery page
 
