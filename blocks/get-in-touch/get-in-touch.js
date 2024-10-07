@@ -4,33 +4,35 @@ import { getCookie } from '../../scripts/scripts.js';
 let DEFAULT_CMP = '';
 
 function copySearchParamsToReturnURL(searchParams, returnUrl) {
-  const returnUrlObj = new URL(returnUrl);
+  const targetUrl = new URL(returnUrl);
   searchParams.forEach((value, key) => {
-    returnUrlObj.searchParams.set(key, value);
+    searchParams.delete(key, value);
+    targetUrl.searchParams.set(key, value);
   });
-  return returnUrlObj.href;
+  targetUrl.searchParams.delete('comments');
+  return targetUrl.href;
 }
 
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
-  let returnURL = searchParams.get('return_url');
+  const returnURL = searchParams.get('return_url');
   const cmp = getCookie('cmp') || searchParams.get('cmp');
   const queryParams = new URLSearchParams(window.location.search);
 
+  searchParams.delete('cmp');
+  searchParams.delete('return_url');
+  const returnUrl = copySearchParamsToReturnURL(searchParams, returnURL);
+
   if (paramName === 'comments') {
+    searchParams.delete('comments');
     searchParams.set(paramName, 'Sales');
   } else {
     const queryStringParam = queryParams.get(paramName) || '';
     searchParams.set(paramName, queryStringParam);
   }
 
-  searchParams.delete('cmp');
-  searchParams.delete('return_url');
-
-  returnURL = copySearchParamsToReturnURL(searchParams, returnURL);
-
-  const queryStr = `?return_url=${encodeURIComponent(returnURL)}&cmp=${cmp || DEFAULT_CMP}`;
+  const queryStr = `?return_url=${encodeURIComponent(returnUrl)}${searchParams ? encodeURIComponent(`&${searchParams}`) : ''}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -84,7 +86,6 @@ function scrollToForm(link, hubspotUrl) {
       const [href] = hubspotUrl.href.split('&');
       hubspotUrl.href = href;
     }
-    console.log(decodeURIComponent(hubspotUrl.href));
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }
   window.scroll({
