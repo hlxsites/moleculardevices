@@ -426,7 +426,8 @@ body .thank-you-page h4 {
 
 .thankyou main .section,
 .thankyou main div.section.wave.wave-bottom-section,
-.landing-page:not(.thankyou) main .thankyou-banner {
+.landing-page:not(.thankyou) main .thankyou-banner,
+.thankyou main .hide-banner-on-thankyou {
   display: none;
 }
 
