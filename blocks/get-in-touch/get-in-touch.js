@@ -23,7 +23,6 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   if (!returnURL.toString().includes('msg')) {
     returnURL = `${returnURL}?msg=success`;
   }
-  console.log(returnURL);
 
   const queryStr = `?return_url=${encodeURIComponent(returnURL)}&${encodeURIComponent(searchParams.toString())}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
