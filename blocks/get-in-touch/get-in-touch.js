@@ -11,7 +11,7 @@ function copySearchParamsToReturnURL(searchParams, returnUrl) {
     targetUrl.searchParams.set(key, value);
   });
   targetUrl.searchParams.delete(COMMENTS);
-  return targetUrl.href;
+  return targetUrl;
 }
 
 function hubSpotFinalUrl(hubspotUrl, paramName) {
@@ -33,7 +33,11 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
     searchParams.set(paramName, queryStringParam);
   }
 
-  const queryStr = `?return_url=${encodeURIComponent(modifiedReturnUrl)}&${searchParams.toString()}&cmp=${cmp || DEFAULT_CMP}`;
+  if (!modifiedReturnUrl.searchParams.has('msg')) {
+    modifiedReturnUrl.searchParams.set('msg', 'success');
+  }
+
+  const queryStr = `?return_url=${encodeURIComponent(modifiedReturnUrl.href)}&${searchParams.toString()}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
