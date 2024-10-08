@@ -2,14 +2,15 @@
 import { getCookie } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';
+const COMMENTS = 'comments';
 
 function copySearchParamsToReturnURL(searchParams, returnUrl) {
   const targetUrl = new URL(returnUrl);
   searchParams.forEach((value, key) => {
-    searchParams.delete(key, value);
+    targetUrl.searchParams.delete(key);
     targetUrl.searchParams.set(key, value);
   });
-  targetUrl.searchParams.delete('comments');
+  targetUrl.searchParams.delete(COMMENTS);
   return targetUrl.href;
 }
 
@@ -22,17 +23,17 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
 
   searchParams.delete('cmp');
   searchParams.delete('return_url');
-  const returnUrl = copySearchParamsToReturnURL(searchParams, returnURL);
 
-  if (paramName === 'comments') {
-    searchParams.delete('comments');
+  const modifiedReturnUrl = copySearchParamsToReturnURL(searchParams, returnURL);
+
+  if (paramName === COMMENTS) {
     searchParams.set(paramName, 'Sales');
   } else {
     const queryStringParam = queryParams.get(paramName) || '';
     searchParams.set(paramName, queryStringParam);
   }
 
-  const queryStr = `?return_url=${encodeURIComponent(returnUrl)}${searchParams ? encodeURIComponent(`&${searchParams}`) : ''}&cmp=${cmp || DEFAULT_CMP}`;
+  const queryStr = `?return_url=${encodeURIComponent(modifiedReturnUrl)}&${searchParams.toString()}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -80,12 +81,13 @@ function scrollToForm(link, hubspotUrl) {
       DEFAULT_CMP = url.get('cmp');
     }
     if (link.getAttribute('title') === 'Sales Inquiry Form') {
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'comments');
+      const hubUrl = hubSpotFinalUrl(hubspotUrl, COMMENTS);
       hubspotUrl.href = hubUrl.href;
     } else {
       const [href] = hubspotUrl.href.split('&');
       hubspotUrl.href = href;
     }
+    console.log(decodeURIComponent(hubspotUrl));
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }
   window.scroll({
