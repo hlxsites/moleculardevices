@@ -481,6 +481,10 @@ button.primary {
   color: var(--button-color);
   background-color: var(--button-bg-color);
   border: 0;
+  white-space: break-spaces;
+  padding: 14px 18px;
+  line-height: 21px;
+  margin-bottom: 20px;
 }
 
 a.button.primary:hover,
