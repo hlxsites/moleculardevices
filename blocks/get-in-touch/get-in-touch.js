@@ -130,7 +130,7 @@ export default function decorate(block) {
   const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
   tabLinks.forEach((link) => {
     link.addEventListener('click', () => {
-      const regionName = link.hash.split('#')[1] || new URLSearchParams(window.location.search).get('region');
+      const regionName = link.hash.split('#')[1] || queryParams.get('region');
       REGION = regionName;
     });
   });
