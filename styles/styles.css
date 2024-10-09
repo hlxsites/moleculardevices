@@ -2160,11 +2160,13 @@ main .section.space-wrappers > div {
   padding-left: 20px;
 }
 
-.disc-sub-heading ol > li > ol {
+.disc-sub-heading ol > li > ol,
+.disc-sub-heading ol > ol  {
   list-style: disc;
 }
 
-.lower-alpha-sub-heading ol > li > ol {
+.lower-alpha-sub-heading ol > li > ol,
+.lower-alpha-sub-heading ol > ol {
   list-style: lower-alpha;
 }
 
