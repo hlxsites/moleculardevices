@@ -76,7 +76,8 @@
   margin-bottom: 20px;
 }
 
-.blog main h3 {
+.blog main h3,
+.blog main .big-sub-heading h4 {
   display: inline-block;
   margin-top: 20px;
   margin-bottom: 10px;
