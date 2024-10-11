@@ -1,47 +1,4 @@
-/* eslint-disable max-len */
-import { getCookie } from '../../scripts/scripts.js';
-
-let DEFAULT_CMP = '';
-let REGION = new URLSearchParams(window.location.search).get('region');
-const COMMENTS = 'comments';
-
-function copySearchParamsToReturnURL(searchParams, returnUrl) {
-  const targetUrl = new URL(returnUrl);
-  searchParams.forEach((value, key) => {
-    targetUrl.searchParams.delete(key);
-    targetUrl.searchParams.set(key, value);
-  });
-  targetUrl.searchParams.delete(COMMENTS);
-  return targetUrl;
-}
-
-function hubSpotFinalUrl(hubspotUrl, paramName) {
-  const hubUrl = new URL(hubspotUrl.href);
-  const { searchParams } = hubUrl;
-  const returnURL = searchParams.get('return_url');
-  const cmp = getCookie('cmp') || searchParams.get('cmp');
-  const queryParams = new URLSearchParams(window.location.search);
-
-  searchParams.delete('cmp');
-  searchParams.delete('region');
-  searchParams.delete('return_url');
-
-  if (paramName === COMMENTS) {
-    searchParams.set(paramName, 'Sales');
-  } else {
-    const queryStringParam = queryParams.get(paramName) || '';
-    searchParams.set(paramName, queryStringParam);
-  }
-
-  const modifiedReturnUrl = copySearchParamsToReturnURL(searchParams, returnURL);
-  if (!modifiedReturnUrl.searchParams.has('msg')) {
-    modifiedReturnUrl.searchParams.set('msg', 'success');
-  }
-
-  const queryStr = `?return_url=${encodeURIComponent(modifiedReturnUrl.href)}&${searchParams.toString()}&cmp=${cmp || DEFAULT_CMP}`;
-  return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
-}
-
+// let REGION = new URLSearchParams(window.location.search).get('region');
 function createForm(block, hubspotUrl) {
   const hubspotIframeWrapper = document.createElement('div');
   const hubspotIframe = document.createElement('iframe');
@@ -53,8 +10,6 @@ function createForm(block, hubspotUrl) {
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
-      hubspotUrl.href = hubUrl.href;
       hubspotIframe.src = hubspotUrl.href;
     }
   });
@@ -78,31 +33,8 @@ function createMap(block, mapUrl) {
   observer.observe(block);
 }
 
-function scrollToForm(link, hubspotUrl, region) {
+function scrollToForm() {
   const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
-  if (hubspotUrl) {
-    const url = new URLSearchParams(hubspotUrl.href);
-    if (!DEFAULT_CMP) {
-      DEFAULT_CMP = url.get('cmp');
-    }
-    if (link.getAttribute('title') === 'Sales Inquiry Form') {
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, COMMENTS, region);
-      hubspotUrl.href = hubUrl.href;
-    } else {
-      const [href] = hubspotUrl.href.split('&');
-      hubspotUrl.href = href;
-    }
-    // add region on click of tab links
-    if (region) {
-      const updatedHubUrl = new URL(hubspotUrl.href);
-      const retUrl = new URL(updatedHubUrl.searchParams.get('return_url'));
-      retUrl.searchParams.set('region', region);
-      updatedHubUrl.searchParams.set('return_url', retUrl.href);
-      hubspotUrl.href = updatedHubUrl.href;
-    }
-
-    hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
-  }
   window.scroll({
     top: hubspotIframe.offsetTop - 100,
     behavior: 'smooth',
@@ -127,13 +59,13 @@ export default function decorate(block) {
   }
 
   /* get region on tab click */
-  const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
-  tabLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      const regionName = link.hash.split('#')[1] || queryParams.get('region');
-      REGION = regionName;
-    });
-  });
+  // const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
+  // tabLinks.forEach((link) => {
+  //   link.addEventListener('click', () => {
+  //     const regionName = link.hash.split('#')[1] || queryParams.get('region');
+  //     REGION = regionName;
+  //   });
+  // });
 
   const inquiryLinks = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
@@ -141,7 +73,7 @@ export default function decorate(block) {
     if (inquiryLinks.includes(link.getAttribute('title'))) {
       link.addEventListener('click', (event) => {
         event.preventDefault();
-        scrollToForm(link, hubspotUrl, REGION);
+        scrollToForm();
       }, false);
     }
   });
