@@ -1,5 +1,5 @@
 .blog,
-.blog main strong  {
+.blog main strong {
   font-family: var(--ff-proxima-regular);
 }
 
@@ -12,10 +12,6 @@
   margin-bottom: 10px;
 }
 
-.blog main .section .default-content-wrapper > p:last-child {
-  margin-bottom: 0;
-}
-
 .blog main ul,
 .blog main ol {
   margin-top: 0;
@@ -23,7 +19,14 @@
   padding-left: 40px;
 }
 
-.blog main ul ul {
+.blog main ul li,
+.blog main ol li {
+  margin-bottom: 4px;
+}
+
+.blog main ul ul,
+.blog main ol ol,
+.blog main .section .default-content-wrapper > p:last-child {
   margin-bottom: 0;
 }
 
@@ -73,7 +76,8 @@
   margin-bottom: 20px;
 }
 
-.blog main h3 {
+.blog main h3,
+.blog main .big-sub-heading h4 {
   display: inline-block;
   margin-top: 20px;
   margin-bottom: 10px;

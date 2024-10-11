@@ -481,6 +481,10 @@ button.primary {
   color: var(--button-color);
   background-color: var(--button-bg-color);
   border: 0;
+  white-space: break-spaces;
+  padding: 14px 18px;
+  line-height: 21px;
+  margin-bottom: 20px;
 }
 
 a.button.primary:hover,
@@ -2156,11 +2160,13 @@ main .section.space-wrappers > div {
   padding-left: 20px;
 }
 
-.disc-sub-heading ol > li > ol {
+.disc-sub-heading ol > li > ol,
+.disc-sub-heading ol > ol  {
   list-style: disc;
 }
 
-.lower-alpha-sub-heading ol > li > ol {
+.lower-alpha-sub-heading ol > li > ol,
+.lower-alpha-sub-heading ol > ol {
   list-style: lower-alpha;
 }
 
