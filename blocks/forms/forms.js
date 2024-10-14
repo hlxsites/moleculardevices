@@ -182,11 +182,13 @@ function createHubSpotForm(formConfig, target) {
         // Append the form to the body
         document.body.appendChild(form);
 
+        console.log(qdc);
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
-          form.submit();
+          // form.submit();
+          setTimeout(() => { form.submit(); }, 200);
         } else {
-          setTimeout(() => { window.top.location.href = returnURL; }, 500);
+          setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
         /* END */
       },
