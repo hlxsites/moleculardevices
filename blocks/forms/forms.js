@@ -192,7 +192,7 @@ function createHubSpotForm(formConfig, target) {
 
 /* load hubspot script */
 function loadHubSpotScript(callback) {
-  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback, 'text/javascript', true, false);
+  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
 }
 
 export default async function decorate(block, index) {
