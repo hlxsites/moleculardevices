@@ -186,7 +186,7 @@ function createHubSpotForm(formConfig, target) {
         if (allowedValues.includes(qdc)) {
           form.submit();
         } else {
-          //setTimeout(() => { window.top.location.href = returnURL; }, 200);
+          setTimeout(() => { window.top.location.href = returnURL; }, 500);
         }
         /* END */
       },
