@@ -57,16 +57,8 @@ function createHubSpotForm(formConfig, target) {
             const mPrimaryApplication = formConfig.productPrimaryApplication;
             const mRequestedQdcDiscussionC = formConfig.qdc;
             const mCmp = formConfig.cmp || valuecmp;
-            const mReturnUrl = formConfig.redirectUrl;
-            const websiteUrl = window.location.href;
 
             // Update the form with SFDC values if they exist
-            if (form.querySelector('input[name="return_url"]') && mReturnUrl !== '') {
-              form.querySelector('input[name="return_url"]').value = mReturnUrl;
-            }
-            if (form.querySelector('input[name="website"]') && websiteUrl !== '') {
-              form.querySelector('input[name="website"]').value = websiteUrl;
-            }
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
               form.querySelector('input[name="product_family__c"]').value = mProductFamily;
             }
@@ -182,11 +174,9 @@ function createHubSpotForm(formConfig, target) {
         // Append the form to the body
         document.body.appendChild(form);
 
-        console.log(qdc);
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
-          // form.submit();
-          setTimeout(() => { form.submit(); }, 200);
+          form.submit();
         } else {
           setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
@@ -202,7 +192,7 @@ function createHubSpotForm(formConfig, target) {
 
 /* load hubspot script */
 function loadHubSpotScript(callback) {
-  loadScript('//js.hsforms.net/forms/v2.js', callback, 'text/javascript', true, false);
+  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback, 'text/javascript', true, false);
 }
 
 export default async function decorate(block, index) {
