@@ -58,10 +58,14 @@ function createHubSpotForm(formConfig, target) {
             const mRequestedQdcDiscussionC = formConfig.qdc;
             const mCmp = formConfig.cmp || valuecmp;
             const mReturnUrl = formConfig.redirectUrl;
+            const websiteUrl = window.location.href;
 
             // Update the form with SFDC values if they exist
             if (form.querySelector('input[name="return_url"]') && mReturnUrl !== '') {
               form.querySelector('input[name="return_url"]').value = mReturnUrl;
+            }
+            if (form.querySelector('input[name="website"]') && websiteUrl !== '') {
+              form.querySelector('input[name="website"]').value = websiteUrl;
             }
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
               form.querySelector('input[name="product_family__c"]').value = mProductFamily;
