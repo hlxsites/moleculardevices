@@ -184,8 +184,10 @@ function createHubSpotForm(formConfig, target) {
         if (allowedValues.includes(qdc)) {
           try {
             // form.submit();
-            setTimeout(() => { form.submit(); }, 1000);
-            console.log('Form submitted to Salesforce');
+            setTimeout(() => {
+              form.submit();
+              console.log('Form submitted to Salesforce');
+            }, 1000);
           } catch (error) {
             console.error('Form submission error:', error);
           }
