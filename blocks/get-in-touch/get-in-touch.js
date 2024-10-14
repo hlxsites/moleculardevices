@@ -17,10 +17,11 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
 
   returnURL.set('region', queryParams.get('region'));
 
+  if (paramName === 'general') {
+    searchParams.delete(COMMENTS);
+  }
   if (paramName === COMMENTS) {
     searchParams.set(paramName, 'Sales');
-  } else {
-    searchParams.delete(COMMENTS);
   }
 
   const searchPatamsStr = searchParams.toString() ? `&${(searchParams.toString())}` : '';
@@ -80,7 +81,7 @@ function scrollToForm(link, hubspotUrl, region) {
     if (!DEFAULT_CMP) {
       DEFAULT_CMP = url.get('cmp');
     }
-    let params = '';
+    let params = 'general';
     if (link && link.getAttribute('title') === 'Sales Inquiry Form') {
       params = COMMENTS;
     }
