@@ -487,6 +487,10 @@ button.primary {
   margin-bottom: 20px;
 }
 
+.button-container:has(+.button-container) a.button.primary{
+  margin-bottom: 0;
+}
+
 a.button.primary:hover,
 a.button.primary:focus,
 button.primary:hover,
