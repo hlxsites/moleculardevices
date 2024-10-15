@@ -8,16 +8,6 @@ import {
   fieldsObj, getDefaultForKey, marketingOptin, OID, prodPrimApp, QDCRrequest, RESOURCEKEYS,
 } from './formHelper.js';
 
-const formConfigData = [];
-
-function passFormConfig(config) {
-  formConfigData.push(config);
-}
-
-// function isForm() {
-//   return formConfigData.length;
-// }
-
 /* custom form fields */
 function createCustomField(hubspotFormData, fieldName, newName) {
   const fieldVal = hubspotFormData.get(fieldName);
@@ -148,29 +138,29 @@ function createHubSpotForm(formConfig, target) {
         form.appendChild(elementmarketingoptin);
 
         // SFDC redirects to returnURL in the response to the form post
-        // let returnURL = hubspotFormData.get('return_url');
-        // if (!returnURL) {
-        //   returnURL = formConfig.redirectUrl;
-        // }
+        let returnURL = hubspotFormData.get('return_url');
+        if (!returnURL) {
+          returnURL = formConfig.redirectUrl;
+        }
 
-        // if (returnURL) {
-        //   const hsmduri = returnURL;
-        //   const hsmdkey = 'rfq';
-        //   const hsmdvalue = qdc;
+        if (returnURL) {
+          const hsmduri = returnURL;
+          const hsmdkey = 'rfq';
+          const hsmdvalue = qdc;
 
-        //   const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
-        //   const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
+          const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
+          const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
 
-        //   if (hsmduri.match(re)) {
-        //     returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
-        //   } else {
-        //     returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
-        //   }
+          if (hsmduri.match(re)) {
+            returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
+          } else {
+            returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
+          }
 
-        //   returnURL = `${returnURL}&subscribe=${subscribe}`;
-        // }
-        // const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
-        // form.appendChild(elementRetURL);
+          returnURL = `${returnURL}&subscribe=${subscribe}`;
+        }
+        const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+        form.appendChild(elementRetURL);
 
         // test case
         const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
@@ -197,15 +187,14 @@ function createHubSpotForm(formConfig, target) {
           try {
             // form.submit();
             setTimeout(() => {
-              // form.submit();
+              form.submit();
               console.log('Form submitted to Salesforce');
             }, 2000);
           } catch (error) {
             console.error('Form submission error:', error);
           }
         } else {
-          //
-          // setTimeout(() => { window.top.location.href = returnURL; }, 200);
+          setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
         /* END */
       },
@@ -237,5 +226,4 @@ export default async function decorate(block, index) {
 
   block.replaceWith(form);
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target));
-  passFormConfig(formConfig);
 }
