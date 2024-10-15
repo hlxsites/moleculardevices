@@ -134,6 +134,11 @@ main .card-caption .c2a .compare-checkbox.selected {
 
 main .card-type {
   display: none;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--text-green);
+  font-size: var(--body-font-size-xs);
+  margin: 5px 0;
 }
 
 main .card-date {

@@ -43,6 +43,7 @@ export default async function decorate(block) {
     resources,
     {
       defaultStyling: true,
+      cardStyling: true,
       navButtons: true,
       dotButtons: false,
       infiniteScroll: true,

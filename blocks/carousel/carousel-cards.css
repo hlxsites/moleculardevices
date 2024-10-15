@@ -1,34 +1,14 @@
 /*
   Cards Carousel specific styling.
 */
-.carousel-wrapper.cards {
-  width: 1020px;
+main .carousel-wrapper.cards {
+  width: 1140px;
+  padding: 0 15px 30px;
   margin: 0 auto;
 }
 
-.block.carousel.cards.fully-visible {
-  justify-content: center;
-}
-
-.block.carousel.cards {
-  text-align: left;
-}
-
-.carousel-wrapper.cards .carousel-nav-button:hover {
-  color: #adb3b7;
-  border: 1.5px solid #adb3b7;
-  background-color: inherit;
-}
-
-.carousel-wrapper.cards .carousel-nav-left {
-  left: -50px;
-}
-
-.carousel-wrapper.cards .carousel-nav-right {
-  right: -50px;
-}
-
-.carousel.cards {
+main .carousel-wrapper.cards .carousel {
+  width: 88%;
   padding: 0;
 }
 
@@ -40,18 +20,47 @@
   margin: 0;
 }
 
-.carousel.cards .carousel-item:hover {
-  z-index: 1;
-  transform: scale(1.01);
-  transition: all 0.3s;
+.carousel-wrapper.cards div > picture {
+  display: block;
+}
+
+.carousel-wrapper.cards div > picture,
+.carousel-wrapper.cards div > picture img,
+.carousel-wrapper.cards .card-thumb,
+.carousel-wrapper.cards .card-thumb img {
+  /* height: 190px;
+  min-height: 190px; */
+  width: 100%;
+  min-width: auto;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+.carousel-wrapper.cards > div:not(picture:only-child),
+.carousel-wrapper.cards .card-caption {
+  padding-top: 20px;
+}
+
+.block.carousel.cards {
+  text-align: left;
+}
+
+.carousel-wrapper.cards .carousel-nav-button:hover {
+  color: var(--dark-border-color-gray);
+  border: 1.5px solid var(--dark-border-color-gray);
+  background-color: inherit;
+}
+
+.carousel.cards {
+  padding: 0;
 }
 
 .carousel.cards .carousel-item .card {
   height: 100%;
-  background: #fff;
+  background: var(--background-color);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 15px rgba(0 0 0 / 40%);
+  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
   transition: all 0.3s;
   display: flex;
   align-items: stretch;
@@ -62,27 +71,39 @@
   margin-bottom: 30px;
 }
 
+.carousel.cards .carousel-item .card:hover {
+  z-index: 1;
+  transform: scale(1.03);
+  transition: all 0.3s;
+}
+
 .carousel.cards .carousel-item h3 {
-  font-size: var(--heading-font-size-l);
-  margin-bottom: 8px;
-  margin-top: 0;
   color: var(--text-color);
+  font-size: var(--heading-font-size-l);
+  margin-bottom: 15px;
+  margin-top: 0;
 }
 
 .carousel.cards .carousel-item p {
-  font-size: var(--body-font-size-xs);
   margin: 0;
+}
+
+.carousel.cards .carousel-item p,
+.carousel-wrapper.cards .card-description {
+  font-size: var(--body-font-size-s);
   color: var(--text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 10px;
+  display: block;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item p:first-child {
   text-transform: uppercase;
-  color: #6eb43f;
+  color: var(--text-green);
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -94,7 +115,7 @@
 
 .carousel.cards .carousel-item a {
   font-size: 18px;
-  color: #008ca8;
+  color: var(--text-blue);
 }
 
 .carousel.cards .carousel-item a span {
@@ -110,10 +131,40 @@
 .carousel.cards .carousel-item .card > div:last-child {
   display: flex;
   flex-direction: column;
-  padding: 10px 20px;
+  padding: 20px;
   color: #12141f;
   height: 100%;
   min-height: auto;
+}
+
+/* c2a */
+.carousel-wrapper.cards .card-caption .c2a {
+  display: flex;
+  gap: 20px;
+}
+
+.carousel-wrapper.cards .carousel.no-description .card-caption .c2a {
+  margin-top: 0;
+}
+
+.carousel-wrapper.cards .carousel .card .button-container {
+  width: 100%;
+  margin-top: auto;
+  line-height: 1;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.carousel-wrapper.cards .carousel .card .button-container a {
+  color: var(--text-blue);
+  display: flex;
+  min-width: 135px;
+  align-items: center;
+  text-transform: none;
+}
+
+.carousel-wrapper.cards .carousel .card .button-container a span svg {
+  display: block;
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child,
@@ -142,27 +193,13 @@
   object-fit: cover;
 }
 
-.carousel.cards.gpx-compliance-resources .carousel-item .card > div:last-child {
-  height: calc(100% - 200px);
-}
-
-.carousel.cards.microplate-related-products .carousel-item .card > div:last-child {
-  height: calc(100% - 250px);
-}
-
 .carousel.cards .carousel-item-columns-container {
   flex-direction: column;
 }
 
 @media only screen and (max-width: 1199px) {
-  .carousel-wrapper.cards {
+  main .carousel-wrapper.cards {
     width: 940px;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  .carousel-wrapper.cards {
-    width: 750px;
   }
 
   .carousel-wrapper.cards .carousel-item {
@@ -171,18 +208,28 @@
   }
 }
 
+@media only screen and (max-width: 991px) {
+  main .carousel-wrapper.cards {
+    width: 100%;
+  }
+
+  .carousel-wrapper.cards .carousel .card-caption h3 {
+    font-size: 18px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .carousel-wrapper.cards {
     width: 100%;
   }
 
-  .carousel.cards {
-    width: 100%;
-    padding: 0 10%;
+  main .carousel-wrapper.cards {
+    padding: 0;
   }
 
-  .carousel-wrapper.cards .carousel-nav-button {
-    display: none;
+  main .carousel-wrapper.cards .carousel {
+    width: 100%;
+    padding: 0 10%;
   }
 
   .carousel-wrapper.cards .carousel-item {
@@ -190,7 +237,15 @@
     max-width: 100%;
   }
 
-  .carousel.cards .carousel-item img {
-    width: 100%;
+  .carousel-wrapper.cards .carousel-nav-button {
+    display: none;
   }
+
+  /* .carousel-wrapper.cards div > picture,
+  .carousel-wrapper.cards div > picture img,
+  .carousel-wrapper.cards .card-thumb,
+  .carousel-wrapper.cards .card-thumb img {
+    height: 150px;
+    min-height: 150px;
+  } */
 }

@@ -43,6 +43,7 @@ class Carousel {
     this.counterNavButtons = true;
     this.cardRenderer = this;
     this.hasImageInDots = false;
+    this.cardStyling = false;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -71,6 +72,10 @@ class Carousel {
 
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/carousel/carousel.css');
+    }
+
+    if (this.cardStyling) {
+      this.cssFiles.push('/blocks/carousel/carousel-cards.css');
     }
   }
 
