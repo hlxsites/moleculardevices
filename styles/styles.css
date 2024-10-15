@@ -456,6 +456,18 @@ button {
   cursor: pointer;
 }
 
+a.button:any-link:has(span.icon),
+button:has(span.icon) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a.button:any-link > span.icon,
+button > span.icon {
+  line-height: 0;
+}
+
 a.button .fa,
 a.button i.fa {
   padding: 0 0.25rem;
@@ -487,7 +499,7 @@ button.primary {
   margin-bottom: 20px;
 }
 
-.button-container:has(+.button-container) a.button.primary{
+.button-container:has(+ .button-container) a.button.primary {
   margin-bottom: 0;
 }
 
@@ -2165,7 +2177,7 @@ main .section.space-wrappers > div {
 }
 
 .disc-sub-heading ol > li > ol,
-.disc-sub-heading ol > ol  {
+.disc-sub-heading ol > ol {
   list-style: disc;
 }
 
@@ -2495,7 +2507,7 @@ main .section.rfq-form-section .embed h4 {
   line-height: 1.33;
 }
 
-@media only scrren and (min-width: 768px){
+@media only scrren and (min-width: 768px) {
   .application .columns.block.workflow-tab-heading h2 {
     font-size: 48px;
   }
