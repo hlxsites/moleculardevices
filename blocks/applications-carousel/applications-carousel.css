@@ -51,6 +51,10 @@ main .carousel.applications-carousel {
   text-align: left;
 }
 
+.carousel.applications-carousel .card .c2a .button-container {
+  margin-top: 0;
+}
+
 .carousel.applications-carousel .card .button-container a {
   color: #008ca8;
 }

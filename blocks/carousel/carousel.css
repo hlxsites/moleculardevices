@@ -271,6 +271,10 @@ main .section.global-carousel .carousel h2 + h3 {
   main div.carousel-wrapper.container-width-carousel {
     width: 1170px;
   }
+
+  main .three-items-visible .carousel-nav-button {
+    display: none !important;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
@@ -579,7 +583,7 @@ main .carousel .carousel-item .carousel-item-text blockquote > p::after {
 
 main .carousel blockquote::before,
 main .carousel blockquote::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100px;
   height: 100px;
@@ -589,13 +593,13 @@ main .carousel blockquote::after {
 }
 
 main .carousel blockquote::before {
-  background-image: url('/images/quote-left.png');
+  background-image: url("/images/quote-left.png");
   left: -50px;
   top: -89px;
 }
 
 main .carousel blockquote::after {
-  background-image: url('/images/quote-right.png');
+  background-image: url("/images/quote-right.png");
   right: -1.5em;
   bottom: -60px;
 }

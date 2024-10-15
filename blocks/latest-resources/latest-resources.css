@@ -31,11 +31,6 @@ main .latest-resources .carousel-item {
 
 main .latest-resources .card .card-type {
   display: block;
-  text-align: left;
-  text-transform: uppercase;
-  color: #6eb43f;
-  font-size: 14px;
-  margin: 5px 0;
 }
 
 main .latest-resources .card .card-thumb {

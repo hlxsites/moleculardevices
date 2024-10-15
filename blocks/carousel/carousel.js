@@ -43,6 +43,7 @@ class Carousel {
     this.counterNavButtons = true;
     this.cardRenderer = this;
     this.hasImageInDots = false;
+    this.cardStyling = false;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -64,13 +65,17 @@ class Carousel {
     Object.assign(this, config);
 
     if (this.getCurrentVisibleItems() >= this.data.length) {
-      this.infiniteScroll = false;
-      this.navButtons = false;
-      this.block.classList.add('fully-visible');
+      // this.infiniteScroll = false;
+      // this.navButtons = false;
+      this.block.classList.add('fully-visible', 'three-items-visible');
     }
 
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/carousel/carousel.css');
+    }
+
+    if (this.cardStyling) {
+      this.cssFiles.push('/blocks/carousel/carousel-cards.css');
     }
   }
 

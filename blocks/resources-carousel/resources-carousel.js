@@ -31,33 +31,36 @@ export default async function decorate(block) {
 
   const placeholders = await fetchPlaceholders();
 
-  const resourceCard = await createCard({
+  const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
     defaultButtonText: placeholders.learnMore || 'Learn more',
-    descriptionLength: block.classList.contains('list') ? 180 : 180,
+    descriptionLength: 180,
   });
 
-  await createCarousel(block, resources, {
-    cssFiles: ['/blocks/carousel/carousel-cards.css'],
-    defaultStyling: true,
-    navButtons: true,
-    dotButtons: false,
-    infiniteScroll: true,
-    autoScroll: false,
-    visibleItems: [
-      {
-        items: 1,
-        condition: () => window.screen.width < 768,
-      },
-      {
-        items: 2,
-        condition: () => window.screen.width < 1200,
-      },
-      {
-        items: 3,
-      },
-    ],
-    cardRenderer: resourceCard,
-  });
+  await createCarousel(
+    block,
+    resources,
+    {
+      defaultStyling: true,
+      cardStyling: true,
+      navButtons: true,
+      dotButtons: false,
+      infiniteScroll: true,
+      autoScroll: false,
+      visibleItems: [
+        {
+          items: 1,
+          condition: () => window.screen.width < 768,
+        },
+        {
+          items: 2,
+          condition: () => window.screen.width < 1200,
+        }, {
+          items: 3,
+        },
+      ],
+      cardRenderer,
+    },
+  );
 }
