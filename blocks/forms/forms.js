@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   button, div, h3, input,
 } from '../../scripts/dom-helpers.js';
@@ -38,6 +39,7 @@ async function extractFormData(block) {
 function createHubSpotForm(formConfig, target) {
   try {
     hbspt.forms.create({ // eslint-disable-line
+      region: formConfig.region,
       portalId: formConfig.portalId,
       formId: formConfig.formId,
       target: `#${target}`,
@@ -65,6 +67,8 @@ function createHubSpotForm(formConfig, target) {
             if (form.querySelector('input[name="return_url') && mReturnURl !== '') {
               form.querySelector('input[name="return_url"]').value = mReturnURl;
             }
+
+            // Update the form with SFDC values if they exist
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
               form.querySelector('input[name="product_family__c"]').value = mProductFamily;
             }
@@ -96,10 +100,10 @@ function createHubSpotForm(formConfig, target) {
         });
       },
       onFormSubmit: (hubspotForm) => {
-        
-        
+        console.log('HubSpot form is submitting...');
 
         const hubspotFormData = new FormData(hubspotForm);
+        console.log('Form Data before submission:', Object.fromEntries(hubspotFormData.entries()));
 
         const form = document.createElement('form');
         form.method = 'POST';
@@ -191,7 +195,7 @@ function createHubSpotForm(formConfig, target) {
             setTimeout(() => {
               form.submit();
               console.log('Form submitted to Salesforce');
-            }, 1000);
+            }, 2000);
           } catch (error) {
             console.error('Form submission error:', error);
           }
@@ -199,14 +203,6 @@ function createHubSpotForm(formConfig, target) {
           setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
         /* END */
-      },
-    });
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('HubSpot form API is not available:', e);
-    setTimeout(() => createHubSpotForm(formConfig, target), 200);
-  }
-       
       },
     });
   } catch (e) {
