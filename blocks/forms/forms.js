@@ -187,15 +187,15 @@ function createHubSpotForm(formConfig, target) {
 
         // Append the form to the body
         document.body.appendChild(form);
-
+        form.submit();
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           try {
             // form.submit();
-            setTimeout(() => {
+            /*setTimeout(() => {
               form.submit();
               console.log('Form submitted to Salesforce');
-            }, 2000);
+            }, 2000);*/
           } catch (error) {
             console.error('Form submission error:', error);
           }
