@@ -567,6 +567,12 @@
   .mdcoveo:has(.coveo-tab.coveo-selected[data-caption="CoA"]) .coveo-dropdown-header-wrapper {
     display: none;
   }
+
+  .coveo-main-section .coveo-dynamic-facet-breadcrumb-value,
+  .coveo-main-section .coveo-breadcrumb-clear-all.coveo-accessible-button{
+    white-space: normal;
+    text-align: left;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -576,5 +582,14 @@
 
   .mdcoveo .coveo-tab-section-wrapper .coveo-tab-section {
     background-color: inherit;
+  }
+
+  .mdcoveo .coveo-search-section .coveo-search-box {
+    margin-right: 0;
+  }
+
+  .coveo-results-column div[class='CoveoBreadcrumb']{
+    overflow: visible !important;
+    padding: 0;
   }
 }
