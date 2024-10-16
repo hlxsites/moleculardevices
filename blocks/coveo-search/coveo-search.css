@@ -460,7 +460,6 @@
     bottom: -121px;
     right: 15px;
     z-index: 99;
-    width: max-content !important;
   }
 
   .mdcoveo.coveo-small-tabs .coveo-dropdown-header-wrapper .coveo-facet-dropdown-header {
