@@ -311,7 +311,7 @@ main .section .resources-wrapper {
   left: 0;
 }
 
-.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content .coveo-facet-modal-close-button{
+.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content .coveo-facet-modal-close-button {
   min-width: auto;
 }
 
@@ -383,6 +383,10 @@ main .section .resources-wrapper {
   .section .resources .cover-banner .coveo-search-section {
     margin: 0;
     padding: 20px;
+  }
+
+  .cover-banner-wrapper .coveo-dropdown-header-wrapper {
+    position: static;
   }
 }
 
