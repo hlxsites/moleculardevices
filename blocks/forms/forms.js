@@ -61,12 +61,6 @@ function createHubSpotForm(formConfig, target) {
             const mPrimaryApplication = formConfig.productPrimaryApplication;
             const mRequestedQdcDiscussionC = formConfig.qdc;
             const mCmp = formConfig.cmp || valuecmp;
-            const mReturnURl = formConfig.redirectUrl;
-
-            // Update the form with SFDC values if they exist
-            if (form.querySelector('input[name="return_url') && mReturnURl !== '') {
-              form.querySelector('input[name="return_url"]').value = mReturnURl;
-            }
 
             // Update the form with SFDC values if they exist
             if (form.querySelector('input[name="product_family__c"]') && mProductFamily !== '') {
@@ -187,20 +181,20 @@ function createHubSpotForm(formConfig, target) {
 
         // Append the form to the body
         document.body.appendChild(form);
-        //form.submit();
+
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           try {
             // form.submit();
-            /*setTimeout(() => {
+            setTimeout(() => {
               form.submit();
               console.log('Form submitted to Salesforce');
-            }, 2000);*/
+            }, 200);
           } catch (error) {
             console.error('Form submission error:', error);
           }
         } else {
-          //setTimeout(() => { window.top.location.href = returnURL; }, 200);
+          setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
         /* END */
       },
