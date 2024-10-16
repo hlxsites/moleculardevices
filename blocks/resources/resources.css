@@ -385,8 +385,9 @@ main .section .resources-wrapper {
     padding: 20px;
   }
 
-  .cover-banner-wrapper .coveo-dropdown-header-wrapper {
+  .resources .cover-banner-wrapper .coveo-dropdown-header-wrapper {
     position: static;
+    width: 100%;
   }
 }
 

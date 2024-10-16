@@ -458,8 +458,9 @@
   .cover-banner-wrapper .coveo-dropdown-header-wrapper {
     position: absolute;
     bottom: -121px;
-    left: -8px;
+    right: 15px;
     z-index: 99;
+    width: max-content !important;
   }
 
   .mdcoveo.coveo-small-tabs .coveo-dropdown-header-wrapper .coveo-facet-dropdown-header {
@@ -467,11 +468,6 @@
     padding: 4px 16px;
     min-height: 22px;
     height: auto;
-  }
-
-  .mdcoveo.coveo-small-facets.coveo-no-visible-facet .coveo-facet-dropdown-header p {
-    line-height: 1px;
-    display: block;
   }
 
   .section .resources .section.coveo-main-section-wrapper {
@@ -485,6 +481,7 @@
 
   .mdcoveo .coveo-main-section {
     padding-right: 0;
+    padding-left: 0;
   }
 
   .mdcoveo .coveo-main-section .coveo-results-column {
@@ -520,7 +517,8 @@
     position: absolute;
   }
 
-  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row [role="heading"] {
+  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row [role="heading"],
+  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row:first-child > .coveo-result-cell:first-child {
     padding-left: 80px;
     min-height: 80px;
     margin-bottom: 10px;
@@ -530,7 +528,8 @@
     z-index: 999 !important;
   }
 
-  .coveo-main-section .coveo-result-cell .product-img {
+  .coveo-main-section .coveo-result-cell .product-img,
+  .coveo-result-frame > .coveo-result-cell:first-child .coveo-icon {
     width: 100%;
     max-width: 70px;
   }
@@ -564,6 +563,10 @@
 
   .coveo-tab-section .coveo-tab-list-container {
     z-index: 9999;
+  }
+
+  .mdcoveo:has(.coveo-tab.coveo-selected[data-caption="CoA"]) .coveo-dropdown-header-wrapper {
+    display: none;
   }
 }
 
