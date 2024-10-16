@@ -567,6 +567,13 @@
   .mdcoveo:has(.coveo-tab.coveo-selected[data-caption="CoA"]) .coveo-dropdown-header-wrapper {
     display: none;
   }
+
+  .coveo-main-section .coveo-dynamic-facet-breadcrumb-value,
+  .coveo-main-section .coveo-breadcrumb-clear-all.coveo-accessible-button{
+    max-width: max-content;
+    white-space: normal;
+    text-align: left;
+  }
 }
 
 @media only screen and (max-width: 480px) {
