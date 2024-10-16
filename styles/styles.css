@@ -1443,6 +1443,10 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
+main div.section.no-margin-bottom{
+  margin-bottom: 0 !important;
+}
+
 @media only screen and (max-width: 767px) {
   main div.section.wave.wavecarousel {
     min-height: 100%;
@@ -1533,7 +1537,7 @@ main .section.background-molecules {
 
   main div.orange-buttons .button {
     min-width: 140px;
-    max-width: 200px;
+    max-width: max-content;
     width: 100%;
     font-size: 12px;
     padding: 9px 12px 10px;

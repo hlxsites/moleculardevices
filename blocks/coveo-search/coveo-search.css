@@ -407,6 +407,14 @@
   padding-left: 0;
 }
 
+.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content .coveo-facet-modal-close-button {
+  min-width: max-content;
+}
+
+.mdcoveo .coveo-main-section-wrapper .magic-box .magic-box-clear-svg {
+  visibility: visible;
+}
+
 @media only screen and (min-width: 768px) {
   .section.cover-banner-wrapper {
     min-height: 440px;
@@ -436,13 +444,7 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .cover-banner-wrapper .coveo-dropdown-header-wrapper {
-    position: absolute;
-    bottom: -121px;
-    left: -8px;
-  }
-
+@media only screen and (max-width: 991px) {
   .mdcoveo.coveo-small-facets.coveo-no-visible-facet .coveo-facet-dropdown-header {
     display: block !important;
     width: 96%;
@@ -453,9 +455,22 @@
     margin-top: 4px;
   }
 
-  .mdcoveo.coveo-small-facets.coveo-no-visible-facet .coveo-facet-dropdown-header p {
-    line-height: 1px;
-    display: block;
+  .cover-banner-wrapper .coveo-dropdown-header-wrapper {
+    position: absolute;
+    bottom: -121px;
+    right: 15px;
+    z-index: 99;
+  }
+
+  .mdcoveo.coveo-small-tabs .coveo-dropdown-header-wrapper .coveo-facet-dropdown-header {
+    margin-right: 0;
+    padding: 4px 16px;
+    min-height: 22px;
+    height: auto;
+  }
+
+  .section .resources .section.coveo-main-section-wrapper {
+    padding: 0;
   }
 
   .coveo-main-section .coveo-result-list {
@@ -463,9 +478,14 @@
     margin-right: 0;
   }
 
-  .mdcoveo .coveo-results-column,
-  .coveo-main-section .coveo-list-layout {
-    padding: 16px 0;
+  .mdcoveo .coveo-main-section {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .mdcoveo .coveo-main-section .coveo-results-column {
+    padding: 15px;
+    margin-top: 10px;
   }
 
   .mdcoveo.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-content {
@@ -496,9 +516,65 @@
     position: absolute;
   }
 
-  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row [role="heading"] {
+  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row [role="heading"],
+  .coveo-result-frame > .coveo-result-cell:last-child > .coveo-result-row:first-child > .coveo-result-cell:first-child {
     padding-left: 80px;
     min-height: 80px;
     margin-bottom: 10px;
+  }
+
+  .coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content {
+    z-index: 999 !important;
+  }
+
+  .coveo-main-section .coveo-result-cell .product-img,
+  .coveo-result-frame > .coveo-result-cell:first-child .coveo-icon {
+    width: 100%;
+    max-width: 70px;
+  }
+
+  .coveo-more-tabs-svg,
+  .mdcoveo.coveo-small-tabs .coveo-dropdown-header.coveo-tab-dropdown-header {
+    color: var(--text-white) !important;
+  }
+
+  .mdcoveo.coveo-small-tabs .coveo-dropdown-header.coveo-tab-dropdown-header {
+    font-weight: normal !important;
+    line-height: 24px !important;
+  }
+
+  .mdcoveo.coveo-small-tabs .coveo-dropdown-header.coveo-tab-dropdown-header > * {
+    color: inherit;
+  }
+
+  .mdcoveo.coveo-small-tabs .coveo-tab-list-container .coveo-tab,
+  .mdcoveo.coveo-small-tabs .coveo-tab-list-container .coveo-tab p {
+    height: auto;
+    display: block;
+    padding-top: 0;
+    border-bottom: none;
+    color: inherit;
+  }
+
+  .coveo-small-tabs .coveo-dropdown-header .coveo-more-tabs {
+    vertical-align: text-bottom;
+  }
+
+  .coveo-tab-section .coveo-tab-list-container {
+    z-index: 9999;
+  }
+
+  .mdcoveo:has(.coveo-tab.coveo-selected[data-caption="CoA"]) .coveo-dropdown-header-wrapper {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .coveo-results-header .coveo-summary-section {
+    margin-bottom: 20px;
+  }
+
+  .mdcoveo .coveo-tab-section-wrapper .coveo-tab-section {
+    background-color: inherit;
   }
 }
