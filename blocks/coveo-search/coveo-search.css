@@ -583,4 +583,13 @@
   .mdcoveo .coveo-tab-section-wrapper .coveo-tab-section {
     background-color: inherit;
   }
+
+  .mdcoveo .coveo-search-section .coveo-search-box {
+    margin-right: 0;
+  }
+
+  .coveo-results-column div[class='CoveoBreadcrumb']{
+    overflow: visible !important;
+    padding: 0;
+  }
 }
