@@ -200,7 +200,7 @@ function createHubSpotForm(formConfig, target) {
             console.error('Form submission error:', error);
           }
         } else {
-          setTimeout(() => { window.top.location.href = returnURL; }, 200);
+          //setTimeout(() => { window.top.location.href = returnURL; }, 200);
         }
         /* END */
       },
