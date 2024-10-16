@@ -407,6 +407,10 @@
   padding-left: 0;
 }
 
+.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content .coveo-facet-modal-close-button {
+  min-width: max-content;
+}
+
 @media only screen and (min-width: 768px) {
   .section.cover-banner-wrapper {
     min-height: 440px;
@@ -436,11 +440,11 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 991px) {
   .cover-banner-wrapper .coveo-dropdown-header-wrapper {
     position: absolute;
-    bottom: -121px;
-    left: -8px;
+    top: 0;
+    left: 0;
   }
 
   .mdcoveo.coveo-small-facets.coveo-no-visible-facet .coveo-facet-dropdown-header {
@@ -463,9 +467,12 @@
     margin-right: 0;
   }
 
-  .mdcoveo .coveo-results-column,
-  .coveo-main-section .coveo-list-layout {
-    padding: 16px 0;
+  .mdcoveo .coveo-main-section {
+    padding-right: 0;
+  }
+
+  .mdcoveo .coveo-main-section .coveo-results-column {
+    padding: 15px;
   }
 
   .mdcoveo.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-content {
@@ -500,5 +507,9 @@
     padding-left: 80px;
     min-height: 80px;
     margin-bottom: 10px;
+  }
+
+  .coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content{
+    z-index: 999 !important;
   }
 }
