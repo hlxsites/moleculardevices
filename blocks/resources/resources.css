@@ -379,6 +379,11 @@ main .section .resources-wrapper {
   .resources .filters.dropdown li.filter[aria-selected="true"] .icon.icon-chevron-right-outline {
     transform: rotate(270deg);
   }
+
+  .section .resources .cover-banner .coveo-search-section {
+    margin: 0;
+    padding: 20px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
