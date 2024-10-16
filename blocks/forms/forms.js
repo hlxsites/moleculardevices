@@ -187,7 +187,7 @@ function createHubSpotForm(formConfig, target) {
 
         // Append the form to the body
         document.body.appendChild(form);
-        form.submit();
+        //form.submit();
         const allowedValues = ['Call', 'Demo', 'Quote'];
         if (allowedValues.includes(qdc)) {
           try {
