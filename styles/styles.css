@@ -496,7 +496,6 @@ button.primary {
   white-space: break-spaces;
   padding: 14px 18px;
   line-height: 21px;
-  margin-bottom: 20px;
 }
 
 .button-container:has(+ .button-container) a.button.primary {
