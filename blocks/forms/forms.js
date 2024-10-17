@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   button, div, h3, input,
 } from '../../scripts/dom-helpers.js';
@@ -44,8 +43,6 @@ function createHubSpotForm(formConfig, target) {
       formId: formConfig.formId,
       target: `#${target}`,
       onFormReady: (form) => {
-        console.log('HubSpot form is ready');
-
         // Handle Salesforce hidden fields via message event listener
         window.addEventListener('message', (event) => {
           if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
@@ -95,11 +92,7 @@ function createHubSpotForm(formConfig, target) {
       },
       onFormSubmit: (hubspotForm) => {
         setTimeout(() => {
-          console.log('HubSpot form is submitting...');
-
           const hubspotFormData = new FormData(hubspotForm);
-          console.log('Form Data before submission:', Object.fromEntries(hubspotFormData.entries()));
-
           const form = document.createElement('form');
           form.method = 'POST';
           form.action = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
@@ -185,15 +178,7 @@ function createHubSpotForm(formConfig, target) {
 
           const allowedValues = ['Call', 'Demo', 'Quote'];
           if (allowedValues.includes(qdc)) {
-            try {
-              // form.submit();
-              setTimeout(() => {
-                form.submit();
-                console.log('Form submitted to Salesforce');
-              }, 2000);
-            } catch (error) {
-              console.error('Form submission error:', error);
-            }
+            form.submit();
           } else {
             setTimeout(() => { window.top.location.href = returnURL; }, 200);
           }
