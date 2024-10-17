@@ -221,9 +221,14 @@ label.privacy {
   position: relative;
 }
 
+.hs-submit .actions {
+  margin: 10px auto;
+}
+
 .hs-submit .actions button {
   width: 100%;
   margin-bottom: 0;
+  font-weight: 600;
 }
 
 /* hubspot form */
@@ -243,7 +248,7 @@ label.privacy {
 
 @media only screen and (min-width: 992px) {
   .hs-submit .actions {
-    margin: 10px auto;
+    margin: 20px auto;
     max-width: 543px;
   }
 }
