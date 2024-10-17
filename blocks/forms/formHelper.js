@@ -1,3 +1,5 @@
+import { input } from '../../scripts/dom-helpers.js';
+
 /* Helper functions */
 export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
 
@@ -69,3 +71,108 @@ export const fieldsObj = [
   { newName: 'Campaign_ID', fieldName: 'cmp' },
   { newName: 'cmp', fieldName: 'cmp' },
 ];
+
+/* custom form fields */
+function createCustomField(hubspotFormData, fieldName, newName) {
+  const fieldVal = hubspotFormData.get(fieldName);
+  if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
+    const elementCompany = input({ name: newName, value: fieldVal, type: 'hidden' });
+    return elementCompany;
+  }
+  return 0;
+}
+
+/* create salesforce form */
+export function createSalesforceForm(hubspotForm, formConfig) {
+  const hubspotFormData = new FormData(hubspotForm);
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+
+  // Your org ID
+  const elementOID = input({ name: 'oid', value: OID, type: 'hidden' });
+  form.appendChild(elementOID);
+
+  // generate a form from Customize | Leads | Web-to-Lead to figure out more
+  fieldsObj.forEach(({ newName, fieldName }) => {
+    const inputField = createCustomField(hubspotFormData, fieldName, newName);
+    if (inputField && inputField !== 0) {
+      form.appendChild(inputField);
+    }
+  });
+
+  /* qdc */ // test case
+  const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
+  let qdc = '';
+
+  if (qdcCall) {
+    qdc = 'Call';
+  } else {
+    qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
+  }
+  if (qdc === '') {
+    qdc = formConfig.qdc || '';
+  }
+
+  const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
+  form.appendChild(elementqdcrequest);
+
+  /* subscribe */
+  let subscribe = hubspotForm.querySelector('input[name="subscribe"]').checked;
+  if (!subscribe) { subscribe = 'false'; }
+  const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
+  form.appendChild(elementmarketingoptin);
+
+  // SFDC redirects to returnURL in the response to the form post
+  let returnURL = hubspotFormData.get('return_url');
+  if (!returnURL) {
+    returnURL = formConfig.redirectUrl;
+  }
+
+  if (returnURL) {
+    const hsmduri = returnURL;
+    const hsmdkey = 'rfq';
+    const hsmdvalue = qdc;
+
+    const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
+    const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
+
+    if (hsmduri.match(re)) {
+      returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
+    } else {
+      returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
+    }
+
+    returnURL = `${returnURL}&subscribe=${subscribe}`;
+  }
+  const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+  form.appendChild(elementRetURL);
+
+  // test case
+  const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
+  const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts');
+  let primaryApplication = '';
+  if (productAndPrimaryFtype) {
+    const checkboxes = hubspotForm.getElementsByName('product_and_primary_application_na___service_contracts');
+    for (let i = 0; i < checkboxes.length; i += 1) {
+      if (checkboxes[i].checked) {
+        primaryApplication += `${checkboxes[i].value} , `;
+      }
+    }
+  } else if (primaryApplicationText !== '' && primaryApplicationText !== undefined) {
+    primaryApplication = primaryApplicationText;
+  }
+  const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
+  form.appendChild(elementprodprimapp);
+
+  document.body.appendChild(form);
+
+  const allowedValues = ['Call', 'Demo', 'Quote'];
+  if (allowedValues.includes(qdc)) {
+    form.submit();
+  } else {
+    setTimeout(() => { window.top.location.href = returnURL; }, 200);
+  }
+
+  // return { form, qdc, returnURL };
+}
