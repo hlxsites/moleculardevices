@@ -1,0 +1,276 @@
+:root {
+  --input-color: #5f696b;
+  --border-color: #bebebe;
+}
+
+/* stylelint-disable no-descending-specificity */
+.hs-dependent-field,
+.hs-form-field {
+  line-height: 1.4em;
+  margin: 0;
+  padding: 15px 0 2px;
+}
+
+.hs-form-field .hs-field-desc {
+  color: var(--input-color);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 0 0 3px 1px;
+  text-align: left;
+  width: 90% !important;
+}
+
+.hs-form-field .hs-input {
+  background-image: none;
+  box-shadow: none;
+  color: var(--input-color);
+  display: block;
+  font-size: 15px;
+  height: 40px;
+  line-height: 1.4286;
+  outline: none;
+  padding: 5px;
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.hs-form-field .hs-input,
+.hs-form-field .hs-form-booleancheckbox label span::before {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+}
+
+.hs-form-field .hs-form-booleancheckbox label span::before,
+.hs-form-field .hs-input[type="checkbox"]:checked ~ span::after {
+  position: absolute;
+  top: 1px;
+}
+
+.hs-form-field .hs-form-booleancheckbox label span::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: -32px;
+}
+
+.hs-form-field .hs-input[type="checkbox"]:checked ~ span::after {
+  content: "\2714";
+  color: var(--text-blue);
+  left: -28px;
+  font-size: 27px;
+  line-height: 0.8;
+  transition: all 0.2s;
+}
+
+.hs-form-field textarea.hs-input {
+  height: 100px;
+}
+
+.hs-fieldtype-booleancheckbox {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding-left: 32px;
+}
+
+.hs-form-booleancheckbox label {
+  display: inline-block;
+}
+
+.hs-form-field .hs-field-desc,
+.hs-form-field label:not(.hs-form-checkbox-display) {
+  display: none;
+}
+
+.hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label {
+  background: none;
+  clear: none;
+  color: var(--text-blue);
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 0;
+  opacity: 1;
+  position: relative;
+}
+
+.hs-form-field .hs-input[type="checkbox"] {
+  clear: none;
+  display: block;
+  font-weight: 400;
+  height: 30px;
+  left: -9999px;
+  line-height: 30px;
+  margin: 6px 0 0;
+  max-width: 30px;
+  position: absolute;
+  width: 5%;
+}
+
+.inputs-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+legend {
+  float: none;
+}
+
+.hs-fieldtype-booleancheckbox legend {
+  order: 2;
+}
+
+.hs-fieldtype-booleancheckbox legend,
+label.privacy {
+  border: none;
+  color: var(--input-color);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4286;
+  margin-bottom: 0;
+}
+
+.hs-fieldtype-booleancheckbox .input {
+  order: 1;
+}
+
+.hs-fieldtype-booleancheckbox .input .inputs-list,
+.hs-fieldtype-booleancheckbox .input .inputs-list li {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.hs-form-field .hs-form-booleancheckbox label span {
+  font-size: 14px;
+}
+
+.hs-error-msgs.inputs-list,
+.hs-error-msgs.inputs-list .hs-error-msg {
+  color: red;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  width: 100%;
+}
+
+.hs-error-msgs.inputs-list {
+  margin-top: 10px;
+}
+
+.form-columns-1 .hs-form-field:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.form-columns-2 + .form-columns-1 .hs-form-field:first-child {
+  padding-top: 15px;
+}
+
+.form-columns-1 .hs-form-field.hs-subscribe:first-child {
+  margin-top: 9px;
+}
+
+.hs-dependent-field > .hs-form-field:first-child {
+  padding-top: 0;
+}
+
+.hs-form-field .hs-input[type="radio"] {
+  display: inline-block;
+  height: auto;
+  line-height: inherit;
+  padding: 0;
+  width: auto;
+}
+
+.hbspt-form .hs-form-field label.hs-form-radio-display {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  line-height: 1;
+}
+
+.hs-error-msgs.inputs-list + .hs-error-msgs.inputs-list {
+  line-height: inherit;
+  margin-top: 16px;
+}
+
+.hbspt-form .hs-richtext.hs-main-font-element p {
+  margin-bottom: 0;
+  color: inherit;
+}
+
+.hbspt-form .hs-richtext.hs-main-font-element {
+  border: none;
+  bottom: 0;
+  color: var(--input-color);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.4286;
+  position: absolute;
+}
+
+.hbspt-form {
+  padding-bottom: 80px;
+  position: relative;
+}
+
+.hs-submit .actions button {
+  width: 100%;
+}
+
+/* hubspot form */
+.hubspot-form form {
+  display: flex;
+  flex-direction: column;
+  line-height: 16px;
+}
+
+.hubspot-form form .hs-submit {
+  order: 1;
+}
+
+.hubspot-form form div:has(> .hs-richtext > .privacy) {
+  order: 2;
+}
+
+@media only screen and (min-width: 992px) {
+  .hs-submit .actions {
+    margin: 10px auto 20px;
+    max-width: 543px;
+  }
+}
+
+.hs-button.primary {
+  background: var(--text-blue);
+  border: none;
+  border-radius: 0;
+  color: var(--text-white);
+  font-size: 18px;
+  font-weight: 600;
+  height: auto;
+  letter-spacing: 0.06rem;
+  line-height: 25px;
+  padding: 9px 18px 8px;
+  position: relative;
+  width: 100%;
+}
+
+.hs-button.primary,
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 400px) {
+  .hbspt-form {
+    padding-bottom: 110px;
+  }
+}
