@@ -170,7 +170,7 @@
 }
 
 /* huspot form */
-.landing-page main .section > div.forms-wrapper{
+.landing-page main .section > div.forms-wrapper > div{
   background-color: #f2f2f2;
   padding: 20px;
 }
