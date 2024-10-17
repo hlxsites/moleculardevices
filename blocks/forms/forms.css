@@ -224,6 +224,7 @@ label.privacy {
 .hs-submit .actions button {
   width: 100%;
   margin-bottom: 0;
+  font-weight: 600;
 }
 
 /* hubspot form */
