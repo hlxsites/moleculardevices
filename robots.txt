@@ -367,8 +367,8 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 
 
 
-
-
+#For testing
+Disallow: /en/assets/app-note/dd/img/hubspot-form-test
 
 
 Disallow: /contact/thank-you
