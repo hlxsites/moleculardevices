@@ -102,6 +102,7 @@ function createHubSpotForm(formConfig, target) {
 /* load hubspot script */
 function loadHubSpotScript(callback) {
   loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
+  // husbpot tracking script
   loadScript(`https://js.hs-scripts.com/20222769.js?v=${new Date().getTime()}`, callback);
 }
 
