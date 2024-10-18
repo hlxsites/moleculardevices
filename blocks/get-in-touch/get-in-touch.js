@@ -132,7 +132,7 @@ export default async function decorate(block) {
 
   /* get region on country change */
   const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
-  const searchButton = document.getElementById('searchButton');
+  const searchButton = document.querySelector('#searchButton > button');
   const countrySelect = document.getElementById('country');
 
   if (window.location.pathname === '/contact-search') {
