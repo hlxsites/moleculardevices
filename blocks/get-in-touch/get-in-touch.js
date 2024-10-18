@@ -132,11 +132,17 @@ export default async function decorate(block) {
   const searchButton = document.getElementById('searchButton');
   const countrySelect = document.getElementById('country');
 
+  if (window.location.pathname === '/contact-search') {
+    REGION = distributors.filter(
+      (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
+  }
+
   if (searchButton) {
     searchButton.addEventListener('click', (event) => {
       event.preventDefault();
       const countryObj = distributors.filter(
         (dist) => dist.DisplayCountry === countrySelect.value);
+      console.log(countryObj[0].Region.toLowerCase());
       REGION = countryObj[0].Region.toLowerCase();
       regenerateForm(hubspotUrl, '');
     });
