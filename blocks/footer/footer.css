@@ -3,7 +3,7 @@
   --footer-bg: #6b737b;
 }
 
-/* footer */
+/* footer  */
 .footer {
   color: var(--text-color);
   font-size: 15px;
@@ -36,6 +36,14 @@
 
 .footer a i.fa.fa-external-link {
   color: inherit;
+  background: no-repeat;
+  padding: 0;
+  margin-left: 4px;
+  width: auto;
+  height: auto;
+  top: -4px;
+  left: 0;
+  font-size: 10px;
 }
 
 .footer .columns img {

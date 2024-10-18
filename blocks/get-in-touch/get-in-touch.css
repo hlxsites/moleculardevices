@@ -40,8 +40,8 @@
   text-align: center;
   padding: 30px;
   width: 100%;
-  max-width: 600px;
   border: 1px solid #ddd;
+  margin-bottom: 30px;
 }
 
 .get-in-touch .hubspot-success img {
@@ -89,7 +89,7 @@
   .get-in-touch .hubspot-iframe-wrapper iframe {
     height: 800px;
   }
-  
+
   .get-in-touch > div > div:last-child iframe {
     height: 400px;
   }
@@ -100,7 +100,7 @@
     padding: 10px;
     margin-bottom: 20px;
   }
-  
+
   .get-in-touch .hubspot-iframe-wrapper iframe {
     height: 870px;
   }
