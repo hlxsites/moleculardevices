@@ -456,4 +456,5 @@ body .thank-you-page h4 {
 
 .landing-page main .section.download-form.forms-container .default-content-wrapper:first-child {
   padding-top: 0;
+  padding-bottom: 30px;
 }
