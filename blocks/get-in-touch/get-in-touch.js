@@ -1,44 +1,31 @@
-/* eslint-disable max-len */
 import { getCookie } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';
 let REGION = new URLSearchParams(window.location.search).get('region');
 const COMMENTS = 'comments';
 
-function copySearchParamsToReturnURL(searchParams, returnUrl) {
-  const targetUrl = new URL(returnUrl);
-  searchParams.forEach((value, key) => {
-    targetUrl.searchParams.delete(key);
-    targetUrl.searchParams.set(key, value);
-  });
-  targetUrl.searchParams.delete(COMMENTS);
-  return targetUrl;
-}
-
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
-  const returnURL = searchParams.get('return_url');
   const cmp = getCookie('cmp') || searchParams.get('cmp');
+  const returnURL = new URLSearchParams(decodeURIComponent(searchParams.get('return_url')));
   const queryParams = new URLSearchParams(window.location.search);
 
   searchParams.delete('cmp');
   searchParams.delete('region');
   searchParams.delete('return_url');
 
+  returnURL.set('region', queryParams.get('region'));
+
+  if (paramName === 'general') {
+    searchParams.delete(COMMENTS);
+  }
   if (paramName === COMMENTS) {
     searchParams.set(paramName, 'Sales');
-  } else {
-    const queryStringParam = queryParams.get(paramName) || '';
-    searchParams.set(paramName, queryStringParam);
   }
 
-  const modifiedReturnUrl = copySearchParamsToReturnURL(searchParams, returnURL);
-  if (!modifiedReturnUrl.searchParams.has('msg')) {
-    modifiedReturnUrl.searchParams.set('msg', 'success');
-  }
-
-  const queryStr = `?return_url=${encodeURIComponent(modifiedReturnUrl.href)}&${searchParams.toString()}&cmp=${cmp || DEFAULT_CMP}`;
+  const searchPatamsStr = searchParams.toString() ? `&${(searchParams.toString())}` : '';
+  const queryStr = `?return_url=${returnURL.toString()}${searchPatamsStr}&cmp=${cmp || DEFAULT_CMP}`;
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
@@ -78,6 +65,15 @@ function createMap(block, mapUrl) {
   observer.observe(block);
 }
 
+function regenerateForm(hubspotUrl, params, region) {
+  const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
+  if (hubspotUrl) {
+    const hubUrl = hubSpotFinalUrl(hubspotUrl, params, region);
+    hubspotUrl.href = hubUrl.href;
+    hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
+  }
+}
+
 function scrollToForm(link, hubspotUrl, region) {
   const hubspotIframe = document.querySelector('.hubspot-iframe-wrapper');
   if (hubspotUrl) {
@@ -85,22 +81,12 @@ function scrollToForm(link, hubspotUrl, region) {
     if (!DEFAULT_CMP) {
       DEFAULT_CMP = url.get('cmp');
     }
-    if (link.getAttribute('title') === 'Sales Inquiry Form') {
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, COMMENTS, region);
-      hubspotUrl.href = hubUrl.href;
-    } else {
-      const [href] = hubspotUrl.href.split('&');
-      hubspotUrl.href = href;
+    let params = 'general';
+    if (link && link.getAttribute('title') === 'Sales Inquiry Form') {
+      params = COMMENTS;
     }
-    // add region on click of tab links
-    if (region) {
-      const updatedHubUrl = new URL(hubspotUrl.href);
-      const retUrl = new URL(updatedHubUrl.searchParams.get('return_url'));
-      retUrl.searchParams.set('region', region);
-      updatedHubUrl.searchParams.set('return_url', retUrl.href);
-      hubspotUrl.href = updatedHubUrl.href;
-    }
-
+    const hubUrl = hubSpotFinalUrl(hubspotUrl, params, region);
+    hubspotUrl.href = hubUrl.href;
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }
   window.scroll({
@@ -132,6 +118,7 @@ export default function decorate(block) {
     link.addEventListener('click', () => {
       const regionName = link.hash.split('#')[1] || queryParams.get('region');
       REGION = regionName;
+      regenerateForm(hubspotUrl, '', REGION);
     });
   });
 
