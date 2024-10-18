@@ -1,3 +1,4 @@
+import ffetch from '../../scripts/ffetch.js';
 import { getCookie } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';
@@ -15,7 +16,7 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   searchParams.delete('region');
   searchParams.delete('return_url');
 
-  returnURL.set('region', queryParams.get('region'));
+  returnURL.set('region', queryParams.get('region') || REGION);
 
   if (paramName === 'general') {
     searchParams.delete(COMMENTS);
@@ -65,10 +66,10 @@ function createMap(block, mapUrl) {
   observer.observe(block);
 }
 
-function regenerateForm(hubspotUrl, params, region) {
+function regenerateForm(hubspotUrl, params) {
   const hubspotIframe = document.querySelector('.get-in-touch-form');
   if (hubspotUrl) {
-    const hubUrl = hubSpotFinalUrl(hubspotUrl, params, region);
+    const hubUrl = hubSpotFinalUrl(hubspotUrl, params);
     hubspotUrl.href = hubUrl.href;
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }
@@ -96,11 +97,12 @@ function scrollToForm(link, hubspotUrl, region) {
   });
 }
 
-export default function decorate(block) {
+export default async function decorate(block) {
   const queryParams = new URLSearchParams(window.location.search);
   const hubspotUrl = block.querySelector('[href*="https://info.moleculardevices.com"]');
   const mapUrl = block.querySelector('[href*="https://maps.google.com"]');
 
+  /* set success msg */
   if (queryParams.has('msg') && queryParams.get('msg') === 'success') {
     const successMsg = block.lastElementChild.firstElementChild;
     successMsg.classList.add('hubspot-success');
@@ -115,14 +117,32 @@ export default function decorate(block) {
 
   /* get region on tab click */
   const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
-  tabLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      const regionName = link.hash.split('#')[1] || queryParams.get('region');
-      REGION = regionName;
-      regenerateForm(hubspotUrl, '', REGION);
+  if (tabLinks) {
+    tabLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const regionName = link.hash.split('#')[1] || queryParams.get('region');
+        REGION = regionName;
+        regenerateForm(hubspotUrl, '');
+      });
     });
-  });
+  }
 
+  /* get region on country change */
+  const distributors = await ffetch('/contact/local-distibutors.json').withFetch(fetch).all();
+  const searchButton = document.getElementById('searchButton');
+  const countrySelect = document.getElementById('country');
+
+  if (searchButton) {
+    searchButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const countryObj = distributors.filter(
+        (dist) => dist.DisplayCountry === countrySelect.value);
+      REGION = countryObj[0].Region.toLowerCase();
+      regenerateForm(hubspotUrl, '');
+    });
+  }
+
+  /* scroll to form on click of inquiry links */
   const inquiryLinks = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
