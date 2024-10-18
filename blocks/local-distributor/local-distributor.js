@@ -235,7 +235,7 @@ export default async function decorate(block) {
     productFamilyList.map((family) => family.DisplayPrimaryProducts));
   document.querySelector('.local-distributor > div').lastElementChild.innerHTML = formWrapper;
   document.querySelector('.local-distributor').appendChild(searchResult);
-  const searchButton = document.getElementById('searchButton');
+  const searchButton = document.querySelector('#searchButton > button');
 
   searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-unused-expressions
