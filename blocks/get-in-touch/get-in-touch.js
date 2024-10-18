@@ -123,6 +123,9 @@ export default async function decorate(block) {
         const regionName = link.hash.split('#')[1] || queryParams.get('region');
         REGION = regionName;
         regenerateForm(hubspotUrl, '');
+        setTimeout(() => {
+          document.getElementById('country').selectedIndex = 1;
+        }, 500);
       });
     });
   }
@@ -135,15 +138,16 @@ export default async function decorate(block) {
   if (window.location.pathname === '/contact-search') {
     REGION = distributors.filter(
       (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
+  } else {
+    document.getElementById('country').selectedIndex = 1;
   }
 
   if (searchButton) {
     searchButton.addEventListener('click', (event) => {
       event.preventDefault();
       const countryObj = distributors.filter(
-        (dist) => dist.DisplayCountry === countrySelect.value);
-      console.log(countryObj[0].Region.toLowerCase());
-      REGION = countryObj[0].Region.toLowerCase();
+        (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
+      REGION = countryObj || queryParams.get('region');
       regenerateForm(hubspotUrl, '');
     });
   }
