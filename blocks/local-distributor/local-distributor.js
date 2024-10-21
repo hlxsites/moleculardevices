@@ -119,7 +119,20 @@ export default async function decorate(block) {
       ),
     ];
   } else {
-    countryList = [...new Set(distributors.map(({ DisplayCountry }) => DisplayCountry))];
+    const countryName = params.country;
+    if (countryName) {
+      const region = distributors.filter(
+        (dist) => dist.Country === countryName)[0].Region.toLowerCase();
+      countryList = [
+        ...new Set(
+          distributors
+            .filter(({ Region }) => Region.toLowerCase().includes(region) > 0)
+            .map(({ DisplayCountry }) => DisplayCountry),
+        ),
+      ];
+    } else {
+      countryList = [...new Set(distributors.map(({ DisplayCountry }) => DisplayCountry))];
+    }
   }
 
   const searchButtton = document.querySelector('.tab-wrapper');
