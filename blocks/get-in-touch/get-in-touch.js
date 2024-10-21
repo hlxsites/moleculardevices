@@ -104,11 +104,20 @@ export default async function decorate(block) {
 
   /* set success msg */
   if (queryParams.has('msg') && queryParams.get('msg') === 'success') {
+    const getInTouchBlock = document.querySelector('.get-in-touch');
     const successMsg = block.lastElementChild.firstElementChild;
     successMsg.classList.add('hubspot-success');
     hubspotUrl.closest('div').replaceWith(successMsg);
     block.lastElementChild.remove();
     createMap(block, mapUrl);
+    setTimeout(() => {
+      if (getInTouchBlock) {
+        window.scroll({
+          top: getInTouchBlock.offsetTop - 100,
+          behavior: 'smooth',
+        });
+      }
+    }, 1000);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
