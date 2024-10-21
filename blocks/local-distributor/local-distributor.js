@@ -119,7 +119,20 @@ export default async function decorate(block) {
       ),
     ];
   } else {
-    countryList = [...new Set(distributors.map(({ DisplayCountry }) => DisplayCountry))];
+    const countryName = params.country;
+    if (countryName) {
+      const region = distributors.filter(
+        (dist) => dist.Country === countryName)[0].Region.toLowerCase();
+      countryList = [
+        ...new Set(
+          distributors
+            .filter(({ Region }) => Region.toLowerCase().includes(region) > 0)
+            .map(({ DisplayCountry }) => DisplayCountry),
+        ),
+      ];
+    } else {
+      countryList = [...new Set(distributors.map(({ DisplayCountry }) => DisplayCountry))];
+    }
   }
 
   const searchButtton = document.querySelector('.tab-wrapper');
@@ -235,7 +248,7 @@ export default async function decorate(block) {
     productFamilyList.map((family) => family.DisplayPrimaryProducts));
   document.querySelector('.local-distributor > div').lastElementChild.innerHTML = formWrapper;
   document.querySelector('.local-distributor').appendChild(searchResult);
-  const searchButton = document.getElementById('searchButton');
+  const searchButton = document.querySelector('#searchButton > button');
 
   searchButton.addEventListener('click', () => {
     // eslint-disable-next-line no-unused-expressions
