@@ -170,7 +170,7 @@
 }
 
 /* huspot form */
-.landing-page main .section > div.forms-wrapper{
+.landing-page main .section > div.forms-wrapper > div{
   background-color: #f2f2f2;
   padding: 20px;
 }
@@ -452,4 +452,9 @@ body .thank-you-page h4 {
 
 .landing-page.thankyou .hero-inner > div:first-child:has(.hero-background) {
   padding: 0;
+}
+
+.landing-page main .section.download-form.forms-container .default-content-wrapper:first-child {
+  padding-top: 0;
+  padding-bottom: 30px;
 }
