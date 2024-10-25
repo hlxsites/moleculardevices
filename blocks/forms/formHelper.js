@@ -39,8 +39,8 @@ export const fieldsObj = [
   { newName: 'email', fieldName: 'email' },
   { newName: 'phone', fieldName: '0-2/phone' },
   { newName: 'company', fieldName: 'company' },
-  { newName: 'country', fieldName: 'country', fallback: 'country_code' },
-  // { newName: 'country_code', fieldName: 'country_code' }, // TEST CASE
+  { newName: 'country', fieldName: 'country' },
+  { newName: 'country', fieldName: 'country_code' }, // TEST CASE
   { newName: 'state', fieldName: 'state_dropdown' }, // TEST CASE
   { newName: 'state', fieldName: 'state' }, // TEST CASE
   { newName: 'zip', fieldName: 'zip' },
@@ -74,11 +74,10 @@ export const fieldsObj = [
 ];
 
 /* custom form fields */
-function createCustomField(hubspotFormData, fieldName, newName, fallback) {
+function createCustomField(hubspotFormData, fieldName, newName) {
   const fieldVal = hubspotFormData.get(fieldName);
-  const fallbackVal = hubspotFormData.get(fallback);
   if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
-    const elementCompany = input({ name: newName, value: fallbackVal || fieldVal, type: 'hidden' });
+    const elementCompany = input({ name: newName, value: fieldVal, type: 'hidden' });
     return elementCompany;
   }
   return 0;
@@ -96,8 +95,8 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementOID);
 
   // generate a form from Customize | Leads | Web-to-Lead to figure out more
-  fieldsObj.forEach(({ newName, fieldName, fallback }) => {
-    const inputField = createCustomField(hubspotFormData, fieldName, newName, fallback);
+  fieldsObj.forEach(({ newName, fieldName }) => {
+    const inputField = createCustomField(hubspotFormData, fieldName, newName);
     if (inputField && inputField !== 0) {
       form.appendChild(inputField);
     }
@@ -154,7 +153,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
   let primaryApplication = '';
   if (productAndPrimaryFtype) {
-    const checkboxes = hubspotForm.getElementsByName('product_and_primary_application_na___service_contracts');
+    const checkboxes = hubspotForm.get('product_and_primary_application_na___service_contracts');
     for (let i = 0; i < checkboxes.length; i += 1) {
       if (checkboxes[i].checked) {
         primaryApplication += `${checkboxes[i].value} , `;
