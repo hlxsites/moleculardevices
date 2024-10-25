@@ -103,7 +103,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
     }
   });
 
-  /* qdc */ // test case
+  /* qdc */
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
   let qdc = '';
 
@@ -150,9 +150,8 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
   form.appendChild(elementRetURL);
 
-  // test case
   const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
-  const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts');
+  const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
   let primaryApplication = '';
   if (productAndPrimaryFtype) {
     const checkboxes = hubspotForm.getElementsByName('product_and_primary_application_na___service_contracts');
@@ -169,12 +168,10 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   document.body.appendChild(form);
 
-  // const allowedValues = ['Call', 'Demo', 'Quote'];
-  // if (allowedValues.includes(qdc)) {
-  //   form.submit();
-  // } else {
-  //   setTimeout(() => { window.top.location.href = returnURL; }, 200);
-  // }
-
-  // return { form, qdc, returnURL };
+  const allowedValues = ['Call', 'Demo', 'Quote'];
+  if (allowedValues.includes(qdc)) {
+    form.submit();
+  } else {
+    setTimeout(() => { window.top.location.href = returnURL; }, 200);
+  }
 }
