@@ -39,9 +39,10 @@ export const fieldsObj = [
   { newName: 'email', fieldName: 'email' },
   { newName: 'phone', fieldName: '0-2/phone' },
   { newName: 'company', fieldName: 'company' },
-  { newName: 'country', fieldName: 'country' },
-  { newName: 'country_code', fieldName: 'country_code' }, // TEST CASE
-  { newName: 'state', fieldName: 'state_dropdown, state' }, // TEST CASE
+  { newName: 'country', fieldName: 'country', fallback: 'country_code' },
+  // { newName: 'country_code', fieldName: 'country_code' }, // TEST CASE
+  { newName: 'state', fieldName: 'state_dropdown' }, // TEST CASE
+  { newName: 'state', fieldName: 'state' }, // TEST CASE
   { newName: 'zip', fieldName: 'zip' },
   { newName: timelineValue, fieldName: 'timeline__c' },
   { newName: 'title', fieldName: 'jobtitle' },
@@ -54,7 +55,7 @@ export const fieldsObj = [
   { newName: 'na_lead_finder_agent__c', fieldName: 'na_lead_finder_agent__c' },
   { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
   { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
-  { newName: productFamily, fieldName: 'product_family__c' }, // TEST CASE
+  { newName: productFamily, fieldName: 'product_family__c' },
   { newName: productSelection, fieldName: 'product_selection__c' },
   { newName: 'description', fieldName: 'description' },
   { newName: fseSalesRepInsideSales, fieldName: 'fse_sales_rep_inside_sales__c' },
@@ -73,10 +74,11 @@ export const fieldsObj = [
 ];
 
 /* custom form fields */
-function createCustomField(hubspotFormData, fieldName, newName) {
+function createCustomField(hubspotFormData, fieldName, newName, fallback) {
   const fieldVal = hubspotFormData.get(fieldName);
+  const fallbackVal = hubspotFormData.get(fallback);
   if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
-    const elementCompany = input({ name: newName, value: fieldVal, type: 'hidden' });
+    const elementCompany = input({ name: newName, value: fallbackVal || fieldVal, type: 'hidden' });
     return elementCompany;
   }
   return 0;
@@ -94,8 +96,8 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementOID);
 
   // generate a form from Customize | Leads | Web-to-Lead to figure out more
-  fieldsObj.forEach(({ newName, fieldName }) => {
-    const inputField = createCustomField(hubspotFormData, fieldName, newName);
+  fieldsObj.forEach(({ newName, fieldName, fallback }) => {
+    const inputField = createCustomField(hubspotFormData, fieldName, newName, fallback);
     if (inputField && inputField !== 0) {
       form.appendChild(inputField);
     }
@@ -167,12 +169,12 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   document.body.appendChild(form);
 
-  const allowedValues = ['Call', 'Demo', 'Quote'];
-  if (allowedValues.includes(qdc)) {
-    form.submit();
-  } else {
-    setTimeout(() => { window.top.location.href = returnURL; }, 200);
-  }
+  // const allowedValues = ['Call', 'Demo', 'Quote'];
+  // if (allowedValues.includes(qdc)) {
+  //   form.submit();
+  // } else {
+  //   setTimeout(() => { window.top.location.href = returnURL; }, 200);
+  // }
 
   // return { form, qdc, returnURL };
 }

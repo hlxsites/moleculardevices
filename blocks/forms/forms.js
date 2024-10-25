@@ -87,6 +87,12 @@ function createHubSpotForm(formConfig, target) {
             }
           }
         });
+
+        // testing
+        if (form.querySelector('select[name="country_code"]')) {
+          form.querySelector('select[name="country_code"]').value = 'IN';
+        }
+        createSalesforceForm(form, formConfig);
       },
       onFormSubmit: (hubspotForm) => {
         createSalesforceForm(hubspotForm, formConfig);
