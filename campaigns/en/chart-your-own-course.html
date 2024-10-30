@@ -310,6 +310,17 @@
       </div>
     </footer>
   </div>
+
+  <!-- add cmp to all links -->
+  <script>
+    const cmpValue = '701Rn00000JuHpdIAF';
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+      const url = new URL(link.href);
+      url.searchParams.set('cmp', cmpValue);
+      link.href = url.toString();
+    });
+  </script>
 </body>
 
 </html>
