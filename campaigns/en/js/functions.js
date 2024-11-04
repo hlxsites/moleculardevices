@@ -241,12 +241,17 @@ function select_product() {
         $('#result-spotlight p').text(product_info.description);
       }
 
-      /* add cmp to all links */
+      /* add/remove cmp to all links */
       const isPPCpage = window.location.pathname.includes('chart-your-own-course-PPC');
+      const isSalesTrainingPage = window.location.pathname.includes('chart-your-own-course-sales-training');
       const cmpValue = isPPCpage ? '701Rn00000OwhGZIAZ' : '701Rn00000JuHpdIAF';
       $('#quiz-results a, #quiz-cta, #new-search').each(function () {
         const url = new URL($(this).attr('href'), window.location.origin);
-        url.searchParams.set('cmp', cmpValue);
+        if (isSalesTrainingPage) {
+          url.searchParams.delete('cmp');
+        } else {
+          url.searchParams.set('cmp', cmpValue);
+        }
         $(this).attr('href', url.toString());
       });
     }
