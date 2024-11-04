@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Molecular Devices</title>
-  <link rel="canonical" href="https://www.moleculardevices.com/campaigns/en/chart-your-own-course" />
+  <link rel="canonical" href="https://www.moleculardevices.com/campaigns/en/chart-your-own-course-ppc" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
@@ -13,11 +13,6 @@
   <script type="text/javascript" src="js/functions.js"></script>
 
   <script>
-    //  var current_page =  window.location.pathname;
-    //if(current_page == '/campaigns/en/chart-your-own-course/index.html' || current_page == '/campaigns/en/chart-your-own-course/'){
-    //  window.location = 'https://www.dev-molecular-devices.pantheonsite.io/campaigns/en/chart-your-own-course';
-    // }
-
     (function (i, s, o, g, r, a, m) {
       i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
         (i[r].q = i[r].q || []).push(arguments);
@@ -27,9 +22,7 @@
 
     ga('create', 'UA-17137804-1', 'auto');
     ga('send', 'pageview');
-
   </script>
-
 
   <script type="text/javascript">
     setTimeout(function () {
@@ -38,6 +31,15 @@
       a.src = document.location.protocol + "//script.crazyegg.com/pages/scripts/0039/4210.js?" + Math.floor(new Date().getTime() / 3600000);
       a.async = true; a.type = "text/javascript"; b.parentNode.insertBefore(a, b);
     }, 1);
+  </script>
+
+<!-- change href cmp id to new cmp id -->
+  <script>
+    const anchors = document.querySelectorAll('a');
+    anchors.forEach(function (anchor) {
+      const search = new URLSearchParams(anchor.href);
+      console.log(search);
+    })
   </script>
 </head>
 
@@ -63,12 +65,12 @@
       <div id="lower-head">
         <nav>
           <div id="logo-container">
-            <a href="index.html" id="logo">
+            <a href="index.html?cmp=701Rn00000OwhGZIAZ" id="logo">
               Molecular Devices
             </a>
           </div>
           <div class="buttons-container">
-            <a href="https://www.moleculardevices.com/quote-request?pid=microplate-readers" target="_blank"
+            <a href="https://www.moleculardevices.com/quote-request?pid=microplate-readers&cmp=701Rn00000OwhGZIAZ" target="_blank"
               title="Request Pricing Information" class="quote-button" rel="noopener noreferrer">Request Pricing
               Information</a>
           </div>
@@ -89,7 +91,6 @@
       <div id="quiz">
 
         <h1>Find Your Ideal Microplate Reader</h1>
-        <!--<progress max="4" value="0">0/4</progress>-->
         <progress max="3" value="0">0/3</progress>
         <div id="quiz-pages">
           <div class="quiz-page current" id="quiz1">
@@ -114,23 +115,6 @@
                   (0.5 &mu;L)</label></li>
             </ul>
           </div>
-          <!--<div class="quiz-page" id="quiz3">
-                        <h3 class="question">Which features would you like your instrument to have? (pick one)</h3>
-                        <ul class="check-list">
-                            <li><input type="checkbox" value="1" name="quest3[]" id="q3-1" /><label for="q3-1">Temperature Control</label></li>
-                            <li><input type="checkbox" value="2" name="quest3[]" id="q3-2" /><label for="q3-2">Cuvette Reads and Temperature Control</label></li>
-                            <li><input type="checkbox" value="3" name="quest3[]" id="q3-3" /><label for="q3-3">Liquid Handling and Temperature Control</label></li>
-                        </ul>
-                    </div>
-                    <div class="quiz-page" id="quiz4">
-                        <h3 class="question">Which of the following assays does your lab plan to run?</h3>
-                        <ul class="check-list">
-                            <li><input type="checkbox" value="1" name="quest4[]" id="q4-1" /><label for="q4-1">DLR</label></li>
-                            <li><input type="checkbox" value="2" name="quest4[]" id="q4-2" /><label for="q4-2">DNA/RNA/Protein Quantitation</label></li>
-                            <li><input type="checkbox" value="3" name="quest4[]" id="q4-3" /><label for="q4-3">Western blot</label></li>
-                            <li><input type="checkbox" value="4" name="quest4[]" id="q4-4" /><label for="q4-4">Cell Imaging</label></li>
-                        </ul>
-                    </div>-->
           <div class="quiz-page" id="quiz3">
             <h3 class="question">Which features would you like your instrument to have?</h3>
             <ul class="check-list">
@@ -193,7 +177,7 @@
             <h3>Start Simply</h3>
             <p>Kaitlin Murphy helps engineer functional replacement and temporary bridge tissues.</p>
           </div>
-          <a href="https://www.moleculardevices.com/customer-story-university-california-davis" target="_blank"
+          <a href="https://www.moleculardevices.com/customer-story-university-california-davis?cmp=701Rn00000OwhGZIAZ" target="_blank"
             rel="noopener noreferrer">See how Kaitlin started simply</a>
         </div>
         <div class="study">
@@ -202,7 +186,7 @@
             <h3>Advance Your Research</h3>
             <p>ETAP Lab use the SpectraMax i3x to advance neurodegenerative disease research</p>
           </div>
-          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/etap-lab" target="_blank"
+          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/etap-lab?cmp=701Rn00000OwhGZIAZ" target="_blank"
             rel="noopener noreferrer">See how ETAP Lab advances their research</a>
         </div>
         <div class="study">
@@ -211,7 +195,7 @@
             <h3>Publish Like a Pro</h3>
             <p>RiboPro is advancing research into life-changing mRNA therapeutics</p>
           </div>
-          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/ribopro" target="_blank"
+          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/ribopro?cmp=701Rn00000OwhGZIAZ" target="_blank"
             rel="noopener noreferrer">See how RiboPro publishes like a pro</a>
         </div>
         <div class="study">
@@ -221,7 +205,7 @@
             <p>Dr. Grégory Lavieu's group at the Université de Paris is studying how Extracellular Vesicles
               (EVs), transfer their content from donor to acceptor cells.</p>
           </div>
-          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/university-of-paris"
+          <a href="https://www.moleculardevices.com/en/assets/customer-breakthrough/br/university-of-paris?cmp=701Rn00000OwhGZIAZ"
             target="_blank" rel="noopener noreferrer">See how Dr. Lavieu's group unleashes their
             brilliance</a>
         </div>
@@ -276,33 +260,12 @@
     </section>
     <footer id="footer" class="footer">
       <div class="container">
-        <!--<nav class="footer-menu pull-left">
-                    <ul class="nav nav-pills">
-                        <li class="first leaf terms--conditions"><a href="/terms-and-conditions">Terms &amp; Conditions</a></li>
-                        <li class="leaf privacy"><a href="/privacy">Privacy</a></li>
-                        <li class="leaf online-terms-of-use"><a href="/online-terms-use">Online Terms of Use</a></li>
-                        <li class="leaf trademarks"><a href="/trademarks">Trademarks</a></li>
-                        <li class="leaf careers"><a href="/careers" title="">Careers</a></li>
-                        <li class="leaf support"><a href="/support" title="">Support</a></li>
-                        <li class="leaf library"><a href="/library" title="">Library</a></li>
-                        <li class="last leaf contact-us"><a href="/contact" title="">Contact Us</a></li>
-                    </ul>
-                </nav>
-                <nav class="social-menu pull-right">
-                    <ul class="nav nav-pills">
-                        <li class="first leaf linkedin"><a href="http://www.linkedin.com/company/molecular-devices" title=""><i class="fa fa-linkedin"></i></a></li>
-                        <li class="leaf facebook"><a href="https://www.facebook.com/MolecularDevices" title=""><i class="fa fa-facebook"></i></a></li>
-                        <li class="leaf twitter"><a href="https://twitter.com/moldev" title=""><i class="fa fa-twitter"></i></a></li>
-                        <li class="leaf youtube"><a href="http://www.youtube.com/user/MolecularDevicesInc" title=""><i class="fa fa-youtube"></i></a></li>
-                        <li class="last leaf google-plus"><a href="https://plus.google.com/+moleculardevices/posts" title=""><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                </nav>-->
         <div class="row">
           <div class="col-sm-6">
             <small class="copyright pull-left">©2024 Molecular Devices, LLC. All rights reserved.</small>
           </div>
           <div class="col-sm-6">
-            <a href="https://www.danaher.com" aria-label="Danaher">
+            <a href="https://www.danaher.com?cmp=701Rn00000OwhGZIAZ" aria-label="Danaher">
               <img src="/campaigns/en/img/danaher.png" alt="Dahaher">
             </a>
           </div>
@@ -311,9 +274,9 @@
     </footer>
   </div>
 
-  <!-- add cmp to all links -->
-  <script>
-    const cmpValue = '701Rn00000JuHpdIAF';
+   <!-- add cmp to all links -->
+   <script>
+    const cmpValue = '701Rn00000OwhGZIAZ';
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = new URL(link.href);

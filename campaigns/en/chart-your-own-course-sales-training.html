@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Molecular Devices</title>
-  <link rel="canonical" href="https://www.moleculardevices.com/campaigns/en/chart-your-own-course" />
+  <link rel="canonical" href="https://www.moleculardevices.com/campaigns/en/chart-your-own-course-sales-training" />
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
@@ -313,12 +313,10 @@
 
   <!-- add cmp to all links -->
   <script>
-    const cmpValue = '701Rn00000JuHpdIAF';
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = new URL(link.href);
-      url.searchParams.set('cmp', cmpValue);
-      link.href = url.toString();
+      url.searchParams.delete('cmp');
     });
   </script>
 </body>
