@@ -242,7 +242,7 @@ function select_product() {
       }
 
       /* add/remove cmp to all links */
-      const isPPCpage = window.location.pathname.includes('chart-your-own-course-PPC');
+      const isPPCpage = window.location.pathname.includes('chart-your-own-course-ppc');
       const isSalesTrainingPage = window.location.pathname.includes('chart-your-own-course-sales-training');
       const cmpValue = isPPCpage ? '701Rn00000OwhGZIAZ' : '701Rn00000JuHpdIAF';
       $('#quiz-results a, #quiz-cta, #new-search').each(function () {
