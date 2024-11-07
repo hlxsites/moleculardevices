@@ -2,7 +2,7 @@ import {
   button, div, h3, input,
 } from '../../scripts/dom-helpers.js';
 import { toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 import {
   fieldsObj, getDefaultForKey, marketingOptin, OID, prodPrimApp, QDCRrequest, RESOURCEKEYS,
 } from './formHelper.js';
