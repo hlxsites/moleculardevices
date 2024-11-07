@@ -57,7 +57,7 @@ function createHubSpotForm(formConfig, target) {
             const mResearchArea = formConfig.researchArea;
             const mPrimaryApplication = formConfig.productPrimaryApplication;
             const mRequestedQdcDiscussionC = formConfig.qdc;
-            const mCmp = formConfig.cmp || valuecmp;
+            const mCmp = valuecmp || formConfig.cmp;
             const mReturnUrl = formConfig.redirectUrl;
 
             // Update the form with SFDC values if they exist
