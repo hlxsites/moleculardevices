@@ -272,16 +272,7 @@ const VARIANTS = {
     },
 
     getCategories(item) {
-      const category = item.path
-        .split('/')[2];
-
-      if (!category || category === 'blog') return null;
-
-      const filterableCategory = category.split('-')
-        .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
-        .join('-');
-
-      return [filterableCategory];
+      return [item.category || item.Category];
     },
   },
 
