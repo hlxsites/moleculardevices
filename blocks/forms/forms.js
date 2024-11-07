@@ -2,7 +2,7 @@ import {
   button, div, h3, input,
 } from '../../scripts/dom-helpers.js';
 import { toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 import {
   fieldsObj, getDefaultForKey, marketingOptin, OID, prodPrimApp, QDCRrequest, RESOURCEKEYS,
 } from './formHelper.js';
@@ -50,14 +50,15 @@ function createHubSpotForm(formConfig, target) {
             const params = new Proxy(new URLSearchParams(window.location.search), {
               get: (searchParams, prop) => searchParams.get(prop),
             });
-            const valuecmp = params.cmp;
+            const cmpCookieValue = getCookie('cmp');
+            const valuecmp = params.cmp || cmpCookieValue;
 
             // Salesforce form fields
             const mProductFamily = formConfig.productFamily;
             const mResearchArea = formConfig.researchArea;
             const mPrimaryApplication = formConfig.productPrimaryApplication;
             const mRequestedQdcDiscussionC = formConfig.qdc;
-            const mCmp = formConfig.cmp || valuecmp;
+            const mCmp = valuecmp || formConfig.cmp;
             const mReturnUrl = formConfig.redirectUrl;
 
             // Update the form with SFDC values if they exist
