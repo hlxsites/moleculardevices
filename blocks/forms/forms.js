@@ -50,7 +50,8 @@ function createHubSpotForm(formConfig, target) {
             const params = new Proxy(new URLSearchParams(window.location.search), {
               get: (searchParams, prop) => searchParams.get(prop),
             });
-            const valuecmp = params.cmp;
+            const cmpCookieValue = getCookie('cmp');
+            const valuecmp = params.cmp || cmpCookieValue;
 
             // Salesforce form fields
             const mProductFamily = formConfig.productFamily;
