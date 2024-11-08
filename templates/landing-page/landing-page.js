@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
@@ -9,7 +10,11 @@ async function iframeResizeHandler() {
   });
 
   /* global iFrameResize */
-  iFrameResize({ log: false });
+  setTimeout(() => {
+    iFrameResize({
+      log: true,
+    }, '#iframeContent');
+  }, 500);
 }
 
 function handleEmbed() {
@@ -41,6 +46,7 @@ function handleEmbed() {
         if (record.target.tagName === 'IFRAME'
           && grandGrandParent.classList.contains('embed')
         ) {
+          // iframeResizeHandler(iframeURL, iframeID, root);
           const { height } = record.target.style;
           if (height) {
             const parent = record.target.parentElement;
@@ -59,9 +65,6 @@ function handleEmbed() {
 }
 
 export default async function buildAutoBlocks() {
-  const embed = document.querySelector('main .embed.block.embed-is-loaded');
-  console.log(embed);
-
   if (isAuthorizedUser()) {
     const path = window.location.pathname;
     const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
