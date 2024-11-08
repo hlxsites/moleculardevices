@@ -1,17 +1,16 @@
-/* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
-async function iframeResizeHandler() {
-  await new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-  });
+// async function iframeResizeHandler() {
+//   await new Promise((resolve) => {
+//     loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+//   });
 
-  /* global iFrameResize */
-  iFrameResize({ log: false });
-}
+//   /* global iFrameResize */
+//   iFrameResize({ log: false });
+// }
 
 function handleEmbed() {
   try {
@@ -34,7 +33,7 @@ function handleEmbed() {
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
-      iframeResizeHandler(embed);
+      // iframeResizeHandler(embed);
 
       // adjust parent div's height dynamically
       mutations.forEach((record) => {
