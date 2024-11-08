@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.moleculardevices.com/sitemap.xml
+Sitemap: https://www.moleculardevices.com/sitemap-index.xml
 Sitemap: https://www.moleculardevices.com/content-sitemap.xml
 Sitemap: https://www.moleculardevices.com/files-sitemap.xml
 
