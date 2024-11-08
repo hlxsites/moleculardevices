@@ -14,7 +14,7 @@ async function iframeResizeHandler() {
     iFrameResize({
       log: true,
     }, '#iframeContent');
-  }, 500);
+  }, 1000);
 }
 
 function handleEmbed() {

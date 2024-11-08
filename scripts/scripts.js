@@ -757,7 +757,7 @@ export function iframeResizeHandler(iframeURL, iframeID, root) {
   root.querySelector('iframe').addEventListener('load', () => {
     if (iframeURL) {
       /* global iFrameResize */
-      iFrameResize({ log: false }, `#${iframeID}`);
+      iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
     }
   });
 }
