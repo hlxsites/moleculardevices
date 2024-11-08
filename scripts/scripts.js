@@ -752,23 +752,10 @@ function addHreflangTags() {
  * @param {Element} iframeID The iframe id
  * @param {Element} root The parent element of iframe
  */
-// export function iframeResizeHandler(iframeURL, iframeID, root) {
-//   loadScript('/scripts/iframeResizer.min.js');
-//   root.querySelector('iframe').addEventListener('load', async () => {
-//     if (iframeURL) {
-//       /* global iFrameResize */
-//       iFrameResize({ log: false }, `#${iframeID}`);
-//     }
-//   });
-// }
 export function iframeResizeHandler(iframeURL, iframeID, root) {
-  const resizerPromise = new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-  });
-
-  root.querySelector('iframe').addEventListener('load', async () => {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', () => {
     if (iframeURL) {
-      await resizerPromise;
       /* global iFrameResize */
       iFrameResize({ log: false }, `#${iframeID}`);
     }
