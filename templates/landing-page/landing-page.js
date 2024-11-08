@@ -10,7 +10,11 @@ async function iframeResizeHandler() {
   });
 
   /* global iFrameResize */
-  iFrameResize({ log: false });
+  setTimeout(() => {
+    iFrameResize({
+      log: true,
+    }, '#iframeContent');
+  }, 1000);
 }
 
 function handleEmbed() {
@@ -42,6 +46,7 @@ function handleEmbed() {
         if (record.target.tagName === 'IFRAME'
           && grandGrandParent.classList.contains('embed')
         ) {
+          // iframeResizeHandler(iframeURL, iframeID, root);
           const { height } = record.target.style;
           if (height) {
             const parent = record.target.parentElement;

@@ -754,10 +754,10 @@ function addHreflangTags() {
  */
 export function iframeResizeHandler(iframeURL, iframeID, root) {
   loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', async () => {
+  root.querySelector('iframe').addEventListener('load', () => {
     if (iframeURL) {
       /* global iFrameResize */
-      iFrameResize({ log: false }, `#${iframeID}`);
+      iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
     }
   });
 }
