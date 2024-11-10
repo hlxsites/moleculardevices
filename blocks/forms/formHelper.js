@@ -1,4 +1,5 @@
 import { input } from '../../scripts/dom-helpers.js';
+import { getCookie } from '../../scripts/scripts.js';
 
 /* Helper functions */
 export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
@@ -173,4 +174,41 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   } else {
     setTimeout(() => { window.top.location.href = returnURL; }, 200);
   }
+}
+
+/* get form ready */
+export function getFormFieldValues(formConfig) {
+  // Get the `cmp` parameters from URL or cookie
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const cmpCookieValue = getCookie('cmp');
+  const valuecmp = params.cmp || cmpCookieValue;
+
+  return {
+    product_family__c: formConfig.productFamily,
+    research_area: formConfig.researchArea,
+    product_primary_application__c: formConfig.productPrimaryApplication,
+    requested_qdc_discussion__c: formConfig.qdc,
+    cmp: valuecmp || formConfig.cmp,
+    return_url: formConfig.redirectUrl,
+    product_selection__c: formConfig.productSelection,
+    google_analytics_medium__c: formConfig.googleAnalyticsMedium,
+    google_analytics_source__c: formConfig.googleAnalyticsSource,
+    keyword_ppc__c: formConfig.keywordPPC,
+    gclid__c: formConfig.gclid,
+    product_image: formConfig.productImage,
+    product_bundle_image: formConfig.productBundleImage,
+    product_bundle: formConfig.productBundle,
+    qdc: formConfig.qdc,
+  };
+}
+
+// Function to update multiple form fields
+export function updateFormFields(form, fieldValues) {
+  Object.entries(fieldValues).forEach(([fieldName, value]) => {
+    if (value && form.querySelector(`input[name="${fieldName}"]`)) {
+      form.querySelector(`input[name="${fieldName}"]`).value = value;
+    }
+  });
 }
