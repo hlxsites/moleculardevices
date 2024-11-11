@@ -262,8 +262,13 @@ main .contact-quote-request .hs-form-field .hs-field-desc {
   width: 94% !important;
 }
 
+main .contact-quote-request .hs-form-field textarea.hs-input {
+  height: 70px;
+}
+
 main .contact-quote-request .actions {
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 main .contact-quote-request .hs-submit .actions button {

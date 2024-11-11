@@ -104,7 +104,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   });
 
   /* qdc */
-  const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
+  const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
 
   if (qdcCall) {

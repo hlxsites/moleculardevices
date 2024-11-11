@@ -56,7 +56,7 @@ export function createHubSpotForm(formConfig, target) {
                 a({
                   href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
                 }, 'Privacy Policy'),
-                ' and that you understand your privacy choices as they pertain to your personal data as provided in the ',
+                ', and that you understand your privacy choices as they pertain to your personal data as provided in the ',
                 a({
                   href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
                 }, 'Privacy Policy'),

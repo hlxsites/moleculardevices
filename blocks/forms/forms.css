@@ -30,7 +30,7 @@
   height: 40px;
   line-height: 1.4286;
   outline: none;
-  padding: 5px;
+  padding: 5px 15px;
   max-width: 100%;
   width: 100%;
   margin-bottom: 0;
@@ -159,6 +159,7 @@ label.privacy {
   line-height: 1.5;
   margin: 0;
   width: 100%;
+  text-align: left;
 }
 
 .hs-error-msgs.inputs-list {
