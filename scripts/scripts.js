@@ -516,7 +516,7 @@ function addPageSchema() {
               addressLocality: 'San Jose',
               addressRegion: 'CA',
               postalCode: '95134',
-              addressCountry: 'US'
+              addressCountry: 'US',
             },
           },
           {
