@@ -7,6 +7,7 @@ import {
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { iframeResizeHandler } from '../../templates/landing-page/landing-page.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -36,15 +37,6 @@ export async function getRFQDataByTitle(name) {
     return productRfq;
   }
   return false;
-}
-
-function iframeResizeHandler(formUrl, id) {
-  setTimeout(() => {
-    if (formUrl) {
-      /* global iFrameResize */
-      iFrameResize({ log: false }, `#${id}`);
-    }
-  }, 1000);
 }
 
 /* CREATE RFQ LIST BOX */
@@ -275,7 +267,7 @@ async function loadIframeForm(data, type) {
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
   sampleRUM('rfq', rfqRUM);
-  iframeResizeHandler(formUrl, 'contactQuoteRequest', root);
+  iframeResizeHandler('contactQuoteRequest');
 }
 
 /* step one */
