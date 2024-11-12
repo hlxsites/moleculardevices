@@ -6,13 +6,13 @@ import ffetch from '../../scripts/ffetch.js';
 
 export async function iframeResizeHandler(id) {
   await new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); }, '', true);
   });
 
   /* global iFrameResize */
   setTimeout(() => {
     iFrameResize({
-      log: true,
+      log: false,
     }, `#${id}`);
   }, 1000);
 }
