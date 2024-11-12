@@ -752,25 +752,12 @@ function addHreflangTags() {
  * @param {Element} iframeID The iframe id
  * @param {Element} root The parent element of iframe
  */
-// export function iframeResizeHandler(iframeURL, iframeID, root) {
-//   loadScript('/scripts/iframeResizer.min.js');
-//   root.querySelector('iframe').addEventListener('load', () => {
-//     if (iframeURL) {
-//       /* global iFrameResize */
-//       iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
-//     }
-//   });
-// }
-export function iframeResizeHandler(formUrl, id, container) {
-  const resizerPromise = new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-  });
-
-  container.querySelector('iframe').addEventListener('load', async () => {
-    if (formUrl) {
-      await resizerPromise;
+export function iframeResizeHandler(iframeURL, iframeID, root) {
+  loadScript('/scripts/iframeResizer.min.js');
+  root.querySelector('iframe').addEventListener('load', () => {
+    if (iframeURL) {
       /* global iFrameResize */
-      iFrameResize({ log: false }, `#${id}`);
+      iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
     }
   });
 }

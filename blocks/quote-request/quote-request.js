@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  loadScript, getCookie, fetchFragment, iframeResizeHandler,
+  loadScript, getCookie, fetchFragment,
 } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, iframe, button,
@@ -36,6 +36,15 @@ export async function getRFQDataByTitle(name) {
     return productRfq;
   }
   return false;
+}
+
+function iframeResizeHandler(formUrl, id) {
+  setTimeout(() => {
+    if (formUrl) {
+      /* global iFrameResize */
+      iFrameResize({ log: false }, `#${id}`);
+    }
+  }, 1000);
 }
 
 /* CREATE RFQ LIST BOX */
