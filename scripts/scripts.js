@@ -505,7 +505,7 @@ function addPageSchema() {
               'https://en.wikipedia.org/wiki/Molecular_Devices',
             ],
             url: moleculardevicesRootURL,
-            telephone: '+1 408.747.1700, +1 800.635.5577',
+            telephone: '+1 877-589-2214, +1 408.747.1700, +1 800.635.5577',
             image: {
               '@type': 'ImageObject',
               url: moleculardevicesLogoURL,
