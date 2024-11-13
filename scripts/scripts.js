@@ -505,22 +505,18 @@ function addPageSchema() {
               'https://en.wikipedia.org/wiki/Molecular_Devices',
             ],
             url: moleculardevicesRootURL,
-            telephone: '+1 877-589-2214',
-            logo: {
+            telephone: '+1 877-589-2214, +1 408.747.1700, +1 800.635.5577',
+            image: {
               '@type': 'ImageObject',
               url: moleculardevicesLogoURL,
             },
-            openingHoursSpecification: {
-              '@type': 'OpeningHoursSpecification',
-              dayOfWeek: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-              ],
-              opens: '08:00',
-              closes: '17:00',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N First Street',
+              addressLocality: 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry: 'US',
             },
           },
           {
