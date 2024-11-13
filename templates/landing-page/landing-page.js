@@ -38,7 +38,7 @@ function handleEmbed() {
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
-      iframeResizeHandler(embed, 'iframeContent');
+      iframeResizeHandler('iframeContent');
 
       // adjust parent div's height dynamically
       mutations.forEach((record) => {
