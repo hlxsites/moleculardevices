@@ -1,12 +1,13 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  loadScript, getCookie, fetchFragment, iframeResizeHandler,
+  loadScript, getCookie, fetchFragment,
 } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, iframe, button,
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { iframeResizeHandler } from '../../templates/landing-page/landing-page.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -266,7 +267,7 @@ async function loadIframeForm(data, type) {
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
   sampleRUM('rfq', rfqRUM);
-  iframeResizeHandler(formUrl, 'contactQuoteRequest', root);
+  iframeResizeHandler('contactQuoteRequest');
 }
 
 /* step one */

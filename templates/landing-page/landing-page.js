@@ -4,16 +4,16 @@ import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
-async function iframeResizeHandler() {
+export async function iframeResizeHandler(id) {
   await new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); }, '', true);
   });
 
   /* global iFrameResize */
   setTimeout(() => {
     iFrameResize({
-      log: true,
-    }, '#iframeContent');
+      log: false,
+    }, `#${id}`);
   }, 1000);
 }
 
@@ -38,7 +38,7 @@ function handleEmbed() {
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
-      iframeResizeHandler(embed);
+      iframeResizeHandler(embed, 'iframeContent');
 
       // adjust parent div's height dynamically
       mutations.forEach((record) => {
