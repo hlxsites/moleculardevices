@@ -101,9 +101,11 @@ class Card {
     let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
     let cardc2aLink = '';
     if (this.defaultButtonText === 'Request Quote') {
-      cardc2aLink = `/quote-request?pid=${item.familyID}`; }
+      cardc2aLink = `/quote-request?pid=${item.familyID}`; 
+    }
     else {
-       cardc2aLink = item.path; }
+      cardc2aLink = item.path; 
+    }
 
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
