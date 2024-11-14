@@ -98,7 +98,16 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
-    let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
+    //let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
+      let cardLink = '';
+      if(this.defaultButtonText=='Request Quote')
+      {
+        cardLink = `/quote-request?pid=${item.familyID}`;
+      }
+    else{
+       cardLink = item.path;
+    }
+
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {
