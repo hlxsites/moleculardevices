@@ -37,8 +37,6 @@ export default async function decorate(block) {
     });
   }
 
-  console.log(fragments);
-
   await createCarousel(
     block,
     sortDataByTitle(fragments),
