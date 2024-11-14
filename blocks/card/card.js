@@ -98,9 +98,9 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
-    //let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
-      let cardLink = '';
-      if(this.defaultButtonText=='Request Quote')
+    // let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
+    let cardLink = '';
+    if(this.defaultButtonText === 'Request Quote')
       {
         cardLink = `/quote-request?pid=${item.familyID}`;
       }
