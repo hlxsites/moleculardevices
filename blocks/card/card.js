@@ -99,6 +99,12 @@ class Card {
 
     /* default button */
     let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
+    let cardc2aLink = '';
+    if (this.defaultButtonText === 'Request Quote') {
+      cardc2aLink = `/quote-request?pid=${item.familyID}`;
+    } else {
+      cardc2aLink = item.path;
+    }
 
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
@@ -106,13 +112,11 @@ class Card {
       cardLink = item.shopifyUrl;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
-    } else if (this.defaultButtonText === 'Request Quote') {
-      cardLink = `/quote-request?pid=${item.familyID}`;
     }
 
     const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
       ? item.cardC2A : this.defaultButtonText;
-    let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aLinkBlock = a({ href: cardc2aLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
     }
