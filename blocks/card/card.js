@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-alert */
-
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
@@ -98,13 +95,7 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
-    let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
-    let cardc2aLink = '';
-    if (this.defaultButtonText === 'Request Quote') {
-      cardc2aLink = `/quote-request?pid=${item.familyID}`;
-    } else {
-      cardc2aLink = item.path;
-    }
+    let cardLink = item.path;
 
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
@@ -116,9 +107,12 @@ class Card {
 
     const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
       ? item.cardC2A : this.defaultButtonText;
-    let c2aLinkBlock = a({ href: cardc2aLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
+    let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
+    }
+    if (item.c2aLinkConfig) {
+      c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
       c2aLinkBlock.classList.remove('button', 'primary');
