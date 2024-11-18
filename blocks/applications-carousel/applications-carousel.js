@@ -54,7 +54,6 @@ export default async function decorate(block) {
     }
     return null;
   }));
-  console.log(fragments);
   const sortedFragments = sortDataByTitle(fragments);
 
   const cardRenderer = await createCard({
