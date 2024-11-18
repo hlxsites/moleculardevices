@@ -36,7 +36,8 @@ export default async function decorate(block) {
       const h3Block = fragmentElement.querySelector('h3');
       const imageBlock = fragmentElement.querySelector('picture');
       const description = getDescription(fragmentElement);
-      const appLink = fragmentElement.querySelector('a').href;
+      const appLinks = fragmentElement.querySelectorAll('a:last-of-type');
+      const appLink = fragmentElement.querySelectorAll('a:last-of-type')[appLinks.length - 1];
       return {
         id: h3Block.id,
         title: h3Block.textContent,
