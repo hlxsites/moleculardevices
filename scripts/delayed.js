@@ -118,7 +118,7 @@ if (!isSidekickLibrary) {
 
 function loadEvergageScript() {
   const script = document.createElement('script');
-  if (window.location.host === 'lifesciences.danaher.com') {
+  if (window.location.host.includes('moleculardevices')) {
     script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/danaher_ls_prod/scripts/evergage.min.js';
   } else {
     script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/danaher_ls_staging/scripts/evergage.min.js';
@@ -130,9 +130,9 @@ function loadEvergageScript() {
   document.head.appendChild(script);
 }
 
-/* eslint-disable no-console */
 setTimeout(() => {
-  if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes("C0004")) {
+  /* eslint-disable */
+  if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
     loadEvergageScript();
   }
 }, 3000);
