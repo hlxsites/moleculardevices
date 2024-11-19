@@ -444,7 +444,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -462,12 +462,17 @@ function addPageSchema() {
     const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
 
     const heroImage = document.querySelector('.hero img');
-    const schemaImage = heroImage
-      ? heroImage.src
-      : getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const schemaImage = heroImage ? heroImage.src : resourcesImage;
     const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
-
+    const resourcesImageUrl = new URL(resourcesImage, moleculardevicesRootURL);
     const keywords = getMetadata('keywords');
+    const description = getMetadata('description');
+    const eventStart = getMetadata('event-start');
+    const eventEnd = getMetadata('event-end');
+    const eventAddress = getMetadata('event-address');
+    const publicationDate = getMetadata('publication-date');
+    const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
     schema.setAttribute('type', 'application/ld+json');
@@ -485,10 +490,6 @@ function addPageSchema() {
       'https://twitter.com/moldev',
     ];
 
-    const eventStart = getMetadata('event-start');
-    const eventEnd = getMetadata('event-end');
-    const eventAddress = getMetadata('event-address');
-
     let schemaInfo = null;
     if (type === 'homepage') {
       const homepageName = 'Molecular Devices';
@@ -498,7 +499,7 @@ function addPageSchema() {
           {
             '@type': 'Organization',
             additionalType: 'Organization',
-            description: getMetadata('description'),
+            description,
             name: homepageName,
             sameAs: [
               ...brandSameAs,
@@ -544,9 +545,9 @@ function addPageSchema() {
             '@type': 'TechArticle',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
-            url: document.querySelector("link[rel='canonical']").href,
+            url: canonicalHref,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
@@ -583,8 +584,8 @@ function addPageSchema() {
           {
             '@type': 'WebPage',
             name: schemaTitle,
-            description: getMetadata('description'),
-            url: document.querySelector("link[rel='canonical']").href,
+            description,
+            url: canonicalHref,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
@@ -610,7 +611,7 @@ function addPageSchema() {
             '@type': 'BlogPosting',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
@@ -620,7 +621,7 @@ function addPageSchema() {
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              url: document.querySelector("link[rel='canonical']").href,
+              url: canonicalHref,
               sameAs: brandSameAs,
               logo,
             },
@@ -637,12 +638,12 @@ function addPageSchema() {
             '@type': 'TechArticle',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              url: document.querySelector("link[rel='canonical']").href,
+              url: canonicalHref,
               sameAs: brandSameAs,
               logo,
             },
@@ -658,7 +659,7 @@ function addPageSchema() {
           {
             '@type': 'Event',
             name: schemaTitle,
-            url: document.querySelector("link[rel='canonical']").href,
+            url: canonicalHref,
             description: getMetadata('description'),
             eventAttendanceMode: getMetadata('event-type'),
             startDate: (eventStart) ? eventStart.split(',')[0] : '',
@@ -671,6 +672,33 @@ function addPageSchema() {
             location: {
               '@type': 'City',
               name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+            },
+          },
+        ],
+      };
+    }
+
+    if (type === 'Videos and Webinars') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'VideoObject',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description,
+            thumbnailUrl: resourcesImageUrl,
+            uploadDate: new Date(publicationDate).toISOString(),
+            contentUrl: canonicalHref,
+            embedUrl: canonicalHref,
+            duration: '',
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              logo: {
+                '@type': 'ImageObject',
+                url: moleculardevicesLogoURL,
+              },
             },
           },
         ],
