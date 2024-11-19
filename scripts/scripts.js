@@ -699,9 +699,7 @@ function addPageSchema() {
                 '@type': 'ImageObject',
                 url: moleculardevicesLogoURL,
               },
-              isFamilyFriendly: true,
-              keywords,
-            },
+             },
           },
         ],
       };
