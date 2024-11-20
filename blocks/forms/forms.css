@@ -232,6 +232,7 @@ main form fieldset[class*='form-columns'] .input {
   display: flex;
   flex-direction: column;
   line-height: 16px;
+  text-align: left;
 }
 
 .hubspot-form form .hs-submit {
