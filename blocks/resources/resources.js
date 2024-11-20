@@ -391,9 +391,9 @@ export async function initializeCoveo(block) {
       cRange.createContextualFragment(searchMainSection()),
     );
     loadCSS('/blocks/coveo-search/coveo-search.css');
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10121/css/CoveoFullSearch.min.css');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/CoveoJsSearch.Lazy.min.js');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/templates/templates.js');
+    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
     if (isCountryCodeUS) {
       setTimeout(getCoveoToken, 1000);
     } else {
