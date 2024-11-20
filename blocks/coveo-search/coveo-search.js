@@ -265,9 +265,9 @@ export default async function decorate(block) {
   /* eslint-disable no-new */
   new Promise(() => {
     block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10104/css/CoveoFullSearch.min.css');
+    loadCSS('https://static.cloud.coveo.com/searchui/v2.10121/css/CoveoFullSearch.min.css');
   });
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', null, null, true);
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', null, null, true);
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/CoveoJsSearch.Lazy.min.js', null, null, true);
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/templates/templates.js', null, null, true);
   setTimeout(getCoveoToken, 1000);
 }
