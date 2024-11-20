@@ -473,6 +473,7 @@ function addPageSchema() {
     const eventAddress = getMetadata('event-address');
     const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
+    const embedHref = document.querySelector("link[rel='prefetch']").href;
 
     const schema = document.createElement('script');
     schema.setAttribute('type', 'application/ld+json');
@@ -690,7 +691,7 @@ function addPageSchema() {
             thumbnailUrl: resourcesImageUrl,
             uploadDate: new Date(publicationDate).toISOString(),
             contentUrl: canonicalHref,
-            embedUrl: canonicalHref,
+            embedUrl: embedHref,
             duration: '',
             publisher: {
               '@type': 'Organization',
