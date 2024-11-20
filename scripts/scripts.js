@@ -460,8 +460,6 @@ function addPageSchema() {
 
     const h1 = document.querySelector('main h1');
     const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
-    const vidyardLink = document.querySelector('a[href*="vidyard.com"], a[href*="vids.moleculardevices.com"]').href;
-    const vidyardId = vidyardLink.split('/').pop();
 
     const heroImage = document.querySelector('.hero img');
     const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
@@ -475,7 +473,6 @@ function addPageSchema() {
     const eventAddress = getMetadata('event-address');
     const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
-    const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
 
     const schema = document.createElement('script');
     schema.setAttribute('type', 'application/ld+json');
@@ -682,6 +679,10 @@ function addPageSchema() {
     }
 
     if (type === 'Videos and Webinars') {
+      const vidyardLink = document.querySelector('a[href*="vidyard.com"], a[href*="vids.moleculardevices.com"]').href;
+      const vidyardId = vidyardLink.split('/').pop();
+      const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
+
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [

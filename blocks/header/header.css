@@ -306,6 +306,7 @@ header .company-links img {
   margin-right: 2px;
   vertical-align: bottom;
   font-style: italic;
+  object-fit: contain;
 }
 
 header .company-links ul li {
@@ -539,7 +540,8 @@ header .mobile-menu {
   background: #fff;
   height: calc(100% - 63px);
   top: 63px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   transform: translate(-100%, 0);
   transition: transform .4s ease;
   z-index: -9;
@@ -909,12 +911,12 @@ header .nav-tabs .menu-nav-submenu-sections > .line-divider {
 }
 
 header .cards-submenu,
-header .col-2 > div, 
-header .col-3 > div, 
+header .col-2 > div,
+header .col-3 > div,
 header .col-4 > div{
   display: grid;
   gap: 20px;
-} 
+}
 
 header .col-2 > div {
   grid-template-columns: repeat(2, 1fr);
@@ -1684,6 +1686,19 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   header .nav-brand:not(.custom-logo) {
     width: 100px;
     height: 27px;
+  }
+
+  header .mobile-menu .company-links li:nth-child(2) {
+    padding-bottom: 0;
+  }
+
+  header .company-links img{
+    margin: auto;
+    display: block;
+  }
+
+  header .mobile-menu .company-links > div > ul {
+    align-items: flex-start;
   }
 }
 
