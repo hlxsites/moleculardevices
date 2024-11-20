@@ -4,6 +4,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 import {
   loadScript, embedVideo, fetchFragment, isGatedResource, summariseDescription,
+  getCountryCode,
 } from '../../scripts/scripts.js';
 import { getCoveoToken } from '../coveo-search/coveo-search.js';
 import {
@@ -381,6 +382,7 @@ function searchMainSection() {
 }
 
 export async function initializeCoveo(block) {
+  const isCountryCodeUS = await getCountryCode() === 'US';
   block.classList.add('loading-coveo');
   if (!block.querySelector('#search')) {
     block.innerHTML = searchFormHeader();
@@ -392,8 +394,11 @@ export async function initializeCoveo(block) {
     loadCSS('https://static.cloud.coveo.com/searchui/v2.10121/css/CoveoFullSearch.min.css');
     loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/CoveoJsSearch.Lazy.min.js');
     loadScript('https://static.cloud.coveo.com/searchui/v2.10121/js/templates/templates.js');
-    // await getCoveoToken();
-    setTimeout(getCoveoToken, 1000);
+    if (isCountryCodeUS) {
+      setTimeout(getCoveoToken, 1000);
+    } else {
+      await getCoveoToken();
+    }
   }
 }
 
