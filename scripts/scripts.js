@@ -1188,7 +1188,7 @@ export function getCartItemCount() {
  */
 export function detectAnchor(block) {
   const activeHash = window.location.hash;
-  if (!activeHash) return;
+  if (!activeHash || activeHash.includes('t=')) return;
 
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
   const el = block.querySelector(`#${id}`);
