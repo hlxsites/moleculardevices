@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/no-cycle */
 import {
   sampleRUM,
@@ -19,6 +20,7 @@ import {
   readBlockConfig,
   toCamelCase,
   createOptimizedPicture,
+  getAllMetadata,
 } from './lib-franklin.js';
 import {
   a, div, domEl, iframe, p,
@@ -38,6 +40,109 @@ const TEMPLATE_LIST = [
   'newsroom',
   'landing-page',
 ];
+
+// GET GEO LOCATION
+const getGeoLocation = async () => {
+  const url = 'https://api.ipstack.com/check?access_key=7d5a41f8a619751e2548545f56b29dbc';
+
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching data:', error);
+    });
+};
+
+const geoData = await getGeoLocation();
+console.log(geoData.country_code);
+
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  us: async () => geoData.country_code.toLowerCase() === 'us',
+  de: async () => geoData.country_code.toLowerCase() === 'de',
+  cn: async () => geoData.country_code.toLowerCase() === 'cn',
+  jp: async () => geoData.country_code.toLowerCase() === 'jp',
+  fr: async () => geoData.country_code.toLowerCase() === 'fr',
+  ko: async () => geoData.country_code.toLowerCase() === 'ko',
+  it: async () => geoData.country_code.toLowerCase() === 'it',
+  es: async () => geoData.country_code.toLowerCase() === 'es',
+};
+
+window.hlx.plugins.add('experimentation', {
+  condition: () => getMetadata('experiment')
+    || Object.keys(getAllMetadata('campaign')).length
+    || Object.keys(getAllMetadata('audience')).length,
+  options: { audiences: AUDIENCES },
+  url: '/plugins/experimentation/src/index.js',
+});
+window.localStorage.setItem('aem-domainkey', 'https://www.moleculardevices.com/');
+
+async function loadEager(doc) {
+  // automatic page translators like google translate may change the lang attribute
+  // so we store it in an additional attribute, to use the original value for the rendering
+  // logic later
+  document.documentElement.lang = document.documentElement.lang || 'en';
+  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
+
+  if (!isHomepage()) {
+    document.originalTitle = document.title;
+    document.title = `${document.title ?? ''} | Molecular Devices`;
+  }
+  decorateTemplateAndTheme();
+  const main = doc.querySelector('main');
+  if (main) {
+    await window.hlx.plugins.run('loadEager');
+    await decorateMain(main);
+    createBreadcrumbsSpace(main);
+    await waitForLCP(LCP_BLOCKS);
+  }
+  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+
+  try {
+    if (sessionStorage.getItem('fonts-loaded')) {
+      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+    }
+  } catch (e) {
+    // do nothing
+  }
+}
+
+async function loadLazy(doc) {
+  const main = doc.querySelector('main');
+
+  // eslint-disable-next-line no-unused-vars
+  loadHeader(doc.querySelector('header'));
+
+  await loadBlocks(main);
+
+  if (!window.location.pathname.startsWith('/cp-request')) {
+    enableStickyElements();
+
+    const { hash } = window.location;
+    const element = hash ? doc.getElementById(hash.substring(1)) : false;
+    if (hash && element) element.scrollIntoView();
+
+    loadFooter(doc.querySelector('footer'));
+    loadBreadcrumbs(main);
+
+    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
+      try {
+        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+      } catch (e) {
+        // do nothing
+      }
+    });
+
+    window.hlx.plugins.run('loadLazy');
+
+    sampleRUM('lazy');
+    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
+    sampleRUM.observe(main.querySelectorAll('picture > img'));
+  }
+}
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
 const LCP_BLOCKS = ['hero', 'hero-advanced', 'featured-highlights']; // add your LCP blocks to the list
@@ -148,6 +253,7 @@ function createBreadcrumbsSpace(main) {
     main.querySelector('.section').prepend(blockWrapper);
   }
 }
+
 async function loadBreadcrumbs(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
@@ -871,35 +977,6 @@ function isHomepage() {
 /**
  * loads everything needed to get to LCP.
  */
-async function loadEager(doc) {
-  // automatic page translators like google translate may change the lang attribute
-  // so we store it in an additional attribute, to use the original value for the rendering
-  // logic later
-  document.documentElement.lang = document.documentElement.lang || 'en';
-  document.documentElement.setAttribute('original-lang', document.documentElement.lang);
-
-  if (!isHomepage()) {
-    document.originalTitle = document.title;
-    document.title = `${document.title ?? ''} | Molecular Devices`;
-  }
-  decorateTemplateAndTheme();
-  const main = doc.querySelector('main');
-  if (main) {
-    await window.hlx.plugins.run('loadEager');
-    await decorateMain(main);
-    createBreadcrumbsSpace(main);
-    await waitForLCP(LCP_BLOCKS);
-  }
-  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-
-  try {
-    if (sessionStorage.getItem('fonts-loaded')) {
-      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-    }
-  } catch (e) {
-    // do nothing
-  }
-}
 
 /**
  * Format date expressed as string: mm/dd/yyyy
@@ -1044,40 +1121,6 @@ function enableStickyElements() {
 /**
  * loads everything that doesn't need to be delayed.
  */
-async function loadLazy(doc) {
-  const main = doc.querySelector('main');
-
-  // eslint-disable-next-line no-unused-vars
-  loadHeader(doc.querySelector('header'));
-
-  await loadBlocks(main);
-
-  if (!window.location.pathname.startsWith('/cp-request')) {
-    enableStickyElements();
-
-    const { hash } = window.location;
-    const element = hash ? doc.getElementById(hash.substring(1)) : false;
-    if (hash && element) element.scrollIntoView();
-
-    loadFooter(doc.querySelector('footer'));
-    loadBreadcrumbs(main);
-
-    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
-      try {
-        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-      } catch (e) {
-        // do nothing
-      }
-    });
-
-    window.hlx.plugins.run('loadLazy');
-
-    sampleRUM('lazy');
-    sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-    sampleRUM.observe(main.querySelectorAll('picture > img'));
-  }
-}
 
 /**
  * loads everything that happens a lot later, without impacting
