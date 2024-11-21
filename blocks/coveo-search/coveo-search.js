@@ -1,5 +1,5 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { loadScript, getCookie } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
@@ -214,14 +214,19 @@ export function searchMainSection() {
 
 async function coveoSearchInitiation(organizationID, accessToken) {
   const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
-  /* global Coveo */
-  Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
-  Coveo.init(document.getElementById('search'), {
-    ExcerptConditionalRendering: {
-      values: ['public'],
-      compareValue: pCookie,
-    },
-  });
+  if (typeof Coveo !== 'undefined') {
+    /* global Coveo */
+    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
+    Coveo.init(document.getElementById('search'), {
+      ExcerptConditionalRendering: {
+        values: ['public'],
+        compareValue: pCookie,
+      },
+    });
+  } else {
+    // eslint-disable-next-line no-console
+    console.error('Coveo library is not available.');
+  }
 }
 
 export async function getCoveoToken() {
@@ -231,12 +236,10 @@ export async function getCoveoToken() {
   myHeaders.append('Content-Type', 'application/json');
 
   const raw = JSON.stringify({
-    userIds: [
-      {
-        name: coveoAdminId,
-        provider: 'Email Security Provider',
-      },
-    ],
+    userIds: [{
+      name: coveoAdminId,
+      provider: 'Email Security Provider',
+    }],
     filter: getFilter(),
   });
 
@@ -253,8 +256,11 @@ export async function getCoveoToken() {
   )
     .then((response) => response.text())
     .then((responseData) => {
-      coveoSearchInitiation(organizationId, JSON.parse(responseData).token);
-    });
+      const { token } = JSON.parse(responseData);
+      coveoSearchInitiation(organizationId, token);
+    })
+    // eslint-disable-next-line no-console
+    .catch((error) => console.error('Token fetch failed:', error.message));
 }
 
 export default async function decorate(block) {
@@ -262,12 +268,9 @@ export default async function decorate(block) {
   block.children[0].innerHTML = searchFormHeader();
   block.children[0].querySelector('.cover-banner-wrapper').prepend(backgroundImage);
   const cRange = document.createRange();
-  /* eslint-disable no-new */
-  new Promise(() => {
-    block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-  });
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js', null, null, true);
-  loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js', null, null, true);
+  block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
+  loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js');
+  loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js');
   setTimeout(getCoveoToken, 1000);
 }
