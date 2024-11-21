@@ -3,10 +3,9 @@ import {
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
 } from '../../scripts/lib-franklin.js';
 import {
-  loadScript, embedVideo, fetchFragment, isGatedResource, summariseDescription,
-  getCountryCode,
+  embedVideo, fetchFragment, isGatedResource, summariseDescription,
 } from '../../scripts/scripts.js';
-import { addCoveoFiles, getCoveoToken } from '../coveo-search/coveo-search.js';
+import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
