@@ -229,7 +229,6 @@ async function loadIframeForm(data, type) {
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '70170000000hlRa';
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
-
   const hubSpotQuery = {
     formId: '09ad331d-27c6-470a-86d4-7d6c4b141bc8',
     productFamily: sfdcProductFamily,
