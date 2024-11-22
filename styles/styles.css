@@ -539,22 +539,33 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main input {
-  font-size: 1.25rem;
-  width: 100%;
-  max-width: 50rem;
+main input:not([type='radio'], [type='checkbox']),
+main textarea,
+main select {
   display: block;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;
-  border-radius: 0.25rem;
+  padding: 5px 15px;
   box-sizing: border-box;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
   background-color: var(--background-color);
+  border: 1px solid #bebebe;
+  border-radius: 0;
+  box-shadow: none;
+  color: #565656;
+  font-size: 15px;
+  height: 40px;
+  line-height: 1.4286;
+  outline: none;
+  width: 100% !important;
+  max-width: 100% !important;
+  font-family: inherit;
 }
 
-main input:hover {
-  border: 1px solid var(--text-color);
+main form fieldset .hs-form-field {
+  line-height: 1.4em;
+  margin-bottom: 12px;
+}
+
+main textarea {
+  height: 100px;
 }
 
 main pre {
@@ -1442,7 +1453,7 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
-main div.section.no-margin-bottom{
+main div.section.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
