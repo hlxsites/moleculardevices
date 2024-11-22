@@ -3,11 +3,11 @@ import {
   loadScript, getCookie, fetchFragment,
 } from '../../scripts/scripts.js';
 import {
-  div, h3, ul, li, img, a, span, i, iframe, button,
+  div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
-import { iframeResizeHandler } from '../../templates/landing-page/landing-page.js';
+import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -148,7 +148,7 @@ function prepImageUrl(thumbImage) {
 
 async function loadIframeForm(data, type) {
   loadScript('../../scripts/iframeResizer.min.js');
-  const formUrl = 'https://info.moleculardevices.com/rfq';
+  // const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -231,19 +231,20 @@ async function loadIframeForm(data, type) {
   const requestTypeParam = queryParams && queryParams.get('request_type');
 
   const hubSpotQuery = {
-    product_family__c: sfdcProductFamily,
-    product_selection__c: sfdcProductSelection,
-    product_primary_application__c: sfdcPrimaryApplication,
+    formId: '09ad331d-27c6-470a-86d4-7d6c4b141bc8',
+    productFamily: sfdcProductFamily,
+    productSelection: sfdcProductSelection,
+    productPrimaryApplication: sfdcPrimaryApplication,
     cmp: cmpValue,
-    google_analytics_medium__c: getCookie('utm_medium') ? getCookie('utm_medium') : '',
-    google_analytics_source__c: getCookie('utm_source') ? getCookie('utm_source') : '',
-    keyword_ppc__c: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
-    gclid__c: getCookie('gclid') ? getCookie('gclid') : '',
-    product_image: productImage || 'NA',
-    product_bundle_image: bundleThumbnail || 'NA',
-    product_bundle: productBundle,
-    requested_qdc_discussion__c: requestTypeParam || 'Quote',
-    return_url: data.familyID
+    googleAnalyticsMedium: getCookie('utm_medium') ? getCookie('utm_medium') : '',
+    googleAnalyticsSource: getCookie('utm_source') ? getCookie('utm_source') : '',
+    keywordPPC: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
+    gclid: getCookie('gclid') ? getCookie('gclid') : '',
+    productImage: productImage || 'NA',
+    productBundleImage: bundleThumbnail || 'NA',
+    productBundle,
+    qdc: requestTypeParam || 'Quote',
+    redirectUrl: data.familyID
       ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
       : 'https://www.moleculardevices.com/quote-request-success',
   };
@@ -252,22 +253,21 @@ async function loadIframeForm(data, type) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
 
-  root.appendChild(
-    div(
-      h3('Request Quote or Information for:'),
-      h3(tab),
-      p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
-      iframe({
-        class: 'contact-quote-request',
-        id: 'contactQuoteRequest',
-        src: `${formUrl}?${new URLSearchParams(hubSpotQuery).toString()}`,
-      }),
-    ),
+  const contactQuoteRequestID = 'contactQuoteRequest';
+  const formWrapper = div(
+    h3('Request Quote or Information for:'),
+    h3(tab),
+    p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
+    div({
+      class: 'contact-quote-request',
+      id: contactQuoteRequestID,
+    }),
   );
+  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, contactQuoteRequestID));
+  root.appendChild(formWrapper);
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
   sampleRUM('rfq', rfqRUM);
-  iframeResizeHandler('contactQuoteRequest');
 }
 
 /* step one */
