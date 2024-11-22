@@ -201,6 +201,7 @@ export function getFormFieldValues(formConfig) {
     product_bundle_image: formConfig.productBundleImage,
     product_bundle: formConfig.productBundle,
     qdc: formConfig.qdc,
+    website: formConfig.website,
   };
 }
 
