@@ -585,8 +585,16 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: unset;
   }
 
-  .wave-reverse .hero-inner > div {
+  .wave-reverse .hero-inner > .right-image {
     padding-top: 40px;
+  }
+
+  .wave-reverse .hero-inner > .breadcrumbs + .right-image {
+    padding-top: 0;
+  }
+
+  .wave-reverse .hero-inner .container {
+    padding-bottom: 120px;
   }
 
   .hero.hero-wrapped .container > div {
