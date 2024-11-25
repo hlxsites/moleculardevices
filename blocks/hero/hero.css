@@ -35,6 +35,10 @@ main .hero-advanced-wrapper {
   height: 13.5px;
 }
 
+.wave-reverse .hero-inner .breadcrumbs{
+  padding-top:0;
+}
+
 .hero-inner p {
   margin: 0 0 10px;
 }
