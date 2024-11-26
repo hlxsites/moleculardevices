@@ -141,6 +141,8 @@ Disallow: /en/assets/app-note/dd/img/all-optical-assessment-of-long-term-drug-ef
 Disallow: /en/assets/app-note/dd/img/t-cell-induced-morphological-analysis-of-colorectal-cancer-organoids-using-ai
 Disallow: /en/assets/app-note/dd/img/microwell-platform-to-standardize-human-rectal-organoid-cultures-for-imaging-and-phenotypic-analyses
 Disallow: /en/assets/app-note/dd/img/ai-enabled-drug-screening-on-human-pancreatic-cancer-organoids
+Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-assisted-automated-cell-culture
+Disallow: /en/assets/app-note/dd/3d-biology/automated-testing-for-compound-toxicity-effects-using-healthy-intestinal-organoids
 
 
 
