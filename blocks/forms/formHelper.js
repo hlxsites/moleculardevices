@@ -12,8 +12,21 @@ export function getDefaultForKey(key) {
       return 'na1';
     case 'portalId':
       return '20222769 ';
-    case 'redirectUrl':
-      return 'https://www.moleculardevices.com/';
+    default:
+      return '';
+  }
+}
+
+export function getFormId(type) {
+  switch (type) {
+    case 'app-note':
+      return '46645e42-ae08-4d49-9338-e09efb4c4035';
+    case 'scientific-poster':
+      return '342c229a-9e0d-4f52-b4c4-07f067d39c31';
+    case 'ebook':
+      return '65148a5b-995e-436d-8cdc-cc915923feaa';
+    case 'video-and-webinars':
+      return 'aabb1ced-8add-4de4-b198-6db60a82de85';
     default:
       return '';
   }
@@ -184,23 +197,24 @@ export function getFormFieldValues(formConfig) {
   });
   const cmpCookieValue = getCookie('cmp');
   const valuecmp = params.cmp || cmpCookieValue;
+  const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
 
   return {
-    product_family__c: formConfig.productFamily,
-    research_area: formConfig.researchArea,
-    product_primary_application__c: formConfig.productPrimaryApplication,
-    requested_qdc_discussion__c: formConfig.qdc,
     cmp: valuecmp || formConfig.cmp,
-    return_url: formConfig.redirectUrl,
-    product_selection__c: formConfig.productSelection,
+    gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
-    gclid__c: formConfig.gclid,
-    product_image: formConfig.productImage,
-    product_bundle_image: formConfig.productBundleImage,
     product_bundle: formConfig.productBundle,
+    product_bundle_image: formConfig.productBundleImage,
+    product_family__c: formConfig.productFamily,
+    product_image: formConfig.productImage,
+    product_primary_application__c: formConfig.productPrimaryApplication,
+    product_selection__c: formConfig.productSelection,
     qdc: formConfig.qdc,
+    requested_qdc_discussion__c: formConfig.qdc,
+    research_area: formConfig.researchArea,
+    return_url: formConfig.redirectUrl || thankyouUrl,
     website: formConfig.website,
   };
 }

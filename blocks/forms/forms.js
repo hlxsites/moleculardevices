@@ -4,7 +4,12 @@ import {
 import { loadCSS, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import {
-  createSalesforceForm, getDefaultForKey, getFormFieldValues, RESOURCEKEYS, updateFormFields,
+  createSalesforceForm,
+  getDefaultForKey,
+  getFormFieldValues,
+  getFormId,
+  RESOURCEKEYS,
+  updateFormFields,
 } from './formHelper.js';
 
 /* extract data from table  */
@@ -25,12 +30,12 @@ async function extractFormData(block) {
 }
 
 /* create hubspot form */
-export function createHubSpotForm(formConfig, target) {
+export function createHubSpotForm(formConfig, target, type = '') {
   try {
     hbspt.forms.create({ // eslint-disable-line
       region: formConfig.region || 'na1',
       portalId: formConfig.portalId || '20222769',
-      formId: formConfig.formId,
+      formId: formConfig.formId || getFormId(type),
       target: `#${target}`,
       onFormReady: (form) => {
         // Handle Salesforce hidden fields via message event listener
@@ -73,7 +78,7 @@ export function createHubSpotForm(formConfig, target) {
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('HubSpot form API is not available:', e);
-    setTimeout(() => createHubSpotForm(formConfig, target), 200);
+    setTimeout(() => createHubSpotForm(formConfig, target, type), 200);
   }
 }
 
@@ -87,6 +92,9 @@ export default async function decorate(block, index) {
   const formConfig = await extractFormData(block);
   const formHeading = formConfig.heading || '';
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
+  const blockClasses = block.classList.value;
+  const pageTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars'];
+  const pageType = pageTypes.filter((type) => blockClasses.includes(type)).join();
 
   const form = div(
     h3(formHeading),
@@ -97,5 +105,5 @@ export default async function decorate(block, index) {
   );
 
   block.replaceWith(form);
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, pageType));
 }
