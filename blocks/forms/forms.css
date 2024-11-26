@@ -243,6 +243,10 @@ main form fieldset[class*='form-columns'] .input {
   order: 2;
 }
 
+.orange-buttons .hubspot-form .button {
+  background: var(--orange-background-color);
+}
+
 @media only screen and (min-width: 992px) {
   .hs-submit .actions {
     margin: 10px auto 20px;
