@@ -2,7 +2,7 @@ import { input } from '../../scripts/dom-helpers.js';
 import { getCookie } from '../../scripts/scripts.js';
 
 /* Helper functions */
-export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
+export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp', 'jobTitle', 'website', 'productImage'];
 
 export function getDefaultForKey(key) {
   switch (key) {
@@ -215,6 +215,7 @@ export function getFormFieldValues(formConfig) {
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
+    jobtitle: formConfig.jobTitle,
     website: formConfig.website,
   };
 }
