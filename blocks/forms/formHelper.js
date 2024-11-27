@@ -1,22 +1,21 @@
 import { input } from '../../scripts/dom-helpers.js';
+import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 
-/* Helper functions */
-export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp', 'jobTitle', 'website', 'productImage'];
-
-export function getDefaultForKey(key) {
-  switch (key) {
-    case 'heading':
-      return '';
-    case 'region':
-      return 'na1';
-    case 'portalId':
-      return '20222769 ';
-    default:
-      return '';
-  }
+// extract data from table
+export async function extractFormData(block) {
+  const blockData = {};
+  [...block.children].forEach((row) => {
+    const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
+    const valueContainer = row.children[1];
+    const link = valueContainer.querySelector('a');
+    const value = link ? link.href : valueContainer.textContent.trim();
+    blockData[key] = value;
+  });
+  return blockData;
 }
 
+// get form id
 export function getFormId(type) {
   switch (type) {
     case 'app-note':
