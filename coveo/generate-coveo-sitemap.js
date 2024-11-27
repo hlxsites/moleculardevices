@@ -307,6 +307,7 @@ async function writeCoveoSitemapXML(index) {
     if (item.internal_path.startsWith('/fragments')) return;
 
     if (item.type === 'Landing Page') return;
+    if (item.robots.includes('noindex')) return;
     const excludedPaths = [
       '/nav',
       '/nav-landing-page',
