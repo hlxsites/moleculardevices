@@ -318,7 +318,6 @@ async function writeCoveoSitemapXML(index) {
       '/video-gallery-landing/de',
       '/video-gallery-landing/fr',
       '/cp-request',
-      '/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou',
     ];
 
     if (excludedPaths.includes(item.internal_path)) {
