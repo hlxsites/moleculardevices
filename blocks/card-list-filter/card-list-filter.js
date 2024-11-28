@@ -75,12 +75,7 @@ export default function decorate(block) {
 
   if (block.closest('main').querySelector('.card-list')) {
     // we are on the page where cards are displayed and filtering is enabled by hash
-    window.addEventListener('hashchange', () => {
-      filterChangedViaHash(block, filters);
-      if (window.location.hash && window.matchMedia('only screen and (min-width: 767px)').matches) {
-        scrollBlockIntoView(block);
-      }
-    });
+    window.addEventListener('hashchange', () => { filterChangedViaHash(block, filters); });
     // set initial active filter
     setActiveFilter(block);
 

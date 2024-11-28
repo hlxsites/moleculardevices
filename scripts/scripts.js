@@ -791,28 +791,31 @@ async function formInModalHandler(main) {
 }
 
 /* ============================ scrollToHashSection ============================ */
-// function scrollToHashSection() {
-//   const hashInterval = setTimeout(() => {
-//     const activeHash = window.location.hash;
-//     if (activeHash) {
-//       const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-//       const targetElement = document.getElementById(id);
-//       if (targetElement) {
-//         window.scrollTo({
-//           left: 0,
-//           top: targetElement.offsetTop - 250,
-//           behavior: 'smooth',
-//         });
-//       }
-//       clearInterval(hashInterval);
-//     }
-//   }, 1000);
-// }
+function scrollToHashSection() {
+  const observerTarget = document.body;
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(() => {
+      const activeHash = window.location.hash;
+      if (activeHash) {
+        const id = activeHash.substring(1).toLowerCase();
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 250,
+            behavior: 'smooth',
+          });
+          observer.disconnect();
+        }
+      }
+    });
+  });
 
-// window.addEventListener('load', scrollToHashSection);
+  observer.observe(observerTarget, { childList: true, subtree: true, attributes: true });
+}
+
+window.addEventListener('load', scrollToHashSection);
 // window.addEventListener('hashchange', scrollToHashSection);
 /* ============================ scrollToHashSection ============================ */
-
 
 /**
  * Detect anchor
@@ -855,7 +858,6 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   decoratePageNav(main);
   detectSidebar(main);
-  detectAnchor(main);
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
