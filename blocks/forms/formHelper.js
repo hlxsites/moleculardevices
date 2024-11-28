@@ -1,26 +1,34 @@
 import { input } from '../../scripts/dom-helpers.js';
+import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 
-/* Helper functions */
-export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
-
-export function getDefaultForKey(key) {
-  switch (key) {
-    case 'heading':
-      return '';
-    case 'region':
-      return 'na1';
-    case 'portalId':
-      return '20222769 ';
-    default:
-      return '';
-  }
+// extract data from table
+export async function extractFormData(block) {
+  const blockData = {};
+  [...block.children].forEach((row) => {
+    const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
+    const valueContainer = row.children[1];
+    const link = valueContainer.querySelector('a');
+    const image = valueContainer.querySelector('img');
+    let value;
+    if (link) {
+      value = link.href;
+    } else if (image) {
+      value = image.src;
+    } else {
+      value = valueContainer.textContent.trim();
+    }
+    blockData[key] = value;
+  });
+  return blockData;
 }
 
+// get form id
 export function getFormId(type) {
   switch (type) {
     case 'app-note':
-      return '46645e42-ae08-4d49-9338-e09efb4c4035';
+      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // app note master form
+      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // test form
     case 'scientific-poster':
       return '342c229a-9e0d-4f52-b4c4-07f067d39c31';
     case 'ebook':
@@ -208,14 +216,15 @@ export function getFormFieldValues(formConfig) {
     product_bundle: formConfig.productBundle,
     product_bundle_image: formConfig.productBundleImage,
     product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl,
     product_primary_application__c: formConfig.productPrimaryApplication,
     product_selection__c: formConfig.productSelection,
     qdc: formConfig.qdc,
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
-    website: formConfig.website,
+    jobtitle: formConfig.jobTitle || formConfig.title,
+    website: formConfig.website || formConfig.resourceUrl,
   };
 }
 

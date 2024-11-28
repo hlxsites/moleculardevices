@@ -1,33 +1,11 @@
 import {
   a, button, div, h3, label,
 } from '../../scripts/dom-helpers.js';
-import { loadCSS, toCamelCase, toClassName } from '../../scripts/lib-franklin.js';
+import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import {
-  createSalesforceForm,
-  getDefaultForKey,
-  getFormFieldValues,
-  getFormId,
-  RESOURCEKEYS,
-  updateFormFields,
+  createSalesforceForm, extractFormData, getFormFieldValues, getFormId, updateFormFields,
 } from './formHelper.js';
-
-/* extract data from table  */
-async function extractFormData(block) {
-  const blockData = {};
-  [...block.children].forEach((row) => {
-    const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
-    const value = row.children[1].textContent.trim();
-    blockData[key] = value;
-  });
-
-  RESOURCEKEYS.forEach((key) => {
-    if (!blockData[key]) {
-      blockData[key] = getDefaultForKey(key);
-    }
-  });
-  return blockData;
-}
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig, target, type = '') {
@@ -104,6 +82,7 @@ export default async function decorate(block, index) {
     }),
   );
 
-  block.replaceWith(form);
+  block.innerHTML = '';
+  block.appendChild(form);
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, pageType));
 }
