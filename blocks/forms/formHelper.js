@@ -9,7 +9,15 @@ export async function extractFormData(block) {
     const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
     const valueContainer = row.children[1];
     const link = valueContainer.querySelector('a');
-    const value = link ? link.href : valueContainer.textContent.trim();
+    const image = valueContainer.querySelector('img');
+    let value;
+    if (link) {
+      value = link.href;
+    } else if (image) {
+      value = image.src;
+    } else {
+      value = valueContainer.textContent.trim();
+    }
     blockData[key] = value;
   });
   return blockData;
