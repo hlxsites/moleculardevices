@@ -207,15 +207,15 @@ export function getFormFieldValues(formConfig) {
     product_bundle: formConfig.productBundle,
     product_bundle_image: formConfig.productBundleImage,
     product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl,
     product_primary_application__c: formConfig.productPrimaryApplication,
     product_selection__c: formConfig.productSelection,
     qdc: formConfig.qdc,
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
-    jobtitle: formConfig.jobTitle,
-    website: formConfig.website,
+    jobtitle: formConfig.jobTitle || formConfig.title,
+    website: formConfig.website || formConfig.resourceUrl,
   };
 }
 
