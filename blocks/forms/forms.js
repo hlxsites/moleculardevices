@@ -68,7 +68,6 @@ export function loadHubSpotScript(callback) {
 
 export default async function decorate(block, index) {
   const formConfig = await extractFormData(block);
-  console.log(formConfig);
   const formHeading = formConfig.heading || '';
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value;
