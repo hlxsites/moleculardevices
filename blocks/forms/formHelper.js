@@ -19,7 +19,8 @@ export async function extractFormData(block) {
 export function getFormId(type) {
   switch (type) {
     case 'app-note':
-      return '46645e42-ae08-4d49-9338-e09efb4c4035';
+      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // app note master form
+      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // test form
     case 'scientific-poster':
       return '342c229a-9e0d-4f52-b4c4-07f067d39c31';
     case 'ebook':
