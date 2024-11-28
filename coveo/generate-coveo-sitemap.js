@@ -307,6 +307,7 @@ async function writeCoveoSitemapXML(index) {
     if (item.internal_path.startsWith('/fragments')) return;
 
     if (item.type === 'Landing Page') return;
+    if (item.robots.includes('noindex')) return;
     const excludedPaths = [
       '/nav',
       '/nav-landing-page',
@@ -317,7 +318,6 @@ async function writeCoveoSitemapXML(index) {
       '/video-gallery-landing/de',
       '/video-gallery-landing/fr',
       '/cp-request',
-      '/en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou',
     ];
 
     if (excludedPaths.includes(item.internal_path)) {
