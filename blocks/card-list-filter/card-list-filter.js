@@ -43,9 +43,7 @@ function scrollBlockIntoView(block) {
             left: 0,
             behavior: 'smooth',
           });
-        },
-        1000,
-        );
+        }, 1000);
       }
     });
   });
@@ -77,7 +75,12 @@ export default function decorate(block) {
 
   if (block.closest('main').querySelector('.card-list')) {
     // we are on the page where cards are displayed and filtering is enabled by hash
-    window.addEventListener('hashchange', () => { filterChangedViaHash(block, filters); });
+    window.addEventListener('hashchange', () => {
+      filterChangedViaHash(block, filters);
+      if (window.location.hash && window.matchMedia('only screen and (min-width: 767px)').matches) {
+        scrollBlockIntoView(block);
+      }
+    });
     // set initial active filter
     setActiveFilter(block);
 

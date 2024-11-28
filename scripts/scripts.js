@@ -791,27 +791,54 @@ async function formInModalHandler(main) {
 }
 
 /* ============================ scrollToHashSection ============================ */
-function scrollToHashSection() {
-  const hashInterval = setTimeout(() => {
-    const activeHash = window.location.hash;
-    if (activeHash) {
-      const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-      const targetElement = document.getElementById(id);
-      if (targetElement) {
-        window.scrollTo({
-          left: 0,
-          top: targetElement.offsetTop - 250,
-          behavior: 'smooth',
-        });
-      }
-      clearInterval(hashInterval);
-    }
-  }, 1000);
-}
+// function scrollToHashSection() {
+//   const hashInterval = setTimeout(() => {
+//     const activeHash = window.location.hash;
+//     if (activeHash) {
+//       const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+//       const targetElement = document.getElementById(id);
+//       if (targetElement) {
+//         window.scrollTo({
+//           left: 0,
+//           top: targetElement.offsetTop - 250,
+//           behavior: 'smooth',
+//         });
+//       }
+//       clearInterval(hashInterval);
+//     }
+//   }, 1000);
+// }
 
-window.addEventListener('load', scrollToHashSection);
-window.addEventListener('hashchange', scrollToHashSection);
+// window.addEventListener('load', scrollToHashSection);
+// window.addEventListener('hashchange', scrollToHashSection);
 /* ============================ scrollToHashSection ============================ */
+
+
+/**
+ * Detect anchor
+ */
+export function detectAnchor(block) {
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const el = block.querySelector(`#${id}`);
+  if (el) {
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.type === 'attributes'
+          && mutation.attributeName === 'data-block-status'
+          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
+          observer.disconnect();
+          setTimeout(() => {
+            window.dispatchEvent(new Event('hashchange'));
+          }, 3500);
+        }
+      });
+    });
+    observer.observe(block, { attributes: true });
+  }
+}
 
 /**
  * Decorates the main element.
@@ -828,6 +855,7 @@ export async function decorateMain(main) {
   decorateBlocks(main);
   decoratePageNav(main);
   detectSidebar(main);
+  detectAnchor(main);
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
@@ -1153,32 +1181,6 @@ export function detectStore() {
  */
 export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
-}
-
-/**
- * Detect anchor
- */
-export function detectAnchor(block) {
-  const activeHash = window.location.hash;
-  if (!activeHash) return;
-
-  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${id}`);
-  if (el) {
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-block-status'
-          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
-          observer.disconnect();
-          setTimeout(() => {
-            window.dispatchEvent(new Event('hashchange'));
-          }, 3500);
-        }
-      });
-    });
-    observer.observe(block, { attributes: true });
-  }
 }
 
 async function loadPage() {
