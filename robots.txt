@@ -92,7 +92,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-microbial-c
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/patient-derived-3d-ready-organoids-for-high-throughput-screening.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/t-cell-induced-morphological-change-analysis-of-colorectal-cancer-organoids-using-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/human-organoid-lines-for-modelling-intestinal-epithelial-barrier-in-vitro.pdf
- 
+Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-research 
 
 
 
