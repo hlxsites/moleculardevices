@@ -27,16 +27,17 @@ export async function extractFormData(block) {
 export function getFormId(type) {
   switch (type) {
     case 'app-note':
-      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // app note master form
-      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // test form
+      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // old app note master form
+      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // New app note master form
     case 'scientific-poster':
-      // return '342c229a-9e0d-4f52-b4c4-07f067d39c31';  // poster master form
-      return '837f6e47-0292-4586-8447-297325ff50c1'; // test form
+      // return '342c229a-9e0d-4f52-b4c4-07f067d39c31';  // old poster master form
+      return '837f6e47-0292-4586-8447-297325ff50c1'; // new poster master form
     case 'ebook':
-      // return '65148a5b-995e-436d-8cdc-cc915923feaa'; // ebook master form
-      return '90a9217a-7e3f-474e-a7a2-8e34d895ef45'; // test form
+      // return '65148a5b-995e-436d-8cdc-cc915923feaa'; // old ebook master form
+      return '90a9217a-7e3f-474e-a7a2-8e34d895ef45'; // new ebook master form
     case 'video-and-webinars':
-      return 'aabb1ced-8add-4de4-b198-6db60a82de85';
+      // return 'aabb1ced-8add-4de4-b198-6db60a82de85'; // old videos and webinars master form
+      return '9dc88e8e-68f7-4dcc-82b1-de8c4672797c'; // new videos and webinars master form
     default:
       return '';
   }
