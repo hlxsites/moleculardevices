@@ -1,18 +1,43 @@
 import { input } from '../../scripts/dom-helpers.js';
+import { toCamelCase } from '../../scripts/lib-franklin.js';
+import { getCookie } from '../../scripts/scripts.js';
 
-/* Helper functions */
-export const RESOURCEKEYS = ['heading', 'region', 'portalId', 'formId', 'redirectUrl', 'productFamily', 'productPrimaryApplication', 'cmp'];
+// extract data from table
+export async function extractFormData(block) {
+  const blockData = {};
+  [...block.children].forEach((row) => {
+    const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
+    const valueContainer = row.children[1];
+    const link = valueContainer.querySelector('a');
+    const image = valueContainer.querySelector('img');
+    let value;
+    if (link) {
+      value = link.href;
+    } else if (image) {
+      value = image.src;
+    } else {
+      value = valueContainer.textContent.trim();
+    }
+    blockData[key] = value;
+  });
+  return blockData;
+}
 
-export function getDefaultForKey(key) {
-  switch (key) {
-    case 'heading':
-      return '';
-    case 'region':
-      return 'na1';
-    case 'portalId':
-      return '20222769 ';
-    case 'redirectUrl':
-      return 'https://www.moleculardevices.com/';
+// get form id
+export function getFormId(type) {
+  switch (type) {
+    case 'app-note':
+      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // old app note master form
+      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // New app note master form
+    case 'scientific-poster':
+      // return '342c229a-9e0d-4f52-b4c4-07f067d39c31';  // old poster master form
+      return '837f6e47-0292-4586-8447-297325ff50c1'; // new poster master form
+    case 'ebook':
+      // return '65148a5b-995e-436d-8cdc-cc915923feaa'; // old ebook master form
+      return '90a9217a-7e3f-474e-a7a2-8e34d895ef45'; // new ebook master form
+    case 'video-and-webinars':
+      // return 'aabb1ced-8add-4de4-b198-6db60a82de85'; // old videos and webinars master form
+      return '9dc88e8e-68f7-4dcc-82b1-de8c4672797c'; // new videos and webinars master form
     default:
       return '';
   }
@@ -103,7 +128,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   });
 
   /* qdc */
-  const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]').checked;
+  const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
 
   if (qdcCall) {
@@ -173,4 +198,44 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   } else {
     setTimeout(() => { window.top.location.href = returnURL; }, 200);
   }
+}
+
+/* get form ready */
+export function getFormFieldValues(formConfig) {
+  // Get the `cmp` parameters from URL or cookie
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const cmpCookieValue = getCookie('cmp');
+  const valuecmp = params.cmp || cmpCookieValue;
+  const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
+
+  return {
+    cmp: valuecmp || formConfig.cmp,
+    gclid__c: formConfig.gclid,
+    google_analytics_medium__c: formConfig.googleAnalyticsMedium,
+    google_analytics_source__c: formConfig.googleAnalyticsSource,
+    keyword_ppc__c: formConfig.keywordPPC,
+    product_bundle: formConfig.productBundle,
+    product_bundle_image: formConfig.productBundleImage,
+    product_family__c: formConfig.productFamily,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl,
+    product_primary_application__c: formConfig.productPrimaryApplication,
+    product_selection__c: formConfig.productSelection,
+    qdc: formConfig.qdc,
+    requested_qdc_discussion__c: formConfig.qdc,
+    research_area: formConfig.researchArea,
+    return_url: formConfig.redirectUrl || thankyouUrl,
+    jobtitle: formConfig.jobTitle || formConfig.title,
+    website: formConfig.website || formConfig.resourceUrl,
+  };
+}
+
+// Function to update multiple form fields
+export function updateFormFields(form, fieldValues) {
+  Object.entries(fieldValues).forEach(([fieldName, value]) => {
+    if (value && form.querySelector(`input[name="${fieldName}"]`)) {
+      form.querySelector(`input[name="${fieldName}"]`).value = value;
+    }
+  });
 }

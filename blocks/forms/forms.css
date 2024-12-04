@@ -30,7 +30,7 @@
   height: 40px;
   line-height: 1.4286;
   outline: none;
-  padding: 5px;
+  padding: 5px 15px;
   max-width: 100%;
   width: 100%;
   margin-bottom: 0;
@@ -133,6 +133,7 @@ label.privacy {
   font-weight: 400;
   line-height: 1.4286;
   margin-bottom: 0;
+  display: block;
 }
 
 .hs-fieldtype-booleancheckbox .input {
@@ -158,6 +159,7 @@ label.privacy {
   line-height: 1.5;
   margin: 0;
   width: 100%;
+  text-align: left;
 }
 
 .hs-error-msgs.inputs-list {
@@ -167,10 +169,6 @@ label.privacy {
 .form-columns-1 .hs-form-field:first-child {
   padding-top: 0;
   margin-top: 0;
-}
-
-.form-columns-2 + .form-columns-1 .hs-form-field:first-child {
-  padding-top: 15px;
 }
 
 .form-columns-1 .hs-form-field.hs-subscribe:first-child {
@@ -221,15 +219,26 @@ label.privacy {
   position: relative;
 }
 
+.hs-submit .actions {
+  margin: 10px auto 20px;
+  text-align: center;
+}
+
 .hs-submit .actions button {
   width: 100%;
+  max-width: 100%;
 }
 
 /* hubspot form */
+main form fieldset[class*='form-columns'] .input {
+  margin-right: 0 !important;
+}
+
 .hubspot-form form {
   display: flex;
   flex-direction: column;
   line-height: 16px;
+  text-align: left;
 }
 
 .hubspot-form form .hs-submit {
@@ -240,9 +249,12 @@ label.privacy {
   order: 2;
 }
 
+.orange-buttons .hubspot-form .button {
+  background: var(--orange-background-color);
+}
+
 @media only screen and (min-width: 992px) {
   .hs-submit .actions {
-    margin: 10px auto 20px;
     max-width: 543px;
   }
 }
@@ -267,6 +279,13 @@ input[type="button"],
 input[type="submit"] {
   cursor: pointer;
   text-decoration: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  main form fieldset.form-columns-2 {
+    display: flex;
+    gap: 15px;
+  }
 }
 
 @media only screen and (max-width: 400px) {

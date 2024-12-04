@@ -3,9 +3,9 @@ import {
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
 } from '../../scripts/lib-franklin.js';
 import {
-  loadScript, embedVideo, fetchFragment, isGatedResource, summariseDescription,
+  embedVideo, fetchFragment, isGatedResource, summariseDescription,
 } from '../../scripts/scripts.js';
-import { getCoveoToken } from '../coveo-search/coveo-search.js';
+import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
   div, a, p, h3, i, h2, span, ul, li,
 } from '../../scripts/dom-helpers.js';
@@ -389,10 +389,7 @@ export async function initializeCoveo(block) {
       cRange.createContextualFragment(searchMainSection()),
     );
     loadCSS('/blocks/coveo-search/coveo-search.css');
-    loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/CoveoJsSearch.Lazy.min.js');
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10114/js/templates/templates.js');
-    await getCoveoToken();
+    addCoveoFiles(block);
   }
 }
 

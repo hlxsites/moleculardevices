@@ -4,13 +4,17 @@ import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
-async function iframeResizeHandler() {
+export async function iframeResizeHandler(id) {
   await new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
+    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); }, '', true);
   });
 
   /* global iFrameResize */
-  iFrameResize({ log: false });
+  setTimeout(() => {
+    iFrameResize({
+      log: false,
+    }, `#${id}`);
+  }, 1000);
 }
 
 function handleEmbed() {
@@ -34,7 +38,7 @@ function handleEmbed() {
   const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
-      iframeResizeHandler(embed);
+      iframeResizeHandler('iframeContent');
 
       // adjust parent div's height dynamically
       mutations.forEach((record) => {
@@ -42,6 +46,7 @@ function handleEmbed() {
         if (record.target.tagName === 'IFRAME'
           && grandGrandParent.classList.contains('embed')
         ) {
+          // iframeResizeHandler(iframeURL, iframeID, root);
           const { height } = record.target.style;
           if (height) {
             const parent = record.target.parentElement;

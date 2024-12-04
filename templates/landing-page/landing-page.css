@@ -367,6 +367,10 @@ body .thank-you-page h4 {
     padding: 15px 0 55px;
   }
 
+  .landing-page .wave-reverse .hero-inner .container {
+    padding-bottom: 120px;
+  }
+
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {
     border: 0;
   }
