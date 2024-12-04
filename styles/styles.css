@@ -2436,6 +2436,10 @@ main .section.no-margin-top {
   width: 178px;
 }
 
+.publication main .section.carousel-heading .icon-view-all-posts .button-container {
+  margin-bottom: 0;
+}
+
 /* RFQ Form Section */
 main .section.tabs.rfq-form-section h2,
 main .section.tabs.rfq-form-section h3 {
