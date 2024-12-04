@@ -63,7 +63,6 @@ export async function getBlogAndPublications() {
     .sheet('publications')
     .filter((resource) => resource.publicationType === 'Full Article')
     .all();
-  console.log(publications.map((pub) => pub.path));
 
   const blogs = await ffetch('/query-index.json')
     .sheet('blog')
