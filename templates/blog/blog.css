@@ -87,7 +87,6 @@
 
 .blog main .card-caption h3 {
   line-height: 1.1;
-  margin-top: 0;
 }
 
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
@@ -160,11 +159,6 @@ main .section.sidebar h4,
 .blog main .section.sidebar h4 {
   margin-bottom: 50px;
   position: relative;
-}
-
-.blog main .section.blog-heading .icon-view-all-posts img {
-  display: block;
-  width: 178px;
 }
 
 .blog main .section.green-secondary-buttons .button {

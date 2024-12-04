@@ -1,6 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
-// eslint-disable-next-line object-curly-newline
-import { a, div, i, li, p, ul } from '../../scripts/dom-helpers.js';
+import {
+  a, div, i, li, p, ul,
+} from '../../scripts/dom-helpers.js';
 
 function getURL() {
   return encodeURIComponent(window.location.href);
@@ -29,9 +30,7 @@ function decorateLink(social, type, icon, url) {
       target: '_blank',
       rel: 'noopener noreferrer',
       onclick: onSocialShareClick,
-    },
-    icon,
-    ),
+    }, icon),
   );
 }
 
@@ -67,11 +66,9 @@ export function socialShareBlock(title, socials) {
     p(title),
     div({ class: 'social-links' },
       ul({ class: 'button-container' },
-        ...socials.map((social) =>
-          // eslint-disable-next-line implicit-arrow-linebreak
-          li({ class: `share-${social}`, 'data-type': social },
-            i({ class: `fa fa-${social}` }),
-          ),
+        ...socials.map((social) => li({ class: `share-${social}`, 'data-type': social },
+          i({ class: `fa fa-${social}` }),
+        ),
         ),
       ),
     ),
@@ -102,7 +99,7 @@ export default function decorate(block) {
     title = block.querySelector('.social-share p').innerHTML;
   }
 
-  const socials = template === 'blog'
+  const socials = (template === 'blog' || theme === 'Full Article')
     ? ['linkedin', 'facebook', 'twitter', 'youtube-play']
     : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
