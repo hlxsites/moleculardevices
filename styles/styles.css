@@ -2430,6 +2430,12 @@ main .section.no-margin-top {
   vertical-align: middle;
 }
 
+.blog main .section.blog-heading .icon-view-all-posts img,
+.publication main .section.carousel-heading .icon-view-all-posts img {
+  display: block;
+  width: 178px;
+}
+
 /* RFQ Form Section */
 main .section.tabs.rfq-form-section h2,
 main .section.tabs.rfq-form-section h3 {
