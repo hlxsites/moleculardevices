@@ -30,7 +30,7 @@ function decorateLink(social, type, icon, url) {
       rel: 'noopener noreferrer',
       onclick: onSocialShareClick,
     },
-    icon,
+      icon,
     ),
   );
 }
@@ -102,7 +102,7 @@ export default function decorate(block) {
     title = block.querySelector('.social-share p').innerHTML;
   }
 
-  const socials = template === 'blog'
+  const socials = (template === 'blog' || theme === 'Full Article')
     ? ['linkedin', 'facebook', 'twitter', 'youtube-play']
     : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
