@@ -2,6 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { div, h2 } from '../../scripts/dom-helpers.js';
+import { getBlogAndPublications } from '../../templates/blog/blog.js';
 
 const viewAllCategory = 'viewall';
 
@@ -246,28 +247,7 @@ const VARIANTS = {
     cardRenderer: blogCardRender,
 
     async getData() {
-      let data = [];
-      const publications = await ffetch('/query-index.json')
-        .sheet('publications')
-        .filter((resource) => resource.publicationType === 'Full Article')
-        .all();
-
-      const blogs = await ffetch('/query-index.json')
-        .sheet('blog')
-        .all();
-
-      data = [...publications, ...blogs];
-
-      data.sort((x, y) => {
-        if (x.date > y.date) {
-          return -1;
-        }
-        if (x.date < y.date) {
-          return 1;
-        }
-        return 0;
-      });
-
+      const data = await getBlogAndPublications();
       return data;
     },
 

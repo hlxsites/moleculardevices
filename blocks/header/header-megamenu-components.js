@@ -7,7 +7,7 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
-import { summariseDescription } from '../../scripts/scripts.js';
+import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   const linkCopy = a({ href: link.href });
@@ -146,15 +146,23 @@ async function getRecentBlogPostsHandler(featuredPostUrl) {
   const featuredpost = div({ class: 'featured-blog-posts-block' });
   const blogPostMenu = div({ class: 'blog-posts-block' }, recentPosts, featuredpost);
 
-  const recentPostLinks = await getRecentBlogPosts(featuredPostUrl, false);
+  let recentPostLinks = [];
+  const blogs = await getRecentBlogPosts(featuredPostUrl, false);
+  const publications = await ffetch('/query-index.json')
+    .sheet('publications')
+    .filter((resource) => resource.publicationType === 'Full Article')
+    .limit(4)
+    .all();
+  recentPostLinks = sortDataByDate([...publications, ...blogs]).slice(0, 4);
   const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
 
   document.querySelector('.blog-lab-notes-right-submenu').appendChild(blogPostMenu);
 
   setTimeout(() => {
     recentPostLinks.forEach((post) => {
+      const postTitle = post.h1 || post.title;
       const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
-      const title = p(a({ href: post.path }, `${post.h1.trim().substring(0, 40)}...`));
+      const title = p(a({ href: post.path }, `${postTitle.trim().substring(0, 40)}...`));
       const postWrapper = div(link, title);
       recentPosts.appendChild(postWrapper);
     });

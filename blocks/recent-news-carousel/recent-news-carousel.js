@@ -1,31 +1,8 @@
-import ffetch from '../../scripts/ffetch.js';
+import { getBlogAndPublications } from '../../templates/blog/blog.js';
 import { createRecentResourceCarousel } from '../recent-blogs-carousel/recent-blogs-carousel.js';
 
 export default async function decorate(block) {
-  let data = [];
-  const publications = await ffetch('/query-index.json')
-    .sheet('publications')
-    .filter((resource) => resource.publicationType === 'Full Article')
-    .limit(7)
-    .all();
-
-  const blogs = await ffetch('/query-index.json')
-    .sheet('blog')
-    .limit(7)
-    .all();
-
-  data = [...publications, ...blogs];
-
-  data.sort((x, y) => {
-    if (x.date > y.date) {
-      return -1;
-    }
-    if (x.date < y.date) {
-      return 1;
-    }
-    return 0;
-  });
+  let data = await getBlogAndPublications();
   data = data.slice(0, 7);
-
   await createRecentResourceCarousel(block, data);
 }

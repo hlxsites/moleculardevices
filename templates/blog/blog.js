@@ -5,7 +5,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
-import { iframeResizeHandler } from '../../scripts/scripts.js';
+import { iframeResizeHandler, sortDataByDate } from '../../scripts/scripts.js';
 
 async function addNewsletterInParams(formURL) {
   const queryParams = new URLSearchParams(window.location.search);
@@ -55,6 +55,21 @@ export async function newsletterModal(formURL, iframeID) {
   );
 
   await decorateModal(formURL, iframeID, modalBody, 'newsletter-inner-wrapper', true);
+}
+
+export async function getBlogAndPublications() {
+  let data = [];
+  const publications = await ffetch('/query-index.json')
+    .sheet('publications')
+    .filter((resource) => resource.publicationType === 'Full Article')
+    .all();
+
+  const blogs = await ffetch('/query-index.json')
+    .sheet('blog')
+    .all();
+
+  data = [...publications, ...blogs];
+  return sortDataByDate(data);
 }
 
 export default async function decorate() {
