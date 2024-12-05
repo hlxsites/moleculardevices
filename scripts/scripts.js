@@ -750,7 +750,7 @@ function addHreflangTags() {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
-    ln.setAttribute('href', hl.lang === 'x-default' ? hl.href : hl.href + path);
+    ln.setAttribute('href', hl.href + path);
     document.head.appendChild(ln);
   });
 }
