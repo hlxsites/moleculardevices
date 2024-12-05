@@ -723,6 +723,7 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  // Avoid duplicate tags
   if (document.querySelectorAll('head link[hreflang]').length > 0) return;
 
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
@@ -736,41 +737,21 @@ function addHreflangTags() {
   }
 
   const baseHreflangs = [
-    {
-      lang: 'x-default',
-      href: 'https://www.moleculardevices.com',
-    },
-    {
-      lang: 'de',
-      href: 'https://de.moleculardevices.com',
-    },
-    {
-      lang: 'es',
-      href: 'https://es.moleculardevices.com',
-    },
-    {
-      lang: 'fr',
-      href: 'https://fr.moleculardevices.com',
-    },
-    {
-      lang: 'it',
-      href: 'https://it.moleculardevices.com',
-    },
-    {
-      lang: 'ko',
-      href: 'https://ko.moleculardevices.com',
-    },
-    {
-      lang: 'zh',
-      href: 'https://www.moleculardevices.com.cn',
-    },
+    { lang: 'x-default', href: 'https://www.moleculardevices.com' },
+    { lang: 'de', href: 'https://de.moleculardevices.com' },
+    { lang: 'es', href: 'https://es.moleculardevices.com' },
+    { lang: 'fr', href: 'https://fr.moleculardevices.com' },
+    { lang: 'it', href: 'https://it.moleculardevices.com' },
+    { lang: 'ko', href: 'https://ko.moleculardevices.com' },
+    { lang: 'zh', href: 'https://www.moleculardevices.com.cn' },
   ];
+
   baseHreflangs.forEach((hl) => {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
-    ln.setAttribute('href', hl.href + path);
-    document.querySelector('head').appendChild(ln);
+    ln.setAttribute('href', hl.lang === 'x-default' ? hl.href : hl.href + path);
+    document.head.appendChild(ln);
   });
 }
 
@@ -820,26 +801,56 @@ async function formInModalHandler(main) {
 
 /* ============================ scrollToHashSection ============================ */
 function scrollToHashSection() {
-  const hashInterval = setTimeout(() => {
-    const activeHash = window.location.hash;
-    if (activeHash) {
-      const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-      const targetElement = document.getElementById(id);
-      if (targetElement) {
-        window.scrollTo({
-          left: 0,
-          top: targetElement.offsetTop - 250,
-          behavior: 'smooth',
-        });
+  const observerTarget = document.body;
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach(() => {
+      const activeHash = window.location.hash;
+      if (activeHash) {
+        const id = activeHash.substring(1).toLowerCase();
+        const targetElement = document.getElementById(id);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 250,
+            behavior: 'smooth',
+          });
+          observer.disconnect();
+        }
       }
-      clearInterval(hashInterval);
-    }
-  }, 1000);
+    });
+  });
+
+  observer.observe(observerTarget, { childList: true, subtree: true, attributes: true });
 }
 
 window.addEventListener('load', scrollToHashSection);
-window.addEventListener('hashchange', scrollToHashSection);
+// window.addEventListener('hashchange', scrollToHashSection);
 /* ============================ scrollToHashSection ============================ */
+
+/**
+ * Detect anchor
+ */
+export function detectAnchor(block) {
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const el = block.querySelector(`#${id}`);
+  if (el) {
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.type === 'attributes'
+          && mutation.attributeName === 'data-block-status'
+          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
+          observer.disconnect();
+          setTimeout(() => {
+            window.dispatchEvent(new Event('hashchange'));
+          }, 3500);
+        }
+      });
+    });
+    observer.observe(block, { attributes: true });
+  }
+}
 
 /**
  * Decorates the main element.
@@ -1181,32 +1192,6 @@ export function detectStore() {
  */
 export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
-}
-
-/**
- * Detect anchor
- */
-export function detectAnchor(block) {
-  const activeHash = window.location.hash;
-  if (!activeHash || activeHash.includes('t=')) return;
-
-  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${id}`);
-  if (el) {
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-block-status'
-          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
-          observer.disconnect();
-          setTimeout(() => {
-            window.dispatchEvent(new Event('hashchange'));
-          }, 3500);
-        }
-      });
-    });
-    observer.observe(block, { attributes: true });
-  }
 }
 
 async function loadPage() {
