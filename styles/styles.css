@@ -1821,6 +1821,31 @@ main .section.background-molecules {
   padding-top: 50px;
 }
 
+.section.video-caption.no-padding-top >  div {
+  padding-top: 0;
+}
+
+.section.video-caption.no-padding-bottom >  div > p > .video-wrapper  {
+  margin-bottom: 0;
+}
+
+.section.video-caption.no-padding-top >  div >  p > .video-wrapper {
+  margin-top: 0;
+}
+
+.video-caption p {
+  margin: 40px auto;
+  max-width: 700px;
+}
+
+.video-caption p:first-child {
+  margin-top:0;
+}
+
+.video-caption p:last-child {
+  margin-bottom: 0;
+}
+
 .technology .section.tabs .columns-wrapper p + h2,
 .application .section.tabs .columns-wrapper p + h2 {
   padding-top: 20px;
@@ -1840,6 +1865,24 @@ main .section.background-molecules {
 .technology .section .related-links-container,
 .application .section .related-links-container {
   padding-bottom: 32px;
+}
+
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing h2,
+.application main .section.tabs:not(.related-applications-container).title-no-spacing h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing-title h2,
+.application main .section.tabs:not(.related-applications-container).title-no-spacing-top h2 {
+  margin: 0 0 10px;
+  padding-top: 0;
+}
+
+.technology main .section.tabs:not(.related-applications-container).title-no-spacing-bottom h2,
+.application main .section.tabs:not(.related-applications-container).title-no-spacing-bottom h2 {
+  margin: 20px 0 0;
+  padding-bottom: 0;
 }
 
 .technology .section .related-app,
@@ -1945,6 +1988,18 @@ main .section.background-molecules {
 .section.title-no-spacing > div.default-content-wrapper > h3 {
   margin: 0;
   padding: 0;
+}
+
+.title-no-spacing-top h2,
+.title-no-spacing-top h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.title-no-spacing-bottom h2,
+.title-no-spacing-bottom h3 {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .section.image-title-inline > div.default-content-wrapper > p.picture:first-child,
