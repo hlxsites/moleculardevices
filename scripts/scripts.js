@@ -723,6 +723,7 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  // Avoid duplicate tags
   if (document.querySelectorAll('head link[hreflang]').length > 0) return;
 
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
@@ -736,41 +737,21 @@ function addHreflangTags() {
   }
 
   const baseHreflangs = [
-    {
-      lang: 'x-default',
-      href: 'https://www.moleculardevices.com',
-    },
-    {
-      lang: 'de',
-      href: 'https://de.moleculardevices.com',
-    },
-    {
-      lang: 'es',
-      href: 'https://es.moleculardevices.com',
-    },
-    {
-      lang: 'fr',
-      href: 'https://fr.moleculardevices.com',
-    },
-    {
-      lang: 'it',
-      href: 'https://it.moleculardevices.com',
-    },
-    {
-      lang: 'ko',
-      href: 'https://ko.moleculardevices.com',
-    },
-    {
-      lang: 'zh',
-      href: 'https://www.moleculardevices.com.cn',
-    },
+    { lang: 'x-default', href: 'https://www.moleculardevices.com' },
+    { lang: 'de', href: 'https://de.moleculardevices.com' },
+    { lang: 'es', href: 'https://es.moleculardevices.com' },
+    { lang: 'fr', href: 'https://fr.moleculardevices.com' },
+    { lang: 'it', href: 'https://it.moleculardevices.com' },
+    { lang: 'ko', href: 'https://ko.moleculardevices.com' },
+    { lang: 'zh', href: 'https://www.moleculardevices.com.cn' },
   ];
+
   baseHreflangs.forEach((hl) => {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
     ln.setAttribute('href', hl.href + path);
-    document.querySelector('head').appendChild(ln);
+    document.head.appendChild(ln);
   });
 }
 
