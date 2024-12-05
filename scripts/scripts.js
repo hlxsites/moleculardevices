@@ -678,9 +678,9 @@ function addPageSchema() {
       };
     }
 
-    /* 
-     if (type === 'Videos and Webinars') {
-      const vidyardLink = document.querySelector('a[href*="vidyard.com"], a[href*="vids.moleculardevices.com"]').href;
+    /* if (type === 'Videos and Webinars') {
+      const vidyardLink = document.querySelector('a[href*="vidyard.com"],
+      a[href*="vids.moleculardevices.com"]').href;
       const vidyardId = vidyardLink.split('/').pop();
       const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
 
