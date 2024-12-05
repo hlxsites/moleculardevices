@@ -465,13 +465,13 @@ function addPageSchema() {
     const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
     const schemaImage = heroImage ? heroImage.src : resourcesImage;
     const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
-    const resourcesImageUrl = new URL(resourcesImage, moleculardevicesRootURL);
+    // const resourcesImageUrl = new URL(resourcesImage, moleculardevicesRootURL);
     const keywords = getMetadata('keywords');
     const description = getMetadata('description');
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
-    const publicationDate = getMetadata('publication-date');
+    // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
@@ -678,7 +678,7 @@ function addPageSchema() {
       };
     }
 
-    /*if (type === 'Videos and Webinars') {
+    /* if (type === 'Videos and Webinars') {
       const vidyardLink = document.querySelector('a[href*="vidyard.com"], a[href*="vids.moleculardevices.com"]').href;
       const vidyardId = vidyardLink.split('/').pop();
       const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
@@ -707,7 +707,7 @@ function addPageSchema() {
           },
         ],
       };
-    }*/
+    } */
 
     if (schemaInfo) {
       schema.appendChild(document.createTextNode(
