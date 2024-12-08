@@ -6,9 +6,9 @@ main .section.social-share-container {
 /* News and Publication Variant */
 .publication .share-event,
 .news .share-event {
-    float: left;
-    padding: 15px 0 0;
-  }
+  float: left;
+  padding: 15px 0 0;
+}
 
 .publication .share-event p,
 .news .share-event p {
@@ -24,19 +24,28 @@ main .section.social-share-container {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: block;
-}
-
-.publication .social-links li,
-.news .social-links li {
-  float: left;
-  padding-right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
 .publication .social-links li a i,
 .news .social-links li a i {
   display: inline-block;
   font-size: 21px;
+}
+
+.publication .social-links li a span img,
+.blog .social-links li a span img,
+.news .social-links li a span img {
+  max-width: 21px;
+  width: 100%;
+  display: block;
+}
+
+.publication .social-links li a span img,
+.blog .social-links li a span img {
+  max-width: 25px;
 }
 
 .publication .social-links ul li i,
@@ -65,7 +74,7 @@ main .section.social-share-container {
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   visibility: visible;
   opacity: 1;
   margin-top: 0;
@@ -89,9 +98,14 @@ main .section.social-share-container {
   line-height: 60px;
   font-size: 30px;
   box-shadow: none;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   background-color: rgba(50 159 121 / 100%);
-  background-image: linear-gradient(to left,rgba(21 145 164 / 100%) 0,rgba(50 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%);
+  background-image: linear-gradient(
+    to left,
+    rgba(21 145 164 / 100%) 0,
+    rgba(50 159 121 / 100%) 50%,
+    rgba(97 178 73 / 100%) 100%
+  );
 }
 
 .full-article .share-event ul.button-container li:hover,
@@ -102,7 +116,10 @@ main .section.social-share-container {
 
 .full-article .share-event ul.button-container li a,
 .blog .share-event ul.button-container li a {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .full-article .share-event ul.button-container li i,

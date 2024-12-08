@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a, div, i, li, p, ul,
+  a, div, i, li, p, span, ul,
 } from '../../scripts/dom-helpers.js';
 
 function getURL() {
@@ -41,6 +41,10 @@ export function decorateIcons(element) {
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
+    const xIcon = span({ class: 'icon icon-x-twitter' });
+    const xIconTeal = span({ class: 'icon icon-footer-x' });
+    const hasStickySocial = getMetadata('template') === 'Blog' || getMetadata('theme') === 'Full Article';
+    const updatedXIcon = hasStickySocial ? xIcon : xIconTeal;
 
     switch (type) {
       case 'facebook':
@@ -50,7 +54,8 @@ export function decorateIcons(element) {
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
-        decorateLink(social, 'Twitter', icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        decorateLink(social, 'Twitter', updatedXIcon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        social.querySelector('i').remove();
         break;
       case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
