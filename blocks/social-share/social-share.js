@@ -35,6 +35,8 @@ function decorateLink(social, type, icon, url) {
 }
 
 export function decorateIcons(element) {
+  const template = getMetadata('template').toLowerCase();
+  const theme = getMetadata('theme');
   const url = getURL();
   const title = getTitle();
 
@@ -43,8 +45,9 @@ export function decorateIcons(element) {
     const icon = social.querySelector('i');
     const xIcon = span({ class: 'icon icon-x-twitter' });
     const xIconTeal = span({ class: 'icon icon-footer-x' });
-    const hasStickySocial = getMetadata('template') === 'Blog' || getMetadata('theme') === 'Full Article';
-    const updatedXIcon = hasStickySocial ? xIcon : xIconTeal;
+    const updatedXIcon = (template === 'blog' || theme === 'Full Article')
+      ? xIcon
+      : xIconTeal;
 
     switch (type) {
       case 'facebook':
@@ -54,13 +57,15 @@ export function decorateIcons(element) {
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
-        decorateLink(social, 'Twitter', updatedXIcon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
-        social.querySelector('i').remove();
+        decorateLink(social, 'X', updatedXIcon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        icon.remove();
         break;
       case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
       default:
+        // eslint-disable-next-line no-console
+        console.warn('Unhandled social type:', type);
         break;
     }
   });

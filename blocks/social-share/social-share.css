@@ -48,6 +48,16 @@ main .section.social-share-container {
   max-width: 25px;
 }
 
+.publication .social-links li a span.icon-x-twitter:is(:empty),
+.blog .social-links li a span.icon-x-twitter:is(:empty) {
+  background-image: url("/icons/x-twitter.svg");
+  background-size: 25px;
+  width: 25px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .publication .social-links ul li i,
 .news .social-links ul li i {
   color: var(--button-bg-color);
