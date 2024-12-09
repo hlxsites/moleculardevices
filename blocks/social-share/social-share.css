@@ -49,6 +49,7 @@ main .section.social-share-container {
 }
 
 .publication .social-links li a span.icon-x-twitter:is(:empty),
+.customer-breakthrough .social-links li a span.icon-x-twitter:is(:empty),
 .blog .social-links li a span.icon-x-twitter:is(:empty) {
   background-image: url("/icons/x-twitter.svg");
   background-size: 25px;
