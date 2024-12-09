@@ -57,15 +57,6 @@ main .section.social-share-container {
   cursor: pointer;
 }
 
-.customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
-  background-image: url('/icons/x-blue.svg');
-  background-size: 21px;
-  width: 21px;
-  height: 25px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 /* Blog Variant */
 .full-article .share-event p,
 .blog .share-event p {
@@ -123,15 +114,6 @@ main .section.social-share-container {
 .blog .share-event ul.button-container li:hover {
   background-image: none;
   box-shadow: 4px 2px 4px rgba(0 0 0 / 50%);
-}
-
-.customer-breakthrough .share-event ul.button-container li a,
-.full-article .share-event ul.button-container li a,
-.blog .share-event ul.button-container li a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
 }
 
 .full-article .share-event ul.button-container li i,

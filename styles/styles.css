@@ -2440,10 +2440,26 @@ main .section.no-margin-top {
   margin-bottom: 0;
 }
 
+.share-event ul.button-container li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .social-links li a span[aria-label="X"] img {
   max-width: 21px;
   width: 100%;
   display: block;
+}
+
+.customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
+  background-image: url('/icons/x-blue.svg');
+  background-size: 21px;
+  width: 21px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* RFQ Form Section */
