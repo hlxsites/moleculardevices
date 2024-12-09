@@ -57,7 +57,7 @@ export function decorateIcons(element) {
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
-        decorateLink(social, 'X', updatedXIcon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
         icon.remove();
         break;
       case 'youtube-play':
