@@ -45,7 +45,7 @@ export function decorateIcons(element) {
     const icon = social.querySelector('i');
     const xIcon = span({ class: 'icon icon-x-twitter' });
     const xIconTeal = span({ class: 'icon icon-footer-x' });
-    const updatedXIcon = (template === 'blog' || theme === 'Full Article')
+    const updatedXIcon = (template === 'blog' || theme === 'Full Article' || template === 'Customer Breakthrough')
       ? xIcon
       : xIconTeal;
 
