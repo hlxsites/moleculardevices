@@ -2440,6 +2440,12 @@ main .section.no-margin-top {
   margin-bottom: 0;
 }
 
+.social-links li a span[aria-label="X"] img {
+  max-width: 21px;
+  width: 100%;
+  display: block;
+}
+
 /* RFQ Form Section */
 main .section.tabs.rfq-form-section h2,
 main .section.tabs.rfq-form-section h3 {

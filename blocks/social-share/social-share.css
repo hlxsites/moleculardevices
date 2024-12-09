@@ -35,23 +35,14 @@ main .section.social-share-container {
   font-size: 21px;
 }
 
-.publication .social-links li a span img,
-.blog .social-links li a span img,
-.news .social-links li a span img {
-  max-width: 21px;
-  width: 100%;
-  display: block;
-}
-
-.publication .social-links li a span img,
+.full-article .social-links li a span img,
 .blog .social-links li a span img {
   max-width: 25px;
 }
 
-.publication .social-links li a span.icon-x-twitter:is(:empty),
-.customer-breakthrough .social-links li a span.icon-x-twitter:is(:empty),
-.blog .social-links li a span.icon-x-twitter:is(:empty) {
-  background-image: url("/icons/x-twitter.svg");
+.publication .social-links li a span.icon-x-white:is(:empty),
+.blog .social-links li a span.icon-x-white:is(:empty) {
+  background-image: url("/icons/x-white.svg");
   background-size: 25px;
   width: 25px;
   height: 25px;
@@ -64,6 +55,15 @@ main .section.social-share-container {
   color: var(--button-bg-color);
   line-height: 28px;
   cursor: pointer;
+}
+
+.customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
+  background-image: url('/icons/x-blue.svg');
+  background-size: 21px;
+  width: 21px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Blog Variant */
@@ -125,6 +125,7 @@ main .section.social-share-container {
   box-shadow: 4px 2px 4px rgba(0 0 0 / 50%);
 }
 
+.customer-breakthrough .share-event ul.button-container li a,
 .full-article .share-event ul.button-container li a,
 .blog .share-event ul.button-container li a {
   display: flex;

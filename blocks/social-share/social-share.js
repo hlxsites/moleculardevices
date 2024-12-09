@@ -43,9 +43,9 @@ export function decorateIcons(element) {
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
-    const xIcon = span({ class: 'icon icon-x-twitter' });
-    const xIconTeal = span({ class: 'icon icon-footer-x' });
-    const updatedXIcon = (template === 'blog' || theme === 'Full Article' || template === 'Customer Breakthrough')
+    const xIcon = span({ class: 'icon icon-x-white' });
+    const xIconTeal = span({ class: 'icon icon-x-blue' });
+    const updatedXIcon = (template === 'blog' || theme === 'Full Article')
       ? xIcon
       : xIconTeal;
 
