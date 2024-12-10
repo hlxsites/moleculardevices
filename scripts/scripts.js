@@ -487,7 +487,7 @@ function addPageSchema() {
       'http://www.linkedin.com/company/molecular-devices',
       'https://www.facebook.com/MolecularDevices',
       'http://www.youtube.com/user/MolecularDevicesInc',
-      'https://twitter.com/moldev',
+      'https://www.x.com/moldev',
     ];
 
     let schemaInfo = null;

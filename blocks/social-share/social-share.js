@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a, div, i, li, p, ul,
+  a, div, i, li, p, span, ul,
 } from '../../scripts/dom-helpers.js';
 
 function getURL() {
@@ -35,12 +35,19 @@ function decorateLink(social, type, icon, url) {
 }
 
 export function decorateIcons(element) {
+  const template = getMetadata('template').toLowerCase();
+  const theme = getMetadata('theme');
   const url = getURL();
   const title = getTitle();
 
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
+    const xIcon = span({ class: 'icon icon-x-white' });
+    const xIconTeal = span({ class: 'icon icon-x-blue' });
+    const updatedXIcon = (template === 'blog' || theme === 'Full Article')
+      ? xIcon
+      : xIconTeal;
 
     switch (type) {
       case 'facebook':
@@ -50,12 +57,15 @@ export function decorateIcons(element) {
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
-        decorateLink(social, 'Twitter', icon, `https://www.twitter.com/share?&url=${url}&text=${title}`);
+        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
+        icon.remove();
         break;
       case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
       default:
+        // eslint-disable-next-line no-console
+        console.warn('Unhandled social type:', type);
         break;
     }
   });
