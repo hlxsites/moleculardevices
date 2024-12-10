@@ -226,7 +226,7 @@ export function getFormFieldValues(formConfig) {
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
-    jobtitle: formConfig.jobTitle || formConfig.title,
+    landing_page_title: formConfig.jobTitle || formConfig.title,
     website: formConfig.website || formConfig.resourceUrl,
   };
 }
