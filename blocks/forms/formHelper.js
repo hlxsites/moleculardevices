@@ -38,6 +38,8 @@ export function getFormId(type) {
     case 'video-and-webinars':
       // return 'aabb1ced-8add-4de4-b198-6db60a82de85'; // old videos and webinars master form
       return '9dc88e8e-68f7-4dcc-82b1-de8c4672797c'; // new videos and webinars master form
+    case 'infographics':
+      return '17750eb2-f0d3-4584-a534-85b6d7a1dd53'; // new infographics master form  
     default:
       return '';
   }
