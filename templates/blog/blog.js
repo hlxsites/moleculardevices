@@ -9,6 +9,20 @@ import { sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getFormId } from '../../blocks/forms/formHelper.js';
 
+async function getLatestNewsletter() {
+  const resources = await ffetch('/query-index.json')
+    .sheet('resources')
+    .filter((resource) => resource.type === 'Newsletter')
+    .limit(1)
+    .all();
+  return resources[0]?.gatedURL || '';
+}
+
+const formConfig = {
+  formId: getFormId('lab-notes'),
+  latestNewsletter: await getLatestNewsletter(),
+};
+
 export async function newsletterModal(iframeID) {
   const leftColumn = div(
     { class: 'col col-left' },
@@ -39,10 +53,6 @@ export async function newsletterModal(iframeID) {
       rightColumn,
     ),
   );
-
-  const formConfig = {
-    formId: getFormId('lab-notes'),
-  };
 
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, iframeID));
   await decorateModal(modalBody, 'newsletter-inner-wrapper', true);
@@ -81,9 +91,6 @@ export default async function decorate() {
         id: sidebarIframeID,
       }),
     );
-    const formConfig = {
-      formId: '9530db8b-2803-469c-a178-9b74f9cb504a',
-    };
 
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID));
     spectraNewsletter.appendChild(sidebar);
