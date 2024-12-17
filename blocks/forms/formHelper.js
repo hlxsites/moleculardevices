@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
@@ -229,6 +230,7 @@ export function getFormFieldValues(formConfig) {
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
     landing_page_title: formConfig.jobTitle || formConfig.title,
+    latest_newsletter: formConfig.latestNewsletter,
     website: formConfig.website || formConfig.resourceUrl,
   };
 }

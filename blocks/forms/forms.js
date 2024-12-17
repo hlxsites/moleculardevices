@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   a, button, div, h3, label,
 } from '../../scripts/dom-helpers.js';

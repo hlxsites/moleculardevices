@@ -11,6 +11,10 @@
   padding: 15px 0 2px;
 }
 
+.hs-form-field:first-child{
+  padding-top: 0;
+}
+
 .hs-form-field .hs-field-desc {
   color: var(--input-color);
   font-size: 10px;
@@ -128,7 +132,7 @@ legend {
 .hs-fieldtype-booleancheckbox legend,
 label.privacy {
   border: none;
-  color: var(--input-color);
+  color: inherit;
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4286;

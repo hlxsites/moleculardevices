@@ -265,8 +265,28 @@ main .section.sidebar h4::after {
   margin-bottom: 50px;
 }
 
-.blog main .section div.spectra-newsletter h5 {
-  margin-bottom: 0;
+.blog main .section div.spectra-newsletter .contact-quote-request {
+  padding: 0 15px;
+  text-align: center;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message p {
+  font-size: 18px;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy {
+  text-align: center;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request .hs-submit .actions {
+  margin-top: 17px;
+  margin-bottom: 17px;
+  max-width: 200px;
 }
 
 @media only screen and (max-width: 991px) {
