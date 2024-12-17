@@ -7,6 +7,7 @@ import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.j
 import { decorateModal } from '../../blocks/modal/modal.js';
 import { sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getFormId } from '../../blocks/forms/formHelper.js';
 
 export async function newsletterModal(iframeID) {
   const leftColumn = div(
@@ -40,7 +41,7 @@ export async function newsletterModal(iframeID) {
   );
 
   const formConfig = {
-    formId: '9530db8b-2803-469c-a178-9b74f9cb504a',
+    formId: getFormId('lab-notes'),
   };
 
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, iframeID));
