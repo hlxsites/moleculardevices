@@ -139,7 +139,6 @@ async function buildNewsletter(container) {
       class: 'enewsletter-wrapper',
       loading: 'lazy',
     },
-    // h3('eNEWSLETTER'),
     div(
       {
         class: 'hubspot-form',
