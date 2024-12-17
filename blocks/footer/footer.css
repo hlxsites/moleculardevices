@@ -147,12 +147,12 @@
 .footer-newsletter-form {
   background-color: var(--grey-background-color);
   padding: 15px;
+  padding-top: 16px;
   color: var(--button-bg-color);
   margin-bottom: 30px;
 }
 
 .footer-newsletter-form h3 {
-  margin-top: 16px;
   font-size: 20px;
 }
 
@@ -162,6 +162,10 @@
 
 .footer-newsletter-form ul {
   margin-top: 15px;
+}
+
+.footer-newsletter-form .hubspot-form .hs-form-field {
+  padding: 0 0 15px;
 }
 
 .footer-newsletter-form ul:not(.hs-error-msgs) li {
@@ -200,8 +204,8 @@
 }
 
 .footer-newsletter-form .hs-submit .actions {
+  margin-top: 0;
   margin-bottom: 15px;
-  margin-top: 15px;
 }
 
 .footer-newsletter-form .hubspot-form .submitted-message p,
