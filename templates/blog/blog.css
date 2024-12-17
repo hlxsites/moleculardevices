@@ -270,6 +270,10 @@ main .section.sidebar h4::after {
   text-align: center;
 }
 
+.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message {
+  padding: 30px 0;
+}
+
 .blog main .section div.spectra-newsletter .contact-quote-request .submitted-message p {
   font-size: 18px;
 }

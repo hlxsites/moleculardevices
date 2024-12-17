@@ -164,6 +164,14 @@
   max-width: 200px;
 }
 
+.newsletter-inner-wrapper .iframe-wrapper .submitted-message {
+  padding: 30px 0;
+}
+
+.newsletter-inner-wrapper .iframe-wrapper .submitted-message p {
+  font-size: 18px;
+}
+
 @media only screen and (min-width: 567px) {
   .modal-inner-wrapper .columns-2-cols .col-left {
     display: flex;

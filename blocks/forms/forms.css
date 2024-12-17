@@ -166,7 +166,8 @@ label.privacy {
   text-align: left;
 }
 
-.hs-error-msgs.inputs-list {
+.hs-error-msgs.inputs-list,
+.hubspot-form .hs-error-msgs.inputs-list {
   margin-top: 10px;
 }
 
