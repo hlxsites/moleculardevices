@@ -154,7 +154,12 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   /* subscribe */
   let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
-  if (!subscribe) { subscribe = 'false'; }
+  if (subscribe && subscribe.checked) {
+    subscribe = 'true';
+  } else {
+    subscribe = 'false';
+  }
+  // if (!subscribe) { subscribe = 'false'; }
   const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
   form.appendChild(elementmarketingoptin);
 
