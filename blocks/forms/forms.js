@@ -72,8 +72,8 @@ export default async function decorate(block, index) {
   const formHeading = formConfig.heading || '';
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value;
-  const pageTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars', 'infographics'];
-  const pageType = pageTypes.filter((type) => blockClasses.includes(type)).join();
+  const formTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars', 'infographics', 'inquiry'];
+  const formType = formTypes.filter((type) => blockClasses.includes(type)).join();
 
   const form = div(
     h3(formHeading),
@@ -85,5 +85,5 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, pageType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
 }

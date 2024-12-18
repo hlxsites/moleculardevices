@@ -559,11 +559,6 @@ main select {
   font-family: inherit;
 }
 
-main form fieldset .hs-form-field {
-  line-height: 1.4em;
-  margin-bottom: 12px;
-}
-
 main textarea {
   height: 100px;
 }
