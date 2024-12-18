@@ -153,7 +153,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementqdcrequest);
 
   /* subscribe */
-  let subscribe = hubspotForm.querySelector('input[name="subscribe"]').checked;
+  let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
   if (!subscribe) { subscribe = 'false'; }
   const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
   form.appendChild(elementmarketingoptin);
@@ -200,14 +200,13 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementprodprimapp);
 
   document.body.appendChild(form);
-  console.log(qdc);
 
-  // const allowedValues = ['Call', 'Demo', 'Quote'];
-  // if (allowedValues.includes(qdc)) {
-  //   form.submit();
-  // } else {
-  //   setTimeout(() => { window.top.location.href = returnURL; }, 200);
-  // }
+  const allowedValues = ['Call', 'Demo', 'Quote'];
+  if (allowedValues.includes(qdc)) {
+    form.submit();
+  } else {
+    setTimeout(() => { window.top.location.href = returnURL; }, 200);
+  }
 }
 
 /* get form ready */
