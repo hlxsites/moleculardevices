@@ -143,12 +143,17 @@
   display: block;
 }
 
-/* row 3 | hubspot-iframe-wrapper */
+/* row 3 */
 .footer-newsletter-form {
   background-color: var(--grey-background-color);
-  padding: 0 15px 15px;
+  padding: 15px;
+  padding-top: 16px;
   color: var(--button-bg-color);
   margin-bottom: 30px;
+}
+
+.footer-newsletter-form h3 {
+  font-size: 20px;
 }
 
 .footer-newsletter-form p {
@@ -159,7 +164,11 @@
   margin-top: 15px;
 }
 
-.footer-newsletter-form li {
+.footer-newsletter-form .hubspot-form .hs-form-field {
+  padding: 0 0 15px;
+}
+
+.footer-newsletter-form ul:not(.hs-error-msgs) li {
   margin-bottom: 5px;
   max-width: 162px;
 }
@@ -169,21 +178,43 @@
   justify-content: space-between;
 }
 
-.footer-newsletter-form .hubspot-iframe-wrapper {
-  margin-left: -15px;
-  margin-right: -15px;
-  min-height: 298px;
+.footer-newsletter-form label.privacy {
+  color: #5f696b;
 }
 
-.footer-newsletter-form .hubspot-iframe-wrapper iframe {
-  border: 0;
-  margin: 0;
-  padding: 0;
+.footer-newsletter-form label.privacy a {
+  display: inline;
+  color: var(--link-color);
+}
+
+.footer-newsletter-form .hs-form-field .hs-input {
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #bebebe;
+  border-radius: 0;
+  color: #565656;
   display: block;
-  width: 1px;
-  min-width: 100%;
-  height: 1px;
-  max-height: 100%;
+  font-size: 15px;
+  height: 40px;
+  line-height: 1.4285;
+  outline: none;
+  padding: 5px;
+  width: 100% !important;
+  font-family: var(--ff-proxima-regular);
+}
+
+.footer-newsletter-form .hs-submit .actions {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.footer-newsletter-form .hubspot-form .submitted-message p,
+.footer-newsletter-form .hubspot-form .submitted-message p span {
+  color: #34393d;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  padding: 50px 0;
 }
 
 /* row 4 | global headquarters list */

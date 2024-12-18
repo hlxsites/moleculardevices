@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
@@ -40,6 +41,10 @@ export function getFormId(type) {
       return '9dc88e8e-68f7-4dcc-82b1-de8c4672797c'; // new videos and webinars master form
     case 'infographics':
       return '17750eb2-f0d3-4584-a534-85b6d7a1dd53'; // new infographics master form
+    case 'lab-notes':
+      return '9530db8b-2803-469c-a178-9b74f9cb504a'; // clone id
+    case 'newsletter':
+      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb'; // clone id
     default:
       return '';
   }
@@ -229,6 +234,7 @@ export function getFormFieldValues(formConfig) {
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
     landing_page_title: formConfig.jobTitle || formConfig.title,
+    latest_newsletter: formConfig.latestNewsletter,
     website: formConfig.website || formConfig.resourceUrl,
   };
 }
