@@ -6,9 +6,6 @@ Sitemap: https://www.moleculardevices.com/content-sitemap.xml
 Sitemap: https://www.moleculardevices.com/files-sitemap.xml
 
 Disallow: /sites/default/files/en/assets/app-note/
-Disallow: /fragments/
-Disallow: /modal/nojs/view/node/
-Disallow: /node/
 Disallow: /tools/sidekick/blocks/toc
 Disallow: /en/assets/promotion/
 
