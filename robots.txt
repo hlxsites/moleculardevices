@@ -12,12 +12,6 @@ Disallow: /node/
 Disallow: /tools/sidekick/blocks/toc
 Disallow: /en/assets/promotion/
 
-Allow: /fragments/applications/mab-production.html
-Allow: /fragments/applications/live-cell-imaging-workflow.html
-Allow: /fragments/applications/cell-imaging-analysis-workflow.html
-Allow: /fragments/applications/enzyme-linked-immunosorbent-assay-elisa-workflow.html
-Allow: /fragments/applications/3d-cell-models-workflow.html
-Allow: /fragments/applications/automated-workflow-for-plasmid-production.html
 
 
 # PDF (ebook PDF Block)
