@@ -138,7 +138,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
 
-  if (qdcCall) {
+  if (qdcCall && qdcCall.checked === true) {
     qdc = 'Call';
   } else {
     qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
