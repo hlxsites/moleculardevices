@@ -729,7 +729,7 @@ header .mobile-menu .back-to-parent a {
 header .mobile-menu .mobile-menu-subcategory-item > a {
   background: var(--grey-background-color);
   position: relative;
-  white-space: nowrap;
+  white-space: normal;
   display: block;
   padding: 4px 70px 15px 15px;
   color: #34393d;
