@@ -12,6 +12,13 @@ Disallow: /node/
 Disallow: /tools/sidekick/blocks/toc
 Disallow: /en/assets/promotion/
 
+Allow: /fragments/applications/mab-production.html
+Allow: /fragments/applications/live-cell-imaging-workflow.html
+Allow: /fragments/applications/cell-imaging-analysis-workflow.html
+Allow: /fragments/applications/enzyme-linked-immunosorbent-assay-elisa-workflow.html
+Allow: /fragments/applications/3d-cell-models-workflow.html
+Allow: /fragments/applications/automated-workflow-for-plasmid-production.html
+
 
 # PDF (ebook PDF Block)
 Disallow: /sites/default/files/en/assets/ebook/br/explore-cells-from-the-inside-out.pdf
@@ -48,6 +55,9 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/advanced-plasmid-production.p
 Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
+
+
+
 
 
 # User Guide
@@ -141,9 +151,8 @@ Disallow: /en/assets/app-note/dd/img/all-optical-assessment-of-long-term-drug-ef
 Disallow: /en/assets/app-note/dd/img/t-cell-induced-morphological-analysis-of-colorectal-cancer-organoids-using-ai
 Disallow: /en/assets/app-note/dd/img/microwell-platform-to-standardize-human-rectal-organoid-cultures-for-imaging-and-phenotypic-analyses
 Disallow: /en/assets/app-note/dd/img/ai-enabled-drug-screening-on-human-pancreatic-cancer-organoids
-Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-assisted-automated-cell-culture-and-expansion
 Disallow: /en/assets/app-note/dd/3d-biology/automated-testing-for-compound-toxicity-effects-using-healthy-intestinal-organoids
-
+Disallow: /en/assets/app-note/dd/3d-biology/fully-automated-cell-culture-passaging-and-expansion-using-decision-making-based-image-analysis
 
 
 
