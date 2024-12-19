@@ -72,8 +72,8 @@ export default async function decorate(block, index) {
   const formHeading = formConfig.heading || '';
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value;
-  const formTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars', 'infographics', 'inquiry'];
-  const formType = formTypes.filter((type) => blockClasses.includes(type)).join();
+  const formTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars', 'infographics', 'inquiry-with-thankyou', 'inquiry'];
+  const formType = formTypes.filter((type) => blockClasses.includes(type))[0];
 
   const form = div(
     h3(formHeading),
