@@ -277,20 +277,23 @@ input[type="submit"] {
 }
 
 /* INQUERY FORM */
-.forms.inquiry h3 {
+.forms.inquiry h3,
+.forms.inquiry-with-thankyou h3 {
   text-align: center;
   font-size: 36px;
   color: var(--text-blue);
   margin-bottom: 30px;
 }
 
-.forms.inquiry .hubspot-form {
+.forms.inquiry .hubspot-form,
+.forms.inquiry-with-thankyou .hubspot-form {
   margin: auto;
   max-width: 600px;
   padding-bottom: 50px;
 }
 
-.forms.inquiry .hubspot-form fieldset {
+.forms.inquiry .hubspot-form fieldset,
+.forms.inquiry-with-thankyou .hubspot-form fieldset {
   width: 100%;
   max-width: 100%;
 }
