@@ -5,7 +5,8 @@ import {
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import {
-  createSalesforceForm, extractFormData, getFormFieldValues, getFormId, updateFormFields,
+  createSalesforceForm, extractFormData, formMapping, getFormFieldValues, getFormId,
+  updateFormFields,
 } from './formHelper.js';
 
 /* create hubspot form */
@@ -72,7 +73,7 @@ export default async function decorate(block, index) {
   const formHeading = formConfig.heading || '';
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value;
-  const formTypes = ['app-note', 'scientific-poster', 'ebook', 'video-and-webinars', 'infographics', 'inquiry'];
+  const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.filter((type) => blockClasses.includes(type)).join();
 
   const form = div(
