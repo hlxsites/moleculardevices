@@ -13,9 +13,9 @@ async function onetrsutInitializationHandler(ontrustID) {
     for (let i = 0; i < opcoName.length; i += 1) {
       opcoName[i].innerHTML = 'Molecular Devices, LLC';
     }
-    const opcoEntity = document.getElementsByClassName("OpcoEntity");
+    const opcoEntity = document.getElementsByClassName('OpcoEntity');
     for (var i = 0; i < opcoEntity.length; i++) {
-      opcoEntity[i].innerHTML = "K.K.AB Sciex, 4-7-35, Kitashinagawa Gotenyama Trust Tower 21F. Shinagawa-Ku, Tokyo, 140-0001 Japan. Point of contact: Takahiro Yoneno"; 
+    opcoEntity[i].innerHTML = 'K.K.AB Sciex, 4-7-35, Kitashinagawa Gotenyama Trust Tower 21F. Shinagawa-Ku, Tokyo, 140-0001 Japan. Point of contact: Takahiro Yoneno'; 
     }
     const opcoAddr = document.getElementsByClassName('OpCoAddressMultiLine');
     for (let i = 0; i < opcoAddr.length; i += 1) {
