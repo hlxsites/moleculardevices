@@ -69,8 +69,10 @@
   transition: all 0.2s;
 }
 
-.hs-form .hs-form-field textarea.hs-input {
+.hs-form .hs-form-field textarea.hs-input,
+.hs-form .hs-form-field textarea.hs-input.hs-fieldtype-textarea {
   height: 100px;
+  width: 100%;
 }
 
 .hs-form .hs-fieldtype-booleancheckbox {
@@ -303,6 +305,29 @@ input[type="submit"] {
   margin: auto;
   max-width: 600px;
   padding-bottom: 50px;
+}
+
+/* sho modal */
+.hubspot-form.show-label .hs-form .hs-form-field .hs-input {
+  background-color: #fff;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
+  color: #34393d;
+  display: block;
+  font-size: 18px;
+  height: 30px;
+  line-height: 1.4285;
+  outline: none;
+  padding: 5px;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.hubspot-form.show-label .hs-form .hs-form-field .hs-input.hs-fieldtype-textarea {
+  height: 100px;
 }
 
 @media only screen and (min-width: 992px) {
