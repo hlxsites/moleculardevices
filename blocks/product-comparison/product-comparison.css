@@ -133,6 +133,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 220px;
 }
 
 .product-comparison .responsive-table tr th:last-child .product-heading-title {
