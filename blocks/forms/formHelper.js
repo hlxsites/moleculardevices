@@ -45,6 +45,8 @@ export function getFormId(type) {
       return '9530db8b-2803-469c-a178-9b74f9cb504a'; // clone id
     case 'newsletter':
       return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb'; // clone id
+    case 'inquiry-with-thankyou':
+      return '5461143e-c315-40cf-9a92-dd8515e61d4c';
     case 'inquiry':
       return 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28';
     default:
@@ -169,7 +171,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
     returnURL = formConfig.redirectUrl;
   }
 
-  if (returnURL) {
+  if (returnURL && returnURL !== 'null') {
     const hsmduri = returnURL;
     const hsmdkey = 'rfq';
     const hsmdvalue = qdc;
@@ -185,8 +187,10 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
     returnURL = `${returnURL}&subscribe=${subscribe}`;
   }
-  const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
-  form.appendChild(elementRetURL);
+  if (returnURL !== 'null') {
+    const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+    form.appendChild(elementRetURL);
+  }
 
   const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
   const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
