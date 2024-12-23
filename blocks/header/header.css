@@ -657,7 +657,7 @@ header .mobile-menu-subcategories {
   width: 100%;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 150%;
   background: #fff;
   box-shadow: none;
   position: fixed;
