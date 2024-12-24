@@ -538,7 +538,7 @@ header .mobile-menu {
   width: 100%;
   max-width: 100%;
   background: #fff;
-  height: 100%;
+  height: calc(100% - 100px);
   top: 63px;
   overflow-x: hidden;
   overflow-y: auto;
