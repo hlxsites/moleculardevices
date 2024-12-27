@@ -4,14 +4,12 @@ import {
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, li, p, ul,
+  a, div, i, iframe, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
+  decorateExternalLink, decorateLinkedPictures, formatDate, iframeResizeHandler, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
-import { getFormId } from '../forms/formHelper.js';
-import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 let placeholders = {};
 
@@ -25,9 +23,9 @@ function toggleNewsEvents(container, target) {
 }
 
 function addEventListeners(container) {
-  const headings = container.querySelectorAll('h3');
-  [...headings].forEach((heading) => {
-    heading.addEventListener('click', (e) => {
+  const h3s = container.querySelectorAll('h3');
+  [...h3s].forEach((h3) => {
+    h3.addEventListener('click', (e) => {
       toggleNewsEvents(container, e.target);
     });
   });
@@ -128,36 +126,37 @@ async function getLatestNewsletter() {
 
 async function buildNewsletter(container) {
   const newsletterId = 'enewsletter';
-  if (container.querySelector(`#${newsletterId} form`)) {
+  if (container.querySelector(`#${newsletterId} iframe`)) {
     return; // newsletter already present
   }
 
-  const formID = 'enewsletterSubscribeForm';
-  const form = div(
-    {
+  const formId = 'enewsletterSubscribeForm';
+  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
+  const form = (
+    div({
       id: newsletterId,
-      class: 'enewsletter-wrapper',
+      class: 'hubspot-iframe-wrapper',
       loading: 'lazy',
-    },
-    div(
-      {
-        class: 'hubspot-form',
-        id: formID,
-      },
-    ));
-  const formConfig = {
-    formId: getFormId('newsletter'),
-  };
-
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID));
+    }, div(
+      iframe({
+        id: formId,
+        src: formUrl,
+        loading: 'lazy',
+        title: 'Newsletter',
+      }),
+    ),
+    )
+  );
 
   const newsletterList = await getLatestNewsletter();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
 
+  // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   }
+  iframeResizeHandler(formUrl, formId, container);
 }
 
 /* decorate social icons */
