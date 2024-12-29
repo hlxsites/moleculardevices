@@ -78,10 +78,7 @@ export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
 
   if (isBlogModal) {
-    const modalContent = block.querySelector(':scope > div > div');
-    const link = modalContent.querySelector('p > a:only-child, a:only-child');
-    const formURL = link.href;
-    await newsletterModal(formURL, 'form-modal');
+    await newsletterModal();
     const modalBtn = document.getElementById('show-modal');
     window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }
