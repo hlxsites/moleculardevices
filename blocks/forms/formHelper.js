@@ -42,9 +42,9 @@ export function getFormId(type) {
     case 'infographics':
       return '17750eb2-f0d3-4584-a534-85b6d7a1dd53'; // new infographics master form
     case 'lab-notes':
-      return '9530db8b-2803-469c-a178-9b74f9cb504a'; // clone id
+      return '9530db8b-2803-469c-a178-9b74f9cb504a';
     case 'newsletter':
-      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb'; // clone id
+      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb';
     case 'inquiry':
       return 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28';
     default:
