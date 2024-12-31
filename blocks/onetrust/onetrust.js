@@ -72,6 +72,6 @@ export default async function decorate(block) {
   );
   block.querySelector(':scope > div').replaceWith(oneTrustContainer);
 
-  /* ONETRUST INITIALIZATION */
+  /*  ONETRUST INITIALIZATION */
   await onetrsutInitializationHandler(ontrustID);
 }
