@@ -1348,7 +1348,7 @@ main div.section.wave.bluegreen::after {
 
 /* BlueGreen2 Variant */
 
-main div.section.wave.bluegreen2 {
+main div.section.wave.bluegreen2:not([style*='background-image']) {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
