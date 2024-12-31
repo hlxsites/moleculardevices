@@ -23,7 +23,8 @@ const formConfig = {
   latestNewsletter: await getLatestNewsletter(),
 };
 
-export async function newsletterModal(iframeID) {
+export async function newsletterModal() {
+  const modalIframeID = 'newsletter-modal';
   const leftColumn = div(
     { class: 'col col-left' },
     img({ src: '/images/spectra-lab-notes.png', alt: 'Spectra' }),
@@ -39,7 +40,7 @@ export async function newsletterModal(iframeID) {
         h3('of scientific discovery'),
         div({
           class: 'hubspot-form',
-          id: iframeID,
+          id: modalIframeID,
         }),
       ),
     ),
@@ -54,7 +55,7 @@ export async function newsletterModal(iframeID) {
     ),
   );
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, iframeID));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, modalIframeID));
   await decorateModal(modalBody, 'newsletter-inner-wrapper', true);
 }
 
@@ -78,7 +79,6 @@ export default async function decorate() {
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
-  const modalIframeID = 'newsletter-modal';
 
   if (spectraNewsletter) {
     const sidebarIframeID = 'newsletter-sidebar';
@@ -97,7 +97,7 @@ export default async function decorate() {
   }
 
   if (!hasNewsletterMetaData) {
-    setTimeout(() => newsletterModal(modalIframeID), 1000);
+    setTimeout(() => newsletterModal(), 1000);
   }
 
   // add social share block
