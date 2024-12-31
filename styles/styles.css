@@ -1348,7 +1348,7 @@ main div.section.wave.bluegreen::after {
 
 /* BlueGreen2 Variant */
 
-main div.section.wave.bluegreen2 {
+main div.section.wave.bluegreen2:not([style*='background-image']) {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
@@ -1360,6 +1360,10 @@ main div.section.wave.bluegreen2 {
   ) !important;
   background-image: none;
   margin-bottom: 30px;
+}
+
+main div.section.wave.bluegreen2:has(picture img[src*='wave-footer-bg-top.png']) {
+  padding-bottom: 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
