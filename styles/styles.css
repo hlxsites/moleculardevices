@@ -1362,6 +1362,10 @@ main div.section.wave.bluegreen2:not([style*='background-image']) {
   margin-bottom: 30px;
 }
 
+main div.section.wave.bluegreen2:has(picture img[src*='wave-footer-bg-top.png']) {
+  padding-bottom: 0;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.wave:not(.background-grey-top-half, .bluegreen),
 main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
