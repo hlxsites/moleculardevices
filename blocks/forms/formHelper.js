@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-/* eslint-disable import/no-cycle */
+/* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
@@ -26,33 +25,25 @@ export async function extractFormData(block) {
 }
 
 // get form id
+export const formMapping = [
+  // { type: 'app-note', id: '46645e42-ae08-4d49-9338-e09efb4c4035' }, // old app note master form
+  { type: 'app-note', id: 'd6f54803-6515-4313-a7bd-025dfa5cbb5f' }, // New app note master form
+  // { type: 'scientific-poster', id: '342c229a-9e0d-4f52-b4c4-07f067d39c31' }, // old poster master form
+  { type: 'scientific-poster', id: '837f6e47-0292-4586-8447-297325ff50c1' }, // new poster master form
+  // { type: 'ebook', id: '65148a5b-995e-436d-8cdc-cc915923feaa' }, // old ebook master form
+  { type: 'ebook', id: '90a9217a-7e3f-474e-a7a2-8e34d895ef45' }, // new ebook master form
+  // { type: 'video-and-webinars', id: 'aabb1ced-8add-4de4-b198-6db60a82de85' }, // old videos and webinars master form
+  { type: 'video-and-webinars', id: '9dc88e8e-68f7-4dcc-82b1-de8c4672797c' }, // new videos and webinars master form
+  { type: 'infographics', id: '17750eb2-f0d3-4584-a534-85b6d7a1dd53' }, // new infographics master form
+  { type: 'lab-notes', id: '9530db8b-2803-469c-a178-9b74f9cb504a' },
+  { type: 'newsletter', id: '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb' },
+  { type: 'inquiry-with-thankyou', id: '5461143e-c315-40cf-9a92-dd8515e61d4c' },
+  { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
+];
+
 export function getFormId(type) {
-  switch (type) {
-    case 'app-note':
-      // return '46645e42-ae08-4d49-9338-e09efb4c4035'; // old app note master form
-      return 'd6f54803-6515-4313-a7bd-025dfa5cbb5f '; // New app note master form
-    case 'scientific-poster':
-      // return '342c229a-9e0d-4f52-b4c4-07f067d39c31';  // old poster master form
-      return '837f6e47-0292-4586-8447-297325ff50c1'; // new poster master form
-    case 'ebook':
-      // return '65148a5b-995e-436d-8cdc-cc915923feaa'; // old ebook master form
-      return '90a9217a-7e3f-474e-a7a2-8e34d895ef45'; // new ebook master form
-    case 'video-and-webinars':
-      // return 'aabb1ced-8add-4de4-b198-6db60a82de85'; // old videos and webinars master form
-      return '9dc88e8e-68f7-4dcc-82b1-de8c4672797c'; // new videos and webinars master form
-    case 'infographics':
-      return '17750eb2-f0d3-4584-a534-85b6d7a1dd53'; // new infographics master form
-    case 'lab-notes':
-      return '9530db8b-2803-469c-a178-9b74f9cb504a';
-    case 'newsletter':
-      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb';
-    case 'inquiry-with-thankyou':
-      return '5461143e-c315-40cf-9a92-dd8515e61d4c';
-    case 'inquiry':
-      return 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28';
-    default:
-      return '';
-  }
+  const mapping = formMapping.find((item) => item.type === type);
+  return mapping ? mapping.id : '';
 }
 
 /* custom field */
