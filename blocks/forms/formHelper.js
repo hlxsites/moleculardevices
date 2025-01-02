@@ -173,10 +173,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementmarketingoptin);
 
   // SFDC redirects to returnURL in the response to the form post
-  let returnURL = hubspotFormData.get('return_url');
-  if (!returnURL) {
-    returnURL = formConfig.redirectUrl;
-  }
+  let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl;
 
   if (returnURL && returnURL !== 'null') {
     const hsmduri = returnURL;
@@ -216,6 +213,11 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementprodprimapp);
 
   document.body.appendChild(form);
+  iframe.onload = () => {
+    if (returnURL) {
+      window.top.location.href = returnURL;
+    }
+  };
 
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
