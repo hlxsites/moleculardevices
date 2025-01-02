@@ -42,9 +42,9 @@ export function getFormId(type) {
     case 'infographics':
       return '17750eb2-f0d3-4584-a534-85b6d7a1dd53'; // new infographics master form
     case 'lab-notes':
-      return '9530db8b-2803-469c-a178-9b74f9cb504a'; // clone id
+      return '9530db8b-2803-469c-a178-9b74f9cb504a';
     case 'newsletter':
-      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb'; // clone id
+      return '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb';
     case 'inquiry-with-thankyou':
       return '5461143e-c315-40cf-9a92-dd8515e61d4c';
     case 'inquiry':
@@ -171,7 +171,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
     returnURL = formConfig.redirectUrl;
   }
 
-  if (returnURL && returnURL !== 'null') {
+  if (returnURL) {
     const hsmduri = returnURL;
     const hsmdkey = 'rfq';
     const hsmdvalue = qdc;
@@ -187,10 +187,10 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
     returnURL = `${returnURL}&subscribe=${subscribe}`;
   }
-  if (returnURL !== 'null') {
-    const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
-    form.appendChild(elementRetURL);
-  }
+  // if (returnURL !== 'null') {
+  const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+  form.appendChild(elementRetURL);
+  // }
 
   const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
   const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
@@ -213,7 +213,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
     form.submit();
-  } else {
+  } else if (returnURL) {
     setTimeout(() => { window.top.location.href = returnURL; }, 200);
   }
 }
