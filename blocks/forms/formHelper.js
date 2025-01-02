@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
-// import { input } from '../../scripts/dom-helpers.js';
+import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 
@@ -111,141 +111,73 @@ export const fieldsObj = [
 ];
 
 /* custom form fields */
-// function createCustomField(hubspotFormData, fieldName, newName) {
-//   const fieldVal = hubspotFormData.get(fieldName);
-//   if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
-//     const elementCompany = input({ name: newName, value: fieldVal, type: 'hidden' });
-//     return elementCompany;
-//   }
-//   return 0;
-// }
+function createCustomField(hubspotFormData, fieldName, newName) {
+  const fieldVal = hubspotFormData.get(fieldName);
+  if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
+    const elementCompany = input({ name: newName, value: fieldVal, type: 'hidden' });
+    return elementCompany;
+  }
+  return 0;
+}
 
 /* create salesforce form */
-// export function createSalesforceForm(hubspotForm, formConfig) {
-//   const hubspotFormData = new FormData(hubspotForm);
-//   const form = document.createElement('form');
-//   form.method = 'POST';
-//   form.action = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+export function createSalesforceForm(hubspotForm, formConfig) {
+  const iframe = document.createElement('iframe');
+  iframe.name = 'salesforceIframe';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
 
-//   // Your org ID
-//   const elementOID = input({ name: 'oid', value: OID, type: 'hidden' });
-//   form.appendChild(elementOID);
-
-//   // generate a form from Customize | Leads | Web-to-Lead to figure out more
-//   fieldsObj.forEach(({ newName, fieldName }) => {
-//     const inputField = createCustomField(hubspotFormData, fieldName, newName);
-//     if (inputField && inputField !== 0) {
-//       form.appendChild(inputField);
-//     }
-//   });
-
-//   /* qdc */
-//   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
-//   let qdc = '';
-
-//   if (qdcCall && qdcCall.checked === true) {
-//     qdc = 'Call';
-//   } else {
-//     qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
-//   }
-//   if (qdc === '') {
-//     qdc = formConfig.qdc || '';
-//   }
-
-//   const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
-//   form.appendChild(elementqdcrequest);
-
-//   /* subscribe */
-//   let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
-//   if (subscribe && subscribe.checked) {
-//     subscribe = 'true';
-//   } else {
-//     subscribe = 'false';
-//   }
-//   // if (!subscribe) { subscribe = 'false'; }
-//   const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
-//   form.appendChild(elementmarketingoptin);
-
-//   // SFDC redirects to returnURL in the response to the form post
-//   let returnURL = hubspotFormData.get('return_url');
-//   if (!returnURL) {
-//     returnURL = formConfig.redirectUrl;
-//   }
-
-//   if (returnURL) {
-//     const hsmduri = returnURL;
-//     const hsmdkey = 'rfq';
-//     const hsmdvalue = qdc;
-
-//     const re = new RegExp(`([?&])${hsmdkey}=.*?(&|$)`, 'i');
-//     const separator = hsmduri.indexOf('?') !== -1 ? '&' : '?';
-
-//     if (hsmduri.match(re)) {
-//       returnURL = hsmduri.replace(re, `$1${hsmdkey}=${hsmdvalue}$2`);
-//     } else {
-//       returnURL = `${hsmduri}${separator}${hsmdkey}=${hsmdvalue}`;
-//     }
-
-//     returnURL = `${returnURL}&subscribe=${subscribe}`;
-//   }
-//   // if (returnURL !== 'null') {
-//   const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
-//   form.appendChild(elementRetURL);
-//   // }
-
-//   const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
-//   const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
-//   let primaryApplication = '';
-//   if (productAndPrimaryFtype) {
-//     const checkboxes = hubspotForm.get('product_and_primary_application_na___service_contracts');
-//     for (let i = 0; i < checkboxes.length; i += 1) {
-//       if (checkboxes[i].checked) {
-//         primaryApplication += `${checkboxes[i].value} , `;
-//       }
-//     }
-//   } else if (primaryApplicationText !== '' && primaryApplicationText !== undefined) {
-//     primaryApplication = primaryApplicationText;
-//   }
-//   const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
-//   form.appendChild(elementprodprimapp);
-
-//   document.body.appendChild(form);
-
-//   const allowedValues = ['Call', 'Demo', 'Quote'];
-//   if (allowedValues.includes(qdc)) {
-//     form.submit();
-//   } else if (returnURL) {
-//     setTimeout(() => { window.top.location.href = returnURL; }, 200);
-//   }
-// }
-export async function createSalesforceForm(hubspotForm, formConfig) {
   const hubspotFormData = new FormData(hubspotForm);
-  const formData = new FormData();
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8';
+  form.target = 'salesforceIframe';
 
-  formData.append('oid', OID);
+  // Your org ID
+  const elementOID = input({ name: 'oid', value: OID, type: 'hidden' });
+  form.appendChild(elementOID);
+
+  // generate a form from Customize | Leads | Web-to-Lead to figure out more
   fieldsObj.forEach(({ newName, fieldName }) => {
-    const value = hubspotFormData.get(fieldName);
-    if (value) {
-      formData.append(newName, value);
+    const inputField = createCustomField(hubspotFormData, fieldName, newName);
+    if (inputField && inputField !== 0) {
+      form.appendChild(inputField);
     }
   });
 
   /* qdc */
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
+
   if (qdcCall && qdcCall.checked === true) {
     qdc = 'Call';
   } else {
-    qdc = hubspotFormData.get('requested_qdc_discussion__c') || formConfig.qdc || '';
+    qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
   }
-  formData.append(QDCRrequest, qdc);
+  if (qdc === '') {
+    qdc = formConfig.qdc || '';
+  }
+
+  const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
+  form.appendChild(elementqdcrequest);
 
   /* subscribe */
-  const subscribe = hubspotForm.querySelector('input[name="subscribe"]')?.checked ? 'true' : 'false';
-  formData.append(marketingOptin, subscribe);
+  let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
+  if (subscribe && subscribe.checked) {
+    subscribe = 'true';
+  } else {
+    subscribe = 'false';
+  }
+  // if (!subscribe) { subscribe = 'false'; }
+  const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
+  form.appendChild(elementmarketingoptin);
 
   // SFDC redirects to returnURL in the response to the form post
-  let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl || '';
+  let returnURL = hubspotFormData.get('return_url');
+  if (!returnURL) {
+    returnURL = formConfig.redirectUrl;
+  }
+
   if (returnURL && returnURL !== 'null') {
     const hsmduri = returnURL;
     const hsmdkey = 'rfq';
@@ -261,38 +193,35 @@ export async function createSalesforceForm(hubspotForm, formConfig) {
     }
 
     returnURL = `${returnURL}&subscribe=${subscribe}`;
-    formData.append('retURL', returnURL);
+  }
+  if (returnURL !== 'null') {
+    const elementRetURL = input({ name: 'retURL', value: returnURL, type: 'hidden' });
+    form.appendChild(elementRetURL);
   }
 
   const primaryApplicationText = hubspotFormData.get('product_primary_application__c');
-  const primaryApplication = primaryApplicationText || '';
-  formData.append(prodPrimApp, primaryApplication);
-
-  // Allowed values
-  const allowedValues = ['Call', 'Demo', 'Quote'];
-
-  try {
-    const response = await fetch('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formData,
-    });
-
-    if (response.ok) {
-      console.log('Form submitted successfully.');
-      if (allowedValues.includes(qdc) && returnURL && returnURL !== 'null') {
-        setTimeout(() => {
-          window.top.location.href = returnURL;
-        }, 200);
+  const productAndPrimaryFtype = hubspotFormData.get('product_and_primary_application_na___service_contracts'); // test case
+  let primaryApplication = '';
+  if (productAndPrimaryFtype) {
+    const checkboxes = hubspotForm.get('product_and_primary_application_na___service_contracts');
+    for (let i = 0; i < checkboxes.length; i += 1) {
+      if (checkboxes[i].checked) {
+        primaryApplication += `${checkboxes[i].value} , `;
       }
-    } else {
-      console.error('Form submission failed.', response.statusText);
     }
-  } catch (error) {
-    console.error('Error submitting form:', error);
+  } else if (primaryApplicationText !== '' && primaryApplicationText !== undefined) {
+    primaryApplication = primaryApplicationText;
+  }
+  const elementprodprimapp = input({ name: prodPrimApp, value: primaryApplication, type: 'hidden' });
+  form.appendChild(elementprodprimapp);
+
+  document.body.appendChild(form);
+
+  const allowedValues = ['Call', 'Demo', 'Quote'];
+  if (allowedValues.includes(qdc)) {
+    form.submit();
+  } else if (returnURL && returnURL !== 'null') {
+    setTimeout(() => { window.top.location.href = returnURL; }, 200);
   }
 }
 
