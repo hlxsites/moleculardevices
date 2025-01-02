@@ -214,7 +214,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   document.body.appendChild(form);
   iframe.onload = () => {
-    if (returnURL) {
+    if (returnURL && returnURL !== 'null') {
       window.top.location.href = returnURL;
     }
   };
