@@ -133,27 +133,27 @@ async function buildNewsletter(container) {
   }
 
   const formID = 'enewsletterSubscribeForm';
-  const form = div(
-    {
+  const form = (
+    div({
       id: newsletterId,
       class: 'enewsletter-wrapper',
       loading: 'lazy',
-    },
-    div(
+    }, div(
       {
         class: 'hubspot-form',
         id: formID,
       },
-    ));
+    )));
+
   const formConfig = {
     formId: getFormId('newsletter'),
   };
-
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID));
 
   const newsletterList = await getLatestNewsletter();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
 
+  // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
