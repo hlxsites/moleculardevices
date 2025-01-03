@@ -39,6 +39,8 @@ export const formMapping = [
   { type: 'newsletter', id: '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb' },
   { type: 'inquiry-with-thankyou', id: '5461143e-c315-40cf-9a92-dd8515e61d4c' },
   { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
+  // { type: 'share-story', id: 'a1086f3a-ed6e-47d1-9694-17f8c0a28612' },
+  { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
 ];
 
 export function getFormId(type) {
