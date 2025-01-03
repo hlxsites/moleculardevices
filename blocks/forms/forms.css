@@ -232,6 +232,10 @@ label.privacy {
 }
 
 /* hubspot form */
+main form fieldset[class*="form-columns"] .input {
+  margin-right: 0 !important;
+}
+
 .hubspot-form form {
   display: flex;
   flex-direction: column;
@@ -294,20 +298,41 @@ input[type="submit"] {
 }
 
 /* INQUERY FORM */
-.forms.inquiry h3 {
+.forms.inquiry h3,
+.forms.inquiry-with-thankyou h3 {
   text-align: center;
   font-size: 36px;
   color: var(--text-blue);
   margin-bottom: 30px;
 }
 
-.forms.inquiry .hubspot-form {
+.forms.inquiry .hubspot-form,
+.forms.inquiry-with-thankyou .hubspot-form {
   margin: auto;
   max-width: 600px;
   padding-bottom: 50px;
 }
 
-/* sho modal */
+.forms.inquiry-with-thankyou .hubspot-form:has(> .submitted-message) {
+  max-width: 100%;
+  text-align: center;
+}
+
+.forms.inquiry-with-thankyou .hubspot-form:has(> .submitted-message) h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+}
+
+.forms.inquiry .hubspot-form fieldset,
+.forms.inquiry-with-thankyou .hubspot-form fieldset {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* show modal */
 .hubspot-form.show-label .hs-form .hs-form-field .hs-input {
   background-color: #fff;
   background-image: none;

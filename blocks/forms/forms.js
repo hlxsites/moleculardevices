@@ -74,7 +74,7 @@ export default async function decorate(block, index) {
   const target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value;
   const formTypes = formMapping.map((item) => item.type);
-  const formType = formTypes.filter((type) => blockClasses.includes(type)).join();
+  const formType = formTypes.filter((type) => blockClasses.includes(type))[0];
 
   const form = div(
     h3(formHeading),
