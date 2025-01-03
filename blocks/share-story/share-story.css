@@ -146,6 +146,25 @@ body.modal-open {
   color: var(--text-white);
 }
 
+/* submit your story form */
+.submit-story-modal .submit-story-modal-wrapper .hubspot-form form fieldset:has(> .hs-richtext > .privacy) {
+  order: 1;
+}
+
+.submit-story-modal .submit-story-modal-wrapper .hs-submit .actions{
+  text-align: right;
+  max-width: 100%;
+}
+
+.submit-story-modal .submit-story-modal-wrapper .hs-submit .actions button {
+  width: auto;
+}
+
+.submit-story-modal .submit-story-modal-wrapper .submitted-message {
+  text-align: center;
+  padding: 30px 0;
+}
+
 @media only screen and (max-width: 991px) {
   .share-story {
     flex-direction: column;

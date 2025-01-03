@@ -287,14 +287,22 @@ input[type="submit"] {
   text-decoration: none !important;
 }
 
-.show-label .hs-form .hs-form-field label {
+.show-label .hs-form .hs-form-field label,
+.show-label .hs-form .hs-form-field .hs-field-desc {
   display: block;
   color: #34393d;
-  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.5px;
   padding: 3px 13px 0 0;
+}
+
+.show-label .hs-form .hs-form-field label {
+  font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.show-label .hs-form .hs-form-field .hs-field-desc {
+  font-size: 13px;
 }
 
 /* INQUERY FORM */

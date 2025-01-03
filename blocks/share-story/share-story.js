@@ -12,6 +12,7 @@ function showSubmitStoryModal(e) {
   document.getElementById('submit-story-modal-overlay').classList.add('show');
   document.body.classList.add('modal-open');
   const formConfig = {
+    redirectUrl: 'null',
     formId: getFormId('share-story'),
   };
 
