@@ -545,6 +545,8 @@ header .mobile-menu {
   transform: translate(-100%, 0);
   transition: transform .4s ease;
   z-index: -9;
+  opacity: 0;
+  visibility: hidden;
 }
 
 header .mobile-menu > ul {
@@ -1656,6 +1658,8 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   body.openmenu .mobile-menu {
     transform: translate(0, 0);
     z-index: 99;
+    opacity: 1;
+    visibility: visible;
   }
 
   header .block {
