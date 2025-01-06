@@ -94,7 +94,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/patien
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/t-cell-induced-morphological-change-analysis-of-colorectal-cancer-organoids-using-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/human-organoid-lines-for-modelling-intestinal-epithelial-barrier-in-vitro.pdf
 Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-research 
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/using-power-of-ai-in-automated-cell-culture.pdf
 
 
 
