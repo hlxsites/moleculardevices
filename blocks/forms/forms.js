@@ -18,6 +18,20 @@ export function createHubSpotForm(formConfig, target, type = '') {
       formId: formConfig.formId || getFormId(type),
       target: `#${target}`,
       onFormReady: (form) => {
+        const privacy = document.querySelector('label.privacy');
+        if (!privacy) {
+          const privacyMsg = label({ class: 'privacy' },
+            'By submitting your details, you confirm that you have reviewed and agree with the Molecular Devices ',
+            a({
+              href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
+            }, 'Privacy Policy'),
+            ', and that you understand your privacy choices as they pertain to your personal data as provided in the ',
+            a({
+              href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
+            }, 'Privacy Policy'),
+            ' under “Your Privacy Choices”.');
+          form.appendChild(privacyMsg);
+        }
         // Handle Salesforce hidden fields via message event listener
         window.addEventListener('message', (event) => {
           if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
@@ -32,21 +46,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
                 class: 'button primary',
               }, submitInput.value || 'Submit');
               submitInput.replaceWith(submitButton);
-            }
-
-            const privacy = document.querySelector('label.privacy');
-            if (!privacy) {
-              const privacyMsg = label({ class: 'privacy' },
-                'By submitting your details, you confirm that you have reviewed and agree with the Molecular Devices ',
-                a({
-                  href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
-                }, 'Privacy Policy'),
-                ', and that you understand your privacy choices as they pertain to your personal data as provided in the ',
-                a({
-                  href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
-                }, 'Privacy Policy'),
-                ' under “Your Privacy Choices”.');
-              form.appendChild(privacyMsg);
             }
           }
         });
