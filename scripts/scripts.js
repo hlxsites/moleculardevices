@@ -802,29 +802,43 @@ async function formInModalHandler(main) {
 
 /* ============================ scrollToHashSection ============================ */
 function scrollToHashSection() {
-  const observerTarget = document.body;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(() => {
-      const activeHash = window.location.hash;
-      if (activeHash) {
-        const id = activeHash.substring(1).toLowerCase();
-        const targetElement = document.getElementById(id);
+  const activeHash = window.location.hash;
+  if (activeHash) {
+    const id = activeHash.substring(1).toLowerCase();
+    let targetElement = document.getElementById(id);
+    if (!targetElement) {
+      const observer = new MutationObserver(() => {
+        targetElement = document.getElementById(id);
         if (targetElement) {
+          const rect = targetElement.getBoundingClientRect();
+          const targetPosition = rect.top + window.scrollY - 250;
           window.scrollTo({
-            top: targetElement.offsetTop - 250,
+            top: targetPosition,
             behavior: 'smooth',
           });
           observer.disconnect();
         }
-      }
-    });
-  });
-
-  observer.observe(observerTarget, { childList: true, subtree: true, attributes: true });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    } else {
+      // scroll after a short delay
+      setTimeout(() => {
+        const rect = targetElement.getBoundingClientRect();
+        const targetPosition = rect.top + window.scrollY - 250;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth',
+        });
+      }, 1000);
+    }
+  }
 }
 
-window.addEventListener('load', scrollToHashSection);
-// window.addEventListener('hashchange', scrollToHashSection);
+scrollToHashSection();
+window.addEventListener('hashchange', (event) => {
+  event.preventDefault();
+  scrollToHashSection();
+});
 /* ============================ scrollToHashSection ============================ */
 
 /**

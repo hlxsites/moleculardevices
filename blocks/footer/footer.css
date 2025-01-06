@@ -162,6 +162,7 @@
 
 .footer-newsletter-form ul {
   margin-top: 15px;
+  margin-bottom: 0;
 }
 
 .footer-newsletter-form .hubspot-form .hs-form-field {
@@ -215,6 +216,16 @@
   line-height: 1.33;
   text-align: center;
   padding: 50px 0;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.footer-newsletter-form .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.footer-newsletter-form .hubspot-form .hs-error-msgs.inputs-list {
+  margin-top: 5px;
 }
 
 /* row 4 | global headquarters list */

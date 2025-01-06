@@ -157,7 +157,7 @@
 }
 
 .newsletter-inner-wrapper .iframe-wrapper .hs-submit .actions{
-  margin: 15px auto;
+  margin: 0 auto 15px;
 }
 
 .newsletter-inner-wrapper .iframe-wrapper .hs-submit .actions button {
@@ -170,6 +170,16 @@
 
 .newsletter-inner-wrapper .iframe-wrapper .submitted-message p {
   font-size: 18px;
+}
+
+.newsletter-inner-wrapper .hubspot-form .hs-error-msgs.inputs-list {
+  margin-top: 5px;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.newsletter-inner-wrapper .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 567px) {

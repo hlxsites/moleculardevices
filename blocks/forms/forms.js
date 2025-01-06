@@ -5,8 +5,8 @@ import {
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import {
-  createSalesforceForm, extractFormData, formMapping, getFormFieldValues, getFormId,
-  updateFormFields,
+  createSalesforceForm, extractFormData, formMapping, getFormFieldValues,
+  getFormId, updateFormFields,
 } from './formHelper.js';
 
 /* create hubspot form */
