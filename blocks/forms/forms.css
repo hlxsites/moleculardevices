@@ -70,7 +70,7 @@
 }
 
 .hs-form .hs-form-field textarea.hs-input,
-.hs-form .hs-form-field textarea.hs-input.hs-fieldtype-textarea {
+.hs-form .hs-form-field textarea.hs-fieldtype-textarea {
   height: 100px;
   width: 100%;
 }
@@ -370,6 +370,7 @@ input[type="submit"] {
 }
 
 @media only screen and (min-width: 768px) {
+  main form fieldset.form-columns-2,
   .hubspot-form fieldset.form-columns-2 {
     display: flex;
     gap: 15px;
