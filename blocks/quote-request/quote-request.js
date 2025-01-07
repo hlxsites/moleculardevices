@@ -324,7 +324,7 @@ function stepThree(tab, event) {
   loadIframeForm(tab, 'Global');
 
   if (event.target.closest('.rfq-icon-link').classList.contains('no-categ')) {
-    root.classList.add('no-categ-form');
+    root.classList.add('no-categ-form hubspot-form');
   } else {
     root.classList.remove('no-categ-form');
   }
