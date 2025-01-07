@@ -30,7 +30,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
               const submitButton = button({
                 type: 'submit',
                 class: 'button primary',
-              }, submitInput.value || 'Submit');
+              }, formConfig.cta || submitInput.value || 'Submit');
               submitInput.replaceWith(submitButton);
             }
 
@@ -75,6 +75,7 @@ export default async function decorate(block, index) {
   const blockClasses = block.classList.value;
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.filter((type) => blockClasses.includes(type))[0];
+  console.log(formType);
 
   const form = div(
     h3(formHeading),
