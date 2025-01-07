@@ -26,6 +26,7 @@ export async function extractFormData(block) {
 
 // get form id
 export const formMapping = [
+  { type: 'rfq', id: '09ad331d-27c6-470a-86d4-7d6c4b141bc8' }, // rfq master form
   // { type: 'app-note', id: '46645e42-ae08-4d49-9338-e09efb4c4035' }, // old app note master form
   { type: 'app-note', id: 'd6f54803-6515-4313-a7bd-025dfa5cbb5f' }, // New app note master form
   // { type: 'scientific-poster', id: '342c229a-9e0d-4f52-b4c4-07f067d39c31' }, // old poster master form
