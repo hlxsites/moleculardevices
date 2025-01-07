@@ -1350,4 +1350,8 @@ export async function getCountryCode() {
   return data.country_code;
 }
 
+export function toTitleCase(str) {
+  return str.split('-').join(' ').toLowerCase().replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
+}
+
 loadPage();

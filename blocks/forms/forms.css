@@ -3,6 +3,13 @@
   --border-color: #bebebe;
 }
 
+.forms.block .no-type-msg {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
 /* stylelint-disable no-descending-specificity */
 .hs-form .hs-dependent-field,
 .hs-form .hs-form-field {

@@ -42,7 +42,7 @@ export const formMapping = [
   { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
   // { type: 'share-story', id: 'a1086f3a-ed6e-47d1-9694-17f8c0a28612' },
   { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
-  { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
+  // { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
 ];
 
 export function getFormId(type) {

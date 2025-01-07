@@ -1,9 +1,9 @@
 /* eslint-disable import/no-cycle */
 import {
-  a, button, div, h3, label,
+  a, button, div, h3, label, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
   createSalesforceForm, extractFormData, formMapping, getFormFieldValues,
   getFormId, updateFormFields,
@@ -87,5 +87,11 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
+  if (formType) {
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
+  } else {
+    const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
+    formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
+    block.appendChild(formTypeList);
+  }
 }
