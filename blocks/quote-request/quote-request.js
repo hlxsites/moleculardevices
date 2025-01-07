@@ -1,13 +1,12 @@
 import ffetch from '../../scripts/ffetch.js';
-import {
-  loadScript, getCookie, fetchFragment,
-} from '../../scripts/scripts.js';
+import { getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getFormId } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -147,8 +146,6 @@ function prepImageUrl(thumbImage) {
 }
 
 async function loadIframeForm(data, type) {
-  loadScript('../../scripts/iframeResizer.min.js');
-  // const formUrl = 'https://info.moleculardevices.com/rfq';
   const root = document.getElementById('step-3');
   const rfqRUM = { source: 'global' };
   root.innerHTML = '';
@@ -231,7 +228,7 @@ async function loadIframeForm(data, type) {
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
-    formId: '09ad331d-27c6-470a-86d4-7d6c4b141bc8',
+    formId: getFormId('rfq'),
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
@@ -324,7 +321,7 @@ function stepThree(tab, event) {
   loadIframeForm(tab, 'Global');
 
   if (event.target.closest('.rfq-icon-link').classList.contains('no-categ')) {
-    root.classList.add('no-categ-form');
+    root.classList.add('no-categ-form', 'hubspot-form');
   } else {
     root.classList.remove('no-categ-form');
   }
@@ -362,7 +359,7 @@ export default async function decorate(block) {
       block.appendChild(
         div({
           id: 'step-3',
-          class: 'rfq-product-wrapper request-quote-form hide-back-btn',
+          class: 'rfq-product-wrapper request-quote-form hide-back-btn hubspot-form',
         }),
       );
       if (!rfqData) {
@@ -383,7 +380,7 @@ export default async function decorate(block) {
           }),
           div({
             id: 'step-3',
-            class: 'rfq-product-wrapper request-quote-form',
+            class: 'rfq-product-wrapper request-quote-form hubspot-form',
             style: 'display: none;',
           }),
         ),

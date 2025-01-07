@@ -34,7 +34,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
               submitInput.replaceWith(submitButton);
             }
 
-            const privacy = document.querySelector('label.privacy');
+            const privacy = document.querySelector('label.privacy, .privacy>label');
             if (!privacy) {
               const privacyMsg = label({ class: 'privacy' },
                 'By submitting your details, you confirm that you have reviewed and agree with the Molecular Devices ',
@@ -86,5 +86,6 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
+  console.log(formConfig);
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
 }

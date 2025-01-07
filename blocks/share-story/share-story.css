@@ -74,7 +74,8 @@ body.modal-open {
   right: 0;
   top: 20px;
   width: 100%;
-  height: 80%;
+  height: 100%;
+  max-height: 80%;
 }
 
 .submit-story-modal iframe {
@@ -98,6 +99,8 @@ body.modal-open {
   background-color: var(--background-color);
   margin: 0 auto;
   height: 100%;
+  overflow-y: auto;
+  padding: 20px;
 }
 
 .submit-story-modal,
@@ -143,6 +146,12 @@ body.modal-open {
   color: var(--text-white);
 }
 
+/* submit your story form */
+.submit-story-modal .submit-story-modal-wrapper .submitted-message {
+  text-align: center;
+  padding: 30px 0;
+}
+
 @media only screen and (max-width: 991px) {
   .share-story {
     flex-direction: column;
@@ -161,7 +170,7 @@ body.modal-open {
   .share-story .social-links li:last-of-type {
     padding-right: 0;
   }
-  
+
   .share-story .share-event {
     border-right: none;
     padding: 20px 0;

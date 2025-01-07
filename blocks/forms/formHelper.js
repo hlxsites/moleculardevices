@@ -26,6 +26,7 @@ export async function extractFormData(block) {
 
 // get form id
 export const formMapping = [
+  { type: 'rfq', id: '09ad331d-27c6-470a-86d4-7d6c4b141bc8' }, // rfq master form
   // { type: 'app-note', id: '46645e42-ae08-4d49-9338-e09efb4c4035' }, // old app note master form
   { type: 'app-note', id: 'd6f54803-6515-4313-a7bd-025dfa5cbb5f' }, // New app note master form
   // { type: 'scientific-poster', id: '342c229a-9e0d-4f52-b4c4-07f067d39c31' }, // old poster master form
@@ -39,6 +40,8 @@ export const formMapping = [
   { type: 'newsletter', id: '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb' },
   { type: 'inquiry-with-thankyou', id: '5461143e-c315-40cf-9a92-dd8515e61d4c' },
   { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
+  // { type: 'share-story', id: 'a1086f3a-ed6e-47d1-9694-17f8c0a28612' },
+  { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
 ];
 
 export function getFormId(type) {
@@ -65,6 +68,7 @@ export const fieldsObj = [
   { newName: 'first_name', fieldName: 'firstname' },
   { newName: 'last_name', fieldName: 'lastname' },
   { newName: 'email', fieldName: 'email' },
+  { newName: 'phone', fieldName: 'phone' },
   { newName: 'phone', fieldName: '0-2/phone' },
   { newName: 'company', fieldName: 'company' },
   { newName: 'country', fieldName: 'country' },
