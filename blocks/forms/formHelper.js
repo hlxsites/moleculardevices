@@ -68,6 +68,7 @@ export const fieldsObj = [
   { newName: 'first_name', fieldName: 'firstname' },
   { newName: 'last_name', fieldName: 'lastname' },
   { newName: 'email', fieldName: 'email' },
+  { newName: 'phone', fieldName: 'phone' },
   { newName: 'phone', fieldName: '0-2/phone' },
   { newName: 'company', fieldName: 'company' },
   { newName: 'country', fieldName: 'country' },
@@ -207,18 +208,18 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementprodprimapp);
 
   document.body.appendChild(form);
-  iframe.onload = () => {
-    if (returnURL && returnURL !== 'null') {
-      window.top.location.href = returnURL;
-    }
-  };
+  // iframe.onload = () => {
+  //   if (returnURL && returnURL !== 'null') {
+  //     window.top.location.href = returnURL;
+  //   }
+  // };
 
-  const allowedValues = ['Call', 'Demo', 'Quote'];
-  if (allowedValues.includes(qdc)) {
-    form.submit();
-  } else if (returnURL && returnURL !== 'null') {
-    setTimeout(() => { window.top.location.href = returnURL; }, 200);
-  }
+  // const allowedValues = ['Call', 'Demo', 'Quote'];
+  // if (allowedValues.includes(qdc)) {
+  //   form.submit();
+  // } else if (returnURL && returnURL !== 'null') {
+  //   setTimeout(() => { window.top.location.href = returnURL; }, 200);
+  // }
 }
 
 /* get form ready */

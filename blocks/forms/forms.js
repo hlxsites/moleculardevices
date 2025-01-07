@@ -86,5 +86,6 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
+  console.log(formConfig);
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
 }
