@@ -362,7 +362,7 @@ export default async function decorate(block) {
       block.appendChild(
         div({
           id: 'step-3',
-          class: 'rfq-product-wrapper request-quote-form hide-back-btn',
+          class: 'rfq-product-wrapper request-quote-form hide-back-btn hubspot-form',
         }),
       );
       if (!rfqData) {
