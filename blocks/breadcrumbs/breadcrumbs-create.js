@@ -52,7 +52,7 @@ const customBreadcrumbs = {
   },
   '/lab-notes/3d-biology': {
     name: '3D Biology',
-    url_path: '/lab-notes/blog#3d-Biology',
+    url_path: '/lab-notes/blog#3D-Biology',
   },
   'service-support': {
     name: 'Service and Support',
