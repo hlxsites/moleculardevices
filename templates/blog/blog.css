@@ -76,15 +76,6 @@
   margin-bottom: 20px;
 }
 
-.blog main h3,
-.blog main .big-sub-heading h4 {
-  display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 30px;
-  line-height: 30px;
-}
-
 .blog main .card-caption h3 {
   line-height: 1.1;
 }
