@@ -102,9 +102,14 @@ export default async function decorate(block) {
           ? fragmentElement.querySelector('meta[name="card-c2a"]').getAttribute('content')
           : placeholders.readMore || 'Read More';
 
-        const publicationDate = fragmentElement.querySelector('meta[name="publication-date"]')
+        /* const publicationDate = fragmentElement.querySelector('meta[name="publication-date"]')
           ? fragmentElement.querySelector('meta[name="publication-date"]').getAttribute('content')
-          : '';
+          : ''; */
+
+         const publicationDate = fragmentElement.querySelector('meta[name="updated-date"]')
+          ? fragmentElement.querySelector('meta[name="updated-date"]').getAttribute('content')
+          : fragmentElement.querySelector('meta[name="publication-date"]').getAttribute('content'); 
+          
 
         const author = fragmentElement.querySelector('meta[name="author"]')
           ? fragmentElement.querySelector('meta[name="author"]').getAttribute('content')
