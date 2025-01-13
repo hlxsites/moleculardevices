@@ -1595,7 +1595,21 @@ header .nav-tabs .menu-nav-submenu-section .biology-3d-right-submenu:last-child 
   margin: auto;
 }
 
+
+header .image-card-submenu.biology-3d-right-submenu:last-child picture > img {
+  position: absolute;
+}
+
 header .biology-3d-right-submenu:last-child > div > div:last-child p:first-child img {
+  max-width: 100%;
+  height: auto;
+  right: 0;
+  left: 0;
+  object-fit: contain;
+  transition: all .2s;
+}
+
+header .biology-3d-right-submenu:last-child > div > div:last-child p:last-child img {
   max-width: 100%;
   height: 100%;
   top: 0;
@@ -1603,11 +1617,9 @@ header .biology-3d-right-submenu:last-child > div > div:last-child p:first-child
   z-index: -1;
 }
 
-header .image-card-submenu.biology-3d-right-submenu:last-child picture > img {
-  height: auto;
-  position: absolute;
-  right: 0;
-  object-fit: contain;
+header .biology-3d-right-submenu:last-child:hover > div > div:last-child p:first-child img {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 /* COMPANY MENU */
