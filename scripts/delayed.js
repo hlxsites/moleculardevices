@@ -119,9 +119,9 @@ if (!isSidekickLibrary) {
 function loadEvergageScript() {
   const script = document.createElement('script');
   if (window.location.host.includes('moleculardevices')) {
-    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/danaher_ls_prod/scripts/evergage.min.js';
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/moldev_prod/scripts/evergage.min.js';
   } else {
-    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/danaher_ls_staging/scripts/evergage.min.js';
+    script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/moldev_staging/scripts/evergage.min.js';
   }
   script.onload = function onEvergageLoad() {
   };
