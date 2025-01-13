@@ -1498,7 +1498,7 @@ header .right-submenu-content p em > a:hover {
   background-color: var(--text-white);
 }
 
-header .products-right-submenu,
+/* header .products-right-submenu, */
 header .applications-right-submenu {
   background-color: rgba(0 0 0 / 30%);
   color: var(--header-actionable-submenu-text-color);
@@ -1522,13 +1522,13 @@ header .applications-right-submenu p {
   font-size: 1rem;
 }
 
-header .products-right-submenu > div,
+/* header .products-right-submenu > div, */
 header .applications-right-submenu > div {
   display: flex;
   flex-wrap: wrap;
 }
 
-header .products-right-submenu > div > div,
+/* header .products-right-submenu > div > div, */
 header .applications-right-submenu > div > div {
   flex-basis: 50%;
   max-width: 50%;
@@ -1538,17 +1538,17 @@ header .applications-right-submenu > div > div {
   position: relative;
 }
 
-header .products-right-submenu > div > div:last-child,
+/* header .products-right-submenu > div > div:last-child, */
 header .applications-right-submenu > div > div:last-child {
   padding: 0;
 }
 
-header .products-right-submenu > div > div:last-child p,
+/* header .products-right-submenu > div > div:last-child p, */
 header .applications-right-submenu > div > div:last-child p {
   margin: 0;
 }
 
-header .products-right-submenu > div > div:last-child p:last-child picture:first-child img,
+/* header .products-right-submenu > div > div:last-child p:last-child picture:first-child img, */
 header .applications-right-submenu > div > div:last-child picture:first-child img {
   position: absolute;
   width: 100%;
@@ -1559,32 +1559,79 @@ header .applications-right-submenu > div > div:last-child picture:first-child im
   object-position: left;
 }
 
-header .products-right-submenu > div > div:last-child p:last-child picture:last-child img,
 header .applications-right-submenu > div > div:last-child picture:last-child img {
+  /* top: 60%;
+  left: -70px; */
   position: absolute;
-  left: -70px;
   right: auto;
-  top: 60%;
   z-index: 1;
   pointer-events: none;
   width: auto;
-}
-
-header .applications-right-submenu > div > div:last-child picture:last-child img {
   left: -30%;
   top: 45%;
 }
 
-header .products-right-submenu > div > div:last-child p:first-child img,
-header .biology-3d-right-submenu:last-child > div > div:last-child p:first-child img {
-  position: absolute;
-  max-height: 100%;
-  max-width: 85%;
-  width: 100%;
-  bottom: -80px;
-  height: auto;
-  right: 0;
+/* PRODUCTS MENU */
+header .products-right-submenu {
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  background-color: rgba(0 0 0 / 30%);
+  color: var(--header-actionable-submenu-text-color);
+}
+
+header .products-right-submenu > div:first-child {
   z-index: 1;
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+header .products-right-submenu > div:first-child > div,
+header .products-right-submenu > div:first-child > div:first-child {
+  padding: 40px;
+}
+
+header .products-right-submenu > div:first-child > div {
+  text-align: center;
+  padding-right: 0;
+}
+
+header .products-right-submenu > div:first-child p:has(> picture) {
+  margin: 0;
+}
+
+header .products-right-submenu > div:first-child > div img {
+  width: 80%;
+}
+
+header .products-right-submenu > div:first-child > div:first-child {
+  text-align: left;
+}
+
+header .products-right-submenu > div:first-child > div:last-child {
+  position: absolute;
+  right: 27%;
+  bottom: -31%;
+}
+
+header .products-right-submenu > div:first-child h3 {
+  font-size: 18px;
+  max-height: 60%;
+  margin-bottom: 0;
+}
+
+header .products-right-submenu > div:last-child {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  pointer-events: none;
+}
+
+header .products-right-submenu > div:last-child img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 /* 3D Biology */
@@ -1604,6 +1651,11 @@ header .image-card-submenu.biology-3d-right-submenu:last-child picture > img {
 }
 
 header .biology-3d-right-submenu:last-child > div > div:last-child p:first-child img {
+  position: absolute;
+  max-height: 100%;
+  width: 100%;
+  bottom: -80px;
+  z-index: 1;
   max-width: 100%;
   height: auto;
   right: 0;
@@ -1778,6 +1830,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     justify-content: space-between;
   }
 
+  /* header .products-right-submenu > div > div:first-child, */
   header .applications-right-submenu > div > div:first-child {
     padding-right: 70px;
   }
