@@ -1560,8 +1560,6 @@ header .applications-right-submenu > div > div:last-child picture:first-child im
 }
 
 header .applications-right-submenu > div > div:last-child picture:last-child img {
-  /* top: 60%;
-  left: -70px; */
   position: absolute;
   right: auto;
   z-index: 1;
@@ -1596,12 +1594,8 @@ header .products-right-submenu > div:first-child > div {
   padding-right: 0;
 }
 
-header .products-right-submenu > div:first-child p:has(> picture) {
-  margin: 0;
-}
-
 header .products-right-submenu > div:first-child > div img {
-  width: 80%;
+  width: 65%;
 }
 
 header .products-right-submenu > div:first-child > div:first-child {
@@ -1610,14 +1604,18 @@ header .products-right-submenu > div:first-child > div:first-child {
 
 header .products-right-submenu > div:first-child > div:last-child {
   position: absolute;
-  right: 27%;
+  right: 20%;
   bottom: -31%;
 }
 
-header .products-right-submenu > div:first-child h3 {
+header .products-right-submenu > div:first-child > div:not(:first-child) h3 {
   font-size: 18px;
-  max-height: 60%;
-  margin-bottom: 0;
+  max-width: 60%;
+  margin: auto;
+}
+
+header .products-right-submenu > div:first-child > div:not(:first-child) h3 a {
+  color: var(--text-white);
 }
 
 header .products-right-submenu > div:last-child {
