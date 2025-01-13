@@ -1488,6 +1488,10 @@ header .right-submenu-content p em > a {
   font-style: normal;
 }
 
+header .right-submenu-content.border-color-green p em > a {
+  border-color: var(--text-green);
+}
+
 header .right-submenu-content p strong > a:hover,
 header .right-submenu-content p em > a:hover {
   color: var(--button-bg-color);
@@ -1595,7 +1599,6 @@ header .nav-tabs .menu-nav-submenu-section .biology-3d-right-submenu:last-child 
   margin: auto;
 }
 
-
 header .image-card-submenu.biology-3d-right-submenu:last-child picture > img {
   position: absolute;
 }
@@ -1606,7 +1609,7 @@ header .biology-3d-right-submenu:last-child > div > div:last-child p:first-child
   right: 0;
   left: 0;
   object-fit: contain;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 header .biology-3d-right-submenu:last-child > div > div:last-child p:last-child img {
@@ -1623,7 +1626,8 @@ header .biology-3d-right-submenu:last-child:hover > div > div:last-child p:first
 }
 
 /* COMPANY MENU */
-header .company-right-submenu {
+
+/* header .company-right-submenu {
   padding: 0;
   border: none;
   background-color: rgba(0 0 0 / 30%);
@@ -1682,6 +1686,60 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
   width: 200px;
   height: 201px;
   max-height: 100%;
+} */
+
+header .company-right-submenu {
+  padding: 0;
+  background-color: transparent;
+}
+
+header .company-right-submenu div {
+  position: relative;
+}
+
+header .company-right-submenu > div:first-child {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 20px;
+  align-items: center;
+  text-align: right;
+}
+
+header .company-right-submenu > div:first-child img {
+  width: 100%;
+}
+
+header .company-right-submenu > div:first-child > div:last-child {
+  font-size: 16px;
+  display: block;
+  text-align: right;
+  padding: 32px 24px;
+  position: relative;
+}
+
+header .company-right-submenu > div:nth-child(2) {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -40px;
+  pointer-events: none;
+}
+
+header .company-right-submenu > div:last-child {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  max-height: 100%;
+  pointer-events: none;
+  height: 100%;
+  z-index: -1;
+}
+
+header .company-right-submenu > div:last-child > div:last-child img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 /* cellesce-page */
@@ -1718,6 +1776,10 @@ header .company-right-submenu div:nth-child(2) > div:last-child picture img {
 @media (min-width: 900px) {
   header nav {
     justify-content: space-between;
+  }
+
+  header .applications-right-submenu > div > div:first-child {
+    padding-right: 70px;
   }
 }
 
