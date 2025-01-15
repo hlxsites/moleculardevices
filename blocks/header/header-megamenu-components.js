@@ -10,7 +10,14 @@ import { formatEventDates } from '../latest-events/latest-events.js';
 import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
-  const linkCopy = a({ href: link.href });
+  let linkCopy;
+
+  if (component.nextElementSibling && component.nextElementSibling.tagName === 'A') {
+    linkCopy = a({ href: component.nextElementSibling.href });
+    component.nextElementSibling.remove();
+  } else {
+    linkCopy = a({ href: link.href });
+  }
 
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
