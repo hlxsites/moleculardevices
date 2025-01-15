@@ -144,7 +144,7 @@ Disallow: /en/assets/app-note/dd/img/microwell-platform-to-standardize-human-rec
 Disallow: /en/assets/app-note/dd/img/ai-enabled-drug-screening-on-human-pancreatic-cancer-organoids
 Disallow: /en/assets/app-note/dd/3d-biology/automated-testing-for-compound-toxicity-effects-using-healthy-intestinal-organoids
 Disallow: /en/assets/app-note/dd/3d-biology/fully-automated-cell-culture-passaging-and-expansion-using-decision-making-based-image-analysis
-
+Disallow: /en/assets/app-note/br/fujifilm-bacterial-endotoxin-assays-on-spectramax-readers
 
 
 # ISSER 2021 presentations poster and video

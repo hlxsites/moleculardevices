@@ -14,12 +14,19 @@ function addMetadata(container) {
   const author = getMetadata('author');
   const publisher = getMetadata('publisher');
   const publisherDate = formatDate(getMetadata('publication-date'), { month: 'short' });
+  const updatedDate = formatDate(getMetadata('updated-date'), { month: 'short' });
   const metadataStyling = 'display: flex;gap: 4px;align-items;center;min-width: 120px;';
+  let updatedPublisherDate;
+  if (updatedDate) {
+    updatedPublisherDate = `Original: ${publishDate} | Updated: ${updatedDate}`;
+  } else {
+    updatedPublisherDate = publisher ? publisherDate : publishDate;
+  }
 
   const metadataContainer = div({ class: 'metadata' },
     div({ style: metadataStyling },
       i({ class: ['fa', 'fa-calendar'] }),
-      span({ class: 'publish-date' }, publisher ? publisherDate : publishDate),
+      span({ class: 'publish-date' }, updatedPublisherDate),
     ),
   );
 

@@ -2403,6 +2403,16 @@ main .section.no-margin-top {
 }
 
 /* COMMON STYLING */
+.blog main h3,
+.blog main .big-sub-heading h4,
+.publication.full-article main h3,
+.publication.full-article main .big-sub-heading h4 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
 .blog main .section.hero-container + .section:not(.background-molecules),
 .publication.full-article main .section.hero-container + .section:not(.background-molecules) {
   padding-top: 0;
@@ -2421,6 +2431,12 @@ main .section.no-margin-top {
 .blog main .section .default-content-wrapper p.picture,
 .publication.full-article main .section .default-content-wrapper p.picture {
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.blog main .section .default-content-wrapper h3 + p.picture,
+.publication.full-article main .section .default-content-wrapper h3 + p.picture {
+  margin-bottom: 0;
 }
 
 .blog main .section .default-content-wrapper img,

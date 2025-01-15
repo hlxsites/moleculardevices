@@ -284,14 +284,18 @@ main .contact-quote-request .hs-submit .actions button {
   width: 100%;
 }
 
-main .contact-quote-request .privacy {
+main .contact-quote-request .privacy{
+  text-align: left;
+  max-width: 70%;
+  padding: 0 2px 2px 30px;
+}
+
+main .contact-quote-request .privacy,
+main .contact-quote-request .privacy > label {
   color: #999;
   line-height: 1.4em;
   margin: 0 auto;
-  padding: 0 2px 2px 30px;
   font-size: 13px;
-  text-align: left;
-  max-width: 70%;
 }
 
 @media only screen and (min-width: 768px) {

@@ -1,7 +1,5 @@
 /* eslint-disable import/no-cycle */
-import {
-  a, button, div, h3, label, li, p, ul,
-} from '../../scripts/dom-helpers.js';
+import { button, div, h3 } from '../../scripts/dom-helpers.js';
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
@@ -32,21 +30,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
                 class: 'button primary',
               }, formConfig.cta || submitInput.value || 'Submit');
               submitInput.replaceWith(submitButton);
-            }
-
-            const privacy = document.querySelector('label.privacy, .privacy>label');
-            if (!privacy) {
-              const privacyMsg = label({ class: 'privacy' },
-                'By submitting your details, you confirm that you have reviewed and agree with the Molecular Devices ',
-                a({
-                  href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
-                }, 'Privacy Policy'),
-                ', and that you understand your privacy choices as they pertain to your personal data as provided in the ',
-                a({
-                  href: 'https://www.moleculardevices.com/privacy', title: 'Privacy Policy', target: '_blank', rel: 'noopener',
-                }, 'Privacy Policy'),
-                ' under “Your Privacy Choices”.');
-              form.appendChild(privacyMsg);
             }
           }
         });
