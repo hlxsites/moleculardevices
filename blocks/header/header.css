@@ -1595,7 +1595,7 @@ header .products-right-submenu > div:first-child > div {
 }
 
 header .products-right-submenu > div:first-child > div img {
-  width: 65%;
+  width: 100%;
 }
 
 header .products-right-submenu > div:first-child > div:first-child {
@@ -1616,6 +1616,11 @@ header .products-right-submenu > div:first-child > div:not(:first-child) h3 {
 
 header .products-right-submenu > div:first-child > div:not(:first-child) h3 a {
   color: var(--text-white);
+}
+
+header .products-right-submenu > div:first-child > div:not(:first-child) p {
+  max-width: 60%;
+  margin: auto;
 }
 
 header .products-right-submenu > div:last-child {
