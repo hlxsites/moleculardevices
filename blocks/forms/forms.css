@@ -132,7 +132,8 @@
 }
 
 .hs-form .hs-fieldtype-booleancheckbox legend,
-label.privacy {
+label.privacy,
+div.privacy > label {
   border: none;
   color: inherit;
   font-size: 10px;
