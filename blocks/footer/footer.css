@@ -180,11 +180,13 @@
   justify-content: space-between;
 }
 
-.footer-newsletter-form label.privacy {
+.footer-newsletter-form label.privacy,
+.footer-newsletter-form div.privacy > label {
   color: #5f696b;
 }
 
-.footer-newsletter-form label.privacy a {
+.footer-newsletter-form label.privacy a,
+.footer-newsletter-form div.privacy > label a {
   display: inline;
   color: var(--link-color);
 }

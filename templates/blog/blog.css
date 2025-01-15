@@ -269,11 +269,13 @@ main .section.sidebar h4::after {
   font-size: 18px;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request label.privacy {
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy,
+.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label {
   text-align: center;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request label.privacy a {
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy a,
+.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label a {
   color: inherit;
   text-decoration: underline;
 }
