@@ -1606,7 +1606,7 @@ header .products-right-submenu > div:first-child > div:first-child {
 header .products-right-submenu > div:first-child > div:last-child {
   position: absolute;
   right: 20%;
-  bottom: -60px;
+  bottom: -21%;
   padding: 0;
 }
 
@@ -1622,7 +1622,7 @@ header .products-right-submenu > div:first-child > div:not(:first-child) h3 a {
 
 header .products-right-submenu > div:first-child > div:not(:first-child) p {
   max-width: 60%;
-  margin: auto;
+  margin: 1.25rem auto;
 }
 
 header .products-right-submenu > div:last-child {
