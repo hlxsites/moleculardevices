@@ -10,16 +10,7 @@ import { formatEventDates } from '../latest-events/latest-events.js';
 import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
-  // console.log(link);
-  // console.log(component);
-  let linkCopy;
-
-  if (component.nextElementSibling && component.nextElementSibling.tagName === 'A') {
-    linkCopy = a({ href: component.nextElementSibling.href });
-    component.nextElementSibling.remove();
-  } else {
-    linkCopy = a({ href: link.href });
-  }
+  const linkCopy = a({ href: link.href });
 
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
@@ -37,24 +28,12 @@ function buildLargeCardsMenu(cardContent) {
   const links = cardContent.querySelectorAll('a');
   const pictures = cardContent.querySelectorAll('picture');
 
-  // if (links && pictures && links.length > 1 && pictures.length > 1) {
-  //   links.forEach((link, index) => {
-  //     wrapLinkAroundComponent(link, pictures[index]);
-  //   });
-  // }
-
   if (links && pictures) {
     wrapLinkAroundComponent(links[0], pictures[0]);
     pictures.forEach((picture) => {
       if (picture.nextElementSibling && picture.nextElementSibling.tagName === 'A') {
         wrapLinkAroundComponent(picture.nextElementSibling.href, picture);
-        // picture.nextElementSibling.remove();
       }
-      // if (link && pictures[index]) {
-      //   // wrapLinkAroundComponent(link, pictures[index]);
-      //   console.log(link);
-      //   console.log(pictures[index]);
-      // }
     });
   }
 
