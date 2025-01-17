@@ -7,7 +7,7 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
-import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
+import { formatDate, sortDataByDate, summariseDescription, unixDateToString } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
@@ -260,6 +260,52 @@ function buildEventCardSubmenu(block) {
   }, 300);
 }
 
+/* RECENT NEWS */
+async function recentNewsHandler() {
+  const eventsMenu = div({ class: ['flex-space-between'] });
+  document.querySelector('.news-cards-submenu').replaceChildren(eventsMenu);
+
+  const news = await ffetch('/query-index.json')
+    .sheet('news')
+    .limit(1)
+    .all();
+  console.log(news);
+
+  news.forEach((item) => {
+    const newsDate = formatDate(unixDateToString(item.date));
+    console.log(newsDate);
+    const title = div(h3({ id: toClassName(item.title) }, item.title));
+    const newsContent = div(
+      div(
+        p(strong(newsDate)),
+        p(summariseDescription(item.description, 180)),
+        p(a({ href: item.path }, 'Read more')),
+      ),
+    );
+
+    const newsBlock = div(
+      {
+        class: [
+          'actionable-card-submenu',
+          'col-1',
+          'news-right-submenu',
+          'right-submenu-content',
+          'text-only',
+        ],
+      },
+      title,
+      newsContent,
+    );
+    eventsMenu.replaceWith(newsBlock);
+  });
+}
+
+function buildNewsCardSubmenu(block) {
+  setTimeout(async () => {
+    await recentNewsHandler(block);
+  }, 300);
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
@@ -271,6 +317,7 @@ function getRightSubmenuBuilder(className) {
   map.set('image-card-submenu', buildImageCardSubmenu);
   map.set('blog-cards-submenu', buildBlogCardSubmenu);
   map.set('event-cards-submenu', buildEventCardSubmenu);
+  map.set('news-cards-submenu', buildNewsCardSubmenu);
   return map.get(className);
 }
 
