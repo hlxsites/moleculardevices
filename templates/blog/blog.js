@@ -18,8 +18,9 @@ async function getLatestNewsletter() {
   return resources[0]?.gatedURL || '';
 }
 
+const formType = 'lab-notes';
 const formConfig = {
-  formId: getFormId('lab-notes'),
+  formId: getFormId(formType),
   latestNewsletter: await getLatestNewsletter(),
 };
 
@@ -55,7 +56,7 @@ export async function newsletterModal() {
     ),
   );
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, modalIframeID));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, modalIframeID, formType));
   await decorateModal(modalBody, 'newsletter-inner-wrapper', true);
 }
 
@@ -92,7 +93,7 @@ export default async function decorate() {
       }),
     );
 
-    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID));
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID, formType));
     spectraNewsletter.appendChild(sidebar);
   }
 
