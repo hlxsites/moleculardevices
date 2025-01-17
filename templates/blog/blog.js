@@ -92,7 +92,7 @@ export default async function decorate() {
       }),
     );
 
-    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID));
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID, 'lab-notes'));
     spectraNewsletter.appendChild(sidebar);
   }
 

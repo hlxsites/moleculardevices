@@ -36,7 +36,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
       },
       onFormSubmit: (hubspotForm) => {
         createSalesforceForm(hubspotForm, formConfig);
-        if (type === 'newsletter') {
+        if (type === 'newsletter' || type === 'lab-notes') {
           // eslint-disable-next-line no-undef
           console.log('Form submitted');
           dataLayer.push({ 'event': 'new_subscriber' });
