@@ -1,5 +1,7 @@
 /* eslint-disable import/no-cycle */
-import { button, div, h3 } from '../../scripts/dom-helpers.js';
+import {
+  button, div, h3, li, p, ul,
+} from '../../scripts/dom-helpers.js';
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
@@ -58,7 +60,6 @@ export default async function decorate(block, index) {
   const blockClasses = block.classList.value;
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.filter((type) => blockClasses.includes(type))[0];
-  console.log(formType);
 
   const form = div(
     h3(formHeading),
