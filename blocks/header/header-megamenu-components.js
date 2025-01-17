@@ -262,18 +262,16 @@ function buildEventCardSubmenu(block) {
 
 /* RECENT NEWS */
 async function recentNewsHandler() {
-  const eventsMenu = div({ class: ['flex-space-between'] });
-  document.querySelector('.news-cards-submenu').replaceChildren(eventsMenu);
+  const newsMenu = div({ class: ['flex-space-between'] });
+  document.querySelector('.news-cards-submenu').replaceChildren(newsMenu);
 
   const news = await ffetch('/query-index.json')
     .sheet('news')
     .limit(1)
     .all();
-  console.log(news);
 
   news.forEach((item) => {
     const newsDate = formatDate(unixDateToString(item.date));
-    console.log(newsDate);
     const title = div(h3({ id: toClassName(item.title) }, item.title));
     const newsContent = div(
       div(
@@ -296,7 +294,7 @@ async function recentNewsHandler() {
       title,
       newsContent,
     );
-    eventsMenu.replaceWith(newsBlock);
+    newsMenu.replaceWith(newsBlock);
   });
 }
 
