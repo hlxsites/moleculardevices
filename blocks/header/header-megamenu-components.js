@@ -10,7 +10,15 @@ import { formatEventDates } from '../latest-events/latest-events.js';
 import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
-  const linkCopy = a({ href: link.href });
+  let linkCopy;
+
+  if (component.nextElementSibling && component.nextElementSibling.tagName === 'A') {
+    linkCopy = a({ href: component.nextElementSibling.href });
+    component.nextElementSibling.remove();
+  } else {
+    linkCopy = a({ href: link.href });
+  }
+
   // Insert the new div before the existing div
   component.parentNode.insertBefore(linkCopy, component);
   // Move the existing div inside the new div
@@ -24,11 +32,16 @@ function wrapLinkAroundComponent(link, component, removeLink = false) {
 }
 
 function buildLargeCardsMenu(cardContent) {
-  const link = cardContent.querySelector('a');
-  const picture = cardContent.querySelector('picture');
+  const links = cardContent.querySelectorAll('a');
+  const pictures = cardContent.querySelectorAll('picture');
 
-  if (link && picture) {
-    wrapLinkAroundComponent(link, picture);
+  if (links && pictures) {
+    wrapLinkAroundComponent(links[0], pictures[0]);
+    pictures.forEach((picture) => {
+      if (picture.nextElementSibling && picture.nextElementSibling.tagName === 'A') {
+        wrapLinkAroundComponent(picture.nextElementSibling.href, picture);
+      }
+    });
   }
 
   return cardContent;
