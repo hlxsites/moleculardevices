@@ -36,6 +36,10 @@ export function createHubSpotForm(formConfig, target, type = '') {
       },
       onFormSubmit: (hubspotForm) => {
         createSalesforceForm(hubspotForm, formConfig);
+        if (type === 'newsletter') {
+          // eslint-disable-next-line no-undef
+          dataLayer.push({ event: 'new_subscriber' });
+        }
       },
     });
   } catch (e) {
