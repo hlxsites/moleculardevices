@@ -68,7 +68,7 @@ export default async function decorate(block) {
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
 
-  // citations has default thumbnail image
+  // citations has default thumbnail image.
   resources.forEach((resource) => {
     if (resource.type === 'Citation') {
       resource.thumbnail = '/images/citation-card-thumbnail.webp';
