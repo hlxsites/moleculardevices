@@ -273,10 +273,16 @@ async function recentNewsHandler() {
   news.forEach((item) => {
     const newsDate = formatDate(unixDateToString(item.date));
     const title = div(h3({ id: toClassName(item.title) }, item.title));
+    let description;
+    if (item.cardDescription && item.cardDescription !== '0') {
+      description = item.cardDescription;
+    } else {
+      description = item.description;
+    }
     const newsContent = div(
       div(
         p(strong(newsDate)),
-        p(summariseDescription(item.description, 180)),
+        p(summariseDescription(description, 180)),
         p(a({ href: item.path }, 'Read more')),
       ),
     );
