@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import ffetch from '../../scripts/ffetch.js';
 import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
@@ -7,6 +6,7 @@ import {
   div, p, strong, a,
 } from '../../scripts/dom-helpers.js';
 import resourceMapping from '../resources/resource-mapping.js';
+import { sortDataByDate } from '../../scripts/scripts.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
@@ -56,16 +56,10 @@ export default async function decorate(block) {
   } else {
     resources = await getResourcesFromMetaTags();
   }
-
-  const sortedResources = resources.filter((item) => !!item).sort((x, y) => {
-    if (x.date < y.date) {
-      return 1;
-    }
-    if (x.date > y.date) {
-      return -1;
-    }
-    return 0;
-  });
+  if (resources.length < 3) {
+    block.parentElement.parentElement.remove();
+    return;
+  }
 
   const placeholders = await fetchPlaceholders();
   const resourceCard = await createCard({
@@ -74,7 +68,7 @@ export default async function decorate(block) {
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });
 
-  // citations has default thumbnail image
+  // citations has default thumbnail image.
   resources.forEach((resource) => {
     if (resource.type === 'Citation') {
       resource.thumbnail = '/images/citation-card-thumbnail.webp';
@@ -83,7 +77,7 @@ export default async function decorate(block) {
 
   await createCarousel(
     block,
-    sortedResources,
+    sortDataByDate(resources),
     {
       defaultStyling: true,
       navButtons: true,
