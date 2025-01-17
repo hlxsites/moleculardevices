@@ -133,6 +133,7 @@ async function buildNewsletter(container) {
   }
 
   const formID = 'enewsletterSubscribeForm';
+  const formType = 'newsletter';
   const form = (
     div({
       id: newsletterId,
@@ -146,9 +147,9 @@ async function buildNewsletter(container) {
     )));
 
   const formConfig = {
-    formId: getFormId('newsletter'),
+    formId: getFormId(formType),
   };
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
 
   const newsletterList = await getLatestNewsletter();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
