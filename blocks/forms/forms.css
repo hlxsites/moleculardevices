@@ -264,8 +264,8 @@ main form fieldset[class*="form-columns"] .input {
   order: 1;
 }
 
-.hubspot-form form div:has(> .hs-richtext > .privacy),
-.hubspot-form form fieldset:has(> .hs-richtext > .privacy) {
+.hubspot-form form div:has(> .hs-richtext .privacy),
+.hubspot-form form fieldset:has(> .hs-richtext .privacy) {
   order: 2;
 }
 
