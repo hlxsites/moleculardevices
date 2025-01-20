@@ -223,6 +223,12 @@ async function recentEventHandler(block) {
     .slice(0, 2);
 
   sortedEvents.forEach((event) => {
+    let description;
+    if (event.cardDescription && event.cardDescription !== '0') {
+      description = event.cardDescription;
+    } else {
+      description = event.description;
+    }
     const title = div(h3({ id: toClassName(event.title) }, event.title));
     const eventContent = div(
       div(
@@ -232,7 +238,7 @@ async function recentEventHandler(block) {
             } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
           ),
         ),
-        p(summariseDescription(event.description, 180)),
+        p(summariseDescription(description, 180)),
         p(a({ href: event.path }, 'Read more')),
       ),
     );
