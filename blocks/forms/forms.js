@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
-import { button, div, h3 } from '../../scripts/dom-helpers.js';
+import {
+  button, div, h3, li, p, ul,
+} from '../../scripts/dom-helpers.js';
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
   createSalesforceForm, extractFormData, formMapping, getFormFieldValues,
   getFormId, updateFormFields,
@@ -28,7 +30,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
               const submitButton = button({
                 type: 'submit',
                 class: 'button primary',
-              }, submitInput.value || 'Submit');
+              }, formConfig.cta || submitInput.value || 'Submit');
               submitInput.replaceWith(submitButton);
             }
           }
@@ -37,7 +39,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
       onFormSubmit: (hubspotForm) => {
         createSalesforceForm(hubspotForm, formConfig);
         if (type === 'newsletter' || type === 'lab-notes') {
-          console.log('Form submitted');
           // eslint-disable-next-line no-undef, quote-props
           dataLayer.push({ 'event': 'new_subscriber' });
         }
@@ -74,5 +75,11 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
+  if (formType) {
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
+  } else {
+    const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
+    formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
+    block.appendChild(formTypeList);
+  }
 }
