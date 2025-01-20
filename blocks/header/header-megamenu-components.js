@@ -238,7 +238,7 @@ async function recentEventHandler(block) {
             } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
           ),
         ),
-        p(summariseDescription(description, 180)),
+        p(summariseDescription(description, 120)),
         p(a({ href: event.path }, 'Read more')),
       ),
     );
@@ -289,7 +289,7 @@ async function recentNewsHandler() {
     const newsContent = div(
       div(
         p(strong(newsDate)),
-        p(summariseDescription(description, 180)),
+        p(summariseDescription(description, 120)),
         p(a({ href: item.path }, 'Read more')),
       ),
     );
