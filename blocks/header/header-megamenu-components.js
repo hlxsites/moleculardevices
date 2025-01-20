@@ -1,13 +1,13 @@
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import {
-  img, div, a, p,
-  h3,
-  strong,
+  img, div, a, p, h3, strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
-import { formatDate, sortDataByDate, summariseDescription, unixDateToString } from '../../scripts/scripts.js';
+import {
+  formatDate, sortDataByDate, summariseDescription, unixDateToString,
+} from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
