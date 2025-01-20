@@ -4,7 +4,7 @@
   padding: 50px 0;
 }
 
-main .section.latest-resources-container:has( .latest-resources.block){
+main .section.latest-resources-container:has( .latest-resources.block:empty){
   display: none;
 }
 
