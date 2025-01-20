@@ -405,7 +405,7 @@ export async function coveoResources(target) {
       const subCategory = encodeURIComponent(getMetadata('sub-category').trim());
       let searchTitle = encodeURIComponent(getMetadata('search-title').trim());
       if (!searchTitle) {
-        searchTitle = document.querySelector('main h1').textContent;
+        searchTitle = encodeURIComponent(getMetadata('title').trim());
       }
       let params;
       if (!subCategory) {
