@@ -178,6 +178,7 @@
 .landing-page main .section > div.forms-wrapper h3,
 .landing-page main .section > div.forms-wrapper h4 {
   margin-top: 10px;
+  padding: 0;
 }
 
 @media (max-width: 767px) {
