@@ -271,10 +271,11 @@ async function recentNewsHandler() {
   const newsMenu = div({ class: ['flex-space-between'] });
   document.querySelector('.news-cards-submenu').replaceChildren(newsMenu);
 
-  const news = await ffetch('/query-index.json')
+  let news = await ffetch('/query-index.json')
     .sheet('news')
-    .limit(1)
     .all();
+
+  news = sortDataByDate(news).slice(0, 1);
 
   news.forEach((item) => {
     const newsDate = formatDate(unixDateToString(item.date));
