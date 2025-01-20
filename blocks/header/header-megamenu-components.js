@@ -1,13 +1,13 @@
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import {
-  img, div, a, p,
-  h3,
-  strong,
+  img, div, a, p, h3, strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
-import { sortDataByDate, summariseDescription } from '../../scripts/scripts.js';
+import {
+  formatDate, sortDataByDate, summariseDescription, unixDateToString,
+} from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
@@ -223,6 +223,12 @@ async function recentEventHandler(block) {
     .slice(0, 2);
 
   sortedEvents.forEach((event) => {
+    let description;
+    if (event.cardDescription && event.cardDescription !== '0') {
+      description = event.cardDescription;
+    } else {
+      description = event.description;
+    }
     const title = div(h3({ id: toClassName(event.title) }, event.title));
     const eventContent = div(
       div(
@@ -232,7 +238,7 @@ async function recentEventHandler(block) {
             } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
           ),
         ),
-        p(summariseDescription(event.description, 180)),
+        p(summariseDescription(description, 120)),
         p(a({ href: event.path }, 'Read more')),
       ),
     );
@@ -260,6 +266,57 @@ function buildEventCardSubmenu(block) {
   }, 300);
 }
 
+/* RECENT NEWS */
+async function recentNewsHandler() {
+  const newsMenu = div({ class: ['flex-space-between'] });
+  document.querySelector('.news-cards-submenu').replaceChildren(newsMenu);
+
+  let news = await ffetch('/query-index.json')
+    .sheet('news')
+    .all();
+
+  news = sortDataByDate(news).slice(0, 1);
+
+  news.forEach((item) => {
+    const newsDate = formatDate(unixDateToString(item.date));
+    const title = div(h3({ id: toClassName(item.title) }, item.title));
+    let description;
+    if (item.cardDescription && item.cardDescription !== '0') {
+      description = item.cardDescription;
+    } else {
+      description = item.description;
+    }
+    const newsContent = div(
+      div(
+        p(strong(newsDate)),
+        p(summariseDescription(description, 120)),
+        p(a({ href: item.path }, 'Read more')),
+      ),
+    );
+
+    const newsBlock = div(
+      {
+        class: [
+          'actionable-card-submenu',
+          'col-1',
+          'news-right-submenu',
+          'right-submenu-content',
+          'text-only',
+        ],
+      },
+      title,
+      newsContent,
+    );
+    newsMenu.replaceWith(newsBlock);
+  });
+}
+
+function buildNewsCardSubmenu(block) {
+  setTimeout(async () => {
+    await recentNewsHandler(block);
+  }, 300);
+}
+
 function getRightSubmenuBuilder(className) {
   const map = new Map();
   map.set('cards-submenu', buildCardsMenu);
@@ -271,6 +328,7 @@ function getRightSubmenuBuilder(className) {
   map.set('image-card-submenu', buildImageCardSubmenu);
   map.set('blog-cards-submenu', buildBlogCardSubmenu);
   map.set('event-cards-submenu', buildEventCardSubmenu);
+  map.set('news-cards-submenu', buildNewsCardSubmenu);
   return map.get(className);
 }
 
