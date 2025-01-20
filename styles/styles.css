@@ -2477,7 +2477,7 @@ main .section.no-margin-top {
   background-repeat: no-repeat;
 }
 
-.section.events-container .events.future.block .list {
+.section.events-container .events.block .list {
   padding-top: 0;
 }
 
