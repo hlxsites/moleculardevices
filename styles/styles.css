@@ -2477,6 +2477,10 @@ main .section.no-margin-top {
   background-repeat: no-repeat;
 }
 
+.section.events-container .events.block .list {
+  padding-top: 0;
+}
+
 /* RFQ Form Section */
 main .section.tabs.rfq-form-section h2,
 main .section.tabs.rfq-form-section h3 {
