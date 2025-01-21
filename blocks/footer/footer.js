@@ -230,6 +230,8 @@ export default async function decorate(block) {
         row.querySelector('.section-metadata').remove();
       }
 
+      console.log(idx);
+      console.log(row);
       if (idx <= 3) {
         wrapContainer.appendChild(row);
       } else {
@@ -249,6 +251,14 @@ export default async function decorate(block) {
         const row4 = rows[4];
         if (row4) {
           rows[3].appendChild(row4);
+        }
+      }
+
+      if (idx === 7) {
+        const row7 = rows[7];
+        if (row7) {
+          const copyrightInfoZH = p(`\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`);
+          row7.querySelector('.footer-contact').appendChild(copyrightInfoZH);
         }
       }
     });

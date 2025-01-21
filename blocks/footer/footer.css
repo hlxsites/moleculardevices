@@ -351,6 +351,11 @@
   padding-top: 4px;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
+.row-8.columns-wrapper.OneLinkShow_zh {
+    display: flex !important;
+}
+
 .row-8 p {
   margin: 0;
 }
@@ -473,7 +478,8 @@
 
   .row-8 {
     grid-area: logos;
-    gap: 24px;
+    column-gap: 24px;
+    row-gap: 24px;
   }
 
   .row-7 ul {
@@ -493,7 +499,7 @@
   }
 
   .row-8 {
-    gap: 60px;
+    column-gap: 60px;
   }
 }
 
