@@ -42,6 +42,9 @@ export const formMapping = [
   { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
   // { type: 'share-story', id: 'a1086f3a-ed6e-47d1-9694-17f8c0a28612' },
   { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
+  { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
+  { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
+  { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
 ];
 
 export function getFormId(type) {

@@ -1350,4 +1350,14 @@ export async function getCountryCode() {
   return data.country_code;
 }
 
+/**
+ * Converts any string to Title Case.
+ *
+ * @param {string} str - The input string.
+ * @returns {string} The formatted string in Title Case.
+ */
+export function toTitleCase(str) {
+  return str.toLowerCase().replace(/(?:^|\s|[_-])\w/g, (match) => match.toUpperCase());
+}
+
 loadPage();

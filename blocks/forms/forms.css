@@ -1,9 +1,16 @@
+/* stylelint-disable no-descending-specificity */
 :root {
   --input-color: #5f696b;
   --border-color: #bebebe;
 }
 
-/* stylelint-disable no-descending-specificity */
+.forms.block .no-type-msg {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
 .hs-form .hs-dependent-field,
 .hs-form .hs-form-field {
   line-height: 1.4em;
@@ -257,8 +264,8 @@ main form fieldset[class*="form-columns"] .input {
   order: 1;
 }
 
-.hubspot-form form div:has(> .hs-richtext > .privacy),
-.hubspot-form form fieldset:has(> .hs-richtext > .privacy) {
+.hubspot-form form div:has(> .hs-richtext .privacy),
+.hubspot-form form fieldset:has(> .hs-richtext .privacy) {
   order: 2;
 }
 
