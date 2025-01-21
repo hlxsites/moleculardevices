@@ -45,6 +45,7 @@ export const formMapping = [
   { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
   { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
   { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
+  { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
 ];
 
 export function getFormId(type) {
