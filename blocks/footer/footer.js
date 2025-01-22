@@ -230,8 +230,6 @@ export default async function decorate(block) {
         row.querySelector('.section-metadata').remove();
       }
 
-      console.log(idx);
-      console.log(row);
       if (idx <= 3) {
         wrapContainer.appendChild(row);
       } else {
