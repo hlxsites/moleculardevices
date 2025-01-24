@@ -152,7 +152,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   if (qdcCall && qdcCall.checked) {
     qdc = 'Call';
   } else {
-    qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
+    qdc = hubspotForm.querySelector('input[name="requested_qdc_discussion__c"]').value || ''; // test case
   }
   if (qdc === '') {
     qdc = formConfig.qdc || '';
