@@ -15,6 +15,7 @@ const formConfig = {
   formId: getFormId(formType),
   cmp: CONTACT_CMP_ID,
   qdc: 'Call',
+  productPrimaryApplication: 'General Inquiry Form Submission',
   redirectUrl: new URL(`?msg=success&region=${REGION}`, pathName),
 };
 
