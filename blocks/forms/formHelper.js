@@ -149,7 +149,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
 
-  if (qdcCall && qdcCall.checked === true) {
+  if (qdcCall && qdcCall.checked) {
     qdc = 'Call';
   } else {
     qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
@@ -163,14 +163,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   // get-in-tough/contact form
   const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
-  // form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
-  //   if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
-  //     elementqdcrequest.value = qdc;
-  //   } else {
-  //     elementqdcrequest.value = '';
-  //   }
-  // });
-  if (getInTouchInterests === 'Sales' || getInTouchInterests === 'Tech support') {
+  if (getInTouchInterests.value === 'Sales' || getInTouchInterests.value === 'Tech support') {
     elementqdcrequest.value = qdc;
   } else {
     elementqdcrequest.value = '';
@@ -184,7 +177,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   } else {
     subscribe = 'false';
   }
-  // if (!subscribe) { subscribe = 'false'; }
+
   const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
   form.appendChild(elementmarketingoptin);
 
@@ -229,6 +222,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementprodprimapp);
 
   document.body.appendChild(form);
+
   iframe.onload = () => {
     if (returnURL && returnURL !== 'null') {
       window.top.location.href = returnURL;
