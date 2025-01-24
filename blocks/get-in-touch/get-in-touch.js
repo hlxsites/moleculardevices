@@ -4,11 +4,11 @@ import { getCookie } from '../../scripts/scripts.js';
 import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
-const CONTACT_CMP_ID = '701Rn00000S2zk6IAB';
-let DEFAULT_CMP = '';
-let REGION = new URLSearchParams(window.location.search).get('region');
+const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp') || '701Rn00000S2zk6IAB';
 const formType = 'get-in-touch';
 const pathName = window.location.origin + window.location.pathname;
+let REGION = new URLSearchParams(window.location.search).get('region');
+
 const formConfig = {
   formId: getFormId(formType),
   cmp: CONTACT_CMP_ID,
@@ -18,11 +18,6 @@ const formConfig = {
 function updateParams(params) {
   const returnUrlInput = document.querySelector("input[name='return_url']");
   const baseRedirectUrl = new URL(formConfig.redirectUrl, pathName);
-  const cmp = getCookie('cmp') || baseRedirectUrl.searchParams.get('cmp');
-
-  if (!DEFAULT_CMP) {
-    DEFAULT_CMP = cmp;
-  }
 
   Object.entries(params).forEach(([key, value]) => {
     if (value || value === 'sales') {
@@ -81,14 +76,13 @@ function scrollToForm(link, region) {
   if (hubspotFormWrapper) {
     let params = 'general';
     if (link && link.getAttribute('title') === 'Sales Inquiry Form') {
-      DEFAULT_CMP = CONTACT_CMP_ID;
       params = 'sales';
       getInTouchInterestsSelect.value = 'Sales';
       getInTouchInterestsSelect.dispatchEvent(new Event('change', { bubbles: true }));
     } else {
       getInTouchInterestsSelect.selectedIndex = 0;
     }
-    updateParams({ comments: params, region, cmp: DEFAULT_CMP });
+    updateParams({ comments: params, region });
   }
 
   window.scroll({
@@ -175,7 +169,6 @@ export default async function decorate(block) {
       const countryObj = distributors.filter(
         (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
       REGION = countryObj || queryParams.get('region');
-      // updateParams(hubspotUrl, '');
       updateParams();
     });
   }

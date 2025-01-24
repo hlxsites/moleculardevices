@@ -163,6 +163,13 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   // get-in-tough/contact form
   const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
+  form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
+    if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
+      elementqdcrequest.value = qdc;
+    } else {
+      elementqdcrequest.value = '';
+    }
+  });
   if (getInTouchInterests === 'Sales' || getInTouchInterests === 'Tech support') {
     elementqdcrequest.value = qdc;
   } else {
