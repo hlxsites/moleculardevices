@@ -28,17 +28,17 @@ export function createHubSpotForm(formConfig, target, type = '') {
             // get-in-tough/contact form
             if (type === 'get-in-touch') {
               GLOBAL_CMP = formConfig.cmp;
-              const cmpInput = form.querySelector("input[name='cmp']");
+              // const cmpInput = form.querySelector("input[name='cmp']");
               const requestedQDCDiscussion = form.querySelector('input[name="requested_qdc_discussion__c"]');
 
               requestedQDCDiscussion.value = '';
               form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
                 if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
                   requestedQDCDiscussion.value = 'Call';
-                  cmpInput.value = GLOBAL_CMP;
+                  // cmpInput.value = GLOBAL_CMP;
                 } else {
                   requestedQDCDiscussion.value = '';
-                  cmpInput.value = '';
+                  // cmpInput.value = '';
                 }
               });
             }
