@@ -229,6 +229,8 @@ export function createSalesforceForm(hubspotForm, formConfig) {
     }
   };
 
+  console.log(qdc);
+  console.log(returnURL);
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
     form.submit();

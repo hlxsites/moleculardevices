@@ -35,10 +35,10 @@ export function createHubSpotForm(formConfig, target, type = '') {
               form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
                 if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
                   requestedQDCDiscussion.value = 'Call';
-                  cmpInput.value = GLOBAL_CMP;
+                  // cmpInput.value = GLOBAL_CMP;
                 } else {
                   requestedQDCDiscussion.value = '';
-                  cmpInput.value = '';
+                  // cmpInput.value = '';
                 }
               });
             }
