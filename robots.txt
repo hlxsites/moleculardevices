@@ -78,7 +78,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/bio-pr
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/single-cell-dispensing-and-screening-of-cell-lines-for-monoclonality-verification.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-and-morphological-characterization-of-healthy-and-epilepsy-related-3d-neurospheres-assembled.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-healthy-and-disease-related-3d-neurospheres-using-human-ipsc-derived-neurons-and-astrocytes.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-characterization-of-healthy-and-disease-related-3d-neurospheres-using-human-ipsc-derived-neurons-and-astrocytes.pdf 
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/transform-complexities-of-3d-cell-culture-into-reliable-and-translatable-science.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automation-of-full-workflow-for-3d-cancer-spheroid-assays-with-cellxpress-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/scalable-patient-derived-3d-colorectal-cancer-organoids-in-high-throughput-applications.pdf
@@ -93,7 +93,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-microbial-c
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/patient-derived-3d-ready-organoids-for-high-throughput-screening.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/t-cell-induced-morphological-change-analysis-of-colorectal-cancer-organoids-using-ai.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/human-organoid-lines-for-modelling-intestinal-epithelial-barrier-in-vitro.pdf
-Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-research
+Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-research 
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/using-power-of-ai-in-automated-cell-culture.pdf
 
 
@@ -262,6 +262,13 @@ Disallow: /en/assets/tutorials-videos/dd/cns/setting-up-automatic-analysis-in-pc
 Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in-clampex
 Disallow: /en/assets/tutorials-videos/dd/cns/axon-patch-clamp-electrophysiology-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
+Disallow: /en/assets/tutorials-videos/br/to-elisa-and-beyond
+
+
+
+
+
+
 
 #EU webinars to imaging video gallery page
 
@@ -347,7 +354,7 @@ Disallow: /en/assets/promotion/dd/img/explore-cardiac-function-by-measuring-calc
 Disallow: /en/assets/promotion/dd/img/transform-your-cell-imaging
 
 
-#EU BPD Campaign Page block
+#EU BPD Campaign Page block 
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-fr
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-it
@@ -363,7 +370,7 @@ Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-nl
 Disallow: /sites/default/files/en/assets/flyer/br/spectramax-id5-with-western-blot-and-injectors.pdf
 
 
-#Replica Pages
+#Replica Pages 
 Disallow: /en/assets/ln/ebook/br/explore-cells-from-the-inside-out
 Disallow: /en/assets/ln/ebook/br/software-compliance-for-gmp-glp-labs
 Disallow: /en/assets/ln/ebook/dd/img/3d-cellular-imaging
