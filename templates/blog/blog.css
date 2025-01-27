@@ -76,18 +76,8 @@
   margin-bottom: 20px;
 }
 
-.blog main h3,
-.blog main .big-sub-heading h4 {
-  display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 30px;
-  line-height: 30px;
-}
-
 .blog main .card-caption h3 {
   line-height: 1.1;
-  margin-top: 0;
 }
 
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
@@ -160,11 +150,6 @@ main .section.sidebar h4,
 .blog main .section.sidebar h4 {
   margin-bottom: 50px;
   position: relative;
-}
-
-.blog main .section.blog-heading .icon-view-all-posts img {
-  display: block;
-  width: 178px;
 }
 
 .blog main .section.green-secondary-buttons .button {
@@ -271,8 +256,45 @@ main .section.sidebar h4::after {
   margin-bottom: 50px;
 }
 
-.blog main .section div.spectra-newsletter h5 {
-  margin-bottom: 0;
+.blog main .section div.spectra-newsletter .contact-quote-request {
+  padding: 0 15px;
+  text-align: center;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message {
+  padding: 30px 0;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message p {
+  font-size: 18px;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy,
+.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label {
+  text-align: center;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request label.privacy a,
+.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.blog main .section div.spectra-newsletter .contact-quote-request .hs-submit .actions {
+  margin-top: 2px;
+  margin-bottom: 17px;
+  max-width: 200px;
+}
+
+.blog main .section div.spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
+  margin-top: 5px;
+  padding-left: 0;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.blog main .section div.spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 991px) {

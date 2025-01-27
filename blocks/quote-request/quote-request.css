@@ -42,14 +42,10 @@ main div.section.quote-request-container + .section.wave {
   color: var(--text-white);
   margin: auto;
   max-width: 100%;
-  padding: 50px 50px 100px;
+  padding: 50px 50px 80px;
   position: relative;
   text-align: center;
   width: 100%;
-}
-
-.rfq-product-wrapper.request-quote-form {
-  padding-bottom: 0;
 }
 
 .quote-request-wrapper .quote-request {
@@ -101,7 +97,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-icon-link:hover {
-  background: url('images/hover-bg.png');
+  background: url("images/hover-bg.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -237,13 +233,69 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .progress {
-  background-image: url('images/progress-bar_resized.png');
+  background-image: url("images/progress-bar_resized.png");
   background-size: contain;
   border: 0;
   border-radius: 20px !important;
   height: 50px;
   transition: width 0.4s ease;
   width: 0;
+}
+
+/* rfq form block changes */
+main .contact-quote-request form fieldset {
+  max-width: 100%;
+  text-align: left;
+}
+
+main .contact-quote-request .hs-dependent-field,
+main .contact-quote-request .hs-form-field {
+  padding-top: 0;
+}
+
+main .contact-quote-request .hs-form-field .hs-field-desc {
+  color: #e2e2e2;
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  line-height: 1em;
+  width: 94% !important;
+}
+
+main .contact-quote-request .hs-form-field textarea.hs-input {
+  height: 70px;
+}
+
+main .contact-quote-request .actions {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+main .contact-quote-request .hs-submit .actions button {
+  transition: all 0.2s;
+  background: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
+  background-color: #298da9;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 25px;
+  padding: 14px 18px;
+  width: 100%;
+}
+
+main .contact-quote-request .privacy{
+  text-align: left;
+  max-width: 70%;
+  padding: 0 2px 2px 30px;
+}
+
+main .contact-quote-request .privacy,
+main .contact-quote-request .privacy > label {
+  color: #999;
+  line-height: 1.4em;
+  margin: 0 auto;
+  font-size: 13px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -270,11 +322,7 @@ main div.section.quote-request-container + .section.wave {
 
 @media only screen and (max-width: 767px) {
   .rfq-product-wrapper {
-    padding: 30px 5px 100px;
-  }
-
-  .rfq-product-wrapper.request-quote-form {
-    padding-bottom: 50px;
+    padding: 30px 5px 80px;
   }
 
   .rfq-thankyou-msg h2 {

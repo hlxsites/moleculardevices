@@ -45,12 +45,12 @@
   visibility: visible;
 }
 
-.modal-overlay[aria-hidden='true'] .modal-inner-wrapper {
+.modal-overlay[aria-hidden="true"] .modal-inner-wrapper {
   margin-top: -40px;
 }
 
-.modal-overlay[aria-hidden='true'],
-.modal-overlay[aria-hidden='true'] .modal-inner-wrapper {
+.modal-overlay[aria-hidden="true"],
+.modal-overlay[aria-hidden="true"] .modal-inner-wrapper {
   opacity: 0;
   visibility: hidden;
 }
@@ -107,11 +107,22 @@
 
 .modal-inner-wrapper h3 + h3 {
   line-height: 1.15;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 .modal-inner-wrapper .modal-form h3 {
   margin-top: 0;
+}
+
+.modal-inner-wrapper .modal-form label.privacy,
+.modal-inner-wrapper .modal-form div.privacy > label {
+  text-align: center;
+}
+
+.modal-inner-wrapper .modal-form label.privacy a,
+.modal-inner-wrapper .modal-form div.privacy > label a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .modal-inner-wrapper .columns-2-cols {
@@ -137,7 +148,7 @@
 .newsletter-inner-wrapper .iframe-wrapper > div {
   border-radius: 18px;
   position: relative;
-  padding: 20px 20px 0;
+  padding: 20px;
   color: var(--text-white);
   background-color: var(--form-bg);
   text-align: center;
@@ -145,6 +156,32 @@
 
 .newsletter-inner-wrapper .iframe-wrapper > div p {
   font-size: 15px;
+}
+
+.newsletter-inner-wrapper .iframe-wrapper .hs-submit .actions {
+  margin: 0 auto 15px;
+}
+
+.newsletter-inner-wrapper .iframe-wrapper .hs-submit .actions button {
+  max-width: 200px;
+}
+
+.newsletter-inner-wrapper .iframe-wrapper .submitted-message {
+  padding: 30px 0;
+}
+
+.newsletter-inner-wrapper .iframe-wrapper .submitted-message p {
+  font-size: 18px;
+}
+
+.newsletter-inner-wrapper .hubspot-form .hs-error-msgs.inputs-list {
+  margin-top: 5px;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.newsletter-inner-wrapper .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 567px) {
@@ -190,6 +227,10 @@
 @media only screen and (min-width: 992px) {
   .modal-inner-wrapper {
     width: 900px;
+  }
+
+  .newsletter-inner-wrapper .iframe-wrapper .hubspot-form {
+    padding: 0 15px;
   }
 }
 

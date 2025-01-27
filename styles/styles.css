@@ -539,22 +539,28 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main input {
-  font-size: 1.25rem;
-  width: 100%;
-  max-width: 50rem;
+main input:not([type="radio"], [type="checkbox"]),
+main textarea,
+main select {
   display: block;
-  margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;
-  border-radius: 0.25rem;
+  padding: 5px 15px;
   box-sizing: border-box;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
   background-color: var(--background-color);
+  border: 1px solid #bebebe;
+  border-radius: 0;
+  box-shadow: none;
+  color: #565656;
+  font-size: 15px;
+  height: 40px;
+  line-height: 1.4286;
+  outline: none;
+  width: 100% !important;
+  max-width: 100% !important;
+  font-family: inherit;
 }
 
-main input:hover {
-  border: 1px solid var(--text-color);
+main textarea {
+  height: 100px;
 }
 
 main pre {
@@ -1342,7 +1348,7 @@ main div.section.wave.bluegreen::after {
 
 /* BlueGreen2 Variant */
 
-main div.section.wave.bluegreen2 {
+main div.section.wave.bluegreen2:not([style*="background-image"]) {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
@@ -1354,6 +1360,10 @@ main div.section.wave.bluegreen2 {
   ) !important;
   background-image: none;
   margin-bottom: 30px;
+}
+
+main div.section.wave.bluegreen2:has(picture img[src*="wave-footer-bg-top.png"]) {
+  padding-bottom: 0;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -1442,7 +1452,7 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
-main div.section.no-margin-bottom{
+main div.section.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
@@ -1704,6 +1714,62 @@ main .section.background-molecules {
   padding: 20px 0;
 }
 
+.section.home-promo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-white);
+  text-align: center;
+  overflow: visible;
+  position: relative;
+}
+
+.section.home-promo .columns-wrapper {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.section.home-promo .columns > div > div:last-child {
+  padding: 20px 0 40px;
+}
+
+.section.home-promo .columns > div > div:last-child h3{
+  font-size: 28px;
+}
+
+.section.home-promo .columns > div > div:last-child a.button.secondary {
+  color: var(--text-white);
+  padding-left: 40px;
+  padding-right: 40px;
+  background: rgb(0 0 0 / 25%);
+  border: 2px solid var(--button-color);
+  white-space: normal;
+  font-size: 14px;
+}
+
+.section.home-promo .columns > div > div:last-child a.button.secondary:hover {
+  background: var(--button-color);
+  color: var(--text-blue);
+}
+
+@media only screen and (min-width: 992px) {
+  .section.home-promo .columns-wrapper {
+    padding-top: 0;
+  }
+
+  .section.home-promo .columns > div > div:first-child img {
+    margin-top: -32px;
+    display: block;
+  }
+
+  .section.home-promo .columns > div > div:last-child {
+    padding: 80px 0;
+  }
+
+  .section.home-promo {
+    padding: 0;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .homepage .section > div {
     padding: 50px 15px 0;
@@ -1713,6 +1779,14 @@ main .section.background-molecules {
 @media only screen and (max-width: 991px) {
   .product main .section {
     padding: 67px 0 70px;
+  }
+
+  .section.home-promo .columns.layout-60-40 > div {
+    display: block;
+  }
+
+  .section.home-promo .columns > div > div:last-child p.button-container{
+    margin-top: 30px;
   }
 }
 
@@ -2393,6 +2467,16 @@ main .section.no-margin-top {
 }
 
 /* COMMON STYLING */
+.blog main h3,
+.blog main .big-sub-heading h4,
+.publication.full-article main h3,
+.publication.full-article main .big-sub-heading h4 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  line-height: 30px;
+}
+
 .blog main .section.hero-container + .section:not(.background-molecules),
 .publication.full-article main .section.hero-container + .section:not(.background-molecules) {
   padding-top: 0;
@@ -2411,12 +2495,54 @@ main .section.no-margin-top {
 .blog main .section .default-content-wrapper p.picture,
 .publication.full-article main .section .default-content-wrapper p.picture {
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.blog main .section .default-content-wrapper h3 + p.picture,
+.publication.full-article main .section .default-content-wrapper h3 + p.picture {
+  margin-bottom: 0;
 }
 
 .blog main .section .default-content-wrapper img,
 .publication.full-article main .section .default-content-wrapper img {
   display: inline-block;
   vertical-align: middle;
+}
+
+.blog main .section.blog-heading .icon-view-all-posts img,
+.publication main .section.carousel-heading .icon-view-all-posts img {
+  display: block;
+  width: 178px;
+}
+
+.publication main .section.carousel-heading .icon-view-all-posts .button-container {
+  margin-bottom: 0;
+}
+
+.share-event ul.button-container li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.social-links li a span[aria-label="X"] img {
+  max-width: 21px;
+  width: 100%;
+  display: block;
+}
+
+.customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
+  background-image: url("/icons/x-blue.svg");
+  background-size: 21px;
+  width: 21px;
+  height: 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section.events-container .events.block .list {
+  padding-top: 0;
 }
 
 /* RFQ Form Section */

@@ -120,7 +120,7 @@ export function buildRequestQuote(classes) {
 }
 
 export function decorateLanguagesTool(tools) {
-  const languageTool = tools.querySelector('li:nth-child(2)');
+  const languageTool = tools.querySelector('li:has(img[alt="Language options"])');
   if (!languageTool) return;
 
   const languagesList = languageTool.querySelector('ul');

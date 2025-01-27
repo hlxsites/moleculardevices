@@ -4,12 +4,14 @@ import {
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, iframe, li, p, ul,
+  a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, decorateLinkedPictures, formatDate, iframeResizeHandler, unixDateToString,
+  decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
+import { getFormId } from '../forms/formHelper.js';
+import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 let placeholders = {};
 
@@ -23,9 +25,9 @@ function toggleNewsEvents(container, target) {
 }
 
 function addEventListeners(container) {
-  const h3s = container.querySelectorAll('h3');
-  [...h3s].forEach((h3) => {
-    h3.addEventListener('click', (e) => {
+  const headings = container.querySelectorAll('h3');
+  [...headings].forEach((heading) => {
+    heading.addEventListener('click', (e) => {
       toggleNewsEvents(container, e.target);
     });
   });
@@ -126,27 +128,28 @@ async function getLatestNewsletter() {
 
 async function buildNewsletter(container) {
   const newsletterId = 'enewsletter';
-  if (container.querySelector(`#${newsletterId} iframe`)) {
+  if (container.querySelector(`#${newsletterId} form`)) {
     return; // newsletter already present
   }
 
-  const formId = 'enewsletterSubscribeForm';
-  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
+  const formID = 'enewsletterSubscribeForm';
+  const formType = 'newsletter';
   const form = (
     div({
       id: newsletterId,
-      class: 'hubspot-iframe-wrapper',
+      class: 'enewsletter-wrapper',
       loading: 'lazy',
     }, div(
-      iframe({
-        id: formId,
-        src: formUrl,
-        loading: 'lazy',
-        title: 'Newsletter',
-      }),
-    ),
-    )
-  );
+      {
+        class: 'hubspot-form',
+        id: formID,
+      },
+    )));
+
+  const formConfig = {
+    formId: getFormId(formType),
+  };
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
 
   const newsletterList = await getLatestNewsletter();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
@@ -156,7 +159,6 @@ async function buildNewsletter(container) {
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   }
-  iframeResizeHandler(formUrl, formId, container);
 }
 
 /* decorate social icons */
@@ -247,6 +249,14 @@ export default async function decorate(block) {
         const row4 = rows[4];
         if (row4) {
           rows[3].appendChild(row4);
+        }
+      }
+
+      if (idx === 7) {
+        const row7 = rows[7];
+        if (row7) {
+          const copyrightInfoZH = p(`\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`);
+          row7.querySelector('.footer-contact').appendChild(copyrightInfoZH);
         }
       }
     });

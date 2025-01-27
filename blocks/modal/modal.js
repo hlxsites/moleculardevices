@@ -1,9 +1,6 @@
 /* eslint-disable import/no-cycle */
-import {
-  button, div, span,
-} from '../../scripts/dom-helpers.js';
+import { button, div, span } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture, loadCSS } from '../../scripts/lib-franklin.js';
-import { iframeResizeHandler } from '../../scripts/scripts.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
@@ -48,7 +45,7 @@ function triggerModalBtn(scrollThreshold) {
   }
 }
 
-export async function decorateModal(formURL, iframeID, modalBody, modalClass, isFormModal) {
+export async function decorateModal(modalBody, modalClass, isFormModal) {
   loadCSS('/blocks/modal/modal.css');
   const modal = document.querySelector(`.${modalParentClass}`);
 
@@ -56,8 +53,6 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
     const formOverlay = div({ 'aria-hidden': true, class: modalParentClass, style: 'display:none;' });
     const closeBtn = span({ class: 'icon icon-close' }, createOptimizedPicture('/icons/close-video.svg', 'Close Video'));
     const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
-
-    iframeResizeHandler(formURL, iframeID, modalBody);
 
     if (isFormModal) {
       const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
@@ -83,10 +78,7 @@ export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
 
   if (isBlogModal) {
-    const modalContent = block.querySelector(':scope > div > div');
-    const link = modalContent.querySelector('p > a:only-child, a:only-child');
-    const formURL = link.href;
-    await newsletterModal(formURL, 'form-modal');
+    await newsletterModal();
     const modalBtn = document.getElementById('show-modal');
     window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }

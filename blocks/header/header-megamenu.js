@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import buildRightSubmenu from './header-megamenu-components.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
@@ -30,13 +29,14 @@ function getTitlesWithLineDividers(content) {
   const titleIds = [];
   const lineDividers = content.querySelectorAll('p');
   lineDividers.forEach((lineDivider) => {
-    if (!lineDivider.textContent.includes('--')) {
+    if (!lineDivider.textContent.trim().includes('--')) {
       return;
     }
-
-    // get the h2 id immediately after the p element
-    const h2Id = lineDivider.nextElementSibling.id;
-    titleIds.push(h2Id);
+    if (lineDivider.nextElementSibling !== null) {
+      // get the h2 id immediately after the p element
+      const h2Id = lineDivider.nextElementSibling.id;
+      titleIds.push(h2Id);
+    }
   });
 
   return titleIds;

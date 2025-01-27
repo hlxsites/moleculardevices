@@ -38,13 +38,12 @@ export default async function decorate(block) {
       const section = block.closest('.section');
       section.classList.add(...fragmentSection.classList);
 
-      section.style.background = fragmentSection.style.background
-        ? fragmentSection.style.background
-        : section.style.background;
-
-      section.style.backgroundImage = fragmentSection.style.backgroundImage
-        ? fragmentSection.style.backgroundImage
-        : section.style.background;
+      if (fragmentSection.style.background && fragmentSection.style.background !== '') {
+        section.style.background = fragmentSection.style.background;
+      }
+      if (fragmentSection.style.backgroundImage && fragmentSection.style.backgroundImage !== '') {
+        section.style.backgroundImage = fragmentSection.style.backgroundImage;
+      }
 
       block.closest('.fragment-wrapper').replaceWith(...fragmentSection.childNodes);
     }

@@ -444,7 +444,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -462,12 +462,17 @@ function addPageSchema() {
     const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
 
     const heroImage = document.querySelector('.hero img');
-    const schemaImage = heroImage
-      ? heroImage.src
-      : getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
+    const schemaImage = heroImage ? heroImage.src : resourcesImage;
     const schemaImageUrl = new URL(schemaImage, moleculardevicesRootURL);
-
+    // const resourcesImageUrl = new URL(resourcesImage, moleculardevicesRootURL);
     const keywords = getMetadata('keywords');
+    const description = getMetadata('description');
+    const eventStart = getMetadata('event-start');
+    const eventEnd = getMetadata('event-end');
+    const eventAddress = getMetadata('event-address');
+    // const publicationDate = getMetadata('publication-date');
+    const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
     schema.setAttribute('type', 'application/ld+json');
@@ -482,12 +487,8 @@ function addPageSchema() {
       'http://www.linkedin.com/company/molecular-devices',
       'https://www.facebook.com/MolecularDevices',
       'http://www.youtube.com/user/MolecularDevicesInc',
-      'https://twitter.com/moldev',
+      'https://www.x.com/moldev',
     ];
-
-    const eventStart = getMetadata('event-start');
-    const eventEnd = getMetadata('event-end');
-    const eventAddress = getMetadata('event-address');
 
     let schemaInfo = null;
     if (type === 'homepage') {
@@ -498,7 +499,7 @@ function addPageSchema() {
           {
             '@type': 'Organization',
             additionalType: 'Organization',
-            description: getMetadata('description'),
+            description,
             name: homepageName,
             sameAs: [
               ...brandSameAs,
@@ -544,9 +545,9 @@ function addPageSchema() {
             '@type': 'TechArticle',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
-            url: document.querySelector("link[rel='canonical']").href,
+            url: canonicalHref,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
@@ -583,8 +584,8 @@ function addPageSchema() {
           {
             '@type': 'WebPage',
             name: schemaTitle,
-            description: getMetadata('description'),
-            url: document.querySelector("link[rel='canonical']").href,
+            description,
+            url: canonicalHref,
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
@@ -610,7 +611,7 @@ function addPageSchema() {
             '@type': 'BlogPosting',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
@@ -620,7 +621,7 @@ function addPageSchema() {
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              url: document.querySelector("link[rel='canonical']").href,
+              url: canonicalHref,
               sameAs: brandSameAs,
               logo,
             },
@@ -637,12 +638,12 @@ function addPageSchema() {
             '@type': 'TechArticle',
             headline: schemaTitle,
             name: schemaTitle,
-            description: getMetadata('description'),
+            description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              url: document.querySelector("link[rel='canonical']").href,
+              url: canonicalHref,
               sameAs: brandSameAs,
               logo,
             },
@@ -658,7 +659,7 @@ function addPageSchema() {
           {
             '@type': 'Event',
             name: schemaTitle,
-            url: document.querySelector("link[rel='canonical']").href,
+            url: canonicalHref,
             description: getMetadata('description'),
             eventAttendanceMode: getMetadata('event-type'),
             startDate: (eventStart) ? eventStart.split(',')[0] : '',
@@ -677,6 +678,38 @@ function addPageSchema() {
       };
     }
 
+    /* if (type === 'Videos and Webinars') {
+      const vidyardLink = document.querySelector('a[href*="vidyard.com"],
+      a[href*="vids.moleculardevices.com"]').href;
+      const vidyardId = vidyardLink.split('/').pop();
+      const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
+
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'VideoObject',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description,
+            thumbnailUrl: resourcesImageUrl,
+            uploadDate: new Date(publicationDate).toISOString(),
+            contentUrl: canonicalHref,
+            embedUrl: embedHref,
+            duration: '',
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              logo: {
+                '@type': 'ImageObject',
+                url: moleculardevicesLogoURL,
+              },
+            },
+          },
+        ],
+      };
+    } */
+
     if (schemaInfo) {
       schema.appendChild(document.createTextNode(
         JSON.stringify(schemaInfo, null, 2),
@@ -691,6 +724,7 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  // Avoid duplicate tags
   if (document.querySelectorAll('head link[hreflang]').length > 0) return;
 
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
@@ -704,41 +738,21 @@ function addHreflangTags() {
   }
 
   const baseHreflangs = [
-    {
-      lang: 'x-default',
-      href: 'https://www.moleculardevices.com',
-    },
-    {
-      lang: 'de',
-      href: 'https://de.moleculardevices.com',
-    },
-    {
-      lang: 'es',
-      href: 'https://es.moleculardevices.com',
-    },
-    {
-      lang: 'fr',
-      href: 'https://fr.moleculardevices.com',
-    },
-    {
-      lang: 'it',
-      href: 'https://it.moleculardevices.com',
-    },
-    {
-      lang: 'ko',
-      href: 'https://ko.moleculardevices.com',
-    },
-    {
-      lang: 'zh',
-      href: 'https://www.moleculardevices.com.cn',
-    },
+    { lang: 'x-default', href: 'https://www.moleculardevices.com' },
+    { lang: 'de', href: 'https://de.moleculardevices.com' },
+    { lang: 'es', href: 'https://es.moleculardevices.com' },
+    { lang: 'fr', href: 'https://fr.moleculardevices.com' },
+    { lang: 'it', href: 'https://it.moleculardevices.com' },
+    { lang: 'ko', href: 'https://ko.moleculardevices.com' },
+    { lang: 'zh', href: 'https://www.moleculardevices.com.cn' },
   ];
+
   baseHreflangs.forEach((hl) => {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
     ln.setAttribute('href', hl.href + path);
-    document.querySelector('head').appendChild(ln);
+    document.head.appendChild(ln);
   });
 }
 
@@ -788,26 +802,70 @@ async function formInModalHandler(main) {
 
 /* ============================ scrollToHashSection ============================ */
 function scrollToHashSection() {
-  const hashInterval = setTimeout(() => {
-    const activeHash = window.location.hash;
-    if (activeHash) {
-      const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-      const targetElement = document.getElementById(id);
-      if (targetElement) {
+  const activeHash = window.location.hash;
+  if (activeHash) {
+    const id = activeHash.substring(1).toLowerCase();
+    let targetElement = document.getElementById(id);
+    if (!targetElement) {
+      const observer = new MutationObserver(() => {
+        targetElement = document.getElementById(id);
+        if (targetElement) {
+          const rect = targetElement.getBoundingClientRect();
+          const targetPosition = rect.top + window.scrollY - 250;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
+          });
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    } else {
+      // scroll after a short delay
+      setTimeout(() => {
+        const rect = targetElement.getBoundingClientRect();
+        const targetPosition = rect.top + window.scrollY - 250;
         window.scrollTo({
-          left: 0,
-          top: targetElement.offsetTop - 250,
+          top: targetPosition,
           behavior: 'smooth',
         });
-      }
-      clearInterval(hashInterval);
+      }, 1000);
     }
-  }, 1000);
+  }
 }
 
-window.addEventListener('load', scrollToHashSection);
-window.addEventListener('hashchange', scrollToHashSection);
+scrollToHashSection();
+window.addEventListener('hashchange', (event) => {
+  event.preventDefault();
+  scrollToHashSection();
+});
 /* ============================ scrollToHashSection ============================ */
+
+/**
+ * Detect anchor
+ */
+export function detectAnchor(block) {
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
+  const el = block.querySelector(`#${id}`);
+  if (el) {
+    const observer = new MutationObserver((mutationList) => {
+      mutationList.forEach((mutation) => {
+        if (mutation.type === 'attributes'
+          && mutation.attributeName === 'data-block-status'
+          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
+          observer.disconnect();
+          setTimeout(() => {
+            window.dispatchEvent(new Event('hashchange'));
+          }, 3500);
+        }
+      });
+    });
+    observer.observe(block, { attributes: true });
+  }
+}
 
 /**
  * Decorates the main element.
@@ -1149,32 +1207,6 @@ export function detectStore() {
  */
 export function getCartItemCount() {
   return getCookie('cart-item-count') || 0;
-}
-
-/**
- * Detect anchor
- */
-export function detectAnchor(block) {
-  const activeHash = window.location.hash;
-  if (!activeHash) return;
-
-  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${id}`);
-  if (el) {
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-block-status'
-          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
-          observer.disconnect();
-          setTimeout(() => {
-            window.dispatchEvent(new Event('hashchange'));
-          }, 3500);
-        }
-      });
-    });
-    observer.observe(block, { attributes: true });
-  }
 }
 
 async function loadPage() {

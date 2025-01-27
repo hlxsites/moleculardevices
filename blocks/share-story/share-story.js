@@ -1,21 +1,22 @@
 import {
-  div, a, p, h3, span, button, iframe,
+  div, a, p, h3, span, button,
 } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { getFormId } from '../forms/formHelper.js';
+import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
-
-const SUBMIT_STORY_IFRAME_URL = 'https://info.moleculardevices.com/submit-your-story';
 
 function showSubmitStoryModal(e) {
   e.preventDefault();
   document.getElementById('submit-story-modal').classList.add('show');
   document.getElementById('submit-story-modal-overlay').classList.add('show');
   document.body.classList.add('modal-open');
-  // only load iframe on first modal display
-  const submitStoryFrame = document.getElementById('submit-story-iframe');
-  if (submitStoryFrame.src !== SUBMIT_STORY_IFRAME_URL) {
-    submitStoryFrame.src = SUBMIT_STORY_IFRAME_URL;
-  }
+  const formConfig = {
+    redirectUrl: 'null',
+    formId: getFormId('share-story'),
+  };
+
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, 'submit-story-form'));
 }
 
 function hideSubmitStoryModal(e) {
@@ -45,9 +46,8 @@ export default async function decorate(block) {
         target: '_blank',
         rel: 'noopener noreferrer',
         onclick: showSubmitStoryModal,
-      },
-      placeholders.submitYourStory || 'Submit your story',
-      span({ class: 'button-border' }),
+      }, placeholders.submitYourStory
+      || 'Submit your story', span({ class: 'button-border' }),
       ),
     ),
   );
@@ -64,11 +64,11 @@ export default async function decorate(block) {
     onclick: hideSubmitStoryModal,
   });
   modalCloseButton.innerHTML = '&times;';
+  const formID = 'submit-story-form';
   const modalContent = div({ class: 'submit-story-modal-wrapper' },
-    iframe({
-      id: 'submit-story-iframe',
-      src: '',
-      loading: 'lazy',
+    div({
+      class: 'hubspot-form show-label',
+      id: formID,
     }),
   );
   modal.append(modalCloseButton);

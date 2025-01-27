@@ -79,6 +79,9 @@ indices:
       shopifyDescription:
         select: head > meta[name="shopify-description"]
         value: attribute(el, "content")
+       cutomUpdatedOn:
+        select: head > meta[name="updated-date"]
+        value: attribute(el, "content") 
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")

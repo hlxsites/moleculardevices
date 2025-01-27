@@ -6,11 +6,9 @@ Sitemap: https://www.moleculardevices.com/content-sitemap.xml
 Sitemap: https://www.moleculardevices.com/files-sitemap.xml
 
 Disallow: /sites/default/files/en/assets/app-note/
-Disallow: /fragments/
-Disallow: /modal/nojs/view/node/
-Disallow: /node/
 Disallow: /tools/sidekick/blocks/toc
 Disallow: /en/assets/promotion/
+
 
 
 # PDF (ebook PDF Block)
@@ -48,6 +46,9 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/advanced-plasmid-production.p
 Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
+
+
+
 
 
 # User Guide
@@ -91,7 +92,9 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/functional-
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/patient-derived-3d-ready-organoids-for-high-throughput-screening.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/t-cell-induced-morphological-change-analysis-of-colorectal-cancer-organoids-using-ai.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/human-organoid-lines-for-modelling-intestinal-epithelial-barrier-in-vitro.pdf
+Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-research 
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/using-power-of-ai-in-automated-cell-culture.pdf
 
 
 
@@ -137,10 +140,12 @@ Disallow: /en/assets/app-note/dd/3d-biology/automation-of-ipsc-culture-passaging
 Disallow: /en/assets/app-note/br/rapid-walkaway-solution-for-assessing-viability-in-patient-derived-colorectal-cancer-organoids
 Disallow: /en/assets/app-note/dd/img/all-optical-assessment-of-long-term-drug-effects-on-human-ipsc-derived-cardiomyocytes
 Disallow: /en/assets/app-note/dd/img/t-cell-induced-morphological-analysis-of-colorectal-cancer-organoids-using-ai
-
-
-
-
+Disallow: /en/assets/app-note/dd/img/microwell-platform-to-standardize-human-rectal-organoid-cultures-for-imaging-and-phenotypic-analyses
+Disallow: /en/assets/app-note/dd/img/ai-enabled-drug-screening-on-human-pancreatic-cancer-organoids
+Disallow: /en/assets/app-note/dd/3d-biology/automated-testing-for-compound-toxicity-effects-using-healthy-intestinal-organoids
+Disallow: /en/assets/app-note/dd/3d-biology/fully-automated-cell-culture-passaging-and-expansion-using-decision-making-based-image-analysis
+Disallow: /en/assets/app-note/br/fujifilm-bacterial-endotoxin-assays-on-spectramax-readers
+Disallow: /en/assets/app-note/dd/flipr/functional-analysis-of-spontaneous-calcium-oscillations-of-ipsc-derived-3d-neural-organoids-and-neuroactive-compounds
 
 
 # ISSER 2021 presentations poster and video
@@ -250,6 +255,20 @@ Disallow: /en/assets/tutorials-videos/dd/img/future-of-disease-modeling-for-prec
 Disallow: /en/assets/tutorials-videos/bpd/clonepix-2-enhanced-monoclonality-verification
 Disallow: /en/assets/tutorials-videos/dd/cns/minis-search-analysis-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/3d-organoid-culture-and-assays-powered-by-machine-learning-and-image-analysis
+Disallow: /en/assets/tutorials-videos/br/adapting-your-lab-microplate-reader-for-bacterial-endotoxin-testing
+Disallow: /en/assets/tutorials-videos/dd/cns/tips-for-running-action-potential-search-in-axon-clampfit-software
+Disallow: /en/assets/tutorials-videos/dd/cns/controlling-external-devices-using-digital-outputs
+Disallow: /en/assets/tutorials-videos/dd/cns/setting-up-automatic-analysis-in-pclamp
+Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in-clampex
+Disallow: /en/assets/tutorials-videos/dd/cns/axon-patch-clamp-electrophysiology-tutorial-series
+Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
+Disallow: /en/assets/tutorials-videos/br/to-elisa-and-beyond
+Disallow: /en/assets/tutorials-videos/dd/cns/minis-analysis-axon-pclamp-software
+
+
+
+
+
 
 #EU webinars to imaging video gallery page
 
@@ -332,7 +351,7 @@ Disallow: /en/assets/promotion/dd/img/label-free-cell-segmentation-with-in-carta
 Disallow: /en/assets/promotion/dd/img/screening-of-neuronal-toxicity-using-ipsc-derived-neurons
 Disallow: /en/assets/promotion/dd/img/phenotypic-profiling-using-cell-painting-assay
 Disallow: /en/assets/promotion/dd/img/explore-cardiac-function-by-measuring-calcium-oscillation
-
+Disallow: /en/assets/promotion/dd/img/transform-your-cell-imaging
 
 
 #EU BPD Campaign Page block 

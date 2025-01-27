@@ -2,6 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { div, h2 } from '../../scripts/dom-helpers.js';
+import { getBlogAndPublications } from '../../templates/blog/blog.js';
 
 const viewAllCategory = 'viewall';
 
@@ -246,22 +247,12 @@ const VARIANTS = {
     cardRenderer: blogCardRender,
 
     async getData() {
-      return ffetch('/query-index.json')
-        .sheet('blog')
-        .all();
+      const data = await getBlogAndPublications();
+      return data;
     },
 
     getCategories(item) {
-      const category = item.path
-        .split('/')[2];
-
-      if (!category || category === 'blog') return null;
-
-      const filterableCategory = category.split('-')
-        .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
-        .join('-');
-
-      return [filterableCategory];
+      return [item.category || item.Category];
     },
   },
 

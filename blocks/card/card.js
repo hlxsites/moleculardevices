@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable no-alert */
-
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
@@ -98,7 +95,8 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
-    let cardLink = this.isRequestQuoteCard ? `/quote-request?pid=${item.familyID}` : item.path;
+    let cardLink = item.path;
+
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {
@@ -112,6 +110,9 @@ class Card {
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
+    }
+    if (item.c2aLinkConfig) {
+      c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
     if (this.c2aLinkStyle) {
       c2aLinkBlock.classList.remove('button', 'primary');
