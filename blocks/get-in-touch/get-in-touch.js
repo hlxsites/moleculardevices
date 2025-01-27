@@ -1,12 +1,12 @@
 import { div } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-// import { getCookie } from '../../scripts/scripts.js';
+import { getCookie } from '../../scripts/scripts.js';
 import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 // const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp')
 //  || '701Rn00000S2zk6IAB';
-const CONTACT_CMP_ID = '701Rn00000OJ0zYIAT';
+const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp') || '701Rn00000OJ0zYIAT';
 const formType = 'get-in-touch';
 const pathName = window.location.origin + window.location.pathname;
 let REGION = new URLSearchParams(window.location.search).get('region');
@@ -46,7 +46,7 @@ function createForm(block) {
   const hubspotIframeWrapper = div(
     { class: 'hubspot-form-wrapper' },
     div({
-      class: 'hubspot-form show-label',
+      class: 'show-label',
       id: contactFormID,
     }));
 

@@ -67,8 +67,54 @@
   line-height: 25px;
 }
 
-.get-in-touch > div > div a {
+.get-in-touch > div > div:last-child a {
   color: inherit;
+}
+
+/* contact form */
+.get-in-touch .show-label .hs-form .form-columns-0,
+.get-in-touch .show-label .hs-form .form-columns-1,
+.get-in-touch .show-label .hs-form .form-columns-2 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.get-in-touch .show-label .hs-form .hs-submit .actions {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.get-in-touch .show-label .hs-form .hs-form-field label:not(.hs-error-msg) {
+  color: #34393d;
+  display: block;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  margin: 5px 0 3px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.get-in-touch .show-label .hs-form .hs-error-msgs.inputs-list,
+.get-in-touch .show-label .hs-form .hs-form-field label.hs-error-msg {
+  margin-top: 10px;
+}
+
+
+.get-in-touch .show-label .hs-form .privacy {
+  color: #666;
+}
+
+.get-in-touch .show-label .hs-form .hs-form-field .hs-input {
+  background: #f0f1f2;
+  height: 40px;
+  padding: 4px 3px 3px 5px;
+  box-shadow: none;
+  border: none;
+  font: inherit;
+}
+
+.get-in-touch .show-label .hs-form .hs-form-field .hs-input.hs-fieldtype-textarea {
+  height: 70px;
 }
 
 @media only screen and (min-width: 992px) {
