@@ -1779,6 +1779,10 @@ main .section.background-molecules {
   .section.home-promo .columns.layout-60-40 > div {
     display: block;
   }
+
+  .section.home-promo .columns > div > div:last-child p.button-container{
+    margin-top: 30px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
