@@ -263,7 +263,7 @@ Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in
 Disallow: /en/assets/tutorials-videos/dd/cns/axon-patch-clamp-electrophysiology-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
 Disallow: /en/assets/tutorials-videos/br/to-elisa-and-beyond
-
+Disallow: /en/assets/tutorials-videos/dd/cns/minis-analysis-axon-pclamp-software
 
 
 
