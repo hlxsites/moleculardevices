@@ -233,10 +233,10 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   console.log(returnURL);
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
-    // form.submit();
+    form.submit();
     console.log('FORM SUBMITTED');
   } else if (returnURL && returnURL !== 'null') {
-    // setTimeout(() => { window.top.location.href = returnURL; }, 200);
+    setTimeout(() => { window.top.location.href = returnURL; }, 200);
     console.log('ELSE');
   }
 }
