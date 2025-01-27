@@ -1739,6 +1739,7 @@ main .section.background-molecules {
   background: rgb(0 0 0 / 25%);
   border: 2px solid var(--button-color);
   white-space: normal;
+  font-size: 16px;
 }
 
 .section.home-promo .columns > div > div:last-child a.button.secondary:hover {
