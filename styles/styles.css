@@ -539,7 +539,7 @@ button.secondary:focus {
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main input:not([type='radio'], [type='checkbox']),
+main input:not([type="radio"], [type="checkbox"]),
 main textarea,
 main select {
   display: block;
@@ -1348,7 +1348,7 @@ main div.section.wave.bluegreen::after {
 
 /* BlueGreen2 Variant */
 
-main div.section.wave.bluegreen2:not([style*='background-image']) {
+main div.section.wave.bluegreen2:not([style*="background-image"]) {
   min-height: 350px;
   padding-bottom: 150px;
   position: relative;
@@ -1362,7 +1362,7 @@ main div.section.wave.bluegreen2:not([style*='background-image']) {
   margin-bottom: 30px;
 }
 
-main div.section.wave.bluegreen2:has(picture img[src*='wave-footer-bg-top.png']) {
+main div.section.wave.bluegreen2:has(picture img[src*="wave-footer-bg-top.png"]) {
   padding-bottom: 0;
 }
 
@@ -1714,6 +1714,62 @@ main .section.background-molecules {
   padding: 20px 0;
 }
 
+.section.home-promo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-white);
+  text-align: center;
+  overflow: visible;
+  position: relative;
+}
+
+.section.home-promo .columns-wrapper {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.section.home-promo .columns > div > div:last-child {
+  padding: 20px 0 40px;
+}
+
+.section.home-promo .columns > div > div:last-child h3{
+  font-size: 28px;
+}
+
+.section.home-promo .columns > div > div:last-child a.button.secondary {
+  color: var(--text-white);
+  padding-left: 40px;
+  padding-right: 40px;
+  background: rgb(0 0 0 / 25%);
+  border: 2px solid var(--button-color);
+  white-space: normal;
+  font-size: 14px;
+}
+
+.section.home-promo .columns > div > div:last-child a.button.secondary:hover {
+  background: var(--button-color);
+  color: var(--text-blue);
+}
+
+@media only screen and (min-width: 992px) {
+  .section.home-promo .columns-wrapper {
+    padding-top: 0;
+  }
+
+  .section.home-promo .columns > div > div:first-child img {
+    margin-top: -32px;
+    display: block;
+  }
+
+  .section.home-promo .columns > div > div:last-child {
+    padding: 80px 0;
+  }
+
+  .section.home-promo {
+    padding: 0;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .homepage .section > div {
     padding: 50px 15px 0;
@@ -1723,6 +1779,14 @@ main .section.background-molecules {
 @media only screen and (max-width: 991px) {
   .product main .section {
     padding: 67px 0 70px;
+  }
+
+  .section.home-promo .columns.layout-60-40 > div {
+    display: block;
+  }
+
+  .section.home-promo .columns > div > div:last-child p.button-container{
+    margin-top: 30px;
   }
 }
 
@@ -2469,7 +2533,7 @@ main .section.no-margin-top {
 }
 
 .customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
-  background-image: url('/icons/x-blue.svg');
+  background-image: url("/icons/x-blue.svg");
   background-size: 21px;
   width: 21px;
   height: 25px;
