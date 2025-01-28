@@ -170,7 +170,7 @@ export default async function decorate(block) {
       const countryObj = distributors.filter(
         (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
       REGION = countryObj || queryParams.get('region');
-      updateParams();
+      updateParams({ region: REGION });
     });
   }
 }
