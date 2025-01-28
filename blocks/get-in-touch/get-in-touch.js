@@ -8,7 +8,7 @@ import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 //  || '701Rn00000S2zk6IAB';
 const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp') || '701Rn00000OJ0zYIAT';
 const formType = 'get-in-touch';
-const pathName = window.location.origin + window.location.pathname;
+const pathName = `${window.location.origin}/contact`;
 let REGION = new URLSearchParams(window.location.search).get('region');
 
 const formConfig = {
