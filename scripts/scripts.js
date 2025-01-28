@@ -890,9 +890,9 @@ export async function decorateMain(main) {
   addHreflangTags();
 }
 
-function isHomepage() {
+/* function isHomepage() {
   return window.location.pathname === '/';
-}
+} */
 
 /**
  * loads everything needed to get to LCP.
@@ -904,10 +904,10 @@ async function loadEager(doc) {
   document.documentElement.lang = document.documentElement.lang || 'en';
   document.documentElement.setAttribute('original-lang', document.documentElement.lang);
 
-  if (!isHomepage()) {
+  /* if (!isHomepage()) {
     document.originalTitle = document.title;
     document.title = `${document.title ?? ''} | Molecular Devices`;
-  }
+  } */
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
