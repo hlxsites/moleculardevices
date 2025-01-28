@@ -4,9 +4,9 @@ import { getCookie } from '../../scripts/scripts.js';
 import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
-const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp') || '701Rn00000S2zk6IAB';
 // const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp')
-//  || '701Rn00000OJ0zYIAT';
+//  || '701Rn00000S2zk6IAB';
+const CONTACT_CMP_ID = getCookie('cmp') || new URLSearchParams(window.location.search).get('cmp') || '701Rn00000OJ0zYIAT';
 const formType = 'get-in-touch';
 const pathName = window.location.origin + window.location.pathname;
 let REGION = new URLSearchParams(window.location.search).get('region');
