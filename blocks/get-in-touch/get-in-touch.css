@@ -82,6 +82,11 @@
 .get-in-touch .show-label .hs-form .hs-submit .actions {
   max-width: 100%;
   margin-top: 20px;
+  text-align: left;
+}
+
+.get-in-touch .show-label .hs-submit .actions button{
+  width: auto;
 }
 
 .get-in-touch .show-label .hs-form .hs-form-field label:not(.hs-error-msg) {
