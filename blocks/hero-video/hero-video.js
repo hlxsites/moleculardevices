@@ -161,8 +161,14 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
+  const placeholderImage = heroContent.querySelectorAll('picture')[1];
 
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+  if (placeholderImage) {
+    placeholderImage.classList.add('placeholder-image');
+    block.appendChild(placeholderImage);
+  }
+
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
@@ -174,4 +180,5 @@ export default function decorate(block) {
   const fullScreenVideoLinkHref = fullScreenVideoLink.href;
   decorateOverlayButton(fullScreenVideoLink, block, overlay);
   decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
+  // block.appendChild(placeholderImage);
 }
