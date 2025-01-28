@@ -97,17 +97,14 @@ function scrollToForm(link, region) {
 
 export default async function decorate(block) {
   const queryParams = new URLSearchParams(window.location.search);
-  const hubspotUrl = block.querySelector('[href*="https://info.moleculardevices.com"]');
   const mapUrl = block.querySelector('[href*="https://maps.google.com"]');
-  // block.querySelector('p:last-child').remove();
-  // console.log(block);
 
   /* set success msg */
   if (queryParams.has('msg') && queryParams.get('msg') === 'success') {
     const getInTouchBlock = document.querySelector('.get-in-touch');
     const successMsg = block.lastElementChild.firstElementChild;
     successMsg.classList.add('hubspot-success');
-    hubspotUrl.closest('div').replaceWith(successMsg);
+    block.firstElementChild.firstElementChild.replaceWith(successMsg);
     block.lastElementChild.remove();
     createMap(block, mapUrl);
     setTimeout(() => {

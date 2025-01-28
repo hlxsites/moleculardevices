@@ -96,7 +96,8 @@
 
 .get-in-touch .show-label .hs-form .hs-error-msgs.inputs-list,
 .get-in-touch .show-label .hs-form .hs-form-field label.hs-error-msg {
-  margin-top: 10px;
+  margin-top: 6px;
+  text-transform: unset;
 }
 
 
