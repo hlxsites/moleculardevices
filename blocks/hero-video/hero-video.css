@@ -47,7 +47,7 @@ main .teaser-video-container p {
 }
 
 main .teaser-video-container::before {
-  content: '';
+  content: "";
   top: 0;
   left: 0;
   right: 0;
@@ -221,6 +221,30 @@ main .full-video-container .play-pause-fullscreen-button svg {
   transition: 0.4s all linear;
 }
 
+@media only screen and (max-width: 1540px) {
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 710px;
+  }
+}
+
+@media only screen and (max-width: 1450px) {
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 665px;
+  }
+}
+
+@media only screen and (max-width: 1370px) {
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 630px;
+  }
+}
+
+@media only screen and (max-width: 1290px) {
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 590px;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   main .overlay {
     width: 970px;
@@ -238,11 +262,19 @@ main .full-video-container .play-pause-fullscreen-button svg {
     top: 24px;
     right: 24px;
   }
+
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 565px;
+  }
 }
 
 @media only screen and (max-width: 992px) {
   main .overlay {
     width: 750px;
+  }
+
+  main .section.hero-video-container > div.hero-video-wrapper {
+    height: 460px;
   }
 }
 
