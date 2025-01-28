@@ -160,6 +160,7 @@ export default async function decorate(block) {
   if (window.location.pathname === '/contact-search') {
     REGION = distributors.filter(
       (dist) => dist.DisplayCountry === countrySelect.value)[0].Region.toLowerCase();
+    updateParams({ region: REGION });
   } else {
     document.getElementById('country').selectedIndex = 1;
   }
