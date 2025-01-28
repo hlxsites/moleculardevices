@@ -163,10 +163,13 @@ export function createSalesforceForm(hubspotForm, formConfig) {
 
   // get-in-tough/contact form
   const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
+  const salsforceCmpInput = form.querySelector("input[name='cmp']");
   if (getInTouchInterests.value === 'Sales' || getInTouchInterests.value === 'Tech support') {
     elementqdcrequest.value = qdc;
+    salsforceCmpInput.value = formConfig.cmp;
   } else {
     elementqdcrequest.value = '';
+    salsforceCmpInput.value = '';
   }
   // get-in-tough/contact form
 
@@ -229,14 +232,12 @@ export function createSalesforceForm(hubspotForm, formConfig) {
     }
   };
 
-  console.log(qdc);
-  console.log(returnURL);
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
-    form.submit();
+    // form.submit();
     console.log('FORM SUBMITTED');
   } else if (returnURL && returnURL !== 'null') {
-    setTimeout(() => { window.top.location.href = returnURL; }, 200);
+    // setTimeout(() => { window.top.location.href = returnURL; }, 200);
     console.log('ELSE');
   }
 }

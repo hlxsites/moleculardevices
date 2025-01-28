@@ -34,7 +34,7 @@ function updateParams(params) {
   });
 
   baseRedirectUrl.searchParams.delete('comments');
-  // baseRedirectUrl.searchParams.delete('cmp');
+  baseRedirectUrl.searchParams.delete('cmp');
 
   formConfig.redirectUrl = baseRedirectUrl.pathname + baseRedirectUrl.search;
   returnUrlInput.value = new URL(formConfig.redirectUrl, pathName);
