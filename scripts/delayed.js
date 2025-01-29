@@ -99,21 +99,6 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
-// Fathom Analytics Code
-const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
-loadScript('https://cdn.usefathom.com/script.js', attrsFa);
-
-if (!isSidekickLibrary) {
-  sampleRUM('cwv');
-  loadUserData();
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
-    loadGTM();
-  }
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
-    LoadDriftWidget();
-  }
-}
-
 // SalesForce MCP - start
 
 function loadEvergageScript() {
@@ -135,6 +120,21 @@ setTimeout(() => {
   if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
     loadEvergageScript();
   }
-}, 3000);
+}, 500);
 
 // SalesForce MCP - end
+
+// Fathom Analytics Code
+const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
+loadScript('https://cdn.usefathom.com/script.js', attrsFa);
+
+if (!isSidekickLibrary) {
+  sampleRUM('cwv');
+  loadUserData();
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
+    loadGTM();
+  }
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+    LoadDriftWidget();
+  }
+}
