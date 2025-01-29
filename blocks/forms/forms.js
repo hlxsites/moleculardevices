@@ -27,7 +27,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
             // get-in-tough/contact form
             if (type === 'get-in-touch') {
               const requestedQDCDiscussion = form.querySelector('input[name="requested_qdc_discussion__c"]');
-
               requestedQDCDiscussion.value = '';
               form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
                 if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
@@ -52,7 +51,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
         });
       },
       onFormSubmit: (hubspotForm) => {
-        createSalesforceForm(hubspotForm, formConfig);
+        createSalesforceForm(hubspotForm, formConfig, type);
         if (type === 'newsletter' || type === 'lab-notes') {
           // eslint-disable-next-line no-undef, quote-props
           dataLayer.push({ 'event': 'new_subscriber' });

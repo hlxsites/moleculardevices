@@ -121,7 +121,7 @@ function createCustomField(hubspotFormData, fieldName, newName) {
 }
 
 /* create salesforce form */
-export function createSalesforceForm(hubspotForm, formConfig) {
+export function createSalesforceForm(hubspotForm, formConfig, type = '') {
   const iframe = document.createElement('iframe');
   iframe.name = 'salesforceIframe';
   iframe.style.display = 'none';
@@ -162,14 +162,16 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementqdcrequest);
 
   // get-in-tough/contact form
-  const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
-  const salsforceCmpInput = form.querySelector("input[name='cmp']");
-  if (getInTouchInterests.value === 'Sales' || getInTouchInterests.value === 'Tech support') {
-    elementqdcrequest.value = qdc;
-    salsforceCmpInput.value = formConfig.cmp;
-  } else {
-    elementqdcrequest.value = '';
-    salsforceCmpInput.value = '';
+  if (type === 'get-in-touch') {
+    const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
+    const salsforceCmpInput = form.querySelector("input[name='cmp']");
+    if (getInTouchInterests.value === 'Sales' || getInTouchInterests.value === 'Tech support') {
+      elementqdcrequest.value = qdc;
+      salsforceCmpInput.value = formConfig.cmp;
+    } else {
+      elementqdcrequest.value = '';
+      salsforceCmpInput.value = '';
+    }
   }
   // get-in-tough/contact form
 

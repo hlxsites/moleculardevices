@@ -26,14 +26,14 @@ function updateParams(params) {
   Object.entries(params).forEach(([key, value]) => {
     if (value || value === 'sales') {
       baseRedirectUrl.searchParams.set(key, value);
-    } else if (value === 'general') {
-      baseRedirectUrl.searchParams.delete(key);
+      if (value === 'general') {
+        baseRedirectUrl.searchParams.delete(key);
+      }
     } else {
       baseRedirectUrl.searchParams.delete(key);
     }
   });
 
-  baseRedirectUrl.searchParams.delete('comments');
   baseRedirectUrl.searchParams.delete('cmp');
 
   formConfig.redirectUrl = baseRedirectUrl.pathname + baseRedirectUrl.search;
