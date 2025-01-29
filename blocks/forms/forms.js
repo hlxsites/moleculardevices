@@ -26,15 +26,37 @@ export function createHubSpotForm(formConfig, target, type = '') {
 
             // get-in-tough/contact form
             if (type === 'get-in-touch') {
+              const cmpInput = form.querySelector("input[name='cmp']");
               const requestedQDCDiscussion = form.querySelector('input[name="requested_qdc_discussion__c"]');
+              const retUrlInput = form.querySelector("input[name='return_url']");
+              const returnURL = retUrlInput.value;
+
+              const params = new URLSearchParams(returnURL);
+              const cmpValue = params.get('cmp') || formConfig.cmp;
+              params.delete('cmp');
+              setTimeout(() => {
+                if (params.get('comments')) {
+                  form.querySelector("select[name='get_in_touch_interests']").value = 'Sales';
+                  form.querySelector("select[name='get_in_touch_interests']").dispatchEvent(new Event('change'));
+                  form.querySelector("input[name='requestedQDCDiscussion']").value = 'Call';
+                }
+              }, 1000);
+
+              const updateReturnUrl = () => {
+                retUrlInput.value = decodeURIComponent(params.toString());
+              };
+              updateReturnUrl();
 
               requestedQDCDiscussion.value = '';
               form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
                 if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
                   requestedQDCDiscussion.value = 'Call';
+                  cmpInput.value = cmpValue;
                 } else {
                   requestedQDCDiscussion.value = '';
+                  cmpInput.value = '';
                 }
+                updateReturnUrl();
               });
             }
             // get-in-tough/contact form

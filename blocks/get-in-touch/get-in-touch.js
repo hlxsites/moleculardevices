@@ -16,7 +16,7 @@ const formConfig = {
   cmp: CONTACT_CMP_ID,
   qdc: 'Call',
   productPrimaryApplication: 'General Inquiry Form Submission',
-  redirectUrl: new URL(`?msg=success&region=${REGION}`, pathName),
+  redirectUrl: new URL(`?msg=success&region=${REGION}&cmp=${CONTACT_CMP_ID}`, pathName),
 };
 
 function updateParams(params) {
@@ -26,15 +26,13 @@ function updateParams(params) {
   Object.entries(params).forEach(([key, value]) => {
     if (value || value === 'sales') {
       baseRedirectUrl.searchParams.set(key, value);
-    } else if (value === 'general') {
-      baseRedirectUrl.searchParams.delete(key);
+      if (value === 'general') {
+        baseRedirectUrl.searchParams.delete(key);
+      }
     } else {
       baseRedirectUrl.searchParams.delete(key);
     }
   });
-
-  baseRedirectUrl.searchParams.delete('comments');
-  baseRedirectUrl.searchParams.delete('cmp');
 
   formConfig.redirectUrl = baseRedirectUrl.pathname + baseRedirectUrl.search;
   returnUrlInput.value = new URL(formConfig.redirectUrl, pathName);
@@ -117,6 +115,7 @@ export default async function decorate(block) {
     }, 1000);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
+    block.firstElementChild.firstElementChild.lastElementChild.remove();
     createForm(block);
     createMap(block, mapUrl);
   }
