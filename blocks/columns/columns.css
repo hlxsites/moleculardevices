@@ -179,9 +179,9 @@ main .section > div.columns-wrapper {
   font-size: var(--body-font-size-m);
 }
 
-.columns.contact > div > div > p,
-.columns.contact > div > div > ul,
-.columns.contact > div > div > ol {
+.section.columns-container .columns.contact > div > div > p,
+.section.columns-container .columns.contact > div > div > ul,
+.section.columns-container .columns.contact > div > div > ol {
   padding: 0 24px;
 }
 
