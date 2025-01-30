@@ -46,6 +46,7 @@ export const formMapping = [
   { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
   { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
+  { type: 'get-in-touch', id: '00d558ff-6cf3-4044-87d1-b94ea3f86b6d' },
 ];
 
 export function getFormId(type) {
@@ -120,7 +121,7 @@ function createCustomField(hubspotFormData, fieldName, newName) {
 }
 
 /* create salesforce form */
-export function createSalesforceForm(hubspotForm, formConfig) {
+export function createSalesforceForm(hubspotForm, formConfig, type = '') {
   const iframe = document.createElement('iframe');
   iframe.name = 'salesforceIframe';
   iframe.style.display = 'none';
@@ -148,10 +149,10 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   let qdc = '';
 
-  if (qdcCall && qdcCall.checked === true) {
+  if (qdcCall && qdcCall.checked) {
     qdc = 'Call';
   } else {
-    qdc = hubspotFormData.get('requested_qdc_discussion__c') || ''; // test case
+    qdc = hubspotForm.querySelector('input[name="requested_qdc_discussion__c"]').value || '';
   }
   if (qdc === '') {
     qdc = formConfig.qdc || '';
@@ -160,6 +161,20 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   const elementqdcrequest = input({ name: QDCRrequest, value: qdc, type: 'hidden' });
   form.appendChild(elementqdcrequest);
 
+  // get-in-tough/contact form
+  if (type === 'get-in-touch') {
+    const getInTouchInterests = hubspotForm.querySelector("select[name='get_in_touch_interests']");
+    const salsforceCmpInput = form.querySelector("input[name='cmp']");
+    if (getInTouchInterests.value === 'Sales' || getInTouchInterests.value === 'Tech support') {
+      elementqdcrequest.value = qdc;
+      salsforceCmpInput.value = formConfig.cmp;
+    } else {
+      elementqdcrequest.value = '';
+      salsforceCmpInput.value = '';
+    }
+  }
+  // get-in-tough/contact form
+
   /* subscribe */
   let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
   if (subscribe && subscribe.checked) {
@@ -167,7 +182,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   } else {
     subscribe = 'false';
   }
-  // if (!subscribe) { subscribe = 'false'; }
+
   const elementmarketingoptin = input({ name: marketingOptin, value: subscribe, type: 'hidden' });
   form.appendChild(elementmarketingoptin);
 
@@ -212,6 +227,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   form.appendChild(elementprodprimapp);
 
   document.body.appendChild(form);
+
   iframe.onload = () => {
     if (returnURL && returnURL !== 'null') {
       window.top.location.href = returnURL;
@@ -242,6 +258,7 @@ export function getFormFieldValues(formConfig) {
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
+    product_title: formConfig.productTitle,
     product_bundle: formConfig.productBundle,
     product_bundle_image: formConfig.productBundleImage,
     product_family__c: formConfig.productFamily,

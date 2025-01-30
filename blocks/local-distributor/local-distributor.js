@@ -88,7 +88,6 @@ function redirectToContactSearch(distributorsMap, productFamilyMap) {
   const countryName = document.getElementById('country').value;
   const primeProduct = document.getElementById('product_family').value;
   window.open(`/contact-search?country=${distributorsMap[countryName]}&product_family=${primeProduct ? productFamilyMap[primeProduct] : ''}`, '_blank');
-  Event.preventDefault();
 }
 
 export default async function decorate(block) {
@@ -250,7 +249,8 @@ export default async function decorate(block) {
   document.querySelector('.local-distributor').appendChild(searchResult);
   const searchButton = document.querySelector('#searchButton > button');
 
-  searchButton.addEventListener('click', () => {
+  searchButton.addEventListener('click', (event) => {
+    event.preventDefault();
     // eslint-disable-next-line no-unused-expressions
     window.location.pathname === '/contact' ? redirectToContactSearch(distributorsMap, productFamilyMap) : renderAddress();
     decorateIcons(block);
