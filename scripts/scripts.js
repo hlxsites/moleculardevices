@@ -1350,4 +1350,8 @@ export async function getCountryCode() {
   return data.country_code;
 }
 
+export function isNotEmpty(field) {
+  return field && field !== '0' && field !== '#N/A';
+}
+
 loadPage();
