@@ -1359,12 +1359,12 @@ export function itemSearchTitle(item) {
     return item.searchTitle;
   }
 
-  if (isNotEmpty(item.title)) {
-    return item.title;
-  }
-
   if (isNotEmpty(item.h1)) {
     return item.h1;
+  }
+
+  if (isNotEmpty(item.title)) {
+    return item.title;
   }
 
   return '';
