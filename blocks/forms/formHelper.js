@@ -242,6 +242,7 @@ export function getFormFieldValues(formConfig) {
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
+    product_title: formConfig.productTitle,
     product_bundle: formConfig.productBundle,
     product_bundle_image: formConfig.productBundleImage,
     product_family__c: formConfig.productFamily,
