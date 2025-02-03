@@ -119,11 +119,11 @@ async function getCoveoIcons() {
   });
 }
 
-function isNotEmpty(field) {
+export function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
 }
 
-function itemSearchTitle(item) {
+export default function itemSearchTitle(item) {
   if (isNotEmpty(item.searchTitle)) {
     return item.searchTitle;
   }

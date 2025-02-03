@@ -14,6 +14,7 @@ import {
   getSelectedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+import { isNotEmpty } from '../../coveo/generate-coveo-sitemap.js';
 
 let placeholders = {};
 
@@ -83,7 +84,8 @@ class Card {
   }
 
   renderItem(item) {
-    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
+    // const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
+    const cardTitle = isNotEmpty(item.searchTitle) || isNotEmpty(item.h1) || isNotEmpty(item.title);
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
