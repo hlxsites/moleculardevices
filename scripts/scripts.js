@@ -1350,4 +1350,24 @@ export async function getCountryCode() {
   return data.country_code;
 }
 
+export function isNotEmpty(field) {
+  return field && field !== '0' && field !== '#N/A';
+}
+
+export function itemSearchTitle(item) {
+  if (isNotEmpty(item.searchTitle)) {
+    return item.searchTitle;
+  }
+
+  if (isNotEmpty(item.h1)) {
+    return item.h1;
+  }
+
+  if (isNotEmpty(item.title)) {
+    return item.title;
+  }
+
+  return '';
+}
+
 loadPage();
