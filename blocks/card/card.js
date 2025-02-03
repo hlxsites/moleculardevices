@@ -3,7 +3,9 @@ import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
-import { formatDateUTCSeconds, isGatedResource, isNotEmpty, summariseDescription } from '../../scripts/scripts.js';
+import {
+  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
+} from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
@@ -84,7 +86,7 @@ class Card {
 
   renderItem(item) {
     // const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
-    const cardTitle = isNotEmpty(item.searchTitle) || isNotEmpty(item.h1) || isNotEmpty(item.title);
+    const cardTitle = itemSearchTitle(item);
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {

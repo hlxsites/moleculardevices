@@ -1354,4 +1354,20 @@ export function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
 }
 
+export function itemSearchTitle(item) {
+  if (isNotEmpty(item.searchTitle)) {
+    return item.searchTitle;
+  }
+
+  if (isNotEmpty(item.title)) {
+    return item.title;
+  }
+
+  if (isNotEmpty(item.h1)) {
+    return item.h1;
+  }
+
+  return '';
+}
+
 loadPage();
