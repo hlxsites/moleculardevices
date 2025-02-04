@@ -128,7 +128,7 @@ function itemSearchTitle(item) {
     return item.searchTitle;
   }
 
-  if (isNotEmpty(item.h1)) {
+  if (isNotEmpty(item.h1) && item.type !== 'Newsletter') {
     return item.h1;
   }
 
