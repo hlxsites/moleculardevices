@@ -18,7 +18,18 @@ async function getLatestNewsletter() {
   return resources[0]?.gatedURL || '';
 }
 
-export async function newsletterModal(formConfig, formType) {
+const formType = 'lab-notes';
+const applicationCMP = '701Rn00000VIpNBIA1';
+const formConfig = {
+  formId: getFormId(formType),
+  latestNewsletter: await getLatestNewsletter(),
+  redirectUrl: null,
+};
+
+export async function newsletterModal() {
+  if (document.querySelector('.blog-popup')) {
+    formConfig.cmp = applicationCMP;
+  }
   const modalIframeID = 'newsletter-modal';
   const leftColumn = div(
     { class: 'col col-left' },
@@ -73,17 +84,9 @@ export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
   const newsletterCMP = getMetadata('newsletter-form-cmp');
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
+  formConfig.cmp = newsletterCMP || '';
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
-
-  const formType = 'lab-notes';
-  const formConfig = {
-    formId: getFormId(formType),
-    latestNewsletter: await getLatestNewsletter(),
-    cmp: newsletterCMP,
-    redirectUrl: null,
-  };
-
   if (spectraNewsletter) {
     const sidebarIframeID = 'newsletter-sidebar';
     const sidebar = div(
@@ -101,7 +104,7 @@ export default async function decorate() {
   }
 
   if (!hasNewsletterMetaData) {
-    setTimeout(() => newsletterModal(formConfig, formType), 1000);
+    setTimeout(() => newsletterModal(), 1000);
   }
 
   // add social share block
