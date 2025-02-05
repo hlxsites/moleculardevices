@@ -1,5 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
+  createOptimizedPicture,
   decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
@@ -280,8 +281,15 @@ async function stepThree(e) {
   const categoryData = categories.find(
     (c) => c.category === originalCategory && c.type === originalType,
   );
+
+  const cardThumbs = list.querySelectorAll('.card-thumb');
+  cardThumbs.forEach((thumb) => {
+    const newTagImage = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
+    newTagImage.classList.add('new-product-tag');
+    thumb.appendChild(newTagImage);
+  });
+
   if (categoryData.displayImage === 'false') {
-    const cardThumbs = list.querySelectorAll('.card-thumb');
     cardThumbs.forEach((thumb) => {
       thumb.style.display = 'none';
     });
