@@ -189,6 +189,13 @@ function handleReagentsAndMediaDataInconsistency(type, category) {
   return [type, category];
 }
 
+function isNotOlderThan365Days(timestamp) {
+  const dateFromTimestamp = new Date(timestamp * 1000);
+  const oneYearAgo = new Date();
+  oneYearAgo.setDate(oneYearAgo.getDate() - 365);
+  return dateFromTimestamp >= oneYearAgo;
+}
+
 /* step three */
 async function stepThree(e) {
   e.preventDefault();
@@ -246,6 +253,9 @@ async function stepThree(e) {
       const card = cardRenderer.renderItem(product);
       // add product path attribute
       card.setAttribute('data-product-path', product.path);
+      if (isNotOlderThan365Days(product.date)) {
+        card.classList.add('new-product');
+      }
       list.append(card);
     });
   }
@@ -282,13 +292,15 @@ async function stepThree(e) {
     (c) => c.category === originalCategory && c.type === originalType,
   );
 
-  const cardThumbs = list.querySelectorAll('.card-thumb');
-  cardThumbs.forEach((thumb) => {
+  const newCardThumbs = list.querySelectorAll('.new-product .card-thumb');
+  newCardThumbs.forEach((thumb) => {
+    console.log(thumb);
     const newTagImage = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
     newTagImage.classList.add('new-product-tag');
     thumb.appendChild(newTagImage);
   });
 
+  const cardThumbs = list.querySelectorAll('.card-thumb');
   if (categoryData.displayImage === 'false') {
     cardThumbs.forEach((thumb) => {
       thumb.style.display = 'none';
