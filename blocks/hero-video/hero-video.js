@@ -169,7 +169,7 @@ export default function decorate(block) {
     block.appendChild(placeholderImage);
   }
 
-  preloadLCPImage(teaserPicture);
+  preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];
