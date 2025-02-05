@@ -192,7 +192,7 @@ export default async function decorate(block) {
 
   const currentYear = new Date().getFullYear();
   const siteLogoPath = '/images/header-menus/logo.svg';
-  const placeholderImage = createOptimizedPicture(siteLogoPath);
+  const placeholderImage = createOptimizedPicture(siteLogoPath, 'Molecular Devices');
   placeholderImage.querySelector('img').width = 210;
   placeholderImage.querySelector('img').height = 54;
   const footerSiteLogo = p(
