@@ -368,7 +368,7 @@
   align-items: center;
 }
 
-.product-finder-container #step-3 .card-thumb .new-product-tag {
+.product-finder-container #step-3 .card .new-product-tag {
   position: absolute;
   left: -7px;
   top: -7px;

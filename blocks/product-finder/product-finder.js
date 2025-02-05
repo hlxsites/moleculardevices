@@ -292,12 +292,12 @@ async function stepThree(e) {
     (c) => c.category === originalCategory && c.type === originalType,
   );
 
-  const newCardThumbs = list.querySelectorAll('.new-product .card-thumb');
-  newCardThumbs.forEach((thumb) => {
-    console.log(thumb);
+  const newProductCards = list.querySelectorAll('.new-product');
+  newProductCards.forEach((productCard) => {
+    console.log(productCard);
     const newTagImage = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
     newTagImage.classList.add('new-product-tag');
-    thumb.appendChild(newTagImage);
+    productCard.prepend(newTagImage);
   });
 
   const cardThumbs = list.querySelectorAll('.card-thumb');
