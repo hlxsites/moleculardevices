@@ -19,17 +19,14 @@ async function getLatestNewsletter() {
 }
 
 const formType = 'lab-notes';
-const applicationCMP = '701Rn00000VIpNBIA1';
 const formConfig = {
   formId: getFormId(formType),
   latestNewsletter: await getLatestNewsletter(),
   redirectUrl: null,
 };
 
-export async function newsletterModal() {
-  if (document.querySelector('.blog-popup')) {
-    formConfig.cmp = applicationCMP;
-  }
+export async function newsletterModal(metaCMP = '') {
+  formConfig.cmp = metaCMP;
   const modalIframeID = 'newsletter-modal';
   const leftColumn = div(
     { class: 'col col-left' },
@@ -84,7 +81,6 @@ export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
   const newsletterCMP = getMetadata('newsletter-form-cmp');
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
-  formConfig.cmp = newsletterCMP || '';
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
   if (spectraNewsletter) {
@@ -104,7 +100,7 @@ export default async function decorate() {
   }
 
   if (!hasNewsletterMetaData) {
-    setTimeout(() => newsletterModal(), 1000);
+    setTimeout(() => newsletterModal(newsletterCMP), 1000);
   }
 
   // add social share block
