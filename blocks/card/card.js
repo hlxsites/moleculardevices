@@ -87,7 +87,6 @@ class Card {
   }
 
   renderItem(item) {
-    // const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
     const cardTitle = itemSearchTitle(item);
     this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 

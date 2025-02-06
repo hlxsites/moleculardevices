@@ -30,17 +30,7 @@ export default async function decorate(block) {
     showCategory: true,
   });
 
-  const renderedCards = allItems.map((product) => {
-    product.type = product.category;
-    if (product.subCategory && !['0', 'Other'].includes(product.subCategory)) {
-      product.type = product.subCategory;
-    } else if (product.category && !['0', 'Other'].includes(product.category)) {
-      product.type = product.category;
-    } else {
-      product.type = product.h1;
-    }
-    return cardRenderer.renderItem(product);
-  });
+  const renderedCards = allItems.map((product) => cardRenderer.renderItem(product));
 
   const carousel = await createCarousel(
     block,
