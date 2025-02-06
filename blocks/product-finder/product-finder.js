@@ -189,7 +189,7 @@ function handleReagentsAndMediaDataInconsistency(type, category) {
   return [type, category];
 }
 
-function isNotOlderThan365Days(timestamp) {
+export function isNotOlderThan365Days(timestamp) {
   const dateFromTimestamp = new Date(timestamp * 1000);
   const oneYearAgo = new Date();
   oneYearAgo.setDate(oneYearAgo.getDate() - 365);
@@ -294,9 +294,8 @@ async function stepThree(e) {
 
   const newProductCards = list.querySelectorAll('.new-product');
   newProductCards.forEach((productCard) => {
-    console.log(productCard);
-    const newTagImage = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
-    newTagImage.classList.add('new-product-tag');
+    const newTagImage = div({ class: 'new-product-tag' },
+      createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag'));
     productCard.prepend(newTagImage);
   });
 

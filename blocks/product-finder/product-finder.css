@@ -368,14 +368,6 @@
   align-items: center;
 }
 
-.product-finder-container #step-3 .card .new-product-tag {
-  position: absolute;
-  left: -7px;
-  top: -7px;
-  max-width: 100px;
-  height: auto;
-}
-
 .product-finder-container #step-3 .card-thumb img {
   object-position: center;
   object-fit: scale-down;
