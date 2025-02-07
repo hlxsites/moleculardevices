@@ -1350,10 +1350,40 @@ export async function getCountryCode() {
   return data.country_code;
 }
 
+/**
+ * Preloads the Largest Contentful Paint (LCP) image by creating a preload link element.
+ *
+ * @param {string} lcpImageUrl - The URL of the image to preload.
+ */
+export function preloadLCPImage(lcpImageUrl) {
+  if (lcpImageUrl) {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = lcpImageUrl;
+    document.head.appendChild(link);
+  }
+}
+
+/**
+ * Checks if a given field is not empty, excluding specific invalid values.
+ *
+ * @param {string} field - The field to check.
+ * @returns {boolean} True if the field is not empty and does not contain invalid values.
+ */
 export function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
 }
 
+/**
+ * Retrieves the most relevant title for an item, prioritizing searchTitle, h1, and title fields.
+ *
+ * @param {Object} item - The item containing title fields.
+ * @param {string} [item.searchTitle] - The search title of the item.
+ * @param {string} [item.h1] - The H1 title of the item.
+ * @param {string} [item.title] - The general title of the item.
+ * @returns {string} The most relevant title or an empty string if none are available.
+ */
 export function itemSearchTitle(item) {
   if (isNotEmpty(item.searchTitle)) {
     return item.searchTitle;

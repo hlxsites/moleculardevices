@@ -350,6 +350,10 @@ main .section.global-carousel .carousel h2 + h3 {
   main .carousel-item-text .button-container .button {
     margin-left: 0;
   }
+
+  main .carousel-item-columns-container {
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 420px) {

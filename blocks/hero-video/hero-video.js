@@ -1,4 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
   teaserPicture.parentElement.classList.add('video-cover');
@@ -168,6 +169,7 @@ export default function decorate(block) {
     block.appendChild(placeholderImage);
   }
 
+  preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];
@@ -180,5 +182,4 @@ export default function decorate(block) {
   const fullScreenVideoLinkHref = fullScreenVideoLink.href;
   decorateOverlayButton(fullScreenVideoLink, block, overlay);
   decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
-  // block.appendChild(placeholderImage);
 }
