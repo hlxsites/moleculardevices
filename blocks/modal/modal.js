@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { button, div, span } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, loadCSS } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
@@ -76,9 +76,10 @@ export async function decorateModal(modalBody, modalClass, isFormModal) {
 
 export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
+  const formCMP = getMetadata('newsletter-form-cmp');
 
   if (isBlogModal) {
-    await newsletterModal();
+    await newsletterModal(formCMP);
     const modalBtn = document.getElementById('show-modal');
     window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }
