@@ -4,7 +4,7 @@ import { getCookie, loadScript } from '../../scripts/scripts.js';
 const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
 // const coveoToken = 'xx46ddf302-8f31-4286-bab7-c06aec617186';
-const coveoToken = 'xxcd7a140a-6efd-4e17-8f95-ae9048edda29=';
+const coveoToken = 'xxcd7a140a-6efd-4e17-8f95-ae9048edda29';
 
 function getCategoriesBasedOnProfile(userProfile) {
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
@@ -81,14 +81,14 @@ export function searchMainSection() {
   return `
             <div class="section coveo-tab-section-wrapper sticky-element sticky-desktop">
               <div class="coveo-tab-section">
-                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Molecular Devices Franklin&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
-                <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">
+                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Coveo Test Key&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
+                <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">
                 </div>
-                <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
+                <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
                 </div>
                 <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot;"></div>
-                <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==CoA"></div>
-                <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==SDS"></div>
+                <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==CoA"></div>
+                <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==SDS"></div>
               </div>
             </div>
             <div class="section coveo-main-section-wrapper">
@@ -269,8 +269,8 @@ export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
     loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      // setTimeout(getCoveoToken, 300);
-      await getCoveoToken();
+      setTimeout(getCoveoToken, 1000);
+      // await getCoveoToken();
     });
   });
 }
