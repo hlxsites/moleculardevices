@@ -4,7 +4,7 @@ import { getCookie, loadScript } from '../../scripts/scripts.js';
 const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
 // const coveoToken = 'xx46ddf302-8f31-4286-bab7-c06aec617186';
-const coveoToken = 'eHg0NmRkZjMwMi04ZjMxLTQyODYtYmFiNy1jMDZhZWM2MTcxODY=';
+const coveoToken = 'xxcd7a140a-6efd-4e17-8f95-ae9048edda29=';
 
 function getCategoriesBasedOnProfile(userProfile) {
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
@@ -234,7 +234,7 @@ export async function getCoveoToken() {
   const myHeaders = new Headers();
   myHeaders.append('accept', 'application/json');
   // myHeaders.append('Authorization', `Bearer ${coveoToken}`);
-  myHeaders.append('Authorization', `Bearer ${window.atob(coveoToken)}`);
+  myHeaders.append('Authorization', `Bearer ${coveoToken}`);
   myHeaders.append('Content-Type', 'application/json');
 
   const raw = JSON.stringify({
