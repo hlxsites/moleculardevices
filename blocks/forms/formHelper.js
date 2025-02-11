@@ -222,7 +222,7 @@ export function createSalesforceForm(hubspotForm, formConfig) {
   if (allowedValues.includes(qdc)) {
     form.submit();
   } else if (returnURL && returnURL !== 'null') {
-    setTimeout(() => { window.top.location.href = returnURL; }, 200);
+    setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
 }
 
