@@ -22,9 +22,11 @@ const formType = 'lab-notes';
 const formConfig = {
   formId: getFormId(formType),
   latestNewsletter: await getLatestNewsletter(),
+  redirectUrl: null,
 };
 
-export async function newsletterModal() {
+export async function newsletterModal(metaCMP = '') {
+  formConfig.cmp = metaCMP;
   const modalIframeID = 'newsletter-modal';
   const leftColumn = div(
     { class: 'col col-left' },
@@ -77,10 +79,10 @@ export async function getBlogAndPublications() {
 
 export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
+  const newsletterCMP = getMetadata('newsletter-form-cmp');
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
-
   if (spectraNewsletter) {
     const sidebarIframeID = 'newsletter-sidebar';
     const sidebar = div(
@@ -98,7 +100,7 @@ export default async function decorate() {
   }
 
   if (!hasNewsletterMetaData) {
-    setTimeout(() => newsletterModal(), 1000);
+    setTimeout(() => newsletterModal(newsletterCMP), 1000);
   }
 
   // add social share block
