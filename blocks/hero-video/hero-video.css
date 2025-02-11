@@ -10,6 +10,7 @@ main .section.hero-video-container > div.hero-video-wrapper {
   padding: 0;
   height: 100%;
   max-height: 750px;
+  overflow: hidden;
 }
 
 main .section.hero-video-container > div.hero-video-wrapper picture,
@@ -74,6 +75,7 @@ main .overlay {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+  color: var(--text-white);
 }
 
 main .overlay .button-container:has(em) {
@@ -81,13 +83,16 @@ main .overlay .button-container:has(em) {
 }
 
 main .overlay h1 {
-  font-family: var(--ff-proxima-light);
-  color: var(--text-white);
   text-align: center;
-  margin-bottom: 40px;
-  line-height: 1;
-  font-weight: 100;
-  order: 1;
+  margin-bottom: 32px;
+  color: inherit;
+}
+
+main .overlay h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: inherit;
 }
 
 main .overlay .video-banner-btn {
@@ -99,9 +104,6 @@ main .overlay .video-banner-btn {
   display: inline-flex;
   align-items: center;
   outline: 0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  order: 2;
   white-space: normal;
 }
 
@@ -231,6 +233,13 @@ main .full-video-container .play-pause-fullscreen-button svg {
   transition: 0.4s all linear;
 }
 
+
+@media only screen and (min-width: 769px) {
+  main .section.hero-video-container > div.hero-video-wrapper picture.video-cover{
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   main .overlay {
     width: 970px;
@@ -259,6 +268,22 @@ main .full-video-container .play-pause-fullscreen-button svg {
   main .overlay {
     width: 750px;
   }
+
+  main .overlay h1 {
+    margin-bottom: 24px;
+  }
+
+  main .overlay h3 {
+    font-size: 24px;
+  }
+
+  main .overlay .video-banner-btn svg {
+    margin-right: 0;
+  }
+
+  main .overlay .video-banner-btn{
+    padding: 16px 20px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -285,6 +310,11 @@ main .full-video-container .play-pause-fullscreen-button svg {
     width: unset;
     max-width: unset;
     background: rgb(0 0 0 / 80%);
+  }
+
+  main .section.hero-video-container > div.hero-video-wrapper picture,
+  main .section.hero-video-container > div.hero-video-wrapper img{
+    min-height: 400px;
   }
 }
 

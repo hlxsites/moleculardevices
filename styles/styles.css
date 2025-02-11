@@ -1732,18 +1732,14 @@ main .section.background-molecules {
   padding: 20px 0 40px;
 }
 
-.section.home-promo .columns > div > div:last-child h3{
-  font-size: 28px;
-}
-
 .section.home-promo .columns > div > div:last-child a.button.secondary {
   color: var(--text-white);
-  padding-left: 40px;
-  padding-right: 40px;
   background: rgb(0 0 0 / 25%);
-  border: 2px solid var(--button-color);
+  border: 1px solid var(--button-color);
   white-space: normal;
-  font-size: 14px;
+  font-size: 18px;
+  padding: 16px 20px;
+  line-height: 24px;
 }
 
 .section.home-promo .columns > div > div:last-child a.button.secondary:hover {
@@ -1768,6 +1764,14 @@ main .section.background-molecules {
   .section.home-promo {
     padding: 0;
   }
+
+  .section.home-promo .columns > div > div:last-child h3 {
+    font-size: 28px;
+  }
+
+  .section.home-promo .columns > div > div:last-child a.button.secondary {
+    padding: 16px 32px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -1785,7 +1789,7 @@ main .section.background-molecules {
     display: block;
   }
 
-  .section.home-promo .columns > div > div:last-child p.button-container{
+  .section.home-promo .columns > div > div:last-child p.button-container {
     margin-top: 30px;
   }
 }
