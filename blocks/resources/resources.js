@@ -422,7 +422,7 @@ export async function coveoResources(target) {
         url.hash = `t=Resources&sort=relevancy&f:@mdapplicationsdatacategory=[${params}]`;
       }
 
-      window.hisDeleteDialogry.replaceState(null, null, url);
+      window.history.replaceState(null, null, url);
       await initializeCoveo(resourcesBlock);
       setTimeout(() => {
         resourcesBlock.classList.remove('loading-coveo');
