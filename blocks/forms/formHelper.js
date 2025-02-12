@@ -178,20 +178,20 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
 }
 
 export function handleFormSubmit(hubspotForm, formConfig, type) {
-  if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
-    console.error('Invalid HubSpot form detected.');
-    return;
-  }
+  // if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
+  //   console.error('Invalid HubSpot form detected.');
+  //   return;
+  // }
 
-  if (!hubspotForm.checkValidity()) {
-    console.error('HubSpot Form validation failed!');
-    return;
-  }
+  // if (!hubspotForm.checkValidity()) {
+  //   console.error('HubSpot Form validation failed!');
+  //   return;
+  // }
 
-  const submitButton = hubspotForm.querySelector('input[type="submit"], button[type="submit"]');
-  if (submitButton) {
-    submitButton.disabled = true;
-  }
+  // const submitButton = hubspotForm.querySelector('input[type="submit"], button[type="submit"]');
+  // if (submitButton) {
+  //   submitButton.disabled = true;
+  // }
 
   const hubspotFormData = new FormData(hubspotForm);
 
@@ -233,8 +233,10 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
       }
     };
     form.submit();
+    console.log('FORM SUBMITTED');
   } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
+    console.log('OTHER');
   }
 
   if (type === 'newsletter' || type === 'lab-notes') {
