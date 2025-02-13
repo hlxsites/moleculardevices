@@ -390,17 +390,6 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
 
 
-Disallow: /fragments/applications/3d-cell-models-workflow.html
-Disallow: /fragments/applications/automated-workflow-for-plasmid-production.html
-Disallow: /fragments/applications/cell-cultured-meat-workflow.html
-Disallow: /fragments/applications/cell-imaging-analysis-workflow.html
-Disallow: /fragments/applications/enzyme-linked-immunosorbent-assay-elisa-workflow.html
-Disallow: /fragments/applications/live-cell-imaging-workflow.html
-Disallow: /fragments/applications/mab-production.html
-Disallow: /fragments/assay-kits-instrument-compatibility-table.html
-Disallow: /fragments/landing/discovery-starts-here-top.html
-Disallow: /fragments/products/gxp-compliance-solutions-toc.html
-Disallow: /fragments/service-support/lab-automation-solutions-workflow.html
 
 
 Disallow: /contact/thank-you
