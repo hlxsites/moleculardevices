@@ -268,7 +268,7 @@ export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
     loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      setTimeout(getCoveoToken, 300);
+      //setTimeout(getCoveoToken, 300);
       // await getCoveoToken();
     });
   });
