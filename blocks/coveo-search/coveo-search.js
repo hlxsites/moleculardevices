@@ -229,12 +229,8 @@ async function coveoSearchInitiation(organizationID) {
   }
 }
 
-export async function getCoveoToken() {
-  const myHeaders = new Headers();
- /* myHeaders.append('accept', 'application/json');
-  // myHeaders.append('Authorization', `Bearer ${coveoToken}`);
-  myHeaders.append('Authorization', `Bearer ${coveoToken}`);
-  myHeaders.append('Content-Type', 'application/json'); */
+/* export async function getCoveoToken() {
+
 
   const raw = JSON.stringify({
     userIds: [{
@@ -262,13 +258,13 @@ export async function getCoveoToken() {
     })
     // eslint-disable-next-line no-console
     .catch((error) => console.error('Token fetch failed:', error.message));
-}
+}*/
 
 export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
     loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      setTimeout(getCoveoToken, 300);
+      //setTimeout(getCoveoToken, 300);
       // await getCoveoToken();
     });
   });
