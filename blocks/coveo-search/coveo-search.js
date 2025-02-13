@@ -212,7 +212,7 @@ export function searchMainSection() {
   `;
 }
 
-async function coveoSearchInitiation(organizationID, '') {
+async function coveoSearchInitiation(organizationID) {
   const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
   if (typeof Coveo !== 'undefined') {
     /* global Coveo */
@@ -258,7 +258,7 @@ export async function getCoveoToken() {
     .then((response) => response.text())
     .then((responseData) => {
       const { token } = JSON.parse(responseData);
-      coveoSearchInitiation(organizationId, '');
+      coveoSearchInitiation(organizationId);
     })
     // eslint-disable-next-line no-console
     .catch((error) => console.error('Token fetch failed:', error.message));
