@@ -49,29 +49,22 @@ function getFilter() {
 function searchFormHeader() {
   return `
           <div id="search" class="CoveoSearchInterface mdcoveo" data-enable-history="true" data-excerpt-length="350">
-      <div class="CoveoFolding"></div>
-      <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
-      <div class="section cover-banner-wrapper">
-        <div class="cover-banner">
-          <div class="cover-banner-content">
-            <h1>Welcome to Resource Hub</h1>
-            <h3>HOW CAN WE HELP YOU TODAY?</h3>
-          </div>
-          <div class="not-fixed-search">
-            <div class="coveo-search-section">
-              <div class="CoveoSearchbox coveo-search-box"
-                data-enable-omnibox="true"
-                data-enable-search-as-you-type="true"
-                data-number-of-suggestions="5"
-                data-enable-partial-match="true"
-                data-inline="true"
-                data-enable-query-suggest-addon="true">
+            <div class="CoveoFolding"></div>
+            <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
+            <div class="section cover-banner-wrapper">
+              <div class="cover-banner">
+                <div class="cover-banner-content">
+                  <h1>Welcome to Resource Hub</h1>
+                  <h3>HOW CAN WE HELP YOU TODAY?</h3>
+                </div>
+                <div class="not-fixed-search">
+                  <div class="coveo-search-section">
+                    <div class="CoveoSearchbox coveo-search-box" data-enable-omnibox="true" data-enable-search-as-you-type="true" data-number-of-suggestions="5" data-partial-match-keywords="" data-enable-partial-match="true" data-inline="true" data-placeholder="" data-enable-query-suggest-addon="true"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
         `;
 }
 
