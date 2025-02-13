@@ -3,8 +3,7 @@ import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
-// const coveoToken = 'xx46ddf302-8f31-4286-bab7-c06aec617186';
-const coveoToken = 'xxcd7a140a-6efd-4e17-8f95-ae9048edda29';
+const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
 
 function getCategoriesBasedOnProfile(userProfile) {
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
