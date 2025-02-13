@@ -1714,6 +1714,7 @@ main .section.background-molecules {
   padding: 20px 0;
 }
 
+
 .section.home-promo {
   background-repeat: no-repeat;
   background-size: cover;
@@ -1728,11 +1729,30 @@ main .section.background-molecules {
   padding-top: 0;
 }
 
+.homepage .section.home-promo > .carousel-wrapper,
+.homepage .section.home-promo > .carousel-wrapper .carousel-item{
+  padding: 0;
+}
+
+.homepage .section.home-promo .carousel-dot-buttons{
+  display: none;
+}
+
+main .section.home-promo .carousel-item-columns-container {
+  display: grid;
+  gap: 30px;
+  align-items: unset;
+}
+
+main .section.home-promo .carousel-item-columns-container .carousel-item-column{
+  width: 100%;
+}
+
 .section.home-promo .columns > div > div:last-child {
   padding: 20px 0 40px;
 }
 
-.section.home-promo .columns > div > div:last-child a.button.secondary {
+.section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary {
   color: var(--text-white);
   background: rgb(0 0 0 / 25%);
   border: 1px solid var(--button-color);
@@ -1742,34 +1762,34 @@ main .section.background-molecules {
   line-height: 24px;
 }
 
-.section.home-promo .columns > div > div:last-child a.button.secondary:hover {
+.section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary:hover {
   background: var(--button-color);
   color: var(--text-blue);
 }
 
+@media only screen and (min-width: 768px) {
+  main .section.home-promo .carousel-item-columns-container {
+    grid-template-columns: 60fr 40fr;
+  }
+}
+
 @media only screen and (min-width: 992px) {
-  .section.home-promo .columns-wrapper {
-    padding-top: 0;
-  }
-
-  .section.home-promo .columns > div > div:first-child img {
-    margin-top: -32px;
-    display: block;
-  }
-
-  .section.home-promo .columns > div > div:last-child {
-    padding: 80px 0;
-  }
-
   .section.home-promo {
     padding: 0;
+    background-position: 0 49px;
+    margin-top: -50px;
   }
 
-  .section.home-promo .columns > div > div:last-child h3 {
+  .section.home-promo .carousel-item-columns-container .carousel-item-column:last-child {
+    padding: 110px 0 80px;
+  }
+
+  .section.home-promo .carousel-item-columns-container .carousel-item-column h3 {
     font-size: 28px;
+    margin-bottom: 2rem;
   }
 
-  .section.home-promo .columns > div > div:last-child a.button.secondary {
+  .section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary {
     padding: 16px 32px;
   }
 }
@@ -1789,7 +1809,7 @@ main .section.background-molecules {
     display: block;
   }
 
-  .section.home-promo .columns > div > div:last-child p.button-container {
+  .section.home-promo .carousel-item-columns-container .carousel-item-column p.button-container {
     margin-top: 30px;
   }
 }
