@@ -216,7 +216,7 @@ async function coveoSearchInitiation(organizationID) {
   const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
   if (typeof Coveo !== 'undefined') {
     /* global Coveo */
-    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
+    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID);
     Coveo.init(document.getElementById('search'), {
       ExcerptConditionalRendering: {
         values: ['public'],
