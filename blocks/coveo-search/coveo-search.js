@@ -212,7 +212,7 @@ export function searchMainSection() {
   `;
 }
 
-async function coveoSearchInitiation(organizationID, accessToken) {
+async function coveoSearchInitiation(organizationID, '') {
   const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
   if (typeof Coveo !== 'undefined') {
     /* global Coveo */
@@ -231,10 +231,10 @@ async function coveoSearchInitiation(organizationID, accessToken) {
 
 export async function getCoveoToken() {
   const myHeaders = new Headers();
-  myHeaders.append('accept', 'application/json');
+ /* myHeaders.append('accept', 'application/json');
   // myHeaders.append('Authorization', `Bearer ${coveoToken}`);
   myHeaders.append('Authorization', `Bearer ${coveoToken}`);
-  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Content-Type', 'application/json'); */
 
   const raw = JSON.stringify({
     userIds: [{
@@ -258,7 +258,7 @@ export async function getCoveoToken() {
     .then((response) => response.text())
     .then((responseData) => {
       const { token } = JSON.parse(responseData);
-      coveoSearchInitiation(organizationId, token);
+      coveoSearchInitiation(organizationId, '');
     })
     // eslint-disable-next-line no-console
     .catch((error) => console.error('Token fetch failed:', error.message));
@@ -268,7 +268,7 @@ export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
     loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      //setTimeout(getCoveoToken, 300);
+      setTimeout(getCoveoToken, 300);
       // await getCoveoToken();
     });
   });
