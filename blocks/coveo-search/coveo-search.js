@@ -249,7 +249,7 @@ export async function getCoveoToken() {
     .catch((error) => console.error('Token fetch failed:', error.message));
 }
 
-function addCoveoFiles() {
+export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
     loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', () => {

@@ -389,7 +389,7 @@ export async function initializeCoveo(block) {
       cRange.createContextualFragment(searchMainSection()),
     );
     loadCSS('/blocks/coveo-search/coveo-search.css');
-    addCoveoFiles(block);
+    addCoveoFiles();
   }
 }
 
