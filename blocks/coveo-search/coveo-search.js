@@ -29,7 +29,6 @@ function getCategoriesBasedOnProfile(userProfile) {
     case 'TECH':
       categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY}`;
       break;
-
     default:
       categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY;
   }
@@ -37,42 +36,42 @@ function getCategoriesBasedOnProfile(userProfile) {
 }
 
 function getUserProfile() {
-  return (getCookie('STYXKEY_PortalUserRole')) ? getCookie('STYXKEY_PortalUserRole') : '';
+  return (getCookie('STYXKEY_PortalUserRole')) || '';
 }
 
 function getFilter() {
   const userProfile = getUserProfile();
   const accessLevel = getCategoriesBasedOnProfile(userProfile);
 
-  let filter;
-
-  if (userProfile === 'ADMIN') {
-    filter = '';
-  } else {
-    filter = `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
-  }
-  return filter;
+  return userProfile === 'ADMIN' ? '' : `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
 }
 
 function searchFormHeader() {
   return `
           <div id="search" class="CoveoSearchInterface mdcoveo" data-enable-history="true" data-excerpt-length="350">
-            <div class="CoveoFolding"></div>
-            <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
-            <div class="section cover-banner-wrapper">
-              <div class="cover-banner">
-                <div class="cover-banner-content">
-                  <h1>Welcome to Resource Hub</h1>
-                  <h3>HOW CAN WE HELP YOU TODAY?</h3>
-                </div>
-                <div class="not-fixed-search">
-                  <div class="coveo-search-section">
-                    <div class="CoveoSearchbox coveo-search-box" data-enable-omnibox="true" data-enable-search-as-you-type="true" data-number-of-suggestions="5" data-partial-match-keywords="" data-enable-partial-match="true" data-inline="true" data-placeholder="" data-enable-query-suggest-addon="true"></div>
-                  </div>
-                </div>
+      <div class="CoveoFolding"></div>
+      <div class="CoveoAnalytics" data-endpoint="https://moleculardevicesproductionca45f5xc.analytics.org.coveo.com/rest/ua"></div>
+      <div class="section cover-banner-wrapper">
+        <div class="cover-banner">
+          <div class="cover-banner-content">
+            <h1>Welcome to Resource Hub</h1>
+            <h3>HOW CAN WE HELP YOU TODAY?</h3>
+          </div>
+          <div class="not-fixed-search">
+            <div class="coveo-search-section">
+              <div class="CoveoSearchbox coveo-search-box"
+                data-enable-omnibox="true"
+                data-enable-search-as-you-type="true"
+                data-number-of-suggestions="5"
+                data-enable-partial-match="true"
+                data-inline="true"
+                data-enable-query-suggest-addon="true">
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
         `;
 }
 
@@ -212,17 +211,11 @@ export function searchMainSection() {
   `;
 }
 
-async function coveoSearchInitiation(organizationID, accessToken) {
-  const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
+function coveoSearchInitiation(organizationID) {
   if (typeof Coveo !== 'undefined') {
     /* global Coveo */
-    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
-    Coveo.init(document.getElementById('search'), {
-      ExcerptConditionalRendering: {
-        values: ['public'],
-        compareValue: pCookie,
-      },
-    });
+    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, coveoToken);
+    Coveo.init(document.getElementById('search'), { analytics: { enabled: false } });
   } else {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
@@ -263,12 +256,11 @@ export async function getCoveoToken() {
     .catch((error) => console.error('Token fetch failed:', error.message));
 }
 
-export function addCoveoFiles() {
+function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      // setTimeout(getCoveoToken, 300);
-      await getCoveoToken();
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', () => {
+      coveoSearchInitiation(organizationId);
     });
   });
 }
@@ -279,5 +271,5 @@ export default async function decorate(block) {
   block.children[0].querySelector('.cover-banner-wrapper').prepend(backgroundImage);
   const cRange = document.createRange();
   block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
-  addCoveoFiles(block);
+  addCoveoFiles();
 }
