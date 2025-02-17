@@ -156,7 +156,7 @@
   color: var(--black-background-color);
 }
 
-.coveo-dynamic-hierarchical-facet-values li button {
+.coveo-dynamic-hierarchical-facet-values li {
   padding: 5px 0;
 }
 
