@@ -3,7 +3,7 @@ import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 const getDefaultEmbed = (url) => {
-  const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
+  const embedHTML = `<div style="left: 0; width: 100%; position: relative;padding-top: 70%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
         scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
