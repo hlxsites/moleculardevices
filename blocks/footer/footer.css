@@ -300,10 +300,6 @@
   left: -36px;
 }
 
-.row-4 .row-4-inner-wrapper li i.fa-shopping-cart {
-  top: 21px;
-}
-
 /* footer bottom */
 .footer-bottom {
   margin-top: 32px;
@@ -312,7 +308,7 @@
   color: var(--text-white);
 }
 
-.footer-bottom ul li a:hover {
+.footer-bottom a:hover {
   color: var(--highlight-background-color);
 }
 
