@@ -103,7 +103,7 @@ function loadGTM() {
 
 function loadEvergageScript() {
   const script = document.createElement('script');
-  if (window.location.host.includes('www.moleculardevicescom.com')) {
+  if (window.location.host.includes('www.moleculardevices.com')) {
     script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/moldev_prod/scripts/evergage.min.js';
   } else {
     script.src = 'https://cdn.evgnet.com/beacon/v55685555553mx3rf3h3n3n3i091550196/moldev_staging/scripts/evergage.min.js';
