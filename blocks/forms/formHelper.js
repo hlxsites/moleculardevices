@@ -70,44 +70,44 @@ export const QDCRrequest = '00N70000003iu65';
 export const marketingOptin = '00N70000003ipQF';
 export const prodPrimApp = '00N700000030jhQ';
 export const fieldsObj = [
-  { newName: 'first_name', fieldName: 'firstname' },
-  { newName: 'last_name', fieldName: 'lastname' },
-  { newName: 'email', fieldName: 'email' },
-  { newName: 'phone', fieldName: 'phone' },
-  { newName: 'phone', fieldName: '0-2/phone' },
-  { newName: 'company', fieldName: 'company' },
-  { newName: 'country', fieldName: 'country' },
-  { newName: 'country', fieldName: 'country_code' }, // TEST CASE
-  { newName: 'state', fieldName: 'state_dropdown' }, // TEST CASE
-  { newName: 'state', fieldName: 'state' }, // TEST CASE
-  { newName: 'zip', fieldName: 'zip' },
-  { newName: timelineValue, fieldName: 'timeline__c' },
-  { newName: 'jobtitle', fieldName: 'jobtitle' },
-  { newName: 'city', fieldName: 'city' },
-  { newName: 'Danaher_Partner_Rep__c', fieldName: 'danaher_partner_rep__c' },
-  { newName: 'Danaher_Partner_Rep_Email__c', fieldName: 'danaher_partner_rep_email__c' },
-  { newName: 'EU_Lead_Finder_Agent__c', fieldName: 'eu_lead_finder_agent__c' },
-  { newName: 'Contact_Region__c', fieldName: 'contact_region__c' },
-  { newName: 'Region__c', fieldName: 'region__c' },
-  { newName: 'na_lead_finder_agent__c', fieldName: 'na_lead_finder_agent__c' },
-  { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
-  { newName: serialLotNumber, fieldName: 'serial_lot_number__c' },
-  { newName: productFamily, fieldName: 'product_family__c' },
-  { newName: productSelection, fieldName: 'product_selection__c' },
-  { newName: 'description', fieldName: 'description' },
-  { newName: fseSalesRepInsideSales, fieldName: 'fse_sales_rep_inside_sales__c' },
-  { newName: euFseSalesRepInsideSales, fieldName: 'eu_fse_sales_rep_inside_sales' },
-  { newName: usFas, fieldName: 'us_fas' },
-  { newName: euFas, fieldName: 'eu_fas' },
-  { newName: customSolutionsOpportunity, fieldName: 'custom_solutions_opportunity__c' },
-  { newName: preQualifiedForSalesrep, fieldName: 'pre_qualified_for_salesrep__c' },
-  { newName: 'Lead_Source_2__c', fieldName: 'lead_source_2__c' },
-  { newName: 'GCLID__c', fieldName: 'gclid__c' },
-  { newName: 'Keyword_PPC__c', fieldName: 'keyword_ppc__c' },
-  { newName: 'Google_Analytics_Medium__c', fieldName: 'google_analytics_medium__c' },
-  { newName: 'Google_Analytics_Source__c', fieldName: 'google_analytics_source__c' },
-  { newName: 'Campaign_ID', fieldName: 'cmp' },
-  { newName: 'cmp', fieldName: 'cmp' },
+  { inputName: 'first_name', inputFieldName: 'firstname' },
+  { inputName: 'last_name', inputFieldName: 'lastname' },
+  { inputName: 'email', inputFieldName: 'email' },
+  { inputName: 'phone', inputFieldName: 'phone' },
+  { inputName: 'phone', inputFieldName: '0-2/phone' },
+  { inputName: 'company', inputFieldName: 'company' },
+  { inputName: 'country', inputFieldName: 'country' },
+  { inputName: 'country', inputFieldName: 'country_code' }, // TEST CASE
+  { inputName: 'state', inputFieldName: 'state_dropdown' }, // TEST CASE
+  { inputName: 'state', inputFieldName: 'state' }, // TEST CASE
+  { inputName: 'zip', inputFieldName: 'zip' },
+  { inputName: timelineValue, inputFieldName: 'timeline__c' },
+  { inputName: 'jobtitle', inputFieldName: 'jobtitle' },
+  { inputName: 'city', inputFieldName: 'city' },
+  { inputName: 'Danaher_Partner_Rep__c', inputFieldName: 'danaher_partner_rep__c' },
+  { inputName: 'Danaher_Partner_Rep_Email__c', inputFieldName: 'danaher_partner_rep_email__c' },
+  { inputName: 'EU_Lead_Finder_Agent__c', inputFieldName: 'eu_lead_finder_agent__c' },
+  { inputName: 'Contact_Region__c', inputFieldName: 'contact_region__c' },
+  { inputName: 'Region__c', inputFieldName: 'region__c' },
+  { inputName: 'na_lead_finder_agent__c', inputFieldName: 'na_lead_finder_agent__c' },
+  { inputName: serialLotNumber, inputFieldName: 'serial_lot_number__c' },
+  { inputName: serialLotNumber, inputFieldName: 'serial_lot_number__c' },
+  { inputName: productFamily, inputFieldName: 'product_family__c' },
+  { inputName: productSelection, inputFieldName: 'product_selection__c' },
+  { inputName: 'description', inputFieldName: 'description' },
+  { inputName: fseSalesRepInsideSales, inputFieldName: 'fse_sales_rep_inside_sales__c' },
+  { inputName: euFseSalesRepInsideSales, inputFieldName: 'eu_fse_sales_rep_inside_sales' },
+  { inputName: usFas, inputFieldName: 'us_fas' },
+  { inputName: euFas, inputFieldName: 'eu_fas' },
+  { inputName: customSolutionsOpportunity, inputFieldName: 'custom_solutions_opportunity__c' },
+  { inputName: preQualifiedForSalesrep, inputFieldName: 'pre_qualified_for_salesrep__c' },
+  { inputName: 'Lead_Source_2__c', inputFieldName: 'lead_source_2__c' },
+  { inputName: 'GCLID__c', inputFieldName: 'gclid__c' },
+  { inputName: 'Keyword_PPC__c', inputFieldName: 'keyword_ppc__c' },
+  { inputName: 'Google_Analytics_Medium__c', inputFieldName: 'google_analytics_medium__c' },
+  { inputName: 'Google_Analytics_Source__c', inputFieldName: 'google_analytics_source__c' },
+  { inputName: 'Campaign_ID', inputFieldName: 'cmp' },
+  { inputName: 'cmp', inputFieldName: 'cmp' },
 ];
 
 /* get form ready */
@@ -181,7 +181,6 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
   // generate a form from Customize | Leads | Web-to-Lead to figure out more
   fieldsObj.forEach(({ inputName, inputFieldName }) => {
     const inputField = createHiddenField(hubspotFormData, inputFieldName, inputName);
-    console.log(inputField);
     if (inputField && inputField !== 0) {
       form.appendChild(inputField);
     }
@@ -267,8 +266,6 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     returnURL = `${returnURL}&subscribe=${subscribe}`;
   }
 
-  console.log('Submitting to Salesforce with data:', { qdc, returnURL, subscribe });
-
   const allowedValues = ['Call', 'Demo', 'Quote'];
   if (allowedValues.includes(qdc)) {
     const { form, iframe } = createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe);
@@ -280,11 +277,9 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
       }
     };
 
-    // form.submit();
-    console.log('FORM SUBMITTED');
+    form.submit();
   } else if (returnURL && returnURL !== 'null') {
-    // setTimeout(() => { window.top.location.href = returnURL; }, 2000);
-    console.log('OTHER');
+    setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
 
   if (type === 'newsletter' || type === 'lab-notes') {
