@@ -20,11 +20,12 @@ const hreflangMap = [
 try {
   const response = await fetch(QUERY_INDEX_URL);
   const json = await response.json();
+  const filteredJson = json?.data.filter((row) => row.showinSitemap !== 'No');
   const sitemapPath = path.join(process.cwd(), '../../content-sitemap.xml');
 
   const urls = [];
 
-  json?.data.forEach((row) => {
+  filteredJson.forEach((row) => {
     // eslint-disable-next-line no-unused-vars
     hreflangMap.forEach(([hreflang, { baseUrl }]) => {
       const urlEntry = {
