@@ -14,7 +14,7 @@ const hreflangMap = [
   ['fr', { baseUrl: 'https://fr.moleculardevices.com' }],
   ['ko', { baseUrl: 'https://ko.moleculardevices.com' }],
   ['zh', { baseUrl: 'https://www.moleculardevices.com.cn' }],
-  // ['x-default', { baseUrl: 'https://www.moleculardevices.com' }],
+  ['x-default', { baseUrl: 'https://www.moleculardevices.com' }],
 ];
 
 try {
