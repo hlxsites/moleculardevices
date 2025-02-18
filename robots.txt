@@ -150,8 +150,8 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/flipr/high-throug
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/organoids-for-disease-modeling-and-in-vitro-drug-screening.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/monitoring-organoid-development-and-characterization-of-calcium-oscillation-activities-in-ipsc-derived-3d-cerebral-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/deep-learning-based-image-analysis-for-label-free-live-monitoring-of-ipsc-3d-organoid-cultures.pdf
-Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation
-Disallow: /en/assets/scientific-posters/dd/img/stem-cell-research-and-presentations
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/cellxpress-ai-automated-cell-culture-workstation-for-reproducible-organoid-cultivation.pdf
+
 
 # SLAS 2023 poster and video
 
@@ -260,7 +260,7 @@ Disallow: /en/assets/tutorials-videos/dd/cns/axon-patch-clamp-electrophysiology-
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
 Disallow: /en/assets/tutorials-videos/br/to-elisa-and-beyond
 Disallow: /en/assets/tutorials-videos/dd/cns/minis-analysis-axon-pclamp-software
-
+Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation
 
 
 
