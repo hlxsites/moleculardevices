@@ -20,7 +20,7 @@ const hreflangMap = [
 try {
   const response = await fetch(QUERY_INDEX_URL);
   const json = await response.json();
-  const filteredJson = json?.data.filter((row) => row.showinSitemap === '0');
+  const filteredJson = json?.data.filter((row) => row.showinSitemap !== 'No');
   const sitemapPath = path.join(process.cwd(), '../../content-sitemap.xml');
 
   const urls = [];
