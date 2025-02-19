@@ -1731,7 +1731,7 @@ main .section.background-molecules {
 
 .homepage .section.home-promo > .carousel-wrapper,
 .homepage .section.home-promo > .carousel-wrapper .carousel-item{
-  padding: 0;
+  padding-top: 0;
 }
 
 .homepage .section.home-promo .carousel-dot-buttons{
@@ -1752,6 +1752,10 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column{
   padding: 20px 0 40px;
 }
 
+.section.home-promo .carousel {
+  padding-inline: 0;
+}
+
 .section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary {
   color: var(--text-white);
   background: rgb(0 0 0 / 25%);
@@ -1770,6 +1774,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column{
 @media only screen and (min-width: 768px) {
   main .section.home-promo .carousel-item-columns-container {
     grid-template-columns: 60fr 40fr;
+    align-items: center;
   }
 }
 
@@ -1781,7 +1786,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column{
   }
 
   .section.home-promo .carousel-item-columns-container .carousel-item-column:last-child {
-    padding: 110px 0 80px;
+    padding: 40px 0;
   }
 
   .section.home-promo .carousel-item-columns-container .carousel-item-column h3 {
