@@ -1,8 +1,52 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
+
+function getCategoriesBasedOnProfile(userProfile) {
+  const CUSTOMER_ACCESS_LEVEL_CATEGORY = 'Customer';
+  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = 'Distributor';
+  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = 'System_Integrator';
+  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Sales';
+  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Tech';
+  let categoryAccessLevel;
+
+  switch (userProfile) {
+    case 'ADMIN':
+      categoryAccessLevel = '';
+      break;
+    case 'DISTRIBUTOR':
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY}`;
+      break;
+    case 'INTEGRATOR':
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY}`;
+      break;
+    case 'SALES':
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY}`;
+      break;
+    case 'TECH':
+      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY}`;
+      break;
+
+    default:
+      categoryAccessLevel = CUSTOMER_ACCESS_LEVEL_CATEGORY;
+  }
+  return categoryAccessLevel;
+}
+
+function getUserProfile() {
+  return (getCookie('STYXKEY_PortalUserRole')) ? getCookie('STYXKEY_PortalUserRole') : '';
+}
+
+function getFilter() {
+  const userProfile = getUserProfile();
+  const accessLevel = getCategoriesBasedOnProfile(userProfile);
+
+  return userProfile === 'ADMIN'
+    ? ''
+    : `NOT @sfkbid OR @sfdatacategoryaccess_level==${accessLevel} OR @sfisvisibleinpkb==true`;
+}
 
 function searchFormHeader() {
   return `
@@ -35,7 +79,7 @@ export function searchMainSection() {
                 </div>
                 <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
                 </div>
-                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot; AND NOT @sfkbid OR @sfdatacategoryaccess_level==System_Integrator OR @sfisvisibleinpkb==true"></div>
+                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot; AND ${getFilter()}"></div>
                 <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==CoA"></div>
                 <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==SDS"></div>
               </div>
