@@ -35,7 +35,7 @@ export function searchMainSection() {
                 </div>
                 <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
                 </div>
-                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot;"></div>
+                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot; AND NOT @sfkbid OR @sfdatacategoryaccess_level==System_Integrator OR @sfisvisibleinpkb==true"></div>
                 <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==CoA"></div>
                 <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Coveo Test Key&quot; AND @md_contenttype==SDS"></div>
               </div>
