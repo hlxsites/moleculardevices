@@ -1,5 +1,5 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript, setCookie } from '../../scripts/scripts.js';
 
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
@@ -8,8 +8,8 @@ function getCategoriesBasedOnProfile(userProfile) {
   const CUSTOMER_ACCESS_LEVEL_CATEGORY = 'Customer';
   const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = 'Distributor';
   const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = 'System_Integrator';
-  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Sales';
-  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev Empl - Tech';
+  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = 'MolDev_Empl_Sales';
+  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev_Empl_Tech';
   let categoryAccessLevel;
 
   switch (userProfile) {
@@ -17,16 +17,16 @@ function getCategoriesBasedOnProfile(userProfile) {
       categoryAccessLevel = '';
       break;
     case 'DISTRIBUTOR':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'INTEGRATOR':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'SALES':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'TECH':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY})`;
       break;
 
     default:
