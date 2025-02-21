@@ -1,5 +1,5 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { getCookie, loadScript, setCookie } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
