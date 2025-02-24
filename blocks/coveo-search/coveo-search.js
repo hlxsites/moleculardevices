@@ -1,16 +1,15 @@
 import { loadCSS } from '../../scripts/lib-franklin.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 
-const coveoAdminId = 'rajneesh.kumar@moldev.com';
 const organizationId = 'moleculardevicesproductionca45f5xc';
-const coveoToken = 'xx46ddf302-8f31-4286-bab7-c06aec617186';
+const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
 
 function getCategoriesBasedOnProfile(userProfile) {
-  const CUSTOMER_ACCESS_LEVEL_CATEGORY = '"Customer"';
-  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = '"Distributor"';
-  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = '"System_Integrator"';
-  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Sales"';
-  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = '"MolDev Empl - Tech"';
+  const CUSTOMER_ACCESS_LEVEL_CATEGORY = 'Customer';
+  const DISTRIBUTOR_ACCESS_LEVEL_CATEGORY = 'Distributor';
+  const SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY = 'System_Integrator';
+  const MOLDEV_SALES_ACCESS_LEVEL_CATEGORY = 'MolDev_Empl_Sales';
+  const MOLDEV_TECH_ACCESS_LEVEL_CATEGORY = 'MolDev_Empl_Tech';
   let categoryAccessLevel;
 
   switch (userProfile) {
@@ -18,16 +17,16 @@ function getCategoriesBasedOnProfile(userProfile) {
       categoryAccessLevel = '';
       break;
     case 'DISTRIBUTOR':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'INTEGRATOR':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'SALES':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY})`;
       break;
     case 'TECH':
-      categoryAccessLevel = `${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY}`;
+      categoryAccessLevel = `(${CUSTOMER_ACCESS_LEVEL_CATEGORY},${DISTRIBUTOR_ACCESS_LEVEL_CATEGORY},${SYSTEM_INTEGRATOR_ACCESS_LEVEL_CATEGORY},${MOLDEV_SALES_ACCESS_LEVEL_CATEGORY},${MOLDEV_TECH_ACCESS_LEVEL_CATEGORY})`;
       break;
 
     default:
@@ -44,14 +43,9 @@ function getFilter() {
   const userProfile = getUserProfile();
   const accessLevel = getCategoriesBasedOnProfile(userProfile);
 
-  let filter;
-
-  if (userProfile === 'ADMIN') {
-    filter = '';
-  } else {
-    filter = `NOT @sfkbid OR (  @sfdatacategoryaccess_level == (${accessLevel})  OR @sfisvisibleinpkb=true  )`;
-  }
-  return filter;
+  return userProfile === 'ADMIN'
+    ? ''
+    : ` AND NOT @sfkbid OR @sfdatacategoryaccess_level==${accessLevel} OR @sfisvisibleinpkb==true`;
 }
 
 function searchFormHeader() {
@@ -80,12 +74,12 @@ export function searchMainSection() {
   return `
             <div class="section coveo-tab-section-wrapper sticky-element sticky-desktop">
               <div class="coveo-tab-section">
-                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Molecular Devices Franklin&quot; OR @source==&quot;Molecular Devices Support Portal&quot;"></a>
+                <a class="CoveoTab coveo-tab" data-id="All" data-caption="All Content" data-expression="@source==&quot;Molecular Devices Franklin&quot; OR @source==&quot;Molecular Devices Support Portal&quot;${getFilter()}"></a>
                 <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_contenttype==SDS">
                 </div>
                 <div class="CoveoTab coveo-tab" data-id="Videos" data-caption="Videos" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==&quot;Videos &amp; Webinars&quot;">
                 </div>
-                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot;"></div>
+                <div class="CoveoTab coveo-tab" data-id="KBArticles" data-caption="Knowledge Base" data-expression="@source==&quot;Molecular Devices Support Portal&quot;${getFilter()}"></div>
                 <div class="CoveoTab coveo-tab" data-id="CoA" data-caption="CoA" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==CoA"></div>
                 <div class="CoveoTab coveo-tab" data-id="SDS" data-caption="SDS" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_contenttype==SDS"></div>
               </div>
@@ -229,46 +223,11 @@ async function coveoSearchInitiation(organizationID, accessToken) {
   }
 }
 
-export async function getCoveoToken() {
-  const myHeaders = new Headers();
-  myHeaders.append('accept', 'application/json');
-  myHeaders.append('Authorization', `Bearer ${coveoToken}`);
-  myHeaders.append('Content-Type', 'application/json');
-
-  const raw = JSON.stringify({
-    userIds: [{
-      name: coveoAdminId,
-      provider: 'Email Security Provider',
-    }],
-    filter: getFilter(),
-  });
-
-  const requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow',
-  };
-
-  await fetch(
-    `https://platform.cloud.coveo.com/rest/search/v2/token?organizationId=${organizationId}`,
-    requestOptions,
-  )
-    .then((response) => response.text())
-    .then((responseData) => {
-      const { token } = JSON.parse(responseData);
-      coveoSearchInitiation(organizationId, token);
-    })
-    // eslint-disable-next-line no-console
-    .catch((error) => console.error('Token fetch failed:', error.message));
-}
-
 export function addCoveoFiles() {
   loadCSS('https://static.cloud.coveo.com/searchui/v2.10114/css/CoveoFullSearch.min.css');
   loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/CoveoJsSearch.Lazy.min.js', () => {
-    loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', async () => {
-      // setTimeout(getCoveoToken, 300);
-      await getCoveoToken();
+    loadScript('https://static.cloud.coveo.com/searchui/v2.10104/js/templates/templates.js', () => {
+      coveoSearchInitiation(organizationId, coveoToken);
     });
   });
 }
@@ -279,5 +238,5 @@ export default async function decorate(block) {
   block.children[0].querySelector('.cover-banner-wrapper').prepend(backgroundImage);
   const cRange = document.createRange();
   block.children[0].children[0].appendChild(cRange.createContextualFragment(searchMainSection()));
-  addCoveoFiles(block);
+  addCoveoFiles();
 }
