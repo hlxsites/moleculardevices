@@ -206,11 +206,17 @@ export function searchMainSection() {
   `;
 }
 
-function coveoSearchInitiation(organizationID) {
+async function coveoSearchInitiation(organizationID, accessToken) {
+  const pCookie = (!getUserProfile()) ? 'Logged-in' : 'public';
   if (typeof Coveo !== 'undefined') {
     /* global Coveo */
-    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, coveoToken);
-    Coveo.init(document.getElementById('search'), { analytics: { enabled: false } });
+    Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
+    Coveo.init(document.getElementById('search'), {
+      ExcerptConditionalRendering: {
+        values: ['public'],
+        compareValue: pCookie,
+      },
+    });
   } else {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
