@@ -261,8 +261,8 @@ Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
 Disallow: /en/assets/tutorials-videos/br/to-elisa-and-beyond
 Disallow: /en/assets/tutorials-videos/dd/cns/minis-analysis-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation
-
-
+Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3d-models
+        
 
 
 
