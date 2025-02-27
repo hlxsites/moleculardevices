@@ -273,7 +273,7 @@ export function embedVideoTest(videoID, block) {
     block.innerHTML = `
     <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
       <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:80%;">
-        <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail"
+        <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail playerColor=008da9"
           style="height:80%;position:relative;width:80%">
           <div class="wistia_swatch"
             style="height:80%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;
