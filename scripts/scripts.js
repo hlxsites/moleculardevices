@@ -148,6 +148,7 @@ function createBreadcrumbsSpace(main) {
     main.querySelector('.section').prepend(blockWrapper);
   }
 }
+
 async function loadBreadcrumbs(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
@@ -163,7 +164,7 @@ async function loadBreadcrumbs(main) {
  */
 export function isVideo(url) {
   let isV = false;
-  const hostnames = ['vids.moleculardevices.com', 'vidyard.com'];
+  const hostnames = ['vids.moleculardevices.com', 'vidyard.com', 'wistia.com'];
   [...hostnames].forEach((hostname) => {
     if (url.hostname.includes(hostname)) {
       isV = true;
@@ -222,6 +223,7 @@ export function decorateExternalLink(link) {
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
+    'https://fast.wistia.com/',
     'https://main--moleculardevices--hlxsites.aem.page',
     'https://main--moleculardevices--hlxsites.aem.live',
     'http://molecular-devices.myshopify.com',
@@ -260,6 +262,34 @@ export function decorateExternalLink(link) {
   }
 }
 
+/* custom video test */
+function getWistiaVideoId(url) {
+  const match = url.match(/medias\/([a-zA-Z0-9]+)\.jsonp/);
+  return match ? match[1] : null;
+}
+
+export function embedVideoTest(videoID, block) {
+  if (videoID) {
+    block.innerHTML = `
+    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+      <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:80%;">
+        <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail"
+          style="height:80%;position:relative;width:80%">
+          <div class="wistia_swatch"
+            style="height:80%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;
+            transition:opacity 200ms;width:100%;">
+            <img src="https://fast.wistia.com/embed/medias/${videoID}/swatch"
+              style="filter:blur(5px);height:100%;object-fit:contain;width:100%;"
+              alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  }
+}
+/* custom video test */
+
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
     const url = new URL(link.href);
@@ -269,14 +299,23 @@ export function decorateLinks(main) {
       if (link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
         videoButton(link.closest('div'), link, url);
       } else {
-        const up = link.parentElement;
-        const hasAutoplay = link.closest('.block.autoplay-video');
-        const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
-        const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-        const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
-        if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
-        up.innerHTML = wrapper.outerHTML;
-        embedVideo(up.querySelector('a'), url, type, hasAutoplay);
+        const block = link.parentElement;
+        if (document.querySelector('.block.vidyard')) {
+          const hasAutoplay = link.closest('.block.autoplay-video');
+          const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+          const type = (block.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
+          const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+          if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
+          block.innerHTML = wrapper.outerHTML;
+          embedVideo(block.querySelector('a'), url, type, hasAutoplay);
+        }
+
+        /* custom video test */
+        const videoID = getWistiaVideoId(url.href);
+        loadScript(`https://fast.wistia.com/embed/medias/${videoID}.jsonp`, null, null, null, true);
+        loadScript('https://fast.wistia.com/assets/external/E-v1.js', null, null, null, true);
+        embedVideoTest(videoID, block);
+        /* custom video test */
       }
     }
 
