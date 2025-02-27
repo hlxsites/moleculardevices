@@ -24,6 +24,23 @@ export function createHubSpotForm(formConfig, target, type = '') {
             const fieldValues = getFormFieldValues(formConfig);
             updateFormFields(form, fieldValues);
 
+            // get-in-tough/contact form
+            if (type === 'get-in-touch') {
+              const requestedQDCDiscussion = form.querySelector('input[name="requested_qdc_discussion__c"]');
+              // const salsforceCmpInput = form.querySelector("input[name='cmp']");
+              requestedQDCDiscussion.value = '';
+              form.querySelector("select[name='get_in_touch_interests']").addEventListener('change', (evt) => {
+                if (evt.target.value === 'Sales' || evt.target.value === 'Tech support') {
+                  requestedQDCDiscussion.value = 'Call';
+                  // salsforceCmpInput.value = formConfig.cmp;
+                } else {
+                  requestedQDCDiscussion.value = '';
+                  // salsforceCmpInput.value = '';
+                }
+              });
+            }
+            // get-in-tough/contact form
+
             // Customize the submit button
             const submitInput = form.querySelector('input[type="submit"]');
             if (submitInput) {
@@ -37,7 +54,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
         });
       },
       onFormSubmit: (hubspotForm) => {
-        createSalesforceForm(hubspotForm, formConfig);
+        createSalesforceForm(hubspotForm, formConfig, type);
         if (type === 'newsletter' || type === 'lab-notes') {
           // eslint-disable-next-line no-undef, quote-props
           dataLayer.push({ 'event': 'new_subscriber' });
