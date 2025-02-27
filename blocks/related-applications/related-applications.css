@@ -59,6 +59,7 @@ li.related-link::marker {
 
 .related-applications-container .related-links-container {
   padding-top: 26px;
+  padding-bottom: 26px;
   margin-top: 0;
 }
 
