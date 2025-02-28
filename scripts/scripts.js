@@ -268,13 +268,13 @@ function getWistiaVideoId(url) {
   return match ? match[1] : null;
 }
 
-export function embedVideoTest(videoID, block) {
+export function embedVideoTest(videoID, block, isLightbox) {
   if (videoID) {
     block.innerHTML = `
     <div class='video-wrapper'>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail playerColor=008da9 popover=true"
+          <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail playerColor=008da9 popover=${isLightbox} playbar=true playsinline=false"
             style="height:100%;position:relative;width:100%">
             <div class="wistia_swatch"
               style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;
@@ -313,10 +313,11 @@ export function decorateLinks(main) {
         }
 
         /* custom video test */
+        const isLightbox = block.tagName !== 'EM';
         const videoID = getWistiaVideoId(url.href);
         loadScript(`https://fast.wistia.com/embed/medias/${videoID}.jsonp`, null, null, null, true);
         loadScript('https://fast.wistia.com/assets/external/E-v1.js', null, null, null, true);
-        embedVideoTest(videoID, block);
+        embedVideoTest(videoID, block, isLightbox);
         /* custom video test */
       }
     }
