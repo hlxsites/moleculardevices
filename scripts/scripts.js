@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-cycle */
 import {
   sampleRUM,
@@ -273,8 +274,8 @@ export function embedVideoTest(videoID, block, isLightbox) {
     block.innerHTML = `
     <div class='video-wrapper'>
       <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
-        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-          <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail playerColor=008da9 popover=${isLightbox} playbar=true playsinline=false"
+        <div class="wistia_responsive_wrapper wistia-responsive-wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+          <div class="wistia_embed wistia_async_${videoID} videoFoam=true email=userEmail playerColor=2e2e2e popover=${isLightbox} playbar=true playsinline=false"
             style="height:100%;position:relative;width:100%">
             <div class="wistia_swatch"
               style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;
@@ -289,6 +290,20 @@ export function embedVideoTest(videoID, block, isLightbox) {
     </div>
   `;
   }
+
+  // Modify the Wistia Play Button
+  window._wq = window._wq || [];
+  window._wq.push({
+    id: videoID,
+    onReady: () => {
+      const playButton = block.querySelector('.w-big-play-button.w-css-reset-button-important', 'div[role="button"]');
+      if (playButton) {
+        playButton.innerHTML = '';
+        playButton.classList.remove('w-css-reset-button-important');
+        playButton.style.borderRadius = '50%';
+      }
+    },
+  });
 }
 /* custom video test */
 

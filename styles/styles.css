@@ -393,6 +393,61 @@ iframe {
   max-width: 700px;
 }
 
+.video-wrapper div[role="button"] {
+  background-position: center !important;
+}
+
+div[id*="wistia_chrome_"] div[id*="wistia_grid_"] .w-big-play-button {
+  border-radius: 50% !important;
+}
+
+.w-big-play-button.w-css-reset-button-important,
+div[role="button"] {
+  position: relative;
+}
+
+.w-big-play-button::after,
+div[role="button"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border: 20px solid transparent;
+  border-left: 32px solid #fff;
+  border-right: none;
+}
+
+.video-wrapper div[role="button"],
+.video-wrapper div[id*=".big_play_button_background"],
+.video-wrapper .wistia-responsive-wrapper .w-big-play-button,
+.video-wrapper .wistia-responsive-wrapper .w-big-play-button > svg {
+  width: 112px !important;
+  height: 112px !important;
+  background-image: none !important;
+}
+
+.video-wrapper div[id*=".big_play_button_background"],
+.video-wrapper .wistia-responsive-wrapper .w-big-play-button {
+  border-radius: 50% !important;
+  background-color: rgb(46 46 46 / 65%) !important;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.video-wrapper .w-big-play-button > div {
+  background-color: transparent !important;
+}
+
+.video-wrapper:hover div[id*=".big_play_button_background"],
+.video-wrapper:hover .wistia-responsive-wrapper .w-big-play-button {
+  background-color: rgb(46 46 46 / 100%) !important;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.wistia_popover_overlay {
+  background-color: rgb(0 0 0 / 90%) !important;
+}
+
 p.video-title {
   font-size: 14px;
   font-style: italic;
