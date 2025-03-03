@@ -79,6 +79,14 @@ function buildCardsMenu(cardContent) {
           // delete the second paragraph
           secondParagraph.remove();
         }
+        if (secondParagraph.textContent.includes('(new)')) {
+          const newProductTag = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
+          newProductTag.classList.add('new-product-tag');
+          picture.parentElement.parentElement.classList.add('new-product');
+          picture.parentElement.parentElement.appendChild(newProductTag);
+          // delete the second paragraph
+          secondParagraph.remove();
+        }
       }
     });
   });
