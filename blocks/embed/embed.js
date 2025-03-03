@@ -223,6 +223,8 @@ export default function decorate(block) {
   const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6, h7');
   const link = block.querySelector('a').href;
 
+  if (!link) return;
+
   if (isVideo(new URL(link))) {
     block.classList.add('video');
   } else {
