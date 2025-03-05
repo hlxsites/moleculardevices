@@ -235,9 +235,11 @@ export function getFormFieldValues(formConfig) {
   const cmpCookieValue = getCookie('cmp');
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
+  const globalCMPVal = '701Rn00000S8JGpIAN';
+  // formConfig.cmp
 
   return {
-    cmp: valuecmp || formConfig.cmp,
+    cmp: valuecmp || globalCMPVal,
     gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
