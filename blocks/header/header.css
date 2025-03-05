@@ -1197,6 +1197,11 @@ header .cards-submenu p.new-product {
   position: relative;
 }
 
+header .cards-submenu p.new-product > a {
+  display: block;
+  overflow: hidden;
+}
+
 header .cards-submenu .new-product .new-product-tag {
   position: absolute;
   left: -5px;
