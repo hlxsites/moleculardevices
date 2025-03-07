@@ -81,7 +81,7 @@ indices:
         value: attribute(el, "content")
        showinSitemap:
         select: head > meta[name="show-in-sitemap"]
-        value: attribute(el, "content") 
+        value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
@@ -89,7 +89,7 @@ indices:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       h1:
-        select: main > div:first-child > div:first-child h1, main > div > h1
+        select: main > div:first-child > div:first-child h1, main > div > h1, main .event-summary > h1
         value: textContent(el)
       productFamily:
         select: head > meta[name="product-family"]
