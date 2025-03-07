@@ -308,7 +308,8 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
 @media print {
   header,
   main > div:not(.pro-comparison-result),
-  footer{
+  footer,
+  main .pro-comparison-result > .row {
     display: none !important;
   }
 
