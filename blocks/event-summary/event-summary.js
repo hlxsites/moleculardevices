@@ -13,13 +13,14 @@ export default async function decorate(block) {
   }
   let endDate = getMetadata('event-end');
   if (endDate) { endDate = formatDate(endDate); }
-  const title = getMetadata('og:title');
+  const title = document.getElementsByTagName('h1')[0] || getMetadata('og:title');
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
 
+  title.classList.add('event-subtitle');
   block.append(p({ class: 'event-date' }, `${startDate} - ${endDate}`));
-  block.append(h1({ class: 'event-subtitle' }, title));
+  block.append(title);
   block.append(
     div({ class: 'event-keywords' },
       ul({ class: 'keyword-list' },
