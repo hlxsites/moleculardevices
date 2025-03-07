@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import {
-  div, h1, li, p, ul,
+  div, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
