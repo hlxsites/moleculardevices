@@ -309,7 +309,7 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
   header,
   main > div:not(.pro-comparison-result),
   footer,
-  main .pro-comparison-result > .row {
+  main .pro-comparison-result .product-comparison > .row {
     display: none !important;
   }
 
