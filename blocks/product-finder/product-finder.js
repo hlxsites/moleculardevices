@@ -7,6 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
+import { toTitleCase } from '../../scripts/scripts.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';
@@ -15,10 +16,21 @@ const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
 const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
+const PRODUCT_TYPE_PARAM = 'type';
+const PRODUCT_CATEGORY_PARAM = 'category';
 
 let placeholders = {};
 let step2Type = '';
 let step2Title = '';
+
+const params = new URL(window.location.href).searchParams;
+let prodType = '';
+let prodCategory = '';
+
+if (params.has(PRODUCT_TYPE_PARAM) || params.has(PRODUCT_CATEGORY_PARAM)) {
+  prodType = toTitleCase(params.get(PRODUCT_TYPE_PARAM));
+  prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
+}
 
 function getListIdentifier(tabName) {
   return toClassName(tabName);
@@ -190,14 +202,14 @@ function handleReagentsAndMediaDataInconsistency(type, category) {
 
 /* step three */
 async function stepThree(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  const title = getTabTitle(e.target);
-  let type = getTabType(e.target);
-  let category = getTabCategory(e.target);
+  const title = prodCategory || getTabTitle(e.target);
+  let type = prodType || getTabType(e.target);
+  let category = prodCategory || getTabCategory(e.target);
   const root = switchTab(title, stepNum, prevStepNum, 'Select Product');
 
   const originalType = type;
@@ -294,10 +306,10 @@ async function stepThree(e) {
 
 /* step two */
 async function stepTwo(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
-  const type = step2Type || getTabType(e.target);
-  const title = step2Title || getTabTitle(e.target);
+  const type = step2Type || prodType || getTabType(e.target);
+  const title = step2Title || prodType || getTabTitle(e.target);
   step2Title = title;
   step2Type = type;
 
@@ -334,6 +346,14 @@ async function stepOne(callback) {
 
   const types = await ffetch(PRODUCT_FINDER_URL).sheet('types').all();
   root.append(await renderIconCards(types, stepNum, '', callback));
+}
+
+function startOverCallback(e) {
+  if (params.size > 0) {
+    const newUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+  }
+  startOver(e);
 }
 
 export default async function decorate(block) {
@@ -374,7 +394,7 @@ export default async function decorate(block) {
     });
   });
 
-  const resetBtn = renderResetButton(startOver);
+  const resetBtn = renderResetButton(startOverCallback);
   block.append(resetBtn);
   decorateIcons(resetBtn);
 
@@ -397,4 +417,10 @@ export default async function decorate(block) {
     ),
   );
   stepOne(stepTwo);
+
+  /* with params */
+  if (prodType && prodCategory) {
+    stepTwo();
+    stepThree();
+  }
 }
