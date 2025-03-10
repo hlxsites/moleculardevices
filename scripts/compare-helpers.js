@@ -1,7 +1,7 @@
 export const MAX_COMPARE_ITEMS = 3;
 
 export function getTitleFromNode(item) {
-  return item.getAttribute('data-title');
+  return item.getAttribute('data-title') || item.getAttribute('title');
 }
 
 export function getPathFromNode(item) {
@@ -57,10 +57,12 @@ export function updateCompareButtons(selectedItemTitles) {
   });
 }
 
-export function unselectSpecificComparedItem(itemPath) {
+export function unselectSpecificComparedItem(itemPath, identifier = '') {
   const item = document.querySelector(`.compare-checkbox[data-path="${itemPath}"]`);
-  item.classList.remove('selected');
+  const itemTitle = identifier || getTitleFromNode(item);
+  if (item && item.classList.contains('selected')) item.classList.remove('selected');
 
-  const selectedItemTitles = getSelectedItems();
+  let selectedItemTitles = getSelectedItems();
+  selectedItemTitles = selectedItemTitles.filter((selectedItem) => selectedItem !== itemTitle);
   updateCompareButtons(selectedItemTitles);
 }
