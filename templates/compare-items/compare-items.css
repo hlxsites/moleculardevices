@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 main .compare-banner {
   position: fixed;
   z-index: 94035;
@@ -21,15 +22,15 @@ main .compare-banner .container {
   padding-right: 15px;
 }
 
-@media (min-width: 1200px) {
-  main .compare-banner .container {
-    width: 1170px;
-  }
-}
-
 @media (min-width: 992px) {
   main .compare-banner .container {
     width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .compare-banner .container {
+    width: 1170px;
   }
 }
 
@@ -86,7 +87,7 @@ main .compare-banner .gradiant-blue-btn.btn {
 
 main .compare-banner .gradiant-blue-btn.btn:hover {
   background: #fff;
-  box-shadow: 0 0 10px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 10px 1px rgb(0 0 0 /20%);
   color: #6eb43f;
   cursor: pointer;
 }

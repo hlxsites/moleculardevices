@@ -1,18 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable max-classes-per-file */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/prefer-default-export */
-
 import { loadCSS, decorateIcons } from '../../scripts/lib-franklin.js';
 import {
-  div,
-  button,
-  h2,
-  a,
-  h3,
-  img,
-  span,
-  p,
+  div, button, h2, a, h3, img, span, p,
 } from '../../scripts/dom-helpers.js';
 import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
 
@@ -469,6 +460,32 @@ class CompareModal {
     printBtn.addEventListener('click', () => {
       window.print();
     });
+
+    window.onbeforeprint = () => {
+      /* removing duplicate content while printing */
+      document.querySelectorAll('.pro-comparison-result').forEach((el, index) => {
+        if (index > 0) el.remove();
+      });
+
+      /* set column width on print */
+      const columnsHeader = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row:first-child .col-sm-3');
+      const columns = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row .col-sm-3');
+      const columnsWidth = `${100 / columnsHeader.length}%`;
+
+      if (columns && columns.length > 0) {
+        columns.forEach((col) => {
+          col.style.width = columnsWidth;
+        });
+      }
+    };
+
+    // Reset column width after print
+    window.onafterprint = () => {
+      const columns = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row .col-sm-3');
+      columns.forEach((col) => {
+        col.removeAttribute('style');
+      });
+    };
 
     this.modal = compareModal;
 

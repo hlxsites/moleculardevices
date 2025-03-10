@@ -59,8 +59,10 @@ export function updateCompareButtons(selectedItemTitles) {
 
 export function unselectSpecificComparedItem(itemPath) {
   const item = document.querySelector(`.compare-checkbox[data-path="${itemPath}"]`);
+  const itemTitle = getTitleFromNode(item);
   item.classList.remove('selected');
 
-  const selectedItemTitles = getSelectedItems();
+  let selectedItemTitles = getSelectedItems();
+  selectedItemTitles = selectedItemTitles.filter((selectedItem) => selectedItem !== itemTitle);
   updateCompareButtons(selectedItemTitles);
 }
