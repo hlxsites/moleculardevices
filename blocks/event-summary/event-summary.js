@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import {
-  div, h1, li, p, ul,
+  div, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
@@ -13,7 +13,7 @@ export default async function decorate(block) {
   }
   let endDate = getMetadata('event-end');
   if (endDate) { endDate = formatDate(endDate); }
-  const title = document.getElementsByTagName('h1')[0] || getMetadata('og:title');
+  const title = document.getElementsByTagName('h1')[0];
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
