@@ -17,7 +17,7 @@ const DEFAULT_TITLE = 'Select a Product Type';
 const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 const PRODUCT_TYPE_PARAM = 'type';
-const PRODUCT_CATEGORY_PARAM = 'category';
+const PRODUCT_CATEGORY_PARAM = 'cat';
 
 let placeholders = {};
 let step2Type = '';
