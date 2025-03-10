@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import {
-  div, h1, li, p, ul,
+  div, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
@@ -13,13 +13,14 @@ export default async function decorate(block) {
   }
   let endDate = getMetadata('event-end');
   if (endDate) { endDate = formatDate(endDate); }
-  const title = getMetadata('og:title');
+  const title = document.querySelector('main h1');
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
 
+  title.classList.add('event-subtitle');
   block.append(p({ class: 'event-date' }, `${startDate} - ${endDate}`));
-  block.append(h1({ class: 'event-subtitle' }, title));
+  block.append(title);
   block.append(
     div({ class: 'event-keywords' },
       ul({ class: 'keyword-list' },
