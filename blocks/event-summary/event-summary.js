@@ -13,7 +13,7 @@ export default async function decorate(block) {
   }
   let endDate = getMetadata('event-end');
   if (endDate) { endDate = formatDate(endDate); }
-  const title = document.getElementsByTagName('h1')[0];
+  const title = document.querySelector('main h1');
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
