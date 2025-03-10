@@ -16,13 +16,13 @@ const noThumbnailCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
   showImageThumbnail: false,
-  descriptionLength: 100,
+  descriptionLength: 150,
 });
 
 const thumbnailAndLinkCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
-  descriptionLength: 100,
+  descriptionLength: 150,
 });
 
 const productCardRender = await createCard({
