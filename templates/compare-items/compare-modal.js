@@ -365,14 +365,14 @@ class CompareModal {
       removeButton.addEventListener('click', () => {
         this.removeCompareItem(item.getTitle());
 
+        unselectSpecificComparedItem(item.getPath(), item.getIdentifier());
+        this.compareBanner.refreshBanner();
+
         if (this.compareItemsMetadata.length === 1) {
           // eslint-disable-next-line no-alert
           window.alert('Please choose atleast two products for comparison.');
+          this.hideModal();
         }
-
-        unselectSpecificComparedItem(item.getPath());
-        this.compareBanner.refreshBanner();
-        this.hideModal();
       });
 
       decorateIcons(itemColumn);
@@ -461,32 +461,6 @@ class CompareModal {
       window.print();
     });
 
-    window.onbeforeprint = () => {
-      /* removing duplicate content while printing */
-      document.querySelectorAll('.pro-comparison-result').forEach((el, index) => {
-        if (index > 0) el.remove();
-      });
-
-      /* set column width on print */
-      const columnsHeader = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row:first-child .col-sm-3');
-      const columns = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row .col-sm-3');
-      const columnsWidth = `${100 / columnsHeader.length}%`;
-
-      if (columns && columns.length > 0) {
-        columns.forEach((col) => {
-          col.style.width = columnsWidth;
-        });
-      }
-    };
-
-    // Reset column width after print
-    window.onafterprint = () => {
-      const columns = document.querySelectorAll('.pro-comparison-result .scroll_div .comparison-row .col-sm-3');
-      columns.forEach((col) => {
-        col.removeAttribute('style');
-      });
-    };
-
     this.modal = compareModal;
 
     closeBtn.addEventListener('click', () => {
@@ -504,6 +478,25 @@ class CompareModal {
     return defaultCSSPromise;
   }
 }
+
+/**
+ * Dynamically adjusts column widths based on the number of `.col-sm-3`
+ */
+function adjustColumnWidths() {
+  document.querySelectorAll('.comparison-row').forEach((row) => {
+    const columns = row.querySelectorAll('.col-sm-3');
+    const columnCount = columns.length || 1;
+    const columnWidth = `${100 / columnCount}%`;
+
+    columns.forEach((col) => {
+      col.style.width = columnWidth;
+    });
+  });
+}
+
+// Observe changes to the comparison table and adjust column widths dynamically
+const observer = new MutationObserver(adjustColumnWidths);
+observer.observe(document.body, { childList: true, subtree: true });
 
 /**
  * Create and render default compare products modal.
