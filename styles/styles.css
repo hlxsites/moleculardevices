@@ -1553,6 +1553,14 @@ main .section.background-molecules {
     height: 37px;
   }
 
+  main div.orange-buttons .button.secondary:link,
+  main div.orange-buttons .button.secondary:visited,
+  main div.orange-secondary-buttons .button.secondary:link,
+  main div.orange-secondary-buttons .button.secondary:visited {
+    color: var(--text-orange);
+    border: 2px solid var(--orange-background-color);
+  }
+
   /* ------ */
 
   main div.section.wave h2 {
@@ -1730,6 +1738,10 @@ main .section.background-molecules {
 
 .section.home-promo .columns > div > div:last-child {
   padding: 20px 0 40px;
+}
+
+.section.home-promo .columns > div > div:last-child h3 {
+  font-size: 28px;
 }
 
 .section.home-promo .columns > div > div:last-child a.button.secondary {
