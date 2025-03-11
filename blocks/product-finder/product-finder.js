@@ -27,9 +27,11 @@ const params = new URL(window.location.href).searchParams;
 let prodType = '';
 let prodCategory = '';
 
-if (params.has(PRODUCT_TYPE_PARAM) || params.has(PRODUCT_CATEGORY_PARAM)) {
+if (params.has(PRODUCT_TYPE_PARAM)) {
   prodType = toTitleCase(params.get(PRODUCT_TYPE_PARAM));
-  prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
+  if (params.has(PRODUCT_CATEGORY_PARAM)) {
+    prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
+  }
 }
 
 function getListIdentifier(tabName) {
@@ -72,7 +74,9 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
 
   const cardRenderer = await createCard({
     renderItem: renderIconItem,
+    descriptionLength: 150,
   });
+
   listArr.forEach((rfq) => {
     list.append(cardRenderer.renderItem(rfq, progressStep, callback));
   });
@@ -233,7 +237,8 @@ async function stepThree(e) {
   });
 
   const products = await getProducts(type, category);
-  products.sort((item1, item2) => item2.productWeight - item1.productWeight);
+  // products.sort((item1, item2) => item2.productWeight - item1.productWeight);
+  products.sort((item1, item2) => item2.date - item1.date);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
@@ -246,6 +251,7 @@ async function stepThree(e) {
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
       defaultButtonText: placeholders.requestQuote || 'Request Quote',
+      descriptionLength: 150,
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
@@ -419,8 +425,10 @@ export default async function decorate(block) {
   stepOne(stepTwo);
 
   /* with params */
-  if (prodType && prodCategory) {
+  if (prodType) {
     stepTwo();
-    stepThree();
+    if (prodCategory) {
+      stepThree();
+    }
   }
 }
