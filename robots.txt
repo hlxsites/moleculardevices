@@ -139,7 +139,7 @@ Disallow: /en/assets/app-note/dd/3d-biology/fully-automated-cell-culture-passagi
 Disallow: /en/assets/app-note/br/fujifilm-bacterial-endotoxin-assays-on-spectramax-readers
 Disallow: /en/assets/app-note/dd/flipr/functional-analysis-of-spontaneous-calcium-oscillations-of-ipsc-derived-3d-neural-organoids-and-neuroactive-compounds
 Disallow: /en/assets/app-note/dd/img/evaluation-compound-toxicity-effects-on-healthy-intestinal-organoids-using-imaging 
-
+Disallow: /en/assets/app-note/dd/img/novel-workflow-interaction-between-t-cells-and-patient-derived-organoids
 
 
 
