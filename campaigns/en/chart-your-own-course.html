@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="script-src 'nonce-aem' 'strict-dynamic'; base-uri 'self'; object-src 'none';"
+  />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Molecular Devices</title>
@@ -9,10 +13,10 @@
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
-  <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
-  <script type="text/javascript" src="js/functions.js"></script>
+  <script nonce="aem" type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+  <script nonce="aem" type="text/javascript" src="js/functions.js"></script>
 
-  <script>
+  <script nonce="aem">
     //  var current_page =  window.location.pathname;
     //if(current_page == '/campaigns/en/chart-your-own-course/index.html' || current_page == '/campaigns/en/chart-your-own-course/'){
     //  window.location = 'https://www.dev-molecular-devices.pantheonsite.io/campaigns/en/chart-your-own-course';
@@ -31,7 +35,7 @@
   </script>
 
 
-  <script type="text/javascript">
+  <script nonce="aem" type="text/javascript">
     setTimeout(function () {
       var a = document.createElement("script");
       var b = document.getElementsByTagName("script")[0];
@@ -48,7 +52,7 @@
     <iframe src="//www.googletagmanager.com/ns.html?id=GTM-MTQV2H" height="0" width="0"
       style="display:none;visibility:hidden"></iframe>
   </noscript>
-  <script>(function (w, d, s, l, i) {
+  <script nonce="aem">(function (w, d, s, l, i) {
       w[l] = w[l] || []; w[l].push({
         'gtm.start':
           new Date().getTime(), event: 'gtm.js'
@@ -231,7 +235,7 @@
     <section id="watch-videos">
       <h2>Watch Videos</h2>
       <div id="videos-container">
-        <script type="text/javascript" id="vidyard_embed_code_2tKEp18eNj6v1e31bfJwAe"
+        <script nonce="aem" type="text/javascript" id="vidyard_embed_code_2tKEp18eNj6v1e31bfJwAe"
           src="https://play.vidyard.com/2tKEp18eNj6v1e31bfJwAe.js?v=3.1.1&type=lightbox"></script>
         <div class="vid outer_vidyard_wrapper">
           <div id="video1" class="vidyard_wrapper" onclick="fn_vidyard_2tKEp18eNj6v1e31bfJwAe();">
@@ -242,7 +246,7 @@
           <p>Bridge the gap between the affordability of filter-based readers and the flexibility of
             monochromator-based systems.</p>
         </div>
-        <script type="text/javascript" id="vidyard_embed_code_37tardjo4nnGx5fiYuWjw"
+        <script nonce="aem" type="text/javascript" id="vidyard_embed_code_37tardjo4nnGx5fiYuWjw"
           src="https://play.vidyard.com/37tardjo4nnG-x5fiYuWjw.js?v=3.1.1&type=lightbox"></script>
         <div class="vid outer_vidyard_wrapper" onclick="fn_vidyard_37tardjo4nnG$x5fiYuWjw();">
           <div id="video2" class="vidyard_wrapper">
@@ -252,7 +256,7 @@
           <h3>SpectraMax® M Series Multi-Mode Microplate Readers</h3>
           <p>With six different models to choose from, it's easy to find the one you want for your lab</p>
         </div>
-        <script type="text/javascript" id="vidyard_embed_code_7kaWQ7aPqoNC2mon7qK79U"
+        <script nonce="aem" type="text/javascript" id="vidyard_embed_code_7kaWQ7aPqoNC2mon7qK79U"
           src="https://play.vidyard.com/7kaWQ7aPqoNC2mon7qK79U.js?v=3.1.1&type=lightbox"></script>
         <div class="vid outer_vidyard_wrapper">
           <div id="video3" class="vidyard_wrapper" onclick="fn_vidyard_7kaWQ7aPqoNC2mon7qK79U();">
@@ -262,7 +266,7 @@
           <h3>SpectraMax® iD5 Multi-Mode Microplate Reader</h3>
           <p>Your all access pass to your next breakthrough</p>
         </div>
-        <script type="text/javascript" id="vidyard_embed_code_JWr597wiRf19F3cCUq8T4A"
+        <script nonce="aem" type="text/javascript" id="vidyard_embed_code_JWr597wiRf19F3cCUq8T4A"
           src="https://play.vidyard.com/JWr597wiRf19F3cCUq8T4A.js?v=3.1.1&type=lightbox"></script>
         <div class="vid outer_vidyard_wrapper">
           <div id="video4" class="vidyard_wrapper" onclick="fn_vidyard_JWr597wiRf19F3cCUq8T4A();">
@@ -312,7 +316,7 @@
   </div>
 
   <!-- add cmp to all links -->
-  <script>
+  <script nonce="aem">
     const cmpValue = '701Rn00000JuHpdIAF';
     const links = document.querySelectorAll('a');
     links.forEach(link => {
