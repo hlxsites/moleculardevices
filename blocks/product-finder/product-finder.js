@@ -237,8 +237,7 @@ async function stepThree(e) {
   });
 
   const products = await getProducts(type, category);
-  // products.sort((item1, item2) => item2.productWeight - item1.productWeight);
-  products.sort((item1, item2) => item2.date - item1.date);
+  products.sort((item1, item2) => item2.productWeight - item1.productWeight);
 
   let list = root.querySelector(`.product-finder-list[data-card-type="${dataCardType}"]`);
   if (list) {
