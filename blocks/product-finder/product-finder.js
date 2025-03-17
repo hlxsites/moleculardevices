@@ -357,6 +357,8 @@ function startOverCallback(e) {
   if (params.size > 0) {
     const newUrl = window.location.origin + window.location.pathname;
     window.history.replaceState({}, document.title, newUrl);
+    prodType = '';
+    prodCategory = '';
   }
   startOver(e);
 }
