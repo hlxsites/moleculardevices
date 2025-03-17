@@ -23,7 +23,8 @@ let placeholders = {};
 let step2Type = '';
 let step2Title = '';
 
-const params = new URL(window.location.href).searchParams;
+const url = new URL(window.location);
+const params = url.searchParams;
 let prodType = '';
 let prodCategory = '';
 
@@ -223,6 +224,10 @@ async function stepThree(e) {
   root.setAttribute('data-type', type);
   root.setAttribute('data-category', category);
 
+  // Update URL with type parameter
+  params.set('cat', toClassName(category));
+  window.history.replaceState({}, '', url.toString());
+
   const dataCardType = getListIdentifier(`${type}-${category}-products`);
   const lists = root.querySelectorAll('.product-finder-list');
   lists.forEach((list) => {
@@ -318,6 +323,10 @@ async function stepTwo(e) {
   step2Title = title;
   step2Type = type;
 
+  // Update URL with type parameter
+  params.set('type', toClassName(step2Type));
+  window.history.replaceState({}, '', url.toString());
+
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
   // eslint-disable-next-line max-len
@@ -384,6 +393,8 @@ export default async function decorate(block) {
       if (stepCheckbox.classList.contains(CHECKED_CLASS)) {
         if (idx === 0) {
           startOver(e);
+          params.delete('type');
+          window.history.replaceState({}, '', url.toString());
         } else if (idx === 1) {
           stepCheckbox.classList.remove(CHECKED_CLASS);
           const progressCustomTexts = document.querySelectorAll('.product-finder-container .step-custom-text');
@@ -396,6 +407,8 @@ export default async function decorate(block) {
             activeStep.style.display = 'none';
           });
           stepTwo(e);
+          params.delete('cat');
+          window.history.replaceState({}, '', url.toString());
         }
       }
     });
