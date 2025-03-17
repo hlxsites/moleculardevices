@@ -173,3 +173,11 @@ export default async function decorate(block) {
     }
   });
 }
+
+/* Load Dreamdata script */
+const dreamdataScript = document.createElement('script');
+dreamdataScript.charset = 'utf-8';
+dreamdataScript.id = 'dreamdata-iframe';
+dreamdataScript.type = 'text/javascript';
+dreamdataScript.src = 'https://cdn.dreamdata.cloud/scripts/analytics/next/iframe-identify-form.js';
+document.body.appendChild(dreamdataScript);
