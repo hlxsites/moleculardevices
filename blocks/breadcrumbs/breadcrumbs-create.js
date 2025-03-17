@@ -162,7 +162,8 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    return document.originalTitle ? document.originalTitle : document.title;
+    const heading = document.querySelector('main h1').textContent;
+    return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
   }
 
   return part;
