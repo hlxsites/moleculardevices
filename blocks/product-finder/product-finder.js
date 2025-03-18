@@ -394,7 +394,9 @@ export default async function decorate(block) {
         if (idx === 0) {
           startOver(e);
           params.delete('type');
+          params.delete('cat');
           prodType = '';
+          prodCategory = '';
           window.history.replaceState({}, '', url.toString());
         } else if (idx === 1) {
           stepCheckbox.classList.remove(CHECKED_CLASS);
