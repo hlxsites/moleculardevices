@@ -94,6 +94,9 @@ Disallow: /en/assets/scientific-posters/dd/img/laboratory-automation-screening-r
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/using-power-of-ai-in-automated-cell-culture.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-analysis-tools-and-high-content-screening-to-improve-3d-screening-assay-data.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/ccnd1-knockout-colony-selection-screening-via-mammalian-colony-picker.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-compound-screening-toxicity-intestinal-organoids.pdf
+
+
 
 # HTML Page (App Note HTML Page Block)
 
