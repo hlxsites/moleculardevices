@@ -180,66 +180,27 @@ Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra
 
 # Tutorials Videos Block
 
-Disallow: /en/assets/tutorials-videos/dd/img/high-content-analysis-and-phenotypic-characterization-of-2d-and-3d-cellular-models
-Disallow: /en/assets/tutorials-videos/dd/img/developing-high-throughput-organ-on-a-chip-tissue-models-for-drug-discovery-using-high-content-imaging
-Disallow: /en/assets/tutorials-videos/dd/img/magnetic-3d-bioprinting-3d-cell-culture-in-2d-workflow
-Disallow: /en/assets/tutorials-videos/dd/img/accelerating-study-of-viral-infection-and-therapeutics-with-microplate-based-detection-and-high-throughput-screening
-Disallow: /en/assets/tutorials-videos/dd/img/optimizing-high-content-screening-tools-for-physiologically-relevant-3d-in-vitro-models
-Disallow: /en/assets/tutorials-videos/dd/img/cellular-images-to-results-in-minutes-with-the-automated-imaging
-Disallow: /en/assets/tutorials-videos/dd/img/3d-neural-spheroids-implementation-in-drug-discovery
-Disallow: /en/assets/tutorials-videos/dd/img/ai-based-approach-to-high-content-phenotypic-characterization-of-human-ipsc-derived-neuronal-cells
-Disallow: /en/assets/tutorials-videos/dd/img/water-immersion-objectives-and-high-content-imaging-system
-Disallow: /en/assets/tutorials-videos/dd/cns/empower-your-electrophysiology-studies-using-new-axon-pclamp-11-software-suite
-Disallow: /en/assets/tutorials-videos/dd/img/imaging-challenges-for-transitioning-high-content-assays-to-3d
-Disallow: /en/assets/tutorials-videos/dd/img/3d-cell-culture-tissue-clearing-and-high-content-imaging-in-quest-of-solutions-to-nafld
-Disallow: /en/assets/tutorials-videos/dd/img/disease-modeling-in-21st-century-automated-organoid-assays-with-3d-imaging
-Disallow: /en/assets/tutorials-videos/dd/img/capturing-complexity-of-3d-biology
-Disallow: /en/assets/tutorials-videos/dd/img/explore-more-complex-biology-with-automated-imaging-of-3d-assay-models
-Disallow: /en/assets/tutorials-videos/dd/img/capturing-complexity-of-cell-biology
-Disallow: /en/assets/tutorials-videos/dd/img/getting-started-with-3d-human-tissue-models-and-imaging
 Disallow: /en/assets/tutorials-videos/dd/img/automated-culture-and-high-content-imaging-of-3d-lung-and-cardiac
 Disallow: /en/assets/tutorials-videos/dd/img/monitoring-organoid-development-in-ipsc-derived-3d-cerebral-organoids
 Disallow: /en/assets/tutorials-videos/dd/img/deep-learning-based-image-analysis-for-label-free-monitoring-of-ipsc-3d-organoid-cultures
 Disallow: /en/assets/tutorials-videos/dd/img/automated-culture-monitoring-and-analysis-of-complex-biological-systems
-Disallow: /en/assets/tutorials-videos/dd/img/automating-culture-and-high-content-imaging-of-3d-organoids-for-in-vitro-compound-effects
-Disallow: /en/assets/tutorials-videos/dd/img/application-and-imaging-analysis-of-organoid-systems
-Disallow: /en/assets/tutorials-videos/dd/img/automation-high-content-imaging-for-organoid-research
-Disallow: /en/assets/tutorials-videos/dd/img/fast-and-simple-3d-spheroid-analysis-using-the-automated-high-content-imaging
 Disallow: /en/assets/tutorials-videos/dd/img/high-content-phenotypic-profiling-screening
-Disallow: /en/assets/tutorials-videos/dd/img/enhancing-3d-disease-models-with-organ-on-a-chip
-Disallow: /en/assets/tutorials-videos/dd/img/level-up-3d-cell-culture-from-research-to-high-throughput
-Disallow: /en/assets/tutorials-videos/dd/img/enhance-high-content-3d-biology-imaging-with-an-automated-sample-preparation
-Disallow: /en/assets/tutorials-videos/dd/img/3d-tissue-models-imaging-and-automation-of-organ-on-a-chip
-Disallow: /en/assets/tutorials-videos/dd/img/leverage-automated-end-to-end-workflows-enable-complex-organoid-assays
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/automate-3d-biology-high-throughput-workflows
-Disallow: /en/assets/tutorials-videos/dd/img/standard-in-organoid-culture-and-image-based-analyses
-Disallow: /en/assets/tutorials-videos/dd/img/streamline-your-end-to-end-cell-painting-workflow
-Disallow: /en/assets/tutorials-videos/dd/img/ananda-neurite-untangled-neuronal-phenotypes
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/lab-automation-with-patient-derived-tumoroids-to-find-clinically-aggressive-cancers
 Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3D-models
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/are-organoids-future-of-drug-discovery
-Disallow: /en/assets/tutorials-videos/dd/3d-biology/scale-up-your-screening-3d-biology-therapeutic-drug-discovery
-Disallow: /en/assets/tutorials-videos/dd/3d-biology/slas-2023-keynote-session
-Disallow: /en/assets/tutorials-videos/dd/3d-biology/scale-up-3d-model-drug-screening-using-robotic-platform-with-xeno-free-hydrogel
-Disallow: /en/assets/tutorials-videos/dd/3d-biology/scaling-up-organoid-research-new-approach-with-assay-ready-organoids
-Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforming-the-complexities-of-3d-cell-culture-into-reliable-and-translatable-science
-Disallow: /en/assets/tutorials-videos/dd/cns/advanced-analysis-of-action-potentials-using-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/dd/img/gri3d-in-action-ai-enabled-drug-screening-on-standardized-pancreatic-cancer-organoids
-Disallow: /en/assets/tutorials-videos/dd/img/organoids-unlock-pathology-of-traumatic-brain-injuries
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/advancing-toxicity-research-with-3d-tissue-models-and-imaging-techniques
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
-Disallow: /en/assets/tutorials-videos/dd/img/future-of-disease-modeling-for-precision-medicine
 Disallow: /en/assets/tutorials-videos/dd/cns/minis-search-analysis-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/3d-organoid-culture-and-assays-powered-by-machine-learning-and-image-analysis
 Disallow: /en/assets/tutorials-videos/dd/cns/tips-for-running-action-potential-search-in-axon-clampfit-software
 Disallow: /en/assets/tutorials-videos/dd/cns/controlling-external-devices-using-digital-outputs
 Disallow: /en/assets/tutorials-videos/dd/cns/setting-up-automatic-analysis-in-pclamp
 Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in-clampex
-Disallow: /en/assets/tutorials-videos/dd/cns/axon-patch-clamp-electrophysiology-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
-Disallow: /en/assets/tutorials-videos/dd/cns/minis-analysis-axon-pclamp-software
 Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation
-Disallow: /en/assets/tutorials-videos/dd/img/physiologically-relevant-3d-ecm-for-in-vitro-oncology-research-and-high-content-imaging-of-3d-models
+
         
 
 
