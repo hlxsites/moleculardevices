@@ -5,8 +5,8 @@ import {
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
 import { loadScript } from '../../scripts/scripts.js';
 import {
-  createSalesforceForm, extractFormData, formMapping, getFormFieldValues,
-  getFormId, updateFormFields,
+  extractFormData, formMapping, getFormFieldValues,
+  getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
 
 /* create hubspot form */
@@ -18,30 +18,22 @@ export function createHubSpotForm(formConfig, target, type = '') {
       formId: formConfig.formId || getFormId(type),
       target: `#${target}`,
       onFormReady: (form) => {
-        // Handle Salesforce hidden fields via message event listener
-        window.addEventListener('message', (event) => {
-          if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-            const fieldValues = getFormFieldValues(formConfig);
-            updateFormFields(form, fieldValues);
+        // Handle Salesforce hidden fields
+        const fieldValues = getFormFieldValues(formConfig);
+        updateFormFields(form, fieldValues);
 
-            // Customize the submit button
-            const submitInput = form.querySelector('input[type="submit"]');
-            if (submitInput) {
-              const submitButton = button({
-                type: 'submit',
-                class: 'button primary',
-              }, formConfig.cta || submitInput.value || 'Submit');
-              submitInput.replaceWith(submitButton);
-            }
-          }
-        });
+        // Customize the submit button
+        const submitInput = form.querySelector('input[type="submit"]');
+        if (submitInput) {
+          const submitButton = button({
+            type: 'submit',
+            class: 'button primary',
+          }, formConfig.cta || submitInput.value || 'Submit');
+          submitInput.replaceWith(submitButton);
+        }
       },
       onFormSubmit: (hubspotForm) => {
-        createSalesforceForm(hubspotForm, formConfig);
-        if (type === 'newsletter' || type === 'lab-notes') {
-          // eslint-disable-next-line no-undef, quote-props
-          dataLayer.push({ 'event': 'new_subscriber' });
-        }
+        handleFormSubmit(hubspotForm, formConfig, type);
       },
     });
   } catch (e) {
