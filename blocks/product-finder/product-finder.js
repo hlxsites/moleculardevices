@@ -90,6 +90,12 @@ function startOver(e) {
   step2Type = '';
   step2Title = '';
 
+  params.delete('type');
+  params.delete('cat');
+  prodType = '';
+  prodCategory = '';
+  window.history.replaceState({}, '', url.toString());
+
   const currentTab = document.querySelector('.product-finder-step-wrapper.active');
   const firstTab = document.getElementById(`${STEP_PREFIX}-1`);
   const productsTab = document.getElementById(`${STEP_PREFIX}-3`);
@@ -393,11 +399,6 @@ export default async function decorate(block) {
       if (stepCheckbox.classList.contains(CHECKED_CLASS)) {
         if (idx === 0) {
           startOver(e);
-          params.delete('type');
-          params.delete('cat');
-          prodType = '';
-          prodCategory = '';
-          window.history.replaceState({}, '', url.toString());
         } else if (idx === 1) {
           stepCheckbox.classList.remove(CHECKED_CLASS);
           const progressCustomTexts = document.querySelectorAll('.product-finder-container .step-custom-text');
