@@ -30,10 +30,9 @@ let prodCategory = '';
 
 if (params.has(PRODUCT_TYPE_PARAM)) {
   prodType = toTitleCase(params.get(PRODUCT_TYPE_PARAM));
-  console.log(toTitleCase(params.get(PRODUCT_CATEGORY_PARAM)));
   if (params.has(PRODUCT_CATEGORY_PARAM) && params.get(PRODUCT_CATEGORY_PARAM) === 'microplate-readers') {
     prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
-  } else{
+  } else {
     prodCategory = '';
     prodType = '';
   }
