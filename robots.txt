@@ -79,25 +79,9 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-
 
 # HTML Page (App Note HTML Page Block)
 
-Disallow: /en/assets/app-note/dd/img/monitoring-of-t-cell-invasions-assay-using-3d-spheroid-model
-Disallow: 
-Disallow: 
-Disallow: /en/assets/app-note/dd/3d-biology/novel-patient-derived-colorectal-cancer-organoid-platform-for-high-throughput-drug-discovery
 Disallow: /en/assets/app-note/dd/3d-biology/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids
-Disallow: /en/assets/app-note/dd/3d-biology/3d-cell-culture-systems-reveal-drug-efficacy-that-is-undetectable-in-flat-culture-systems
-Disallow: /en/assets/app-note/dd/3d-biology/understanding-organoid-morphology-organoid-size-and-cell-count-from-3d-image-analysis
-Disallow: /en/assets/app-note/dd/img/high-throughput-modeling-of-inflammatory-bowel-disease-using-human-intestina-organoids
-Disallow: /en/assets/app-note/dd/img/neural-outgrowth-analysis-in-3d-human-brain-micro-tissues-for-compound-screening-applications
 Disallow: /en/assets/app-note/dd/flipr/structural-organization-and-functional-analysis-of-compound-response-in-3d-human-ipsc-derived-cardiac-tri-culture-microtissues
-Disallow: /en/assets/app-note/dd/3d-biology/automating-patient-derived-organoid-high-content-assays
-Disallow: /en/assets/app-note/dd/img/high-content-imaging-and-morphology-analyses-on-standardized-human-rectal-organoid-arrays
-Disallow: /en/assets/app-note/dd/3d-biology/bio-printed-3d-liver-model-and-high-content-imaging-for-assessment-of-compound-toxicity-effects
-Disallow: /en/assets/app-note/dd/img/leverage-automated-workflows-to-enable-complex-organoid-assays
-Disallow: /en/assets/app-note/bpd/qpix-xe-high-throughput-microbial-colony-picker-for-synthetic-biology-workflows
-Disallow: /en/assets/app-note/dd/img/3d-quantitative-measurement-of-t-cell-penetration-into-cancer-spheroids
-Disallow: /en/assets/app-note/dd/3d-biology/matrigel-dome-assays-and-drug-screening-of-colorectal-cancer-organoids
 Disallow: /en/assets/app-note/dd/img/functional-characterization-of-3d-neurospheres-assembled-using-ipsc-derived-neurons-and-astrocytes
-Disallow: /en/assets/app-note/bpd/single-cell-dispensing-and-screening-of-hipscs-for-monoclonality-verification-using-impedance-based-single-cell-dispenser
 Disallow: /en/assets/app-note/dd/3d-biology/cell-culture-automation-of-3d-cancer-spheroid-assay-with-cellxpress-ai-cell-culture-system
 Disallow: /en/assets/app-note/dd/3d-biology/automation-of-3d-intestinal-organoids-culture-with-cellxpress-ai-system
 Disallow: /en/assets/app-note/bpd/enhanced-develpment-of-virus-specific-hybridomas-using-clonepix-and-cloneselect-imager
@@ -106,8 +90,7 @@ Disallow: /en/assets/app-note/bpd/rapid-and-efficient-selection-of-high-producin
 Disallow: /en/assets/app-note/bpd/expanded-fluorescence-screening-using-qpix-400-series
 Disallow: /en/assets/app-note/bpd/automated-colorimetric-colony-selection-blue-white-colony-screening-with-qpix-400-series
 Disallow: /en/assets/app-note/bpd/fluorescent-bacterial-colony-selection-using-qpix-400-system
-Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expressing-mammalian-cell-lines-using-novel-clonepix
-Disallow: /en/assets/app-note/bpd/qpix-microbial-colony-pickers-ensure-sterility-by-preventing-risk-of-cross-contamination
+Disallow: /en/assets/app-note/bpd/rapid-selection-and-development-of-gpcr-expressing-mammalian-cell-lines-using-novel-clonepix 
 Disallow: /en/assets/app-note/dd/flipr/functional-characterization-of-healthy-alzheimer-disease-related-3d-neurospheres-using-human-ipsc-derived-glutamatergic-neurons
 Disallow: /en/assets/app-note/dd/3d-biology/automation-of-ipsc-culture-passaging-and-expansion-with-cellxpress-ai-automated-cell-culture-system
 Disallow: /en/assets/app-note/dd/img/all-optical-assessment-of-long-term-drug-effects-on-human-ipsc-derived-cardiomyocytes
