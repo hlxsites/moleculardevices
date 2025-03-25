@@ -139,8 +139,16 @@ Disallow: /en/assets/tutorials-videos/dd/cns/setting-up-automatic-analysis-in-pc
 Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in-clampex
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
 Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
+Disallow: /en/assets/tutorials-videos/br/gmp-glp-labs-meet-data-integrity-guidelines-in-softmax-pro-gxp-7-1-1
+Disallow: /en/assets/tutorials-videos/br/how-to-perform-parallel-line-analysis-in-softmax-pro-software
+Disallow: /en/assets/tutorials-videos/br/how-to-set-up-elisa-assay-and-basic-analysis-using-softmax-pro
+Disallow: /en/assets/tutorials-videos/br/performing-advanced-statistical-analyses-in-softmax-pro-software
+Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-software
+Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 
-        
+
+
 
 
 
