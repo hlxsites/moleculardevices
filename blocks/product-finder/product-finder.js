@@ -30,11 +30,8 @@ let prodCategory = '';
 
 if (params.has(PRODUCT_TYPE_PARAM)) {
   prodType = toTitleCase(params.get(PRODUCT_TYPE_PARAM));
-  if (params.has(PRODUCT_CATEGORY_PARAM) && params.get(PRODUCT_CATEGORY_PARAM) === 'microplate-readers') {
+  if (params.has(PRODUCT_CATEGORY_PARAM)) {
     prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
-  } else {
-    prodCategory = '';
-    prodType = '';
   }
 }
 
@@ -234,8 +231,8 @@ async function stepThree(e) {
   root.setAttribute('data-category', category);
 
   // Update URL with type parameter
-  params.set('cat', toClassName(category));
-  window.history.replaceState({}, '', url.toString());
+  // params.set('cat', category);
+  // window.history.replaceState({}, '', url.toString());
 
   const dataCardType = getListIdentifier(`${type}-${category}-products`);
   const lists = root.querySelectorAll('.product-finder-list');
@@ -333,8 +330,8 @@ async function stepTwo(e) {
   step2Type = type;
 
   // Update URL with type parameter
-  params.set('type', toClassName(step2Type));
-  window.history.replaceState({}, '', url.toString());
+  // params.set('type', toClassName(step2Type));
+  // window.history.replaceState({}, '', url.toString());
 
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
