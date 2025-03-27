@@ -18,13 +18,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
       formId: formConfig.formId || getFormId(type),
       target: `#${target}`,
       onFormReady: (form) => {
-        // Reset the form when the user navigates back from the thank-you page
-        window.addEventListener('pageshow', () => {
-          if (form) {
-            form.reset();
-          }
-        });
-
         // Handle Salesforce hidden fields
         const fieldValues = getFormFieldValues(formConfig);
         updateFormFields(form, fieldValues);
@@ -57,7 +50,7 @@ export function loadHubSpotScript(callback) {
 }
 
 /* Converts any string to Title Case */
-function toTitleCase(str) {
+export function toTitleCase(str) {
   return str.toLowerCase().replace(/(?:^|\s|[_-])\w/g, (match) => match.toUpperCase());
 }
 
