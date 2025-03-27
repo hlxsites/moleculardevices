@@ -275,8 +275,12 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     iframe.onload = () => {
       if (returnURL && returnURL !== 'null') {
         window.top.location.href = returnURL;
-        iframe.remove();
-        form.remove();
+
+        hubspotForm.reset(); // Reset form after successful submission
+        setTimeout(() => {
+          iframe.remove();
+          form.remove();
+        }, 1000);
       }
     };
 
