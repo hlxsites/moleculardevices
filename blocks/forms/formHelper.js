@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
@@ -221,12 +220,14 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
 
 export function handleFormSubmit(hubspotForm, formConfig, type) {
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
+    // eslint-disable-next-line no-console
     console.error('Invalid HubSpot form detected.');
     return;
   }
 
   //  Form Validation Before Submission
   if (!hubspotForm.checkValidity()) {
+    // eslint-disable-next-line no-console
     console.error('HubSpot Form validation failed!');
     return;
   }
@@ -274,6 +275,8 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     iframe.onload = () => {
       if (returnURL && returnURL !== 'null') {
         window.top.location.href = returnURL;
+        iframe.remove();
+        form.remove();
       }
     };
 
