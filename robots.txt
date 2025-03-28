@@ -74,7 +74,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/using-power-o
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-analysis-tools-and-high-content-screening-to-improve-3d-screening-assay-data.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/ccnd1-knockout-colony-selection-screening-via-mammalian-colony-picker.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-compound-screening-toxicity-intestinal-organoids.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/machine-learning-assisted-automation-of-2d-3d-cell-culture.pdf
 
 
 # HTML Page (App Note HTML Page Block)
@@ -146,7 +146,7 @@ Disallow: /en/assets/tutorials-videos/br/how-to-set-up-elisa-assay-and-basic-ana
 Disallow: /en/assets/tutorials-videos/br/performing-advanced-statistical-analyses-in-softmax-pro-software
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-software
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
-
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
 
 
 
