@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
 import {
+  createOptimizedPicture,
   decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
@@ -211,6 +213,13 @@ function handleReagentsAndMediaDataInconsistency(type, category) {
   return [type, category];
 }
 
+export function isNotOlderThan365Days(timestamp) {
+  const dateFromTimestamp = new Date(timestamp * 1000);
+  const oneYearAgo = new Date();
+  oneYearAgo.setDate(oneYearAgo.getDate() - 365);
+  return dateFromTimestamp >= oneYearAgo;
+}
+
 /* step three */
 async function stepThree(e) {
   if (e) e.preventDefault();
@@ -273,6 +282,9 @@ async function stepThree(e) {
       const card = cardRenderer.renderItem(product);
       // add product path attribute
       card.setAttribute('data-product-path', product.path);
+      if (isNotOlderThan365Days(product.date)) {
+        card.classList.add('new-product');
+      }
       list.append(card);
     });
   }
@@ -308,8 +320,16 @@ async function stepThree(e) {
   const categoryData = categories.find(
     (c) => c.category === originalCategory && c.type === originalType,
   );
+
+  const newProductCards = list.querySelectorAll('.new-product');
+  newProductCards.forEach((productCard) => {
+    const newTagImage = div({ class: 'new-product-tag' },
+      createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag'));
+    productCard.prepend(newTagImage);
+  });
+
+  const cardThumbs = list.querySelectorAll('.card-thumb');
   if (categoryData.displayImage === 'false') {
-    const cardThumbs = list.querySelectorAll('.card-thumb');
     cardThumbs.forEach((thumb) => {
       thumb.style.display = 'none';
     });
