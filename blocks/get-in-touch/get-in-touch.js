@@ -5,6 +5,16 @@ let DEFAULT_CMP = '';
 let REGION = new URLSearchParams(window.location.search).get('region');
 const COMMENTS = 'comments';
 
+/* Load Dreamdata script */
+function loadDreamdataScript(root) {
+  const dreamdataScript = document.createElement('script');
+  dreamdataScript.charset = 'utf-8';
+  dreamdataScript.id = 'dreamdata-iframe';
+  dreamdataScript.type = 'text/javascript';
+  dreamdataScript.src = 'https://cdn.dreamdata.cloud/scripts/analytics/next/iframe-identify-form.js';
+  root.appendChild(dreamdataScript);
+}
+
 function hubSpotFinalUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
@@ -44,6 +54,7 @@ function createForm(block, hubspotUrl) {
       const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
       hubspotUrl.href = hubUrl.href;
       hubspotIframe.src = hubspotUrl.href;
+      loadDreamdataScript(hubspotIframeWrapper);
     }
   });
   observer.observe(block);
