@@ -773,7 +773,7 @@ export function iframeResizeHandler(iframeURL, iframeID, root) {
 }
 
 /**
- * Decorates the SLAS 2024 form modal element.
+ * Decorates the SLAS 2024 form modal element. Same used for SLAS 2025 and onward *
  * @param {Element} main The main element
  */
 async function formInModalHandler(main) {
@@ -784,19 +784,17 @@ async function formInModalHandler(main) {
     const defaultForm = slasFormModal.getAttribute('data-default-form');
 
     const modalBody = div(
-      { class: 'slas-form' },
-      div(
-        { class: 'iframe-wrapper' },
-        iframe({
-          src: defaultForm,
-          id: modalIframeID,
-          loading: 'lazy',
-          title: 'SLAS Modal',
-        }),
-      ),
+      { class: 'iframe-wrapper slas-form' },
+      iframe({
+        src: defaultForm,
+        id: modalIframeID,
+        loading: 'lazy',
+        title: 'SLAS Modal',
+      }),
     );
 
-    await decorateModal(defaultForm, modalIframeID, modalBody);
+    await decorateModal(modalBody, '', true);
+    iframeResizeHandler(defaultForm, modalIframeID, modalBody);
   }
 }
 
