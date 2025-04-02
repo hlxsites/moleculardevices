@@ -773,7 +773,7 @@ export function iframeResizeHandler(iframeURL, iframeID, root) {
 }
 
 /**
- * Decorates the SLAS 2024 form modal element.
+ * Decorates the SLAS 2024 form modal element. Same used for SLAS 2025 and onward *
  * @param {Element} main The main element
  */
 async function formInModalHandler(main) {
