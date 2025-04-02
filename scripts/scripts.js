@@ -784,19 +784,17 @@ async function formInModalHandler(main) {
     const defaultForm = slasFormModal.getAttribute('data-default-form');
 
     const modalBody = div(
-      { class: 'slas-form' },
-      div(
-        { class: 'iframe-wrapper' },
-        iframe({
-          src: defaultForm,
-          id: modalIframeID,
-          loading: 'lazy',
-          title: 'SLAS Modal',
-        }),
-      ),
+      { class: 'iframe-wrapper slas-form' },
+      iframe({
+        src: defaultForm,
+        id: modalIframeID,
+        loading: 'lazy',
+        title: 'SLAS Modal',
+      }),
     );
 
-    await decorateModal(defaultForm, modalIframeID, modalBody);
+    await decorateModal(modalBody, '', true);
+    iframeResizeHandler(defaultForm, modalIframeID, modalBody);
   }
 }
 
