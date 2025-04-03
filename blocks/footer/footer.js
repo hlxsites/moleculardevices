@@ -134,7 +134,8 @@ async function buildNewsletter(container) {
 
   const formID = 'enewsletterSubscribeForm';
   // const formType = 'newsletter';
-  const formType = 'newsletter-subscription';
+  // const formType = 'newsletter-subscription';
+  const formType = 'lab-notes';
   const form = (
     div({
       id: newsletterId,
