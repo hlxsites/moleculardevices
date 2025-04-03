@@ -1,10 +1,11 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
   createOptimizedPicture,
+  toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, li, p, ul,
+  a, div, h3, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
@@ -136,7 +137,10 @@ async function buildNewsletter(container) {
   // const formType = 'newsletter';
   // const formType = 'newsletter-subscription';
   const formType = 'lab-notes';
-  const form = (
+  const formHeading = 'Lab Notes eNewsletter';
+
+  const form = div({ class: toClassName(`${formHeading}-wrapper`) },
+    h3({ id: toClassName(formHeading) }, formHeading),
     div({
       id: newsletterId,
       class: 'enewsletter-wrapper',
@@ -146,11 +150,15 @@ async function buildNewsletter(container) {
         class: 'hubspot-form',
         id: formID,
       },
-    )));
+    )),
+  );
 
   const formConfig = {
     formId: getFormId(formType),
+    latestNewsletter: await getLatestNewsletter(),
+    redirectUrl: null,
   };
+
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
 
   const newsletterList = await getLatestNewsletter();
