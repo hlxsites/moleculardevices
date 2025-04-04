@@ -9,7 +9,7 @@ import { sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getFormId } from '../../blocks/forms/formHelper.js';
 
-async function getLatestNewsletter() {
+export async function getLatestNewsletter() {
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
