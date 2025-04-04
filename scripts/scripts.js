@@ -114,18 +114,33 @@ function decorateWaveSection(main) {
     { media: '(min-width: 992px)', width: '1663' },
     { width: '900' },
   ]);
-  waveImage.querySelector('img').setAttribute('width', '1663');
-  waveImage.querySelector('img').setAttribute('height', '180');
-  const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
-  const waveSections = document.querySelectorAll('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons:not(.bluegreen)');
-  const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen, .wavecarousel)');
+  const waveImg = waveImage.querySelector('img');
+  waveImg.setAttribute('width', '1663');
+  waveImg.setAttribute('height', '180');
+
+  const skipWave = document.querySelector(
+    ':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child',
+  );
+
+  // Select all wave sections (excluding .bluegreen and .wavecarousel)
+  const waveSections = document.querySelectorAll(
+    '.section.wave:not(.bluegreen):not(.wavecarousel)',
+  );
+
   waveSections.forEach((section) => {
-    if (section && !section.querySelector('picture')) { section.appendChild(waveImage); }
+    const hasWavePicture = section.querySelector(':scope > picture');
+    if (!hasWavePicture) {
+      section.appendChild(waveImage.cloneNode(true));
+    }
   });
-  waveSections2.forEach((section) => {
-    if (section && !section.querySelector(':scope > picture')) { section.appendChild(waveImage); }
-  });
-  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
+
+  // Append a wave section at the end if skipWave is not found
+  if (!skipWave) {
+    main.appendChild(
+      div({ class: 'section wave', 'data-section-status': 'initialized' },
+        waveImage.cloneNode(true)),
+    );
+  }
 }
 
 /**
