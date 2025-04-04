@@ -103,8 +103,8 @@ Disallow: /en/assets/app-note/br/fujifilm-bacterial-endotoxin-assays-on-spectram
 Disallow: /en/assets/app-note/dd/flipr/functional-analysis-of-spontaneous-calcium-oscillations-of-ipsc-derived-3d-neural-organoids-and-neuroactive-compounds
 Disallow: /en/assets/app-note/dd/img/evaluation-compound-toxicity-effects-on-healthy-intestinal-organoids-using-imaging 
 Disallow: /en/assets/app-note/dd/img/novel-workflow-interaction-between-t-cells-and-patient-derived-organoids
-
-
+Disallow: /en/assets/app-note/dd/img/automated-culture-analysis-of-human-ipsc-derived-3d-tri-culture-cardiac-spheroids
+Disallow: /en/assets/app-note/dd/img/photoreceptor-functional-activity-in-retinal-organoids-using-calcium-imaging
 
 # Infographic Block
 
