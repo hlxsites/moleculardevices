@@ -3,7 +3,7 @@ import {
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
 } from '../../scripts/lib-franklin.js';
 import {
-  embedVideo, fetchFragment, isGatedResource, summariseDescription,
+  embedVideo, fetchFragment, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
@@ -107,7 +107,7 @@ export async function decorateResources(block) {
         div(
           { class: 'resource-header' },
           p(item.displayType),
-          h3(item.title),
+          h3(itemSearchTitle(item)),
         ),
         div(
           { class: 'resource-description' },
