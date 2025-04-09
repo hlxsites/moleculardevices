@@ -10,6 +10,14 @@
   padding-top: 0;
 }
 
+.newsletters .list > .items > .item > .image img {
+  min-height: 150px;
+  height: 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .newsletters label {
   display: block;
   padding: 0 0 0 37px;
