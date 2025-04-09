@@ -4,6 +4,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createList, createDropdown } from '../../scripts/list.js';
+import { a } from '../../scripts/dom-helpers.js';
 
 let placeholders = {};
 
@@ -20,7 +21,6 @@ function createFilters(options) {
 
 function prepareEntry(entry, showDescription, viewMoreText) {
   entry.filterYear = formatDateFullYear(entry.date);
-  console.log(entry);
   if (!showDescription) {
     entry.description = '';
   }
@@ -59,6 +59,12 @@ export default async function decorate(block) {
   options.activeFilters.set('page', 1);
 
   options.data = await fetchData();
+
+  /* add button in hero banner */
+  const banner = document.querySelector('.hero.newsletters');
+  const heading = banner.querySelector('h1');
+  const ctaBtn = a({ class: 'button primary', href: options.data[0].gatedURL, target: '_blank' }, 'View Latest Newsletter');
+  heading.insertAdjacentElement('afterend', ctaBtn);
 
   await createOverview(block, options);
 }
