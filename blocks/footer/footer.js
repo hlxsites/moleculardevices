@@ -5,7 +5,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, h3, i, li, p, ul,
+  a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
@@ -139,7 +139,6 @@ async function buildNewsletter(container) {
   const formHeading = 'Lab Notes eNewsletter';
 
   const form = div({ class: toClassName(`${formHeading}-wrapper`) },
-    h3({ id: toClassName(formHeading) }, formHeading),
     div({
       id: newsletterId,
       class: 'enewsletter-wrapper',
