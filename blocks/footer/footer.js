@@ -1,10 +1,11 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
   createOptimizedPicture,
+  toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, li, p, ul,
+  a, div, h3, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
@@ -12,6 +13,7 @@ import {
 import { getNewsData } from '../news/news.js';
 import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getLatestNewsletter } from '../../templates/blog/blog.js';
 
 let placeholders = {};
 
@@ -110,7 +112,7 @@ function capitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
 
-async function getLatestNewsletter() {
+async function getNewslettersList() {
   const newsletters = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
@@ -134,7 +136,10 @@ async function buildNewsletter(container) {
 
   const formID = 'enewsletterSubscribeForm';
   const formType = 'newsletter';
-  const form = (
+  const formHeading = 'Lab Notes eNewsletter';
+
+  const form = div({ class: toClassName(`${formHeading}-wrapper`) },
+    h3({ id: toClassName(formHeading) }, formHeading),
     div({
       id: newsletterId,
       class: 'enewsletter-wrapper',
@@ -144,18 +149,22 @@ async function buildNewsletter(container) {
         class: 'hubspot-form',
         id: formID,
       },
-    )));
+    )),
+  );
+  // add submission form from hubspot
+  container.querySelector(`#${newsletterId}`).replaceWith(form);
 
   const formConfig = {
     formId: getFormId(formType),
+    latestNewsletter: await getLatestNewsletter(),
+    redirectUrl: null,
   };
+
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
 
-  const newsletterList = await getLatestNewsletter();
+  const newsletterList = await getNewslettersList();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
 
-  // add submission form from hubspot
-  container.querySelector(`#${newsletterId}`).replaceWith(form);
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   }
