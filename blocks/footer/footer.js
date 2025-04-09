@@ -135,7 +135,7 @@ async function buildNewsletter(container) {
   }
 
   const formID = 'enewsletterSubscribeForm';
-  const formType = 'lab-notes';
+  const formType = 'newsletter';
   const formHeading = 'Lab Notes eNewsletter';
 
   const form = div({ class: toClassName(`${formHeading}-wrapper`) },
