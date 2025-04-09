@@ -31,6 +31,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 const TEMPLATE_LIST = [
   'application-note',
   'news',
+  'newsletter',
   'publication',
   'blog',
   'event',
