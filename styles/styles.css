@@ -2498,7 +2498,7 @@ main .section.no-margin-top {
 /* COMMON STYLING */
 .blog main h3,
 .blog main .big-sub-heading h4,
-.publication.full-article main h3,
+.publication.full-article main .social-share-container h3,
 .publication.full-article main .big-sub-heading h4 {
   margin-top: 40px;
   margin-bottom: 10px;
