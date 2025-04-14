@@ -23,8 +23,8 @@ main .carousel.featured-video-carousel {
 
 .carousel.featured-video-carousel .card-thumb,
 .carousel.featured-video-carousel .card-thumb img {
-  height: 150px;
-  min-height: 150px;
+  height: 166px;
+  min-height: 166px;
 }
 
 .app-carousel-details {
