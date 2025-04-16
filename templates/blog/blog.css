@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .blog,
 .blog main strong {
   font-family: var(--ff-proxima-regular);
@@ -172,6 +173,24 @@ main .section.sidebar h4,
 .blog main .columns .video-wrapper,
 .blog main .toc-container .columns .button-container {
   margin-bottom: 0;
+}
+
+.blog main .section .credit-paragraph {
+  margin-top: 30px;
+  padding-bottom: 30px;
+}
+
+.blog main .section .credit-paragraph p {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.blog main .section .credit-paragraph p:last-child {
+  margin-bottom: 0;
+}
+
+.blog main .section .credit-paragraph strong {
+  font-family: var(--ff-proxima-xbold);
 }
 
 @media only screen and (max-width: 767px) {
