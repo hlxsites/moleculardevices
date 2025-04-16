@@ -20,11 +20,18 @@
 .author-intro-content-wrapper .picture {
   display: grid;
   grid-template-columns: minmax(min-content, 150px);
-  padding-left: 20px;
+  padding-left: 1rem;
 }
 
 .author-intro-content-wrapper .picture img {
   display: block;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.author-intro.block.image-top .author-intro-content-wrapper .picture img{
+  object-position: top;
 }
 
 .author-intro-content-wrapper .author-intro-content::after {
