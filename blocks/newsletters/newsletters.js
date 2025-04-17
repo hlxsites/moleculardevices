@@ -12,10 +12,10 @@ function formatDateFullYear(unixDateString) {
   return new Date(unixDateString * 1000).getFullYear();
 }
 
-function createFilters(options) {
+function createFilters(currentYear, options) {
   const date = Array.from(new Set(options.data.map((n) => n.filterYear)));
   return [
-    createDropdown(date, options.activeFilters.year, 'year', placeholders.selectYear || 'Select Year'),
+    createDropdown(date, currentYear, 'year', placeholders.selectYear || 'Select Year'),
   ];
 }
 
@@ -29,12 +29,13 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
-export async function createOverview(block, options) {
+export async function createOverview(currentYear, block, options) {
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
-  await createList(createFilters(options), options, block);
+  options.filteredData = options.data.filter((entry) => entry.filterYear === currentYear);
+  await createList(createFilters(currentYear, options), options, block);
 }
 
 export async function fetchData() {
@@ -46,6 +47,7 @@ export async function fetchData() {
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
+  const currentYear = new Date().getFullYear();
   placeholders = await fetchPlaceholders();
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
@@ -66,5 +68,5 @@ export default async function decorate(block) {
   const ctaBtn = a({ class: 'button primary', href: options.data[0].gatedURL, target: '_blank' }, 'View Latest Newsletter');
   heading.insertAdjacentElement('afterend', ctaBtn);
 
-  await createOverview(block, options);
+  await createOverview(currentYear, block, options);
 }
