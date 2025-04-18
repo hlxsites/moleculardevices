@@ -1452,7 +1452,8 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
-main div.section.no-margin-bottom {
+main div.block.no-margin-bottom,
+main div.section.no-margin-bottom  {
   margin-bottom: 0 !important;
 }
 
