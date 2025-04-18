@@ -50,6 +50,7 @@ function renderListItem(item, idx) {
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
         href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+        target: item.type === 'Newsletter' ? '_blank' : '',
         title: item.title,
       }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }])),
     ) : '',
@@ -60,6 +61,7 @@ function renderListItem(item, idx) {
           class: 'title',
           title: item.title,
           href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+          target: item.type === 'Newsletter' ? '_blank' : '',
         }, item.title),
       ),
       (item.keywords && item.keywords !== '0')
@@ -72,6 +74,7 @@ function renderListItem(item, idx) {
         class: 'view-more',
         title: item.viewMoreText,
         href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+        target: item.type === 'Newsletter' ? '_blank' : '',
       }, ` ${item.viewMoreText}`) : '',
     ),
   );
