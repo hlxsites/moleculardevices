@@ -698,7 +698,7 @@ main .columns .embed.embed-ceros > div {
   padding-top: 57%;
 }
 
-main .columns-wrapper:has(> .columns.no-padding){
+main .columns-wrapper:has(> .columns.no-padding) {
   padding: 0;
 }
 
@@ -712,4 +712,97 @@ main .columns-wrapper:has(> .columns.no-padding-bottom) {
 
 main .columns-wrapper:has(> .columns.no-margin-top) {
   margin-top: 0;
+}
+
+/* what's new */
+.columns.what-next-columns img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}
+
+.columns.what-next-columns h2 {
+  border-bottom: 2px solid;
+}
+
+.columns.what-next-columns h2,
+.columns.what-next-columns h2 strong {
+  font-family: var(--ff-proxima-regular);
+  font-weight: bold;
+}
+
+.text-white .columns.what-next-columns a.button.secondary {
+  color: #fff;
+  border-color: #fff;
+}
+
+.text-white .columns.what-next-columns a.button.secondary:hover {
+  color: var(--button-secondary-hover-color);
+  border-color: var(--button-secondary-border-color);
+}
+
+.columns.what-next-columns .image-left div:last-child,
+.columns.what-next-columns .image-right div:first-child {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  main .columns-wrapper:has(> .what-next-columns) {
+    width: 100%;
+    padding-left: 20%;
+    padding-right: 0;
+  }
+
+  main .columns-wrapper:has(> .what-next-columns .image-right) {
+    padding-left: calc((100vw - var(--section-div-width)) / 2);
+    padding-right: 0;
+  }
+
+  main .columns-wrapper:has(> .what-next-columns .image-left) {
+    padding-left: 0;
+    padding-right: 20%;
+  }
+
+  .columns.what-next-columns .image-left div:last-child,
+  .columns.what-next-columns .image-right div:first-child {
+    max-width: 35%;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .columns.what-next-columns .image-left div:first-child,
+  .columns.what-next-columns .image-right div:last-child {
+    max-width: 65%;
+  }
+
+  .columns.what-next-columns .image-left img {
+    object-position: right;
+  }
+
+  .columns.what-next-columns .image-right img {
+    object-position: left;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .columns.what-next-columns {
+    font-size: 28px;
+  }
+
+  .columns.what-next-columns h3 {
+    font-size: 54px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .columns.what-next-columns .image-left div:first-child,
+  .columns.what-next-columns .image-right div:last-child {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .columns.what-next-columns .image-left div:first-child {
+    order: 1;
+  }
 }

@@ -1452,10 +1452,6 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
-main div.section.no-margin-bottom {
-  margin-bottom: 0 !important;
-}
-
 @media only screen and (max-width: 767px) {
   main div.section.wave.wavecarousel {
     min-height: 100%;
@@ -1502,12 +1498,6 @@ main div.orange-secondary-buttons .button.secondary:visited {
   text-transform: none;
 }
 
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
-}
-
 main div.orange-buttons .button.secondary:hover,
 main div.orange-buttons .button.secondary:active,
 main div.orange-secondary-buttons .button.secondary:hover,
@@ -1515,6 +1505,12 @@ main div.orange-secondary-buttons .button.secondary:active {
   color: var(--text-orange);
   background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+}
+
+main div.orange-secondary-buttons .button.secondary:link,
+main div.orange-secondary-buttons .button.secondary:visited {
+  color: var(--text-orange);
+  border: 2px solid var(--text-orange);
 }
 
 main div.orange-buttons .button.primary > .button-border {
@@ -2382,9 +2378,25 @@ main .columns-separator-line .columns-wrapper .columns {
 }
 
 /* SLAS PAGES */
+main .block.text-white,
+main .section.text-white{
+  color: #fff;
+}
+
+main .block.no-margin,
+main .section.no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 main .block.no-margin-top,
 main .section.no-margin-top {
   margin-top: 0;
+}
+
+main .block.no-margin-bottom,
+main .section.no-margin-bottom {
+  margin-bottom: 0 !important;
 }
 
 .slas-page .section .columns.tutorials-posters > div:not(:last-child) {
