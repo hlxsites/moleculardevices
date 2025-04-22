@@ -8,8 +8,8 @@ import {
   createList, createDropdown, renderPagination, swapData,
   toggleFilter,
 } from '../../scripts/list.js';
-import { a } from '../../scripts/dom-helpers.js';
-import { toTitleCase } from '../../scripts/scripts.js';
+import { a, iframe } from '../../scripts/dom-helpers.js';
+import { iframeResizeHandler, toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
 
@@ -24,13 +24,15 @@ function formatDateMonthAndYear(unixDateString) {
   return `${month} ${year}`;
 }
 
-function createFilters(currentYear, options) {
+function createFilters(options) {
+  const currentYear = options.activeFilters.get('year');
+  const currentMonth = toTitleCase(options.activeFilters.get('month'));
   const filteredDataByYear = Array.from(new Set(options.data.map((n) => n.filterYear)));
   const filteredDataByMonth = Array.from(new Set(options.data.map((n) => (n.filterYear === currentYear ? toTitleCase(n.filterMonth) : '0'))));
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, options.activeFilters.month, 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
@@ -45,19 +47,41 @@ function prepareEntry(entry, showDescription, viewMoreText) {
   }
 }
 
+function generateNewsletterIframe(url, parent, child) {
+  const iframeID = 'newsletter-iframe';
+  const newsletterIframe = iframe({
+    src: url,
+    id: iframeID,
+    loading: 'lazy',
+    class: 'newsletter-iframe',
+    allowfullscreen: true,
+  });
+  parent.querySelector(child).replaceWith(newsletterIframe);
+  // iframeResizeHandler(url, iframeID, parent);
+}
+
 export async function createOverview(block, options) {
-  const currentYear = new Date().getFullYear().toString();
+  const currentYear = options.activeFilters.get('year');
+  const currentMonth = options.activeFilters.get('month');
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
 
-  // Filter data by year initially
+  // Filter data by year/month initially
   options.filteredData = options.data.filter((entry) => entry.filterYear === currentYear);
+  options.filteredData = options.filteredData
+    .filter((entry) => entry.filterMonth === currentMonth.toLowerCase());
 
   // Create filters
-  const yearFilter = createFilters(currentYear, options);
+  const yearFilter = createFilters(options);
   await createList(yearFilter, options, block);
+
+  if (options.filteredData.length === 1) {
+    const iframeURL = options.filteredData[0].gatedURL;
+    const parentEl = document.querySelector('.list .items');
+    generateNewsletterIframe(iframeURL, parentEl, '.item');
+  }
 }
 
 function bindFilterEvents(options) {
@@ -104,7 +128,7 @@ async function updateFilter(event, options) {
   if (filterType === 'year') {
     options.activeFilters.set('month', '');
 
-    const updatedFilters = createFilters(valueToSet, options);
+    const updatedFilters = createFilters(options);
     const filterContainer = document.querySelector('.filter');
     if (filterContainer) {
       filterContainer.innerHTML = '';
@@ -118,6 +142,12 @@ async function updateFilter(event, options) {
 
   renderPagination(document.querySelector('.list'), options, true);
   swapData(options);
+
+  if (options.filteredData.length === 1) {
+    const iframeURL = options.filteredData[0].gatedURL;
+    const parentEl = document.querySelector('.list .items');
+    generateNewsletterIframe(iframeURL, parentEl, '.item');
+  }
 }
 
 export async function fetchData() {
@@ -128,6 +158,8 @@ export async function fetchData() {
 }
 
 export default async function decorate(block) {
+  const currentYear = new Date().getFullYear().toString();
+  const currentMonth = `${new Date().toLocaleString('default', { month: 'short' })}-${currentYear}`;
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
   const options = {
@@ -138,8 +170,8 @@ export default async function decorate(block) {
     panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('year', '');
-  options.activeFilters.set('month', '');
+  options.activeFilters.set('year', currentYear);
+  options.activeFilters.set('month', currentMonth);
   options.activeFilters.set('page', 1);
 
   options.data = await fetchData();

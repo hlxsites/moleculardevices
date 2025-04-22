@@ -26,12 +26,12 @@
   cursor: pointer;
 }
 
-.newsletters input[type="checkbox"].filter-item {
+.newsletters input[type='checkbox'].filter-item {
   display: none;
 }
 
 .newsletters label span::before {
-  content: "";
+  content: '';
   width: 18px;
   height: 18px;
   position: absolute;
@@ -40,7 +40,12 @@
   border: 2px solid #adb3b7;
 }
 
-.newsletters input[type="checkbox"].filter-item:checked + span::before {
+.newsletters input[type='checkbox'].filter-item:checked + span::before {
   background-color: var(--background-color-green);
   border-color: var(--background-color-green);
+}
+
+.newsletter-iframe {
+  overflow: scroll !important;
+  min-height: 700px;
 }

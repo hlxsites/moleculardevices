@@ -502,7 +502,7 @@ main .section > div.columns-wrapper {
   .columns > div {
     display: flex;
     flex-direction: unset;
-    align-items: top;
+    align-items: flex-start;
   }
 
   .columns > div > div {
