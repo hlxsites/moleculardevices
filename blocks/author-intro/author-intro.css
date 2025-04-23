@@ -28,6 +28,8 @@
   border-radius: 50%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .author-intro.block.image-top .author-intro-content-wrapper .picture img{
