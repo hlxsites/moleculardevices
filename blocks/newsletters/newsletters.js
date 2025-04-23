@@ -9,7 +9,7 @@ import {
   toggleFilter,
 } from '../../scripts/list.js';
 import { a, iframe } from '../../scripts/dom-helpers.js';
-import { iframeResizeHandler, toTitleCase } from '../../scripts/scripts.js';
+import { toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
 
@@ -70,8 +70,11 @@ export async function createOverview(block, options) {
 
   // Filter data by year/month initially
   options.filteredData = options.data.filter((entry) => entry.filterYear === currentYear);
-  options.filteredData = options.filteredData
-    .filter((entry) => entry.filterMonth === currentMonth.toLowerCase());
+
+  if (currentMonth) {
+    options.filteredData = options.filteredData
+      .filter((entry) => entry.filterMonth === currentMonth.toLowerCase());
+  }
 
   // Create filters
   const yearFilter = createFilters(options);
