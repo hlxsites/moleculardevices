@@ -183,8 +183,8 @@ export default async function decorate(block) {
   /* add button in hero banner */
   const banner = document.querySelector('.hero.newsletters');
   const heading = banner.querySelector('h1');
-  const ctaBtn = a({ class: 'button primary', href: options.data[0].gatedURL, target: '_blank' }, 'View Latest Newsletter');
-  heading.insertAdjacentElement('afterend', ctaBtn);
+  /* const ctaBtn = a({ class: 'button primary', href: options.data[0].gatedURL, target: '_blank' }, 'View Latest Newsletter');
+  heading.insertAdjacentElement('afterend', ctaBtn); */
 
   await createOverview(block, options);
   bindFilterEvents(options);
