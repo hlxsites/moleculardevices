@@ -869,15 +869,26 @@ export function detectAnchor(block) {
  * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
  * This reads the `data-bg` value and applies it as a background color.
  *
- * @param {Element} block - The DOM element to decorate
+ * @param {Element} main - The DOM element to decorate
  */
-export default function addSectionBgColor(main) {
+export function addSectionBgColor(main) {
   const sections = main.querySelectorAll('.section[data-bg]');
 
   sections.forEach((section) => {
     const bg = section.getAttribute('data-bg');
     if (bg) {
       section.style.backgroundColor = bg;
+    }
+  });
+}
+
+export function addBlockBgColor(main) {
+  const sections = main.querySelectorAll('.section[data-block-bg]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-block-bg');
+    if (bg) {
+      section.querySelector('.block').style.backgroundColor = bg;
     }
   });
 }
@@ -902,6 +913,7 @@ export async function decorateMain(main) {
   decorateParagraphs(main);
   formInModalHandler(main);
   addSectionBgColor(main);
+  addBlockBgColor(main);
   addPageSchema();
   addHreflangTags();
 }

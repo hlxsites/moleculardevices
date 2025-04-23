@@ -502,7 +502,7 @@ main .section > div.columns-wrapper {
   .columns > div {
     display: flex;
     flex-direction: unset;
-    align-items: top;
+    align-items: flex-start;
   }
 
   .columns > div > div {
@@ -511,21 +511,18 @@ main .section > div.columns-wrapper {
   }
 
   .columns.columns-3-cols > div {
-    align-items: unset;
     flex-grow: 1;
   }
 
-  .blog .columns > div {
-    align-items: unset;
-  }
-
+  .columns.columns-3-cols > div,
+  .columns[class*="layout-"] > div,
+  .blog .columns > div,
   .columns.contact > div {
     align-items: unset;
   }
 
   .columns[class*="layout-"] > div {
     display: grid;
-    align-items: unset;
   }
 
   .columns[class*="layout-"] h3 {
@@ -748,32 +745,36 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 }
 
 @media only screen and (min-width: 768px) {
-  main .columns-wrapper:has(> .what-next-columns) {
-    width: 100%;
-    padding-left: 20%;
+  main .columns-wrapper .what-next-columns .image-right {
     padding-right: 0;
   }
 
-  main .columns-wrapper:has(> .what-next-columns .image-right) {
-    padding-left: calc((100vw - var(--section-div-width)) / 2);
-    padding-right: 0;
-  }
-
-  main .columns-wrapper:has(> .what-next-columns .image-left) {
+  main .columns-wrapper .what-next-columns .image-left {
     padding-left: 0;
-    padding-right: 20%;
+  }
+
+  .columns.what-next-columns > div {
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .columns.what-next-columns > div > div {
+    margin-left: 0;
+    flex-basis: 50%;
   }
 
   .columns.what-next-columns .image-left div:last-child,
   .columns.what-next-columns .image-right div:first-child {
-    max-width: 35%;
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
 
-  .columns.what-next-columns .image-left div:first-child,
-  .columns.what-next-columns .image-right div:last-child {
-    max-width: 65%;
+  .columns.what-next-columns .image-right div:first-child {
+    padding-left: 3rem;
+  }
+
+  .columns.what-next-columns .image-left div:last-child{
+    padding-right: 3rem;
   }
 
   .columns.what-next-columns .image-left img {
@@ -785,15 +786,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   }
 }
 
-@media only screen and (min-width: 992px) {
-  .columns.what-next-columns {
-    font-size: 28px;
-  }
-
-  .columns.what-next-columns h3 {
-    font-size: 54px;
-  }
-}
+/* @media only screen and (min-width: 992px) {} */
 
 @media only screen and (max-width: 767px) {
   .columns.what-next-columns .image-left div:first-child,
