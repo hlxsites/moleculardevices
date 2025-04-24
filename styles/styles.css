@@ -2682,3 +2682,8 @@ main .section.rfq-form-section .embed h4 {
     font-size: 48px;
   }
 }
+
+/* whats next | new layout */
+.what-next .default-content-wrapper h2 {
+  font-size: 54px
+}
