@@ -697,6 +697,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     display: block;
     height: 125px;
   }
+
+  .hero.newsletters .hero-inner .container {
+    padding-bottom: 120px;
+  }
 }
 
 @media (min-width: 992px) {

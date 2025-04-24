@@ -155,8 +155,7 @@ async function updateFilter(event, options) {
 
 export async function fetchData() {
   return ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Newsletter')
+    .sheet('newsletters')
     .all();
 }
 
