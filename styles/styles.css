@@ -2709,8 +2709,35 @@ main .section.rfq-form-section .embed h4 {
   margin-bottom: 0;
 }
 
-/* .what-next .cards-card-wrapper {
+.what-next .cards.cols-4 .cards-card-wrapper {
   height: 100%;
   background-image: linear-gradient(to top, #1591a4 0, #2e9f79 50%, #61b249 100%);
   color: #fff;
+}
+
+.what-next .cards.cols-4 .cards-card-wrapper h3 {
+  border-bottom: 2px solid;
+  padding-bottom: 8px;
+  display: inline-block;
+  padding-right: 8px;
+}
+
+.what-next .cards.cols-4 .cards-card-wrapper a {
+  color: inherit;
+}
+
+/* .what-next main a.button.secondary,
+.what-next main button.secondary {
+  white-space: unset;
+}
+
+.what-next .cards.cols-4 .cards-card-wrapper .button.secondary {
+  border-color: #fff;
+  color: #fff;
+}
+
+.what-next .cards.cols-4 .cards-card-wrapper .button.secondary:hover,
+.what-next .cards.cols-4 .cards-card-wrapper .button.secondary:focus {
+  border-color: var(--text-electric-blue);
+  color: var(--text-electric-blue);
 } */
