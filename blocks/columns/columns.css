@@ -502,7 +502,6 @@ main .section > div.columns-wrapper {
   .columns > div {
     display: flex;
     flex-direction: unset;
-    align-items: flex-start;
   }
 
   .columns > div > div {
@@ -720,6 +719,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .columns.what-next-columns h2 {
   border-bottom: 2px solid;
+  display: inline-block;
+  padding-right: 1rem;
 }
 
 .columns.what-next-columns h2,
@@ -773,7 +774,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-left: 3rem;
   }
 
-  .columns.what-next-columns .image-left div:last-child{
+  .columns.what-next-columns .image-left div:last-child {
     padding-right: 3rem;
   }
 
@@ -789,13 +790,38 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 /* @media only screen and (min-width: 992px) {} */
 
 @media only screen and (max-width: 767px) {
+  .columns-wrapper:has(> .columns.what-next-columns) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .columns.what-next-columns .image-left div:first-child,
   .columns.what-next-columns .image-right div:last-child {
     margin-left: -15px;
     margin-right: -15px;
   }
 
+  .columns.what-next-columns .image-left div:last-child,
+  .columns.what-next-columns .image-right div:first-child {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .columns.what-next-columns .image-left div:first-child {
     order: 1;
   }
+}
+
+/* cards */
+.cards.columns > div {
+  gap: 20px;
+}
+
+.cards.columns > div > div {
+  margin-left: 0;
+  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
+}
+
+.cards.columns > div > div > div:not(:first-child) {
+  padding: 20px;
 }
