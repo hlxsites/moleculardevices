@@ -1710,7 +1710,6 @@ main .section.background-molecules {
   padding: 20px 0;
 }
 
-
 .section.home-promo {
   background-repeat: no-repeat;
   background-size: cover;
@@ -1726,11 +1725,11 @@ main .section.background-molecules {
 }
 
 .homepage .section.home-promo > .carousel-wrapper,
-.homepage .section.home-promo > .carousel-wrapper .carousel-item{
+.homepage .section.home-promo > .carousel-wrapper .carousel-item {
   padding-top: 0;
 }
 
-.homepage .section.home-promo .carousel-dot-buttons{
+.homepage .section.home-promo .carousel-dot-buttons {
   display: none;
 }
 
@@ -1740,7 +1739,7 @@ main .section.home-promo .carousel-item-columns-container {
   align-items: unset;
 }
 
-main .section.home-promo .carousel-item-columns-container .carousel-item-column{
+main .section.home-promo .carousel-item-columns-container .carousel-item-column {
   width: 100%;
 }
 
@@ -2379,7 +2378,7 @@ main .columns-separator-line .columns-wrapper .columns {
 
 /* SLAS PAGES */
 main .block.text-white,
-main .section.text-white{
+main .section.text-white {
   color: #fff;
 }
 
@@ -2684,6 +2683,34 @@ main .section.rfq-form-section .embed h4 {
 }
 
 /* whats next | new layout */
-.what-next .default-content-wrapper h2 {
-  font-size: 54px
+.what-next .section .default-content-wrapper h2 {
+  font-size: 54px;
 }
+
+.what-next .section .default-content-wrapper h2,
+.what-next .section .default-content-wrapper h2:only-child,
+.what-next .section .default-content-wrapper h3,
+.what-next .section .default-content-wrapper h4,
+.what-next .section .default-content-wrapper h5,
+.what-next .section .default-content-wrapper h6,
+.what-next .section .default-content-wrapper ul,
+.what-next .section .default-content-wrapper ol {
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.what-next .section .default-content-wrapper p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.what-next .section .default-content-wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+/* .what-next .cards-card-wrapper {
+  height: 100%;
+  background-image: linear-gradient(to top, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  color: #fff;
+} */

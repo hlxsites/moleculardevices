@@ -314,12 +314,7 @@
 }
 
 /* cols 4 */
-.cards-container .default-content-wrapper h2:only-child,
-.cards-container .default-content-wrapper h3:only-child {
-  margin-bottom: 30px;
-}
-
-.cards.cols-4 .cards-card-body h3:has(+ h4) {
+main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
   margin-bottom: 0.75rem;
 }
 
