@@ -2726,6 +2726,22 @@ main .section.rfq-form-section .embed h4 {
   color: inherit;
 }
 
+/* .what-next .cards.cols-4 ul li:first-child .cards-card-wrapper {
+  background-image: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+}
+
+.what-next .cards.cols-4 ul li:nth-child(2) .cards-card-wrapper {
+  background-image: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+}
+
+.what-next .cards.cols-4 ul li:nth-child(3) .cards-card-wrapper {
+  background-image: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+}
+
+.what-next .cards.cols-4 ul li:last-child .cards-card-wrapper {
+  background-image: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+} */
+
 /* .what-next main a.button.secondary,
 .what-next main button.secondary {
   white-space: unset;
