@@ -201,7 +201,7 @@ export default async function decorate(block) {
         newStr += `<strong>Email:</strong>  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
       }
       if (row.Link) {
-        if (row.Link === 'https://mdc.custhelp.com/app/ask') {
+        if (row.Link === 'https://support.moleculardevices.com/s/' || row.Link === 'http://support.moleculardevices.com/s/') {
           newStr += `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>\n`;
         } else {
           newStr += `<strong>Website:</strong> <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
