@@ -11,10 +11,6 @@ main .hero-advanced-wrapper {
   max-width: unset;
 }
 
-.hero {
-  margin-top: -10px;
-}
-
 .hero,
 .hero-inner {
   position: relative;
@@ -789,6 +785,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 }
 
+/* discontinued-product */
 .discontinued-product {
   position: relative;
 }
@@ -803,4 +800,39 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   background-color: #000;
   opacity: 0.5;
   z-index: -1;
+}
+
+/* full-page-banner */
+.hero.full-page-banner .hero-inner {
+  min-height: 750px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero.full-page-banner .hero-inner .container {
+  justify-content: center;
+}
+
+.hero.full-page-banner .hero-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0 0 0/70%);
+  z-index: -1;
+}
+
+.hero.full-page-banner .breadcrumbs {
+  display: none;
+}
+
+.hero.full-page-banner .hero-inner > div:first-child {
+  height: 0;
+  margin: 0;
 }

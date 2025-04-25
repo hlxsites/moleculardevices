@@ -24,6 +24,7 @@ import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
+import { createCarousel } from '../blocks/carousel/carousel.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -893,6 +894,20 @@ export function addBlockBgColor(main) {
   });
 }
 
+function loadCarousels(main) {
+  const sections = main.querySelectorAll('.section.carousel');
+  sections.forEach((section) => {
+    section.classList.remove('carousel');
+    const blockWrapper = div({ class: 'carousel-wrapper' });
+    const block = div({ class: 'carousel' });
+    block.innerHTML = section.innerHTML;
+    section.innerHTML = '';
+    blockWrapper.append(block);
+    section.append(blockWrapper);
+    createCarousel(block);
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -914,6 +929,7 @@ export async function decorateMain(main) {
   formInModalHandler(main);
   addSectionBgColor(main);
   addBlockBgColor(main);
+  loadCarousels(main);
   addPageSchema();
   addHreflangTags();
 }

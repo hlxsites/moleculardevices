@@ -644,3 +644,29 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
+
+/* single-slide-carousel */
+main .section.single-slide-carousel .carousel-wrapper {
+  width: 100%;
+  max-width: var(--section-div-width);
+}
+
+main .section.single-slide-carousel .carousel{
+  padding-inline: 0;
+}
+
+main .section.single-slide-carousel .carousel-item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.single-slide-carousel .carousel-item-columns-container,
+main .section.single-slide-carousel .carousel-item-column {
+  width: 100%;
+  display: block;
+}
+
+main .section.single-slide-carousel .author-intro {
+  margin-top: 0;
+  margin-bottom: 0;
+}

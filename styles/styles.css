@@ -157,6 +157,8 @@ main .section.OneLinkShow_zh.columns-2 {
   /* section > div width */
   --section-div-width: 1170px;
   --center-space: calc((100vw - var(--section-div-width)) / 2);
+  --overlay: rgb(0 0 0 / 70%);
+  --form-bg: rgb(0 0 0 / 50%);
 }
 
 @media (max-width: 1200px) {
@@ -1350,13 +1352,14 @@ main div.section.wave.bluegreen::after {
 /* BlueGreen2 Variant */
 
 main div.section.wave.bluegreen2:not([style*="background-image"]) {
-  min-height: 350px;
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(90deg,
-      rgba(21 145 164 / 100%) 0,
-      rgba(50 159 121 / 100%) 50%,
-      rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(21 145 164 / 100%) 0,
+    rgba(50 159 121 / 100%) 50%,
+    rgba(97 178 73 / 100%) 100%
+  ) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1385,10 +1388,12 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,
-        rgb(21 145 164 / 100%) 0,
-        rgb(46 159 121 / 100%) 50%,
-        rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(
+      90deg,
+      rgb(21 145 164 / 100%) 0,
+      rgb(46 159 121 / 100%) 50%,
+      rgb(97 178 73 / 100%) 100%
+    ) !important;
     background-image: none;
   }
 
@@ -1885,9 +1890,15 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .product .section.tabs .columns-wrapper h2,
-.technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
-.application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
@@ -2232,7 +2243,6 @@ main .section.space-wrappers > div {
 }
 
 @media only screen and (max-width: 420px) {
-
   .section .block.mobile-subtitle-small h3,
   .section.mobile-subtitle-small > div.default-content-wrapper > h3 {
     font-size: 16px;
@@ -2614,7 +2624,6 @@ main .section.rfq-form-section .embed h4 {
 }
 
 @media only screen and (min-width: 768px) {
-
   main .section.tabs.rfq-form-section h2,
   main .section.tabs.rfq-form-section h3 {
     font-size: 45px;
@@ -2721,6 +2730,25 @@ main .section.rfq-form-section .embed h4 {
 
 .what-next .cards.cols-4 .cards-card-wrapper a:hover {
   opacity: 0.8;
+}
+
+.what-next .forms.lab-notes {
+  border-radius: 18px;
+  position: relative;
+  padding: 20px;
+  color: var(--text-white);
+  background-color: var(--form-bg);
+  text-align: center;
+}
+
+.what-next .section.wave:not(.bluegreen) picture {
+  display: none !important;
+}
+
+.what-next main .section.columns-2.newsletter-form {
+  grid-template-columns: auto 400px;
+  align-items: center;
+  gap: 30px;
 }
 
 /* .what-next .cards.cols-4 ul li:first-child .cards-card-wrapper {
