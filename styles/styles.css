@@ -156,6 +156,7 @@ main .section.OneLinkShow_zh.columns-2 {
 
   /* section > div width */
   --section-div-width: 1170px;
+  --center-space: calc((100vw - var(--section-div-width)) / 2);
 }
 
 @media (max-width: 1200px) {

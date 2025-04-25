@@ -711,6 +711,12 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 }
 
 /* what's new */
+.columns-wrapper:has(> .columns.what-next-columns) {
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
+
 .columns.what-next-columns img {
   display: block;
   height: 100%;
@@ -756,7 +762,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
   .columns.what-next-columns > div {
     gap: 30px;
-    align-items: stretch;
+    align-items: center;
   }
 
   .columns.what-next-columns > div > div {
@@ -771,11 +777,11 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   }
 
   .columns.what-next-columns .image-right div:first-child {
-    padding-left: 3rem;
+    padding-left: var(--center-space);
   }
 
   .columns.what-next-columns .image-left div:last-child {
-    padding-right: 3rem;
+    padding-right: var(--center-space);
   }
 
   .columns.what-next-columns .image-left img {
@@ -790,11 +796,6 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 /* @media only screen and (min-width: 992px) {} */
 
 @media only screen and (max-width: 767px) {
-  .columns-wrapper:has(> .columns.what-next-columns) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
   .columns.what-next-columns .image-left div:first-child,
   .columns.what-next-columns .image-right div:last-child {
     margin-left: -15px;
