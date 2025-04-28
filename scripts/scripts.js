@@ -677,8 +677,6 @@ function addPageSchema() {
         ],
       };
     }
-
-
    if (type === 'contact') {
       schemaInfo = {
         '@context': 'https://schema.org',
@@ -727,7 +725,54 @@ function addPageSchema() {
         ],
       };
     }
-
+    if (type === 'About Us') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'AboutPage',
+            url: 'https://www.moleculardevices.com/contact',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+               sameAs: brandSameAs,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-800-635-5577',
+              contactType: 'Customer Support',
+              areaServed: 'Worldwide',
+              availableLanguage:'["English"]',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-877-589-2214',
+              email : 'nsd@moldev.com',
+              contactType: 'Sales',
+              areaServed: 'Worldwide',
+              availableLanguage:'["English"]',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N. First Street',
+              addressLocality : 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry:'US',
+            },
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
     if (schemaInfo) {
       schema.appendChild(document.createTextNode(
         JSON.stringify(schemaInfo, null, 2),
