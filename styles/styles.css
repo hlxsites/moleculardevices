@@ -2685,43 +2685,56 @@ main .section.rfq-form-section .embed h4 {
 }
 
 /* whats next | new layout */
-.what-next .section .default-content-wrapper h2 {
-  font-size: 54px;
+.what-next {
+  --h2: 62px;
+  --h3: 28px;
 }
 
-.what-next .section .default-content-wrapper h2,
-.what-next .section .default-content-wrapper h2:only-child,
-.what-next .section .default-content-wrapper h3,
-.what-next .section .default-content-wrapper h4,
-.what-next .section .default-content-wrapper h5,
-.what-next .section .default-content-wrapper h6,
-.what-next .section .default-content-wrapper ul,
-.what-next .section .default-content-wrapper ol {
+.what-next .section h2 {
+  font-size: var(--h2);
+}
+
+.what-next .section h3 {
+  font-size: var(--h3);
+}
+
+.what-next .section p,
+.what-next .section h2,
+.what-next .section h3,
+.what-next .section h4,
+.what-next .section h5,
+.what-next .section h6,
+.what-next .section ul,
+.what-next .section ol {
   margin-bottom: 20px;
   padding-bottom: 0;
   margin-top: 0;
 }
 
-.what-next .section .default-content-wrapper p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.what-next .section h2:only-child,
+.what-next .section .default-content-wrapper h2:only-child{
+  margin-bottom: 2rem;
+  padding-bottom: 0;
 }
 
-.what-next .section .default-content-wrapper p:last-child {
+.what-next .section p:last-child {
   margin-bottom: 0;
+}
+
+.what-next .cards.cols-4 ul li {
+  border: none;
 }
 
 .what-next .cards.cols-4 .cards-card-wrapper {
   height: 100%;
-  background-image: linear-gradient(to top, #1591a4 0, #2e9f79 50%, #61b249 100%);
-  color: #fff;
+  background-color: #F0F7F8;
+  color: #000;
 }
 
 .what-next .cards.cols-4 .cards-card-wrapper h3 {
   border-bottom: 2px solid;
   padding-bottom: 8px;
   display: inline-block;
-  padding-right: 8px;
 }
 
 .what-next .cards.cols-4 .cards-card-wrapper a {

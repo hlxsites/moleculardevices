@@ -727,12 +727,18 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   border-bottom: 2px solid;
   display: inline-block;
   padding-right: 1rem;
+  margin: 0 0 1rem;
+  padding-bottom: 1rem;
 }
 
-.columns.what-next-columns h2,
-.columns.what-next-columns h2 strong {
-  font-family: var(--ff-proxima-regular);
-  font-weight: bold;
+.columns.what-next-columns h2 + h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.columns.what-next-columns p.button-container {
+  margin-top: 2rem;
+  margin-bottom: 0;
 }
 
 .text-white .columns.what-next-columns a.button.secondary {
@@ -762,7 +768,6 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
   .columns.what-next-columns > div {
     gap: 30px;
-    align-items: center;
   }
 
   .columns.what-next-columns > div > div {
@@ -808,8 +813,12 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-right: 15px;
   }
 
-  .columns.what-next-columns .image-left div:first-child {
+  .columns.what-next-columns .image-right div:last-child {
     order: 1;
+  }
+
+  .columns.what-next-columns .image-right div:first-child {
+    order: 2;
   }
 }
 
