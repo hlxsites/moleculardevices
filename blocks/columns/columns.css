@@ -720,8 +720,13 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .columns.what-next-columns img {
   display: block;
-  height: 100%;
   object-fit: cover;
+}
+
+.columns.what-next-columns p.picture,
+.columns.what-next-columns picture,
+.columns.what-next-columns img{
+  height: 100%;
 }
 
 .columns.what-next-columns h2 {
