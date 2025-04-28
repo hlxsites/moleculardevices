@@ -46,7 +46,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/advanced-plasmid-production.p
 Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/automating-cell-culture-scalable-research.pdf
 
 
 
@@ -75,7 +75,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-analysis-t
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/ccnd1-knockout-colony-selection-screening-via-mammalian-colony-picker.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-compound-screening-toxicity-intestinal-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/machine-learning-assisted-automation-of-2d-3d-cell-culture.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/br/high-throughput-assay-for-human-alanine-transaminase-in-organoids.pdf
 
 # HTML Page (App Note HTML Page Block)
 

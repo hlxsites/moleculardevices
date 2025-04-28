@@ -1,7 +1,6 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
-  const isBlogPage = getMetadata('template') === 'Blog';
   const authorIntroWrapper = block.querySelector(':scope > div');
   const intro = block.querySelector(':scope > div > div:first-child');
   const authorImg = intro.querySelector('img');
