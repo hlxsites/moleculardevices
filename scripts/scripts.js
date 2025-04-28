@@ -444,7 +444,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars','contact','About Us'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -677,7 +677,7 @@ function addPageSchema() {
         ],
       };
     }
-   if (type === 'contact') {
+    if (type === 'contact') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -689,7 +689,7 @@ function addPageSchema() {
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-               sameAs: brandSameAs,
+              sameAs: brandSameAs,
               url: moleculardevicesRootURL,
               logo,
             },
@@ -698,23 +698,21 @@ function addPageSchema() {
               telephone: '+1-800-635-5577',
               contactType: 'Customer Support',
               areaServed: 'Worldwide',
-              availableLanguage:'["English"]',
-            },
-            contactPoint: {
-              '@type': 'ContactPoint',
+              availableLanguage: '["English"]',
+             '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
-              email : 'nsd@moldev.com',
+              email: 'nsd@moldev.com',
               contactType: 'Sales',
               areaServed: 'Worldwide',
-              availableLanguage:'["English"]',
+              availableLanguage: '["English"]',
             },
             address: {
               '@type': 'PostalAddress',
               streetAddress: '3860 N. First Street',
-              addressLocality : 'San Jose',
+              addressLocality: 'San Jose',
               addressRegion: 'CA',
               postalCode: '95134',
-              addressCountry:'US',
+              addressCountry: 'US',
             },
           },
           {
