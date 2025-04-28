@@ -444,7 +444,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -677,39 +677,100 @@ function addPageSchema() {
         ],
       };
     }
-
-    /* if (type === 'Videos and Webinars') {
-      const vidyardLink = document.querySelector('a[href*="vidyard.com"],
-      a[href*="vids.moleculardevices.com"]').href;
-      const vidyardId = vidyardLink.split('/').pop();
-      const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
-
+    if (type === 'contact') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
           {
-            '@type': 'VideoObject',
-            headline: schemaTitle,
+            '@type': 'ContactPage',
+            url: 'https://www.moleculardevices.com/contact',
             name: schemaTitle,
-            description,
-            thumbnailUrl: resourcesImageUrl,
-            uploadDate: new Date(publicationDate).toISOString(),
-            contentUrl: canonicalHref,
-            embedUrl: embedHref,
-            duration: '',
+            description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              logo: {
-                '@type': 'ImageObject',
-                url: moleculardevicesLogoURL,
-              },
+              sameAs: brandSameAs,
+              url: moleculardevicesRootURL,
+              logo,
             },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-800-635-5577',
+              contactType: 'Customer Support',
+              areaServed: 'Worldwide',
+              availableLanguage: '["English"]',
+             '@type': 'ContactPoint',
+              telephone: '+1-877-589-2214',
+              email: 'nsd@moldev.com',
+              contactType: 'Sales',
+              areaServed: 'Worldwide',
+              availableLanguage: '["English"]',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N. First Street',
+              addressLocality: 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry: 'US',
+            },
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
           },
         ],
       };
-    } */
-
+    }
+    if (type === 'About Us') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'AboutPage',
+            url: 'https://www.moleculardevices.com/contact',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+               sameAs: brandSameAs,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-800-635-5577',
+              contactType: 'Customer Support',
+              areaServed: 'Worldwide',
+              availableLanguage:'["English"]',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-877-589-2214',
+              email : 'nsd@moldev.com',
+              contactType: 'Sales',
+              areaServed: 'Worldwide',
+              availableLanguage:'["English"]',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N. First Street',
+              addressLocality : 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry:'US',
+            },
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
     if (schemaInfo) {
       schema.appendChild(document.createTextNode(
         JSON.stringify(schemaInfo, null, 2),
