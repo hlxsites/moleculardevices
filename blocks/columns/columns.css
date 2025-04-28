@@ -782,7 +782,6 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
   .columns.what-next-columns > div {
     gap: 30px;
-    align-items: center;
   }
 
   .columns.what-next-columns > div > div {
