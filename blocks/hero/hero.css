@@ -804,7 +804,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
 /* full-page-banner */
 .hero.full-page-banner .hero-inner {
-  min-height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -819,7 +818,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
 .hero.full-page-banner .hero-inner .container {
   justify-content: center;
-  padding-bottom: 0;
+  padding: 5rem 0;
+}
+
+.hero.full-page-banner .hero-inner .container h1:only-child {
+  margin: 0;
 }
 
 .hero.full-page-banner .hero-inner::after {
@@ -840,4 +843,16 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 .hero.full-page-banner .hero-inner > div:first-child {
   height: 0;
   margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero.full-page-banner .hero-inner {
+    min-height: 450px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .hero.full-page-banner .hero-inner {
+    min-height: 550px;
+  }
 }
