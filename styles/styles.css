@@ -2740,6 +2740,27 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   margin-bottom: 0;
 }
 
+.what-next .carousel.cards .carousel-item .card {
+  margin-bottom: 0;
+}
+
+.what-next .carousel.cards .carousel-item .card h4:first-child {
+  color: var(--text-green);
+  margin-bottom: 0.5rem;
+  font-size: 90%;
+}
+
+.what-next .section .card img {
+  max-height: 170px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.what-next .carousel.cards .carousel-item a {
+  font-size: inherit;
+  color: inherit;
+}
+
 .what-next .cards.cols-4 ul li {
   border: none;
 }
@@ -2782,12 +2803,21 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   text-align: center;
 }
 
+/* .what-next main .featured-products-carousel .carousel-item, */
 .what-next main .section.newsletter-form {
   background-image: var(--sign-up-newsletter-gradient);
   color: var(--text-white);
+  border: none;
+}
+
+.what-next main .section.newsletter-form {
   position: relative;
   padding-left: calc((100dvw - var(--section-div-width)) / 2);
   padding-right: calc((100dvw - var(--section-div-width)) / 2);
+}
+
+.what-next main .section.newsletter-form a {
+  color: inherit;
 }
 
 .what-next main .section.newsletter-form .default-content-wrapper,
@@ -2817,6 +2847,28 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 .what-next main .section.newsletter-form .columns-wrapper img {
   display: block;
 }
+
+.what-next main .featured-products-carousel .carousel-item .carousel-item-columns-container {
+  display: grid;
+  grid-template-columns: auto 400px;
+}
+
+.what-next main .featured-products-carousel .carousel-item .carousel-item-columns-container .carousel-item-column {
+  width: 100%;
+}
+
+.what-next main .featured-products-carousel .carousel-item-text .button-container {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.what-next main .featured-products-carousel .carousel-item-text .button-container em a{
+  padding: 13px 18px 14px;
+}
+
+/* .what-next main .featured-products-carousel .carousel-item h3 {
+  color: inherit
+} */
 
 @media only screen and (min-width: 768px) {
   .what-next .cards.cols-4 .cards-card-wrapper h4 {
