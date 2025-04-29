@@ -715,7 +715,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   padding-left: 0;
   padding-right: 0;
   width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .columns.what-next-columns img {
@@ -774,10 +774,6 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
   main .columns-wrapper .what-next-columns .image-left {
     padding-left: 0;
-  }
-
-  .columns-wrapper:has(> .columns.what-next-columns) {
-    margin-bottom: 4rem;
   }
 
   .columns.what-next-columns .image-left div:first-child p.picture:nth-child(2):not(:only-of-type),
