@@ -693,15 +693,14 @@ function addPageSchema() {
               logo,
             },
             sameAs:
-              brandSameAs
-            ,
+              brandSameAs,
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
-              email : 'nsd@moldev.com',
+              email: 'nsd@moldev.com',
               contactType: 'Sales',
               areaServed: 'Worldwide',
-              availableLanguage:'["English"]',
+              availableLanguage: '["English"]',
             },
             address: {
               '@type': 'PostalAddress',
@@ -736,15 +735,14 @@ function addPageSchema() {
               logo,
             },
             sameAs:
-              brandSameAs,
-        
+              brandSameAs,        
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
-              email : 'nsd@moldev.com',
+              email: 'nsd@moldev.com',
               contactType: 'Sales',
               areaServed: 'Worldwide',
-              availableLanguage:'["English"]',
+              availableLanguage: '["English"]',
             },
             address: {
               '@type': 'PostalAddress',
@@ -752,7 +750,7 @@ function addPageSchema() {
               addressLocality : 'San Jose',
               addressRegion: 'CA',
               postalCode: '95134',
-              addressCountry:'US',
+              addressCountry: 'US',
             },
           },
           {
