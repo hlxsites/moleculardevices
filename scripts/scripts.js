@@ -692,9 +692,9 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            sameAs: {
+            sameAs: [
               brandSameAs,
-            },
+            ],
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
@@ -735,9 +735,10 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            sameAs: {
+            sameAs: [
               brandSameAs,
-            },
+            ],
+
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
