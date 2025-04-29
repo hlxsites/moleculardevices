@@ -735,7 +735,7 @@ function addPageSchema() {
               logo,
             },
             sameAs:
-              brandSameAs,        
+            brandSameAs,        
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
@@ -747,7 +747,7 @@ function addPageSchema() {
             address: {
               '@type': 'PostalAddress',
               streetAddress: '3860 N. First Street',
-              addressLocality : 'San Jose',
+              addressLocality: 'San Jose',
               addressRegion: 'CA',
               postalCode: '95134',
               addressCountry: 'US',
