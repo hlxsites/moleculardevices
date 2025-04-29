@@ -689,22 +689,19 @@ function addPageSchema() {
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              sameAs: brandSameAs,
               url: moleculardevicesRootURL,
               logo,
             },
+            sameAs: {
+              brandSameAs,
+            }
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+1-800-635-5577',
-              contactType: 'Customer Support',
-              areaServed: 'Worldwide',
-              availableLanguage: '["English"]',
-             '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
-              email: 'nsd@moldev.com',
+              email : 'nsd@moldev.com',
               contactType: 'Sales',
               areaServed: 'Worldwide',
-              availableLanguage: '["English"]',
+              availableLanguage:'["English"]',
             },
             address: {
               '@type': 'PostalAddress',
@@ -729,23 +726,18 @@ function addPageSchema() {
         '@graph': [
           {
             '@type': 'AboutPage',
-            url: 'https://www.moleculardevices.com/contact',
+            url: 'https://www.moleculardevices.com/about-us',
             name: schemaTitle,
             description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-               sameAs: brandSameAs,
               url: moleculardevicesRootURL,
               logo,
             },
-            contactPoint: {
-              '@type': 'ContactPoint',
-              telephone: '+1-800-635-5577',
-              contactType: 'Customer Support',
-              areaServed: 'Worldwide',
-              availableLanguage:'["English"]',
-            },
+            sameAs: {
+              brandSameAs,
+            }
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
