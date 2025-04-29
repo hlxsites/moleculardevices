@@ -715,7 +715,6 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   padding-left: 0;
   padding-right: 0;
   width: 100%;
-  margin-bottom: 2rem;
 }
 
 .columns.what-next-columns img {

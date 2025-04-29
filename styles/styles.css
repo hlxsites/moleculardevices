@@ -2808,9 +2808,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   background-image: var(--sign-up-newsletter-gradient);
   color: var(--text-white);
   border: none;
-}
-
-.what-next main .section.newsletter-form {
   position: relative;
   padding-left: calc((100dvw - var(--section-div-width)) / 2);
   padding-right: calc((100dvw - var(--section-div-width)) / 2);
