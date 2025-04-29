@@ -646,7 +646,7 @@ main .block.carousel.full-size .carousel-item-image img {
 }
 
 /* single-slide-carousel */
-main .section.single-slide-carousel .carousel-wrapper {
+/* main .section.single-slide-carousel .carousel-wrapper {
   width: 100%;
   max-width: var(--section-div-width);
 }
@@ -669,4 +669,4 @@ main .section.single-slide-carousel .carousel-item-column {
 main .section.single-slide-carousel .author-intro {
   margin-top: 0;
   margin-bottom: 0;
-}
+} */
