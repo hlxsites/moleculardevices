@@ -16,7 +16,7 @@ main .fragments-carousel-wrapper .carousel-nav-button {
   border-color: var(--text-color);
 }
 
-main .layout-60-40 .carousel.fragments-carousel .columns > div:not(> div:only-child) {
+main .layout-60-40 .carousel.fragments-carousel .columns > div:has(> div:not(:only-child)) {
   display: grid;
   grid-template-columns: 60% 40%;
 }
