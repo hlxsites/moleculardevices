@@ -16,6 +16,11 @@ main .fragments-carousel-wrapper .carousel-nav-button {
   border-color: var(--text-color);
 }
 
+main .layout-60-40 .carousel.fragments-carousel .columns > div:not(> div:only-child) {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
 @media only screen and (max-width: 767px) {
   main .fragments-carousel .carousel-item-text .button-container {
     margin-bottom: 2rem;
