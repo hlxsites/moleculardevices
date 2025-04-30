@@ -735,7 +735,7 @@ function addPageSchema() {
               logo,
             },
             sameAs:
-            brandSameAs,        
+              brandSameAs,
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
