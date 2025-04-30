@@ -68,7 +68,6 @@ main .carousel-wrapper.cards .carousel {
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 30px;
 }
 
 .carousel.cards .carousel-item .card:hover {
@@ -99,6 +98,14 @@ main .carousel-wrapper.cards .carousel {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.carousel.cards.show-full-description .carousel-item p,
+.carousel-wrapper.cards.show-full-description .card-description {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: auto;
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item p:first-child {
