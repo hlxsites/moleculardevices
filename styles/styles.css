@@ -2761,6 +2761,10 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   color: inherit;
 }
 
+.what-next .carousel.cards .carousel-item a:hover {
+  color: var(--text-color);
+}
+
 .what-next .cards.cols-4 ul li {
   border: none;
 }
