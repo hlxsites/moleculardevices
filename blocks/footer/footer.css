@@ -212,13 +212,16 @@
   margin-bottom: 15px;
 }
 
+.footer-newsletter-form .hubspot-form .submitted-message {
+  padding: 20px 0;
+}
+
 .footer-newsletter-form .hubspot-form .submitted-message p,
 .footer-newsletter-form .hubspot-form .submitted-message p span {
   color: #34393d;
   font-size: 18px;
   line-height: 1.33;
   text-align: center;
-  padding: 50px 0;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -300,10 +303,6 @@
   left: -36px;
 }
 
-.row-4 .row-4-inner-wrapper li i.fa-shopping-cart {
-  top: 21px;
-}
-
 /* footer bottom */
 .footer-bottom {
   margin-top: 32px;
@@ -312,7 +311,7 @@
   color: var(--text-white);
 }
 
-.footer-bottom ul li a:hover {
+.footer-bottom a:hover {
   color: var(--highlight-background-color);
 }
 

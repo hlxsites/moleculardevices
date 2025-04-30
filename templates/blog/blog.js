@@ -1,15 +1,15 @@
 /* eslint-disable import/no-cycle */
 import {
-  div, img, h3, p, h5,
+  div, img, h3, p, h5, strong, i, a,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { decorateModal } from '../../blocks/modal/modal.js';
-import { sortDataByDate } from '../../scripts/scripts.js';
+import { decorateLinks, sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getFormId } from '../../blocks/forms/formHelper.js';
 
-async function getLatestNewsletter() {
+export async function getLatestNewsletter() {
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
@@ -109,5 +109,26 @@ export default async function decorate() {
     const blogCarouselSection = blogCarousel.parentElement;
     const socialShareSection = div(div({ class: 'social-share' }));
     blogCarouselSection.parentElement.insertBefore(socialShareSection, blogCarouselSection);
+  }
+
+  // add article sentence
+  const isArticlePage = getMetadata('blog-type') === 'Article';
+  const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
+  const contactURL = 'https://www.moleculardevices.com/contact?region=americas#get-in-touch';
+
+  if (isArticlePage) {
+    const publisher = getMetadata('publisher');
+    const gatedUrl = getMetadata('article-url');
+    const creditParagraph = div({ class: 'credit-paragraph' },
+      p(strong(
+        i('This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), ' and reprinted here with permission.'),
+      )),
+      p(a({ href: contactURL, class: 'button primary' }, signatureCTA)),
+    );
+    setTimeout(() => {
+      const block = document.querySelector('.hero-container + .section');
+      decorateLinks(creditParagraph);
+      block.append(creditParagraph);
+    }, 1000);
   }
 }

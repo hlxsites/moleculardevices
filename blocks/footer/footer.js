@@ -1,6 +1,7 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
   createOptimizedPicture,
+  toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -12,6 +13,7 @@ import {
 import { getNewsData } from '../news/news.js';
 import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getLatestNewsletter } from '../../templates/blog/blog.js';
 
 let placeholders = {};
 
@@ -110,7 +112,7 @@ function capitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
 
-async function getLatestNewsletter() {
+async function getNewslettersList() {
   const newsletters = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
@@ -134,7 +136,9 @@ async function buildNewsletter(container) {
 
   const formID = 'enewsletterSubscribeForm';
   const formType = 'newsletter';
-  const form = (
+  const formHeading = 'Lab Notes eNewsletter';
+
+  const form = div({ class: toClassName(`${formHeading}-wrapper`) },
     div({
       id: newsletterId,
       class: 'enewsletter-wrapper',
@@ -144,18 +148,22 @@ async function buildNewsletter(container) {
         class: 'hubspot-form',
         id: formID,
       },
-    )));
+    )),
+  );
+  // add submission form from hubspot
+  container.querySelector(`#${newsletterId}`).replaceWith(form);
 
   const formConfig = {
     formId: getFormId(formType),
+    latestNewsletter: await getLatestNewsletter(),
+    redirectUrl: null,
   };
+
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
 
-  const newsletterList = await getLatestNewsletter();
+  const newsletterList = await getNewslettersList();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
 
-  // add submission form from hubspot
-  container.querySelector(`#${newsletterId}`).replaceWith(form);
   if (!isNewsletterListExist) {
     container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
   }
@@ -192,13 +200,10 @@ export default async function decorate(block) {
 
   const currentYear = new Date().getFullYear();
   const siteLogoPath = '/images/header-menus/logo.svg';
-  const placeholderImage = createOptimizedPicture(siteLogoPath, 'Molecular Devices');
-  placeholderImage.querySelector('img').width = 210;
-  placeholderImage.querySelector('img').height = 54;
   const footerSiteLogo = p(
     { class: 'footer-site-logo' },
     a({ href: '/' },
-      placeholderImage,
+      createOptimizedPicture(siteLogoPath),
     ));
   const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
   footer.querySelector('.site-logo').appendChild(footerSiteLogo);
@@ -258,7 +263,7 @@ export default async function decorate(block) {
       if (idx === 7) {
         const row7 = rows[7];
         if (row7) {
-          const copyrightInfoZH = p(`\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`);
+          const copyrightInfoZH = p(a({ href: 'https://beian.miit.gov.cn/#/Integrated/index' }, `\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`));
           row7.querySelector('.footer-contact').appendChild(copyrightInfoZH);
         }
       }

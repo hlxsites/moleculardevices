@@ -1,5 +1,6 @@
+/* stylelint-disable no-descending-specificity, selector-class-pattern */
 main .pro-comparison-result {
-  background: rgba(0,0,0,.9);
+  background: rgb(0 0 0 / 90%);
   padding: 20px 0;
   position: fixed;
   display: none;
@@ -24,19 +25,19 @@ main .pro-comparison-result .container {
 
 @media (min-width: 992px) {
   main .pro-comparison-result .container {
-      width: 970px;
+    width: 970px;
   }
 }
 
 @media (min-width: 768px) {
   main .pro-comparison-result .container {
-      width: 750px;
+    width: 750px;
   }
 }
 
 @media (min-width: 1200px) {
   main .pro-comparison-result .container {
-      width: 1170px;
+    width: 1170px;
   }
 }
 
@@ -49,6 +50,12 @@ main .pro-comparison-result .product-comparison {
 main .pro-comparison-result .row {
   margin-right: -15px;
   margin-left: -15px;
+}
+
+main .pro-comparison-result .row::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 main .pro-comparison-result .col-xs-12 {
@@ -89,7 +96,7 @@ main .pro-comparison-result .btn {
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
-  line-height: 1.42857143;
+  line-height: 1.4286;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -129,41 +136,38 @@ main .pro-comparison-result .scroll_div {
   right: 0;
 }
 
-main .pro-comparison-result .comparison-table {
-  margin: 0 0 50px 0;
-}
-
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell .pro-container {
-  flex-grow: 1;
-}
-
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell .pro-container {
-  display: flex;
-  align-items: stretch;
-}
-
 main .pro-comparison-result .pro-container {
   background: var(--background-color);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgba(0,0,0,.2);
-  transition: all .3s;
+  box-shadow: 0 1px 10px rgb(0 0 0 / 20%);
+  transition: all 0.3s;
   display: flex;
+  flex-flow: column nowrap;
   flex-wrap: wrap;
   align-items: stretch;
   align-content: stretch;
   width: 100%;
-  flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
 
 main .pro-comparison-result .pro-container:hover {
   transform: scale(1.07);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
-main .pro-comparison-result .pro-container>img {
+main .pro-comparison-result .comparison-table {
+  margin: 0 0 50px;
+}
+
+main .pro-comparison-result .comparison-table .comparison-row > .row > [class^="col-"] .comparison-cell .pro-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+main .pro-comparison-result .pro-container > img {
   width: 100%;
   max-width: 252px;
   max-height: 189px;
@@ -175,7 +179,7 @@ main .pro-comparison-result .pro-container>img {
   height: auto;
 }
 
-main .pro-comparison-result .pro-container>.trash-icon {
+main .pro-comparison-result .pro-container > .trash-icon {
   width: 20px;
   height: 20px;
   position: absolute;
@@ -200,7 +204,8 @@ main .pro-comparison-result .comparison-table .comparison-row .pro-details h3 {
   font-size: 18px;
 }
 
-main .pro-comparison-result .pro-details h4, .pro-details h3 {
+main .pro-comparison-result .pro-details h4,
+.pro-details h3 {
   margin-bottom: 8px;
   margin-top: 0;
   color: var(--text-color);
@@ -236,10 +241,10 @@ main .pro-comparison-result .comparison-table .comparison-row {
   border-bottom: 1px solid var(--text-light-gray);
 }
 
-main .pro-comparison-result .comparison-table .comparison-row>.row,
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"],
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell,
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell .pro-container {
+main .pro-comparison-result .comparison-table .comparison-row > .row,
+main .pro-comparison-result .comparison-table .comparison-row > .row > [class^="col-"],
+main .pro-comparison-result .comparison-table .comparison-row > .row > [class^="col-"] .comparison-cell,
+main .pro-comparison-result .comparison-table .comparison-row > .row > [class^="col-"] .comparison-cell .pro-container {
   display: flex;
   align-items: stretch;
 }
@@ -255,7 +260,12 @@ main .pro-comparison-result .comparison-table .comparison-row:first-child .row [
   }
 }
 
-main .pro-comparison-result .comparison-table .comparison-row:not(:first-child) .row [class^="col-"]:nth-child(odd):not(:first-child) {
+main
+  .pro-comparison-result
+  .comparison-table
+  .comparison-row:not(:first-child)
+  .row
+  [class^="col-"]:nth-child(odd):not(:first-child) {
   background: #e2e4e6;
 }
 
@@ -266,7 +276,14 @@ main .pro-comparison-result .col-sm-3 {
   padding-left: 15px;
 }
 
-main .pro-comparison-result .pro-comparison-result.popup .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell {
+main
+  .pro-comparison-result
+  .pro-comparison-result.popup
+  .comparison-table
+  .comparison-row
+  > .row
+  > [class^="col-"]
+  .comparison-cell {
   flex-direction: column;
 }
 
@@ -284,18 +301,67 @@ main .pro-comparison-result .comparison-table .comparison-row .comparison-cell.t
   font-size: 35px;
 }
 
-main .pro-comparison-result .comparison-table .comparison-row:first-child .row [class^="col-"] {
-  padding: 0 15px;
-}
-
-main .pro-comparison-result .pro-comparison-result.popup .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell {
-  flex-direction: column;
-}
-
-main .pro-comparison-result .comparison-table .comparison-row>.row>[class^="col-"] .comparison-cell .pro-container {
-  flex-grow: 1;
-}
-
 main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
   padding: 15px;
+}
+
+@media print {
+  header,
+  main > div:not(.pro-comparison-result),
+  main .pro-comparison-result .product-comparison > .row,
+  footer {
+    display: none !important;
+  }
+
+  main .pro-comparison-result .section-heading {
+    position: static;
+  }
+
+  main .pro-comparison-result,
+  main .pro-comparison-result .scroll_div,
+  main .pro-comparison-result .product-comparison {
+    position: static !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .comparison-table {
+    page-break-before: always;
+  }
+
+  .comparison-row {
+    page-break-inside: avoid;
+  }
+
+  main .pro-comparison-result .scroll_div .comparison-row {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+  }
+
+  main .pro-comparison-result .scroll_div .row {
+    display: table-row;
+  }
+
+  main .pro-comparison-result .scroll_div .col-xs-12,
+  main .pro-comparison-result .scroll_div .col-xs-6,
+  main .pro-comparison-result .scroll_div .col-sm-3 {
+    display: table-cell;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #fff !important;
+    border: none;
+  }
+
+  main .pro-comparison-result .scroll_div .col-sm-3 {
+    border: 1px solid #ccc;
+  }
+
+  main .pro-comparison-result .scroll_div .comparison-cell.title {
+    font-weight: bold;
+    background-color: #f4f4f4;
+  }
 }
