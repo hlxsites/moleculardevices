@@ -23,14 +23,13 @@ function formatDateMonthAndYear(unixDateString) {
 
 function createFilters(options) {
   const currentYear = options.activeFilters.get('year');
-  // const currentMonth = toTitleCase(options.activeFilters.get('month'));
   const filteredDataByYear = Array.from(new Set(options.data.map((n) => n.filterYear)));
   const filteredDataByMonth = Array.from(new Set(options.data.map((n) => (n.filterYear === currentYear ? toTitleCase(n.filterMonth) : '0'))));
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
   options.activeFilters.set('month', monthFilter[0]);
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, toTitleCase(options.activeFilters.get('month')), 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, options.activeFilters.get('month') || '', 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
@@ -127,6 +126,12 @@ async function updateFilter(event, options) {
 
   options.activeFilters.set(filterType, valueToSet);
   const filterContainer = document.querySelector('.filter');
+
+  if (elem.classList.contains('reset')) {
+    options.activeFilters.set(filterType, '');
+  } else {
+    options.activeFilters.set(filterType, elem.getAttribute('name'));
+  }
 
   if (filterType === 'year') {
     options.activeFilters.set('month', '');
