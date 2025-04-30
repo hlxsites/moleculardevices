@@ -5,7 +5,7 @@ import {
   createList, createDropdown, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import ffetch from '../../scripts/ffetch.js';
-import { iframe } from '../../scripts/dom-helpers.js';
+import { iframe, p } from '../../scripts/dom-helpers.js';
 import { toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
@@ -23,13 +23,14 @@ function formatDateMonthAndYear(unixDateString) {
 
 function createFilters(options) {
   const currentYear = options.activeFilters.get('year');
-  const currentMonth = toTitleCase(options.activeFilters.get('month'));
+  // const currentMonth = toTitleCase(options.activeFilters.get('month'));
   const filteredDataByYear = Array.from(new Set(options.data.map((n) => n.filterYear)));
   const filteredDataByMonth = Array.from(new Set(options.data.map((n) => (n.filterYear === currentYear ? toTitleCase(n.filterMonth) : '0'))));
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
+  options.activeFilters.set('month', monthFilter[0]);
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, toTitleCase(options.activeFilters.get('month')), 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
@@ -119,22 +120,25 @@ async function updateFilter(event, options) {
   const selectedValue = elem.getAttribute('name');
   const toggle = selectWrapper.querySelector('.dropdown-toggle');
   const valueToSet = selectedValue.startsWith('select-') ? '' : selectedValue;
+  const header = p({ class: 'panel-title' }, options.panelTitle);
 
   toggle.textContent = elem.textContent;
   toggle.setAttribute('value', valueToSet);
 
   options.activeFilters.set(filterType, valueToSet);
+  const filterContainer = document.querySelector('.filter');
 
   if (filterType === 'year') {
     options.activeFilters.set('month', '');
 
     const updatedFilters = createFilters(options);
-    const filterContainer = document.querySelector('.filter');
     if (filterContainer) {
       filterContainer.innerHTML = '';
       updatedFilters.forEach((el) => filterContainer.appendChild(el));
       bindFilterEvents(options);
     }
+
+    filterContainer.prepend(header);
   }
 
   options.activeFilters.set('page', 1);
