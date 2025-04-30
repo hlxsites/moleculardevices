@@ -16,9 +16,11 @@ main .fragments-carousel-wrapper .carousel-nav-button {
   border-color: var(--text-color);
 }
 
-main .layout-60-40 .carousel.fragments-carousel .columns > div:has(> div:not(:only-child)) {
-  display: grid;
-  grid-template-columns: 60% 40%;
+@media only screen and (min-width: 992px) {
+  main .layout-60-40 .carousel.fragments-carousel .columns > div:has(> div:not(:only-child)) {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
 }
 
 @media only screen and (max-width: 767px) {
