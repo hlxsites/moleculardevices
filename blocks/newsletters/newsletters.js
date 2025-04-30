@@ -29,7 +29,7 @@ function createFilters(options) {
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, monthFilter[0] || currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
