@@ -1,14 +1,11 @@
 import {
-  fetchPlaceholders,
-  readBlockConfig,
-  toClassName,
+  fetchPlaceholders, readBlockConfig, toClassName,
 } from '../../scripts/lib-franklin.js';
-import ffetch from '../../scripts/ffetch.js';
 import {
-  createList, createDropdown, renderPagination, swapData,
-  toggleFilter,
+  createList, createDropdown, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
-import { a, iframe } from '../../scripts/dom-helpers.js';
+import ffetch from '../../scripts/ffetch.js';
+import { iframe } from '../../scripts/dom-helpers.js';
 import { toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
@@ -32,7 +29,7 @@ function createFilters(options) {
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, monthFilter[0] || currentMonth, 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
