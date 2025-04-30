@@ -16,13 +16,19 @@ const noThumbnailCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
   showImageThumbnail: false,
-  descriptionLength: 100,
+  descriptionLength: 150,
 });
 
 const thumbnailAndLinkCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
-  descriptionLength: 100,
+  descriptionLength: 150,
+});
+
+const productCardRender = await createCard({
+  defaultButtonText: 'Learn more',
+  useDefaultButtonText: true,
+  descriptionLength: 150,
 });
 
 const blogCardRender = await createCard({
@@ -278,6 +284,7 @@ const VARIANTS = {
   PRODUCTS: {
     headings: true,
     sortCards: false,
+    cardRenderer: productCardRender,
 
     async getData() {
       let products = await ffetch('/query-index.json')

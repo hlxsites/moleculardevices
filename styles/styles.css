@@ -1554,6 +1554,14 @@ main .section.background-molecules {
     height: 37px;
   }
 
+  main div.orange-buttons .button.secondary:link,
+  main div.orange-buttons .button.secondary:visited,
+  main div.orange-secondary-buttons .button.secondary:link,
+  main div.orange-secondary-buttons .button.secondary:visited {
+    color: var(--text-orange);
+    border: 2px solid var(--orange-background-color);
+  }
+
   /* ------ */
 
   main div.section.wave h2 {

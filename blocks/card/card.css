@@ -24,6 +24,14 @@ main .card:hover {
   transition: all 0.3s;
 }
 
+main .card .new-product-tag {
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  max-width: 100px;
+  height: auto;
+}
+
 main .card-thumb {
   height: 200px;
   min-height: 200px;
@@ -52,7 +60,7 @@ main .card .card-category {
   padding: 10px 15px;
   font-size: 16px;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   z-index: 1;
 }

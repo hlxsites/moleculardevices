@@ -1192,6 +1192,31 @@ header .green-background p:nth-child(2) a {
   color: var(--text-white);
 }
 
+header .cards-submenu p.new-product {
+  overflow: visible;
+  position: relative;
+}
+
+header .cards-submenu p.new-product > a {
+  display: block;
+  overflow: hidden;
+}
+
+header .cards-submenu .new-product .new-product-tag {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  max-width: 100px;
+  height: auto;
+}
+
+header .cards-submenu .new-product .new-product-tag img {
+  max-height: 60px;
+  object-fit: contain;
+  padding: 0;
+  transform: none !important;
+}
+
 header .cards-submenu .expanded-image img {
   margin: 0 auto;
   padding: 0;
