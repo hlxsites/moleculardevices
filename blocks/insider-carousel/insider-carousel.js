@@ -4,6 +4,7 @@ import { createCarousel } from '../carousel/carousel.js';
 const styleConfig = {
   defaultStyling: true,
   autoScroll: false,
+  hasImageInDots: true,
   visibleItems: [
     {
       items: 1,
