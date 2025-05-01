@@ -25,7 +25,8 @@ export function triggerModalWithUrl(url) {
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
   setTimeout(() => {
-    iframeElement.src = `${url}?cmp=${cmpID}`;
+    if (cmpID) iframeElement.src = `${url}?cmp=${cmpID}`;
+    if (!cmpID) iframeElement.src = url;
   }, 200);
   timer = setTimeout(showModal, 500);
 }
