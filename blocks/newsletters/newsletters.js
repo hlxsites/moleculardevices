@@ -58,6 +58,14 @@ function generateNewsletterIframe(url, parent, child) {
   // iframeResizeHandler(url, iframeID, parent);
 }
 
+function addNewsletterIframe(month, options) {
+  if (month && options.filteredData.length === 1) {
+    const iframeURL = options.filteredData[0].gatedURL;
+    const parentEl = document.querySelector('.list .items');
+    generateNewsletterIframe(iframeURL, parentEl, '.item');
+  }
+}
+
 export async function createOverview(block, options) {
   let currentYear = options.activeFilters.get('year');
   let currentMonth = options.activeFilters.get('month');
@@ -83,12 +91,7 @@ export async function createOverview(block, options) {
   // Create filters
   const yearFilter = createFilters(options);
   await createList(yearFilter, options, block);
-
-  if (options.filteredData.length === 1) {
-    const iframeURL = options.filteredData[0].gatedURL;
-    const parentEl = document.querySelector('.list .items');
-    generateNewsletterIframe(iframeURL, parentEl, '.item');
-  }
+  addNewsletterIframe(currentMonth, options);
 }
 
 function bindFilterEvents(options) {
@@ -158,12 +161,7 @@ async function updateFilter(event, options) {
 
   renderPagination(document.querySelector('.list'), options, true);
   swapData(options);
-
-  if (options.filteredData.length === 1) {
-    const iframeURL = options.filteredData[0].gatedURL;
-    const parentEl = document.querySelector('.list .items');
-    generateNewsletterIframe(iframeURL, parentEl, '.item');
-  }
+  addNewsletterIframe(options.activeFilters.get('month'), options);
 }
 
 export async function fetchData() {
