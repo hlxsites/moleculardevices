@@ -1,0 +1,161 @@
+/* stylelint-disable no-descending-specificity */
+main .section.columns-2 .insider-carousel-wrapper.mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  margin: 0;
+}
+
+main .section.columns-2.insider-carousel-container {
+  grid-template-columns: auto auto;
+}
+
+main .insider-carousel .carousel-item {
+  border: 3px solid #efefef;
+}
+
+main .insider-carousel .carousel-item-columns-container {
+  gap: 20px;
+}
+
+main .insider-carousel .carousel-item-text {
+  text-align: left;
+}
+
+main .insider-carousel.grey .carousel-item {
+  background-color: #f2f2f2;
+  border: 0;
+}
+
+main .insider-carousel.mini {
+  padding: 0;
+}
+
+main .insider-carousel.mini .carousel-item {
+  border: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0;
+  margin: 0;
+}
+
+main .insider-carousel.mini .carousel-item-column {
+  width: 100%;
+  padding: 0 0 30px;
+}
+
+main .insider-carousel.mini .carousel-item-image {
+  width: 100%;
+  height: 189px;
+  margin: 35px auto 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+main .insider-carousel.mini .carousel-item-image picture {
+  margin: auto;
+}
+
+main .insider-carousel.mini .carousel-item-text {
+  padding: 0 20px;
+}
+
+main .insider-carousel.mini .carousel-item-text h3 {
+  margin: 0;
+  font-size: var(--heading-font-size-m);
+}
+
+main .insider-carousel.mini .carousel-item-text a {
+  color: #008ca8;
+}
+
+main .insider-carousel.mini .carousel-item-columns-container {
+  flex-direction: column;
+}
+
+main .insider-carousel-wrapper.mini .carousel-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: auto;
+  padding: 0 15px;
+}
+
+main .insider-carousel-wrapper.mini .carousel-nav-button {
+  position: inherit;
+  transform: none;
+  height: 16px;
+  width: 16px;
+  border: 0.5px solid var(--text-white);
+}
+
+main .insider-carousel-wrapper.mini .carousel-nav-button .icon {
+  height: 14px;
+  width: 14px;
+}
+
+main .insider-carousel-wrapper.mini .carousel-nav-button:hover {
+  background-color: inherit;
+}
+
+main .insider-carousel-wrapper.mini .carousel-nav-left {
+  order: 1;
+}
+
+main .insider-carousel-wrapper.mini .carousel-counter-text {
+  font-size: var(--heading-font-size-xs);
+  padding: 0 5px;
+  order: 2;
+}
+
+main .insider-carousel-wrapper.mini .carousel-nav-right {
+  order: 3;
+}
+
+main .insider-carousel .carousel-item-text .button-container {
+  display: block;
+}
+
+main .insider-carousel .carousel-item-text .button-container .secondary {
+  margin-left: 0;
+}
+
+/* what-next */
+.what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
+  display: grid;
+  grid-template-columns: auto 400px;
+}
+
+.what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column {
+  width: 100%;
+}
+
+.what-next main .insider-carousel .carousel-item-text .button-container {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.what-next main .insider-carousel .carousel-item-text .button-container em a{
+  padding: 13px 18px 14px;
+}
+
+@media only screen and (max-width: 991px) {
+  main .section.columns-2 .insider-carousel-wrapper.mini {
+    width: 80vw;
+    margin-bottom: 20px;
+  }
+
+  main .section.columns-2.insider-carousel-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .section.columns-2 .insider-carousel-wrapper.mini {
+    width: 85vw;
+  }
+}

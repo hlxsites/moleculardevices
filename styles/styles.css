@@ -2849,28 +2849,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   display: block;
 }
 
-.what-next main .featured-products-carousel .carousel-item .carousel-item-columns-container {
-  display: grid;
-  grid-template-columns: auto 400px;
-}
-
-.what-next main .featured-products-carousel .carousel-item .carousel-item-columns-container .carousel-item-column {
-  width: 100%;
-}
-
-.what-next main .featured-products-carousel .carousel-item-text .button-container {
-  display: inline-block;
-  margin-right: 1rem;
-}
-
-.what-next main .featured-products-carousel .carousel-item-text .button-container em a{
-  padding: 13px 18px 14px;
-}
-
-/* .what-next main .featured-products-carousel .carousel-item h3 {
-  color: inherit
-} */
-
 @media only screen and (min-width: 768px) {
   .what-next .cards.cols-4 .cards-card-wrapper h4 {
     min-height: 62px;
