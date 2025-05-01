@@ -832,12 +832,19 @@ async function formInModalHandler(main) {
   const modalIframeID = 'modal-iframe';
 
   if (slasFormModal) {
+    const queryParams = new URLSearchParams(window.location.search);
     const defaultForm = slasFormModal.getAttribute('data-default-form');
+    const urlParams = new URL(defaultForm, window.location.origin).searchParams;
+    const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+
+    urlParams.delete('cmp');
+    const baseUrl = new URL(defaultForm, window.location.origin);
+    baseUrl.search = urlParams.toString();
 
     const modalBody = div(
       { class: 'iframe-wrapper slas-form' },
       iframe({
-        src: defaultForm,
+        src: cmpID ? `${baseUrl.toString()}?cmp=${cmpID}` : baseUrl.toString(),
         id: modalIframeID,
         loading: 'lazy',
         title: 'SLAS Modal',
