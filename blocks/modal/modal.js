@@ -21,12 +21,17 @@ export function showModal() {
 
 export function triggerModalWithUrl(url) {
   const queryParams = new URLSearchParams(window.location.search);
-  const cmpID = queryParams.get('cmp') || '';
+  const urlParams = new URL(url, window.location.origin).searchParams;
+  const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
+
+  urlParams.delete('cmp');
+  const baseUrl = new URL(url, window.location.origin);
+  baseUrl.search = urlParams.toString();
+
   setTimeout(() => {
-    if (cmpID) iframeElement.src = `${url}?cmp=${cmpID}`;
-    if (!cmpID) iframeElement.src = url;
+    iframeElement.src = cmpID ? `${baseUrl.toString()}?cmp=${cmpID}` : baseUrl.toString();
   }, 200);
   timer = setTimeout(showModal, 500);
 }
