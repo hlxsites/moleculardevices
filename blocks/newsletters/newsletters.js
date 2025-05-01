@@ -27,9 +27,10 @@ function createFilters(options) {
   const filteredDataByMonth = Array.from(new Set(options.data.map((n) => (n.filterYear === currentYear ? toTitleCase(n.filterMonth) : '0'))));
   const monthFilter = filteredDataByMonth.filter((month) => month !== '0');
   options.activeFilters.set('month', monthFilter[0]);
+  const currentMonth = options.activeFilters.get('month');
   return [
     createDropdown(filteredDataByYear, currentYear, 'year', placeholders.selectYear || 'Select Year'),
-    createDropdown(monthFilter, options.activeFilters.get('month') || '', 'month', placeholders.selectMonth || 'Select Month'),
+    createDropdown(monthFilter, currentMonth || '', 'month', placeholders.selectMonth || 'Select Month'),
   ];
 }
 
@@ -58,12 +59,18 @@ function generateNewsletterIframe(url, parent, child) {
 }
 
 export async function createOverview(block, options) {
-  const currentYear = options.activeFilters.get('year');
-  const currentMonth = options.activeFilters.get('month');
+  let currentYear = options.activeFilters.get('year');
+  let currentMonth = options.activeFilters.get('month');
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
+
+  /* set default year/month value */
+  if (!currentYear) currentYear = options.data[0].filterYear;
+  if (currentYear && !currentMonth) currentMonth = options.data[0].filterMonth;
+  options.activeFilters.set('year', currentYear);
+  options.activeFilters.set('month', currentMonth);
 
   // Filter data by year/month initially
   options.filteredData = options.data.filter((entry) => entry.filterYear === currentYear);
@@ -166,8 +173,6 @@ export async function fetchData() {
 }
 
 export default async function decorate(block) {
-  const currentYear = new Date().getFullYear().toString();
-  const currentMonth = `${new Date().toLocaleString('default', { month: 'short' })}-${currentYear}`;
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
   const options = {
@@ -178,8 +183,8 @@ export default async function decorate(block) {
     panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
   };
   options.activeFilters = new Map();
-  options.activeFilters.set('year', currentYear);
-  options.activeFilters.set('month', currentMonth);
+  options.activeFilters.set('year', '');
+  options.activeFilters.set('month', '');
   options.activeFilters.set('page', 1);
 
   options.data = await fetchData();
