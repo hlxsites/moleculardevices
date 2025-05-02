@@ -569,12 +569,7 @@ function addPageSchema() {
             sameAs:
               brandSameAs, 
           },
-          {
-            '@type': 'ImageObject',
-            name: schemaTitle,
-            url: schemaImageUrl,
-          },
-        ],
+         ],
       };
     }
 
