@@ -1597,23 +1597,56 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
 header .products-right-submenu {
   padding: 0;
   display: flex;
-  gap: 20px;
   background-color: rgba(0 0 0 / 30%);
   color: var(--header-actionable-submenu-text-color);
+  padding-bottom: 70px;
+  overflow: hidden;
+}
+
+header .products-right-submenu p {
+  margin: 0;
+}
+
+header .products-right-submenu img {
+  max-height: 100%;
 }
 
 header .products-right-submenu > div:first-child {
   z-index: 1;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 54% max-content;
 }
 
-header .products-right-submenu > div:first-child > div,
 header .products-right-submenu > div:first-child > div:first-child {
   padding: 40px;
 }
 
-header .products-right-submenu > div:first-child > div {
+header .products-right-submenu > div:first-child > div:last-child {
+  display: inline-block;
+  position: absolute;
+  bottom: 16px;
+  max-width: 260px;
+  text-align: center;
+  left: 52%;
+}
+
+header .products-right-submenu > div:first-child > div:last-child img {
+  width: 100%;
+  object-fit: contain;
+  height: auto;
+  max-height: 210px;
+}
+
+header .products-right-submenu p strong > a {
+  margin-top: 50px;
+  display: inline-block;
+  width: auto;
+  background-color: var(--text-green);
+  border-color: var(--text-green);
+  min-width: 200px;
+}
+
+/* header .products-right-submenu > div:first-child > div {
   text-align: center;
   padding-right: 0;
 }
@@ -1647,20 +1680,21 @@ header .products-right-submenu > div:first-child > div:not(:first-child) h3 a {
 header .products-right-submenu > div:first-child > div:not(:first-child) p {
   max-width: 60%;
   margin: 1.25rem auto;
-}
-
-header .products-right-submenu > div:last-child {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 60%;
-  pointer-events: none;
-}
+} */
 
 header .products-right-submenu > div:last-child img {
-  width: 100%;
-  max-height: 100%;
+  position: absolute;
+  right: -34px;
+  top: 0;
+  width: 50%;
   object-fit: cover;
+  pointer-events: none;
+  object-position: left;
+  max-height: calc(100% - 90px - 40px);
+}
+
+header .products-right-submenu > div:first-child > div:last-child h4 {
+  font-size: 16px;
 }
 
 /* 3D Biology */
@@ -2308,7 +2342,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: block;
   }
 
-  header .navbar-header > .header-logo-wrapper .cn-header-phone-list li{
+  header .navbar-header > .header-logo-wrapper .cn-header-phone-list li {
     padding-left: 0;
     margin-top: 20px;
   }
