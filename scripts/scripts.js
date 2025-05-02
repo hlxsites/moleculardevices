@@ -547,7 +547,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
@@ -558,18 +558,18 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
+            sameAs:
+            brandSameAs, 
           },
-          {
+        {
             '@type': 'ImageObject',
             name: schemaTitle,
             url: schemaImageUrl,
