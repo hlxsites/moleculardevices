@@ -954,6 +954,27 @@ export function addBlockBgColor(main) {
     }
   });
 }
+export function addSectionBgImage(main) {
+  const sections = main.querySelectorAll('.section[data-bg-image]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-bg-image');
+    if (bg) {
+      section.style.backgroundImage = bg;
+    }
+  });
+}
+
+export function addBlockBgImage(main) {
+  const sections = main.querySelectorAll('.section[data-block-bg-image]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-block-bg-image');
+    if (bg) {
+      section.querySelector('.block').style.backgroundImage = bg;
+    }
+  });
+}
 
 function loadCarousels(main) {
   const sections = main.querySelectorAll('.section.carousel');
@@ -991,6 +1012,8 @@ export async function decorateMain(main) {
   addSectionBgColor(main);
   addBlockBgColor(main);
   loadCarousels(main);
+  addSectionBgImage(main);
+  addBlockBgImage(main);
   addPageSchema();
   addHreflangTags();
 }

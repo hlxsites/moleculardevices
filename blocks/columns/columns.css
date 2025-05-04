@@ -724,7 +724,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .columns.what-next-columns p.picture,
 .columns.what-next-columns picture,
-.columns.what-next-columns img{
+.columns.what-next-columns img {
   height: 100%;
 }
 
@@ -776,7 +776,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   }
 
   .columns.what-next-columns .image-left div:first-child p.picture:nth-child(2):not(:only-of-type),
-  .columns.what-next-columns .image-right div:last-child p.picture:nth-child(2):not(:only-of-type){
+  .columns.what-next-columns .image-right div:last-child p.picture:nth-child(2):not(:only-of-type) {
     display: none;
   }
 
@@ -828,7 +828,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   }
 
   .columns.what-next-columns .image-left div:first-child p.picture:first-child:not(:only-of-type),
-  .columns.what-next-columns .image-right div:last-child p.picture:first-child:not(:only-of-type){
+  .columns.what-next-columns .image-right div:last-child p.picture:first-child:not(:only-of-type) {
     display: none;
   }
 
@@ -853,4 +853,28 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .cards.columns > div > div > div:not(:first-child) {
   padding: 20px;
+}
+
+/* gradient columns | blog */
+.gradient-column > div {
+  gap: 20px;
+}
+
+.gradient-column > div > div {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.gradient-column > div.image-right > div:first-child,
+.gradient-column > div.image-left > div:last-child {
+  padding: 20px;
+}
+
+.gradient-column > div > div a,
+.gradient-column > div > div a i.fa.fa-external-link {
+  color: inherit;
+}
+
+main .gradient-column div.orange-buttons .button {
+  min-width: 180px;
 }
