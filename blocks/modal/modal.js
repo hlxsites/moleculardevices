@@ -23,16 +23,27 @@ export function triggerModalWithUrl(url) {
   const queryParams = new URLSearchParams(window.location.search);
   const urlParams = new URL(url, window.location.origin).searchParams;
   const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+  const productFamily = queryParams.get('product_family') || urlParams.get('product_family') || '';
+  const productPrimary = queryParams.get('product_primary') || urlParams.get('product_primary') || '';
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
 
   urlParams.delete('cmp');
+  urlParams.delete('product_family');
+  urlParams.delete('product_primary');
+
   const baseUrl = new URL(url, window.location.origin);
   baseUrl.search = urlParams.toString();
 
   setTimeout(() => {
-    iframeElement.src = cmpID ? `${baseUrl.toString()}?cmp=${cmpID}` : baseUrl.toString();
+    const newParams = new URLSearchParams(baseUrl.search);
+    if (cmpID) newParams.set('cmp', cmpID);
+    if (productFamily) newParams.set('product_family', productFamily);
+    if (productPrimary) newParams.set('product_primary', productPrimary);
+
+    iframeElement.src = `${baseUrl.origin}${baseUrl.pathname}?${newParams.toString()}`;
   }, 200);
+
   timer = setTimeout(showModal, 500);
 }
 
