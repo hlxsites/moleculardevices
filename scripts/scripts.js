@@ -848,8 +848,8 @@ async function formInModalHandler(main) {
 
     const newParams = new URLSearchParams(baseUrl.search);
     if (cmpID) newParams.set('cmp', cmpID);
-    if (productFamily) newParams.set('product_family', productFamily);
-    if (productPrimary) newParams.set('product_primary', productPrimary);
+    if (productFamily) newParams.set('product_family__c', productFamily);
+    if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
 
     const modalBody = div(
       { class: 'iframe-wrapper slas-form' },
