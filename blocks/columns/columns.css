@@ -6,6 +6,7 @@ main .section > div.columns-wrapper {
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
 .columns div > *:first-child {
@@ -502,7 +503,7 @@ main .section > div.columns-wrapper {
   .columns > div {
     display: flex;
     flex-direction: unset;
-    gap: 30px;
+    gap: unset;
   }
 
   .columns > div > div {
