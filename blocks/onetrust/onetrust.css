@@ -7,6 +7,10 @@
   color: inherit;
 }
 
+.onetrust .otnotice-content a:hover {
+  opacity: 0.7;
+}
+
 .onetrust .otnotice-content .otnotice-sections > .otnotice-section:not(:last-child) {
   margin-bottom: 40px;
 }
@@ -27,8 +31,8 @@
   padding-right: 0;
 }
 
-.onetrust .otnotice-content .otnotice-sections .otnotice-section-content p:last-child {
-  margin-bottom: 0;
+.otnotice-content .otnotice-sections .otnotice-section-content p {
+  margin-bottom: 8px;
 }
 
 .onetrust .otnotice-content div:has(> table) {
@@ -52,8 +56,13 @@
   color: var(--text-white);
 }
 
-.onetrust .otnotice-content table tbody tr:first-child p {
-  margin-bottom: 0;
+.onetrust .otnotice-content table + table tbody tr:first-child {
+  background-color: transparent;
+  color: inherit;
+}
+
+.onetrust .otnotice-content table tbody tr br:last-child {
+  display: none;
 }
 
 .onetrust .otnotice-content table th,
@@ -74,4 +83,10 @@
 .otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td.subtitle {
   font-weight: 600;
   color: var(--text-electric-blue);
+}
+
+.onetrust .otnotice-content table tbody tr p:last-child,
+.otnotice-content .otnotice-sections .otnotice-section-content p:last-child,
+.onetrust .otnotice-content .otnotice-sections .otnotice-section-content p:last-child {
+  margin-bottom: 0 !important;
 }
