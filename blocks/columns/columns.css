@@ -865,6 +865,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
   margin-right: 0;
 }
 
+.gradient-column > div > div:only-child,
 .gradient-column > div.image-right > div:first-child,
 .gradient-column > div.image-left > div:last-child {
   padding: 20px;
