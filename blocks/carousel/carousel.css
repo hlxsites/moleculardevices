@@ -196,13 +196,18 @@ main .global-carousel.title-center h2 {
 
 main .section.global-carousel .carousel h2:only-child,
 main .section.global-carousel .carousel h2 + h3 {
-  margin-bottom: 48px;
+  margin-bottom: 18px;
 }
 
 @media only screen and (min-width: 768px) {
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 750px;
+  }
+
+  main .section.global-carousel .carousel h2:only-child,
+  main .section.global-carousel .carousel h2 + h3 {
+    margin-bottom: 48px;
   }
 }
 
@@ -301,7 +306,10 @@ main .section.global-carousel .carousel h2 + h3 {
     max-height: 300px;
   }
 
-  main .carousel.full-bg .carousel-item-column:first-child .picture:first-child {
+  main
+    .carousel.full-bg
+    .carousel-item-column:first-child
+    .picture:first-child {
     display: none;
   }
 }
@@ -541,11 +549,19 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     margin-right: 0;
   }
 
-  .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
+  .slas-page
+    main
+    div.carousel-wrapper.container-width-carousel
+    .carousel-dot-img-buttons {
     margin-top: 20px;
   }
 
-  .slas-page main div.carousel-wrapper.container-width-carousel .columns > div > div:first-child {
+  .slas-page
+    main
+    div.carousel-wrapper.container-width-carousel
+    .columns
+    > div
+    > div:first-child {
     margin-bottom: 24px;
   }
 
@@ -588,7 +604,7 @@ main .carousel .carousel-item .carousel-item-text blockquote > p::after {
 
 main .carousel blockquote::before,
 main .carousel blockquote::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100px;
   height: 100px;
@@ -598,13 +614,13 @@ main .carousel blockquote::after {
 }
 
 main .carousel blockquote::before {
-  background-image: url("/images/quote-left.png");
+  background-image: url('/images/quote-left.png');
   left: -50px;
   top: -89px;
 }
 
 main .carousel blockquote::after {
-  background-image: url("/images/quote-right.png");
+  background-image: url('/images/quote-right.png');
   right: -1.5em;
   bottom: -60px;
 }
