@@ -98,7 +98,8 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   margin-top: 30px;
 }
 
-.what-next main .insider-carousel .carousel-item-text .button-container em a:hover {
+.what-next main .insider-carousel .carousel-item-text .button-container em a:hover,
+.what-next main .insider-carousel .carousel-item-text .button-container em a:focus {
   color: var(--purple-color);
 }
 
@@ -124,6 +125,8 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
 .what-next .insider-carousel-wrapper .carousel-item-image img {
   object-position: right;
+  object-fit: cover;
+  max-height: 100%;
 }
 
 @media only screen and (min-width: 992px) {
