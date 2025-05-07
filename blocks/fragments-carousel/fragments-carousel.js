@@ -26,6 +26,7 @@ export default async function decorate(block) {
       if (fragmentHtml) {
         const fragmentElement = div();
         fragmentElement.innerHTML = fragmentHtml;
+        console.log(fragmentHtml);
 
         const vidyardLinks = fragmentElement.querySelector('a[href*="vids.moleculardevices.com"]');
         if (vidyardLinks) {
@@ -36,10 +37,12 @@ export default async function decorate(block) {
         const isFormModal = block.closest('.section').classList.contains('form-in-modal');
         if (isFormModal) {
           const showModalBtn = fragmentElement.querySelector('a[href*="info.moleculardevices.com"]');
-          showModalBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            triggerModalWithUrl(event.target.href);
-          });
+          if (showModalBtn) {
+            showModalBtn.addEventListener('click', (event) => {
+              event.preventDefault();
+              triggerModalWithUrl(event.target.href);
+            });
+          }
         }
 
         return { html: fragmentElement };
