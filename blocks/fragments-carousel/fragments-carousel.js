@@ -26,7 +26,6 @@ export default async function decorate(block) {
       if (fragmentHtml) {
         const fragmentElement = div();
         fragmentElement.innerHTML = fragmentHtml;
-        console.log(fragmentHtml);
 
         const vidyardLinks = fragmentElement.querySelector('a[href*="vids.moleculardevices.com"]');
         if (vidyardLinks) {
