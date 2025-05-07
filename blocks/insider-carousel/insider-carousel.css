@@ -22,6 +22,7 @@ main .insider-carousel .carousel-item {
 main .insider-carousel .carousel-item h3 > em {
   font-size: 1rem;
   display: block;
+  margin-top: 4px;
 }
 
 main .insider-carousel .carousel-item-text .button-container {
