@@ -139,11 +139,13 @@ main .section .hero-advanced-wrapper {
   display: inline-block;
 }
 
-.hero.events .hero-inner {
+.hero.events .hero-inner,
+.hero.newsletters .hero-inner {
   min-height: auto;
 }
 
-.hero.events .hero-inner .container:empty {
+.hero.events .hero-inner .container:empty,
+.hero.newsletters .hero-inner .container:empty {
   display: none;
 }
 
@@ -694,6 +696,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     position: relative;
     display: block;
     height: 125px;
+  }
+
+  .hero.newsletters .hero-inner .container {
+    padding-bottom: 120px;
   }
 }
 

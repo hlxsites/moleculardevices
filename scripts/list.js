@@ -49,7 +49,8 @@ function renderListItem(item, idx) {
   return article({ class: 'item' },
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
-        href: item.path,
+        href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+        target: item.type === 'Newsletter' ? '_blank' : '',
         title: item.title,
       }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }])),
     ) : '',
@@ -59,7 +60,8 @@ function renderListItem(item, idx) {
         a({
           class: 'title',
           title: item.title,
-          href: item.path,
+          href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+          target: item.type === 'Newsletter' ? '_blank' : '',
         }, item.title),
       ),
       (item.keywords && item.keywords !== '0')
@@ -71,7 +73,8 @@ function renderListItem(item, idx) {
       (item.viewMoreText) ? a({
         class: 'view-more',
         title: item.viewMoreText,
-        href: item.path,
+        href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+        target: item.type === 'Newsletter' ? '_blank' : '',
       }, ` ${item.viewMoreText}`) : '',
     ),
   );
@@ -305,18 +308,16 @@ function renderFilters(options, filters) {
   return null;
 }
 
-export async function createList(
-  filters,
-  options,
-  root,
-) {
+export async function createList(filters, options, root) {
   const listCSSPromise = loadCSS('../styles/list.css');
 
   if (options.data) {
-    const container = div({ class: 'list' },
-      renderFilters(options, filters),
-      createListItems(options),
-    );
+    const children = [];
+    const filtersEl = renderFilters(options, filters);
+    if (filtersEl) children.push(filtersEl);
+    children.push(createListItems(options));
+
+    const container = div({ class: 'list' }, ...children);
     root.append(container);
     renderPagination(container, options, false);
   }

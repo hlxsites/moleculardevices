@@ -1,0 +1,51 @@
+.section.newsletters-container .newsletters-wrapper {
+  padding-top: 0;
+}
+
+.newsletters .list .filter .select .dropdown-menu.open {
+  max-height: initial;
+}
+
+.newsletters .list {
+  padding-top: 0;
+}
+
+.newsletters .list > .items > .item > .image img {
+  min-height: 150px;
+  height: 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.newsletters label {
+  display: block;
+  padding: 0 0 0 37px;
+  margin: 0 0 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.newsletters input[type='checkbox'].filter-item {
+  display: none;
+}
+
+.newsletters label span::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 9px;
+  background: none;
+  border: 2px solid #adb3b7;
+}
+
+.newsletters input[type='checkbox'].filter-item:checked + span::before {
+  background-color: var(--background-color-green);
+  border-color: var(--background-color-green);
+}
+
+.newsletter-iframe {
+  overflow: scroll !important;
+  min-height: 700px;
+}
