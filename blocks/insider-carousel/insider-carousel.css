@@ -106,6 +106,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   border-radius: 50% 0 0 50%;
   overflow: hidden;
   border-left: 40px solid var(--cyan-color);
+  background: #f6f6f6;
 }
 
 .what-next .insider-carousel-wrapper .carousel-item-image,
@@ -115,10 +116,14 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   height: 100%;
 }
 
+.what-next .insider-carousel-wrapper .carousel-item-image picture {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
 .what-next .insider-carousel-wrapper .carousel-item-image img {
-  object-fit: cover;
-  width: 100%;
-  max-height: 100%;
+  object-position: right;
 }
 
 @media only screen and (min-width: 992px) {
