@@ -2429,6 +2429,7 @@ main .section.no-margin-top {
 .slas-page .section .default-content-wrapper h2 + h3 {
   text-align: left;
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .slas-page .columns.tutorials-posters h4 {
