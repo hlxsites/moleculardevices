@@ -1,19 +1,10 @@
 /* stylelint-disable no-descending-specificity */
-main .section.columns-2 .insider-carousel-wrapper.mini {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 300px;
-  margin: 0;
-}
-
 main .section.columns-2.insider-carousel-container {
   grid-template-columns: auto auto;
 }
 
 main .insider-carousel .carousel-item-columns-container {
-  gap: 40px;
+  gap: 20px;
 }
 
 main .insider-carousel .carousel-item-text {
@@ -22,11 +13,15 @@ main .insider-carousel .carousel-item-text {
 
 main .insider-carousel .carousel-item {
   background-color: var(--purple-color);
-  background-image: var(--sign-up-newsletter-gradient);
   color: var(--text-white);
   border: 0;
   padding: 0;
   align-items: stretch;
+}
+
+main .insider-carousel .carousel-item h3 > em {
+  font-size: 1rem;
+  display: block;
 }
 
 main .insider-carousel .carousel-item-text .button-container {
@@ -83,8 +78,40 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   margin-right: 1rem;
 }
 
+.what-next main .insider-carousel .carousel-item-text .button-container em a {
+  border-color: var(--cyan-color);
+  min-width: 200px;
+  margin-top: 30px;
+}
+
+.what-next main .insider-carousel .carousel-item-text .button-container em a:hover {
+  color: var(--purple-color);
+}
+
+.what-next .insider-carousel-wrapper .carousel-item-image {
+  border-radius: 50% 0 0 50%;
+  overflow: hidden;
+  background-color: var(--cyan-color);
+  padding-left: 2rem;
+}
+
+.what-next .insider-carousel-wrapper .carousel-item-image picture {
+  display: block;
+  background: #f6f6f6;
+  min-height: 560px;
+  position: relative;
+  border-radius: 50% 0 0 50%;
+}
+
+.what-next .insider-carousel-wrapper .carousel-item-image img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto;
+}
+
 @media only screen and (min-width: 992px) {
-  .what-next main .insider-carousel .carousel-item{
+  .what-next main .insider-carousel .carousel-item {
     padding-left: 50px;
   }
 
@@ -110,17 +137,13 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     color: var(--text-white);
   }
 
-  .what-next .insider-carousel-wrapper .carousel-item-image {
-    height: 100%;
-  }
-
-  .what-next .insider-carousel-wrapper .carousel-item-image img {
+  /* .what-next .insider-carousel-wrapper .carousel-item-image img {
     display: block;
     object-fit: cover;
     width: 100%;
     max-height: 100%;
     height: 100%;
-  }
+  } */
 }
 
 @media only screen and (max-width: 991px) {
