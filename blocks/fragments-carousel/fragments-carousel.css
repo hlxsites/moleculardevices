@@ -7,6 +7,10 @@ main .carousel.fragments-carousel .carousel-item {
   padding-block: 0;
 }
 
+main .carousel.fragments-carousel .carousel-item img{
+  width: unset;
+}
+
 main .fragments-carousel-wrapper .carousel-dot-button.selected {
   background-color: var(--text-color);
 }

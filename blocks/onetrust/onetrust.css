@@ -3,14 +3,6 @@
   padding: 0;
 }
 
-.onetrust .otnotice-content a {
-  color: inherit;
-}
-
-.onetrust .otnotice-content a:hover {
-  opacity: 0.7;
-}
-
 .onetrust .otnotice-content .otnotice-sections > .otnotice-section:not(:last-child) {
   margin-bottom: 40px;
 }
@@ -47,6 +39,10 @@
   max-width: 100%;
   border-collapse: collapse;
   font-size: var(--body-font-size-m);
+}
+
+.onetrust .otnotice-content table:has( ~ p){
+  margin-bottom: 30px;
 }
 
 .onetrust .otnotice-content table thead tr,
