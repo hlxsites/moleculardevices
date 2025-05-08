@@ -567,9 +567,9 @@ function addPageSchema() {
               logo,
             },
             sameAs:
-            brandSameAs, 
+              brandSameAs,
           },
-        {
+          {
             '@type': 'ImageObject',
             name: schemaTitle,
             url: schemaImageUrl,
@@ -935,6 +935,55 @@ export function detectAnchor(block) {
 }
 
 /**
+ * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
+ * This reads the `data-bg` value and applies it as a background color.
+ *
+ * @param {Element} main - The DOM element to decorate
+ */
+export function addSectionBgColor(main) {
+  const sections = main.querySelectorAll('.section[data-bg]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-bg');
+    if (bg) {
+      section.style.backgroundColor = bg;
+    }
+  });
+}
+
+export function addBlockBgColor(main) {
+  const sections = main.querySelectorAll('.section[data-block-bg]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-block-bg');
+    if (bg) {
+      section.querySelector('.block').style.backgroundColor = bg;
+    }
+  });
+}
+export function addSectionBgImage(main) {
+  const sections = main.querySelectorAll('.section[data-bg-image]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-bg-image');
+    if (bg) {
+      section.style.backgroundImage = bg;
+    }
+  });
+}
+
+export function addBlockBgImage(main) {
+  const sections = main.querySelectorAll('.section[data-block-bg-image]');
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute('data-block-bg-image');
+    if (bg) {
+      section.querySelector('.block').style.backgroundImage = bg;
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -953,6 +1002,10 @@ export async function decorateMain(main) {
   decorateLinks(main);
   decorateParagraphs(main);
   formInModalHandler(main);
+  addSectionBgColor(main);
+  addBlockBgColor(main);
+  addSectionBgImage(main);
+  addBlockBgImage(main);
   addPageSchema();
   addHreflangTags();
 }
