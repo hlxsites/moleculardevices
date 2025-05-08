@@ -7,6 +7,10 @@ main .carousel.fragments-carousel .carousel-item {
   padding-block: 0;
 }
 
+main .carousel.fragments-carousel .carousel-item img{
+  width: unset;
+}
+
 main .fragments-carousel-wrapper .carousel-dot-button.selected {
   background-color: var(--text-color);
 }
@@ -14,6 +18,13 @@ main .fragments-carousel-wrapper .carousel-dot-button.selected {
 main .fragments-carousel-wrapper .carousel-nav-button {
   color: var(--text-color);
   border-color: var(--text-color);
+}
+
+@media only screen and (min-width: 992px) {
+  main .layout-60-40 .carousel.fragments-carousel .columns > div:has(> div:not(:only-child)) {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
 }
 
 @media only screen and (max-width: 767px) {

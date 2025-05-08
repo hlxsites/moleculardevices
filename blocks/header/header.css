@@ -1192,6 +1192,31 @@ header .green-background p:nth-child(2) a {
   color: var(--text-white);
 }
 
+header .cards-submenu p.new-product {
+  overflow: visible;
+  position: relative;
+}
+
+header .cards-submenu p.new-product > a {
+  display: block;
+  overflow: hidden;
+}
+
+header .cards-submenu .new-product .new-product-tag {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  max-width: 100px;
+  height: auto;
+}
+
+header .cards-submenu .new-product .new-product-tag img {
+  max-height: 60px;
+  object-fit: contain;
+  padding: 0;
+  transform: none !important;
+}
+
 header .cards-submenu .expanded-image img {
   margin: 0 auto;
   padding: 0;
@@ -1569,28 +1594,31 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
 }
 
 /* PRODUCTS MENU */
+:root {
+  --product-gutter: 30px;
+}
+
 header .products-right-submenu {
   padding: 0;
   display: flex;
   gap: 20px;
-  background-color: rgba(0 0 0 / 30%);
   color: var(--header-actionable-submenu-text-color);
+  background-color: transparent;
 }
 
 header .products-right-submenu > div:first-child {
   z-index: 1;
   display: grid;
-  grid-template-columns: 40% 60%;
-}
-
-header .products-right-submenu > div:first-child > div,
-header .products-right-submenu > div:first-child > div:first-child {
-  padding: 40px;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 header .products-right-submenu > div:first-child > div {
-  text-align: center;
-  padding-right: 0;
+  background-color: rgba(0 0 0 / 30%);
+  overflow: hidden;
+  padding: var(--product-gutter);
+  display: flex;
+  flex-direction: column;
 }
 
 header .products-right-submenu > div:first-child > div img {
@@ -1598,44 +1626,36 @@ header .products-right-submenu > div:first-child > div img {
   height: auto;
 }
 
-header .products-right-submenu > div:first-child > div:first-child {
-  text-align: left;
+header .products-right-submenu > div:first-child > div > p:first-of-type {
+  margin: calc(var(--product-gutter) * -1) calc(var(--product-gutter) * -1) 0;
 }
 
-header .products-right-submenu > div:first-child > div:last-child {
-  position: absolute;
-  right: 20%;
-  bottom: -21%;
-  padding: 0;
-}
-
-header .products-right-submenu > div:first-child > div:not(:first-child) h3 {
-  font-size: 18px;
-  max-width: 60%;
-  margin: auto;
-}
-
-header .products-right-submenu > div:first-child > div:not(:first-child) h3 a {
-  color: var(--text-white);
-}
-
-header .products-right-submenu > div:first-child > div:not(:first-child) p {
-  max-width: 60%;
-  margin: 1.25rem auto;
-}
-
-header .products-right-submenu > div:last-child {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 60%;
+header .products-right-submenu > div:first-child > div > p:first-of-type > a:first-of-type:has(picture),
+header .products-right-submenu > div:first-child > div > p:first-of-type > picture img,
+header .products-right-submenu > div:first-child > div > p:first-of-type > a picture img {
   pointer-events: none;
 }
 
-header .products-right-submenu > div:last-child img {
-  width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+header .products-right-submenu > div:first-child > div > p:nth-of-type(2) {
+  margin-top: -57%;
+  margin-bottom: var(--product-gutter);
+}
+
+header .products-right-submenu > div:first-child > div > p:nth-of-type(2) img {
+  max-height: 240px;
+}
+
+header .products-right-submenu > div:first-child > div > p:nth-of-type(2) > a picture img:hover {
+  transform: scale(1.1);
+}
+
+header .products-right-submenu > div:first-child > div > p:last-of-type {
+  margin-top: auto;
+}
+
+header .products-right-submenu > div:first-child > div > p:last-of-type strong > a {
+  max-width: 190px;
+  min-width: unset;
 }
 
 /* 3D Biology */
@@ -2283,7 +2303,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: block;
   }
 
-  header .navbar-header > .header-logo-wrapper .cn-header-phone-list li{
+  header .navbar-header > .header-logo-wrapper .cn-header-phone-list li {
     padding-left: 0;
     margin-top: 20px;
   }

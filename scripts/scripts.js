@@ -32,6 +32,7 @@ import { createCarousel } from '../blocks/carousel/carousel.js';
 const TEMPLATE_LIST = [
   'application-note',
   'news',
+  'newsletter',
   'publication',
   'blog',
   'event',
@@ -547,7 +548,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
@@ -558,16 +559,16 @@ function addPageSchema() {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
+            sameAs:
+              brandSameAs,
           },
           {
             '@type': 'ImageObject',
@@ -690,16 +691,12 @@ function addPageSchema() {
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              sameAs: brandSameAs,
               url: moleculardevicesRootURL,
               logo,
             },
+            sameAs:
+              brandSameAs,
             contactPoint: {
-              '@type': 'ContactPoint',
-              telephone: '+1-800-635-5577',
-              contactType: 'Customer Support',
-              areaServed: 'Worldwide',
-              availableLanguage: '["English"]',
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
               email: 'nsd@moldev.com',
@@ -730,23 +727,17 @@ function addPageSchema() {
         '@graph': [
           {
             '@type': 'AboutPage',
-            url: 'https://www.moleculardevices.com/contact',
+            url: 'https://www.moleculardevices.com/about-us',
             name: schemaTitle,
             description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
               name: 'Molecular Devices',
-              sameAs: brandSameAs,
               url: moleculardevicesRootURL,
               logo,
             },
-            contactPoint: {
-              '@type': 'ContactPoint',
-              telephone: '+1-800-635-5577',
-              contactType: 'Customer Support',
-              areaServed: 'Worldwide',
-              availableLanguage: '["English"]',
-            },
+            sameAs:
+              brandSameAs,
             contactPoint: {
               '@type': 'ContactPoint',
               telephone: '+1-877-589-2214',
@@ -843,12 +834,29 @@ async function formInModalHandler(main) {
   const modalIframeID = 'modal-iframe';
 
   if (slasFormModal) {
+    const queryParams = new URLSearchParams(window.location.search);
     const defaultForm = slasFormModal.getAttribute('data-default-form');
+    const urlParams = new URL(defaultForm, window.location.origin).searchParams;
+    const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+    const productFamily = queryParams.get('product_family') || urlParams.get('product_family') || '';
+    const productPrimary = queryParams.get('product_primary') || urlParams.get('product_primary') || '';
+
+    urlParams.delete('cmp');
+    urlParams.delete('product_family');
+    urlParams.delete('product_primary');
+
+    const baseUrl = new URL(defaultForm, window.location.origin);
+    baseUrl.search = urlParams.toString();
+
+    const newParams = new URLSearchParams(baseUrl.search);
+    if (cmpID) newParams.set('cmp', cmpID);
+    if (productFamily) newParams.set('product_family__c', productFamily);
+    if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
 
     const modalBody = div(
       { class: 'iframe-wrapper slas-form' },
       iframe({
-        src: defaultForm,
+        src: `${baseUrl.origin}${baseUrl.pathname}?${newParams.toString()}`,
         id: modalIframeID,
         loading: 'lazy',
         title: 'SLAS Modal',
@@ -975,6 +983,7 @@ export function addBlockBgImage(main) {
     }
   });
 }
+
 
 function loadCarousels(main) {
   const sections = main.querySelectorAll('.section.carousel');

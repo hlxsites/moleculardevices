@@ -128,6 +128,10 @@ const customBreadcrumbs = {
     name: 'Events',
     url_path: '/events',
   },
+  newsletters: {
+    name: 'Newsletters',
+    url_path: '/newsletters',
+  },
   brochures: customResourcesBreadcrumb,
 };
 
