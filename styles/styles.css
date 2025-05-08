@@ -121,8 +121,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --accordion-light-gray-background-color: #f6f6f6;
   --accordion-color-white: #fff;
   --carousel-slider-background-color: #b3d8e0;
+  --purple-color: #660ff3;
+  --cyan-color: #6be6df;
   --blog-gradient: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
   --blog-gradient-left: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  --sign-up-newsletter-gradient: linear-gradient(var(--purple-color) 0, var(--cyan-color) 100%);
 
   /* fonts */
   --ff-proxima-regular: "Proxima Nova Regular", "Proxima Nova Regular Fallback", "helvetica neue", helvetica, arial,
