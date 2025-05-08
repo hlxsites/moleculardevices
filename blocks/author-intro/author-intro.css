@@ -42,6 +42,10 @@
   clear: both;
 }
 
+.author-intro-content-wrapper .author-intro-content h3:first-child{
+  margin-top: 0;
+}
+
 .author-intro-content-wrapper .author-intro-content p:last-child {
   margin-bottom: 0;
 }

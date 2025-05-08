@@ -41,6 +41,12 @@
   margin-top: 10px;
 }
 
+.blog main .video-wrapper,
+.blog main .vidyard-lightbox-thumbnail {
+  max-width: 100% !important;
+  margin: 0;
+}
+
 .blog main .no-indent ul,
 .blog main .no-indent ol {
   padding-left: 20px;
