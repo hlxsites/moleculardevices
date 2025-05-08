@@ -1,6 +1,8 @@
 .related-links-container {
   column-count: 2;
   column-gap: 30px;
+  margin-bottom: 30px;
+  padding-left: 20px;
 }
 
 .cols-3 {
@@ -19,6 +21,10 @@
 .related-app {
   flex-basis: calc(50% - var(--related-app-gap) / 2);
   min-height: 1px;
+}
+
+.product .section .related-app{
+  margin-top: 35px;
 }
 
 .related-link  {
