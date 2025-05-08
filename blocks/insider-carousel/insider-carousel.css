@@ -135,7 +135,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
   .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 57% 43%;
   }
 
   .what-next main .insider-carousel .carousel-item-text .button-container em a {
@@ -143,7 +143,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   }
 
   .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:first-child {
-    padding: 50px 0;
+    padding: 50px 0 20px;
   }
 
   .what-next .insider-carousel-wrapper .carousel-nav-button {
