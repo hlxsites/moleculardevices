@@ -147,7 +147,7 @@ Disallow: /en/assets/tutorials-videos/br/performing-advanced-statistical-analyse
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-software
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
-
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/human-relevant-models-for-real-world-impact
 
 
 
@@ -234,7 +234,7 @@ Disallow: /en/assets/promotion/dd/img/screening-of-neuronal-toxicity-using-ipsc-
 Disallow: /en/assets/promotion/dd/img/phenotypic-profiling-using-cell-painting-assay
 Disallow: /en/assets/promotion/dd/img/explore-cardiac-function-by-measuring-calcium-oscillation
 Disallow: /en/assets/promotion/dd/img/transform-your-cell-imaging
-
+Disallow: /en/assets/promotion/dd/img/slas-europe-2025
 
 #EU BPD Campaign Page block 
 Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
