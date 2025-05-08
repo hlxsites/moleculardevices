@@ -2776,39 +2776,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   color: var(--text-color);
 }
 
-.what-next .cards.cols-4 ul li {
-  border: none;
-}
-
-.what-next .cards.cols-4 .cards-card-wrapper {
-  height: 100%;
-  background-color: #f0f7f8;
-  color: #000;
-}
-
-.what-next .cards.cols-4 .cards-card-wrapper a {
-  color: inherit;
-}
-
-.what-next .cards.cols-4 .cards-card-wrapper h4 {
-  font-size: var(--heading-font-size-l);
-  border-bottom: 2px solid;
-  padding-bottom: 8px;
-  display: inline-block;
-}
-
-.what-next .cards.cols-4 .cards-card-image {
-  overflow: hidden;
-}
-
-.what-next .cards.cols-4 .cards-card-image img {
-  transition: all 0.2s ease-in-out;
-}
-
-.what-next .cards.cols-4 .cards-card-image img:hover {
-  transform: scale(1.05);
-}
-
 .what-next .forms.lab-notes {
   border-radius: 18px;
   position: relative;
@@ -2860,10 +2827,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 @media only screen and (min-width: 768px) {
-  .what-next .cards.cols-4 .cards-card-wrapper h4 {
-    min-height: 62px;
-  }
-
   .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
     margin-left: -10%;
     font-size: 21px;
