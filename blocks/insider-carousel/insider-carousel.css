@@ -125,9 +125,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 }
 
 .what-next .insider-carousel-wrapper .carousel-item-image img {
-  object-position: right;
-  object-fit: cover;
-  max-height: 100%;
+  object-position: right bottom;
 }
 
 @media only screen and (min-width: 992px) {
@@ -137,7 +135,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
   .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 55% 45%;
   }
 
   .what-next main .insider-carousel .carousel-item-text .button-container em a {
@@ -169,6 +167,20 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
   .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     flex-direction: column-reverse;
+  }
+
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:last-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  .what-next .insider-carousel-wrapper .carousel-item-image {
+    border-radius: 50%;
+    border: 10px solid var(--cyan-color);
+  }
+
+  .what-next .insider-carousel-wrapper .carousel-item-image img {
+    object-position: center;
   }
 }
 

@@ -277,9 +277,9 @@ main .section.global-carousel .carousel h2 + h3 {
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1460px) {
   main .carousel {
-    padding-inline: 100px;
+    padding-inline: var(--center-space);
   }
 }
 
