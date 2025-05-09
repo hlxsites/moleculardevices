@@ -534,7 +534,7 @@ main .section > div.columns-wrapper {
   }
 
   .columns.columns-3-cols > div,
-  .columns[class*='layout-'] > div,
+  .columns[class*="layout-"] > div,
   .blog .columns > div,
   .columns.contact > div {
     align-items: unset;
@@ -795,14 +795,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-left: 0;
   }
 
-  .columns.what-next-columns
-    .image-left
-    div:first-child
-    p.picture:nth-child(2):not(:only-of-type),
-  .columns.what-next-columns
-    .image-right
-    div:last-child
-    p.picture:nth-child(2):not(:only-of-type) {
+  .columns.what-next-columns .image-left div:first-child p.picture:nth-child(2):not(:only-of-type),
+  .columns.what-next-columns .image-right div:last-child p.picture:nth-child(2):not(:only-of-type) {
     display: none;
   }
 
@@ -853,14 +847,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-right: 15px;
   }
 
-  .columns.what-next-columns
-    .image-left
-    div:first-child
-    p.picture:first-child:not(:only-of-type),
-  .columns.what-next-columns
-    .image-right
-    div:last-child
-    p.picture:first-child:not(:only-of-type) {
+  .columns.what-next-columns .image-left div:first-child p.picture:first-child:not(:only-of-type),
+  .columns.what-next-columns .image-right div:last-child p.picture:first-child:not(:only-of-type) {
     display: none;
   }
 
@@ -976,3 +964,4 @@ main .section .cards.cols-4 .cards-card-image img:hover {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+

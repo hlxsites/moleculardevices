@@ -24,6 +24,7 @@ import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
+import { createCarousel } from '../blocks/carousel/carousel.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -940,46 +941,43 @@ export function detectAnchor(block) {
  *
  * @param {Element} main - The DOM element to decorate
  */
-export function addSectionBgColor(main) {
-  const sections = main.querySelectorAll('.section[data-bg]');
+export function addCustomColor(main, dataset, isBlock = false) {
+  const sections = main.querySelectorAll(`.section[${dataset}]`);
 
   sections.forEach((section) => {
-    const bg = section.getAttribute('data-bg');
-    if (bg) {
-      section.style.backgroundColor = bg;
-    }
+    const bg = section.getAttribute(dataset);
+    if (bg && isBlock) section.querySelector('.block').style.backgroundColor = bg;
+    if (bg && !isBlock) section.style.background = bg;
   });
 }
 
-export function addBlockBgColor(main) {
-  const sections = main.querySelectorAll('.section[data-block-bg]');
-
-  sections.forEach((section) => {
-    const bg = section.getAttribute('data-block-bg');
-    if (bg) {
-      section.querySelector('.block').style.backgroundColor = bg;
-    }
-  });
-}
-export function addSectionBgImage(main) {
-  const sections = main.querySelectorAll('.section[data-bg-image]');
-
-  sections.forEach((section) => {
-    const bg = section.getAttribute('data-bg-image');
-    if (bg) {
-      section.style.backgroundImage = bg;
-    }
-  });
+function addSectionBgColor(main) {
+  addCustomColor(main, 'data-bg');
 }
 
-export function addBlockBgImage(main) {
-  const sections = main.querySelectorAll('.section[data-block-bg-image]');
+function addBlockBgColor(main) {
+  addCustomColor(main, 'data-block-bg', true);
+}
 
+function addSectionBgImage(main) {
+  addCustomColor(main, 'data-bg-image');
+}
+
+function addBlockBgImage(main) {
+  addCustomColor(main, 'data-block-bg-image', true);
+}
+
+function loadCarousels(main) {
+  const sections = main.querySelectorAll('.section.carousel');
   sections.forEach((section) => {
-    const bg = section.getAttribute('data-block-bg-image');
-    if (bg) {
-      section.querySelector('.block').style.backgroundImage = bg;
-    }
+    section.classList.remove('carousel');
+    const blockWrapper = div({ class: 'carousel-wrapper' });
+    const block = div({ class: 'carousel' });
+    block.innerHTML = section.innerHTML;
+    section.innerHTML = '';
+    blockWrapper.append(block);
+    section.append(blockWrapper);
+    createCarousel(block);
   });
 }
 
@@ -1004,6 +1002,7 @@ export async function decorateMain(main) {
   formInModalHandler(main);
   addSectionBgColor(main);
   addBlockBgColor(main);
+  loadCarousels(main);
   addSectionBgImage(main);
   addBlockBgImage(main);
   addPageSchema();
