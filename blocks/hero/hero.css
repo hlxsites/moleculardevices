@@ -920,6 +920,9 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     padding-bottom: 0;
     display: grid;
     grid-template-columns: auto 230px;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
