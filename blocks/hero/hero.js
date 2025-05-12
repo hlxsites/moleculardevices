@@ -137,7 +137,13 @@ export function buildHero(block) {
   const container = div({ class: 'container' });
 
   let picture = block.querySelector('picture');
-  if (picture) {
+
+  if (picture && block.classList.contains('hero-insider')) {
+    inner.setAttribute('style', `background-image: url('${picture.lastElementChild.src}')`);
+    picture.parentElement.remove();
+  }
+
+  if (picture && !block.classList.contains('hero-insider')) {
     const originalHeroBg = picture.lastElementChild;
     const optimizedHeroBg = createOptimizedPicture(
       originalHeroBg.src,
@@ -202,6 +208,12 @@ export function buildHero(block) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
+  }
+
+  if (block.classList.contains('hero-insider')) {
+    inner.classList.remove('white-bg');
+    inner.appendChild(container);
+    block.appendChild(inner);
   }
 
   if (block.classList.contains('newsroom')) {
