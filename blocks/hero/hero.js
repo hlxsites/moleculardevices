@@ -15,7 +15,6 @@ function addMetadata(container) {
   const publisher = getMetadata('publisher');
   const publisherDate = formatDate(getMetadata('publication-date'), { month: 'short' });
   const updatedDate = formatDate(getMetadata('updated-date'), { month: 'short' });
-  const metadataStyling = 'display: flex;gap: 4px;align-items;center;min-width: 120px;';
   let updatedPublisherDate;
   if (updatedDate) {
     updatedPublisherDate = `Original: ${publishDate} | Updated: ${updatedDate}`;
@@ -24,14 +23,14 @@ function addMetadata(container) {
   }
 
   const metadataContainer = div({ class: 'metadata' },
-    div({ style: metadataStyling },
+    div({ class: 'metadata-item' },
       i({ class: ['fa', 'fa-calendar'] }),
       span({ class: 'publish-date' }, updatedPublisherDate),
     ),
   );
 
   if (author && !publisher) {
-    const authorContainer = div({ style: metadataStyling },
+    const authorContainer = div({ class: 'metadata-item' },
       i({ class: ['fa', 'fa-user'] }),
       span({ class: 'post-author' }, author),
     );
@@ -41,12 +40,12 @@ function addMetadata(container) {
   if (publisher) {
     let authorContainer = '';
     if (!author) {
-      authorContainer = div({ style: metadataStyling },
+      authorContainer = div({ class: 'metadata-item' },
         i({ class: ['fa', 'fa-user'] }),
         span({ class: 'blog-author' }, publisher),
       );
     } else {
-      authorContainer = div({ style: metadataStyling },
+      authorContainer = div({ class: 'metadata-item' },
         i({ class: ['fa', 'fa-user'] }),
         span({ class: 'blog-author' }, author),
       );

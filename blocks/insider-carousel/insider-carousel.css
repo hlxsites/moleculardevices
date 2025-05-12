@@ -48,24 +48,14 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   gap: 50px;
 }
 
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button {
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button {
   margin-right: 0;
   border: 3px solid var(--purple-color);
   padding: 0;
 }
 
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button,
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button
-  img {
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button,
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button img {
   border-radius: 50%;
 }
 
@@ -82,21 +72,17 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   color: inherit;
 }
 
-.what-next
-  main
-  .insider-carousel
-  .carousel-item
-  .carousel-item-columns-container {
+.what-next main .insider-carousel .carousel-item a:any-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
   padding: 0;
   align-items: stretch;
 }
 
-.what-next
-  main
-  .insider-carousel
-  .carousel-item
-  .carousel-item-columns-container
-  .carousel-item-column {
+.what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column {
   width: 100%;
 }
 
@@ -111,20 +97,8 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   margin-top: 30px;
 }
 
-.what-next
-  main
-  .insider-carousel
-  .carousel-item-text
-  .button-container
-  em
-  a:hover,
-.what-next
-  main
-  .insider-carousel
-  .carousel-item-text
-  .button-container
-  em
-  a:focus {
+.what-next main .insider-carousel .carousel-item-text .button-container em a:hover,
+.what-next main .insider-carousel .carousel-item-text .button-container em a:focus {
   color: var(--purple-color);
 }
 
@@ -157,11 +131,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     padding-left: 50px;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     display: grid;
     grid-template-columns: 57% 43%;
   }
@@ -170,12 +140,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     padding: 13px 18px 14px;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container
-    .carousel-item-column:first-child {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:first-child {
     padding: 50px 0 20px;
   }
 
@@ -198,20 +163,11 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     padding: 40px;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     flex-direction: column-reverse;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container
-    .carousel-item-column:last-child {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:last-child {
     display: flex;
     justify-content: center;
   }
@@ -231,10 +187,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     gap: 32px;
   }
 
-  .what-next
-    .insider-carousel-wrapper
-    .carousel-dot-img-buttons
-    .carousel-dot-button {
+  .what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button {
     max-width: 80px;
   }
 }

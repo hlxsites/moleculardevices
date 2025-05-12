@@ -223,13 +223,13 @@ main .section .hero-advanced-wrapper {
 }
 
 .wave .hero-inner {
-  background-image: url("/images/curve.webp"), url("/images/curve.png");
+  background-image: url('/images/curve.webp'), url('/images/curve.png');
   padding-bottom: 11%;
 }
 
 .wave-reverse .hero-inner,
 .thankyou .hero-inner {
-  background-image: url("/images/abs-curve.webp"), url("/images/abs-curve.png");
+  background-image: url('/images/abs-curve.webp'), url('/images/abs-curve.png');
   padding-top: 50px;
 }
 
@@ -279,7 +279,9 @@ main .section .hero-advanced-wrapper {
   padding: 0 0 41.2%;
   height: 555px;
   overflow: hidden;
-  background-image: linear-gradient(to bottom, rgba(255 255 255 / 0%) 55%, rgba(0 0 0 / 90%));
+  background-image: linear-gradient(to bottom,
+      rgba(255 255 255 / 0%) 55%,
+      rgba(0 0 0 / 90%));
 }
 
 .hero.blog .hero-inner img,
@@ -347,6 +349,12 @@ main .hero.blog .sticker {
 main.error .hero-wrapper .hero-inner {
   min-height: 90px;
   padding: 10px 0;
+}
+
+.blog main .hero-wrapper .container .metadata .metadata-item {
+  display: flex;
+  gap: 8px;
+  min-width: 120px;
 }
 
 /* Blog Variant - Desktop -- End */
@@ -507,12 +515,8 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .blog main .hero-wrapper .container .metadata {
-    padding-left: 40px;
-    text-align: left;
-    max-width: 236px;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    align-items: center;
     margin: 0 auto;
     line-height: 1.2;
     gap: 0;
@@ -521,10 +525,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
     padding: 6px;
-  }
-
-  .blog main .hero-wrapper .container .metadata i {
-    margin-right: 20px;
   }
 
   .blog main .hero-wrapper h1 {
@@ -797,7 +797,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 .discontinued-product::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -832,7 +832,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 .hero.full-page-banner .hero-inner::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
