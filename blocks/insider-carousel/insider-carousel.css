@@ -73,8 +73,8 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 }
 
 .what-next main .insider-carousel .carousel-item a:any-link {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
@@ -179,6 +179,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
   .what-next .insider-carousel-wrapper .carousel-item-image img {
     object-position: center;
+    aspect-ratio: 1/1;
   }
 }
 

@@ -171,6 +171,7 @@ main .carousel-dot-img-buttons .carousel-dot-button {
 
 main .carousel-dot-img-buttons .carousel-dot-button img {
   display: block;
+  aspect-ratio: 1/1;
 }
 
 main .carousel-dot-img-buttons .carousel-dot-button.selected {
@@ -306,10 +307,7 @@ main .section.global-carousel .carousel h2 + h3 {
     max-height: 300px;
   }
 
-  main
-    .carousel.full-bg
-    .carousel-item-column:first-child
-    .picture:first-child {
+  main .carousel.full-bg .carousel-item-column:first-child .picture:first-child {
     display: none;
   }
 }
@@ -549,19 +547,11 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     margin-right: 0;
   }
 
-  .slas-page
-    main
-    div.carousel-wrapper.container-width-carousel
-    .carousel-dot-img-buttons {
+  .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
     margin-top: 20px;
   }
 
-  .slas-page
-    main
-    div.carousel-wrapper.container-width-carousel
-    .columns
-    > div
-    > div:first-child {
+  .slas-page main div.carousel-wrapper.container-width-carousel .columns > div > div:first-child {
     margin-bottom: 24px;
   }
 
@@ -604,7 +594,7 @@ main .carousel .carousel-item .carousel-item-text blockquote > p::after {
 
 main .carousel blockquote::before,
 main .carousel blockquote::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100px;
   height: 100px;
@@ -614,13 +604,13 @@ main .carousel blockquote::after {
 }
 
 main .carousel blockquote::before {
-  background-image: url('/images/quote-left.png');
+  background-image: url("/images/quote-left.png");
   left: -50px;
   top: -89px;
 }
 
 main .carousel blockquote::after {
-  background-image: url('/images/quote-right.png');
+  background-image: url("/images/quote-right.png");
   right: -1.5em;
   bottom: -60px;
 }
@@ -661,29 +651,3 @@ main .block.carousel.full-size .carousel-item-column {
 main .block.carousel.full-size .carousel-item-image img {
   max-height: none;
 }
-
-/* single-slide-carousel */
-/* main .section.single-slide-carousel .carousel-wrapper {
-  width: 100%;
-  max-width: var(--section-div-width);
-}
-
-main .section.single-slide-carousel .carousel{
-  padding-inline: 0;
-}
-
-main .section.single-slide-carousel .carousel-item {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-main .section.single-slide-carousel .carousel-item-columns-container,
-main .section.single-slide-carousel .carousel-item-column {
-  width: 100%;
-  display: block;
-}
-
-main .section.single-slide-carousel .author-intro {
-  margin-top: 0;
-  margin-bottom: 0;
-} */
