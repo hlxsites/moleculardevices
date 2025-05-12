@@ -908,7 +908,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media only screen and (min-width: 768px) {
-  .hero-background {
+  .hero-wrapper .hero.hero-insider .hero-background {
     display: none;
   }
 
