@@ -72,7 +72,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   color: inherit;
 }
 
-.what-next main .insider-carousel .carousel-item a:not([class]){
+.what-next main .insider-carousel .carousel-item p:not([class]) a {
   text-decoration: underline;
   text-underline-offset: 4px;
 }

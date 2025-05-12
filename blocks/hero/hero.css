@@ -349,6 +349,7 @@ main.error .hero-wrapper .hero-inner {
   padding: 10px 0;
 }
 
+.full-article.publication main .hero-wrapper .container .metadata .metadata-item,
 .blog main .hero-wrapper .container .metadata .metadata-item {
   display: flex;
   gap: 8px;
@@ -499,11 +500,13 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
 @media (max-width: 767px) {
   /* Blog Variant - Mobile -- Start */
+  .full-article.publication main .hero-wrapper,
   .blog main .hero-wrapper {
     color: inherit;
     margin-bottom: 60px;
   }
 
+  .full-article.publication main .hero-wrapper .container,
   .blog main .hero-wrapper .container {
     width: 100%;
     position: static;
@@ -512,6 +515,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin-top: 83px;
   }
 
+  .full-article.publication main .hero-wrapper .container .metadata,
   .blog main .hero-wrapper .container .metadata {
     flex-direction: column;
     align-items: center;
@@ -520,11 +524,13 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     gap: 0;
   }
 
+  .full-article.publication main .hero-wrapper .container .metadata > div,
   .blog main .hero-wrapper .container .metadata > div {
     display: flex;
     padding: 6px;
   }
 
+  .full-article.publication main .hero-wrapper h1,
   .blog main .hero-wrapper h1 {
     font-family: var(--ff-proxima-light);
     font-size: 36px;
@@ -533,6 +539,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin-bottom: 33px;
   }
 
+  .hero.newsroom,
   .hero.blog {
     background-image: none;
     min-height: 398px;
@@ -540,28 +547,34 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     height: unset;
   }
 
+  .hero.newsroom .hero-inner .breadcrumbs,
   .blog .hero-inner .breadcrumbs {
     display: block;
   }
 
+  .hero.newsroom .hero-inner .breadcrumbs ol,
   .blog .hero-inner .breadcrumbs ol {
     display: none;
   }
 
+  .hero.newsroom .sticker,
   .hero.blog .sticker {
     top: 75px;
     right: 15px;
   }
 
+  .hero.newsroom .sticker img,
   .hero.blog .sticker img {
     width: 130px;
   }
 
+  .hero.newsroom .hero-inner,
   .hero.blog-overview .hero-inner {
     margin: 0;
     padding: 0 0 calc(41.2% - 82.5px);
   }
 
+  .hero.newsroom .hero-inner .container,
   .hero.blog-overview .hero-inner .container {
     margin: 0;
   }

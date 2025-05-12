@@ -2723,6 +2723,10 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   font-size: var(--h3);
 }
 
+.what-next a i.fa-external-link {
+  color: inherit;
+}
+
 .what-next .section p,
 .what-next .section h2,
 .what-next .section h3,
