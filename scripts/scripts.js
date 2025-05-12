@@ -941,13 +941,40 @@ export function detectAnchor(block) {
  *
  * @param {Element} main - The DOM element to decorate
  */
-export function addCustomColor(main, dataset, isBlock = false) {
+export function addCustomBgToCarousel(main, dataset) {
+  const sections = main.querySelectorAll(`.section[class*="carousel"][${dataset}]`);
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute(dataset);
+    if (!bg) return;
+
+    const carouselItems = section.querySelectorAll('.carousel-item');
+    const carouselDots = section.querySelectorAll('.carousel-dot-button');
+
+    [...carouselItems].forEach((item) => {
+      item.style.backgroundColor = bg;
+    });
+
+    [...carouselDots].forEach((btn) => {
+      btn.style.borderColor = bg;
+    });
+  });
+}
+
+function addBgToCarousel(main) {
+  const timer = setInterval(() => {
+    addCustomBgToCarousel(main, 'data-carousel-bg');
+    clearTimeout(timer);
+  }, 1000);
+}
+
+export function addCustomColor(main, dataset, selector = '') {
   const sections = main.querySelectorAll(`.section[${dataset}]`);
 
   sections.forEach((section) => {
     const bg = section.getAttribute(dataset);
-    if (bg && isBlock) section.querySelector('.block').style.backgroundColor = bg;
-    if (bg && !isBlock) section.style.background = bg;
+    if (bg && selector) section.querySelector(selector).style.background = bg;
+    if (bg && !selector) section.style.background = bg;
   });
 }
 
@@ -956,7 +983,7 @@ function addSectionBgColor(main) {
 }
 
 function addBlockBgColor(main) {
-  addCustomColor(main, 'data-block-bg', true);
+  addCustomColor(main, 'data-block-bg', '.block');
 }
 
 function addSectionBgImage(main) {
@@ -964,7 +991,7 @@ function addSectionBgImage(main) {
 }
 
 function addBlockBgImage(main) {
-  addCustomColor(main, 'data-block-bg-image', true);
+  addCustomColor(main, 'data-block-bg-image', '.block');
 }
 
 function loadCarousels(main) {
@@ -999,12 +1026,13 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  loadCarousels(main);
   formInModalHandler(main);
   addSectionBgColor(main);
   addBlockBgColor(main);
-  loadCarousels(main);
   addSectionBgImage(main);
   addBlockBgImage(main);
+  addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
 }
