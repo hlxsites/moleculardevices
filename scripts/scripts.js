@@ -950,7 +950,7 @@ export function addCustomBgToCarousel(main, dataset) {
 
     const carouselItems = section.querySelectorAll('.carousel-item');
 
-    if (bg.includes('http://')) {
+    if (bg.includes('http')) {
       [...carouselItems].forEach((item) => {
         item.style.backgroundImage = `url('${bg}')`;
       });
