@@ -831,6 +831,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   background-color: #000;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .hero.hero-insider .hero-inner::before {
