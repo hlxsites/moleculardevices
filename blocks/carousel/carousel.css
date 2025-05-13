@@ -41,6 +41,12 @@ main .carousel-item {
   padding: 50px 80px;
 }
 
+main .carousel-item[style*="background-image"] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 main .carousel-item-columns-container {
   max-width: 1140px;
   display: flex;
@@ -172,6 +178,7 @@ main .carousel-dot-img-buttons .carousel-dot-button {
 main .carousel-dot-img-buttons .carousel-dot-button img {
   display: block;
   aspect-ratio: 1/1;
+  object-fit: contain;
 }
 
 main .carousel-dot-img-buttons .carousel-dot-button.selected {

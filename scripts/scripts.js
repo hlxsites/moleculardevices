@@ -949,15 +949,20 @@ export function addCustomBgToCarousel(main, dataset) {
     if (!bg) return;
 
     const carouselItems = section.querySelectorAll('.carousel-item');
-    const carouselDots = section.querySelectorAll('.carousel-dot-button');
 
-    [...carouselItems].forEach((item) => {
-      item.style.backgroundColor = bg;
-    });
-
-    [...carouselDots].forEach((btn) => {
-      btn.style.borderColor = bg;
-    });
+    if (bg.includes('http://')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = `url('${bg}')`;
+      });
+    } else if (bg.includes('gradient')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = bg;
+      });
+    } else {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundColor = bg;
+      });
+    }
   });
 }
 
@@ -973,8 +978,16 @@ export function addCustomColor(main, dataset, selector = '') {
 
   sections.forEach((section) => {
     const bg = section.getAttribute(dataset);
-    if (bg && selector) section.querySelector(selector).style.background = bg;
-    if (bg && !selector) section.style.background = bg;
+    if (bg.includes('http://')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = `url('${bg}')`;
+      if (bg && !selector) section.style.backgroundImage = `url('${bg}')`;
+    } else if (bg.includes('gradient')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = bg;
+      if (bg && !selector) section.style.backgroundImage = bg;
+    } else {
+      if (bg && selector) section.querySelector(selector).style.backgroundColor = bg;
+      if (bg && !selector) section.style.backgroundColor = bg;
+    }
   });
 }
 
@@ -984,14 +997,6 @@ function addSectionBgColor(main) {
 
 function addBlockBgColor(main) {
   addCustomColor(main, 'data-block-bg', '.block');
-}
-
-function addSectionBgImage(main) {
-  addCustomColor(main, 'data-bg-image');
-}
-
-function addBlockBgImage(main) {
-  addCustomColor(main, 'data-block-bg-image', '.block');
 }
 
 function loadCarousels(main) {
@@ -1030,8 +1035,6 @@ export async function decorateMain(main) {
   formInModalHandler(main);
   addSectionBgColor(main);
   addBlockBgColor(main);
-  addSectionBgImage(main);
-  addBlockBgImage(main);
   addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
