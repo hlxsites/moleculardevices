@@ -119,7 +119,7 @@ export function getFormFieldValues(formConfig) {
   const cmpCookieValue = getCookie('cmp');
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
-  const currentUrl = window.location.href;
+  const currentUrl = window.location.href.split('?')[0];
 
   return {
     cmp: valuecmp || formConfig.cmp,
