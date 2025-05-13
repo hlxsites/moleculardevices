@@ -942,6 +942,5 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 @media only screen and (max-width: 767px) {
   .hero.hero-insider .hero-inner .sticker img {
     display: block;
-    width: auto;
   }
 }
