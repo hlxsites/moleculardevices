@@ -2785,7 +2785,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 .what-next main .section.newsletter-form {
-  color: var(--text-white);
   border: none;
   position: relative;
   padding-left: calc((100dvw - var(--section-div-width)) / 2);

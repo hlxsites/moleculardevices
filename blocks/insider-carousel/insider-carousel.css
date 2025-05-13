@@ -93,7 +93,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
 
 .what-next main .insider-carousel .carousel-item-text .button-container em a:hover,
 .what-next main .insider-carousel .carousel-item-text .button-container em a:focus {
-  color: var(--purple-color);
+  color: var(--link-hover-color);
 }
 
 .what-next .insider-carousel-wrapper .carousel-item-image,
