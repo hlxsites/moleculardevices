@@ -556,6 +556,10 @@ main .section > div.columns-wrapper {
     grid-template-columns: 33fr 66fr;
   }
 
+  .columns.layout-50-50 > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .columns.layout-66-33 > div {
     grid-template-columns: 66fr 33fr;
   }
