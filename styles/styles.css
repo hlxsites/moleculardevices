@@ -2705,7 +2705,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 /* whats next | new layout */
 .what-next {
   --h2: 62px;
-  --h3: 28px;
+  --h3: 36px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -2746,10 +2746,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   padding-bottom: 0;
 }
 
-.what-next .section p:last-child {
-  margin-bottom: 0;
-}
-
+.what-next .section p:last-child,
 .what-next .carousel.cards .carousel-item .card {
   margin-bottom: 0;
 }
