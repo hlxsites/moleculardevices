@@ -137,6 +137,7 @@ export function buildHero(block) {
   const container = div({ class: 'container' });
 
   let picture = block.querySelector('picture');
+
   if (picture && block.classList.contains('hero-insider')) {
     inner.setAttribute('style', `background-image: url('${picture.lastElementChild.src}')`);
     picture.parentElement.remove();
