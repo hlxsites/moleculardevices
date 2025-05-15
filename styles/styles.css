@@ -2836,7 +2836,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
     grid-template-areas:
       "heading heading"
       "spectra newsletterForm";
-    grid-template-columns: auto 400px;
+    grid-template-columns: auto 430px;
   }
 }
 

@@ -18,7 +18,7 @@ main .insider-carousel .carousel-item {
 }
 
 main .insider-carousel .carousel-item h3 > em {
-  font-size: 1rem;
+  font-size: var(--body-font-size-m);
   display: block;
   margin-top: 4px;
 }
@@ -29,6 +29,10 @@ main .insider-carousel .carousel-item-text .button-container {
 
 main .insider-carousel .carousel-item-text .button-container .secondary {
   margin-left: 0;
+}
+
+main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
+  display: none;
 }
 
 /* what-next */
@@ -46,24 +50,14 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   gap: 50px;
 }
 
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button {
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button {
   margin-right: 0;
   border: 3px solid var(--text-blue);
   padding: 0;
 }
 
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button,
-.what-next
-  .insider-carousel-wrapper
-  .carousel-dot-img-buttons
-  .carousel-dot-button
-  img {
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button,
+.what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button img {
   border-radius: 50%;
 }
 
@@ -96,20 +90,8 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
   margin-top: 30px;
 }
 
-.what-next
-  main
-  .insider-carousel
-  .carousel-item-text
-  .button-container
-  em
-  a:hover,
-.what-next
-  main
-  .insider-carousel
-  .carousel-item-text
-  .button-container
-  em
-  a:focus {
+.what-next main .insider-carousel .carousel-item-text .button-container em a:hover,
+.what-next main .insider-carousel .carousel-item-text .button-container em a:focus {
   color: var(--link-hover-color);
 }
 
@@ -139,12 +121,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     padding: 13px 18px 14px;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container
-    .carousel-item-column:first-child {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:first-child {
     padding: 50px 0 20px;
   }
 
@@ -167,20 +144,11 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     padding: 40px;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container {
     flex-direction: column-reverse;
   }
 
-  .what-next
-    main
-    .insider-carousel
-    .carousel-item
-    .carousel-item-columns-container
-    .carousel-item-column:last-child {
+  .what-next main .insider-carousel .carousel-item .carousel-item-columns-container .carousel-item-column:last-child {
     display: flex;
     justify-content: center;
   }
@@ -205,10 +173,7 @@ main .insider-carousel .carousel-item-text .button-container .secondary {
     gap: 32px;
   }
 
-  .what-next
-    .insider-carousel-wrapper
-    .carousel-dot-img-buttons
-    .carousel-dot-button {
+  .what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button {
     max-width: 80px;
   }
 }
