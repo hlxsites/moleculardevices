@@ -76,6 +76,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/bpd/ccnd1-knockout-c
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-compound-screening-toxicity-intestinal-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/machine-learning-assisted-automation-of-2d-3d-cell-culture.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/high-throughput-assay-for-human-alanine-transaminase-in-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-automated-microbial-plating-screening-hit-selection.pdf
 
 # HTML Page (App Note HTML Page Block)
 
