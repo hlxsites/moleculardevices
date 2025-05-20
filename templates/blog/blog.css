@@ -316,10 +316,20 @@ main .section.sidebar h4::after {
   padding-left: 0;
 }
 
+.blog main .card-list-filter ul {
+  padding-left: 0;
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .blog main .section div.spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .blog main .card-list-filter.blog ul li a {
+    padding: 16px 20px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
