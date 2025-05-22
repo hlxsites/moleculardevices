@@ -133,6 +133,10 @@ const customBreadcrumbs = {
     url_path: '/newsletters',
   },
   brochures: customResourcesBreadcrumb,
+  'for-whats-next': {
+    name: 'For What\'s Next',
+    url_path: '/for-whats-next',
+  },
 };
 
 function getCustomUrl(path, part) {
