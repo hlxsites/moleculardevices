@@ -70,7 +70,6 @@ class Card {
     this.showFullDescription = false;
     this.isInPastYear = false;
 
-
     // Apply overwrites
     Object.assign(this, config);
 
