@@ -52,7 +52,7 @@
 
 .footer .site-logo .footer-site-logo a {
   font-size: 0;
-  background-image: url("/images/header-menus/logo.svg");
+  background-image: url('/images/header-menus/logo.svg');
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
@@ -67,7 +67,7 @@
 
 .footer-wrapper {
   background-color: var(--background-color);
-  background-image: url("../../images/research-bg.png");
+  background-image: url('../../images/research-bg.png');
   overflow-x: hidden;
 }
 
@@ -176,8 +176,9 @@
 }
 
 .footer-newsletter-form a {
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .footer-newsletter-form label.privacy,
@@ -225,7 +226,10 @@
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.footer-newsletter-form .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+.footer-newsletter-form
+  .hubspot-form
+  .hs_error_rollup
+  .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
 }
@@ -335,7 +339,7 @@
 }
 
 .row-7 ul li:not(:last-child)::after {
-  content: "|";
+  content: '|';
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -356,14 +360,14 @@
 
 /* stylelint-disable-next-line selector-class-pattern */
 .row-8.columns-wrapper.OneLinkShow_zh {
-    display: flex !important;
+  display: flex !important;
 }
 
 .row-8 p {
   margin: 0;
 }
 
-.row-8 p img[alt*="beckman coulter"] {
+.row-8 p img[alt*='beckman coulter'] {
   position: relative;
   top: 8px;
 }
@@ -404,7 +408,7 @@
 }
 
 .footer .footer-landing-page ul li:not(:last-child)::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 12px;
   top: 0;
@@ -466,8 +470,8 @@
   .footer-bottom .container {
     display: grid;
     grid-template:
-      "danaher list"
-      "danaher logos";
+      'danaher list'
+      'danaher logos';
     align-items: center;
   }
 
