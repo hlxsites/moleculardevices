@@ -2353,6 +2353,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 
 main .columns-separator-line .columns-wrapper .columns {
   border-bottom: 1px solid var(--highlight-background-color);
+  padding-bottom: 3rem;
 }
 
 /* technology */
