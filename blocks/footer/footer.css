@@ -176,8 +176,9 @@
 }
 
 .footer-newsletter-form a {
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .footer-newsletter-form label.privacy,
@@ -356,7 +357,7 @@
 
 /* stylelint-disable-next-line selector-class-pattern */
 .row-8.columns-wrapper.OneLinkShow_zh {
-    display: flex !important;
+  display: flex !important;
 }
 
 .row-8 p {

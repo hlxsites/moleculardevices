@@ -506,6 +506,17 @@ const cardStyleConfig = {
 };
 
 export default async function decorate(block) {
+  // show full description
+  const showFullDescription = block.classList.contains('show-full-description');
+  if (showFullDescription) {
+    cardStyleConfig.showFullDescription = true;
+  }
+
+  const noRepetition = block.classList.contains('no-repetition');
+  if (noRepetition && block.children.length < 3) {
+    cardStyleConfig.infiniteScroll = false;
+  }
+
   // cards style carousel
   const useCardsStyle = block.classList.contains('cards');
   if (useCardsStyle) {
