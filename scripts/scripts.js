@@ -428,13 +428,17 @@ function detectSidebar(main) {
  * @param {Element} container The container element
  */
 export function decorateLinkedPictures(container) {
-  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
+  [...container.querySelectorAll('picture ~ br ~ a, picture ~ a')].forEach((link) => {
+    if (link.closest('.ignore-decoratelinkedpictures')) return;
+
     const br = link.previousElementSibling;
-    let picture = br.previousElementSibling;
-    if (br.tagName === 'PICTURE') {
-      picture = br;
+    let picture = br;
+
+    if (br.tagName === 'BR') {
+      picture = br.previousElementSibling;
     }
-    if (link.getAttribute('href')) {
+
+    if (picture && picture.tagName === 'PICTURE' && link.getAttribute('href')) {
       link.innerHTML = '';
       link.className = '';
       link.appendChild(picture);
