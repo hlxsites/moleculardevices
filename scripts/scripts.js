@@ -434,7 +434,7 @@ export function decorateLinkedPictures(container) {
     if (br.tagName === 'PICTURE') {
       picture = br;
     }
-    if (link.textContent.includes(link.getAttribute('href'))) {
+    if (link.getAttribute('href')) {
       link.innerHTML = '';
       link.className = '';
       link.appendChild(picture);
