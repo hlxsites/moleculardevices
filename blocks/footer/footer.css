@@ -241,7 +241,7 @@
 
 .row-4 ul:first-of-type {
   border-bottom: 1px solid var(--highlight-background-color);
-  margin: 4px 0 15px;
+  margin: 10px 0 0;
 }
 
 .row-4 li {
@@ -356,7 +356,7 @@
 
 /* stylelint-disable-next-line selector-class-pattern */
 .row-8.columns-wrapper.OneLinkShow_zh {
-    display: flex !important;
+  display: flex !important;
 }
 
 .row-8 p {
@@ -421,6 +421,12 @@
 @media only screen and (min-width: 768px) {
   .footer .container {
     width: 750px;
+  }
+
+  .columns > div {
+    display: flex;
+    flex-direction: unset;
+    gap: unset;
   }
 
   .footer-wrap .container {
