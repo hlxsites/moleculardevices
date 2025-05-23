@@ -50,6 +50,10 @@ const customBreadcrumbs = {
     name: 'Microplate Readers',
     url_path: '/lab-notes/blog#Microplate-Readers',
   },
+  '/lab-notes/axon-patch-clamp': {
+    name: 'Axon Patch-Clamp',
+    url_path: '/lab-notes/blog#Axon-Patch-Clamp',
+  },
   '/lab-notes/3d-biology': {
     name: '3D Biology',
     url_path: '/lab-notes/blog#3D-Biology',
