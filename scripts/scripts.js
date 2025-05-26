@@ -451,6 +451,7 @@ function addPageSchema() {
 
   const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us'];
   const type = getMetadata('template');
+  const  publication_date = getMetadata('publication-date');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
   const includedPaths = ['/products'];
@@ -493,6 +494,12 @@ function addPageSchema() {
       'https://www.facebook.com/MolecularDevices',
       'http://www.youtube.com/user/MolecularDevicesInc',
       'https://www.x.com/moldev',
+    ];
+
+   const xpath = [
+    '/html/head/title',
+    '/html/body/main/article/h1',
+    '/html/body/main/article/section[1]/p[1]',
     ];
 
     let schemaInfo = null;
@@ -618,6 +625,7 @@ function addPageSchema() {
             name: schemaTitle,
             description,
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
               representativeOfPage: 'True',
@@ -630,6 +638,18 @@ function addPageSchema() {
               sameAs: brandSameAs,
               logo,
             },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: canonicalHref,
+              sameAs: brandSameAs,
+              logo,
+            },
+            datePublished: publication_date,
+            speakable: {
+             '@type': 'Organization',
+             'xpath' :xpath,
+            },
           },
         ],
       };
@@ -638,13 +658,18 @@ function addPageSchema() {
     if (type === 'Application Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
+        mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalHref,
+        },
         '@graph': [
           {
             '@type': 'TechArticle',
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+           about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+          keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
               name: 'Molecular Devices',
@@ -654,6 +679,26 @@ function addPageSchema() {
             },
           },
         ],
+        author: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: canonicalHref,
+              sameAs: brandSameAs,
+              logo,
+            },
+        publisher: {
+              '@type': 'Organization',
+              name: 'Molecular Devices',
+              url: canonicalHref,
+              sameAs: brandSameAs,
+              logo,
+            },
+         speakable: {
+             '@type': 'Organization',
+             'xpath' :xpath,
+            },   
+        datePublished: publication_date,
+        dateModified: publication_date,
       };
     }
 
