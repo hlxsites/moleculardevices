@@ -13,7 +13,7 @@ main .section > div.columns-wrapper {
   margin-top: 0;
 }
 
-.columns[class*='layout-'] > div {
+.columns[class*="layout-"] > div {
   gap: 30px;
 }
 
@@ -45,7 +45,7 @@ main .section > div.columns-wrapper {
 
 .columns.line > div::after {
   flex-wrap: wrap;
-  content: '';
+  content: "";
   width: 94%;
   padding-top: 50px;
   border-bottom: 2px solid #ccc;
@@ -226,14 +226,14 @@ main .section > div.columns-wrapper {
 .columns.contact > div ul li::after,
 .columns.contact > div > div ul ul::before {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
   background-color: var(--border-color-gray);
   bottom: -10px;
-  content: '';
+  content: "";
   display: block;
   height: 1px;
   position: absolute;
@@ -332,30 +332,14 @@ main .section > div.columns-wrapper {
   color: var(--text-white);
 }
 
-.columns.light-and-dark-grey
-  > div:nth-child(odd)
-  > div:nth-child(odd)
-  .button-container
-  a,
-.columns.light-and-dark-grey
-  > div:nth-child(even)
-  > div:nth-child(even)
-  .button-container
-  a {
+.columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a,
+.columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a {
   border-color: var(--text-white);
   color: var(--text-white);
 }
 
-.columns.light-and-dark-grey
-  > div:nth-child(odd)
-  > div:nth-child(odd)
-  .button-container
-  a:hover,
-.columns.light-and-dark-grey
-  > div:nth-child(even)
-  > div:nth-child(even)
-  .button-container
-  a:hover {
+.columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a:hover,
+.columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a:hover {
   color: var(--button-hover-color);
 }
 
@@ -384,9 +368,7 @@ main .section > div.columns-wrapper {
   border-bottom: 1px solid var(--text-green);
 }
 
-.columns.layout-20-80.extended-width.green-separator
-  > div:last-child
-  > div:last-child {
+.columns.layout-20-80.extended-width.green-separator > div:last-child > div:last-child {
   border: none;
   padding-bottom: 0;
 }
@@ -534,17 +516,17 @@ main .section > div.columns-wrapper {
   }
 
   .columns.columns-3-cols > div,
-  .columns[class*='layout-'] > div,
+  .columns[class*="layout-"] > div,
   .blog .columns > div,
   .columns.contact > div {
     align-items: unset;
   }
 
-  .columns[class*='layout-'] > div {
+  .columns[class*="layout-"] > div {
     display: grid;
   }
 
-  .columns[class*='layout-'] h3 {
+  .columns[class*="layout-"] h3 {
     margin-top: 0;
   }
 
@@ -580,7 +562,7 @@ main .section > div.columns-wrapper {
     grid-template-columns: 60fr 40fr;
   }
 
-  .columns[class*='layout-'] > div > div {
+  .columns[class*="layout-"] > div > div {
     padding: 0;
     margin: 0;
   }
@@ -650,6 +632,10 @@ main .section > div.columns-wrapper {
 }
 
 @media (max-width: 767px) {
+  .columns.contact:first-child {
+    padding-top: 0;
+  }
+
   .columns p.button-container {
     display: block;
     text-align: center;
@@ -799,14 +785,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-left: 0;
   }
 
-  .columns.what-next-columns
-    .image-left
-    div:first-child
-    p.picture:nth-child(2):not(:only-of-type),
-  .columns.what-next-columns
-    .image-right
-    div:last-child
-    p.picture:nth-child(2):not(:only-of-type) {
+  .columns.what-next-columns .image-left div:first-child p.picture:nth-child(2):not(:only-of-type),
+  .columns.what-next-columns .image-right div:last-child p.picture:nth-child(2):not(:only-of-type) {
     display: none;
   }
 
@@ -857,14 +837,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
     padding-right: 15px;
   }
 
-  .columns.what-next-columns
-    .image-left
-    div:first-child
-    p.picture:first-child:not(:only-of-type),
-  .columns.what-next-columns
-    .image-right
-    div:last-child
-    p.picture:first-child:not(:only-of-type) {
+  .columns.what-next-columns .image-left div:first-child p.picture:first-child:not(:only-of-type),
+  .columns.what-next-columns .image-right div:last-child p.picture:first-child:not(:only-of-type) {
     display: none;
   }
 
@@ -921,7 +895,7 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
   margin-bottom: 0.75rem;
 }
 
-main .section .cards.cols-4 p{
+main .section .cards.cols-4 p {
   margin-top: 0;
 }
 

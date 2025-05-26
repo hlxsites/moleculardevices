@@ -55,19 +55,19 @@ function accordianHandler() {
   const siblings = this.parentElement.parentElement.children;
   const siblingsCount = siblings.length;
 
-  if (this.children[0].classList.contains('fa-plus')) {
+  if (this.querySelector('i').classList.contains('fa-plus')) {
     /* eslint no-plusplus: "error" */
     for (let i = 0; i < siblingsCount; i += 1) {
-      siblings[i].children[0].children[0].classList.add('fa-plus');
-      siblings[i].children[0].children[0].classList.remove('fa-minus');
+      siblings[i].querySelector('i').classList.add('fa-plus');
+      siblings[i].querySelector('i').classList.remove('fa-minus');
       siblings[i].children[1].classList.remove('active');
     }
     this.nextElementSibling.classList.add('active');
-    this.children[0].classList.remove('fa-plus');
-    this.children[0].classList.add('fa-minus');
+    this.querySelector('i').classList.remove('fa-plus');
+    this.querySelector('i').classList.add('fa-minus');
   } else {
-    this.children[0].classList.remove('fa-minus');
-    this.children[0].classList.add('fa-plus');
+    this.querySelector('i').classList.remove('fa-minus');
+    this.querySelector('i').classList.add('fa-plus');
     this.nextElementSibling.classList.remove('active');
   }
 }
@@ -160,6 +160,8 @@ const tabID = params.region
   ? params.region
   : document.querySelector('.regional-contacts .tab-content').id;
 
-document.querySelector(`a[href="#${tabID}"]`).click();
-tabQueryString(tabID);
+if (document.querySelector(`a[href="#${tabID}"]`)) {
+  document.querySelector(`a[href="#${tabID}"]`).click();
+  tabQueryString(tabID);
+}
 /* ================ TAB HANDLER ===================== */
