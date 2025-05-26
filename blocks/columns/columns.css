@@ -186,7 +186,7 @@ main .section > div.columns-wrapper {
   padding: 0 24px;
 }
 
-.columns.contact > div h3 {
+.columns.contact > div h2 {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
   font-size: var(--heading-font-size-m);
@@ -629,7 +629,7 @@ main .section > div.columns-wrapper {
 }
 
 @media (min-width: 992px) {
-  .columns.contact > div h3 {
+  .columns.contact > div h2 {
     font-size: var(--heading-font-size-l);
   }
 

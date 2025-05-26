@@ -239,7 +239,7 @@ export default async function decorate(block) {
     localLinks.forEach((link) => link.addEventListener('click', scrollToForm));
   };
 
-  const heading = block.querySelector('h5');
+  const heading = block.querySelector('h3');
   const cloneHeading = heading.cloneNode(true);
   heading.remove();
   block.insertBefore(cloneHeading, block.firstChild);
