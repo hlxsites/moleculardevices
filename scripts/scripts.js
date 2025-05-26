@@ -693,12 +693,12 @@ function addPageSchema() {
               sameAs: brandSameAs,
               logo,
             },
-         speakable: {
-             '@type': 'Organization',
-             'xpath' :xpath,
-            },   
         datePublished: publication_date,
         dateModified: publication_date,
+        speakable: {
+             '@type': 'Organization',
+             'xpath' :xpath,
+            },
       };
     }
 
