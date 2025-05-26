@@ -98,7 +98,7 @@ parent.insertBefore(tabWrapper, nextChild);
 const countryNames = [];
 
 regionalTabs.forEach((tab, index) => {
-  const country = tab.querySelector('h4');
+  const country = tab.querySelector('h3');
   const countryName = country.textContent;
   const countryId = idFromRegion(country);
   const tabParents = tab.parentElement;

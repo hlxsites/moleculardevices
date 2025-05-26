@@ -1,11 +1,13 @@
+import { div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie } from '../../scripts/scripts.js';
+import { toClassName } from '../../scripts/lib-franklin.js';
+import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';
 let REGION = new URLSearchParams(window.location.search).get('region');
 const COMMENTS = 'comments';
 
-function hubSpotFinalUrl(hubspotUrl, paramName) {
+function getUpdatedHubspotUrl(hubspotUrl, paramName) {
   const hubUrl = new URL(hubspotUrl.href);
   const { searchParams } = hubUrl;
   const cmp = getCookie('cmp') || searchParams.get('cmp');
@@ -18,64 +20,51 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
 
   returnURL.set('region', queryParams.get('region') || REGION);
 
-  if (paramName === 'general') {
-    searchParams.delete(COMMENTS);
-  }
-  if (paramName === COMMENTS) {
-    searchParams.set(paramName, 'Sales');
-  }
+  if (paramName === 'general') searchParams.delete(COMMENTS);
+  if (paramName === COMMENTS) searchParams.set(paramName, 'Sales');
 
-  const searchPatamsStr = searchParams.toString() ? `&${(searchParams.toString())}` : '';
-  const queryStr = `?return_url=${returnURL.toString()}${searchPatamsStr}&cmp=${cmp || DEFAULT_CMP}`;
+  const paramStr = searchParams.toString() ? `&${searchParams}` : '';
+  const queryStr = `?return_url=${returnURL.toString()}${paramStr}&cmp=${cmp || DEFAULT_CMP}`;
+
   return new URL(`${hubspotUrl.pathname}${queryStr}`, hubspotUrl);
 }
 
-function createForm(block, hubspotUrl) {
-  const hubspotIframeWrapper = document.createElement('div');
-  const hubspotIframe = document.createElement('iframe');
-  hubspotIframeWrapper.className = 'hubspot-iframe-wrapper get-in-touch-form';
-  hubspotIframe.setAttribute('loading', 'lazy');
-  hubspotIframeWrapper.appendChild(hubspotIframe);
-  hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
+function createLazyIframe(wrapperClass, url, block, iframeTitle) {
+  const iframeID = toClassName(`${iframeTitle}-iframe`);
+  const wrapper = div({ class: wrapperClass });
+  const iframeWrapper = iframe({ loading: 'lazy', title: iframeTitle, id: iframeID });
+  wrapper.appendChild(iframeWrapper);
+  url.parentNode.replaceChild(wrapper, url);
+  iframeResizeHandler(url, iframeID, wrapper);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
-      hubspotUrl.href = hubUrl.href;
-      hubspotIframe.src = hubspotUrl.href;
+      iframeWrapper.src = url.href;
     }
   });
   observer.observe(block);
+  return wrapper;
+}
+
+function createForm(block, hubspotUrl) {
+  createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
 }
 
 function createMap(block, mapUrl) {
-  const mapIframeWrapper = document.createElement('div');
-  const mapIframe = document.createElement('iframe');
-  mapIframeWrapper.className = 'map-iframe-wrapper';
-  mapIframe.setAttribute('loading', 'lazy');
-  mapIframeWrapper.appendChild(mapIframe);
-  mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      mapIframe.src = mapUrl.href;
-    }
-  });
-  observer.observe(block);
+  createLazyIframe('map-iframe-wrapper', mapUrl, block, 'Global Headquarters');
 }
 
 function regenerateForm(hubspotUrl, params) {
   const hubspotIframe = document.querySelector('.get-in-touch-form');
   if (hubspotUrl) {
-    const hubUrl = hubSpotFinalUrl(hubspotUrl, params);
+    const hubUrl = getUpdatedHubspotUrl(hubspotUrl, params);
     hubspotUrl.href = hubUrl.href;
-    hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
+    hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl.href);
   }
 }
 
-function scrollToForm(link, hubspotUrl, region) {
+function scrollToForm(link, hubspotUrl) {
   const hubspotIframe = document.querySelector('.get-in-touch-form');
   const getInTouchBlock = document.querySelector('.get-in-touch');
   if (hubspotIframe && hubspotUrl) {
@@ -87,7 +76,7 @@ function scrollToForm(link, hubspotUrl, region) {
     if (link && link.getAttribute('title') === 'Sales Inquiry Form') {
       params = COMMENTS;
     }
-    const hubUrl = hubSpotFinalUrl(hubspotUrl, params, region);
+    const hubUrl = getUpdatedHubspotUrl(hubspotUrl, params);
     hubspotUrl.href = hubUrl.href;
     hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
   }

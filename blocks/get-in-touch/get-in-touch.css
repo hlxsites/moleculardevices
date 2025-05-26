@@ -7,7 +7,7 @@
   margin-top: 0;
 }
 
-.get-in-touch > div > div h5 {
+.get-in-touch > div > div h3 {
   font-size: var(--heading-font-size-l);
   font-weight: 600;
   margin-bottom: 12px;
@@ -22,11 +22,6 @@
   display: block;
   background: #fff;
   padding-top: 10px;
-}
-
-.get-in-touch .hubspot-iframe-wrapper iframe {
-  height: 760px;
-  margin-bottom: -20px;
 }
 
 .get-in-touch .hubspot-iframe-wrapper {
