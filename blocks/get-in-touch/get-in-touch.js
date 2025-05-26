@@ -65,21 +65,16 @@ function regenerateForm(hubspotUrl, params) {
 }
 
 function scrollToForm(link, hubspotUrl) {
-  const hubspotIframe = document.querySelector('.get-in-touch-form');
-  const getInTouchBlock = document.querySelector('.get-in-touch');
-  if (hubspotIframe && hubspotUrl) {
-    const url = new URLSearchParams(hubspotUrl.href);
-    if (!DEFAULT_CMP) {
-      DEFAULT_CMP = url.get('cmp');
-    }
-    let params = 'general';
-    if (link && link.getAttribute('title') === 'Sales Inquiry Form') {
-      params = COMMENTS;
-    }
-    const hubUrl = getUpdatedHubspotUrl(hubspotUrl, params);
-    hubspotUrl.href = hubUrl.href;
-    hubspotIframe.querySelector('iframe').setAttribute('src', hubspotUrl);
-  }
+  const getInTouchBlock = document.getElementById('get-in-touch');
+  if (!getInTouchBlock || !hubspotUrl) return;
+  // Update URL
+  const hubUrlParams = new URLSearchParams(hubspotUrl.href);
+  if (!DEFAULT_CMP) DEFAULT_CMP = hubUrlParams.get('cmp');
+
+  const isSales = link?.getAttribute('title') === 'Sales Inquiry Form';
+  const param = isSales ? COMMENTS : 'general';
+  regenerateForm(hubspotUrl, param);
+
   window.scroll({
     top: getInTouchBlock.offsetTop - 100,
     behavior: 'smooth',

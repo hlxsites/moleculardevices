@@ -686,7 +686,6 @@ main .section.columns-2 > div {
   a.button:any-link,
   button {
     font-size: var(--body-font-size-xs);
-    padding: 8px 12px;
     width: 100%;
     max-width: 200px;
   }

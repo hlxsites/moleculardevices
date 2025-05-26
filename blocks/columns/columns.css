@@ -632,8 +632,8 @@ main .section > div.columns-wrapper {
 }
 
 @media (max-width: 767px) {
-  .columns.contact:first-child {
-    padding-top: 0;
+  .columns.contact {
+    padding: 0;
   }
 
   .columns p.button-container {
@@ -658,10 +658,6 @@ main .section > div.columns-wrapper {
 
   .columns.light-and-dark-grey > div > div {
     padding: 20px;
-  }
-
-  .columns.contact > div > div:not(:last-child) {
-    margin-bottom: 30px;
   }
 
   .columns.contact > div > div > ul > li:not(:last-child)::after {
