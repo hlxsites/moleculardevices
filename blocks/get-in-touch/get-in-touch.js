@@ -31,7 +31,7 @@ function createForm(block, hubspotUrl) {
   const hubspotIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
   hubspotIframeWrapper.appendChild(hubspotIframe);
   hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
-  iframeResizeHandler(hubspotUrl, toClassName(title), block);
+  iframeResizeHandler(hubspotUrl.href, toClassName(title), block);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
@@ -45,10 +45,9 @@ function createForm(block, hubspotUrl) {
 }
 
 function createMap(block, mapUrl) {
-  const mapIframeWrapper = document.createElement('div');
-  const mapIframe = document.createElement('iframe');
-  mapIframeWrapper.className = 'map-iframe-wrapper';
-  mapIframe.setAttribute('loading', 'lazy');
+  const title = 'Global Headquarters';
+  const mapIframeWrapper = div({ class: 'map-iframe-wrapper' });
+  const mapIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
   mapIframeWrapper.appendChild(mapIframe);
   mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
 
