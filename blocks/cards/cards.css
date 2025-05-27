@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .cards > ul {
   display: grid;
   grid-gap: 30px;
@@ -317,3 +318,80 @@
     margin-left: 0;
   }
 }
+
+/* ================ WHO WE ARE BLOCK ================ */
+
+.cards.who-we-are ul {
+  gap: unset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards.who-we-are a {
+  color: black;
+}
+
+.cards.who-we-are ul > li {
+  border: 0;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+.cards.who-we-are ul > li .cards-card-body code {
+  font-family: var(--ff-proxima-regular);
+  font-size: var(--body-font-size-m);
+}
+
+.cards.who-we-are ul > li .cards-card-body:first-child > p {
+  margin-top: 0;
+  margin-bottom: 0;
+  transition: all 0.2s;
+}
+
+.cards.who-we-are ul > li .cards-card-body:first-child > p:last-child {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.cards.who-we-are ul > li:hover .cards-card-body:first-child > p,
+.cards.who-we-are ul > li .cards-card-body:first-child > p:first-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cards.who-we-are ul > li .cards-card-body:first-child > p:last-child,
+.cards.who-we-are ul > li:hover .cards-card-body:first-child > p:first-child{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cards.who-we-are ul > li:hover .cards-card-body:first-child > p:last-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cards.who-we-are ul > li .cards-card-body:first-child img {
+  aspect-ratio: auto;
+  width: 152px;
+  display: block;
+  margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .cards.who-we-are ul > li {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .cards.who-we-are ul > li {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+/* ================ WHO WE ARE BLOCK ================ */
