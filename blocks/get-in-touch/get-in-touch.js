@@ -31,7 +31,7 @@ function createForm(block, hubspotUrl) {
   const hubspotIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
   hubspotIframeWrapper.appendChild(hubspotIframe);
   hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
-  iframeResizeHandler(hubspotUrl, toClassName(title), hubspotIframeWrapper);
+  iframeResizeHandler(hubspotUrl, toClassName(title), block);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
