@@ -87,7 +87,7 @@
   }
 
   .get-in-touch .hubspot-iframe-wrapper iframe {
-    height: 700px;
+    min-height: 700px;
   }
 
   .get-in-touch > div > div:last-child iframe {
@@ -99,9 +99,5 @@
   .get-in-touch .hubspot-success {
     padding: 10px;
     margin-bottom: 20px;
-  }
-
-  .get-in-touch .hubspot-iframe-wrapper iframe {
-    height: 870px;
   }
 }
