@@ -190,6 +190,7 @@ main .section > div.columns-wrapper {
   background-color: var(--dark-gray-background-color);
   color: var(--text-white);
   font-size: var(--heading-font-size-m);
+  font-family: var(--ff-proxima-regular);
   font-weight: bold;
   margin: 0;
   padding: 16px 8px;
