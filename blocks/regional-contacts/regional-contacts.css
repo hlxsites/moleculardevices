@@ -186,6 +186,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a {
   color: inherit;
+  cursor: pointer;
 }
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a:hover {

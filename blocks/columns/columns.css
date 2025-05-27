@@ -204,6 +204,7 @@ main .section > div.columns-wrapper {
 
 .columns.contact > div ul li a {
   color: inherit;
+  cursor: pointer;
 }
 
 .columns.bullet-points p.button-container a {
