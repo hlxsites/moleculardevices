@@ -18,6 +18,7 @@ function searchDistributorForm(countryList, productFamilyList) {
               <div class="form-group">
                 <div class="fields">
                   <div class="select-wrapper">
+                    <label for="country" class="screen-reader-text">Country</label>
                     <select name="country" id="country" class="form-control" required="">
                       <option value="" selected>Select Region/Country</option>
                       ${getSelectOptions(countryList)}
@@ -25,6 +26,7 @@ function searchDistributorForm(countryList, productFamilyList) {
                     <span class="fa fa-chevron-down"></span>
                   </div>
                   <div class="select-wrapper">
+                    <label for="product_family" class="screen-reader-text">Product Family</label>
                     <select name="product_family" id="product_family" class="form-control">
                       <option value="">Select Product Group</option>
                       ${getSelectOptions(productFamilyList)}
@@ -237,7 +239,7 @@ export default async function decorate(block) {
     localLinks.forEach((link) => link.addEventListener('click', scrollToForm));
   };
 
-  const heading = block.querySelector('h5');
+  const heading = block.querySelector('h3');
   const cloneHeading = heading.cloneNode(true);
   heading.remove();
   block.insertBefore(cloneHeading, block.firstChild);
