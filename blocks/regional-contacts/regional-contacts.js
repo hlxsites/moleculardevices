@@ -55,19 +55,19 @@ function accordianHandler() {
   const siblings = this.parentElement.parentElement.children;
   const siblingsCount = siblings.length;
 
-  if (this.querySelector('i').classList.contains('fa-plus')) {
+  if (this.querySelector('i.fa').classList.contains('fa-plus')) {
     /* eslint no-plusplus: "error" */
     for (let i = 0; i < siblingsCount; i += 1) {
-      siblings[i].querySelector('i').classList.add('fa-plus');
-      siblings[i].querySelector('i').classList.remove('fa-minus');
+      siblings[i].querySelector('i.fa').classList.add('fa-plus');
+      siblings[i].querySelector('i.fa').classList.remove('fa-minus');
       siblings[i].children[1].classList.remove('active');
     }
     this.nextElementSibling.classList.add('active');
-    this.querySelector('i').classList.remove('fa-plus');
-    this.querySelector('i').classList.add('fa-minus');
+    this.querySelector('i.fa').classList.remove('fa-plus');
+    this.querySelector('i.fa').classList.add('fa-minus');
   } else {
-    this.querySelector('i').classList.remove('fa-minus');
-    this.querySelector('i').classList.add('fa-plus');
+    this.querySelector('i.fa').classList.remove('fa-minus');
+    this.querySelector('i.fa').classList.add('fa-plus');
     this.nextElementSibling.classList.remove('active');
   }
 }
