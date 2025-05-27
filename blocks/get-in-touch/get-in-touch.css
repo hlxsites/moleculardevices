@@ -73,15 +73,11 @@
 @media only screen and (min-width: 992px) {
   .get-in-touch > div{
     flex-wrap: nowrap;
-    gap: 30px;
+    gap: 50px;
   }
 
   .get-in-touch > div > div {
     flex-basis: 50%;
-  }
-
-  .get-in-touch > div > div:last-child {
-    padding-left: 50px;
   }
 }
 
