@@ -71,7 +71,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .get-in-touch > div{
+  .get-in-touch > div {
     flex-wrap: nowrap;
     gap: 50px;
   }
@@ -99,5 +99,9 @@
   .get-in-touch .hubspot-success {
     padding: 10px;
     margin-bottom: 20px;
+  }
+
+  .get-in-touch .hubspot-iframe-wrapper iframe {
+    min-height: 740px;
   }
 }
