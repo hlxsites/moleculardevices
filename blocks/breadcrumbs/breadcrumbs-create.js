@@ -54,6 +54,10 @@ const customBreadcrumbs = {
     name: '3D Biology',
     url_path: '/lab-notes/blog#3D-Biology',
   },
+  '/lab-notes/axon-patch-clamp': {
+    name: 'Axon Patch-Clamp',
+    url_path: '/lab-notes/blog#Axon-Patch-Clamp',
+  },
   'service-support': {
     name: 'Service and Support',
     url_path: '/service-support',
