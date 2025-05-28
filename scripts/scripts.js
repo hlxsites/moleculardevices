@@ -24,6 +24,7 @@ import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
+import { createCarousel } from '../blocks/carousel/carousel.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -944,46 +945,75 @@ export function detectAnchor(block) {
  *
  * @param {Element} main - The DOM element to decorate
  */
-export function addSectionBgColor(main) {
-  const sections = main.querySelectorAll('.section[data-bg]');
+export function addCustomBgToCarousel(main, dataset) {
+  const sections = main.querySelectorAll(`.section[class*="carousel"][${dataset}]`);
 
   sections.forEach((section) => {
-    const bg = section.getAttribute('data-bg');
-    if (bg) {
-      section.style.backgroundColor = bg;
+    const bg = section.getAttribute(dataset);
+    if (!bg) return;
+
+    const carouselItems = section.querySelectorAll('.carousel-item');
+
+    if (bg.includes('http')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = `url('${bg}')`;
+      });
+    } else if (bg.includes('gradient')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = bg;
+      });
+    } else {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundColor = bg;
+      });
     }
   });
 }
 
-export function addBlockBgColor(main) {
-  const sections = main.querySelectorAll('.section[data-block-bg]');
+function addBgToCarousel(main) {
+  const timer = setInterval(() => {
+    addCustomBgToCarousel(main, 'data-carousel-bg');
+    clearTimeout(timer);
+  }, 1000);
+}
+
+export function addCustomColor(main, dataset, selector = '') {
+  const sections = main.querySelectorAll(`.section[${dataset}]`);
 
   sections.forEach((section) => {
-    const bg = section.getAttribute('data-block-bg');
-    if (bg) {
-      section.querySelector('.block').style.backgroundColor = bg;
+    const bg = section.getAttribute(dataset);
+    if (bg.includes('http://')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = `url('${bg}')`;
+      if (bg && !selector) section.style.backgroundImage = `url('${bg}')`;
+    } else if (bg.includes('gradient')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = bg;
+      if (bg && !selector) section.style.backgroundImage = bg;
+    } else {
+      if (bg && selector) section.querySelector(selector).style.backgroundColor = bg;
+      if (bg && !selector) section.style.backgroundColor = bg;
     }
   });
 }
-export function addSectionBgImage(main) {
-  const sections = main.querySelectorAll('.section[data-bg-image]');
 
-  sections.forEach((section) => {
-    const bg = section.getAttribute('data-bg-image');
-    if (bg) {
-      section.style.backgroundImage = bg;
-    }
-  });
+function addSectionBgColor(main) {
+  addCustomColor(main, 'data-bg');
 }
 
-export function addBlockBgImage(main) {
-  const sections = main.querySelectorAll('.section[data-block-bg-image]');
+function addBlockBgColor(main) {
+  addCustomColor(main, 'data-block-bg', '.block');
+}
 
+function loadCarousels(main) {
+  const sections = main.querySelectorAll('.section.carousel');
   sections.forEach((section) => {
-    const bg = section.getAttribute('data-block-bg-image');
-    if (bg) {
-      section.querySelector('.block').style.backgroundImage = bg;
-    }
+    section.classList.remove('carousel');
+    const blockWrapper = div({ class: 'carousel-wrapper' });
+    const block = div({ class: 'carousel' });
+    block.innerHTML = section.innerHTML;
+    section.innerHTML = '';
+    blockWrapper.append(block);
+    section.append(blockWrapper);
+    createCarousel(block);
   });
 }
 
@@ -1005,11 +1035,11 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  loadCarousels(main);
   formInModalHandler(main);
   addSectionBgColor(main);
   addBlockBgColor(main);
-  addSectionBgImage(main);
-  addBlockBgImage(main);
+  addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
 }

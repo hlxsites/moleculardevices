@@ -59,7 +59,6 @@ class Card {
     this.imageBlockReady = false;
     this.thumbnailLink = true;
     this.titleLink = true;
-    this.descriptionLength = 75;
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
     this.c2aLinkIconFull = false;
@@ -68,6 +67,7 @@ class Card {
     this.hideDescription = false;
     this.isRequestQuoteCard = false;
     this.isShopifyCard = false;
+    this.showFullDescription = false;
     this.isInPastYear = false;
 
     // Apply overwrites
@@ -83,6 +83,10 @@ class Card {
 
     if (this.isRequestQuoteCard) {
       this.defaultButtonText = 'Request Quote';
+    }
+
+    if (!this.showFullDescription) {
+      this.descriptionLength = 75;
     }
   }
 
