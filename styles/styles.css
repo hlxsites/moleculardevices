@@ -2786,7 +2786,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   position: relative;
   padding-left: calc((100dvw - var(--section-div-width)) / 2);
   padding-right: calc((100dvw - var(--section-div-width)) / 2);
-  height: 640px;
+  height: 645px;
 }
 
 .what-next main .section.newsletter-form a {
