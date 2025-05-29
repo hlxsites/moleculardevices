@@ -153,6 +153,7 @@ export default async function decorate(block) {
 
   if (window.location.pathname === '/contact-search') {
     setRegionByCountry(distributors, countrySelect.value);
+    regenerateForm(hubspotUrl);
   } else {
     countrySelect.selectedIndex = 1;
   }
