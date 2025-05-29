@@ -450,7 +450,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN','FWN main'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -462,6 +462,7 @@ function addPageSchema() {
 
   try {
     const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesSiteName = 'Molecular Devices';
     const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
 
     const h1 = document.querySelector('main h1');
@@ -495,10 +496,17 @@ function addPageSchema() {
       'http://www.youtube.com/user/MolecularDevicesInc',
       'https://www.x.com/moldev',
     ];
+    const fwnRelatedLink = [
+      'https://www.moleculardevices.com/for-whats-next/exploring-complex-biology',
+      'https://www.moleculardevices.com/for-whats-next/shifting-paradigms-together',
+      'https://www.moleculardevices.com/for-whats-next/transforming-science',
+      'https://www.moleculardevices.com/for-whats-next/validating-next-gen-therapeutics',
+    ];
+
 
     let schemaInfo = null;
     if (type === 'homepage') {
-      const homepageName = 'Molecular Devices';
+      const homepageName = moleculardevicesSiteName;
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -561,13 +569,13 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               logo,
             },
             publisher: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               logo,
             },
@@ -599,7 +607,7 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               sameAs: brandSameAs,
               logo,
@@ -626,7 +634,7 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: canonicalHref,
               sameAs: brandSameAs,
               logo,
@@ -648,7 +656,7 @@ function addPageSchema() {
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: canonicalHref,
               sameAs: brandSameAs,
               logo,
@@ -694,7 +702,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               logo,
             },
@@ -736,7 +744,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               logo,
             },
@@ -763,6 +771,63 @@ function addPageSchema() {
             '@type': 'ImageObject',
             name: schemaTitle,
             url: schemaImageUrl,
+          },
+        ],
+      };
+    }    
+    if (type === 'FWN main') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebPage',
+            name: schemaTitle,
+            url: canonicalHref,
+            description: getMetadata('description'),
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            publisher: {
+              '@type': 'Organization',
+               name: moleculardevicesSiteName,
+               url: moleculardevicesRootURL,
+               logo,
+            },
+           keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+           about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+           relatedLink : fwnRelatedLink,
+          },
+        ],
+      };
+    }
+    if (type === 'FWN') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebPage',
+            name: schemaTitle,
+            url: canonicalHref,
+            description: getMetadata('description'),
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            publisher: {
+              '@type': 'Organization',
+               name: moleculardevicesSiteName,
+               url: moleculardevicesRootURL,
+               logo,
+            },
+           keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+           about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+           isPartOf : {
+              '@type': 'WebPage',
+              url: 'https://www.moleculardevices.com/for-whats-next',
+           },
           },
         ],
       };
