@@ -46,8 +46,22 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
   return wrapper;
 }
 
+let hasTriggeredInquiryClick = false;
 function createForm(block, hubspotUrl) {
-  createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
+  const wrapper = createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
+  const iframeEl = wrapper.querySelector('iframe');
+
+  iframeEl.addEventListener('load', () => {
+    setTimeout(() => {
+      if (!hasTriggeredInquiryClick) {
+        const generalLink = document.querySelector('a[title="General Inquiry Form"]');
+        if (generalLink) {
+          generalLink.click();
+          hasTriggeredInquiryClick = true; // ensure only one auto-trigger
+        }
+      }
+    }, 200); // delay to ensure iframe is fully ready
+  }, { once: true });
 }
 
 function createMap(block, mapUrl) {
@@ -62,14 +76,13 @@ function regenerateForm(hubspotUrl, params = '') {
   hubspotUrl.href = newUrl;
   hubspotIframe.removeAttribute('src');
 
-  hubspotIframe.removeAttribute('src');
   requestAnimationFrame(() => {
     hubspotIframe.src = newUrl;
     hubspotIframe.addEventListener('load', () => {
       setTimeout(() => {
         // eslint-disable-next-line no-undef
         iFrameResize({ log: false }, hubspotIframe);
-      }, 200);
+      }, 1000);
     }, { once: true });
   });
 }
