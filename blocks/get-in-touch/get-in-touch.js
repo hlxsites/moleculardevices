@@ -157,7 +157,9 @@ export default async function decorate(block) {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
       link.removeAttribute('href');
       link.setAttribute('role', 'button');
+      link.setAttribute('tabindex', '0');
       link.setAttribute('aria-label', link.getAttribute('title'));
+      link.addEventListener('touchstart', () => { }, { passive: true });
       link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
     }
   });
