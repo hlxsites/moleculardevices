@@ -31,11 +31,12 @@ function createForm(block, hubspotUrl) {
   const hubspotIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
   hubspotIframeWrapper.appendChild(hubspotIframe);
   hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
-  iframeResizeHandler(hubspotUrl.href, toClassName(title), block);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
+      iframeResizeHandler(hubspotUrl, toClassName(title), hubspotIframeWrapper);
+
       const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
       hubspotUrl.href = hubUrl.href;
       hubspotIframe.src = hubspotUrl.href;
@@ -104,7 +105,7 @@ export default async function decorate(block) {
     block.lastElementChild.remove();
     createMap(block, mapUrl);
 
-    setTimeout(() => { block?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 1000);
+    window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);

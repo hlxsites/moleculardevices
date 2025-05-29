@@ -819,12 +819,13 @@ function addHreflangTags() {
  * @param {Element} root The parent element of iframe
  */
 export function iframeResizeHandler(iframeURL, iframeID, root) {
-  loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', () => {
-    if (iframeURL) {
-      /* global iFrameResize */
-      iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
-    }
+  loadScript('/scripts/iframeResizer.min.js', () => {
+    root.querySelector('iframe').addEventListener('load', () => {
+      if (iframeURL) {
+        /* global iFrameResize */
+        iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
+      }
+    });
   });
 }
 
