@@ -57,10 +57,10 @@ function createForm(block, hubspotUrl) {
         const generalLink = document.querySelector('a[title="General Inquiry Form"]');
         if (generalLink) {
           generalLink.click();
-          hasTriggeredInquiryClick = true; // ensure only one auto-trigger
+          hasTriggeredInquiryClick = true;
         }
       }
-    }, 200); // delay to ensure iframe is fully ready
+    }, 200);
   }, { once: true });
 }
 
