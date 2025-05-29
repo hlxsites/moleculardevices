@@ -25,56 +25,60 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   return new URL(`${hubUrl.pathname}${queryStr}`, hubUrl);
 }
 
-function createForm(block, hubspotUrl) {
-  const title = 'Get in touch';
-  const hubspotIframeWrapper = div({ class: 'hubspot-iframe-wrapper get-in-touch-form' });
-  const hubspotIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
-  hubspotIframeWrapper.appendChild(hubspotIframe);
-  hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
+function createLazyIframe(wrapperClass, url, block, iframeTitle) {
+  const iframeID = toClassName(`${iframeTitle}-iframe`);
+  const wrapper = div({ class: wrapperClass });
+  const iframeEl = iframe({ loading: 'lazy', title: iframeTitle, id: iframeID });
+  wrapper.appendChild(iframeEl);
+  url.parentNode.replaceChild(wrapper, url);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      iframeResizeHandler(hubspotUrl, toClassName(title), hubspotIframeWrapper);
+      iframeEl.src = url.href;
 
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
-      hubspotUrl.href = hubUrl.href;
-      hubspotIframe.src = hubspotUrl.href;
+      iframeEl.addEventListener('load', () => {
+        iframeResizeHandler(url, iframeID, wrapper);
+      }, { once: true });
     }
   });
   observer.observe(block);
+  return wrapper;
+}
+
+function createForm(block, hubspotUrl) {
+  createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
 }
 
 function createMap(block, mapUrl) {
-  const title = 'Global Headquarters';
-  const mapIframeWrapper = div({ class: 'map-iframe-wrapper' });
-  const mapIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
-  mapIframeWrapper.appendChild(mapIframe);
-  mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      mapIframe.src = mapUrl.href;
-    }
-  });
-  observer.observe(block);
+  createLazyIframe('map-iframe-wrapper', mapUrl, block, 'Global Headquarters');
 }
 
 function regenerateForm(hubspotUrl, params = '') {
-  const iframeWrapper = document.querySelector('.get-in-touch-form iframe');
-  if (!iframeWrapper || !hubspotUrl) return;
+  const hubspotIframe = document.querySelector('.get-in-touch-form iframe');
+  if (!hubspotIframe || !hubspotUrl) return;
 
   const newUrl = hubSpotFinalUrl(hubspotUrl, params).href;
   hubspotUrl.href = newUrl;
-  iframeWrapper.setAttribute('src', newUrl);
+  hubspotIframe.removeAttribute('src');
+
+  hubspotIframe.removeAttribute('src');
+  requestAnimationFrame(() => {
+    hubspotIframe.src = newUrl;
+    hubspotIframe.addEventListener('load', () => {
+      setTimeout(() => {
+        // eslint-disable-next-line no-undef
+        iFrameResize({ log: false }, hubspotIframe);
+      }, 200);
+    }, { once: true });
+  });
 }
 
 function scrollToForm(event, hubspotUrl) {
   event.preventDefault();
   event.stopPropagation();
 
-  const block = document.querySelector('.get-in-touch');
+  const block = document.getElementById('get-in-touch');
   const isSales = event.target?.getAttribute('title') === 'Sales Inquiry Form';
   const param = isSales ? COMMENTS : 'general';
 
@@ -114,12 +118,17 @@ export default async function decorate(block) {
 
   /* get region on tab click */
   const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
+  let previousRegion = REGION;
   if (tabLinks.length) {
     tabLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        REGION = link.hash.slice(1) || queryParams.get('region');
-        regenerateForm(hubspotUrl);
-        setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
+        const newRegion = link.hash.slice(1) || queryParams.get('region');
+        if (newRegion !== previousRegion) {
+          REGION = newRegion;
+          regenerateForm(hubspotUrl);
+          setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
+          previousRegion = newRegion;
+        }
       });
     });
   }
@@ -134,12 +143,6 @@ export default async function decorate(block) {
   } else {
     countrySelect.selectedIndex = 1;
   }
-
-  searchButton?.addEventListener('click', (event) => {
-    event.preventDefault();
-    setRegionByCountry(distributors, countrySelect.value);
-    regenerateForm(hubspotUrl);
-  });
 
   searchButton?.addEventListener('click', (event) => {
     event.preventDefault();

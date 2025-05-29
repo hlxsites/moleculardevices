@@ -24,8 +24,8 @@
   padding-top: 10px;
 }
 
-.get-in-touch .get-in-touch-form iframe {
-  min-height: 770px;
+.get-in-touch .get-in-touch-form {
+  min-height: 700px;
 }
 
 .get-in-touch .hubspot-iframe-wrapper {
