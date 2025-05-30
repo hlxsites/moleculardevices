@@ -193,6 +193,9 @@
   background: none;
   padding: 0;
   color: inherit;
+  width: auto;
+  max-width: 100%;
+  min-width: unset;
 }
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li button:hover,
