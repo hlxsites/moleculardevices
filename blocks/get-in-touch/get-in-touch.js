@@ -109,7 +109,9 @@ export default async function decorate(block) {
     block.lastElementChild.remove();
     createMap(block, mapUrl);
 
-    window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+    setTimeout(() => {
+      window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+    }, 300);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
