@@ -137,6 +137,10 @@ const customBreadcrumbs = {
     url_path: '/newsletters',
   },
   brochures: customResourcesBreadcrumb,
+  'for-whats-next': {
+    name: 'For What\'s Next',
+    url_path: '/for-whats-next',
+  },
 };
 
 function getCustomUrl(path, part) {
@@ -170,7 +174,14 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    const heading = document.querySelector('main h1').textContent;
+    const headingElement = document.querySelector('main h1');
+    const htmlContent = headingElement.innerHTML;
+
+    // Replace <br> with space and remove all other HTML tags
+    const heading = htmlContent
+      .replace(/<br\s*\/?>/gi, ' ')
+      .replace(/<[^>]+>/g, '');
+
     return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
   }
 
