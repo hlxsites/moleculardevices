@@ -1,4 +1,4 @@
-import { button, div, iframe } from '../../scripts/dom-helpers.js';
+import { div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
@@ -42,7 +42,7 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
         setTimeout(() => {
           // eslint-disable-next-line no-undef
           iFrameResize({ log: false }, iframeEl);
-        }, 500);
+        }, 200);
       }, { once: true });
     }
   });
@@ -65,13 +65,14 @@ function regenerateForm(hubspotUrl, params = '') {
   const newUrl = hubSpotFinalUrl(hubspotUrl, params).href;
   hubspotUrl.href = newUrl;
   hubspotIframe.src = '';
+
   setTimeout(() => {
     hubspotIframe.src = newUrl;
     hubspotIframe.addEventListener('load', () => {
       // eslint-disable-next-line no-undef
       iFrameResize({ log: false }, hubspotIframe);
     }, { once: true });
-  }, 500);
+  }, 100);
 }
 
 function scrollToForm(event, hubspotUrl) {
@@ -79,7 +80,7 @@ function scrollToForm(event, hubspotUrl) {
   event.stopPropagation();
 
   const block = document.getElementById('get-in-touch');
-  const isSales = event.target?.getAttribute('aria-label') === 'Sales Inquiry Form';
+  const isSales = event.target?.getAttribute('title') === 'Sales Inquiry Form';
   const param = isSales ? COMMENTS : 'general';
 
   if (hubspotUrl) {
@@ -109,10 +110,7 @@ export default async function decorate(block) {
     block.lastElementChild.remove();
     createMap(block, mapUrl);
 
-    setTimeout(() => {
-      block.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.scrollBy(0, -100);
-    }, 500);
+    setTimeout(() => window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' }), 1000);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
@@ -143,11 +141,12 @@ export default async function decorate(block) {
 
   if (window.location.pathname === '/contact-search') {
     setRegionByCountry(distributors, countrySelect.value);
+    regenerateForm(hubspotUrl);
   } else {
     countrySelect.selectedIndex = 1;
   }
 
-  searchButton?.addEventListener('click', (event) => {
+  searchButton.addEventListener('click', (event) => {
     event.preventDefault();
     setRegionByCountry(distributors, countrySelect.value);
     regenerateForm(hubspotUrl);
@@ -158,10 +157,12 @@ export default async function decorate(block) {
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
-      const btn = button({ type: 'button' }, link.textContent);
-      btn.setAttribute('aria-label', link.getAttribute('title'));
-      btn.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
-      link.replaceWith(btn);
+      link.removeAttribute('href');
+      link.setAttribute('role', 'button');
+      link.setAttribute('tabindex', '0');
+      link.setAttribute('aria-label', link.getAttribute('title'));
+      link.addEventListener('touchstart', () => { }, { passive: true });
+      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
     }
   });
 }
