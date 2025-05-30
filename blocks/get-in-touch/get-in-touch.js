@@ -39,6 +39,10 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
 
       iframeEl.addEventListener('load', () => {
         iframeResizeHandler(url, iframeID, wrapper);
+        setTimeout(() => {
+          // eslint-disable-next-line no-undef
+          iFrameResize({ log: false }, iframeEl);
+        }, 500);
       }, { once: true });
     }
   });
@@ -46,22 +50,9 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
   return wrapper;
 }
 
-let hasTriggeredInquiryClick = false;
 function createForm(block, hubspotUrl) {
   const wrapper = createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
-  const iframeEl = wrapper.querySelector('iframe');
-
-  iframeEl.addEventListener('load', () => {
-    setTimeout(() => {
-      if (!hasTriggeredInquiryClick) {
-        const generalLink = document.querySelector('a[title="General Inquiry Form"]');
-        if (generalLink) {
-          generalLink.click();
-          hasTriggeredInquiryClick = true;
-        }
-      }
-    }, 200);
-  }, { once: true });
+  return wrapper;
 }
 
 function createMap(block, mapUrl) {
@@ -153,7 +144,6 @@ export default async function decorate(block) {
 
   if (window.location.pathname === '/contact-search') {
     setRegionByCountry(distributors, countrySelect.value);
-    regenerateForm(hubspotUrl);
   } else {
     countrySelect.selectedIndex = 1;
   }

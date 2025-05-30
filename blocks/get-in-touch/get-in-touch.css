@@ -24,9 +24,9 @@
   padding-top: 10px;
 }
 
-.get-in-touch .get-in-touch-form iframe {
+/* .get-in-touch .get-in-touch-form iframe {
   min-height: 700px;
-}
+} */
 
 .get-in-touch .hubspot-iframe-wrapper {
   margin-left: -15px;
@@ -68,6 +68,10 @@
 
 .get-in-touch > div > div a {
   color: inherit;
+}
+
+.get-in-touch a[role='button']{
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 992px) {
