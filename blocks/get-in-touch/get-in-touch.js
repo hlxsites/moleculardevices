@@ -42,7 +42,7 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
         setTimeout(() => {
           // eslint-disable-next-line no-undef
           iFrameResize({ log: false }, iframeEl);
-        }, 500);
+        }, 200);
       }, { once: true });
     }
   });
