@@ -218,6 +218,9 @@ main .section > div.columns-wrapper {
   background: none;
   padding: 0;
   color: inherit;
+  width: auto;
+  max-width: 100%;
+  min-width: unset;
 }
 
 .columns.contact > div ul li button:hover,
