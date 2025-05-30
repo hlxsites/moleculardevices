@@ -42,7 +42,7 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
         setTimeout(() => {
           // eslint-disable-next-line no-undef
           iFrameResize({ log: false }, iframeEl);
-        }, 200);
+        }, 500);
       }, { once: true });
     }
   });
@@ -71,7 +71,7 @@ function regenerateForm(hubspotUrl, params = '') {
       // eslint-disable-next-line no-undef
       iFrameResize({ log: false }, hubspotIframe);
     }, { once: true });
-  }, 100);
+  }, 500);
 }
 
 function scrollToForm(event, hubspotUrl) {
@@ -112,7 +112,7 @@ export default async function decorate(block) {
     setTimeout(() => {
       block.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.scrollBy(0, -100);
-    }, 300);
+    }, 500);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
