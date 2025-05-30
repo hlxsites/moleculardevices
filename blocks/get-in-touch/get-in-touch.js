@@ -51,8 +51,7 @@ function createLazyIframe(wrapperClass, url, block, iframeTitle) {
 }
 
 function createForm(block, hubspotUrl) {
-  const wrapper = createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
-  return wrapper;
+  createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
 }
 
 function createMap(block, mapUrl) {
@@ -73,7 +72,7 @@ function regenerateForm(hubspotUrl, params = '') {
       setTimeout(() => {
         // eslint-disable-next-line no-undef
         iFrameResize({ log: false }, hubspotIframe);
-      }, 1000);
+      }, 500);
     }, { once: true });
   });
 }
