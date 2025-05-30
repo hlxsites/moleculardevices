@@ -90,8 +90,8 @@
     flex-direction: column;
   }
 
-  .get-in-touch .hubspot-iframe-wrapper iframe {
-    min-height: 700px;
+  .get-in-touch .get-in-touch-form iframe {
+    margin-bottom: 2rem;
   }
 
   .get-in-touch > div > div:last-child iframe {
@@ -103,9 +103,5 @@
   .get-in-touch .hubspot-success {
     padding: 10px;
     margin-bottom: 20px;
-  }
-
-  .get-in-touch .hubspot-iframe-wrapper iframe {
-    min-height: 740px;
   }
 }
