@@ -13,7 +13,7 @@ main .section > div.columns-wrapper {
   margin-top: 0;
 }
 
-.columns[class*="layout-"] > div {
+.columns[class*='layout-'] > div {
   gap: 30px;
 }
 
@@ -45,7 +45,7 @@ main .section > div.columns-wrapper {
 
 .columns.line > div::after {
   flex-wrap: wrap;
-  content: "";
+  content: '';
   width: 94%;
   padding-top: 50px;
   border-bottom: 2px solid #ccc;
@@ -214,6 +214,13 @@ main .section > div.columns-wrapper {
   flex-wrap: wrap;
 }
 
+.columns.contact > div ul li button {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.columns.contact > div ul li button:hover,
 .columns.contact > div ul li a:hover {
   color: var(--text-green);
 }
@@ -228,14 +235,14 @@ main .section > div.columns-wrapper {
 .columns.contact > div ul li::after,
 .columns.contact > div > div ul ul::before {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
   background-color: var(--border-color-gray);
   bottom: -10px;
-  content: "";
+  content: '';
   display: block;
   height: 1px;
   position: absolute;
@@ -518,17 +525,17 @@ main .section > div.columns-wrapper {
   }
 
   .columns.columns-3-cols > div,
-  .columns[class*="layout-"] > div,
+  .columns[class*='layout-'] > div,
   .blog .columns > div,
   .columns.contact > div {
     align-items: unset;
   }
 
-  .columns[class*="layout-"] > div {
+  .columns[class*='layout-'] > div {
     display: grid;
   }
 
-  .columns[class*="layout-"] h3 {
+  .columns[class*='layout-'] h3 {
     margin-top: 0;
   }
 
@@ -564,7 +571,7 @@ main .section > div.columns-wrapper {
     grid-template-columns: 60fr 40fr;
   }
 
-  .columns[class*="layout-"] > div > div {
+  .columns[class*='layout-'] > div > div {
     padding: 0;
     margin: 0;
   }

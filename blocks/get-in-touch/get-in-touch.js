@@ -1,4 +1,4 @@
-import { div, iframe } from '../../scripts/dom-helpers.js';
+import { button, div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
@@ -64,17 +64,14 @@ function regenerateForm(hubspotUrl, params = '') {
 
   const newUrl = hubSpotFinalUrl(hubspotUrl, params).href;
   hubspotUrl.href = newUrl;
-  hubspotIframe.removeAttribute('src');
-
-  requestAnimationFrame(() => {
+  hubspotIframe.src = '';
+  setTimeout(() => {
     hubspotIframe.src = newUrl;
     hubspotIframe.addEventListener('load', () => {
-      setTimeout(() => {
-        // eslint-disable-next-line no-undef
-        iFrameResize({ log: false }, hubspotIframe);
-      }, 500);
+      // eslint-disable-next-line no-undef
+      iFrameResize({ log: false }, hubspotIframe);
     }, { once: true });
-  });
+  }, 100);
 }
 
 function scrollToForm(event, hubspotUrl) {
@@ -82,7 +79,7 @@ function scrollToForm(event, hubspotUrl) {
   event.stopPropagation();
 
   const block = document.getElementById('get-in-touch');
-  const isSales = event.target?.getAttribute('title') === 'Sales Inquiry Form';
+  const isSales = event.target?.getAttribute('aria-label') === 'Sales Inquiry Form';
   const param = isSales ? COMMENTS : 'general';
 
   if (hubspotUrl) {
@@ -158,12 +155,10 @@ export default async function decorate(block) {
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
-      link.removeAttribute('href');
-      link.setAttribute('role', 'button');
-      link.setAttribute('tabindex', '0');
-      link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('touchstart', () => { }, { passive: true });
-      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+      const btn = button({ type: 'button' }, link.textContent);
+      btn.setAttribute('aria-label', link.getAttribute('title'));
+      btn.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+      link.replaceWith(btn);
     }
   });
 }
