@@ -158,14 +158,12 @@ export default async function decorate(block) {
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
-      link.setAttribute('href', '#');
+      link.removeAttribute('href');
       link.setAttribute('role', 'button');
       link.setAttribute('tabindex', '0');
       link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToForm(e, hubspotUrl);
-      });
+      link.addEventListener('touchstart', () => { }, { passive: true });
+      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
     }
   });
 }
