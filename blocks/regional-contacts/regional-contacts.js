@@ -1,6 +1,6 @@
 function tabQueryString(tabID) {
   const newurl = new URL(window.location);
-  newurl.searchParams.set('region', tabID);
+  newurl.searchParams.set('region', tabID || 'americas');
   window.history.pushState({ path: newurl.href }, '', newurl.href);
 }
 
@@ -79,6 +79,7 @@ function createAccordian(tab, plusIcon, index) {
     plusIcon.classList.remove('fa-plus');
     plusIcon.classList.add('fa-minus');
     tab.nextElementSibling.classList.add('active');
+    tabQueryString(tab.parentElement.id);
   }
 
   tab.appendChild(plusIcon);
@@ -160,8 +161,10 @@ const tabID = params.region
   ? params.region
   : document.querySelector('.regional-contacts .tab-content').id;
 
-if (document.querySelector(`a[href="#${tabID}"]`)) {
-  document.querySelector(`a[href="#${tabID}"]`).click();
-  tabQueryString(tabID);
+if (tabID) {
+  if (document.querySelector(`a[href="#${tabID}"]`)) {
+    document.querySelector(`a[href="#${tabID}"]`).click();
+    tabQueryString(tabID);
+  }
 }
 /* ================ TAB HANDLER ===================== */

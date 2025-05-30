@@ -119,17 +119,12 @@ export default async function decorate(block) {
 
   /* get region on tab click */
   const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
-  let previousRegion = REGION;
   if (tabLinks.length) {
     tabLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        const newRegion = link.hash.slice(1) || queryParams.get('region');
-        if (newRegion !== previousRegion) {
-          REGION = newRegion;
-          regenerateForm(hubspotUrl);
-          setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
-          previousRegion = newRegion;
-        }
+        REGION = link.hash.slice(1) || queryParams.get('region');
+        regenerateForm(hubspotUrl);
+        setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
       });
     });
   }
@@ -141,7 +136,6 @@ export default async function decorate(block) {
 
   if (window.location.pathname === '/contact-search') {
     setRegionByCountry(distributors, countrySelect.value);
-    regenerateForm(hubspotUrl);
   } else {
     countrySelect.selectedIndex = 1;
   }
@@ -159,9 +153,7 @@ export default async function decorate(block) {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
       link.removeAttribute('href');
       link.setAttribute('role', 'button');
-      link.setAttribute('tabindex', '0');
       link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('touchstart', () => { }, { passive: true });
       link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
     }
   });
