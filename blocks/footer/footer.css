@@ -52,7 +52,7 @@
 
 .footer .site-logo .footer-site-logo a {
   font-size: 0;
-  background-image: url("/images/header-menus/logo.svg");
+  background-image: url('/images/header-menus/logo.svg');
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
@@ -67,7 +67,7 @@
 
 .footer-wrapper {
   background-color: var(--background-color);
-  background-image: url("../../images/research-bg.png");
+  background-image: url('../../images/research-bg.png');
   overflow-x: hidden;
 }
 
@@ -335,7 +335,7 @@
 }
 
 .row-7 ul li:not(:last-child)::after {
-  content: "|";
+  content: '|';
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -363,7 +363,7 @@
   margin: 0;
 }
 
-.row-8 p img[alt*="beckman coulter"] {
+.row-8 p img[alt*='beckman coulter'] {
   position: relative;
   top: 8px;
 }
@@ -404,7 +404,7 @@
 }
 
 .footer .footer-landing-page ul li:not(:last-child)::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 12px;
   top: 0;
@@ -472,8 +472,8 @@
   .footer-bottom .container {
     display: grid;
     grid-template:
-      "danaher list"
-      "danaher logos";
+      'danaher list'
+      'danaher logos';
     align-items: center;
   }
 
@@ -543,5 +543,21 @@
 
   .row-5 {
     margin-top: 2rem;
+  }
+
+  .row-6 img,
+  .row-8 img {
+    display: block;
+    margin: auto;
+  }
+
+  .footer-news-events > div:first-of-type {
+    gap: 0;
+  }
+
+  .footer .container {
+    display: grid;
+    gap: 30px;
+    padding-top: 4rem;
   }
 }
