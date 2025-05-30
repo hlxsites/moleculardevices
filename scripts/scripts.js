@@ -466,7 +466,7 @@ function addPageSchema() {
     const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
 
     const h1 = document.querySelector('main h1');
-    const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
+    const schemaTitle = getMetadata('og:title') ? getMetadata('og:title') : h1.textContent;
 
     const heroImage = document.querySelector('.hero img');
     const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
