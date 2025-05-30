@@ -1,4 +1,4 @@
-import { div, iframe } from '../../scripts/dom-helpers.js';
+import { button, div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
@@ -25,56 +25,61 @@ function hubSpotFinalUrl(hubspotUrl, paramName) {
   return new URL(`${hubUrl.pathname}${queryStr}`, hubUrl);
 }
 
-function createForm(block, hubspotUrl) {
-  const title = 'Get in touch';
-  const hubspotIframeWrapper = div({ class: 'hubspot-iframe-wrapper get-in-touch-form' });
-  const hubspotIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
-  hubspotIframeWrapper.appendChild(hubspotIframe);
-  hubspotUrl.parentNode.replaceChild(hubspotIframeWrapper, hubspotUrl);
-  iframeResizeHandler(hubspotUrl.href, toClassName(title), block);
+function createLazyIframe(wrapperClass, url, block, iframeTitle) {
+  const iframeID = toClassName(`${iframeTitle}-iframe`);
+  const wrapper = div({ class: wrapperClass });
+  const iframeEl = iframe({ loading: 'lazy', title: iframeTitle, id: iframeID });
+  wrapper.appendChild(iframeEl);
+  url.parentNode.replaceChild(wrapper, url);
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
-      const hubUrl = hubSpotFinalUrl(hubspotUrl, 'region');
-      hubspotUrl.href = hubUrl.href;
-      hubspotIframe.src = hubspotUrl.href;
+      iframeEl.src = url.href;
+
+      iframeEl.addEventListener('load', () => {
+        iframeResizeHandler(url, iframeID, wrapper);
+        setTimeout(() => {
+          // eslint-disable-next-line no-undef
+          iFrameResize({ log: false }, iframeEl);
+        }, 200);
+      }, { once: true });
     }
   });
   observer.observe(block);
+  return wrapper;
+}
+
+function createForm(block, hubspotUrl) {
+  createLazyIframe('hubspot-iframe-wrapper get-in-touch-form', hubspotUrl, block, 'Get in touch');
 }
 
 function createMap(block, mapUrl) {
-  const title = 'Global Headquarters';
-  const mapIframeWrapper = div({ class: 'map-iframe-wrapper' });
-  const mapIframe = iframe({ loading: 'lazy;', title, id: toClassName(title) });
-  mapIframeWrapper.appendChild(mapIframe);
-  mapUrl.parentNode.replaceChild(mapIframeWrapper, mapUrl);
-
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      observer.disconnect();
-      mapIframe.src = mapUrl.href;
-    }
-  });
-  observer.observe(block);
+  createLazyIframe('map-iframe-wrapper', mapUrl, block, 'Global Headquarters');
 }
 
 function regenerateForm(hubspotUrl, params = '') {
-  const iframeWrapper = document.querySelector('.get-in-touch-form iframe');
-  if (!iframeWrapper || !hubspotUrl) return;
+  const hubspotIframe = document.querySelector('.get-in-touch-form iframe');
+  if (!hubspotIframe || !hubspotUrl) return;
 
   const newUrl = hubSpotFinalUrl(hubspotUrl, params).href;
   hubspotUrl.href = newUrl;
-  iframeWrapper.setAttribute('src', newUrl);
+  hubspotIframe.src = '';
+  setTimeout(() => {
+    hubspotIframe.src = newUrl;
+    hubspotIframe.addEventListener('load', () => {
+      // eslint-disable-next-line no-undef
+      iFrameResize({ log: false }, hubspotIframe);
+    }, { once: true });
+  }, 100);
 }
 
 function scrollToForm(event, hubspotUrl) {
   event.preventDefault();
   event.stopPropagation();
 
-  const block = document.querySelector('.get-in-touch');
-  const isSales = event.target?.getAttribute('title') === 'Sales Inquiry Form';
+  const block = document.getElementById('get-in-touch');
+  const isSales = event.target?.getAttribute('aria-label') === 'Sales Inquiry Form';
   const param = isSales ? COMMENTS : 'general';
 
   if (hubspotUrl) {
@@ -104,7 +109,7 @@ export default async function decorate(block) {
     block.lastElementChild.remove();
     createMap(block, mapUrl);
 
-    setTimeout(() => { block?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 1000);
+    window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
@@ -113,12 +118,17 @@ export default async function decorate(block) {
 
   /* get region on tab click */
   const tabLinks = document.querySelectorAll('.regional-contacts-wrapper .tab-wrapper > a');
+  let previousRegion = REGION;
   if (tabLinks.length) {
     tabLinks.forEach((link) => {
       link.addEventListener('click', () => {
-        REGION = link.hash.slice(1) || queryParams.get('region');
-        regenerateForm(hubspotUrl);
-        setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
+        const newRegion = link.hash.slice(1) || queryParams.get('region');
+        if (newRegion !== previousRegion) {
+          REGION = newRegion;
+          regenerateForm(hubspotUrl);
+          setTimeout(() => { document.getElementById('country').selectedIndex = 1; }, 500);
+          previousRegion = newRegion;
+        }
       });
     });
   }
@@ -140,21 +150,15 @@ export default async function decorate(block) {
     regenerateForm(hubspotUrl);
   });
 
-  searchButton?.addEventListener('click', (event) => {
-    event.preventDefault();
-    setRegionByCountry(distributors, countrySelect.value);
-    regenerateForm(hubspotUrl);
-  });
-
   /* scroll to form on click of inquiry links */
   const inquiryTitles = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
   links.forEach((link) => {
     if (inquiryTitles.includes(link.getAttribute('title'))) {
-      link.removeAttribute('href');
-      link.setAttribute('role', 'button');
-      link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+      const btn = button({ type: 'button' }, link.textContent);
+      btn.setAttribute('aria-label', link.getAttribute('title'));
+      btn.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+      link.replaceWith(btn);
     }
   });
 }
