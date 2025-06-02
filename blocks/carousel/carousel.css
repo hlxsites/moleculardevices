@@ -41,6 +41,12 @@ main .carousel-item {
   padding: 50px 80px;
 }
 
+main .carousel-item[style*="background-image"] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 main .carousel-item-columns-container {
   max-width: 1140px;
   display: flex;
@@ -171,6 +177,8 @@ main .carousel-dot-img-buttons .carousel-dot-button {
 
 main .carousel-dot-img-buttons .carousel-dot-button img {
   display: block;
+  aspect-ratio: 1/1;
+  object-fit: contain;
 }
 
 main .carousel-dot-img-buttons .carousel-dot-button.selected {
@@ -194,14 +202,20 @@ main .global-carousel.title-center h2 {
   text-align: center;
 }
 
+main .section.global-carousel .carousel h2:only-child,
 main .section.global-carousel .carousel h2 + h3 {
-  margin-bottom: 48px;
+  margin-bottom: 18px;
 }
 
 @media only screen and (min-width: 768px) {
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 750px;
+  }
+
+  main .section.global-carousel .carousel h2:only-child,
+  main .section.global-carousel .carousel h2 + h3 {
+    margin-bottom: 48px;
   }
 }
 
@@ -271,11 +285,15 @@ main .section.global-carousel .carousel h2 + h3 {
   main div.carousel-wrapper.container-width-carousel {
     width: 1170px;
   }
+
+  main .three-items-visible .carousel-nav-button {
+    display: none !important;
+  }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1460px) {
   main .carousel {
-    padding-inline: 100px;
+    padding-inline: var(--center-space);
   }
 }
 
@@ -345,6 +363,10 @@ main .section.global-carousel .carousel h2 + h3 {
 
   main .carousel-item-text .button-container .button {
     margin-left: 0;
+  }
+
+  main .carousel-item-columns-container {
+    padding: 0;
   }
 }
 
@@ -579,7 +601,7 @@ main .carousel .carousel-item .carousel-item-text blockquote > p::after {
 
 main .carousel blockquote::before,
 main .carousel blockquote::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100px;
   height: 100px;
@@ -589,13 +611,13 @@ main .carousel blockquote::after {
 }
 
 main .carousel blockquote::before {
-  background-image: url('/images/quote-left.png');
+  background-image: url("/images/quote-left.png");
   left: -50px;
   top: -89px;
 }
 
 main .carousel blockquote::after {
-  background-image: url('/images/quote-right.png');
+  background-image: url("/images/quote-right.png");
   right: -1.5em;
   bottom: -60px;
 }

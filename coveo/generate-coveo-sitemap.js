@@ -61,7 +61,7 @@ const PRIORITYMAPPING = {
 
 async function getData() {
   return new Promise((resolve) => {
-    https.get('https://main--moleculardevices--hlxsites.hlx.live/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
+    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
       const data = [];
 
       res.on('data', (chunk) => {
@@ -128,7 +128,7 @@ function itemSearchTitle(item) {
     return item.searchTitle;
   }
 
-  if (isNotEmpty(item.h1)) {
+  if (isNotEmpty(item.h1) && item.type !== 'Newsletter') {
     return item.h1;
   }
 
@@ -232,9 +232,26 @@ function createCoveoFields(index, icons) {
 
     if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
-      isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      if (isNotEmpty(item.subcategory)) {
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      } else {
+        result.push(`${item.category}|${itemSearchTitle(item)}`);
+      }
+
       item.mdproductsdatacategory = result.join(';');
+    }
+
+    if (item.type === 'Application' && isNotEmpty(item.category)) {
+      const result = [item.category];
+      if (isNotEmpty(item.subcategory)) {
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}`);
+        isNotEmpty(item.subcategory) && result.push(`${item.category}|${item.subcategory}|${itemSearchTitle(item)}`);
+      } else {
+        result.push(`${item.category}|${itemSearchTitle(item)}`);
+      }
+
+      item.mdapplicationsdatacategory = result.join(';');
     }
 
     if (item.md_pagetype === 'Resource' || item.path.endsWith('.pdf')) {
@@ -248,7 +265,7 @@ function createCoveoFields(index, icons) {
 function createCoveoFieldsFromRelatedData(index) {
   index.data.forEach((item) => {
     if (item.md_pagetype === 'Resource') {
-      // set related product info
+      // set related product info.
       if (isNotEmpty(item.relatedProducts)) {
         const relatedProducts = item.relatedProducts.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
@@ -263,10 +280,14 @@ function createCoveoFieldsFromRelatedData(index) {
 
       // set related application info
       if (isNotEmpty(item.relatedApplications)) {
-        item.md_application = item.relatedApplications.split(',')
+        const relatedApplications = item.relatedApplications.split(',')
           .map((identifier) => INDENTIFIER_MAPPING.get(identifier.trim()))
-          .filter((application) => !!application)
-          .map(itemSearchTitle)
+          .filter((application) => !!application);
+
+        item.md_application = relatedApplications.map(itemSearchTitle).join(';');
+        item.mdapplicationsdatacategory = relatedApplications
+          .map((application) => application.mdapplicationsdatacategory)
+          .filter((category) => !!category)
           .join(';');
       }
     }
@@ -286,6 +307,7 @@ async function writeCoveoSitemapXML(index) {
     if (item.internal_path.startsWith('/fragments')) return;
 
     if (item.type === 'Landing Page') return;
+    if (item.robots.includes('noindex')) return;
     const excludedPaths = [
       '/nav',
       '/nav-landing-page',
@@ -315,6 +337,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_product><![CDATA[ ${item.md_product || ''}  ]]></md_product>`);
     xmlData.push(`      <md_application><![CDATA[ ${item.md_application || ''} ]]></md_application>`);
     xmlData.push(`      <mdproductsdatacategory><![CDATA[ ${item.mdproductsdatacategory || ''} ]]></mdproductsdatacategory>`); // TODO
+    xmlData.push(` <mdapplicationsdatacategory><![CDATA[ ${item.mdapplicationsdatacategory || ''} ]]></mdapplicationsdatacategory>`);
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO

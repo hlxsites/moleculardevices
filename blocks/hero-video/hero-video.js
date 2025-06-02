@@ -1,4 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
   teaserPicture.parentElement.classList.add('video-cover');
@@ -161,8 +162,15 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
+  const placeholderImage = heroContent.querySelectorAll('picture')[1];
 
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+  if (placeholderImage) {
+    placeholderImage.classList.add('placeholder-image');
+    block.appendChild(placeholderImage);
+  }
+
+  preloadLCPImage(teaserPicture.src);
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';

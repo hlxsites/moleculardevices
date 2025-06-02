@@ -84,8 +84,14 @@
   margin: auto;
 }
 
-.landing-page .download-form * {
+.landing-page .no-form-embed .default-content-wrapper *:not(a, h2),
+.landing-page .download-form .default-content-wrapper *:not(a, h2) {
   color: var(--text-gray);
+}
+
+.landing-page .no-form-embed.text-dark .default-content-wrapper *:not(a, h2),
+.landing-page .download-form.text-dark .default-content-wrapper *:not(a, h2) {
+  color: var(--text-dark-gray);
 }
 
 .landing-page .download-form .embed h2,
@@ -95,6 +101,7 @@
   font-family: var(--ff-proxima-regular);
 }
 
+.landing-page .no-form-embed .default-content-wrapper h2,
 .landing-page .download-form .default-content-wrapper h2 {
   color: var(--heading-color);
   font-size: 45px;
@@ -104,11 +111,13 @@
   color: var(--text-white);
 }
 
+.landing-page .no-form-embed h3,
 .landing-page .download-form h3 {
   font-size: 45px;
   font-weight: 600;
   margin-bottom: 40px;
   padding-top: 0;
+  margin-top: 20px;
 }
 
 .landing-page main .download-form h4 {
@@ -131,13 +140,15 @@
   color: #fff;
 }
 
+.landing-page main .section > div.forms-wrapper h3,
+.landing-page main .section > div.forms-wrapper h4 ,
 .landing-page .embed h3,
 .landing-page .embed h4 {
   color: var(--heading-color);
   font-size: 30px !important;
   text-align: center;
   padding: 0 20px;
-  margin-bottom: 0;
+  margin-bottom: 30px;
 }
 
 .landing-page main .download-form.orange-form-title .embed h4 {
@@ -151,6 +162,22 @@
 
 .landing-page main .section:not(.horizontal-line) > div.columns-wrapper {
   padding-top: 10px;
+}
+
+.landing-page main .section > div.columns-wrapper:has(.columns-no-spacing) {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* huspot form */
+.landing-page main .section > div.forms-wrapper > div{
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.landing-page main .section > div.forms-wrapper h3,
+.landing-page main .section > div.forms-wrapper h4 {
+  margin-top: 10px;
 }
 
 @media (max-width: 767px) {
@@ -267,11 +294,11 @@
   color: var(--text-color);
 }
 
-.thank-you-page h3 {
+body .thank-you-page h3 {
   color: var(--button-bg-color);
 }
 
-.thank-you-page h4 {
+body .thank-you-page h4 {
   font-size: 30px;
   color: var(--text-gray);
   font-family: var(--ff-proxima-regular);
@@ -314,6 +341,10 @@
     padding-top: 25px;
   }
 
+  .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child h2:first-child {
+    margin-top: 0;
+  }
+
   .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
     margin-left: calc((100vw - var(--section-div-width)) / 2);
   }
@@ -334,6 +365,10 @@
   .landing-page .hero-inner .container {
     align-items: center;
     padding: 15px 0 55px;
+  }
+
+  .landing-page .wave-reverse .hero-inner .container {
+    padding-bottom: 120px;
   }
 
   .landing-page .hero-inner .container.two-column > div:nth-child(2) {
@@ -358,6 +393,10 @@
 
   .thank-you-page > div.columns-wrapper > .block.columns > div.image-right {
     grid-template-columns: 65fr 35fr;
+  }
+
+  .thank-you-page > div.columns-wrapper > .block.columns.layout-50-50 > div {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .thank-you-page .columns > div {
@@ -387,10 +426,12 @@
     text-align: left;
   }
 
+  .landing-page .no-form-embed .default-content-wrapper h2,
   .landing-page .download-form .default-content-wrapper h2 {
     font-size: 25px;
   }
 
+  .landing-page .no-form-embed .default-content-wrapper p,
   .landing-page .download-form .default-content-wrapper p {
     font-size: 16px;
   }
@@ -405,7 +446,9 @@
 }
 
 .thankyou main .section,
-.landing-page:not(.thankyou) main .thankyou-banner {
+.thankyou main div.section.wave.wave-bottom-section,
+.landing-page:not(.thankyou) main .thankyou-banner,
+.thankyou main .hide-banner-on-thankyou {
   display: none;
 }
 
@@ -417,4 +460,9 @@
 
 .landing-page.thankyou .hero-inner > div:first-child:has(.hero-background) {
   padding: 0;
+}
+
+.landing-page main .section.download-form.forms-container .default-content-wrapper:first-child {
+  padding-top: 0;
+  padding-bottom: 30px;
 }

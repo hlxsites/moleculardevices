@@ -1,9 +1,11 @@
+env:
+  NODE_VERSION: '22.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
   repository_dispatch:
     types:
-      - resource-published
+      - index-published
   workflow_dispatch:
 
 jobs:
@@ -18,19 +20,22 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
       - name: Run scripts and commit changes
         if: ${{ endsWith(github.event.client_payload.path, 'query-index.json') }}
         working-directory: ./coveo
         run: |
           node generate-coveo-sitemap.js
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add ./coveo-xml.xml
-          git commit -m "Update generated coveo.xml file"
-          git push
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update generated coveo.xml file."
+          repository: coveo
+          file_pattern: "coveo-xml.xml"
+          push_options: --force
 
   build-sitemap:
+    needs: build-coveo
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -45,7 +50,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
         working-directory: ./tools/sitemap
         run: npm install
@@ -53,7 +58,9 @@ jobs:
         working-directory: ./tools/sitemap
         run: |
           node create.js
-          git add ../../content-sitemap.xml
-          timestamp=$(date -u)
-          git commit -m "Update generated content-sitemap.xml file" || exit 0
-          git push
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update generated content-sitemap.xml file"
+          file_pattern: "content-sitemap.xml"
+          push_options: --force

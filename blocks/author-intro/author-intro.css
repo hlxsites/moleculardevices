@@ -1,0 +1,71 @@
+.author-intro {
+  margin: 24px 0;
+  background: #dcedf4;
+}
+
+.author-intro-content-wrapper {
+  padding: 20px;
+}
+
+.author-intro-content-wrapper h4 {
+  color: var(--text-blue);
+  font-size: 1.45rem;
+  margin-bottom: 1.2rem;
+}
+
+.author-intro-content-wrapper h4 a {
+  color: inherit;
+}
+
+.author-intro-content-wrapper .picture {
+  display: grid;
+  grid-template-columns: minmax(min-content, 150px);
+  padding-left: 1rem;
+}
+
+.author-intro-content-wrapper .picture img {
+  display: block;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper,
+.author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper a,
+.author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper a i{
+  color: var(--text-white);
+}
+
+.author-intro[style*='linear-gradient'] .author-intro-content-wrapper h4 {
+  color: inherit;
+}
+
+.author-intro.block.image-top .author-intro-content-wrapper .picture img {
+  object-position: top;
+}
+
+.author-intro-content-wrapper .author-intro-content::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.author-intro-content-wrapper .author-intro-content h3:first-child {
+  margin-top: 0;
+}
+
+.author-intro-content-wrapper .author-intro-content p:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 992px) {
+  .author-intro-content-wrapper {
+    padding: 32px 54px;
+  }
+
+  .author-intro-content-wrapper .picture {
+    float: right;
+  }
+}

@@ -1,13 +1,13 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import ffetch from '../../scripts/ffetch.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
-import { formatDateUTCSeconds } from '../../scripts/scripts.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { getNewsData } from '../news/news.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
     const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
-    let dateLine = formatDateUTCSeconds(item.date);
+    let dateLine = formatDate(unixDateToString(item.date));
     if (item.publisher) dateLine += ` | ${item.publisher}`;
 
     block.append(article({},
@@ -25,10 +25,7 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const data = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .limit(3)
-    .all();
+  const data = await getNewsData(3);
+
   buildList(data, block);
 }

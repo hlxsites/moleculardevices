@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable no-alert */
-
+/* eslint-disable import/no-cycle, no-alert */
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
-import { formatDateUTCSeconds, isGatedResource, summariseDescription } from '../../scripts/scripts.js';
+import {
+  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
+} from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
 } from '../../scripts/dom-helpers.js';
@@ -17,6 +16,7 @@ import {
   getSelectedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+import { isNotOlderThan365Days } from '../product-finder/product-finder.js';
 
 let placeholders = {};
 
@@ -59,7 +59,6 @@ class Card {
     this.imageBlockReady = false;
     this.thumbnailLink = true;
     this.titleLink = true;
-    this.descriptionLength = 75;
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
     this.c2aLinkIconFull = false;
@@ -67,6 +66,11 @@ class Card {
     this.showCategory = false;
     this.showType = false;
     this.showDisplayType = false;
+    this.hideDescription = false;
+    this.isRequestQuoteCard = false;
+    this.isShopifyCard = false;
+    this.showFullDescription = false;
+    this.isInPastYear = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -74,10 +78,23 @@ class Card {
     if (this.defaultStyling) {
       this.cssFiles.push('/blocks/card/card.css');
     }
+
+    if (this.isShopifyCard) {
+      this.defaultButtonText = 'Order';
+    }
+
+    if (this.isRequestQuoteCard) {
+      this.defaultButtonText = 'Request Quote';
+    }
+
+    if (!this.showFullDescription) {
+      this.descriptionLength = 75;
+    }
   }
 
   renderItem(item) {
-    const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
+    const cardTitle = itemSearchTitle(item);
+    this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
@@ -88,9 +105,13 @@ class Card {
     const thumbnailBlock = this.imageBlockReady
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
+    /* default button */
     let cardLink = item.path;
+
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
+    } else if (this.isShopifyCard && item.shopifyUrl) {
+      cardLink = item.shopifyUrl;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
     }
@@ -119,10 +140,8 @@ class Card {
         c2aLinkBlock,
       ),
     );
-    if (
-      item.specifications
-      && item.specifications !== '0'
-    ) {
+
+    if (item.specifications && item.specifications !== '0') {
       c2aBlock.append(div({ class: 'compare-button' },
         `${placeholders.compare || 'Compare'} (`,
         span({ class: 'compare-count' }, '0'),
@@ -140,15 +159,20 @@ class Card {
       ));
     }
 
+    /* hide description */
     let cardDescription = '';
-    if (item.cardDescription && item.cardDescription !== '0') {
+    if ((this.isRequestQuoteCard || this.isShopifyCard) && item.cardDescription) {
+      cardDescription = item.cardDescription;
+    } else if (item.cardDescription && item.cardDescription !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.cardDescription, this.descriptionLength);
-    } else if (item.description && item.description !== '0') {
+    } else if (item.description && item.description !== '0' && !this.hideDescription) {
       cardDescription = summariseDescription(item.description, this.descriptionLength);
     }
 
     return (
-      div({ class: 'card' },
+      div({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
+        this.isInPastYear ? div({ class: 'new-product-tag' },
+          createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag')) : '',
         this.showImageThumbnail ? div({ class: 'card-thumb' },
           this.thumbnailLink ? a({ href: cardLink },
             thumbnailBlock,

@@ -1,18 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable max-classes-per-file */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable import/prefer-default-export */
-
 import { loadCSS, decorateIcons } from '../../scripts/lib-franklin.js';
 import {
-  div,
-  button,
-  h2,
-  a,
-  h3,
-  img,
-  span,
-  p,
+  div, button, h2, a, h3, img, span, p,
 } from '../../scripts/dom-helpers.js';
 import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
 
@@ -374,14 +365,14 @@ class CompareModal {
       removeButton.addEventListener('click', () => {
         this.removeCompareItem(item.getTitle());
 
+        unselectSpecificComparedItem(item.getPath(), item.getIdentifier());
+        this.compareBanner.refreshBanner();
+
         if (this.compareItemsMetadata.length === 1) {
           // eslint-disable-next-line no-alert
           window.alert('Please choose atleast two products for comparison.');
+          this.hideModal();
         }
-
-        unselectSpecificComparedItem(item.getPath());
-        this.compareBanner.refreshBanner();
-        this.hideModal();
       });
 
       decorateIcons(itemColumn);
@@ -487,6 +478,25 @@ class CompareModal {
     return defaultCSSPromise;
   }
 }
+
+/**
+ * Dynamically adjusts column widths based on the number of `.col-sm-3`
+ */
+function adjustColumnWidths() {
+  document.querySelectorAll('.comparison-row').forEach((row) => {
+    const columns = row.querySelectorAll('.col-sm-3');
+    const columnCount = columns.length || 1;
+    const columnWidth = `${100 / columnCount}%`;
+
+    columns.forEach((col) => {
+      col.style.width = columnWidth;
+    });
+  });
+}
+
+// Observe changes to the comparison table and adjust column widths dynamically
+const observer = new MutationObserver(adjustColumnWidths);
+observer.observe(document.body, { childList: true, subtree: true });
 
 /**
  * Create and render default compare products modal.

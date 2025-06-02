@@ -153,6 +153,7 @@ export async function loadScript(src, attrs) {
     if (!document.querySelector(`head > script[src="${src}"]`)) {
       const script = document.createElement('script');
       script.src = src;
+      script.async = true;
       if (attrs) {
         // eslint-disable-next-line no-restricted-syntax, guard-for-in
         for (const attr in attrs) {
@@ -657,7 +658,7 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
-      img.setAttribute('title', alt);
+      // img.setAttribute('title', alt);
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }
@@ -840,7 +841,7 @@ class PluginsRegistry {
   async load(phase) {
     [...this.#plugins.entries()]
       .filter(([, plugin]) => plugin.condition
-      && !plugin.condition(document, plugin.options, executionContext))
+        && !plugin.condition(document, plugin.options, executionContext))
       .map(([id]) => this.#plugins.delete(id));
     return Promise.all([...this.#plugins.entries()]
       // Filter plugins that don't match the execution conditions
@@ -872,7 +873,7 @@ class PluginsRegistry {
     return [...this.#plugins.values()]
       .reduce((promise, plugin) => ( // Using reduce to execute plugins sequencially
         plugin[phase] && (!plugin.condition
-            || plugin.condition(document, plugin.options, executionContext))
+          || plugin.condition(document, plugin.options, executionContext))
           ? promise.then(() => plugin[phase](document, plugin.options, executionContext))
           : promise
       ), Promise.resolve());

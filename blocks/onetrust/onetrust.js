@@ -13,6 +13,10 @@ async function onetrsutInitializationHandler(ontrustID) {
     for (let i = 0; i < opcoName.length; i += 1) {
       opcoName[i].innerHTML = 'Molecular Devices, LLC';
     }
+    const opcoEntity = document.getElementsByClassName('OpcoEntity');
+    for (let i = 0; i < opcoEntity.length; i += 1) {
+      opcoEntity[i].innerHTML = 'Molecular Devices Japan KK, 7F, 2-7-8 Nihonbashi Bakuro-cho,Chuo-ku, Tokyo, 103-0002, Japan. Point of contact: Justin Lee';
+    }
     const opcoAddr = document.getElementsByClassName('OpCoAddressMultiLine');
     for (let i = 0; i < opcoAddr.length; i += 1) {
       opcoAddr[i].innerHTML = 'Molecular Devices, LLC</br>Attn: Legal Department</br>3860 N. First St.</br>San Jose, CA 95134, USA';
@@ -68,6 +72,6 @@ export default async function decorate(block) {
   );
   block.querySelector(':scope > div').replaceWith(oneTrustContainer);
 
-  /* ONETRUST INITIALIZATION */
+  /*  ONETRUST INITIALIZATION */
   await onetrsutInitializationHandler(ontrustID);
 }

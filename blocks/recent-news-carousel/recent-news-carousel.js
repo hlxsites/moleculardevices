@@ -28,8 +28,7 @@ export async function getBlogsAndPublications() {
 }
 
 export default async function decorate(block) {
-  let data = await getBlogsAndPublications();
+  let data = await getBlogAndPublications();
   data = data.slice(0, 7);
-
   await createRecentResourceCarousel(block, data);
 }

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 main .section .resources-wrapper {
   padding-top: 0;
 }
@@ -179,7 +180,7 @@ main .section .resources-wrapper {
   color: var(--text-color);
 }
 
-.resources .filter[aria-selected='true'] a {
+.resources .filter[aria-selected="true"] a {
   text-decoration: underline;
   font-weight: 600;
 }
@@ -198,8 +199,8 @@ main .section .resources-wrapper {
   display: none;
 }
 
-.resources .resource[aria-hidden='true'],
-.resources .videos-container[aria-hidden='true'] {
+.resources .resource[aria-hidden="true"],
+.resources .videos-container[aria-hidden="true"] {
   display: none;
 }
 
@@ -207,12 +208,13 @@ main .section .resources-wrapper {
   display: none;
 }
 
-.section .resources .coveo-results-column div[role='navigation'],
+.section .resources .coveo-results-column div[role="navigation"],
 .section .resources .cover-banner,
 .section .resources .coveo-main-section-wrapper .coveo-main-section,
 .section .resources .section.coveo-main-section-wrapper {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 0;
 }
 
 .section.resources-container .default-content-wrapper {
@@ -220,8 +222,8 @@ main .section .resources-wrapper {
 }
 
 .section .resources .cover-banner .coveo-search-section {
-  margin: 50px auto 20px;
-  margin-right: -60px;
+  margin: 50px 0 20px 10px;
+  padding: 0;
   max-width: 450px;
 }
 
@@ -236,6 +238,10 @@ main .section .resources-wrapper {
 .section .resources .coveo-search-box > .coveo-search-button-loading-svg svg {
   position: relative;
   top: 3px;
+}
+
+.section .resources .coveo-search-box {
+  margin: 8px auto 34px;
 }
 
 .section .resources .coveo-search-box .magic-box {
@@ -259,18 +265,16 @@ main .section .resources-wrapper {
   margin-bottom: 0;
 }
 
-.application .section .resources .cover-banner,
 .application .magic-box .magic-box-clear,
-.technology .section .resources .cover-banner,
 .technology .magic-box .magic-box-clear,
 .section .resources .coveo-main-title,
 .section .resources .coveo-breadcrumb-clear-all,
 .section .resources .coveo-breadcrumb-items div.coveo-breadcrumb-item,
 .section .resources .coveo-facet-column .coveo-dynamic-hierarchical-facet,
-.section .resources .coveo-facet-column div[data-title='Article Type'],
+.section .resources .coveo-facet-column div[data-title="Article Type"],
 .section .resources .section.coveo-tab-section-wrapper {
   height: 0;
-  min-height: auto;
+  min-height: 0;
   visibility: hidden;
   margin: 0;
   padding: 0;
@@ -294,9 +298,9 @@ main .section .resources-wrapper {
 
 .product .resources.loading-coveo:empty::before,
 .product .resources:empty::before {
-  content: '';
+  content: "";
   position: absolute;
-  background-image: url('/images/ajax-common-loader-gray.gif');
+  background-image: url("/images/ajax-common-loader-gray.gif");
   background-color: #fff;
   background-size: 50px;
   background-position: center 200px;
@@ -305,6 +309,10 @@ main .section .resources-wrapper {
   width: 100%;
   z-index: 99;
   left: 0;
+}
+
+.coveo-small-facets .coveo-facet-column.coveo-facet-dropdown-modal-content .coveo-facet-modal-close-button {
+  min-width: auto;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -354,21 +362,37 @@ main .section .resources-wrapper {
     display: block;
   }
 
-  .resources li.filter[aria-selected='true'] {
+  .resources li.filter[aria-selected="true"] {
     display: block;
     order: -1;
     color: var(--link-hover-color);
   }
 
-  .resources li.filter[aria-selected='true'] a {
+  .resources li.filter[aria-selected="true"] a {
     color: var(--link-hover-color);
   }
 
-  .resources li.filter[aria-selected='true'] .icon.icon-chevron-right-outline {
+  .resources li.filter[aria-selected="true"] .icon.icon-chevron-right-outline {
     display: block;
   }
 
-  .resources .filters.dropdown li.filter[aria-selected='true'] .icon.icon-chevron-right-outline {
+  .resources .filters.dropdown li.filter[aria-selected="true"] .icon.icon-chevron-right-outline {
     transform: rotate(270deg);
+  }
+
+  .section .resources .cover-banner .coveo-search-section {
+    margin: 0;
+    padding: 20px;
+  }
+
+  .resources .cover-banner-wrapper .coveo-dropdown-header-wrapper {
+    position: static;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .CoveoSearchInterface .coveo-results-column {
+    padding: 10px 10px 10px 15px;
   }
 }

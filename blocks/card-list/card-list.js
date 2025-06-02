@@ -16,13 +16,19 @@ const noThumbnailCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
   showImageThumbnail: false,
-  descriptionLength: 100,
+  descriptionLength: 150,
 });
 
 const thumbnailAndLinkCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
-  descriptionLength: 100,
+  descriptionLength: 150,
+});
+
+const productCardRender = await createCard({
+  defaultButtonText: 'Learn more',
+  useDefaultButtonText: true,
+  descriptionLength: 150,
 });
 
 const blogCardRender = await createCard({
@@ -85,11 +91,18 @@ class FilterableCardList {
     }
 
     const viewAllCardList = [];
-    categoryOrder.forEach((category) => {
-      if (!this.dataIndex.has(category)) return;
-
-      viewAllCardList.push(...this.dataIndex.get(category));
-    });
+    if (this.block.classList.contains('customer-breakthroughs')) {
+      this.data.forEach((item) => {
+        const xmlsm = this.cardRenderer.renderItem(item);
+        this.dataIndex.set(viewAllCategory, xmlsm);
+        viewAllCardList.push(xmlsm);
+      });
+    } else {
+      categoryOrder.forEach((category) => {
+        if (!this.dataIndex.has(category)) return;
+        viewAllCardList.push(...this.dataIndex.get(category));
+      });
+    }
 
     return viewAllCardList;
   }
@@ -285,6 +298,7 @@ const VARIANTS = {
   PRODUCTS: {
     headings: true,
     sortCards: false,
+    cardRenderer: productCardRender,
 
     async getData() {
       let products = await ffetch('/query-index.json')

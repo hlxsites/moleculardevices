@@ -1,4 +1,4 @@
-import { fetchFragment } from '../../scripts/scripts.js';
+import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
@@ -24,7 +24,10 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
+  const placeholders = await fetchPlaceholders();
+  const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
+
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
@@ -33,36 +36,31 @@ export default async function decorate(block) {
       const h3Block = fragmentElement.querySelector('h3');
       const imageBlock = fragmentElement.querySelector('picture');
       const description = getDescription(fragmentElement);
+      const appLinks = fragmentElement.querySelectorAll('a:last-of-type');
+      const appLink = fragmentElement.querySelectorAll('a:last-of-type')[appLinks.length - 1];
       return {
-        id: h3Block.id, title: h3Block.textContent, imageBlock, description,
+        id: h3Block.id,
+        title: h3Block.textContent,
+        imageBlock,
+        description,
+        c2aLinkConfig: {
+          href: hasApplicationTab ? '#applications' : appLink,
+          'aria-label': placeholders.readMore || 'Read More',
+          onclick: hasApplicationTab ? onReadMoreClick : null,
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
       };
     }
     return null;
   }));
-  const sortedFragments = fragments.filter((item) => !!item).sort((x, y) => {
-    if (x.title < y.title) {
-      return -1;
-    }
-    if (x.title > y.title) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const placeholders = await fetchPlaceholders();
+  const sortedFragments = sortDataByTitle(fragments);
 
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
     descriptionLength: 100,
     imageBlockReady: true,
-    c2aLinkConfig: {
-      href: '#applications',
-      'aria-label': placeholders.readMore || 'Read More',
-      onclick: onReadMoreClick,
-      target: '_blank',
-      rel: 'noopener noreferrer',
-    },
     c2aLinkStyle: true,
   });
 

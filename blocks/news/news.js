@@ -49,6 +49,20 @@ export async function fetchData(type) {
   return data;
 }
 
+export async function getNewsData(newsCount) {
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
+  let data = [];
+  if (isCuntryCodeZH) {
+    data = await fetchData('china-news');
+  } else {
+    data = await fetchData('news');
+  }
+  if (newsCount) {
+    data = data.slice(0, newsCount);
+  }
+  return data;
+}
+
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
@@ -63,7 +77,8 @@ export default async function decorate(block) {
   options.activeFilters.set('year', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchData('news');
+  options.data = await getNewsData();
+
   await createOverview(
     block,
     options);

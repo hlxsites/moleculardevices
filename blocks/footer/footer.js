@@ -1,13 +1,19 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
+  createOptimizedPicture,
+  toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
-  a, div, i, iframe, li, p, ul,
+  a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, formatDate, loadScript, unixDateToString,
+  decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
 } from '../../scripts/scripts.js';
+import { getNewsData } from '../news/news.js';
+import { getFormId } from '../forms/formHelper.js';
+import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getLatestNewsletter } from '../../templates/blog/blog.js';
 
 let placeholders = {};
 
@@ -21,9 +27,9 @@ function toggleNewsEvents(container, target) {
 }
 
 function addEventListeners(container) {
-  const h3s = container.querySelectorAll('h3');
-  [...h3s].forEach((h3) => {
-    h3.addEventListener('click', (e) => {
+  const headings = container.querySelectorAll('h3');
+  [...headings].forEach((heading) => {
+    heading.addEventListener('click', (e) => {
       toggleNewsEvents(container, e.target);
     });
   });
@@ -72,11 +78,7 @@ async function renderEvents(container) {
 }
 
 async function renderNews(container) {
-  const news = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .slice(0, 3)
-    .all();
+  const news = await getNewsData(3);
   container.innerHTML = '';
   news.forEach(
     (item) => container.append(renderEntry(item)),
@@ -106,32 +108,18 @@ async function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
-function iframeResizeHandler(formUrl, id, container) {
-  const resizerPromise = new Promise((resolve) => {
-    loadScript('/scripts/iframeResizer.min.js', () => { resolve(); });
-  });
-
-  container.querySelector('iframe').addEventListener('load', async () => {
-    if (formUrl) {
-      await resizerPromise;
-      /* global iFrameResize */
-      iFrameResize({ log: false }, id);
-    }
-  });
-}
-
 function capitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
 
-async function getLatestNewsletter() {
+async function getNewslettersList() {
   const newsletters = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
     .limit(3)
     .all();
 
-  const list = ul();
+  const list = ul({ class: 'newsletter-list' });
   newsletters.forEach((newsletter) => {
     let title = newsletter.path.split('/').slice(-1)[0];
     title = capitalize(title).split('-').join(' ');
@@ -142,46 +130,53 @@ async function getLatestNewsletter() {
 
 async function buildNewsletter(container) {
   const newsletterId = 'enewsletter';
-  if (container.querySelector(`#${newsletterId} iframe`)) {
+  if (container.querySelector(`#${newsletterId} form`)) {
     return; // newsletter already present
   }
 
-  const formId = 'enewsletterSubscribeForm';
-  const formUrl = 'https://info.moleculardevices.com/newsletter-signup';
-  const form = (
+  const formID = 'enewsletterSubscribeForm';
+  const formType = 'newsletter';
+  const formHeading = 'Lab Notes eNewsletter';
+
+  const form = div({ class: toClassName(`${formHeading}-wrapper`) },
     div({
       id: newsletterId,
-      class: 'hubspot-iframe-wrapper',
+      class: 'enewsletter-wrapper',
       loading: 'lazy',
     }, div(
-      iframe({
-        id: formId,
-        src: formUrl,
-        loading: 'lazy',
-        title: 'Newsletter',
-      }),
-    ),
-    )
+      {
+        class: 'hubspot-form',
+        id: formID,
+      },
+    )),
   );
-
-  const newsletterList = await getLatestNewsletter();
-
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
-  container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
-  iframeResizeHandler(formUrl, `#${formId}`, container);
+
+  const formConfig = {
+    formId: getFormId(formType),
+    latestNewsletter: await getLatestNewsletter(),
+    redirectUrl: null,
+  };
+
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
+
+  const newsletterList = await getNewslettersList();
+  const isNewsletterListExist = document.querySelector('.newsletter-list');
+
+  if (!isNewsletterListExist) {
+    container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
+  }
 }
 
-function decorateSocialMediaLinks(socialIconsContainer) {
-  socialIconsContainer.querySelectorAll('.social-media-list a').forEach((iconLink) => {
-    iconLink.ariaLabel = `molecular devices ${iconLink.children[0].classList[1].split('-')[2]} page`;
+/* decorate social icons */
+function decorateSocialIcons(element, className) {
+  element.querySelectorAll(`${className} a`).forEach((link) => {
+    const social = link.children[0].classList[1].split('-').pop();
+    link.setAttribute('aria-label', `Share to ${social}`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
   });
-}
-
-function decorateImageWithLink(wrapper, link, title) {
-  const img = wrapper.innerHTML;
-  const newWrapper = `<a href=${link} aria-label='${title}'>${img}</a>`;
-  wrapper.innerHTML = newWrapper;
 }
 
 /**
@@ -192,52 +187,98 @@ function decorateImageWithLink(wrapper, link, title) {
 export default async function decorate(block) {
   block.textContent = '';
 
-  const footerPath = getMetadata('footer') || '/footer';
+  const template = getMetadata('template');
+  let footerPath = getMetadata('footer') || '/footer';
+  if (template === 'Landing Page') {
+    footerPath = '/footer-landing-page';
+  }
 
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
   const html = await resp.text();
-  const footer = document.createElement('div');
+  const footer = div();
   footer.innerHTML = html;
 
-  const footerWrap = document.createElement('div');
-  const footerBottom = document.createElement('div');
-  footerWrap.classList.add('footer-wrap');
-  footerBottom.classList.add('footer-bottom');
-  block.appendChild(footerWrap);
-  block.appendChild(footerBottom);
+  const currentYear = new Date().getFullYear();
+  const siteLogoPath = '/images/header-menus/logo.svg';
+  const footerSiteLogo = p(
+    { class: 'footer-site-logo' },
+    a({ href: window.location.origin, title: 'Molecular Devices' },
+      createOptimizedPicture(siteLogoPath, 'Molecular Devices'),
+    ));
+  const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
+  footer.querySelector('.site-logo').appendChild(footerSiteLogo);
+  footer.querySelector('.copyright-text').appendChild(copyrightInfo);
 
-  placeholders = await fetchPlaceholders();
+  if (template === 'Landing Page') {
+    const footerWrapper = div({ class: 'footer-landing-page' });
+    const container = div({ class: 'container' });
+    const rows = Array.from(footer.children);
+    rows.forEach((row) => {
+      container.appendChild(row);
+    });
+    footerWrapper.appendChild(container);
+    footer.appendChild(footerWrapper);
+  } else {
+    const footerWrap = div({ class: 'footer-wrap' });
+    const footerBottom = div({ class: 'footer-bottom' });
+    const wrapContainer = div({ class: 'container' });
+    const bottomContainer = div({ class: 'container' });
+    footerWrap.appendChild(wrapContainer);
+    footerBottom.appendChild(bottomContainer);
+    block.appendChild(footerWrap);
+    block.appendChild(footerBottom);
 
-  [...footer.children].forEach((row, idx) => {
-    row.classList.add(`row-${idx + 1}`);
-    if (idx <= 3) {
-      footerWrap.appendChild(row);
-    } else {
-      footerBottom.appendChild(row);
-    }
+    placeholders = await fetchPlaceholders();
 
-    if (idx === 3) {
-      decorateSocialMediaLinks(row);
-    }
+    const rows = Array.from(footer.children);
+    rows.forEach((row, idx) => {
+      decorateLinkedPictures(row);
+      row.classList.add(`row-${idx + 1}`);
+      if (row.querySelector('.section-metadata')) {
+        row.querySelector('.section-metadata').remove();
+      }
 
-    if (idx === 4) {
-      const mainUrl = 'https://www.moleculardevices.com/';
-      decorateImageWithLink(row, mainUrl, 'Molecular Devices');
-    }
+      if (idx <= 3) {
+        wrapContainer.appendChild(row);
+      } else {
+        bottomContainer.appendChild(row);
+      }
 
-    if (idx === 5) {
-      const imgWrapper = row.getElementsByTagName('p')[0];
-      const danaherUrl = 'https://www.danaher.com/?utm_source=MLD_web&utm_medium=referral&utm_content=trustmarkfooter';
-      decorateImageWithLink(imgWrapper, danaherUrl, 'Danaher');
-    }
-  });
+      if (idx === 3) {
+        const innerWrapper = div({ class: `row-${idx + 1}-inner-wrapper` });
+        while (row.firstChild) {
+          innerWrapper.appendChild(row.firstChild);
+        }
+        row.appendChild(innerWrapper);
+        decorateSocialIcons(row, '.social-media-list');
+      }
 
-  buildNewsEvents(block.querySelector('.footer-news-events'));
-  block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
+      if (idx === 4) {
+        const row4 = rows[4];
+        if (row4) {
+          rows[3].appendChild(row4);
+        }
+      }
+
+      if (idx === 7) {
+        const row7 = rows[7];
+        if (row7) {
+          const copyrightInfoZH = p(a({ href: 'https://beian.miit.gov.cn/#/Integrated/index' }, `\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`));
+          row7.querySelector('.footer-contact').appendChild(copyrightInfoZH);
+        }
+      }
+    });
+
+    buildNewsEvents(block.querySelector('.footer-news-events'));
+    block.querySelectorAll('.footer-contact').forEach((contactBlock) => decorateBlock(contactBlock));
+  }
 
   block.append(footer);
   block.querySelectorAll('a').forEach(decorateExternalLink);
-  await decorateIcons(block);
+  decorateIcons(block);
+  block.querySelectorAll('a > picture').forEach((link) => {
+    link.parentElement.setAttribute('target', '_blank');
+  });
 
   /*
    Creating the Newsletter has high TBT due to a high number of external scripts it brings.

@@ -36,6 +36,10 @@
   object-fit: cover;
 }
 
+.featured .blog-teaser-item .blog-teaser-thumb img{
+  max-height: 575px;
+}
+
 .blog-teaser-item .blog-teaser-thumb:hover img {
   transform: scale(1.1);
 }
@@ -71,7 +75,6 @@
   font-size: 17px;
   display: inline-block;
   margin-right: 15px;
-  line-height: 12px;
   font-family: var(--ff-proxima-regular);
 }
 

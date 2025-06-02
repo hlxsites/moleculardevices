@@ -1,17 +1,18 @@
+env:
+  NODE_VERSION: '20.x'                # set this to the node version to use
 name: Tests and Linting
-
-on: [pull_request]
-
+on:
+  - pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
-    - run: npm install
-    - run: npm run lint
-      env:
-        CI: true
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: npm install
+      - run: npm run lint
+        env:
+          CI: true

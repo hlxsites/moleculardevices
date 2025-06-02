@@ -30,7 +30,7 @@ export function buildList(data, block) {
 export default async function decorate(block) {
   const currentDate = Date.now();
 
-  let events = await ffetch('/query-index.json')
+  const events = await ffetch('/query-index.json')
     .sheet('events')
     .all();
 
@@ -46,9 +46,5 @@ export default async function decorate(block) {
 
   const upcomingEvents = sortedEvents.filter((item) => item.eventEnd * 1000 > currentDate);
 
-  if (upcomingEvents.length > 5) {
-    events = upcomingEvents;
-  }
-
-  buildList(events.slice(0, 4), block);
+  buildList(upcomingEvents.slice(0, 4), block);
 }

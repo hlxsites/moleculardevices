@@ -36,16 +36,6 @@ main .section .related-products-wrapper {
 
 .related-products .card-type {
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: var(--text-white);
-  background-color: var(--background-color-green);
-  padding: 5px 15px;
-  text-transform: uppercase;
-  font-family: var(--ff-proxima-light);
-  font-weight: 100;
-  font-size: var(--body-font-size-s);
 }
 
 .related-products .card-caption .card-description {

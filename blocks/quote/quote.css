@@ -1,61 +1,67 @@
-.blog .quote-wrapper {
+.quote-wrapper {
   padding: 0 15px;
   margin: 40px auto ;
 }
 
-.blog .quote {
+.quote {
   position: relative;
   max-width: 587px;
   text-align: center;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
-.blog .quote .quote-text,
-.blog .quote .quote-author {
-  color: #61b249;
+.quote .quote-text,
+.quote .quote-author {
+  color: var(--text-green);
   font-size: 20px;
 }
 
-.blog .quote .quote-text {
+.quote .quote-text {
   padding: 30px 0;
   position: relative;
 }
 
-.blog .quote .quote-author {
+.quote .quote-author {
   margin-top: 26px;
 }
 
-.blog .quote .quote-text::before,
-.blog .quote .quote-text::after {
+.quote .quote-text::before,
+.quote .quote-text::after {
   content: "";
   position: absolute;
   right: 0;
   left: 0;
   margin: 0 auto;
-  background: linear-gradient(90deg,rgba(21 145 164 / 100%) 0,rgba(46 159 121 / 100%) 50%,rgba(97 178 73 / 100%) 100%);
+  background: var(--blog-gradient);
   height: 4px;
   width: 366px;
 }
 
-.blog .quote .quote-text::before {
+.quote .quote-text::before {
   top: 0;
   bottom: auto;
 }
 
-.blog .quote .quote-text::after {
+.quote .quote-text::after {
   top: auto;
   bottom: 0;
 }
 
 .customer-breakthrough .quote {
-  color: var(--link-hover-color);
   font-family: var(--ff-proxima-xbold);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  max-width: 100%;
+  margin: 0;
+  text-align: left;
 }
 
 .customer-breakthrough .quote .quote-text {
   font-size: var(--body-font-size-l);
+  color: var(--link-hover-color);
+}
+
+.customer-breakthrough .quote .quote-text::before,
+.customer-breakthrough .quote .quote-text::after {
+  display: none;
 }
 
 .customer-breakthrough .quote .quote-author {
@@ -69,8 +75,8 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .blog .quote .quote-text::before,
-  .blog .quote .quote-text::after {
+  .quote .quote-text::before,
+  .quote .quote-text::after {
     width: 100%;
   }
 

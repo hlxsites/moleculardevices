@@ -1,7 +1,7 @@
-import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { formatDateUTCSeconds } from '../../scripts/scripts.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
+import { getNewsData } from '../news/news.js';
 
 function renderItem(item) {
   const newsItem = document.createElement('div');
@@ -22,7 +22,7 @@ function renderItem(item) {
   const newsCaptionText = document.createElement('div');
   newsCaptionText.classList.add('news-carousel-caption-text');
   newsCaptionText.innerHTML = `
-    <p>${formatDateUTCSeconds(item.date)}</p>
+    <p>${formatDate(unixDateToString(item.date))}</p>
     <p>${item.title}</p>
   `;
 
@@ -33,11 +33,7 @@ function renderItem(item) {
 }
 
 export default async function decorate(block) {
-  const newsItems = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .limit(5)
-    .all();
+  const newsItems = await getNewsData(5);
 
   await createCarousel(
     block,

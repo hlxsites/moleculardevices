@@ -1,22 +1,10 @@
 /* eslint-disable import/no-cycle */
-import {
-  button, div, span,
-} from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, loadCSS, loadScript } from '../../scripts/lib-franklin.js';
+import { button, div, span } from '../../scripts/dom-helpers.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
 const modalParentClass = 'modal-overlay';
-
-export function iframeResizeHandler(iframeURL, iframeID, root) {
-  loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', async () => {
-    if (iframeURL) {
-      /* global iFrameResize */
-      iFrameResize({ log: false }, `#${iframeID}`);
-    }
-  });
-}
 
 export function hideModal() {
   const modal = document.querySelector(`.${modalParentClass}`);
@@ -32,11 +20,30 @@ export function showModal() {
 }
 
 export function triggerModalWithUrl(url) {
+  const queryParams = new URLSearchParams(window.location.search);
+  const urlParams = new URL(url, window.location.origin).searchParams;
+  const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+  const productFamily = queryParams.get('product_family') || urlParams.get('product_family') || '';
+  const productPrimary = queryParams.get('product_primary') || urlParams.get('product_primary') || '';
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
+
+  urlParams.delete('cmp');
+  urlParams.delete('product_family');
+  urlParams.delete('product_primary');
+
+  const baseUrl = new URL(url, window.location.origin);
+  baseUrl.search = urlParams.toString();
+
   setTimeout(() => {
-    iframeElement.src = url;
+    const newParams = new URLSearchParams(baseUrl.search);
+    if (cmpID) newParams.set('cmp', cmpID);
+    if (productFamily) newParams.set('product_family__c', productFamily);
+    if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
+
+    iframeElement.src = `${baseUrl.origin}${baseUrl.pathname}?${newParams.toString()}`;
   }, 200);
+
   timer = setTimeout(showModal, 500);
 }
 
@@ -55,7 +62,7 @@ function triggerModalBtn(scrollThreshold) {
   }
 }
 
-export async function decorateModal(formURL, iframeID, modalBody, modalClass, isFormModal) {
+export async function decorateModal(modalBody, modalClass, isFormModal) {
   loadCSS('/blocks/modal/modal.css');
   const modal = document.querySelector(`.${modalParentClass}`);
 
@@ -63,8 +70,6 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
     const formOverlay = div({ 'aria-hidden': true, class: modalParentClass, style: 'display:none;' });
     const closeBtn = span({ class: 'icon icon-close' }, createOptimizedPicture('/icons/close-video.svg', 'Close Video'));
     const innerWrapper = div({ class: ['modal-inner-wrapper', modalClass] }, modalBody, closeBtn);
-
-    iframeResizeHandler(formURL, iframeID, modalBody);
 
     if (isFormModal) {
       const modalBtn = button({ id: 'show-modal', style: 'display: none;' }, 'Show Modal');
@@ -88,12 +93,10 @@ export async function decorateModal(formURL, iframeID, modalBody, modalClass, is
 
 export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
+  const formCMP = getMetadata('newsletter-form-cmp');
 
   if (isBlogModal) {
-    const modalContent = block.querySelector(':scope > div > div');
-    const link = modalContent.querySelector('p > a:only-child, a:only-child');
-    const formURL = link.href;
-    await newsletterModal(formURL, 'form-modal');
+    await newsletterModal(formCMP);
     const modalBtn = document.getElementById('show-modal');
     window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }

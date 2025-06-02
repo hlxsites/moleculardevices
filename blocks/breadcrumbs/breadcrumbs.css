@@ -6,8 +6,8 @@
 }
 
 .news main .breadcrumbs,
-.publication main .breadcrumbs,
-.events main .breadcrumbs {
+.events main .breadcrumbs,
+.publication:not(.full-article) main .breadcrumbs {
   padding-top: 70px;
 }
 

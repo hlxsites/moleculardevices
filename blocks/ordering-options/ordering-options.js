@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import { loadUserData } from '../../scripts/delayed.js';
 import {
@@ -19,16 +17,6 @@ function increaseAndDecreaseCounter(event) {
     counterEl.textContent = counter + 1;
   } else {
     counterEl.textContent = (counter > 1) ? counter - 1 : 1;
-  }
-}
-
-async function updateCounters() {
-  const count = getCartItemCount();
-  const cartCounters = document.querySelectorAll('.cart-count');
-  if (cartCounters) {
-    cartCounters.forEach((cartCounter) => {
-      cartCounter.textContent = count;
-    });
   }
 }
 
@@ -53,7 +41,21 @@ async function getCartDetails() {
   });
 }
 
-async function addToCart(btn, el, counterEl) {
+async function updateCounters(counter) {
+  await getCartDetails();
+  let count = getCartItemCount();
+  if (count === '0') {
+    count = counter;
+  }
+  const cartCounters = document.querySelectorAll('.cart-count');
+  if (cartCounters.length > 0) {
+    cartCounters.forEach((cartCounter) => {
+      cartCounter.textContent = count;
+    });
+  }
+}
+
+function createSpinner() {
   const spinner = (
     div({ class: 'spinner-container' },
       img({
@@ -65,39 +67,62 @@ async function addToCart(btn, el, counterEl) {
       }),
     )
   );
+  return spinner;
+}
 
-  document.querySelector('body').appendChild(spinner);
-  // worst case scenario if somethig below fails, we should not block the page forever
-  setTimeout(() => { spinner.remove(); }, 5000);
+async function loadShopScript(src) {
+  const script = document.createElement('script');
+  script.src = src;
+
+  return new Promise((resolve) => {
+    script.onload = resolve;
+    document.head.appendChild(script);
+  });
+}
+
+function showSuccessMessage(btn, timer) {
+  const cartWidget = document.querySelector('.cart-widget');
+  const successClass = 'add-to-cart-success';
+
+  cartWidget.classList.add('open');
+  btn.classList.add(successClass);
+
+  setTimeout(() => {
+    cartWidget.classList.remove('open');
+    btn.classList.remove(successClass);
+  }, timer);
+}
+
+async function addToCart(btn, el, counterEl) {
+  const timer = 1500;
+  const spinner = createSpinner();
+  document.body.appendChild(spinner);
 
   const counter = parseInt(counterEl.textContent || counterEl.value, 10) || 1;
   const itemId = el.id || el.getAttribute('id');
 
-  await new Promise((resolve) => {
-    const script = domEl('script',
-      {
-        src: `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
-          id: itemId,
-          quantity: counter,
-          _: Date.now(),
-          callback: 'addToCart',
-        })}`,
-        onload: () => {
-          resolve();
-        },
-      },
-    );
-    document.getElementsByTagName('head')[0].appendChild(script);
-    setTimeout(() => document.getElementsByTagName('head')[0].removeChild(script));
-  });
+  const src = `${SHOP_BASE_URL}/cart/add.js?${new URLSearchParams({
+    id: itemId,
+    quantity: counter,
+    _: Date.now(),
+    callback: 'addToCart',
+  })}`;
 
-  await getCartDetails();
-  updateCounters();
-  spinner.remove();
+  const script = document.querySelector(`script[src="${src}"]`);
 
-  document.querySelector('.cart-widget').classList.add('open');
-  btn.classList.add('add-to-cart-success');
-  setTimeout(() => { btn.classList.remove('add-to-cart-success'); }, 1500);
+  setTimeout(() => {
+    loadShopScript(src, timer);
+  }, timer);
+
+  setTimeout(() => {
+    updateCounters(counter);
+    spinner.remove();
+    showSuccessMessage(btn, timer);
+
+    if (script) {
+      script.remove();
+    }
+  }, 2000);
 }
 
 function renderAddToCart(item) {
@@ -169,9 +194,7 @@ function renderCartWidget(showStore) {
           target: '_blank',
           name: 'Cart',
           rel: 'noopener noreferrer',
-        },
-        'View Cart',
-        ),
+        }, 'View Cart'),
       )
     );
     productsMain.append(cartWidget);
@@ -180,7 +203,7 @@ function renderCartWidget(showStore) {
   }
 }
 
-function fetchOption(option) {
+async function fetchOption(option) {
   return fetch(`${SHOP_BASE_URL}/products/${option}.js`, {
     mode: 'cors',
   }).then((response) => {
@@ -378,7 +401,12 @@ function buildOrderingForm(options) {
         label({ class: 'quantity-label' }, 'QUANTITY'),
         div({ class: 'quantity-counter' },
           button({ class: 'quantity-button', onclick: (e) => { decreaseQuantity(e); } }, '-'),
-          input({ class: 'quantity-number', onchange: (e) => quantityChange(e), type: 'text', value: '0' }),
+          input({
+            class: 'quantity-number',
+            onchange: (e) => quantityChange(e),
+            type: 'text',
+            value: '0',
+          }),
           button({ class: 'quantity-button', onclick: (e) => { increaseQuantity(e); } }, '+'),
         ),
       ),
@@ -413,8 +441,7 @@ async function renderOptions(orderBlock, heroBlock, productRefs, itemDescription
 
   buildOrderingForm(options);
 
-  await getCartDetails();
-  updateCounters();
+  await updateCounters(0);
 }
 
 function showHideStoreFeature(showStore, orderBlock, heroBlock) {

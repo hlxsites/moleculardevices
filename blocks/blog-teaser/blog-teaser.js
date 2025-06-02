@@ -6,6 +6,7 @@ import {
   fetchPlaceholders,
   getMetadata,
 } from '../../scripts/lib-franklin.js';
+
 import { fetchFragment, formatDate } from '../../scripts/scripts.js';
 import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
 
@@ -63,6 +64,7 @@ export default async function decorate(block) {
     const link = a({ href: (new URL(featuredPostUrl)).pathname });
     blogPostLinks.push(link);
   } else {
+
     const recentPostLinks = await getBlogsAndPublications();
     recentPostLinks.splice(3);
 

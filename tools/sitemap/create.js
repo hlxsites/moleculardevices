@@ -4,9 +4,10 @@ import convert from 'xml-js';
 import path from 'path';
 
 const QUERY_INDEX_URL = 'https://www.moleculardevices.com/query-index.json?sheet=sitemap&limit=5000';
-const LOCALE_URL = 'https://www.moleculardevices.com';
+// const LOCALE_URL = 'https://www.moleculardevices.com';
 
 const hreflangMap = [
+  ['en', { baseUrl: 'https://www.moleculardevices.com' }],
   ['de', { baseUrl: 'https://de.moleculardevices.com' }],
   ['it', { baseUrl: 'https://it.moleculardevices.com' }],
   ['es', { baseUrl: 'https://es.moleculardevices.com' }],
@@ -19,7 +20,28 @@ const hreflangMap = [
 try {
   const response = await fetch(QUERY_INDEX_URL);
   const json = await response.json();
+  const filteredJson = json?.data.filter((row) => row.showinSitemap !== 'No');
   const sitemapPath = path.join(process.cwd(), '../../content-sitemap.xml');
+
+  const urls = [];
+
+  filteredJson.forEach((row) => {
+    // eslint-disable-next-line no-unused-vars
+    hreflangMap.forEach(([hreflang, { baseUrl }]) => {
+      const urlEntry = {
+        loc: `${baseUrl}${row.path}`,
+        'xhtml:link': hreflangMap.map(([altHreflang, { baseUrl: altBaseUrl }]) => ({
+          _attributes: {
+            rel: 'alternate',
+            hreflang: altHreflang,
+            href: `${altBaseUrl}${row.path}`,
+          },
+        })),
+        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,
+      };
+      urls.push(urlEntry);
+    });
+  });
 
   const output = {
     urlset: {
@@ -27,21 +49,7 @@ try {
         'xmlns:xhtml': 'http://www.w3.org/1999/xhtml',
         xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
       },
-      url: json?.data.map((row) => ({
-        loc: `${LOCALE_URL}${row.path}`,
-        'xhtml:link': Object.keys(hreflangMap).map((key) => {
-          const hreflang = hreflangMap[key][0];
-          const href = `${hreflangMap[key][1].baseUrl}${row.path}`;
-          return {
-            _attributes: {
-              rel: 'alternate',
-              hreflang,
-              href,
-            },
-          };
-        }),
-        lastmod: row.lastModified ? new Date(row.lastModified * 1000).toISOString().split('T')[0] : null,
-      })),
+      url: urls,
     },
   };
 

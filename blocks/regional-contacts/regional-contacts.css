@@ -45,7 +45,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper::after {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
@@ -176,7 +176,7 @@
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li:only-child::after {
   background-color: var(--border-color-gray);
   bottom: 0;
-  content: '';
+  content: "";
   display: block;
   height: 1px;
   position: absolute;
@@ -186,8 +186,19 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a {
   color: inherit;
+  cursor: pointer;
 }
 
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li button {
+  background: none;
+  padding: 0;
+  color: inherit;
+  width: auto;
+  max-width: 100%;
+  min-width: unset;
+}
+
+.regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li button:hover,
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li a:hover {
   color: var(--text-green);
 }
@@ -297,6 +308,11 @@
     font-size: var(--body-font-size-s);
     justify-content: space-between;
     padding: 12px 15px;
+  }
+
+  .regional-contacts-wrapper .regional-contacts .accordian-btn h3 {
+    margin: 0;
+    font-size: var(--heading-font-size-m);
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper {

@@ -24,6 +24,14 @@ main .card:hover {
   transition: all 0.3s;
 }
 
+main .card .new-product-tag {
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  max-width: 100px;
+  height: auto;
+}
+
 main .card-thumb {
   height: 200px;
   min-height: 200px;
@@ -52,7 +60,7 @@ main .card .card-category {
   padding: 10px 15px;
   font-size: 16px;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   z-index: 1;
 }
@@ -140,6 +148,15 @@ main .card-caption .c2a .compare-checkbox {
 main .card-caption .c2a .compare-checkbox.selected {
   background: var(--background-color-green);
   border-color: var(--background-color-green);
+}
+
+main .card-type {
+  display: none;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--text-green);
+  font-size: var(--body-font-size-xs);
+  margin: 5px 0;
 }
 
 main .card-date {
