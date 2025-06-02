@@ -465,6 +465,14 @@ button {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+a[role="button"] {
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
 }
 
 a.button:any-link:has(span.icon),

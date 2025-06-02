@@ -29,7 +29,21 @@ export default async function decorate(block) {
 
   const attributeMapping = productSpecs.Identifier;
   delete productSpecs.Identifier;
-  const productIdentifiers = Object.keys(productSpecs);
+
+  let productIdentifiers;
+  if (specURLs.length === 1) {
+    const spc = new Map(Object.entries(productSpecs));
+    productIdentifiers = Array.from(spc.keys());
+  } else {
+    productIdentifiers = specURLs
+      .map((url) => {
+        const urlName = url.split('/').pop().replace('.json', '');
+        const match = Object.entries(productSpecs)
+          .find(([, spec]) => spec.path?.includes(urlName));
+        return match?.[0];
+      })
+      .filter(Boolean);
+  }
 
   // render table head
   const headRow = domEl('tr', domEl('th', ''));

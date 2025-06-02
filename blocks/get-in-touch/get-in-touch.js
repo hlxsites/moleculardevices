@@ -147,14 +147,25 @@ export default async function decorate(block) {
   });
 
   /* scroll to form on click of inquiry links */
+  const handler = (e) => {
+    e.preventDefault();
+    scrollToForm(e, hubspotUrl);
+  };
   const inquiryTitles = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
+
   links.forEach((link) => {
-    if (inquiryTitles.includes(link.getAttribute('title'))) {
+    const title = link.getAttribute('title');
+    if (inquiryTitles.includes(title)) {
       link.removeAttribute('href');
       link.setAttribute('role', 'button');
-      link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+      link.setAttribute('aria-label', title);
+      link.setAttribute('tabindex', '0');
+      link.style.cursor = 'pointer';
+      link.style.touchAction = 'manipulation';
+
+      link.addEventListener('click', handler);
+      link.addEventListener('touchstart', handler);
     }
   });
 }
