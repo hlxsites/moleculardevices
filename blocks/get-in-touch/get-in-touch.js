@@ -147,14 +147,20 @@ export default async function decorate(block) {
   });
 
   /* scroll to form on click of inquiry links */
+  const handler = (e) => scrollToForm(e, hubspotUrl);
   const inquiryTitles = ['General Inquiry Form', 'Sales Inquiry Form', 'Contact Local Team', 'Service plans/warranty'];
   const links = document.querySelectorAll('a[title]');
+
   links.forEach((link) => {
-    if (inquiryTitles.includes(link.getAttribute('title'))) {
-      link.removeAttribute('href');
-      link.setAttribute('role', 'button');
-      link.setAttribute('aria-label', link.getAttribute('title'));
-      link.addEventListener('click', (e) => scrollToForm(e, hubspotUrl));
+    const title = link.getAttribute('title');
+    if (inquiryTitles.includes(title)) {
+      const button = document.createElement('button');
+      button.innerHTML = link.innerHTML;
+      button.setAttribute('role', 'button');
+      button.setAttribute('aria-label', title);
+      button.setAttribute('class', link.className);
+      button.addEventListener('click', handler);
+      link.parentNode.replaceChild(button, link);
     }
   });
 }
