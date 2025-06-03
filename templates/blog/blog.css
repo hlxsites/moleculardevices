@@ -326,6 +326,10 @@ main .section.sidebar h4::after {
   margin-bottom: 10px;
 }
 
+.blog main .carousel-wrapper.cards .carousel {
+  width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
   .blog main .card-list-filter.blog ul li a {
     padding: 16px 20px;
