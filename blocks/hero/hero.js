@@ -139,7 +139,9 @@ export function buildHero(block) {
   let picture = block.querySelector('picture');
 
   if (picture && block.classList.contains('hero-insider')) {
-    inner.setAttribute('style', `background-image: url('${picture.lastElementChild.src}')`);
+    const pictureSrc = new URL(picture.lastElementChild.src);
+    pictureSrc.searchParams.delete('width');
+    inner.setAttribute('style', `background-image: url('${pictureSrc.toString()}')`);
     picture.parentElement.remove();
   }
 
