@@ -117,7 +117,7 @@ export default async function decorate(block) {
       const yOffset = -80;
       const y = block.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
-    }, 100);
+    }, 500);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
