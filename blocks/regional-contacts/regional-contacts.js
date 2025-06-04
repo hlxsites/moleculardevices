@@ -56,15 +56,22 @@ function accordianHandler() {
   const siblingsCount = siblings.length;
 
   if (this.querySelector('i.fa').classList.contains('fa-plus')) {
-    /* eslint no-plusplus: "error" */
     for (let i = 0; i < siblingsCount; i += 1) {
       siblings[i].querySelector('i.fa').classList.add('fa-plus');
       siblings[i].querySelector('i.fa').classList.remove('fa-minus');
       siblings[i].children[1].classList.remove('active');
     }
+
     this.nextElementSibling.classList.add('active');
     this.querySelector('i.fa').classList.remove('fa-plus');
     this.querySelector('i.fa').classList.add('fa-minus');
+
+    // Scroll to the clicked accordion button with offset
+    setTimeout(() => {
+      const yOffset = -80;
+      const y = this.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }, 100);
   } else {
     this.querySelector('i.fa').classList.remove('fa-minus');
     this.querySelector('i.fa').classList.add('fa-plus');

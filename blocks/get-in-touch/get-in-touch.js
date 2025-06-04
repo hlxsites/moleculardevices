@@ -89,7 +89,10 @@ function scrollToForm(event, hubspotUrl) {
     regenerateForm(hubspotUrl, param);
   }
 
-  window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+  // window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+  setTimeout(() => {
+    block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function setRegionByCountry(distributors, country) {
@@ -110,7 +113,11 @@ export default async function decorate(block) {
     block.lastElementChild.remove();
     createMap(block, mapUrl);
 
-    setTimeout(() => window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' }), 1000);
+    setTimeout(() => {
+      const yOffset = -80;
+      const y = block.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }, 500);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
     createForm(block, hubspotUrl);
@@ -157,7 +164,7 @@ export default async function decorate(block) {
   links.forEach((link) => {
     const title = link.getAttribute('title');
     if (inquiryTitles.includes(title)) {
-      link.removeAttribute('href');
+      link.setAttribute('href', '#get-in-touch');
       link.setAttribute('role', 'button');
       link.setAttribute('aria-label', title);
       link.setAttribute('tabindex', '0');
