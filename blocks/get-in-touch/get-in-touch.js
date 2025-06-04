@@ -114,7 +114,9 @@ export default async function decorate(block) {
     createMap(block, mapUrl);
 
     setTimeout(() => {
-      block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -80;
+      const y = block.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }, 100);
   } else {
     block.lastElementChild.remove(); // success message we don't need for this case
