@@ -157,7 +157,7 @@ export default async function decorate(block) {
   links.forEach((link) => {
     const title = link.getAttribute('title');
     if (inquiryTitles.includes(title)) {
-      link.setAttribute('href', '#');
+      link.setAttribute('href', '#get-in-touch');
       link.setAttribute('role', 'button');
       link.setAttribute('aria-label', title);
       link.setAttribute('tabindex', '0');
