@@ -89,7 +89,10 @@ function scrollToForm(event, hubspotUrl) {
     regenerateForm(hubspotUrl, param);
   }
 
-  window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+  // window.scroll({ top: block.offsetTop - 100, behavior: 'smooth' });
+  setTimeout(() => {
+    block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
 
 function setRegionByCountry(distributors, country) {
