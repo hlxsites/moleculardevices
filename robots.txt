@@ -149,7 +149,7 @@ Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-software
 Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/human-relevant-models-for-real-world-impact
-
+Disallow: /en/assets/tutorials-videos/bpd/sustainable-crispr-based-genome-editing-therapies
 
 
 
