@@ -77,6 +77,15 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ai-automated-
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/machine-learning-assisted-automation-of-2d-3d-cell-culture.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/br/high-throughput-assay-for-human-alanine-transaminase-in-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-automated-microbial-plating-screening-hit-selection.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-organoid-workflow-t-cell-screening-using-cellxpress-ai.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/img/ipsc-derived-3d-neural-organoids-functional-analysis-by-calcium-oscillation-activity.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ai-compound-screening-for-toxicity-using-intestinal-3d-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ai-enabled-decision-making-and-automation-of-3d-organoid-culture.pdf
+
+
+
+
+
 
 # HTML Page (App Note HTML Page Block)
 
@@ -106,6 +115,8 @@ Disallow: /en/assets/app-note/dd/img/evaluation-compound-toxicity-effects-on-hea
 Disallow: /en/assets/app-note/dd/img/novel-workflow-interaction-between-t-cells-and-patient-derived-organoids
 Disallow: /en/assets/app-note/dd/img/automated-culture-analysis-of-human-ipsc-derived-3d-tri-culture-cardiac-spheroids
 Disallow: /en/assets/app-note/dd/img/photoreceptor-functional-activity-in-retinal-organoids-using-calcium-imaging
+Disallow: /en/assets/app-note/dd/3d-biology/ai-decision-making-automation-of-3d-organoid-culture
+
 
 # Infographic Block
 
