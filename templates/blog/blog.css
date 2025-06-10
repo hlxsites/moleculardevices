@@ -87,6 +87,10 @@
   line-height: 1.1;
 }
 
+.blog main .card-caption p.button-container {
+  margin-bottom: 0;
+}
+
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
   max-width: 800px;
   padding-left: 15px;
