@@ -135,8 +135,15 @@ if (!isSidekickLibrary) {
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
   }
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn') && typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0002')) {
-    LoadDriftWidget();
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+    //LoadDriftWidget();
   }
+setTimeout(() => {
+  function OptanonWrapper{
+  if(OnetrustActiveGroups.includes("C0002")){
+    LoadDriftWidget()
+  }
+}
+}, 500);
 }
  
