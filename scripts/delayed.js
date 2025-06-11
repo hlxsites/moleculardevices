@@ -18,7 +18,7 @@ function LoadDriftWidget() {
         t[e] = t.factory(e);
         }), t.load = function(t) {
         var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-        o.type = "text/javascript", o.class = "optanon-category-C0004", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+        o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
         var i = document.getElementsByTagName("script")[0];
         i.parentNode.insertBefore(o, i);
     };
@@ -34,6 +34,15 @@ function LoadDriftWidget() {
       window.analytics.track("chat_converted");
   }
 });
+     // Once Drift is ready, add your custom class
+    drift.on('ready', function(api) {
+    setTimeout(function () {
+      const launcher = document.querySelector('.drift-open-chat');
+      if (launcher) {
+        launcher.classList.add('optanon-category-C0002');
+      }
+    }, 1000); // wait a bit to ensure DOM is ready
+  });
 };
 /* eslint-enable */
 
