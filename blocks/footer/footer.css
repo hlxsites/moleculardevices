@@ -308,7 +308,7 @@
 .footer-bottom {
   margin-top: 32px;
   padding: 44px 0;
-  background-color: var(--footer-bg);
+  background-color: var(--midnight-green);
   color: var(--text-white);
 }
 
