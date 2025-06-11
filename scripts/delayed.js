@@ -100,7 +100,7 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
-// SalesForce MCP - start
+// SalesForce MCP - start ...
 
 function loadEvergageScript() {
   const script = document.createElement('script');
@@ -136,14 +136,8 @@ if (!isSidekickLibrary) {
     loadGTM();
   }
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
-    //LoadDriftWidget();
+    LoadDriftWidget();
   }
-setTimeout(() => {
-  function OptanonWrapper(){
-  if(OnetrustActiveGroups.includes("C0002")){
-    LoadDriftWidget()
-  }
-}
-}, 500);
+
 }
  
