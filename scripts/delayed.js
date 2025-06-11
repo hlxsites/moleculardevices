@@ -37,7 +37,7 @@ function LoadDriftWidget() {
      // Once Drift is ready, add your custom class
     drift.on('ready', function(api) {
     setTimeout(function () {
-      const launcher = document.querySelector('.drift-open-chat');
+      const launcher = document.querySelector('.drift-frame-chat');
       if (launcher) {
         launcher.classList.add('optanon-category-C0002');
       }
