@@ -100,7 +100,7 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
-// SalesForce MCP - start
+// SalesForce MCP - start ...
 
 function loadEvergageScript() {
   const script = document.createElement('script');
