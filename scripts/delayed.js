@@ -139,7 +139,7 @@ if (!isSidekickLibrary) {
     //LoadDriftWidget();
   }
 setTimeout(() => {
-  function OptanonWrapper{
+  function OptanonWrapper(){
   if(OnetrustActiveGroups.includes("C0002")){
     LoadDriftWidget()
   }
