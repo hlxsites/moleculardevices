@@ -34,15 +34,7 @@ function LoadDriftWidget() {
       window.analytics.track("chat_converted");
   }
 });
-     // Once Drift is ready, add your custom class
-    drift.on('ready', function(api) {
-    setTimeout(function () {
-      const launcher = document.querySelector('.drift-frame-chat');
-      if (launcher) {
-        launcher.classList.add('optanon-category-C0002');
-      }
-    }, 1000); // wait a bit to ensure DOM is ready
-  });
+    
 };
 /* eslint-enable */
 
@@ -143,7 +135,8 @@ if (!isSidekickLibrary) {
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
   }
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn') && typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0002')) {
     LoadDriftWidget();
   }
 }
+ 
