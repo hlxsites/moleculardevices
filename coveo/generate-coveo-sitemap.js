@@ -81,41 +81,33 @@ async function getData() {
 
 async function getCoveoIcons() {
   return new Promise((resolve) => {
-    resolve({
-      'Data Sheet': '/images/resource-icons/data-sheet.png',
-      COA: '/images/resource-icons/coa.png',
-      'Scientific Poster': '/images/resource-icons/scientific-poster.png',
-      Event: '/images/resource-icons/event.png',
-      'User Guide': '/images/resource-icons/brochure.png',
-      Legal: '/images/resource-icons/document.png',
-      'Technical Guide': '/images/resource-icons/brochure.png',
-      eBook: '/images/resource-icons/ebook.png',
-      Brochure: '/images/resource-icons/brochure.png',
-      'Customer Breakthrough': '/images/resource-icons/customer-breakthrough.png',
-      SDS: '/images/resource-icons/sds.png',
-      Application: '/images/resource-icons/application-note.png',
-      Blog: '/images/resource-icons/blog.png',
-      'Videos and Webinars': '/images/resource-icons/videos-and-webinars.png',
-      Publication: '/images/resource-icons/document.png',
-      News: '/images/resource-icons/document.png',
-      Flyer: '/images/resource-icons/flyer.png',
-      'Product Insert': '/images/resource-icons/document.png',
-      Citation: '/images/resource-icons/citation.png',
-      'Training Material': '/images/resource-icons/document.png',
-      'Interactive Demo': '/images/resource-icons/interactive-demo.png',
-      Technology: '/images/resource-icons/technology.png',
-      Infographic: '/images/resource-icons/infographic.png',
-      'White Paper': '/images/resource-icons/document.png',
-      Presentations: '/images/resource-icons/presentations.png',
-      Newsletter: '/images/resource-icons/document.png',
-      'Application Note': '/images/resource-icons/application-note.png',
-      'Cell Counter': '/images/resource-icons/document.png',
-      'Declaration of Conformity': '/images/resource-icons/document.png',
-      Category: '/images/resource-icons/technology.png',
-      homepage: '/images/resource-icons/technology.png',
-      'Video Gallery': '/images/resource-icons/technology.png',
-      'Integrity and Compliance': '/images/resource-icons/technology.png',
-    }); // TODO get from sheet
+    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-icon-mapping&limit=50', (res) => {
+      const data = [];
+
+      res.on('data', (chunk) => {
+        data.push(chunk);
+      });
+
+      res.on('end', () => {
+        try {
+          const entries = JSON.parse(Buffer.concat(data).toString());
+          const iconMap = {};
+          entries.data.forEach((entry) => {
+            if (entry['Asset Type'] && entry['Resource Icon']) {
+              iconMap[entry['Asset Type']] = entry['Resource Icon'];
+            }
+          });
+
+          console.log(`Successfully mapped ${Object.keys(iconMap).length} icons.`);
+          resolve(iconMap);
+        } catch (err) {
+          console.error('Failed to parse or transform icon mapping:', err);
+          resolve({});
+        }
+      });
+    }).on('error', (err) => {
+      console.log('Error: ', err.message);
+    });
   });
 }
 
