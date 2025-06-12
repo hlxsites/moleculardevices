@@ -354,7 +354,6 @@ async function writeCoveoSitemapXML(index) {
 async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
-  console.log(icons);
 
   preprocess(index);
   createCoveoFields(index, icons);
