@@ -259,6 +259,13 @@
   padding-left: 16px;
 }
 
+.coveo-result-frame .coveo-result-cell h2 {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  margin-top: 0;
+}
+
 .coveo-result-frame .coveo-result-cell .coveo-result-row:not(:first-child) {
   margin-top: 10px;
 }
