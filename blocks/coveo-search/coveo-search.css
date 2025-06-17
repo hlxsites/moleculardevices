@@ -1,5 +1,4 @@
-/* stylelint-disable selector-class-pattern */
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern, no-descending-specificity */
 .section.coveo-search-container,
 .section.coveo-tab-section-wrapper {
   padding: 0;
@@ -258,6 +257,13 @@
 
 .coveo-result-frame .coveo-result-cell:not(:first-child) {
   padding-left: 16px;
+}
+
+.coveo-result-frame .coveo-result-cell h2 {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  margin-top: 0;
 }
 
 .coveo-result-frame .coveo-result-cell .coveo-result-row:not(:first-child) {
@@ -564,8 +570,10 @@
     z-index: 9999;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
+  .CoveoSearchInterface.coveo-small-facets.coveo-no-visible-facet .coveo-facet-dropdown-header,
   .mdcoveo:has(.coveo-tab.coveo-selected[data-caption="CoA"]) .coveo-dropdown-header-wrapper {
-    display: none;
+    display: none !important;
   }
 
   .coveo-main-section .coveo-dynamic-facet-breadcrumb-value,
