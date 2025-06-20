@@ -132,12 +132,20 @@ loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
   loadUserData();
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
+  //if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
-  }
+  //}
   /* if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
   } */
+    //LoadDriftWidget();
+
+    setTimeout(() => {
+  /* eslint-disable */
+  if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
+    LoadDriftWidget();
+  }
+}, 500);
 
 }
  
