@@ -598,6 +598,7 @@ function addPageSchema() {
             '@type': 'WebPage',
             name: schemaTitle,
             description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
@@ -625,6 +626,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
