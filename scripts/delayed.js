@@ -145,7 +145,7 @@ if (!isSidekickLibrary) {
   if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
     LoadDriftWidget();
   }
-}, 500);
+}, 1000);
 
 }
  
