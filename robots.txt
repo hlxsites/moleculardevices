@@ -47,7 +47,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/from-lab-to-table.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/automating-cell-culture-scalable-research.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/scaling-with-organoids.pdf
 
 
 
