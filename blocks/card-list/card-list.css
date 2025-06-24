@@ -1,9 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-
-/* COMMONS */
-
-/* Desktop - Style like a list */
-
 main .section.card-list-container .default-content-wrapper h2 {
   text-align: center;
   margin-top: 20px;
@@ -146,7 +141,7 @@ main .card-list.blog {
 }
 
 .card-list.blog .card-caption {
-  padding: 15px;
+  padding: 15px 15px 20px;
   color: #34393d;
 }
 
@@ -214,10 +209,7 @@ main .section div.card-list-wrapper.assay-kits {
   padding: 0;
 }
 
-main .card-list.accessories-and-consumables {
-  justify-content: center;
-}
-
+main .card-list.accessories-and-consumables,
 main .card-list.card-list.accessories-and-consumables .card {
   justify-content: center;
 }
@@ -230,7 +222,6 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .card-caption,
 .card-list.assay-kits .card-caption {
   padding: 15px;
-  color: #34393d;
 }
 
 .card-list.accessories-and-consumables .card-caption h3,
@@ -240,6 +231,8 @@ main .card-list.assay-kits .card {
   margin-bottom: 8px;
 }
 
+.card-list.accessories-and-consumables .card-caption,
+.card-list.assay-kits .card-caption,
 .card-list.accessories-and-consumables .card-caption h3 a,
 .card-list.assay-kits .card-caption h3 a {
   color: #34393d;
@@ -254,10 +247,10 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .button-container,
 .card-list.assay-kits .button-container {
   text-align: left;
-} 
+}
 
 .card-list.assay-kits .card .badge {
-  background: #6db43e;
+  background: ;
   color: #fff;
   text-align: center;
   padding: 5px 0;
