@@ -130,24 +130,19 @@ const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
 
-export async function loadThirdPartyScript(url) {
-  return new Promise((resolve, reject) => {
-    const existingScript = document.querySelector(`script[src="${url}"]`);
-    if (existingScript) return resolve();
+export async function loadThirdPartyScript() {
 
-    const script = document.createElement('script');
-    script.src = url;
+  const script = document.createElement('script');
+    script.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
     script.data-domain-script = "0197818a-3f09-76b3-8e50-33c144118295";
-    script.async = true;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
+
+  script.onload = function OptanonWrapper() {
+  };
+ 
+  document.head.appendChild(script);
 }
 
-  await loadThirdPartyScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js');
-  function OptanonWrapper() { } ;
-
+  await loadThirdPartyScript();
 
 if (!isSidekickLibrary) { 
   sampleRUM('cwv');
@@ -158,7 +153,14 @@ if (!isSidekickLibrary) {
   /* if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
   } */
+   // LoadDriftWidget();
+
+    setTimeout(() => {
+  /* eslint-disable */
+  if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
     LoadDriftWidget();
+  }
+}, 500);
 
 
 
