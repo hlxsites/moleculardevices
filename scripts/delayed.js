@@ -129,16 +129,38 @@ setTimeout(() => {
 const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
+
+export async function loadThirdPartyScript(url) {
+  return new Promise((resolve, reject) => {
+    const existingScript = document.querySelector(`script[src="${url}"]`);
+    if (existingScript) return resolve();
+
+    const script = document.createElement('script');
+    script.src = url;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+// Usage inside decorate function
+export async function decorate(block) {
+  await loadThirdPartyScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js');
+  function OptanonWrapper() { } ;
+  // initialize or use the library
+}
+
 if (!isSidekickLibrary) { 
   sampleRUM('cwv');
   loadUserData();
   //if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
-    loadGTM();
+    //loadGTM();
  // }
   /* if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
   } */
-    //LoadDriftWidget();
+    LoadDriftWidget();
 
 
 
