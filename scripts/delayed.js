@@ -137,6 +137,7 @@ export async function loadThirdPartyScript(url) {
 
     const script = document.createElement('script');
     script.src = url;
+    script.data-domain-script = "0197818a-3f09-76b3-8e50-33c144118295";
     script.async = true;
     script.onload = resolve;
     script.onerror = reject;
@@ -144,12 +145,9 @@ export async function loadThirdPartyScript(url) {
   });
 }
 
-// Usage inside decorate function
-export async function decorate(block) {
   await loadThirdPartyScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js');
   function OptanonWrapper() { } ;
-  // initialize or use the library
-}
+
 
 if (!isSidekickLibrary) { 
   sampleRUM('cwv');
