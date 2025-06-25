@@ -129,20 +129,6 @@ setTimeout(() => {
 const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
 loadScript('https://cdn.usefathom.com/script.js', attrsFa);
 
-
-export async function loadThirdPartyScript() {
-
-  const script = document.createElement('script');
-    script.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-
-  script.onload = function OptanonWrapper() {
-  };
- 
-  document.head.appendChild(script);
-}
-
-  await loadThirdPartyScript();
-
 if (!isSidekickLibrary) { 
   sampleRUM('cwv');
   loadUserData();
