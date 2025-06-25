@@ -134,7 +134,6 @@ export async function loadThirdPartyScript() {
 
   const script = document.createElement('script');
     script.src = 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js';
-    script.data-domain-script = "0197818a-3f09-76b3-8e50-33c144118295";
 
   script.onload = function OptanonWrapper() {
   };
