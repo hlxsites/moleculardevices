@@ -101,7 +101,7 @@ export const fieldsObj = [
   { inputName: customSolutionsOpportunity, inputFieldName: 'custom_solutions_opportunity__c' },
   { inputName: preQualifiedForSalesrep, inputFieldName: 'pre_qualified_for_salesrep__c' },
   { inputName: 'Lead_Source_2__c', inputFieldName: 'lead_source_2__c' },
-  { inputName: 'source_url', inputFieldName: 'source_url' },
+  { inputName: 'Source_Url__c', inputFieldName: 'source_url' },
   { inputName: 'GCLID__c', inputFieldName: 'gclid__c' },
   { inputName: 'Keyword_PPC__c', inputFieldName: 'keyword_ppc__c' },
   { inputName: 'Google_Analytics_Medium__c', inputFieldName: 'google_analytics_medium__c' },
