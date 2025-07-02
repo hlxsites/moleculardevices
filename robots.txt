@@ -86,7 +86,6 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ai-ena
 
 
 
-
 # HTML Page (App Note HTML Page Block)
 
 Disallow: /en/assets/app-note/dd/3d-biology/automating-high-throughput-screens-using-patient-derived-colorectal-cancer-organoids
@@ -161,7 +160,7 @@ Disallow: /en/assets/tutorials-videos/br/softmax-pro-gxp-tutorial-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/human-relevant-models-for-real-world-impact
 Disallow: /en/assets/tutorials-videos/bpd/sustainable-crispr-based-genome-editing-therapies
-
+Disallow: /en/assets/tutorials-videos/dd/cns/sepscs-mepscs-analysis-using-minis-search
 
 
 #EU webinars to imaging video gallery page
