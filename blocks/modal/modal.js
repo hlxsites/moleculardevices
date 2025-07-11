@@ -37,6 +37,7 @@ export function triggerModalWithUrl(url) {
 
   setTimeout(() => {
     const newParams = new URLSearchParams(baseUrl.search);
+    newParams.set('source_url', window.location.href);
     if (cmpID) newParams.set('cmp', cmpID);
     if (productFamily) newParams.set('product_family__c', productFamily);
     if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
