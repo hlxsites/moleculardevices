@@ -39,7 +39,7 @@ export default async function decorate(block) {
       .map((url) => {
         const urlName = url.split('/').pop().replace('.json', '');
         const match = Object.entries(productSpecs)
-          .find(([, spec]) => spec.path?.includes(urlName));
+          .find(([, spec]) => spec.path?.includes(urlName) || spec?.['series-products']?.includes(urlName));
         return match?.[0];
       })
       .filter(Boolean);
