@@ -29,15 +29,16 @@ const embedHubspot = (url) => {
   const formID = 'iframeContent';
   const cmpCookieValue = getCookie('cmp');
   let urlStr = url.href.replaceAll('%20', ' ');
+  const embededURL = new URL(urlStr);
+  embededURL.searchParams.set('source_url', window.location.href);
 
   if (cmpCookieValue) {
-    const embededURL = new URL(urlStr);
     if (embededURL.searchParams.get('cmp')) {
       embededURL.searchParams.set('cmp', cmpCookieValue);
-      urlStr = embededURL.toString();
     }
   }
 
+  urlStr = embededURL.toString();
   const embedHTML = `<iframe src="${urlStr}" id='${formID}' loading="lazy" class="iframe-content"></iframe>`;
   return embedHTML;
 };
