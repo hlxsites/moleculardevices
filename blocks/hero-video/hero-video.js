@@ -1,31 +1,8 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
   teaserPicture.parentElement.classList.add('video-cover');
   target.appendChild(teaserPicture.parentElement);
-}
-
-function playVideoAnimation(e) {
-  const [playIcon] = e.target
-    .closest('.hero-video')
-    .querySelectorAll('.play-pause-fullscreen-button svg');
-
-  playIcon.style.opacity = 1;
-  setTimeout(() => {
-    playIcon.style.opacity = 0;
-  }, 400);
-}
-
-function pauseVideoAnimation(e) {
-  const [, pauseIcon] = e.target
-    .closest('.hero-video')
-    .querySelectorAll('.play-pause-fullscreen-button svg');
-
-  pauseIcon.style.opacity = 1;
-  setTimeout(() => {
-    pauseIcon.style.opacity = 0;
-  }, 400);
 }
 
 function decorateTeaser(video, teaserPicture, target) {
@@ -77,80 +54,13 @@ function decorateTeaser(video, teaserPicture, target) {
   video.remove();
 }
 
-function decorateOverlayButton(fullScreenVideoLink, block, overlay) {
-  const button = document.createElement('button');
+function decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref) {
+  const button = document.createElement('a');
   button.classList.add('video-banner-btn');
+  button.href = fullScreenVideoLinkHref;
 
   button.innerHTML = fullScreenVideoLink.innerHTML;
-
-  button.addEventListener('click', () => {
-    const fullVideoContainer = block.querySelector('.full-video-container');
-    fullVideoContainer.style.display = 'block';
-    const video = fullVideoContainer.querySelector('video');
-    video.play();
-    setTimeout(() => {
-      video.addEventListener('play', playVideoAnimation);
-      video.addEventListener('pause', pauseVideoAnimation);
-    });
-  });
-
   overlay.appendChild(button);
-  fullScreenVideoLink.remove();
-}
-
-function createIcons(target, iconNames) {
-  iconNames.forEach((iconName) => {
-    const icon = document.createElement('span');
-    icon.classList.add('icon');
-    icon.classList.add(`icon-${iconName}`);
-
-    target.appendChild(icon);
-  });
-
-  decorateIcons(target);
-}
-
-function toggleVideoPlay(video) {
-  if (video.paused) {
-    video.play();
-  } else {
-    video.pause();
-  }
-}
-
-async function decorateFullScreenVideo(fullScreenVideoLink, teaserPicture, target) {
-  const fullVideoContainer = document.createElement('div');
-  fullVideoContainer.classList.add('full-video-container');
-
-  const video = document.createElement('video');
-  video.classList.add('video-cover');
-  video.innerHTML = `<source src="${fullScreenVideoLink}" type="video/mp4">`;
-  video.setAttribute('preload', 'metadata');
-  video.setAttribute('poster', teaserPicture.currentSrc);
-
-  video.addEventListener('click', () => { toggleVideoPlay(video); });
-
-  const closeVideoButton = document.createElement('div');
-  closeVideoButton.classList.add('close-video');
-  createIcons(closeVideoButton, ['close-video']);
-  closeVideoButton.addEventListener('click', () => {
-    video.removeEventListener('pause', pauseVideoAnimation);
-    video.removeEventListener('play', playVideoAnimation);
-    video.pause();
-    video.currentTime = 0;
-    video.load();
-    fullVideoContainer.style.display = 'none';
-  });
-
-  const playPauseVideoButton = document.createElement('div');
-  playPauseVideoButton.classList.add('play-pause-fullscreen-button');
-  createIcons(playPauseVideoButton, ['full-screen-play', 'full-screen-pause']);
-  playPauseVideoButton.addEventListener('click', () => { toggleVideoPlay(video); });
-
-  fullVideoContainer.appendChild(closeVideoButton);
-  fullVideoContainer.appendChild(playPauseVideoButton);
-  fullVideoContainer.appendChild(video);
-  target.appendChild(fullVideoContainer);
 }
 
 export default function decorate(block) {
@@ -180,6 +90,5 @@ export default function decorate(block) {
     return;
   }
   const fullScreenVideoLinkHref = fullScreenVideoLink.href;
-  decorateOverlayButton(fullScreenVideoLink, block, overlay);
-  decorateFullScreenVideo(fullScreenVideoLinkHref, teaserPicture, videoBanner);
+  decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref);
 }
