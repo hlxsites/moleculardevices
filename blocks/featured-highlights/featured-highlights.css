@@ -178,7 +178,7 @@
   }
 
   main .section > div.featured-highlights-wrapper {
-    max-height: 530px;
+    height: 530px;
     width: 448px;
     position: absolute;
     top: 0;
