@@ -62,12 +62,22 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ai-com
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ai-enabled-decision-making-and-automation-of-3d-organoid-culture.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-automated-microbial-plating-screening-hit-selection.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ipsc-derived-3d-neural-organoids-functional-analysis-by-calcium-oscillation-activity.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/semi-automated-scaffold-free-organoid-culture-workflow.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/full-workflow-automation-for-human-ipsc-derived-3d-cardiac-organoids.pdf
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/cellxpress-ai-automated-brain-organoid-generation.pdf
+
+
 
 
 
 # HTML Page (App Note HTML Page Block)
 
 Disallow: /en/assets/app-note/dd/3d-biology/ai-decision-making-automation-of-3d-organoid-culture
+Disallow: /en/assets/app-note/br/improved-cell-viability-multi-day-Cell-based-microplate-assays
+Disallow: /en/assets/app-note/dd/3d-biology/automated-ipsc-culture-machine-learning-cell-passaging-control-detection
+Disallow: /en/assets/app-note/dd/3d-biology/ai-enabled-toxicity-screening-effect-using-human-intestinal-organoids
+Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-toxicity-evaluation-using-3d-mouse-intestinal-organoids
+
 
 
 
