@@ -2859,3 +2859,9 @@ main div.dark-button.orange-buttons .button.secondary:visited {
     margin-bottom: 1.5rem;
   }
 }
+
+.section.heading-36 .default-content-wrapper h2:only-child,
+.section.heading-36 .default-content-wrapper h3:only-child {
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+}
