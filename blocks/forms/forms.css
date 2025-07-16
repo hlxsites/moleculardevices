@@ -103,6 +103,10 @@
   display: none;
 }
 
+.hubspot-form .hs-form .hs-form-field .hs-field-desc {
+  display: block;
+}
+
 .hs-form .hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label {
   background: none;
   clear: none;
