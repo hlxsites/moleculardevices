@@ -114,8 +114,7 @@ function capitalize(sting) {
 
 async function getNewslettersList() {
   const newsletters = await ffetch('/query-index.json')
-    .sheet('resources')
-    .filter((resource) => resource.type === 'Newsletter')
+    .sheet('newsletters')
     .limit(3)
     .all();
 
