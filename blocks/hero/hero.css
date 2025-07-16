@@ -179,6 +179,10 @@ main .section .hero-advanced-wrapper {
   color: var(--hero-breadcrumbs-separator-color);
 }
 
+.hero-inner .video-icon {
+  cursor: pointer;
+}
+
 .hero-inner .video-icon img {
   height: 91px;
   width: 90px;
