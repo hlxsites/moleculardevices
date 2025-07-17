@@ -1,10 +1,12 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import {
   div, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
+  const FTImage = getMetadata('og:image');
+  block.parentElement.prepend(createOptimizedPicture(FTImage));
   let startDate = getMetadata('event-start');
   if (startDate) {
     startDate = formatDate(startDate);

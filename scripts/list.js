@@ -1,9 +1,10 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
-import { formatDate, unixDateToString } from './scripts.js';
+import { formatDate, toTitleCase, unixDateToString } from './scripts.js';
 import {
   a, article, button, div, h2, h3, nav, p, span, ul, li,
+  h4,
 } from './dom-helpers.js';
 
 function filterData(options) {
@@ -45,7 +46,33 @@ function renderListItem(item, idx) {
     dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
 
+  console.log(item);
   const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
+
+  if (item.type === 'Event') {
+    return article({ class: 'item' },
+      div({ class: 'image' },
+        a({
+          href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+          target: item.type === 'Newsletter' ? '_blank' : '',
+          title: item.title,
+        }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }]))),
+      div({ class: 'content' },
+        p({ class: 'cite' }, item.eventType),
+        h4(
+          a({
+            class: 'title',
+            title: item.title,
+            href: item.type === 'Newsletter' ? item.gatedURL : item.path,
+            target: item.type === 'Newsletter' ? '_blank' : '',
+          }, item.title),
+        ),
+        p({ class: 'date' }, dt),
+        p({ class: 'address' }, toTitleCase(item.filterEventRegion[0])),
+      ),
+    );
+  }
+
   return article({ class: 'item' },
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
