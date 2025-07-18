@@ -1,12 +1,12 @@
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { buildBlock, createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
 import {
-  div, li, p, ul,
+  div, h1, li, p, ul,
 } from '../../scripts/dom-helpers.js';
+import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
 export default async function decorate(block) {
   const FTImage = getMetadata('og:image');
-  block.parentElement.prepend(createOptimizedPicture(FTImage));
   let startDate = getMetadata('event-start');
   if (startDate) {
     startDate = formatDate(startDate);
@@ -20,16 +20,22 @@ export default async function decorate(block) {
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
 
-  title.classList.add('event-subtitle');
-  block.append(p({ class: 'event-date' }, `${startDate} - ${endDate}`));
-  block.append(title);
-  block.append(
-    div({ class: 'event-keywords' },
-      ul({ class: 'keyword-list' },
-        li({ class: 'item type' }, type),
-        li({ class: 'item region' }, region),
-        li({ class: 'item address' }, address),
+  const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
+
+  const evenBanner = div({ class: 'event-banner' },
+    div({ class: 'left-col' },
+      createOptimizedPicture(FTImage)),
+    div({ class: 'right-col' },
+      div(
+        p({ class: 'cite' }, type),
+        title,
+        p({ class: 'event-date' }, `${startDate} - ${endDate}`),
+        p(address),
+        p(region),
       ),
+      socialShareBlock('social-share', socials),
     ),
   );
+  decorateIcons(evenBanner);
+  block.appendChild(evenBanner);
 }

@@ -1,39 +1,39 @@
 .section.events-container .events-wrapper {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 .events .list .filter .select .dropdown-menu.open {
-    max-height: initial;
+  max-height: initial;
 }
 
 .events .list .filter .select.open .dropdown-toggle,
-.events .list .filter .select .dropdown-toggle:hover  {
-    color: inherit;
+.events .list .filter .select .dropdown-toggle:hover {
+  color: inherit;
 }
 
 .events label {
-    display: block;
-    padding: 0 0 0 37px;
-    margin: 0 0 20px;
-    position: relative;
-    cursor: pointer;
+  display: block;
+  padding: 0 0 0 37px;
+  margin: 0 0 20px;
+  position: relative;
+  cursor: pointer;
 }
 
 .events input[type="checkbox"].filter-item {
-    display: none;
+  display: none;
 }
 
 .events label span::before {
-    content: "";
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    left: 9px;
-    background: none;
-    border: 2px solid #adb3b7;
+  content: "";
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  left: 9px;
+  background: none;
+  border: 2px solid #adb3b7;
 }
 
-.events input[type="checkbox"].filter-item:checked+span::before {
-    background-color: var(--background-color-green);
-    border-color: var(--background-color-green);
+.events input[type="checkbox"].filter-item:checked + span::before {
+  background-color: var(--background-color-green);
+  border-color: var(--background-color-green);
 }

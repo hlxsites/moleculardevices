@@ -3,8 +3,7 @@ import {
 } from './lib-franklin.js';
 import { formatDate, toTitleCase, unixDateToString } from './scripts.js';
 import {
-  a, article, button, div, h2, h3, nav, p, span, ul, li,
-  h4,
+  a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';
 
 function filterData(options) {
@@ -46,15 +45,13 @@ function renderListItem(item, idx) {
     dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
 
-  console.log(item);
   const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
 
   if (item.type === 'Event') {
     return article({ class: 'item' },
       div({ class: 'image' },
         a({
-          href: item.type === 'Newsletter' ? item.gatedURL : item.path,
-          target: item.type === 'Newsletter' ? '_blank' : '',
+          href: item.path,
           title: item.title,
         }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }]))),
       div({ class: 'content' },
@@ -63,8 +60,7 @@ function renderListItem(item, idx) {
           a({
             class: 'title',
             title: item.title,
-            href: item.type === 'Newsletter' ? item.gatedURL : item.path,
-            target: item.type === 'Newsletter' ? '_blank' : '',
+            href: item.path,
           }, item.title),
         ),
         p({ class: 'date' }, dt),
