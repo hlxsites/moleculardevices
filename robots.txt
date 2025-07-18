@@ -69,7 +69,6 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/cellxp
 
 
 
-
 # HTML Page (App Note HTML Page Block)
 
 Disallow: /en/assets/app-note/dd/3d-biology/ai-decision-making-automation-of-3d-organoid-culture
@@ -77,7 +76,7 @@ Disallow: /en/assets/app-note/br/improved-cell-viability-multi-day-Cell-based-mi
 Disallow: /en/assets/app-note/dd/3d-biology/automated-ipsc-culture-machine-learning-cell-passaging-control-detection
 Disallow: /en/assets/app-note/dd/3d-biology/ai-enabled-toxicity-screening-effect-using-human-intestinal-organoids
 Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-toxicity-evaluation-using-3d-mouse-intestinal-organoids
-
+Disallow: /en/assets/app-note/bpd/qpix-flex-picker-ensures-colony-picking-accuracy-efficiency
 
 
 
@@ -117,6 +116,9 @@ Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-re
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/human-relevant-models-for-real-world-impact
 Disallow: /en/assets/tutorials-videos/bpd/sustainable-crispr-based-genome-editing-therapies
 Disallow: /en/assets/tutorials-videos/dd/cns/sepscs-mepscs-analysis-using-minis-search
+Disallow: /en/assets/tutorials-videos/dd/img/transforming-high-content-screening-with-imaging-and-ai-analysis
+
+
 
 
 #EU webinars to imaging video gallery page
