@@ -43,6 +43,12 @@
   height: 100%;
   object-fit: cover;
   min-height: 310px;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+.event-summary .event-banner .left-col a img:hover {
+  transform: scale(1.05);
 }
 
 .event-summary .event-banner .right-col {
@@ -58,6 +64,10 @@
   color: var(--text-color);
   font-family: var(--ff-proxima-xbold);
   margin-top: 0;
+}
+
+.event-summary .event-banner .event-title a {
+  color: inherit;
 }
 
 .event-summary .event-banner p {

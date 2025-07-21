@@ -7,6 +7,7 @@ import {
   createList, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import {
+  a,
   div, h2, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
@@ -120,11 +121,12 @@ function createFeaturedEventCard(featuredEvent, root) {
     const featuredBanner = div({ class: 'event-summary' },
       (div({ class: 'event-banner featured-event-banner' },
         div({ class: 'left-col' },
-          createOptimizedPicture(featuredEvent.image)),
+          a({ href: featuredEvent.path },
+            createOptimizedPicture(featuredEvent.image, featuredEvent.title))),
         div({ class: 'right-col' },
           div(
             p({ class: 'cite' }, featuredEvent.eventType),
-            h2({ class: 'event-title' }, featuredEvent.title),
+            h2({ class: 'event-title' }, a({ href: featuredEvent.path }, featuredEvent.title)),
             p({ class: 'event-date' }, formatEventDateRange(featuredEvent.eventStart, featuredEvent.eventEnd)),
             p(featuredEvent.eventAddress),
             p(featuredEvent.eventRegion),
