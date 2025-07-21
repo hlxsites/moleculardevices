@@ -164,12 +164,17 @@ async function updateFilter(event, options) {
 }
 
 export default async function decorate(block) {
+  const featuredEventEl = block.querySelector('.button-container:first-of-type > a');
+  const featuredEventLink = block.querySelector('a[title="Featured Events"]');
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
   const relatedLink = block.querySelector('a');
+  const featuredEvent = featuredEventLink.href || featuredEventEl.href;
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
+  const featuredPath = new URL(featuredEvent).pathname;
   placeholders = await fetchPlaceholders();
+
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
@@ -189,6 +194,9 @@ export default async function decorate(block) {
   options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
+
+  options.featuredEvent = options.data.filter((option) => option.path === featuredPath);
+  options.data = options.data.filter((option) => option.path !== featuredPath);
   sortEvents(options.data, showFutureEvents);
   await createOverview(block, options);
 }

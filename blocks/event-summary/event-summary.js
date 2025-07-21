@@ -1,8 +1,6 @@
-import { buildBlock, createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
 import { formatDate } from '../../scripts/scripts.js';
-import {
-  div, h1, li, p, ul,
-} from '../../scripts/dom-helpers.js';
+import { div, p } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
 export default async function decorate(block) {
@@ -33,7 +31,7 @@ export default async function decorate(block) {
         p(address),
         p(region),
       ),
-      socialShareBlock('social-share', socials),
+      socialShareBlock('Share this event', socials),
     ),
   );
   decorateIcons(evenBanner);
