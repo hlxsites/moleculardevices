@@ -1249,7 +1249,7 @@ function getStickyElements() {
  * Enable sticky components
  *
  */
-function enableStickyElements() {
+export function enableStickyElements() {
   getStickyElements();
   mobileDevice.addEventListener('change', getStickyElements);
 
@@ -1288,6 +1288,10 @@ function enableStickyElements() {
     }
   });
 }
+window.addEventListener('resize', enableStickyElements);
+window.addEventListener('load', () => {
+  requestAnimationFrame(enableStickyElements);
+});
 
 /**
  * loads everything that doesn't need to be delayed.
