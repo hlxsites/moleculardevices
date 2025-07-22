@@ -77,7 +77,7 @@ Disallow: /en/assets/app-note/dd/3d-biology/automated-ipsc-culture-machine-learn
 Disallow: /en/assets/app-note/dd/3d-biology/ai-enabled-toxicity-screening-effect-using-human-intestinal-organoids
 Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-toxicity-evaluation-using-3d-mouse-intestinal-organoids
 Disallow: /en/assets/app-note/bpd/qpix-flex-picker-ensures-colony-picking-accuracy-efficiency
-
+Disallow: /en/assets/app-note/dd/img/screening-of-3d-spheroids-using-high-content-imager
 
 
 # Flyer Block web and Google
