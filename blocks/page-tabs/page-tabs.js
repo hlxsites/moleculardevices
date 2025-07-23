@@ -1,10 +1,14 @@
 import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
-import { enableStickyElements } from '../../scripts/scripts.js';
+import { detectAnchor } from '../../scripts/scripts.js';
 import { coveoResources } from '../resources/resources.js';
 
 const coveoTabName = 'resources';
 const coveoHashName = 't=resources&sort=relevancy';
+
+function isVisible(el) {
+  return el && !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+}
 
 function openTab(target) {
   const parent = target.parentNode;
@@ -28,7 +32,8 @@ function openTab(target) {
   if (new URL(target.href).hash.slice(1) === coveoTabName) coveoResources(target);
 }
 
-function scrollToAnchorWhenReady(rawHash) {
+function scrollToAnchorWhenReady(rawHash, retries = 20, delay = 300) {
+  let attempts = 0;
   const main = document.querySelector('main');
   if (!rawHash) return;
 
@@ -36,14 +41,19 @@ function scrollToAnchorWhenReady(rawHash) {
   const tabId = hash.includes(coveoHashName) ? coveoTabName : hash;
 
   const tryScroll = () => {
+    const hashEl = document.getElementById(tabId);
     const tabSection = document.querySelector(`.section.tabs[aria-labelledby="${tabId}"][data-section-status="loaded"]`);
-    if (!tabSection) return false;
 
     const tabLink = main.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
     if (tabLink) openTab(tabLink);
 
+    const targetEl = hashEl || tabSection;
+
+    const visible = isVisible(targetEl);
+    if (!visible) return false;
+
     requestAnimationFrame(() => {
-      const y = tabSection.getBoundingClientRect().top + window.scrollY - 100;
+      const y = targetEl.getBoundingClientRect().top + window.scrollY - 150;
       window.scrollTo({ top: y, behavior: 'smooth' });
     });
 
@@ -51,17 +61,12 @@ function scrollToAnchorWhenReady(rawHash) {
   };
 
   if (!tryScroll()) {
-    const section = document.querySelector(`.section.tabs[aria-labelledby="${tabId}"]`);
-    if (section) {
-      const observer = new MutationObserver(() => {
-        if (tryScroll()) observer.disconnect();
-      });
-
-      observer.observe(section, {
-        attributes: true,
-        attributeFilter: ['data-section-status'],
-      });
-    }
+    const interval = setInterval(() => {
+      attempts += 1;
+      if (tryScroll() || attempts >= retries) {
+        clearInterval(interval);
+      }
+    }, delay);
   }
 }
 
@@ -72,6 +77,7 @@ function handleTabClick(e, sectionName) {
   openTab(target);
   window.history.pushState(null, '', target.getAttribute('href'));
   scrollToAnchorWhenReady(sectionName);
+  detectAnchor(sectionName);
 }
 
 async function createTabList(sections, active) {
@@ -100,7 +106,6 @@ export default async function decorate(block) {
   const main = block.closest('main');
   const sections = main.querySelectorAll('div.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
-  enableStickyElements();
 
   if (namedSections) {
     const hash = window.location.hash?.substring(1).toLowerCase();
@@ -125,6 +130,8 @@ export default async function decorate(block) {
   }
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
+
+  detectAnchor(block);
 }
 
 window.addEventListener('hashchange', () => {
