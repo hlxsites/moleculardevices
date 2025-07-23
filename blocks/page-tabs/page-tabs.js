@@ -2,6 +2,9 @@ import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
 import { coveoResources } from '../resources/resources.js';
 
+const coveoTabName = 'resources';
+const coveoHashName = 't=resources&sort=relevancy';
+
 function openTab(target) {
   const parent = target.parentNode;
   const main = parent.closest('main');
@@ -21,16 +24,18 @@ function openTab(target) {
     targetSections.forEach((section) => section.setAttribute('aria-hidden', false));
   }
 
-  coveoResources(target);
+  if (new URL(target.href).hash.slice(1) === coveoTabName) coveoResources(target);
 }
 
 function scrollToAnchorWhenReady(id, retries = 20, delay = 300) {
   let attempts = 0;
+  let sectionID = id;
+  sectionID = sectionID.includes(coveoHashName) ? coveoTabName : id;
 
   const tryScroll = () => {
-    const target = document.querySelector(`.section.tabs[aria-labelledby="${id}"][data-section-status="loaded"]`);
+    const target = document.querySelector(`.section.tabs[aria-labelledby="${sectionID}"][data-section-status="loaded"]`);
     if (target) {
-      const tabLink = document.querySelector(`.page-tabs a[href="#${id}"]`);
+      const tabLink = document.querySelector(`.page-tabs a[href="#${sectionID}"]`);
       if (tabLink) openTab(tabLink);
 
       requestAnimationFrame(() => {

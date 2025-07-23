@@ -986,7 +986,8 @@ window.addEventListener('hashchange', (event) => {
  */
 export function detectAnchor(block) {
   const activeHash = window.location.hash;
-  if (!activeHash) return;
+  const isCoveoTab = activeHash.includes('t=Resources&sort=relevancy');
+  if (!activeHash || isCoveoTab) return;
 
   const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
   const el = block.querySelector(`#${id}`);
