@@ -25,6 +25,7 @@ import {
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
+import { scrollToHashTarget } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -211,16 +212,10 @@ export function videoButton(container, button, url) {
   });
 }
 
-export function decorateExternalLink(link) {
-  if (!link.href) return;
+export function isExternalLink(link) {
+  if (!link?.href) return false;
 
-  const url = new URL(link.href);
-  if (link.closest('.add-external-link')) {
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-    return;
-  }
-
+  const url = new URL(link.href, window.location.origin);
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
@@ -233,22 +228,40 @@ export function decorateExternalLink(link) {
     'https://drift.me',
   ];
 
-  if (url.origin === window.location.origin
+  if (
+    url.origin === window.location.origin
     || url.host.endsWith('moleculardevices.com')
     || internalLinks.includes(url.origin)
     || !url.protocol.startsWith('http')
     || link.closest('.languages-dropdown')
-    || link.querySelector('.icon')) {
+    || link.querySelector('.icon')
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+export function decorateExternalLink(link) {
+  if (!link?.href) return;
+
+  if (link.closest('.add-external-link')) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
     return;
   }
 
+  // Skip decorating language switcher or icon-only links
+  if (link.closest('.languages-dropdown') || link.querySelector('.icon')) return;
+
+  if (!isExternalLink(link)) return;
+
+  // Prevent icons on certain complex children
   const acceptedTags = ['STRONG', 'EM', 'SPAN', 'H2'];
   const invalidChildren = Array.from(link.children)
     .filter((child) => !acceptedTags.includes(child.tagName));
 
-  if (invalidChildren.length > 0) {
-    return;
-  }
+  if (invalidChildren.length > 0) return;
 
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
@@ -264,37 +277,56 @@ export function decorateExternalLink(link) {
 
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
-    const url = new URL(link.href);
-    // decorate video links
+    const url = new URL(link.href, window.location.origin);
+
+    // Handle video decoration
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const closestButtonContainer = link.closest('.button-container');
-      if (link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
+      if (
+        link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))
+      ) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
         const hasAutoplay = link.closest('.block.autoplay-video');
-        const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+        const isInlineBlock = link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox');
         const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-        const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+        const wrapper = div({ class: 'video-wrapper' },
+          div({ class: 'video-container' }, a({ href: link.href }, link.textContent)),
+        );
         if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
         up.innerHTML = wrapper.outerHTML;
         embedVideo(up.querySelector('a'), url, type, hasAutoplay);
       }
     }
 
-    // decorate RFQ page links with pid parameter
+    // Append family-id to quote request links
     if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
 
+    // Open PDFs in new tab
     if (url.pathname.endsWith('.pdf')) {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
     }
 
-    // decorate external links
+    // External link decoration
     decorateExternalLink(link);
+
+    // Smooth scroll for in-page hash anchors
+    const isHashLink = url.hash && url.origin
+      === window.location.origin && url.pathname
+      === window.location.pathname;
+    if (isHashLink && !link.hasAttribute('data-anchor-setup')) {
+      const rawHash = url.hash.toLowerCase();
+      link.setAttribute('data-anchor-setup', 'true');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToHashTarget(rawHash);
+      });
+    }
   });
 }
 
@@ -941,72 +973,68 @@ async function formInModalHandler(main) {
 }
 
 /* ============================ scrollToHashSection ============================ */
-function scrollToHashSection() {
-  const activeHash = window.location.hash;
-  if (activeHash) {
-    const id = activeHash.substring(1).toLowerCase();
-    let targetElement = document.getElementById(id);
-    if (!targetElement) {
-      const observer = new MutationObserver(() => {
-        targetElement = document.getElementById(id);
-        if (targetElement) {
-          const rect = targetElement.getBoundingClientRect();
-          const targetPosition = rect.top + window.scrollY - 250;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth',
-          });
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    } else {
-      // scroll after a short delay
-      setTimeout(() => {
-        const rect = targetElement.getBoundingClientRect();
-        const targetPosition = rect.top + window.scrollY - 250;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth',
-        });
-      }, 1000);
-    }
-  }
+function scrollToElementById(id, offset = 250) {
+  console.log('scrollToElementById');
+  const target = document.getElementById(id);
+  if (!target) return false;
+
+  const rect = target.getBoundingClientRect();
+  const targetPosition = rect.top + window.scrollY - offset;
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth',
+  });
+
+  return true;
 }
 
-scrollToHashSection();
-window.addEventListener('hashchange', (event) => {
-  event.preventDefault();
-  scrollToHashSection();
-});
+function scrollToHashSection({ retry = true } = {}) {
+  console.log('scrollToHashSection');
+  const activeHash = window.location.hash;
+  if (!activeHash) return;
+
+  const id = activeHash.substring(1).toLowerCase();
+  const scrolled = scrollToElementById(id);
+
+  if (!scrolled && retry) {
+    const observer = new MutationObserver(() => {
+      const success = scrollToElementById(id);
+      if (success) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+}
 /* ============================ scrollToHashSection ============================ */
 
 /**
  * Detect anchor
  */
-export function detectAnchor(block) {
-  const activeHash = window.location.hash;
-  const isCoveoTab = activeHash.includes('t=Resources&sort=relevancy');
-  if (!activeHash || isCoveoTab) return;
+export function detectAnchor() {
+  const main = document.querySelector('main');
+  if (!main) return;
 
-  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${id}`);
-  if (el) {
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-block-status'
-          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
-          observer.disconnect();
-          setTimeout(() => {
-            window.dispatchEvent(new Event('hashchange'));
-          }, 3500);
-        }
-      });
+  [...document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])')].forEach((anchor) => {
+    const rawHash = anchor.getAttribute('href');
+    const hash = rawHash.slice(1).toLowerCase();
+
+    if (!hash || rawHash.toLowerCase().includes('t=resources&sort=relevancy')) return;
+
+    anchor.setAttribute('data-anchor-setup', 'true');
+
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = new URL(anchor.href);
+      const targetHash = url.hash;
+
+      if (targetHash) {
+        window.history.pushState(null, '', targetHash);
+        scrollToHashTarget(targetHash);
+      }
     });
-    observer.observe(block, { attributes: true });
-  }
+  });
 }
+window.addEventListener('load', detectAnchor);
 
 /**
  * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
@@ -1109,6 +1137,7 @@ export async function decorateMain(main) {
   addSectionBgColor(main);
   addBlockBgColor(main);
   addBgToCarousel(main);
+  detectAnchor();
   addPageSchema();
   addHreflangTags();
 }
