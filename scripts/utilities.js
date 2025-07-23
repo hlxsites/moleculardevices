@@ -12,32 +12,42 @@ export function isFunction(value) {
   return typeof value === 'function';
 }
 
-export function openTab(tabLink) {
+export function scrollToElement(target) {
+  if (!target) return;
+
+  requestAnimationFrame(() => {
+    const y = target.offsetTop;
+    window.scrollTo({ top: y - 200, behavior: 'smooth' });
+  });
+}
+
+/**
+ * Activates a tab and shows the corresponding content section.
+ * @param {HTMLElement} tabLink - The <a> element inside the tab.
+ */
+export function activateTab(tabLink, scrollTarget = null) {
   if (!tabLink) return;
 
-  const tabItem = tabLink.parentNode;
-  if (!tabItem || !tabItem.closest) return;
+  const tabItem = tabLink.closest('li');
   const main = tabItem.closest('main');
-
-  console.log(tabItem);
-
   const tabId = tabLink.getAttribute('href').substring(1);
-  const isSelected = tabLink.getAttribute('aria-selected') === 'true';
   const tabSection = main.querySelector(`div.section[aria-labelledby="${tabId}"]`);
-  main.querySelectorAll(`div.section[aria-labelledby="${tabId}"]`);
+  const isAlreadyActive = tabLink.getAttribute('aria-selected') === 'true'
+    && tabSection?.getAttribute('aria-hidden') === 'false';
 
-  console.log('Trying to open tab:', tabId);
-  console.log('Found tab section:', tabSection);
+  if (isAlreadyActive) return;
 
-  if (isSelected && tabSection?.getAttribute('aria-hidden') === 'false') return;
+  if (document.activeElement instanceof HTMLElement) {
+    document.activeElement.blur();
+  }
 
-  // Reset other tabs
+  // Deactivate existing tabs and hide their sections
   tabItem.parentNode.querySelectorAll('li[aria-selected="true"]')
     .forEach((tab) => tab.setAttribute('aria-selected', false));
   main.querySelectorAll('div.section.tabs[aria-hidden="false"]')
     .forEach((section) => section.setAttribute('aria-hidden', true));
 
-  // Activate new tab
+  // Activate the selected tab
   tabItem.setAttribute('aria-selected', true);
   main.querySelectorAll(`div.section[aria-labelledby="${tabId}"]`)
     .forEach((section) => section.setAttribute('aria-hidden', false));
@@ -46,18 +56,20 @@ export function openTab(tabLink) {
     coveoResources(tabLink);
   }
 
-  console.log('openTab called for:', tabId);
+  if (scrollTarget) {
+    requestAnimationFrame(() => scrollToElement(scrollTarget));
+  }
 }
 
+/**
+ * Scrolls to the given tab and activates it.
+ */
 export function goToTabSection(tabId, scrollTargetSelector = '.page-tabs-container') {
   const tabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
   const scrollTarget = document.querySelector(scrollTargetSelector);
-
   if (tabLink) {
-    openTab(tabLink);
-    requestAnimationFrame(() => {
-      scrollTarget?.scrollIntoView({ behavior: 'smooth' });
-    });
+    activateTab(tabLink);
+    scrollToElement(scrollTarget);
   }
 }
 
@@ -67,29 +79,24 @@ export function getScrollOffset() {
   return Number.isNaN(stackedHeight) ? 0 : stackedHeight;
 }
 
-export function scrollToElement(target) {
-  if (!target) return;
-  requestAnimationFrame(() => {
-    const offset = getScrollOffset();
-    const y = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  });
-}
-
-export function scrollToHashTarget(rawHash, callback, retries = 20, delay = 300) {
+/**
+ * Attempts to scroll to a hashed target and open its tab context if needed.
+ */
+export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
   const main = document.querySelector('main');
   if (!rawHash || !main) return;
 
   let attempts = 0;
-  const hash = rawHash.startsWith('#') ? rawHash.slice(1).toLowerCase() : rawHash.toLowerCase();
+  const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
 
   const isCoveo = hash.includes(COVEO_HASH_NAME);
   const tabId = isCoveo ? COVEO_TAB_NAME : hash;
 
   const tabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
+  const tabSection = document.querySelector(`div.section[aria-labelledby="${tabId}"]`);
 
-  if (tabLink && document.querySelector(`div.section[aria-labelledby="${tabId}"]`)) {
-    goToTabSection(tabId);
+  if (tabLink && tabSection) {
+    activateTab(tabLink, tabSection);
     return;
   }
 
@@ -101,13 +108,12 @@ export function scrollToHashTarget(rawHash, callback, retries = 20, delay = 300)
   }
 
   const tryScroll = () => {
-    const scrollTarget = document.getElementById(hash);
-    if (!scrollTarget || !isElementVisible(scrollTarget)) {
-      if (import.meta.env?.DEV) console.warn('Scroll target not visible yet:', scrollTarget);
+    const hashEl = document.getElementById(hash);
+    if (!hashEl || !isElementVisible(hashEl)) {
+      console.warn('Scroll target not found or not visible yet:', hashEl, hash);
       return false;
     }
-
-    if (isFunction(callback)) callback(scrollTarget);
+    const scrollTarget = hashEl.closest('.block[data-block-status="loaded"], .section') || hashEl;
     scrollToElement(scrollTarget);
     return true;
   };

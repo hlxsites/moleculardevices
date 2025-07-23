@@ -282,9 +282,8 @@ export function decorateLinks(main) {
     // Handle video decoration
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const closestButtonContainer = link.closest('.button-container');
-      if (
-        link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))
-      ) {
+      if (link.closest('.block.cards')
+        || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
@@ -314,19 +313,6 @@ export function decorateLinks(main) {
 
     // External link decoration
     decorateExternalLink(link);
-
-    // Smooth scroll for in-page hash anchors
-    const isHashLink = url.hash && url.origin
-      === window.location.origin && url.pathname
-      === window.location.pathname;
-    if (isHashLink && !link.hasAttribute('data-anchor-setup')) {
-      const rawHash = url.hash.toLowerCase();
-      link.setAttribute('data-anchor-setup', 'true');
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToHashTarget(rawHash);
-      });
-    }
   });
 }
 
@@ -972,69 +958,34 @@ async function formInModalHandler(main) {
   }
 }
 
-/* ============================ scrollToHashSection ============================ */
-function scrollToElementById(id, offset = 250) {
-  console.log('scrollToElementById');
-  const target = document.getElementById(id);
-  if (!target) return false;
-
-  const rect = target.getBoundingClientRect();
-  const targetPosition = rect.top + window.scrollY - offset;
-
-  window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth',
-  });
-
-  return true;
-}
-
-function scrollToHashSection({ retry = true } = {}) {
-  console.log('scrollToHashSection');
-  const activeHash = window.location.hash;
-  if (!activeHash) return;
-
-  const id = activeHash.substring(1).toLowerCase();
-  const scrolled = scrollToElementById(id);
-
-  if (!scrolled && retry) {
-    const observer = new MutationObserver(() => {
-      const success = scrollToElementById(id);
-      if (success) observer.disconnect();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-}
-/* ============================ scrollToHashSection ============================ */
-
 /**
  * Detect anchor
  */
 export function detectAnchor() {
-  const main = document.querySelector('main');
-  if (!main) return;
-
-  [...document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])')].forEach((anchor) => {
+  document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
     const rawHash = anchor.getAttribute('href');
-    const hash = rawHash.slice(1).toLowerCase();
+    if (!rawHash || rawHash.startsWith('#') === false) return;
 
-    if (!hash || rawHash.toLowerCase().includes('t=resources&sort=relevancy')) return;
+    const url = new URL(anchor.href, window.location.origin);
+    const { hash } = url;
+
+    if (!hash || hash.includes('t=resources&sort=relevancy')) return;
 
     anchor.setAttribute('data-anchor-setup', 'true');
 
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
-      const url = new URL(anchor.href);
-      const targetHash = url.hash;
-
-      if (targetHash) {
-        window.history.pushState(null, '', targetHash);
-        scrollToHashTarget(targetHash);
-      }
+      const fullUrl = `${window.location.pathname}${hash}`;
+      window.history.pushState(null, '', fullUrl);
+      requestAnimationFrame(() => scrollToHashTarget(hash));
     });
   });
 }
-window.addEventListener('load', detectAnchor);
+
+window.addEventListener('hashchange', () => {
+  scrollToHashTarget(window.location.hash);
+});
+detectAnchor();
 
 /**
  * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
@@ -1137,7 +1088,6 @@ export async function decorateMain(main) {
   addSectionBgColor(main);
   addBlockBgColor(main);
   addBgToCarousel(main);
-  detectAnchor();
   addPageSchema();
   addHreflangTags();
 }
