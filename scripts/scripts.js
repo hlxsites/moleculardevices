@@ -25,7 +25,7 @@ import {
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
-import { activateTab, scrollToHashTarget } from './utilities.js';
+import { activateTab } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
