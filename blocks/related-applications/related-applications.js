@@ -1,6 +1,6 @@
 import { div, ul } from '../../scripts/dom-helpers.js';
 import {
-  addLinkIcon, fetchFragment, detectAnchor, sortDataByTitle,
+  addLinkIcon, fetchFragment, sortDataByTitle,
 } from '../../scripts/scripts.js';
 
 async function renderFragment(fragment, block, className) {
@@ -74,7 +74,5 @@ export default async function decorate(block) {
 
   block.append(apps);
   alignTitles();
-  detectAnchor(block);
-
   return block;
 }

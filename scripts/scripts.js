@@ -25,7 +25,7 @@ import {
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
-import { scrollToHashTarget } from './utilities.js';
+import { activateTab, scrollToHashTarget } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -958,13 +958,131 @@ async function formInModalHandler(main) {
   }
 }
 
-/**
- * Detect anchor
- */
+// /* ============================ scrollToHashSection ============================ */
+// function scrollToHashSection() {
+//   const activeHash = window.location.hash;
+//   if (activeHash) {
+//     const id = activeHash.substring(1).toLowerCase();
+//     let targetElement = document.getElementById(id);
+//     if (!targetElement) {
+//       const observer = new MutationObserver(() => {
+//         targetElement = document.getElementById(id);
+//         if (targetElement) {
+//           const rect = targetElement.getBoundingClientRect();
+//           const targetPosition = rect.top + window.scrollY - 250;
+//           window.scrollTo({
+//             top: targetPosition,
+//             behavior: 'smooth',
+//           });
+//           observer.disconnect();
+//         }
+//       });
+//       observer.observe(document.body, { childList: true, subtree: true });
+//     } else {
+//       // scroll after a short delay
+//       setTimeout(() => {
+//         const rect = targetElement.getBoundingClientRect();
+//         const targetPosition = rect.top + window.scrollY - 250;
+//         window.scrollTo({
+//           top: targetPosition,
+//           behavior: 'smooth',
+//         });
+//       }, 1000);
+//     }
+//   }
+// }
+
+// scrollToHashSection();
+// window.addEventListener('hashchange', (event) => {
+//   event.preventDefault();
+//   scrollToHashSection();
+// });
+// /* ============================ scrollToHashSection ============================ */
+
+// /**
+//  * Detect anchor
+//  */
+// export function detectAnchor() {
+//   document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
+//     const rawHash = anchor.getAttribute('href');
+//     if (!rawHash || rawHash.startsWith('#') === false) return;
+
+//     const url = new URL(anchor.href, window.location.origin);
+//     const { hash } = url;
+
+//     if (!hash || hash.includes('t=resources&sort=relevancy')) return;
+
+//     anchor.setAttribute('data-anchor-setup', 'true');
+
+//     anchor.addEventListener('click', (e) => {
+//       e.preventDefault();
+//       const fullUrl = `${window.location.pathname}${hash}`;
+//       window.history.pushState(null, '', fullUrl);
+//       requestAnimationFrame(() => scrollToHashTarget(hash));
+//     });
+//   });
+// }
+
+// window.addEventListener('hashchange', () => {
+//   scrollToHashTarget(window.location.hash);
+// });
+// detectAnchor();
+
+function scrollToHashSection(rawHash = window.location.hash) {
+  const id = rawHash.startsWith('#') ? rawHash.substring(1).toLowerCase() : rawHash.toLowerCase();
+  let targetElement = document.getElementById(id);
+
+  if (!targetElement) {
+    const observer = new MutationObserver(() => {
+      targetElement = document.getElementById(id);
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const targetPosition = rect.top + window.scrollY - 250;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  } else {
+    setTimeout(() => {
+      const rect = targetElement.getBoundingClientRect();
+      const targetPosition = rect.top + window.scrollY - 250;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }, 1000);
+  }
+}
+
+function handleHashNavigation(rawHash) {
+  if (!rawHash) return;
+
+  const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const tabLink = document.querySelector(`.page-tabs li > a[href="#${hash}"]`);
+  const tabSection = document.querySelector(`.section[aria-labelledby="${hash}"]`);
+  const hashEl = document.getElementById(hash);
+
+  if (tabLink && tabSection) {
+    activateTab(tabLink, tabSection);
+    return;
+  }
+
+  const parentTabSection = hashEl?.closest('.section.tabs[aria-labelledby]');
+  if (hashEl && parentTabSection) {
+    const tabId = parentTabSection.getAttribute('aria-labelledby');
+    const parentTabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
+    if (parentTabLink) {
+      activateTab(parentTabLink);
+      setTimeout(() => { scrollToHashSection(`#${hash}`); }, 300);
+      return;
+    }
+  }
+
+  scrollToHashSection(`#${hash}`);
+}
+
 export function detectAnchor() {
   document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
     const rawHash = anchor.getAttribute('href');
-    if (!rawHash || rawHash.startsWith('#') === false) return;
+    if (!rawHash || !rawHash.startsWith('#')) return;
 
     const url = new URL(anchor.href, window.location.origin);
     const { hash } = url;
@@ -977,14 +1095,16 @@ export function detectAnchor() {
       e.preventDefault();
       const fullUrl = `${window.location.pathname}${hash}`;
       window.history.pushState(null, '', fullUrl);
-      requestAnimationFrame(() => scrollToHashTarget(hash));
+      requestAnimationFrame(() => handleHashNavigation(hash));
     });
   });
 }
-
 window.addEventListener('hashchange', () => {
-  scrollToHashTarget(window.location.hash);
+  handleHashNavigation(window.location.hash);
 });
+
+handleHashNavigation(window.location.hash);
+
 detectAnchor();
 
 /**
