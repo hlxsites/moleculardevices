@@ -3,6 +3,8 @@ import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { div, h2 } from '../../scripts/dom-helpers.js';
 import { getBlogAndPublications } from '../../templates/blog/blog.js';
+import { detectAnchor } from '../../scripts/scripts.js';
+import { activateTab } from '../../scripts/utilities.js';
 
 const viewAllCategory = 'viewall';
 
@@ -132,6 +134,7 @@ class FilterableCardList {
     this.carousel.data = this.dataIndex.get(this.getCurrentCategory());
     this.carousel.render();
     this.addHeadingClass();
+    console.log('filterChanged');
   }
 
   addHeadingClass() {
@@ -437,4 +440,6 @@ export default async function decorate(block) {
     VARIANTS[block.classList[1].toUpperCase()],
   );
   await cardList.render();
+  cardList.filterChanged();
+  activateTab();
 }

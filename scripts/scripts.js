@@ -25,7 +25,7 @@ import {
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
-import { activateTab } from './utilities.js';
+import { activateTab, scrollToHashTarget } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1079,33 +1079,72 @@ function handleHashNavigation(rawHash) {
   scrollToHashSection(`#${hash}`);
 }
 
-export function detectAnchor() {
-  document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
+/**
+ * Sets up anchor hash click interception and optionally triggers callback after.
+ * @param {Function} [onAnchorClick] - Optional callback to run after anchor click
+ */
+// export function detectAnchor(onAnchorClick) {
+//   document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
+//     const rawHash = anchor.getAttribute('href');
+//     if (!rawHash || !rawHash.startsWith('#')) return;
+
+//     const url = new URL(anchor.href, window.location.origin);
+//     const { hash } = url;
+
+//     if (!hash || hash.includes('t=resources&sort=relevancy')) return;
+
+//     anchor.setAttribute('data-anchor-setup', 'true');
+
+//     anchor.addEventListener('click', (e) => {
+//       e.preventDefault();
+//       const fullUrl = `${window.location.pathname}${hash}`;
+//       window.history.pushState(null, '', fullUrl);
+//       requestAnimationFrame(() => {
+//         scrollToHashTarget(hash);
+//         if (typeof onAnchorClick === 'function') {
+//           onAnchorClick(hash);
+//         }
+//       });
+//     });
+//   });
+// }
+export function detectAnchor(options = {}) {
+  const { enableCustomScroll = true } = options;
+
+  document.querySelectorAll('a[href^="#"]:not([data-anchor-setup])').forEach((anchor) => {
     const rawHash = anchor.getAttribute('href');
-    if (!rawHash || !rawHash.startsWith('#')) return;
-
-    const url = new URL(anchor.href, window.location.origin);
-    const { hash } = url;
-
-    if (!hash || hash.includes('t=resources&sort=relevancy')) return;
+    if (!rawHash || rawHash === '#' || rawHash.includes('t=resources&sort=relevancy')) return;
 
     anchor.setAttribute('data-anchor-setup', 'true');
 
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-      const fullUrl = `${window.location.pathname}${hash}`;
-      window.history.pushState(null, '', fullUrl);
-      requestAnimationFrame(() => handleHashNavigation(hash));
-    });
+    if (enableCustomScroll) {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.hash = rawHash;
+      });
+    }
   });
 }
-window.addEventListener('hashchange', () => {
-  handleHashNavigation(window.location.hash);
-});
+function handleHashChange() {
+  const { hash } = window.location;
+  if (hash) scrollToHashTarget(hash);
+}
 
-handleHashNavigation(window.location.hash);
+window.addEventListener('hashchange', handleHashChange);
 
-detectAnchor();
+// Optional: run on initial page load
+if (window.location.hash) {
+  window.addEventListener('DOMContentLoaded', () => {
+    scrollToHashTarget(window.location.hash);
+  });
+}
+
+// window.addEventListener('hashchange', () => {
+//   handleHashNavigation(window.location.hash);
+// });
+
+// handleHashNavigation(window.location.hash);
+// detectAnchor();
 
 /**
  * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.

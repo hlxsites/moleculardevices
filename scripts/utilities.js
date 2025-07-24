@@ -21,6 +21,14 @@ export function scrollToElement(target) {
   });
 }
 
+export function debounce(fn, delay = 300) {
+  let timerId;
+  return function debounced(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
 /**
  * Activates a tab and shows the corresponding content section.
  * @param {HTMLElement} tabLink - The <a> element inside the tab.
@@ -87,7 +95,7 @@ export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
   if (!rawHash || !main) return;
 
   let attempts = 0;
-  const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const hash = (rawHash.startsWith('#') ? rawHash.slice(1) : rawHash).toLowerCase();
 
   const isCoveo = hash.includes(COVEO_HASH_NAME);
   const tabId = isCoveo ? COVEO_TAB_NAME : hash;
@@ -109,13 +117,25 @@ export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
 
   const tryScroll = () => {
     const hashEl = document.getElementById(hash);
-    if (!hashEl || !isElementVisible(hashEl)) {
-      console.warn('Scroll target not found or not visible yet:', hashEl, hash);
-      return false;
+    if (hashEl && isElementVisible(hashEl)) {
+      const scrollTarget = hashEl.closest('.block[data-block-status="loaded"], .section') || hashEl;
+      scrollToElement(scrollTarget);
+      return true;
     }
-    const scrollTarget = hashEl.closest('.block[data-block-status="loaded"], .section') || hashEl;
-    scrollToElement(scrollTarget);
-    return true;
+
+    if (!hashEl) {
+      const observer = new MutationObserver(() => {
+        const lateEl = document.getElementById(hash);
+        if (lateEl && isElementVisible(lateEl)) {
+          const scrollTarget = lateEl.closest('.block[data-block-status="loaded"], .section') || lateEl;
+          scrollToElement(scrollTarget);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    return false;
   };
 
   if (!tryScroll()) {
