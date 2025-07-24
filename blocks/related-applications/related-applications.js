@@ -75,7 +75,6 @@ export default async function decorate(block) {
   block.append(apps);
   alignTitles();
 
-  // Attach custom anchor clicks
   block.querySelectorAll('a[href^="#"]').forEach((a) => {
     const rawHash = a.getAttribute('href');
     if (!rawHash || rawHash === '#') return;
@@ -88,7 +87,6 @@ export default async function decorate(block) {
     });
   });
 
-  // ✅ Handle hash navigation AFTER rendering
   if (window.location.hash) {
     handleHashNavigation(window.location.hash);
   }

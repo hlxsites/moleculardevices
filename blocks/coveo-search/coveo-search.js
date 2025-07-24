@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { loadCSS } from '../../scripts/lib-franklin.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 

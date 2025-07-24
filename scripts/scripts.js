@@ -962,13 +962,13 @@ async function formInModalHandler(main) {
 export function scrollToHashSection(rawHash = window.location.hash) {
   const id = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
   const targetElement = document.getElementById(id);
-  const offset = getScrollOffset() || 150;
+  const offset = getScrollOffset() + 170;
 
   const scrollToTarget = (el) => {
     if (!el) return;
     setTimeout(() => {
-      const rect = el.getBoundingClientRect();
-      const top = window.scrollY + rect.top - offset;
+      const rect = el.offsetTop;
+      const top = rect - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }, 800);
   };
