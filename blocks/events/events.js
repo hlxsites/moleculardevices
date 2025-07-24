@@ -127,7 +127,7 @@ function createFeaturedEventCard(featuredEvent, root) {
           div(
             p({ class: 'cite' }, featuredEvent.eventType),
             h2({ class: 'event-title' }, a({ href: featuredEvent.path }, featuredEvent.title)),
-            p({ class: 'event-date' }, formatEventDateRange(featuredEvent.eventStart, featuredEvent.eventEnd)),
+            p({ class: 'event-date' }, formatEventDateRange(featuredEvent.eventStart * 1000, featuredEvent.eventEnd * 1000)),
             p(featuredEvent.eventAddress),
             p(featuredEvent.eventRegion),
           ),

@@ -5,6 +5,7 @@ import { formatDate, toTitleCase, unixDateToString } from './scripts.js';
 import {
   a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';
+import { formatEventDateRange } from '../blocks/event-summary/event-summary.js';
 
 function filterData(options) {
   let { data } = options;
@@ -63,7 +64,7 @@ function renderListItem(item, idx) {
             href: item.path,
           }, item.title),
         ),
-        p({ class: 'date' }, dt),
+        p({ class: 'date' }, formatEventDateRange(item.eventStart * 1000, item.eventEnd * 1000)),
         p({ class: 'address' }, toTitleCase(item.filterEventRegion[0])),
       ),
     );

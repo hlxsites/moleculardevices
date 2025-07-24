@@ -322,6 +322,8 @@
 .events.future .list > .items > .item > .image img {
   transform: scale(1);
   transition: all 0.3s ease-in-out;
+  min-height: 160px;
+  object-fit: cover;
 }
 
 .events.future .list > .items > .item > .image:hover img {

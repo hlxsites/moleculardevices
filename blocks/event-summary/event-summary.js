@@ -1,48 +1,47 @@
 import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
-import { formatDate } from '../../scripts/scripts.js';
 import { div, p } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
-export function formatEventDateRange(startSeconds, endSeconds) {
-  const startDate = new Date(0);
-  const endDate = new Date(0);
-  startDate.setUTCSeconds(startSeconds);
-  endDate.setUTCSeconds(endSeconds);
+export function formatEventDateRange(startDateStr, endDateStr) {
+  const startDate = new Date(startDateStr);
+  const endDate = new Date(endDateStr);
+  console.log(startDate);
+  console.log(endDate);
+
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    // eslint-disable-next-line no-console
+    console.error('Invalid input date:', { startDateStr, endDateStr });
+    return 'Invalid Date';
+  }
 
   const startMonth = startDate.toLocaleString('en-US', { month: 'long' });
   const endMonth = endDate.toLocaleString('en-US', { month: 'long' });
 
-  const startDay = startDate.getUTCDate();
-  const endDay = endDate.getUTCDate();
+  const startDay = startDate.getDate();
+  const endDay = endDate.getDate();
 
-  const startYear = startDate.getUTCFullYear();
-  const endYear = endDate.getUTCFullYear();
+  const startYear = startDate.getFullYear();
+  const endYear = endDate.getFullYear();
 
   const sameDay = startDay === endDay
-    && startDate.getUTCMonth() === endDate.getUTCMonth()
+    && startDate.getMonth() === endDate.getMonth()
     && startYear === endYear;
 
-  const sameMonth = startDate.getUTCMonth() === endDate.getUTCMonth();
-  const sameYear = startYear === endYear;
+  const sameMonthAndYear = startDate.getMonth() === endDate.getMonth() && startYear === endYear;
 
   if (sameDay) {
     return `${startMonth} ${startDay}, ${startYear}`;
-  } if (sameMonth && sameYear) {
+  }
+  if (sameMonthAndYear) {
     return `${startMonth} ${startDay} - ${endDay}, ${startYear}`;
   }
-  return `${startMonth} ${startDay}, ${startYear} - ${endMonth} ${endDay}, ${endYear}`;
+  return `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${startYear}`;
 }
 
 export default async function decorate(block) {
   const FTImage = getMetadata('og:image');
-  let startDate = getMetadata('event-start');
-  if (startDate) {
-    startDate = formatDate(startDate);
-    // eslint-disable-next-line prefer-destructuring
-    startDate = startDate.split(',')[0];
-  }
-  let endDate = getMetadata('event-end');
-  if (endDate) { endDate = formatDate(endDate); }
+  const startDate = getMetadata('event-start');
+  const endDate = getMetadata('event-end');
   const title = document.querySelector('main h1');
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
