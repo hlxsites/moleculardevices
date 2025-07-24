@@ -25,7 +25,7 @@ import {
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
-import { activateTab, scrollToHashTarget } from './utilities.js';
+import { activateTab, getScrollOffset } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -958,101 +958,36 @@ async function formInModalHandler(main) {
   }
 }
 
-// /* ============================ scrollToHashSection ============================ */
-// function scrollToHashSection() {
-//   const activeHash = window.location.hash;
-//   if (activeHash) {
-//     const id = activeHash.substring(1).toLowerCase();
-//     let targetElement = document.getElementById(id);
-//     if (!targetElement) {
-//       const observer = new MutationObserver(() => {
-//         targetElement = document.getElementById(id);
-//         if (targetElement) {
-//           const rect = targetElement.getBoundingClientRect();
-//           const targetPosition = rect.top + window.scrollY - 250;
-//           window.scrollTo({
-//             top: targetPosition,
-//             behavior: 'smooth',
-//           });
-//           observer.disconnect();
-//         }
-//       });
-//       observer.observe(document.body, { childList: true, subtree: true });
-//     } else {
-//       // scroll after a short delay
-//       setTimeout(() => {
-//         const rect = targetElement.getBoundingClientRect();
-//         const targetPosition = rect.top + window.scrollY - 250;
-//         window.scrollTo({
-//           top: targetPosition,
-//           behavior: 'smooth',
-//         });
-//       }, 1000);
-//     }
-//   }
-// }
+/* ============================ scrollToHashSection ============================ */
+export function scrollToHashSection(rawHash = window.location.hash) {
+  const id = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const targetElement = document.getElementById(id);
+  const offset = getScrollOffset() || 150;
 
-// scrollToHashSection();
-// window.addEventListener('hashchange', (event) => {
-//   event.preventDefault();
-//   scrollToHashSection();
-// });
-// /* ============================ scrollToHashSection ============================ */
+  const scrollToTarget = (el) => {
+    if (!el) return;
+    setTimeout(() => {
+      const rect = el.getBoundingClientRect();
+      const top = window.scrollY + rect.top - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 800);
+  };
 
-// /**
-//  * Detect anchor
-//  */
-// export function detectAnchor() {
-//   document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
-//     const rawHash = anchor.getAttribute('href');
-//     if (!rawHash || rawHash.startsWith('#') === false) return;
-
-//     const url = new URL(anchor.href, window.location.origin);
-//     const { hash } = url;
-
-//     if (!hash || hash.includes('t=resources&sort=relevancy')) return;
-
-//     anchor.setAttribute('data-anchor-setup', 'true');
-
-//     anchor.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       const fullUrl = `${window.location.pathname}${hash}`;
-//       window.history.pushState(null, '', fullUrl);
-//       requestAnimationFrame(() => scrollToHashTarget(hash));
-//     });
-//   });
-// }
-
-// window.addEventListener('hashchange', () => {
-//   scrollToHashTarget(window.location.hash);
-// });
-// detectAnchor();
-
-function scrollToHashSection(rawHash = window.location.hash) {
-  const id = rawHash.startsWith('#') ? rawHash.substring(1).toLowerCase() : rawHash.toLowerCase();
-  let targetElement = document.getElementById(id);
-
-  if (!targetElement) {
+  if (targetElement) {
+    scrollToTarget(targetElement);
+  } else {
     const observer = new MutationObserver(() => {
-      targetElement = document.getElementById(id);
-      if (targetElement) {
-        const rect = targetElement.getBoundingClientRect();
-        const targetPosition = rect.top + window.scrollY - 250;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      const lateEl = document.getElementById(id);
+      if (lateEl) {
+        scrollToTarget(lateEl);
         observer.disconnect();
       }
     });
     observer.observe(document.body, { childList: true, subtree: true });
-  } else {
-    setTimeout(() => {
-      const rect = targetElement.getBoundingClientRect();
-      const targetPosition = rect.top + window.scrollY - 250;
-      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    }, 1000);
   }
 }
 
-function handleHashNavigation(rawHash) {
+export function handleHashNavigation(rawHash) {
   if (!rawHash) return;
 
   const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
@@ -1071,80 +1006,43 @@ function handleHashNavigation(rawHash) {
     const parentTabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
     if (parentTabLink) {
       activateTab(parentTabLink);
-      setTimeout(() => { scrollToHashSection(`#${hash}`); }, 300);
+      requestAnimationFrame(() => scrollToHashSection(`#${hash}`));
       return;
     }
   }
 
+  activateTab(tabLink);
   scrollToHashSection(`#${hash}`);
 }
 
-/**
- * Sets up anchor hash click interception and optionally triggers callback after.
- * @param {Function} [onAnchorClick] - Optional callback to run after anchor click
- */
-// export function detectAnchor(onAnchorClick) {
-//   document.querySelectorAll('a[href*="#"]:not([data-anchor-setup])').forEach((anchor) => {
-//     const rawHash = anchor.getAttribute('href');
-//     if (!rawHash || !rawHash.startsWith('#')) return;
-
-//     const url = new URL(anchor.href, window.location.origin);
-//     const { hash } = url;
-
-//     if (!hash || hash.includes('t=resources&sort=relevancy')) return;
-
-//     anchor.setAttribute('data-anchor-setup', 'true');
-
-//     anchor.addEventListener('click', (e) => {
-//       e.preventDefault();
-//       const fullUrl = `${window.location.pathname}${hash}`;
-//       window.history.pushState(null, '', fullUrl);
-//       requestAnimationFrame(() => {
-//         scrollToHashTarget(hash);
-//         if (typeof onAnchorClick === 'function') {
-//           onAnchorClick(hash);
-//         }
-//       });
-//     });
-//   });
-// }
-export function detectAnchor(options = {}) {
-  const { enableCustomScroll = true } = options;
-
+export function detectAnchor({ enableCustomScroll = true } = {}) {
   document.querySelectorAll('a[href^="#"]:not([data-anchor-setup])').forEach((anchor) => {
     const rawHash = anchor.getAttribute('href');
     if (!rawHash || rawHash === '#' || rawHash.includes('t=resources&sort=relevancy')) return;
 
     anchor.setAttribute('data-anchor-setup', 'true');
-
     if (enableCustomScroll) {
       anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        window.location.hash = rawHash;
+        window.history.pushState(null, '', rawHash);
+        handleHashNavigation(rawHash);
       });
     }
   });
 }
-function handleHashChange() {
-  const { hash } = window.location;
-  if (hash) scrollToHashTarget(hash);
-}
 
-window.addEventListener('hashchange', handleHashChange);
+window.addEventListener('hashchange', () => {
+  if (window.location.hash) {
+    handleHashNavigation(window.location.hash);
+  }
+});
 
-// Optional: run on initial page load
-if (window.location.hash) {
-  window.addEventListener('DOMContentLoaded', () => {
-    scrollToHashTarget(window.location.hash);
-  });
-}
-
-// window.addEventListener('hashchange', () => {
-//   handleHashNavigation(window.location.hash);
-// });
-
-// handleHashNavigation(window.location.hash);
-// detectAnchor();
+window.addEventListener('DOMContentLoaded', () => {
+  detectAnchor();
+  if (window.location.hash) {
+    handleHashNavigation(window.location.hash);
+  }
+});
 
 /**
  * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
