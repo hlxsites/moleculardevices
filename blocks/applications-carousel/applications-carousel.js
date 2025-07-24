@@ -2,12 +2,11 @@ import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { goToTabSection } from '../../scripts/utilities.js';
 
 function onReadMoreClick(e) {
   e.preventDefault();
-  const appsLink = document.querySelector('.page-tabs li > a[href="#applications"]');
-  appsLink.click();
-  document.querySelector('.page-tabs-container').scrollIntoView();
+  goToTabSection('applications');
 }
 
 function getDescription(element) {
@@ -47,7 +46,6 @@ export default async function decorate(block) {
           href: hasApplicationTab ? '#applications' : appLink,
           'aria-label': placeholders.readMore || 'Read More',
           onclick: hasApplicationTab ? onReadMoreClick : null,
-          target: '_blank',
           rel: 'noopener noreferrer',
         },
       };

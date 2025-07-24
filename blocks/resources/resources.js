@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   createOptimizedPicture, decorateBlock, decorateIcons,
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
@@ -245,7 +246,7 @@ function searchFormHeader() {
 
 function searchMainSection() {
   return `
-    <div class="section coveo-tab-section-wrapper sticky-element sticky-desktop">
+    <div class="section coveo-tab-section-wrapper">
       <div class="coveo-tab-section">
         <div class="CoveoTab coveo-tab" data-id="Resources" data-caption="Resources" data-expression="@source==&quot;Molecular Devices Franklin&quot; AND @md_pagetype==Resource AND NOT @md_contenttype==CoA AND NOT @md_contenttype==SDS AND NOT @md_source==KB"></div>
       </div>
