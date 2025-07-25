@@ -1,0 +1,113 @@
+main .carousel-wrapper.applications-carousel-wrapper {
+  width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+main .carousel.applications-carousel {
+  width: 88%;
+  padding: 0;
+}
+
+.applications-carousel:not(:has(.carousel-item:nth-child(3))) {
+  justify-content: center;
+}
+
+.applications-carousel .carousel-item {
+  display: block;
+  width: 33.33%;
+  max-width: 33.3%;
+  padding: 20px 15px;
+  margin: 0;
+}
+
+.carousel.applications-carousel .card-thumb,
+.carousel.applications-carousel .card-thumb img {
+  height: 190px;
+  min-height: 190px;
+}
+
+.app-carousel-details {
+  padding: 15px 15px 0;
+  flex-grow: 2;
+}
+
+.carousel.applications-carousel .card-caption h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  margin-top: 0;
+  min-height: auto;
+}
+
+.carousel.applications-carousel .card-description {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.carousel.applications-carousel .card .button-container {
+  width: 100%;
+  margin-top: auto;
+  line-height: 24px;
+  text-align: left;
+}
+
+.carousel.applications-carousel .card .c2a .button-container {
+  margin-top: 0;
+}
+
+.carousel.applications-carousel .card .button-container a {
+  color: #008ca8;
+}
+
+@media only screen and (max-width: 1199px) {
+  main .carousel-wrapper.applications-carousel-wrapper {
+    width: 940px;
+  }
+
+  .applications-carousel .carousel-item {
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  main .carousel-wrapper.applications-carousel-wrapper {
+    width: 100%;
+  }
+
+  .applications-carousel .carousel-item {
+    width: 50%;
+    max-width: 50%;
+  }
+
+  .carousel.applications-carousel .card-caption h3 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .carousel-wrapper.applications-carousel-wrapper {
+    padding: 0;
+  }
+
+  main .carousel.applications-carousel {
+    width: 100%;
+    padding: 0 10%;
+  }
+
+  .applications-carousel .carousel-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  main .applications-carousel-wrapper .carousel-nav-button {
+    display: none;
+  }
+
+  .carousel.applications-carousel .card-thumb,
+  .carousel.applications-carousel .card-thumb img {
+    height: 150px;
+    min-height: 150px;
+  }
+}
