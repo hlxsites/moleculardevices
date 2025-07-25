@@ -65,7 +65,7 @@ function renderListItem(item, idx) {
           }, item.title),
         ),
         p({ class: 'date' }, formatEventDateRange(item.eventStart * 1000, item.eventEnd * 1000)),
-        p({ class: 'address' }, toTitleCase(item.filterEventRegion[0])),
+        p({ class: 'address' }, toTitleCase(item.eventAddress)),
       ),
     );
   }

@@ -13,10 +13,6 @@
   margin-bottom: 45px;
 }
 
-/* main {
-  background-color: #fff !important;
-} */
-
 /* event banner */
 .event-banner {
   display: grid;
@@ -37,11 +33,15 @@
   max-width: 100%;
 }
 
+.event-thumb-left .left-col img {
+  object-position: left;
+}
+
 .event-summary .event-banner .left-col img {
   display: block;
   width: 100%;
   object-fit: cover;
-  height: 350px;
+  height: 380px;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
 }
@@ -130,4 +130,9 @@
   padding-top: 0;
   padding-bottom: 0;
   border-bottom: none;
+}
+
+.featured-event-banner p.cite,
+.event-summary p.cite {
+  margin-bottom: 1rem;
 }

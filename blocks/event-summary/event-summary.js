@@ -5,8 +5,6 @@ import { decorateIcons, socialShareBlock } from '../social-share/social-share.js
 export function formatEventDateRange(startDateStr, endDateStr) {
   const startDate = new Date(startDateStr);
   const endDate = new Date(endDateStr);
-  console.log(startDate);
-  console.log(endDate);
 
   if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
     // eslint-disable-next-line no-console
@@ -46,10 +44,11 @@ export default async function decorate(block) {
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
+  const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
 
   const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
-  const evenBanner = div({ class: 'event-banner' },
+  const evenBanner = div({ class: `event-banner event-thumb-${imageThumbPosition.toLowerCase()}` },
     div({ class: 'left-col' },
       createOptimizedPicture(FTImage)),
     div({ class: 'right-col' },
