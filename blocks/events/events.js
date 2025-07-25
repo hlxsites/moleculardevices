@@ -119,7 +119,7 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
     loadCSS('/blocks/event-summary/event-summary.css');
     const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
     const featuredBanner = div({ class: 'event-summary' },
-      (div({ class: `event-banner featured-event-banner event-thumb-${imageThumbPosition.toLowerCase()}` },
+      (div({ class: `event-banner featured-event-banner event-thumb-${toClassName(imageThumbPosition)}` },
         div({ class: 'left-col' },
           a({ href: featuredEvent.path },
             createOptimizedPicture(featuredEvent.image, featuredEvent.title))),

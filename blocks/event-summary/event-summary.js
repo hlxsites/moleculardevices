@@ -1,4 +1,4 @@
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { div, p } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 
@@ -48,7 +48,7 @@ export default async function decorate(block) {
 
   const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
 
-  const evenBanner = div({ class: `event-banner event-thumb-${imageThumbPosition.toLowerCase()}` },
+  const evenBanner = div({ class: `event-banner event-thumb-${toClassName(imageThumbPosition)}` },
     div({ class: 'left-col' },
       createOptimizedPicture(FTImage)),
     div({ class: 'right-col' },
