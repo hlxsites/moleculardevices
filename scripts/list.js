@@ -1,10 +1,11 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
-import { formatDate, unixDateToString } from './scripts.js';
+import { formatDate, toTitleCase, unixDateToString } from './scripts.js';
 import {
-  a, article, button, div, h2, h3, nav, p, span, ul, li,
+  a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';
+import { formatEventDateRange } from '../blocks/event-summary/event-summary.js';
 
 function filterData(options) {
   let { data } = options;
@@ -46,6 +47,29 @@ function renderListItem(item, idx) {
   }
 
   const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
+
+  if (item.type === 'Event') {
+    return article({ class: 'item' },
+      div({ class: 'image' },
+        a({
+          href: item.path,
+          title: item.title,
+        }, createOptimizedPicture(thumbImage, item.title, (idx === 0), [{ width: '500' }]))),
+      div({ class: 'content' },
+        p({ class: 'cite' }, item.eventType),
+        h4(
+          a({
+            class: 'title',
+            title: item.title,
+            href: item.path,
+          }, item.title),
+        ),
+        p({ class: 'date' }, formatEventDateRange(item.eventStart * 1000, item.eventEnd * 1000)),
+        p({ class: 'address' }, toTitleCase(item.eventAddress)),
+      ),
+    );
+  }
+
   return article({ class: 'item' },
     (hasImage(item.image)) ? div({ class: 'image' },
       a({
