@@ -4,7 +4,7 @@ import { decorateButtons } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { triggerModalWithUrl } from '../modal/modal.js';
 
-async function renderFragment(fragment, block, className) {
+export async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
   decorateButtons(fragment);
   block.append(fragment);
