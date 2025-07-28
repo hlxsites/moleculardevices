@@ -78,7 +78,7 @@ Disallow: /en/assets/app-note/dd/3d-biology/ai-enabled-toxicity-screening-effect
 Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-toxicity-evaluation-using-3d-mouse-intestinal-organoids
 Disallow: /en/assets/app-note/bpd/qpix-flex-picker-ensures-colony-picking-accuracy-efficiency
 Disallow: /en/assets/app-note/dd/img/screening-of-3d-spheroids-using-high-content-imager
-
+Disallow: /en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis
 
 # Flyer Block web and Google
 Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
