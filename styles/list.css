@@ -253,39 +253,39 @@
 
 /* UPDATED EVENTS */
 .event-summary-container .default-content-wrapper:has(h2:only-child),
-.events.future .list > .items h2 {
+.events .list > .items h2 {
   display: none;
 }
 
-.events.future .list > .items p {
+.events .list > .items p {
   margin: 0;
   font-size: 1rem;
 }
 
-.events.future .list > .items .cite {
+.events .list > .items > .item > .content > .cite {
   color: var(--text-green);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 
-.events.future .list > .items h4 {
+.events .list > .items h4 {
   font-size: 1.25rem;
   font-family: var(--ff-proxima-xbold);
   color: var(--text-color);
   margin-bottom: 0.5rem;
 }
 
-.events.future .list > .items h4 a {
+.events .list > .items h4 a {
   color: inherit;
 }
 
-.events.future .list > .items {
+.events .list > .items {
   display: grid;
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.events.future .list > .items > .item {
+.events .list > .items > .item {
   flex-direction: column;
   padding: 0;
   margin-left: 0;
@@ -296,13 +296,13 @@
   border-bottom: none;
 }
 
-.events.future .list > .items > .item a,
-.events.future .list > .items > .item a picture,
-.events.future .list > .items > .item a picture img {
+.events .list > .items > .item a,
+.events .list > .items > .item a picture,
+.events .list > .items > .item a picture img {
   display: block;
 }
 
-.events.future .list > .items > .item > .content {
+.events .list > .items > .item > .content {
   width: 100%;
   margin-bottom: 0;
   padding: 1rem 1.5rem;
@@ -311,7 +311,7 @@
   margin-top: 0;
 }
 
-.events.future .list > .items > .item .image {
+.events .list > .items > .item .image {
   padding-right: 0;
   padding-left: 0;
   margin-bottom: 0;
@@ -321,7 +321,7 @@
   flex: none;
 }
 
-.events.future .list > .items > .item > .image img {
+.events .list > .items > .item > .image img {
   width: 100%;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
@@ -329,12 +329,12 @@
   object-fit: cover;
 }
 
-.events.future .list > .items > .item > .image:hover img {
+.events .list > .items > .item > .image:hover img {
   transform: scale(1.1);
 }
 
 @media only screen and (min-width: 768px) {
-  .events.future .list > .items {
+  .events .list > .items {
     grid-template-columns: repeat(3, 1fr);
     margin-top: 0;
   }
