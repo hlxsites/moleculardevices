@@ -1,3 +1,14 @@
+main {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.section.wave{
+  display: none !important;
+}
+
+/* ============================== */
+
 main .carousel-wrapper.applications-carousel-wrapper {
   width: 1140px;
   padding: 0 15px;
