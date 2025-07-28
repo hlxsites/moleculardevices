@@ -16,7 +16,6 @@
 /* event banner */
 .event-banner {
   display: grid;
-  grid-template-columns: 65% 35%;
   overflow: hidden;
   border: 1px solid var(--light-border-color-gray);
   border-radius: 0.25rem;
@@ -64,6 +63,8 @@
   color: var(--text-color);
   font-family: var(--ff-proxima-xbold);
   margin-top: 0;
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
 
 .event-summary .event-banner .event-title a {
@@ -135,4 +136,10 @@
 .featured-event-banner p.cite,
 .event-summary p.cite {
   margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .event-banner {
+    grid-template-columns: 65% 35%;
+  }
 }

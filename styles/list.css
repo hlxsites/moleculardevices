@@ -281,8 +281,8 @@
 
 .events.future .list > .items {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .events.future .list > .items > .item {
@@ -308,10 +308,12 @@
   padding: 1rem 1.5rem;
   border: 1px solid var(--light-border-color-gray);
   border-radius: 0.25rem;
+  margin-top: 0;
 }
 
 .events.future .list > .items > .item .image {
   padding-right: 0;
+  padding-left: 0;
   margin-bottom: 0;
   border: 1px solid var(--light-border-color-gray);
   border-bottom: none;
@@ -320,6 +322,7 @@
 }
 
 .events.future .list > .items > .item > .image img {
+  width: 100%;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
   min-height: 160px;
@@ -329,3 +332,11 @@
 .events.future .list > .items > .item > .image:hover img {
   transform: scale(1.1);
 }
+
+@media only screen and (min-width: 768px) {
+  .events.future .list > .items {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 0;
+  }
+}
+

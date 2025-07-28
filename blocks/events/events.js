@@ -201,10 +201,12 @@ export default async function decorate(block) {
   const featuredEvent = getMetadata('featured-event');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
-  const featuredPath = new URL(featuredEvent).pathname;
   const imageThumbPosition = getMetadata('image-thumb-position');
+  let featuredPath;
 
   placeholders = await fetchPlaceholders();
+
+  if (featuredEvent) featuredPath = new URL(featuredEvent).pathname;
 
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 10) || 10,
@@ -226,8 +228,11 @@ export default async function decorate(block) {
 
   options.data = await fetchEvents(options);
 
-  options.featuredEvent = options.data.find((option) => option.path === featuredPath);
-  options.data = options.data.filter((option) => option.path !== featuredPath);
+  if (featuredPath) {
+    options.featuredEvent = options.data.find((option) => option.path === featuredPath);
+    options.data = options.data.filter((option) => option.path !== featuredPath);
+  }
+  // options.data = options.data.filter((option) => option.path !== featuredPath);
   sortEvents(options.data, showFutureEvents);
   await createOverview(block, options, imageThumbPosition);
 }
