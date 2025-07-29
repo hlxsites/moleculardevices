@@ -402,6 +402,7 @@ class Carousel {
     });
 
     columns.forEach((column) => {
+      console.log(column);
       column.classList.add('carousel-item-column');
       columnContainer.appendChild(column);
     });
@@ -413,6 +414,7 @@ class Carousel {
     this.block.parentElement.classList.add(
       ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
+    console.log(this.block.parentElement);
 
     let defaultCSSPromise;
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {

@@ -1,11 +1,11 @@
-/* main {
+main {
   display: flex;
   flex-direction: column-reverse;
 }
 
 .section.wave{
   display: none !important;
-} */
+}
 
 /* ============================== */
 

@@ -1,16 +1,16 @@
 import { div } from '../../scripts/dom-helpers.js';
 import { fetchFragment } from '../../scripts/scripts.js';
-import { createCarousel } from '../carousel/carousel.js';
 import decoratePost from '../featured-posts/featured-posts.js';
+import { createCarousel } from '../carousel/carousel.js';
+import { decorateButtons } from '../../scripts/lib-franklin.js';
 
 const styleConfig = {
+  cssFiles: ['/blocks/featured-posts/featured-posts.css'],
   defaultStyling: true,
   navButtons: true,
   dotButtons: true,
   infiniteScroll: true,
   autoScroll: false,
-  counter: true,
-  counterText: 'Product',
   visibleItems: [
     {
       items: 1,
@@ -18,39 +18,36 @@ const styleConfig = {
   ],
 };
 
+async function renderFragment(fragment, block, postType) {
+  const fragmentWrapper = div({ class: 'post-wrapper' });
+  fragmentWrapper.append(...fragment.html.children);
+  decorateButtons(fragmentWrapper);
+  block.append(fragmentWrapper);
+  await decoratePost(fragmentWrapper, postType);
+}
+
 export default async function decorateArticles(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
-  block.innerHTML = '';
   if (fragmentPaths.length === 0) return '';
 
+  block.innerHTML = '';
   const fragments = await Promise.all(
     fragmentPaths.map(async (path) => {
       const fragmentHtml = await fetchFragment(path);
-      if (!fragmentHtml) return '';
+      if (!fragmentHtml) return null;
 
-      if (fragmentHtml) {
-        const fragmentElement = div();
-        fragmentElement.innerHTML = fragmentHtml;
-        return { html: fragmentElement };
-      }
-      return null;
+      const fragmentElement = div();
+      fragmentElement.innerHTML = fragmentHtml;
+      return { html: fragmentElement };
     }),
   );
 
-  fragments.forEach((fragment, index = 0) => {
-    const postType = index === 0 ? 'publications' : 'blog';
-    decoratePost(fragment, postType);
-  });
+  for (let i = 0; i < fragments.length; i += 1) {
+    const fragment = fragments[i];
+    const postType = i === 0 ? 'publications' : 'blog';
+    // eslint-disable-next-line no-await-in-loop
+    await renderFragment(fragment, block, postType);
+  }
 
-  // setInterval(async () => {
-  //   if (block.getAttribute('[data-block-status="loaded"]')) {
-  //     clearInterval(setInterval);
-  //     setTimeout(async () => {
-  //       await createCarousel(block, [...block.children], styleConfig);
-  //       console.log(block);
-  //     }, 1000);
-  //   }
-  // }, 50);
-
-  return '';
+  return createCarousel(block, [...block.children], styleConfig);
 }

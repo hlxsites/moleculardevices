@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { a, h3, span } from '../../scripts/dom-helpers.js';
+import { a, div, span } from '../../scripts/dom-helpers.js';
 
 async function getPostList(type, postUrls) {
   return ffetch('/query-index.json')
@@ -10,42 +11,51 @@ async function getPostList(type, postUrls) {
     .all();
 }
 
-export function createFeaturedArticlePost(wrapper, index, type, querySheet) {
+function isParamExist(property) {
+  if (property && property !== '0') return property;
+  return false;
+}
+
+export function createFeaturedArticlePost(wrapper, index, querySheet) {
   const link = wrapper?.querySelector('a');
-  const postItem = querySheet
-    .find((post) => new URL(link.href).pathname === post.path);
+  const postWrapper = wrapper.parentElement;
+  const postItem = querySheet.find((post) => new URL(link.href).pathname === post.path);
 
-  if (!postItem) return;
-
-  link.textContent = postItem.title;
-  if (postItem.publisher && postItem.publisher !== '0') {
-    link.setAttribute('data-publisher', postItem.publisher);
+  if (!postItem) {
+    console.warn('No matching post found for link:', link.href);
+    return;
   }
 
-  wrapper.classList.add('post', `post-${index + 1}`);
-  wrapper.firstElementChild.classList.add('zoom-effect-wrapper');
-  if (postItem && !wrapper.querySelector('img')) {
-    wrapper.prepend(a({ href: link.getAttribute('href') },
-      createOptimizedPicture(postItem.featuredThumb || postItem.thumbnail, postItem.title, false)));
-  } else {
-    wrapper.firstElementChild.append(
-      a({ href: link.getAttribute('href') }, ...wrapper.firstElementChild.children),
-    );
+  const {
+    h1, title, publisher, path, image, thumbnail,
+  } = postItem;
+
+  link.textContent = h1 || title;
+  postWrapper.classList.add('post', `post-${index + 1}`);
+
+  const existingPicture = postWrapper.querySelector('picture');
+  const imgSrc = existingPicture?.querySelector('img')?.src || thumbnail || image;
+  if (existingPicture) existingPicture.parentElement.remove();
+
+  if (imgSrc) {
+    const imgAnchor = a({ href: path }, createOptimizedPicture(imgSrc, title));
+    const zoomWrapper = div({ class: 'zoom-effect-wrapper' }, imgAnchor);
+    postWrapper.prepend(zoomWrapper);
   }
 
-  const textDiv = wrapper.lastElementChild;
-  const hasDataPublisher = link.getAttribute('data-publisher');
-  const para = hasDataPublisher ? h3(textDiv.firstChild, span(` | ${textDiv.firstChild.getAttribute('data-publisher')}`)) : h3(textDiv.firstChild);
-  textDiv.replaceWith(para);
+  if (isParamExist(publisher)) link.setAttribute('data-publisher', publisher);
+
+  const dataPublisher = link.getAttribute('data-publisher');
+  if (dataPublisher) wrapper.appendChild(span(` | ${dataPublisher}`));
 }
 
 export default async function decoratePost(block, postType = '') {
-  const anchorList = block.html ? [...block.html.querySelectorAll('a')] : [...block.querySelectorAll('a')];
-  const postUrls = anchorList.map((link) => link.href);
+  const anchorList = block.querySelectorAll('a');
+  const postUrls = [...anchorList].map((link) => link.href);
   const postUrlsList = await getPostList(postType, postUrls);
-  const blockSelector = block.html || block;
 
-  [...blockSelector.children].forEach((wrapper, idx) => {
-    createFeaturedArticlePost(wrapper, idx, postType, postUrlsList);
+  anchorList.forEach((link, idx) => {
+    const wrapper = link.closest('div') || link.parentElement;
+    createFeaturedArticlePost(wrapper, idx, postUrlsList);
   });
 }
