@@ -3,15 +3,16 @@ import {
   fetchPlaceholders, getMetadata, loadCSS, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
+// eslint-disable-next-line import/no-cycle
 import {
-  createList, renderPagination, swapData, toggleFilter,
+  createList, formatEventDateRange, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import {
   a,
   div, h2, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
-import { formatEventDateRange } from '../event-summary/event-summary.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -115,6 +116,8 @@ function sortEvents(data, showFutureEvents) {
 }
 
 function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'center') {
+  const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
+  const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
   if (root) {
     loadCSS('/blocks/event-summary/event-summary.css');
     const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
@@ -127,7 +130,7 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
           div(
             p({ class: 'cite' }, featuredEvent.eventType),
             h2({ class: 'event-title' }, a({ href: featuredEvent.path }, featuredEvent.title)),
-            p({ class: 'event-date' }, formatEventDateRange(featuredEvent.eventStart * 1000, featuredEvent.eventEnd * 1000)),
+            p({ class: 'event-date' }, formatEventDateRange(startFormatDate, endFormatDate)),
             p(featuredEvent.eventAddress),
             p(featuredEvent.eventRegion),
           ),
@@ -140,7 +143,6 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
 
 async function createOverview(block, options, imageThumbPosition) {
   block.innerHTML = '';
-  console.log(options);
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
