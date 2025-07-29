@@ -10,7 +10,6 @@ Disallow: /tools/sidekick/blocks/toc
 Disallow: /en/assets/promotion/
 
 
-
 # PDF (ebook PDF Block)
 Disallow: /sites/default/files/en/assets/ebook/br/explore-cells-from-the-inside-out.pdf
 Disallow: /sites/default/files/en/assets/ebook/br/ultimate-guide-to-microplate-reader-solutions.pdf
@@ -79,6 +78,12 @@ Disallow: /en/assets/app-note/dd/3d-biology/machine-learning-toxicity-evaluation
 Disallow: /en/assets/app-note/bpd/qpix-flex-picker-ensures-colony-picking-accuracy-efficiency
 Disallow: /en/assets/app-note/dd/img/screening-of-3d-spheroids-using-high-content-imager
 Disallow: /en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis
+Disallow: /en/assets/app-note/bpd/automated-microbial-plating-streaking-with-qpix-flex
+
+
+
+
+
 
 # Flyer Block web and Google
 Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
@@ -134,88 +139,7 @@ Disallow: /video-gallery/flipr-system/de
 Disallow: /video-gallery/clone-screening/de
 Disallow: /video-gallery/axon-patch-clamp/de
 
-#Promotion Page block
-Disallow: /en/assets/promotion/br/spectramax-i-series-microplate-readers
-Disallow: /en/assets/promotion/br/softmax-pro-gxp-software
-Disallow: /en/assets/promotion/dd/img/on-demand-virtual-presentations
-Disallow: /en/assets/promotion/dd/img/imagexpress-micro-confocal-3d-imaging
-Disallow: /en/assets/promotion/br/explore-cells-from-inside-out
-Disallow: /en/assets/promotion/br/spectramax-i3x
-Disallow: /en/assets/promotion/dd/img/confocal-imaging-of-spheroids-for-cancer-therapeutics
-Disallow: /en/assets/promotion/bpd/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/br/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/sanofi/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/abm/sanofi/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/sanofi/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/novartis/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/abm/novartis/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/novartis/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/boehringer/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/abm/boehringer/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/boehringer/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/gilead/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/abm/gilead/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/gilead/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/pfizer/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/abm/pfizer/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/pfizer/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/pharma/gxp/software-compliance-for-gmp-glp-labs
-Disallow: /en/assets/promotion/abm/pharma/oncology/confocal-imaging-of-spheroids-for-screening-cancer-therapeutics
-Disallow: /en/assets/promotion/abm/pharma/immunology/comparison-of-traditional-cloning-methods-vs-cloneselect-single-cell-printer-fsight
-Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-absorbance-readers
-Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-i-series
-Disallow: /en/assets/promotion/br/take-it-to-the-max-spectramax-m-series
-Disallow: /en/assets/promotion/br/spectramax-microplate-reader-and-aquamax-washer-bundle
-Disallow: /en/assets/promotion/bpd/qpix-400-microbial-colony-picker
-Disallow: /en/assets/promotion/bpd/qpix-microbial-colony-picker
-Disallow: /en/assets/promotion/bpd/qpix-automated-colony-picker
-Disallow: /en/assets/promotion/br/maximize-your-discovery-i-series
-Disallow: /en/assets/promotion/br/maximize-your-discovery-absorbance-readers
-Disallow: /en/assets/promotion/bpd/qpix-microbial-colony-picker-synbiobeta
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-and-synthetic-biology-workflows
-Disallow: /en/assets/promotion/bpd/clonepix-2
-Disallow: /en/assets/promotion/general/advance-your-discovery
-Disallow: /en/assets/promotion/dd/img/imagexpress-pico-cell-imaging
-Disallow: /en/assets/promotion/bpd/qpix-colony-picker
-Disallow: /en/assets/promotion/bpd/cloneselect-monoclonality-workflow
-Disallow: /en/assets/promotion/dd/img/slas-2022
-Disallow: /en/assets/promotion/general/bioincubator-solutions
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows
-Disallow: /en/assets/promotion/br/discovery-starts-here
-Disallow: /en/assets/promotion/dd/img/slas-eu-2022
-Disallow: /en/assets/promotion/dd/img/add-another-dimension-to-your-research
-Disallow: /en/assets/promotion/bpd/abm/tanvex/scale-up-biosimilar-pipelines-with-cell-line-development-automation
-Disallow: /en/assets/promotion/bpd/abm/inovio/scale-up-dna-medicines-with-plasmid-cloning-automation
-Disallow: /en/assets/promotion/br/real-discovery-starts-here
-Disallow: /en/assets/promotion/br/automated-elisa-workcells
-Disallow: /eu/assets/promotion/bpd/qpix-colony-picker
-Disallow: /en/assets/promotion/dd/img/high-throughput-organoid-imaging-and-screening
-Disallow: /en/assets/promotion/dd/img/streamline-your-path-to-drug-development
-Disallow: /en/assets/promotion/dd/img/pegs-europe
-Disallow: /en/assets/promotion/dd/img/high-throughput-organoid-imaging-analysis-and-screening
-Disallow: /en/assets/promotion/dd/img/slas-2023
-Disallow: /en/assets/promotion/bpd/colony-picking-automation
-Disallow: /en/assets/promotion/dd/img/slas-eu-2023
-Disallow: /en/assets/promotion/dd/img/slas-2024
-Disallow: /en/assets/promotion/dd/img/slas-europe
-Disallow: /en/assets/promotion/dd/img/label-free-cell-segmentation-with-in-carta-sinap
-Disallow: /en/assets/promotion/dd/img/screening-of-neuronal-toxicity-using-ipsc-derived-neurons
-Disallow: /en/assets/promotion/dd/img/phenotypic-profiling-using-cell-painting-assay
-Disallow: /en/assets/promotion/dd/img/explore-cardiac-function-by-measuring-calcium-oscillation
-Disallow: /en/assets/promotion/dd/img/transform-your-cell-imaging
-Disallow: /en/assets/promotion/dd/img/slas-europe-2025
 
-#EU BPD Campaign Page block 
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-de
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-fr
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-it
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-es
-Disallow: /en/assets/promotion/bpd/accelerate-your-cell-line-development-synthetic-biology-workflows-nl
-Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-de
-Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-fr
-Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-it
-Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-es
-Disallow: /en/assets/promotion/bpd/optimize-your-high-value-cell-lines-nl
 
 #Promotion Flyer blocked
 Disallow: /sites/default/files/en/assets/flyer/br/spectramax-id5-with-western-blot-and-injectors.pdf
