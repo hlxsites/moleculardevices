@@ -140,6 +140,7 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
 
 async function createOverview(block, options, imageThumbPosition) {
   block.innerHTML = '';
+  console.log(options);
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
@@ -209,7 +210,7 @@ export default async function decorate(block) {
   if (featuredEvent) featuredPath = new URL(featuredEvent).pathname;
 
   const options = {
-    limitPerPage: parseInt(config.limitPerPage, 10) || 10,
+    limitPerPage: parseInt(config.limitPerPage, 9) || 9,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     title: title ? title.innerHTML : '',
     panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
