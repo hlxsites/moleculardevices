@@ -12,9 +12,7 @@ const styleConfig = {
   infiniteScroll: true,
   autoScroll: false,
   visibleItems: [
-    {
-      items: 1,
-    },
+    { items: 1 },
   ],
 };
 
