@@ -693,6 +693,7 @@ main .section > div.columns-wrapper {
 .product .section.columns-container .columns.columns-2-cols > div ul {
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .product .section.columns-container .columns.columns-2-cols > div ul li {
