@@ -953,12 +953,12 @@ main .default-content-wrapper ul li:not(:last-child) {
   font-family: var(--ff-proxima-light);
 }
 
-.section .columns > div > div:first-child > h3 + ul {
+main .section .columns > div > div > h3 + ul {
   padding-top: 20px;
 }
 
-.section .columns > div > div:first-child > h3 + ul,
-.section .columns > div > div:first-child > p + ul {
+main .section .columns > div > div > h3 + ul,
+main .section .columns > div > div > p + ul {
   padding-left: 20px;
 }
 
@@ -1004,12 +1004,12 @@ main .section.buttons-in-row p.button-container + p.button-container {
   margin-left: 20px;
 }
 
-main .section .columns > div > div:first-child > p.button-container {
+main .section .columns > div > div > p.button-container,
+main .section .columns > div > div > p.button-container:only-of-type {
   margin-left: 0;
 }
 
-main .section .columns > div > div:first-child ul + p.button-container,
-main .section.columns-2 > div:last-child ul + p.button-container,
+main .section .columns > div > div ul + p.button-container,
 main .section.wave.orange-buttons p.button-container + p.button-container {
   margin-left: 20px;
 }
