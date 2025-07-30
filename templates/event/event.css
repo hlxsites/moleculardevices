@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .event main .section > div,
 .event main .section div + .default-content-wrapper {
   padding-top: 0;
@@ -14,11 +15,6 @@
 
 .event .event-title {
   font-size: 36px;
-}
-
-.event .find-out-more {
-  padding: 30px 0;
-  margin-right: 8px;
 }
 
 .event .find-out-more .fa-external-link {
