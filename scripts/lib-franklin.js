@@ -240,15 +240,17 @@ function mapOnelinkClass(className) {
  * @param {Element} element
  */
 export function decorateIcons(element = document) {
-  const iconPrefix = 'fa'; // the fontawesome icon prefix
+  const iconPrefix = 'fa'; // Font Awesome prefix
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
-    if (span.classList.length < 2
-      || !span.classList[1].startsWith('icon-')
-      || span.children.length !== 0) {
-      return;
-    }
-    const icon = span.classList[1].substring(5);
+    if (span.dataset.iconDecorated === 'true') return;
+
+    const classes = [...span.classList];
+    const iconClass = classes.find((cls) => cls.startsWith('icon-') && cls !== 'icon');
+
+    if (!iconClass || span.children.length !== 0 || span.innerHTML.trim() !== '') return;
+
+    const icon = iconClass.substring(5);
 
     if (icon.startsWith(iconPrefix)) {
       const i = document.createElement('i');
@@ -258,21 +260,26 @@ export function decorateIcons(element = document) {
       return;
     }
 
-    // eslint-disable-next-line no-use-before-define
-    const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
-    if (resp.ok) {
-      const iconHTML = await resp.text();
-      if (iconHTML.match(/<style/i)) {
-        const img = document.createElement('img');
-        img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
-        img.alt = `${icon.split('-').join(' ')}`;
-        span.appendChild(img);
-      } else {
-        span.innerHTML = iconHTML;
+    try {
+      const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
+      if (resp.ok) {
+        const iconHTML = await resp.text();
+        if (iconHTML.includes('<style')) {
+          const img = document.createElement('img');
+          img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
+          img.alt = icon.replace(/-/g, ' ');
+          span.appendChild(img);
+        } else {
+          span.innerHTML = iconHTML;
+        }
+        span.dataset.iconDecorated = 'true';
       }
+    } catch (err) {
+      console.error(`Failed to load icon: ${icon}`, err);
     }
   });
 }
+
 
 /**
  * Gets placeholders object
@@ -588,6 +595,7 @@ export async function loadBlock(block) {
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
     const { blockName, cssPath, jsPath } = getBlockConfig(block);
+    if (blockName === 'style' || blockName === 'script') return;
     try {
       await loadModule(blockName, jsPath, cssPath, block);
     } catch (error) {
