@@ -2,7 +2,7 @@ import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { div, span } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
-  const body = document.querySelector('body');
+  const { body } = document;
 
   const lightboxOverlay = div({ class: 'image-gallery-lightbox-overlay', 'aria-hidden': true });
   body.append(lightboxOverlay);
@@ -35,6 +35,12 @@ export default async function decorate(block) {
     lightboxOverlay.setAttribute('aria-hidden', true);
     body.classList.remove('no-scroll');
   });
+  lightboxOverlay.addEventListener('click', (event) => {
+    if (event.target.classList.contains('image-gallery-lightbox-overlay')) {
+      lightboxOverlay.setAttribute('aria-hidden', true);
+      body.classList.remove('no-scroll');
+    }
+  });
 
   innerBlock.querySelectorAll('p.picture:nth-of-type(2)').forEach((element) => {
     element.previousElementSibling.remove();
@@ -54,5 +60,5 @@ export default async function decorate(block) {
       element.parentElement.removeChild(element);
     });
   });
-  await decorateIcons(lightboxOverlay);
+  decorateIcons(lightboxOverlay);
 }
