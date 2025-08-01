@@ -318,11 +318,10 @@
   padding: 3rem 1rem;
 }
 
-.lightbox-image-modal-carousel-nav {
+.lightbox-image-modal-carousel-nav > a {
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
-  width: 100%;
 }
 
 .lightbox-image-modal .icon {
