@@ -38,6 +38,10 @@ main .carousel.news-article-carousel .card-caption h3 {
   .carousel.news-article-carousel .card-caption h3 {
     font-size: 18px;
   }
+
+  main .carousel-wrapper.news-article-carousel-wrapper .news-article-carousel {
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 767px) {
