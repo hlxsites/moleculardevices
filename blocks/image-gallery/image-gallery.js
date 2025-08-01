@@ -1,32 +1,64 @@
-import { loadCSS } from '../../scripts/lib-franklin.js';
-import createLightboxCarousel from './lightbox-carousel.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { div, span } from '../../scripts/dom-helpers.js';
 
-function createImagePreviewCard(parent) {
-  const children = Array.from(parent.children);
-  const count = children.length;
+export default async function decorate(block) {
+  const { body } = document;
 
-  const layoutMap = {
-    'showcase-left': 0,
-    'showcase-center': Math.floor(count / 2),
-    'showcase-right': count - 1,
+  const lightboxOverlay = div({ class: 'image-gallery-lightbox-overlay', 'aria-hidden': true });
+  body.append(lightboxOverlay);
+  const innerBlock = block.cloneNode(true);
+
+  const right = span({ class: 'icon icon-icon_link gallery-button-right' });
+  const left = span({ class: 'icon icon-icon_link gallery-button-left' });
+  const close = span({ class: 'icon icon-close-circle-outline gallery-button-close' });
+  const lightboxWrapper = div(innerBlock, close, right, left);
+  lightboxOverlay.append(lightboxWrapper);
+
+  const childrenLength = block.children.length;
+  const scroll = (leftScroll) => {
+    let resultingLeftScroll = leftScroll;
+    if (leftScroll < 0) {
+      resultingLeftScroll = leftScroll + innerBlock.offsetWidth * childrenLength;
+    } else if (leftScroll + innerBlock.offsetWidth > innerBlock.offsetWidth * childrenLength) {
+      resultingLeftScroll = 0;
+    }
+    innerBlock.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });
   };
 
-  Object.entries(layoutMap).forEach(([cls, index]) => {
-    if (parent.classList.contains(cls) && children[index]) {
-      children[index].classList.add('full-image');
+  right.addEventListener('click', () => {
+    scroll(innerBlock.scrollLeft + innerBlock.offsetWidth);
+  });
+  left.addEventListener('click', () => {
+    scroll(innerBlock.scrollLeft - innerBlock.offsetWidth);
+  });
+  close.addEventListener('click', () => {
+    lightboxOverlay.setAttribute('aria-hidden', true);
+    body.classList.remove('no-scroll');
+  });
+  lightboxOverlay.addEventListener('click', (event) => {
+    if (event.target.classList.contains('image-gallery-lightbox-overlay')) {
+      lightboxOverlay.setAttribute('aria-hidden', true);
+      body.classList.remove('no-scroll');
     }
   });
 
-  children.forEach((item, i) => {
-    item.classList.add('gallery-image', `gallery-image-${i + 1}`);
-    item.querySelector('p:last-child').classList.add('text-caption');
+  innerBlock.querySelectorAll('p.picture:nth-of-type(2)').forEach((element) => {
+    element.previousElementSibling.remove();
+  });
+  [...block.children].slice(5).forEach((row) => {
+    block.removeChild(row);
   });
 
-  return parent;
-}
+  [...block.children].forEach((row, i) => {
+    row.querySelector('img:first-of-type').addEventListener('click', () => {
+      body.classList.add('no-scroll');
+      lightboxOverlay.removeAttribute('aria-hidden');
+      innerBlock.scrollTo({ top: 0, left: innerBlock.offsetWidth * i, behavior: 'instant' });
+    });
 
-export default async function decorate(block) {
-  loadCSS('./lightbox-carousel.css');
-  const wrapper = createImagePreviewCard(block);
-  createLightboxCarousel(wrapper);
+    row.querySelectorAll('p:not(:first-of-type)').forEach((element) => {
+      element.parentElement.removeChild(element);
+    });
+  });
+  decorateIcons(lightboxOverlay);
 }

@@ -595,7 +595,6 @@ export async function loadBlock(block) {
   if (status !== 'loading' && status !== 'loaded') {
     block.dataset.blockStatus = 'loading';
     const { blockName, cssPath, jsPath } = getBlockConfig(block);
-    if (blockName === 'style' || blockName === 'script') return;
     try {
       await loadModule(blockName, jsPath, cssPath, block);
     } catch (error) {
