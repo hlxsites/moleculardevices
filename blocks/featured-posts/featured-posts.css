@@ -45,11 +45,6 @@ main .featured-posts .button-container a {
   display: inline;
 }
 
-main .featured-posts .post-1 h3,
-main .featured-posts .post-1 .button-container {
-  font-size: var(--body-font-size-xl);
-}
-
 main .featured-posts .post .button-container,
 main .featured-posts .post-1 {
   height: auto;
@@ -82,6 +77,11 @@ main .featured-posts .post picture::after {
     grid-template-rows: repeat(2, 50%);
     grid-gap: 20px;
     max-height: 540px;
+  }
+
+  main .featured-posts .post-1 h3,
+  main .featured-posts .post-1 .button-container {
+    font-size: var(--body-font-size-xl);
   }
 
   main .featured-posts .post-1 {
