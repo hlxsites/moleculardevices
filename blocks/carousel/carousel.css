@@ -58,6 +58,15 @@ main .carousel-item-column {
   width: 50%;
 }
 
+main .carousel-item-column:empty {
+  display: none;
+}
+
+main .carousel-item-column:has(+ .carousel-item-column:empty) {
+  width: 100%;
+  max-width: 100%;
+}
+
 main .carousel-item-image img {
   display: block;
   object-fit: contain;
@@ -138,7 +147,7 @@ main .carousel-dot-buttons {
   justify-content: center;
   gap: 10px;
   min-width: unset;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 main .carousel-dot-button {
