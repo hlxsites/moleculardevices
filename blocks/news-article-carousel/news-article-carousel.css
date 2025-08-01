@@ -1,5 +1,5 @@
 main .carousel-wrapper.news-article-carousel-wrapper {
-  width: 1170px;
+  width: var(--section-div-width);
   padding-left: 80px;
   padding-right: 80px;
   margin: 0 auto;
@@ -10,20 +10,6 @@ main .carousel.news-article-carousel {
   width: 100%;
   padding: 0;
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.carousel.news-article-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel.news-article-carousel .carousel-item {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
 }
 
 main .carousel.news-article-carousel .carousel-item {
@@ -39,7 +25,6 @@ main .carousel.news-article-carousel .card-caption h3 {
 
 @media only screen and (max-width: 1199px) {
   main .carousel-wrapper.news-article-carousel-wrapper {
-    width: 940px;
     padding-left: 80px;
     padding-right: 80px;
   }

@@ -10,6 +10,12 @@ export async function renderFragment(fragment, block, className, indx) {
   block.append(fragment);
 }
 
+const styleConfig = {
+  // cssFiles: [`/blocks/featured-posts/featured-posts.css`],
+  defaultStyling: true,
+  autoScroll: false,
+};
+
 // eslint-disable-next-line consistent-return
 export default async function decorate(block) {
   block.closest('.section').classList.remove('carousel');
@@ -54,8 +60,5 @@ export default async function decorate(block) {
     renderFragment(fragment.html, block, 'fragments-carousel');
   });
 
-  await createCarousel(block, fragments.html, {
-    defaultStyling: true,
-    autoScroll: false,
-  });
+  await createCarousel(block, fragments.html, styleConfig);
 }
