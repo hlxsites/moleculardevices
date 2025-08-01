@@ -116,3 +116,9 @@ main .featured-posts .post .zoom-effect-wrapper > a {
 main .featured-posts .post:hover .zoom-effect-wrapper > a {
   transform: scale(1.15);
 }
+
+@media only screen and (max-width: 767px) {
+  main .featured-posts img {
+    aspect-ratio: 1 / 1;
+  }
+}
