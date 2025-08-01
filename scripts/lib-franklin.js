@@ -275,11 +275,11 @@ export function decorateIcons(element = document) {
         span.dataset.iconDecorated = 'true';
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(`Failed to load icon: ${icon}`, err);
     }
   });
 }
-
 
 /**
  * Gets placeholders object
