@@ -7,7 +7,6 @@ main .featured-posts {
 main .featured-posts > .post {
   position: relative;
   overflow: hidden;
-  height: 256px;
 }
 
 main .featured-posts img {
@@ -106,10 +105,6 @@ main .featured-posts .post picture::after {
   main .featured-posts .post > div,
   main .featured-posts .post picture,
   main .featured-posts .post a {
-    height: 100%;
-  }
-
-  main .featured-posts > .post {
     height: 100%;
   }
 }
