@@ -1,15 +1,15 @@
-main .featured-posts {
+main ..section featured-posts {
   display: flex;
   flex-direction: column;
   grid-gap: 20px;
 }
 
-main .featured-posts > .post {
+main .section .featured-posts > .post {
   position: relative;
   overflow: hidden;
 }
 
-main .featured-posts img {
+main .section .featured-posts img {
   width: 100%;
   height: 100%;
   min-height: 270px;
@@ -18,16 +18,16 @@ main .featured-posts img {
   vertical-align: middle;
 }
 
-main .featured-posts p {
+main .section .featured-posts p {
   margin: 0;
 }
 
-main .featured-posts a {
+main .section .featured-posts a {
   display: block;
 }
 
-main .featured-posts h3,
-main .featured-posts .button-container {
+main .section .featured-posts h3,
+main .section .featured-posts .button-container {
   position: absolute;
   color: var(--text-white);
   text-align: center;
@@ -39,28 +39,29 @@ main .featured-posts .button-container {
   bottom: 37px;
 }
 
-main .featured-posts h3 a,
-main .featured-posts .button-container a {
+main .section .featured-posts h3 a,
+main .section .featured-posts .button-container a {
   color: inherit;
   display: inline;
 }
 
-main .featured-posts .post .button-container,
-main .featured-posts .post-1 {
+main .section .featured-posts .post .button-container,
+main .section .featured-posts .post-1 {
   height: auto;
 }
 
-main .featured-posts .post-1 img {
+main .section .featured-posts .post-1 img {
   min-height: 256px;
   max-height: 100%;
 }
 
-main .featured-posts .post picture {
+main .section .featured-posts .post picture {
   display: block;
   position: relative;
+  object-fit: cover;
 }
 
-main .featured-posts .post picture::after {
+main .section .featured-posts .post picture::after {
   content: "";
   position: absolute;
   top: 0;
@@ -71,7 +72,7 @@ main .featured-posts .post picture::after {
 }
 
 @media only screen and (min-width: 768px) {
-  main .featured-posts {
+  main .section .featured-posts {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(2, 50%);
@@ -79,46 +80,46 @@ main .featured-posts .post picture::after {
     max-height: 540px;
   }
 
-  main .featured-posts .post-1 h3,
-  main .featured-posts .post-1 .button-container {
+  main .section .featured-posts .post-1 h3,
+  main .section .featured-posts .post-1 .button-container {
     font-size: var(--body-font-size-xl);
   }
 
-  main .featured-posts .post-1 {
+  main .section .featured-posts .post-1 {
     grid-area: 1 / 1 / 3 / 3;
   }
 
-  main .featured-posts .post-2 {
+  main .section .featured-posts .post-2 {
     grid-area: 1 / 3 / 2 / 5;
   }
 
-  main .featured-posts .post-3 {
+  main .section .featured-posts .post-3 {
     grid-area: 2 / 3 / 3 / 4;
   }
 
-  main .featured-posts .post-4 {
+  main .section .featured-posts .post-4 {
     grid-area: 2 / 4 / 3 / 5;
   }
 
-  main .featured-posts img,
-  main .featured-posts .post-1 img,
-  main .featured-posts .post > div,
-  main .featured-posts .post picture,
-  main .featured-posts .post a {
+  main .section .featured-posts img,
+  main .section .featured-posts .post-1 img,
+  main .section .featured-posts .post > div,
+  main .section .featured-posts .post picture,
+  main .section .featured-posts .post a {
     height: 100%;
   }
 }
 
-main .featured-posts .post .zoom-effect-wrapper > a {
+main .section .featured-posts .post .zoom-effect-wrapper > a {
   transition: all 0.4s;
 }
 
-main .featured-posts .post:hover .zoom-effect-wrapper > a {
+main .section .featured-posts .post:hover .zoom-effect-wrapper > a {
   transform: scale(1.15);
 }
 
 @media only screen and (max-width: 767px) {
-  main .featured-posts img {
+  main .section .featured-posts img {
     aspect-ratio: 1 / 1;
   }
 }

@@ -10,6 +10,7 @@ const styleConfig = {
   navButtons: true,
   dotButtons: true,
   infiniteScroll: true,
+  autoScroll: false,
   visibleItems: [
     { items: 1 },
   ],
