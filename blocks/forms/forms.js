@@ -30,6 +30,9 @@ export function createHubSpotForm(formConfig, target, type = '') {
             class: 'button primary',
           }, formConfig.cta || submitInput.value || 'Submit');
           submitInput.replaceWith(submitButton);
+
+          const CTAColor = form.closest('.section').getAttribute('data-cta-color');
+          if (CTAColor) submitButton.setAttribute('style', `background-color: ${CTAColor}`);
         }
       },
       onFormSubmit: (hubspotForm) => {
