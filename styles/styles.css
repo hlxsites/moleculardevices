@@ -1051,17 +1051,20 @@ main .section.features-section {
   background-color: var(--light-gray-background-color2);
 }
 
-main .section.features-section .default-content-wrapper {
+main .section.features-section .default-content-wrapper,
+main .section.applications-carousel-container .default-content-wrapper {
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper h2 {
+main .section.features-section .default-content-wrapper h2,
+main .section.applications-carousel-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
   font-size: var(--heading-font-size-xl);
   margin-bottom: 0;
+  padding: 0;
 }
 
 main .section.features-section .default-content-wrapper::after {

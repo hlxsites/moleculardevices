@@ -3,6 +3,7 @@ import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { goToTabSection } from '../../scripts/utilities.js';
+import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 
 function onReadMoreClick(e) {
   e.preventDefault();
@@ -23,6 +24,7 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
+  const heading = block.closest('.section')?.querySelector('h2');
   const placeholders = await fetchPlaceholders();
   const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
@@ -43,7 +45,7 @@ export default async function decorate(block) {
         imageBlock,
         description,
         c2aLinkConfig: {
-          href: hasApplicationTab ? '#applications' : appLink,
+          href: appLink,
           'aria-label': placeholders.readMore || 'Read More',
           onclick: hasApplicationTab ? onReadMoreClick : null,
           rel: 'noopener noreferrer',
@@ -53,7 +55,6 @@ export default async function decorate(block) {
     return null;
   }));
   const sortedFragments = sortDataByTitle(fragments);
-
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
@@ -86,4 +87,7 @@ export default async function decorate(block) {
       cardRenderer,
     },
   );
+
+  const blockClass = heading.id || heading.innerHTML || '';
+  addViewAllCTA(block, '', blockClass, '#applications', onReadMoreClick, 'View Applications');
 }
