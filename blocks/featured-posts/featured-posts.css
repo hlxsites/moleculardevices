@@ -1,4 +1,4 @@
-main .section featured-posts {
+main .section .featured-posts {
   display: flex;
   flex-direction: column;
   grid-gap: 20px;
