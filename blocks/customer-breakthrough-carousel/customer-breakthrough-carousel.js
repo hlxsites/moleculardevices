@@ -19,7 +19,7 @@ export default async function decorate(block) {
   const resources = await getCBData();
 
   const cbPath = '/customer-breakthroughs';
-  const category = getMetadata('category');
+  const category = getMetadata('category').split(' ').join('-');
   const anchor = `${cbPath}#${category}`;
 
   /* view all CTA */
