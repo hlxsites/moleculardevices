@@ -54,7 +54,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
     const viewAllBtn = div(
       {
         class: `${containerClass}-button`,
-        style: 'display: flex; justify-content: center',
+        style: 'display: flex; justify-content: center; padding: 50px 0;',
       },
       p({ class: 'button-container' },
         strong(
@@ -67,7 +67,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
       ),
     );
     decorateButtons(viewAllBtn);
-    block.parentElement.parentElement.append(viewAllBtn);
+    block.parentElement.append(viewAllBtn);
   }
 }
 
@@ -84,6 +84,9 @@ export default async function decorate(block) {
     block.parentElement.parentElement.remove();
     return;
   }
+
+  /* view all CTA */
+  addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View all Resources');
 
   const resourceCard = await createCard({
     showDate: true,
@@ -122,6 +125,4 @@ export default async function decorate(block) {
       cardRenderer: resourceCard,
     },
   );
-
-  addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View all Resources');
 }

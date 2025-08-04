@@ -5,7 +5,7 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { goToTabSection } from '../../scripts/utilities.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 
-function onReadMoreClick(e) {
+function viewAllHandler(e) {
   e.preventDefault();
   goToTabSection('applications');
 }
@@ -29,6 +29,15 @@ export default async function decorate(block) {
   const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
 
+  if (fragmentPaths.length < 3) {
+    block.parentElement.parentElement.remove();
+    return;
+  }
+
+  /* view all CTA */
+  const blockClass = heading.id || heading.innerHTML || '';
+  addViewAllCTA(block, '', blockClass, '#applications', viewAllHandler, 'View Applications');
+
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
@@ -47,14 +56,16 @@ export default async function decorate(block) {
         c2aLinkConfig: {
           href: appLink,
           'aria-label': placeholders.readMore || 'Read More',
-          onclick: hasApplicationTab ? onReadMoreClick : null,
+          onclick: hasApplicationTab ? viewAllHandler : null,
           rel: 'noopener noreferrer',
         },
       };
     }
     return null;
   }));
+
   const sortedFragments = sortDataByTitle(fragments);
+
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
@@ -87,7 +98,4 @@ export default async function decorate(block) {
       cardRenderer,
     },
   );
-
-  const blockClass = heading.id || heading.innerHTML || '';
-  addViewAllCTA(block, '', blockClass, '#applications', onReadMoreClick, 'View Applications');
 }
