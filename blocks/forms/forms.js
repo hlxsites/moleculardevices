@@ -3,11 +3,12 @@ import {
   button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
-  extractFormData, formMapping, getFormFieldValues,
+  extractFormData, getFormFieldValues,
   getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
+import { formMapping } from './formMaoing.js';
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig, target, type = '') {
@@ -50,11 +51,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
 export function loadHubSpotScript(callback) {
   loadCSS('/blocks/forms/forms.css');
   loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
-}
-
-/* Converts any string to Title Case */
-export function toTitleCase(str) {
-  return str.toLowerCase().replace(/(?:^|\s|[_-])\w/g, (match) => match.toUpperCase());
 }
 
 export default async function decorate(block, index) {
