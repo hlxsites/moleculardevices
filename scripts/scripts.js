@@ -1664,6 +1664,7 @@ export function itemSearchTitle(item) {
 }
 
 export function toTitleCase(str) {
+  if (!str) return '';
   return str
     .toLowerCase()
     .split(/[\s-]+/)

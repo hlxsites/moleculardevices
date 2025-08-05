@@ -59,6 +59,10 @@ main .carousel.applications-carousel {
   color: #008ca8;
 }
 
+main .section.applications-carousel-container:has(.applications-carousel.block:empty) {
+  display: none;
+}
+
 @media only screen and (max-width: 1199px) {
   main .carousel-wrapper.applications-carousel-wrapper {
     width: 940px;
