@@ -50,10 +50,10 @@ export function getFormFieldValues(formConfig) {
   const productBundleImage = getMetadata('bundle-thumbnail');
   const productFamily = getMetadata('product-family');
   const productImage = getMetadata('thumbnail');
-  const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
-  const productSelection = getMetadata('bundle-thumbnail') || '';
-  const qdc = getMetadata('bundle-thumbnail') || '';
-  const website = getMetadata('bundle-thumbnail') || '';
+  // const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
+  // const productSelection = getMetadata('bundle-thumbnail') || '';
+  // const qdc = getMetadata('bundle-thumbnail') || '';
+  // const website = getMetadata('bundle-thumbnail') || '';
 
   return {
     cmp: valuecmp || formConfig.cmp,
@@ -66,15 +66,15 @@ export function getFormFieldValues(formConfig) {
     product_bundle_image: formConfig.productBundleImage || productBundleImage,
     product_family__c: formConfig.productFamily || productFamily,
     product_image: formConfig.productImage || formConfig.resourceImageUrl || productImage,
-    product_primary_application__c: formConfig.productPrimaryApplication || productPrimaryApplication,
-    product_selection__c: formConfig.productSelection || productSelection,
-    qdc: formConfig.qdc || qdc,
+    product_primary_application__c: formConfig.productPrimaryApplication,
+    product_selection__c: formConfig.productSelection,
+    qdc: formConfig.qdc,
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
     landing_page_title: formConfig.jobTitle || formConfig.title,
     latest_newsletter: formConfig.latestNewsletter,
-    website: formConfig.website || formConfig.resourceUrl || website,
+    website: formConfig.website || formConfig.resourceUrl,
     source_url: currentUrl,
   };
 }
