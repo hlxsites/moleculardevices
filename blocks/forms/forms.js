@@ -21,7 +21,12 @@ export function createHubSpotForm(formConfig, target, type = '') {
       onFormReady: (form) => {
         // Handle Salesforce hidden fields
         const fieldValues = getFormFieldValues(formConfig);
-        console.log(fieldValues);
+        //console.log(JSON.stringify(fieldValues));
+        if(type ==='rfq'){
+          fieldValues.product_image = 'https://www.moleculardevices.com/'+fieldValues.product_image;// to do.. get dynamic path for root
+          fieldValues.cmp = '701Rn00000OJ0zY'; // to do.. cmp to be replaced with actaul RFQ cmp or url parameter
+           //console.log(fieldValues.product_image);
+        }
         updateFormFields(form, fieldValues);
 
         // Customize the submit button
@@ -72,7 +77,10 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
+  //console.log('formType'+formType);
+  
   if (formType) {
+
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
   } else {
     const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
