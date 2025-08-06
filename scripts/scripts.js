@@ -1039,9 +1039,9 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   detectAnchor();
-  if (window.location.hash) {
-    handleHashNavigation(window.location.hash);
-  }
+  // if (window.location.hash) {
+  //   handleHashNavigation(window.location.hash);
+  // }
 });
 
 /**
