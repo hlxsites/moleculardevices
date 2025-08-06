@@ -23,8 +23,8 @@ export function createHubSpotForm(formConfig, target, type = '') {
         const fieldValues = getFormFieldValues(formConfig);
         //console.log(JSON.stringify(fieldValues));
         if(type ==='rfq'){
-          fieldValues.product_image = 'https://www.moleculardevices.com/'+fieldValues.product_image;// to do.. get dynamic path for root
-          fieldValues.product_bundle_image = 'https://www.moleculardevices.com/'+fieldValues.product_bundle_image;// to do.. get dynamic path for root
+          if(fieldValues.product_image){fieldValues.product_image = 'https://www.moleculardevices.com/'+fieldValues.product_image;}// to do.. get dynamic path for root
+          if(fieldValues.product_bundle_image){fieldValues.product_bundle_image = 'https://www.moleculardevices.com/'+fieldValues.product_bundle_image;}// to do.. get dynamic path for root
           fieldValues.cmp = '701Rn00000OJ0zY'; // to do.. cmp to be replaced with actaul RFQ cmp or url parameter
            //console.log(fieldValues.product_image);
         }
