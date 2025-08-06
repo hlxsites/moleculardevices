@@ -19,7 +19,8 @@ export async function extractFormData(block) {
 
 // form mappings
 export const formMapping = [
-  { type: 'rfq', id: '09ad331d-27c6-470a-86d4-7d6c4b141bc8' },
+  { type: 'rfq', id: 'dc530303-2f0e-460c-ac4b-757c050359b5' },
+  // { type: 'rfq', id: '09ad331d-27c6-470a-86d4-7d6c4b141bc8' },
   { type: 'app-note', id: 'd6f54803-6515-4313-a7bd-025dfa5cbb5f' },
   { type: 'scientific-poster', id: '837f6e47-0292-4586-8447-297325ff50c1' },
   { type: 'ebook', id: '90a9217a-7e3f-474e-a7a2-8e34d895ef45' },

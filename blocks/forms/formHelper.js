@@ -1,11 +1,11 @@
 /* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
-import { toCamelCase } from '../../scripts/lib-franklin.js';
+import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 import {
   fieldsObj,
   formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
-} from './formMaoing.js';
+} from './formMapping.js';
 
 // extract data from table
 export async function extractFormData(block) {
@@ -39,10 +39,21 @@ export function getFormFieldValues(formConfig) {
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
+
   const cmpCookieValue = getCookie('cmp');
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
+
+  // get RFQ required field value on product page
+  const productBundle = getMetadata('bundle-products');
+  const productBundleImage = getMetadata('bundle-thumbnail');
+  const productFamily = getMetadata('product-family');
+  const productImage = getMetadata('thumbnail');
+  // const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
+  // const productSelection = getMetadata('bundle-thumbnail') || '';
+  // const qdc = getMetadata('bundle-thumbnail') || '';
+  // const website = getMetadata('bundle-thumbnail') || '';
 
   return {
     cmp: valuecmp || formConfig.cmp,
@@ -51,10 +62,10 @@ export function getFormFieldValues(formConfig) {
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
     product_title: formConfig.productTitle,
-    product_bundle: formConfig.productBundle,
-    product_bundle_image: formConfig.productBundleImage,
-    product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage || formConfig.resourceImageUrl,
+    product_bundle: formConfig.productBundle || productBundle,
+    product_bundle_image: formConfig.productBundleImage || productBundleImage,
+    product_family__c: formConfig.productFamily || productFamily,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl || productImage,
     product_primary_application__c: formConfig.productPrimaryApplication,
     product_selection__c: formConfig.productSelection,
     qdc: formConfig.qdc,

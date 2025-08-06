@@ -8,7 +8,7 @@ import {
   extractFormData, getFormFieldValues,
   getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
-import { formMapping } from './formMaoing.js';
+import { formMapping } from './formMapping.js';
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig, target, type = '') {
@@ -21,6 +21,7 @@ export function createHubSpotForm(formConfig, target, type = '') {
       onFormReady: (form) => {
         // Handle Salesforce hidden fields
         const fieldValues = getFormFieldValues(formConfig);
+        console.log(fieldValues);
         updateFormFields(form, fieldValues);
 
         // Customize the submit button

@@ -442,15 +442,3 @@ main .category-form.forms-container .forms.block .hs-submit .actions button {
   border-radius: 13px;
   color: #fff;;
 }
-
-.form-fade-in {
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
