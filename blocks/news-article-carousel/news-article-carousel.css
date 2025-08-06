@@ -1,9 +1,17 @@
 main .carousel-wrapper.news-article-carousel-wrapper {
   width: var(--section-div-width);
-  padding-left: 80px;
-  padding-right: 80px;
   margin: 0 auto;
   padding-top: 3rem;
+}
+
+main .carousel-wrapper.news-article-carousel-wrapper,
+main .news-article-carousel-container .default-content-wrapper:has(h2:only-child) {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+main .news-article-carousel-container .default-content-wrapper:has(h2:only-child){
+  padding-bottom: 1rem;
 }
 
 main .carousel.news-article-carousel {
@@ -24,14 +32,16 @@ main .carousel.news-article-carousel .card-caption h3 {
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.news-article-carousel-wrapper {
+  main .carousel-wrapper.news-article-carousel-wrapper,
+  main .news-article-carousel-container .default-content-wrapper:has(h2:only-child) {
     padding-left: 80px;
     padding-right: 80px;
   }
 }
 
 @media only screen and (max-width: 991px) {
-  main .carousel-wrapper.news-article-carousel-wrapper {
+  main .carousel-wrapper.news-article-carousel-wrapper,
+  main .news-article-carousel-container .default-content-wrapper:has(h2:only-child) {
     width: 100%;
   }
 
@@ -47,7 +57,8 @@ main .carousel.news-article-carousel .card-caption h3 {
 }
 
 @media only screen and (max-width: 767px) {
-  main .carousel-wrapper.news-article-carousel-wrapper {
+  main .carousel-wrapper.news-article-carousel-wrapper,
+  main .news-article-carousel-container .default-content-wrapper:has(h2:only-child) {
     padding: 0;
   }
 
