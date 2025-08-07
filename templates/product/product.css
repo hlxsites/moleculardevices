@@ -1,1 +1,15 @@
 /* stylelint-disable no-descending-specificity */
+
+.thankyou-image{
+
+padding-left: 165px;
+}
+.thankyou-head{
+
+	padding-left: 240px;
+}
+.thankyou img {
+  width: 150px;
+  height: 150px;
+  align-content: center;
+}

@@ -75,16 +75,40 @@ export default async function buildAutoBlocks() {
   handleEmbed();
 
   setTimeout(() => {
-    if (pageParam && pageParam === 'thankyou') {
-    //console.log('in thankyou template');
-     document.querySelector('.category-form ').classList.add('thankyou');
-    let thankyouMsg = "<span align='center' ><h1>Thank you. </h1></span><br>";
-     thankyouMsg+= "<p align='middle' class='thankyou-message'>We have received your request for quote and would like to thank you for contacting us. We have sent you an email to confirm your details. A sales rep will be contacting you within 24-business hours. If you require immediate attention, please feel free to contact us.</p>";
-     
-       document.querySelector('.category-form ').innerHTML = thankyouMsg;
-       document.querySelector('.thankyou-message').scrollIntoView({ behavior: 'smooth' });
+   if (pageParam && pageParam === 'thankyou') {
+  document.querySelector('.category-form').classList.add('thankyou');
 
-  }
+  // Create the DOM elements
+  const container = document.createElement('div');
+
+  container.appendClass ='thankyou-img'; 
+  container.innerHTML = `
+    <span align='center' class='thankyou-head'><h1>Thank you.</h1></span>
+    <p align='middle' class='thankyou-message'>
+      We have received your request for quote and would like to thank you for contacting us.
+      We have sent you an email to confirm your details. A sales rep will be contacting you within 24-business hours.
+      If you require immediate attention, please feel free to contact us.
+    </p>
+    <br>
+    <span align='center'><h1>Have a great day!</h1></span>
+  `;
+
+  // Create picture and append separately
+  const pictureWrapper = document.createElement('div');
+  const spectraImg = createOptimizedPicture('/images/thank-you-email-img.png', 'Thank you Spectra', false, [{ width: '150' }]);
+  pictureWrapper.appendChild(spectraImg);
+  spectraImg.classList.add('thankyou-image');
+
+  container.appendChild(pictureWrapper);
+
+  // Replace form content
+  const form = document.querySelector('.category-form');
+  form.innerHTML = ''; // clear old content
+  form.appendChild(container);
+
+  // Scroll
+  document.querySelector('.thankyou-message').scrollIntoView({ behavior: 'smooth' });
+}
     const pdfAnchors = document.querySelectorAll('a[href$=".pdf"]');
     const thankyouUrl = `${window.location.pathname}?page=thankyou`;
     pdfAnchors.forEach((anchor) => {

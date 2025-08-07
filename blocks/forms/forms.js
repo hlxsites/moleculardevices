@@ -32,8 +32,8 @@ export function createHubSpotForm(formConfig, target, type = '') {
         let productImage = prepImageUrl(fieldValues.product_image);
         let productBImage = prepImageUrl(fieldValues.product_bundle_image);
         if(type ==='rfq'){
-          fieldValues.product_image = (fieldValues.product_image != "") ? productImage : 'NA';// to do.. get dynamic path for root
-          fieldValues.product_bundle_image = (fieldValues.product_bundle_image != "") ? productBImage : 'NA';// to do.. get dynamic path for root
+          fieldValues.product_image = (fieldValues.product_image != "") ? productImage : 'NA';// to do..to be moved on product template module
+          fieldValues.product_bundle_image = (fieldValues.product_bundle_image != "") ? productBImage : 'NA';// to do.. to be moved on product template module
           fieldValues.cmp = '701Rn00000OJ0zY'; // to do.. cmp to be replaced with actaul RFQ cmp or url parameter
            //console.log(fieldValues.product_image);
 
