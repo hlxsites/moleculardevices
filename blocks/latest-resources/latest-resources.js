@@ -86,7 +86,7 @@ export default async function decorate(block) {
   }
 
   /* view all CTA */
-  addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View all Resources');
+  addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View Resources');
 
   const resourceCard = await createCard({
     showDate: true,

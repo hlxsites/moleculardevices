@@ -133,7 +133,7 @@ function createBackBtn(stepNum) {
   );
 }
 
-function prepImageUrl(thumbImage) {
+export function prepImageUrl(thumbImage) {
   const thumbImg = thumbImage;
   let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {

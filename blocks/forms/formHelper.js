@@ -7,6 +7,8 @@ import {
   formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
 
+
+
 // extract data from table
 export async function extractFormData(block) {
   const blockData = {};
@@ -156,6 +158,8 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
 }
 
 export function handleFormSubmit(hubspotForm, formConfig, type) {
+
+
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
     // eslint-disable-next-line no-console
     console.error('Invalid HubSpot form detected.');
@@ -222,6 +226,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     };
 
     form.submit();
+
   } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
