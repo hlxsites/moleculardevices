@@ -83,14 +83,13 @@ export default async function buildAutoBlocks() {
 
   container.appendClass ='thankyou-img'; 
   container.innerHTML = `
-    <span align='center' class='thankyou-head'><h1>Thank you.</h1></span>
+    <span align='center' class='thankyou-head'><h2>Thank you.</h2></span>
     <p align='middle' class='thankyou-message'>
       We have received your request for quote and would like to thank you for contacting us.
       We have sent you an email to confirm your details. A sales rep will be contacting you within 24-business hours.
       If you require immediate attention, please feel free to contact us.
     </p>
-    <br>
-    <span align='center'><h1>Have a great day!</h1></span>
+      <span align='center'><h2>Have a great day!</h2></span>
   `;
 
   // Create picture and append separately
