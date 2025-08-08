@@ -82,7 +82,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --text-light-gray: #adb3b7;
   --text-orange: #ee7624;
   --text-white: #fff;
-  --midnight-green : #003b4d;
+  --midnight-green: #003b4d;
   --heading-color: #00758d;
   --heading-color-blue: #038296;
   --link-color: #337ab7;
@@ -1051,17 +1051,20 @@ main .section.features-section {
   background-color: var(--light-gray-background-color2);
 }
 
-main .section.features-section .default-content-wrapper {
+main .section.features-section .default-content-wrapper,
+main .section.applications-carousel-container .default-content-wrapper {
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper h2 {
+main .section.features-section .default-content-wrapper h2,
+main .section.applications-carousel-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
   font-size: var(--heading-font-size-xl);
   margin-bottom: 0;
+  padding: 0;
 }
 
 main .section.features-section .default-content-wrapper::after {
@@ -1279,8 +1282,8 @@ main .section.wave.orange-buttons {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-main .section.wave.orange-buttons > picture,
-main .section.wave.orange-buttons > picture > img,
+main .section.wave > picture,
+main .section.wave > picture > img,
 main:not(.sidekick-library) div.section.wave:last-child picture,
 main:not(.sidekick-library) div.section.wave:last-child img {
   width: 100%;
@@ -1291,6 +1294,14 @@ main div.section.wave .default-content-wrapper {
   margin-top: 50px;
   padding: 0 15px;
   padding-right: 15px;
+}
+
+.section.wave.customer-story-container.tabs {
+  color: var(--text-color);
+}
+
+main div.section.wave.customer-story-container .default-content-wrapper {
+  margin-top: 0;
 }
 
 main div.section.wave .default-content-wrapper h2 {
@@ -1370,10 +1381,12 @@ main div.section.wave.bluegreen::after {
 main div.section.wave.bluegreen2:not([style*="background-image"]) {
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(90deg,
-      rgba(21 145 164 / 100%) 0,
-      rgba(50 159 121 / 100%) 50%,
-      rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(21 145 164 / 100%) 0,
+    rgba(50 159 121 / 100%) 50%,
+    rgba(97 178 73 / 100%) 100%
+  ) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1402,10 +1415,12 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,
-        rgb(21 145 164 / 100%) 0,
-        rgb(46 159 121 / 100%) 50%,
-        rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(
+      90deg,
+      rgb(21 145 164 / 100%) 0,
+      rgb(46 159 121 / 100%) 50%,
+      rgb(97 178 73 / 100%) 100%
+    ) !important;
     background-image: none;
   }
 
@@ -1915,9 +1930,15 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .product .section.tabs .columns-wrapper h2,
-.technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
-.application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);

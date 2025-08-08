@@ -40,6 +40,7 @@ const TEMPLATE_LIST = [
   'about-us',
   'newsroom',
   'landing-page',
+  'product',
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
@@ -1039,9 +1040,9 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   detectAnchor();
-  if (window.location.hash) {
-    handleHashNavigation(window.location.hash);
-  }
+  // if (window.location.hash) {
+  //   handleHashNavigation(window.location.hash);
+  // }
 });
 
 /**
@@ -1664,6 +1665,7 @@ export function itemSearchTitle(item) {
 }
 
 export function toTitleCase(str) {
+  if (!str) return '';
   return str
     .toLowerCase()
     .split(/[\s-]+/)

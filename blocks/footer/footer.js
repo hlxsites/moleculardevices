@@ -158,7 +158,7 @@ async function buildNewsletter(container) {
     redirectUrl: null,
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID));
 
   const newsletterList = await getNewslettersList();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
