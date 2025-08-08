@@ -37,7 +37,7 @@ function handleEmbed() {
     console.error(`Failed to change the campaing ID: ${err.message}`);
   }
 
-  const observer = new MutationObserver((mutations) => {
+  /*const observer = new MutationObserver((mutations) => {
     const embed = document.querySelector('main .embed.block.embed-is-loaded');
     if (embed) {
       iframeResizeHandler('iframeContent');
@@ -63,7 +63,7 @@ function handleEmbed() {
     subtree: true,
     attributes: true,
     attributeFilter: ['style'],
-  });
+  });*/
 }
 
 export default async function buildAutoBlocks() {
