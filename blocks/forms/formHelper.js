@@ -1,13 +1,13 @@
 /* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
-import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
+import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 import {
   fieldsObj,
   formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
 
-
+const TEST_CMP_ID = '701Rn00000OJ0zY';
 
 // extract data from table
 export async function extractFormData(block) {
@@ -47,27 +47,17 @@ export function getFormFieldValues(formConfig) {
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
 
-  // get RFQ required field value on product page
-  const productBundle = getMetadata('bundle-products');
-  const productBundleImage = getMetadata('bundle-thumbnail');
-  const productFamily = getMetadata('product-family');
-  const productImage = getMetadata('thumbnail');
-  // const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
-  // const productSelection = getMetadata('bundle-thumbnail') || '';
-  // const qdc = getMetadata('bundle-thumbnail') || '';
-  // const website = getMetadata('bundle-thumbnail') || '';
-
   return {
-    cmp: valuecmp || formConfig.cmp,
+    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID,
     gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
     product_title: formConfig.productTitle,
-    product_bundle: formConfig.productBundle || productBundle,
-    product_bundle_image: formConfig.productBundleImage || productBundleImage,
-    product_family__c: formConfig.productFamily || productFamily,
-    product_image: formConfig.productImage || formConfig.resourceImageUrl || productImage,
+    product_bundle: formConfig.productBundle,
+    product_bundle_image: formConfig.productBundleImage,
+    product_family__c: formConfig.productFamily,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl,
     product_primary_application__c: formConfig.productPrimaryApplication,
     product_selection__c: formConfig.productSelection,
     qdc: formConfig.qdc,
@@ -158,8 +148,6 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
 }
 
 export function handleFormSubmit(hubspotForm, formConfig, type) {
-
-
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
     // eslint-disable-next-line no-console
     console.error('Invalid HubSpot form detected.');
@@ -226,7 +214,6 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     };
 
     form.submit();
-
   } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }

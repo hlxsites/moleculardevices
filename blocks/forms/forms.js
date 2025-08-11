@@ -5,14 +5,11 @@ import {
 import { loadCSS, toClassName, getMetadata } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase, getCookie } from '../../scripts/scripts.js';
 import { prepImageUrl } from '../quote-request/quote-request.js';
-
 import {
   extractFormData, getFormFieldValues,
   getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
-
- 
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig, target, type = '') {
@@ -24,24 +21,27 @@ export function createHubSpotForm(formConfig, target, type = '') {
       target: `#${target}`,
       onFormReady: (form) => {
         // Handle Salesforce hidden fields
-
-        //********  Rajneesh changes starts here  ********************* /
-
         const fieldValues = getFormFieldValues(formConfig);
-        console.log(JSON.stringify(fieldValues));
-        let productImage = prepImageUrl(fieldValues.product_image);
-        let productBImage = prepImageUrl(fieldValues.product_bundle_image);
-        if(type ==='rfq'){
-          const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000OJ0zY';
-          fieldValues.product_image        = (fieldValues.product_image != "") ? productImage : 'NA';// to do..to be moved on product template module
-          fieldValues.product_bundle_image = (fieldValues.product_bundle_image != "") ? productBImage : 'NA';// to do.. to be moved on product template module
-          fieldValues.requested_qdc_discussion__c      = 'Quote'; // Always send lead to SFDC
-          fieldValues.cmp = cmpValue; // to do.. cmp to be replaced with actaul RFQ cmp or url parameter
+        console.log(fieldValues);
+        console.log(formConfig);
 
-           //console.log(fieldValues.product_image);
+        //* *******  Rajneesh changes starts here  ********************* /
+        // console.log(JSON.stringify(fieldValues));
+        // let productImage = prepImageUrl(fieldValues.product_image);
+        // let productBImage = prepImageUrl(fieldValues.product_bundle_image);
+        // if (type === 'rfq') {
+        //   const cmpValue = getCookie('cmp') ? getCookie('cmp') : TEMP_CMP_ID;
+        //   fieldValues.product_image = (fieldValues.product_image != "")
+        //     ? productImage : 'NA';// to do..to be moved on product template module
+        //   fieldValues.product_bundle_image = (fieldValues.product_bundle_image != "")
+        //     ? productBImage : 'NA';// to do.. to be moved on product template module
+        //   fieldValues.requested_qdc_discussion__c = 'Quote'; // Always send lead to SFDC
+        //   fieldValues.cmp = cmpValue;
+        //   // to do.. cmp to be replaced with actaul RFQ cmp or url parameter
+        //   //console.log(fieldValues.product_image);
+        // }
+        //* *******  Rajneesh changes ends here  ********************* /
 
-          //********  Rajneesh changes ends here  ********************* /
-        }
         updateFormFields(form, fieldValues);
 
         // Customize the submit button
@@ -77,7 +77,7 @@ export function loadHubSpotScript(callback) {
 export default async function decorate(block, index) {
   const formConfig = await extractFormData(block);
   const formHeading = formConfig.heading || '';
-  const target = toClassName(formHeading) || `hubspot-form-${index}`;
+  let target = toClassName(formHeading) || `hubspot-form-${index}`;
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
@@ -92,15 +92,12 @@ export default async function decorate(block, index) {
 
   block.innerHTML = '';
   block.appendChild(form);
-  //console.log('formType'+formType);
 
-
-  
   if (formType) {
-
+    const isExistClass = document.querySelectorAll(`#${toClassName(formHeading)}`);
+    if (isExistClass.length > 1); target = `${target}-${isExistClass.length}`;
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig, target, formType));
-  } 
-    else {
+  } else {
     const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);

@@ -162,6 +162,7 @@ async function loadIframeForm(data, type) {
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
+    console.log(typeParam);
     rfqRUM.source = 'product';
     if (data.familyID) rfqRUM.target = data.familyID;
     tab = data.title;

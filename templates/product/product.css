@@ -1,14 +1,14 @@
 /* stylelint-disable no-descending-specificity */
 
-.thankyou-image{
-
-padding-left: 165px;
-font-size: 20px;
+.thankyou-image {
+  padding-left: 165px;
+  font-size: 20px;
 }
-.thankyou-head{
 
-	padding-left: 240px;
+.thankyou-head {
+  padding-left: 240px;
 }
+
 .thankyou img {
   width: 110px;
   height: 119px;
