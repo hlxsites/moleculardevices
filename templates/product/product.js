@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-import { getFormId } from '../../blocks/forms/formMapping.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { getRFQDataByFamilyID } from '../../blocks/quote-request/quote-request.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
@@ -17,36 +16,16 @@ export default async function buildAutoBlocks() {
 
     formLoaded = true;
 
-    const productBundle = getMetadata('product_bundle') || getMetadata('bundle-products');
-    const productBundleImage = getMetadata('product_bundle_image');
-    const productFamily = getMetadata('product_family__c');
-    const productImage = getMetadata('thumbnail');
-    const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
-    const productSelection = getMetadata('product_selection__c') || '';
-    const qdc = getMetadata('qdc') || '';
-    const website = getMetadata('website') || '';
     const familyID = getMetadata('family-id');
-    const formID = `${formType}-form`;
-
     const RFQData = await getRFQDataByFamilyID(familyID);
-    console.log('RFQ Data:', RFQData);
-
     const formConfig = {
-      formId: getFormId(formType),
-      id: formID,
-      redirectUrl: RFQData.redirectUrl || '',
-      productBundle: RFQData.productBundle || productBundle || '',
-      productBundleImage: RFQData.bundleThumbnail || productBundleImage || '',
-      productFamily: RFQData.productFamily || productFamily || '',
-      productImage: RFQData.productImage || productImage || '',
-      productPrimaryApplication: RFQData.productPrimaryApplication || productPrimaryApplication || '',
-      productSelection: RFQData.productSelection || productSelection || '',
-      qdc: RFQData.qdc || qdc || '',
-      website: RFQData.website || website || '',
+      ...RFQData,
+      formType,
+      formId: RFQData?.formId || formType || '',
+      redirectUrl: RFQData?.redirectUrl ?? null,
     };
-    console.log('formConfig:', formConfig);
 
-    loadHubSpotScript(() => createHubSpotForm(formConfig, formID));
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
     return true;
   };
 

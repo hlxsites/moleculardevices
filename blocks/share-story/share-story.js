@@ -2,21 +2,16 @@ import {
   div, a, p, h3, span, button,
 } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
-import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
+
+const formType = 'submit-story';
 
 function showSubmitStoryModal(e) {
   e.preventDefault();
   document.getElementById('submit-story-modal').classList.add('show');
   document.getElementById('submit-story-modal-overlay').classList.add('show');
   document.body.classList.add('modal-open');
-  const formConfig = {
-    redirectUrl: 'null',
-    formId: getFormId('share-story'),
-  };
-
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, 'submit-story-form'));
 }
 
 function hideSubmitStoryModal(e) {
@@ -80,6 +75,13 @@ export default async function decorate(block) {
   });
   document.body.appendChild(modal);
   document.body.appendChild(modalOverlay);
+
+  const formConfig = {
+    formType,
+    redirectUrl: null,
+  };
+
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
 
   return block;
 }

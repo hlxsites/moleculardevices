@@ -11,7 +11,7 @@ export const formMapping = [
   { type: 'newsletter', id: '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb' },
   { type: 'inquiry-with-thankyou', id: '5461143e-c315-40cf-9a92-dd8515e61d4c' },
   { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
-  { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
+  { type: 'submit-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
   { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
   { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
   { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },

@@ -6,7 +6,6 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { getFormId } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -162,7 +161,6 @@ async function loadIframeForm(data, type) {
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
-    console.log(typeParam);
     rfqRUM.source = 'product';
     if (data.familyID) rfqRUM.target = data.familyID;
     tab = data.title;
@@ -225,11 +223,12 @@ async function loadIframeForm(data, type) {
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
   // const mpCmpValue = queryParams && queryParams.get('mdcmp');
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
+  const formType = 'rfq';
 
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
-    formId: getFormId('rfq'),
+    formType,
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
@@ -251,17 +250,17 @@ async function loadIframeForm(data, type) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
 
-  const contactQuoteRequestID = 'contactQuoteRequest';
   const formWrapper = div(
     h3('Request Quote or Information for:'),
     h3(tab),
     p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
     div({
       class: 'contact-quote-request',
-      id: contactQuoteRequestID,
+      id: `${formType}-form`,
     }),
   );
-  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, 'rfq'));
+
+  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery));
   root.appendChild(formWrapper);
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;

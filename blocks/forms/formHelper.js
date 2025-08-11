@@ -3,8 +3,7 @@ import { input } from '../../scripts/dom-helpers.js';
 import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 import {
-  fieldsObj,
-  formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
+  fieldsObj, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
 
 const TEMP_CMP_ID = '701Rn00000OJ0zY';
@@ -30,9 +29,8 @@ export async function extractFormData(block) {
   return blockData;
 }
 
-export function getFormId(type) {
-  const mapping = formMapping.find((item) => item.type === type);
-  return mapping ? mapping.id : '';
+function isNA(inputName) {
+  return inputName === '0' ? 'NA' : inputName;
 }
 
 /* get form ready */
@@ -48,14 +46,14 @@ export function getFormFieldValues(formConfig) {
   const currentUrl = window.location.href.split('?')[0];
 
   // get RFQ required field value on product page
-  const productBundle = getMetadata('product_bundle');
+  const productBundle = getMetadata('product_bundle') || getMetadata('bundle-products');
   const productBundleImage = getMetadata('product_bundle_image');
   const productFamily = getMetadata('product_family__c');
   const productImage = getMetadata('thumbnail');
   const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
-  const productSelection = getMetadata('bundle-thumbnail') || '';
-  const qdc = getMetadata('bundle-thumbnail') || '';
-  const website = getMetadata('bundle-thumbnail') || '';
+  const productSelection = getMetadata('product_selection__c') || '';
+  const qdc = getMetadata('qdc') || '';
+  const website = getMetadata('website') || '';
 
   return {
     cmp: valuecmp || formConfig.cmp || TEMP_CMP_ID,
@@ -64,6 +62,10 @@ export function getFormFieldValues(formConfig) {
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
     product_title: formConfig.productTitle,
+
+    productBundle: isNA(formConfig.productBundle) || isNA(productBundle) || '',
+    productBundleImage: isNA(formConfig.bundleThumbnail) || isNA(productBundleImage) || '',
+
     product_bundle: formConfig.productBundle || productBundle || 'NA',
     product_bundle_image: formConfig.productBundleImage || productBundleImage || productSelection || 'NA',
     product_family__c: formConfig.productFamily || productFamily,
@@ -78,6 +80,8 @@ export function getFormFieldValues(formConfig) {
     latest_newsletter: formConfig.latestNewsletter,
     website: formConfig.website || formConfig.resourceUrl || website,
     source_url: currentUrl,
+
+    cta: formConfig.cta,
   };
 }
 
@@ -157,7 +161,7 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
   return { form, iframe };
 }
 
-export function handleFormSubmit(hubspotForm, formConfig, type) {
+export function handleFormSubmit(hubspotForm, formConfig) {
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
     // eslint-disable-next-line no-console
     console.error('Invalid HubSpot form detected.');
@@ -191,7 +195,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
 
   /* returnURL */
   let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl;
-  if (returnURL && returnURL !== 'null' && type !== 'Product') {
+  if (returnURL && returnURL !== 'null') {
     const hsmduri = returnURL;
     const hsmdkey = 'rfq';
     const hsmdvalue = qdc;
@@ -224,11 +228,11 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     };
 
     form.submit();
-  } else if (returnURL && returnURL !== 'null' && type !== 'Product') {
+  } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
 
-  if (type === 'newsletter' || type === 'lab-notes') {
+  if (formConfig.type === 'newsletter' || formConfig.type === 'lab-notes') {
     // eslint-disable-next-line no-undef, quote-props
     dataLayer.push({ 'event': 'new_subscriber' });
   }
