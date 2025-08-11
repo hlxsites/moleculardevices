@@ -64,7 +64,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/ipsc-d
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/semi-automated-scaffold-free-organoid-culture-workflow.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/full-workflow-automation-for-human-ipsc-derived-3d-cardiac-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/cellxpress-ai-automated-brain-organoid-generation.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-development-ipsc-3d-neural-organoids-of-calcium-oscillation.pdf
 
 
 
@@ -79,7 +79,7 @@ Disallow: /en/assets/app-note/bpd/qpix-flex-picker-ensures-colony-picking-accura
 Disallow: /en/assets/app-note/dd/img/screening-of-3d-spheroids-using-high-content-imager
 Disallow: /en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis
 Disallow: /en/assets/app-note/bpd/automated-microbial-plating-streaking-with-qpix-flex
-
+Disallow: /en/assets/app-note/dd/img/high-content-screening-ai-analysis-increase-insights-complex-3d-assay
 
 
 
