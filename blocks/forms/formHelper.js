@@ -191,7 +191,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
 
   /* returnURL */
   let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl;
-  if (returnURL && returnURL !== 'null') {
+  if (returnURL && returnURL !== 'null' && type !== 'Product') {
     const hsmduri = returnURL;
     const hsmdkey = 'rfq';
     const hsmdvalue = qdc;
@@ -224,7 +224,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     };
 
     form.submit();
-  } else if (returnURL && returnURL !== 'null') {
+  } else if (returnURL && returnURL !== 'null' && type !== 'Product') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
 
