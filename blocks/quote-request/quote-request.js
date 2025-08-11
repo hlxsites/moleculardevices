@@ -261,7 +261,7 @@ async function loadIframeForm(data, type) {
       id: contactQuoteRequestID,
     }),
   );
-  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, contactQuoteRequestID));
+  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, 'rfq'));
   root.appendChild(formWrapper);
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;

@@ -1,22 +1,3 @@
-import { toCamelCase } from '../../scripts/lib-franklin.js';
-
-// extract data from table
-export async function extractFormData(block) {
-  const blockData = {};
-  [...block.children].forEach((row) => {
-    const key = toCamelCase(row.children[0].textContent.trim().toLowerCase());
-    const valueContainer = row.children[1];
-    const link = valueContainer.querySelector('a');
-    const image = valueContainer.querySelector('img');
-    let value;
-    if (link) value = link.href;
-    else if (image) value = image.src;
-    else value = valueContainer.textContent.trim();
-    blockData[key] = value;
-  });
-  return blockData;
-}
-
 // form mappings
 export const formMapping = [
   { type: 'product-rfq', id: 'dc530303-2f0e-460c-ac4b-757c050359b5' },

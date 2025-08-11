@@ -2,12 +2,10 @@
 import {
   button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
-import { loadCSS, toClassName, getMetadata } from '../../scripts/lib-franklin.js';
-import { loadScript, toTitleCase, getCookie } from '../../scripts/scripts.js';
-import { prepImageUrl } from '../quote-request/quote-request.js';
+import { loadCSS, toClassName } from '../../scripts/lib-franklin.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import {
-  extractFormData, getFormFieldValues,
-  getFormId, handleFormSubmit, updateFormFields,
+  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
 
@@ -18,12 +16,24 @@ export function createHubSpotForm(formConfig, target, type = '') {
       region: formConfig.region || 'na1',
       portalId: formConfig.portalId || '20222769',
       formId: formConfig.formId || getFormId(type),
-      target: `#${target}`,
+      target: type ? `#${type}-form` : `#${target}`,
       onFormReady: (form) => {
         // Handle Salesforce hidden fields
         const fieldValues = getFormFieldValues(formConfig);
-        console.log(fieldValues);
-        console.log(formConfig);
+        updateFormFields(form, fieldValues);
+
+        // Customize the submit button
+        const submitInput = form.querySelector('input[type="submit"]');
+        if (submitInput) {
+          const submitButton = button({
+            type: 'submit',
+            class: 'button primary',
+          }, formConfig.cta || submitInput.value || 'Submit');
+          submitInput.replaceWith(submitButton);
+
+          const CTAColor = form?.closest('.section')?.getAttribute('data-cta-color');
+          if (CTAColor) submitButton.setAttribute('style', `background-color: ${CTAColor}`);
+        }
 
         //* *******  Rajneesh changes starts here  ********************* /
         // console.log(JSON.stringify(fieldValues));
@@ -41,21 +51,6 @@ export function createHubSpotForm(formConfig, target, type = '') {
         //   //console.log(fieldValues.product_image);
         // }
         //* *******  Rajneesh changes ends here  ********************* /
-
-        updateFormFields(form, fieldValues);
-
-        // Customize the submit button
-        const submitInput = form.querySelector('input[type="submit"]');
-        if (submitInput) {
-          const submitButton = button({
-            type: 'submit',
-            class: 'button primary',
-          }, formConfig.cta || submitInput.value || 'Submit');
-          submitInput.replaceWith(submitButton);
-
-          const CTAColor = form?.closest('.section')?.getAttribute('data-cta-color');
-          if (CTAColor) submitButton.setAttribute('style', `background-color: ${CTAColor}`);
-        }
       },
       onFormSubmit: (hubspotForm) => {
         handleFormSubmit(hubspotForm, formConfig, type);
@@ -69,9 +64,19 @@ export function createHubSpotForm(formConfig, target, type = '') {
 }
 
 /* load hubspot script */
+let hubspotLoaded = false;
 export function loadHubSpotScript(callback) {
   loadCSS('/blocks/forms/forms.css');
-  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
+
+  if (hubspotLoaded) {
+    callback();
+    return;
+  }
+
+  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, () => {
+    hubspotLoaded = true;
+    callback();
+  });
 }
 
 export default async function decorate(block, index) {
@@ -83,9 +88,9 @@ export default async function decorate(block, index) {
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
 
   const form = div(
-    h3(formHeading),
+    h3({ id: toClassName(formHeading) }, formHeading),
     div({
-      id: target,
+      id: `${formType}-form`,
       class: 'hubspot-form',
     }),
   );

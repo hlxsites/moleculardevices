@@ -14,3 +14,21 @@
   height: 119px;
   align-content: center;
 }
+
+.product main .hubspot-form .submitted-message {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.product main .hubspot-form .submitted-message a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.product main .hubspot-form .submitted-message img[alt='E-mail Icon'] {
+  max-width: 150px;
+}
+
+.product main h3:has(~ .hubspot-form .submitted-message) {
+  display: none;
+}

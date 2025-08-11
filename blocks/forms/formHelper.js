@@ -1,13 +1,13 @@
 /* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
-import { toCamelCase } from '../../scripts/lib-franklin.js';
+import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 import {
   fieldsObj,
   formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
 
-const TEST_CMP_ID = '701Rn00000OJ0zY';
+const TEMP_CMP_ID = '701Rn00000OJ0zY';
 
 // extract data from table
 export async function extractFormData(block) {
@@ -47,26 +47,36 @@ export function getFormFieldValues(formConfig) {
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
 
+  // get RFQ required field value on product page
+  const productBundle = getMetadata('product_bundle');
+  const productBundleImage = getMetadata('product_bundle_image');
+  const productFamily = getMetadata('product_family__c');
+  const productImage = getMetadata('thumbnail');
+  const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
+  const productSelection = getMetadata('bundle-thumbnail') || '';
+  const qdc = getMetadata('bundle-thumbnail') || '';
+  const website = getMetadata('bundle-thumbnail') || '';
+
   return {
-    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID,
+    cmp: valuecmp || formConfig.cmp || TEMP_CMP_ID,
     gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
     product_title: formConfig.productTitle,
-    product_bundle: formConfig.productBundle,
-    product_bundle_image: formConfig.productBundleImage,
-    product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage || formConfig.resourceImageUrl,
-    product_primary_application__c: formConfig.productPrimaryApplication,
+    product_bundle: formConfig.productBundle || productBundle,
+    product_bundle_image: formConfig.productBundleImage || productBundleImage || productSelection,
+    product_family__c: formConfig.productFamily || productFamily,
+    product_image: formConfig.productImage || formConfig.resourceImageUrl || productImage,
+    product_primary_application__c: formConfig.productPrimaryApplication || productPrimaryApplication,
     product_selection__c: formConfig.productSelection,
-    qdc: formConfig.qdc,
+    qdc: formConfig.qdc || qdc,
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
     return_url: formConfig.redirectUrl || thankyouUrl,
     landing_page_title: formConfig.jobTitle || formConfig.title,
     latest_newsletter: formConfig.latestNewsletter,
-    website: formConfig.website || formConfig.resourceUrl,
+    website: formConfig.website || formConfig.resourceUrl || website,
     source_url: currentUrl,
   };
 }
