@@ -1,10 +1,10 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
-  div, h3, ul, li, img, a, span, i, button,
-  p,
+  div, h3, ul, li, img, a, span, i, button, p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { fetchFragment, getCookie } from '../../scripts/scripts.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
@@ -222,7 +222,7 @@ async function loadIframeForm(data, type) {
 
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
   // const mpCmpValue = queryParams && queryParams.get('mdcmp');
-  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
+  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
   const formType = 'rfq';
 
   // if (mpCmpValue) cmpValue = mpCmpValue;

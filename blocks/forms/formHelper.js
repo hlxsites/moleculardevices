@@ -2,7 +2,7 @@
 import { input } from '../../scripts/dom-helpers.js';
 import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
-import { prepImageUrl } from '../quote-request/quote-request.js';
+import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-request.js';
 import {
   fieldsObj, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
@@ -35,7 +35,7 @@ function isNA(inputName) {
 }
 
 /* get form ready */
-export function getFormFieldValues(formConfig) {
+export async function getFormFieldValues(formConfig) {
   // Get the `cmp` parameters from URL or cookie
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -57,11 +57,15 @@ export function getFormFieldValues(formConfig) {
   const website = getMetadata('website') || '';
   const productTitle = getMetadata('og:title') || document.getElementsByTagName('h1')[0];
 
+  const familyID = getMetadata('family-id');
+  const RFQData = setTimeout(() => getRFQDataByFamilyID(familyID), 100);
+
   productBundleImage = prepImageUrl(productBundleImage);
   productImage = prepImageUrl(productImage);
 
   return {
     ...formConfig,
+    ...RFQData,
     cmp: valuecmp || formConfig.cmp || TEMP_CMP_ID,
     gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
