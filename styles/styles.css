@@ -2849,11 +2849,15 @@ main .section.columns-2.layout-50-50{
 .event main .section .default-content-wrapper p:first-child{
   margin-top: 80px;
 }
- .find-out-more{
+.event main .section .event-featured-products p{
   max-width: 240px;
     margin: auto;
  }
- .find-out-more a:any-link {
+ .event main .section .event-featured-products .image-left{
+  gap:0;
+ }
+ .event 
+ .event-featured-products a:any-link {
     
     color:#000
 }
