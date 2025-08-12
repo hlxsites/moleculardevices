@@ -159,7 +159,6 @@ async function loadIframeForm(data, type) {
   let productImage = '';
   let bundleThumbnail = '';
   let productBundle = '';
-  let sfdcHostName = '';
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
@@ -169,7 +168,6 @@ async function loadIframeForm(data, type) {
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
-    sfdcHostName = data.host_name;
 
     // prepare the product image url
     if (data.thumbnail && data.thumbnail !== '0') {
