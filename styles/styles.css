@@ -2849,7 +2849,7 @@ main .section.columns-2.layout-50-50{
 .event main .section .default-content-wrapper p:first-child{
   margin-top: 80px;
 }
-.event main .section .event-featured-products p{
+.event main .section .event-featured-products p:nth-child(2){
   max-width: 240px;
     margin: auto;
  }
