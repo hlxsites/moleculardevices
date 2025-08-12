@@ -2,6 +2,7 @@
 import { input } from '../../scripts/dom-helpers.js';
 import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
+import { prepImageUrl } from '../quote-request/quote-request.js';
 import {
   fieldsObj, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
@@ -47,31 +48,36 @@ export function getFormFieldValues(formConfig) {
 
   // get RFQ required field value on product page
   const productBundle = getMetadata('product_bundle') || getMetadata('bundle-products');
-  const productBundleImage = getMetadata('product_bundle_image');
+  let productBundleImage = getMetadata('product_bundle_image') || getMetadata('bundle-thumbnail');
   const productFamily = getMetadata('product_family__c');
-  const productImage = getMetadata('thumbnail');
-  const productPrimaryApplication = getMetadata('bundle-thumbnail') || '';
-  const productSelection = getMetadata('product_selection__c') || '';
+  let productImage = getMetadata('thumbnail');
+  const productPrimaryApplication = getMetadata('bundle-products') || '';
+  const productSelection = getMetadata('bundle-products') || '';
   const qdc = getMetadata('qdc') || '';
   const website = getMetadata('website') || '';
+  const productTitle = getMetadata('og:title') || document.getElementsByTagName('h1')[0];
+
+  productBundleImage = prepImageUrl(productBundleImage);
+  productImage = prepImageUrl(productImage);
 
   return {
+    ...formConfig,
     cmp: valuecmp || formConfig.cmp || TEMP_CMP_ID,
     gclid__c: formConfig.gclid,
     google_analytics_medium__c: formConfig.googleAnalyticsMedium,
     google_analytics_source__c: formConfig.googleAnalyticsSource,
     keyword_ppc__c: formConfig.keywordPPC,
-    product_title: formConfig.productTitle,
+    product_title: formConfig.productTitle || productTitle,
 
-    productBundle: isNA(formConfig.productBundle) || isNA(productBundle) || '',
-    productBundleImage: isNA(formConfig.bundleThumbnail) || isNA(productBundleImage) || '',
+    productBundle: isNA(formConfig.productBundle) || isNA(productBundle) || 'NA',
+    productBundleImage: isNA(formConfig.bundleThumbnail) || isNA(productBundleImage) || 'NA',
 
-    product_bundle: formConfig.productBundle || productBundle || 'NA',
-    product_bundle_image: formConfig.productBundleImage || productBundleImage || productSelection || 'NA',
+    product_bundle: productBundle,
+    product_bundle_image: productBundleImage,
     product_family__c: formConfig.productFamily || productFamily,
     product_image: formConfig.productImage || formConfig.resourceImageUrl || productImage,
     product_primary_application__c: formConfig.productPrimaryApplication || productPrimaryApplication,
-    product_selection__c: formConfig.productSelection,
+    product_selection__c: formConfig.productTitle || productTitle || formConfig.productSelection || productSelection,
     qdc: formConfig.qdc || qdc,
     requested_qdc_discussion__c: formConfig.qdc,
     research_area: formConfig.researchArea,
@@ -80,8 +86,6 @@ export function getFormFieldValues(formConfig) {
     latest_newsletter: formConfig.latestNewsletter,
     website: formConfig.website || formConfig.resourceUrl || website,
     source_url: currentUrl,
-
-    cta: formConfig.cta,
   };
 }
 

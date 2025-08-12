@@ -9,6 +9,16 @@ import {
 } from './formHelper.js';
 import { formMapping, getFormId } from './formMapping.js';
 
+function redirectToFormSection(formConfig) {
+  const formBlock = document.querySelector(`.${formConfig.formType}`);
+  console.log(formBlock);
+  if (formBlock) {
+    const offset = -100;
+    const y = formBlock.getBoundingClientRect().top + window.pageYOffset + offset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
 /* create hubspot form */
 let hubspotFormRetryTimeout;
 export function createHubSpotForm(formConfig) {
@@ -28,6 +38,7 @@ export function createHubSpotForm(formConfig) {
 
       onFormReady: (form) => {
         // Handle Salesforce hidden fields
+        redirectToFormSection(formConfig);
         const fieldValues = getFormFieldValues(formConfig);
         updateFormFields(form, fieldValues);
 
@@ -47,6 +58,7 @@ export function createHubSpotForm(formConfig) {
         }
       },
       onFormSubmit: (hubspotForm) => {
+        redirectToFormSection(formConfig);
         handleFormSubmit(hubspotForm, formConfig);
       },
     });

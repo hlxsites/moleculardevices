@@ -21,7 +21,7 @@ const formType = 'lab-notes';
 const formConfig = {
   formType,
   latestNewsletter: await getLatestNewsletter(),
-  redirectUrl: null,
+  redirectUrl: 'null',
 };
 
 export async function newsletterModal(metaCMP = '') {

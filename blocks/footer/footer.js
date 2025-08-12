@@ -153,7 +153,7 @@ async function buildNewsletter(container) {
   const formConfig = {
     formType,
     latestNewsletter: await getLatestNewsletter(),
-    redirectUrl: null,
+    redirectUrl: 'null',
   };
 
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig));

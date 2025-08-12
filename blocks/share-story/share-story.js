@@ -78,7 +78,7 @@ export default async function decorate(block) {
 
   const formConfig = {
     formType,
-    redirectUrl: null,
+    redirectUrl: 'null',
   };
 
   loadHubSpotScript(createHubSpotForm.bind(null, formConfig));

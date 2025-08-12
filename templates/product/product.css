@@ -15,20 +15,31 @@
   align-content: center;
 }
 
-.product main .hubspot-form .submitted-message {
+main .category-form.product-rfq-thankyou-section .forms-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.product main .product-rfq .submitted-message {
   text-align: center;
   font-size: 1rem;
 }
 
-.product main .hubspot-form .submitted-message a {
+.product main .product-rfq .submitted-message a {
   color: inherit;
   text-decoration: underline;
 }
 
-.product main .hubspot-form .submitted-message img[alt='E-mail Icon'] {
+.product main .product-rfq .submitted-message img[alt="E-mail Icon"] {
   max-width: 150px;
 }
 
-.product main h3:has(~ .hubspot-form .submitted-message) {
+.product main h3:has(~ .product-rfq .submitted-message) {
   display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  main .category-form.product-rfq-thankyou-section .forms-wrapper .block {
+    max-width: 50%;
+  }
 }
