@@ -108,6 +108,7 @@ export const fieldsObj = [
   { inputName: 'Google_Analytics_Source__c', inputFieldName: 'google_analytics_source__c' },
   { inputName: 'Campaign_ID', inputFieldName: 'cmp' },
   { inputName: 'cmp', inputFieldName: 'cmp' },
+  { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
 ];
 
 /* get form ready */
@@ -120,7 +121,7 @@ export function getFormFieldValues(formConfig) {
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
-
+  // console.log(formConfig.host_name);
   return {
     cmp: valuecmp || formConfig.cmp,
     gclid__c: formConfig.gclid,
