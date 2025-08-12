@@ -2838,20 +2838,20 @@ main .section.columns-2.layout-50-50{
   text-align: center;
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
-   
-    padding-top: 25px;
+  padding-top: 25px;
 }
 .event main .columns-container .default-content-wrapper .find-out-more{
 
   padding-left: 550px ;
   padding-top: 50px ;
 }
-.event main .section .default-content-wrapper p:first-child{
-  margin-top: 80px;
-}
+
 .event main .section .event-featured-products p:nth-child(2){
   max-width: 240px;
     margin: auto;
+ }
+ .event .event-banner{
+  margin-bottom: 6rem;
  }
  .event main .section .event-featured-products .image-left{
   gap:0;
