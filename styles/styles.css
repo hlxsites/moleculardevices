@@ -2836,15 +2836,18 @@ main .section.columns-2.layout-50-50{
   }
 .default-content-wrapper #featured-products{
   text-align: center;
-  font-size: 26px;
-  font-family: "Proxima Nova ExtraBold", "Proxima Nova ExtraBold Fallback", "helvetica neue", helvetica, arial,
-    sans-serif;
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+   
     padding-top: 25px;
 }
 .event main .columns-container .default-content-wrapper .find-out-more{
 
   padding-left: 550px ;
   padding-top: 50px ;
+}
+.find-out-more a:any-link{
+ color: #000000;
 }
 /*  Rajneesh css  ends*/  
 
