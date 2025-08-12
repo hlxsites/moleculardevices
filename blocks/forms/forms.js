@@ -27,7 +27,6 @@ export function createHubSpotForm(formConfig) {
       target: `#${formConfig.formType}-form`,
 
       onFormReady: (form) => {
-        console.log(form);
         // Handle Salesforce hidden fields
         const fieldValues = getFormFieldValues(formConfig);
         updateFormFields(form, fieldValues);
