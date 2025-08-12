@@ -2846,8 +2846,13 @@ main .section.columns-2.layout-50-50{
   padding-left: 550px ;
   padding-top: 50px ;
 }
-.find-out-more a:any-link{
- color: #fff;
+.event main .section .default-content-wrapper p:first-child{
+  margin-top: 80px;
+}
+
+ .find-out-more a:any-link {
+    max-width: 240px;
+    margin: auto;
 }
 /*  Rajneesh css  ends*/  
 
