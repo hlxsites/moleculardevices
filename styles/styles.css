@@ -2856,6 +2856,10 @@ main .section.columns-2.layout-50-50{
  .event main .section .event-featured-products .image-left{
   gap:0;
  }
+  .event main .section .event-featured-products{
+    max-width: 85%;
+    margin: auto;
+  }
  .event 
  .event-featured-products a:any-link {
     
