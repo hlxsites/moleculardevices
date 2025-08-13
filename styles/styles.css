@@ -2865,6 +2865,11 @@ main .section.columns-2.layout-50-50{
     
     color:#000
 }
+ .event 
+ .event-featured-products a:any-link:hover, .event 
+ .event-featured-products a:any-link:focus{
+  text-decoration: underline;
+ }
 /*  Rajneesh css  ends*/  
 
 @media only screen and (min-width: 768px) {
