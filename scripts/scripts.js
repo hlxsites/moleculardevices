@@ -40,7 +40,7 @@ const TEMPLATE_LIST = [
   'about-us',
   'newsroom',
   'landing-page',
-  'product',
+  //'product',
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
