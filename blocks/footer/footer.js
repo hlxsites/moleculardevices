@@ -132,7 +132,6 @@ async function buildNewsletter(container) {
     return; // newsletter already present
   }
 
-  const formID = 'enewsletterSubscribeForm';
   const formType = 'newsletter';
   const formHeading = 'Lab Notes eNewsletter';
 

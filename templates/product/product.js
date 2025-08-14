@@ -7,7 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 const formType = 'product-rfq';
-export const productThankyouSection = 'product-rfq-thankyou-section';
+export const productThankyouSection = `${formType}-thankyou-section`;
 
 function rfqThankyouMessage() {
   const thankyouWrapper = div({ class: 'submitted-message' });
@@ -39,7 +39,7 @@ export default async function buildAutoBlocks() {
     if (pageParam && pageParam === 'thankyou') {
       const thankyouMessage = rfqThankyouMessage();
       const formSection = formBlock.closest('.section');
-      formSection.classList.add('product-rfq-thankyou-section');
+      formSection.classList.add(productThankyouSection);
       formSection.classList.remove('columns-2');
       formSection.firstElementChild.remove();
       formBlock.parentElement.replaceWith(thankyouMessage);
@@ -60,11 +60,10 @@ export default async function buildAutoBlocks() {
     const RFQData = await getRFQDataByFamilyID(familyID);
 
     const formConfig = {
-      ...RFQData,
       formType,
+      ...RFQData,
     };
 
-    console.log(formConfig);
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
     return true;
   };

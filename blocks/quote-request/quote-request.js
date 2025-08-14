@@ -6,9 +6,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { getFormId } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
+const formType = 'rfq';
 
 const url = '/quote-request/global-rfq.json';
 const rfqTypes = await ffetch(url).sheet('types').all();
@@ -230,7 +230,7 @@ async function loadIframeForm(data, type) {
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
-    formId: getFormId('rfq'),
+    formType,
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
@@ -252,14 +252,13 @@ async function loadIframeForm(data, type) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
 
-  const contactQuoteRequestID = 'contactQuoteRequest';
   const formWrapper = div(
     h3('Request Quote or Information for:'),
     h3(tab),
     p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
     div({
-      class: 'contact-quote-request',
-      id: contactQuoteRequestID,
+      class: `${formType}-form`,
+      id: `${formType}-form`,
     }),
   );
   loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery));

@@ -12,7 +12,6 @@ import { formMapping } from './formMapping.js';
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig) {
-  console.log(formConfig);
   try {
     hbspt.forms.create({ // eslint-disable-line
       region: formConfig.region || 'na1',
