@@ -2,6 +2,7 @@
 import { input } from '../../scripts/dom-helpers.js';
 import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
+import { prepImageUrl } from '../quote-request/quote-request.js';
 import {
   fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
@@ -27,6 +28,11 @@ export async function extractFormData(block) {
   return blockData;
 }
 
+export function getProductImage(thumbnail) {
+  return thumbnail && thumbnail !== '0' ? prepImageUrl(thumbnail) : '';
+}
+
+/* get form id */
 export function getFormId(type) {
   const mapping = formMapping.find((item) => item.type === type);
   return mapping ? mapping.id : '';
@@ -67,7 +73,7 @@ export function getFormFieldValues(formConfig) {
   };
 }
 
-// Function to update multiple form fields
+/*  Function to update multiple form fields */
 export function updateFormFields(form, fieldValues) {
   Object.entries(fieldValues).forEach(([fieldName, value]) => {
     if (value && form.querySelector(`input[name="${fieldName}"]`)) {
@@ -143,6 +149,7 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
   return { form, iframe };
 }
 
+/* handle form submit */
 export function handleFormSubmit(hubspotForm, formConfig, type) {
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
     // eslint-disable-next-line no-console
@@ -218,4 +225,37 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     // eslint-disable-next-line no-undef, quote-props
     dataLayer.push({ 'event': 'new_subscriber' });
   }
+}
+
+/* get common RFQ data */
+export function getCommonRFQData({
+  productFamily = '',
+  productSelection = '',
+  productPrimaryApplication = '',
+  productImage = 'NA',
+  productBundleImage = 'NA',
+  productBundle = '',
+  familyID = '',
+  qdc = 'Quote',
+}) {
+  const queryParams = new URLSearchParams(window.location.search);
+  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ';
+
+  return {
+    productFamily,
+    productSelection,
+    productPrimaryApplication,
+    cmp: cmpValue,
+    googleAnalyticsMedium: getCookie('utm_medium') || '',
+    googleAnalyticsSource: getCookie('utm_source') || '',
+    keywordPPC: getCookie('utm_keyword') || '',
+    gclid: getCookie('gclid') || '',
+    productImage,
+    productBundleImage,
+    productBundle,
+    qdc: queryParams.get('request_type') || qdc,
+    redirectUrl: familyID
+      ? `https://www.moleculardevices.com/quote-request-success?cat=${familyID}`
+      : 'https://www.moleculardevices.com/quote-request-success',
+  };
 }

@@ -1,11 +1,13 @@
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie, fetchFragment } from '../../scripts/scripts.js';
+// eslint-disable-next-line import/no-cycle
+import { fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getCommonRFQData, getProductImage } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 const formType = 'rfq';
@@ -133,7 +135,7 @@ function createBackBtn(stepNum) {
   );
 }
 
-function prepImageUrl(thumbImage) {
+export function prepImageUrl(thumbImage) {
   const thumbImg = thumbImage;
   let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
@@ -145,61 +147,63 @@ function prepImageUrl(thumbImage) {
   return thumbImgnew;
 }
 
+export async function getMetaRelatedProduct(metaPath) {
+  const fragmentHtml = await fetchFragment(metaPath, false);
+  if (!fragmentHtml) return null;
+
+  const relatedProducts = div();
+  relatedProducts.innerHTML = fragmentHtml;
+
+  return relatedProducts.querySelector('meta[name="related-products"]')?.content || '';
+}
+
+export function createFormWrapper(formtype, tab) {
+  return div(
+    h3('Request Quote or Information for:'),
+    h3(tab),
+    p('To ensure the best solution for your application, please complete the form in full.'),
+    div({ class: `${formtype}-form`, id: `${formtype}-form` }));
+}
+
 async function loadIframeForm(data, type) {
   const root = document.getElementById('step-3');
-  const rfqRUM = { source: 'global' };
   root.innerHTML = '';
 
   let tab = '';
   let sfdcProductFamily = '';
   let sfdcProductSelection = '';
   let sfdcPrimaryApplication = '';
-  let productFamily = '';
-  let primaryProductFamily = '';
   let productImage = '';
-  let bundleThumbnail = '';
+  let bundleImage = '';
   let productBundle = '';
-  // let sfdcHostName = '';
+
   const queryParams = new URLSearchParams(window.location.search);
+
   if (type === 'Product') {
-    const typeParam = queryParams && queryParams.get('type');
-    rfqRUM.source = 'product';
-    if (data.familyID) rfqRUM.target = data.familyID;
+    const typeParam = queryParams.get('type');
     tab = data.title;
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
-    // sfdcHostName = data.host_name;
 
-    // prepare the product image url
-    if (data.thumbnail && data.thumbnail !== '0') {
-      productImage = prepImageUrl(data.thumbnail);
-    }
+    productImage = getProductImage(data.thumbnail);
 
-    // special handling for bundles and customer breakthrough
-    if (typeParam
-      && typeParam.toLowerCase() === 'bundle'
-      && data.productBundle
-      && data.productBundle !== '0'
-    ) {
+    if (typeParam?.toLowerCase() === 'bundle' && data.productBundle) {
       tab = `${data.productBundle} Bundle`;
       productBundle = data.productBundle;
-      // prepare the product bundle thumbnail url
-      if (data.bundleThumbnail && data.bundleThumbnail !== '0') {
-        bundleThumbnail = prepImageUrl(data.bundleThumbnail);
-      }
-    } else if (data.type === 'Customer Breakthrough') {
+      bundleImage = getProductImage(data.bundleThumbnail);
+    }
+
+    if (data.type === 'Customer Breakthrough') {
       const fragmentHtml = await fetchFragment(data.path, false);
       if (fragmentHtml) {
-        const fragmentElement = div();
-        fragmentElement.innerHTML = fragmentHtml;
-        const relatedProducts = fragmentElement
-          .querySelector('meta[name="related-products"]')
-          .getAttribute('content');
-        tab = relatedProducts && relatedProducts.trim().length > 0 ? relatedProducts : data.title;
+        const relatedProducts = div();
+        relatedProducts.innerHTML = fragmentHtml;
+        const meta = relatedProducts.querySelector('meta[name="related-products"]')?.content || '';
+        tab = meta.trim() || data.title;
         sfdcPrimaryApplication = tab;
 
-        const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
+        const mainProduct = await getRFQDataByTitle(meta.split(',')[0]?.trim());
         if (mainProduct) {
           sfdcProductFamily = mainProduct.productFamily;
           sfdcProductSelection = mainProduct.productFamily;
@@ -208,49 +212,26 @@ async function loadIframeForm(data, type) {
     }
   } else {
     tab = data;
+    const primaryFamily = rfqTypes.find(({ Type }) => Type.includes(tab));
+    if (primaryFamily) sfdcProductFamily = primaryFamily.PrimaryProductFamily;
 
-    primaryProductFamily = rfqTypes.filter(({ Type }) => Type.includes(tab) > 0);
-    if (primaryProductFamily.length > 0) {
-      sfdcProductFamily = primaryProductFamily[0].PrimaryProductFamily;
-    }
-
-    productFamily = rfqCategories.filter(({ Category }) => Category.includes(tab) > 0);
-    if (productFamily.length > 0) {
-      sfdcProductFamily = productFamily[0].ProductFamily;
-    }
+    const productFamily = rfqCategories.find(({ Category }) => Category.includes(tab));
+    if (productFamily) sfdcProductFamily = productFamily.ProductFamily;
 
     sfdcProductSelection = tab;
     sfdcPrimaryApplication = tab;
   }
 
-  // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
-  // const mpCmpValue = queryParams && queryParams.get('mdcmp');
-  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
-
-  // if (mpCmpValue) cmpValue = mpCmpValue;
-  const requestTypeParam = queryParams && queryParams.get('request_type');
-  const hubSpotQuery = {
-    formType,
+  const hubSpotQuery = getCommonRFQData({
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
-    cmp: cmpValue,
-    googleAnalyticsMedium: getCookie('utm_medium') ? getCookie('utm_medium') : '',
-    googleAnalyticsSource: getCookie('utm_source') ? getCookie('utm_source') : '',
-    keywordPPC: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
-    gclid: getCookie('gclid') ? getCookie('gclid') : '',
-    productImage: productImage || 'NA',
-    productBundleImage: bundleThumbnail || 'NA',
+    productImage,
+    productBundleImage: bundleImage,
     productBundle,
-    qdc: requestTypeParam || 'Quote',
-    redirectUrl: data.familyID
-      ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
-      : 'https://www.moleculardevices.com/quote-request-success',
-  };
-
-  if (data.path) {
-    hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
-  }
+    familyID: data.familyID,
+  });
+  hubSpotQuery.formType = formType;
 
   const formWrapper = div(
     h3('Request Quote or Information for:'),
@@ -261,11 +242,10 @@ async function loadIframeForm(data, type) {
       id: `${formType}-form`,
     }),
   );
+
   loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery));
-  root.appendChild(formWrapper);
-  root.appendChild(createBackBtn('step-3'));
-  rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;
-  sampleRUM('rfq', rfqRUM);
+  root.append(formWrapper, createBackBtn('step-3'));
+  sampleRUM('rfq', { source: type.toLowerCase(), target: data.familyID });
 }
 
 /* step one */
@@ -343,10 +323,7 @@ export default async function decorate(block) {
     const htmlContent = block.children[0].children[0];
     block.innerHTML = '';
     block.appendChild(
-      div(
-        {
-          class: 'rfq-product-wrapper',
-        },
+      div({ class: 'rfq-product-wrapper' },
         div({ class: 'rfq-thankyou-msg' }, htmlContent),
       ),
     );
