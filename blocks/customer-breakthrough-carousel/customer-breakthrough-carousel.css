@@ -1,0 +1,144 @@
+.section.wave.customer-breakthrough-carousel-container,
+.section.wave.customer-breakthrough-carousel-container h2 {
+  color: var(--text-color);
+}
+
+.section.wave.customer-breakthrough-carousel-container > .default-content-wrapper {
+  margin-top: 0;
+}
+
+main .section.customer-breakthrough-carousel-container .default-content-wrapper h2 {
+  font-family: var(--ff-proxima-light);
+  font-size: var(--heading-font-size-xl);
+  text-align: center;
+}
+
+main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
+  width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+main .carousel.customer-breakthrough-carousel {
+  width: 90%;
+  padding: 0 0 30px;
+}
+
+main .customer-breakthrough-carousel .carousel-item {
+  display: block;
+  width: 33.3%;
+  max-width: 33.3%;
+  padding: 20px 15px;
+  margin: 0;
+}
+
+main .customer-breakthrough-carousel .card .card-type {
+  display: block;
+}
+
+main .customer-breakthrough-carousel .card .card-thumb {
+  height: 190px;
+  min-height: 190px;
+  overflow: hidden;
+}
+
+main .customer-breakthrough-carousel .card .card-thumb img {
+  height: 190px;
+}
+
+main .customer-breakthrough-carousel .card .card-description {
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 767px) {
+  main .carousel.customer-breakthrough-carousel.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+    width: 100%;
+  }
+
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper.list .carousel-nav-button {
+    display: none;
+  }
+
+  main .customer-breakthrough-carousel.list .carousel-item.clone {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
+    width: 940px;
+  }
+
+  main .carousel.customer-breakthrough-carousel.list .carousel-item {
+    width: 50%;
+    max-width: 360px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .customer-breakthrough-carousel-container {
+    padding-top: 30px;
+  }
+
+  .product .customer-breakthrough-carousel-container h2,
+  .technology .customer-breakthrough-carousel-container h2,
+  .application .customer-breakthrough-carousel-container h2 {
+    font-size: 45px;
+  }
+
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
+    width: 750px;
+  }
+
+  main .carousel.customer-breakthrough-carousel {
+    width: 85%;
+  }
+
+  main .carousel.customer-breakthrough-carousel .carousel-item {
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+
+  main .carousel.customer-breakthrough-carousel {
+    width: 100%;
+    padding: 0 10%;
+  }
+
+  main .carousel.customer-breakthrough-carousel .carousel-item,
+  main .carousel.customer-breakthrough-carousel.list .carousel-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper .carousel-nav-button {
+    display: none;
+  }
+
+  main .carousel.customer-breakthrough-carousel .card-thumb,
+  main .customer-breakthrough-carousel .card-thumb img {
+    height: 150px;
+    min-height: 150px;
+  }
+
+  .product .customer-breakthrough-carousel-container h2,
+  .technology .customer-breakthrough-carousel-container h2,
+  .application .customer-breakthrough-carousel-container h2 {
+    font-size: 36px;
+  }
+}

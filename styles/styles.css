@@ -1279,8 +1279,8 @@ main .section.wave.orange-buttons {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-main .section.wave.orange-buttons > picture,
-main .section.wave.orange-buttons > picture > img,
+main .section.wave > picture,
+main .section.wave > picture > img,
 main:not(.sidekick-library) div.section.wave:last-child picture,
 main:not(.sidekick-library) div.section.wave:last-child img {
   width: 100%;
