@@ -58,7 +58,7 @@ export async function newsletterModal(metaCMP = '') {
     ),
   );
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, modalIframeID, formType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   await decorateModal(modalBody, 'newsletter-inner-wrapper', true);
 }
 
@@ -95,7 +95,7 @@ export default async function decorate() {
       }),
     );
 
-    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID, formType));
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
     spectraNewsletter.appendChild(sidebar);
   }
 

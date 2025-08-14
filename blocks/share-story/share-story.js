@@ -16,7 +16,7 @@ function showSubmitStoryModal(e) {
     formId: getFormId('share-story'),
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, 'submit-story-form'));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
 }
 
 function hideSubmitStoryModal(e) {
