@@ -114,9 +114,6 @@ export default async function decorate(block, index) {
           formConfig.productPrimaryApplication = sfdcProductSelection;
           formConfig.productFamily = sfdcProductFamily;
           
-        //console.log('productImage '+formConfig.productImage);
-        //console.log('bundleThumbnail2 '+formConfig.productBundleImage);
-       
         }
   // Rajneesh new changes ends here
 
