@@ -138,6 +138,10 @@
   margin-bottom: 1rem;
 }
 
+.featured-event-banner .booth{
+  margin:25px 0;
+  font-weight: 600;
+}
 @media only screen and (min-width: 768px) {
   .event-banner {
     grid-template-columns: 65% 35%;
