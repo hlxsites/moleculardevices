@@ -28,7 +28,7 @@ export default async function decorate(block) {
         p(region),
       
       ),
-     booth ? div(   p({class:"booth"}, booth)):"",),
+     booth ? div( p({class:"booth"}, booth)):"",
       socialShareBlock('Share this event', socials),
     ),
   );
