@@ -12,6 +12,7 @@ import { formMapping } from './formMapping.js';
 
 /* create hubspot form */
 export function createHubSpotForm(formConfig) {
+  console.log(formConfig);
   try {
     if (window.hbspt?.forms) {
       window.hbspt?.forms.create({

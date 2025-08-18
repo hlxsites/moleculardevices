@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
 import { getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
@@ -6,7 +7,6 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { getFormId } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -133,7 +133,7 @@ function createBackBtn(stepNum) {
   );
 }
 
-function prepImageUrl(thumbImage) {
+export function prepImageUrl(thumbImage) {
   const thumbImg = thumbImage;
   let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
@@ -158,8 +158,8 @@ async function loadIframeForm(data, type) {
   let primaryProductFamily = '';
   let productImage = '';
   let bundleThumbnail = '';
-  let productBundle = '';
-  let sfdcHostName = '';
+  let productBundle = 'NA';
+  // let sfdcHostName = '';
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
@@ -169,7 +169,7 @@ async function loadIframeForm(data, type) {
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
-    sfdcHostName = data.host_name;
+    // sfdcHostName = data.host_name;
 
     // prepare the product image url
     if (data.thumbnail && data.thumbnail !== '0') {
@@ -230,14 +230,14 @@ async function loadIframeForm(data, type) {
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
-    formId: getFormId('rfq'),
+    formType: 'rfq',
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
     cmp: cmpValue,
-    googleAnalyticsMedium: getCookie('utm_medium') ? getCookie('utm_medium') : '',
-    googleAnalyticsSource: getCookie('utm_source') ? getCookie('utm_source') : '',
-    keywordPPC: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
+    googleAnalyticsMedium: getCookie('utm_medium') || '',
+    googleAnalyticsSource: getCookie('utm_source') || '',
+    keywordPPC: getCookie('utm_keyword') || '',
     gclid: getCookie('gclid') ? getCookie('gclid') : '',
     productImage: productImage || 'NA',
     productBundleImage: bundleThumbnail || 'NA',
@@ -251,18 +251,18 @@ async function loadIframeForm(data, type) {
   if (data.path) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
+  console.log(hubSpotQuery);
 
-  const contactQuoteRequestID = 'contactQuoteRequest';
   const formWrapper = div(
     h3('Request Quote or Information for:'),
     h3(tab),
     p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
     div({
-      class: 'contact-quote-request',
-      id: contactQuoteRequestID,
+      class: `${hubSpotQuery.formType}-form`,
+      id: `${hubSpotQuery.formType}-form`,
     }),
   );
-  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, contactQuoteRequestID));
+  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery));
   root.appendChild(formWrapper);
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;

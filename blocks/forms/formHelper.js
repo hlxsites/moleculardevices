@@ -51,7 +51,7 @@ export function getFormFieldValues(formConfig) {
   const currentUrl = window.location.href.split('?')[0];
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
-    gclid__c: formConfig.gclid || '',
+    gclid__c: formConfig.gclid__c || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || '',
     google_analytics_source__c: formConfig.googleAnalyticsSource || '',
     keyword_ppc__c: formConfig.keywordPPC || '',
@@ -204,19 +204,19 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     const { form, iframe } = createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe);
     document.body.appendChild(form);
 
-    // iframe.onload = () => {
-    //   if (returnURL && returnURL !== 'null') {
-    //     window.top.location.href = returnURL;
+    iframe.onload = () => {
+      if (returnURL && returnURL !== 'null') {
+        window.top.location.href = returnURL;
 
-    //     hubspotForm.reset(); // Reset form after successful submission
-    //     setTimeout(() => {
-    //       iframe.remove();
-    //       form.remove();
-    //     }, 1000);
-    //   }
-    // };
+        hubspotForm.reset(); // Reset form after successful submission
+        setTimeout(() => {
+          iframe.remove();
+          form.remove();
+        }, 1000);
+      }
+    };
 
-    // form.submit();
+    form.submit();
   } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
@@ -225,40 +225,4 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     // eslint-disable-next-line no-undef, quote-props
     dataLayer.push({ 'event': 'new_subscriber' });
   }
-}
-
-/* get common RFQ data */
-export function getCommonRFQData({
-  productFamily = '',
-  productSelection = '',
-  productPrimaryApplication = '',
-  productImage = 'NA',
-  productBundleImage = 'NA',
-  productBundle = '',
-  familyID = '',
-  qdc = DEFAULT_QDC_VALUE,
-} = {}) {
-  const queryParams = new URLSearchParams(window.location.search);
-  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ';
-  return {
-    formType: 'rfq',
-    cmp: cmpValue,
-    productFamily,
-    productSelection,
-    productPrimaryApplication,
-    googleAnalyticsMedium: getCookie('utm_medium') || '',
-    googleAnalyticsSource: getCookie('utm_source') || '',
-    keywordPPC: getCookie('utm_keyword') || '',
-    gclid: getCookie('gclid') || '',
-    productImage,
-    productBundleImage,
-    productBundle,
-    familyID,
-    qdc: queryParams.get('request_type') || qdc,
-    timestamp: Date.now(),
-    sourcePage: window.location.pathname + window.location.search,
-    redirectUrl: familyID
-      ? `https://www.moleculardevices.com/quote-request-success?cat=${familyID}`
-      : 'https://www.moleculardevices.com/quote-request-success',
-  };
 }
