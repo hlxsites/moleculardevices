@@ -13,32 +13,32 @@ import { formMapping } from './formMapping.js';
 /* create hubspot form */
 export function createHubSpotForm(formConfig) {
   try {
-    hbspt.forms.create({ // eslint-disable-line
-      region: formConfig.region || 'na1',
-      portalId: formConfig.portalId || '20222769',
-      formId: getFormId(formConfig.formType),
-      target: `#${formConfig.formType}-form`,
-      onFormReady: (form) => {
-        // Handle Salesforce hidden fields
-        const fieldValues = getFormFieldValues(formConfig);
-        updateFormFields(form, fieldValues);
+    if (window.hbspt?.forms) {
+      window.hbspt?.forms.create({
+        region: formConfig.region || 'na1',
+        portalId: formConfig.portalId || '20222769',
+        formId: getFormId(formConfig.formType),
+        target: `#${formConfig.formType}-form`,
+        onFormReady: (form) => {
+          // Handle Salesforce hidden fields
+          const fieldValues = getFormFieldValues(formConfig);
+          updateFormFields(form, fieldValues);
 
-        // Customize the submit button
-        const submitInput = form.querySelector('input[type="submit"]');
-        if (submitInput) {
-          const submitButton = button({
-            type: 'submit',
-            class: 'button primary',
-          }, formConfig.cta || submitInput.value || 'Submit');
-          submitInput.replaceWith(submitButton);
-
-          console.log(fieldValues);
-        }
-      },
-      onFormSubmit: (hubspotForm) => {
-        handleFormSubmit(hubspotForm, formConfig, formConfig.type);
-      },
-    });
+          // Customize the submit button
+          const submitInput = form.querySelector('input[type="submit"]');
+          if (submitInput) {
+            const submitButton = button({
+              type: 'submit',
+              class: 'button primary',
+            }, formConfig.cta || submitInput.value || 'Submit');
+            submitInput.replaceWith(submitButton);
+          }
+        },
+        onFormSubmit: (hubspotForm) => {
+          handleFormSubmit(hubspotForm, formConfig, formConfig.type);
+        },
+      });
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('HubSpot form API is not available:', e);
