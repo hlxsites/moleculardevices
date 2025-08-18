@@ -18,6 +18,8 @@ export const formMapping = [
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
 ];
 
+export const DEFAULT_QDC_VALUE = 'Quote';
+export const TEST_CMP_ID = '701Rn00000OJ0zY';
 export const OID = '00D70000000IRvr';
 export const timelineValue = '00N70000003iu0b';
 export const serialLotNumber = '00N70000003TZlz';
@@ -35,6 +37,7 @@ export const fieldsObj = [
   { inputName: 'last_name', inputFieldName: 'lastname' },
   { inputName: 'email', inputFieldName: 'email' },
   { inputName: 'phone', inputFieldName: 'phone' },
+  { inputName: 'phone', inputFieldName: '0-2/phone' },
   { inputName: 'company', inputFieldName: 'company' },
   { inputName: 'country', inputFieldName: 'country' },
   { inputName: 'country', inputFieldName: 'country_code' },

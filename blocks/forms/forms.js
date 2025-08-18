@@ -31,6 +31,8 @@ export function createHubSpotForm(formConfig) {
             class: 'button primary',
           }, formConfig.cta || submitInput.value || 'Submit');
           submitInput.replaceWith(submitButton);
+
+          console.log(fieldValues);
         }
       },
       onFormSubmit: (hubspotForm) => {
@@ -45,22 +47,9 @@ export function createHubSpotForm(formConfig) {
 }
 
 /* load hubspot script */
-let hubspotLoaded = false;
 export function loadHubSpotScript(callback) {
   loadCSS('/blocks/forms/forms.css');
-
-  if (hubspotLoaded) {
-    callback();
-    return;
-  }
-
-  loadScript(
-    `https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`,
-    () => {
-      hubspotLoaded = true;
-      callback();
-    },
-  );
+  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
 }
 
 export default async function decorate(block) {

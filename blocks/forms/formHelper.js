@@ -4,7 +4,9 @@ import { toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
 import { prepImageUrl } from '../quote-request/quote-request.js';
 import {
+  DEFAULT_QDC_VALUE,
   fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
+  TEST_CMP_ID,
 } from './formMapping.js';
 
 // extract data from table
@@ -40,7 +42,6 @@ export function getFormId(type) {
 
 /* get form ready */
 export function getFormFieldValues(formConfig) {
-  // Get the `cmp` parameters from URL or cookie
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
@@ -48,28 +49,28 @@ export function getFormFieldValues(formConfig) {
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
-  // console.log(formConfig.host_name);
+
   return {
-    cmp: valuecmp || formConfig.cmp,
-    gclid__c: formConfig.gclid,
-    google_analytics_medium__c: formConfig.googleAnalyticsMedium,
-    google_analytics_source__c: formConfig.googleAnalyticsSource,
-    keyword_ppc__c: formConfig.keywordPPC,
-    product_title: formConfig.productTitle,
-    product_bundle: formConfig.productBundle,
-    product_bundle_image: formConfig.productBundleImage,
-    product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage || formConfig.resourceImageUrl,
-    product_primary_application__c: formConfig.productPrimaryApplication,
-    product_selection__c: formConfig.productSelection,
-    qdc: formConfig.qdc,
-    requested_qdc_discussion__c: formConfig.qdc,
-    research_area: formConfig.researchArea,
-    return_url: formConfig.redirectUrl || thankyouUrl,
-    landing_page_title: formConfig.jobTitle || formConfig.title,
-    latest_newsletter: formConfig.latestNewsletter,
-    website: formConfig.website || formConfig.resourceUrl,
-    source_url: currentUrl,
+    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
+    gclid__c: formConfig.gclid || '',
+    google_analytics_medium__c: formConfig.googleAnalyticsMedium || '',
+    google_analytics_source__c: formConfig.googleAnalyticsSource || '',
+    keyword_ppc__c: formConfig.keywordPPC || '',
+    product_title: formConfig.productTitle || '',
+    product_bundle: formConfig.productBundle || '',
+    product_bundle_image: formConfig.productBundleImage || '',
+    product_family__c: formConfig.productFamily || '',
+    product_image: formConfig.product_image || formConfig.productImage || formConfig.resourceImageUrl || '',
+    product_primary_application__c: formConfig.productPrimaryApplication || '',
+    product_selection__c: formConfig.productSelection || '',
+    qdc: formConfig.qdc || '',
+    requested_qdc_discussion__c: formConfig.qdc || DEFAULT_QDC_VALUE || '',
+    research_area: formConfig.researchArea || '',
+    return_url: formConfig.redirectUrl || thankyouUrl || '',
+    landing_page_title: formConfig.jobTitle || formConfig.title || '',
+    latest_newsletter: formConfig.latestNewsletter || '',
+    website: formConfig.website || formConfig.resourceUrl || '',
+    source_url: currentUrl || '',
   };
 }
 
@@ -216,7 +217,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
       }
     };
 
-    form.submit();
+    // form.submit();
   } else if (returnURL && returnURL !== 'null') {
     setTimeout(() => { window.top.location.href = returnURL; }, 2000);
   }
@@ -232,20 +233,24 @@ export function getCommonRFQData({
   productFamily = '',
   productSelection = '',
   productPrimaryApplication = '',
+  sfdcProductFamily = '',
+  sfdcProductSelection = '',
+  sfdcPrimaryApplication = '',
   productImage = 'NA',
   productBundleImage = 'NA',
   productBundle = '',
   familyID = '',
-  qdc = 'Quote',
-}) {
+  qdc = DEFAULT_QDC_VALUE,
+} = {}) {
   const queryParams = new URLSearchParams(window.location.search);
-  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ';
-
   return {
+    formType: 'rfq',
     productFamily,
     productSelection,
     productPrimaryApplication,
-    cmp: cmpValue,
+    sfdcProductFamily,
+    sfdcProductSelection,
+    sfdcPrimaryApplication,
     googleAnalyticsMedium: getCookie('utm_medium') || '',
     googleAnalyticsSource: getCookie('utm_source') || '',
     keywordPPC: getCookie('utm_keyword') || '',
@@ -253,7 +258,10 @@ export function getCommonRFQData({
     productImage,
     productBundleImage,
     productBundle,
-    qdc: queryParams.get('request_type') || qdc,
+    familyID,
+    cmp: queryParams.get('request_type') || qdc,
+    timestamp: Date.now(),
+    sourcePage: window.location.pathname + window.location.search,
     redirectUrl: familyID
       ? `https://www.moleculardevices.com/quote-request-success?cat=${familyID}`
       : 'https://www.moleculardevices.com/quote-request-success',
