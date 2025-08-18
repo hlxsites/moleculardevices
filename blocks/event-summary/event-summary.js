@@ -26,8 +26,9 @@ export default async function decorate(block) {
         p({ class: 'event-date' }, formatEventDateRange(startDate, endDate)),
         p(address),
         p(region),
-        booth ? p({class:"booth"}, booth):"",
+      
       ),
+      div({  booth ? p({class:"booth"}, booth):"",}),
       socialShareBlock('Share this event', socials),
     ),
   );
