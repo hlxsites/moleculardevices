@@ -21,7 +21,8 @@ main .carousel.applications-carousel {
   margin: 0;
 }
 
-.carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
+.carousel.applications-carousel .card-thumb,
+.carousel.applications-carousel .card-thumb img {
   height: 190px;
   min-height: 190px;
 }
@@ -57,6 +58,16 @@ main .carousel.applications-carousel {
 
 .carousel.applications-carousel .card .button-container a {
   color: #008ca8;
+}
+
+main .section.applications-carousel-container:has(.applications-carousel.block:empty) {
+  display: none;
+}
+
+main .section.applications-carousel-container .default-content-wrapper h2 {
+  font-family: var(--ff-proxima-light);
+  font-size: var(--heading-font-size-xl);
+  text-align: center;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -104,7 +115,8 @@ main .carousel.applications-carousel {
     display: none;
   }
 
-  .carousel.applications-carousel .card-thumb, .carousel.applications-carousel .card-thumb img {
+  .carousel.applications-carousel .card-thumb,
+  .carousel.applications-carousel .card-thumb img {
     height: 150px;
     min-height: 150px;
   }
