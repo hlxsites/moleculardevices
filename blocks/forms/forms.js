@@ -45,9 +45,22 @@ export function createHubSpotForm(formConfig) {
 }
 
 /* load hubspot script */
+let hubspotLoaded = false;
 export function loadHubSpotScript(callback) {
   loadCSS('/blocks/forms/forms.css');
-  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
+
+  if (hubspotLoaded) {
+    callback();
+    return;
+  }
+
+  loadScript(
+    `https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`,
+    () => {
+      hubspotLoaded = true;
+      callback();
+    },
+  );
 }
 
 export default async function decorate(block) {

@@ -1,5 +1,4 @@
-stylelint-disable no-descending-specificity
-
+/* stylelint-disable no-descending-specificity */
 .thankyou-image {
   padding-left: 165px;
   font-size: 20px;
@@ -20,26 +19,26 @@ main .category-form.product-rfq-thankyou-section .forms-wrapper {
   justify-content: center;
 }
 
-.product main .product-rfq .submitted-message {
+.product main .product-rfq-thankyou-section .submitted-message {
   text-align: center;
   font-size: 1rem;
 }
 
-.product main .product-rfq .submitted-message a {
+.product main .product-rfq-thankyou-section .submitted-message a {
   color: inherit;
   text-decoration: underline;
 }
 
-.product main .product-rfq .submitted-message img[alt="E-mail Icon"] {
+.product main .product-rfq-thankyou-section .submitted-message img[alt="E-mail Icon"] {
   max-width: 150px;
 }
 
-.product main h3:has(~ .product-rfq .submitted-message) {
+.product main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
   display: none;
 }
 
 @media only screen and (min-width: 992px) {
-  main .category-form.product-rfq-thankyou-section .forms-wrapper .block {
+  main .category-form.product-rfq-thankyou-section-thankyou-section .forms-wrapper .block {
     max-width: 50%;
   }
 }

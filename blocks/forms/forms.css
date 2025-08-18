@@ -413,31 +413,35 @@ main .category-form.forms-container {
   font-size: 21px;
 }
 
+main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
+  display: none;
+}
+
 main .category-form.forms-container .default-content-wrapper h2:only-of-type {
   font-size: 48px;
   padding-bottom: 0;
   margin-top: 0;
 }
 
-main .category-form.forms-container .forms.block {
+main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
   padding: 40px;
   border-radius: 20px;
 }
 
-main .category-form.forms-container .forms.block h3 {
+main .category-form.forms-container .forms h3 {
   margin-top: 0;
   font-size: 28px;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-main .category-form.forms-container .forms.block .hs-form .hs-form-field .hs-field-desc,
-main .category-form.forms-container .forms.block .hs-form a {
+main .category-form.forms-container .hs-form-field:first-child .hs-form .hs-form-field .hs-field-desc,
+main .category-form.forms-container .hs-form-field:first-child .hs-form a {
   color: inherit;
 }
 
-main .category-form.forms-container .forms.block .hs-submit .actions button {
+main .category-form.forms-container .hs-form-field:first-child .hs-submit .actions button {
   max-width: 300px;
   margin: 0 auto;
   border-radius: 13px;
