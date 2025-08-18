@@ -75,8 +75,8 @@
   margin-top: 0;
   margin-bottom: 0.25rem;
 }
-.event-summary .event-banner p.booth{
-  margin: 25px 0;
+.event-summary .event-banner h4.booth{
+  margin-top: 35px ;
   font-weight: 600;
 }
 .event-summary .cite {
