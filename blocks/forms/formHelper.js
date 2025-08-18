@@ -49,7 +49,6 @@ export function getFormFieldValues(formConfig) {
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
-
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
     gclid__c: formConfig.gclid || '',
@@ -205,17 +204,17 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
     const { form, iframe } = createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe);
     document.body.appendChild(form);
 
-    iframe.onload = () => {
-      if (returnURL && returnURL !== 'null') {
-        window.top.location.href = returnURL;
+    // iframe.onload = () => {
+    //   if (returnURL && returnURL !== 'null') {
+    //     window.top.location.href = returnURL;
 
-        hubspotForm.reset(); // Reset form after successful submission
-        setTimeout(() => {
-          iframe.remove();
-          form.remove();
-        }, 1000);
-      }
-    };
+    //     hubspotForm.reset(); // Reset form after successful submission
+    //     setTimeout(() => {
+    //       iframe.remove();
+    //       form.remove();
+    //     }, 1000);
+    //   }
+    // };
 
     // form.submit();
   } else if (returnURL && returnURL !== 'null') {
@@ -233,9 +232,6 @@ export function getCommonRFQData({
   productFamily = '',
   productSelection = '',
   productPrimaryApplication = '',
-  sfdcProductFamily = '',
-  sfdcProductSelection = '',
-  sfdcPrimaryApplication = '',
   productImage = 'NA',
   productBundleImage = 'NA',
   productBundle = '',
@@ -243,14 +239,13 @@ export function getCommonRFQData({
   qdc = DEFAULT_QDC_VALUE,
 } = {}) {
   const queryParams = new URLSearchParams(window.location.search);
+  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ';
   return {
     formType: 'rfq',
+    cmp: cmpValue,
     productFamily,
     productSelection,
     productPrimaryApplication,
-    sfdcProductFamily,
-    sfdcProductSelection,
-    sfdcPrimaryApplication,
     googleAnalyticsMedium: getCookie('utm_medium') || '',
     googleAnalyticsSource: getCookie('utm_source') || '',
     keywordPPC: getCookie('utm_keyword') || '',
@@ -259,7 +254,7 @@ export function getCommonRFQData({
     productBundleImage,
     productBundle,
     familyID,
-    cmp: queryParams.get('request_type') || qdc,
+    qdc: queryParams.get('request_type') || qdc,
     timestamp: Date.now(),
     sourcePage: window.location.pathname + window.location.search,
     redirectUrl: familyID

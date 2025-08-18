@@ -23,6 +23,7 @@ export function createHubSpotForm(formConfig) {
           // Handle Salesforce hidden fields
           const fieldValues = getFormFieldValues(formConfig);
           updateFormFields(form, fieldValues);
+          console.log(fieldValues);
 
           // Customize the submit button
           const submitInput = form.querySelector('input[type="submit"]');
