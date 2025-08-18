@@ -427,6 +427,12 @@ main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
   padding: 40px;
   border-radius: 20px;
+  color: #fff;
+}
+
+.product main .hs-form .hs-form-field .hs-field-desc,
+.product main .hs-form .hs-form-field .hs-field-desc a {
+  color: inherit;
 }
 
 main .category-form.forms-container .forms h3 {

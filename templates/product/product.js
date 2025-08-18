@@ -30,6 +30,7 @@ function rfqThankyouMessage() {
 export default async function decorateProductRFQForm() {
   let formLoaded = false;
 
+  // eslint-disable-next-line consistent-return
   const initForm = async (observer) => {
     if (formLoaded) return true;
 
@@ -38,25 +39,40 @@ export default async function decorateProductRFQForm() {
 
     const pageParam = new URLSearchParams(window.location.search).get('page');
 
-    // Thank You Message
-    if (pageParam && pageParam?.toLowerCase() === 'thankyou') {
+    // Thank You page
+    if (pageParam?.toLowerCase() === 'thankyou') {
       const formSection = formBlock.closest('.section');
-      formSection.id = productThankyouSection;
       if (!formSection) return false;
 
+      formSection.id = productThankyouSection;
       formSection.classList.add(productThankyouSection);
       formSection.classList.remove('columns-2');
       formSection.innerHTML = '';
       formSection.appendChild(rfqThankyouMessage());
 
-      setTimeout((scrollToFranklinSection(formSection, -100)), 1000);
+      setTimeout(() => {
+        scrollToFranklinSection(formSection, -100, true);
+      }, 500);
+
+      // Scroll when section finished loading
+      const sectionObserver = new MutationObserver(() => {
+        if (formSection.dataset.sectionStatus === 'loaded') {
+          setTimeout(() => {
+            const offset = -100;
+            const y = formSection.getBoundingClientRect().top + window.scrollY + offset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }, 300);
+          sectionObserver.disconnect();
+        }
+      });
+      sectionObserver.observe(formSection, { attributes: true, attributeFilter: ['data-section-status'] });
 
       formLoaded = true;
       if (observer) observer.disconnect();
       return true;
     }
 
-    // Load Form
+    // Load HubSpot Form
     const familyID = getMetadata('family-id') || '';
     if (!familyID) {
       // eslint-disable-next-line no-console
@@ -68,11 +84,23 @@ export default async function decorateProductRFQForm() {
     const RFQData = await getRFQDataByFamilyID(familyID);
     const formConfig = { formType, ...RFQData };
 
-    loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
-
-    formLoaded = true;
-    if (observer) observer.disconnect();
-    return true;
+    // 🟢 Ensure form container exists and is loaded before injecting
+    if (formBlock.dataset.sectionStatus === 'loaded') {
+      loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+      formLoaded = true;
+      if (observer) observer.disconnect();
+      return true;
+    }
+    const section = formBlock.closest('.section');
+    const sectionObserver = new MutationObserver(() => {
+      if (section.dataset.sectionStatus === 'loaded') {
+        loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+        formLoaded = true;
+        sectionObserver.disconnect();
+        if (observer) observer.disconnect();
+      }
+    });
+    sectionObserver.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
   };
 
   const observer = new MutationObserver(async () => {
