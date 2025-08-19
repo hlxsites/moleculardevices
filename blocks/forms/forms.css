@@ -104,6 +104,10 @@
 }
 .hs-form .hs-form-field.hs_email  .hs-error-msgs label{
   display: block;
+
+}
+.hs-form .hs-form-field.hs_email  .hs-error-msgs label a:hover {
+  color: var(--link-hover-color);
 }
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
