@@ -7,6 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { getFormId } from '../forms/formHelper.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -158,7 +159,7 @@ async function loadIframeForm(data, type) {
   let primaryProductFamily = '';
   let productImage = '';
   let bundleThumbnail = '';
-  let productBundle = 'NA';
+  let productBundle = '';
   // let sfdcHostName = '';
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
@@ -226,10 +227,10 @@ async function loadIframeForm(data, type) {
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
   // const mpCmpValue = queryParams && queryParams.get('mdcmp');
   const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
-
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
+    formId: getFormId('rfq'),
     formType: 'rfq',
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
@@ -251,7 +252,6 @@ async function loadIframeForm(data, type) {
   if (data.path) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
-  console.log(hubSpotQuery);
 
   const formWrapper = div(
     h3('Request Quote or Information for:'),
