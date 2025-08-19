@@ -11,8 +11,7 @@ import {
 import { formMapping } from './formMapping.js';
 
 /* create hubspot form */
-export function createHubSpotForm(formConfig) {
-  console.log(formConfig);
+export async function createHubSpotForm(formConfig) {
   try {
     if (window.hbspt?.forms) {
       window.hbspt?.forms.create({
@@ -20,11 +19,10 @@ export function createHubSpotForm(formConfig) {
         portalId: formConfig.portalId || '20222769',
         formId: getFormId(formConfig.formType),
         target: `#${formConfig.formType}-form`,
-        onFormReady: (form) => {
+        onFormReady: async (form) => {
           // Handle Salesforce hidden fields
-          const fieldValues = getFormFieldValues(formConfig);
+          const fieldValues = await getFormFieldValues(formConfig);
           updateFormFields(form, fieldValues);
-          console.log(fieldValues);
 
           // Customize the submit button
           const submitInput = form.querySelector('input[type="submit"]');
