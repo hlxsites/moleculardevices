@@ -52,9 +52,14 @@ export async function getFormFieldValues(formConfig) {
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
   let formConfigThumb = '';
+  let formConfigBundle = '';
   //console.log('formConfigImage '+formConfig.product_image);
+
+  if (formConfig.productBundle && formConfig.productBundle !== '0') {
+    formConfigBundle =  formConfig.productBundle;
+   }
    if (formConfig.thumbnail && formConfig.thumbnail !== '0') {
-   formConfigThumb =  prepImageUrl(formConfig.thumbnail);
+    formConfigThumb =  prepImageUrl(formConfig.thumbnail);
    }
   //console.log(formConfigThumb);
 
@@ -65,7 +70,7 @@ export async function getFormFieldValues(formConfig) {
     google_analytics_source__c: formConfig.googleAnalyticsSource || '',
     keyword_ppc__c: formConfig.keywordPPC || '',
     product_title: formConfig.productTitle || rfqData.title || '',
-    product_bundle: formConfig.productBundle || '',
+    product_bundle: formConfigBundle || '',
     product_bundle_image: formConfig.productBundleImage || 'NA',
     product_family__c: formConfig.productFamily || '',
     product_image: formConfigThumb ||  formConfig.product_image || formConfig.productImage || formConfig.resourceImageUrl || 'NA',
