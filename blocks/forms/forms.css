@@ -99,7 +99,7 @@
 }
 
 .hs-form .hs-form-field .hs-field-desc,
-.hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
+.hs-form .hs-form-field label:not(.hs-form-checkbox-display),.hs-form .hs-form-field label:not(.hs-error-msgs) {
   display: none;
 }
 
