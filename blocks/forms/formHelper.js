@@ -53,6 +53,7 @@ export async function getFormFieldValues(formConfig) {
   const currentUrl = window.location.href.split('?')[0];
   let formConfigThumb = '';
   let formConfigBundle = '';
+   let formConfigWebsite = '';
   //console.log('formConfigImage '+formConfig.product_image);
 
   if (formConfig.productBundle && formConfig.productBundle !== '0') {
@@ -61,7 +62,10 @@ export async function getFormFieldValues(formConfig) {
    if (formConfig.thumbnail && formConfig.thumbnail !== '0') {
     formConfigThumb =  prepImageUrl(formConfig.thumbnail);
    }
-  //console.log(formConfigThumb);
+   if (formConfig.path && formConfig.path !== '0') {
+    formConfigWebsite = 'https://www.moleculardevices.com'+formConfig.path ;
+   }
+  //console.log('path '+formConfig.path);
 
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
@@ -82,7 +86,7 @@ export async function getFormFieldValues(formConfig) {
     return_url: formConfig.redirectUrl || thankyouUrl || '',
     landing_page_title: formConfig.jobTitle || formConfig.title || '',
     latest_newsletter: formConfig.latestNewsletter || '',
-    website: formConfig.website || formConfig.resourceUrl || '',
+    website: formConfigWebsite || formConfig.resourceUrl || '',
     source_url: currentUrl || '',
   };
 }
