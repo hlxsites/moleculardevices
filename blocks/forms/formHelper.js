@@ -51,6 +51,12 @@ export async function getFormFieldValues(formConfig) {
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
+  let formConfigThumb = '';
+  //console.log('formConfigImage '+formConfig.product_image);
+   if (formConfig.thumbnail && formConfig.thumbnail !== '0') {
+   formConfigThumb =  prepImageUrl(formConfig.thumbnail);
+   }
+  //console.log(formConfigThumb);
 
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
@@ -60,9 +66,9 @@ export async function getFormFieldValues(formConfig) {
     keyword_ppc__c: formConfig.keywordPPC || '',
     product_title: formConfig.productTitle || rfqData.title || '',
     product_bundle: formConfig.productBundle || '',
-    product_bundle_image: formConfig.productBundleImage || '',
+    product_bundle_image: formConfig.productBundleImage || 'NA',
     product_family__c: formConfig.productFamily || '',
-    product_image: formConfig.thumbnail || formConfig.product_image || formConfig.productImage || formConfig.resourceImageUrl || '',
+    product_image: formConfigThumb ||  formConfig.product_image || formConfig.productImage || formConfig.resourceImageUrl || 'NA',
     product_primary_application__c: formConfig.productPrimaryApplication || rfqData.title || '',
     product_selection__c: formConfig.productSelection || rfqData.title || '',
     qdc: formConfig.qdc || '',
