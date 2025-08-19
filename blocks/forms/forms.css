@@ -102,7 +102,9 @@
 .hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
   display: none;
 }
-
+.hs-form .hs-form-field.hs_email  .hs-error-msgs label{
+  display: block;
+}
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
 }
