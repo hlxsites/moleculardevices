@@ -52,26 +52,30 @@ export async function getFormFieldValues(formConfig) {
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
+  console.log(formConfig.product_image);
+  console.log(formConfig.productImage);
+  console.log(formConfig.resourceImageUrl);
+  console.log(rfqData.thumbnail);
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
     gclid__c: formConfig.gclid__c || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || '',
     google_analytics_source__c: formConfig.googleAnalyticsSource || '',
     keyword_ppc__c: formConfig.keywordPPC || '',
-    product_title: formConfig.productTitle || rfqData.title || 'NA',
-    product_bundle: formConfig.productBundle || 'NA',
+    product_title: formConfig.productTitle || rfqData.title || '',
+    product_bundle: formConfig.productBundle || '',
     product_bundle_image: getProductImage(formConfig.productBundleImage) || 'NA',
     product_family__c: formConfig.productFamily || familyID,
     product_image: getProductImage(formConfig.product_image) || getProductImage(formConfig.productImage) || getProductImage(formConfig.resourceImageUrl) || getProductImage(rfqData.thumbnail) || 'NA',
-    product_primary_application__c: formConfig.productPrimaryApplication || rfqData.title || 'NA',
-    product_selection__c: formConfig.productSelection || rfqData.title || 'NA',
+    product_primary_application__c: formConfig.productPrimaryApplication || rfqData.title || '',
+    product_selection__c: formConfig.productSelection || rfqData.title || '',
     qdc: formConfig.qdc || '',
     requested_qdc_discussion__c: formConfig.qdc || DEFAULT_QDC_VALUE || '',
     research_area: formConfig.researchArea || '',
     return_url: formConfig.redirectUrl || thankyouUrl || '',
     landing_page_title: formConfig.jobTitle || formConfig.title || '',
     latest_newsletter: formConfig.latestNewsletter || '',
-    website: formConfig.website || formConfig.resourceUrl || `${window.origin}${rfqData.path}` || '',
+    website: formConfig.website || formConfig.resourceUrl || '',
     source_url: currentUrl || '',
   };
 }
