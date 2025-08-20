@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import {
-  button, div, h3, li, p, ul,
+  button,
+  div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
@@ -25,14 +26,14 @@ export async function createHubSpotForm(formConfig) {
           updateFormFields(form, fieldValues);
 
           // Customize the submit button
-          // const submitInput = form.querySelector('input[type="submit"]');
-          // if (submitInput) {
-          //   const submitButton = button({
-          //     type: 'submit',
-          //     class: 'button primary',
-          //   }, formConfig.cta || submitInput.value || 'Submit');
-          //   submitInput.replaceWith(submitButton);
-          // }
+          const submitInput = form.querySelector('input[type="submit"]');
+          if (submitInput) {
+            const submitButton = button({
+              type: 'submit',
+              class: 'button primary',
+            }, formConfig.cta || submitInput.value || 'Submit');
+            submitInput.replaceWith(submitButton);
+          }
         },
         onFormSubmit: (hubspotForm) => {
           handleFormSubmit(hubspotForm, formConfig, formConfig.type);

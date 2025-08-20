@@ -47,8 +47,19 @@ function waitForSectionLoad(section) {
  * Scroll smoothly to a section
  */
 function scrollToSection(section, offset = SCROLL_OFFSET) {
-  const y = section.getBoundingClientRect().top + window.scrollY + offset;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+  if (!section) return;
+
+  const intervalId = setInterval(() => {
+    if (section.getAttribute('data-section-status') === 'loaded') {
+      setTimeout(() => {
+        const rect = section.getBoundingClientRect();
+        const y = rect.top + window.scrollY + offset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        clearInterval(intervalId);
+      }, 1000);
+    }
+  }, 100);
 }
 
 export default async function decorateProductRFQForm() {
