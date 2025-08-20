@@ -286,7 +286,8 @@ main form fieldset[class*="form-columns"] .input {
   background: var(--orange-background-color);
 }
 
-.hs-button.primary {
+.hs-button.primary,
+input[type="submit"] {
   background: var(--text-blue);
   border: none;
   border-radius: 0;

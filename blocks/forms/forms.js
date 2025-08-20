@@ -23,6 +23,16 @@ export async function createHubSpotForm(formConfig) {
           // Handle Salesforce hidden fields
           const fieldValues = await getFormFieldValues(formConfig);
           updateFormFields(form, fieldValues);
+
+          // Customize the submit button
+          // const submitInput = form.querySelector('input[type="submit"]');
+          // if (submitInput) {
+          //   const submitButton = button({
+          //     type: 'submit',
+          //     class: 'button primary',
+          //   }, formConfig.cta || submitInput.value || 'Submit');
+          //   submitInput.replaceWith(submitButton);
+          // }
         },
         onFormSubmit: (hubspotForm) => {
           handleFormSubmit(hubspotForm, formConfig, formConfig.type);
@@ -65,18 +75,6 @@ export default async function decorate(block) {
 
   if (formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
-
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-        requestAnimationFrame(() => {
-          const submitInput = form.querySelector('input[type="submit"]');
-          if (submitInput) {
-            // submitInput.className = 'button primary';
-            submitInput.value = formConfig.cta || 'Submit';
-          }
-        });
-      }
-    });
   } else {
     const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
