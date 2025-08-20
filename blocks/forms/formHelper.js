@@ -9,6 +9,8 @@ import {
   TEST_CMP_ID,
 } from './formMapping.js';
 
+const hostName = 'https://www.moleculardevices.com';
+
 // extract data from table
 export async function extractFormData(block) {
   const blockData = {};
@@ -55,8 +57,6 @@ export async function getFormFieldValues(formConfig) {
   let formConfigBundle = '';
   let formConfigWebsite = '';
 
-  // console.log('formConfigImage '+formConfig.product_image);
-
   if (formConfig.productBundle && formConfig.productBundle !== '0') {
     formConfigBundle = formConfig.productBundle;
   }
@@ -64,16 +64,15 @@ export async function getFormFieldValues(formConfig) {
     formConfigThumb = prepImageUrl(formConfig.thumbnail);
   }
   if (formConfig.path && formConfig.path !== '0') {
-    formConfigWebsite = `https://www.moleculardevices.com${formConfig.path}`;
+    formConfigWebsite = `${hostName}${formConfig.path}`;
   }
-  // console.log('path '+formConfig.path);
 
   return {
     cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
-    gclid__c: formConfig.gclid__c || '',
-    google_analytics_medium__c: formConfig.googleAnalyticsMedium || '',
-    google_analytics_source__c: formConfig.googleAnalyticsSource || '',
-    keyword_ppc__c: formConfig.keywordPPC || '',
+    gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
+    google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
+    google_analytics_source__c: formConfig.googleAnalyticsSource || getCookie('utm_source') || '',
+    keyword_ppc__c: formConfig.keywordPPC || getCookie('utm_keyword') || '',
     product_title: formConfig.productTitle || rfqData.title || '',
     product_bundle: formConfigBundle || '',
     product_bundle_image: formConfig.productBundleImage || 'NA',
@@ -87,8 +86,9 @@ export async function getFormFieldValues(formConfig) {
     return_url: formConfig.redirectUrl || thankyouUrl || '',
     landing_page_title: formConfig.jobTitle || formConfig.title || '',
     latest_newsletter: formConfig.latestNewsletter || '',
-    website: formConfigWebsite || formConfig.resourceUrl || '',
+    website: formConfig.website || formConfigWebsite || formConfig.resourceUrl || '',
     source_url: currentUrl || '',
+    host_name: hostName,
   };
 }
 
