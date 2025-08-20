@@ -292,9 +292,7 @@ main form fieldset[class*="form-columns"] .input {
   border-radius: 0;
   color: var(--text-white);
   font-size: 18px;
-  font-weight: 600;
   height: auto;
-  letter-spacing: 0.06rem;
   line-height: 25px;
   padding: 9px 18px 8px;
   position: relative;
@@ -431,7 +429,8 @@ main .category-form.forms-container .forms {
 }
 
 .product main .hs-form .hs-form-field .hs-field-desc,
-.product main .hs-form .hs-form-field .hs-field-desc a {
+.product main .hs-form .hs-form-field .hs-field-desc a,
+.product main .hs-form a {
   color: inherit;
 }
 
