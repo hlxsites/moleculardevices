@@ -23,7 +23,7 @@ const PRODUCT_FORM_DATA = [
     heading: 'Reimagine High-Content Screening (HCS) with AI-Powered Insight',
     bodyContent: [
       "Transforming science takes more than precision—it takes partnership. Together, we're building automated, AI-enabled workflows that move beyond traditional imaging to unlock deeper biological insights.",
-      'Our high- content screening solutions integrate smart imaging, machine learning, and advanced data analysis to free scientists from routine tasks and accelerate transformative discovery.',
+      'Our high-content screening solutions integrate smart imaging, machine learning, and advanced data analysis to free scientists from routine tasks and accelerate transformative discovery.',
       "With us, you're not just adopting powerful technology—you're gaining a partner committed to industrializing complex biology through intelligent automation.",
     ],
     formTitle: "Discover what's possible with AI-powered HCS solutions. Let's talk.",
