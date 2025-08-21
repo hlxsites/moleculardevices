@@ -17,6 +17,11 @@ async function getCBData() {
 
 export default async function decorate(block) {
   const resources = await getCBData();
+  if (resources.length < 3) {
+    block.parentElement.previousElementSibling.remove();
+    block.parentElement.remove();
+    return;
+  }
 
   const cbPath = '/customer-breakthroughs';
   const category = getMetadata('category').split(' ').join('-');

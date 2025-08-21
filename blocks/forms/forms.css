@@ -413,6 +413,42 @@ main .category-form.forms-container {
   background-image: url('/templates/product/images/default-background.png');
 }
 
+main .category-form.forms-container .hs-submit .actions button{
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+/* main .category-form.forms-container[class*='microplate-readers-form-section'],
+main .category-form.forms-container[class*='3d-biology-form-section'] {
+  background-image: url('/templates/product/images/3d-biology.png');
+}
+
+main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
+main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
+ background-color: #6610f2;
+ color: #fff;
+}
+
+main .category-form.forms-container[class*='3d-biology-form-section'],
+main .category-form.forms-container[class*='3d-biology-form-section'] {
+  background-image: url('/templates/product/images/3d-biology.png');
+}
+
+main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
+main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
+ background-color: #0d6efd;
+ color: #fff;
+}
+
+main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
+  background-image: url('/templates/product/images/imaging.png');
+}
+
+main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
+ background-color: #70dc90;
+ color: #fff;
+} */
+
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
   display: none;
 }
