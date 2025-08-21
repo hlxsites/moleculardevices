@@ -410,6 +410,7 @@ main .category-form.forms-container {
   background-size: cover;
   background-position: center;
   font-size: 21px;
+  background-image: url('/templates/product/images/default-background.png');
 }
 
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {

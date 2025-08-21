@@ -1,13 +1,12 @@
 /* eslint-disable import/no-cycle */
 import {
-  button,
-  div, h3, li, p, ul,
+  button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
-import { loadCSS } from '../../scripts/lib-franklin.js';
+import { getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
+import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
 import {
-  extractFormData, getFormFieldValues,
-  getFormId, handleFormSubmit, updateFormFields,
+  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
 
@@ -27,6 +26,7 @@ export async function createHubSpotForm(formConfig) {
 
           // Customize the submit button
           const submitInput = form.querySelector('input[type="submit"]');
+          submitInput.value = formConfig.cta || submitInput.value || 'Submit';
           if (submitInput) {
             const submitButton = button({
               type: 'submit',
@@ -50,18 +50,39 @@ export async function createHubSpotForm(formConfig) {
 /* load hubspot script */
 export function loadHubSpotScript(callback) {
   loadCSS('/blocks/forms/forms.css');
-  loadScript(`https://js.hsforms.net/forms/v2.js?v=${new Date().getTime()}`, callback);
+  if (window.hbspt?.forms) {
+    callback();
+    return;
+  }
+
+  if (!document.querySelector('script[src*="js.hsforms.net/forms/v2.js"]')) {
+    loadScript('https://js.hsforms.net/forms/v2.js', callback);
+  } else {
+    const check = setInterval(() => {
+      if (window.hbspt?.forms) {
+        clearInterval(check);
+        callback();
+      }
+    }, 100);
+  }
 }
 
 export default async function decorate(block) {
+  const category = getMetadata('category');
+  const template = getMetadata('template');
   const formConfig = await extractFormData(block);
-  const formHeading = formConfig.heading || '';
+  let formHeading = formConfig.heading || '';
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
 
   formConfig.formType = formType;
   const target = `${formConfig.formType}-form`;
+
+  if (template === 'Product') {
+    const data = PRODUCT_FORM_DATA.find((formData) => formData.type === category);
+    formHeading = data.formTitle || '';
+  }
 
   const form = div(
     h3(formHeading),
@@ -71,8 +92,10 @@ export default async function decorate(block) {
     }),
   );
 
-  block.innerHTML = '';
-  block.appendChild(form);
+  if (!block.querySelector(`#${target}`)) {
+    block.innerHTML = '';
+    block.appendChild(form);
+  }
 
   if (formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));

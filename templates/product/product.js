@@ -1,14 +1,15 @@
 /* eslint-disable import/no-cycle */
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { getRFQDataByFamilyID } from '../../blocks/quote-request/quote-request.js';
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
+import PRODUCT_FORM_DATA from './ProductFormData.js';
+import { scrollToSection } from '../../scripts/utilities.js';
 
 const formType = 'product-rfq';
 export const productThankyouSection = `${formType}-thankyou-section`;
-const SCROLL_OFFSET = -100;
 
 function rfqThankyouMessage() {
   return div({ class: 'submitted-message forms' },
@@ -22,95 +23,97 @@ function rfqThankyouMessage() {
   );
 }
 
-/**
- * Waits until a section's data-section-status becomes "loaded"
- * @param {HTMLElement} section
- * @returns {Promise<void>}
- */
-function waitForSectionLoad(section) {
-  return new Promise((resolve) => {
-    if (section.dataset.sectionStatus === 'loaded') {
-      resolve();
-      return;
-    }
-    const observer = new MutationObserver(() => {
-      if (section.dataset.sectionStatus === 'loaded') {
-        observer.disconnect();
-        resolve();
-      }
-    });
-    observer.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
-  });
+async function decorateDefaultContent(data) {
+  const wrapper = div({ class: 'default-content-wrapper' });
+  const headingEl = h2(data.heading);
+  const bodyEls = data.bodyContent.map((text) => p(text));
+  const section = div(
+    { class: 'default-content-item' },
+    headingEl,
+    ...bodyEls,
+  );
+  wrapper.appendChild(section);
+  return wrapper;
 }
 
-/**
- * Scroll smoothly to a section
- */
-function scrollToSection(section, offset = SCROLL_OFFSET) {
-  if (!section) return;
+let formLoaded = false;
+let formLoading = false;
 
-  const intervalId = setInterval(() => {
-    if (section.getAttribute('data-section-status') === 'loaded') {
-      setTimeout(() => {
-        const rect = section.getBoundingClientRect();
-        const y = rect.top + window.scrollY + offset;
+async function initForm() {
+  if (formLoaded || formLoading) return;
+  formLoading = true;
 
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        clearInterval(intervalId);
-      }, 1000);
-    }
-  }, 100);
-}
-
-export default async function decorateProductRFQForm() {
-  let formLoaded = false;
-
-  async function initForm() {
-    if (formLoaded) return;
-    const formBlock = document.querySelector(`#${formType}-form, .${formType}-form`);
-    if (!formBlock) return;
-
-    const formSection = formBlock.closest('.section');
-    if (!formSection) return;
-
-    const pageParam = new URLSearchParams(window.location.search).get('page');
-
-    // Thank You page flow
-    if (pageParam?.toLowerCase() === 'thankyou') {
-      formSection.id = productThankyouSection;
-      formSection.classList.add(productThankyouSection);
-      formSection.classList.remove('columns-2');
-      formSection.replaceChildren(rfqThankyouMessage());
-
-      // wait until section loaded then scroll
-      await waitForSectionLoad(formSection);
-      requestAnimationFrame(() => scrollToSection(formSection));
-
-      formLoaded = true;
-      return;
-    }
-
-    // Load HubSpot Form
-    const familyID = getMetadata('family-id') || '';
-    if (!familyID) {
-      // eslint-disable-next-line no-console
-      console.error('[RFQ Form] No family ID found on page metadata, skipping RFQ form initialization.');
-      return;
-    }
-
-    const RFQData = await getRFQDataByFamilyID(familyID);
-    const formConfig = { formType, ...RFQData };
-
-    await waitForSectionLoad(formSection);
-    loadHubSpotScript(() => createHubSpotForm(formConfig));
-
-    formLoaded = true;
+  const formBlock = document.querySelector(`#${formType}-form, .${formType}-form`);
+  if (!formBlock) {
+    formLoading = false;
+    return;
   }
 
-  // Global observer ensures form gets initialized when block arrives in DOM
-  const observer = new MutationObserver(() => { initForm(); });
-  observer.observe(document.body, { childList: true, subtree: true });
+  const formSection = formBlock.closest('.section');
+  if (!formSection) {
+    formLoading = false;
+    return;
+  }
 
-  // Try immediately in case form is already there
-  initForm();
+  const pageParam = new URLSearchParams(window.location.search).get('page');
+
+  // Thank You page flow
+  if (pageParam?.toLowerCase() === 'thankyou') {
+    formSection.id = productThankyouSection;
+    formSection.classList.add(productThankyouSection);
+    formSection.classList.remove('columns-2');
+    formSection.replaceChildren(rfqThankyouMessage());
+
+    requestAnimationFrame(() => scrollToSection(formSection));
+
+    formLoaded = true;
+    formLoading = false;
+    return;
+  }
+
+  // Load HubSpot Form
+  const familyID = getMetadata('family-id') || '';
+  if (!familyID) {
+    // eslint-disable-next-line no-console
+    console.error('[RFQ Form] No family ID found on page metadata, skipping RFQ form initialization.');
+    formLoading = false;
+    return;
+  }
+
+  const category = getMetadata('category');
+  formSection.classList.add(`${toClassName(category)}-form-section`);
+  const defaultWrapper = formSection.querySelector('.default-content-wrapper');
+  const data = PRODUCT_FORM_DATA.find((formData) => formData.type === category);
+  if (!defaultWrapper) formSection.prepend(await decorateDefaultContent(data));
+
+  const RFQData = await getRFQDataByFamilyID(familyID);
+  const formConfig = {
+    formType,
+    ...RFQData,
+    cta: 'Request more information',
+    heading: data.formTitle,
+  };
+
+  loadHubSpotScript(() => createHubSpotForm(formConfig));
+
+  formLoaded = true;
+  formLoading = false;
+}
+
+export default async function decorateProductPage() {
+  const template = getMetadata('template');
+
+  if (template) {
+    const observer = new MutationObserver(() => {
+      if (!formLoaded && !formLoading) {
+        initForm().then(() => {
+          if (formLoaded) observer.disconnect();
+        });
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    initForm();
+  }
 }

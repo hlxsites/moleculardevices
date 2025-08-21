@@ -206,3 +206,45 @@ export function scrollToFranklinSection(target, offset = -100, smooth = true) {
     domObs.observe(document.body, { childList: true, subtree: true });
   }
 }
+
+/**
+ * Waits until a section's data-section-status becomes "loaded"
+ * @param {HTMLElement} section
+ * @returns {Promise<void>}
+ */
+export function waitForSectionLoad(section) {
+  return new Promise((resolve) => {
+    if (section.dataset.sectionStatus === 'loaded') {
+      resolve();
+      return;
+    }
+    const observer = new MutationObserver(() => {
+      if (section.dataset.sectionStatus === 'loaded') {
+        observer.disconnect();
+        resolve();
+      }
+    });
+    observer.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
+  });
+}
+
+/**
+ * Scroll smoothly to a section
+ */
+const SCROLL_OFFSET = -100;
+export async function scrollToSection(section, offset = SCROLL_OFFSET) {
+  if (!section) return;
+  await waitForSectionLoad(section);
+
+  const intervalId = setInterval(() => {
+    if (section.getAttribute('data-section-status') === 'loaded') {
+      setTimeout(() => {
+        const rect = section.getBoundingClientRect();
+        const y = rect.top + window.scrollY + offset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        clearInterval(intervalId);
+      }, 1000);
+    }
+  }, 100);
+}
