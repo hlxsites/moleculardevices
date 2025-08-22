@@ -398,6 +398,13 @@ input[type="submit"] {
   }
 }
 
+@media only screen and (max-width: 991px) {
+  .hubspot-form .hs-form fieldset.form-columns-2 {
+    display: flex;
+    gap: 15px;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .hbspt-form {
     padding-bottom: 110px;
@@ -409,11 +416,29 @@ main .category-form.forms-container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  font-size: 21px;
-  background-image: url('/templates/product/images/default-background.png');
+  background-image: url("/templates/product/images/default-background.png");
 }
 
-main .category-form.forms-container .hs-submit .actions button{
+main .category-form.forms-container.wave-section {
+  position: relative;
+  padding-bottom: 18%;
+}
+
+main .category-form.forms-container.wave-section .wave {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+}
+
+main .category-form.forms-container.wave-section .wave picture,
+main .category-form.forms-container.wave-section .wave picture img {
+  display: block;
+  width: 100%;
+}
+
+main .category-form.forms-container .hs-submit .actions button {
   max-width: 300px;
   border-radius: 10px;
 }
@@ -453,12 +478,6 @@ main .category-form.forms-container.product-rfq-thankyou-section .default-conten
   display: none;
 }
 
-main .category-form.forms-container .default-content-wrapper h2:only-of-type {
-  font-size: 48px;
-  padding-bottom: 0;
-  margin-top: 0;
-}
-
 main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
   padding: 40px;
@@ -488,4 +507,30 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
   max-width: 300px;
   margin: 0 auto;
   border-radius: 13px;
+}
+
+@media only screen and (min-width: 992px) {
+  main .category-form.forms-container {
+    font-size: 21px;
+  }
+
+  main .category-form.forms-container .default-content-wrapper h2:only-of-type {
+    font-size: 48px;
+    padding-bottom: 0;
+    margin-top: 0;
+  }
+
+  main .category-form.forms-container.wave-section {
+    padding-bottom: 15%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  main .category-form.forms-container {
+    gap: 20px;
+  }
+
+  main .category-form.forms-container .forms {
+    padding: 20px;
+  }
 }
