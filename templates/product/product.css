@@ -1,0 +1,44 @@
+/* stylelint-disable no-descending-specificity */
+.thankyou-image {
+  padding-left: 165px;
+  font-size: 20px;
+}
+
+.thankyou-head {
+  padding-left: 240px;
+}
+
+.thankyou img {
+  width: 110px;
+  height: 119px;
+  align-content: center;
+}
+
+main .category-form.product-rfq-thankyou-section .forms-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.product main .product-rfq-thankyou-section .submitted-message {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.product main .product-rfq-thankyou-section .submitted-message a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.product main .product-rfq-thankyou-section .submitted-message img[alt="E-mail Icon"] {
+  max-width: 150px;
+}
+
+.product main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
+  display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  main .category-form.product-rfq-thankyou-section-thankyou-section .forms-wrapper .block {
+    max-width: 50%;
+  }
+}

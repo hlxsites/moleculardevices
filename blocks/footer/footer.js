@@ -11,7 +11,6 @@ import {
   decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
-import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 
@@ -133,7 +132,6 @@ async function buildNewsletter(container) {
     return; // newsletter already present
   }
 
-  const formID = 'enewsletterSubscribeForm';
   const formType = 'newsletter';
   const formHeading = 'Lab Notes eNewsletter';
 
@@ -145,7 +143,7 @@ async function buildNewsletter(container) {
     }, div(
       {
         class: 'hubspot-form',
-        id: formID,
+        id: `${formType}-form`,
       },
     )),
   );
@@ -153,12 +151,12 @@ async function buildNewsletter(container) {
   container.querySelector(`#${newsletterId}`).replaceWith(form);
 
   const formConfig = {
-    formId: getFormId(formType),
+    formType,
     latestNewsletter: await getLatestNewsletter(),
-    redirectUrl: null,
+    redirectUrl: 'null',
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
 
   const newsletterList = await getNewslettersList();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
