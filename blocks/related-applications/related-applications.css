@@ -21,13 +21,13 @@
   min-height: 1px;
 }
 
-.related-link  {
+.related-link {
   line-height: 21px;
   margin-bottom: 10px;
 }
 
 li.related-link::marker {
-  color: #337ab7;;
+  color: #337ab7;
 }
 
 .related-app h1 {
@@ -43,6 +43,13 @@ li.related-link::marker {
 
 .related-app h3 {
   text-align: left;
+}
+
+.product .section .related-apps-container .related-app h4 {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .related-app strong {
@@ -89,7 +96,8 @@ li.related-link::marker {
     padding-left: 15px;
   }
 
-  .related-links-container, .related-links-container.cols-3 {
+  .related-links-container,
+  .related-links-container.cols-3 {
     column-count: 1;
   }
 }
