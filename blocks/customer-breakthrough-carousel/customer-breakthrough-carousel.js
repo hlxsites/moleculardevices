@@ -11,8 +11,7 @@ async function getCBData() {
   const category = getMetadata('category');
   return ffetch('/query-index.json')
     .sheet('customer-breakthroughs')
-    .filter((cb) => cb.category === category)
-    .limit(9)
+    .filter((cb) => cb.category.includes(category))
     .all();
 }
 
@@ -23,8 +22,6 @@ export default async function decorate(block) {
     { width: '900' },
   ]);
   if (resources.length < 3) {
-    // block.parentElement.previousElementSibling.remove();
-    // block.parentElement.remove();
     block.closest('.section').previousElementSibling.classList.add('wave-section');
     block.closest('.section').previousElementSibling.appendChild(div({ class: 'wave' }, waveImage));
     block.closest('.section').remove();
