@@ -48,7 +48,6 @@ export const formMapping = [
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
 ];
 
-
 export function getFormId(type) {
   const mapping = formMapping.find((item) => item.type === type);
   return mapping ? mapping.id : '';
