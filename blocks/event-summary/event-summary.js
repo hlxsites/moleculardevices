@@ -11,7 +11,7 @@ export default async function decorate(block) {
   const type = getMetadata('event-type');
   const region = getMetadata('event-region');
   const address = getMetadata('event-address');
-   const booth = getMetadata('event-booth');
+  const booth = getMetadata('event-booth');
   const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
 
   const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
@@ -26,9 +26,9 @@ export default async function decorate(block) {
         p({ class: 'event-date' }, formatEventDateRange(startDate, endDate)),
         p(address),
         p(region),
-      
+
       ),
-     booth ? div( p({class:"booth"}, booth)):"",
+      booth ? div(p({ class: 'booth' }, booth)) : '',
       socialShareBlock('Share this event', socials),
     ),
   );
