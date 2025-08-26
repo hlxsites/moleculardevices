@@ -21,7 +21,7 @@ main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
 
 main .carousel.customer-breakthrough-carousel {
   width: 90%;
-  padding: 0 0 30px;
+  padding: 0;
 }
 
 main .customer-breakthrough-carousel .carousel-item {
@@ -50,8 +50,10 @@ main .customer-breakthrough-carousel .card .card-description {
   display: block;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 @media only screen and (min-width: 767px) {

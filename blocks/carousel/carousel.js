@@ -79,6 +79,21 @@ class Carousel {
     }
   }
 
+  handleUserInteraction() {
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+    clearTimeout(this.resumeTimeout);
+
+    // resume auto-scroll after 3s
+    this.resumeTimeout = setTimeout(() => {
+      if (this.autoScroll && this.infiniteScroll && !this.intervalId) {
+        this.intervalId = setInterval(() => {
+          this.scrollBy(this.getCurrentVisibleItems());
+        }, this.autoScrollInterval);
+      }
+    }, 3000);
+  }
+
   getBlockPadding() {
     if (!this.blockStyle) {
       this.blockStyle = window.getComputedStyle(this.block);
@@ -97,9 +112,10 @@ class Carousel {
   }
 
   /**
-  * Scroll the carousel to the next item
-  */
-  nextItem() {
+ * Scroll the carousel by step count (positive = forward, negative = backward)
+ * @param {number} step how many items to move
+ */
+  scrollBy(step) {
     !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
     !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
 
@@ -110,26 +126,17 @@ class Carousel {
     let index = [...items].indexOf(selectedItem);
     index = index !== -1 ? index : 0;
 
-    const newIndex = (index + 1) % items.length;
+    const visibleCount = this.getCurrentVisibleItems();
+    const newIndex = (index + step + items.length) % items.length;
     const newSelectedItem = items[newIndex];
-    if (newIndex === 0 && !this.infiniteScroll) {
-      return;
-    }
 
-    if (newIndex === items.length - this.getCurrentVisibleItems() && !this.infiniteScroll) {
-      this.navButtonRight.classList.add('disabled');
-    }
-
-    if (newIndex === 0) {
-      // create the ilusion of infinite scrolling
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: (
-          newSelectedItem.previousElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft
-        ),
-      });
+    if (!this.infiniteScroll) {
+      if (step > 0 && newIndex >= items.length - visibleCount) {
+        this.navButtonRight.classList.add('disabled');
+      }
+      if (step < 0 && newIndex === 0) {
+        this.navButtonLeft.classList.add('disabled');
+      }
     }
 
     newSelectedItem.parentNode.scrollTo({
@@ -138,6 +145,7 @@ class Carousel {
       behavior: 'smooth',
     });
 
+    // update selected classes
     items.forEach((item) => item.classList.remove('selected'));
     dotButtons.forEach((item) => item.classList.remove('selected'));
     newSelectedItem.classList.add('selected');
@@ -146,6 +154,14 @@ class Carousel {
     }
 
     this.updateCounterText(newIndex);
+  }
+
+  /**
+   * Scroll forward by visible items
+   */
+  nextItem() {
+    this.handleUserInteraction();
+    this.scrollBy(this.getCurrentVisibleItems());
   }
 
   getCurrentVisibleItems() {
@@ -154,55 +170,11 @@ class Carousel {
   }
 
   /**
-  * Scroll the carousel to the previous item
-  */
+   * Scroll backward by visible items
+   */
   prevItem() {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
-
-    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    const selectedItem = this.block.querySelector('.carousel-item.selected');
-
-    let index = [...items].indexOf(selectedItem);
-    index = index !== -1 ? index : 0;
-    const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
-    const newSelectedItem = items[newIndex];
-
-    if (newIndex === items.length - 1 && !this.infiniteScroll) {
-      return;
-    }
-
-    if (newIndex === 0 && !this.infiniteScroll) {
-      this.navButtonLeft.classList.add('disabled');
-    }
-
-    if (newIndex === items.length - 1) {
-      // create the ilusion of infinite scrolling
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: (
-          newSelectedItem.nextElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft
-        ),
-      });
-    }
-
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      behavior: 'smooth',
-    });
-
-    items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((item) => item.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons && dotButtons.length !== 0) {
-      dotButtons[newIndex].classList.add('selected');
-    }
-
-    this.updateCounterText(newIndex);
+    this.handleUserInteraction();
+    this.scrollBy(-this.getCurrentVisibleItems());
   }
 
   /**
@@ -232,7 +204,7 @@ class Carousel {
     buttonLeft.ariaLabel = 'Scroll to previous item';
     buttonLeft.append(span({ class: 'icon icon-chevron-left' }));
     buttonLeft.addEventListener('click', () => {
-      clearInterval(this.intervalId);
+      this.handleUserInteraction();
       this.prevItem();
     });
 
@@ -245,7 +217,7 @@ class Carousel {
     buttonRight.ariaLabel = 'Scroll to next item';
     buttonRight.append(span({ class: 'icon icon-chevron-right' }));
     buttonRight.addEventListener('click', () => {
-      clearInterval(this.intervalId);
+      this.handleUserInteraction();
       this.nextItem();
     });
 
@@ -282,12 +254,12 @@ class Carousel {
       }
 
       if (touchendX < touchstartX) {
-        clearInterval(this.intervalId);
+        this.handleUserInteraction();
         this.nextItem();
       }
 
       if (touchendX > touchstartX) {
-        clearInterval(this.intervalId);
+        this.handleUserInteraction();
         this.prevItem();
       }
     }, { passive: true });
@@ -349,7 +321,7 @@ class Carousel {
       }
 
       button.addEventListener('click', () => {
-        clearInterval(this.intervalId);
+        this.handleUserInteraction();
         this.block.scrollTo({
           top: 0,
           left: item.offsetLeft - this.getBlockPadding(),
@@ -443,9 +415,25 @@ class Carousel {
     const activeItems = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     activeItems[this.currentIndex].classList.add('selected');
 
-    // create autoscrolling animation
-    this.autoScroll && this.infiniteScroll
-      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
+    // auto scroll setup
+    if (this.autoScroll && this.infiniteScroll) {
+      const startAutoScroll = () => {
+        if (this.intervalId) return;
+        this.intervalId = setInterval(() => {
+          this.scrollBy(this.getCurrentVisibleItems());
+        }, this.autoScrollInterval);
+      };
+
+      // start initially
+      startAutoScroll();
+
+      // only add hover listeners if device supports hover (desktop / laptop)
+      if (window.matchMedia('(hover: hover)').matches) {
+        this.block.addEventListener('mouseenter', () => this.handleUserInteraction());
+        this.block.addEventListener('mouseleave', () => this.handleUserInteraction());
+      }
+    }
+
     this.dotButtons && this.createDotButtons();
     this.counter && this.createCounter();
     this.navButtons && this.createNavButtons(this.block.parentElement);
