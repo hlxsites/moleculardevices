@@ -75,10 +75,11 @@
   margin-top: 0;
   margin-bottom: 0.25rem;
 }
-.event-summary .event-banner p.booth{
-  /* margin-top: 35px ; */
+
+.event-summary .event-banner p.booth {
   font-weight: 600;
 }
+
 .event-summary .cite {
   font-family: var(--ff-proxima-light);
   font-size: var(--list-font-size-s);

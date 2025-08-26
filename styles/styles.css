@@ -82,7 +82,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --text-light-gray: #adb3b7;
   --text-orange: #ee7624;
   --text-white: #fff;
-  --midnight-green : #003b4d;
+  --midnight-green: #003b4d;
   --heading-color: #00758d;
   --heading-color-blue: #038296;
   --link-color: #337ab7;
@@ -134,12 +134,12 @@ main .section.OneLinkShow_zh.columns-2 {
   --sign-up-newsletter-gradient: linear-gradient(var(--purple-color) 0, var(--cyan-color) 100%);
 
   /* fonts */
-  --ff-proxima-regular: "Proxima Nova Regular", "Proxima Nova Regular Fallback", "helvetica neue", helvetica, arial,
-    sans-serif;
-  --ff-proxima-xbold: "Proxima Nova ExtraBold", "Proxima Nova ExtraBold Fallback", "helvetica neue", helvetica, arial,
-    sans-serif;
-  --ff-proxima-light: "Proxima Nova Light", "Proxima Nova Light Fallback", "helvetica neue", helvetica, arial,
-    sans-serif;
+  --ff-proxima-regular:
+    "Proxima Nova Regular", "Proxima Nova Regular Fallback", "helvetica neue", helvetica, arial, sans-serif;
+  --ff-proxima-xbold:
+    "Proxima Nova ExtraBold", "Proxima Nova ExtraBold Fallback", "helvetica neue", helvetica, arial, sans-serif;
+  --ff-proxima-light:
+    "Proxima Nova Light", "Proxima Nova Light Fallback", "helvetica neue", helvetica, arial, sans-serif;
   --fixed-font-family: menlo, monaco, consolas, "courier new", monospace;
 
   /* font size */
@@ -1370,10 +1370,12 @@ main div.section.wave.bluegreen::after {
 main div.section.wave.bluegreen2:not([style*="background-image"]) {
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(90deg,
-      rgba(21 145 164 / 100%) 0,
-      rgba(50 159 121 / 100%) 50%,
-      rgba(97 178 73 / 100%) 100%) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(21 145 164 / 100%) 0,
+    rgba(50 159 121 / 100%) 50%,
+    rgba(97 178 73 / 100%) 100%
+  ) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1402,10 +1404,12 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: linear-gradient(90deg,
-        rgb(21 145 164 / 100%) 0,
-        rgb(46 159 121 / 100%) 50%,
-        rgb(97 178 73 / 100%) 100%) !important;
+    background: linear-gradient(
+      90deg,
+      rgb(21 145 164 / 100%) 0,
+      rgb(46 159 121 / 100%) 50%,
+      rgb(97 178 73 / 100%) 100%
+    ) !important;
     background-image: none;
   }
 
@@ -1915,9 +1919,15 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .product .section.tabs .columns-wrapper h2,
-.technology .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.technology
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
-.application .section.tabs:not(.wave) .default-content-wrapper h2:not(#latest-resources, #features, .video-resources-title),
+.application
+  .section.tabs:not(.wave)
+  .default-content-wrapper
+  h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
@@ -2831,45 +2841,50 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 
 /*  Rajneesh css  */
 
-main .section.columns-2.layout-50-50{
-    grid-template-columns: 50fr 50fr;
-  }
-.default-content-wrapper #featured-products{
+main .section.columns-2.layout-50-50 {
+  grid-template-columns: 50fr 50fr;
+}
+
+.default-content-wrapper #featured-products {
   text-align: center;
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
   padding-top: 25px;
 }
-.event main .columns-container .default-content-wrapper .find-out-more{
 
-  padding-left: 550px ;
-  padding-top: 50px ;
+.event main .columns-container .default-content-wrapper .find-out-more {
+  padding-left: 550px;
+  padding-top: 50px;
 }
 
-.event main .section .event-featured-products p:nth-child(2){
+.event main .section .event-featured-products p:nth-child(2) {
   max-width: 240px;
-    margin: auto;
- }
- .event .event-banner{
-  margin-bottom: 4.5rem;
- }
- .event main .section .event-featured-products .image-left{
-  gap:0;
- }
-  .event main .section .event-featured-products{
-    max-width: 85%;
-    margin: auto;
-  }
- .event 
- .event-featured-products a:any-link {
-    color:#000
+  margin: auto;
 }
- .event 
- .event-featured-products a:any-link:hover, .event 
- .event-featured-products a:any-link:focus{
+
+.event .event-banner {
+  margin-bottom: 4.5rem;
+}
+
+.event main .section .event-featured-products .image-left {
+  gap: 0;
+}
+
+.event main .section .event-featured-products {
+  max-width: 85%;
+  margin: auto;
+}
+
+.event .event-featured-products a:any-link {
+  color: #000;
+}
+
+.event .event-featured-products a:any-link:hover,
+.event .event-featured-products a:any-link:focus {
   text-decoration: underline;
- }
-/*  Rajneesh css  ends*/  
+}
+
+/*  Rajneesh css  ends */
 
 @media only screen and (min-width: 768px) {
   .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
@@ -2907,4 +2922,3 @@ main .section.columns-2.layout-50-50{
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
 }
-
