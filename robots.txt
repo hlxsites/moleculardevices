@@ -122,8 +122,8 @@ Disallow: /en/assets/tutorials-videos/dd/3d-biology/human-relevant-models-for-re
 Disallow: /en/assets/tutorials-videos/bpd/sustainable-crispr-based-genome-editing-therapies
 Disallow: /en/assets/tutorials-videos/dd/cns/sepscs-mepscs-analysis-using-minis-search
 Disallow: /en/assets/tutorials-videos/dd/img/transforming-high-content-screening-with-imaging-and-ai-analysis
-
-
+Disallow: /en/assets/tutorials-videos/dd/img/evolution-liver-toxicity-high-content-imaging-and-ai
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/innovation-in-cardiac-drug-discovery      
 
 
 #EU webinars to imaging video gallery page
