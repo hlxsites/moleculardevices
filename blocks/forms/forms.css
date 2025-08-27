@@ -534,3 +534,32 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
     padding: 20px;
   }
 }
+
+/* product-rfq form */
+main .category-form.product-rfq-thankyou-section .forms-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+main .product-rfq-thankyou-section .submitted-message {
+  text-align: center;
+  font-size: 1rem;
+}
+
+main .product-rfq-thankyou-section .submitted-message h2 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 36px;
+}
+
+main .product-rfq-thankyou-section .submitted-message a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+main .product-rfq-thankyou-section .submitted-message img[alt="E-mail Icon"] {
+  max-width: 150px;
+}
+
+main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
+  display: none;
+}

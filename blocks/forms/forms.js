@@ -4,6 +4,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
+import decorateProductPage from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
 import {
   extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
@@ -79,7 +80,7 @@ export default async function decorate(block) {
   formConfig.formType = formType;
   const target = `${formConfig.formType}-form`;
 
-  if (template === 'Product') {
+  if (template.includes('Product')) {
     const data = PRODUCT_FORM_DATA.find((formData) => formData.type === category);
     formHeading = data.formTitle || '';
   }
@@ -97,7 +98,9 @@ export default async function decorate(block) {
     block.appendChild(form);
   }
 
-  if (formType) {
+  if (template.includes('Product')) {
+    decorateProductPage();
+  } else if (formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   } else {
     const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));

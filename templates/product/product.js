@@ -103,7 +103,7 @@ async function initForm() {
 export default async function decorateProductPage() {
   const template = getMetadata('template');
 
-  if (template) {
+  if (template.includes('Product')) {
     const observer = new MutationObserver(() => {
       if (!formLoaded && !formLoading) {
         initForm().then(() => {
