@@ -17,6 +17,13 @@ async function getCBData() {
 }
 
 export default async function decorate(block) {
+  const cbPath = '/customer-breakthroughs';
+  const category = getMetadata('category').split(' ').join('-');
+  const anchor = `${cbPath}#${category}`;
+
+  /* view all CTA */
+  addViewAllCTA(block, '', 'customer-breakthrough', anchor, () => { }, 'View case studies');
+
   const resources = await getCBData();
   const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
     { media: '(min-width: 992px)', width: '1663' },
@@ -28,13 +35,6 @@ export default async function decorate(block) {
     block.closest('.section').remove();
     return;
   }
-
-  const cbPath = '/customer-breakthroughs';
-  const category = getMetadata('category').split(' ').join('-');
-  const anchor = `${cbPath}#${category}`;
-
-  /* view all CTA */
-  addViewAllCTA(block, '', 'customer-breakthrough', anchor, () => { }, 'View case studies');
 
   const resourceCard = await createCard({
     showDate: true,
