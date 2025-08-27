@@ -103,13 +103,13 @@
   display: none;
 }
 
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label{
+.hs-form .hs-form-field.hs_email .hs-error-msgs label{
   display: block;
 
 }
 
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label a:hover {
-  color: #ff0000;
+.hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
+  color: #f000;
 }
 
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
