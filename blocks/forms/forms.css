@@ -424,6 +424,10 @@ main .category-form.forms-container.wave-section {
   padding-bottom: 18%;
 }
 
+main .category-form.forms-container.wave-section + .section.wave {
+  display: none;
+}
+
 main .category-form.forms-container.wave-section .wave {
   position: absolute;
   width: 100%;
