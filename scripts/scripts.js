@@ -496,7 +496,6 @@ function addPageSchema() {
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
-    // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
