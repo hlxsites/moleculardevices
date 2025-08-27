@@ -102,13 +102,16 @@
 .hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
   display: none;
 }
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label{
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label{
   display: block;
 
 }
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label a:hover {
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
   color: #ff0000;
 }
+
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
 }
