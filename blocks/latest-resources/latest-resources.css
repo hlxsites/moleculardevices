@@ -21,7 +21,7 @@ main .carousel-wrapper.latest-resources-wrapper {
 
 main .carousel.latest-resources {
   width: 90%;
-  padding: 0;
+  padding: 0 0 30px;
 }
 
 main .latest-resources .carousel-item {

@@ -21,7 +21,7 @@ main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
 
 main .carousel.customer-breakthrough-carousel {
   width: 90%;
-  padding: 0;
+  padding: 0 0 30px;
 }
 
 main .customer-breakthrough-carousel .carousel-item {

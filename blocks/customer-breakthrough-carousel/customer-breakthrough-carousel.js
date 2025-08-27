@@ -12,6 +12,7 @@ async function getCBData() {
   return ffetch('/query-index.json')
     .sheet('customer-breakthroughs')
     .filter((cb) => cb.category.includes(category))
+    .limit(9)
     .all();
 }
 
