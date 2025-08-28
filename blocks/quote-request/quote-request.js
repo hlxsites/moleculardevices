@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
 import { getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
@@ -133,7 +134,7 @@ function createBackBtn(stepNum) {
   );
 }
 
-function prepImageUrl(thumbImage) {
+export function prepImageUrl(thumbImage) {
   const thumbImg = thumbImage;
   let thumbImgnew = '';
   if (!thumbImg.startsWith('https')) {
@@ -225,19 +226,19 @@ async function loadIframeForm(data, type) {
 
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
   // const mpCmpValue = queryParams && queryParams.get('mdcmp');
-  const cmpValue = getCookie('cmp') ? getCookie('cmp') : '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
-
+  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
     formId: getFormId('rfq'),
+    formType: 'rfq',
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,
     productPrimaryApplication: sfdcPrimaryApplication,
     cmp: cmpValue,
-    googleAnalyticsMedium: getCookie('utm_medium') ? getCookie('utm_medium') : '',
-    googleAnalyticsSource: getCookie('utm_source') ? getCookie('utm_source') : '',
-    keywordPPC: getCookie('utm_keyword') ? getCookie('utm_keyword') : '',
+    googleAnalyticsMedium: getCookie('utm_medium') || '',
+    googleAnalyticsSource: getCookie('utm_source') || '',
+    keywordPPC: getCookie('utm_keyword') || '',
     gclid: getCookie('gclid') ? getCookie('gclid') : '',
     productImage: productImage || 'NA',
     productBundleImage: bundleThumbnail || 'NA',
@@ -252,17 +253,16 @@ async function loadIframeForm(data, type) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
 
-  const contactQuoteRequestID = 'contactQuoteRequest';
   const formWrapper = div(
     h3('Request Quote or Information for:'),
     h3(tab),
     p('To ensure the best solution for your application, please complete the form in full. This will enable us to initiate a conversation about your requirements and provide an accurate quote.'),
     div({
-      class: 'contact-quote-request',
-      id: contactQuoteRequestID,
+      class: `${hubSpotQuery.formType}-form`,
+      id: `${hubSpotQuery.formType}-form`,
     }),
   );
-  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery, contactQuoteRequestID));
+  loadHubSpotScript(createHubSpotForm.bind(null, hubSpotQuery));
   root.appendChild(formWrapper);
   root.appendChild(createBackBtn('step-3'));
   rfqRUM.type = hubSpotQuery.requested_qdc_discussion__c;

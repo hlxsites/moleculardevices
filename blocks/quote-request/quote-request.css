@@ -197,7 +197,7 @@ main div.section.quote-request-container + .section.wave {
   display: none;
 }
 
-.contact-quote-request {
+.rfq-form {
   border: none;
   width: 100%;
 }
@@ -243,17 +243,17 @@ main div.section.quote-request-container + .section.wave {
 }
 
 /* rfq form block changes */
-main .contact-quote-request form fieldset {
+main .rfq-form form fieldset {
   max-width: 100%;
   text-align: left;
 }
 
-main .contact-quote-request .hs-dependent-field,
-main .contact-quote-request .hs-form-field {
+main .rfq-form .hs-dependent-field,
+main .rfq-form .hs-form-field {
   padding-top: 0;
 }
 
-main .contact-quote-request .hs-form-field .hs-field-desc {
+main .rfq-form .hs-form-field .hs-field-desc {
   color: #e2e2e2;
   font-size: 13px;
   font-weight: 100;
@@ -262,16 +262,16 @@ main .contact-quote-request .hs-form-field .hs-field-desc {
   width: 94% !important;
 }
 
-main .contact-quote-request .hs-form-field textarea.hs-input {
+main .rfq-form .hs-form-field textarea.hs-input {
   height: 70px;
 }
 
-main .contact-quote-request .actions {
+main .rfq-form .actions {
   margin-top: 40px;
   margin-bottom: 20px;
 }
 
-main .contact-quote-request .hs-submit .actions button {
+main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
   background: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
   background-color: #298da9;
@@ -284,14 +284,14 @@ main .contact-quote-request .hs-submit .actions button {
   width: 100%;
 }
 
-main .contact-quote-request .privacy{
+main .rfq-form .privacy{
   text-align: left;
   max-width: 70%;
   padding: 0 2px 2px 30px;
 }
 
-main .contact-quote-request .privacy,
-main .contact-quote-request .privacy > label {
+main .rfq-form .privacy,
+main .rfq-form .privacy > label {
   color: #999;
   line-height: 1.4em;
   margin: 0 auto;

@@ -1,7 +1,15 @@
 /* eslint-disable max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
-import { toCamelCase } from '../../scripts/lib-franklin.js';
+import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
+import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-request.js';
+import {
+  DEFAULT_QDC_VALUE,
+  fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
+  TEST_CMP_ID,
+} from './formMapping.js';
+
+const hostName = 'https://www.moleculardevices.com';
 
 // extract data from table
 export async function extractFormData(block) {
@@ -24,129 +32,67 @@ export async function extractFormData(block) {
   return blockData;
 }
 
-// get form id
-export const formMapping = [
-  { type: 'rfq', id: '09ad331d-27c6-470a-86d4-7d6c4b141bc8' }, // rfq master form
-  // { type: 'app-note', id: '46645e42-ae08-4d49-9338-e09efb4c4035' }, // old app note master form
-  { type: 'app-note', id: 'd6f54803-6515-4313-a7bd-025dfa5cbb5f' }, // New app note master form
-  // { type: 'scientific-poster', id: '342c229a-9e0d-4f52-b4c4-07f067d39c31' }, // old poster master form
-  { type: 'scientific-poster', id: '837f6e47-0292-4586-8447-297325ff50c1' }, // new poster master form
-  // { type: 'ebook', id: '65148a5b-995e-436d-8cdc-cc915923feaa' }, // old ebook master form
-  { type: 'ebook', id: '90a9217a-7e3f-474e-a7a2-8e34d895ef45' }, // new ebook master form
-  // { type: 'video-and-webinars', id: 'aabb1ced-8add-4de4-b198-6db60a82de85' }, // old videos and webinars master form
-  { type: 'video-and-webinars', id: '9dc88e8e-68f7-4dcc-82b1-de8c4672797c' }, // new videos and webinars master form
-  { type: 'infographics', id: '17750eb2-f0d3-4584-a534-85b6d7a1dd53' }, // new infographics master form
-  { type: 'lab-notes', id: '9530db8b-2803-469c-a178-9b74f9cb504a' },
-  { type: 'newsletter', id: '3b6b0bc3-c874-403c-aa73-ee006b7eb8eb' },
-  { type: 'inquiry-with-thankyou', id: '5461143e-c315-40cf-9a92-dd8515e61d4c' },
-  { type: 'inquiry', id: 'bbca06dd-57d2-433b-a8c1-d5cd18b4ce28' },
-  // { type: 'share-story', id: 'a1086f3a-ed6e-47d1-9694-17f8c0a28612' },
-  { type: 'share-story', id: '5d062792-bb0b-4f11-bc26-f3d3422ae4ec' },
-  { type: 'promo', id: '014f34d1-570e-49d9-b1a6-c630c5ef609f' },
-  { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
-  { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
-  { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
-];
+export function getProductImage(thumbnail) {
+  return thumbnail && thumbnail !== '0' ? prepImageUrl(thumbnail) : '';
+}
 
+/* get form id */
 export function getFormId(type) {
   const mapping = formMapping.find((item) => item.type === type);
   return mapping ? mapping.id : '';
 }
 
-/* custom field */
-export const OID = '00D70000000IRvr';
-export const timelineValue = '00N70000003iu0b';
-export const serialLotNumber = '00N70000003TZlz';
-export const productFamily = '00N70000001oP3y';
-export const productSelection = '00N0g000003c6tn';
-export const fseSalesRepInsideSales = '00N70000003RaEK';
-export const euFseSalesRepInsideSales = '00N70000003RaEK';
-export const usFas = '00N70000003RaEK';
-export const euFas = '00N70000003RaEK';
-export const customSolutionsOpportunity = '00N70000003ScgU';
-export const preQualifiedForSalesrep = '00N0g000003YFXF';
-export const QDCRrequest = '00N70000003iu65';
-export const marketingOptin = '00N70000003ipQF';
-export const prodPrimApp = '00N700000030jhQ';
-export const fieldsObj = [
-  { inputName: 'first_name', inputFieldName: 'firstname' },
-  { inputName: 'last_name', inputFieldName: 'lastname' },
-  { inputName: 'email', inputFieldName: 'email' },
-  { inputName: 'phone', inputFieldName: 'phone' },
-  { inputName: 'phone', inputFieldName: '0-2/phone' },
-  { inputName: 'company', inputFieldName: 'company' },
-  { inputName: 'country', inputFieldName: 'country' },
-  { inputName: 'country', inputFieldName: 'country_code' }, // TEST CASE
-  { inputName: 'state', inputFieldName: 'state_dropdown' }, // TEST CASE
-  { inputName: 'state', inputFieldName: 'state' }, // TEST CASE
-  { inputName: 'zip', inputFieldName: 'zip' },
-  { inputName: timelineValue, inputFieldName: 'timeline__c' },
-  { inputName: 'jobtitle', inputFieldName: 'jobtitle' },
-  { inputName: 'city', inputFieldName: 'city' },
-  { inputName: 'Danaher_Partner_Rep__c', inputFieldName: 'danaher_partner_rep__c' },
-  { inputName: 'Danaher_Partner_Rep_Email__c', inputFieldName: 'danaher_partner_rep_email__c' },
-  { inputName: 'EU_Lead_Finder_Agent__c', inputFieldName: 'eu_lead_finder_agent__c' },
-  { inputName: 'Contact_Region__c', inputFieldName: 'contact_region__c' },
-  { inputName: 'Region__c', inputFieldName: 'region__c' },
-  { inputName: 'na_lead_finder_agent__c', inputFieldName: 'na_lead_finder_agent__c' },
-  { inputName: serialLotNumber, inputFieldName: 'serial_lot_number__c' },
-  { inputName: serialLotNumber, inputFieldName: 'serial_lot_number__c' },
-  { inputName: productFamily, inputFieldName: 'product_family__c' },
-  { inputName: productSelection, inputFieldName: 'product_selection__c' },
-  { inputName: 'description', inputFieldName: 'description' },
-  { inputName: fseSalesRepInsideSales, inputFieldName: 'fse_sales_rep_inside_sales__c' },
-  { inputName: euFseSalesRepInsideSales, inputFieldName: 'eu_fse_sales_rep_inside_sales' },
-  { inputName: usFas, inputFieldName: 'us_fas' },
-  { inputName: euFas, inputFieldName: 'eu_fas' },
-  { inputName: customSolutionsOpportunity, inputFieldName: 'custom_solutions_opportunity__c' },
-  { inputName: preQualifiedForSalesrep, inputFieldName: 'pre_qualified_for_salesrep__c' },
-  { inputName: 'Lead_Source_2__c', inputFieldName: 'lead_source_2__c' },
-  { inputName: 'Source_Url__c', inputFieldName: 'source_url' },
-  { inputName: 'GCLID__c', inputFieldName: 'gclid__c' },
-  { inputName: 'Keyword_PPC__c', inputFieldName: 'keyword_ppc__c' },
-  { inputName: 'Google_Analytics_Medium__c', inputFieldName: 'google_analytics_medium__c' },
-  { inputName: 'Google_Analytics_Source__c', inputFieldName: 'google_analytics_source__c' },
-  { inputName: 'Campaign_ID', inputFieldName: 'cmp' },
-  { inputName: 'cmp', inputFieldName: 'cmp' },
-  { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
-];
-
 /* get form ready */
-export function getFormFieldValues(formConfig) {
-  // Get the `cmp` parameters from URL or cookie
+export async function getFormFieldValues(formConfig) {
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
   const cmpCookieValue = getCookie('cmp');
+  const familyID = getMetadata('family-id');
+  const rfqData = await getRFQDataByFamilyID(familyID);
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
-  // console.log(formConfig.host_name);
+  let formConfigThumb = '';
+  let formConfigBundle = '';
+  let formConfigWebsite = '';
+
+  if (formConfig.productBundle && formConfig.productBundle !== '0') {
+    formConfigBundle = formConfig.productBundle;
+  }
+  if (formConfig.thumbnail && formConfig.thumbnail !== '0') {
+    formConfigThumb = prepImageUrl(formConfig.thumbnail);
+  }
+  if (formConfig.path && formConfig.path !== '0') {
+    formConfigWebsite = `${hostName}${formConfig.path}`;
+  }
+
   return {
-    cmp: valuecmp || formConfig.cmp,
-    gclid__c: formConfig.gclid,
-    google_analytics_medium__c: formConfig.googleAnalyticsMedium,
-    google_analytics_source__c: formConfig.googleAnalyticsSource,
-    keyword_ppc__c: formConfig.keywordPPC,
-    product_title: formConfig.productTitle,
-    product_bundle: formConfig.productBundle,
-    product_bundle_image: formConfig.productBundleImage,
-    product_family__c: formConfig.productFamily,
-    product_image: formConfig.productImage || formConfig.resourceImageUrl,
-    product_primary_application__c: formConfig.productPrimaryApplication,
-    product_selection__c: formConfig.productSelection,
-    qdc: formConfig.qdc,
-    requested_qdc_discussion__c: formConfig.qdc,
-    research_area: formConfig.researchArea,
-    return_url: formConfig.redirectUrl || thankyouUrl,
-    landing_page_title: formConfig.jobTitle || formConfig.title,
-    latest_newsletter: formConfig.latestNewsletter,
-    website: formConfig.website || formConfig.resourceUrl,
-    source_url: currentUrl,
+    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
+    gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
+    google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
+    google_analytics_source__c: formConfig.googleAnalyticsSource || getCookie('utm_source') || '',
+    keyword_ppc__c: formConfig.keywordPPC || getCookie('utm_keyword') || '',
+    product_title: formConfig.productTitle || rfqData.title || '',
+    product_bundle: formConfigBundle || '',
+    product_bundle_image: formConfig.productBundleImage || 'NA',
+    product_family__c: formConfig.productFamily || '',
+    product_image: formConfigThumb || formConfig.product_image || formConfig.productImage || formConfig.resourceImageUrl || 'NA',
+    product_primary_application__c: formConfig.productPrimaryApplication || rfqData.title || '',
+    product_selection__c: formConfig.productSelection || rfqData.title || '',
+    qdc: formConfig.qdc || '',
+    requested_qdc_discussion__c: formConfig.qdc || DEFAULT_QDC_VALUE || '',
+    research_area: formConfig.researchArea || '',
+    return_url: formConfig.redirectUrl || thankyouUrl || '',
+    landing_page_title: formConfig.jobTitle || formConfig.title || '',
+    latest_newsletter: formConfig.latestNewsletter || '',
+    website: formConfig.website || formConfigWebsite || formConfig.resourceUrl || '',
+    source_url: currentUrl || '',
+    host_name: hostName,
   };
 }
 
-// Function to update multiple form fields
+/*  Function to update multiple form fields */
 export function updateFormFields(form, fieldValues) {
   Object.entries(fieldValues).forEach(([fieldName, value]) => {
     if (value && form.querySelector(`input[name="${fieldName}"]`)) {
@@ -222,6 +168,7 @@ export function createSalesforceForm(hubspotFormData, qdc, returnURL, subscribe)
   return { form, iframe };
 }
 
+/* handle form submit */
 export function handleFormSubmit(hubspotForm, formConfig, type) {
   if (!hubspotForm || !(hubspotForm instanceof HTMLFormElement)) {
     // eslint-disable-next-line no-console

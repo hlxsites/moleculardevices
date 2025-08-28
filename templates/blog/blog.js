@@ -7,7 +7,6 @@ import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.j
 import { decorateModal } from '../../blocks/modal/modal.js';
 import { decorateLinks, sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
-import { getFormId } from '../../blocks/forms/formHelper.js';
 
 export async function getLatestNewsletter() {
   const resources = await ffetch('/query-index.json')
@@ -19,46 +18,37 @@ export async function getLatestNewsletter() {
 }
 
 const formType = 'lab-notes';
+const formID = `${formType}-form`;
 const formConfig = {
-  formId: getFormId(formType),
+  formType,
   latestNewsletter: await getLatestNewsletter(),
   redirectUrl: null,
 };
 
 export async function newsletterModal(metaCMP = '') {
   formConfig.cmp = metaCMP;
-  const modalIframeID = 'newsletter-modal';
-  const leftColumn = div(
-    { class: 'col col-left' },
+  const leftColumn = div({ class: 'col col-left' },
     img({ src: '/images/spectra-lab-notes.png', alt: 'Spectra' }),
     p("Each month, we'll share trends our customers are setting in science and breakthroughs we're enabling together with promises of a brighter, healthier future."),
   );
 
-  const rightColumn = div(
-    { class: 'col col-right' },
-    div(
-      { class: 'iframe-wrapper' },
+  const rightColumn = div({ class: 'col col-right' },
+    div({ class: 'iframe-wrapper' },
       div(
         h3('Join our journey'),
         h3('of scientific discovery'),
-        div({
-          class: 'hubspot-form',
-          id: modalIframeID,
-        }),
+        div({ class: 'hubspot-form', id: formID }),
       ),
     ),
   );
 
-  const modalBody = div(
-    { class: 'modal-form' },
-    div(
-      { class: 'columns columns-2-cols' },
+  const modalBody = div({ class: 'modal-form' },
+    div({ class: 'columns columns-2-cols' },
       leftColumn,
-      rightColumn,
-    ),
+      rightColumn),
   );
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, modalIframeID, formType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   await decorateModal(modalBody, 'newsletter-inner-wrapper', true);
 }
 
@@ -84,18 +74,18 @@ export default async function decorate() {
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
   if (spectraNewsletter) {
-    const sidebarIframeID = 'newsletter-sidebar';
+    // const sidebarIframeID = 'newsletter-sidebar';
     const sidebar = div(
       { class: 'spectra-newsletter' },
       h3('Join our journey of scientific discovery'),
       h5('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
       div({
         class: 'contact-quote-request hubspot-form',
-        id: sidebarIframeID,
+        id: `${formConfig.formType}-form`,
       }),
     );
 
-    loadHubSpotScript(createHubSpotForm.bind(null, formConfig, sidebarIframeID, formType));
+    loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
     spectraNewsletter.appendChild(sidebar);
   }
 

@@ -1,0 +1,21 @@
+/* stylelint-disable no-descending-specificity */
+.thankyou-image {
+  padding-left: 165px;
+  font-size: 20px;
+}
+
+.thankyou-head {
+  padding-left: 240px;
+}
+
+.thankyou img {
+  width: 110px;
+  height: 119px;
+  align-content: center;
+}
+
+@media only screen and (min-width: 992px) {
+  main .category-form.product-rfq-thankyou-section-thankyou-section .forms-wrapper .block {
+    max-width: 50%;
+  }
+}
