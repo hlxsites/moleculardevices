@@ -506,6 +506,7 @@ const cardStyleConfig = {
 };
 
 export default async function decorate(block) {
+  console.log(block);
   // show full description
   const showFullDescription = block.classList.contains('show-full-description');
   if (showFullDescription) {
