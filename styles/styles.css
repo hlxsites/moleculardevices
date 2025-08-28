@@ -1868,10 +1868,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin: 0 15px;
 }
 
-.product main .section .default-content-wrapper h3 {
-  font-family: var(--ff-proxima-xbold);
-}
-
 .product p.video-title {
   font-size: 24px;
   font-family: var(--ff-proxima-xbold);
