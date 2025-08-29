@@ -103,7 +103,7 @@ main .carousel-item-text .button-container .secondary {
 }
 
 main .carousel-nav-button {
-  z-index: 99;
+  z-index: 9;
   min-width: unset;
   padding: 0;
   border-radius: 50%;

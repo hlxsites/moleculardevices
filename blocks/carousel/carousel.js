@@ -3,10 +3,8 @@ import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   div, img, p, span,
 } from '../../scripts/dom-helpers.js';
-// import { handleCompareProducts } from '../card/card.js';
 import {
-  clearAutoScroll, createDotButton, createNavButton, scrollToItem, updateSelectedState,
-  createCloneWithMeta,
+  clearAutoScroll, createDotButton, createNavButton, scrollToItem, createCloneWithMeta,
 } from './carousel-utils.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -75,118 +73,108 @@ class Carousel {
   }
 
   getStep() {
-    // If stepBy is explicitly set in config, use that,
-    // otherwise fall back to number of visible items
-    // return Math.max(1, Number(this.stepBy || this.getCurrentVisibleItems()));
     return this.getCurrentVisibleItems();
   }
 
   /**
-  * Scroll the carousel to the next item
-  */
-  nextItem() {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
-
-    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    const selectedItem = this.block.querySelector('.carousel-item.selected');
-
-    let index = [...items].indexOf(selectedItem);
-    index = index !== -1 ? index : 0;
-
-    const visibleCount = this.getCurrentVisibleItems();
-    const step = visibleCount > 1 ? visibleCount : 1;
-    const newIndex = (index + step) % items.length;
-    const newSelectedItem = items[newIndex];
-
-    if (newIndex === 0 && !this.infiniteScroll) {
-      return;
-    }
-
-    if (newIndex === items.length - visibleCount && !this.infiniteScroll) {
-      this.navButtonRight.classList.add('disabled');
-    }
-
-    // Infinite scroll illusion
-    if (newIndex === 0 && this.infiniteScroll) {
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: newSelectedItem.previousElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft,
-      });
-    }
-
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      behavior: 'smooth',
-    });
-
+   * Update selected states for items, dots, and counter
+   */
+  updateSelectedStates(newIndex, newSelectedItem, items, dotButtons) {
+    // reset all
     items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((item) => item.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons && dotButtons.length !== 0) {
-      dotButtons[newIndex].classList.add('selected');
-    }
+    dotButtons.forEach((dot) => dot.classList.remove('selected'));
 
+    // apply new
+    newSelectedItem.classList.add('selected');
+    if (dotButtons.length) dotButtons[newIndex].classList.add('selected');
+
+    // counter text
     this.updateCounterText(newIndex);
   }
 
   /**
-  * Scroll the carousel to the previous item
-  */
-  prevItem() {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+   * Handle infinite scroll illusion adjustments
+   */
+  adjustForInfiniteScroll(newIndex, direction, newSelectedItem, items) {
+    const { block } = this;
+    let targetEl = null;
 
-    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    const selectedItem = this.block.querySelector('.carousel-item.selected');
+    if (newIndex === 0 && direction > 0) {
+      targetEl = newSelectedItem.previousElementSibling;
+    } else if (newIndex === items.length - 1 && direction < 0) {
+      targetEl = newSelectedItem.nextElementSibling;
+    }
+
+    if (targetEl) {
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: targetEl.offsetLeft - this.getBlockPadding() - block.offsetLeft,
+      });
+    }
+  }
+
+  /**
+   * Scroll the carousel by a step (positive = next, negative = prev)
+   */
+  scrollByStep(direction) {
+    const {
+      infiniteScroll, block, navButtonLeft, navButtonRight,
+    } = this;
+
+    if (!infiniteScroll) {
+      navButtonLeft && navButtonLeft.classList.remove('disabled');
+      navButtonRight && navButtonRight.classList.remove('disabled');
+    }
+
+    const dotButtons = block.parentNode.querySelectorAll('.carousel-dot-button');
+    const items = block.querySelectorAll('.carousel-item:not(.clone,.skip)');
+    const selectedItem = block.querySelector('.carousel-item.selected');
 
     let index = [...items].indexOf(selectedItem);
     index = index !== -1 ? index : 0;
 
     const visibleCount = this.getCurrentVisibleItems();
     const step = visibleCount > 1 ? visibleCount : 1;
-    let newIndex = index - step;
-    if (newIndex < 0) newIndex = items.length + newIndex;
+
+    let newIndex = index + direction * step;
+
+    if (infiniteScroll) {
+      if (newIndex < 0) newIndex = items.length + newIndex;
+      newIndex %= items.length;
+    } else {
+      if (newIndex < 0) {
+        navButtonLeft && navButtonLeft.classList.add('disabled');
+        return;
+      }
+      if (newIndex > items.length - visibleCount) {
+        navButtonRight && navButtonRight.classList.add('disabled');
+        return;
+      }
+    }
 
     const newSelectedItem = items[newIndex];
 
-    if (newIndex === items.length - 1 && !this.infiniteScroll) {
-      return;
-    }
-
-    if (newIndex === 0 && !this.infiniteScroll) {
-      this.navButtonLeft.classList.add('disabled');
-    }
-
-    // Infinite scroll illusion
-    if (newIndex === items.length - 1 && this.infiniteScroll) {
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: newSelectedItem.nextElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft,
-      });
+    if (infiniteScroll) {
+      this.adjustForInfiniteScroll(newIndex, direction, newSelectedItem, items);
     }
 
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - block.offsetLeft,
       behavior: 'smooth',
     });
 
-    items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((item) => item.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons && dotButtons.length !== 0) {
-      dotButtons[newIndex].classList.add('selected');
-    }
+    this.updateSelectedStates(newIndex, newSelectedItem, items, dotButtons);
+  }
 
-    this.updateCounterText(newIndex);
+  /** Scroll the carousel to the next item */
+  nextItem() {
+    this.scrollByStep(1);
+  }
+
+  /** Scroll the carousel to the previous item */
+  prevItem() {
+    this.scrollByStep(-1);
   }
 
   /**
@@ -356,10 +344,8 @@ class Carousel {
   // eslint-disable-next-line class-methods-use-this
   renderItem(item) {
     // create the carousel content
-    const columnContainer = document.createElement('div');
-    columnContainer.classList.add('carousel-item-columns-container');
-
-    const columns = [document.createElement('div'), document.createElement('div')];
+    const columnContainer = div({ class: 'carousel-item-columns-container' });
+    const columns = [div(), div()];
 
     const itemChildren = [...item.children];
     itemChildren.forEach((itemChild, idx) => {
@@ -394,8 +380,7 @@ class Carousel {
 
     this.block.innerHTML = '';
     this.data.forEach((item, index) => {
-      const itemContainer = document.createElement('div');
-      itemContainer.classList.add('carousel-item', `carousel-item-${index + 1}`);
+      const itemContainer = div({ class: `carousel-item carousel-item-${index + 1}` });
 
       let renderedItem = this.cardRenderer.renderItem(item);
       renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];

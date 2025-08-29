@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { button, span } from '../../scripts/dom-helpers.js';
 import { handleCompareProducts } from '../card/card.js';
 
 /**
@@ -38,16 +39,13 @@ export function clearAutoScroll(instance) {
  * Create navigation button (left/right)
  */
 export function createNavButton(direction, iconClass, clickHandler) {
-  const button = document.createElement('button');
-  button.classList.add(`carousel-nav-${direction}`, 'carousel-nav-button');
-  button.ariaLabel = `Scroll to ${direction === 'left' ? 'previous' : 'next'} item`;
-
-  const spanEl = document.createElement('span');
-  spanEl.classList.add('icon', iconClass);
-  button.append(spanEl);
-
-  button.addEventListener('click', clickHandler);
-  return button;
+  const ariaLabel = `Scroll to ${direction === 'left' ? 'previous' : 'next'} item`;
+  const btn = button(
+    { class: `carousel-nav-${direction} carousel-nav-button`, 'aria-label': ariaLabel },
+    span({ class: `icon ${iconClass}` }),
+  );
+  btn.addEventListener('click', clickHandler);
+  return btn;
 }
 
 /**
@@ -86,14 +84,9 @@ export function preJumpToClone(container, block, originalIndex, clonePos, paddin
  * Create dot button for a given item
  */
 export function createDotButton(item, index, currentIndex, block, padding, updateCallback) {
-  const button = document.createElement('button');
-  button.ariaLabel = `Scroll to item ${index + 1}`;
-  button.classList.add('carousel-dot-button');
-  if (index === currentIndex) button.classList.add('selected');
+  const btn = button({ class: 'carousel-dot-button', 'aria-label': `Scroll to item ${index + 1}` });
+  if (index === currentIndex) btn.classList.add('selected');
 
-  button.addEventListener('click', () => {
-    updateCallback(index, item, button);
-  });
-
-  return button;
+  btn.addEventListener('click', () => updateCallback(index, item, btn));
+  return btn;
 }
