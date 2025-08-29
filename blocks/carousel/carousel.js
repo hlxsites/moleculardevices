@@ -70,6 +70,10 @@ class Carousel {
     }
   }
 
+  getCurrentVisibleItems() {
+    return this.visibleItems.find((e) => !e.condition || e.condition()).items;
+  }
+
   getStep() {
     // If stepBy is explicitly set in config, use that,
     // otherwise fall back to number of visible items
@@ -77,122 +81,112 @@ class Carousel {
     return this.getCurrentVisibleItems();
   }
 
-  getCurrentVisibleItems() {
-    return this.visibleItems.find((e) => !e.condition || e.condition()).items;
-  }
-
   /**
   * Scroll the carousel to the next item
   */
   nextItem() {
-    !this.infiniteScroll && this.navButtonRight?.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft?.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
 
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.skip)');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
 
     let index = [...items].indexOf(selectedItem);
-    if (index === -1) index = 0;
+    index = index !== -1 ? index : 0;
 
-    const step = this.getStep();
-    const total = items.length;
-    const visible = this.getCurrentVisibleItems();
-    const realTotal = total - 2 * visible; // exclude head/tail clones
-
-    let newIndex = index + step;
-
-    if (this.infiniteScroll) {
-      // allow moving into tail clones
-      if (newIndex >= total - visible) {
-        newIndex = total - visible;
-      }
-    } else {
-      const lastIndex = total - visible;
-      if (newIndex > lastIndex) newIndex = lastIndex;
-      if (newIndex === lastIndex) this.navButtonRight?.classList.add('disabled');
-      this.navButtonLeft?.classList.remove('disabled');
-    }
-
+    const visibleCount = this.getCurrentVisibleItems();
+    const step = visibleCount > 1 ? visibleCount : 1;
+    const newIndex = (index + step) % items.length;
     const newSelectedItem = items[newIndex];
-    scrollToItem(newSelectedItem.parentNode,
-      newSelectedItem,
-      this.getBlockPadding(),
-      this.block.offsetLeft);
 
-    updateSelectedState(items, dotButtons, newIndex);
-    this.updateCounterText(newIndex);
-
-    // 🔑 After moving into clones, jump back to real item instantly
-    if (this.infiniteScroll && newIndex >= total - visible) {
-      setTimeout(() => {
-        const realIndex = (newIndex - (total - visible)) % realTotal;
-        const realItem = items[realIndex + visible]; // skip head clones
-        newSelectedItem.parentNode.scrollTo({
-          top: 0,
-          left: realItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-          behavior: 'auto', // instant reset
-        });
-        updateSelectedState(items, dotButtons, realIndex + visible);
-        this.updateCounterText(realIndex);
-      }, 300); // wait for smooth scroll to finish
+    if (newIndex === 0 && !this.infiniteScroll) {
+      return;
     }
+
+    if (newIndex === items.length - visibleCount && !this.infiniteScroll) {
+      this.navButtonRight.classList.add('disabled');
+    }
+
+    // Infinite scroll illusion
+    if (newIndex === 0 && this.infiniteScroll) {
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: newSelectedItem.previousElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft,
+      });
+    }
+
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      behavior: 'smooth',
+    });
+
+    items.forEach((item) => item.classList.remove('selected'));
+    dotButtons.forEach((item) => item.classList.remove('selected'));
+    newSelectedItem.classList.add('selected');
+    if (dotButtons && dotButtons.length !== 0) {
+      dotButtons[newIndex].classList.add('selected');
+    }
+
+    this.updateCounterText(newIndex);
   }
 
   /**
   * Scroll the carousel to the previous item
   */
   prevItem() {
-    !this.infiniteScroll && this.navButtonRight?.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft?.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
 
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.skip)');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
 
     let index = [...items].indexOf(selectedItem);
-    if (index === -1) index = 0;
+    index = index !== -1 ? index : 0;
 
-    const step = this.getStep();
-    const total = items.length;
-    const visible = this.getCurrentVisibleItems();
-    const realTotal = total - 2 * visible; // exclude head/tail clones
-
+    const visibleCount = this.getCurrentVisibleItems();
+    const step = visibleCount > 1 ? visibleCount : 1;
     let newIndex = index - step;
+    if (newIndex < 0) newIndex = items.length + newIndex;
 
-    if (this.infiniteScroll) {
-      // allow moving into head clones
-      if (newIndex < visible) {
-        newIndex = visible - 1;
-      }
-    } else if (newIndex < 0) {
-      this.navButtonLeft?.classList.add('disabled');
+    const newSelectedItem = items[newIndex];
+
+    if (newIndex === items.length - 1 && !this.infiniteScroll) {
       return;
     }
 
-    const newSelectedItem = items[newIndex];
-    scrollToItem(newSelectedItem.parentNode,
-      newSelectedItem,
-      this.getBlockPadding(),
-      this.block.offsetLeft);
-
-    updateSelectedState(items, dotButtons, newIndex);
-    this.updateCounterText(newIndex);
-
-    // 🔑 After moving into clones, jump back to real item instantly
-    if (this.infiniteScroll && newIndex < visible) {
-      setTimeout(() => {
-        const realIndex = (realTotal + newIndex - visible) % realTotal;
-        const realItem = items[realIndex + visible]; // skip head clones
-        newSelectedItem.parentNode.scrollTo({
-          top: 0,
-          left: realItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-          behavior: 'auto',
-        });
-        updateSelectedState(items, dotButtons, realIndex + visible);
-        this.updateCounterText(realIndex);
-      }, 300);
+    if (newIndex === 0 && !this.infiniteScroll) {
+      this.navButtonLeft.classList.add('disabled');
     }
+
+    // Infinite scroll illusion
+    if (newIndex === items.length - 1 && this.infiniteScroll) {
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: newSelectedItem.nextElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft,
+      });
+    }
+
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      behavior: 'smooth',
+    });
+
+    items.forEach((item) => item.classList.remove('selected'));
+    dotButtons.forEach((item) => item.classList.remove('selected'));
+    newSelectedItem.classList.add('selected');
+    if (dotButtons && dotButtons.length !== 0) {
+      dotButtons[newIndex].classList.add('selected');
+    }
+
+    this.updateCounterText(newIndex);
   }
 
   /**
