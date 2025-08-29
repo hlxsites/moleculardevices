@@ -6,7 +6,7 @@ import {
 // import { handleCompareProducts } from '../card/card.js';
 import {
   clearAutoScroll, createDotButton, createNavButton, scrollToItem, updateSelectedState,
-  preJumpToClone, createCloneWithMeta,
+  createCloneWithMeta,
 } from './carousel-utils.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -71,7 +71,10 @@ class Carousel {
   }
 
   getStep() {
-    return Math.max(1, Number(this.stepBy || 1));
+    // If stepBy is explicitly set in config, use that,
+    // otherwise fall back to number of visible items
+    // return Math.max(1, Number(this.stepBy || this.getCurrentVisibleItems()));
+    return this.getCurrentVisibleItems();
   }
 
   getCurrentVisibleItems() {
@@ -94,24 +97,18 @@ class Carousel {
 
     const step = this.getStep();
     const total = items.length;
+    const visible = this.getCurrentVisibleItems();
+    const realTotal = total - 2 * visible; // exclude head/tail clones
+
     let newIndex = index + step;
 
     if (this.infiniteScroll) {
-      // wrap forward into clones → then jump back
-      if (newIndex >= total - this.getCurrentVisibleItems()) {
-        const realIndex = newIndex % (total - (2 * this.getCurrentVisibleItems()));
-        preJumpToClone(
-          items[realIndex].parentNode,
-          this.block,
-          realIndex,
-          'tail',
-          this.getBlockPadding(),
-          this.block.offsetLeft,
-        );
-        newIndex = realIndex;
+      // allow moving into tail clones
+      if (newIndex >= total - visible) {
+        newIndex = total - visible;
       }
     } else {
-      const lastIndex = total - this.getCurrentVisibleItems();
+      const lastIndex = total - visible;
       if (newIndex > lastIndex) newIndex = lastIndex;
       if (newIndex === lastIndex) this.navButtonRight?.classList.add('disabled');
       this.navButtonLeft?.classList.remove('disabled');
@@ -122,8 +119,24 @@ class Carousel {
       newSelectedItem,
       this.getBlockPadding(),
       this.block.offsetLeft);
+
     updateSelectedState(items, dotButtons, newIndex);
     this.updateCounterText(newIndex);
+
+    // 🔑 After moving into clones, jump back to real item instantly
+    if (this.infiniteScroll && newIndex >= total - visible) {
+      setTimeout(() => {
+        const realIndex = (newIndex - (total - visible)) % realTotal;
+        const realItem = items[realIndex + visible]; // skip head clones
+        newSelectedItem.parentNode.scrollTo({
+          top: 0,
+          left: realItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+          behavior: 'auto', // instant reset
+        });
+        updateSelectedState(items, dotButtons, realIndex + visible);
+        this.updateCounterText(realIndex);
+      }, 300); // wait for smooth scroll to finish
+    }
   }
 
   /**
@@ -142,20 +155,15 @@ class Carousel {
 
     const step = this.getStep();
     const total = items.length;
+    const visible = this.getCurrentVisibleItems();
+    const realTotal = total - 2 * visible; // exclude head/tail clones
+
     let newIndex = index - step;
 
     if (this.infiniteScroll) {
-      if (newIndex < 0 + this.getCurrentVisibleItems()) {
-        const realIndex = (total - (2 * this.getCurrentVisibleItems())) + newIndex;
-        preJumpToClone(
-          items[realIndex].parentNode,
-          this.block,
-          realIndex,
-          'head',
-          this.getBlockPadding(),
-          this.block.offsetLeft,
-        );
-        newIndex = realIndex;
+      // allow moving into head clones
+      if (newIndex < visible) {
+        newIndex = visible - 1;
       }
     } else if (newIndex < 0) {
       this.navButtonLeft?.classList.add('disabled');
@@ -167,8 +175,24 @@ class Carousel {
       newSelectedItem,
       this.getBlockPadding(),
       this.block.offsetLeft);
+
     updateSelectedState(items, dotButtons, newIndex);
     this.updateCounterText(newIndex);
+
+    // 🔑 After moving into clones, jump back to real item instantly
+    if (this.infiniteScroll && newIndex < visible) {
+      setTimeout(() => {
+        const realIndex = (realTotal + newIndex - visible) % realTotal;
+        const realItem = items[realIndex + visible]; // skip head clones
+        newSelectedItem.parentNode.scrollTo({
+          top: 0,
+          left: realItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+          behavior: 'auto',
+        });
+        updateSelectedState(items, dotButtons, realIndex + visible);
+        this.updateCounterText(realIndex);
+      }, 300);
+    }
   }
 
   /**

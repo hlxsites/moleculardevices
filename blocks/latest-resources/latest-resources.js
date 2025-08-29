@@ -84,20 +84,16 @@ export default async function decorate(block) {
       dotButtons: false,
       infiniteScroll: true,
       autoScroll: false,
-      stepBy: 3,
       visibleItems: [
         {
           items: 1,
-          stepBy: 1,
           condition: () => window.screen.width < 768,
         },
         {
           items: 2,
-          stepBy: 2,
           condition: () => window.screen.width < 1200,
         }, {
           items: 3,
-          stepBy: 3,
         },
       ],
       cardRenderer: resourceCard,
