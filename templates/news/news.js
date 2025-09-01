@@ -35,7 +35,7 @@ function decorateStrong(elems) {
   });
 }
 
-function decorateCaption(elems) {
+export function decorateCaption(elems) {
   elems.forEach((elem) => {
     const parent = elem.parentElement;
     const next = parent.nextElementSibling;

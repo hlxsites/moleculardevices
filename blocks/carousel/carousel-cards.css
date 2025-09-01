@@ -55,6 +55,10 @@ main .carousel-wrapper.cards .carousel {
   padding: 0;
 }
 
+.carousel.cards.no-repetition {
+  justify-content: center;
+}
+
 .carousel.cards .carousel-item .card {
   height: 100%;
   background: var(--background-color);
@@ -68,7 +72,6 @@ main .carousel-wrapper.cards .carousel {
   width: 100%;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 30px;
 }
 
 .carousel.cards .carousel-item .card:hover {
@@ -82,6 +85,15 @@ main .carousel-wrapper.cards .carousel {
   font-size: var(--heading-font-size-l);
   margin-bottom: 15px;
   margin-top: 0;
+}
+
+.carousel.cards.three-lines-heading .carousel-item h3 {
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .carousel.cards .carousel-item p {
@@ -99,6 +111,14 @@ main .carousel-wrapper.cards .carousel {
   line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.carousel.cards.show-full-description .carousel-item p,
+.carousel-wrapper.cards.show-full-description .card-description {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: auto;
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item p:first-child {
@@ -168,26 +188,51 @@ main .carousel-wrapper.cards .carousel {
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child,
-.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
+.carousel.cards.microplate-related-products
+  .carousel-item
+  .card
+  > div:first-child {
   flex-shrink: 0;
 }
 
-.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child {
+.carousel.cards.gpx-compliance-resources
+  .carousel-item
+  .card
+  > div:first-child {
   height: 200px;
 }
 
-.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
+.carousel.cards.microplate-related-products
+  .carousel-item
+  .card
+  > div:first-child {
   height: 250px;
 }
 
-.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child picture,
-.carousel.cards.microplate-related-products .carousel-item .card > div:first-child picture {
+.carousel.cards.gpx-compliance-resources
+  .carousel-item
+  .card
+  > div:first-child
+  picture,
+.carousel.cards.microplate-related-products
+  .carousel-item
+  .card
+  > div:first-child
+  picture {
   display: block;
   height: 100%;
 }
 
-.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child img,
-.carousel.cards.microplate-related-products .carousel-item .card > div:first-child img {
+.carousel.cards.gpx-compliance-resources
+  .carousel-item
+  .card
+  > div:first-child
+  img,
+.carousel.cards.microplate-related-products
+  .carousel-item
+  .card
+  > div:first-child
+  img {
   height: 100%;
   width: 100%;
   object-fit: cover;

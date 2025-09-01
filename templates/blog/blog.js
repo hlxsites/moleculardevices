@@ -1,15 +1,15 @@
 /* eslint-disable import/no-cycle */
 import {
-  div, img, h3, p, h5,
+  div, img, h3, p, h5, strong, i, a,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { decorateModal } from '../../blocks/modal/modal.js';
-import { sortDataByDate } from '../../scripts/scripts.js';
+import { decorateLinks, sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getFormId } from '../../blocks/forms/formHelper.js';
 
-async function getLatestNewsletter() {
+export async function getLatestNewsletter() {
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
     .filter((resource) => resource.type === 'Newsletter')
@@ -22,9 +22,11 @@ const formType = 'lab-notes';
 const formConfig = {
   formId: getFormId(formType),
   latestNewsletter: await getLatestNewsletter(),
+  redirectUrl: null,
 };
 
-export async function newsletterModal() {
+export async function newsletterModal(metaCMP = '') {
+  formConfig.cmp = metaCMP;
   const modalIframeID = 'newsletter-modal';
   const leftColumn = div(
     { class: 'col col-left' },
@@ -77,10 +79,10 @@ export async function getBlogAndPublications() {
 
 export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
+  const newsletterCMP = getMetadata('newsletter-form-cmp');
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
 
   const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
-
   if (spectraNewsletter) {
     const sidebarIframeID = 'newsletter-sidebar';
     const sidebar = div(
@@ -98,7 +100,7 @@ export default async function decorate() {
   }
 
   if (!hasNewsletterMetaData) {
-    setTimeout(() => newsletterModal(), 1000);
+    setTimeout(() => newsletterModal(newsletterCMP), 1000);
   }
 
   // add social share block
@@ -107,5 +109,26 @@ export default async function decorate() {
     const blogCarouselSection = blogCarousel.parentElement;
     const socialShareSection = div(div({ class: 'social-share' }));
     blogCarouselSection.parentElement.insertBefore(socialShareSection, blogCarouselSection);
+  }
+
+  // add article sentence
+  const isArticlePage = getMetadata('blog-type') === 'Article';
+  const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
+  const contactURL = 'https://www.moleculardevices.com/contact?region=americas#get-in-touch';
+
+  if (isArticlePage) {
+    const publisher = getMetadata('publisher');
+    const gatedUrl = getMetadata('article-url');
+    const creditParagraph = div({ class: 'credit-paragraph' },
+      p(strong(
+        i('This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), ' and reprinted here with permission.'),
+      )),
+      p(a({ href: contactURL, class: 'button primary' }, signatureCTA)),
+    );
+    setTimeout(() => {
+      const block = document.querySelector('.hero-container + .section');
+      decorateLinks(creditParagraph);
+      block.append(creditParagraph);
+    }, 1000);
   }
 }

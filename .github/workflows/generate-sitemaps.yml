@@ -34,7 +34,6 @@ jobs:
           file_pattern: "coveo-xml.xml"
           push_options: --force
           skip_dirty_check: true
-
   build-sitemap:
     needs: build-coveo
     runs-on: ubuntu-latest

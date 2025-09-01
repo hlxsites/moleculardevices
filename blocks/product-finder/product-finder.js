@@ -1,5 +1,7 @@
+/* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
 import {
+  createOptimizedPicture,
   decorateIcons, fetchPlaceholders, toClassName,
 } from '../../scripts/lib-franklin.js';
 import {
@@ -7,6 +9,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
+import { toTitleCase } from '../../scripts/scripts.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';
@@ -15,10 +18,24 @@ const CHECKED_CLASS = 'checked';
 const DEFAULT_TITLE = 'Select a Product Type';
 const DEFAULT_CATEGORY_TITLE = 'Select {{tab}} Category';
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
+const PRODUCT_TYPE_PARAM = 'type';
+const PRODUCT_CATEGORY_PARAM = 'cat';
 
 let placeholders = {};
 let step2Type = '';
 let step2Title = '';
+
+const url = new URL(window.location);
+const params = url.searchParams;
+let prodType = '';
+let prodCategory = '';
+
+if (params.has(PRODUCT_TYPE_PARAM)) {
+  prodType = toTitleCase(params.get(PRODUCT_TYPE_PARAM));
+  if (params.has(PRODUCT_CATEGORY_PARAM)) {
+    prodCategory = toTitleCase(params.get(PRODUCT_CATEGORY_PARAM));
+  }
+}
 
 function getListIdentifier(tabName) {
   return toClassName(tabName);
@@ -60,7 +77,9 @@ async function renderIconCards(listArr, progressStep, tabName, callback) {
 
   const cardRenderer = await createCard({
     renderItem: renderIconItem,
+    descriptionLength: 150,
   });
+
   listArr.forEach((rfq) => {
     list.append(cardRenderer.renderItem(rfq, progressStep, callback));
   });
@@ -72,6 +91,12 @@ function startOver(e) {
 
   step2Type = '';
   step2Title = '';
+
+  params.delete('type');
+  params.delete('cat');
+  prodType = '';
+  prodCategory = '';
+  window.history.replaceState({}, '', url.toString());
 
   const currentTab = document.querySelector('.product-finder-step-wrapper.active');
   const firstTab = document.getElementById(`${STEP_PREFIX}-1`);
@@ -188,16 +213,23 @@ function handleReagentsAndMediaDataInconsistency(type, category) {
   return [type, category];
 }
 
+export function isNotOlderThan365Days(timestamp) {
+  const dateFromTimestamp = new Date(timestamp * 1000);
+  const oneYearAgo = new Date();
+  oneYearAgo.setDate(oneYearAgo.getDate() - 365);
+  return dateFromTimestamp >= oneYearAgo;
+}
+
 /* step three */
 async function stepThree(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
   const stepNum = `${STEP_PREFIX}-3`;
   const prevStepNum = `${STEP_PREFIX}-2`;
 
-  const title = getTabTitle(e.target);
-  let type = getTabType(e.target);
-  let category = getTabCategory(e.target);
+  const title = prodCategory || getTabTitle(e.target);
+  let type = prodType || getTabType(e.target);
+  let category = prodCategory || getTabCategory(e.target);
   const root = switchTab(title, stepNum, prevStepNum, 'Select Product');
 
   const originalType = type;
@@ -206,6 +238,10 @@ async function stepThree(e) {
 
   root.setAttribute('data-type', type);
   root.setAttribute('data-category', category);
+
+  // Update URL with type parameter
+  // params.set('cat', category);
+  // window.history.replaceState({}, '', url.toString());
 
   const dataCardType = getListIdentifier(`${type}-${category}-products`);
   const lists = root.querySelectorAll('.product-finder-list');
@@ -234,6 +270,7 @@ async function stepThree(e) {
     const cardRenderer = await createCard({
       c2aLinkStyle: true,
       defaultButtonText: placeholders.requestQuote || 'Request Quote',
+      descriptionLength: 150,
     });
     products.forEach((product) => {
       product.c2aLinkConfig = {
@@ -245,6 +282,9 @@ async function stepThree(e) {
       const card = cardRenderer.renderItem(product);
       // add product path attribute
       card.setAttribute('data-product-path', product.path);
+      if (isNotOlderThan365Days(product.date)) {
+        card.classList.add('new-product');
+      }
       list.append(card);
     });
   }
@@ -280,8 +320,16 @@ async function stepThree(e) {
   const categoryData = categories.find(
     (c) => c.category === originalCategory && c.type === originalType,
   );
+
+  const newProductCards = list.querySelectorAll('.new-product');
+  newProductCards.forEach((productCard) => {
+    const newTagImage = div({ class: 'new-product-tag' },
+      createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag'));
+    productCard.prepend(newTagImage);
+  });
+
+  const cardThumbs = list.querySelectorAll('.card-thumb');
   if (categoryData.displayImage === 'false') {
-    const cardThumbs = list.querySelectorAll('.card-thumb');
     cardThumbs.forEach((thumb) => {
       thumb.style.display = 'none';
     });
@@ -294,12 +342,16 @@ async function stepThree(e) {
 
 /* step two */
 async function stepTwo(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
-  const type = step2Type || getTabType(e.target);
-  const title = step2Title || getTabTitle(e.target);
+  const type = step2Type || prodType || getTabType(e.target);
+  const title = step2Title || prodType || getTabTitle(e.target);
   step2Title = title;
   step2Type = type;
+
+  // Update URL with type parameter
+  // params.set('type', toClassName(step2Type));
+  // window.history.replaceState({}, '', url.toString());
 
   const stepNum = `${STEP_PREFIX}-2`;
   const prevStepNum = `${STEP_PREFIX}-1`;
@@ -336,6 +388,16 @@ async function stepOne(callback) {
   root.append(await renderIconCards(types, stepNum, '', callback));
 }
 
+function startOverCallback(e) {
+  if (params.size > 0) {
+    const newUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+    prodType = '';
+    prodCategory = '';
+  }
+  startOver(e);
+}
+
 export default async function decorate(block) {
   placeholders = await fetchPlaceholders();
   block.prepend(
@@ -369,12 +431,15 @@ export default async function decorate(block) {
             activeStep.style.display = 'none';
           });
           stepTwo(e);
+          params.delete('cat');
+          prodCategory = '';
+          window.history.replaceState({}, '', url.toString());
         }
       }
     });
   });
 
-  const resetBtn = renderResetButton(startOver);
+  const resetBtn = renderResetButton(startOverCallback);
   block.append(resetBtn);
   decorateIcons(resetBtn);
 
@@ -397,4 +462,12 @@ export default async function decorate(block) {
     ),
   );
   stepOne(stepTwo);
+
+  /* with params */
+  if (prodType) {
+    stepTwo();
+    if (prodCategory) {
+      stepThree();
+    }
+  }
 }

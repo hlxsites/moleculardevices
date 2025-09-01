@@ -395,6 +395,10 @@ body .thank-you-page h4 {
     grid-template-columns: 65fr 35fr;
   }
 
+  .thank-you-page > div.columns-wrapper > .block.columns.layout-50-50 > div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .thank-you-page .columns > div {
     display: grid;
     grid-template-columns: 35fr 65fr;

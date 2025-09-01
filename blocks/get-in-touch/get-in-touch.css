@@ -7,7 +7,7 @@
   margin-top: 0;
 }
 
-.get-in-touch > div > div h5 {
+.get-in-touch > div > div h3 {
   font-size: var(--heading-font-size-l);
   font-weight: 600;
   margin-bottom: 12px;
@@ -24,10 +24,9 @@
   padding-top: 10px;
 }
 
-.get-in-touch .hubspot-iframe-wrapper iframe {
-  height: 760px;
-  margin-bottom: -20px;
-}
+/* .get-in-touch .get-in-touch-form iframe {
+  min-height: 700px;
+} */
 
 .get-in-touch .hubspot-iframe-wrapper {
   margin-left: -15px;
@@ -71,13 +70,18 @@
   color: inherit;
 }
 
+.get-in-touch a[role='button']{
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 992px) {
-  .get-in-touch > div > div {
-    flex-basis: 50%;
+  .get-in-touch > div {
+    flex-wrap: nowrap;
+    gap: 50px;
   }
 
-  .get-in-touch > div > div:last-child {
-    padding-left: 50px;
+  .get-in-touch > div > div {
+    flex-basis: 50%;
   }
 }
 
@@ -86,8 +90,8 @@
     flex-direction: column;
   }
 
-  .get-in-touch .hubspot-iframe-wrapper iframe {
-    height: 800px;
+  .get-in-touch .get-in-touch-form iframe {
+    margin-bottom: 2rem;
   }
 
   .get-in-touch > div > div:last-child iframe {
@@ -99,9 +103,5 @@
   .get-in-touch .hubspot-success {
     padding: 10px;
     margin-bottom: 20px;
-  }
-
-  .get-in-touch .hubspot-iframe-wrapper iframe {
-    height: 870px;
   }
 }

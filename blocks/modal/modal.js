@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { button, div, span } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, loadCSS } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;
@@ -21,12 +21,30 @@ export function showModal() {
 
 export function triggerModalWithUrl(url) {
   const queryParams = new URLSearchParams(window.location.search);
-  const cmpID = queryParams.get('cmp') || '';
+  const urlParams = new URL(url, window.location.origin).searchParams;
+  const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+  const productFamily = queryParams.get('product_family') || urlParams.get('product_family') || '';
+  const productPrimary = queryParams.get('product_primary') || urlParams.get('product_primary') || '';
   const modal = document.querySelector(`.${modalParentClass}`);
   const iframeElement = modal.querySelector('iframe');
+
+  urlParams.delete('cmp');
+  urlParams.delete('product_family');
+  urlParams.delete('product_primary');
+
+  const baseUrl = new URL(url, window.location.origin);
+  baseUrl.search = urlParams.toString();
+
   setTimeout(() => {
-    iframeElement.src = `${url}?cmp=${cmpID}`;
+    const newParams = new URLSearchParams(baseUrl.search);
+    newParams.set('source_url', window.location.href);
+    if (cmpID) newParams.set('cmp', cmpID);
+    if (productFamily) newParams.set('product_family__c', productFamily);
+    if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
+
+    iframeElement.src = `${baseUrl.origin}${baseUrl.pathname}?${newParams.toString()}`;
   }, 200);
+
   timer = setTimeout(showModal, 500);
 }
 
@@ -76,9 +94,10 @@ export async function decorateModal(modalBody, modalClass, isFormModal) {
 
 export default async function decorate(block) {
   const isBlogModal = block.classList.contains('blog-popup');
+  const formCMP = getMetadata('newsletter-form-cmp');
 
   if (isBlogModal) {
-    await newsletterModal();
+    await newsletterModal(formCMP);
     const modalBtn = document.getElementById('show-modal');
     window.addEventListener('scroll', () => triggerModalBtn(3.75, modalBtn));
   }

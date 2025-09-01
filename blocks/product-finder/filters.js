@@ -1,11 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import {
-  div,
-  h4,
-  select,
-  label,
-  option,
-  span,
+  div, h4, select, label, option, span,
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 

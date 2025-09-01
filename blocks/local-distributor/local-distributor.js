@@ -18,6 +18,7 @@ function searchDistributorForm(countryList, productFamilyList) {
               <div class="form-group">
                 <div class="fields">
                   <div class="select-wrapper">
+                    <label for="country" class="screen-reader-text">Country</label>
                     <select name="country" id="country" class="form-control" required="">
                       <option value="" selected>Select Region/Country</option>
                       ${getSelectOptions(countryList)}
@@ -25,6 +26,7 @@ function searchDistributorForm(countryList, productFamilyList) {
                     <span class="fa fa-chevron-down"></span>
                   </div>
                   <div class="select-wrapper">
+                    <label for="product_family" class="screen-reader-text">Product Family</label>
                     <select name="product_family" id="product_family" class="form-control">
                       <option value="">Select Product Group</option>
                       ${getSelectOptions(productFamilyList)}
@@ -88,7 +90,6 @@ function redirectToContactSearch(distributorsMap, productFamilyMap) {
   const countryName = document.getElementById('country').value;
   const primeProduct = document.getElementById('product_family').value;
   window.open(`/contact-search?country=${distributorsMap[countryName]}&product_family=${primeProduct ? productFamilyMap[primeProduct] : ''}`, '_blank');
-  Event.preventDefault();
 }
 
 export default async function decorate(block) {
@@ -201,7 +202,7 @@ export default async function decorate(block) {
         newStr += `<strong>Email:</strong>  <a href="mailto:${row.Email}">${(row.Email)}</a>\n`;
       }
       if (row.Link) {
-        if (row.Link === 'https://mdc.custhelp.com/app/ask') {
+        if (row.Link === 'https://support.moleculardevices.com/s/' || row.Link === 'http://support.moleculardevices.com/s/') {
           newStr += `<a href="${row.Link}" target="_blank" rel="noopener noreferrer">Online Support Request <span class="icon icon-external-link"></span></a>\n`;
         } else {
           newStr += `<strong>Website:</strong> <a href="${row.Link}" target="_blank" rel="noopener noreferrer">${row.Link} <span class="icon icon-external-link"></span></a>\n`;
@@ -237,7 +238,7 @@ export default async function decorate(block) {
     localLinks.forEach((link) => link.addEventListener('click', scrollToForm));
   };
 
-  const heading = block.querySelector('h5');
+  const heading = block.querySelector('h3');
   const cloneHeading = heading.cloneNode(true);
   heading.remove();
   block.insertBefore(cloneHeading, block.firstChild);
@@ -250,7 +251,8 @@ export default async function decorate(block) {
   document.querySelector('.local-distributor').appendChild(searchResult);
   const searchButton = document.querySelector('#searchButton > button');
 
-  searchButton.addEventListener('click', () => {
+  searchButton.addEventListener('click', (event) => {
+    event.preventDefault();
     // eslint-disable-next-line no-unused-expressions
     window.location.pathname === '/contact' ? redirectToContactSearch(distributorsMap, productFamilyMap) : renderAddress();
     decorateIcons(block);

@@ -50,6 +50,10 @@ const customBreadcrumbs = {
     name: 'Microplate Readers',
     url_path: '/lab-notes/blog#Microplate-Readers',
   },
+  '/lab-notes/axon-patch-clamp': {
+    name: 'Axon Patch-Clamp',
+    url_path: '/lab-notes/blog#Axon-Patch-Clamp',
+  },
   '/lab-notes/3d-biology': {
     name: '3D Biology',
     url_path: '/lab-notes/blog#3D-Biology',
@@ -128,7 +132,15 @@ const customBreadcrumbs = {
     name: 'Events',
     url_path: '/events',
   },
+  newsletters: {
+    name: 'Newsletters',
+    url_path: '/newsletters',
+  },
   brochures: customResourcesBreadcrumb,
+  'for-whats-next': {
+    name: 'For What\'s Next',
+    url_path: '/for-whats-next',
+  },
 };
 
 function getCustomUrl(path, part) {
@@ -162,7 +174,15 @@ function getName(pageIndex, path, part, current) {
   }
 
   if (current) {
-    return document.originalTitle ? document.originalTitle : document.title;
+    const headingElement = document.querySelector('main h1');
+    const htmlContent = headingElement.innerHTML;
+
+    // Replace <br> with space and remove all other HTML tags
+    const heading = htmlContent
+      .replace(/<br\s*\/?>/gi, ' ')
+      .replace(/<[^>]+>/g, '');
+
+    return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
   }
 
   return part;

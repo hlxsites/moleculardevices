@@ -18,6 +18,7 @@ export default async function decorate(block) {
   const placeholders = await fetchPlaceholders();
 
   const cardRenderer = await createCard({
+    descriptionLength: 150,
     titleLink: false,
     thumbnailLink: false,
     defaultButtonText: placeholders.details || 'Details',

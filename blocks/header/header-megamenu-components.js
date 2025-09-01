@@ -74,8 +74,16 @@ function buildCardsMenu(cardContent) {
         // if the second paragraph of the card contains the string (expand-image),
         // we style the image. We need this because some images fill the card, others dont
         const secondParagraph = card.querySelector('p:nth-child(2)');
-        if (secondParagraph.textContent.includes('(expand-image)')) {
+        if (secondParagraph.textContent.includes('expand-image')) {
           picture.classList.add('expanded-image');
+          // delete the second paragraph
+          secondParagraph.remove();
+        }
+        if (secondParagraph.textContent.includes('new')) {
+          const newProductTag = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
+          newProductTag.classList.add('new-product-tag');
+          picture.parentElement.parentElement.classList.add('new-product');
+          picture.parentElement.parentElement.appendChild(newProductTag);
           // delete the second paragraph
           secondParagraph.remove();
         }

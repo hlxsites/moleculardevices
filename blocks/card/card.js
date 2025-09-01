@@ -1,4 +1,4 @@
-/* eslint-disable no-alert */
+/* eslint-disable import/no-cycle, no-alert */
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
@@ -16,6 +16,7 @@ import {
   getSelectedItems,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
+import { isNotOlderThan365Days } from '../product-finder/product-finder.js';
 
 let placeholders = {};
 
@@ -58,7 +59,6 @@ class Card {
     this.imageBlockReady = false;
     this.thumbnailLink = true;
     this.titleLink = true;
-    this.descriptionLength = 75;
     this.c2aLinkStyle = false;
     this.c2aLinkConfig = false;
     this.c2aLinkIconFull = false;
@@ -67,6 +67,8 @@ class Card {
     this.hideDescription = false;
     this.isRequestQuoteCard = false;
     this.isShopifyCard = false;
+    this.showFullDescription = false;
+    this.isInPastYear = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -82,11 +84,15 @@ class Card {
     if (this.isRequestQuoteCard) {
       this.defaultButtonText = 'Request Quote';
     }
+
+    if (!this.showFullDescription) {
+      this.descriptionLength = 75;
+    }
   }
 
   renderItem(item) {
-    // const cardTitle = item.h1 && item.h1 !== '0' ? item.h1 : item.title;
     const cardTitle = itemSearchTitle(item);
+    this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
     let itemImage = this.defaultImage;
     if (item.thumbnail && item.thumbnail !== '0') {
@@ -162,7 +168,9 @@ class Card {
     }
 
     return (
-      div({ class: 'card' },
+      div({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
+        this.isInPastYear ? div({ class: 'new-product-tag' },
+          createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag')) : '',
         this.showImageThumbnail ? div({ class: 'card-thumb' },
           this.thumbnailLink ? a({ href: cardLink },
             thumbnailBlock,

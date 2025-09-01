@@ -1,13 +1,18 @@
 import {
-  fetchPlaceholders, readBlockConfig, toCamelCase, toClassName,
+  createOptimizedPicture,
+  fetchPlaceholders, getMetadata, loadCSS, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
+// eslint-disable-next-line import/no-cycle
 import {
-  createList, renderPagination, swapData, toggleFilter,
+  createList, formatEventDateRange, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import {
-  div, input, label, span,
+  a,
+  div, h2, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
+import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
+import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -25,22 +30,16 @@ function splitByComma(value) {
 }
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterEventType = splitByComma(entry.eventType)
-    .map(toClassName);
-  entry.filterEventRegion = splitByComma(entry.eventRegion)
-    .map(toClassName);
+  entry.filterEventType = splitByComma(entry.eventType).map(toClassName);
+  entry.filterEventRegion = splitByComma(entry.eventRegion).map(toClassName);
   entry.date = '0';
   const keywords = [];
   if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
   if (entry.eventRegion !== '0') keywords[keywords.length] = entry.eventRegion;
   if (entry.eventAddress !== '0') keywords[keywords.length] = entry.eventAddress;
   entry.keywords = keywords;
-  if (!showDescription) {
-    entry.description = '';
-  }
-  if (viewMoreText) {
-    entry.viewMoreText = viewMoreText;
-  }
+  if (!showDescription) entry.description = '';
+  if (viewMoreText) entry.viewMoreText = viewMoreText;
 }
 
 function createEventsDropdown(options, selected, name, placeholder) {
@@ -116,18 +115,41 @@ function sortEvents(data, showFutureEvents) {
   }
 }
 
-async function createOverview(
-  block,
-  options,
-) {
+function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'center') {
+  const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
+  const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
+  if (root) {
+    loadCSS('/blocks/event-summary/event-summary.css');
+    const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
+    const featuredBanner = div({ class: 'event-summary' },
+      (div({ class: `event-banner featured-event-banner event-thumb-${toClassName(imageThumbPosition)}` },
+        div({ class: 'left-col' },
+          a({ href: featuredEvent.path },
+            createOptimizedPicture(featuredEvent.image, featuredEvent.title))),
+        div({ class: 'right-col' },
+          div(
+            p({ class: 'cite' }, featuredEvent.eventType),
+            h2({ class: 'event-title' }, a({ href: featuredEvent.path }, featuredEvent.title)),
+            p({ class: 'event-date' }, formatEventDateRange(startFormatDate, endFormatDate)),
+            p(featuredEvent.eventAddress),
+            p(featuredEvent.eventRegion),
+          ),
+          socialShareBlock('Share this event', socials),
+        ))));
+    decorateIcons(featuredBanner);
+    root.appendChild(featuredBanner);
+  }
+}
+
+async function createOverview(block, options, imageThumbPosition) {
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
-  await createList(
-    createFilters(options),
-    options,
-    block);
+  if (options.featuredEvent) {
+    createFeaturedEventCard(options.featuredEvent, block, imageThumbPosition);
+  }
+  await createList(createFilters(options), options, block);
 }
 
 async function fetchEvents(options) {
@@ -179,11 +201,18 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
   const relatedLink = block.querySelector('a');
+  const featuredEvent = getMetadata('featured-event');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
+  const imageThumbPosition = getMetadata('image-thumb-position');
+  let featuredPath;
+
   placeholders = await fetchPlaceholders();
+
+  if (featuredEvent) featuredPath = new URL(featuredEvent).pathname;
+
   const options = {
-    limitPerPage: parseInt(config.limitPerPage, 10) || 10,
+    limitPerPage: parseInt(config.limitPerPage, 9) || 9,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     title: title ? title.innerHTML : '',
     panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
@@ -201,8 +230,12 @@ export default async function decorate(block) {
   options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
+
+  if (featuredPath) {
+    options.featuredEvent = options.data.find((option) => option.path === featuredPath);
+    options.data = options.data.filter((option) => option.path !== featuredPath);
+  }
+  // options.data = options.data.filter((option) => option.path !== featuredPath);
   sortEvents(options.data, showFutureEvents);
-  await createOverview(
-    block,
-    options);
+  await createOverview(block, options, imageThumbPosition);
 }

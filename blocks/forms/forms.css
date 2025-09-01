@@ -48,18 +48,21 @@
 }
 
 .hs-form .hs-form-field .hs-input,
+.hs-form .hs-form-field .hs-form-checkbox label span::before ,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 0;
 }
 
+.hs-form .hs-form-field .hs-form-checkbox label span::before,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before,
 .hs-form .hs-form-field .hs-input[type="checkbox"]:checked ~ span::after {
   position: absolute;
   top: 1px;
 }
 
+.hs-form .hs-form-field .hs-form-checkbox label span::before,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
   content: "";
   height: 20px;
@@ -82,6 +85,7 @@
   width: 100%;
 }
 
+.hs-form .hs-form-field .hs-form-checkbox,
 .hs-form .hs-fieldtype-booleancheckbox {
   cursor: pointer;
   display: flex;
@@ -97,6 +101,19 @@
 .hs-form .hs-form-field .hs-field-desc,
 .hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
   display: none;
+}
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label{
+  display: block;
+
+}
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
+  color: #ff0000;
+}
+
+.hubspot-form .hs-form .hs-form-field .hs-field-desc {
+  display: block;
 }
 
 .hs-form .hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label {
@@ -160,6 +177,11 @@ div.privacy > label {
   margin-top: 0;
 }
 
+.hs-form .hs-form-field .hs-form-checkbox label{
+  position: relative;
+}
+
+.hs-form .hs-form-field .hs-form-checkbox label span,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span {
   font-size: 14px;
 }

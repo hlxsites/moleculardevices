@@ -15,7 +15,6 @@ function addMetadata(container) {
   const publisher = getMetadata('publisher');
   const publisherDate = formatDate(getMetadata('publication-date'), { month: 'short' });
   const updatedDate = formatDate(getMetadata('updated-date'), { month: 'short' });
-  const metadataStyling = 'display: flex;gap: 4px;align-items;center;min-width: 120px;';
   let updatedPublisherDate;
   if (updatedDate) {
     updatedPublisherDate = `Original: ${publishDate} | Updated: ${updatedDate}`;
@@ -24,14 +23,14 @@ function addMetadata(container) {
   }
 
   const metadataContainer = div({ class: 'metadata' },
-    div({ style: metadataStyling },
+    div({ class: 'metadata-item' },
       i({ class: ['fa', 'fa-calendar'] }),
       span({ class: 'publish-date' }, updatedPublisherDate),
     ),
   );
 
   if (author && !publisher) {
-    const authorContainer = div({ style: metadataStyling },
+    const authorContainer = div({ class: 'metadata-item' },
       i({ class: ['fa', 'fa-user'] }),
       span({ class: 'post-author' }, author),
     );
@@ -41,12 +40,12 @@ function addMetadata(container) {
   if (publisher) {
     let authorContainer = '';
     if (!author) {
-      authorContainer = div({ style: metadataStyling },
+      authorContainer = div({ class: 'metadata-item' },
         i({ class: ['fa', 'fa-user'] }),
         span({ class: 'blog-author' }, publisher),
       );
     } else {
-      authorContainer = div({ style: metadataStyling },
+      authorContainer = div({ class: 'metadata-item' },
         i({ class: ['fa', 'fa-user'] }),
         span({ class: 'blog-author' }, author),
       );
@@ -138,7 +137,15 @@ export function buildHero(block) {
   const container = div({ class: 'container' });
 
   let picture = block.querySelector('picture');
-  if (picture) {
+
+  if (picture && block.classList.contains('hero-insider')) {
+    const pictureSrc = new URL(picture.lastElementChild.src);
+    pictureSrc.searchParams.delete('width');
+    inner.setAttribute('style', `background-image: url('${pictureSrc.toString()}')`);
+    picture.parentElement.remove();
+  }
+
+  if (picture && !block.classList.contains('hero-insider')) {
     const originalHeroBg = picture.lastElementChild;
     const optimizedHeroBg = createOptimizedPicture(
       originalHeroBg.src,
@@ -203,6 +210,12 @@ export function buildHero(block) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
+  }
+
+  if (block.classList.contains('hero-insider')) {
+    inner.classList.remove('white-bg');
+    inner.appendChild(container);
+    block.appendChild(inner);
   }
 
   if (block.classList.contains('newsroom')) {

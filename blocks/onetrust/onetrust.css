@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .onetrust .otnotice-content {
   padding: 0;
 }
@@ -22,8 +23,8 @@
   padding-right: 0;
 }
 
-.onetrust .otnotice-content .otnotice-sections .otnotice-section-content p:last-child {
-  margin-bottom: 0;
+.otnotice-content .otnotice-sections .otnotice-section-content p {
+  margin-bottom: 8px;
 }
 
 .onetrust .otnotice-content div:has(> table) {
@@ -40,10 +41,23 @@
   font-size: var(--body-font-size-m);
 }
 
+.onetrust .otnotice-content table:has( ~ p){
+  margin-bottom: 30px;
+}
+
 .onetrust .otnotice-content table thead tr,
 .onetrust .otnotice-content table tbody tr:first-child {
   background: var(--background-color-blue);
   color: var(--text-white);
+}
+
+.onetrust .otnotice-content table + table tbody tr:first-child {
+  background-color: transparent;
+  color: inherit;
+}
+
+.onetrust .otnotice-content table tbody tr br:last-child {
+  display: none;
 }
 
 .onetrust .otnotice-content table th,
@@ -52,14 +66,6 @@
   padding: 8px;
   text-align: left;
   vertical-align: top;
-}
-
-.otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td {
-  width: 100%;
-  text-align: center;
-  padding: 5px;
-  vertical-align: middle;
-  margin: 0;
 }
 
 .otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td.title {
@@ -72,4 +78,10 @@
 .otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td.subtitle {
   font-weight: 600;
   color: var(--text-electric-blue);
+}
+
+.onetrust .otnotice-content table tbody tr p:last-child,
+.otnotice-content .otnotice-sections .otnotice-section-content p:last-child,
+.onetrust .otnotice-content .otnotice-sections .otnotice-section-content p:last-child {
+  margin-bottom: 0 !important;
 }

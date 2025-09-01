@@ -1,11 +1,12 @@
-import { addLinkIcon, fetchFragment, detectAnchor } from '../../scripts/scripts.js';
+import { div, ul } from '../../scripts/dom-helpers.js';
+import {
+  addLinkIcon, fetchFragment, handleHashNavigation, sortDataByTitle,
+} from '../../scripts/scripts.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);
   const actionLink = fragment.querySelector('div > p:last-child:last-of-type a:only-child');
-  if (actionLink) {
-    addLinkIcon(actionLink);
-  }
+  if (actionLink) addLinkIcon(actionLink);
   block.append(fragment);
 }
 
@@ -35,9 +36,7 @@ function alignTitles() {
   });
 
   const relApps = document.querySelectorAll('.related-apps-container');
-  relApps.forEach((relApp) => {
-    observer.observe(relApp);
-  });
+  relApps.forEach((relApp) => observer.observe(relApp));
 }
 
 export default async function decorate(block) {
@@ -45,14 +44,12 @@ export default async function decorate(block) {
   const hasTOC = block.classList.contains('toc');
   block.innerHTML = '';
 
-  if (fragmentPaths.length === 0) {
-    return '';
-  }
+  if (fragmentPaths.length === 0) return '';
 
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
     if (fragmentHtml) {
-      const fragmentElement = document.createElement('div');
+      const fragmentElement = div();
       fragmentElement.innerHTML = fragmentHtml;
       const h3 = fragmentElement.querySelector('h3');
       return { id: h3.id, title: h3.textContent, html: fragmentElement };
@@ -60,20 +57,9 @@ export default async function decorate(block) {
     return null;
   }));
 
-  const sortedFragments = fragments.filter((item) => !!item).sort((a, b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const apps = document.createElement('div');
-  apps.classList.add('related-apps-container');
-  const links = document.createElement('ul');
-  links.classList.add('related-links-container');
+  const sortedFragments = sortDataByTitle(fragments);
+  const apps = div({ class: 'related-apps-container' });
+  const links = ul({ class: 'related-links-container' });
 
   sortedFragments.forEach((fragment) => {
     if (hasTOC) {
@@ -84,14 +70,26 @@ export default async function decorate(block) {
     renderFragment(fragment.html, apps, 'related-app');
   });
 
-  if (hasTOC) {
-    block.append(links);
-  }
-  block.append(apps);
+  if (hasTOC) block.append(links);
 
+  block.append(apps);
   alignTitles();
 
-  detectAnchor(block);
+  block.querySelectorAll('a[href^="#"]').forEach((a) => {
+    const rawHash = a.getAttribute('href');
+    if (!rawHash || rawHash === '#') return;
+
+    a.setAttribute('data-anchor-setup', 'true');
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.history.pushState(null, '', rawHash);
+      handleHashNavigation(rawHash);
+    });
+  });
+
+  if (window.location.hash) {
+    handleHashNavigation(window.location.hash);
+  }
 
   return block;
 }

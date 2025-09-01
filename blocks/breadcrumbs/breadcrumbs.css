@@ -5,8 +5,12 @@
   padding-bottom: 30px;
 }
 
+.events .breadcrumbs {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
 .news main .breadcrumbs,
-.events main .breadcrumbs,
 .publication:not(.full-article) main .breadcrumbs {
   padding-top: 70px;
 }

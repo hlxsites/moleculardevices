@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .blog,
 .blog main strong {
   font-family: var(--ff-proxima-regular);
@@ -38,6 +39,12 @@
 .blog main h3 + ol,
 .blog main h3 + ul {
   margin-top: 10px;
+}
+
+.blog main .video-wrapper,
+.blog main .vidyard-lightbox-thumbnail {
+  max-width: 100% !important;
+  margin: 0;
 }
 
 .blog main .no-indent ul,
@@ -174,6 +181,24 @@ main .section.sidebar h4,
   margin-bottom: 0;
 }
 
+.blog main .section .credit-paragraph {
+  margin-top: 30px;
+  padding-bottom: 30px;
+}
+
+.blog main .section .credit-paragraph p {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.blog main .section .credit-paragraph p:last-child {
+  margin-bottom: 0;
+}
+
+.blog main .section .credit-paragraph strong {
+  font-family: var(--ff-proxima-xbold);
+}
+
 @media only screen and (max-width: 767px) {
   .blog main .section.blog-heading > div:first-of-type {
     overflow: visible;
@@ -291,10 +316,24 @@ main .section.sidebar h4::after {
   padding-left: 0;
 }
 
+.blog main .card-list-filter ul {
+  padding-left: 0;
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .blog main .section div.spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
+}
+
+.blog main .carousel-wrapper.cards .carousel {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .blog main .card-list-filter.blog ul li a {
+    padding: 16px 20px;
+  }
 }
 
 @media only screen and (max-width: 991px) {

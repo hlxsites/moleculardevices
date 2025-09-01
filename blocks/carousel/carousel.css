@@ -41,6 +41,12 @@ main .carousel-item {
   padding: 50px 80px;
 }
 
+main .carousel-item[style*="background-image"] {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 main .carousel-item-columns-container {
   max-width: 1140px;
   display: flex;
@@ -50,6 +56,15 @@ main .carousel-item-columns-container {
 
 main .carousel-item-column {
   width: 50%;
+}
+
+main .carousel-item-column:empty {
+  display: none;
+}
+
+main .carousel-item-column:has(+ .carousel-item-column:empty) {
+  width: 100%;
+  max-width: 100%;
 }
 
 main .carousel-item-image img {
@@ -132,7 +147,7 @@ main .carousel-dot-buttons {
   justify-content: center;
   gap: 10px;
   min-width: unset;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 main .carousel-dot-button {
@@ -171,6 +186,8 @@ main .carousel-dot-img-buttons .carousel-dot-button {
 
 main .carousel-dot-img-buttons .carousel-dot-button img {
   display: block;
+  aspect-ratio: 1/1;
+  object-fit: contain;
 }
 
 main .carousel-dot-img-buttons .carousel-dot-button.selected {
@@ -194,14 +211,20 @@ main .global-carousel.title-center h2 {
   text-align: center;
 }
 
+main .section.global-carousel .carousel h2:only-child,
 main .section.global-carousel .carousel h2 + h3 {
-  margin-bottom: 48px;
+  margin-bottom: 18px;
 }
 
 @media only screen and (min-width: 768px) {
   main div.fragments-carousel-wrapper.carousel-wrapper,
   main div.carousel-wrapper.container-width-carousel {
     width: 750px;
+  }
+
+  main .section.global-carousel .carousel h2:only-child,
+  main .section.global-carousel .carousel h2 + h3 {
+    margin-bottom: 48px;
   }
 }
 
@@ -277,9 +300,9 @@ main .section.global-carousel .carousel h2 + h3 {
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1460px) {
   main .carousel {
-    padding-inline: 100px;
+    padding-inline: var(--center-space);
   }
 }
 
@@ -349,6 +372,10 @@ main .section.global-carousel .carousel h2 + h3 {
 
   main .carousel-item-text .button-container .button {
     margin-left: 0;
+  }
+
+  main .carousel-item-columns-container {
+    padding: 0;
   }
 }
 

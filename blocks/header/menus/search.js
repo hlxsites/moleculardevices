@@ -25,13 +25,17 @@ export function buildMobileSearch() {
       { class: 'search' },
       form(
         {
-          id: 'mobileSearchForm', class: 'mobile-search-form', action: '/search-results', method: 'GET',
+          id: 'mobileSearchForm',
+          class: 'mobile-search-form',
+          action: '/search-results',
+          method: 'GET',
         },
-        input(
-          {
-            id: 'mobileSearchQuery', class: 'form-control', placeholder: 'Search moleculardevices.com', type: 'text',
-          },
-        ),
+        input({
+          id: 'mobileSearchQuery',
+          class: 'form-control',
+          placeholder: 'Search moleculardevices.com',
+          type: 'text',
+        }),
         button(
           { class: 'searchbutton', type: 'submit', 'aria-label': 'Search' },
           i({ class: 'fa fa-search' }),
@@ -44,28 +48,30 @@ export function buildMobileSearch() {
 export function buildSearchBar(formId) {
   const searchForm = form(
     {
-      id: formId, class: 'search-form', action: '/search-results', method: 'GET',
+      id: formId,
+      class: 'search-form',
+      action: '/search-results',
+      method: 'GET',
     },
-    input(
-      {
-        class: 'form-control', type: 'text', placeholder: 'moleculardevices.com',
-      },
-    ),
+    input({
+      class: 'form-control',
+      type: 'text',
+      placeholder: 'moleculardevices.com',
+    }),
     button(
-      { class: 'transparentBtn btn searchbutton', type: 'submit', 'aria-label': 'Search' },
+      {
+        class: 'transparentBtn btn searchbutton',
+        type: 'submit',
+        'aria-label': 'Search',
+      },
       'Search',
     ),
   );
 
   return div(
     { class: 'menu-nav-search-bar' },
-    h3(
-      'Search',
-    ),
-    div(
-      { class: 'search-form-group' },
-      searchForm,
-    ),
+    h3('Search'),
+    div({ class: 'search-form-group' }, searchForm),
   );
 }
 
@@ -81,11 +87,7 @@ export default function buildSearch(content) {
     { class: 'searchlink header-search', 'aria-expanded': 'false' },
     div(
       { class: 'menu-nav-search-flex' },
-      div(
-        { class: 'menu-nav-search-view' },
-        robotDiv,
-        searchBar,
-      ),
+      div({ class: 'menu-nav-search-view' }, robotDiv, searchBar),
       closeButton,
     ),
   );

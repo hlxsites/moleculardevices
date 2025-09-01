@@ -4,11 +4,17 @@ import { decorateButtons } from '../../scripts/lib-franklin.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { triggerModalWithUrl } from '../modal/modal.js';
 
-async function renderFragment(fragment, block, className) {
-  fragment.classList.add(className);
+export async function renderFragment(fragment, block, className, indx) {
+  fragment.classList.add(className, `${className}-${indx + 1}`);
   decorateButtons(fragment);
   block.append(fragment);
 }
+
+const styleConfig = {
+  // cssFiles: [`/blocks/featured-posts/featured-posts.css`],
+  defaultStyling: true,
+  autoScroll: false,
+};
 
 // eslint-disable-next-line consistent-return
 export default async function decorate(block) {
@@ -36,10 +42,12 @@ export default async function decorate(block) {
         const isFormModal = block.closest('.section').classList.contains('form-in-modal');
         if (isFormModal) {
           const showModalBtn = fragmentElement.querySelector('a[href*="info.moleculardevices.com"]');
-          showModalBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            triggerModalWithUrl(event.target.href);
-          });
+          if (showModalBtn) {
+            showModalBtn.addEventListener('click', (event) => {
+              event.preventDefault();
+              triggerModalWithUrl(event.target.href);
+            });
+          }
         }
 
         return { html: fragmentElement };
@@ -52,8 +60,5 @@ export default async function decorate(block) {
     renderFragment(fragment.html, block, 'fragments-carousel');
   });
 
-  await createCarousel(block, fragments.html, {
-    defaultStyling: true,
-    autoScroll: false,
-  });
+  await createCarousel(block, fragments.html, styleConfig);
 }

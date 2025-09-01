@@ -138,10 +138,9 @@
 @media (max-width: 992px) {
   main .section > div.featured-highlights-wrapper {
     width: unset;
-    height: 375px;
+    min-height: 375px;
     border-bottom: 1px solid #ddd;
     background-color: var(--grey-background-color);
-    padding-bottom: 30px;
     position: relative;
   }
 

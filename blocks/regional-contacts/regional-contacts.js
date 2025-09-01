@@ -1,6 +1,6 @@
 function tabQueryString(tabID) {
   const newurl = new URL(window.location);
-  newurl.searchParams.set('region', tabID);
+  newurl.searchParams.set('region', tabID || 'americas');
   window.history.pushState({ path: newurl.href }, '', newurl.href);
 }
 
@@ -55,19 +55,26 @@ function accordianHandler() {
   const siblings = this.parentElement.parentElement.children;
   const siblingsCount = siblings.length;
 
-  if (this.children[0].classList.contains('fa-plus')) {
-    /* eslint no-plusplus: "error" */
+  if (this.querySelector('i.fa').classList.contains('fa-plus')) {
     for (let i = 0; i < siblingsCount; i += 1) {
-      siblings[i].children[0].children[0].classList.add('fa-plus');
-      siblings[i].children[0].children[0].classList.remove('fa-minus');
+      siblings[i].querySelector('i.fa').classList.add('fa-plus');
+      siblings[i].querySelector('i.fa').classList.remove('fa-minus');
       siblings[i].children[1].classList.remove('active');
     }
+
     this.nextElementSibling.classList.add('active');
-    this.children[0].classList.remove('fa-plus');
-    this.children[0].classList.add('fa-minus');
+    this.querySelector('i.fa').classList.remove('fa-plus');
+    this.querySelector('i.fa').classList.add('fa-minus');
+
+    // Scroll to the clicked accordion button with offset
+    setTimeout(() => {
+      const yOffset = -80;
+      const y = this.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }, 100);
   } else {
-    this.children[0].classList.remove('fa-minus');
-    this.children[0].classList.add('fa-plus');
+    this.querySelector('i.fa').classList.remove('fa-minus');
+    this.querySelector('i.fa').classList.add('fa-plus');
     this.nextElementSibling.classList.remove('active');
   }
 }
@@ -79,6 +86,7 @@ function createAccordian(tab, plusIcon, index) {
     plusIcon.classList.remove('fa-plus');
     plusIcon.classList.add('fa-minus');
     tab.nextElementSibling.classList.add('active');
+    tabQueryString(tab.parentElement.id);
   }
 
   tab.appendChild(plusIcon);
@@ -98,7 +106,7 @@ parent.insertBefore(tabWrapper, nextChild);
 const countryNames = [];
 
 regionalTabs.forEach((tab, index) => {
-  const country = tab.querySelector('h4');
+  const country = tab.querySelector('h3');
   const countryName = country.textContent;
   const countryId = idFromRegion(country);
   const tabParents = tab.parentElement;
@@ -160,6 +168,10 @@ const tabID = params.region
   ? params.region
   : document.querySelector('.regional-contacts .tab-content').id;
 
-document.querySelector(`a[href="#${tabID}"]`).click();
-tabQueryString(tabID);
+if (tabID) {
+  if (document.querySelector(`a[href="#${tabID}"]`)) {
+    document.querySelector(`a[href="#${tabID}"]`).click();
+    tabQueryString(tabID);
+  }
+}
 /* ================ TAB HANDLER ===================== */

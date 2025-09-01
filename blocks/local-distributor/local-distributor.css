@@ -46,10 +46,10 @@
   background-color: rgb(240 241 242 / 50%);
 }
 
-.local-distributor-wrapper h5 {
+.local-distributor-wrapper h3 {
   background-color: rgb(240 241 242 / 50%);
   font-size: var(--body-font-size-xl);
-  margin-bottom: 0;
+  margin: 0;
   padding-bottom: 35px;
 }
 
@@ -196,7 +196,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .local-distributor > h5 {
+  .local-distributor > h3 {
     padding: 30px 70px 35px;
   }
 
@@ -239,7 +239,7 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .local-distributor > h5 {
+  .local-distributor > h3 {
     padding: 30px 30px 35px;
   }
 
@@ -256,8 +256,15 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .section.local-distributor-container .default-content-wrapper{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
 @media only screen and (max-width: 575px) {
-  .local-distributor > h5 {
+  .local-distributor > h3 {
     padding: 30px 20px 35px;
   }
 
