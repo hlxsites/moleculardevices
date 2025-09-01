@@ -4,7 +4,8 @@ import {
   div, img, p, span,
 } from '../../scripts/dom-helpers.js';
 import {
-  clearAutoScroll, createDotButton, createNavButton, scrollToItem, createCloneWithMeta,
+  clearAutoScroll, createDotButton, scrollToItem, appendClones,
+  addNavButtons, getOptimizedThumbnailPath,
 } from './carousel-utils.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
@@ -58,22 +59,48 @@ class Carousel {
     return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
   }
 
-  updateCounterText(newIndex = this.currentIndex) {
-    this.currentIndex = newIndex;
-    if (this.counter) {
-      const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-      const counterTextBlock = this.block.parentElement.querySelector('.carousel-counter .carousel-counter-text p');
-      const pageCounter = `${this.currentIndex + 1} / ${items.length}`;
-      counterTextBlock.innerHTML = this.counterText ? `${this.counterText} ${pageCounter}` : pageCounter;
-    }
-  }
-
   getCurrentVisibleItems() {
-    return this.visibleItems.find((e) => !e.condition || e.condition()).items;
+    if (!Array.isArray(this.visibleItems) || this.visibleItems.length === 0) return 1;
+    const width = window.innerWidth;
+    const match = this.visibleItems.find((rule) => {
+      if (typeof rule.condition === 'function') {
+        const result = rule.condition(width);
+        return result;
+      }
+      return false;
+    });
+
+    if (match) {
+      return match.items;
+    }
+
+    const fallback = this.visibleItems[this.visibleItems.length - 1].items;
+    return fallback;
   }
 
   getStep() {
     return this.getCurrentVisibleItems();
+  }
+
+  getActiveItems() {
+    // :scope keeps it to direct children and avoids expensive tree scans
+    return this.block.querySelectorAll(':scope > .carousel-item:not(.clone,.skip)');
+  }
+
+  updateCounterText(newIndex = this.currentIndex) {
+    this.currentIndex = newIndex;
+    if (this.counter) {
+      const counterTextBlock = this.block.parentElement.querySelector('.carousel-counter .carousel-counter-text p');
+
+      const dotContainer = this.block.parentElement.querySelector('.carousel-dot-buttons');
+      const visibleCount = this.getCurrentVisibleItems();
+      const itemsLen = this.getActiveItems().length;
+      const totalPages = dotContainer
+        ? dotContainer.children.length : Math.ceil(itemsLen / Math.max(visibleCount, 1));
+
+      const pageCounter = `${Math.min(this.currentIndex + 1, totalPages)} / ${totalPages}`;
+      counterTextBlock.innerHTML = this.counterText ? `${this.counterText} ${pageCounter}` : pageCounter;
+    }
   }
 
   /**
@@ -82,11 +109,11 @@ class Carousel {
   updateSelectedStates(newIndex, newSelectedItem, items, dotButtons) {
     // reset all
     items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((dot) => dot.classList.remove('selected'));
+    [...dotButtons].forEach((dot) => dot.classList.remove('selected'));
 
     // apply new
     newSelectedItem.classList.add('selected');
-    if (dotButtons.length) dotButtons[newIndex].classList.add('selected');
+    if (dotButtons.length) [...dotButtons][newIndex].classList.add('selected');
 
     // counter text
     this.updateCounterText(newIndex);
@@ -106,10 +133,7 @@ class Carousel {
     }
 
     if (targetEl) {
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: targetEl.offsetLeft - this.getBlockPadding() - block.offsetLeft,
-      });
+      scrollToItem(block, targetEl, this.getBlockPadding(), block.offsetLeft);
     }
   }
 
@@ -130,11 +154,9 @@ class Carousel {
     const items = block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = block.querySelector('.carousel-item.selected');
 
+    const step = this.getStep();
     let index = [...items].indexOf(selectedItem);
     index = index !== -1 ? index : 0;
-
-    const visibleCount = this.getCurrentVisibleItems();
-    const step = visibleCount > 1 ? visibleCount : 1;
 
     let newIndex = index + direction * step;
 
@@ -146,7 +168,7 @@ class Carousel {
         navButtonLeft && navButtonLeft.classList.add('disabled');
         return;
       }
-      if (newIndex > items.length - visibleCount) {
+      if (newIndex > items.length - step) {
         navButtonRight && navButtonRight.classList.add('disabled');
         return;
       }
@@ -158,12 +180,7 @@ class Carousel {
       this.adjustForInfiniteScroll(newIndex, direction, newSelectedItem, items);
     }
 
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - block.offsetLeft,
-      behavior: 'smooth',
-    });
-
+    scrollToItem(block, newSelectedItem, this.getBlockPadding(), block.offsetLeft);
     this.updateSelectedStates(newIndex, newSelectedItem, items, dotButtons);
   }
 
@@ -187,44 +204,30 @@ class Carousel {
     if (total < 2) return;
 
     // how many to clone per side (at least visible or step size)
-    const count = Math.min(Math.max(this.getCurrentVisibleItems(), this.getStep()), total);
+    const count = Math.min(Math.max(this.getStep(), 1), total);
 
-    // tail clones (append first 'count' as clones)
-    for (let i = 0; i < count; i += 1) {
-      const clone = createCloneWithMeta(children[i], i, 'tail');
-      this.block.lastChild.after(clone);
-    }
-
-    // head clones (prepend last 'count' as clones)
-    for (let i = 0; i < count; i += 1) {
-      const srcIndex = total - count + i;
-      const clone = createCloneWithMeta(children[srcIndex], srcIndex, 'head');
-      this.block.firstChild.before(clone);
-    }
-
+    appendClones(this.block, children, count);
     decorateIcons(this.block);
+  }
+
+  rebuildClones(step) {
+    // Remove old clones
+    this.block.querySelectorAll('.carousel-item.clone').forEach((c) => c.remove());
+
+    const children = [...this.block.querySelectorAll('.carousel-item:not(.clone)')];
+    const total = children.length;
+    if (total < 2) return;
+
+    const count = Math.min(Math.max(step, 1), total);
+
+    appendClones(this.block, children, count);
   }
 
   /**
   * Create left and right arrow navigation buttons
   */
   createNavButtons(parentElement) {
-    const leftBtn = createNavButton('left', 'icon-chevron-left', () => {
-      clearAutoScroll(this);
-      this.prevItem();
-    });
-
-    const rightBtn = createNavButton('right', 'icon-chevron-right', () => {
-      clearAutoScroll(this);
-      this.nextItem();
-    });
-
-    if (!this.infiniteScroll) leftBtn.classList.add('disabled');
-    parentElement.append(leftBtn, rightBtn);
-    decorateIcons(leftBtn);
-    decorateIcons(rightBtn);
-    this.navButtonLeft = leftBtn;
-    this.navButtonRight = rightBtn;
+    addNavButtons(parentElement, this);
   }
 
   /**
@@ -264,10 +267,8 @@ class Carousel {
   setInitialScrollingPosition() {
     const scrollToSelectedItem = () => {
       const item = this.block.querySelector('.carousel-item.selected');
-      item.parentNode.scrollTo({
-        top: 0,
-        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      });
+      if (!item) return;
+      scrollToItem(this.block, item, this.getBlockPadding(), this.block.offsetLeft);
     };
 
     const section = this.block.closest('.section');
@@ -295,31 +296,41 @@ class Carousel {
 
   createDotButtons() {
     const buttons = div({ class: `carousel-dot-buttons ${this.hasImageInDots ? 'carousel-dot-img-buttons' : ''}` });
+
     const items = [...this.block.children];
     const padding = this.getBlockPadding();
+    const visibleCount = this.getCurrentVisibleItems();
+    const totalPages = Math.ceil(items.length / Math.max(visibleCount, 1));
 
-    items.forEach((item, i) => {
+    for (let page = 0; page < totalPages; page += 1) {
+      const firstItemIndex = page * visibleCount;
+      const firstItem = items[firstItemIndex];
+
       const button = createDotButton(
-        item, i, this.currentIndex, this.block, padding, (index, itm, btn) => {
+        firstItem, page, this.currentIndex, this.block, padding, (index, itm) => {
           clearAutoScroll(this);
-          scrollToItem(this.block, itm, padding, 0);
-          [...buttons.children].forEach((r) => r.classList.remove('selected'));
-          items.forEach((r) => r.classList.remove('selected'));
-          btn.classList.add('selected');
-          itm.classList.add('selected');
-          this.updateCounterText(index);
-        });
+          // scrollToItem(this.block, itm, padding, 0);
+          scrollToItem(this.block, itm, this.getBlockPadding(), this.block.offsetLeft);
+
+          // reset selected classes
+          this.updateSelectedStates(index, itm, items, buttons.children);
+        },
+      );
 
       if (this.hasImageInDots) {
-        const imgPath = item.querySelector('img').getAttribute('src');
-        const customPath = imgPath.split('?')[0];
-        const imgFormat = customPath.split('.')[1];
-        const imgPrefix = `${customPath}?width=100&format=${imgFormat}&optimize=medium`;
-        button.appendChild(img({ src: imgPrefix }));
+        const imgEl = firstItem.querySelector('img');
+        const imgPath = imgEl?.getAttribute('src');
+        if (imgPath) {
+          const imgPrefix = getOptimizedThumbnailPath(imgPath);
+          button.appendChild(img({ src: imgPrefix, loading: 'lazy' }));
+        }
       }
 
       buttons.append(button);
-    });
+    }
+
+    const oldButtons = this.block.parentElement.querySelector('.carousel-dot-buttons');
+    if (oldButtons) oldButtons.remove();
 
     this.block.parentElement.append(buttons);
   }
@@ -335,6 +346,26 @@ class Carousel {
     }
     this.block.parentElement.append(counter);
     this.updateCounterText();
+  }
+
+  initResizeHandler() {
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        // invalidate cached padding for responsive layouts
+        this.blockStyle = null;
+
+        const newVisible = this.getCurrentVisibleItems();
+        if (this.infiniteScroll) {
+          this.rebuildClones(newVisible);
+        }
+        // always rebuild dots if dots enabled (so dot count matches pages)
+        if (this.dotButtons) {
+          this.createDotButtons();
+        }
+      }, 200);
+    });
   }
 
   /*
@@ -407,6 +438,7 @@ class Carousel {
     if (this.infiniteScroll) {
       this.createClones();
       this.setInitialScrollingPosition();
+      this.initResizeHandler();
     }
     this.addSwipeCapability();
     this.cssFiles && (await defaultCSSPromise);
@@ -448,16 +480,9 @@ const cardStyleConfig = {
   infiniteScroll: true,
   autoScroll: false,
   visibleItems: [
-    {
-      items: 1,
-      condition: () => window.innerWidth < 768,
-    },
-    {
-      items: 2,
-      condition: () => window.innerWidth < 1200,
-    }, {
-      items: 3,
-    },
+    { items: 1, condition: (w) => w < 768 },
+    { items: 2, condition: (w) => w < 1200 },
+    { items: 3 },
   ],
   renderItem: renderCardItem,
 };

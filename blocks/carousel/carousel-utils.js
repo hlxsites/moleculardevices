@@ -1,15 +1,17 @@
 /* eslint-disable import/no-cycle */
 import { button, span } from '../../scripts/dom-helpers.js';
+import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { handleCompareProducts } from '../card/card.js';
 
 /**
  * Scroll the carousel to a specific item
  */
-export function scrollToItem(block, item, padding, offsetLeft = 0) {
+export function scrollToItem(container, item, padding = 0, offsetLeft = 0) {
   if (!item) return;
-  block.scrollTo({
+  const left = item.offsetLeft - padding - offsetLeft;
+  container.scrollTo({
     top: 0,
-    left: item.offsetLeft - padding - offsetLeft,
+    left,
     behavior: 'smooth',
   });
 }
@@ -48,6 +50,30 @@ export function createNavButton(direction, iconClass, clickHandler) {
   return btn;
 }
 
+export function addNavButtons(parent, carouselInstance) {
+  const leftBtn = createNavButton('left', 'icon-chevron-left', () => {
+    clearAutoScroll(carouselInstance);
+    carouselInstance.prevItem();
+  });
+  const rightBtn = createNavButton('right', 'icon-chevron-right', () => {
+    clearAutoScroll(carouselInstance);
+    carouselInstance.nextItem();
+  });
+
+  if (!carouselInstance.infiniteScroll) leftBtn.classList.add('disabled');
+  parent.append(leftBtn, rightBtn);
+  decorateIcons(leftBtn);
+  decorateIcons(rightBtn);
+  carouselInstance.navButtonLeft = leftBtn;
+  carouselInstance.navButtonRight = rightBtn;
+}
+
+export function getOptimizedThumbnailPath(src, width = 100) {
+  const customPath = src.split('?')[0];
+  const format = customPath.split('.').pop() || 'jpg';
+  return `${customPath}?width=${width}&format=${format}&optimize=medium`;
+}
+
 /**
  * Clone a carousel item for infinite scroll
  */
@@ -77,6 +103,20 @@ export function preJumpToClone(container, block, originalIndex, clonePos, paddin
   const cloneEl = findClone(block, originalIndex, clonePos);
   if (cloneEl) {
     scrollToItem(container, cloneEl, padding, offsetLeft);
+  }
+}
+
+export function appendClones(block, children, count) {
+  // tail
+  for (let i = 0; i < count; i += 1) {
+    const clone = createCloneWithMeta(children[i], i, 'tail');
+    block.lastChild.after(clone);
+  }
+  // head
+  for (let i = 0; i < count; i += 1) {
+    const srcIndex = children.length - count + i;
+    const clone = createCloneWithMeta(children[srcIndex], srcIndex, 'head');
+    block.firstChild.before(clone);
   }
 }
 
