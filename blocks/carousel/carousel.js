@@ -1,32 +1,14 @@
-/* eslint-disable no-unused-expressions, linebreak-style */
+/* eslint-disable no-unused-expressions, import/no-cycle */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
-  button,
-  div, img, p, span,
+  button, div, img, p, span,
 } from '../../scripts/dom-helpers.js';
-// eslint-disable-next-line import/no-cycle
-import { handleCompareProducts } from '../card/card.js';
+import {
+  applyInfiniteScrollIllusion, calculateNewIndex, createClone, handleNavBoundaries,
+  resetNavButtons, scrollToItem, updateSelection,
+} from './carousel-helpers.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
-
-/**
- * Clone a carousel item
- * @param {Element} item carousel item to be cloned
- * @returns the clone of the carousel item
- */
-function createClone(item) {
-  const clone = item.cloneNode(true);
-  clone.classList.add('clone');
-  clone.classList.remove('selected');
-
-  // if clone has compare box, add event handler
-  const compareCheckbox = clone.querySelector('.compare-checkbox');
-  if (compareCheckbox) {
-    compareCheckbox.addEventListener('click', handleCompareProducts);
-  }
-
-  return clone;
-}
 
 class Carousel {
   constructor(block, data, config) {
@@ -78,6 +60,10 @@ class Carousel {
     }
   }
 
+  getStep() {
+    return this.hasStepByScroll ? this.getCurrentVisibleItems() : 1;
+  }
+
   getBlockPadding() {
     if (!this.blockStyle) {
       this.blockStyle = window.getComputedStyle(this.block);
@@ -113,91 +99,36 @@ class Carousel {
     }
   }
 
-  /**
-   * Scroll the carousel by steps (next or prev)
-   * @param {"next"|"prev"} direction - Scroll direction
-   */
-  scrollCarousel(direction) {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+  navigate(direction) {
+    resetNavButtons(this);
 
     const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
     const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
     const selectedItem = this.block.querySelector('.carousel-item.selected');
 
-    const steps = this.hasStepByScroll ? this.getCurrentVisibleItems() : 1;
     let index = [...items].indexOf(selectedItem);
     index = index !== -1 ? index : 0;
 
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (index + steps) % items.length;
-    } else {
-      newIndex = index - steps < 0 ? items.length - steps : index - steps;
-    }
+    const step = this.getStep();
+    const maxIndex = items.length - step;
 
+    const newIndex = calculateNewIndex(direction, index, step, items.length);
     const newSelectedItem = items[newIndex];
 
-    // stop scrolling in finite mode
-    if (!this.infiniteScroll) {
-      if (direction === 'next' && newIndex === 0) return;
-      if (direction === 'prev' && newIndex === items.length - 1) return;
-    }
+    if (handleNavBoundaries(this, direction, newIndex, step, maxIndex, items.length)) return;
 
-    // disable nav buttons in finite mode
-    if (!this.infiniteScroll) {
-      if (direction === 'next' && newIndex === items.length - steps) {
-        this.navButtonRight.classList.add('disabled');
-      }
-      if (direction === 'prev' && newIndex === 0) {
-        this.navButtonLeft.classList.add('disabled');
-      }
-    }
-
-    // illusion of infinite scrolling
-    if (direction === 'next' && newIndex === 0) {
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: newSelectedItem.previousElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft,
-      });
-    }
-
-    if (direction === 'prev' && newIndex === items.length - steps) {
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: newSelectedItem.nextElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft,
-      });
-    }
-
-    // smooth scroll to item
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      behavior: 'smooth',
-    });
-
-    // update states
-    items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((btn) => btn.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons.length) {
-      dotButtons[newIndex].classList.add('selected');
-    }
-
-    this.updateCounterText(newIndex);
+    applyInfiniteScrollIllusion(this, direction, newIndex, maxIndex, newSelectedItem);
+    scrollToItem(this, newSelectedItem);
+    updateSelection(this, items, dotButtons, newIndex, step);
   }
 
-  /** Public wrappers for easier calls */
+  // wrappers
   nextItem() {
-    this.scrollCarousel('next');
+    this.navigate('next');
   }
 
   prevItem() {
-    this.scrollCarousel('prev');
+    this.navigate('prev');
   }
 
   /**
