@@ -45,13 +45,11 @@ class Carousel {
     this.cardRenderer = this;
     this.hasImageInDots = false;
     this.cardStyling = false;
+    this.hasStepByScroll = false;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
-      {
-        items: 1,
-        condition: () => true,
-      },
+      { items: 1, condition: () => true },
     ];
 
     // Set information
@@ -87,6 +85,24 @@ class Carousel {
     return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
   }
 
+  getCurrentVisibleItems() {
+    if (!Array.isArray(this.visibleItems) || this.visibleItems.length === 0) return 1;
+
+    const width = window.innerWidth;
+
+    // try matching by condition
+    const match = this.visibleItems.find((rule) => {
+      if (typeof rule.condition === 'function') {
+        return rule.condition(width);
+      }
+      return false;
+    });
+
+    // if no condition matches, use the last rule as default
+    if (match) return match.items;
+    return this.visibleItems[this.visibleItems.length - 1].items || 1;
+  }
+
   updateCounterText(newIndex = this.currentIndex) {
     this.currentIndex = newIndex;
     if (this.counter) {
@@ -98,112 +114,90 @@ class Carousel {
   }
 
   /**
-  * Scroll the carousel to the next item
-  */
+   * Scroll the carousel by steps (next or prev)
+   * @param {"next"|"prev"} direction - Scroll direction
+   */
+  scrollCarousel(direction) {
+    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
+    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
+
+    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
+    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
+    const selectedItem = this.block.querySelector('.carousel-item.selected');
+
+    const steps = this.hasStepByScroll ? this.getCurrentVisibleItems() : 1;
+    let index = [...items].indexOf(selectedItem);
+    index = index !== -1 ? index : 0;
+
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (index + steps) % items.length;
+    } else {
+      newIndex = index - steps < 0 ? items.length - steps : index - steps;
+    }
+
+    const newSelectedItem = items[newIndex];
+
+    // stop scrolling in finite mode
+    if (!this.infiniteScroll) {
+      if (direction === 'next' && newIndex === 0) return;
+      if (direction === 'prev' && newIndex === items.length - 1) return;
+    }
+
+    // disable nav buttons in finite mode
+    if (!this.infiniteScroll) {
+      if (direction === 'next' && newIndex === items.length - steps) {
+        this.navButtonRight.classList.add('disabled');
+      }
+      if (direction === 'prev' && newIndex === 0) {
+        this.navButtonLeft.classList.add('disabled');
+      }
+    }
+
+    // illusion of infinite scrolling
+    if (direction === 'next' && newIndex === 0) {
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: newSelectedItem.previousElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft,
+      });
+    }
+
+    if (direction === 'prev' && newIndex === items.length - steps) {
+      newSelectedItem.parentNode.scrollTo({
+        top: 0,
+        left: newSelectedItem.nextElementSibling.offsetLeft
+          - this.getBlockPadding()
+          - this.block.offsetLeft,
+      });
+    }
+
+    // smooth scroll to item
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      behavior: 'smooth',
+    });
+
+    // update states
+    items.forEach((item) => item.classList.remove('selected'));
+    dotButtons.forEach((btn) => btn.classList.remove('selected'));
+    newSelectedItem.classList.add('selected');
+    if (dotButtons.length) {
+      dotButtons[newIndex].classList.add('selected');
+    }
+
+    this.updateCounterText(newIndex);
+  }
+
+  /** Public wrappers for easier calls */
   nextItem() {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
-
-    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    const selectedItem = this.block.querySelector('.carousel-item.selected');
-
-    let index = [...items].indexOf(selectedItem);
-    index = index !== -1 ? index : 0;
-
-    const newIndex = (index + 1) % items.length;
-    const newSelectedItem = items[newIndex];
-    if (newIndex === 0 && !this.infiniteScroll) {
-      return;
-    }
-
-    if (newIndex === items.length - this.getCurrentVisibleItems() && !this.infiniteScroll) {
-      this.navButtonRight.classList.add('disabled');
-    }
-
-    if (newIndex === 0) {
-      // create the ilusion of infinite scrolling
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: (
-          newSelectedItem.previousElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft
-        ),
-      });
-    }
-
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      behavior: 'smooth',
-    });
-
-    items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((item) => item.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons && dotButtons.length !== 0) {
-      dotButtons[newIndex].classList.add('selected');
-    }
-
-    this.updateCounterText(newIndex);
+    this.scrollCarousel('next');
   }
 
-  getCurrentVisibleItems() {
-    return this.visibleItems
-      .filter((e) => !e.condition || e.condition())[0].items;
-  }
-
-  /**
-  * Scroll the carousel to the previous item
-  */
   prevItem() {
-    !this.infiniteScroll && this.navButtonRight && this.navButtonRight.classList.remove('disabled');
-    !this.infiniteScroll && this.navButtonLeft && this.navButtonLeft.classList.remove('disabled');
-
-    const dotButtons = this.block.parentNode.querySelectorAll('.carousel-dot-button');
-    const items = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    const selectedItem = this.block.querySelector('.carousel-item.selected');
-
-    let index = [...items].indexOf(selectedItem);
-    index = index !== -1 ? index : 0;
-    const newIndex = index - 1 < 0 ? items.length - 1 : index - 1;
-    const newSelectedItem = items[newIndex];
-
-    if (newIndex === items.length - 1 && !this.infiniteScroll) {
-      return;
-    }
-
-    if (newIndex === 0 && !this.infiniteScroll) {
-      this.navButtonLeft.classList.add('disabled');
-    }
-
-    if (newIndex === items.length - 1) {
-      // create the ilusion of infinite scrolling
-      newSelectedItem.parentNode.scrollTo({
-        top: 0,
-        left: (
-          newSelectedItem.nextElementSibling.offsetLeft
-          - this.getBlockPadding()
-          - this.block.offsetLeft
-        ),
-      });
-    }
-
-    newSelectedItem.parentNode.scrollTo({
-      top: 0,
-      left: newSelectedItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
-      behavior: 'smooth',
-    });
-
-    items.forEach((item) => item.classList.remove('selected'));
-    dotButtons.forEach((item) => item.classList.remove('selected'));
-    newSelectedItem.classList.add('selected');
-    if (dotButtons && dotButtons.length !== 0) {
-      dotButtons[newIndex].classList.add('selected');
-    }
-
-    this.updateCounterText(newIndex);
+    this.scrollCarousel('prev');
   }
 
   /**
