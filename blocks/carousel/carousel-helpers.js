@@ -80,8 +80,9 @@ export function handleNavBoundaries(carousel, direction, newIndex, step, maxInde
 /**
  * Illusion of infinite scroll (wrap jump)
  */
-export function applyInfiniteScrollIllusion(carousel, dir, newIndex, maxIndex, newSelectedItem) {
-  if (dir === 'next' && newIndex === 0) {
+export function applyInfiniteScrollIllusion(
+  carousel, dir, index, newIndex, maxIndex, newSelectedItem) {
+  if (dir === 'next' && (newIndex === 0 || index >= maxIndex)) {
     newSelectedItem.parentNode.scrollTo({
       top: 0,
       left: newSelectedItem.previousElementSibling.offsetLeft

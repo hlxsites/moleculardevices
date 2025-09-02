@@ -51,13 +51,8 @@ class Carousel {
       this.block.classList.add('fully-visible', 'three-items-visible');
     }
 
-    if (this.defaultStyling) {
-      this.cssFiles.push('/blocks/carousel/carousel.css');
-    }
-
-    if (this.cardStyling) {
-      this.cssFiles.push('/blocks/carousel/carousel-cards.css');
-    }
+    if (this.defaultStyling) this.cssFiles.push('/blocks/carousel/carousel.css');
+    if (this.cardStyling) this.cssFiles.push('/blocks/carousel/carousel-cards.css');
   }
 
   getStep() {
@@ -117,7 +112,7 @@ class Carousel {
 
     if (handleNavBoundaries(this, direction, newIndex, step, maxIndex, items.length)) return;
 
-    applyInfiniteScrollIllusion(this, direction, newIndex, maxIndex, newSelectedItem);
+    applyInfiniteScrollIllusion(this, direction, index, newIndex, maxIndex, newSelectedItem);
     scrollToItem(this, newSelectedItem);
     updateSelection(this, items, dotButtons, newIndex, step);
   }
