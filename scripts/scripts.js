@@ -510,9 +510,9 @@ function addPageSchema() {
     };
 
     const brandSameAs = [
-      'http://www.linkedin.com/company/molecular-devices',
+      'https://www.linkedin.com/company/molecular-devices',
       'https://www.facebook.com/MolecularDevices',
-      'http://www.youtube.com/user/MolecularDevicesInc',
+      'https://www.youtube.com/user/MolecularDevicesInc',
       'https://www.x.com/moldev',
     ];
     const fwnRelatedLink = [
