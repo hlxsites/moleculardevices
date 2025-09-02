@@ -1,4 +1,4 @@
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern, no-descending-specificity */
 :root {
   --input-color: #5f696b;
   --border-color: #bebebe;
@@ -109,7 +109,7 @@
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
-  color: #ff0000;
+  color: #f00;
 }
 
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
