@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions, linebreak-style */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
+  button,
   div, img, p, span,
 } from '../../scripts/dom-helpers.js';
 // eslint-disable-next-line import/no-cycle
@@ -327,42 +328,63 @@ class Carousel {
   }
 
   createDotButtons() {
-    const buttons = document.createElement('div');
-    buttons.className = `carousel-dot-buttons ${this.hasImageInDots ? 'carousel-dot-img-buttons' : ''}`;
-    const items = [...this.block.children];
+    const btnClasses = `carousel-dot-buttons ${this.hasImageInDots ? 'carousel-dot-img-buttons' : ''}`;
+    const buttons = div({ class: btnClasses });
 
-    items.forEach((item, i) => {
-      const button = document.createElement('button');
-      button.ariaLabel = `Scroll to item ${i + 1}`;
-      button.classList.add('carousel-dot-button');
+    const items = [...this.block.children].filter((item) => !item.classList.contains('skip') && !item.classList.contains('clone'));
+    const visibleItems = this.getCurrentVisibleItems();
+    const totalPages = Math.ceil(items.length / visibleItems);
+
+    for (let page = 0; page < totalPages; page += 1) {
+      const ariaLabel = `Scroll to items ${page * visibleItems + 1} - ${Math.min((page + 1) * visibleItems, items.length)}`;
+      const btn = button({ class: 'carousel-dot-button', 'aria-label': ariaLabel });
 
       if (this.hasImageInDots) {
-        const imgPath = item.querySelector('img').getAttribute('src');
-        const customPath = imgPath.split('?')[0];
-        const imgFormat = customPath.split('.')[1];
-        const imgPrefix = `${customPath}?width=100&format=${imgFormat}&optimize=medium`;
-        button.appendChild(img({ src: imgPrefix }));
+        const imgPath = items[page * visibleItems].querySelector('img')?.getAttribute('src');
+        if (imgPath) {
+          const customPath = imgPath.split('?')[0];
+          const imgFormat = customPath.split('.').pop();
+          const imgPrefix = `${customPath}?width=100&format=${imgFormat}&optimize=medium`;
+          btn.appendChild(img({ src: imgPrefix }));
+        }
       }
 
-      if (i === this.currentIndex) {
-        button.classList.add('selected');
+      if (page === Math.floor(this.currentIndex / visibleItems)) {
+        btn.classList.add('selected');
       }
 
-      button.addEventListener('click', () => {
+      btn.addEventListener('click', () => {
         clearInterval(this.intervalId);
+
+        // Scroll to the first item of this page
+        const scrollIndex = page * visibleItems;
+        const targetItem = items[scrollIndex];
+
+        // Calculate scroll accounting for clones
+        const scrollLeft = targetItem.offsetLeft - this.getBlockPadding() - this.block.offsetLeft;
+
         this.block.scrollTo({
           top: 0,
-          left: item.offsetLeft - this.getBlockPadding(),
+          left: scrollLeft,
           behavior: 'smooth',
         });
-        [...buttons.children].forEach((r) => r.classList.remove('selected'));
-        items.forEach((r) => r.classList.remove('selected'));
-        button.classList.add('selected');
-        item.classList.add('selected');
-        this.updateCounterText(i);
+
+        // Clear previous selected classes
+        [...buttons.children].forEach((b) => b.classList.remove('selected'));
+        [...this.block.children].forEach((i) => i.classList.remove('selected'));
+
+        // Mark visible items on the page as selected
+        for (let j = scrollIndex; j < scrollIndex + visibleItems && j < items.length; j += 1) {
+          items[j].classList.add('selected');
+        }
+
+        btn.classList.add('selected');
+        this.updateCounterText(scrollIndex);
       });
-      buttons.append(button);
-    });
+
+      buttons.append(btn);
+    }
+
     this.block.parentElement.append(buttons);
   }
 
