@@ -14,7 +14,7 @@ const PRODUCT_FORM_DATA = [
     heading: "Let's Unlock the Potential of Complex Biology—Together",
     bodyContent: [
       'Progress in complex biology demands more than just cutting-edge microplate readers—it requires a trusted partner. We collaborate closely with scientists to co-create automated workflows that streamline complexity, increase throughput, and accelerate discovery.',
-      "Whether you're optimizing plate-based assays or scaling high-throughput screening, our intelligent instruments and software are built for what's next.",
+      "Whether you're optimizing plate-based assays or scaling high-throughput screening, our advanced instruments and software are built for what's next.",
     ],
     formTitle: 'Tell us about your workflow needs—our experts are ready to help.',
   },
@@ -49,14 +49,13 @@ const PRODUCT_FORM_DATA = [
     formTitle: 'Explore how our GxP solutions can support your compliance strategy.',
   },
   {
-    type: 'Imaging',
-    heading: 'Reimagine High-Content Screening (HCS) with AI-Powered Insight',
+    type: 'Lab Automation',
+    heading: "Let's Unlock the Potential of Complex Biology-Together",
     bodyContent: [
-      "Transforming science takes more than precision—it takes partnership. Together, we're building automated, AI-enabled workflows that move beyond traditional imaging to unlock deeper biological insights.",
-      'Our high-content screening solutions integrate smart imaging, machine learning, and advanced data analysis to free scientists from routine tasks and accelerate transformative discovery.',
-      "With us, you're not just adopting powerful technology—you're gaining a partner committed to industrializing complex biology through intelligent automation.",
+      'Progress in complex biology takes more than great technology-it takes strong partnerships built on innovation, expertise, and a shared commitment to advancing science.',
+      'With automated workcells, expert guidance, and ongoing support, we enable researchers to simplify complexity, drive efficiency, and advance discovery across plate-based assays, high-content imaging, and clone screening.',
     ],
-    formTitle: "Discover what's possible with AI-powered HCS solutions. Let's talk.",
+    formTitle: 'Tell us about your automated workflow needs-our experts are ready to help.',
   },
 ];
 
