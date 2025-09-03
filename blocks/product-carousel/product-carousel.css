@@ -53,13 +53,18 @@ main .carousel.product-carousel {
 .product-carousel .carousel-item .card-caption .button-container {
   float: left;
   text-align: left;
-  display: inline-block;
   margin-top: 10px;
   margin-bottom: 0;
 }
 
 .product-carousel .carousel-item .card-caption .compare-button {
   margin-top: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  main .carousel.product-carousel {
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 1200px) {

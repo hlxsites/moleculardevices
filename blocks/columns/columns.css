@@ -701,6 +701,14 @@ main .section > div.columns-wrapper {
   line-height: 20px;
 }
 
+main .columns.columns-align-top > div {
+  align-items: flex-start;
+}
+
+main .columns.columns-align-center > div {
+  align-items: center;
+}
+
 main .columns.columns-align-bottom > div {
   align-items: flex-end;
 }
