@@ -685,7 +685,7 @@ main .section > div.columns-wrapper {
   font-family: inherit;
 }
 
-.product .section.columns-container .columns.columns-2-cols > div h3 {
+.product:not(.category) .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;
   margin-bottom: 0;
 }
