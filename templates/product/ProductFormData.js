@@ -49,16 +49,7 @@ const PRODUCT_FORM_DATA = [
     formTitle: 'Explore how our GxP solutions can support your compliance strategy.',
   },
   {
-    type: 'Lab Automation',
-    heading: "Let's Unlock the Potential of Complex Biology-Together",
-    bodyContent: [
-      'Progress in complex biology takes more than great technology-it takes strong partnerships built on innovation, expertise, and a shared commitment to advancing science.',
-      'With automated workcells, expert guidance, and ongoing support, we enable researchers to simplify complexity, drive efficiency, and advance discovery across plate-based assays, high-content imaging, and clone screening.',
-    ],
-    formTitle: 'Tell us about your automated workflow needs-our experts are ready to help.',
-  },
-  {
-    type: 'Services and Support',
+    type: 'Lab Automation, Services and Support',
     heading: "Let's Unlock the Potential of Complex Biology-Together",
     bodyContent: [
       'Progress in complex biology takes more than great technology-it takes strong partnerships built on innovation, expertise, and a shared commitment to advancing science.',

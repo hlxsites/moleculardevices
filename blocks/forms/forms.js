@@ -81,7 +81,8 @@ export default async function decorate(block) {
   const target = `${formConfig.formType}-form`;
 
   if (template.includes('Product')) {
-    const data = PRODUCT_FORM_DATA.find((formData) => formData.type === category);
+    const data = PRODUCT_FORM_DATA
+      .find((formData) => formData.type.toLowerCase().includes(category.toLowerCase()));
     formHeading = data.formTitle || '';
   }
 

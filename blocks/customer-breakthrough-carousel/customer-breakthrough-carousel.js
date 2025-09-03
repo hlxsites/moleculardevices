@@ -7,8 +7,7 @@ import { div } from '../../scripts/dom-helpers.js';
 
 const placeholders = await fetchPlaceholders();
 
-async function getCBData() {
-  const category = getMetadata('category');
+async function getCBData(category) {
   return ffetch('/query-index.json')
     .sheet('customer-breakthroughs')
     .filter((cb) => cb.category.includes(category))
@@ -18,13 +17,16 @@ async function getCBData() {
 
 export default async function decorate(block) {
   const cbPath = '/customer-breakthroughs';
-  const category = getMetadata('category').split(' ').join('-');
+  let category = getMetadata('category');
+  if (category === 'Services and Support') category = 'Lab Automation';
+  const resources = await getCBData(category);
+
+  category = category.split(' ').join('-');
   const anchor = `${cbPath}#${category}`;
 
   /* view all CTA */
   addViewAllCTA(block, '', 'customer-breakthrough', anchor, () => { }, 'View case studies');
 
-  const resources = await getCBData();
   const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
     { media: '(min-width: 992px)', width: '1663' },
     { width: '900' },
