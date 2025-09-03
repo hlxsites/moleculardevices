@@ -45,16 +45,9 @@ export default async function decorate(block) {
       infiniteScroll: false,
       autoScroll: false,
       visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
+        { items: 1, condition: (width) => width < 768 },
+        { items: 2, condition: (width) => width < 1200 },
+        { items: 3 },
       ],
       renderItem,
     },
