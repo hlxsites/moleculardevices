@@ -1,18 +1,15 @@
 import {
-  createOptimizedPicture,
   fetchPlaceholders, getMetadata, loadCSS, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
-// eslint-disable-next-line import/no-cycle
 import {
-  createList, formatEventDateRange, renderPagination, swapData, toggleFilter,
+  createList, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import {
-  a,
-  div, h2, input, label, p, span,
+  div, input, label, span,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { createEventBanner } from '../event-summary/event-summary.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -43,8 +40,7 @@ function prepareEntry(entry, showDescription, viewMoreText) {
 }
 
 function createEventsDropdown(options, selected, name, placeholder) {
-  const container = div({ class: 'select' });
-  container.setAttribute('name', name);
+  const container = div({ class: 'select', name });
 
   const btn = div({
     type: 'button',
@@ -118,26 +114,15 @@ function sortEvents(data, showFutureEvents) {
 function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'center') {
   const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
   const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
+  featuredEvent.eventStart = startFormatDate;
+  featuredEvent.eventEnd = endFormatDate;
+  featuredEvent.imageThumbPosition = imageThumbPosition;
+
   if (root) {
-    loadCSS('/blocks/event-summary/event-summary.css');
-    const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
-    const featuredBanner = div({ class: 'event-summary' },
-      (div({ class: `event-banner featured-event-banner event-thumb-${toClassName(imageThumbPosition)}` },
-        div({ class: 'left-col' },
-          a({ href: featuredEvent.path },
-            createOptimizedPicture(featuredEvent.image, featuredEvent.title))),
-        div({ class: 'right-col' },
-          div(
-            p({ class: 'cite' }, featuredEvent.eventType),
-            h2({ class: 'event-title' }, a({ href: featuredEvent.path }, featuredEvent.title)),
-            p({ class: 'event-date' }, formatEventDateRange(startFormatDate, endFormatDate)),
-            p(featuredEvent.eventAddress),
-            p(featuredEvent.eventRegion),
-          ),
-          socialShareBlock('Share this event', socials),
-        ))));
-    decorateIcons(featuredBanner);
-    root.appendChild(featuredBanner);
+    const eventSummary = div({ class: 'event-summary' });
+    const featuredBanner = createEventBanner(featuredEvent, true);
+    eventSummary.appendChild(featuredBanner);
+    root.appendChild(eventSummary);
   }
 }
 
@@ -235,7 +220,8 @@ export default async function decorate(block) {
     options.featuredEvent = options.data.find((option) => option.path === featuredPath);
     options.data = options.data.filter((option) => option.path !== featuredPath);
   }
-  // options.data = options.data.filter((option) => option.path !== featuredPath);
+
+  loadCSS('/blocks/event-summary/event-summary.css');
   sortEvents(options.data, showFutureEvents);
   await createOverview(block, options, imageThumbPosition);
 }
