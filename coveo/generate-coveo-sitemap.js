@@ -344,18 +344,13 @@ async function writeCoveoSitemapXML(index) {
   xmlData.push('</urlset>');
   // Add a timestamp comment so the file always changes
   xmlData.push(`<!-- build timestamp: ${new Date().toISOString()} -->`);
-
   try {
-
     fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
     console.log(`✅ Successfully wrote ${count} items to coveo xml`);
-
-  } catch (err) {
+    } catch (err) {
      console.error('❌ Error writing coveo-xml.xml:', err);
   }
 }
-
-
 
 async function main() {
   const index = await getData();
