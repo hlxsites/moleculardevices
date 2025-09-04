@@ -288,7 +288,7 @@ function createCoveoFieldsFromRelatedData(index) {
 
 // helper: sleep function
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function writeCoveoSitemapXML(index) {
@@ -347,17 +347,19 @@ async function writeCoveoSitemapXML(index) {
   });
 
   xmlData.push('</urlset>');
+  
 
   try {
 
-   console.log('Waiting 30s to allow query-index.json to refresh...');
-    await sleep(30000);
+   console.log('Waiting 15s to allow query-index.json to refresh...');
+    await sleep(15000);
     fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
     console.log(`✅ Successfully wrote ${count} items to coveo xml`);
 
   } catch (err) {
      console.error('❌ Error writing coveo-xml.xml:', err);
   }
+
 }
 
 
