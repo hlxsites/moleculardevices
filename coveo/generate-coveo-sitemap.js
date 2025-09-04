@@ -347,8 +347,8 @@ async function writeCoveoSitemapXML(index) {
   try {
     fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
     console.log(`✅ Successfully wrote ${count} items to coveo xml`);
-  }   
-catch (err) {
+}   
+  catch (err) {
     console.error('❌ Error writing coveo-xml.xml:', err);
   }
 }
