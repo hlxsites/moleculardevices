@@ -350,8 +350,8 @@ async function writeCoveoSitemapXML(index) {
 
   try {
 
-   console.log('Waiting 30s to allow query-index.json to refresh...');
-    await sleep(30000);
+   console.log('Waiting 15s to allow query-index.json to refresh...');
+    await sleep(15000);
     fs.writeFileSync('coveo-xml.xml', xmlData.join('\n'));
     console.log(`✅ Successfully wrote ${count} items to coveo xml`);
 
