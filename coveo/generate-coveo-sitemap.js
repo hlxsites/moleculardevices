@@ -288,7 +288,7 @@ function createCoveoFieldsFromRelatedData(index) {
 
 // helper: sleep function
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function writeCoveoSitemapXML(index) {
@@ -347,6 +347,7 @@ async function writeCoveoSitemapXML(index) {
   });
 
   xmlData.push('</urlset>');
+  
 
   try {
 
@@ -358,6 +359,7 @@ async function writeCoveoSitemapXML(index) {
   } catch (err) {
      console.error('❌ Error writing coveo-xml.xml:', err);
   }
+
 }
 
 
