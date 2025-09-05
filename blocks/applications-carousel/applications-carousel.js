@@ -29,11 +29,6 @@ export default async function decorate(block) {
   const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
 
-  if (fragmentPaths.length < 3) {
-    block.parentElement.parentElement.remove();
-    return;
-  }
-
   /* view all CTA */
   const blockClass = heading.id || heading.innerHTML || '';
   addViewAllCTA(block, '', blockClass, '#applications', viewAllHandler, 'View Applications');
