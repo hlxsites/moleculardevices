@@ -78,7 +78,7 @@ export default async function decorate(block) {
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
 
   formConfig.formType = formType;
-  const target = `${formConfig.formType}-form`;
+  const target = `${formConfig.formType || 'unknown-type'}-form`;
 
   if (template.includes('Product')) {
     const data = PRODUCT_FORM_DATA
@@ -104,7 +104,7 @@ export default async function decorate(block) {
   } else if (formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   } else {
-    const formTypeList = ul({ class: 'no-type-msg' }, p('Please add one of the following type to the block:'));
+    const formTypeList = ul({ class: 'unknown-type-msg' }, p('Please add one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }

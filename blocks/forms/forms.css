@@ -4,7 +4,7 @@
   --border-color: #bebebe;
 }
 
-.forms.block .no-type-msg {
+.forms.block .unknown-type-msg {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -334,8 +334,9 @@ input[type="submit"] {
   font-size: 13px;
 }
 
-/* INQUERY FORM */
+/* INQUERY/EVENTS FORM */
 .forms.inquiry h3,
+.forms.events h3,
 .forms.inquiry-with-thankyou h3 {
   text-align: center;
   font-size: 36px;
@@ -344,6 +345,7 @@ input[type="submit"] {
 }
 
 .forms.inquiry .hubspot-form,
+.forms.events .hubspot-form,
 .forms.inquiry-with-thankyou .hubspot-form {
   margin: auto;
   max-width: 600px;
@@ -364,6 +366,7 @@ input[type="submit"] {
 }
 
 .forms.inquiry .hubspot-form fieldset,
+.forms.events .hubspot-form fieldset,
 .forms.inquiry-with-thankyou .hubspot-form fieldset {
   width: 100%;
   max-width: 100%;
