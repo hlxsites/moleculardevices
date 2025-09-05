@@ -1,4 +1,4 @@
-/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-class-pattern, no-descending-specificity */
 :root {
   --input-color: #5f696b;
   --border-color: #bebebe;
@@ -48,7 +48,7 @@
 }
 
 .hs-form .hs-form-field .hs-input,
-.hs-form .hs-form-field .hs-form-checkbox label span::before,
+.hs-form .hs-form-field .hs-form-checkbox label span::before ,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
   background-color: var(--background-color);
   border: 1px solid var(--border-color);
@@ -102,13 +102,16 @@
 .hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
   display: none;
 }
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label{
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label{
   display: block;
 
 }
-.hs-form .hs-form-field.hs_email  .hs-error-msgs label a:hover {
-  color: #ff0000;
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
+  color: #f00;
 }
+
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
 }
@@ -174,7 +177,7 @@ div.privacy > label {
   margin-top: 0;
 }
 
-.hs-form .hs-form-field .hs-form-checkbox label {
+.hs-form .hs-form-field .hs-form-checkbox label{
   position: relative;
 }
 
@@ -430,6 +433,10 @@ main .category-form.forms-container.wave-section {
   padding-bottom: 18%;
 }
 
+main .category-form.forms-container.wave-section + .section.wave {
+  display: none;
+}
+
 main .category-form.forms-container.wave-section .wave {
   position: absolute;
   width: 100%;
@@ -453,28 +460,23 @@ main .category-form.forms-container .hs-submit .actions button {
 main .category-form.forms-container[class*='3d-biology-form-section'] {
   background-image: url('/templates/product/images/3d-biology.png');
 }
-
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #6610f2;
  color: #fff;
 }
-
 main .category-form.forms-container[class*='3d-biology-form-section'],
 main .category-form.forms-container[class*='3d-biology-form-section'] {
   background-image: url('/templates/product/images/3d-biology.png');
 }
-
 main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #0d6efd;
  color: #fff;
 }
-
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
   background-image: url('/templates/product/images/imaging.png');
 }
-
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
  background-color: #70dc90;
  color: #fff;
@@ -486,7 +488,7 @@ main .category-form.forms-container.product-rfq-thankyou-section .default-conten
 
 main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
-  padding: 40px;
+  padding: 30px;
   border-radius: 20px;
   color: #fff;
 }
@@ -539,4 +541,33 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
   main .category-form.forms-container .forms {
     padding: 20px;
   }
+}
+
+/* product-rfq form */
+main .category-form.product-rfq-thankyou-section .forms-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+main .product-rfq-thankyou-section .submitted-message {
+  text-align: center;
+  font-size: 1rem;
+}
+
+main .product-rfq-thankyou-section .submitted-message h2 {
+  font-family: var(--ff-proxima-regular);
+  font-size: 36px;
+}
+
+main .product-rfq-thankyou-section .submitted-message a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+main .product-rfq-thankyou-section .submitted-message img[alt="E-mail Icon"] {
+  max-width: 150px;
+}
+
+main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
+  display: none;
 }

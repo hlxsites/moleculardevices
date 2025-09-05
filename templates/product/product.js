@@ -83,7 +83,8 @@ async function initForm() {
   const category = getMetadata('category');
   formSection.classList.add(`${toClassName(category)}-form-section`);
   const defaultWrapper = formSection.querySelector('.default-content-wrapper');
-  const data = PRODUCT_FORM_DATA.find((formData) => formData.type === category);
+  const data = PRODUCT_FORM_DATA
+    .find((formData) => formData.type.toLowerCase().includes(category.toLowerCase()));
   if (!defaultWrapper) formSection.prepend(await decorateDefaultContent(data));
 
   const RFQData = await getRFQDataByFamilyID(familyID);
@@ -103,7 +104,7 @@ async function initForm() {
 export default async function decorateProductPage() {
   const template = getMetadata('template');
 
-  if (template) {
+  if (template.includes('Product')) {
     const observer = new MutationObserver(() => {
       if (!formLoaded && !formLoading) {
         initForm().then(() => {

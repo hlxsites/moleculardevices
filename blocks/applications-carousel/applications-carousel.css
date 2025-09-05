@@ -5,8 +5,8 @@ main .carousel-wrapper.applications-carousel-wrapper {
 }
 
 main .carousel.applications-carousel {
-  width: 88%;
-  padding: 0;
+  width: 90%;
+  padding: 0 0 30px;
 }
 
 .applications-carousel:not(:has(.carousel-item:nth-child(3))) {

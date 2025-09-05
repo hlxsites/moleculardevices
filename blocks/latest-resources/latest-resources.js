@@ -54,7 +54,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
     const viewAllBtn = div(
       {
         class: `${containerClass}-button`,
-        style: 'display: flex; justify-content: center; padding: 50px 0;',
+        style: 'display: flex; justify-content: center; padding: 24px 0 50px;',
       },
       p({ class: 'button-container' },
         strong(
@@ -67,7 +67,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
       ),
     );
     decorateButtons(viewAllBtn);
-    block.parentElement.append(viewAllBtn);
+    block.parentElement.insertAdjacentElement('afterend', viewAllBtn);
   }
 }
 

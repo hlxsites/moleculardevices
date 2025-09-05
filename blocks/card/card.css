@@ -90,7 +90,7 @@ main .card-caption h3 a {
 main .card-caption .card-description {
   font-size: var(--body-font-size-s);
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   margin-top: 0;
 }
 

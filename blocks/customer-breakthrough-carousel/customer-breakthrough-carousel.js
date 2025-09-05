@@ -7,36 +7,36 @@ import { div } from '../../scripts/dom-helpers.js';
 
 const placeholders = await fetchPlaceholders();
 
-async function getCBData() {
-  const category = getMetadata('category');
+async function getCBData(category) {
   return ffetch('/query-index.json')
     .sheet('customer-breakthroughs')
-    .filter((cb) => cb.category === category)
+    .filter((cb) => cb.category.includes(category))
     .limit(9)
     .all();
 }
 
 export default async function decorate(block) {
-  const resources = await getCBData();
+  const cbPath = '/customer-breakthroughs';
+  let category = getMetadata('category');
+  if (category === 'Services and Support') category = 'Lab Automation';
+  const resources = await getCBData(category);
+
+  category = category.split(' ').join('-');
+  const anchor = `${cbPath}#${category}`;
+
+  /* view all CTA */
+  addViewAllCTA(block, '', 'customer-breakthrough', anchor, () => { }, 'View case studies');
+
   const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
     { media: '(min-width: 992px)', width: '1663' },
     { width: '900' },
   ]);
   if (resources.length < 3) {
-    // block.parentElement.previousElementSibling.remove();
-    // block.parentElement.remove();
     block.closest('.section').previousElementSibling.classList.add('wave-section');
     block.closest('.section').previousElementSibling.appendChild(div({ class: 'wave' }, waveImage));
     block.closest('.section').remove();
     return;
   }
-
-  const cbPath = '/customer-breakthroughs';
-  const category = getMetadata('category').split(' ').join('-');
-  const anchor = `${cbPath}#${category}`;
-
-  /* view all CTA */
-  addViewAllCTA(block, '', 'customer-breakthrough', anchor, () => { }, 'View case studies');
 
   const resourceCard = await createCard({
     showDate: true,
