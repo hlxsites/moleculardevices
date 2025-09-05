@@ -68,7 +68,7 @@ export async function getFormFieldValues(formConfig) {
   }
 
   return {
-    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
+    cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
     google_analytics_source__c: formConfig.googleAnalyticsSource || getCookie('utm_source') || '',
