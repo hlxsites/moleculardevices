@@ -58,13 +58,24 @@
 }
 
 .event-summary .event-banner .event-title,
-.event-summary .event-banner h1 {
-  font-size: var(--body-font-size-xl);
+.event-summary .event-banner h1,
+.event-summary .event-banner .event-sub-title{
   color: var(--text-color);
   font-family: var(--ff-proxima-xbold);
+}
+
+.event-summary .event-banner .event-title,
+.event-summary .event-banner h1 {
+  font-size: var(--body-font-size-xl);
   margin-top: 0;
   line-height: 1.1;
   margin-bottom: 1rem;
+  padding: 0;
+  border-bottom: none;
+}
+
+.event-summary .event-banner .event-sub-title{
+  font-size: 1.25rem;
 }
 
 .event-summary .event-banner .event-title a {
@@ -125,6 +136,10 @@
 .event .breadcrumbs-wrapper,
 .event-summary-container .breadcrumbs-wrapper {
   height: unset;
+}
+
+.event-summary .event-banner {
+  margin-bottom: 4.5rem;
 }
 
 .section.events-container {
