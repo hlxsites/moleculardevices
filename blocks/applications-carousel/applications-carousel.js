@@ -32,7 +32,8 @@ export default async function decorate(block) {
   /* view all CTA */
   const blockClass = heading.id || heading.innerHTML || '';
   const ctaHref = hasApplicationTab ? '#applications' : '/applications';
-  addViewAllCTA(block, '', blockClass, ctaHref, viewAllHandler, 'View Applications');
+  const clickHandler = hasApplicationTab ? viewAllHandler : null;
+  addViewAllCTA(block, '', blockClass, ctaHref, clickHandler, 'View Applications');
 
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
