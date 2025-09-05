@@ -138,6 +138,10 @@
   height: unset;
 }
 
+.event-summary .event-banner {
+  margin-bottom: 4.5rem;
+}
+
 .section.events-container {
   padding-top: 0;
 }
@@ -158,50 +162,3 @@
     grid-template-columns: 65% 35%;
   }
 }
-
-/*  Rajneesh css  */
-
-main .section.columns-2.layout-50-50 {
-  grid-template-columns: 50fr 50fr;
-}
-
-.default-content-wrapper #featured-products {
-  text-align: center;
-  font-size: 36px;
-  font-family: var(--ff-proxima-regular);
-  padding-top: 25px;
-}
-
-.event main .columns-container .default-content-wrapper .find-out-more {
-  padding-left: 550px;
-  padding-top: 50px;
-}
-
-.event main .section .event-featured-products p:nth-child(2) {
-  max-width: 240px;
-  margin: auto;
-}
-
-.event-summary .event-banner {
-  margin-bottom: 4.5rem;
-}
-
-.event main .section .event-featured-products .image-left {
-  gap: 0;
-}
-
-.event main .section .event-featured-products {
-  max-width: 85%;
-  margin: auto;
-}
-
-.event .event-featured-products a:any-link {
-  color: #000;
-}
-
-.event .event-featured-products a:any-link:hover,
-.event .event-featured-products a:any-link:focus {
-  text-decoration: underline;
-}
-
-/*  Rajneesh css  ends */

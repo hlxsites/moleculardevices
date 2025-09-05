@@ -24,7 +24,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
 
     ),
     eventObj.booth ? h2({ class: 'event-sub-title' }, eventObj.booth) : '',
-    !isFeaturedBanner ? p(a({ class: 'button primary', href: eventObj.eventURL }, 'See us at the show')) : '',
+    !isFeaturedBanner && eventObj.eventURL ? p(a({ class: 'button primary', href: eventObj.eventURL }, 'See us at the show')) : '',
     socialShareBlock('Share this event', socials),
   );
 
