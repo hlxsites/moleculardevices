@@ -72,6 +72,6 @@ export const fieldsObj = [
   { inputName: 'Google_Analytics_Source__c', inputFieldName: 'google_analytics_source__c' },
   { inputName: 'Campaign_ID', inputFieldName: 'cmp' },
   { inputName: 'cmp', inputFieldName: 'cmp' },
-  { inputName: 'host_name', inputFieldName: 'host_name' },
+  { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
   { inputName: 'website', inputFieldName: 'website' },
 ];
