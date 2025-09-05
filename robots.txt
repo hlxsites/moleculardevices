@@ -80,10 +80,12 @@ Disallow: /en/assets/app-note/dd/img/screening-of-3d-spheroids-using-high-conten
 Disallow: /en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis
 Disallow: /en/assets/app-note/bpd/automated-microbial-plating-streaking-with-qpix-flex
 Disallow: /en/assets/app-note/dd/img/high-content-screening-ai-analysis-increase-insights-complex-3d-assay
+Disallow: /en/assets/app-note/bpd/qpix-flex-color-based-colony-grouping-microbial-research-screening
+Disallow: /en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-imagexpress-hcs-ai
 
 
-
-
+# infographics
+Disallow: /sites/default/files/en/assets/infographics/bpd/smarter-microbial-cloning-qpix-flex-spectramax-id3s.pdf
 
 # Flyer Block web and Google
 Disallow: /sites/default/files/en/assets/flyer/dd/flipr/upgrade-your-flipr-tetra-with-year-end-savings.pdf
@@ -124,7 +126,8 @@ Disallow: /en/assets/tutorials-videos/dd/cns/sepscs-mepscs-analysis-using-minis-
 Disallow: /en/assets/tutorials-videos/dd/img/transforming-high-content-screening-with-imaging-and-ai-analysis
 Disallow: /en/assets/tutorials-videos/dd/img/evolution-liver-toxicity-high-content-imaging-and-ai
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/innovation-in-cardiac-drug-discovery      
-
+Disallow: /en/assets/tutorials-videos/dd/img/image-to-insight-machine-learning-high-content-screening
+Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
 
 #EU webinars to imaging video gallery page
 
