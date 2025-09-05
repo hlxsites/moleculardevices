@@ -4,11 +4,19 @@
   --border-color: #bebebe;
 }
 
-.forms.block .unknown-type-msg {
+.forms.block .type-not-found-msg {
   list-style: none;
-  padding: 0;
   margin: 0;
   text-align: left;
+  color: #c00;
+  border: 1px solid #c00;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #ffe9e9;
+}
+
+.forms.block:has( > .type-not-found-msg) > div {
+  display: none;
 }
 
 .hs-form .hs-dependent-field,
@@ -344,9 +352,9 @@ input[type="submit"] {
   margin-bottom: 30px;
 }
 
-.forms.inquiry .hubspot-form,
-.forms.events .hubspot-form,
-.forms.inquiry-with-thankyou .hubspot-form {
+.forms.inquiry.block,
+.forms.events.block,
+.forms.inquiry-with-thankyou.block {
   margin: auto;
   max-width: 600px;
   padding-bottom: 50px;

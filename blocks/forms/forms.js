@@ -20,6 +20,7 @@ export async function createHubSpotForm(formConfig) {
         portalId: formConfig.portalId || '20222769',
         formId: getFormId(formConfig.formType),
         target: `#${formConfig.formType}-form`,
+
         onFormReady: async (form) => {
           // Handle Salesforce hidden fields
           const fieldValues = await getFormFieldValues(formConfig);
@@ -104,7 +105,7 @@ export default async function decorate(block) {
   } else if (formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   } else {
-    const formTypeList = ul({ class: 'unknown-type-msg' }, p('Please add one of the following type to the block:'));
+    const formTypeList = ul({ class: 'type-not-found-msg' }, p('Please add one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }
