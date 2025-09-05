@@ -6,7 +6,6 @@ import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-reque
 import {
   DEFAULT_QDC_VALUE,
   fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
-  TEST_CMP_ID,
 } from './formMapping.js';
 
 const hostName = 'https://www.moleculardevices.com';
@@ -68,7 +67,7 @@ export async function getFormFieldValues(formConfig) {
   }
 
   return {
-    cmp: valuecmp || formConfig.cmp || TEST_CMP_ID || '',
+    cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
     google_analytics_source__c: formConfig.googleAnalyticsSource || getCookie('utm_source') || '',

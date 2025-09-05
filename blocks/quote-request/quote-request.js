@@ -7,7 +7,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { sampleRUM } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { getFormId } from '../forms/formHelper.js';
+import { RFQ_CMP_ID } from '../forms/formMapping.js';
 
 const PREVIEW_DOMAIN = '.aem.page';
 
@@ -160,7 +160,6 @@ async function loadIframeForm(data, type) {
   let productImage = '';
   let bundleThumbnail = '';
   let productBundle = '';
-  // let sfdcHostName = '';
   const queryParams = new URLSearchParams(window.location.search);
   if (type === 'Product') {
     const typeParam = queryParams && queryParams.get('type');
@@ -170,7 +169,6 @@ async function loadIframeForm(data, type) {
     sfdcProductFamily = data.productFamily;
     sfdcProductSelection = data.title;
     sfdcPrimaryApplication = data.title;
-    // sfdcHostName = data.host_name;
 
     // prepare the product image url
     if (data.thumbnail && data.thumbnail !== '0') {
@@ -226,11 +224,10 @@ async function loadIframeForm(data, type) {
 
   // get cmp in three steps: mdcmp parameter, cmp cookie, default campaign
   // const mpCmpValue = queryParams && queryParams.get('mdcmp');
-  const cmpValue = getCookie('cmp') || '701Rn00000S8jXhIAJ'; // old cmp  70170000000hlRa
+  const cmpValue = getCookie('cmp') || RFQ_CMP_ID; // old cmp  70170000000hlRa
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
   const hubSpotQuery = {
-    formId: getFormId('rfq'),
     formType: 'rfq',
     productFamily: sfdcProductFamily,
     productSelection: sfdcProductSelection,

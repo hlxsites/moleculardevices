@@ -20,6 +20,7 @@ export const formMapping = [
 
 export const DEFAULT_QDC_VALUE = 'Quote';
 export const TEST_CMP_ID = '701Rn00000OJ0zY';
+export const RFQ_CMP_ID = '701Rn00000S8jXhIAJ';
 export const OID = '00D70000000IRvr';
 export const timelineValue = '00N70000003iu0b';
 export const serialLotNumber = '00N70000003TZlz';
@@ -71,6 +72,6 @@ export const fieldsObj = [
   { inputName: 'Google_Analytics_Source__c', inputFieldName: 'google_analytics_source__c' },
   { inputName: 'Campaign_ID', inputFieldName: 'cmp' },
   { inputName: 'cmp', inputFieldName: 'cmp' },
-  { inputName: 'host_name', inputFieldName: 'host_name' },
+  { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
   { inputName: 'website', inputFieldName: 'website' },
 ];
