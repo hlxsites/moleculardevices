@@ -6,7 +6,6 @@ import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-reque
 import {
   DEFAULT_QDC_VALUE,
   fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
-  TEST_CMP_ID,
 } from './formMapping.js';
 
 const hostName = 'https://www.moleculardevices.com';
