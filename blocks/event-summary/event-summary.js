@@ -5,6 +5,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
+import { decorateLinks } from '../../scripts/scripts.js';
 
 export function createEventBanner(eventObj, isFeaturedBanner = false) {
   const socials = ['facebook', 'linkedin', 'twitter', 'youtube-play'];
@@ -33,6 +34,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
   eventBanner.appendChild(rightCol);
 
   decorateIcons(eventBanner);
+  decorateLinks(eventBanner);
   return eventBanner;
 }
 
