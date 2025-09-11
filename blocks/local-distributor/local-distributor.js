@@ -222,11 +222,7 @@ export default async function decorate(block) {
                         ${!productFamily ? `<div class=productfamily>${primeProduct}</div>` : ''}
                         <div class="address">
                           ${molAddress}
-                          <p>
-                            <a href="javascript:void(0);" title="Contact your local ${row.Type} Team">
-                              Contact your local ${row.Type} Team <span class="icon icon-chevron-right-outline"></span>
-                            </a>
-                          </p>
+                          ${row.Type !== 'Distributor' ? `<p><a href="javascript:void(0);" title="Contact your local ${row.Type} Team">Contact your local ${row.Type} Team <span class="icon icon-chevron-right-outline"></span></a></p>` : ''}
                         </div>
                       </div>
                     `;
