@@ -24,6 +24,8 @@ import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';
 import { decorateModal } from '../blocks/modal/modal.js';
+import { createCarousel } from '../blocks/carousel/carousel.js';
+import { activateTab, getScrollOffset } from './utilities.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -31,12 +33,14 @@ import { decorateModal } from '../blocks/modal/modal.js';
 const TEMPLATE_LIST = [
   'application-note',
   'news',
+  'newsletter',
   'publication',
   'blog',
   'event',
   'about-us',
   'newsroom',
   'landing-page',
+  'product',
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
@@ -114,33 +118,18 @@ function decorateWaveSection(main) {
     { media: '(min-width: 992px)', width: '1663' },
     { width: '900' },
   ]);
-  const waveImg = waveImage.querySelector('img');
-  waveImg.setAttribute('width', '1663');
-  waveImg.setAttribute('height', '180');
-
-  const skipWave = document.querySelector(
-    ':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child',
-  );
-
-  // Select all wave sections (excluding .bluegreen and .wavecarousel)
-  const waveSections = document.querySelectorAll(
-    '.section.wave:not(.bluegreen):not(.wavecarousel)',
-  );
-
+  waveImage.querySelector('img').setAttribute('width', '1663');
+  waveImage.querySelector('img').setAttribute('height', '180');
+  const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
+  const waveSections = document.querySelectorAll('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons:not(.bluegreen)');
+  const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen, .wavecarousel)');
   waveSections.forEach((section) => {
-    const hasWavePicture = section.querySelector(':scope > picture');
-    if (!hasWavePicture) {
-      section.appendChild(waveImage.cloneNode(true));
-    }
+    if (section && !section.querySelector('picture')) { section.appendChild(waveImage); }
   });
-
-  // Append a wave section at the end if skipWave is not found
-  if (!skipWave) {
-    main.appendChild(
-      div({ class: 'section wave', 'data-section-status': 'initialized' },
-        waveImage.cloneNode(true)),
-    );
-  }
+  waveSections2.forEach((section) => {
+    if (section && !section.querySelector(':scope > picture')) { section.appendChild(waveImage); }
+  });
+  if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
 /**
@@ -224,16 +213,10 @@ export function videoButton(container, button, url) {
   });
 }
 
-export function decorateExternalLink(link) {
-  if (!link.href) return;
+export function isExternalLink(link) {
+  if (!link?.href) return false;
 
-  const url = new URL(link.href);
-  if (link.closest('.add-external-link')) {
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-    return;
-  }
-
+  const url = new URL(link.href, window.location.origin);
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
@@ -246,22 +229,40 @@ export function decorateExternalLink(link) {
     'https://drift.me',
   ];
 
-  if (url.origin === window.location.origin
+  if (
+    url.origin === window.location.origin
     || url.host.endsWith('moleculardevices.com')
     || internalLinks.includes(url.origin)
     || !url.protocol.startsWith('http')
     || link.closest('.languages-dropdown')
-    || link.querySelector('.icon')) {
+    || link.querySelector('.icon')
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+export function decorateExternalLink(link) {
+  if (!link?.href) return;
+
+  if (link.closest('.add-external-link')) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
     return;
   }
 
+  // Skip decorating language switcher or icon-only links
+  if (link.closest('.languages-dropdown') || link.querySelector('.icon')) return;
+
+  if (!isExternalLink(link)) return;
+
+  // Prevent icons on certain complex children
   const acceptedTags = ['STRONG', 'EM', 'SPAN', 'H2'];
   const invalidChildren = Array.from(link.children)
     .filter((child) => !acceptedTags.includes(child.tagName));
 
-  if (invalidChildren.length > 0) {
-    return;
-  }
+  if (invalidChildren.length > 0) return;
 
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
@@ -277,36 +278,41 @@ export function decorateExternalLink(link) {
 
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
-    const url = new URL(link.href);
-    // decorate video links
+    const url = new URL(link.href, window.location.origin);
+
+    // Handle video decoration
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const closestButtonContainer = link.closest('.button-container');
-      if (link.closest('.block.cards') || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
+      if (link.closest('.block.cards')
+        || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
         videoButton(link.closest('div'), link, url);
       } else {
         const up = link.parentElement;
         const hasAutoplay = link.closest('.block.autoplay-video');
-        const isInlineBlock = (link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox'));
+        const isInlineBlock = link.closest('.block.vidyard') && !link.closest('.block.vidyard').classList.contains('lightbox');
         const type = (up.tagName === 'EM' || isInlineBlock) ? 'inline' : 'lightbox';
-        const wrapper = div({ class: 'video-wrapper' }, div({ class: 'video-container' }, a({ href: link.href }, link.textContent)));
+        const wrapper = div({ class: 'video-wrapper' },
+          div({ class: 'video-container' }, a({ href: link.href }, link.textContent)),
+        );
         if (link.href !== link.textContent) wrapper.append(p({ class: 'video-title' }, link.textContent));
         up.innerHTML = wrapper.outerHTML;
         embedVideo(up.querySelector('a'), url, type, hasAutoplay);
       }
     }
 
-    // decorate RFQ page links with pid parameter
+    // Append family-id to quote request links
     if (url.pathname.startsWith('/quote-request') && !url.searchParams.has('pid') && getMetadata('family-id')) {
       url.searchParams.append('pid', getMetadata('family-id'));
       link.href = url.toString();
     }
 
+    // Open PDFs in new tab
     if (url.pathname.endsWith('.pdf')) {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
     }
 
-    // decorate external links
+    // External link decoration
     decorateExternalLink(link);
   });
 }
@@ -442,13 +448,17 @@ function detectSidebar(main) {
  * @param {Element} container The container element
  */
 export function decorateLinkedPictures(container) {
-  [...container.querySelectorAll('picture + br + a, picture + a')].forEach((link) => {
+  [...container.querySelectorAll('picture ~ br ~ a, picture ~ a')].forEach((link) => {
+    if (link.closest('.ignore-decoratelinkedpictures')) return;
+
     const br = link.previousElementSibling;
-    let picture = br.previousElementSibling;
-    if (br.tagName === 'PICTURE') {
-      picture = br;
+    let picture = br;
+
+    if (br.tagName === 'BR') {
+      picture = br.previousElementSibling;
     }
-    if (link.textContent.includes(link.getAttribute('href'))) {
+
+    if (picture && picture.tagName === 'PICTURE' && link.getAttribute('href')) {
       link.innerHTML = '';
       link.className = '';
       link.appendChild(picture);
@@ -459,7 +469,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -471,10 +481,11 @@ function addPageSchema() {
 
   try {
     const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesSiteName = 'Molecular Devices';
     const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
 
     const h1 = document.querySelector('main h1');
-    const schemaTitle = h1 ? h1.textContent : getMetadata('og:title');
+    const schemaTitle = getMetadata('og:title') ? getMetadata('og:title') : h1.textContent;
 
     const heroImage = document.querySelector('.hero img');
     const resourcesImage = getMetadata('thumbnail') || getMetadata('og:image') || moleculardevicesLogoURL;
@@ -499,15 +510,21 @@ function addPageSchema() {
     };
 
     const brandSameAs = [
-      'http://www.linkedin.com/company/molecular-devices',
+      'https://www.linkedin.com/company/molecular-devices',
       'https://www.facebook.com/MolecularDevices',
-      'http://www.youtube.com/user/MolecularDevicesInc',
+      'https://www.youtube.com/user/MolecularDevicesInc',
       'https://www.x.com/moldev',
+    ];
+    const fwnRelatedLink = [
+      'https://www.moleculardevices.com/for-whats-next/exploring-complex-biology',
+      'https://www.moleculardevices.com/for-whats-next/shifting-paradigms-together',
+      'https://www.moleculardevices.com/for-whats-next/transforming-science',
+      'https://www.moleculardevices.com/for-whats-next/validating-next-gen-therapeutics',
     ];
 
     let schemaInfo = null;
     if (type === 'homepage') {
-      const homepageName = 'Molecular Devices';
+      const homepageName = moleculardevicesSiteName;
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -561,7 +578,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
@@ -570,18 +587,18 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
             publisher: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
-              sameAs: brandSameAs,
               logo,
             },
+            sameAs:
+              brandSameAs,
           },
           {
             '@type': 'ImageObject',
@@ -600,6 +617,7 @@ function addPageSchema() {
             '@type': 'WebPage',
             name: schemaTitle,
             description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
@@ -608,7 +626,7 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: moleculardevicesRootURL,
               sameAs: brandSameAs,
               logo,
@@ -627,6 +645,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
@@ -635,7 +654,7 @@ function addPageSchema() {
             },
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: canonicalHref,
               sameAs: brandSameAs,
               logo,
@@ -657,7 +676,7 @@ function addPageSchema() {
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
+              name: moleculardevicesSiteName,
               url: canonicalHref,
               sameAs: brandSameAs,
               logo,
@@ -692,39 +711,147 @@ function addPageSchema() {
         ],
       };
     }
-
-    /* if (type === 'Videos and Webinars') {
-      const vidyardLink = document.querySelector('a[href*="vidyard.com"],
-      a[href*="vids.moleculardevices.com"]').href;
-      const vidyardId = vidyardLink.split('/').pop();
-      const embedHref = `https://play.vidyard.com/${vidyardId}?disable_popouts=1&v=4.3.15&autoplay=1&type=lightbox`;
-
+    if (type === 'contact') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
           {
-            '@type': 'VideoObject',
-            headline: schemaTitle,
+            '@type': 'ContactPage',
+            url: 'https://www.moleculardevices.com/contact',
             name: schemaTitle,
-            description,
-            thumbnailUrl: resourcesImageUrl,
-            uploadDate: new Date(publicationDate).toISOString(),
-            contentUrl: canonicalHref,
-            embedUrl: embedHref,
-            duration: '',
+            description: getMetadata('description'),
             publisher: {
               '@type': 'Organization',
-              name: 'Molecular Devices',
-              logo: {
-                '@type': 'ImageObject',
-                url: moleculardevicesLogoURL,
-              },
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            sameAs:
+              brandSameAs,
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-877-589-2214',
+              email: 'nsd@moldev.com',
+              contactType: 'Sales',
+              areaServed: 'Worldwide',
+              availableLanguage: '["English"]',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N. First Street',
+              addressLocality: 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry: 'US',
+            },
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
+    if (type === 'About Us') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'AboutPage',
+            url: 'https://www.moleculardevices.com/about-us',
+            name: schemaTitle,
+            description: getMetadata('description'),
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            sameAs:
+              brandSameAs,
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-877-589-2214',
+              email: 'nsd@moldev.com',
+              contactType: 'Sales',
+              areaServed: 'Worldwide',
+              availableLanguage: '["English"]',
+            },
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: '3860 N. First Street',
+              addressLocality: 'San Jose',
+              addressRegion: 'CA',
+              postalCode: '95134',
+              addressCountry: 'US',
+            },
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
+          },
+        ],
+      };
+    }
+    if (type === 'FWN main') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebPage',
+            name: schemaTitle,
+            url: canonicalHref,
+            description: getMetadata('description'),
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            relatedLink: fwnRelatedLink,
+          },
+        ],
+      };
+    }
+    if (type === 'FWN') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebPage',
+            name: schemaTitle,
+            url: canonicalHref,
+            description: getMetadata('description'),
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            isPartOf: {
+              '@type': 'WebPage',
+              url: 'https://www.moleculardevices.com/for-whats-next',
             },
           },
         ],
       };
-    } */
-
+    }
     if (schemaInfo) {
       schema.appendChild(document.createTextNode(
         JSON.stringify(schemaInfo, null, 2),
@@ -778,12 +905,13 @@ function addHreflangTags() {
  * @param {Element} root The parent element of iframe
  */
 export function iframeResizeHandler(iframeURL, iframeID, root) {
-  loadScript('/scripts/iframeResizer.min.js');
-  root.querySelector('iframe').addEventListener('load', () => {
-    if (iframeURL) {
-      /* global iFrameResize */
-      iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
-    }
+  loadScript('/scripts/iframeResizer.min.js', () => {
+    root.querySelector('iframe').addEventListener('load', () => {
+      if (iframeURL) {
+        /* global iFrameResize */
+        iFrameResize({ log: false, checkOrigin: false, heightCalculationMethod: 'bodyScroll' }, `#${iframeID}`);
+      }
+    });
   });
 }
 
@@ -796,12 +924,30 @@ async function formInModalHandler(main) {
   const modalIframeID = 'modal-iframe';
 
   if (slasFormModal) {
+    const queryParams = new URLSearchParams(window.location.search);
     const defaultForm = slasFormModal.getAttribute('data-default-form');
+    const urlParams = new URL(defaultForm, window.location.origin).searchParams;
+    const cmpID = queryParams.get('cmp') || urlParams.get('cmp') || '';
+    const productFamily = queryParams.get('product_family') || urlParams.get('product_family') || '';
+    const productPrimary = queryParams.get('product_primary') || urlParams.get('product_primary') || '';
+
+    urlParams.delete('cmp');
+    urlParams.delete('product_family');
+    urlParams.delete('product_primary');
+
+    const baseUrl = new URL(defaultForm, window.location.origin);
+    baseUrl.search = urlParams.toString();
+
+    const newParams = new URLSearchParams(baseUrl.search);
+    newParams.set('source_url', window.location.href);
+    if (cmpID) newParams.set('cmp', cmpID);
+    if (productFamily) newParams.set('product_family__c', productFamily);
+    if (productPrimary) newParams.set('product_primary_application__c', productPrimary);
 
     const modalBody = div(
       { class: 'iframe-wrapper slas-form' },
       iframe({
-        src: defaultForm,
+        src: `${baseUrl.origin}${baseUrl.pathname}?${newParams.toString()}`,
         id: modalIframeID,
         loading: 'lazy',
         title: 'SLAS Modal',
@@ -814,70 +960,167 @@ async function formInModalHandler(main) {
 }
 
 /* ============================ scrollToHashSection ============================ */
-function scrollToHashSection() {
-  const activeHash = window.location.hash;
-  if (activeHash) {
-    const id = activeHash.substring(1).toLowerCase();
-    let targetElement = document.getElementById(id);
-    if (!targetElement) {
-      const observer = new MutationObserver(() => {
-        targetElement = document.getElementById(id);
-        if (targetElement) {
-          const rect = targetElement.getBoundingClientRect();
-          const targetPosition = rect.top + window.scrollY - 250;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth',
-          });
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.body, { childList: true, subtree: true });
-    } else {
-      // scroll after a short delay
-      setTimeout(() => {
-        const rect = targetElement.getBoundingClientRect();
-        const targetPosition = rect.top + window.scrollY - 250;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth',
-        });
-      }, 1000);
-    }
+export function scrollToHashSection(rawHash = window.location.hash) {
+  const id = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const targetElement = document.getElementById(id);
+  const offset = getScrollOffset() + 170;
+
+  const scrollToTarget = (el) => {
+    if (!el) return;
+    setTimeout(() => {
+      const rect = el.offsetTop;
+      const top = rect - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 800);
+  };
+
+  if (targetElement) {
+    scrollToTarget(targetElement);
+  } else {
+    const observer = new MutationObserver(() => {
+      const lateEl = document.getElementById(id);
+      if (lateEl) {
+        scrollToTarget(lateEl);
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 }
 
-scrollToHashSection();
-window.addEventListener('hashchange', (event) => {
-  event.preventDefault();
-  scrollToHashSection();
+export function handleHashNavigation(rawHash) {
+  if (!rawHash) return;
+
+  const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const tabLink = document.querySelector(`.page-tabs li > a[href="#${hash}"]`);
+  const tabSection = document.querySelector(`.section[aria-labelledby="${hash}"]`);
+  const hashEl = document.getElementById(hash);
+
+  if (tabLink && tabSection) {
+    activateTab(tabLink, tabSection);
+    return;
+  }
+
+  const parentTabSection = hashEl?.closest('.section.tabs[aria-labelledby]');
+  if (hashEl && parentTabSection) {
+    const tabId = parentTabSection.getAttribute('aria-labelledby');
+    const parentTabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
+    if (parentTabLink) {
+      activateTab(parentTabLink);
+      requestAnimationFrame(() => scrollToHashSection(`#${hash}`));
+      return;
+    }
+  }
+
+  activateTab(tabLink);
+  scrollToHashSection(`#${hash}`);
+}
+
+export function detectAnchor({ enableCustomScroll = true } = {}) {
+  document.querySelectorAll('a[href^="#"]:not([data-anchor-setup])').forEach((anchor) => {
+    const rawHash = anchor.getAttribute('href');
+    if (!rawHash || rawHash === '#' || rawHash.includes('t=resources&sort=relevancy')) return;
+
+    anchor.setAttribute('data-anchor-setup', 'true');
+    if (enableCustomScroll) {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.pushState(null, '', rawHash);
+        handleHashNavigation(rawHash);
+      });
+    }
+  });
+}
+
+window.addEventListener('hashchange', () => {
+  if (window.location.hash) {
+    handleHashNavigation(window.location.hash);
+  }
 });
-/* ============================ scrollToHashSection ============================ */
+
+window.addEventListener('DOMContentLoaded', () => {
+  detectAnchor();
+  // if (window.location.hash) {
+  //   handleHashNavigation(window.location.hash);
+  // }
+});
 
 /**
- * Detect anchor
+ * Decorates sections with dynamic styles based on data attributes in Adobe Franklin.
+ * This reads the `data-bg` value and applies it as a background color.
+ *
+ * @param {Element} main - The DOM element to decorate
  */
-export function detectAnchor(block) {
-  const activeHash = window.location.hash;
-  if (!activeHash) return;
+export function addCustomBgToCarousel(main, dataset) {
+  const sections = main.querySelectorAll(`.section[class*="carousel"][${dataset}]`);
 
-  const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-  const el = block.querySelector(`#${id}`);
-  if (el) {
-    const observer = new MutationObserver((mutationList) => {
-      mutationList.forEach((mutation) => {
-        if (mutation.type === 'attributes'
-          && mutation.attributeName === 'data-block-status'
-          && block.attributes.getNamedItem('data-block-status').value === 'loaded') {
-          observer.disconnect();
-          setTimeout(() => {
-            window.dispatchEvent(new Event('hashchange'));
-          }, 3500);
-        }
+  sections.forEach((section) => {
+    const bg = section.getAttribute(dataset);
+    if (!bg) return;
+
+    const carouselItems = section.querySelectorAll('.carousel-item');
+
+    if (bg.includes('http')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = `url('${bg}')`;
       });
-    });
-    observer.observe(block, { attributes: true });
-  }
+    } else if (bg.includes('gradient')) {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundImage = bg;
+      });
+    } else {
+      [...carouselItems].forEach((item) => {
+        item.style.backgroundColor = bg;
+      });
+    }
+  });
+}
+
+function addBgToCarousel(main) {
+  const timer = setInterval(() => {
+    addCustomBgToCarousel(main, 'data-carousel-bg');
+    clearTimeout(timer);
+  }, 1000);
+}
+
+export function addCustomColor(main, dataset, selector = '') {
+  const sections = main.querySelectorAll(`.section[${dataset}]`);
+
+  sections.forEach((section) => {
+    const bg = section.getAttribute(dataset);
+    if (bg.includes('http://')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = `url('${bg}')`;
+      if (bg && !selector) section.style.backgroundImage = `url('${bg}')`;
+    } else if (bg.includes('gradient')) {
+      if (bg && selector) section.querySelector(selector).style.backgroundImage = bg;
+      if (bg && !selector) section.style.backgroundImage = bg;
+    } else {
+      if (bg && selector) section.querySelector(selector).style.backgroundColor = bg;
+      if (bg && !selector) section.style.backgroundColor = bg;
+    }
+  });
+}
+
+function addSectionBgColor(main) {
+  addCustomColor(main, 'data-bg');
+}
+
+function addBlockBgColor(main) {
+  addCustomColor(main, 'data-block-bg', '.block');
+}
+
+function loadCarousels(main) {
+  const sections = main.querySelectorAll('.section.carousel');
+  sections.forEach((section) => {
+    section.classList.remove('carousel');
+    const blockWrapper = div({ class: 'carousel-wrapper' });
+    const block = div({ class: 'carousel' });
+    block.innerHTML = section.innerHTML;
+    section.innerHTML = '';
+    blockWrapper.append(block);
+    section.append(blockWrapper);
+    createCarousel(block);
+  });
 }
 
 /**
@@ -898,7 +1141,11 @@ export async function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateLinks(main);
   decorateParagraphs(main);
+  loadCarousels(main);
   formInModalHandler(main);
+  addSectionBgColor(main);
+  addBlockBgColor(main);
+  addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
 }
@@ -1040,7 +1287,7 @@ function getStickyElements() {
  * Enable sticky components
  *
  */
-function enableStickyElements() {
+export function enableStickyElements() {
   getStickyElements();
   mobileDevice.addEventListener('change', getStickyElements);
 
@@ -1079,6 +1326,10 @@ function enableStickyElements() {
     }
   });
 }
+window.addEventListener('resize', enableStickyElements);
+window.addEventListener('load', () => {
+  requestAnimationFrame(enableStickyElements);
+});
 
 /**
  * loads everything that doesn't need to be delayed.
@@ -1414,6 +1665,7 @@ export function itemSearchTitle(item) {
 }
 
 export function toTitleCase(str) {
+  if (!str) return '';
   return str
     .toLowerCase()
     .split(/[\s-]+/)
