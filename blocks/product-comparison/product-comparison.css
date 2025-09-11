@@ -1,3 +1,8 @@
+.product .product-comparison-container .product-comparison-wrapper,
+.category .product-comparison-container .product-comparison-wrapper {
+  padding-top: 20px;
+}
+
 .product .product-comparison-container.tabs .default-content-wrapper > h2{
   text-align: center;
   padding-bottom: 0;
