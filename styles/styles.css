@@ -1247,7 +1247,7 @@ main .section.background-parallax .default-content-wrapper .button-container > a
 
 /* Wave sections */
 
-main:not(.sidekick-library) div.section.wave {
+main div.section.wave {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -1261,7 +1261,7 @@ main:not(.sidekick-library) div.section.wave {
   clear: both;
 }
 
-main:not(.sidekick-library).error div.section.wave {
+main.error div.section.wave {
   color: var(--text-color);
   text-align: unset;
 }
@@ -1271,7 +1271,7 @@ main.error div.section.wave:last-child {
 }
 
 main .section.wave.orange-buttons,
-main:not(.sidekick-library) div.section.wave:not(.bluegreen):last-child {
+main div.section.wave:not(.bluegreen):last-child {
   margin: 0;
   padding-bottom: 0;
 }
@@ -1284,8 +1284,8 @@ main .section.wave.orange-buttons {
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.wave > picture,
 main .section.wave > picture > img,
-main:not(.sidekick-library) div.section.wave:last-child picture,
-main:not(.sidekick-library) div.section.wave:last-child img {
+main div.section.wave:last-child picture,
+main div.section.wave:last-child img {
   width: 100%;
   display: block;
 }
