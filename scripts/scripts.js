@@ -216,7 +216,8 @@ export function videoButton(container, button, url) {
 export function isExternalLink(link) {
   if (!link?.href) return false;
 
-  const url = new URL(link.href, window.location.origin);
+  const { pathname, origin } = new URL(link.href);
+  const url = new URL(pathname, origin);
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
@@ -278,7 +279,8 @@ export function decorateExternalLink(link) {
 
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
-    const url = new URL(link.href, window.location.origin);
+    const { pathname, origin } = new URL(link.href);
+    const url = new URL(pathname, origin);
 
     // Handle video decoration
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
