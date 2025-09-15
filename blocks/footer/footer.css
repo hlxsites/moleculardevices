@@ -356,6 +356,7 @@
 .row-8,
 .row-8.columns-wrapper.OneLinkShow_zh {
   display: flex !important;
+  align-items: center;
 }
 
 .row-8 p {
@@ -493,14 +494,7 @@
   }
 
   .row-8 p {
-    flex: 1 1 auto;
-  }
-
-  .row-8 p img[alt*="pall"],
-  .row-8 p img[alt*="genedata"],
-  .row-8 p img[alt*="beckman coulter"] {
-    position: relative;
-    top: 8px;
+    flex: 1 1 80px;
   }
 }
 
@@ -512,6 +506,10 @@
   .footer-bottom .container {
     grid-template-columns: max-content auto;
     align-items: flex-end;
+    column-gap: 40px;
+  }
+
+  .row-8{
     column-gap: 40px;
   }
 }
