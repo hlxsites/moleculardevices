@@ -2300,12 +2300,9 @@ main .section.space-wrappers > div {
 
 .list-inline ul {
   list-style: none;
-  font-size: 0;
-}
-
-.list-inline ul li {
-  display: inline-block;
-  font-size: 1rem;
+  display: flex;
+  gap: 1rem;
+  padding-left: 0;
 }
 
 .list-spacing-8 ul li:not(:last-child) {
