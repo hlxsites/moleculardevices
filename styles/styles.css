@@ -2298,6 +2298,16 @@ main .section.space-wrappers > div {
   height: auto;
 }
 
+.list-inline ul {
+  list-style: none;
+  font-size: 0;
+}
+
+.list-inline ul li {
+  display: inline-block;
+  font-size: 1rem;
+}
+
 .list-spacing-8 ul li:not(:last-child) {
   margin-bottom: 8px !important;
 }
