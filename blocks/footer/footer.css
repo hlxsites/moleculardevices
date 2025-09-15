@@ -356,7 +356,6 @@
 .row-8,
 .row-8.columns-wrapper.OneLinkShow_zh {
   display: flex !important;
-  align-items: center;
 }
 
 .row-8 p {
@@ -368,6 +367,20 @@
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.row-8 p:has([alt='leica']),
+.row-8 p:has([alt='sciex']){
+  flex-basis: 60px;
+}
+
+.row-8 p:has([alt='phenomenex']){
+  flex-basis: 120px;
+}
+
+.row-8 p:has([alt='beckman coulter']){
+  position: relative;
+    top: 4px;
 }
 
 /* footer landing page */
