@@ -213,11 +213,23 @@ export function videoButton(container, button, url) {
   });
 }
 
+function isLink(text) {
+  const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/i;
+  return urlPattern.test(text);
+}
+
 export function isExternalLink(link) {
   if (!link?.href) return false;
 
-  const { pathname, origin } = new URL(link.href);
-  const url = new URL(pathname, origin);
+  let url;
+
+  if (isLink(link.href)) {
+    const { pathname, origin } = isLink(link.href) ? new URL(link.href) : link.href;
+    url = new URL(pathname, origin);
+  } else {
+    url = new URL(link.href, window.location.origin);
+  }
+
   const internalLinks = [
     'https://view.ceros.com',
     'https://share.vidyard.com',
