@@ -1068,7 +1068,7 @@ main .section.features-section {
 }
 
 main .section.features-section .default-content-wrapper,
-main .section.applications-carousel-container .default-content-wrapper  {
+main .section.applications-carousel-container .default-content-wrapper {
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
@@ -2301,8 +2301,23 @@ main .section.space-wrappers > div {
 .list-inline ul {
   list-style: none;
   display: flex;
+  align-items: flex-start;
   gap: 1rem;
   padding-left: 0;
+  margin-bottom: 0;
+}
+
+main .icon svg,
+main .icon img {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+main .list-inline .icon svg,
+main .list-inline .icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .list-spacing-8 ul li:not(:last-child) {
