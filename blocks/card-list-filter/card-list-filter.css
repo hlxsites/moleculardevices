@@ -25,7 +25,7 @@
 .card-list-filter ul li a:visited {
   position: relative;
   display: inline-block;
-  color: #34393d;
+  color: var(--text-color);
   font-family: var(--ff-proxima-light);
   text-decoration: none;
   font-size: 17px;
@@ -75,7 +75,7 @@
   }
 
   .card-list-filter.blog {
-    background-color: rgba(0 0 0 / 50%);
+    background-color: var(--color-black-alpha-5);
     position: absolute;
     width: 100%;
     bottom: 115px;
@@ -121,7 +121,7 @@
 /* VIDEO GALLERY Desktop Variant */
 
 /* Cancel any margin below that the hero might have */
-.video-gallery .hero-wrapper, 
+.video-gallery .hero-wrapper,
 .video-gallery .hero {
   margin-bottom: 0 !important;
 }
@@ -150,7 +150,7 @@
 .card-list-filter.video-gallery ul li a:link,
 .card-list-filter.video-gallery ul li a:visited,
 .card-list-filter.video-gallery .active-filter span {
-  color: #fff;
+  color: var(--text-white);
   font-size: 14px;
 }
 
@@ -186,7 +186,7 @@
   .card-list-filter ul li a:visited,
   .card-list-filter .active-filter span {
     line-height: 1.33;
-    color: #34393d;
+    color: var(--text-color);
     padding: 5px 0;
     text-align: left;
     text-transform: none;

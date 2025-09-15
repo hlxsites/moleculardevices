@@ -1,15 +1,10 @@
-:root {
-  --overlay: rgb(0 0 0 / 70%);
-  --form-bg: rgb(0 0 0 / 50%);
-}
-
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--overlay);
+  background-color: var(--color-black-alpha-7);
   z-index: 1000;
   padding: 100px 20px;
   overflow-y: auto;
@@ -150,7 +145,7 @@
   position: relative;
   padding: 20px;
   color: var(--text-white);
-  background-color: var(--form-bg);
+  background-color: var(--color-black-alpha-7);
   text-align: center;
 }
 

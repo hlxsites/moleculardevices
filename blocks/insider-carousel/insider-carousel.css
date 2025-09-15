@@ -156,7 +156,7 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
   .what-next .insider-carousel-wrapper .carousel-item-image {
     border-radius: 50%;
     border: 10px solid var(--cyan-color);
-    background-color: #fff;
+    background-color: var(--background-color);
     overflow: hidden;
     padding-top: 40px;
     aspect-ratio: 1 / 1;

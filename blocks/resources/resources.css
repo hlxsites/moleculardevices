@@ -259,7 +259,7 @@ main .section .resources-wrapper {
   font-family: var(--ff-proxima-light);
   font-size: 16px;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--highlight-background-color);
   border-radius: 4px 0 0 4px;
   color: #555;
   margin-bottom: 0;
@@ -301,7 +301,7 @@ main .section .resources-wrapper {
   content: "";
   position: absolute;
   background-image: url("/images/ajax-common-loader-gray.gif");
-  background-color: #fff;
+  background-color: var(--background-color);
   background-size: 50px;
   background-position: center 200px;
   background-repeat: no-repeat;

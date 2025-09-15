@@ -71,36 +71,43 @@ main .section.OneLinkShow_zh.columns-2 {
 /* stylelint-enable */
 
 :root {
+  /* Brand Colors */
+  --color-primary: #008da9;
+  --color-secondary: #ee7624;
+  --color-success: #6eb43f;
+  --color-white: #fff;
+  --color-text: #34393d;
+
+  /* alpha colors */
+  --color-black-alpha-1: rgb(0 0 0 / 10%);
+  --color-black-alpha-2: rgb(0 0 0 / 20%);
+  --color-black-alpha-3: rgb(0 0 0 / 30%);
+  --color-black-alpha-4: rgb(0 0 0 / 40%);
+  --color-black-alpha-5: rgb(0 0 0 / 50%);
+  --color-black-alpha-6: rgb(0 0 0 / 60%);
+  --color-black-alpha-7: rgb(0 0 0 / 70%);
+  --color-black-alpha-8: rgb(0 0 0 / 80%);
+  --color-black-alpha-9: rgb(0 0 0 / 90%);
+
   /* colors */
-  --text-color: #34393d;
-  --text-blue: #008da9;
+  --text-color: var(--color-text);
   --text-dark-gray: #333;
   --text-electric-blue: #007bc4;
   --text-gray2: #606a6c;
   --text-gray: #6a747c;
-  --text-green: #6eb43f;
   --text-light-gray: #adb3b7;
-  --text-orange: #ee7624;
-  --text-white: #fff;
   --midnight-green: #003b4d;
   --heading-color: #00758d;
   --heading-color-blue: #038296;
   --link-color: #337ab7;
   --link-hover-color: #0066a4;
-  --background-color: #fff;
   --background-color-blue: #0066a4;
-  --background-color-green: #6eb43f;
-  --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --button-color: #fff;
   --button-hover-color: #0066a4;
-  --button-bg-color: #008da9;
-  --button-bg-hover-color: #fff;
   --button-secondary-color: #038296;
   --button-secondary-border-color: #4c9eaf;
   --button-secondary-hover-color: #0066a4;
   --button-secondary-bg-color: #038296;
-  --button-secondary-bg-hover-color: #fff;
   --grey-background-color: #f0f1f2;
   --dark-gray-background-color: #5b6670;
   --black-background-color: #000;
@@ -108,22 +115,48 @@ main .section.OneLinkShow_zh.columns-2 {
   --light-gray-background-color2: #f2f2f2;
   --light-border-color-gray: #ddd;
   --dark-border-color-gray: #adb3b7;
-  --orange-background-color: #ee7624;
   --border-color-gray: #ababab;
-  --border-color-green: #6eb43f;
-  --header-color-orange: #ee7624;
   --header-mega-menu-border-color: #ffffff80;
   --header-mega-menu-font-color: #ffffffb2;
   --header-mega-menu-product-cards-background-color: #161e2d;
-  --header-mega-menu-green: #6eb43f;
   --header-actionable-submenu-text-color: #e6e6e6;
   --accordion-dark-gray-text-color: #454545;
   --accordion-light-gray-border-color: #c5c5c5;
   --accordion-light-gray-background-color: #f6f6f6;
-  --accordion-color-white: #fff;
   --carousel-slider-background-color: #b3d8e0;
+
+  /* color primary */
+  --text-blue: var(--color-primary);
+  --button-bg-color: var(--color-primary);
+
+  /* color secondary */
+  --text-orange: var(--color-secondary);
+  --orange-background-color: var(--color-secondary);
+  --header-color-orange: var(--color-secondary);
+
+  /* color success */
+  --text-green: var(--color-success);
+  --background-color-green: var(--color-success);
+  --border-color-green: var(--color-success);
+  --header-mega-menu-green: var(--color-success);
+
+  /* color white */
+  --text-white: var(--color-white);
+  --background-color: var(--color-white);
+  --button-color: var(--color-white);
+  --button-bg-hover-color: var(--color-white);
+  --button-secondary-bg-hover-color: var(--color-white);
+  --accordion-color-white: var(--color-white);
+
+  /* overlays color */
+  --overlay-background-color: #eee;
+
+  /* gradients */
   --blog-gradient: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
   --blog-gradient-left: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  --overlay-gradient: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
+  --bottom-overlay-gradient: linear-gradient(to bottom, rgba(255 255 255 / 0%) 55%, rgba(0 0 0 / 90%));
+  --teal-gradient: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
 
   /* whats new */
   --purple-color: #660ff3;
@@ -159,15 +192,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --list-font-size-m: 18px;
   --list-font-size-s: 14px;
 
-  /* nav height */
+  /* layout veriables */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
-
-  /* section > div width */
   --section-div-width: 1170px;
   --center-space: calc((100vw - var(--section-div-width)) / 2);
-  --overlay: rgb(0 0 0 / 70%);
-  --form-bg: rgb(0 0 0 / 50%);
 }
 
 @media (max-width: 1200px) {
@@ -1389,12 +1418,7 @@ main div.section.wave.bluegreen::after {
 main div.section.wave.bluegreen2:not([style*="background-image"]) {
   padding-bottom: 150px;
   position: relative;
-  background: linear-gradient(
-    90deg,
-    rgba(21 145 164 / 100%) 0,
-    rgba(50 159 121 / 100%) 50%,
-    rgba(97 178 73 / 100%) 100%
-  ) !important;
+  background: var(--blog-gradient) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1423,12 +1447,7 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: linear-gradient(
-      90deg,
-      rgb(21 145 164 / 100%) 0,
-      rgb(46 159 121 / 100%) 50%,
-      rgb(97 178 73 / 100%) 100%
-    ) !important;
+    background: var(--blog-gradient) !important;
     background-image: none;
   }
 
@@ -2448,7 +2467,7 @@ main .columns-separator-line .columns-wrapper .columns {
 /* SLAS PAGES */
 main .block.text-white,
 main .section.text-white {
-  color: #fff;
+  color: var(--text-white);
 }
 
 main .block.no-margin,
@@ -2678,7 +2697,7 @@ main .section.tabs.rfq-form-section ul {
 
 main .section.rfq-form-section .embed {
   width: 100%;
-  color: #fff;
+  color: var(--text-white);
   background-color: #666667;
   padding: 20px 10px 0;
   margin-top: 0;
@@ -2688,7 +2707,7 @@ main .section.rfq-form-section .embed h4 {
   margin-bottom: 20px;
   text-align: center;
   padding: 0 20px;
-  color: #fff;
+  color: var(--text-white);
 }
 
 @media only screen and (min-width: 768px) {
@@ -2738,7 +2757,7 @@ main .section.rfq-form-section .embed h4 {
   text-transform: capitalize;
   background: #0066a4;
   padding: 8px 24px;
-  color: #fff;
+  color: var(--text-white);
   width: 100%;
   text-align: center;
   margin: 0 auto !important;
@@ -2754,8 +2773,8 @@ main .section.rfq-form-section .embed h4 {
 
 main div.dark-button.orange-buttons .button.secondary,
 main div.dark-button.orange-buttons .button.secondary:visited {
-  color: #000;
-  border-color: #000;
+  color: var(--black-background-color);
+  border-color: var(--black-background-color);
 }
 
 /* whats next | new layout */

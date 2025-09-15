@@ -130,14 +130,14 @@
 
 .landing-page main .download-form .embed {
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--light-gray-background-color2);
   padding: 20px 5px 0;
   margin-top: 0;
 }
 
 .landing-page main .download-form.background-dark .embed {
   background-color: rgb(0 0 0 / 50%);
-  color: #fff;
+  color: var(--text-white);
 }
 
 .landing-page main .section > div.forms-wrapper h3,
@@ -152,7 +152,7 @@
 }
 
 .landing-page main .download-form.orange-form-title .embed h4 {
-  color: #ee7624;
+  color: var(--color-secondary);
 }
 
 .landing-page .embed > div > div {
@@ -171,7 +171,7 @@
 
 /* huspot form */
 .landing-page main .section > div.forms-wrapper > div{
-  background-color: #f2f2f2;
+  background-color: var(--light-gray-background-color2);
   padding: 20px;
 }
 

@@ -357,7 +357,7 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
   }
 
   main .pro-comparison-result .scroll_div .col-sm-3 {
-    border: 1px solid #ccc;
+    border: 1px solid var(--highlight-background-color);
   }
 
   main .pro-comparison-result .scroll_div .comparison-cell.title {

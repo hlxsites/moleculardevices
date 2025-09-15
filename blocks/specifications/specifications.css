@@ -41,7 +41,7 @@ main .section .specifications-wrapper {
 }
 
 .specifications .product-heading p {
-  color: #34393d;
+  color: var(--text-color);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

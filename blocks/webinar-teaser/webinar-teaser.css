@@ -5,7 +5,7 @@
   height: 645px;
   width: 100%;
   background-position: center;
-  color: #fff;
+  color: var(--text-white);
   padding: 0 36px;
   margin-bottom: 150px;
 }
@@ -88,11 +88,11 @@
     margin-bottom: 30px;
     padding: 20px 16px 122px;
   }
-  
+
   .webinar-teaser h2 {
     font-size: 40px;
   }
-  
+
   .webinar-teaser h3 {
     font-size: 20px;
   }
@@ -116,7 +116,6 @@
   }
 
   .webinar-teaser a.button.secondary {
-    min-width: unset;
     min-width: 100%;
   }
 }

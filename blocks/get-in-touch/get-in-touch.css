@@ -39,7 +39,7 @@
   text-align: center;
   padding: 30px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--light-border-color-gray);
   margin-bottom: 30px;
 }
 

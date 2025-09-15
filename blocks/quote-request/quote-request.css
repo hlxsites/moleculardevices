@@ -36,7 +36,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-product-wrapper {
-  background: rgb(0 0 0 / 70%);
+  background: var(--color-black-alpha-7);
   border: 1px solid var(--heading-color);
   border-radius: 25px;
   color: var(--text-white);
@@ -162,7 +162,7 @@ main div.section.quote-request-container + .section.wave {
 
 .thankyou .rfq-product-wrapper {
   width: 100%;
-  background: rgb(0 0 0 / 70%);
+  background: var(--color-black-alpha-7);
   border-radius: 25px;
   border: 1px solid var(--heading-color);
   padding: 30px 0 50px;
@@ -273,11 +273,11 @@ main .rfq-form .actions {
 
 main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
-  background: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
+  background: var(--teal-gradient);
   background-color: #298da9;
   border: none;
   border-radius: 20px;
-  color: #fff;
+  color: var(--text-white);
   font-size: 20px;
   line-height: 25px;
   padding: 14px 18px;

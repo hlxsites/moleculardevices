@@ -1,13 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-:root {
-  --blog-underline-gradient: linear-gradient(
-    90deg,
-    rgba(21, 145, 164, 1) 0,
-    rgba(46, 159, 121, 1) 50%,
-    rgba(97, 178, 73, 1) 100%
-  );
-}
-
 .newsroom main .section h2 {
   --heading-font-size-xl: 42px;
 
@@ -109,7 +100,7 @@
   left: 0;
   height: 4px;
   width: 100%;
-  background: var(--blog-underline-gradient);
+  background: var(--blog-gradient);
 }
 
 .newsroom main .section.right {

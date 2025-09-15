@@ -1,6 +1,6 @@
 .media-gallery .overlay {
   display: none;
-  background-color: #000;
+  background-color: var(--black-background-color);
   opacity: 1;
   position: fixed;
   top: 0;
@@ -95,7 +95,7 @@ main .media-gallery .overlay-carousel .section>div {
 .media-gallery a.right, .media-gallery a.left {
   top: 45vh;
   transform: translate(0, -50%);
-  color: #fff;
+  color: var(--text-white);
   height: auto;
 }
 
@@ -135,7 +135,7 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
     padding-top: 25px;
     padding-bottom: 25px;
   }
-  
+
   main .media-gallery .overlay-carousel .section .default-content-wrapper:has(p.picture) {
     height: 100%;
   }
@@ -165,7 +165,7 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
   .media-gallery a.right {
     right: 0;
   }
-  
+
   .media-gallery a.left {
     left: 0;
   }

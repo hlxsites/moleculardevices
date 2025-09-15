@@ -193,7 +193,7 @@
 }
 
 .footer-newsletter-form .hs-form-field .hs-input {
-  background-color: #fff;
+  background-color: var(--background-color);
   background-image: none;
   border: 1px solid #bebebe;
   border-radius: 0;
@@ -219,7 +219,7 @@
 
 .footer-newsletter-form .hubspot-form .submitted-message p,
 .footer-newsletter-form .hubspot-form .submitted-message p span {
-  color: #34393d;
+  color: var(--text-color);
   font-size: 18px;
   line-height: 1.33;
   text-align: center;
@@ -388,7 +388,7 @@
   align-items: center;
   gap: 24px;
   padding: 20px 0 32px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--highlight-background-color);
 }
 
 .footer .footer-landing-page ul {

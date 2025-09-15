@@ -31,7 +31,7 @@ main .citation-list .carousel-item.clone {
 }
 
 .citation-list .card-body p {
-  color: #34393d;
+  color: var(--text-color);
   font-size: 24px;
   line-height: 28px;
   display: flex;
@@ -64,7 +64,7 @@ main .citation-list-container .default-content-wrapper p {
   background: #fff;
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
+  box-shadow: 0 1px 10px var(--color-black-alpha-2);
   transition: all .3s;
   display: flex;
   align-items: stretch;
@@ -78,7 +78,7 @@ main .citation-list-container .default-content-wrapper p {
 .citation-list .card-title {
   padding: 20px;
   text-align: left;
-  color: #34393d;
+  color: var(--text-color);
   font-size: 24px;
   line-height: 28px;
   flex-direction: column;

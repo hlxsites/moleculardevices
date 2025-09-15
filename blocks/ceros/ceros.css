@@ -1,6 +1,6 @@
 .ceros-wrapper > p {
   font-size: 24px;
-  color: #34393d;
+  color: var(--text-color);
   font-family: var(--ff-proxima-xbold);
   font-weight: 600;
   text-align: center;
@@ -18,7 +18,7 @@
 }
 
 .ceros img {
-  box-shadow: 0 0 1vw rgba(0 0 0 / 20%);
+  box-shadow: 0 0 1vw var(--color-black-alpha-2);
 }
 
 .ceros .ceros-modal {
@@ -32,7 +32,7 @@
   z-index: 1050;
   overflow: hidden;
   outline: 0;
-  background-color: rgba(0 0 0 / 80%);
+  background-color: var(--color-black-alpha-8);
 }
 
 .ceros .ceros-modal.open {
@@ -57,7 +57,7 @@
   top: 0;
   right: 0;
   background: none;
-  color: #fff;
+  color: var(--text-white);
   min-width: unset;
   max-width: unset;
   width: auto;
@@ -79,9 +79,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0 0 0 / 50%);
-  border: 2px solid rgba(0 0 0 / 50%);
-  color: #fff;
+  background: var(--color-black-alpha-5);
+  border: 2px solid var(--color-black-alpha-5);
+  color: var(--text-white);
 }
 
 .ceros .ceros-poster-overlay:hover {

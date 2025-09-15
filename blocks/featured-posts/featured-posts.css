@@ -68,7 +68,7 @@ main .section .featured-posts .post picture::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
+  background-image: var(--overlay-gradient);
 }
 
 @media only screen and (min-width: 768px) {

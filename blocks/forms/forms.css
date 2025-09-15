@@ -327,7 +327,7 @@ input[type="submit"] {
 .show-label .hs-form .hs-form-field label,
 .show-label .hs-form .hs-form-field .hs-field-desc {
   display: block;
-  color: #34393d;
+  color: var(--text-color);
   font-weight: 600;
   padding: 3px 13px 0 0;
 }
@@ -383,12 +383,12 @@ input[type="submit"] {
 /* show modal */
 .hubspot-form.show-label .hs-form .hs-form-field .hs-input {
   width: 100%;
-  background-color: #fff;
+  background-color: var(--background-color);
   background-image: none;
   border: none;
   border-radius: 0;
-  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
-  color: #34393d;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-1);
+  color: var(--text-color);
   display: block;
   font-size: 18px;
   height: 30px;
@@ -474,7 +474,7 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #6610f2;
- color: #fff;
+ color: var(--text-white);
 }
 main .category-form.forms-container[class*='3d-biology-form-section'],
 main .category-form.forms-container[class*='3d-biology-form-section'] {
@@ -483,14 +483,14 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #0d6efd;
- color: #fff;
+ color: var(--text-white);
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
   background-image: url('/templates/product/images/imaging.png');
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
  background-color: #70dc90;
- color: #fff;
+ color: var(--text-white);
 } */
 
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
@@ -501,7 +501,7 @@ main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
   padding: 30px;
   border-radius: 20px;
-  color: #fff;
+  color: var(--text-white);
 }
 
 .product main .hs-form .hs-form-field .hs-field-desc,

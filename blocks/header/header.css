@@ -201,7 +201,7 @@ header .actionable-card-submenu li {
 
 header .image-card-submenu {
   background-color: rgba(0 0 0 / 30%);
-  color: #e6e6e6;
+  color: var(--header-actionable-submenu-text-color);
   position: relative;
   height: 100%;
 }
@@ -240,7 +240,7 @@ header .image-card-submenu > div > div > p:last-child {
 header .mobile-menu li {
   float: none;
   position: relative;
-  color: #34393d;
+  color: var(--text-color);
 }
 
 header .text-submenu > div {
@@ -251,7 +251,7 @@ header .text-submenu > div {
 
 header .text-submenu p {
   min-height: inherit;
-  color: #fff;
+  color: var(--text-white);
   padding-left: 0;
   text-transform: uppercase;
   font-size: 15px;
@@ -400,7 +400,7 @@ header .mobile-menu .company-links li picture {
 
 header .mobile-menu li:hover {
   color: var(--link-color);
-  background: #f0f1f2;
+  background: var(--grey-background-color);
 }
 
 header .company-links li:hover {
@@ -559,7 +559,7 @@ header .mobile-menu > ul {
 
 header .mobile-menu .headersearch {
   position: static;
-  background: #f0f1f2;
+  background: var(--grey-background-color);
   padding: 25px 22px;
   height: auto;
   display: block;
@@ -592,7 +592,7 @@ header .mobile-menu .form-control {
   border-radius: 0;
   box-shadow: none;
   padding: 0;
-  color: #34393d;
+  color: var(--text-color);
   background: none;
   font-family: var(--ff-proxima-regular);
   width: 100%;
@@ -603,7 +603,7 @@ header .mobile-menu .searchbutton {
   width: 25px;
   min-width: 50px;
   font-size: 25px;
-  color: #34393d;
+  color: var(--text-color);
   background: none;
   border: 0;
   outline: 0;
@@ -647,7 +647,7 @@ header .mobile-menu-item {
   border-top: 0;
   position: relative;
   font-size: 18px;
-  color: #34393d;
+  color: var(--text-color);
   font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
@@ -695,7 +695,7 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   right: 15px;
   border-radius: 100%;
   border: 1px solid #c4ccda;
-  color: #34393d;
+  color: var(--text-color);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -733,7 +733,7 @@ header .mobile-menu .mobile-menu-subcategory-item > a {
   white-space: normal;
   display: block;
   padding: 4px 70px 15px 15px;
-  color: #34393d;
+  color: var(--text-color);
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -760,7 +760,7 @@ header .mobile-menu .request-quote a {
   font-size: 18px;
   padding: 18px 50px 18px 15px;
   text-shadow: none;
-  color: #fff;
+  color: var(--text-white);
   font-family: var(--ff-proxima-regular);
   text-align: center;
   display: block;
@@ -807,7 +807,7 @@ header .mobile-menu .caret::before {
   right: 15px;
   border-radius: 100%;
   border: 1px solid #c4ccda;
-  color: #34393d;
+  color: var(--text-color);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -815,7 +815,7 @@ header .mobile-menu .caret::before {
 }
 
 header .mobile-menu .company-links {
-  background: #f0f1f2;
+  background: var(--grey-background-color);
   padding: 4px 15px 10px;
   position: relative;
   top: auto;
@@ -881,7 +881,7 @@ header .mobile-menu .languages-dropdown {
 }
 
 header .mobile-menu .languages-dropdown a {
-  color: #34393d;
+  color: var(--text-color);
   padding: 4px 15px !important;
 }
 
@@ -1000,7 +1000,7 @@ header .nav-tabs .menu-nav-submenu-head {
   color: var(--background-color);
   height: 350px;
   background-position: 110% 154%;
-  background-color: #161e2d;
+  background-color: var(--header-mega-menu-product-cards-background-color);
   position: relative;
   padding-top: 20px;
   width: 50%;
@@ -2091,7 +2091,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     padding: 9px;
     border-radius: 50%;
     border: 2px solid var(--header-color-orange);
-    color: #ee7624;
+    color: var(--color-secondary);
     width: 18px;
     height: 18px;
     position: absolute;
@@ -2142,7 +2142,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     font-family: var(--ff-proxima-light);
     font-size: 16px;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--highlight-background-color);
     border-radius: 4px;
     color: #555;
   }

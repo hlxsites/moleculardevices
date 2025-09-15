@@ -131,7 +131,7 @@
   text-decoration: none;
   z-index: 9;
   color: var(--button-bg-color);
-  box-shadow: 0 0 3px #000;
+  box-shadow: 0 0 3px var(--black-background-color);
   text-transform: uppercase;
 }
 
@@ -139,7 +139,7 @@
   main .section > div.featured-highlights-wrapper {
     width: unset;
     min-height: 375px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--light-border-color-gray);
     background-color: var(--grey-background-color);
     position: relative;
   }
@@ -232,7 +232,7 @@
     position: absolute;
     width: 6px;
     height: 100px;
-    background: #f0f1f2;
+    background: var(--grey-background-color);
     top: -80px;
     right: 0;
     transform: rotate(30deg);

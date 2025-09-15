@@ -48,7 +48,7 @@ main .section > div.columns-wrapper {
   content: '';
   width: 94%;
   padding-top: 50px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--highlight-background-color);
   margin-left: 14px;
   margin-bottom: 16px;
 }
@@ -774,8 +774,8 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 }
 
 .text-white .columns.what-next-columns a.button.secondary {
-  color: #fff;
-  border-color: #fff;
+  color: var(--text-white);
+  border-color: var(--background-color);
 }
 
 .text-white .columns.what-next-columns a.button.secondary:hover {
@@ -875,7 +875,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .cards.columns > div > div {
   margin-left: 0;
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
+  box-shadow: 0 1px 10px var(--color-black-alpha-2);
 }
 
 .cards.columns > div > div > div:not(:first-child) {
@@ -923,7 +923,7 @@ main .section .cards.cols-4 ul li {
 main .section .cards.cols-4 .cards-card-wrapper {
   height: 100%;
   background-color: #f0f7f8;
-  color: #000;
+  color: var(--black-background-color);
 }
 
 main .section .cards.cols-4 .cards-card-wrapper a {

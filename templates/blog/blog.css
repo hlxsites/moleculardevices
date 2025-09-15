@@ -276,7 +276,7 @@ main .section.sidebar h4::after {
   border-radius: 10px;
   font-size: 15px;
   background: var(--blog-gradient-left);
-  color: #fff;
+  color: var(--text-white);
   margin-top: -17px;
   margin-bottom: 50px;
 }

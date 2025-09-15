@@ -291,7 +291,7 @@
   flex-direction: column;
   padding: 0;
   margin-left: 0;
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 0.25rem;
   overflow: hidden;
   position: relative;

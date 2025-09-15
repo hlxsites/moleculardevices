@@ -102,12 +102,7 @@ main .section.social-share-container {
   box-shadow: none;
   transition: all 0.2s ease-in-out;
   background-color: rgba(50 159 121 / 100%);
-  background-image: linear-gradient(
-    to left,
-    rgba(21 145 164 / 100%) 0,
-    rgba(50 159 121 / 100%) 50%,
-    rgba(97 178 73 / 100%) 100%
-  );
+  background-image: var(--blog-gradient);
 }
 
 .full-article .share-event ul.button-container li:hover,
@@ -118,7 +113,7 @@ main .section.social-share-container {
 
 .full-article .share-event ul.button-container li i,
 .blog .share-event ul.button-container li i {
-  color: #fff;
+  color: var(--text-white);
   font-size: 30px;
 }
 

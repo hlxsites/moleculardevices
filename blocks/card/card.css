@@ -3,7 +3,7 @@ main .card {
   background: var(--background-color);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
+  box-shadow: 0 1px 10px var(--color-black-alpha-2);
   transition: all 0.3s;
   display: flex;
   align-items: stretch;
@@ -52,7 +52,7 @@ main .card-thumb img {
 
 main .card .card-category {
   background: var(--background-color-green);
-  color: #fff;
+  color: var(--text-white);
   font-family: var(--ff-proxima-light);
   text-transform: uppercase;
   line-height: 1;

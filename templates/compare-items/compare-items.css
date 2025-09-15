@@ -75,7 +75,7 @@ main .compare-banner .gradiant-blue-btn.btn {
   border: 0;
   transition: all .2s;
   min-width: 140px;
-  color: #fff;
+  color: var(--text-white);
   position: relative;
   height: auto;
   border-radius: 0;
@@ -86,7 +86,7 @@ main .compare-banner .gradiant-blue-btn.btn {
 }
 
 main .compare-banner .gradiant-blue-btn.btn:hover {
-  background: #fff;
+  background: var(--background-color);
   box-shadow: 0 0 10px 1px rgb(0 0 0 /20%);
   color: #6eb43f;
   cursor: pointer;

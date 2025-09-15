@@ -30,7 +30,7 @@
 .latest-publications article div p a {
   font-size: 18px;
   font-weight: bold;
-  color: #34393d;
+  color: var(--text-color);
 }
 
 main .section div.latest-publications-wrapper + .default-content-wrapper {

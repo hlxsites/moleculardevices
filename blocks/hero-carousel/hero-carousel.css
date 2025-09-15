@@ -20,7 +20,7 @@ main .carousel.hero-carousel .carousel-item-column:first-child {
 main .carousel.hero-carousel .carousel-item-column .carousel-item-text {
   padding: 20px;
   background-color: rgb(0 0 0 / 60%);
-  color: #fff;
+  color: var(--text-white);
 }
 
 main .carousel.hero-carousel .carousel-item-column .carousel-item-text h3 {
