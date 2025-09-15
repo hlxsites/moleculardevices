@@ -398,6 +398,10 @@ em strong {
   text-align: right;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .text-caption {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
