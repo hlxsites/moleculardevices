@@ -316,8 +316,13 @@
   color: var(--highlight-background-color);
 }
 
+.footer-bottom .footer-contact p {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 .row-7 ul,
-.row-8 {
+.row-8 .external-logo-wrapper {
   column-gap: 24px;
   row-gap: 10px;
 }
@@ -347,40 +352,44 @@
 
 /* row 8 */
 .row-8 {
-  align-items: flex-end;
   border-top: 1px solid var(--highlight-background-color);
   margin-top: 20px;
   padding-top: 1rem;
 }
 
-.row-8,
+.row-8 .external-logo-wrapper,
 .row-8.columns-wrapper.OneLinkShow_zh {
   display: flex !important;
 }
 
-.row-8 p {
+.row-8 .external-logo-wrapper {
+  align-items: baseline;
+}
+
+.row-8 .external-logo-wrapper p {
   margin: 0;
+  flex: 1 1 80px;
 }
 
 .row-6 img,
-.row-8 img {
+.row-8 .external-logo-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-.row-8 p:has([alt='leica']),
-.row-8 p:has([alt='sciex']){
+.row-8 .external-logo-wrapper p:has([alt="leica"]),
+.row-8 .external-logo-wrapper p:has([alt="sciex"]) {
   flex-basis: 60px;
 }
 
-.row-8 p:has([alt='phenomenex']){
+.row-8 .external-logo-wrapper p:has([alt="phenomenex"]) {
   flex-basis: 120px;
 }
 
-.row-8 p:has([alt='beckman coulter']){
+.row-8 .external-logo-wrapper p:has([alt="beckman coulter"]) {
   position: relative;
-    top: 4px;
+  top: 4px;
 }
 
 /* footer landing page */
@@ -488,6 +497,10 @@
     column-gap: 1.5rem;
   }
 
+  .footer-bottom .footer-contact p {
+    text-align: right;
+  }
+
   .row-6 {
     grid-area: danaher;
   }
@@ -502,12 +515,12 @@
 
   .row-8 {
     grid-area: logos;
-    column-gap: 24px;
-    row-gap: 24px;
   }
 
-  .row-8 p {
-    flex: 1 1 80px;
+  .row-8 .external-logo-wrapper {
+    column-gap: 24px;
+    row-gap: 24px;
+    justify-content: flex-end;
   }
 }
 
@@ -519,10 +532,10 @@
   .footer-bottom .container {
     grid-template-columns: max-content auto;
     align-items: flex-end;
-    column-gap: 40px;
   }
 
-  .row-8{
+  .footer-bottom .container,
+  .row-8 .external-logo-wrapper {
     column-gap: 40px;
   }
 }
@@ -531,9 +544,7 @@
   .footer-bottom .container {
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
     align-items: center;
-    gap: 24px;
   }
 
   .row-5 {
@@ -544,14 +555,18 @@
     gap: 10px;
   }
 
-  .row-8 {
+  .footer-bottom .container,
+  .row-8 .external-logo-wrapper {
+    gap: 24px;
     justify-content: center;
-    flex-wrap: wrap;
-    column-gap: 20px;
-    row-gap: 30px;
   }
 
-  .row-8 p {
+  .row-8 .external-logo-wrapper {
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .row-8 .external-logo-wrapper p {
     flex: 0 1 80px;
   }
 }
@@ -566,7 +581,7 @@
   }
 
   .row-6 img,
-  .row-8 img {
+  .row-8 .external-logo-wrapper img {
     display: block;
     margin: auto;
   }
