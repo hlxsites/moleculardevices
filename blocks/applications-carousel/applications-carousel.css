@@ -41,7 +41,7 @@ main .carousel.applications-carousel {
 
 .carousel.applications-carousel .card-description {
   font-size: var(--body-font-size-xs);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 10px;
 }
 

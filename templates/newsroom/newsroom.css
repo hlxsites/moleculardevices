@@ -2,7 +2,7 @@
 .newsroom main .section h2 {
   --heading-font-size-xl: 42px;
 
-  color: var(--button-bg-color);
+  color: var(--color-primary);
   font-family: var(--ff-proxima-regular);
 }
 
@@ -18,13 +18,13 @@
 }
 
 .newsroom main .section.right .default-content-wrapper:last-of-type {
-  background-color: var(--overlay-background-color);
+  background-color: var(--color-gray-275);
   padding: 15px;
   margin-top: 50px;
 }
 
 .newsroom main .section.right .default-content-wrapper h2 {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 32px;
   padding-top: 0;
 }

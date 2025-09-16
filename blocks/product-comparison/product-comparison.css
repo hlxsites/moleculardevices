@@ -35,16 +35,16 @@
   vertical-align: top;
   white-space: pre-line;
   font-size: var(--body-font-size-xs);
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-bottom: 1px solid var(--color-gray-375);
 }
 
 .product-comparison .product-heading .darkgrey {
   background-color: #8a959b;
-  color: var(--text-dark-gray);
+  color: var(--color-gray-900);
 }
 
 .product-comparison .product-heading p {
-  color: var(--text-dark-gray);
+  color: var(--color-gray-900);
   font-size: 14px;
   padding: 0 20px 20px;
   text-align: left;
@@ -71,8 +71,8 @@
 }
 
 .product-comparison .responsive-table th {
-  border-top: 1px solid var(--highlight-background-color);
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-top: 1px solid var(--color-gray-375);
+  border-bottom: 1px solid var(--color-gray-375);
   vertical-align: top;
 }
 
@@ -82,19 +82,19 @@
 
 .product-comparison .responsive-table th:nth-child(odd),
 .product-comparison .responsive-table td:nth-child(odd) {
-  background: var(--light-gray-background-color2);
+  background: var(--color-gray-100);
 }
 
 .product-comparison .responsive-table th:nth-child(even),
 .product-comparison .responsive-table td:nth-child(even) {
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 .product-comparison .responsive-table th:first-child,
 .product-comparison .responsive-table td:first-child,
 .product-comparison .responsive-table th:last-child,
 .product-comparison .responsive-table td:last-child {
-  border-right: 1px solid  var(--highlight-background-color);
+  border-right: 1px solid  var(--color-gray-375);
 }
 
 .product-comparison .responsive-table th:first-child,
@@ -109,11 +109,11 @@
   background-color: #525b61;
   min-width: 160px;
   padding: 15px;
-  border-right: 1px solid var(--highlight-background-color);
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-right: 1px solid var(--color-gray-375);
+  border-bottom: 1px solid var(--color-gray-375);
   font-weight: 500;
   font-size: 12px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: left;
   text-transform: uppercase;
 }
@@ -124,7 +124,7 @@
 
 .background-gray.product-comparison-container .product-comparison .responsive-table th:first-child,
 .background-grey.product-comparison-container .product-comparison .responsive-table th:first-child {
-  background: var(--light-gray-background-color) !important;
+  background: var(--color-gray-50) !important;
 }
 
 .product-comparison .product-heading .product-heading-title  {
@@ -138,12 +138,12 @@
 }
 
 .product-comparison .responsive-table tr th:last-child .product-heading-title {
-  background-color: var(--button-bg-color);
+  background-color: var(--color-primary);
 }
 
 .product-comparison .responsive-table .product-info-btn  {
-  color: var(--button-bg-color);
-  border: 2px solid var(--button-bg-color);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
   padding: 6px 12px;
   font-size: 13px;
   display: inline-block;
@@ -156,8 +156,8 @@
 
 .product-comparison .responsive-table a.product-info-btn:hover {
   border-color: transparent;
-  background-color: var(--text-blue);
-  color: var(--background-color);
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .product-comparison ::-webkit-scrollbar {
@@ -176,7 +176,7 @@
 }
 
 .product-comparison ::-webkit-scrollbar-thumb:hover {
-  background: var(--button-bg-color);
+  background: var(--color-primary);
 }
 
 @media only screen and (max-width: 1199px) {

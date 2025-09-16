@@ -25,7 +25,7 @@
   content: "";
   width: 94%;
   padding-top: 20px;
-  border-bottom: 2px solid var(--highlight-background-color);
+  border-bottom: 2px solid var(--color-gray-375);
   margin-left: 14px;
   margin-bottom: 16px;
 }

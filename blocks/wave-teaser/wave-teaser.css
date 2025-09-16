@@ -34,7 +34,7 @@ main .section .wave-teaser-wrapper {
 }
 
 .wave-teaser h4 {
-  color: var(--highlight-background-color);
+  color: var(--color-gray-375);
   font-size: 30px;
 }
 
@@ -49,7 +49,7 @@ main .section.wave .wave-teaser .button-container {
 }
 
 .wave-teaser .button-container a {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 22px;
 }
 

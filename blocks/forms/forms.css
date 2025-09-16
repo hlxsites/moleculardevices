@@ -8,8 +8,8 @@
   list-style: none;
   margin: 0;
   text-align: left;
-  color: #c00;
-  border: 1px solid #c00;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
   border-radius: 10px;
   padding: 1rem;
   background-color: #ffe9e9;
@@ -58,7 +58,7 @@
 .hs-form .hs-form-field .hs-input,
 .hs-form .hs-form-field .hs-form-checkbox label span::before ,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   border: 1px solid var(--border-color);
   border-radius: 0;
 }
@@ -80,7 +80,7 @@
 
 .hs-form .hs-form-field .hs-input[type="checkbox"]:checked ~ span::after {
   content: "\2714";
-  color: var(--text-blue);
+  color: var(--color-primary);
   left: -28px;
   font-size: 27px;
   line-height: 0.8;
@@ -117,7 +117,7 @@
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
-  color: #f00;
+  color: var(--color-danger);
 }
 
 .hubspot-form .hs-form .hs-form-field .hs-field-desc {
@@ -127,7 +127,7 @@
 .hs-form .hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label {
   background: none;
   clear: none;
-  color: var(--text-blue);
+  color: var(--color-primary);
   display: block;
   font-size: 10px;
   font-weight: 400;
@@ -196,7 +196,7 @@ div.privacy > label {
 
 .hs-form .hs-error-msgs.inputs-list,
 .hs-form .hs-error-msgs.inputs-list .hs-error-msg {
-  color: red;
+  color: var(--color-danger);
   display: block;
   font-size: 12px;
   font-weight: 500;
@@ -300,15 +300,15 @@ main form fieldset[class*="form-columns"] .input {
 }
 
 .orange-buttons .hubspot-form .button {
-  background: var(--orange-background-color);
+  background: var(--color-secondary);
 }
 
 .hs-button.primary,
 input[type="submit"] {
-  background: var(--text-blue);
+  background: var(--color-primary);
   border: none;
   border-radius: 0;
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 18px;
   height: auto;
   line-height: 25px;
@@ -327,7 +327,7 @@ input[type="submit"] {
 .show-label .hs-form .hs-form-field label,
 .show-label .hs-form .hs-form-field .hs-field-desc {
   display: block;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-weight: 600;
   padding: 3px 13px 0 0;
 }
@@ -348,7 +348,7 @@ input[type="submit"] {
 .forms.inquiry-with-thankyou h3 {
   text-align: center;
   font-size: 36px;
-  color: var(--text-blue);
+  color: var(--color-primary);
   margin-bottom: 30px;
 }
 
@@ -383,12 +383,12 @@ input[type="submit"] {
 /* show modal */
 .hubspot-form.show-label .hs-form .hs-form-field .hs-input {
   width: 100%;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-image: none;
   border: none;
   border-radius: 0;
-  box-shadow: 0 0 10px 1px var(--color-black-alpha-1);
-  color: var(--text-color);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-10);
+  color: var(--color-text-primary);
   display: block;
   font-size: 18px;
   height: 30px;
@@ -474,7 +474,7 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #6610f2;
- color: var(--text-white);
+ color: var(--color-white);
 }
 main .category-form.forms-container[class*='3d-biology-form-section'],
 main .category-form.forms-container[class*='3d-biology-form-section'] {
@@ -483,14 +483,14 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
  background-color: #0d6efd;
- color: var(--text-white);
+ color: var(--color-white);
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
   background-image: url('/templates/product/images/imaging.png');
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
  background-color: #70dc90;
- color: var(--text-white);
+ color: var(--color-white);
 } */
 
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
@@ -501,7 +501,7 @@ main .category-form.forms-container .forms {
   background-color: rgb(1 59 78 / 50%);
   padding: 30px;
   border-radius: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .product main .hs-form .hs-form-field .hs-field-desc,

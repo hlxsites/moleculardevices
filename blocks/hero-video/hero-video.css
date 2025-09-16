@@ -75,7 +75,7 @@ main .overlay {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 main .overlay .button-container:has(em) {
@@ -98,8 +98,8 @@ main .overlay h3 {
 main .overlay .video-banner-btn {
   background-color: transparent;
   font-size: 18px;
-  color: var(--text-white);
-  border: 1px solid var(--text-white);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
   padding: 16px 32px;
   display: inline-flex;
   align-items: center;
@@ -108,7 +108,7 @@ main .overlay .video-banner-btn {
 }
 
 main .overlay .video-banner-btn:hover {
-  background-color: var(--black-background-color);
+  background-color: var(--color-black);
 }
 
 main .overlay p:last-of-type {
@@ -121,7 +121,7 @@ main .overlay p:last-of-type a {
 }
 
 main .overlay p:last-of-type a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 main .overlay p:last-of-type a:not(:last-child) {
@@ -246,7 +246,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   }
 
   main .full-video-container {
-    background-color: var(--black-background-color);
+    background-color: var(--color-black);
   }
 
   main .full-video-container .video-cover {

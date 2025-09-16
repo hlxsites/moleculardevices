@@ -15,9 +15,9 @@
 }
 
 .leader-profiles > ul > li {
-  background-color: var(--background-color);
-  border: 1px solid var(--highlight-background-color);
-  box-shadow: 0 2px 10px 3px var(--highlight-background-color);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-375);
+  box-shadow: 0 2px 10px 3px var(--color-gray-375);
   flex-basis: 100%;
   margin-bottom: 30px;
 }
@@ -38,14 +38,14 @@
 
 .leader-profiles-modal-footer a {
   align-items: center;
-  color: var(--text-white);
+  color: var(--color-white);
   display: flex;
   font-size: var(--body-font-size-s);
   font-weight: bold;
 }
 
 .leader-profiles-modal-pagination a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .leader-profiles-modal-carousel-nav > div a {
@@ -119,7 +119,7 @@
   background: transparent;
   border: 1px solid;
   border-radius: 50%;
-  color: var(--text-white);
+  color: var(--color-white);
   display: block;
   font-size: 58px;
   height: 48px;
@@ -132,7 +132,7 @@
 }
 
 .leader-profiles-modal-close:hover {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .leader-profiles-modal-body {
@@ -145,7 +145,7 @@
 }
 
 .leader-profiles-modal-body .leader-profiles-modal-carousel-content {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-image: url('images/grey_molecules_tp.png'), url('images/grey_molecules.png');
   background-position: center top, center bottom;
   background-repeat: no-repeat;
@@ -189,7 +189,7 @@
 
 .leader-profiles-modal-pagination {
   align-items: center;
-  background: var(--button-secondary-hover-color);
+  background: var(--color-link-hover);
   bottom: 0;
   display: flex;
   justify-content: space-between;
@@ -236,7 +236,7 @@
 }
 
 .leader-profiles > ul > li > div.leader-profiles-card-body h2 {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-regular);
   font-size: var(--heading-font-size-l);
   font-weight: bold;
@@ -244,7 +244,7 @@
 }
 
 .leader-profiles > ul > li > div.leader-profiles-card-body h4 {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   display: block;
   font-size: var(--heading-font-size-s);
   line-height: 18px;

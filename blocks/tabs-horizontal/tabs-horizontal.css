@@ -19,8 +19,8 @@
 
 .tabs-horizontal .tab-pane {
   display: none;
-  border: 1px solid var(--border-color-gray);
-  background-color: var(--background-color);
+  border: 1px solid var(--color-gray-450);
+  background-color: var(--color-white);
 }
 
 .tabs-horizontal .tab-pane.active {
@@ -51,15 +51,15 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  color: var(--text-white);
-  border: 1px solid var(--text-white);
-  border-bottom-color: var(--dark-gray-background-color);
-  background-color: var(--border-color-gray);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-bottom-color: var(--color-gray-750);
+  background-color: var(--color-gray-450);
   cursor: pointer;
 }
 
 .tabs-horizontal li.tabs-nav-item.active {
-  background-color: var(--dark-gray-background-color);
+  background-color: var(--color-gray-750);
 }
 
 @media only screen and (max-width: 767px) {

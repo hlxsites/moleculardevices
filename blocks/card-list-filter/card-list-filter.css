@@ -25,7 +25,7 @@
 .card-list-filter ul li a:visited {
   position: relative;
   display: inline-block;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-light);
   text-decoration: none;
   font-size: 17px;
@@ -75,7 +75,7 @@
   }
 
   .card-list-filter.blog {
-    background-color: var(--color-black-alpha-5);
+    background-color: var(--color-black-alpha-50);
     position: absolute;
     width: 100%;
     bottom: 115px;
@@ -87,7 +87,7 @@
     font-size: 15px;
     padding: 16px 24px;
     text-transform: uppercase;
-    color: var(--text-white);
+    color: var(--color-white);
     font-family: var(--ff-proxima-regular);
   }
 
@@ -150,7 +150,7 @@
 .card-list-filter.video-gallery ul li a:link,
 .card-list-filter.video-gallery ul li a:visited,
 .card-list-filter.video-gallery .active-filter span {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 14px;
 }
 
@@ -186,7 +186,7 @@
   .card-list-filter ul li a:visited,
   .card-list-filter .active-filter span {
     line-height: 1.33;
-    color: var(--text-color);
+    color: var(--color-text-primary);
     padding: 5px 0;
     text-align: left;
     text-transform: none;

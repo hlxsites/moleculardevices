@@ -94,7 +94,7 @@
 .product-finder-container ul {
   font-size: 14px;
   font-weight: 100;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -187,7 +187,7 @@
   border: 0;
   border-radius: 0;
   box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 18px;
   height: 50px;
   outline: 0;
@@ -197,13 +197,13 @@
 
 .product-finder-container a span {
   font: var(--ff-proxima-light);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 24px;
   width: 100%;
 }
 
 .product-finder-container .finder-filters .select-wrapper span {
-  color: var(--dark-gray-background-color);
+  color: var(--color-gray-750);
   position: absolute;
   right: 20px;
   top: 16px;
@@ -284,7 +284,7 @@
 }
 
 .product-finder-container .card-caption h3 > a {
-  color: var(--link-color);
+  color: var(--color-link);
   line-height: 1.2;
 }
 
@@ -302,12 +302,12 @@
 }
 
 .product-finder-container .icon-card:hover {
-  background: var(--background-color-blue);
+  background: var(--color-link-hover);
   transform: none;
 }
 
 .product-finder-container .icon-card:hover a span {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .product-finder-container .card-caption svg {
@@ -343,7 +343,7 @@
   float: left;
   width: 100%;
   font-size: 14px;
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
   padding-top: 15px;
   padding-bottom: 15px;
   text-transform: uppercase;

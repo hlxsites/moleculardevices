@@ -41,7 +41,7 @@ main .section .specifications-wrapper {
 }
 
 .specifications .product-heading p {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -74,14 +74,14 @@ main .section .specifications-wrapper {
 }
 
 .specifications .responsive-table tbody tr:first-child {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
 }
 
 .specifications .responsive-table th:first-child,
 .specifications .responsive-table td:first-child {
   position: sticky;
   left: 0;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   z-index: 1;
   width: 380px;
 }
@@ -107,7 +107,7 @@ main .section .specifications-wrapper {
   font-family: var(--ff-proxima-light);
   font-size: 36px;
   font-weight: 100;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child .download-button img {

@@ -113,8 +113,8 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--text-light-gray);
-  border: 1.5px solid var(--text-light-gray);
+  color: var(--color-gray-500);
+  border: 1.5px solid var(--color-gray-500);
   background-color: inherit;
 }
 
@@ -123,9 +123,9 @@ main .carousel-nav-button.disabled {
 }
 
 main .carousel-nav-button:hover {
-  background-color: var(--text-light-gray);
-  color: var(--text-white);
-  border: 1.5px solid var(--background-color);
+  background-color: var(--color-gray-500);
+  color: var(--color-white);
+  border: 1.5px solid var(--color-white);
 }
 
 main .carousel-nav-button .icon {
@@ -174,7 +174,7 @@ main .carousel-dot-img-buttons {
 
 main .carousel-dot-img-buttons .carousel-dot-button {
   max-width: 100px;
-  background: var(--background-color);
+  background: var(--color-white);
   padding: 10px;
   margin-right: 10px;
   opacity: 0.7;
@@ -204,7 +204,7 @@ main .global-carousel .carousel-item-column:empty {
 }
 
 main .global-carousel.blue-title h2 {
-  color: var(--text-blue);
+  color: var(--color-primary);
 }
 
 main .global-carousel.title-center h2 {
@@ -236,16 +236,16 @@ main .section.global-carousel .carousel h2 + h3 {
 
   main .carousel.full-bg .primary {
     background-color: transparent;
-    border: 1px solid var(--text-white);
+    border: 1px solid var(--color-white);
   }
 
   main .carousel.full-bg .primary:focus {
-    color: var(--text-white);
+    color: var(--color-white);
   }
 
   main .carousel.full-bg .primary:hover {
-    color: var(--link-hover-color);
-    background-color: var(--background-color);
+    color: var(--color-link-hover);
+    background-color: var(--color-white);
   }
 
   main .carousel.full-bg .primary:hover .button-border {
@@ -261,7 +261,7 @@ main .section.global-carousel .carousel h2 + h3 {
   }
 
   main .carousel.full-bg .carousel-item-column:last-child {
-    color: var(--text-white);
+    color: var(--color-white);
     position: relative;
     display: flex;
     align-items: center;
@@ -431,15 +431,15 @@ main .carousel.wave .carousel-item-text {
 }
 
 main .carousel.wave .carousel-item-text p {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 27px;
 }
 
 main .carousel.wave .carousel-item-text .button-container a.secondary,
 main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
   background-color: transparent;
-  color: var(--text-white);
-  border: 1.5px solid var(--text-white);
+  color: var(--color-white);
+  border: 1.5px solid var(--color-white);
 }
 
 main .carousel-wrapper.wave .carousel-dot-buttons {
@@ -447,12 +447,12 @@ main .carousel-wrapper.wave .carousel-dot-buttons {
 }
 
 main .carousel-wrapper.wave .carousel-dot-button {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
-  color: var(--text-light-gray);
-  border: 1.5px solid var(--text-light-gray);
+  color: var(--color-gray-500);
+  border: 1.5px solid var(--color-gray-500);
   background-color: inherit;
 }
 

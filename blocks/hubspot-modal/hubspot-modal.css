@@ -10,14 +10,14 @@
 .modal-block a {
   position: relative;
   top: 5px;
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 17px;
   text-align: center;
   font-family: var(--ff-proxima-regular);
 }
 
 .modal-block:hover {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
 }
 
 .modal-block:hover a {
@@ -67,7 +67,7 @@
   width: 100vw;
   max-width: 800px;
   height: 100vh;
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-200);
   border: none;
 }
 
@@ -77,7 +77,7 @@
     margin-left: 8.5vw;
     max-width: 600px;
     height: 100vh;
-    background-color: var(--grey-background-color);
+    background-color: var(--color-gray-200);
     border: none;
   }
 }

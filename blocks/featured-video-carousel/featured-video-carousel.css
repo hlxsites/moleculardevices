@@ -38,14 +38,14 @@ main .carousel.featured-video-carousel {
 
 .carousel.featured-video-carousel .card-caption h3 {
   font-size: var(--body-font-size-s);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 10px;
   margin-top: 0;
 }
 
 .carousel.featured-video-carousel .card-description {
   font-size: var(--body-font-size-s);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 10px;
   display: block;
   display: -webkit-box;

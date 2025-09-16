@@ -47,7 +47,7 @@ main .section .resources-wrapper {
 }
 
 .resources .resource-link a {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 .resources .video-resources-title {
@@ -98,7 +98,7 @@ main .section .resources-wrapper {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: var(--text-dark-gray);
+  background-color: var(--color-gray-900);
   opacity: 0.65;
   transition: opacity 0.2s linear;
   overflow: hidden;
@@ -177,7 +177,7 @@ main .section .resources-wrapper {
 }
 
 .resources .filter a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .resources .filter[aria-selected="true"] a {
@@ -253,13 +253,13 @@ main .section .resources-wrapper {
 }
 
 .section .resources .coveo-search-box .magic-box .magic-box-input > input {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   width: 100%;
   height: 35px;
   font-family: var(--ff-proxima-light);
   font-size: 16px;
   padding: 6px 12px;
-  border: 1px solid var(--highlight-background-color);
+  border: 1px solid var(--color-gray-375);
   border-radius: 4px 0 0 4px;
   color: #555;
   margin-bottom: 0;
@@ -301,7 +301,7 @@ main .section .resources-wrapper {
   content: "";
   position: absolute;
   background-image: url("/images/ajax-common-loader-gray.gif");
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-size: 50px;
   background-position: center 200px;
   background-repeat: no-repeat;
@@ -365,11 +365,11 @@ main .section .resources-wrapper {
   .resources li.filter[aria-selected="true"] {
     display: block;
     order: -1;
-    color: var(--link-hover-color);
+    color: var(--color-link-hover);
   }
 
   .resources li.filter[aria-selected="true"] a {
-    color: var(--link-hover-color);
+    color: var(--color-link-hover);
   }
 
   .resources li.filter[aria-selected="true"] .icon.icon-chevron-right-outline {

@@ -25,7 +25,7 @@ main .featured-products-carousel .carousel-item-text {
 }
 
 main .featured-products-carousel.grey .carousel-item {
-  background-color: var(--light-gray-background-color2);
+  background-color: var(--color-gray-100);
   border: 0;
 }
 
@@ -35,8 +35,8 @@ main .featured-products-carousel.mini {
 
 main .featured-products-carousel.mini .carousel-item {
   border: none;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--color-white);
+  color: var(--color-text-primary);
   padding: 0;
   margin: 0;
 }
@@ -90,7 +90,7 @@ main .featured-products-carousel-wrapper.mini .carousel-nav-button {
   transform: none;
   height: 16px;
   width: 16px;
-  border: 0.5px solid var(--text-white);
+  border: 0.5px solid var(--color-white);
 }
 
 main .featured-products-carousel-wrapper.mini .carousel-nav-button .icon {

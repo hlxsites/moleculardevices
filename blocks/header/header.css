@@ -5,7 +5,7 @@ header {
   position: relative;
   z-index: 500;
   top: 0;
-  background: var(--background-color);
+  background: var(--color-white);
   width: 100%;
 }
 
@@ -26,7 +26,7 @@ header .nav-tabs > li {
 }
 
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   width: 100%;
   z-index: 2;
   position: fixed;
@@ -35,11 +35,11 @@ header .nav-wrapper {
 header .container {
   margin-right: auto;
   margin-left: auto;
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 header .nav-wrapper .container {
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 header nav {
@@ -166,7 +166,7 @@ header .languages-dropdown {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-clip: padding-box;
   border: 1px solid rgba(0 0 0 / 15%);
   border-radius: 4px;
@@ -201,7 +201,7 @@ header .actionable-card-submenu li {
 
 header .image-card-submenu {
   background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   position: relative;
   height: 100%;
 }
@@ -222,7 +222,7 @@ header .image-card-submenu > div > div > h3 {
 }
 
 header .image-card-submenu > div > div > h3 > a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 header .image-card-submenu > div > div > p {
@@ -240,7 +240,7 @@ header .image-card-submenu > div > div > p:last-child {
 header .mobile-menu li {
   float: none;
   position: relative;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 header .text-submenu > div {
@@ -251,7 +251,7 @@ header .text-submenu > div {
 
 header .text-submenu p {
   min-height: inherit;
-  color: var(--text-white);
+  color: var(--color-white);
   padding-left: 0;
   text-transform: uppercase;
   font-size: 15px;
@@ -316,7 +316,7 @@ header .company-links ul li {
 }
 
 header .menu-nav-category a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
@@ -330,12 +330,12 @@ header .large-card-submenu ul > li {
   padding: 0;
   box-shadow: none;
   margin-bottom: 8px;
-  color: var(--background-color);
+  color: var(--color-white);
 }
 
 header .large-card-submenu h3 {
   border: 0;
-  color: var(--background-color);
+  color: var(--color-white);
   padding: 0;
   padding-bottom: 10px;
   font-size: 18px;
@@ -346,7 +346,7 @@ header .large-card-submenu h3 {
 }
 
 header .large-card-submenu h3 a {
-  color: var(--header-mega-menu-green);
+  color: var(--color-tertiary);
   text-decoration: none;
   text-transform: initial;
 }
@@ -399,8 +399,8 @@ header .mobile-menu .company-links li picture {
 }
 
 header .mobile-menu li:hover {
-  color: var(--link-color);
-  background: var(--grey-background-color);
+  color: var(--color-link);
+  background: var(--color-gray-200);
 }
 
 header .company-links li:hover {
@@ -425,7 +425,7 @@ header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
 
 header .nav-tabs .menu-nav-submenu-section h2 {
   border-bottom: 0;
-  color: var(--background-color);
+  color: var(--color-white);
   font-size: 18px;
   padding: 12px 20px 6px;
   font-family: var(--ff-proxima-light);
@@ -468,7 +468,7 @@ header .nav-tabs .menu-nav-category {
 }
 
 header .nav-tabs .menu-nav-category:hover {
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: default;
 }
 
@@ -517,7 +517,7 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: var(--background-color) url("/images/header-background-filler.jpg") no-repeat right bottom;
+  background: var(--color-white) url("/images/header-background-filler.jpg") no-repeat right bottom;
 }
 
 header .cards-submenu img {
@@ -559,7 +559,7 @@ header .mobile-menu > ul {
 
 header .mobile-menu .headersearch {
   position: static;
-  background: var(--grey-background-color);
+  background: var(--color-gray-200);
   padding: 25px 22px;
   height: auto;
   display: block;
@@ -592,7 +592,7 @@ header .mobile-menu .form-control {
   border-radius: 0;
   box-shadow: none;
   padding: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   background: none;
   font-family: var(--ff-proxima-regular);
   width: 100%;
@@ -603,7 +603,7 @@ header .mobile-menu .searchbutton {
   width: 25px;
   min-width: 50px;
   font-size: 25px;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   background: none;
   border: 0;
   outline: 0;
@@ -632,7 +632,7 @@ header .menu-nav-submenu h1 > a {
 }
 
 header .cards-submenu ul li a {
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   font-weight: 300;
   line-height: 15px;
@@ -647,7 +647,7 @@ header .mobile-menu-item {
   border-top: 0;
   position: relative;
   font-size: 18px;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
@@ -695,7 +695,7 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   right: 15px;
   border-radius: 100%;
   border: 1px solid #c4ccda;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -703,12 +703,12 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
 }
 
 header .text-submenu a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 header .text-submenu ul > li > a {
   font-size: 11px;
-  color: var(--text-white);
+  color: var(--color-white);
   border-bottom: 0;
   line-height: 15px;
   padding-left: 0;
@@ -728,12 +728,12 @@ header .mobile-menu .back-to-parent a {
 }
 
 header .mobile-menu .mobile-menu-subcategory-item > a {
-  background: var(--grey-background-color);
+  background: var(--color-gray-200);
   position: relative;
   white-space: normal;
   display: block;
   padding: 4px 70px 15px 15px;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   text-align: left;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -760,7 +760,7 @@ header .mobile-menu .request-quote a {
   font-size: 18px;
   padding: 18px 50px 18px 15px;
   text-shadow: none;
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   text-align: center;
   display: block;
@@ -775,7 +775,7 @@ header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
 }
 
 header .mobile-menu .back-to-parent:hover {
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 header .mobile-menu .mobile-menu-item.submenu-open .mobile-menu-subcategories {
@@ -807,7 +807,7 @@ header .mobile-menu .caret::before {
   right: 15px;
   border-radius: 100%;
   border: 1px solid #c4ccda;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -815,7 +815,7 @@ header .mobile-menu .caret::before {
 }
 
 header .mobile-menu .company-links {
-  background: var(--grey-background-color);
+  background: var(--color-gray-200);
   padding: 4px 15px 10px;
   position: relative;
   top: auto;
@@ -874,14 +874,14 @@ header .mobile-menu .company-links > div > ul {
 header .mobile-menu .languages-dropdown {
   width: 100%;
   position: absolute;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   border: 1px solid rgba(0 0 0 / 15%);
   border-radius: 4px;
   box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 }
 
 header .mobile-menu .languages-dropdown a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   padding: 4px 15px !important;
 }
 
@@ -997,7 +997,7 @@ header .nav-tabs .menu-nav-submenu-head {
 
 .header .nav-tabs .head-submenu > div {
   background-size: 250px;
-  color: var(--background-color);
+  color: var(--color-white);
   height: 350px;
   background-position: 110% 154%;
   background-color: var(--header-mega-menu-product-cards-background-color);
@@ -1046,7 +1046,7 @@ header .flex-space-between {
 
 header .large-card-submenu {
   background-size: 250px;
-  color: var(--background-color);
+  color: var(--color-white);
   background-position: 110% 154%;
   background-color: var(--header-mega-menu-product-cards-background-color);
   background-repeat: no-repeat;
@@ -1118,7 +1118,7 @@ header .image-without-text-submenu img {
 }
 
 header .image-without-text-submenu p {
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-light);
   font-size: 25px;
   text-transform: none;
@@ -1163,16 +1163,16 @@ header .cards-submenu p:first-child:hover img {
 }
 
 header .cards-submenu p:nth-child(1) {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   min-height: 114px;
   overflow: hidden;
 }
 
 header .cards-submenu p:nth-child(2) a {
-  color: var(--text-white);
+  color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--text-gray);
+  background-color: var(--color-gray-600);
   text-align: center;
   display: flex;
   align-items: center;
@@ -1183,13 +1183,13 @@ header .cards-submenu p:nth-child(2) a {
 }
 
 header .white-background p:nth-child(2) a {
-  background-color: var(--text-white);
-  color: var(--text-gray);
+  background-color: var(--color-white);
+  color: var(--color-gray-600);
 }
 
 header .green-background p:nth-child(2) a {
-  background-color: var(--text-green);
-  color: var(--text-white);
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
 }
 
 header .cards-submenu p.new-product {
@@ -1224,7 +1224,7 @@ header .cards-submenu .expanded-image img {
 }
 
 header .cards-submenu ul li a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   text-decoration: underline;
 }
 
@@ -1234,22 +1234,22 @@ header .text-submenu ul > li > a:hover {
 
 header .actionable-card-submenu {
   background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   padding: 24px;
   border: 1px solid rgba(255 255 255 / 50%);
   position: relative;
 }
 
 header .mobile-menu-item .mobile-menu-subcategory-item:hover > a {
-  color: var(--link-color);
-  background: var(--background-color);
+  color: var(--color-link);
+  background: var(--color-white);
 }
 
 header .actionable-card-submenu h3 {
   font-size: 18px;
   margin: 0 0 24px;
   padding-bottom: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   border-bottom: 1px solid rgba(255 255 255 / 25%);
 }
@@ -1278,7 +1278,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-la
 }
 
 header .nav-tabs .menu-nav-category a:hover {
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: pointer;
 }
 
@@ -1286,7 +1286,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   font-family: var(--ff-proxima-regular);
   transition: all 0.2s;
   border: 0;
-  color: var(--text-white);
+  color: var(--color-white);
   position: relative !important;
   height: auto;
   width: 178px;
@@ -1297,8 +1297,8 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
-  background: var(--background-color);
-  color: var(--button-bg-color);
+  background: var(--color-white);
+  color: var(--color-primary);
 }
 
 div.actionable-card-submenu.service-support-right-submenu.right-submenu-content
@@ -1313,7 +1313,7 @@ div.actionable-card-submenu.service-support-right-submenu.right-submenu-content.
   > div
   > p:nth-last-of-type(-n + 2)
   > a:hover {
-  color: var(--background-color-green) !important;
+  color: var(--color-tertiary) !important;
   background-color: white !important;
 }
 
@@ -1368,7 +1368,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   line-height: 10px;
   font-size: 13px;
   text-align: left;
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23e6e6e6' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 205px center;
@@ -1394,7 +1394,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   > div:nth-child(1)
   > p:nth-last-of-type(1)
   > a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -1409,7 +1409,7 @@ header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:
 
 header .actionable-card-submenu.newsroom-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover,
 header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -1459,7 +1459,7 @@ header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-c
 }
 
 header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
-  background-color: var(--background-color-green);
+  background-color: var(--color-tertiary);
   transition: background-color 0.3s ease;
 }
 
@@ -1484,7 +1484,7 @@ header
   > div:nth-child(1)
   > p:nth-last-of-type(-n + 1)
   > a {
-  border: 1px solid var(--background-color-green);
+  border: 1px solid var(--color-tertiary);
 }
 
 /* PRODUCT/APPLICATION MENU */
@@ -1492,14 +1492,14 @@ header .right-submenu-content p strong > a,
 header .right-submenu-content p em > a {
   font-family: var(--ff-proxima-regular);
   transition: all 0.2s;
-  color: var(--text-white);
+  color: var(--color-white);
   position: relative;
   border-radius: 0;
   padding: 10px 18px;
   display: inline-block;
   text-align: center;
-  background-color: var(--button-bg-color);
-  border: 1px solid var(--button-bg-color);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   min-width: 230px;
   max-width: 80%;
   width: 100%;
@@ -1508,24 +1508,24 @@ header .right-submenu-content p em > a {
 
 header .right-submenu-content p em > a {
   background-color: transparent;
-  border-color: var(--text-white);
+  border-color: var(--color-white);
   font-style: normal;
 }
 
 header .right-submenu-content.border-color-green p em > a {
-  border-color: var(--text-green);
+  border-color: var(--color-tertiary);
 }
 
 header .right-submenu-content p strong > a:hover,
 header .right-submenu-content p em > a:hover {
-  color: var(--button-bg-color);
-  background-color: var(--text-white);
+  color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 /* header .products-right-submenu, */
 header .applications-right-submenu {
   background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   padding: 0;
   position: relative;
   height: 100%;
@@ -1602,7 +1602,7 @@ header .products-right-submenu {
   padding: 0;
   display: flex;
   gap: 20px;
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   background-color: transparent;
 }
 
@@ -1707,7 +1707,7 @@ header .biology-3d-right-submenu:last-child:hover > div > div:last-child p:first
   padding: 0;
   border: none;
   background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-150);
   position: relative;
   height: 100%;
   min-height: inherit;
@@ -1980,7 +1980,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .mainmenu-wrapper {
     box-shadow: 1px 3px 26px -4px rgb(0 0 0 / 75%);
-    background-color: var(--background-color);
+    background-color: var(--color-white);
     height: 100%;
     max-height: 46px;
     min-height: 46px;
@@ -2080,17 +2080,17 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .nav-tabs > li.fa-search {
-    color: var(--text-color);
+    color: var(--color-text-primary);
     display: block;
     padding: 15px 10px 15px 13px;
     position: static;
   }
 
   header .nav-tabs > li.fa-search::before {
-    background-color: var(--background-color);
+    background-color: var(--color-white);
     padding: 9px;
     border-radius: 50%;
-    border: 2px solid var(--header-color-orange);
+    border: 2px solid var(--color-secondary);
     color: var(--color-secondary);
     width: 18px;
     height: 18px;
@@ -2136,19 +2136,19 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .menu-nav-search-bar .form-control {
-    background-color: var(--text-white);
+    background-color: var(--color-white);
     width: 100%;
     height: 35px;
     font-family: var(--ff-proxima-light);
     font-size: 16px;
     padding: 6px 12px;
-    border: 1px solid var(--highlight-background-color);
+    border: 1px solid var(--color-gray-375);
     border-radius: 4px;
     color: #555;
   }
 
   header .menu-nav-search-bar form button {
-    color: var(--text-white);
+    color: var(--color-white);
     font-size: 13px;
     font-family: var(--ff-proxima-light);
     min-width: 152px;
@@ -2163,7 +2163,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
   header .nav-tabs > li.header-rfq > a {
     padding: 24px 35px 15px;
     text-transform: uppercase;
-    color: var(--background-color);
+    color: var(--color-white);
     text-align: center;
     border-radius: 100%;
     height: 161px;
@@ -2173,7 +2173,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     align-items: flex-end;
     box-shadow: -8px 4px rgb(238 118 36 / 30%);
     position: relative;
-    background: var(--header-color-orange);
+    background: var(--color-secondary);
     font-size: 15px;
     transition: all 0.3s;
     justify-content: center;
@@ -2336,7 +2336,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   min-height: 114px;
   overflow: hidden;
 }
@@ -2361,7 +2361,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
 }
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child {
@@ -2385,11 +2385,11 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child a {
-  color: var(--text-white);
+  color: var(--color-white);
   display: block;
   text-align: left;
   text-transform: none;

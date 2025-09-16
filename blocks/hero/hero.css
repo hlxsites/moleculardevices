@@ -12,11 +12,11 @@ main .hero-advanced-wrapper {
 .hero,
 .hero-inner {
   position: relative;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .hero-inner a:any-link {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .hero-inner .breadcrumbs {
@@ -42,7 +42,7 @@ main .hero-advanced-wrapper {
 }
 
 .hero-inner a.button.secondary {
-  border-color: var(--background-color);
+  border-color: var(--color-white);
 }
 
 .hero-inner ul {
@@ -165,7 +165,7 @@ main .section .hero-advanced-wrapper {
 .hero-inner .container > div:nth-child(2) .button-container {
   font-size: var(--body-font-size-s);
   margin-top: 5px;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .hero-inner .container > div:nth-child(1) .button-container {
@@ -174,7 +174,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .breadcrumbs li + li::before {
-  color: var(--highlight-background-color);
+  color: var(--color-gray-375);
 }
 
 .hero-inner .video-icon {
@@ -195,13 +195,13 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner.white-bg {
-  background: var(--grey-background-color);
+  background: var(--color-gray-200);
 }
 
 .hero-inner.white-bg,
 .hero-inner.white-bg h1,
 .hero-inner.white-bg a:not(.button.primary):any-link {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .hero.order .order-container.store-hidden {
@@ -263,7 +263,7 @@ main .section .hero-advanced-wrapper {
   margin-top: 0;
   margin-bottom: 60px;
   position: relative;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .hero.blog-overview .hero-inner {
@@ -361,7 +361,7 @@ main.error .hero-wrapper .hero-inner {
 /* Blog Variant - Desktop -- End */
 
 .hero.blue-title .hero-inner h1 {
-  color: var(--text-blue);
+  color: var(--color-primary);
 }
 
 /* Technology Variant - Desktop -- Start */
@@ -393,7 +393,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 /* Service Support Variant - Desktop -- End */
 
 .hero.green-category .hero-inner .container > div > p:first-child {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 @media (max-width: 767px) {
@@ -816,7 +816,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--black-background-color);
+  background-color: var(--color-black);
   opacity: 0.5;
   z-index: -1;
 }
@@ -883,7 +883,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   height: unset;
   padding: 0;
   background: unset;
-  background-color: var(--black-background-color);
+  background-color: var(--color-black);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

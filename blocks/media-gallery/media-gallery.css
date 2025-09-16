@@ -1,6 +1,6 @@
 .media-gallery .overlay {
   display: none;
-  background-color: var(--black-background-color);
+  background-color: var(--color-black);
   opacity: 1;
   position: fixed;
   top: 0;
@@ -55,7 +55,7 @@ main .media-gallery .overlay-carousel .section>div {
 .media-gallery .overlay-content h3 {
   padding: 0 15px 0 60px;
   font-size: 16px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: left;
 }
 
@@ -68,10 +68,10 @@ main .media-gallery .overlay-carousel .section>div {
 .media-gallery .overlay-content a {
   position: absolute;
   background-color: unset;
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 36px;
   border-radius: 50%;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--color-white);
 }
 
 .media-gallery .overlay-content a .icon {
@@ -95,7 +95,7 @@ main .media-gallery .overlay-carousel .section>div {
 .media-gallery a.right, .media-gallery a.left {
   top: 45vh;
   transform: translate(0, -50%);
-  color: var(--text-white);
+  color: var(--color-white);
   height: auto;
 }
 
@@ -155,7 +155,7 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
 
 @media (max-width: 767px) {
   .media-gallery .overlay {
-    color: var(--text-white);
+    color: var(--color-white);
   }
 
   .media-gallery .overlay a {

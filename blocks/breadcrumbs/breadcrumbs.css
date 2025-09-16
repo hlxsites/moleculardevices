@@ -38,7 +38,7 @@
 }
 
 .breadcrumbs li a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 

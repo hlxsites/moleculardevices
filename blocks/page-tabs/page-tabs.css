@@ -47,7 +47,7 @@ main .page-tabs li:last-of-type {
 
 
 main .page-tabs li a {
-  color: var(--text-white);
+  color: var(--color-white);
   background: none;
   border: 0;
   font-family: var(--ff-proxima-light);

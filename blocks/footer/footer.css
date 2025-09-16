@@ -5,7 +5,7 @@
 
 /* footer  */
 .footer {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 15px;
 }
 
@@ -13,7 +13,7 @@
   font-size: 16px;
   margin-bottom: 10px;
   margin-top: 0;
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 .footer h3 + h3 {
@@ -31,7 +31,7 @@
 }
 
 .footer a:hover {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 .footer a i.fa.fa-external-link {
@@ -66,7 +66,7 @@
 }
 
 .footer-wrapper {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-image: url('../../images/research-bg.png');
   overflow-x: hidden;
 }
@@ -94,7 +94,7 @@
 }
 
 .columns.footer-news-events p {
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-bottom: 1px solid var(--color-gray-375);
   padding-bottom: 12px;
   margin-top: 6px;
   margin-bottom: 12px;
@@ -106,7 +106,7 @@
 }
 
 .footer-news-events .toggle:not(.on) h3 {
-  color: var(--border-color-gray);
+  color: var(--color-gray-450);
 }
 
 .footer-news-events p:last-of-type {
@@ -114,11 +114,11 @@
 }
 
 .footer-news-events p:last-of-type a {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 .footer-news-events > div:first-of-type > div {
-  border-bottom: 2px solid var(--highlight-background-color);
+  border-bottom: 2px solid var(--color-gray-375);
   margin-left: 0;
   cursor: pointer;
 }
@@ -129,11 +129,11 @@
 
 .footer-news-events > div:first-of-type > div:first-of-type {
   text-align: right;
-  border-right: 2px solid var(--button-bg-color);
+  border-right: 2px solid var(--color-primary);
 }
 
 .footer-news-events > div:first-of-type > div.toggle.on {
-  border-bottom: 3px solid var(--button-bg-color);
+  border-bottom: 3px solid var(--color-primary);
 }
 
 .footer-news-events > div:nth-child(2) > div.toggle {
@@ -146,10 +146,10 @@
 
 /* row 3 */
 .footer-newsletter-form {
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-200);
   padding: 15px;
   padding-top: 16px;
-  color: var(--button-bg-color);
+  color: var(--color-primary);
   margin-bottom: 30px;
 }
 
@@ -189,11 +189,11 @@
 .footer-newsletter-form label.privacy a,
 .footer-newsletter-form div.privacy > label a {
   display: inline;
-  color: var(--link-color);
+  color: var(--color-link);
 }
 
 .footer-newsletter-form .hs-form-field .hs-input {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-image: none;
   border: 1px solid #bebebe;
   border-radius: 0;
@@ -219,7 +219,7 @@
 
 .footer-newsletter-form .hubspot-form .submitted-message p,
 .footer-newsletter-form .hubspot-form .submitted-message p span {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 18px;
   line-height: 1.33;
   text-align: center;
@@ -241,7 +241,7 @@
 }
 
 .row-4 ul:first-of-type {
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-bottom: 1px solid var(--color-gray-375);
   margin: 10px 0 0;
 }
 
@@ -254,8 +254,8 @@
 
 .row-4 li i {
   font-size: 1rem;
-  background: var(--button-bg-color);
-  color: var(--text-white);
+  background: var(--color-primary);
+  color: var(--color-white);
   border-radius: 50%;
   padding: 4px;
   width: 24px;
@@ -281,7 +281,7 @@
 
 .footer .social-media-list ul li a {
   font-size: 24px;
-  color: var(--text-blue);
+  color: var(--color-primary);
   display: block;
   padding: 8px;
 }
@@ -309,11 +309,11 @@
   margin-top: 32px;
   padding: 44px 0;
   background-color: var(--midnight-green);
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .footer-bottom a:hover {
-  color: var(--highlight-background-color);
+  color: var(--color-gray-375);
 }
 
 .row-7 ul,
@@ -350,7 +350,7 @@
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
-  border-top: 1px solid var(--highlight-background-color);
+  border-top: 1px solid var(--color-gray-375);
   margin-top: 20px;
   padding-top: 4px;
 }
@@ -388,7 +388,7 @@
   align-items: center;
   gap: 24px;
   padding: 20px 0 32px;
-  border-top: 1px solid var(--highlight-background-color);
+  border-top: 1px solid var(--color-gray-375);
 }
 
 .footer .footer-landing-page ul {

@@ -1,9 +1,9 @@
 main .card {
   height: 100%;
-  background: var(--background-color);
+  background: var(--color-white);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px var(--color-black-alpha-2);
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
   transition: all 0.3s;
   display: flex;
   align-items: stretch;
@@ -51,8 +51,8 @@ main .card-thumb img {
 }
 
 main .card .card-category {
-  background: var(--background-color-green);
-  color: var(--text-white);
+  background: var(--color-tertiary);
+  color: var(--color-white);
   font-family: var(--ff-proxima-light);
   text-transform: uppercase;
   line-height: 1;
@@ -100,8 +100,8 @@ main .card-caption .c2a {
 }
 
 main .card-caption .button.primary {
-  border: 1px solid var(--background-color-green);
-  color: var(--text-color);
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-text-primary);
   padding-bottom: 10px;
   padding-top: 11px;
   background: none;
@@ -114,7 +114,7 @@ main .card-caption .button.primary {
 }
 
 main .card-caption .c2a .compare-button {
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
   letter-spacing: 0.5px;
   align-items: center;
   float: right;
@@ -131,20 +131,20 @@ main .card-caption .c2a .compare-checkbox {
   height: 18px;
   margin-left: 10px;
   vertical-align: middle;
-  border: 2px solid var(--dark-border-color-gray);
+  border: 2px solid var(--color-gray-500);
   cursor: pointer;
 }
 
 main .card-caption .c2a .compare-checkbox.selected {
-  background: var(--background-color-green);
-  border-color: var(--background-color-green);
+  background: var(--color-tertiary);
+  border-color: var(--color-tertiary);
 }
 
 main .card-type {
   display: none;
   text-align: left;
   text-transform: uppercase;
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: var(--body-font-size-xs);
   margin: 5px 0;
 }

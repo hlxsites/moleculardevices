@@ -103,9 +103,9 @@
   width: 12px;
   height: 12px;
   line-height: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: center;
-  background: var(--carousel-slider-background-color);
+  background: var(--color-gray-350);
   border-radius: 100%;
   border: none;
   font-size: 0;
@@ -114,7 +114,7 @@
 }
 
 .featured-highlights .slider li.active {
-  background: var(--button-bg-color);
+  background: var(--color-primary);
 }
 
 #product-finder {
@@ -125,13 +125,13 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 100%;
-  background: var(--grey-background-color);
+  background: var(--color-gray-200);
   text-align: center;
   line-height: 1;
   text-decoration: none;
   z-index: 9;
-  color: var(--button-bg-color);
-  box-shadow: 0 0 3px var(--black-background-color);
+  color: var(--color-primary);
+  box-shadow: 0 0 3px var(--color-black);
   text-transform: uppercase;
 }
 
@@ -139,8 +139,8 @@
   main .section > div.featured-highlights-wrapper {
     width: unset;
     min-height: 375px;
-    border-bottom: 1px solid var(--light-border-color-gray);
-    background-color: var(--grey-background-color);
+    border-bottom: 1px solid var(--color-gray-300);
+    background-color: var(--color-gray-200);
     position: relative;
   }
 
@@ -195,7 +195,7 @@
     border-radius: 100%;
     overflow: hidden;
     padding: 620px 702px 0 0;
-    background: var(--grey-background-color);
+    background: var(--color-gray-200);
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -232,7 +232,7 @@
     position: absolute;
     width: 6px;
     height: 100px;
-    background: var(--grey-background-color);
+    background: var(--color-gray-200);
     top: -80px;
     right: 0;
     transform: rotate(30deg);

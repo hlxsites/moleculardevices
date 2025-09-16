@@ -5,7 +5,7 @@
   height: 645px;
   width: 100%;
   background-position: center;
-  color: var(--text-white);
+  color: var(--color-white);
   padding: 0 36px;
   margin-bottom: 150px;
 }
@@ -48,7 +48,7 @@
 
 .webinar-teaser .webinar-teaser-content {
   margin-top: 40px;
-  color: var(--text-white);
+  color: var(--color-white);
   display: inline-block;
   width: 100%;
 }
@@ -66,14 +66,14 @@
 }
 
 .webinar-teaser a.button.secondary {
-  background-color: #6eb43f;
+  background-color: var(--color-tertiary);
   padding: 10px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-transform: uppercase;
   font-size: 15px;
   min-width: 308px;
   display: inline-block;
-  border: 1px solid var(--text-white);
+  border: 1px solid var(--color-white);
   text-align: center;
   margin-top: 40px;
 }

@@ -25,7 +25,7 @@
 }
 
 .landing-page .hero-inner h2 {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: 50px;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .landing-page .hero-inner .two-column p:first-child {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-weight: 600;
 }
 
@@ -86,12 +86,12 @@
 
 .landing-page .no-form-embed .default-content-wrapper *:not(a, h2),
 .landing-page .download-form .default-content-wrapper *:not(a, h2) {
-  color: var(--text-gray);
+  color: var(--color-gray-600);
 }
 
 .landing-page .no-form-embed.text-dark .default-content-wrapper *:not(a, h2),
 .landing-page .download-form.text-dark .default-content-wrapper *:not(a, h2) {
-  color: var(--text-dark-gray);
+  color: var(--color-gray-900);
 }
 
 .landing-page .download-form .embed h2,
@@ -108,7 +108,7 @@
 }
 
 .landing-page .download-form[style*='background-image'] .default-content-wrapper * {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .landing-page .no-form-embed h3,
@@ -130,14 +130,14 @@
 
 .landing-page main .download-form .embed {
   width: 100%;
-  background-color: var(--light-gray-background-color2);
+  background-color: var(--color-gray-100);
   padding: 20px 5px 0;
   margin-top: 0;
 }
 
 .landing-page main .download-form.background-dark .embed {
   background-color: rgb(0 0 0 / 50%);
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .landing-page main .section > div.forms-wrapper h3,
@@ -171,7 +171,7 @@
 
 /* huspot form */
 .landing-page main .section > div.forms-wrapper > div{
-  background-color: var(--light-gray-background-color2);
+  background-color: var(--color-gray-100);
   padding: 20px;
 }
 
@@ -182,7 +182,7 @@
 
 @media (max-width: 767px) {
   .landing-page .hero-inner {
-    background-color: var(--black-background-color);
+    background-color: var(--color-black);
     padding-top: 73px;
   }
 
@@ -233,7 +233,7 @@
 }
 
 .thank-you-page h2 {
-  color: var(--text-blue);
+  color: var(--color-primary);
   font-family: var(--ff-proxima-light);
   font-size: 54px;
   text-align: center;
@@ -259,15 +259,15 @@
 }
 
 .section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .section.thank-you-page .carousel-item > .card > div > p:first-of-type {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .section.thank-you-page .carousel-item > .card .card-caption .card-description {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: var(--body-font-size-xs);
 }
 
@@ -291,16 +291,16 @@
   font-size: 22px;
   padding-top: 10px;
   margin-top: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 body .thank-you-page h3 {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 body .thank-you-page h4 {
   font-size: 30px;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-family: var(--ff-proxima-regular);
 }
 
@@ -321,7 +321,7 @@ body .thank-you-page h4 {
 }
 
 .landing-page.thankyou .carousel.cards p.button-container a {
-  border: 1px solid var(--border-color-green);
+  border: 1px solid var(--color-tertiary);
   color: black;
 }
 

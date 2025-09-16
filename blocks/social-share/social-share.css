@@ -52,7 +52,7 @@ main .section.social-share-container {
 
 .publication .social-links ul li i,
 .news .social-links ul li i {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
   line-height: 28px;
   cursor: pointer;
 }
@@ -113,7 +113,7 @@ main .section.social-share-container {
 
 .full-article .share-event ul.button-container li i,
 .blog .share-event ul.button-container li i {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 30px;
 }
 

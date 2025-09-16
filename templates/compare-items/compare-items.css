@@ -5,7 +5,7 @@ main .compare-banner {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--background-color-green);
+  background: var(--color-tertiary);
   display: none;
   padding: 12px 0;
   margin-top: -40px;
@@ -60,7 +60,7 @@ main .compare-banner .compare-cell.button {
 }
 
 main .compare-banner .compare-data {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 16px;
   line-height: 1.1;
   position: relative;
@@ -75,7 +75,7 @@ main .compare-banner .gradiant-blue-btn.btn {
   border: 0;
   transition: all .2s;
   min-width: 140px;
-  color: var(--text-white);
+  color: var(--color-white);
   position: relative;
   height: auto;
   border-radius: 0;
@@ -86,9 +86,9 @@ main .compare-banner .gradiant-blue-btn.btn {
 }
 
 main .compare-banner .gradiant-blue-btn.btn:hover {
-  background: var(--background-color);
+  background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 /20%);
-  color: #6eb43f;
+  color: var(--color-tertiary);
   cursor: pointer;
 }
 
@@ -99,7 +99,7 @@ main .compare-banner .gradiant-blue-btn.btn:hover .btn_bdr {
   position: absolute;
   margin-left: 0;
   height: 4px;
-  background: #0066a4;
+  background: var(--color-link-hover);
   left: 25%;
   bottom: -5px;
 }
@@ -112,7 +112,7 @@ main .compare-banner .compare-data .gradiant-blue-btn.btn {
 }
 
 main .compare-banner .gradiant-blue-btn {
-  background: var(--button-bg-color);
+  background: var(--color-primary);
 }
 
 main .compare-banner .compare-data .close {

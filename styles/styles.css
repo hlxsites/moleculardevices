@@ -74,99 +74,70 @@ main .section.OneLinkShow_zh.columns-2 {
   /* Brand Colors */
   --color-primary: #008da9;
   --color-secondary: #ee7624;
-  --color-success: #6eb43f;
+  --color-tertiary: #6eb43f;
+  --color-highlight: #038296;
+  --color-text-primary: #34393d;
+  --color-link: #337ab7;
+  --color-link-hover: #0066a4;
+  --color-danger: #f00;
   --color-white: #fff;
-  --color-text: #34393d;
+  --color-black: #000;
 
-  /* alpha colors */
-  --color-black-alpha-1: rgb(0 0 0 / 10%);
-  --color-black-alpha-2: rgb(0 0 0 / 20%);
-  --color-black-alpha-3: rgb(0 0 0 / 30%);
-  --color-black-alpha-4: rgb(0 0 0 / 40%);
-  --color-black-alpha-5: rgb(0 0 0 / 50%);
-  --color-black-alpha-6: rgb(0 0 0 / 60%);
-  --color-black-alpha-7: rgb(0 0 0 / 70%);
-  --color-black-alpha-8: rgb(0 0 0 / 80%);
-  --color-black-alpha-9: rgb(0 0 0 / 90%);
+  /* Black Alpha Colors */
+  --color-black-alpha-10: rgb(0 0 0 / 10%);
+  --color-black-alpha-20: rgb(0 0 0 / 20%);
+  --color-black-alpha-30: rgb(0 0 0 / 30%);
+  --color-black-alpha-40: rgb(0 0 0 / 40%);
+  --color-black-alpha-50: rgb(0 0 0 / 50%);
+  --color-black-alpha-60: rgb(0 0 0 / 60%);
+  --color-black-alpha-70: rgb(0 0 0 / 70%);
+  --color-black-alpha-80: rgb(0 0 0 / 80%);
+  --color-black-alpha-90: rgb(0 0 0 / 90%);
+
+  /* Gray Scale Hierarchy */
+  --color-gray-900: #333; /* dark gray */
+  --color-gray-800: #454545;
+  --color-gray-750: #5b6670; /* tab color */
+  --color-gray-700: #606a6c;
+  --color-gray-600: #6a747c;
+  --color-gray-500: #adb3b7;
+  --color-gray-450: #ababab; /* border color */
+  --color-gray-400: #c5c5c5;
+  --color-gray-375: #ccc; /* highlight background */
+  --color-gray-350: #b3d8e0; /* carousel slider background */
+  --color-gray-300: #ddd;
+  --color-gray-275: #eee; /* overlay background */
+  --color-gray-200: #f0f1f2;
+  --color-gray-150: #e6e6e6; /* submenu card */
+  --color-gray-100: #f2f2f2;
+  --color-gray-50: #f3f3f3;
+  --color-gray-25: #f6f6f6; /* accordion trigger */
 
   /* colors */
-  --text-color: var(--color-text);
-  --text-dark-gray: #333;
   --text-electric-blue: #007bc4;
-  --text-gray2: #606a6c;
-  --text-gray: #6a747c;
-  --text-light-gray: #adb3b7;
   --midnight-green: #003b4d;
   --heading-color: #00758d;
-  --heading-color-blue: #038296;
-  --link-color: #337ab7;
-  --link-hover-color: #0066a4;
-  --background-color-blue: #0066a4;
-  --highlight-background-color: #ccc;
-  --button-hover-color: #0066a4;
-  --button-secondary-color: #038296;
   --button-secondary-border-color: #4c9eaf;
-  --button-secondary-hover-color: #0066a4;
-  --button-secondary-bg-color: #038296;
-  --grey-background-color: #f0f1f2;
-  --dark-gray-background-color: #5b6670;
-  --black-background-color: #000;
-  --light-gray-background-color: #f3f3f3;
-  --light-gray-background-color2: #f2f2f2;
-  --light-border-color-gray: #ddd;
-  --dark-border-color-gray: #adb3b7;
-  --border-color-gray: #ababab;
   --header-mega-menu-border-color: #ffffff80;
   --header-mega-menu-font-color: #ffffffb2;
   --header-mega-menu-product-cards-background-color: #161e2d;
-  --header-actionable-submenu-text-color: #e6e6e6;
-  --accordion-dark-gray-text-color: #454545;
-  --accordion-light-gray-border-color: #c5c5c5;
-  --accordion-light-gray-background-color: #f6f6f6;
-  --carousel-slider-background-color: #b3d8e0;
 
-  /* color primary */
-  --text-blue: var(--color-primary);
-  --button-bg-color: var(--color-primary);
+  /* Whats New Colors */
+  --color-purple: #660ff3;
+  --color-cyan: #6be6df;
+  --color-pink: #d31e83;
+  --color-orange: #f97b16;
+  --color-light-green: #3be086;
 
-  /* color secondary */
-  --text-orange: var(--color-secondary);
-  --orange-background-color: var(--color-secondary);
-  --header-color-orange: var(--color-secondary);
+  /* Gradients */
+  --gradient-blog: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  --gradient-blog-left: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
+  --gradient-overlay: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
+  --gradient-bottom-overlay: linear-gradient(to bottom, rgba(255 255 255 / 0%) 55%, rgba(0 0 0 / 90%));
+  --gradient-teal: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
+  --gradient-sign-up-newsletter: linear-gradient(var(--color-purple) 0, var(--color-cyan) 100%);
 
-  /* color success */
-  --text-green: var(--color-success);
-  --background-color-green: var(--color-success);
-  --border-color-green: var(--color-success);
-  --header-mega-menu-green: var(--color-success);
-
-  /* color white */
-  --text-white: var(--color-white);
-  --background-color: var(--color-white);
-  --button-color: var(--color-white);
-  --button-bg-hover-color: var(--color-white);
-  --button-secondary-bg-hover-color: var(--color-white);
-  --accordion-color-white: var(--color-white);
-
-  /* overlays color */
-  --overlay-background-color: #eee;
-
-  /* gradients */
-  --blog-gradient: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
-  --blog-gradient-left: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
-  --overlay-gradient: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
-  --bottom-overlay-gradient: linear-gradient(to bottom, rgba(255 255 255 / 0%) 55%, rgba(0 0 0 / 90%));
-  --teal-gradient: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
-
-  /* whats new */
-  --purple-color: #660ff3;
-  --cyan-color: #6be6df;
-  --pink-color: #d31e83;
-  --orange-color: #f97b16;
-  --light-green-color: #3be086;
-  --sign-up-newsletter-gradient: linear-gradient(var(--purple-color) 0, var(--cyan-color) 100%);
-
-  /* fonts */
+  /* Font Families */
   --ff-proxima-regular:
     "Proxima Nova Regular", "Proxima Nova Regular Fallback", "helvetica neue", helvetica, arial, sans-serif;
   --ff-proxima-xbold:
@@ -175,7 +146,7 @@ main .section.OneLinkShow_zh.columns-2 {
     "Proxima Nova Light", "Proxima Nova Light Fallback", "helvetica neue", helvetica, arial, sans-serif;
   --fixed-font-family: menlo, monaco, consolas, "courier new", monospace;
 
-  /* font size */
+  /* Font Sizes */
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
   --heading-font-size-l: 24px;
@@ -192,11 +163,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --list-font-size-m: 18px;
   --list-font-size-s: 14px;
 
-  /* layout veriables */
+  /* Layout Variables */
   --nav-height: 170px;
   --nav-height-mobile: 70px;
-  --section-div-width: 1170px;
-  --center-space: calc((100vw - var(--section-div-width)) / 2);
+  --section-max-width: 1170px;
+  --center-space: calc((100vw - var(--section-max-width)) / 2);
 }
 
 @media (max-width: 1200px) {
@@ -240,14 +211,14 @@ body {
   margin: 0;
   font-family: var(--ff-proxima-regular);
   line-height: 1.33;
-  color: var(--text-color);
-  background-color: var(--background-color);
+  color: var(--color-text-primary);
+  background-color: var(--color-white);
   display: none;
   overflow-x: hidden;
 }
 
 .background-gray main {
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-200);
 }
 
 body.appear {
@@ -366,12 +337,12 @@ p:last-child {
 }
 
 a:any-link {
-  color: var(--link-color);
+  color: var(--color-link);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 a i.fa {
@@ -383,7 +354,7 @@ a i.fa.fa-external-link {
   top: -5px;
   font-size: 13px;
   margin-left: 2px;
-  color: var(--link-color);
+  color: var(--color-link);
 }
 
 code,
@@ -435,7 +406,7 @@ em strong {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
@@ -453,11 +424,11 @@ iframe {
 p.video-title {
   font-size: 14px;
   font-style: italic;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-regular);
   margin-bottom: 20px;
   margin-top: 15px;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   font-weight: 400;
   text-align: center;
 }
@@ -495,7 +466,7 @@ button {
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
   font-size: var(--body-font-size-m);
-  color: var(--link-color);
+  color: var(--color-link);
   line-height: 18px;
   display: inline-block;
   border: 0;
@@ -544,19 +515,19 @@ a.button:focus,
 button:hover,
 button:focus {
   cursor: pointer;
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--overlay-background-color);
+  background-color: var(--color-gray-275);
   cursor: unset;
 }
 
 a.button.primary,
 button.primary {
-  color: var(--button-color);
-  background-color: var(--button-bg-color);
+  color: var(--color-white);
+  background-color: var(--color-primary);
   border: 0;
   white-space: break-spaces;
   padding: 14px 18px;
@@ -571,9 +542,9 @@ a.button.primary:hover,
 a.button.primary:focus,
 button.primary:hover,
 button.primary:focus {
-  color: var(--button-hover-color);
-  background-color: var(--button-bg-hover-color);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+  color: var(--color-link-hover);
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 a.button.primary:hover .button-border {
@@ -583,7 +554,7 @@ a.button.primary:hover .button-border {
   position: absolute;
   margin-left: 0;
   height: 4px;
-  background: var(--button-hover-color);
+  background: var(--color-link-hover);
   left: 25%;
   bottom: -5px;
 }
@@ -592,16 +563,16 @@ a.button.secondary,
 button.secondary {
   font-style: normal;
   border: 2px solid var(--button-secondary-border-color);
-  color: var(--button-secondary-color);
+  color: var(--color-highlight);
 }
 
 a.button.secondary:hover,
 a.button.secondary:focus,
 button.secondary:hover,
 button.secondary:focus {
-  color: var(--button-secondary-hover-color);
-  background-color: var(--button-secondary-bg-hover-color);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+  color: var(--color-link-hover);
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 main input:not([type="radio"], [type="checkbox"]),
@@ -610,7 +581,7 @@ main select {
   display: block;
   padding: 5px 15px;
   box-sizing: border-box;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   border: 1px solid #bebebe;
   border-radius: 0;
   box-shadow: none;
@@ -629,7 +600,7 @@ main textarea {
 }
 
 main pre {
-  background-color: var(--overlay-background-color);
+  background-color: var(--color-gray-275);
   padding: 1em;
   border-radius: 0.25em;
   overflow-x: auto;
@@ -656,7 +627,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--overlay-background-color);
+  border-bottom: 1px solid var(--color-gray-275);
 }
 
 main img,
@@ -811,7 +782,7 @@ main .section.columns-2 > div {
 }
 
 main .section.highlight {
-  background-color: var(--highlight-background-color);
+  background-color: var(--color-gray-375);
 }
 
 main .section.background-grey + .section.wave,
@@ -826,7 +797,7 @@ main .section.background-grey + .section.wave {
 
 main .section.background-grey,
 main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-200);
   margin-top: 0;
 }
 
@@ -834,7 +805,7 @@ main .section.background-grey-top-half::before,
 main .section.background-grey-bottom-half::before,
 main .section.background-grey + .section.wave::before {
   content: "";
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-200);
   position: absolute;
   left: 0;
   height: 200px;
@@ -907,7 +878,7 @@ main.error .section > div {
 }
 
 main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--highlight-background-color);
+  border-top: 1px solid var(--color-gray-375);
   padding-top: 45px;
 }
 
@@ -947,7 +918,7 @@ main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
   padding-top: 40px;
-  border-bottom: 1px solid var(--dark-border-color-gray);
+  border-bottom: 1px solid var(--color-gray-500);
   padding-bottom: 20px;
   width: 100%;
 }
@@ -1093,7 +1064,7 @@ main .section.features-section {
     url("/images/molecules-left.png") left bottom,
     url("/images/molecules-right.png") right top;
   background-repeat: no-repeat;
-  background-color: var(--light-gray-background-color2);
+  background-color: var(--color-gray-100);
 }
 
 main .section.features-section .default-content-wrapper,
@@ -1173,7 +1144,7 @@ main .section.features-section .button-container {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
@@ -1182,7 +1153,7 @@ main div.section.featured-asset {
   background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
   background-position: center top;
   background-size: cover;
-  color: var(--text-white);
+  color: var(--color-white);
   padding-bottom: 100px;
 }
 
@@ -1192,21 +1163,21 @@ main div.section.featured-asset .button-container {
 
 main div.section.featured-asset a.button.secondary,
 main div.section.featured-asset button.secondary {
-  border: 2px solid var(--button-color);
-  color: var(--button-color);
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
 }
 
 main div.section.featured-asset a.button.secondary:hover,
 main div.section.featured-asset a.button.secondary:focus,
 main div.section.featured-asset button.secondary:hover,
 main div.section.featured-asset button.secondary:focus {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 main div.section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 main div.section.featured-asset .columns h3 {
@@ -1246,13 +1217,13 @@ main .section.background-parallax {
   background-image: url("/images/parallax-background.webp"), url("/images/parallax-background.png");
   background-position: center top;
   background-size: cover;
-  color: var(--text-white);
+  color: var(--color-white);
   padding-top: 90px;
   padding-bottom: 100px;
 }
 
 main .section.background-parallax a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 main .section.background-parallax .default-content-wrapper .button-container {
@@ -1260,7 +1231,7 @@ main .section.background-parallax .default-content-wrapper .button-container {
 }
 
 main .section.background-parallax .default-content-wrapper .button-container > a {
-  color: var(--text-white);
+  color: var(--color-white);
   border-radius: 0;
   padding: 18px 18px 16px;
   border: 1px solid #cbdce8;
@@ -1301,13 +1272,13 @@ main div.section.wave {
   align-items: center;
   justify-content: center;
   overflow: visible;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: center;
   clear: both;
 }
 
 main.error div.section.wave {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   text-align: unset;
 }
 
@@ -1522,11 +1493,11 @@ main div.section.no-margin-bottom {
 
 /* Green secondary buttons */
 main div.green-secondary-buttons .button {
-  border-color: var(--border-color-green);
+  border-color: var(--color-tertiary);
 }
 
 main div.green-secondary-buttons .button.secondary {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 /* Orange Buttons */
@@ -1537,15 +1508,15 @@ main div.orange-buttons .button {
 
 main div.orange-buttons .button.primary:link,
 main div.orange-buttons .button.primary:visited {
-  color: var(--text-white);
-  background: var(--orange-background-color);
+  color: var(--color-white);
+  background: var(--color-secondary);
   text-transform: none;
 }
 
 main div.orange-buttons .button.primary:hover,
 main div.orange-buttons .button.primary:active {
-  color: var(--text-orange);
-  background: var(--background-color);
+  color: var(--color-secondary);
+  background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
@@ -1553,9 +1524,9 @@ main div.orange-buttons .button.secondary:link,
 main div.orange-buttons .button.secondary:visited,
 main div.orange-secondary-buttons .button.secondary:link,
 main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--text-white);
+  color: var(--color-white);
   background: transparent;
-  border: 2px solid var(--text-white);
+  border: 2px solid var(--color-white);
   text-transform: none;
 }
 
@@ -1563,15 +1534,15 @@ main div.orange-buttons .button.secondary:hover,
 main div.orange-buttons .button.secondary:active,
 main div.orange-secondary-buttons .button.secondary:hover,
 main div.orange-secondary-buttons .button.secondary:active {
-  color: var(--text-orange);
-  background: var(--background-color);
+  color: var(--color-secondary);
+  background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
 main div.orange-secondary-buttons .button.secondary:link,
 main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
 }
 
 main div.orange-buttons .button.primary > .button-border {
@@ -1614,8 +1585,8 @@ main .section.background-molecules {
   main div.orange-buttons .button.secondary:visited,
   main div.orange-secondary-buttons .button.secondary:link,
   main div.orange-secondary-buttons .button.secondary:visited {
-    color: var(--text-orange);
-    border: 2px solid var(--orange-background-color);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
   }
 
   /* ------ */
@@ -1651,7 +1622,7 @@ main .section.background-molecules {
 
 .company-links li.cart-link i.fa.fa-shopping-cart {
   font-size: 19px;
-  color: var(--highlight-background-color);
+  color: var(--color-gray-375);
   position: relative;
   padding-right: 5px;
 }
@@ -1659,8 +1630,8 @@ main .section.background-molecules {
 .company-links .cart-count {
   text-align: center;
   vertical-align: middle;
-  background-color: var(--orange-background-color);
-  color: var(--text-white);
+  background-color: var(--color-secondary);
+  color: var(--color-white);
   font-weight: 700;
   line-height: 19px;
   border-radius: 50%;
@@ -1679,7 +1650,7 @@ main .section.background-molecules {
   top: 50%;
   right: -110px;
   transform: translateY(-50%);
-  background: var(--orange-background-color);
+  background: var(--color-secondary);
   padding: 16px 24px;
   border-radius: 30px 0 0 30px;
   transition: right 0.3s;
@@ -1694,11 +1665,11 @@ main .section.background-molecules {
 
 .product .cart-widget i {
   margin-right: 15px;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .product .cart-widget .view-cart-link {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .product .cart-widget .view-cart-link:hover {
@@ -1713,8 +1684,8 @@ main .section.background-molecules {
   position: absolute;
   top: -12px;
   left: 29px;
-  background: var(--background-color);
-  color: var(--orange-background-color);
+  background: var(--color-white);
+  color: var(--color-secondary);
   padding: 0;
   font-size: 75%;
   border-radius: 50%;
@@ -1722,7 +1693,7 @@ main .section.background-molecules {
   height: 24px;
   line-height: 24px;
   text-align: center;
-  border: 1px solid var(--orange-background-color);
+  border: 1px solid var(--color-secondary);
 }
 
 .sticky {
@@ -1740,17 +1711,17 @@ main .section.background-molecules {
 }
 
 .videos-and-webinars .hero.wave .hero-inner p:first-of-type {
-  color: var(--heading-color-blue);
+  color: var(--color-highlight);
   font-size: 25px;
   font-weight: 600;
 }
 
 .videos-and-webinars .hero.wave.green-category .hero-inner p:first-of-type {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .videos-and-webinars .section.hero-container:has(.hero.wave) ~ .section h2 {
-  color: var(--text-blue);
+  color: var(--color-primary);
   font-family: var(--ff-proxima-regular);
   font-size: 36px;
 }
@@ -1782,7 +1753,7 @@ main .section.background-molecules {
 .section.home-promo {
   background-repeat: no-repeat;
   background-size: cover;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: center;
   overflow: visible;
   position: relative;
@@ -1821,9 +1792,9 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary {
-  color: var(--text-white);
+  color: var(--color-white);
   background: rgb(0 0 0 / 25%);
-  border: 1px solid var(--button-color);
+  border: 1px solid var(--color-white);
   white-space: normal;
   font-size: 18px;
   padding: 16px 20px;
@@ -1831,8 +1802,8 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary:hover {
-  background: var(--button-color);
-  color: var(--text-blue);
+  background: var(--color-white);
+  color: var(--color-primary);
 }
 
 @media only screen and (min-width: 768px) {
@@ -1922,7 +1893,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .product .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
-  color: var(--text-gray2);
+  color: var(--color-gray-700);
   margin-top: 0;
 }
 
@@ -2018,7 +1989,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .technology .columns.block.columns-1-cols,
 .application .columns.block.columns-1-cols {
-  background-color: var(--light-gray-background-color2);
+  background-color: var(--color-gray-100);
   padding: 15px 26px 15px 32px;
 }
 
@@ -2037,7 +2008,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .technology .columns.block.columns-1-cols ul li,
 .application .columns.block.columns-1-cols ul li {
-  color: var(--link-color);
+  color: var(--color-link);
   line-height: 21px;
   margin-bottom: 10px;
 }
@@ -2055,7 +2026,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .application .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
-  color: var(--text-gray2);
+  color: var(--color-gray-700);
   margin-top: 0;
 }
 
@@ -2081,16 +2052,16 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .background-black,
 .background-black img {
-  background-color: var(--black-background-color);
+  background-color: var(--color-black);
 }
 
 .background-black h3 {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .background-black p,
 .background-black h4 {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .section.title-no-spacing > div.default-content-wrapper > h2,
@@ -2121,11 +2092,11 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .section.multicolor-subtitle > div.default-content-wrapper > h3:first-of-type {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .section.multicolor-subtitle > div.default-content-wrapper > h3:nth-of-type(2) {
-  color: var(--text-orange);
+  color: var(--color-secondary);
   display: inline;
 }
 
@@ -2143,7 +2114,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .category main div.section.wave.blue .button-container > a {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: var(--body-font-size-m);
   border-radius: 0;
   padding: 15px 40px;
@@ -2189,12 +2160,12 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .section.blue-title .default-content-wrapper > h2,
 .section.blue-title .default-content-wrapper > h3,
 .section.blue-subtitle div > h3 {
-  color: var(--text-blue);
+  color: var(--color-primary);
 }
 
 .section.green-title .default-content-wrapper > h2,
 .section.green-title .default-content-wrapper > h3 {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 main .section.white-title .default-content-wrapper > h2,
@@ -2202,14 +2173,14 @@ main .section.white-title .default-content-wrapper > h3,
 main .section .block.white-title h2,
 main .section .block.white-title h3,
 main .section .block.white-title h4 {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 main .block.orange-main-title h2,
 main .section.orange-title h2,
 main .section.orange-title h3,
 main .section.orange-title h4 {
-  color: var(--text-orange);
+  color: var(--color-secondary);
 }
 
 main .block.electric-blue-main-title h2 {
@@ -2253,7 +2224,7 @@ main .block.electric-blue-main-title h2 {
 }
 
 .video-gallery main .section .default-content-wrapper h2 {
-  color: var(--text-blue);
+  color: var(--color-primary);
   font-size: 40px;
   margin-bottom: 40px;
   font-family: var(--ff-proxima-light);
@@ -2422,7 +2393,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 }
 
 main .columns-separator-line .columns-wrapper .columns {
-  border-bottom: 1px solid var(--highlight-background-color);
+  border-bottom: 1px solid var(--color-gray-375);
   padding-bottom: 3rem;
 }
 
@@ -2442,12 +2413,12 @@ main .columns-separator-line .columns-wrapper .columns {
 
 .title-with-green-highlight h2:first-child em,
 .title-with-green-highlight h3:first-child em {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .title-with-theme-highlight h2:first-child em,
 .title-with-theme-highlight h3:first-child em {
-  color: var(--text-blue);
+  color: var(--color-primary);
 }
 
 .section.title-with-green-highlight .default-content-wrapper h2:first-child,
@@ -2467,7 +2438,7 @@ main .columns-separator-line .columns-wrapper .columns {
 /* SLAS PAGES */
 main .block.text-white,
 main .section.text-white {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 main .block.no-margin,
@@ -2505,7 +2476,7 @@ main .section.no-margin-bottom {
 .slas-page .columns.tutorials-posters h3,
 .slas-page .columns.tutorials-posters h4 {
   font-family: var(--ff-proxima-regular);
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .slas-page main .section h3 {
@@ -2524,7 +2495,7 @@ main .section.no-margin-bottom {
 
 .slas-page .columns.tutorials-posters h4 {
   margin: 10px 0;
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .slas-page .columns.tutorials-posters p {
@@ -2546,8 +2517,8 @@ main .section.no-margin-bottom {
 /* eBook contact */
 .section.background-teal,
 .section.ebook-contact {
-  background-color: var(--button-secondary-color);
-  color: var(--text-white);
+  background-color: var(--color-highlight);
+  color: var(--color-white);
 }
 
 .section.ebook-contact h3,
@@ -2583,14 +2554,14 @@ main .section.no-margin-bottom {
   cursor: pointer;
   height: 50px;
   min-width: 200px;
-  color: var(--text-blue);
-  background: var(--background-color);
-  border: 2px solid var(--text-white);
+  color: var(--color-primary);
+  background: var(--color-white);
+  border: 2px solid var(--color-white);
   text-transform: none;
 }
 
 .section.ebook-contact em > a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   background: transparent;
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
@@ -2697,7 +2668,7 @@ main .section.tabs.rfq-form-section ul {
 
 main .section.rfq-form-section .embed {
   width: 100%;
-  color: var(--text-white);
+  color: var(--color-white);
   background-color: #666667;
   padding: 20px 10px 0;
   margin-top: 0;
@@ -2707,7 +2678,7 @@ main .section.rfq-form-section .embed h4 {
   margin-bottom: 20px;
   text-align: center;
   padding: 0 20px;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 @media only screen and (min-width: 768px) {
@@ -2755,9 +2726,9 @@ main .section.rfq-form-section .embed h4 {
   font-family: var(--ff-proxima-light);
   font-size: 34px;
   text-transform: capitalize;
-  background: #0066a4;
+  background: var(--color-link-hover);
   padding: 8px 24px;
-  color: var(--text-white);
+  color: var(--color-white);
   width: 100%;
   text-align: center;
   margin: 0 auto !important;
@@ -2773,8 +2744,8 @@ main .section.rfq-form-section .embed h4 {
 
 main div.dark-button.orange-buttons .button.secondary,
 main div.dark-button.orange-buttons .button.secondary:visited {
-  color: var(--black-background-color);
-  border-color: var(--black-background-color);
+  color: var(--color-black);
+  border-color: var(--color-black);
 }
 
 /* whats next | new layout */
@@ -2827,7 +2798,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 .what-next .carousel.cards .carousel-item .card h4:first-child {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   margin-bottom: 0.5rem;
   font-size: 90%;
 }
@@ -2844,14 +2815,14 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 .what-next .carousel.cards .carousel-item a:hover {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .what-next .forms.lab-notes {
   border-radius: 18px;
   position: relative;
   padding: 40px;
-  color: var(--text-white);
+  color: var(--color-white);
   background-color: var(--form-bg);
   text-align: center;
 }

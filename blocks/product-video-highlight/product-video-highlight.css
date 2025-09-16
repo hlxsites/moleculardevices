@@ -28,7 +28,7 @@
   content: "";
   width: 100%;
   padding-top: 20px;
-  border-bottom: 2px solid var(--highlight-background-color);
+  border-bottom: 2px solid var(--color-gray-375);
   margin-bottom: 16px;
 }
 
@@ -95,7 +95,7 @@
   content: "";
   display: block;
   border-radius: 100%;
-  background: var(--color-black-alpha-7) url("/fragments/workflow/play-ico.png") no-repeat center center;
+  background: var(--color-black-alpha-70) url("/fragments/workflow/play-ico.png") no-repeat center center;
   background-size: 45% auto;
   margin: auto;
   left: -5px;

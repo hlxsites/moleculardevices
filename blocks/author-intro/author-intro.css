@@ -8,7 +8,7 @@
 }
 
 .author-intro-content-wrapper h4 {
-  color: var(--text-blue);
+  color: var(--color-primary);
   font-size: 1.45rem;
   margin-bottom: 1.2rem;
 }
@@ -35,7 +35,7 @@
 .author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper,
 .author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper a,
 .author-intro.text-white[style*='linear-gradient'] .author-intro-content-wrapper a i{
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .author-intro[style*='linear-gradient'] .author-intro-content-wrapper h4 {

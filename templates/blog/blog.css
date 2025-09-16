@@ -133,7 +133,7 @@
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green);
+  background-color: var(--color-tertiary);
   background-image: var(--blog-gradient);
 }
 
@@ -160,19 +160,19 @@ main .section.sidebar h4,
 }
 
 .blog main .section.green-secondary-buttons .button {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .blog main .section.orange-buttons .button.secondary {
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
 }
 
 .blog main .columns p.video-title {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
@@ -187,7 +187,7 @@ main .section.sidebar h4,
 }
 
 .blog main .section .credit-paragraph p {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 1rem;
 }
 
@@ -257,7 +257,7 @@ main .section.sidebar h4::after {
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green);
+  background-color: var(--color-tertiary);
   background-image: var(--blog-gradient);
 }
 
@@ -276,7 +276,7 @@ main .section.sidebar h4::after {
   border-radius: 10px;
   font-size: 15px;
   background: var(--blog-gradient-left);
-  color: var(--text-white);
+  color: var(--color-white);
   margin-top: -17px;
   margin-bottom: 50px;
 }

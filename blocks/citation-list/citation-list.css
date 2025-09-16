@@ -31,7 +31,7 @@ main .citation-list .carousel-item.clone {
 }
 
 .citation-list .card-body p {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 24px;
   line-height: 28px;
   display: flex;
@@ -64,7 +64,7 @@ main .citation-list-container .default-content-wrapper p {
   background: #fff;
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px var(--color-black-alpha-2);
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
   transition: all .3s;
   display: flex;
   align-items: stretch;
@@ -78,7 +78,7 @@ main .citation-list-container .default-content-wrapper p {
 .citation-list .card-title {
   padding: 20px;
   text-align: left;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 24px;
   line-height: 28px;
   flex-direction: column;
@@ -99,7 +99,7 @@ main .citation-list-container .default-content-wrapper p {
 }
 
 .citation-list .card-data {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
   position: relative;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -131,7 +131,7 @@ main .citation-list-container .default-content-wrapper p {
 .citation-list .card-body i {
   margin-left: 5px;
   font-size: 17px;
-  color: var(--dark-border-color-gray);
+  color: var(--color-gray-500);
 }
 
 @media (min-width: 991px) and (max-width: 1199px) {

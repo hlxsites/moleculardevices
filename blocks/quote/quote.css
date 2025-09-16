@@ -12,7 +12,7 @@
 
 .quote .quote-text,
 .quote .quote-author {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: 20px;
 }
 
@@ -56,7 +56,7 @@
 
 .customer-breakthrough .quote .quote-text {
   font-size: var(--body-font-size-l);
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 .customer-breakthrough .quote .quote-text::before,

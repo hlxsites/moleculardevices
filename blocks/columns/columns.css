@@ -48,7 +48,7 @@ main .section > div.columns-wrapper {
   content: '';
   width: 94%;
   padding-top: 50px;
-  border-bottom: 2px solid var(--highlight-background-color);
+  border-bottom: 2px solid var(--color-gray-375);
   margin-left: 14px;
   margin-bottom: 16px;
 }
@@ -123,7 +123,7 @@ main .section > div.columns-wrapper {
 
 .columns.columns-sitemap ul {
   margin-bottom: 30px;
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-top: 4px;
 }
 
@@ -133,7 +133,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.columns-sitemap a:hover {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 .columns.columns-sitemap h4 + h4 {
@@ -165,7 +165,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.contact > div > div {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   width: 100%;
 }
 
@@ -187,8 +187,8 @@ main .section > div.columns-wrapper {
 }
 
 .columns.contact > div h2 {
-  background-color: var(--dark-gray-background-color);
-  color: var(--text-white);
+  background-color: var(--color-gray-750);
+  color: var(--color-white);
   font-size: var(--heading-font-size-m);
   font-family: var(--ff-proxima-regular);
   font-weight: bold;
@@ -225,11 +225,11 @@ main .section > div.columns-wrapper {
 
 .columns.contact > div ul li button:hover,
 .columns.contact > div ul li a:hover {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .columns.contact > div > div > ul > li > i {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   float: left;
   font-size: var(--heading-font-size-l);
   padding-right: 20px;
@@ -243,7 +243,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
-  background-color: var(--border-color-gray);
+  background-color: var(--color-gray-450);
   bottom: -10px;
   content: '';
   display: block;
@@ -283,7 +283,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.contact > div ul li span.icon:not(.icon-spectra) svg {
-  fill: var(--text-green);
+  fill: var(--color-tertiary);
 }
 
 .columns.contact > div ul li span.icon-spectra ~ a {
@@ -329,7 +329,7 @@ main .section > div.columns-wrapper {
 
 .columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
   background-color: #6a747b;
-  color: var(--text-white);
+  color: var(--color-white);
   margin-left: 0;
   padding: 32px;
 }
@@ -341,23 +341,23 @@ main .section > div.columns-wrapper {
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) {
   background-color: #aaa;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a,
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a {
-  border-color: var(--text-white);
-  color: var(--text-white);
+  border-color: var(--color-white);
+  color: var(--color-white);
 }
 
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd) .button-container a:hover,
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) .button-container a:hover {
-  color: var(--button-hover-color);
+  color: var(--color-link-hover);
 }
 
 .columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even),
 .columns.light-and-dark-grey > div:nth-child(even) div:nth-child(odd) {
-  background-color: var(--light-gray-background-color);
+  background-color: var(--color-gray-50);
 }
 
 .columns.layout-20-80.extended-width > div > div:first-child {
@@ -377,7 +377,7 @@ main .section > div.columns-wrapper {
 
 .columns.layout-20-80.extended-width.green-separator > div > div:last-child {
   padding-bottom: 45px;
-  border-bottom: 1px solid var(--text-green);
+  border-bottom: 1px solid var(--color-tertiary);
 }
 
 .columns.layout-20-80.extended-width.green-separator > div:last-child > div:last-child {
@@ -397,7 +397,7 @@ main .section > div.columns-wrapper {
 
 .columns.collaboration > div h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-family: inherit;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -774,12 +774,12 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 }
 
 .text-white .columns.what-next-columns a.button.secondary {
-  color: var(--text-white);
-  border-color: var(--background-color);
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 .text-white .columns.what-next-columns a.button.secondary:hover {
-  color: var(--button-secondary-hover-color);
+  color: var(--color-link-hover);
   border-color: var(--button-secondary-border-color);
 }
 
@@ -875,7 +875,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .cards.columns > div > div {
   margin-left: 0;
-  box-shadow: 0 1px 10px var(--color-black-alpha-2);
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
 }
 
 .cards.columns > div > div > div:not(:first-child) {
@@ -923,7 +923,7 @@ main .section .cards.cols-4 ul li {
 main .section .cards.cols-4 .cards-card-wrapper {
   height: 100%;
   background-color: #f0f7f8;
-  color: var(--black-background-color);
+  color: var(--color-black);
 }
 
 main .section .cards.cols-4 .cards-card-wrapper a {

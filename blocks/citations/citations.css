@@ -67,7 +67,7 @@ main .citations-container > .default-content-wrapper {
 .citations-container span,
 .citation em,
 .citations-container em {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-style: normal;
 }
 
@@ -87,7 +87,7 @@ main .citations-container > .default-content-wrapper {
 .citations .view-change {
   position: relative;
   text-align: right;
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: pointer;
 }
 
