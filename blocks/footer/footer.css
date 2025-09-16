@@ -357,12 +357,8 @@
   padding-top: 1rem;
 }
 
-.row-8 .external-logo-wrapper,
-.row-8.columns-wrapper.OneLinkShow_zh {
-  display: flex !important;
-}
-
 .row-8 .external-logo-wrapper {
+  display: flex !important;
   align-items: baseline;
 }
 
