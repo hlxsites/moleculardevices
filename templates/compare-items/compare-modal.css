@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity, selector-class-pattern */
 main .pro-comparison-result {
-  background: rgb(0 0 0 / 90%);
+  background: var(--color-black-alpha-90);
   padding: 20px 0;
   position: fixed;
   display: none;
@@ -21,24 +21,8 @@ main .pro-comparison-result .container {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
-
-@media (min-width: 992px) {
-  main .pro-comparison-result .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 768px) {
-  main .pro-comparison-result .container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .pro-comparison-result .container {
-    width: 1170px;
-  }
+  width: 100%;
+  max-width: var(--section-max-width);
 }
 
 main .pro-comparison-result .product-comparison {
@@ -81,32 +65,21 @@ main .pro-comparison-result .section-heading {
 main .pro-comparison-result .btn-primary {
   color: var(--color-white);
   background-color: var(--color-link);
-  border-color: #2e6da4;
 }
 
 main .pro-comparison-result .btn-primary:hover {
   color: var(--color-white);
   background-color: #286090;
-  border-color: #204d74;
 }
 
 main .pro-comparison-result .btn {
-  display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
   font-size: 14px;
-  font-weight: 400;
   line-height: 1.4286;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  user-select: none;
-  background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
   min-width: 53px;
+  width: auto;
 }
 
 main .pro-comparison-result .section-heading h2 {
@@ -352,7 +325,7 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
     padding: 10px;
     vertical-align: middle;
     text-align: center;
-    background-color: #fff !important;
+    background-color: var(--color-white) !important;
     border: none;
   }
 

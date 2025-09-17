@@ -119,7 +119,7 @@
 }
 
 .product-comparison-container .product-comparison .responsive-table th:first-child {
-  background: #fff !important;
+  background: var(--color-white) !important;
 }
 
 .background-gray.product-comparison-container .product-comparison .responsive-table th:first-child,

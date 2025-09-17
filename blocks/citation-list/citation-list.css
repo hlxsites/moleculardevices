@@ -61,7 +61,7 @@ main .citation-list-container .default-content-wrapper p {
 }
 
 .citation-list .card {
-  background: #fff;
+  background: var(--color-white);
   margin: 0;
   position: relative;
   box-shadow: 0 1px 10px var(--color-black-alpha-20);

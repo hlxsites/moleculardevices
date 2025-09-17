@@ -198,13 +198,13 @@ main .section.OneLinkShow_zh.columns-2 {
 
 @media (max-width: 1200px) {
   :root {
-    --section-div-width: 970px;
+    --section-max-width: 970px;
   }
 }
 
 @media (max-width: 991px) {
   :root {
-    --section-div-width: 750px;
+    --section-max-width: 750px;
   }
 }
 
@@ -2714,13 +2714,13 @@ main .section.rfq-form-section .embed h4 {
   }
 
   main .section.rfq-form-section > div {
-    width: calc(var(--section-div-width) / 2);
+    width: calc(var(--section-max-width) / 2);
     display: inline-block;
     vertical-align: top;
   }
 
   main .section.rfq-form-section .default-content-wrapper:first-child {
-    margin-left: calc((100vw - var(--section-div-width)) / 2);
+    margin-left: calc((100vw - var(--section-max-width)) / 2);
     padding-top: 35px;
   }
 }
@@ -2856,8 +2856,8 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 .what-next main .section.newsletter-form {
   border: none;
   position: relative;
-  padding-left: calc((100dvw - var(--section-div-width)) / 2);
-  padding-right: calc((100dvw - var(--section-div-width)) / 2);
+  padding-left: calc((100dvw - var(--section-max-width)) / 2);
+  padding-right: calc((100dvw - var(--section-max-width)) / 2);
 }
 
 .what-next main .section.newsletter-form a {

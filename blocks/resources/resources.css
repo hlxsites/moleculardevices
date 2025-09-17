@@ -140,7 +140,7 @@ main .section .resources-wrapper {
   height: 0;
   margin: -200px 0 -200px -300px;
   border: 200px solid transparent;
-  border-left: 300px solid #fff;
+  border-left: 300px solid var(--color-white);
   border-right: none;
 }
 

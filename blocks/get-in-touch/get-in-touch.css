@@ -20,13 +20,9 @@
   padding: 0;
   width: 100%;
   display: block;
-  background: #fff;
+  background: var(--color-white);
   padding-top: 10px;
 }
-
-/* .get-in-touch .get-in-touch-form iframe {
-  min-height: 700px;
-} */
 
 .get-in-touch .hubspot-iframe-wrapper {
   margin-left: -15px;

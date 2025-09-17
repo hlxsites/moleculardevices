@@ -19,7 +19,7 @@
   }
 
   .hero-advanced .hero-inner a.button.secondary {
-   border: 2px solid #fff;
+   border: 2px solid var(--color-white);
    padding: 13px 18px;
   }
 

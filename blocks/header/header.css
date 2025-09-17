@@ -1,5 +1,5 @@
 /* stylelint-disable no-descending-specificity */
-:root{
+:root {
   --color-mm-product-card: #161e2d;
   --color-mm-border: #ffffff80;
   --color-mm-heading: #ffffffb2;
@@ -542,7 +542,7 @@ header .mobile-menu {
   left: 0;
   width: 100%;
   max-width: 100%;
-  background: #fff;
+  background: var(--color-white);
   height: calc(100% - 63px);
   top: 63px;
   overflow-x: hidden;
@@ -665,7 +665,7 @@ header .mobile-menu-subcategories {
   left: 0;
   top: 0;
   height: 150%;
-  background: #fff;
+  background: var(--color-white);
   box-shadow: none;
   position: fixed;
   padding: 0;

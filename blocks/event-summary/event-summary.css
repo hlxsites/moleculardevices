@@ -28,7 +28,7 @@
 }
 
 .event-summary {
-  background: #fff;
+  background: var(--color-white);
   max-width: 100%;
 }
 

@@ -1,4 +1,5 @@
-.feat_icon .fa-check:before {
+/* stylelint-disable no-duplicate-selectors, selector-class-pattern */
+.feat_icon .fa-check::before {
     color: #008298;
     border: 1px solid #008298;
     border-radius: 50%;
@@ -33,7 +34,7 @@
     text-align: center;
     width: 142px;
     padding: 0 15px;
-    background-color: #fff;
+    background-color: var(--color-white);
 }
 
 .txt_wrap {
@@ -59,7 +60,7 @@ a.req_quote {
     margin: 20px auto;
     background: #f8a306;
     font-size: 14px;
-    color: #fff;
+    color: var(--color-white);
     text-decoration: none;
     padding: 3px 2px
 }
@@ -99,7 +100,7 @@ a.req_quote {
     float: left;
     width: 155px;
     height: 300px;
-    background-color: #fff;
+    background-color: var(--color-white);
     vertical-align: middle;
     display: table-cell;
     padding: 237px 15px 0;

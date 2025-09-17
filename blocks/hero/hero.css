@@ -474,7 +474,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero-inner .container.two-column > div:nth-child(2) > div {
-    border-top: 2px solid #fff;
+    border-top: 2px solid var(--color-white);
     padding-top: 30px;
   }
 
@@ -686,7 +686,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero-inner .container.two-column > div:nth-child(2) {
-    border-left: 2px solid #fff;
+    border-left: 2px solid var(--color-white);
   }
 
   .hero-inner .container.two-column > div:nth-child(2).video-column {

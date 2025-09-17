@@ -56,7 +56,7 @@
 .modal-content {
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px #0003;
+  box-shadow: 0 2px 4px var(--color-black-alpha-30);
   width: 80vw;
   max-width: 800px;
   height: 90vh;

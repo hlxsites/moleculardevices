@@ -73,7 +73,7 @@ main .page-tabs-wrapper.sticky .page-tabs li a {
 main .page-tabs li[aria-selected="true"]::before {
   position: absolute;
   content: "";
-  background: #fff;
+  background: var(--color-white);
   width: 2px;
   height: 10px;
   margin-top: 50px;
@@ -87,7 +87,7 @@ main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
 main .page-tabs li[aria-selected="true"]::after {
   position: absolute;
   content: "";
-  background: #fff;
+  background: var(--color-white);
   width: 10px;
   height: 10px;
   border-radius: 50%;

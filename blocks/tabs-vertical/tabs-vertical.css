@@ -2,7 +2,6 @@ main .tabs-vertical-container {
   --tabs-vertical-heading-font-size-xl: 36px;
   --tabs-vertical-heading-font-size-l: 24px;
   --tabs-vertical-heading-font-size-m: 18px;
-  --tabs-vertical-background-color: #000;
 }
 
 main .tabs-vertical-container .tabs-vertical-wrapper {
@@ -34,7 +33,7 @@ main .tabs-vertical-container .cursor-pointer {
 }
 
 .tabs-vertical-main-content {
-    background-color: var(--tabs-vertical-background-color);
+    background-color: var(--color-black);
     color: var(--color-white);
     text-align: left;
 }
