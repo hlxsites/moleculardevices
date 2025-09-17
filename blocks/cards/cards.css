@@ -426,7 +426,3 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
 }
 
 /* ================ WHO WE ARE BLOCK ================ */
-
-/* fill color cards */
-.fill-color-card.cards > ul {
-}
