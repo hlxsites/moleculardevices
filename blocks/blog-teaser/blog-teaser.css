@@ -94,7 +94,7 @@
   font-size: 18px;
   line-height: 18px;
   padding: 15px 18px 16px;
-  background: var(--blog-gradient);
+  background: var(--gradient-theme);
 }
 
 @media (max-width: 991px) {

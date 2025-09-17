@@ -30,7 +30,7 @@ main .events label {
   position: absolute;
   left: 9px;
   background: none;
-  border: 2px solid #adb3b7;
+  border: 2px solid var(--color-gray-500);
 }
 
 .events input[type="checkbox"].filter-item:checked + span::before {

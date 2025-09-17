@@ -102,7 +102,7 @@ main .section.social-share-container {
   box-shadow: none;
   transition: all 0.2s ease-in-out;
   background-color: rgba(50 159 121 / 100%);
-  background-image: var(--blog-gradient);
+  background-image: var(--gradient-theme);
 }
 
 .full-article .share-event ul.button-container li:hover,

@@ -77,7 +77,7 @@
 
 .otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td.subtitle {
   font-weight: 600;
-  color: var(--text-electric-blue);
+  color: var(--color-highlight-2);
 }
 
 .onetrust .otnotice-content table tbody tr p:last-child,

@@ -69,7 +69,7 @@
   left: 0;
   height: 1px;
   width: 100%;
-  background: #eee;
+  background: var(--color-gray-275);
   position: absolute;
 }
 
@@ -134,7 +134,7 @@
   height: 4px;
   width: 100%;
   background-color: var(--color-tertiary);
-  background-image: var(--blog-gradient);
+  background-image: var(--gradient-theme);
 }
 
 .blog main .section.blog-heading > div:first-of-type p {
@@ -258,7 +258,7 @@ main .section.sidebar h4::after {
   height: 4px;
   width: 100%;
   background-color: var(--color-tertiary);
-  background-image: var(--blog-gradient);
+  background-image: var(--gradient-theme);
 }
 
 .blog main .section.sidebar .embed-wrapper {
@@ -275,7 +275,7 @@ main .section.sidebar h4::after {
   padding: 20px 16px;
   border-radius: 10px;
   font-size: 15px;
-  background: var(--blog-gradient-left);
+  background: var(--gradient-theme-left);
   color: var(--color-white);
   margin-top: -17px;
   margin-bottom: 50px;

@@ -88,7 +88,7 @@
   border-radius: 20px;
   overflow: hidden;
   background-color: var(--color-tertiary);
-  background-image: var(--blog-gradient-left);
+  background-image: var(--gradient-theme-left);
   text-align: center;
 }
 

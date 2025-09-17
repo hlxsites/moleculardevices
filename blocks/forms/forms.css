@@ -1,9 +1,4 @@
 /* stylelint-disable selector-class-pattern, no-descending-specificity */
-:root {
-  --input-color: #5f696b;
-  --border-color: #bebebe;
-}
-
 .forms.block .type-not-found-msg {
   list-style: none;
   margin: 0;
@@ -12,7 +7,7 @@
   border: 1px solid var(--color-danger);
   border-radius: 10px;
   padding: 1rem;
-  background-color: #ffe9e9;
+  background-color: var(--color-gray-50);
 }
 
 .forms.block:has( > .type-not-found-msg) > div {
@@ -31,7 +26,7 @@
 }
 
 .hs-form .hs-form-field .hs-field-desc {
-  color: var(--input-color);
+  color: var(--color-input);
   font-size: 10px;
   font-weight: 400;
   line-height: 16px;
@@ -43,7 +38,7 @@
 .hs-form .hs-form-field .hs-input {
   background-image: none;
   box-shadow: none;
-  color: var(--input-color);
+  color: var(--color-input);
   display: block;
   font-size: 15px;
   height: 40px;
@@ -59,7 +54,7 @@
 .hs-form .hs-form-field .hs-form-checkbox label span::before ,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
   background-color: var(--color-white);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-input-border);
   border-radius: 0;
 }
 
@@ -247,7 +242,7 @@ div.privacy > label {
 .hbspt-form .hs-richtext.hs-main-font-element {
   border: none;
   bottom: 0;
-  color: var(--input-color);
+  color: var(--color-input);
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4286;
@@ -473,7 +468,7 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 }
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: #6610f2;
+ background-color: var(--color-purple);
  color: var(--color-white);
 }
 main .category-form.forms-container[class*='3d-biology-form-section'],
@@ -482,14 +477,14 @@ main .category-form.forms-container[class*='3d-biology-form-section'] {
 }
 main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
 main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: #0d6efd;
+ background-color: var(--color-blue);
  color: var(--color-white);
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
   background-image: url('/templates/product/images/imaging.png');
 }
 main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
- background-color: #70dc90;
+ background-color: var(--color-light-green);
  color: var(--color-white);
 } */
 

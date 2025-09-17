@@ -100,7 +100,7 @@
   left: 0;
   height: 4px;
   width: 100%;
-  background: var(--blog-gradient);
+  background: var(--gradient-theme);
 }
 
 .newsroom main .section.right {

@@ -1,4 +1,10 @@
 /* stylelint-disable no-descending-specificity */
+:root{
+  --color-mm-product-card: #161e2d;
+  --color-mm-border: #ffffff80;
+  --color-mm-heading: #ffffffb2;
+  --gutter-product: 30px;
+}
 
 /* nav layout */
 header {
@@ -88,7 +94,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i,
 header .navbar-header > .header-logo-wrapper .cn-header-phone a,
 header .navbar-header > .header-logo-wrapper .cn-header-phone span {
   display: block;
-  color: #6a747c;
+  color: var(--color-gray-600);
 }
 
 header .navbar-header > .header-logo-wrapper .cn-header-phone i {
@@ -292,7 +298,7 @@ header .company-links > ul > li {
 }
 
 header .company-links a {
-  color: #6a747c;
+  color: var(--color-gray-600);
 }
 
 header .company-links img {
@@ -310,7 +316,7 @@ header .company-links img {
 
 header .company-links ul li {
   font-size: 10px;
-  color: #6a747c;
+  color: var(--color-gray-600);
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -377,7 +383,7 @@ header .mobile-menu .company-links li {
   text-align: center;
   text-transform: capitalize;
   font-size: 17px !important;
-  color: #6a747c;
+  color: var(--color-gray-600);
   width: 35%;
   margin-top: 15px;
 }
@@ -574,7 +580,7 @@ header .mobile-menu .search {
 
 header .mobile-menu .search > form {
   border: 0;
-  border-bottom: 1px solid #6a747c;
+  border-bottom: 1px solid var(--color-gray-600);
   margin: 0;
   padding: 0;
 }
@@ -942,7 +948,7 @@ header .nav-tabs .menu-nav-submenu > div {
 header .nav-tabs .menu-nav-submenu h1 {
   font-size: 36px;
   font-family: var(--ff-proxima-light);
-  color: var(--header-mega-menu-font-color);
+  color: var(--color-mm-heading);
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
@@ -1000,7 +1006,7 @@ header .nav-tabs .menu-nav-submenu-head {
   color: var(--color-white);
   height: 350px;
   background-position: 110% 154%;
-  background-color: var(--header-mega-menu-product-cards-background-color);
+  background-color: var(--color-mm-product-card);
   position: relative;
   padding-top: 20px;
   width: 50%;
@@ -1008,8 +1014,8 @@ header .nav-tabs .menu-nav-submenu-head {
 
 header .nav-tabs .menu-nav-submenu-sections {
   display: block;
-  border-right: 1px solid var(--header-mega-menu-border-color);
-  border-top: 1px solid var(--header-mega-menu-border-color);
+  border-right: 1px solid var(--color-mm-border);
+  border-top: 1px solid var(--color-mm-border);
   width: 330px;
   margin-top: 0;
 }
@@ -1048,7 +1054,7 @@ header .large-card-submenu {
   background-size: 250px;
   color: var(--color-white);
   background-position: 110% 154%;
-  background-color: var(--header-mega-menu-product-cards-background-color);
+  background-color: var(--color-mm-product-card);
   background-repeat: no-repeat;
   position: relative;
   padding: 20px 15px 10px;
@@ -1594,10 +1600,6 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
 }
 
 /* PRODUCTS MENU */
-:root {
-  --product-gutter: 30px;
-}
-
 header .products-right-submenu {
   padding: 0;
   display: flex;
@@ -1616,7 +1618,7 @@ header .products-right-submenu > div:first-child {
 header .products-right-submenu > div:first-child > div {
   background-color: rgba(0 0 0 / 30%);
   overflow: hidden;
-  padding: var(--product-gutter);
+  padding: var(--gutter-product);
   display: flex;
   flex-direction: column;
 }
@@ -1627,7 +1629,7 @@ header .products-right-submenu > div:first-child > div img {
 }
 
 header .products-right-submenu > div:first-child > div > p:first-of-type {
-  margin: calc(var(--product-gutter) * -1) calc(var(--product-gutter) * -1) 0;
+  margin: calc(var(--gutter-product) * -1) calc(var(--gutter-product) * -1) 0;
 }
 
 header .products-right-submenu > div:first-child > div > p:first-of-type > a:first-of-type:has(picture),
@@ -1638,7 +1640,7 @@ header .products-right-submenu > div:first-child > div > p:first-of-type > a pic
 
 header .products-right-submenu > div:first-child > div > p:nth-of-type(2) {
   margin-top: -57%;
-  margin-bottom: var(--product-gutter);
+  margin-bottom: var(--gutter-product);
 }
 
 header .products-right-submenu > div:first-child > div > p:nth-of-type(2) img {
@@ -2057,7 +2059,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     height: 2000px;
     padding-bottom: 9.4%;
     background-color: #008da9;
-    box-shadow: inset 0 19px 33px -28px #333f;
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-900);
   }
 
   header .menu-nav-search-view > div {
@@ -2201,7 +2203,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .nav-tabs .menu-nav-submenu {
     min-height: 782px;
-    box-shadow: inset 0 19px 33px -28px #333f;
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-900);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;

@@ -244,7 +244,7 @@
 }
 
 .cards.gallery.hover-gradient ul > li .cards-card-body {
-  background: var(--blog-gradient-left);
+  background: var(--gradient-theme-left);
 }
 
 .cards.gallery ul > li:hover .cards-card-body:not(:empty) {
@@ -426,3 +426,7 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
 }
 
 /* ================ WHO WE ARE BLOCK ================ */
+
+/* fill color cards */
+.fill-color-card.cards > ul {
+}

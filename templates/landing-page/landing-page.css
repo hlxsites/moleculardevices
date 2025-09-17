@@ -103,7 +103,7 @@
 
 .landing-page .no-form-embed .default-content-wrapper h2,
 .landing-page .download-form .default-content-wrapper h2 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
   font-size: 45px;
 }
 
@@ -144,7 +144,7 @@
 .landing-page main .section > div.forms-wrapper h4 ,
 .landing-page .embed h3,
 .landing-page .embed h4 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
   font-size: 30px !important;
   text-align: center;
   padding: 0 20px;

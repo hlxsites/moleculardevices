@@ -37,7 +37,7 @@ main div.section.quote-request-container + .section.wave {
 
 .rfq-product-wrapper {
   background: var(--color-black-alpha-70);
-  border: 1px solid var(--heading-color);
+  border: 1px solid var(--color-highlight);
   border-radius: 25px;
   color: var(--color-white);
   margin: auto;
@@ -84,7 +84,7 @@ main div.section.quote-request-container + .section.wave {
 .rfq-icon-item .rfq-icon-link {
   background: var(--color-white);
   box-shadow: 0 0 24px rgb(0 0 0 / 20%);
-  color: var(--heading-color);
+  color: var(--color-highlight);
   display: flex;
   flex-direction: column;
   font-family: var(--ff-proxima-light);
@@ -145,7 +145,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-thankyou-msg a {
-  color: var(--color-highlight);
+  color: var(--color-button-primary);
 }
 
 .rfq-thankyou-msg picture {
@@ -164,7 +164,7 @@ main div.section.quote-request-container + .section.wave {
   width: 100%;
   background: var(--color-black-alpha-70);
   border-radius: 25px;
-  border: 1px solid var(--heading-color);
+  border: 1px solid var(--color-highlight);
   padding: 30px 0 50px;
   max-width: 840px;
   margin: 0 auto;
@@ -209,7 +209,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .progress-bullet {
-  background: var(--heading-color);
+  background: var(--color-highlight);
   border-radius: 50%;
   display: inline-block;
   height: 20px;
@@ -273,7 +273,7 @@ main .rfq-form .actions {
 
 main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
-  background: var(--teal-gradient);
+  background: var(--gradient-cta);
   background-color: #298da9;
   border: none;
   border-radius: 20px;

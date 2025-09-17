@@ -68,7 +68,7 @@ main .section .featured-posts .post picture::after {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--overlay-gradient);
+  background-image: var(--gradient-overlay);
 }
 
 @media only screen and (min-width: 768px) {

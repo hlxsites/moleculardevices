@@ -43,4 +43,14 @@ export default function decorate(block) {
       cardBody.parentNode.removeChild(cardBody);
     });
   }
+
+  /* color preview card */
+  const hasColorPreviewClass = block.classList.contains('color-preview-cards');
+  if (hasColorPreviewClass) {
+    const cards = block.querySelectorAll(':scope > ul > li');
+    cards.forEach((card) => {
+      const bg = card.getElementsByClassName('cards-card-body')[0].textContent;
+      card.style.background = bg;
+    });
+  }
 }

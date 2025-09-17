@@ -47,7 +47,7 @@ main .section .default-content-wrapper {
   height: 4px;
   width: 100%;
   background-color: var(--color-tertiary);
-  background-image: var(--blog-gradient);
+  background-image: var(--gradient-theme);
 }
 
 .publication.full-article .section.carousel-heading h4 {

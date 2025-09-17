@@ -780,7 +780,7 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 
 .text-white .columns.what-next-columns a.button.secondary:hover {
   color: var(--color-link-hover);
-  border-color: var(--button-secondary-border-color);
+  border-color: var(--color-button-secondary);
 }
 
 .columns.what-next-columns .image-left div:last-child,

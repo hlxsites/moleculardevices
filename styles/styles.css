@@ -75,15 +75,23 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-primary: #008da9;
   --color-secondary: #ee7624;
   --color-tertiary: #6eb43f;
-  --color-highlight: #038296;
-  --color-text-primary: #34393d;
+  --color-primary-bg: #003b4d;
+  --color-highlight: #00758d;
+  --color-highlight-2: #007bc4;
   --color-link: #337ab7;
   --color-link-hover: #0066a4;
+  --color-button-primary: #038296;
+  --color-button-secondary: #4c9eaf;
+  --color-text-primary: #34393d;
+  --color-gradient-primary: #1591a4;
+  --color-gradient-secondary: #2e9f79;
+  --color-gradient-tertiary: #61b249;
+  --color-gradient-cta-primary: #00748d;
+  --color-gradient-cta-secondary: #0190ac;
   --color-danger: #f00;
-  --color-white: #fff;
-  --color-black: #000;
 
   /* Black Alpha Colors */
+  --color-transparent: rgb(0 0 0 / 0%);
   --color-black-alpha-10: rgb(0 0 0 / 10%);
   --color-black-alpha-20: rgb(0 0 0 / 20%);
   --color-black-alpha-30: rgb(0 0 0 / 30%);
@@ -93,6 +101,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-black-alpha-70: rgb(0 0 0 / 70%);
   --color-black-alpha-80: rgb(0 0 0 / 80%);
   --color-black-alpha-90: rgb(0 0 0 / 90%);
+  --color-black: rgb(0 0 0 / 100%);
 
   /* Gray Scale Hierarchy */
   --color-gray-900: #333; /* dark gray */
@@ -112,17 +121,14 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gray-100: #f2f2f2;
   --color-gray-50: #f3f3f3;
   --color-gray-25: #f6f6f6; /* accordion trigger */
+  --color-white: #fff;
 
-  /* colors */
-  --text-electric-blue: #007bc4;
-  --midnight-green: #003b4d;
-  --heading-color: #00758d;
-  --button-secondary-border-color: #4c9eaf;
-  --header-mega-menu-border-color: #ffffff80;
-  --header-mega-menu-font-color: #ffffffb2;
-  --header-mega-menu-product-cards-background-color: #161e2d;
+  /* Color Input */
+  --color-input: #5f696b;
+  --color-input-border: #bebebe;
 
   /* Whats New Colors */
+  --color-blue: #0d6efd;
   --color-purple: #660ff3;
   --color-cyan: #6be6df;
   --color-pink: #d31e83;
@@ -130,12 +136,32 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-light-green: #3be086;
 
   /* Gradients */
-  --gradient-blog: linear-gradient(90deg, #1591a4 0, #2e9f79 50%, #61b249 100%);
-  --gradient-blog-left: linear-gradient(to left, #1591a4 0, #2e9f79 50%, #61b249 100%);
-  --gradient-overlay: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%), rgb(0 0 0 / 80%) 80%);
-  --gradient-bottom-overlay: linear-gradient(to bottom, rgba(255 255 255 / 0%) 55%, rgba(0 0 0 / 90%));
-  --gradient-teal: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
-  --gradient-sign-up-newsletter: linear-gradient(var(--color-purple) 0, var(--color-cyan) 100%);
+  --gradient-theme: linear-gradient(
+    90deg,
+    var(--color-gradient-primary) 0,
+    var(--color-gradient-secondary) 50%,
+    var(--color-gradient-tertiary) 100%
+  );
+  --gradient-theme-left: linear-gradient(
+    to left,
+    var(--color-gradient-primary) 0,
+    var(--color-gradient-secondary) 50%,
+    var(--color-gradient-tertiary) 100%
+  );
+  --gradient-overlay: linear-gradient(
+    var(--color-transparent),
+    var(--color-transparent),
+    var(--color-black-alpha-80) 80%
+  );
+  --gradient-bottom-overlay: linear-gradient(to bottom, var(--color-transparent) 55%, var(--color-black-alpha-90));
+  --gradient-cta: linear-gradient(
+    to bottom,
+    var(--color-gradient-cta-primary) 0%,
+    var(--color-gradient-cta-secondary) 52%,
+    var(--color-gradient-cta-primary) 100%,
+    var(--color-gradient-cta-primary) 100%
+  );
+  --gradient-whats-new: linear-gradient(var(--color-purple) 0, var(--color-cyan) 100%);
 
   /* Font Families */
   --ff-proxima-regular:
@@ -562,8 +588,8 @@ a.button.primary:hover .button-border {
 a.button.secondary,
 button.secondary {
   font-style: normal;
-  border: 2px solid var(--button-secondary-border-color);
-  color: var(--color-highlight);
+  border: 2px solid var(--color-button-secondary);
+  color: var(--color-button-primary);
 }
 
 a.button.secondary:hover,
@@ -582,10 +608,10 @@ main select {
   padding: 5px 15px;
   box-sizing: border-box;
   background-color: var(--color-white);
-  border: 1px solid #bebebe;
+  border: 1px solid var(--color-input-border);
   border-radius: 0;
   box-shadow: none;
-  color: #565656;
+  color: var(--color-input);
   font-size: 15px;
   height: 40px;
   line-height: 1.4286;
@@ -1389,7 +1415,7 @@ main div.section.wave.bluegreen::after {
 main div.section.wave.bluegreen2:not([style*="background-image"]) {
   padding-bottom: 150px;
   position: relative;
-  background: var(--blog-gradient) !important;
+  background: var(--gradient-theme) !important;
   background-image: none;
   margin-bottom: 30px;
 }
@@ -1418,7 +1444,7 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
 @media only screen and (max-width: 767px) {
   main .section.bluegreen {
-    background: var(--blog-gradient) !important;
+    background: var(--gradient-theme) !important;
     background-image: none;
   }
 
@@ -1711,7 +1737,7 @@ main .section.background-molecules {
 }
 
 .videos-and-webinars .hero.wave .hero-inner p:first-of-type {
-  color: var(--color-highlight);
+  color: var(--color-button-primary);
   font-size: 25px;
   font-weight: 600;
 }
@@ -1735,7 +1761,7 @@ main .section.background-molecules {
 
 .homepage h1,
 .homepage h2 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
 }
 
 .homepage h2 {
@@ -2101,7 +2127,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .section.multicolor-subtitle > div.default-content-wrapper > h3:last-of-type {
-  color: var(--text-electric-blue);
+  color: var(--color-highlight-2);
 }
 
 /*
@@ -2184,7 +2210,7 @@ main .section.orange-title h4 {
 }
 
 main .block.electric-blue-main-title h2 {
-  color: var(--text-electric-blue);
+  color: var(--color-highlight-2);
 }
 
 /*
@@ -2517,7 +2543,7 @@ main .section.no-margin-bottom {
 /* eBook contact */
 .section.background-teal,
 .section.ebook-contact {
-  background-color: var(--color-highlight);
+  background-color: var(--color-button-primary);
   color: var(--color-white);
 }
 
@@ -2652,7 +2678,7 @@ main .section.tabs.rfq-form-section h3 {
 }
 
 main .section.tabs.rfq-form-section h2 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
 }
 
 main .section.tabs.rfq-form-section h3 {
