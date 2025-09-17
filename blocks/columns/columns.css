@@ -48,7 +48,7 @@ main .section > div.columns-wrapper {
   content: '';
   width: 94%;
   padding-top: 50px;
-  border-bottom: 2px solid var(--color-gray-375);
+  border-bottom: 2px solid var(--color-gray-350);
   margin-left: 14px;
   margin-bottom: 16px;
 }

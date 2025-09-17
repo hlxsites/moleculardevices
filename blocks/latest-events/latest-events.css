@@ -8,7 +8,7 @@ main .section .latest-events > div {
 }
 
 main .section .latest-events .list .item {
-  border-bottom: 2px solid var(--color-gray-375);
+  border-bottom: 2px solid var(--color-gray-350);
   padding: 10px 0;
 }
 

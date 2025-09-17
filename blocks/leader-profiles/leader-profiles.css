@@ -16,8 +16,8 @@
 
 .leader-profiles > ul > li {
   background-color: var(--color-white);
-  border: 1px solid var(--color-gray-375);
-  box-shadow: 0 2px 10px 3px var(--color-gray-375);
+  border: 1px solid var(--color-gray-350);
+  box-shadow: 0 2px 10px 3px var(--color-gray-350);
   flex-basis: 100%;
   margin-bottom: 30px;
 }

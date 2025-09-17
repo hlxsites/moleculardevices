@@ -83,6 +83,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-button-primary: #038296;
   --color-button-secondary: #4c9eaf;
   --color-text-primary: #34393d;
+  --color-gray-blue-light: #b3d8e0;
   --color-gradient-primary: #1591a4;
   --color-gradient-secondary: #2e9f79;
   --color-gradient-tertiary: #61b249;
@@ -112,8 +113,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gray-500: #adb3b7;
   --color-gray-450: #ababab; /* border color */
   --color-gray-400: #c5c5c5;
-  --color-gray-375: #ccc; /* highlight background */
-  --color-gray-350: #b3d8e0; /* carousel slider background */
+  --color-gray-350: #ccc; /* highlight background */
   --color-gray-300: #ddd;
   --color-gray-275: #eee; /* overlay background */
   --color-gray-200: #f0f1f2;
@@ -808,7 +808,7 @@ main .section.columns-2 > div {
 }
 
 main .section.highlight {
-  background-color: var(--color-gray-375);
+  background-color: var(--color-gray-350);
 }
 
 main .section.background-grey + .section.wave,
@@ -904,7 +904,7 @@ main.error .section > div {
 }
 
 main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--color-gray-375);
+  border-top: 1px solid var(--color-gray-350);
   padding-top: 45px;
 }
 
@@ -1648,7 +1648,7 @@ main .section.background-molecules {
 
 .company-links li.cart-link i.fa.fa-shopping-cart {
   font-size: 19px;
-  color: var(--color-gray-375);
+  color: var(--color-gray-350);
   position: relative;
   padding-right: 5px;
 }
@@ -2419,7 +2419,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 }
 
 main .columns-separator-line .columns-wrapper .columns {
-  border-bottom: 1px solid var(--color-gray-375);
+  border-bottom: 1px solid var(--color-gray-350);
   padding-bottom: 3rem;
 }
 

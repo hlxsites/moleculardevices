@@ -174,7 +174,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .breadcrumbs li + li::before {
-  color: var(--color-gray-375);
+  color: var(--color-gray-350);
 }
 
 .hero-inner .video-icon {

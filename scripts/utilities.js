@@ -248,3 +248,48 @@ export async function scrollToSection(section, offset = SCROLL_OFFSET) {
     }
   }, 100);
 }
+
+/* check if css var is dark or light */
+export function isCssVarDark(bgColor) {
+  let color = bgColor;
+
+  if (color.includes('gradient')) {
+    const match = color.match(/(#[0-9a-fA-F]{3,6}|rgba?\([^)]+\)|rgb\([^)]+\))/);
+    color = match ? match[1] : '#ffffff';
+  }
+
+  let r = 255;
+  let g = 255;
+  let b = 255;
+  let opacity = 1;
+
+  if (color.startsWith('#')) {
+    let hex = color.slice(1);
+    if (hex.length === 3) {
+      hex = hex.split('').map((char) => char + char).join('');
+    }
+
+    r = parseInt(hex.substring(0, 2), 16);
+    g = parseInt(hex.substring(2, 4), 16);
+    b = parseInt(hex.substring(4, 6), 16);
+  } else if (color.startsWith('rgb')) {
+    const parts = color.match(/[\d.]+/g);
+    if (parts && parts.length >= 3) {
+      [r, g, b] = parts.slice(0, 3).map(Number);
+      opacity = parts.length === 4 ? parseFloat(parts[3]) : 1;
+      const opacityMatch = color.match(/\/\s*([\d.]+)%/);
+      if (opacityMatch) {
+        opacity = parseFloat(opacityMatch[1]) / 100;
+      }
+    }
+  }
+
+  if (opacity < 0.5) return false;
+
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 128;
+}
+
+export function applyAdaptiveTextColor(el, bgVar) {
+  el.style.color = isCssVarDark(bgVar) ? 'var(--color-white)' : 'var(--color-black)';
+}

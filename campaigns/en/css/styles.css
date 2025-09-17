@@ -97,8 +97,8 @@ display: inline-block; display:-ms-flexbox; display:-webkit-flex; display:flex; 
   #logo-container{padding-left:10px;}
   #lower-head nav{display:block;}
   #lower-head .menu-button-holder{display:block; float:right;}
-  .open-menu{display:block; margin:15px 10px 0; font-weight:bold; border:1px solid var(--color-gray-375); border-bottom: none;}
-  .main-nav-menu > li{margin-left:0; display:block; border-bottom:1px solid var(--color-gray-375);}
+  .open-menu{display:block; margin:15px 10px 0; font-weight:bold; border:1px solid var(--color-gray-350); border-bottom: none;}
+  .main-nav-menu > li{margin-left:0; display:block; border-bottom:1px solid var(--color-gray-350);}
   .main-nav-menu a, .main-nav-menu > li > a{padding:10px 54px 10px 10px; background:var(--color-gray-25); border:0; border-bottom:0;}
   .main-nav-menu li ul li{color:#fff;}
   .main-nav-menu li ul li a{color:inherit;}

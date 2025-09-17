@@ -1,5 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { a, li as liHelper, div as divHelper } from '../../scripts/dom-helpers.js';
+import { applyAdaptiveTextColor } from '../../scripts/utilities.js';
 
 // prettier-ignore
 export default function decorate(block) {
@@ -51,6 +52,7 @@ export default function decorate(block) {
     cards.forEach((card) => {
       const bg = card.getElementsByClassName('cards-card-body')[0].textContent;
       card.style.background = bg;
+      applyAdaptiveTextColor(card, bg);
     });
   }
 }
