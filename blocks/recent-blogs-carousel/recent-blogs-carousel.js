@@ -13,7 +13,6 @@ export async function createRecentResourceCarousel(block, data) {
     infiniteScroll: true,
     autoScroll: false,
     defaultStyling: true,
-    hasStepByScroll: true,
     visibleItems: [
       { items: 1, condition: (width) => width < 768 },
       { items: 2, condition: (width) => width < 1200 },

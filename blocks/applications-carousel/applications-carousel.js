@@ -71,7 +71,6 @@ export default async function decorate(block) {
       dotButtons: false,
       infiniteScroll: true,
       autoScroll: false,
-      hasStepByScroll: true,
       visibleItems: [
         { items: 1, condition: (width) => width < 768 },
         { items: 2, condition: (width) => width < 1200 },

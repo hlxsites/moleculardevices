@@ -1,33 +1,23 @@
+import { a, div, p } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { getNewsData } from '../news/news.js';
 
 function renderItem(item) {
-  const newsItem = document.createElement('div');
-  newsItem.classList.add('news-carousel-item');
-
-  const newsItemLink = document.createElement('a');
-  newsItemLink.href = item.path;
-  newsItem.append(newsItemLink);
-
-  const newsThumb = document.createElement('div');
-  newsThumb.classList.add('news-carousel-item-thumb');
-  newsThumb.append(createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]));
-  newsItemLink.appendChild(newsThumb);
-
-  const newsCaption = document.createElement('div');
-  newsCaption.classList.add('news-carousel-caption');
-
-  const newsCaptionText = document.createElement('div');
-  newsCaptionText.classList.add('news-carousel-caption-text');
-  newsCaptionText.innerHTML = `
-    <p>${formatDate(unixDateToString(item.date))}</p>
-    <p>${item.title}</p>
-  `;
-
-  newsCaption.appendChild(newsCaptionText);
-  newsItemLink.appendChild(newsCaption);
+  const newsItem = div({ class: 'news-carousel-item' },
+    a({ href: item.path },
+      div({ class: 'news-carousel-item-thumb' },
+        createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]),
+      ),
+      div({ class: 'news-carousel-caption' },
+        div({ class: 'news-carousel-caption-text' },
+          p(formatDate(unixDateToString(item.date))),
+          p(item.title),
+        ),
+      ),
+    ),
+  );
 
   return newsItem;
 }
