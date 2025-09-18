@@ -11,7 +11,7 @@ main .section.card-list-container .default-content-wrapper h2 {
 }
 
 main .section div.card-list-wrapper {
-  width: 1170px;
+  width: var(--section-max-width);
   max-width: unset;
   padding: 0 15px;
   margin-top: 40px;
@@ -53,17 +53,7 @@ main .card-list .carousel-item .card {
   box-shadow: 0 1px 10px var(--color-black-alpha-20);
 }
 
-@media only screen and (max-width: 1200px) {
-  main .section div.card-list-wrapper {
-    width: 970px;
-  }
-}
-
 @media only screen and (max-width: 992px) {
-  main .section div.card-list-wrapper {
-    width: 750px;
-  }
-
   main .card-list .carousel-item {
     width: 45%;
   }
@@ -71,10 +61,6 @@ main .card-list .carousel-item .card {
 
 /* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  main .section div.card-list-wrapper {
-    width: 100%;
-  }
-
   main .card-list {
     justify-content: start !important;
     flex-wrap: nowrap;

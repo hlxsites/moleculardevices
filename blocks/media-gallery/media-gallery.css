@@ -18,9 +18,8 @@
 
 .media-gallery .overlay-content {
   margin: 30px auto;
-  width: 100%;
+  width: var(--section-max-width);
   padding: 0 15px;
-  max-width: 1170px;
   position: relative;
   text-align: center;
 }
@@ -127,10 +126,6 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
 }
 
 @media (min-width: 768px) {
-  .media-gallery .overlay-content {
-    max-width: 750px;
-  }
-
   main .media-gallery .overlay-carousel .section .default-content-wrapper {
     padding-top: 25px;
     padding-bottom: 25px;
@@ -138,18 +133,6 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
 
   main .media-gallery .overlay-carousel .section .default-content-wrapper:has(p.picture) {
     height: 100%;
-  }
-}
-
-@media (min-width: 992px) {
-  .media-gallery .overlay-content {
-    max-width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .media-gallery .overlay-content {
-    max-width: 1170px;
   }
 }
 

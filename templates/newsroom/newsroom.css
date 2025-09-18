@@ -43,10 +43,6 @@
 }
 
 @media (min-width: 768px) {
-  .newsroom main .section {
-    --newsroom-section-width: 750px;
-  }
-
   .newsroom main .section.left,
   .newsroom main .section.right {
     display: inline-block;
@@ -54,19 +50,15 @@
   }
 
   .newsroom main .section.left {
-    width: calc(var(--newsroom-section-width) * 0.66);
-    margin-left: calc((100vw / 2) - (var(--newsroom-section-width) / 2));
+    width: calc(var(--section-max-width) * 0.66);
+    margin-left: calc((100vw / 2) - (var(--section-max-width) / 2));
   }
 
   .newsroom main .section.right {
-    width: calc(var(--newsroom-section-width) * 0.33);
+    width: calc(var(--section-max-width) * 0.33);
   }
 }
 @media (min-width: 992px) {
-  .newsroom main .section {
-    --newsroom-section-width: 970px;
-  }
-
   .newsroom main .section.hero-container .hero-inner .container.two-column {
     padding-bottom: 80px;
   }
@@ -77,12 +69,6 @@
 
   .newsroom main .section.hero-container .hero-inner .container.two-column > div:nth-child(2) {
     width: 65%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .newsroom main .section {
-    --newsroom-section-width: 1170px;
   }
 }
 

@@ -107,7 +107,7 @@
 }
 
 .blog main .section.blog-wide > div {
-  max-width: 1170px;
+  max-width: var(--container-width);
   width: unset;
   margin: 0 auto;
 }

@@ -8,22 +8,29 @@
 
 main div.carousel-wrapper {
   width: 100%;
-  position: relative;
   max-width: unset;
 }
 
+main div.carousel-wrapper,
 main div.carousel-wrapper.container-width-carousel {
   position: relative;
-  width: 90%;
+}
+
+main div.fragments-carousel-wrapper.carousel-wrapper,
+main div.carousel-wrapper.container-width-carousel {
+  width: var(--section-max-width);
 }
 
 main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
-main .carousel {
-  box-sizing: border-box;
+main .carousel,
+main .carousel-item {
   display: flex;
+}
+
+main .carousel {
   overflow: hidden;
   margin: auto;
   width: 100%;
@@ -31,11 +38,9 @@ main .carousel {
 }
 
 main .carousel-item {
-  box-sizing: border-box;
   width: 100%;
   margin-right: 30px;
   flex: 1 0 auto;
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 50px 80px;
@@ -217,11 +222,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 768px) {
-  main div.fragments-carousel-wrapper.carousel-wrapper,
-  main div.carousel-wrapper.container-width-carousel {
-    width: 750px;
-  }
-
   main .section.global-carousel .carousel h2:only-child,
   main .section.global-carousel .carousel h2 + h3 {
     margin-bottom: 48px;
@@ -229,11 +229,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 992px) {
-  main div.fragments-carousel-wrapper.carousel-wrapper,
-  main div.carousel-wrapper.container-width-carousel {
-    width: 970px;
-  }
-
   main .carousel.full-bg .primary {
     background-color: transparent;
     border: 1px solid var(--color-white);
@@ -290,11 +285,6 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 @media only screen and (min-width: 1200px) {
-  main div.fragments-carousel-wrapper.carousel-wrapper,
-  main div.carousel-wrapper.container-width-carousel {
-    width: 1170px;
-  }
-
   main .three-items-visible .carousel-nav-button {
     display: none !important;
   }
@@ -396,7 +386,7 @@ main .section.global-carousel .carousel h2 + h3 {
 
 /* WAVE carousel variant */
 main div.carousel-wrapper.wave {
-  width: 1170px;
+  width: var(--section-max-width);
 }
 
 main .carousel.wave {
@@ -457,10 +447,6 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
-  main div.carousel-wrapper.wave {
-    width: 970px;
-  }
-
   main .carousel.wave {
     max-width: 90%;
     height: auto;
@@ -482,20 +468,12 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
 }
 
 @media only screen and (max-width: 992px) {
-  main div.carousel-wrapper.wave {
-    width: 750px;
-  }
-
   main .carousel.wave .carousel-item-image img {
     display: none;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  main div.carousel-wrapper.wave {
-    width: 100%;
-  }
-
   main .carousel.wave {
     /*
       Ugly hack because you cannot mix overflow-x: hidden with overflow-y: visible

@@ -943,6 +943,7 @@ header .nav-tabs .menu-nav-submenu > div {
   display: block;
   position: relative;
   padding-top: 30px;
+  width: var(--section-max-width);
 }
 
 header .nav-tabs .menu-nav-submenu h1 {
@@ -2226,7 +2227,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .nav-tabs .menu-nav-submenu > div {
     min-height: inherit !important;
-    width: 970px;
   }
 
   .header .nav-tabs .menu-nav-submenu > div > h2 {
@@ -2293,10 +2293,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   html[lang="fr"] header .nav-tabs > li.header-rfq > a {
     font-size: 14px;
-  }
-
-  header .nav-tabs .menu-nav-submenu > div {
-    width: 1170px;
   }
 }
 

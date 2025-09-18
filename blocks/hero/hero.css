@@ -120,6 +120,7 @@ main .section .hero-advanced-wrapper {
 
 .hero-inner > div {
   margin: auto;
+  width: var(--section-max-width);
 }
 
 .hero-inner .container {
@@ -640,10 +641,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   /* Video Gallery Variant - Desktop -- End */
 
-  .hero-inner > div {
-    width: 750px;
-  }
-
   .hero-inner h1 {
     font-size: 45px;
   }
@@ -717,10 +714,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     font-size: 70px;
   }
 
-  .hero-inner > div {
-    width: 970px;
-  }
-
   .hero-inner .container > div {
     float: left;
   }
@@ -756,12 +749,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .video-icon {
     height: 320px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero-inner > div {
-    width: 1170px;
   }
 }
 

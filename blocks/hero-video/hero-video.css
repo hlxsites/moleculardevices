@@ -62,7 +62,7 @@ main .teaser-video-container::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0 0 0 / 50%);
+  background-color: var(--color-black-alpha-50);
   z-index: 1;
   position: absolute;
 }
@@ -70,7 +70,9 @@ main .teaser-video-container::before {
 main .overlay {
   text-align: center;
   z-index: 1;
-  width: 1170px;
+  width: var(--section-max-width);
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
   display: flex;
   flex-flow: column wrap;
@@ -241,10 +243,6 @@ main .full-video-container .play-pause-fullscreen-button svg {
 }
 
 @media only screen and (max-width: 1200px) {
-  main .overlay {
-    width: 970px;
-  }
-
   main .full-video-container {
     background-color: var(--color-black);
   }
@@ -263,10 +261,6 @@ main .full-video-container .play-pause-fullscreen-button svg {
   :root {
     --heading-font-size-xxl: 36px;
     --heading-font-size-xl: 36px;
-  }
-
-  main .overlay {
-    width: 750px;
   }
 
   main .overlay h1 {
@@ -295,12 +289,6 @@ main .full-video-container .play-pause-fullscreen-button svg {
     display: block;
   }
 
-  main .overlay {
-    margin-right: auto;
-    margin-left: auto;
-    width: 100%;
-  }
-
   main .full-video-container .play-pause-fullscreen-button svg {
     width: 100px;
     height: 100px;
@@ -309,7 +297,7 @@ main .full-video-container .play-pause-fullscreen-button svg {
   main .overlay .video-banner-btn {
     width: unset;
     max-width: unset;
-    background: rgb(0 0 0 / 80%);
+    background: var(--color-black-alpha-80)
   }
 
   main .section.hero-video-container > div.hero-video-wrapper picture,

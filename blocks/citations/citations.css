@@ -12,29 +12,11 @@ main .citations-container .default-content-wrapper h3,
 
 main .citations-container > .default-content-wrapper {
   padding: 0;
-  width: auto;
   padding-left: 90px;
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media (min-width: 768px) {
-  main .citations-container > .default-content-wrapper {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  main .citations-container > .default-content-wrapper {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .citations-container > .default-content-wrapper {
-    width: 1170px;
-  }
+  width: var(--section-max-width);
 }
 
 .citations .citation {
