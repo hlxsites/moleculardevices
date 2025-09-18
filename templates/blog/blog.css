@@ -318,6 +318,7 @@ main .section.sidebar h4::after {
 
 .blog main .card-list-filter ul {
   padding-left: 0;
+  margin-bottom: 0;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */

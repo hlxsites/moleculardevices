@@ -1,13 +1,14 @@
 .breadcrumbs {
-  --breadcrumbs-font-size: 12px;
-
   padding-top: 20px;
+}
+
+.breadcrumbs,
+.events .breadcrumbs {
   padding-bottom: 30px;
 }
 
 .events .breadcrumbs {
   padding-top: 40px;
-  padding-bottom: 30px;
 }
 
 .news main .breadcrumbs,
@@ -47,7 +48,7 @@
 }
 
 @media (max-width: 767px) {
-.breadcrumbs {
+  .breadcrumbs {
     display: none;
   }
 }

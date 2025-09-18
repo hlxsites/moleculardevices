@@ -89,8 +89,20 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gradient-tertiary: #61b249;
   --color-gradient-cta-primary: #00748d;
   --color-gradient-cta-secondary: #0190ac;
+
+  /* State Colors */
   --color-state-danger: #f00;
   --color-state-success: #09b571;
+
+  /* Accent Colors */
+  --color-accent-agenda-hover: rgb(19 154 218 / 25%);
+  --color-accent-cards-gallery: rgb(0 117 141 / 80%);
+  --color-accent-blog-author: #dcedf4;
+  --color-accent-card-caption: #12141f;
+  --color-accent-card-badge: #6db43e;
+  --color-accent-card-badge-border: #3e592c;
+  --color-accent-card-list-filter-separator: #6d6c8d;
+  --color-accent-card-list-filter-blog-separator: #61a60e;
 
   /* Black Alpha Colors */
   --color-transparent: rgb(0 0 0 / 0%);
@@ -190,6 +202,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --list-font-size-l: 20px;
   --list-font-size-m: 18px;
   --list-font-size-s: 14px;
+  --breadcrumbs-font-size: 12px;
 
   /* Layout Variables */
   --nav-height: 170px;
@@ -2324,7 +2337,7 @@ main .list-inline .icon img {
 
 main .list-inline .icon svg,
 main .list-inline .icon svg g[fill],
-main .list-inline .icon svg path[style*='fill']  {
+main .list-inline .icon svg path[style*="fill"] {
   fill: currentcolor;
 }
 

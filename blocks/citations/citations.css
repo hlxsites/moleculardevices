@@ -23,15 +23,18 @@ main .citations-container > .default-content-wrapper {
   margin-bottom: 40px;
 }
 
+.citations .citation-icon,
+.citations .citation-info {
+  display: inline-block;
+}
+
 .citations .citation-icon {
   width: 60px;
   height: 60px;
-  display: inline-block;
   vertical-align: top;
 }
 
 .citations .citation-info {
-  display: inline-block;
   width: 91%;
   margin-left: 20px;
 }
@@ -91,12 +94,9 @@ main .citations-container > .default-content-wrapper {
   .citations .citation-icon {
     width: 30px;
     height: 30px;
-    display: inline-block;
-    vertical-align: top;
   }
 
   .citations .citation-info {
-    display: inline-block;
     width: 80%;
     margin-left: 10px;
   }
