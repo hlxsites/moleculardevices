@@ -838,7 +838,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0 0 0/30%);
+  background-color: var(--color-black-alpha-30);
   z-index: -1;
 }
 

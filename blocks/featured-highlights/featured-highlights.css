@@ -186,7 +186,7 @@
   }
 
   .featured-highlights {
-    box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
+    box-shadow: 1px 3px 20px -4px var(--color-black-alpha-40);
     width: 1150px;
     height: 1150px;
     position: absolute;
@@ -224,7 +224,7 @@
   #product-finder {
     bottom: -80px;
     left: 110px;
-    box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
+    box-shadow: 1px 3px 20px -4px var(--color-black-alpha-40);
   }
 
   #product-finder::after {

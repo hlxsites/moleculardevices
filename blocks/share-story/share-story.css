@@ -84,7 +84,7 @@ body.modal-open {
 }
 
 .submit-story-modal-overlay {
-  background-color: rgb(0 0 0/ 80%);
+  background-color: var(--color-black-alpha-80);
   bottom: 0;
   cursor: pointer;
   height: 100%;

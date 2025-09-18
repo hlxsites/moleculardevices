@@ -83,7 +83,7 @@ main div.section.quote-request-container + .section.wave {
 
 .rfq-icon-item .rfq-icon-link {
   background: var(--color-white);
-  box-shadow: 0 0 24px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 24px var(--color-black-alpha-20);
   color: var(--color-highlight);
   display: flex;
   flex-direction: column;

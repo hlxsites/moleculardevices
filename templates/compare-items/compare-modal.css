@@ -115,7 +115,7 @@ main .pro-comparison-result .pro-container {
   background: var(--color-white);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
   transition: all 0.3s;
   display: flex;
   flex-flow: column nowrap;

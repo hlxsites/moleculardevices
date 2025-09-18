@@ -136,7 +136,7 @@
 }
 
 .landing-page main .download-form.background-dark .embed {
-  background-color: rgb(0 0 0 / 50%);
+  background-color: var(--color-black-alpha-50);
   color: var(--color-white);
 }
 

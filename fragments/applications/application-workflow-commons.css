@@ -261,7 +261,7 @@
 .workflow_elisa .image-section p,
 .workflow_elisa .box-section p,
 .workflow_elisa .box-section h3 {
-  color: #4d4d4d;
+  color: var(--color-black-alpha-70);
 }
 
 .workflow_elisa .image-section p {

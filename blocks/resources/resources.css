@@ -62,7 +62,7 @@ main .section .resources-wrapper {
 }
 
 .resources .video-container {
-  box-shadow: 0 1px 15px rgba(0 0 0 / 20%);
+  box-shadow: 0 1px 15px var(--color-black-alpha-20);
   height: 309px;
 }
 

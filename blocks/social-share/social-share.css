@@ -108,7 +108,7 @@ main .section.social-share-container {
 .full-article .share-event ul.button-container li:hover,
 .blog .share-event ul.button-container li:hover {
   background-image: none;
-  box-shadow: 4px 2px 4px rgba(0 0 0 / 50%);
+  box-shadow: 4px 2px 4px var(--color-black-alpha-50);
 }
 
 .full-article .share-event ul.button-container li i,

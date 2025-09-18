@@ -89,7 +89,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gradient-tertiary: #61b249;
   --color-gradient-cta-primary: #00748d;
   --color-gradient-cta-secondary: #0190ac;
-  --color-danger: #f00;
+  --color-state-danger: #f00;
   --color-state-success: #09b571;
 
   /* Black Alpha Colors */
@@ -2323,7 +2323,8 @@ main .list-inline .icon img {
 }
 
 main .list-inline .icon svg,
-main .list-inline .icon svg g[fill] {
+main .list-inline .icon svg g[fill],
+main .list-inline .icon svg path[style*='fill']  {
   fill: currentcolor;
 }
 
