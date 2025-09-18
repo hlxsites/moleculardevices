@@ -1,5 +1,5 @@
 .modal-block {
-  background-color: #008da9;
+  background-color: var(--color-primary);
   padding: 10px;
   cursor: pointer;
   width: 170px;
@@ -21,7 +21,7 @@
 }
 
 .modal-block:hover a {
-  color: #008da9;
+  color: var(--color-primary);
 }
 
 .modal-block:hover::after {
@@ -67,7 +67,7 @@
   width: 100vw;
   max-width: 800px;
   height: 100vh;
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-150);
   border: none;
 }
 
@@ -77,7 +77,7 @@
     margin-left: 8.5vw;
     max-width: 600px;
     height: 100vh;
-    background-color: var(--color-gray-200);
+    background-color: var(--color-gray-150);
     border: none;
   }
 }

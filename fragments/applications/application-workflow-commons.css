@@ -30,15 +30,10 @@
   margin: 0 0 10px;
 }
 
-.video .video-ico {
-  position: relative;
-}
-
 .video .video-ico::before {
+  content: "";
   width: 90px;
   height: 90px;
-  position: absolute;
-  content: "";
   display: block;
   border-radius: 100%;
   background: var(--color-black-alpha-70) url("/fragments/workflow/play-ico.png") no-repeat center center;
@@ -56,8 +51,42 @@
   height: auto;
 }
 
+.video .video-ico,
+.timeline-article,
+.image_part .spectra-flow,
+.image-section.on_image,
+.timeline-article .content-left,
+.timeline-article .content-right,
+.workflow_elisa .image-section p,
+.workflow_elisa .box-section p,
 #conference-timeline {
   position: relative;
+}
+
+.video .video-ico::before,
+.meta-date.left-arrow::after,
+.meta-date.right-arrow::after,
+.image-section.on_image .text-part,
+.timeline-article p span.article-number,
+.timeline-article .meta-date,
+#conference-timeline .conference-center-line {
+  position: absolute;
+}
+
+.text-wrap,
+.image-section .image_part,
+#conference-timeline .timeline-start,
+.workflow_elisa .image-section h3,
+.workflow_elisa .image-section p.center-align,
+.timeline-article .meta-date .date,
+.timeline-article .meta-date .month,
+#conference-timeline .timeline-end {
+  text-align: center;
+}
+
+#conference-timeline,
+#conference-timeline .timeline-start,
+#conference-timeline .timeline-end {
   width: 100%;
   margin: 0 auto;
 }
@@ -68,23 +97,19 @@
   font-family: var(--ff-proxima-light);
   font-size: 48px;
   text-transform: capitalize;
-  background: #0066a4;
+  background: var(--color-link-hover);
   padding: 7px 23px;
   color: var(--color-white);
-  width: 100%;
-  text-align: center;
-  margin: 0 auto;
   border-radius: 20px;
 }
 
 #conference-timeline .conference-center-line {
-  position: absolute;
   width: 20px;
   height: 83%;
   top: 272px;
   left: 0;
   right: 0;
-  background: var(--color-gray-150);
+  background: var(--color-gray-275);
   z-index: -1;
   margin: 0 auto;
 }
@@ -101,7 +126,6 @@
 .timeline-article {
   width: 100%;
   height: 100%;
-  position: relative;
   overflow: hidden;
   margin: 0 0 100px;
   padding: 10px 20px;
@@ -128,10 +152,6 @@
   box-shadow: 0 1px 16px var(--color-black-alpha-20);
 }
 
-.image_part .spectra-flow {
-  position: relative;
-}
-
 .ask-me-part.image_part.bubbles-part,
 .image_part.bubbles-part {
   position: static;
@@ -144,17 +164,17 @@
 }
 
 .ask-me-part.image_part.bubbles-part {
-  background-image: url('/fragments/workflow/ask-me-bubble.png');
+  background-image: url("/fragments/workflow/ask-me-bubble.png");
 }
 
 .image_part.bubbles-part {
-  background-image: url('/fragments/workflow/chat-bbls.png');
+  background-image: url("/fragments/workflow/chat-bbls.png");
 }
 
 .meta-date.left-arrow::after,
 .meta-date.right-arrow::after {
   content: "";
-  background-image: url('/fragments/workflow/bullet-arrow.png');
+  background-image: url("/fragments/workflow/bullet-arrow.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 142px;
@@ -164,7 +184,6 @@
   bottom: 0;
   right: 86px;
   margin: auto;
-  position: absolute;
 }
 
 .meta-date.left-arrow::after {
@@ -185,11 +204,9 @@
 
 .text-wrap {
   padding: 50px 41px;
-  text-align: center;
 }
 
 .workflow_elisa .image-section .text-wrap p {
-  color: #008da9;
   font-size: 20px;
   font-weight: 500;
 }
@@ -198,8 +215,10 @@
   color: var(--color-text-primary);
 }
 
-.workflow_elisa .image-section .text-wrap h3 {
-  color: #008da9;
+.workflow_elisa .image-section .text-wrap h3,
+.workflow_elisa .image-section .text-wrap p,
+.workflow_elisa .image-section .text-wrap a {
+  color: var(--color-primary);
 }
 
 .workflow_elisa .image-section .text-wrap h3.orange-title {
@@ -207,7 +226,6 @@
 }
 
 .workflow_elisa .image-section .text-wrap a {
-  color: #008da9;
   font-weight: 500;
 }
 
@@ -219,16 +237,7 @@
   width: 100%;
 }
 
-.image-section .image_part {
-  text-align: center;
-}
-
-.image-section.on_image {
-  position: relative;
-}
-
 .image-section.on_image .text-part {
-  position: absolute;
   bottom: 82px;
 }
 
@@ -243,51 +252,45 @@
 
 .timeline-article .content-left,
 .timeline-article .content-right {
-  position: relative;
   width: auto;
   background-color: var(--color-white);
   padding: 0;
   min-height: 400px;
 }
 
+.workflow_elisa .image-section p,
+.workflow_elisa .box-section p,
+.workflow_elisa .box-section h3 {
+  color: #4d4d4d;
+}
+
 .workflow_elisa .image-section p {
   padding: 0;
   font-weight: 400;
-  color: #4d4d4d;
   font-size: 18px;
-  position: relative;
 }
 
 .workflow_elisa .image-section h3 {
-  color: #0066a4;
+  color: var(--color-link-hover);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
   margin-bottom: 25px;
   font-size: 30px;
-  text-align: center;
 }
 
 .workflow_elisa .box-section p {
   padding: 0;
   font-weight: 400;
-  color: #4d4d4d;
   font-size: 18px;
-  position: relative;
   text-align: left;
 }
 
 .workflow_elisa .box-section h3 {
-  color: #4d4d4d;
   margin-bottom: 25px;
   font-size: 30px;
 }
 
-.workflow_elisa .image-section p.center-align {
-  text-align: center;
-}
-
 .timeline-article p span.article-number {
-  position: absolute;
   font-weight: 300;
   font-size: 44px;
   top: 10px;
@@ -311,14 +314,13 @@
 }
 
 .timeline-article .meta-date {
-  position: absolute;
   top: 75px;
   left: 0;
   width: 90px;
   height: 90px;
   color: var(--color-white);
   border-radius: 100%;
-  background: #0066a4;
+  background: var(--color-link-hover);
   right: 0;
   margin: 0 auto;
 }
@@ -326,7 +328,6 @@
 .timeline-article .meta-date .date,
 .timeline-article .meta-date .month {
   display: block;
-  text-align: center;
   font-weight: 900;
 }
 
@@ -405,13 +406,10 @@
 
   .image-section.on_image .text-part.wash_microplate {
     margin-bottom: 0;
-    margin-top: 0;
   }
 
-  .image-section.on_image .text-part.add_detection {
-    margin-top: 0;
-  }
-
+  .image-section.on_image .text-part.wash_microplate,
+  .image-section.on_image .text-part.add_detection,
   .image-section.on_image .text-part.add_substrate {
     margin-top: 0;
   }
@@ -516,7 +514,6 @@
 
   .text-wrap {
     padding: 52px 40px;
-    text-align: center;
   }
 
   .image_part.bubbles-part {
@@ -533,25 +530,13 @@
     font-size: 24px;
   }
 
-  .image-section.on_image .text-part {
-    position: static;
-    margin-top: 0;
-  }
-
-  .image-section.on_image .text-part.wash_microplate {
-    position: static;
-    margin-top: 0;
-  }
-
-  .image-section.on_image .text-part.add_detection {
-    position: static;
-    margin-top: 0;
-  }
-
   .workflow_elisa .box-section h3 {
     font-size: 25px;
   }
 
+  .image-section.on_image .text-part,
+  .image-section.on_image .text-part.wash_microplate,
+  .image-section.on_image .text-part.add_detection,
   .image-section.on_image .text-part.add_substrate {
     margin-top: 0;
     position: static;

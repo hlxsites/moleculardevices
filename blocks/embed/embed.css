@@ -16,7 +16,7 @@ main .embed {
   position: absolute;
   display: block;
   max-width: 90%;
-  background-color: white;
+  background-color: var(--color-white);
   padding: 10px;
   border-radius: 5px;
   width: 90%;

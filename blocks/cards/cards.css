@@ -101,7 +101,7 @@
 }
 
 .cards.left-border li {
-  border-left: 5px solid #008da9;
+  border-left: 5px solid var(--color-primary);
 }
 
 .cards.strong p {
@@ -159,7 +159,7 @@
 }
 
 .cards.black a {
-  color: black;
+  color: var(--color-black);
 }
 
 .cards.green a {

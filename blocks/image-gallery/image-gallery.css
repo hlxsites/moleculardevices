@@ -61,12 +61,12 @@ main .section > div.image-gallery-wrapper {
 }
 
 .image-gallery-lightbox-overlay .icon svg path {
-  fill: white;
+  fill: var(--color-white);
 }
 
 .image-gallery-lightbox-overlay .icon.gallery-button-close svg path {
   fill: none;
-  color: white;
+  color: var(--color-white);
 }
 
 .gallery-button-left,
@@ -198,7 +198,7 @@ main .section > div.image-gallery-wrapper {
 .image-gallery-lightbox-overlay .image-gallery > div > div > p:last-child {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  color: white;
+  color: var(--color-white);
   margin-bottom: 20px;
   text-align: center;
 }

@@ -74,7 +74,7 @@ main .carousel.request-quote-carousel {
 }
 
 .carousel.request-quote-carousel .card .button-container a {
-  color: #008ca8;
+  color: var(--color-primary);
   font-size: var(--body-font-size-s);
   display: flex;
   min-width: 135px;

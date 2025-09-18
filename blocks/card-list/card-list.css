@@ -347,7 +347,7 @@ main .section div.card-list-wrapper.culture-media-and-reagents {
 .card-list.additional-products .button-container .button,
 .card-list.culture-media-and-reagents .button-container .button {
   font-size: 18px;
-  color: #008ca8;
+  color: var(--color-primary);
   padding: 0;
   border: none;
   min-width: unset;

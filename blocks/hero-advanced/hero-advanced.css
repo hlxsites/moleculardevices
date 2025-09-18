@@ -30,7 +30,7 @@
 
 @media (max-width: 767px) {
   .hero-advanced .hero-inner {
-    background-color: var(--color-gray-200);
+    background-color: var(--color-gray-150);
     color: var(--color-text-primary);
     padding-top: 30px;
   }

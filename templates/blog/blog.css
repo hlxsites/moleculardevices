@@ -69,13 +69,13 @@
   left: 0;
   height: 1px;
   width: 100%;
-  background: var(--color-gray-275);
+  background: var(--color-gray-200);
   position: absolute;
 }
 
 .blog main h2 {
   font-size: 54px;
-  color: #008da9;
+  color: var(--color-primary);
   font-family: inherit;
   line-height: 1;
   font-weight: 100;

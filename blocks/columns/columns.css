@@ -409,7 +409,7 @@ main .section > div.columns-wrapper {
 
 .columns.light-and-dark-grey > div:nth-child(odd) div:nth-child(even) > h3,
 .columns.light-and-dark-grey > div:nth-child(even) div:nth-child(odd) > h3 {
-  color: #008da9;
+  color: var(--color-primary);
 }
 
 .columns.layout-20-80.partners-list-columns ul {
@@ -488,8 +488,8 @@ main .section > div.columns-wrapper {
 .columns.large-numbers > div > div:first-child > p:first-child {
   display: block;
   font-size: 42px;
-  color: #008da9;
-  border: 1px solid #008da9;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   border-radius: 50%;
   padding: 2px 16px;
   width: 60px;

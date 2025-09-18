@@ -61,7 +61,7 @@ main .hero-advanced-wrapper {
 .hero-inner h1 {
   margin-top: 20px;
   margin-bottom: 35px;
-  color: white;
+  color: var(--color-white);
   line-height: 1;
 }
 
@@ -195,7 +195,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner.white-bg {
-  background: var(--color-gray-200);
+  background: var(--color-gray-150);
 }
 
 .hero-inner.white-bg,

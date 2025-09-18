@@ -72,7 +72,7 @@
   font-weight: 700;
   letter-spacing: 0.4px;
   background: var(--color-link-hover);
-  color: white;
+  color: var(--color-white);
 }
 
 .otnotice-content .otnotice-sections .otnotice-section-content table tbody tr td.subtitle {

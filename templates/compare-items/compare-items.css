@@ -20,18 +20,8 @@ main .compare-banner .container {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
-
-@media (min-width: 992px) {
-  main .compare-banner .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .compare-banner .container {
-    width: 1170px;
-  }
+  width: 100%;
+  max-width: var(--section-max-width);
 }
 
 main .compare-banner .compare-row {
@@ -87,21 +77,9 @@ main .compare-banner .gradiant-blue-btn.btn {
 
 main .compare-banner .gradiant-blue-btn.btn:hover {
   background: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 /20%);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
   color: var(--color-tertiary);
   cursor: pointer;
-}
-
-main .compare-banner .gradiant-blue-btn.btn:hover .btn_bdr {
-  display: block;
-  width: 50%;
-  margin-bottom: 0;
-  position: absolute;
-  margin-left: 0;
-  height: 4px;
-  background: var(--color-link-hover);
-  left: 25%;
-  bottom: -5px;
 }
 
 main .compare-banner .compare-data .gradiant-blue-btn.btn {

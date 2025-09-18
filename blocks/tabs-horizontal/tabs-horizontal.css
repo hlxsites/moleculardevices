@@ -8,7 +8,7 @@
 
 .tabs-horizontal h2 {
   font-size: 42px;
-  color: #5f696b;
+  color: var(--color-input);
   font-family: var(--ff-proxima-regular);
 }
 

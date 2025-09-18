@@ -113,7 +113,7 @@ main .section.ordering-options-container > div:last-child {
   font-size: 14px;
   height: 40px;
   margin-bottom: 3px;
-  background: var(--color-gray-200);
+  background: var(--color-gray-150);
   border: 1px solid var(--color-gray-500);
   white-space: nowrap;
   display: flex;
@@ -137,7 +137,7 @@ main .section.ordering-options-container > div:last-child {
   align-items: center;
   cursor: pointer;
   background-color: transparent;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .ordering-options .variant-item-store .variant-item-store-count > span i:active {
@@ -171,7 +171,7 @@ main .section.ordering-options-container > div:last-child {
   .ordering-options .variant-item-store .variant-item-store-content a.button.primary {
     font-size: 12px;
     padding: 9px 12px 10px;
-    margin: 0 0  10px;
+    margin: 0 0 10px;
     max-height: 49px;
   }
 
@@ -181,7 +181,7 @@ main .section.ordering-options-container > div:last-child {
   }
 }
 
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .ordering-options:not(.store-hidden) .variant-item {
     display: inline-block;
   }
@@ -217,7 +217,7 @@ main .section.ordering-options-container > div:last-child {
 .order-container .price-container,
 .order-container .quantity-container,
 .order-container .drop-down {
- width: calc(50% - 30px);
+  width: calc(50% - 30px);
 }
 
 @media only screen and (max-width: 480px) {
@@ -296,7 +296,7 @@ main .section.ordering-options-container > div:last-child {
   margin: 0;
   left: 0;
   background-color: #f1f1f1;
-  box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 8px 16px 0 var(--color-black-alpha-20);
   z-index: 1;
   border: 1px solid var(--color-black);
 }
@@ -311,7 +311,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down-content a {
-  color: black;
+  color: var(--color-black);
   padding: 20px 16px;
   display: block;
   border-top: none;
@@ -324,7 +324,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down-content a + a {
-  border-top: 1px solid #dfdfdf
+  border-top: 1px solid #dfdfdf;
 }
 
 .drop-down-content a:hover {
@@ -336,7 +336,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down.show .drop-down-btn {
-  box-shadow: inset 0 3px 5px rgba(0 0 0 / 12.5%);
+  box-shadow: inset 0 3px 5px var(--color-black-alpha-10);
 }
 
 .order-container .price-container {
@@ -380,7 +380,7 @@ main .section.ordering-options-container > div:last-child {
 .order-container .add-to-cart:hover {
   cursor: pointer;
   background-color: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 .order-container .quantity-label {
@@ -401,7 +401,7 @@ main .section.ordering-options-container > div:last-child {
 .order-container .quantity-counter button.quantity-button {
   display: block;
   border: 1px solid gray;
-  color: black;
+  color: var(--color-black);
   font-size: 30px;
   width: 55px;
   height: 55px;
@@ -436,7 +436,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .add-to-cart-success::before {
-  background-color: #09b571;
+  background-color: var(--color-state-success);
   color: var(--color-white);
   content: "Added...";
   display: flex;
@@ -456,9 +456,9 @@ main .section.ordering-options-container > div:last-child {
   width: 100%;
   height: 100%;
   background-color: var(--color-black);
-  -moz-opacity: .5;
-  -khtml-opacity: .5;
-  opacity: .5;
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
   z-index: 10000;
   display: block;
 }
@@ -469,6 +469,6 @@ main .section.ordering-options-container > div:last-child {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   z-index: 20000;
 }

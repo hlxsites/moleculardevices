@@ -322,7 +322,7 @@ body .thank-you-page h4 {
 
 .landing-page.thankyou .carousel.cards p.button-container a {
   border: 1px solid var(--color-tertiary);
-  color: black;
+  color: var(--color-black);
 }
 
 .landing-page.thankyou .carousel.cards .card > div:last-child > p:first-child {

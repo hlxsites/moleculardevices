@@ -57,7 +57,7 @@ main .carousel.applications-carousel {
 }
 
 .carousel.applications-carousel .card .button-container a {
-  color: #008ca8;
+  color: var(--color-primary);
 }
 
 main .section.applications-carousel-container:has(.applications-carousel.block:empty) {

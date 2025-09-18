@@ -16,18 +16,23 @@ main .pro-comparison-result.show {
   display: block;
 }
 
+main .pro-comparison-result .container,
+main .pro-comparison-result .col-xs-12,
+main .pro-comparison-result .col-sm-3 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 main .pro-comparison-result .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
   width: 100%;
   max-width: var(--section-max-width);
 }
 
 main .pro-comparison-result .product-comparison {
   position: relative;
-  background: var(--color-gray-200);
+  background: var(--color-gray-150);
   height: 95vh;
 }
 
@@ -47,8 +52,6 @@ main .pro-comparison-result .col-xs-12 {
   float: left;
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 main .pro-comparison-result .section-heading {
@@ -69,13 +72,12 @@ main .pro-comparison-result .btn-primary {
 
 main .pro-comparison-result .btn-primary:hover {
   color: var(--color-white);
-  background-color: #286090;
+  background-color: var(--color-link-hover);
 }
 
 main .pro-comparison-result .btn {
   padding: 6px 12px;
   font-size: 14px;
-  line-height: 1.4286;
   border: 1px solid transparent;
   border-radius: 4px;
   min-width: 53px;
@@ -238,15 +240,19 @@ main
   .comparison-table
   .comparison-row:not(:first-child)
   .row
-  [class^="col-"]:nth-child(odd):not(:first-child) {
-  background: #e2e4e6;
+  [class^="col-"]:nth-child(even):not(:first-child),
+main
+  .pro-comparison-result
+  .comparison-table
+  .comparison-row:first-child
+  .row
+  [class^="col-"]:nth-child(even):not(:first-child) {
+  background: var(--color-black-alpha-5);
 }
 
 main .pro-comparison-result .col-sm-3 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 main
@@ -335,6 +341,6 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
 
   main .pro-comparison-result .scroll_div .comparison-cell.title {
     font-weight: bold;
-    background-color: #f4f4f4;
+    background-color: var(--color-gray-50);
   }
 }

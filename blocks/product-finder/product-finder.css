@@ -313,7 +313,7 @@
 .product-finder-container .card-caption svg {
   height: 18px;
   width: 18px;
-  color: #008da9;
+  color: var(--color-primary);
   vertical-align: middle;
 }
 

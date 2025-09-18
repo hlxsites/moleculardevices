@@ -90,9 +90,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gradient-cta-primary: #00748d;
   --color-gradient-cta-secondary: #0190ac;
   --color-danger: #f00;
+  --color-state-success: #09b571;
 
   /* Black Alpha Colors */
   --color-transparent: rgb(0 0 0 / 0%);
+  --color-black-alpha-5: rgb(0 0 0 / 5%);
   --color-black-alpha-10: rgb(0 0 0 / 10%);
   --color-black-alpha-20: rgb(0 0 0 / 20%);
   --color-black-alpha-30: rgb(0 0 0 / 30%);
@@ -115,9 +117,9 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gray-400: #c5c5c5;
   --color-gray-350: #ccc; /* highlight background */
   --color-gray-300: #ddd;
-  --color-gray-275: #eee; /* overlay background */
-  --color-gray-200: #f0f1f2;
-  --color-gray-150: #e6e6e6; /* submenu card */
+  --color-gray-275: #e6e6e6; /* submenu card */
+  --color-gray-200: #eee; /* overlay background */
+  --color-gray-150: #f0f1f2;
   --color-gray-100: #f2f2f2;
   --color-gray-50: #f3f3f3;
   --color-gray-25: #f6f6f6; /* accordion trigger */
@@ -546,7 +548,7 @@ button:focus {
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--color-gray-275);
+  background-color: var(--color-gray-200);
   cursor: unset;
 }
 
@@ -626,7 +628,7 @@ main textarea {
 }
 
 main pre {
-  background-color: var(--color-gray-275);
+  background-color: var(--color-gray-200);
   padding: 1em;
   border-radius: 0.25em;
   overflow-x: auto;
@@ -653,7 +655,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--color-gray-275);
+  border-bottom: 1px solid var(--color-gray-200);
 }
 
 main img,
@@ -2152,7 +2154,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 .category .default-content-wrapper h3 a {
-  color: black;
+  color: var(--color-black);
 }
 
 .category .default-content-wrapper h2 + h3 {
@@ -2321,12 +2323,6 @@ main .section.space-wrappers > div {
   gap: 1rem;
   padding-left: 0;
   margin-bottom: 0;
-}
-
-main .icon svg,
-main .icon img {
-  min-width: 24px;
-  min-height: 24px;
 }
 
 main .list-inline .icon svg,
