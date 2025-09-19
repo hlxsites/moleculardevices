@@ -180,7 +180,7 @@
 
 .footer-newsletter-form label.privacy,
 .footer-newsletter-form div.privacy > label {
-  color: #5f696b;
+  color: var(--color-input);
 }
 
 .footer-newsletter-form label.privacy a,
@@ -194,7 +194,7 @@
   background-image: none;
   border: 1px solid #bebebe;
   border-radius: 0;
-  color: #565656;
+  color: var(--color-input);
   display: block;
   font-size: 15px;
   height: 40px;
@@ -426,7 +426,7 @@
   position: absolute;
   right: 12px;
   top: 0;
-  background-color: #6b737b;
+  background-color: var(--footer-lp-border-top);
   width: 1px;
   height: 100%;
 }

@@ -560,12 +560,12 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
 
 /* WAVE Blue Variant */
 main div.carousel-wrapper.wave.blue .carousel-dot-button.selected {
-  background-color: #23bfd9;
+  background-color: var(--carousel-blue-wave-indicator);
 }
 
 /* WAVE BlueGreen Variant */
 main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
-  background-color: #86c440;
+  background-color: var(--carousel-green-wave-indicator);
 }
 
 main .carousel .carousel-item-text blockquote {

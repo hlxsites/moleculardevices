@@ -33,7 +33,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 5px;
-  background-color: #004c70;
+  background-color: var(--hubspot-modal-block-after);
 }
 
 .modal {
@@ -42,7 +42,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000e6;
+  background-color: var(--color-black-alpha-90);
   display: none;
   justify-content: center;
   align-items: center;

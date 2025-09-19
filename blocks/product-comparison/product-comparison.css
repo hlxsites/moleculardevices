@@ -39,7 +39,7 @@
 }
 
 .product-comparison .product-heading .darkgrey {
-  background-color: #8a959b;
+  background-color: var(--product-comparison-dark-gray);
   color: var(--color-gray-900);
 }
 
@@ -106,7 +106,7 @@
 }
 
 .product-comparison .responsive-table tbody td:first-child {
-  background-color: #525b61;
+  background-color: var(--product-comparison-first-cell);
   min-width: 160px;
   padding: 15px;
   border-right: 1px solid var(--color-gray-350);
@@ -171,7 +171,7 @@
 }
 
 .product-comparison ::-webkit-scrollbar-thumb {
-  background-color: #00b0bd;
+  background-color: var(--product-comparison-scrollbar-thumb);
   border-radius: 10px;
 }
 

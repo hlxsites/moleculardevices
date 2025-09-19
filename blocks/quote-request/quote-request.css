@@ -223,9 +223,9 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .progress-bar {
-  background-color: #020302;
+  background-color: var(--quote-request-progess-bar);
   border-radius: 20px;
-  box-shadow: inset 7px 0 58px #716f6f;
+  box-shadow: inset 7px 0 58px var(--quote-request-progess-bar-inset);
   height: 50px;
   margin: 55px auto 0;
   position: relative;
@@ -254,7 +254,7 @@ main .rfq-form .hs-form-field {
 }
 
 main .rfq-form .hs-form-field .hs-field-desc {
-  color: #e2e2e2;
+  color: var(--quote-request-form-description);
   font-size: 13px;
   font-weight: 100;
   letter-spacing: 0.5px;
@@ -274,7 +274,7 @@ main .rfq-form .actions {
 main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
   background: var(--gradient-cta);
-  background-color: #298da9;
+  background-color: var(--quote-request-form-cta);
   border: none;
   border-radius: 20px;
   color: var(--color-white);
@@ -292,7 +292,7 @@ main .rfq-form .privacy{
 
 main .rfq-form .privacy,
 main .rfq-form .privacy > label {
-  color: #999;
+  color: var(--quote-request-form-privacy-label);
   line-height: 1.4em;
   margin: 0 auto;
   font-size: 13px;

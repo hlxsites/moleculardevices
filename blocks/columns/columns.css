@@ -328,7 +328,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
-  background-color: #6a747b;
+  background-color: var(--video-teaser-bg);
   color: var(--color-white);
   margin-left: 0;
   padding: 32px;
@@ -340,7 +340,7 @@ main .section > div.columns-wrapper {
 
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) {
-  background-color: #aaa;
+  background-color: var(--column-light-dark);
   color: var(--color-white);
 }
 
@@ -436,7 +436,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.innovation div > p:nth-of-type(2) {
-  color: #6eb441;
+  color: var(--column-innovation-text);
 }
 
 .columns.innovation div > p:last-of-type {
@@ -922,7 +922,7 @@ main .section .cards.cols-4 ul li {
 
 main .section .cards.cols-4 .cards-card-wrapper {
   height: 100%;
-  background-color: #f0f7f8;
+  background-color: var(--column-col-4-bg);
   color: var(--color-black);
 }
 

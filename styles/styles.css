@@ -103,6 +103,35 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-accent-card-badge-border: #3e592c;
   --color-accent-card-list-filter-separator: #6d6c8d;
   --color-accent-card-list-filter-blog-separator: #61a60e;
+  --carousel-blue-wave-indicator: #23bfd9;
+  --carousel-green-wave-indicator: #86c440;
+  --video-teaser-bg: #6a747b;
+  --column-innovation-text: #6eb441;
+  --column-light-dark: #aaa;
+  --column-col-4-bg:  #f0f7f8;
+  --coveo-checkbox-span-label-suffix: #67768b;
+  --coveo-facet-value-count: #a5a6a8;
+  --coveo-checkbox-span-label: #63666a;
+  --coveo-checkbox-border: #bcc3ca;
+  --footer-lp-border-top: #6b737b;
+  --header-language-dropdown-hover: #f5f5f5;
+  --header-menu-nav-search-bar: #555;
+  --hero-video-overlay-bg: #00b8dd;
+  --hubspot-modal-block-after:  #004c70;
+  --image-list-text: #292e32;
+  --ordering-option-dropdown-content:#f1f1f1;
+  --product-comparison-dark-gray: #8a959b;
+  --product-comparison-first-cell: #525b61;
+  --product-comparison-scrollbar-thumb: #00b0bd;
+  --quote-request-progess-bar: #020302;
+  --quote-request-progess-bar-inset: #716f6f;
+  --quote-request-form-description: #e2e2e2;
+  --quote-request-form-cta: #298da9;
+  --quote-request-form-privacy-label: #999;
+  --assay-kits-feat-text: #008298;
+  --assay-kits-wrap-head: #666;
+  --application-workflow-timeline-author: #242424;
+  --rfq-form-section-embed: #666667;
 
   /* Black Alpha Colors */
   --color-transparent: rgb(0 0 0 / 0%);
@@ -2708,7 +2737,7 @@ main .section.tabs.rfq-form-section ul {
 main .section.rfq-form-section .embed {
   width: 100%;
   color: var(--color-white);
-  background-color: #666667;
+  background-color: var(--rfq-form-section-embed);
   padding: 20px 10px 0;
   margin-top: 0;
 }
