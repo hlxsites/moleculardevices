@@ -213,21 +213,17 @@ export function videoButton(container, button, url) {
   });
 }
 
-function isLink(text) {
-  const urlPattern = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/\S*)?$/i;
-  return urlPattern.test(text);
-}
-
 export function isExternalLink(link) {
   if (!link?.href) return false;
 
-  let url;
+  const href = link.getAttribute('href') || '';
+  if (/^(tel:|mailto:|javascript:|#)/i.test(href)) return false;
 
-  if (isLink(link.href)) {
-    const { pathname, origin } = isLink(link.href) ? new URL(link.href) : link.href;
-    url = new URL(pathname, origin);
-  } else {
-    url = new URL(link.href, window.location.origin);
+  let url;
+  try {
+    url = new URL(href, window.location.origin);
+  } catch {
+    return false;
   }
 
   const internalLinks = [
