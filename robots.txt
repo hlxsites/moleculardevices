@@ -82,6 +82,10 @@ Disallow: /en/assets/app-note/bpd/automated-microbial-plating-streaking-with-qpi
 Disallow: /en/assets/app-note/dd/img/high-content-screening-ai-analysis-increase-insights-complex-3d-assay
 Disallow: /en/assets/app-note/bpd/qpix-flex-color-based-colony-grouping-microbial-research-screening
 Disallow: /en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-imagexpress-hcs-ai
+Disallow: /en/assets/app-note/br/effect-of-shaking-conditions-on-microbial-growth
+Disallow: /en/assets/app-note/br/3d-cultures-high-throughput-halt-assay
+
+
 
 
 # infographics
@@ -111,7 +115,7 @@ Disallow: /en/assets/tutorials-videos/dd/cns/controlling-external-devices-using-
 Disallow: /en/assets/tutorials-videos/dd/cns/setting-up-automatic-analysis-in-pclamp
 Disallow: /en/assets/tutorials-videos/dd/cns/how-to-use-scope-trigger-feature-in-clampex
 Disallow: /en/assets/tutorials-videos/dd/img/tutorial-videos-thankyou
-Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation
+Disallow: /en/assets/tutorials-videos/bpd/colony-picking-automation$
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/transforms-cardiovascular-research-with-cellxpress-ai
 Disallow: /en/assets/tutorials-videos/br/gmp-glp-labs-meet-data-integrity-guidelines-in-softmax-pro-gxp-7-1-1
 Disallow: /en/assets/tutorials-videos/br/how-to-perform-parallel-line-analysis-in-softmax-pro-software
@@ -128,6 +132,9 @@ Disallow: /en/assets/tutorials-videos/dd/img/evolution-liver-toxicity-high-conte
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/innovation-in-cardiac-drug-discovery      
 Disallow: /en/assets/tutorials-videos/dd/img/image-to-insight-machine-learning-high-content-screening
 Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
+
+
+
 
 #EU webinars to imaging video gallery page
 

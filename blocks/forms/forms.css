@@ -342,8 +342,8 @@ input[type="submit"] {
 .forms.events h3,
 .forms.inquiry-with-thankyou h3 {
   text-align: center;
-  font-size: 36px;
   color: var(--color-primary);
+  font-size: var(--heading-font-size-xxl);
   margin-bottom: 30px;
 }
 

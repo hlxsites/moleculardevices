@@ -351,6 +351,7 @@ async function writeCoveoSitemapXML(index) {
     console.error('❌ Error writing coveo-xml.xml:', err);
   }
 }
+
 async function main() {
   const index = await getData();
   const icons = await getCoveoIcons();
