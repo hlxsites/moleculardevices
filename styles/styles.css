@@ -871,11 +871,14 @@ main .section.horizontal-line {
 }
 
 /* news and publication */
+.event,
 main .event-container {
   --heading-font-size-xxl: 36px;
   --heading-font-size-xl: 30px;
   --heading-font-size-l: 20px;
+}
 
+main .event-container {
   padding: 0 15px;
 }
 
@@ -888,6 +891,11 @@ main .event-container::after {
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
+  }
+
+  .event,
+  main .event-container {
+    --heading-font-size-xxl: 24px;
   }
 }
 
@@ -1052,7 +1060,7 @@ main .section.features-section {
 }
 
 main .section.features-section .default-content-wrapper,
-main .section.applications-carousel-container .default-content-wrapper  {
+main .section.applications-carousel-container .default-content-wrapper {
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;

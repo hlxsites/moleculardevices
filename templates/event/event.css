@@ -5,7 +5,7 @@
 }
 
 .event main .section .default-content-wrapper h2:only-child {
-  font-size: 36px;
+  font-size: var(--heading-font-size-xxl);
   font-family: var(--ff-proxima-regular);
   text-align: center;
 }
