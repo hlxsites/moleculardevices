@@ -5,7 +5,9 @@
 }
 
 .event main .section .default-content-wrapper h2:only-child {
-  padding-bottom: 20px;
+  font-size: 36px;
+  font-family: var(--ff-proxima-regular);
+  text-align: center;
 }
 
 .event main .section .default-content-wrapper {
@@ -23,4 +25,15 @@
 
 .event main .event-container p:last-of-type {
   padding-bottom: 100px;
+}
+
+.event main .section .product-carousel-wrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .event main .section .product-carousel .carousel-item .card-thumb {
+    height: 200px;
+  }
 }

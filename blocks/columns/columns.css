@@ -685,7 +685,7 @@ main .section > div.columns-wrapper {
   font-family: inherit;
 }
 
-.product .section.columns-container .columns.columns-2-cols > div h3 {
+.product:not(.category) .section.columns-container .columns.columns-2-cols > div h3 {
   font-size: 24px;
   margin-bottom: 0;
 }
@@ -699,6 +699,14 @@ main .section > div.columns-wrapper {
 .product .section.columns-container .columns.columns-2-cols > div ul li {
   margin-bottom: 10px;
   line-height: 20px;
+}
+
+main .columns.columns-align-top > div {
+  align-items: flex-start;
+}
+
+main .columns.columns-align-center > div {
+  align-items: center;
 }
 
 main .columns.columns-align-bottom > div {

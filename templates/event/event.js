@@ -8,7 +8,7 @@ async function renderDetails(insertAfterElement) {
 }
 
 export default async function buildAutoBlocks() {
-  const title = document.getElementById('event-details');
+  const title = document.querySelector('h1');
   if (title) title.classList.add('event-title');
 
   const moreBtn = document.querySelector('main strong > a:last-of-type');

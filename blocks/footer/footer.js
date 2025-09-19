@@ -1,7 +1,6 @@
 import {
   decorateIcons, decorateBlock, fetchPlaceholders, getMetadata,
-  createOptimizedPicture,
-  toClassName,
+  createOptimizedPicture, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -11,7 +10,6 @@ import {
   decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
-import { getFormId } from '../forms/formHelper.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 
@@ -108,7 +106,7 @@ async function buildNewsEvents(container) {
   addEventListeners(container);
 }
 
-function capitalize(sting) {
+function toCapitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
 
@@ -121,7 +119,7 @@ async function getNewslettersList() {
   const list = ul({ class: 'newsletter-list' });
   newsletters.forEach((newsletter) => {
     let title = newsletter.path.split('/').slice(-1)[0];
-    title = capitalize(title).split('-').join(' ');
+    title = toCapitalize(title).split('-').join(' ');
     list.appendChild(li(a({ href: newsletter.gatedURL }, title, i({ class: 'fa fa-chevron-circle-right' }))));
   });
   return list;
@@ -133,7 +131,6 @@ async function buildNewsletter(container) {
     return; // newsletter already present
   }
 
-  const formID = 'enewsletterSubscribeForm';
   const formType = 'newsletter';
   const formHeading = 'Lab Notes eNewsletter';
 
@@ -145,7 +142,7 @@ async function buildNewsletter(container) {
     }, div(
       {
         class: 'hubspot-form',
-        id: formID,
+        id: `${formType}-form`,
       },
     )),
   );
@@ -153,12 +150,12 @@ async function buildNewsletter(container) {
   container.querySelector(`#${newsletterId}`).replaceWith(form);
 
   const formConfig = {
-    formId: getFormId(formType),
+    formType,
     latestNewsletter: await getLatestNewsletter(),
-    redirectUrl: null,
+    redirectUrl: 'null',
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig, formID, formType));
+  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
 
   const newsletterList = await getNewslettersList();
   const isNewsletterListExist = document.querySelector('.newsletter-list');
@@ -261,6 +258,10 @@ export default async function decorate(block) {
 
       if (idx === 7) {
         const row7 = rows[7];
+        const externalLogos = rows[7].querySelectorAll('p');
+        const externalLogoWrapper = div({ class: 'external-logo-wrapper' });
+        externalLogos.forEach((logo) => externalLogoWrapper.appendChild(logo));
+        row7.prepend(externalLogoWrapper);
         if (row7) {
           const copyrightInfoZH = p(a({ href: 'https://beian.miit.gov.cn/#/Integrated/index' }, `\u00A9${currentYear} Molecular Devices, 美谷分子仪器（上海）有限公司版权所有 沪ICP备05056171号-1`));
           row7.querySelector('.footer-contact').appendChild(copyrightInfoZH);

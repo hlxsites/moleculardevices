@@ -145,3 +145,106 @@ export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
     }, delay);
   }
 }
+
+/**
+ * Scrolls to a Franklin section by selector or element
+ * Handles lazy loading, fragments, and dynamic height changes
+ *
+ * @param {string|HTMLElement} target - Selector or section element
+ * @param {number} offset - Pixels to offset (positive pushes scroll up)
+ * @param {boolean} smooth - Whether to use smooth scrolling
+ */
+export function scrollToFranklinSection(target, offset = -100, smooth = true) {
+  const sectionSelector = typeof target === 'string' ? target : null;
+  let sectionEl = typeof target === 'string' ? document.querySelector(target) : target;
+
+  const doScroll = () => {
+    if (!sectionEl) return;
+    const y = sectionEl.getBoundingClientRect().top + window.scrollY + offset;
+    window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' });
+  };
+
+  const onSectionLoaded = () => {
+    // Use ResizeObserver to adjust if height changes
+    const resizeObs = new ResizeObserver(() => doScroll());
+    resizeObs.observe(sectionEl);
+
+    // Scroll once content is visible
+    requestAnimationFrame(() => doScroll());
+    setTimeout(() => resizeObs.disconnect(), 2000); // stop after 2s
+  };
+
+  const waitForSection = () => {
+    if (!sectionEl) sectionEl = document.querySelector(sectionSelector);
+    if (!sectionEl) return;
+
+    if (sectionEl.dataset.sectionStatus === 'loaded') {
+      onSectionLoaded();
+    } else {
+      const attrObs = new MutationObserver((mutations, obs) => {
+        if (sectionEl.dataset.sectionStatus === 'loaded') {
+          obs.disconnect();
+          onSectionLoaded();
+        }
+      });
+      attrObs.observe(sectionEl, { attributes: true, attributeFilter: ['data-section-status'] });
+    }
+  };
+
+  // Case 1: Section already exists in DOM
+  if (sectionEl) {
+    waitForSection();
+  } else if (sectionSelector) {
+    // Case 2: Wait for section to appear in DOM
+    const domObs = new MutationObserver(() => {
+      sectionEl = document.querySelector(sectionSelector);
+      if (sectionEl) {
+        domObs.disconnect();
+        waitForSection();
+      }
+    });
+    domObs.observe(document.body, { childList: true, subtree: true });
+  }
+}
+
+/**
+ * Waits until a section's data-section-status becomes "loaded"
+ * @param {HTMLElement} section
+ * @returns {Promise<void>}
+ */
+export function waitForSectionLoad(section) {
+  return new Promise((resolve) => {
+    if (section.dataset.sectionStatus === 'loaded') {
+      resolve();
+      return;
+    }
+    const observer = new MutationObserver(() => {
+      if (section.dataset.sectionStatus === 'loaded') {
+        observer.disconnect();
+        resolve();
+      }
+    });
+    observer.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
+  });
+}
+
+/**
+ * Scroll smoothly to a section
+ */
+const SCROLL_OFFSET = -100;
+export async function scrollToSection(section, offset = SCROLL_OFFSET) {
+  if (!section) return;
+  await waitForSectionLoad(section);
+
+  const intervalId = setInterval(() => {
+    if (section.getAttribute('data-section-status') === 'loaded') {
+      setTimeout(() => {
+        const rect = section.getBoundingClientRect();
+        const y = rect.top + window.scrollY + offset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        clearInterval(intervalId);
+      }, 1000);
+    }
+  }, 100);
+}

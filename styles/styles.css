@@ -1051,17 +1051,20 @@ main .section.features-section {
   background-color: var(--light-gray-background-color2);
 }
 
-main .section.features-section .default-content-wrapper {
+main .section.features-section .default-content-wrapper,
+main .section.applications-carousel-container .default-content-wrapper  {
   padding-top: 0;
   padding-bottom: 0;
   text-align: center;
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper h2 {
+main .section.features-section .default-content-wrapper h2,
+main .section.applications-carousel-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
   font-size: var(--heading-font-size-xl);
   margin-bottom: 0;
+  padding: 0;
 }
 
 main .section.features-section .default-content-wrapper::after {
@@ -1279,8 +1282,8 @@ main .section.wave.orange-buttons {
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
-main .section.wave.orange-buttons > picture,
-main .section.wave.orange-buttons > picture > img,
+main .section.wave > picture,
+main .section.wave > picture > img,
 main:not(.sidekick-library) div.section.wave:last-child picture,
 main:not(.sidekick-library) div.section.wave:last-child img {
   width: 100%;
@@ -1867,10 +1870,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .product .section.tabs > div > h3 ~ p {
   margin: 0 15px;
-}
-
-.product main .section .default-content-wrapper h3 {
-  font-family: var(--ff-proxima-xbold);
 }
 
 .product p.video-title {
@@ -2838,53 +2837,6 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 .what-next main .section.newsletter-form .columns-wrapper img {
   display: block;
 }
-
-/*  Rajneesh css  */
-
-main .section.columns-2.layout-50-50 {
-  grid-template-columns: 50fr 50fr;
-}
-
-.default-content-wrapper #featured-products {
-  text-align: center;
-  font-size: 36px;
-  font-family: var(--ff-proxima-regular);
-  padding-top: 25px;
-}
-
-.event main .columns-container .default-content-wrapper .find-out-more {
-  padding-left: 550px;
-  padding-top: 50px;
-}
-
-.event main .section .event-featured-products p:nth-child(2) {
-  max-width: 240px;
-  margin: auto;
-}
-
-.event .event-banner {
-  margin-bottom: 4.5rem;
-}
-
-.event main .section .event-featured-products .image-left {
-  gap: 0;
-}
-
-.event main .section .event-featured-products {
-  max-width: 85%;
-  margin: auto;
-}
-
-.event .event-featured-products a:any-link {
-  color: #000;
-}
-
-.event .event-featured-products a:any-link:hover,
-.event .event-featured-products a:any-link:focus {
-  text-decoration: underline;
-}
-
-/*  Rajneesh css  ends */
 
 @media only screen and (min-width: 768px) {
   .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {

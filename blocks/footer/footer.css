@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 /* stylelint-disable no-descending-specificity */
 :root {
   --footer-bg: #6b737b;
@@ -52,7 +53,7 @@
 
 .footer .site-logo .footer-site-logo a {
   font-size: 0;
-  background-image: url('/images/header-menus/logo.svg');
+  background-image: url("/images/header-menus/logo.svg");
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
@@ -67,7 +68,7 @@
 
 .footer-wrapper {
   background-color: var(--background-color);
-  background-image: url('../../images/research-bg.png');
+  background-image: url("../../images/research-bg.png");
   overflow-x: hidden;
 }
 
@@ -225,7 +226,6 @@
   text-align: center;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .footer-newsletter-form .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
@@ -316,10 +316,13 @@
   color: var(--highlight-background-color);
 }
 
+.footer-bottom .footer-contact p {
+  margin-top: 2rem;
+  text-align: center;
+}
+
 .row-7 ul,
-.row-8 {
-  flex-wrap: wrap;
-  justify-content: center;
+.row-8 .external-logo-wrapper {
   column-gap: 24px;
   row-gap: 10px;
 }
@@ -331,12 +334,14 @@
 
 .row-7 ul {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 0;
   column-gap: 0;
 }
 
 .row-7 ul li:not(:last-child)::after {
-  content: '|';
+  content: "|";
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -347,31 +352,44 @@
 
 /* row 8 */
 .row-8 {
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
   border-top: 1px solid var(--highlight-background-color);
   margin-top: 20px;
-  padding-top: 4px;
+  padding-top: 1rem;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
-.row-8.columns-wrapper.OneLinkShow_zh {
+.row-8.columns-wrapper.OneLinkShow_zh{
+  display: block !important;
+}
+
+.row-8 .external-logo-wrapper {
   display: flex !important;
+  align-items: baseline;
 }
 
-.row-8 p {
+.row-8 .external-logo-wrapper p {
   margin: 0;
-}
-
-.row-8 p img[alt*='beckman coulter'] {
-  position: relative;
-  top: 8px;
+  flex: 1 1 80px;
 }
 
 .row-6 img,
-.row-8 img {
+.row-8 .external-logo-wrapper img {
   display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.row-8 .external-logo-wrapper p:has([alt="leica"]),
+.row-8 .external-logo-wrapper p:has([alt="sciex"]) {
+  flex-basis: 60px;
+}
+
+.row-8 .external-logo-wrapper p:has([alt="phenomenex"]) {
+  flex-basis: 120px;
+}
+
+.row-8 .external-logo-wrapper p:has([alt="beckman coulter"]) {
+  position: relative;
+  top: 4px;
 }
 
 /* footer landing page */
@@ -405,7 +423,7 @@
 }
 
 .footer .footer-landing-page ul li:not(:last-child)::after {
-  content: '';
+  content: "";
   position: absolute;
   right: 12px;
   top: 0;
@@ -473,9 +491,14 @@
   .footer-bottom .container {
     display: grid;
     grid-template:
-      'danaher list'
-      'danaher logos';
-    align-items: center;
+      "danaher list"
+      "danaher logos";
+    align-items: end;
+    column-gap: 1.5rem;
+  }
+
+  .footer-bottom .footer-contact p {
+    text-align: right;
   }
 
   .row-6 {
@@ -486,13 +509,17 @@
     grid-area: list;
   }
 
-  .row-8 {
-    grid-area: logos;
-    column-gap: 24px;
-    row-gap: 24px;
+  .row-7 ul {
+    justify-content: flex-end;
   }
 
-  .row-7 ul {
+  .row-8 {
+    grid-area: logos;
+  }
+
+  .row-8 .external-logo-wrapper {
+    column-gap: 24px;
+    row-gap: 24px;
     justify-content: flex-end;
   }
 }
@@ -505,11 +532,11 @@
   .footer-bottom .container {
     grid-template-columns: max-content auto;
     align-items: flex-end;
-    column-gap: 60px;
   }
 
-  .row-8 {
-    column-gap: 60px;
+  .footer-bottom .container,
+  .row-8 .external-logo-wrapper {
+    column-gap: 40px;
   }
 }
 
@@ -517,9 +544,7 @@
   .footer-bottom .container {
     display: flex;
     flex-flow: column wrap;
-    justify-content: center;
     align-items: center;
-    gap: 24px;
   }
 
   .row-5 {
@@ -530,10 +555,19 @@
     gap: 10px;
   }
 
-  .row-8 {
+  .footer-bottom .container,
+  .row-8 .external-logo-wrapper {
+    gap: 24px;
     justify-content: center;
-    column-gap: 20px;
-    row-gap: 30px;
+  }
+
+  .row-8 .external-logo-wrapper {
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .row-8 .external-logo-wrapper p {
+    flex: 0 1 80px;
   }
 }
 
@@ -547,7 +581,7 @@
   }
 
   .row-6 img,
-  .row-8 img {
+  .row-8 .external-logo-wrapper img {
     display: block;
     margin: auto;
   }
@@ -559,6 +593,5 @@
   .footer .container {
     display: grid;
     gap: 30px;
-    padding-top: 4rem;
   }
 }
