@@ -20,13 +20,9 @@
   padding: 0;
   width: 100%;
   display: block;
-  background: #fff;
+  background: var(--color-white);
   padding-top: 10px;
 }
-
-/* .get-in-touch .get-in-touch-form iframe {
-  min-height: 700px;
-} */
 
 .get-in-touch .hubspot-iframe-wrapper {
   margin-left: -15px;
@@ -39,7 +35,7 @@
   text-align: center;
   padding: 30px;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray-300);
   margin-bottom: 30px;
 }
 
@@ -59,7 +55,7 @@
 }
 
 .get-in-touch > div > div .fa {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: 36px;
   padding-right: 20px;
   float: left;

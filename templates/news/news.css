@@ -46,8 +46,8 @@ main .section .default-content-wrapper {
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green);
-  background-image: var(--blog-gradient);
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
 }
 
 .publication.full-article .section.carousel-heading h4 {

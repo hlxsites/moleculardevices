@@ -1,5 +1,5 @@
 main .publication-container {
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-150);
 }
 
 main .publication-container .description {

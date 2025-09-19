@@ -12,44 +12,29 @@ main .citations-container .default-content-wrapper h3,
 
 main .citations-container > .default-content-wrapper {
   padding: 0;
-  width: auto;
   padding-left: 90px;
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media (min-width: 768px) {
-  main .citations-container > .default-content-wrapper {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  main .citations-container > .default-content-wrapper {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .citations-container > .default-content-wrapper {
-    width: 1170px;
-  }
+  width: var(--section-max-width);
 }
 
 .citations .citation {
   margin-bottom: 40px;
 }
 
+.citations .citation-icon,
+.citations .citation-info {
+  display: inline-block;
+}
+
 .citations .citation-icon {
   width: 60px;
   height: 60px;
-  display: inline-block;
   vertical-align: top;
 }
 
 .citations .citation-info {
-  display: inline-block;
   width: 91%;
   margin-left: 20px;
 }
@@ -67,7 +52,7 @@ main .citations-container > .default-content-wrapper {
 .citations-container span,
 .citation em,
 .citations-container em {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-style: normal;
 }
 
@@ -87,7 +72,7 @@ main .citations-container > .default-content-wrapper {
 .citations .view-change {
   position: relative;
   text-align: right;
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: pointer;
 }
 
@@ -109,12 +94,9 @@ main .citations-container > .default-content-wrapper {
   .citations .citation-icon {
     width: 30px;
     height: 30px;
-    display: inline-block;
-    vertical-align: top;
   }
 
   .citations .citation-info {
-    display: inline-block;
     width: 80%;
     margin-left: 10px;
   }

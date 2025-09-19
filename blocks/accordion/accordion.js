@@ -24,12 +24,16 @@ function renderColumnLayout(row) {
   const picture = row[0];
   const textArr = row.slice(1, -1);
   const link = row[row.length - 1];
-  link.children[0].setAttribute('target', '_blank');
-  link.children[0].setAttribute('rel', 'noopener noreferrer');
+  const hasLinkChild = link.tagName === 'A' || link.querySelector('a');
+
+  if (hasLinkChild) {
+    link.children[0].setAttribute('target', '_blank');
+    link.children[0].setAttribute('rel', 'noopener noreferrer');
+  }
 
   const text = div();
   textArr.forEach((t) => text.appendChild(t));
-  if (link) link.querySelector('a').append(span({ class: 'icon icon-fa-arrow-circle-right' }));
+  if (hasLinkChild) link.querySelector('a').append(span({ class: 'icon icon-fa-arrow-circle-right' }));
 
   const leftCol = div({ class: 'accordion-content-col-left' }, picture);
   const rightCol = div({ class: 'accordion-content-col-right' }, text, link);

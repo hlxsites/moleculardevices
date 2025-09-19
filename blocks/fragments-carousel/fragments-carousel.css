@@ -12,12 +12,12 @@ main .carousel.fragments-carousel .carousel-item img{
 }
 
 main .fragments-carousel-wrapper .carousel-dot-button.selected {
-  background-color: var(--text-color);
+  background-color: var(--color-text-primary);
 }
 
 main .fragments-carousel-wrapper .carousel-nav-button {
-  color: var(--text-color);
-  border-color: var(--text-color);
+  color: var(--color-text-primary);
+  border-color: var(--color-text-primary);
 }
 
 @media only screen and (min-width: 992px) {

@@ -9,12 +9,12 @@ main .section>div.page-tabs-wrapper {
 
 main .page-tabs {
   margin: 0 auto;
-  width: 100%;
   padding: 0 15px;
   height: 60px;
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  width: var(--section-max-width);
 }
 
 main .page-tabs-wrapper.sticky .page-tabs {
@@ -47,7 +47,7 @@ main .page-tabs li:last-of-type {
 
 
 main .page-tabs li a {
-  color: var(--text-white);
+  color: var(--color-white);
   background: none;
   border: 0;
   font-family: var(--ff-proxima-light);
@@ -73,7 +73,7 @@ main .page-tabs-wrapper.sticky .page-tabs li a {
 main .page-tabs li[aria-selected="true"]::before {
   position: absolute;
   content: "";
-  background: #fff;
+  background: var(--color-white);
   width: 2px;
   height: 10px;
   margin-top: 50px;
@@ -87,7 +87,7 @@ main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
 main .page-tabs li[aria-selected="true"]::after {
   position: absolute;
   content: "";
-  background: #fff;
+  background: var(--color-white);
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -100,15 +100,8 @@ main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
   margin-top: 43px;
 }
 
-@media only screen and (min-width: 768px) {
-  main .page-tabs {
-    width: 750px;
-  }
-}
-
 @media (min-width: 992px) {
   main .page-tabs {
-    width: 970px;
     height: 100px;
   }
 
@@ -127,11 +120,5 @@ main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
 
   main .page-tabs li[aria-selected="true"]::after {
     margin-top: 65px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .page-tabs {
-    width: 1170px
   }
 }

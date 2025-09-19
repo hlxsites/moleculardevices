@@ -8,7 +8,7 @@ main .section .latest-events > div {
 }
 
 main .section .latest-events .list .item {
-  border-bottom: 2px solid var(--highlight-background-color);
+  border-bottom: 2px solid var(--color-gray-350);
   padding: 10px 0;
 }
 
@@ -17,7 +17,7 @@ main .section .latest-events p {
 }
 
 main .section .latest-events a:any-link {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 @media only screen and (max-width: 767px) {

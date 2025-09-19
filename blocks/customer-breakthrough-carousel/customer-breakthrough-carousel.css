@@ -1,6 +1,6 @@
 .section.wave.customer-breakthrough-carousel-container,
 .section.wave.customer-breakthrough-carousel-container h2 {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .section.wave.customer-breakthrough-carousel-container > .default-content-wrapper {

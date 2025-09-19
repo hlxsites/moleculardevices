@@ -29,7 +29,7 @@
   font-size: var(--body-font-size-m);
   font-family: var(--ff-proxima-regular);
   font-weight: initial;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .customer-story h3 {
