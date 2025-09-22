@@ -10,13 +10,5 @@ async function renderDetails(insertAfterElement) {
 export default async function buildAutoBlocks() {
   const title = document.querySelector('h1');
   if (title) title.classList.add('event-title');
-
-  const moreBtn = document.querySelector('main strong > a:last-of-type');
-  if (moreBtn) {
-    moreBtn.setAttribute('target', '_blank');
-    const par = moreBtn.closest('p');
-    par.classList.add('find-out-more');
-  }
-
   renderDetails(title);
 }

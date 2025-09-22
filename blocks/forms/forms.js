@@ -73,10 +73,11 @@ export default async function decorate(block) {
   const category = getMetadata('category');
   const template = getMetadata('template');
   const formConfig = await extractFormData(block);
-  let formHeading = formConfig.heading || '';
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
+
+  let formHeading = formConfig.heading || '';
 
   formConfig.formType = formType;
   const target = `${formConfig.formType || 'unknown-type'}-form`;
@@ -88,7 +89,7 @@ export default async function decorate(block) {
   }
 
   const form = div(
-    h3(formHeading),
+    formHeading ? h3(formHeading) : '',
     div({
       id: target,
       class: 'hubspot-form',

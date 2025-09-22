@@ -354,6 +354,7 @@ input[type="submit"] {
 
 .forms.inquiry.block,
 .forms.events.block,
+.event main .section.forms-container .default-content-wrapper,
 .forms.inquiry-with-thankyou.block {
   margin: auto;
   max-width: 600px;
