@@ -2913,7 +2913,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   position: relative;
   padding: 40px;
   color: var(--color-white);
-  background-color: var(--form-bg);
+  background-color: var(--color-black-alpha-50);
   text-align: center;
 }
 

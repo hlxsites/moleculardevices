@@ -287,8 +287,8 @@ export function decorateExternalLink(link) {
 
 export function decorateLinks(main) {
   main.querySelectorAll('a').forEach((link) => {
-    const { pathname, origin } = new URL(link.href);
-    const url = new URL(pathname, origin);
+    const href = link.getAttribute('href') || '';
+    const url = new URL(href, window.location.origin);
 
     // Handle video decoration
     if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
