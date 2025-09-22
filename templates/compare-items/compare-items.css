@@ -38,7 +38,7 @@ main .compare-banner .compare-cell {
 
 main .compare-banner .compare-row .compare-cell .compare-cell {
   width: 33%;
-  border-left: 1px solid #95c872;
+  border-left: 1px solid var(--compare-items-banner);
   padding: 0;
 }
 
@@ -46,7 +46,7 @@ main .compare-banner .compare-cell.button {
   width: 240px;
   padding: 0;
   text-overflow: unset;
-  border-left: 1px solid #95c872;
+  border-left: 1px solid var(--compare-items-banner);
 }
 
 main .compare-banner .compare-data {

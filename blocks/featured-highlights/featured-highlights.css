@@ -87,7 +87,7 @@
 }
 
 .featured-highlights svg path,
-#product-finder svg path {
+.product-finder-cta svg path {
   fill: var(--color-primary);
 }
 
@@ -117,7 +117,7 @@
   background: var(--color-primary);
 }
 
-#product-finder {
+.featured-highlights-wrapper .product-finder-cta {
   position: absolute;
   width: 122px;
   height: 122px;
@@ -156,7 +156,7 @@
     margin-bottom: 10px;
   }
 
-  #product-finder {
+  .featured-highlights-wrapper .product-finder-cta {
     right: 8.3333%;
     top: -30px;
     width: 70px;
@@ -165,7 +165,7 @@
     font-size: 10px;
   }
 
-  #product-finder svg {
+  .featured-highlights-wrapper .product-finder-cta svg {
     width: 70px;
     transform: translateY(-2px);
   }
@@ -174,7 +174,7 @@
 @media (min-width: 992px) {
   .section.hero-container,
   .section.hero-advanced-container {
-    position:relative;
+    position: relative;
   }
 
   main .section > div.featured-highlights-wrapper {
@@ -221,13 +221,13 @@
     width: 50%;
   }
 
-  #product-finder {
+  .featured-highlights-wrapper .product-finder-cta {
     bottom: -80px;
     left: 110px;
     box-shadow: 1px 3px 20px -4px var(--color-black-alpha-40);
   }
 
-  #product-finder::after {
+  .featured-highlights-wrapper .product-finder-cta::after {
     content: "";
     position: absolute;
     width: 6px;
@@ -238,7 +238,7 @@
     transform: rotate(30deg);
   }
 
-  #product-finder svg {
+  .featured-highlights-wrapper .product-finder-cta svg {
     width: 50px;
     height: 50px;
   }

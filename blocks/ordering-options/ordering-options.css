@@ -324,7 +324,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down-content a + a {
-  border-top: 1px solid #dfdfdf;
+  border-top: 1px solid var(--ordering-option-dropdown-content-2);
 }
 
 .drop-down-content a:hover {
@@ -423,8 +423,8 @@ main .section.ordering-options-container > div:last-child {
   font-size: 24px;
   border-radius: 0;
   padding: 0;
-  border-top: 1px solid #4b4f53;
-  border-bottom: 1px solid #4b4f53;
+  border-top: 1px solid var(--ordering-option-quantity-number);
+  border-bottom: 1px solid var(--ordering-option-quantity-number);
   margin: 0;
   font-family: var(--ff-proxima-xbold);
   color: var(--color-gray-750);

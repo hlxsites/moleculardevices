@@ -447,16 +447,16 @@ export default async function decorate(block) {
     div(
       div({
         id: `${STEP_PREFIX}-1`,
-        class: 'product-finder-step-wrapper active',
+        class: 'product-finder-step-wrapper product-finder-step-1 active',
       }),
       div({
         id: `${STEP_PREFIX}-2`,
-        class: 'product-finder-step-wrapper',
+        class: 'product-finder-step-wrapper product-finder-step-2',
         style: 'display: none;',
       }),
       div({
         id: `${STEP_PREFIX}-3`,
-        class: 'product-finder-step-wrapper',
+        class: 'product-finder-step-wrapper product-finder-step-3',
         style: 'display: none;',
       }),
     ),

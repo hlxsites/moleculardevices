@@ -1,10 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-:root {
-  --color-mm-product-card: #161e2d;
-  --color-mm-border: #ffffff80;
-  --color-mm-heading: #ffffffb2;
-  --gutter-product: 30px;
-}
 
 /* nav layout */
 header {
@@ -131,7 +125,7 @@ header .hamburger .icon-bar {
   display: block;
   height: 2px;
   border-radius: 1px;
-  background: #008296;
+  background: var(--color-hamburger-icon);
   width: 35px;
   line-height: 1;
 }
@@ -377,7 +371,7 @@ header .nav-tabs .menu-nav-submenu-section:hover {
 }
 
 header .mobile-menu .company-links li {
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-125);
   float: none;
   border-top: 0;
   text-align: center;
@@ -426,7 +420,7 @@ header .company-links > ul > li:last-child {
 header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
   line-height: 29px;
   font-size: 18px;
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-125);
 }
 
 header .nav-tabs .menu-nav-submenu-section h2 {
@@ -648,7 +642,7 @@ header .cards-submenu ul li a {
 }
 
 header .mobile-menu-item {
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-125);
   float: none;
   border-top: 0;
   position: relative;
@@ -700,7 +694,7 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   position: absolute;
   right: 15px;
   border-radius: 100%;
-  border: 1px solid #c4ccda;
+  border: 1px solid var(--color-mobile-menu-caret);
   color: var(--color-text-primary);
   top: 50%;
   display: inline-block;
@@ -762,7 +756,7 @@ header .resources-submenu-search {
 
 header .mobile-menu .request-quote a {
   line-height: 20px;
-  background: #f8a100;
+  background: var(--color-mobile-menu-rfq-cta);
   font-size: 18px;
   padding: 18px 50px 18px 15px;
   text-shadow: none;
@@ -812,7 +806,7 @@ header .mobile-menu .caret::before {
   position: absolute;
   right: 15px;
   border-radius: 100%;
-  border: 1px solid #c4ccda;
+  border: 1px solid var(--color-mobile-menu-caret);
   color: var(--color-text-primary);
   top: 50%;
   display: inline-block;

@@ -42,7 +42,7 @@
   margin-left: 0;
 }
 
-.product-finder-container #start-over i.fa {
+.product-finder-container .reset i.fa {
   margin-left: 0;
   margin-right: 5px;
 }
@@ -317,8 +317,8 @@
   vertical-align: middle;
 }
 
-.product-finder-container #step-1 a span,
-.product-finder-container #step-2 a span {
+.product-finder-container .product-finder-step-1 a span,
+.product-finder-container .product-finder-step-2 a span {
   margin-top: 10px;
   margin-bottom: 10px;
   display: block;
@@ -335,11 +335,11 @@
   margin: 10px 0 0;
 }
 
-.product-finder-container #step-3 {
-  border-top: 2px solid #d6d6d6;
+.product-finder-container .product-finder-step-3 {
+  border-top: 2px solid  var(--product-finder-border);
 }
 
-.product-finder-container #step-3 .result-count {
+.product-finder-container .product-finder-step-3 .result-count {
   float: left;
   width: 100%;
   font-size: 14px;
@@ -349,26 +349,26 @@
   text-transform: uppercase;
 }
 
-.product-finder-container #step-3 .card-thumb {
+.product-finder-container .product-finder-step-3 .card-thumb {
   display: block;
   width: 100%;
   overflow: hidden;
 }
 
-.product-finder-container #step-3 .card-thumb a {
+.product-finder-container .product-finder-step-3 .card-thumb a {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.product-finder-container #step-3 .card-thumb picture {
+.product-finder-container .product-finder-step-3 .card-thumb picture {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.product-finder-container #step-3 .card-thumb img {
+.product-finder-container .product-finder-step-3 .card-thumb img {
   object-position: center;
   object-fit: scale-down;
   height: unset;
@@ -376,40 +376,40 @@
   max-height: 210px;
 }
 
-.product-finder-step-wrapper[data-type="3D Biology Solutions"]#step-3 .card-thumb img {
+.product-finder-step-wrapper[data-type="3D Biology Solutions"].product-finder-step-3 .card-thumb img {
   height: 100%;
   width: 100%;
 }
 
-.product-finder-container #step-3 .card {
+.product-finder-container .product-finder-step-3 .card {
   width: 262px;
 }
 
-.product-finder-container #step-3 .card-caption > p {
+.product-finder-container .product-finder-step-3 .card-caption > p {
   font-size: 14px;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a {
-  border-top: 1px solid #d6d6d6;
+.product-finder-container .product-finder-step-3 .card-caption > .c2a {
+  border-top: 1px solid var(--product-finder-border);
   padding-top: 8px;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a > p {
+.product-finder-container .product-finder-step-3 .card-caption > .c2a > p {
   text-align: left;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a > p > a {
+.product-finder-container .product-finder-step-3 .card-caption > .c2a > p > a {
   font-size: 13px;
 }
 
-.product-finder-container #step-3 .card-caption .button-container {
+.product-finder-container .product-finder-step-3 .card-caption .button-container {
   width: 50%;
   float: left;
   margin-left: 0;
   margin-bottom: 10px;
 }
 
-.product-finder-container #step-3 .card-caption .compare-button {
+.product-finder-container .product-finder-step-3 .card-caption .compare-button {
   font-size: 13px;
   margin-top: 5px;
 }
@@ -451,11 +451,11 @@
     border-left: unset;
   }
 
-  .product-finder-container #step-3 .card {
+  .product-finder-container .product-finder-step-3 .card {
     width: 300px;
   }
 
-  .product-finder-container #step-3 .card-caption .compare-button {
+  .product-finder-container .product-finder-step-3 .card-caption .compare-button {
     margin-top: 7px;
   }
 }

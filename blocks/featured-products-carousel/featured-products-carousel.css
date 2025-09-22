@@ -13,7 +13,7 @@ main .section.columns-2.featured-products-carousel-container {
 }
 
 main .featured-products-carousel .carousel-item {
-  border: 3px solid #efefef;
+  border: 3px solid var(--featured-products-carousel-item);
 }
 
 main .featured-products-carousel .carousel-item-columns-container {
