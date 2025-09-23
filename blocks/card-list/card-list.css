@@ -238,7 +238,7 @@ main .card-list.assay-kits .card {
 }
 
 .card-list.assay-kits .card .badge {
-  background: var(--color-accent-card-badge);
+  background: var(--card-badge-bg);
   color: var(--color-white);
   text-align: center;
   padding: 5px 0;
@@ -252,7 +252,7 @@ main .card-list.assay-kits .card {
 
 .card-list.assay-kits .card .badge::before {
   content: "";
-  border-bottom: 6px solid var(--color-accent-card-badge-border);
+  border-bottom: 6px solid var(--card-badge-border);
   border-right: 6px solid transparent;
   position: absolute;
   top: -6px;

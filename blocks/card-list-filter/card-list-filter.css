@@ -52,7 +52,7 @@
 .card-list-filter ul li a.active::after {
   display: table;
   width: 100%;
-  border-bottom: 1px solid var(--color-accent-card-list-filter-separator);
+  border-bottom: 1px solid var(--card-list-filter-separator);
   content: " ";
   margin-top: -1px;
 }
@@ -101,7 +101,7 @@
     width: 0;
     height: 0;
     min-height: 12px;
-    color: var(--color-accent-card-list-filter-blog-separator);
+    color: var(--card-list-filter-blog-separator);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
@@ -113,7 +113,7 @@
   .card-list-filter.blog ul li a:hover,
   .card-list-filter.blog ul li a:active,
   .card-list-filter.blog ul li a.active {
-    color: var(--color-accent-card-list-filter-blog-separator);
+    color: var(--card-list-filter-blog-separator);
     border: none;
   }
 }
@@ -243,6 +243,6 @@
   }
 
   .card-list-filter.video-gallery .filter-title {
-    border-bottom: 1px solid var(--color-accent-card-list-filter-separator);
+    border-bottom: 1px solid var(--card-list-filter-separator);
   }
 }

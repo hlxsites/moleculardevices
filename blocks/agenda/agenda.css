@@ -49,7 +49,7 @@
 }
 
 .agenda-list-item:hover {
-  background-color: var(--color-accent-agenda-hover);
+  background-color: var(--agenda-links-hover);
 }
 
 .agenda-list-item span:first-child {
