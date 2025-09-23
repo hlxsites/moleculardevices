@@ -75,4 +75,6 @@ export const fieldsObj = [
   { inputName: 'cmp', inputFieldName: 'cmp' },
   { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
   { inputName: 'website', inputFieldName: 'website' },
+  { inputName: 'Meeting_Time__c', inputFieldName: 'meeting_time' },
+  { inputName: 'Meeting_Date__c', inputFieldName: 'date' },
 ];

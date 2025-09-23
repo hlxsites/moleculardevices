@@ -1,4 +1,6 @@
-import { createOptimizedPicture, getAllMetadata, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import {
+  createOptimizedPicture, getAllMetadata, getMetadata, toClassName,
+} from '../../scripts/lib-franklin.js';
 import {
   a, div, h1, h2, p,
 
