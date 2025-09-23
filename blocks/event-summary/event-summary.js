@@ -39,7 +39,6 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
 }
 
 export default async function decorate(block) {
-  console.log(getAllMetadata('event'));
   const {
     address, booth, end, region, start, type, url,
   } = getAllMetadata('event');
@@ -51,14 +50,14 @@ export default async function decorate(block) {
   const eventObj = {
     image,
     imageThumbPosition,
-    start,
-    end,
     title,
     eventType,
-    region,
-    address,
-    url,
     booth,
+    eventAddress: address,
+    eventStart: start,
+    eventEnd: end,
+    eventRegion: region,
+    eventURL: url,
   };
 
   const eventBanner = createEventBanner(eventObj);
