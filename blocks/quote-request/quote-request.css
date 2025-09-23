@@ -36,10 +36,10 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-product-wrapper {
-  background: rgb(0 0 0 / 70%);
-  border: 1px solid var(--heading-color);
+  background: var(--color-black-alpha-70);
+  border: 1px solid var(--color-highlight);
   border-radius: 25px;
-  color: var(--text-white);
+  color: var(--color-white);
   margin: auto;
   max-width: 100%;
   padding: 50px 50px 80px;
@@ -53,7 +53,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .quote-request h3 {
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-light);
   font-size: 35px;
   margin: 10px 0;
@@ -82,9 +82,9 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-icon-item .rfq-icon-link {
-  background: var(--text-white);
-  box-shadow: 0 0 24px rgb(0 0 0 / 20%);
-  color: var(--heading-color);
+  background: var(--color-white);
+  box-shadow: 0 0 24px var(--color-black-alpha-20);
+  color: var(--color-highlight);
   display: flex;
   flex-direction: column;
   font-family: var(--ff-proxima-light);
@@ -101,7 +101,7 @@ main div.section.quote-request-container + .section.wave {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .rfq-product-wrapper:nth-child(2) .rfq-icon-list {
@@ -122,7 +122,7 @@ main div.section.quote-request-container + .section.wave {
   max-width: 606px;
   margin: 0 auto;
   width: 100%;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .rfq-thankyou-msg h2 {
@@ -145,7 +145,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .rfq-thankyou-msg a {
-  color: var(--button-secondary-color);
+  color: var(--color-button-primary);
 }
 
 .rfq-thankyou-msg picture {
@@ -162,9 +162,9 @@ main div.section.quote-request-container + .section.wave {
 
 .thankyou .rfq-product-wrapper {
   width: 100%;
-  background: rgb(0 0 0 / 70%);
+  background: var(--color-black-alpha-70);
   border-radius: 25px;
-  border: 1px solid var(--heading-color);
+  border: 1px solid var(--color-highlight);
   padding: 30px 0 50px;
   max-width: 840px;
   margin: 0 auto;
@@ -173,7 +173,7 @@ main div.section.quote-request-container + .section.wave {
 .back-step-btn {
   background: rgb(0 116 141 / 30%);
   bottom: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
   height: 60px;
   left: 20px;
   line-height: 60px;
@@ -186,7 +186,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .back-step-btn .fa {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 80px;
   left: 13px;
   line-height: 0;
@@ -209,7 +209,7 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .progress-bullet {
-  background: var(--heading-color);
+  background: var(--color-highlight);
   border-radius: 50%;
   display: inline-block;
   height: 20px;
@@ -223,9 +223,9 @@ main div.section.quote-request-container + .section.wave {
 }
 
 .progress-bar {
-  background-color: #020302;
+  background-color: var(--quote-request-progess-bar);
   border-radius: 20px;
-  box-shadow: inset 7px 0 58px #716f6f;
+  box-shadow: inset 7px 0 58px var(--quote-request-progess-bar-inset);
   height: 50px;
   margin: 55px auto 0;
   position: relative;
@@ -254,7 +254,7 @@ main .rfq-form .hs-form-field {
 }
 
 main .rfq-form .hs-form-field .hs-field-desc {
-  color: #e2e2e2;
+  color: var(--quote-request-form-description);
   font-size: 13px;
   font-weight: 100;
   letter-spacing: 0.5px;
@@ -273,18 +273,18 @@ main .rfq-form .actions {
 
 main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
-  background: linear-gradient(to bottom, #00748d 0%, #0190ac 52%, #00748d 100%, #00748d 100%);
-  background-color: #298da9;
+  background: var(--gradient-cta);
+  background-color: var(--quote-request-form-cta);
   border: none;
   border-radius: 20px;
-  color: #fff;
+  color: var(--color-white);
   font-size: 20px;
   line-height: 25px;
   padding: 14px 18px;
   width: 100%;
 }
 
-main .rfq-form .privacy{
+main .rfq-form .privacy {
   text-align: left;
   max-width: 70%;
   padding: 0 2px 2px 30px;
@@ -292,7 +292,7 @@ main .rfq-form .privacy{
 
 main .rfq-form .privacy,
 main .rfq-form .privacy > label {
-  color: #999;
+  color: var(--quote-request-form-privacy-label);
   line-height: 1.4em;
   margin: 0 auto;
   font-size: 13px;
@@ -322,7 +322,11 @@ main .rfq-form .privacy > label {
 
 @media only screen and (max-width: 767px) {
   .rfq-product-wrapper {
-    padding: 30px 5px 80px;
+    padding: 30px 20px 80px;
+  }
+
+  main .rfq-form .privacy {
+    margin-bottom: 20px;
   }
 
   .rfq-thankyou-msg h2 {
@@ -345,7 +349,6 @@ main .rfq-form .privacy > label {
 
 @media only screen and (max-width: 580px) {
   .rfq-icon-item .rfq-icon-link {
-    height: 200px;
     font-size: 16px;
     padding: 10px;
   }
@@ -353,5 +356,9 @@ main .rfq-form .privacy > label {
   .rfq-icon-link .rfq-icon-img {
     margin: 12px auto;
     margin-bottom: 30px;
+  }
+
+  main .rfq-form .privacy {
+    max-width: 100%;
   }
 }

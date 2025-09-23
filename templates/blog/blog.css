@@ -69,13 +69,13 @@
   left: 0;
   height: 1px;
   width: 100%;
-  background: #eee;
+  background: var(--color-gray-200);
   position: absolute;
 }
 
 .blog main h2 {
   font-size: 54px;
-  color: #008da9;
+  color: var(--color-primary);
   font-family: inherit;
   line-height: 1;
   font-weight: 100;
@@ -107,7 +107,7 @@
 }
 
 .blog main .section.blog-wide > div {
-  max-width: 1170px;
+  max-width: var(--container-width);
   width: unset;
   margin: 0 auto;
 }
@@ -133,8 +133,8 @@
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green);
-  background-image: var(--blog-gradient);
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
 }
 
 .blog main .section.blog-heading > div:first-of-type p {
@@ -160,19 +160,19 @@ main .section.sidebar h4,
 }
 
 .blog main .section.green-secondary-buttons .button {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .blog main .section.orange-buttons .button.secondary {
-  color: var(--text-orange);
-  border: 2px solid var(--text-orange);
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
 }
 
 .blog main .columns p.video-title {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
@@ -187,7 +187,7 @@ main .section.sidebar h4,
 }
 
 .blog main .section .credit-paragraph p {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 1rem;
 }
 
@@ -257,8 +257,8 @@ main .section.sidebar h4::after {
   left: 0;
   height: 4px;
   width: 100%;
-  background-color: var(--background-color-green);
-  background-image: var(--blog-gradient);
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
 }
 
 .blog main .section.sidebar .embed-wrapper {
@@ -275,8 +275,8 @@ main .section.sidebar h4::after {
   padding: 20px 16px;
   border-radius: 10px;
   font-size: 15px;
-  background: var(--blog-gradient-left);
-  color: #fff;
+  background: var(--gradient-theme-left);
+  color: var(--color-white);
   margin-top: -17px;
   margin-bottom: 50px;
 }
@@ -318,6 +318,7 @@ main .section.sidebar h4::after {
 
 .blog main .card-list-filter ul {
   padding-left: 0;
+  margin-bottom: 0;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */

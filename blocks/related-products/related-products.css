@@ -50,7 +50,7 @@ main .section .related-products-wrapper {
 }
 
 .related-products .card .button-container a {
-  color: #008ca8;
+  color: var(--color-primary);
 }
 
 .related-products .carousel-item.clone {

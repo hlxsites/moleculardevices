@@ -1,5 +1,5 @@
 .section.local-distributor-container {
-  background-color: var(--background-color) !important;
+  background-color: var(--color-white) !important;
   background-image: url('/images/regional-office-bg.jpg');
   background-position: top center;
   background-repeat: no-repeat;
@@ -24,8 +24,8 @@
 }
 
 .local-distributor {
-  border: 1px solid var(--border-color-gray);
-  border-top: 7px solid var(--dark-gray-background-color);
+  border: 1px solid var(--color-gray-450);
+  border-top: 7px solid var(--color-gray-750);
   font-size: var(--body-font-size-s);
   position: relative;
 }
@@ -59,7 +59,7 @@
 }
 
 .local-distributor > div.search-result {
-  border-top: 1px solid var(--border-color-gray);
+  border-top: 1px solid var(--color-gray-450);
   padding-top: 40px;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .local-distributor > div.search-result .search-result-content .type::before {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   display: inline-block;
   font-family: FontAwesome, sans-serif;
   font-size: 32px;
@@ -130,7 +130,7 @@
 }
 
 .local-distributor > div.search-result .search-result-content .productfamily {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   display: inline-block;
   font-size: 12px;
   font-style: italic;
@@ -150,7 +150,7 @@
 }
 
 .local-distributor .form .form-group .fields .select-wrapper span {
-  color: var(--dark-gray-background-color);
+  color: var(--color-gray-750);
   position: absolute;
   right: 20px;
   top: 16px;
@@ -160,8 +160,8 @@
   appearance: none;
   border: 0;
   border-radius: 0;
-  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
-  color: #34393d;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-10);
+  color: var(--color-text-primary);
   font-size: 18px;
   height: 50px;
   outline: 0;
@@ -169,13 +169,13 @@
 }
 
 .local-distributor .form button {
-  background-color: var(--button-bg-color);
+  background-color: var(--color-primary);
   border: 0;
-  color: var(--button-color);
+  color: var(--color-white);
 }
 
 .section.local-distributor-container h3.no-result {
-  color: red;
+  color: var(--color-state-danger);
   text-align: center;
   width: 100%;
   font-size: 18px;

@@ -5,7 +5,7 @@
 
 .latest-news.block article {
   padding: 20px;
-  border-top: 2px solid #ccc;
+  border-top: 2px solid var(--color-gray-350);
 }
 
 @media (max-width: 768px) {
@@ -34,7 +34,7 @@
 }
 
 .latest-news.block article:last-of-type {
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--color-gray-350);
 }
 
 .latest-news.block article .title {
@@ -49,7 +49,7 @@
 .latest-news.block article div p a {
   font-size: 18px;
   font-weight: bold;
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 main .section div.latest-news-wrapper + .default-content-wrapper {

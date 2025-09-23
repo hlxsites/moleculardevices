@@ -51,7 +51,7 @@
   text-align: center;
   display: inline-block;
   padding: 0 22px;
-  color: #008da9;
+  color: var(--color-primary);
   font-size: 14px;
   font-family: var(--ff-proxima-light);
   margin-top: 40px;
@@ -87,8 +87,8 @@
 }
 
 .featured-highlights svg path,
-#product-finder svg path {
-  fill: #008da9;
+.product-finder-cta svg path {
+  fill: var(--color-primary);
 }
 
 .featured-highlights .slider ul {
@@ -103,9 +103,9 @@
   width: 12px;
   height: 12px;
   line-height: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: center;
-  background: var(--carousel-slider-background-color);
+  background: var(--color-gray-blue-light);
   border-radius: 100%;
   border: none;
   font-size: 0;
@@ -114,10 +114,10 @@
 }
 
 .featured-highlights .slider li.active {
-  background: var(--button-bg-color);
+  background: var(--color-primary);
 }
 
-#product-finder {
+.featured-highlights-wrapper .product-finder-cta {
   position: absolute;
   width: 122px;
   height: 122px;
@@ -125,13 +125,13 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 100%;
-  background: var(--grey-background-color);
+  background: var(--color-gray-150);
   text-align: center;
   line-height: 1;
   text-decoration: none;
   z-index: 9;
-  color: var(--button-bg-color);
-  box-shadow: 0 0 3px #000;
+  color: var(--color-primary);
+  box-shadow: 0 0 3px var(--color-black);
   text-transform: uppercase;
 }
 
@@ -139,8 +139,8 @@
   main .section > div.featured-highlights-wrapper {
     width: unset;
     min-height: 375px;
-    border-bottom: 1px solid #ddd;
-    background-color: var(--grey-background-color);
+    border-bottom: 1px solid var(--color-gray-300);
+    background-color: var(--color-gray-150);
     position: relative;
   }
 
@@ -156,7 +156,7 @@
     margin-bottom: 10px;
   }
 
-  #product-finder {
+  .featured-highlights-wrapper .product-finder-cta {
     right: 8.3333%;
     top: -30px;
     width: 70px;
@@ -165,7 +165,7 @@
     font-size: 10px;
   }
 
-  #product-finder svg {
+  .featured-highlights-wrapper .product-finder-cta svg {
     width: 70px;
     transform: translateY(-2px);
   }
@@ -174,7 +174,7 @@
 @media (min-width: 992px) {
   .section.hero-container,
   .section.hero-advanced-container {
-    position:relative;
+    position: relative;
   }
 
   main .section > div.featured-highlights-wrapper {
@@ -186,7 +186,7 @@
   }
 
   .featured-highlights {
-    box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
+    box-shadow: 1px 3px 20px -4px var(--color-black-alpha-40);
     width: 1150px;
     height: 1150px;
     position: absolute;
@@ -195,7 +195,7 @@
     border-radius: 100%;
     overflow: hidden;
     padding: 620px 702px 0 0;
-    background: var(--grey-background-color);
+    background: var(--color-gray-150);
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -221,24 +221,24 @@
     width: 50%;
   }
 
-  #product-finder {
+  .featured-highlights-wrapper .product-finder-cta {
     bottom: -80px;
     left: 110px;
-    box-shadow: 1px 3px 20px -4px rgba(0 0 0 / 45%);
+    box-shadow: 1px 3px 20px -4px var(--color-black-alpha-40);
   }
 
-  #product-finder::after {
+  .featured-highlights-wrapper .product-finder-cta::after {
     content: "";
     position: absolute;
     width: 6px;
     height: 100px;
-    background: #f0f1f2;
+    background: var(--color-gray-150);
     top: -80px;
     right: 0;
     transform: rotate(30deg);
   }
 
-  #product-finder svg {
+  .featured-highlights-wrapper .product-finder-cta svg {
     width: 50px;
     height: 50px;
   }

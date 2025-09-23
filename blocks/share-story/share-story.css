@@ -14,13 +14,13 @@ body.modal-open {
 .share-story > div {
   flex-basis: 33.33%;
   padding: 40px 0;
-  border-top: 1px solid #f1f2f3;
-  border-bottom: 1px solid #f1f2f3;
+  border-top: 1px solid var(--color-gray-125);
+  border-bottom: 1px solid var(--color-gray-125);
   align-items: center;
 }
 
 .share-story .share-event {
-  border-right: 1px solid #f1f2f3;
+  border-right: 1px solid var(--color-gray-125);
   float: left;
   padding: 40px 0;
 }
@@ -51,7 +51,7 @@ body.modal-open {
 }
 
 .share-story .social-links ul li i {
-  color: var(--button-hover-color);
+  color: var(--color-link-hover);
   line-height: 28px;
   cursor: pointer;
 }
@@ -84,7 +84,7 @@ body.modal-open {
 }
 
 .submit-story-modal-overlay {
-  background-color: rgb(0 0 0/ 80%);
+  background-color: var(--color-black-alpha-80);
   bottom: 0;
   cursor: pointer;
   height: 100%;
@@ -96,7 +96,7 @@ body.modal-open {
 }
 
 .submit-story-modal .submit-story-modal-wrapper {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   margin: 0 auto;
   height: 100%;
   overflow-y: auto;
@@ -130,7 +130,7 @@ body.modal-open {
   background: transparent;
   border: 1px solid;
   border-radius: 50%;
-  color: var(--text-white);
+  color: var(--color-white);
   display: block;
   font-size: 58px;
   height: 48px;
@@ -143,7 +143,7 @@ body.modal-open {
 }
 
 .submit-story-modal-close:hover {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 /* submit your story form */

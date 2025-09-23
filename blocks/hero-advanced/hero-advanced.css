@@ -19,7 +19,7 @@
   }
 
   .hero-advanced .hero-inner a.button.secondary {
-   border: 2px solid #fff;
+   border: 2px solid var(--color-white);
    padding: 13px 18px;
   }
 
@@ -30,8 +30,8 @@
 
 @media (max-width: 767px) {
   .hero-advanced .hero-inner {
-    background-color: var(--grey-background-color);
-    color: var(--text-color);
+    background-color: var(--color-gray-150);
+    color: var(--color-text-primary);
     padding-top: 30px;
   }
 
@@ -44,7 +44,7 @@
   }
 
   .hero-advanced .hero-inner h1 {
-    color: var(--text-color);
+    color: var(--color-text-primary);
     font-family: var(--ff-proxima-light);
   }
 
@@ -70,8 +70,8 @@
   }
 
   .hero-advanced .hero-inner a.button.secondary {
-    border: 2px solid var(--button-bg-color);
-    color: var(--button-bg-color);
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
     padding: 8px 12px;
   }
 

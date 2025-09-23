@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 .cards > ul {
   display: grid;
   grid-gap: 30px;
@@ -35,8 +36,8 @@
 }
 
 .cards > ul > li {
-  background-color: var(--background-color);
-  border: 1px solid var(--highlight-background-color);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-350);
 }
 
 .cards.borderless li {
@@ -73,7 +74,7 @@
 }
 
 .cards.slim li {
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 .cards.slim .cards-card-wrapper {
@@ -91,7 +92,7 @@
 .cards.slim .cards-card-image {
   max-height: 70px;
   max-width: 74px;
-  background-color: black;
+  background-color: var(--color-black);
 }
 
 .cards.slim .cards-card-body > h3 {
@@ -100,7 +101,7 @@
 }
 
 .cards.left-border li {
-  border-left: 5px solid #008da9;
+  border-left: 5px solid var(--color-primary);
 }
 
 .cards.strong p {
@@ -158,11 +159,11 @@
 }
 
 .cards.black a {
-  color: black;
+  color: var(--color-black);
 }
 
 .cards.green a {
-  color: #6eb43f;
+  color: var(--color-tertiary);
 }
 
 .cards.gallery ul > li {
@@ -215,14 +216,14 @@
 }
 
 .cards.text-over-image .cards-card-body a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 /* ================ GALLERY BLOCK ================ */
 
 .cards.gallery ul > li .cards-card-body {
   margin: 0;
-  background: rgb(0 117 141 / 80%);
+  background: var(--cards-gallery-bg)
 }
 
 .cards.gallery ul > li .cards-card-body:not(:empty) {
@@ -231,7 +232,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  color: var(--text-white);
+  color: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -243,7 +244,7 @@
 }
 
 .cards.gallery.hover-gradient ul > li .cards-card-body {
-  background: linear-gradient(to left, rgb(21 145 164 / 80%) 0, rgb(50 159 121 / 80%) 50%, rgb(97 178 73 / 80%) 100%);
+  background: var(--gradient-theme-left);
 }
 
 .cards.gallery ul > li:hover .cards-card-body:not(:empty) {
@@ -266,7 +267,7 @@
 .cards.gallery ul > li .cards-card-body > a {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 /* ================ GALLERY BLOCK ================ */
@@ -334,3 +335,80 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ================ CARDS WITH HOVER IMAGE ================ */
+
+.cards.cards-with-hover-image ul {
+  gap: unset;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards.cards-with-hover-image a {
+  color: var(--color-black);
+}
+
+.cards.cards-with-hover-image ul > li {
+  border: 0;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+.cards.cards-with-hover-image ul > li .cards-card-body code {
+  font-family: var(--ff-proxima-regular);
+  font-size: var(--body-font-size-m);
+}
+
+.cards.cards-with-hover-image ul > li .cards-card-body:first-child > p {
+  margin-top: 0;
+  margin-bottom: 0;
+  transition: all 0.2s;
+}
+
+.cards.cards-with-hover-image ul > li .cards-card-body:first-child > p:last-child {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.cards.cards-with-hover-image ul > li:hover .cards-card-body:first-child > p,
+.cards.cards-with-hover-image ul > li .cards-card-body:first-child > p:first-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cards.cards-with-hover-image ul > li .cards-card-body:first-child > p:last-child,
+.cards.cards-with-hover-image ul > li:hover .cards-card-body:first-child > p:first-child {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cards.cards-with-hover-image ul > li:hover .cards-card-body:first-child > p:last-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cards.cards-with-hover-image ul > li .cards-card-body:first-child img {
+  aspect-ratio: auto;
+  width: 152px;
+  display: block;
+  margin: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .cards.cards-with-hover-image ul > li {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .cards.cards-with-hover-image ul > li {
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+/* ================ WHO WE ARE BLOCK ================ */

@@ -47,7 +47,7 @@ main .carousel.product-carousel {
   font-size: var(--heading-font-size-l);
   margin-bottom: 8px;
   margin-top: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .product-carousel .carousel-item .card-caption .button-container {

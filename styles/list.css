@@ -19,12 +19,12 @@
   font-weight: bold;
   margin: 0;
   padding: 8px 0 22px;
-  border-bottom: 1px solid var(--border-color-gray);
+  border-bottom: 1px solid var(--color-gray-450);
 }
 
 /* filters */
 .list > .filter > .select {
-  border-bottom: 1px solid var(--border-color-gray);
+  border-bottom: 1px solid var(--color-gray-450);
   padding: 10px 0 16px;
 }
 
@@ -52,7 +52,7 @@
 
 .list > .filter > .select.open > .dropdown-toggle,
 .list > .filter > .select > .dropdown-toggle:hover {
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
 }
 
 .list > .filter > .select.open > .dropdown-toggle::before {
@@ -87,7 +87,7 @@
 .list > .items > .item {
   height: auto;
   max-width: 100%;
-  border-bottom: 2px solid var(--light-border-color-gray);
+  border-bottom: 2px solid var(--color-gray-300);
   padding: 37px 0 40px;
 }
 
@@ -120,7 +120,7 @@
   font-size: var(--list-font-size-s);
   font-style: normal;
   font-weight: 600;
-  color: var(--text-dark-gray);
+  color: var(--color-gray-900);
 }
 
 .list > .items > .item > .image {
@@ -144,12 +144,12 @@
 
 .list > .pagination > .pager-item {
   display: inline-block;
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
   text-decoration: none;
   min-width: 55px;
   width: 55px;
   height: 55px;
-  border: 1px solid var(--text-light-gray);
+  border: 1px solid var(--color-gray-500);
   font-weight: bold;
   line-height: 53px;
   text-align: center;
@@ -264,7 +264,7 @@
 }
 
 .events .list > .items > .item > .content > .cite {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
@@ -272,7 +272,7 @@
 .events .list > .items h4 {
   font-size: 1.25rem;
   font-family: var(--ff-proxima-xbold);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -291,7 +291,7 @@
   flex-direction: column;
   padding: 0;
   margin-left: 0;
-  background-color: #fff;
+  background-color: var(--color-white);
   border-radius: 0.25rem;
   overflow: hidden;
   position: relative;
@@ -308,7 +308,7 @@
   width: 100%;
   margin-bottom: 0;
   padding: 1rem 1.5rem;
-  border: 1px solid var(--light-border-color-gray);
+  border: 1px solid var(--color-gray-300);
   border-radius: 0.25rem;
   margin-top: 0;
 }
@@ -317,7 +317,7 @@
   padding-right: 0;
   padding-left: 0;
   margin-bottom: 0;
-  border: 1px solid var(--light-border-color-gray);
+  border: 1px solid var(--color-gray-300);
   border-bottom: none;
   overflow: hidden;
   flex: none;

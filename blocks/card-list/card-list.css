@@ -1,7 +1,5 @@
 /* stylelint-disable no-descending-specificity */
 
-/* COMMONS */
-
 /* Desktop - Style like a list */
 
 main .section.card-list-container .default-content-wrapper h2 {
@@ -11,7 +9,7 @@ main .section.card-list-container .default-content-wrapper h2 {
 }
 
 main .section div.card-list-wrapper {
-  width: 1170px;
+  width: var(--section-max-width);
   max-width: unset;
   padding: 0 15px;
   margin-top: 40px;
@@ -50,20 +48,10 @@ main .card-list .carousel-item.clone {
 }
 
 main .card-list .carousel-item .card {
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
-}
-
-@media only screen and (max-width: 1200px) {
-  main .section div.card-list-wrapper {
-    width: 970px;
-  }
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
 }
 
 @media only screen and (max-width: 992px) {
-  main .section div.card-list-wrapper {
-    width: 750px;
-  }
-
   main .card-list .carousel-item {
     width: 45%;
   }
@@ -71,10 +59,6 @@ main .card-list .carousel-item .card {
 
 /* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  main .section div.card-list-wrapper {
-    width: 100%;
-  }
-
   main .card-list {
     justify-content: start !important;
     flex-wrap: nowrap;
@@ -103,7 +87,7 @@ main .card-list .carousel-item .card {
   }
 }
 
-/* VARIANTS */
+/* ============ VARIANTS ============ */
 
 /* APPLICATIONS */
 .card-list.applications .card-thumb,
@@ -147,7 +131,7 @@ main .card-list.blog {
 
 .card-list.blog .card-caption {
   padding: 15px;
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 .card-list.blog .card-caption h3 {
@@ -214,10 +198,7 @@ main .section div.card-list-wrapper.assay-kits {
   padding: 0;
 }
 
-main .card-list.accessories-and-consumables {
-  justify-content: center;
-}
-
+main .card-list.accessories-and-consumables,
 main .card-list.card-list.accessories-and-consumables .card {
   justify-content: center;
 }
@@ -230,7 +211,7 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .card-caption,
 .card-list.assay-kits .card-caption {
   padding: 15px;
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 .card-list.accessories-and-consumables .card-caption h3,
@@ -242,7 +223,7 @@ main .card-list.assay-kits .card {
 
 .card-list.accessories-and-consumables .card-caption h3 a,
 .card-list.assay-kits .card-caption h3 a {
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 .card-list.accessories-and-consumables .card-caption p,
@@ -254,11 +235,11 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .button-container,
 .card-list.assay-kits .button-container {
   text-align: left;
-} 
+}
 
 .card-list.assay-kits .card .badge {
-  background: #6db43e;
-  color: #fff;
+  background: var(--card-badge-bg);
+  color: var(--color-white);
   text-align: center;
   padding: 5px 0;
   font-weight: bold;
@@ -271,7 +252,7 @@ main .card-list.assay-kits .card {
 
 .card-list.assay-kits .card .badge::before {
   content: "";
-  border-bottom: 6px solid #3e592c;
+  border-bottom: 6px solid var(--card-badge-border);
   border-right: 6px solid transparent;
   position: absolute;
   top: -6px;
@@ -347,7 +328,7 @@ main .section div.card-list-wrapper.culture-media-and-reagents {
 .card-list.additional-products .button-container .button,
 .card-list.culture-media-and-reagents .button-container .button {
   font-size: 18px;
-  color: #008ca8;
+  color: var(--color-primary);
   padding: 0;
   border: none;
   min-width: unset;

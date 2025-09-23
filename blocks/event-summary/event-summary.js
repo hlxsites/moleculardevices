@@ -1,4 +1,4 @@
-import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getAllMetadata, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, h1, h2, p,
 
@@ -39,27 +39,25 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
 }
 
 export default async function decorate(block) {
+  console.log(getAllMetadata('event'));
+  const {
+    address, booth, end, region, start, type, url,
+  } = getAllMetadata('event');
   const image = getMetadata('og:image');
-  const eventStart = getMetadata('event-start');
-  const eventEnd = getMetadata('event-end');
   const title = document.querySelector('main h1');
-  const eventType = getMetadata('event-type') || 'Conference';
-  const eventRegion = getMetadata('event-region');
-  const eventAddress = getMetadata('event-address');
-  const eventURL = getMetadata('event-url');
-  const booth = getMetadata('event-booth') || '';
+  const eventType = type || 'Conference';
   const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
 
   const eventObj = {
     image,
     imageThumbPosition,
-    eventStart,
-    eventEnd,
+    start,
+    end,
     title,
     eventType,
-    eventRegion,
-    eventAddress,
-    eventURL,
+    region,
+    address,
+    url,
     booth,
   };
 
