@@ -184,6 +184,9 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /contact/thank-you
 
 
+Disallow: /drafts/documentation/kitchen-sink-commons
+Disallow: /tools/sidekick/library.html
+
 #Block veiw
 Disallow: /current-year-resources
 
