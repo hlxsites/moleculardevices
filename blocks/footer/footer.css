@@ -293,6 +293,10 @@
   margin-left: 0;
 }
 
+.row-4 .footer-contact {
+  margin-bottom: 40px;
+}
+
 .row-4 .row-4-inner-wrapper picture,
 .row-4 .row-4-inner-wrapper li i {
   position: relative;

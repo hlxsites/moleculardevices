@@ -284,7 +284,7 @@ main .rfq-form .hs-submit .actions button {
   width: 100%;
 }
 
-main .rfq-form .privacy{
+main .rfq-form .privacy {
   text-align: left;
   max-width: 70%;
   padding: 0 2px 2px 30px;
@@ -322,7 +322,11 @@ main .rfq-form .privacy > label {
 
 @media only screen and (max-width: 767px) {
   .rfq-product-wrapper {
-    padding: 30px 5px 80px;
+    padding: 30px 20px 80px;
+  }
+
+  main .rfq-form .privacy {
+    margin-bottom: 20px;
   }
 
   .rfq-thankyou-msg h2 {
@@ -353,5 +357,9 @@ main .rfq-form .privacy > label {
   .rfq-icon-link .rfq-icon-img {
     margin: 12px auto;
     margin-bottom: 30px;
+  }
+
+  main .rfq-form .privacy {
+    max-width: 100%;
   }
 }
