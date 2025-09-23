@@ -217,8 +217,8 @@ export default async function decorate(block) {
   options.data = await fetchEvents(options);
 
   if (featuredPath) {
-    options.featuredEvent = options.data.find((option) => option.path === featuredPath);
-    options.data = options.data.filter((option) => option.path !== featuredPath);
+    const featuredEventData = options.data.find((option) => option.path === featuredPath);
+    options.featuredEvent = JSON.parse(JSON.stringify(featuredEventData));
   }
 
   loadCSS('/blocks/event-summary/event-summary.css');
