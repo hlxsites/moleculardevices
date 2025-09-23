@@ -10,7 +10,7 @@
   background-color: var(--color-gray-50);
 }
 
-.forms.block:has( > .type-not-found-msg) > div {
+.forms.block:has(> .type-not-found-msg) > div {
   display: none;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .hs-form .hs-form-field .hs-input,
-.hs-form .hs-form-field .hs-form-checkbox label span::before ,
+.hs-form .hs-form-field .hs-form-checkbox label span::before,
 .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
   background-color: var(--color-white);
   border: 1px solid var(--color-input-border);
@@ -106,9 +106,8 @@
   display: none;
 }
 
-.hs-form .hs-form-field.hs_email .hs-error-msgs label{
+.hs-form .hs-form-field.hs_email .hs-error-msgs label {
   display: block;
-
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
@@ -180,7 +179,7 @@ div.privacy > label {
   margin-top: 0;
 }
 
-.hs-form .hs-form-field .hs-form-checkbox label{
+.hs-form .hs-form-field .hs-form-checkbox label {
   position: relative;
 }
 
@@ -577,4 +576,16 @@ main .product-rfq-thankyou-section .submitted-message img[alt="E-mail Icon"] {
 
 main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
   display: none;
+}
+
+/* updated date and time */
+.fn-date-picker .pika-next,
+.fn-date-picker .pika-prev,
+.fn-date-picker .pika-button {
+  min-width: unset;
+}
+
+.fn-date-picker .pika-next,
+.fn-date-picker .pika-prev {
+  font-size: 0;
 }
