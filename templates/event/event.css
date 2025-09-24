@@ -1,9 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.event main .section > div,
-.event main .section div + .default-content-wrapper {
-  padding-top: 0;
-}
-
 .event main .section .default-content-wrapper h2:only-child {
   font-size: var(--heading-font-size-xxl);
   font-family: var(--ff-proxima-regular);
@@ -12,10 +7,6 @@
 
 .event .event-title {
   font-size: 36px;
-}
-
-.event main .event-container p:last-of-type {
-  padding-bottom: 100px;
 }
 
 .event main .section .product-carousel-wrapper {

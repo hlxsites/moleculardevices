@@ -4,7 +4,7 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
 
-const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
+const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo', 'Events'];
 const customResourcesBreadcrumb = {
   name: 'Resources',
   url_path: '/search-results',

@@ -122,12 +122,7 @@ export default async function decorate(block) {
         const dateField = dateInput?.closest('.hs-form-field');
         const meetingTimeField = meetingTimeInput?.closest('.hs-form-field');
 
-        if (hasBookTimeOption) {
-          dateInput.setAttribute('type', 'text');
-          meetingTimeInput.setAttribute('type', 'text');
-          dateField.style.display = 'block';
-          meetingTimeField.style.display = 'block';
-        } else {
+        if (!hasBookTimeOption) {
           dateField.remove();
           meetingTimeField.remove();
         }
