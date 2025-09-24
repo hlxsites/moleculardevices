@@ -637,11 +637,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     overflow: visible;
   }
 
-  .hero-inner .container > div {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
   /* Citation Variant - Mobile -- Start */
   .citation main .hero {
     min-height: 220px;
