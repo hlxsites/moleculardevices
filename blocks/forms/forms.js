@@ -76,12 +76,14 @@ export default async function decorate(block) {
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
+  const hasBookTimeOption = blockClasses.find((cls) => cls === 'book-time');
 
   let formHeading = formConfig.heading || '';
 
   formConfig.formType = formType;
   const target = `${formConfig.formType || 'unknown-type'}-form`;
 
+  /* product page form */
   if (template.includes('Product')) {
     const data = PRODUCT_FORM_DATA
       .find((formData) => formData.type.toLowerCase().includes(category.toLowerCase()));
@@ -110,4 +112,16 @@ export default async function decorate(block) {
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }
+
+  // show date/time field for event
+  window.addEventListener('message', (event) => {
+    if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+      if (!hasBookTimeOption && formConfig.formType === 'events') {
+        const dateInput = block.querySelector('[name="date"]');
+        const meetingTimeInput = block.querySelector('[name="meeting_time"]');
+        dateInput?.closest('.hs-form-field').remove();
+        meetingTimeInput?.closest('.hs-form-field').remove();
+      }
+    }
+  });
 }
