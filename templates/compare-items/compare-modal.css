@@ -16,18 +16,10 @@ main .pro-comparison-result.show {
   display: block;
 }
 
-main .pro-comparison-result .container,
 main .pro-comparison-result .col-xs-12,
 main .pro-comparison-result .col-sm-3 {
   padding-left: 15px;
   padding-right: 15px;
-}
-
-main .pro-comparison-result .container {
-  margin-right: auto;
-  margin-left: auto;
-  width: 100%;
-  max-width: var(--section-max-width);
 }
 
 main .pro-comparison-result .product-comparison {

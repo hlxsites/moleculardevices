@@ -1,5 +1,5 @@
 import {
-  fetchPlaceholders, getMetadata, loadCSS, readBlockConfig, toCamelCase, toClassName,
+  fetchPlaceholders, getMetadata, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -9,7 +9,7 @@ import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import { createEventBanner } from '../event-summary/event-summary.js';
+import decorateEventBanner from '../event-banner/event-banner.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -119,10 +119,10 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
   featuredEvent.imageThumbPosition = imageThumbPosition;
 
   if (root) {
-    const eventSummary = div({ class: 'event-summary' });
-    const featuredBanner = createEventBanner(featuredEvent, true);
-    eventSummary.appendChild(featuredBanner);
-    root.appendChild(eventSummary);
+    const eventBannerSection = div({ class: 'section' });
+    const featuredBanner = decorateEventBanner(featuredEvent, true);
+    eventBannerSection.appendChild(featuredBanner);
+    root.closest('.section').appendChild(eventBannerSection);
   }
 }
 
@@ -221,7 +221,6 @@ export default async function decorate(block) {
     options.featuredEvent = JSON.parse(JSON.stringify(featuredEventData));
   }
 
-  loadCSS('/blocks/event-summary/event-summary.css');
   sortEvents(options.data, showFutureEvents);
   await createOverview(block, options, imageThumbPosition);
 }

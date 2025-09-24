@@ -1,3 +1,11 @@
+.events {
+  background-color: var(--color-gray-200);
+}
+
+.events .wave {
+  padding-top: 0;
+}
+
 .section.events-container .events-wrapper {
   padding-top: 0;
 }

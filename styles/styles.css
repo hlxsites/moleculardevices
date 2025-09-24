@@ -740,16 +740,13 @@ main video {
   height: auto;
 }
 
-main .breadcrumbs-wrapper {
-  height: 86px;
-}
-
 main .section {
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
-main .section > div {
+main .section > div,
+.container {
   margin: 0 auto;
   padding: 0 15px;
   width: var(--section-max-width);
@@ -1001,16 +998,6 @@ main .event-container p {
   margin-top: 0;
   margin-bottom: 10px;
   padding: 0;
-}
-
-main .event-title,
-main .event-container .event-title {
-  line-height: 1;
-  font-weight: 100;
-  padding-top: 40px;
-  border-bottom: 1px solid var(--color-gray-500);
-  padding-bottom: 20px;
-  width: 100%;
 }
 
 main .event-container strong {

@@ -67,14 +67,6 @@
   overflow-x: hidden;
 }
 
-.footer .container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: var(--section-max-width);
-}
-
 /* row 3 | news events */
 .footer-news-events > div {
   display: flex;
