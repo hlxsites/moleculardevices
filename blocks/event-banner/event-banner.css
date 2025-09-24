@@ -1,9 +1,12 @@
 /* stylelint-disable no-descending-specificity */
+.event-banner-container {
+  margin-bottom: 1.375rem;
+}
+
 .event-banner {
   display: grid;
   overflow: hidden;
   border-radius: 0.25rem;
-  margin-bottom: 2rem;
   font-size: 1rem;
   border: 1px solid var(--color-gray-300);
   background: var(--color-white);
@@ -41,7 +44,7 @@
 
 .event-banner .event-title,
 .event-banner h1,
-.event-banner .event-sub-title{
+.event-banner .event-sub-title {
   color: var(--color-text-primary);
   font-family: var(--ff-proxima-xbold);
 }
@@ -128,7 +131,6 @@ p.cite {
 @media only screen and (min-width: 768px) {
   .event-banner {
     grid-template-columns: 65% 35%;
-    margin-bottom: 4.5rem;
   }
 
   .event-banner .left-col img {
