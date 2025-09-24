@@ -8,8 +8,6 @@ import {
 import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import createEventBanner from '../event-banner/event-banner.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -94,7 +92,7 @@ function createFilters(options) {
   ];
 }
 
-function compareEvents(eventA, eventB) {
+export function compareEvents(eventA, eventB) {
   if (eventA.eventStart < eventB.eventStart) {
     return -1;
   }
@@ -111,29 +109,11 @@ function sortEvents(data, showFutureEvents) {
   }
 }
 
-function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'center') {
-  const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
-  const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
-  featuredEvent.eventStart = startFormatDate;
-  featuredEvent.eventEnd = endFormatDate;
-  featuredEvent.imageThumbPosition = imageThumbPosition;
-
-  if (root) {
-    const eventBannerSection = div({ class: 'section' });
-    const featuredBanner = createEventBanner(featuredEvent, true);
-    eventBannerSection.appendChild(featuredBanner);
-    root.closest('.section').appendChild(eventBannerSection);
-  }
-}
-
-async function createOverview(block, options, imageThumbPosition) {
+async function createOverview(block, options) {
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
-  if (options.featuredEvent) {
-    createFeaturedEventCard(options.featuredEvent, block, imageThumbPosition);
-  }
   await createList(createFilters(options), options, block);
 }
 

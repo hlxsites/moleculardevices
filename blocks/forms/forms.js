@@ -119,10 +119,13 @@ export default async function decorate(block) {
       if (formConfig.formType === 'events') {
         const dateInput = block.querySelector('[name="date"]');
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
+        const eventTime = new Date(getMetadata('event-start')).toLocaleDateString();
+
         if (!hasBookTimeOption) {
           dateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
         } else {
+          dateInput.setAttribute('min', eventTime);
           dateInput?.previousElementSibling.setAttribute('placeholder', 'Meeting Date');
         }
       }

@@ -1,4 +1,4 @@
-import createEventBanner from '../../blocks/event-banner/event-banner.js';
+import { createEventBanner } from '../../blocks/event-banner/event-banner.js';
 import { div } from '../../scripts/dom-helpers.js';
 import { getAllMetadata, getMetadata } from '../../scripts/lib-franklin.js';
 
@@ -25,6 +25,9 @@ export default async function buildAutoBlocks() {
     eventURL: url,
   };
 
-  const eventBanner = div({ class: 'section no-padding-top no-padding-bottom' }, createEventBanner(eventObj));
+  const eventBanner = div(
+    { class: 'section no-padding-top no-padding-bottom' },
+    createEventBanner(eventObj),
+  );
   main.insertAdjacentElement('afterbegin', eventBanner);
 }
