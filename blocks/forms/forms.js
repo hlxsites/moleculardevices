@@ -114,19 +114,14 @@ export default async function decorate(block) {
   }
 
   // show date/time field for event
-  // window.addEventListener('message', (event) => {
-  //   if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-  //     if (formConfig.formType === 'events') {
-  //       const dateInput = block.querySelector('[name="date"]');
-  //       const meetingTimeInput = block.querySelector('[name="meeting_time"]');
-  //       const dateField = dateInput?.closest('.hs-form-field');
-  //       const meetingTimeField = meetingTimeInput?.closest('.hs-form-field');
-
-  //       if (!hasBookTimeOption) {
-  //         dateField.remove();
-  //         meetingTimeField.remove();
-  //       }
-  //     }
-  //   }
-  // });
+  window.addEventListener('message', (event) => {
+    if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+      if (!hasBookTimeOption && formConfig.formType === 'events') {
+        const dateInput = block.querySelector('[name="date"]');
+        const meetingTimeInput = block.querySelector('[name="meeting_time"]');
+        dateInput?.closest('.hs-form-field').remove();
+        meetingTimeInput?.closest('.hs-form-field').remove();
+      }
+    }
+  });
 }
