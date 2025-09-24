@@ -116,11 +116,15 @@ export default async function decorate(block) {
   // show date/time field for event
   window.addEventListener('message', (event) => {
     if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-      if (!hasBookTimeOption && formConfig.formType === 'events') {
+      if (formConfig.formType === 'events') {
         const dateInput = block.querySelector('[name="date"]');
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
-        dateInput?.closest('.hs-form-field').remove();
-        meetingTimeInput?.closest('.hs-form-field').remove();
+        if (!hasBookTimeOption) {
+          dateInput?.closest('.hs-form-field').remove();
+          meetingTimeInput?.closest('.hs-form-field').remove();
+        } else {
+          dateInput?.previousElementSibling.setAttribute('placeholder', 'Meeting Date');
+        }
       }
     }
   });

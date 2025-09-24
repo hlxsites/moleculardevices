@@ -28,6 +28,7 @@
   height: 100%;
   transform: scale(1);
   transition: all 0.3s ease-in-out;
+  aspect-ratio: 16/9;
 }
 
 .event-banner .left-col a img:hover {

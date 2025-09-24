@@ -22,10 +22,11 @@ export default function decorateEventBanner(eventObj, isFeaturedBanner = false) 
       p(eventObj.eventAddress),
       p(eventObj.eventRegion),
     ),
-
-    eventObj.booth ? h2({ class: 'event-sub-title' }, eventObj.booth) : '',
-    !isFeaturedBanner && eventObj.eventURL ? p(a({ class: 'button primary', href: eventObj.eventURL }, 'See us at the show')) : '',
-    socialShareBlock('Share this event', socials),
+    div(
+      eventObj.booth ? h2({ class: 'event-sub-title' }, eventObj.booth) : '',
+      !isFeaturedBanner && eventObj.eventURL ? p(a({ class: 'button primary', href: eventObj.eventURL }, 'See us at the show')) : '',
+      socialShareBlock('Share this event', socials),
+    ),
   );
 
   const eventBanner = div({ class: bannerClasses });

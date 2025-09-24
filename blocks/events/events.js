@@ -9,7 +9,7 @@ import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
 import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import decorateEventBanner from '../event-banner/event-banner.js';
+import createEventBanner from '../event-banner/event-banner.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -120,7 +120,7 @@ function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'cent
 
   if (root) {
     const eventBannerSection = div({ class: 'section' });
-    const featuredBanner = decorateEventBanner(featuredEvent, true);
+    const featuredBanner = createEventBanner(featuredEvent, true);
     eventBannerSection.appendChild(featuredBanner);
     root.closest('.section').appendChild(eventBannerSection);
   }
@@ -186,15 +186,11 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
   const relatedLink = block.querySelector('a');
-  const featuredEvent = getMetadata('featured-event');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
   const imageThumbPosition = getMetadata('image-thumb-position');
-  let featuredPath;
 
   placeholders = await fetchPlaceholders();
-
-  if (featuredEvent) featuredPath = new URL(featuredEvent).pathname;
 
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 9) || 9,
@@ -215,12 +211,6 @@ export default async function decorate(block) {
   options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
-
-  if (featuredPath) {
-    const featuredEventData = options.data.find((option) => option.path === featuredPath);
-    options.featuredEvent = JSON.parse(JSON.stringify(featuredEventData));
-  }
-
   sortEvents(options.data, showFutureEvents);
   await createOverview(block, options, imageThumbPosition);
 }
