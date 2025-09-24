@@ -1,8 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.event-banner-container {
-  margin-bottom: 1.375rem;
-}
-
 .event-banner {
   display: grid;
   overflow: hidden;

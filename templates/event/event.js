@@ -9,12 +9,10 @@ export default async function buildAutoBlocks() {
   const image = getMetadata('og:image');
   const title = document.querySelector('main h1');
   const eventType = type || 'Conference';
-  const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
   const main = document.getElementsByTagName('main')[0];
 
   const eventObj = {
     image,
-    imageThumbPosition,
     title,
     eventType,
     booth,

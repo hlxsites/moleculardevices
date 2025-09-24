@@ -1,37 +1,46 @@
 import {
   a, div, h1, h2, p,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
-import {
-  createOptimizedPicture, getMetadata, toClassName,
-} from '../../scripts/lib-franklin.js';
 import {
   decorateLinks, formatDate, unixDateToString,
 } from '../../scripts/scripts.js';
-import { formatEventDateRange } from '../../scripts/list.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
+import { formatEventDateRange } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';
+import ffetch from '../../scripts/ffetch.js';
+
+/* get latest events */
+async function latestEvents() {
+  const now = Date.now();
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((event) => (event.eventEnd * 1000 >= now))
+    .all();
+  return events.sort(compareEvents);
+}
 
 /* html of event banner */
-export function createEventBanner(eventObj, isFeaturedBanner = false) {
+export function createEventBanner(eventObj, isFeaturedBanner) {
   const socials = ['facebook', 'linkedin', 'x', 'youtube-play'];
-  const bannerClasses = `event-banner event-thumb-${toClassName(eventObj.imageThumbPosition)} ${isFeaturedBanner ? 'featured-event-banner' : ''}`;
+  const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
+  const bannerClasses = `event-banner event-thumb-${toClassName(imageThumbPosition)} ${isFeaturedBanner ? 'featured-event-banner' : ''}`;
 
   const leftCol = div({ class: 'left-col' },
-    isFeaturedBanner ? a({ href: eventObj.path }, createOptimizedPicture(eventObj.image))
-      : createOptimizedPicture(eventObj.image));
+    isFeaturedBanner ? a({ href: eventObj?.path }, createOptimizedPicture(eventObj?.image))
+      : createOptimizedPicture(eventObj?.image));
 
   const rightCol = div({ class: 'right-col' },
     div({ class: 'event-details' },
-      p({ class: 'cite' }, eventObj.eventType),
-      isFeaturedBanner ? h2({ class: 'event-title' }, a({ href: eventObj.path }, eventObj.title)) : h1({ class: 'event-title' }, eventObj.title),
-      eventObj.eventStart ? p({ class: 'event-date' }, formatEventDateRange(eventObj.eventStart, eventObj.eventEnd)) : '',
-      p(eventObj.eventAddress),
-      p(eventObj.eventRegion),
+      p({ class: 'cite' }, eventObj?.eventType),
+      isFeaturedBanner ? h2({ class: 'event-title' }, a({ href: eventObj?.path }, eventObj?.title)) : h1({ class: 'event-title' }, eventObj?.title),
+      eventObj?.eventStart ? p({ class: 'event-date' }, formatEventDateRange(eventObj?.eventStart, eventObj?.eventEnd)) : '',
+      p(eventObj?.eventAddress),
+      p(eventObj?.eventRegion),
     ),
     div(
-      eventObj.booth ? h2({ class: 'event-sub-title' }, eventObj.booth) : '',
-      !isFeaturedBanner && eventObj.eventURL ? p(a({ class: 'button primary', href: eventObj.eventURL }, 'See us at the show')) : '',
+      eventObj?.booth ? h2({ class: 'event-sub-title' }, eventObj?.booth) : '',
+      !isFeaturedBanner && eventObj?.eventURL ? p(a({ class: 'button primary', href: eventObj?.eventURL }, 'See us at the show')) : '',
       socialShareBlock('Share this event', socials),
     ),
   );
@@ -45,43 +54,28 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
   return eventBanner;
 }
 
-/* get latest events */
-async function latestEvents() {
-  const now = Date.now();
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((event) => (event.eventEnd * 1000 >= now))
-    .all();
-  return events.sort(compareEvents);
-}
-
-/* create featured event */
-async function createFeaturedEvent(block, isFeaturedEventBanner) {
-  const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
-  const featuredEventPath = new URL(block.querySelector('a').href).pathname;
-  const currentYearEvents = await latestEvents();
-
-  let featuredEvent = currentYearEvents.find((event) => event.path === featuredEventPath);
-
-  if (!featuredEvent) {
-    const [ftEvent] = currentYearEvents;
-    featuredEvent = ftEvent;
-  }
-  console.log(featuredEvent);
-
-  const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
-  const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
-  featuredEvent.eventStart = startFormatDate;
-  featuredEvent.eventEnd = endFormatDate;
-  featuredEvent.imageThumbPosition = imageThumbPosition;
-
-  return createEventBanner(featuredEvent, isFeaturedEventBanner);
-}
-
 export default async function decorate(block) {
-  const isFeaturedEventBanner = block.classList.contains('featured');
-  const blockClasses = block.classList.value;
-  const eventBanner = await createFeaturedEvent(block, isFeaturedEventBanner);
-  eventBanner.classList.value = blockClasses;
-  block.replaceWith(eventBanner);
+  const featuredEventPath = new URL(block.querySelector('a').href).pathname;
+  const isFeaturedEventBanner = block?.classList?.contains('featured');
+  let eventObj;
+
+  if (isFeaturedEventBanner) {
+    const currentYearEvents = await latestEvents();
+    eventObj = currentYearEvents.find((event) => event.path === featuredEventPath);
+
+    if (!eventObj) {
+      const [ftEvent] = currentYearEvents;
+      eventObj = ftEvent;
+    }
+
+    const startFormatDate = formatDate(unixDateToString(eventObj?.eventStart));
+    const endFormatDate = formatDate(unixDateToString(eventObj?.eventEnd));
+    eventObj.eventStart = startFormatDate;
+    eventObj.eventEnd = endFormatDate;
+    const blockClasses = block?.classList?.value;
+    const eventBanner = createEventBanner(eventObj);
+
+    eventBanner.classList.value = blockClasses;
+    block.replaceWith(eventBanner);
+  }
 }

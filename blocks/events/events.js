@@ -1,5 +1,5 @@
 import {
-  fetchPlaceholders, getMetadata, readBlockConfig, toCamelCase, toClassName,
+  fetchPlaceholders, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -168,7 +168,6 @@ export default async function decorate(block) {
   const relatedLink = block.querySelector('a');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
-  const imageThumbPosition = getMetadata('image-thumb-position');
 
   placeholders = await fetchPlaceholders();
 
@@ -192,5 +191,5 @@ export default async function decorate(block) {
 
   options.data = await fetchEvents(options);
   sortEvents(options.data, showFutureEvents);
-  await createOverview(block, options, imageThumbPosition);
+  await createOverview(block, options);
 }
