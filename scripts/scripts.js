@@ -147,13 +147,11 @@ function decorateEmbeddedBlocks(container) {
  */
 function createBreadcrumbsSpace(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
-    const blockWrapper = document.createElement('nav');
+    const blockWrapper = document.createElement('div');
     blockWrapper.classList.add('breadcrumbs-wrapper');
-    blockWrapper.setAttribute('aria-label', 'Breadcrumb');
-    main.insertAdjacentElement('afterbegin', blockWrapper);
+    main.querySelector('.section').prepend(blockWrapper);
   }
 }
-
 async function loadBreadcrumbs(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
