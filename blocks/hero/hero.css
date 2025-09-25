@@ -12,9 +12,10 @@ main .hero-advanced-wrapper {
 .hero,
 .hero-inner {
   position: relative;
-  color: var(--color-white);
 }
 
+.hero,
+.hero-inner,
 .hero-inner a:any-link {
   color: var(--color-white);
 }
@@ -787,7 +788,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
   position: relative;
 }
