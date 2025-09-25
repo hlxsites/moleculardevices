@@ -7,7 +7,8 @@ import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import decorateProductPage from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
 import {
-  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
+  extractFormData, getFormFieldValues, getFormId, handleFormSubmit,
+  initCustomDateInputs, updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
 
@@ -22,6 +23,15 @@ export async function createHubSpotForm(formConfig) {
         target: `#${formConfig.formType}-form`,
 
         onFormReady: async (form) => {
+          // remove Pikaday calendar widgets
+          form.querySelectorAll('.pika-single').forEach((pikASingle) => pikASingle.remove());
+          form.querySelectorAll('input.hs-input[name*="date"]').forEach((input) => {
+            input.type = 'date';
+          });
+
+          /* initial custom date input */
+          initCustomDateInputs(form);
+
           // Handle Salesforce hidden fields
           const fieldValues = await getFormFieldValues(formConfig);
           updateFormFields(form, fieldValues);
@@ -118,20 +128,17 @@ export default async function decorate(block) {
     if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
       if (formConfig.formType === 'events') {
         const dateInput = block.querySelector('[name="date"]');
+        const visibleDateInput = dateInput?.previousElementSibling;
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
-        // const newDateInput = block.querySelector('[name="new_date"]');
-        // const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
+        const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
+
+        const dateLabel = dateInput.closest('.hs-form-field').querySelector('label').textContent;
+        visibleDateInput.setAttribute('placeholder', dateLabel);
+        dateInput?.setAttribute('min', minDate);
 
         if (!hasBookTimeOption) {
           dateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
-        } else {
-          // dateInput?.previousElementSibling.setAttribute('placeholder', 'Meeting Date');
-          // dateInput?.previousElementSibling.setAttribute('min', minDate);
-          // dateInput?.setAttribute('min', minDate);
-          // dateInput?.setAttribute('value', minDate);
-          // newDateInput?.setAttribute('type', 'date');
-          // newDateInput?.setAttribute('min', minDate);
         }
       }
     }

@@ -593,3 +593,32 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
 .fn-date-picker .pika-prev {
   font-size: 0;
 }
+
+/* date field */
+.hs-dateinput {
+  position: relative;
+}
+
+.hs-dateinput::after {
+  content: "\f073";
+  display: inline-block;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font: normal normal normal 14px / 1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  pointer-events: none;
+}
+
+.hs-dateinput input[type="date"] {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

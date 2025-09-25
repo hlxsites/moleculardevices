@@ -10,6 +10,39 @@ import {
 
 const hostName = 'https://www.moleculardevices.com';
 
+export function initCustomDateInputs(form) {
+  form.querySelectorAll('.hs-dateinput').forEach((wrapper) => {
+    const textInput = wrapper.querySelector('input[type="text"]');
+    const dateInput = wrapper.querySelector('input[type="date"]');
+
+    if (!textInput || !dateInput) return;
+
+    // open date picker when clicking or focusing the text input
+    textInput.addEventListener('click', () => {
+      if (typeof dateInput.showPicker === 'function') {
+        dateInput.showPicker();
+      } else {
+        dateInput.click();
+      }
+    });
+
+    // update text input when date is picked
+    dateInput.addEventListener('change', () => {
+      if (dateInput.value) {
+        const date = new Date(dateInput.value);
+        textInput.value = date.toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        });
+        dateInput.valueAsDate = date;
+      } else {
+        textInput.value = '';
+      }
+    });
+  });
+}
+
 // extract data from table
 export async function extractFormData(block) {
   const blockData = {};
