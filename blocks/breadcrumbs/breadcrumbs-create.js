@@ -156,12 +156,22 @@ function getCustomUrl(path, part) {
 }
 
 function getName(pageIndex, path, part, current) {
-  if (customBreadcrumbs[part]) return customBreadcrumbs[part].name;
-  if (customBreadcrumbs[path]) return customBreadcrumbs[path].name;
+  if (customBreadcrumbs[part]) {
+    return customBreadcrumbs[part].name;
+  }
+
+  if (customBreadcrumbs[path]) {
+    return customBreadcrumbs[path].name;
+  }
 
   const pg = pageIndex.find((page) => page.path === path);
-  if (pg && pg.h1 && pg.h1 !== '0') return pg.h1;
-  if (pg && pg.title && pg.title !== '0') return pg.title;
+  if (pg && pg.h1 && pg.h1 !== '0') {
+    return pg.h1;
+  }
+
+  if (pg && pg.title && pg.title !== '0') {
+    return pg.title;
+  }
 
   if (current) {
     const headingElement = document.querySelector('main h1');
@@ -188,7 +198,10 @@ export default async function createBreadcrumbs(container) {
   const pg = pageIndex.find((page) => page.path === path);
   // default Home breadcrumb
   const breadcrumbs = [
-    { name: 'Home', url_path: '/' },
+    {
+      name: 'Home',
+      url_path: '/',
+    },
   ];
   // custom resource types restricting breadcrumb to Home > Resources
   if (pg && customResourceTypes.includes(pg.type)) {
@@ -208,10 +221,7 @@ export default async function createBreadcrumbs(container) {
           url_path: getCustomUrl(url, part),
         };
       }),
-      {
-        name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true),
-        // url_path: getCustomUrl(path, pathSplit[pathSplit.length - 1]),
-      },
+      { name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true) },
     );
   }
   const ol = container.querySelector('ol');

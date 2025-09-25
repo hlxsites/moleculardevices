@@ -150,7 +150,8 @@ function createBreadcrumbsSpace(main) {
     const blockWrapper = document.createElement('nav');
     blockWrapper.classList.add('breadcrumbs-wrapper');
     blockWrapper.setAttribute('aria-label', 'Breadcrumb');
-    main.insertAdjacentElement('afterbegin', blockWrapper);
+    // main.insertAdjacentElement('afterbegin', blockWrapper);
+    main.querySelector('.section').prepend(blockWrapper);
   }
 }
 
@@ -1361,8 +1362,8 @@ async function loadLazy(doc) {
     const element = hash ? doc.getElementById(hash.substring(1)) : false;
     if (hash && element) element.scrollIntoView();
 
-    loadBreadcrumbs(main);
     loadFooter(doc.querySelector('footer'));
+    loadBreadcrumbs(main);
 
     loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
     loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
