@@ -2654,11 +2654,6 @@ main .section.no-margin-bottom {
   line-height: 30px;
 }
 
-.blog main .section.hero-container + .section:not(.background-molecules),
-.publication.full-article main .section.hero-container + .section:not(.background-molecules) {
-  padding-top: 0;
-}
-
 .blog main .section.block,
 .publication.full-article main .section.block {
   padding: 20px 0;
