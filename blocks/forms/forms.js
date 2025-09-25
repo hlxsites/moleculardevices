@@ -117,16 +117,21 @@ export default async function decorate(block) {
   window.addEventListener('message', (event) => {
     if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
       if (formConfig.formType === 'events') {
-        const newDateInput = block.querySelector('[name="new_date"]');
+        const dateInput = block.querySelector('[name="date"]');
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
-        const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
+        // const newDateInput = block.querySelector('[name="new_date"]');
+        // const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
 
         if (!hasBookTimeOption) {
-          newDateInput?.closest('.hs-form-field').remove();
+          dateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
         } else {
-          newDateInput?.setAttribute('type', 'date');
-          newDateInput?.setAttribute('min', minDate);
+          // dateInput?.previousElementSibling.setAttribute('placeholder', 'Meeting Date');
+          // dateInput?.previousElementSibling.setAttribute('min', minDate);
+          // dateInput?.setAttribute('min', minDate);
+          // dateInput?.setAttribute('value', minDate);
+          // newDateInput?.setAttribute('type', 'date');
+          // newDateInput?.setAttribute('min', minDate);
         }
       }
     }
