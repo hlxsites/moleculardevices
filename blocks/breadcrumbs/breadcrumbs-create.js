@@ -20,9 +20,7 @@ function skipParts(pathSplit) {
 }
 
 function decodeHTMLEntities(str) {
-  const txt = document.createElement('div');
-  txt.innerHTML = str;
-  return txt.value || txt.innerText;
+  return new DOMParser().parseFromString(str, 'text/html').body.textContent || '';
 }
 
 const customBreadcrumbs = {
@@ -172,11 +170,11 @@ function getName(pageIndex, path, part, current) {
 
   const pg = pageIndex.find((page) => page.path === path);
   if (pg && pg.h1 && pg.h1 !== '0') {
-    return decodeHTMLEntities(pg.h1);
+    return pg.h1;
   }
 
   if (pg && pg.title && pg.title !== '0') {
-    return decodeHTMLEntities(pg.title);
+    return pg.title;
   }
 
   if (current) {
@@ -188,9 +186,9 @@ function getName(pageIndex, path, part, current) {
       .replace(/<br\s*\/?>/gi, ' ')
       .replace(/<[^>]+>/g, '');
 
-    return decodeHTMLEntities(
-      document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title),
-    );
+    const breadcrumbTitle = document.originalTitle
+      || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    return decodeHTMLEntities(breadcrumbTitle);
   }
 
   return part;
