@@ -172,7 +172,7 @@ function getName(pageIndex, path, part, current) {
 
   const pg = pageIndex.find((page) => page.path === path);
   if (pg && pg.h1 && pg.h1 !== '0') {
-     return decodeHTMLEntities(pg.h1);
+    return decodeHTMLEntities(pg.h1);
   }
 
   if (pg && pg.title && pg.title !== '0') {
@@ -189,7 +189,7 @@ function getName(pageIndex, path, part, current) {
       .replace(/<[^>]+>/g, '');
 
     return decodeHTMLEntities(
-      document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title)
+      document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title),
     );
   }
 
