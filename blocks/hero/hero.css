@@ -264,6 +264,11 @@ main .section .hero-advanced-wrapper {
   background-image: var(--gradient-bottom-overlay);
 }
 
+.hero.blog .hero-inner p,
+.hero.newsroom .hero-inner p{
+  margin-bottom: 0;
+}
+
 .hero.blog .hero-inner img,
 .hero.newsroom .hero-inner img,
 .hero.blog-overview .hero-inner img {
@@ -297,7 +302,6 @@ main .hero.blog .sticker {
 .hero.newsroom .breadcrumbs,
 .hero.blog .breadcrumbs {
   position: relative;
-  margin-bottom: 0;
 }
 
 .hero.newsroom .breadcrumbs > ol,
@@ -867,7 +871,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 .hero.hero-insider .hero-inner .breadcrumbs {
   display: flex;
   justify-content: flex-end;
-  padding: 56px 15px;
 }
 
 .hero.hero-insider .hero-inner .breadcrumbs ol,
@@ -898,11 +901,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero.hero-insider .hero-inner .breadcrumbs {
-    padding-bottom: 0;
-    display: grid;
-    grid-template-columns: auto 230px;
     justify-content: space-between;
-    padding-left: 0;
     padding-right: 0;
   }
 }
