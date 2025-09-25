@@ -154,7 +154,7 @@ function createBreadcrumbsSpace(main) {
   }
 }
 
-export async function loadBreadcrumbs(main) {
+async function loadBreadcrumbs(main) {
   if (getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
     const block = buildBlock('breadcrumbs', '');

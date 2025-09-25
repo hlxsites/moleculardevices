@@ -4,11 +4,6 @@
   margin: 0 auto;
 }
 
-.news main .breadcrumbs,
-.publication:not(.full-article) main .breadcrumbs {
-  padding-top: 70px;
-}
-
 .breadcrumbs ol {
   padding: 0;
   margin: 0;

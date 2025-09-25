@@ -165,16 +165,14 @@ function getName(pageIndex, path, part, current) {
 
   if (current) {
     const headingElement = document.querySelector('main h1');
-    if (headingElement) {
-      const htmlContent = headingElement.innerHTML;
+    const htmlContent = headingElement.innerHTML;
 
-      // Replace <br> with space and remove all other HTML tags
-      const heading = htmlContent
-        .replace(/<br\s*\/?>/gi, ' ')
-        .replace(/<[^>]+>/g, '');
+    // Replace <br> with space and remove all other HTML tags
+    const heading = htmlContent
+      .replace(/<br\s*\/?>/gi, ' ')
+      .replace(/<[^>]+>/g, '');
 
-      return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
-    }
+    return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
   }
 
   return part;
@@ -212,7 +210,7 @@ export default async function createBreadcrumbs(container) {
       }),
       {
         name: getName(pageIndex, path, pathSplit[pathSplit.length - 1], true),
-        url_path: getCustomUrl(path, pathSplit[pathSplit.length - 1]),
+        // url_path: getCustomUrl(path, pathSplit[pathSplit.length - 1]),
       },
     );
   }

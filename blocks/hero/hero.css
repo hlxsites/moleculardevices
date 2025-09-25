@@ -291,16 +291,19 @@ main .hero.blog .sticker {
 .hero.blog .sticker img {
   width: auto;
   height: auto;
+  display: block;
 }
 
 .hero.newsroom .breadcrumbs,
 .hero.blog .breadcrumbs {
   position: relative;
+  margin-bottom: 0;
 }
 
 .hero.newsroom .breadcrumbs > ol,
 .hero.blog .breadcrumbs > ol {
   position: absolute;
+  padding-left: 0;
 }
 
 .blog main .hero-wrapper .container,
