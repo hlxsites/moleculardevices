@@ -16,6 +16,10 @@ function skipParts(pathSplit) {
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
+function decodeHTMLEntities(str) {
+  return new DOMParser().parseFromString(str, 'text/html').body.textContent || '';
+}
+
 function getCustomUrl(path, part) {
   if (customBreadcrumbs[part]) {
     return customBreadcrumbs[part].url_path;
@@ -45,7 +49,9 @@ function getName(pageIndex, path, part, current) {
       .replace(/<br\s*\/?>/gi, ' ')
       .replace(/<[^>]+>/g, '');
 
-    return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    const breadcrumbTitle = document.originalTitle
+      || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    return decodeHTMLEntities(breadcrumbTitle);
   }
 
   return part;
