@@ -127,5 +127,6 @@ export function decorateAutoBlock(content) {
 export default function buildAutoBlocks() {
   const container = document.querySelector('main div');
   decorateAutoBlock(container);
-  container.append(buildBlock('social-share', '<p>Share this news</p>'));
+  console.log(container);
+  container.nextElementSibling.insertAdjacentElement('beforeend', buildBlock('social-share', '<p>Share this news</p>'));
 }

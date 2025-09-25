@@ -2,6 +2,10 @@ main .section .default-content-wrapper {
   padding: 0;
 }
 
+.publication.full-article main .hero-container + .social-share-container {
+  padding-top: 50px;
+}
+
 .publication.full-article .section > div:not(.hero-wrapper) {
   max-width: 800px;
   padding-inline: 15px;
