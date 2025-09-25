@@ -19,6 +19,12 @@ function skipParts(pathSplit) {
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
+function decodeHTMLEntities(str) {
+  const txt = document.createElement('div');
+  txt.innerHTML = str;
+  return txt.value || txt.innerText;
+}
+
 const customBreadcrumbs = {
   'app-note': {
     name: 'App Note',
@@ -166,11 +172,11 @@ function getName(pageIndex, path, part, current) {
 
   const pg = pageIndex.find((page) => page.path === path);
   if (pg && pg.h1 && pg.h1 !== '0') {
-    return pg.h1;
+     return decodeHTMLEntities(pg.h1);
   }
 
   if (pg && pg.title && pg.title !== '0') {
-    return pg.title;
+    return decodeHTMLEntities(pg.title);
   }
 
   if (current) {
@@ -182,7 +188,9 @@ function getName(pageIndex, path, part, current) {
       .replace(/<br\s*\/?>/gi, ' ')
       .replace(/<[^>]+>/g, '');
 
-    return document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    return decodeHTMLEntities(
+      document.originalTitle || (document.title.includes('| Molecular Devices') ? heading : document.title)
+    );
   }
 
   return part;
