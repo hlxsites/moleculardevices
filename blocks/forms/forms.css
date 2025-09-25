@@ -375,6 +375,10 @@ input[type="submit"] {
   max-width: 100%;
 }
 
+.events.book-time .hs-form .hs-form-field:not(.hs_subscribe) .hs-field-desc {
+  font-size: 1rem;
+}
+
 /* show modal */
 .hubspot-form.show-label .hs-form .hs-form-field .hs-input {
   width: 100%;
