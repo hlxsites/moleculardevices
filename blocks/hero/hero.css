@@ -233,27 +233,20 @@ main .section .hero-advanced-wrapper {
 }
 
 /* Blog Variant - Desktop -- Start */
-.blog main .hero-container,
-.full-article.publication main .hero-container {
-  margin-top: 0;
-}
-
 .blog main .hero-wrapper,
 .full-article.publication main .hero-wrapper {
   margin-top: 0;
-  margin-bottom: 60px;
   position: relative;
   color: var(--color-white);
 }
 
-.hero.blog-overview .hero-inner {
-  padding: 0 0 calc(41.2% - 96px);
+.blog main .hero-wrapper .breadcrumbs ol,
+.full-article.publication main .hero-wrapper .breadcrumbs ol {
+  padding-left: 0;
 }
 
-.hero.blog,
-.hero.newsroom,
-.hero.blog-overview {
-  margin-top: 0;
+.hero.blog-overview .hero-inner {
+  padding: 0 0 calc(41.2% - 96px);
 }
 
 .hero.blog .hero-inner,

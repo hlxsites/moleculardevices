@@ -150,8 +150,7 @@ function createBreadcrumbsSpace(main) {
     const blockWrapper = document.createElement('nav');
     blockWrapper.classList.add('breadcrumbs-wrapper');
     blockWrapper.setAttribute('aria-label', 'Breadcrumb');
-    // main.insertAdjacentElement('afterbegin', blockWrapper);
-    main.querySelector('.section').prepend(blockWrapper);
+    main.insertAdjacentElement('afterbegin', blockWrapper);
   }
 }
 
