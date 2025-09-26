@@ -127,7 +127,7 @@ export default async function decorate(block) {
         if (!hasBookTimeOption) {
           meetingDateInput.closest('.hs-form-field').style.display = 'none';
           meetingTimeInput.closest('.hs-form-field').style.display = 'none';
-          meetingDateInput.value = 'NA';
+          // meetingDateInput.value = 'NA';
           // meetingTimeInput.value = 'NA';
         } else {
           const dateLabel = dateInput?.closest('.hs-form-field')?.querySelector('label').textContent;
