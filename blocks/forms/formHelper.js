@@ -1,4 +1,4 @@
-/* eslint-disable max-len, import/no-cycle */
+/* eslint-disable no-console, max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
 import { getCookie } from '../../scripts/scripts.js';
@@ -9,6 +9,64 @@ import {
 } from './formMapping.js';
 
 const hostName = 'https://www.moleculardevices.com';
+
+/**
+ * Initialize a cross-browser custom date input with placeholder + min date.
+ *
+ * @param {HTMLInputElement} input - The input element to enhance
+ * @param {Object} options
+ * @param {string} [options.placeholder] - Placeholder text (when type=text)
+ * @param {string} [options.min] - Minimum date in YYYY-MM-DD format
+ */
+const flatPickerURL = 'https://cdn.jsdelivr.net/npm/flatpickr';
+export function initHTMLDateInput(dateInput, { placeholder = '', min } = {}) {
+  if (!dateInput) return;
+
+  // set placeholder + min
+  dateInput.setAttribute('type', 'text');
+  if (placeholder) dateInput.setAttribute('placeholder', placeholder);
+  if (min) dateInput.setAttribute('min', min);
+
+  // prevent typing
+  dateInput.addEventListener('keydown', (e) => e.preventDefault());
+
+  const showCalendar = () => {
+    dateInput.setAttribute('type', 'date');
+    try {
+      if (typeof dateInput.showPicker === 'function') {
+        dateInput.showPicker();
+        return;
+      }
+    } catch (err) {
+      console.warn('showPicker failed, using fallback', err);
+    }
+    dateInput.focus();
+  };
+
+  dateInput.addEventListener('click', showCalendar);
+  dateInput.addEventListener('focus', showCalendar);
+
+  dateInput.addEventListener('blur', () => {
+    if (!dateInput.value) {
+      dateInput.setAttribute('type', 'text');
+    }
+  });
+
+  // Fallback for Safari/Firefox
+  if (typeof dateInput.showPicker !== 'function') {
+    import(flatPickerURL).then(({ default: flatpickr }) => {
+      flatpickr(dateInput, {
+        dateFormat: 'Y-m-d',
+        minDate: min || null,
+        allowInput: false,
+        onOpen: () => dateInput.setAttribute('type', 'text'),
+        onClose: () => {
+          if (!dateInput.value) dateInput.setAttribute('type', 'text');
+        },
+      });
+    }).catch((err) => console.error('Flatpickr failed to load', err));
+  }
+}
 
 // extract data from table
 export async function extractFormData(block) {

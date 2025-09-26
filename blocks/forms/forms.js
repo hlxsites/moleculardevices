@@ -7,7 +7,8 @@ import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import decorateProductPage from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
 import {
-  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
+  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, initHTMLDateInput,
+  updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
 
@@ -117,21 +118,22 @@ export default async function decorate(block) {
   window.addEventListener('message', (event) => {
     if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
       if (formConfig.formType === 'events') {
-        const newDateInput = block.querySelector('[name="meeting_date_text"]');
+        const dateInput = block.querySelector('.hs-dateinput input[type="text"]');
+        const meetingDateInput = block.querySelector('[name="meeting_date_text"]');
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
 
         const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
-        // newDateInput.addEventListener('change', (event) => {
-        //   event.target?.setAttribute('type', 'date');
-        //   event.target?.setAttribute('min', minDate);
-        // });
 
         if (!hasBookTimeOption) {
-          newDateInput?.closest('.hs-form-field').remove();
+          meetingDateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
         } else {
-          newDateInput?.setAttribute('type', 'date');
-          newDateInput?.setAttribute('min', minDate);
+          const dateLabel = dateInput.closest('.hs-form-field').querySelector('label').textContent;
+          dateInput.setAttribute('placeholder', dateLabel);
+          initHTMLDateInput(meetingDateInput, {
+            placeholder: dateLabel,
+            min: minDate,
+          });
         }
       }
     }
