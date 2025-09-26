@@ -2715,60 +2715,6 @@ main .section.no-margin-bottom {
   padding-top: 0;
 }
 
-/* RFQ Form Section */
-main .section.tabs.rfq-form-section h2,
-main .section.tabs.rfq-form-section h3 {
-  font-size: 25px;
-}
-
-main .section.tabs.rfq-form-section h2 {
-  color: var(--color-highlight);
-}
-
-main .section.tabs.rfq-form-section h3 {
-  font-weight: 600;
-  margin-bottom: 40px;
-  padding-top: 0;
-  margin-top: 20px;
-}
-
-main .section.tabs.rfq-form-section ul {
-  padding-left: 20px;
-}
-
-main .section.rfq-form-section .embed {
-  width: 100%;
-  color: var(--color-white);
-  background-color: var(--rfq-form-section-embed);
-  padding: 20px 10px 0;
-  margin-top: 0;
-}
-
-main .section.rfq-form-section .embed h4 {
-  margin-bottom: 20px;
-  text-align: center;
-  padding: 0 20px;
-  color: var(--color-white);
-}
-
-@media only screen and (min-width: 768px) {
-  main .section.tabs.rfq-form-section h2,
-  main .section.tabs.rfq-form-section h3 {
-    font-size: 45px;
-  }
-
-  main .section.rfq-form-section > div {
-    width: calc(var(--section-max-width) / 2);
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  main .section.rfq-form-section .default-content-wrapper:first-child {
-    margin-left: var(--center-space);
-    padding-top: 35px;
-  }
-}
-
 /* Workflow Tab Heading */
 .no-list-padding ul,
 .section.no-default-padding .default-content-wrapper {
