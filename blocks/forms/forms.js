@@ -125,6 +125,7 @@ export default async function decorate(block) {
         const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
 
         if (!hasBookTimeOption) {
+          dateInput?.closest('.hs-form-field').remove();
           meetingDateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
         } else {
