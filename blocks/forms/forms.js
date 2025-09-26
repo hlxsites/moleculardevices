@@ -119,8 +119,8 @@ export default async function decorate(block) {
       if (formConfig.formType === 'events') {
         const newDateInput = block.querySelector('[name="meeting_date_text"]');
         const meetingTimeInput = block.querySelector('[name="meeting_time"]');
-        const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
 
+        const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
         // newDateInput.addEventListener('change', (event) => {
         //   event.target?.setAttribute('type', 'date');
         //   event.target?.setAttribute('min', minDate);

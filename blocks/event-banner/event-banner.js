@@ -21,7 +21,7 @@ async function latestEvents() {
 }
 
 /* html of event banner */
-export function createEventBanner(eventObj, isFeaturedBanner) {
+export function createEventBanner(eventObj, isFeaturedBanner = false) {
   const socials = ['facebook', 'linkedin', 'x', 'youtube-play'];
   const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
   const bannerClasses = `event-banner event-thumb-${toClassName(imageThumbPosition)} ${isFeaturedBanner ? 'featured-event-banner' : ''}`;
@@ -73,7 +73,7 @@ export default async function decorate(block) {
     eventObj.eventStart = startFormatDate;
     eventObj.eventEnd = endFormatDate;
     const blockClasses = block?.classList?.value;
-    const eventBanner = createEventBanner(eventObj);
+    const eventBanner = createEventBanner(eventObj, isFeaturedEventBanner);
 
     eventBanner.classList.value = blockClasses;
     block.replaceWith(eventBanner);

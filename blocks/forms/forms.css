@@ -595,11 +595,11 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
 }
 
 /* date field */
-.hs-dateinput {
+.hs-form-field:has(input[type='date']){
   position: relative;
 }
 
-.hs-dateinput::after {
+.hs-form-field:has(input[type='date'])::after{
   content: "\f073";
   display: inline-block;
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
@@ -612,6 +612,12 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
   right: 15px;
   top: 10px;
   pointer-events: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  appearance: none;
 }
 
 .hs-dateinput input[type="date"] {
