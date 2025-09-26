@@ -295,7 +295,7 @@
   font-size: 44px;
   top: 10px;
   left: -60px;
-  color: var(--product-comparison-scrollbar-thumb);
+  color: var(--color-primary);
 }
 
 .timeline-article .content-left-container {

@@ -375,6 +375,10 @@ input[type="submit"] {
   max-width: 100%;
 }
 
+.events.book-time .hs-form .hs-form-field:not(.hs_subscribe) .hs-field-desc {
+  font-size: 1rem;
+}
+
 /* show modal */
 .hubspot-form.show-label .hs-form .hs-form-field .hs-input {
   width: 100%;
@@ -588,4 +592,60 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
 .fn-date-picker .pika-next,
 .fn-date-picker .pika-prev {
   font-size: 0;
+}
+
+/* date field */
+.hs-dateinput,
+.hs-form-field:has(input[name='meeting_date_text']),
+.hs-form-field:has(input[type='date']){
+  position: relative;
+}
+
+.hs-dateinput::after,
+.hs-form-field:has(input[name='meeting_date_text'])::after,
+.hs-form-field:has(input[type='date'])::after{
+  content: "\f073";
+  display: inline-block;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font: normal normal normal 14px / 1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  pointer-events: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  appearance: none;
+  opacity: 0;
+}
+
+/* Hide calendar icon in Chrome, Edge, Opera */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: none;
+  opacity: 0;
+}
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+  display: none;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"]::-ms-expand {
+  display: none;
 }

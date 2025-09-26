@@ -565,7 +565,7 @@ main div.carousel-wrapper.wave.blue .carousel-dot-button.selected {
 
 /* WAVE BlueGreen Variant */
 main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
-  background-color: var(--carousel-green-wave-indicator);
+  background-color: var(--color-tertiary);
 }
 
 main .carousel .carousel-item-text blockquote {

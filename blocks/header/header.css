@@ -32,12 +32,7 @@ header .nav-wrapper {
   position: fixed;
 }
 
-header .container {
-  margin-right: auto;
-  margin-left: auto;
-  background: var(--color-white);
-}
-
+header .container,
 header .nav-wrapper .container {
   background: var(--color-white);
 }
@@ -1773,10 +1768,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
     max-width: 420px;
   }
 
-  header .container {
-    width: 750px;
-  }
-
   header .navbar-header {
     margin: 0;
     padding: 30px 0 20px;
@@ -1856,10 +1847,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 @media (min-width: 992px) {
-  header .container {
-    width: 970px;
-  }
-
   header .hamburger {
     display: none;
   }
@@ -2177,10 +2164,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 @media (min-width: 1200px) {
-  header .container {
-    width: 1140px;
-  }
-
   header .cards-submenu ul li a,
   header .text-submenu ul > li > a {
     font-size: 13px;

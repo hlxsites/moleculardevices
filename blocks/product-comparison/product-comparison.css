@@ -171,7 +171,7 @@
 }
 
 .product-comparison ::-webkit-scrollbar-thumb {
-  background-color: var(--product-comparison-scrollbar-thumb);
+  background-color: var(--color-primary);
   border-radius: 10px;
 }
 

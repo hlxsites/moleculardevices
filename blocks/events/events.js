@@ -1,5 +1,5 @@
 import {
-  fetchPlaceholders, getMetadata, loadCSS, readBlockConfig, toCamelCase, toClassName,
+  fetchPlaceholders, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
 import ffetch from '../../scripts/ffetch.js';
 import {
@@ -8,8 +8,6 @@ import {
 import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import { createEventBanner } from '../event-summary/event-summary.js';
 
 const DEFAULT_REGIONS = [
   'Africa',
@@ -94,7 +92,7 @@ function createFilters(options) {
   ];
 }
 
-function compareEvents(eventA, eventB) {
+export function compareEvents(eventA, eventB) {
   if (eventA.eventStart < eventB.eventStart) {
     return -1;
   }
@@ -111,29 +109,11 @@ function sortEvents(data, showFutureEvents) {
   }
 }
 
-function createFeaturedEventCard(featuredEvent, root, imageThumbPosition = 'center') {
-  const startFormatDate = formatDate(unixDateToString(featuredEvent.eventStart));
-  const endFormatDate = formatDate(unixDateToString(featuredEvent.eventEnd));
-  featuredEvent.eventStart = startFormatDate;
-  featuredEvent.eventEnd = endFormatDate;
-  featuredEvent.imageThumbPosition = imageThumbPosition;
-
-  if (root) {
-    const eventSummary = div({ class: 'event-summary' });
-    const featuredBanner = createEventBanner(featuredEvent, true);
-    eventSummary.appendChild(featuredBanner);
-    root.appendChild(eventSummary);
-  }
-}
-
-async function createOverview(block, options, imageThumbPosition) {
+async function createOverview(block, options) {
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
-  if (options.featuredEvent) {
-    createFeaturedEventCard(options.featuredEvent, block, imageThumbPosition);
-  }
   await createList(createFilters(options), options, block);
 }
 
@@ -186,15 +166,10 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const title = block.querySelector('h1');
   const relatedLink = block.querySelector('a');
-  const featuredEvent = getMetadata('featured-event');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
-  const imageThumbPosition = getMetadata('image-thumb-position');
-  let featuredPath;
 
   placeholders = await fetchPlaceholders();
-
-  if (featuredEvent) featuredPath = new URL(featuredEvent).pathname;
 
   const options = {
     limitPerPage: parseInt(config.limitPerPage, 9) || 9,
@@ -215,13 +190,6 @@ export default async function decorate(block) {
   options.onFilterClick = updateFilter;
 
   options.data = await fetchEvents(options);
-
-  if (featuredPath) {
-    const featuredEventData = options.data.find((option) => option.path === featuredPath);
-    options.featuredEvent = JSON.parse(JSON.stringify(featuredEventData));
-  }
-
-  loadCSS('/blocks/event-summary/event-summary.css');
   sortEvents(options.data, showFutureEvents);
-  await createOverview(block, options, imageThumbPosition);
+  await createOverview(block, options);
 }

@@ -1,19 +1,11 @@
+.breadcrumbs-wrapper:has(+.background-grey){
+  background-color: var(--color-gray-200);
+}
+
 .breadcrumbs {
-  padding-top: 20px;
-}
-
-.breadcrumbs,
-.events .breadcrumbs {
-  padding-bottom: 30px;
-}
-
-.events .breadcrumbs {
-  padding-top: 40px;
-}
-
-.news main .breadcrumbs,
-.publication:not(.full-article) main .breadcrumbs {
-  padding-top: 70px;
+  width: var(--section-max-width);
+  padding: 40px 15px 42.5px;
+  margin: 0 auto;
 }
 
 .breadcrumbs ol {

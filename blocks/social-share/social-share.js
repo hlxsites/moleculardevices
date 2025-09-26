@@ -34,7 +34,7 @@ function decorateLink(social, type, icon, url) {
   );
 }
 
-export function decorateIcons(element) {
+export function decorateSocialIcons(element) {
   const template = getMetadata('template').toLowerCase();
   const theme = getMetadata('theme');
   const url = getURL();
@@ -57,6 +57,10 @@ export function decorateIcons(element) {
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
+        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
+        icon.remove();
+        break;
+      case 'x':
         decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
         icon.remove();
         break;
@@ -116,7 +120,7 @@ export default function decorate(block) {
   block.innerHTML = '';
   block.appendChild(socialShareBlock(title, socials));
 
-  decorateIcons(block);
+  decorateSocialIcons(block);
   if (template === 'blog' || theme === 'Full Article') {
     blogHideSocialShareOnHero(block);
   }
