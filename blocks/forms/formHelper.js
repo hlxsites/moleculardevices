@@ -146,8 +146,8 @@ export async function getFormFieldValues(formConfig) {
     website: formConfig.website || formConfigWebsite || formConfig.resourceUrl || '',
     source_url: currentUrl || '',
     host_name: hostName,
-    Meeting_Date__c: formConfig.meeting_date_text || formConfig.date || 'NA',
-    Meeting_Time__c: formConfig.meeting_time || 'NA',
+    meeting_date_text: formConfig.meeting_date_text || formConfig.date || 'NA',
+    meeting_time: formConfig.meeting_time || 'NA',
   };
 }
 
