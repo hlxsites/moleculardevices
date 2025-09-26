@@ -250,21 +250,6 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
 
   const hubspotFormData = new FormData(hubspotForm);
 
-  /* date/time for event LP */
-  const meetingDateInput = hubspotForm.querySelector('[name="meeting_date_text"]');
-  if (meetingDateInput && !meetingDateInput.value) meetingDateInput.value = 'NA';
-
-  const meetingTimeInput = hubspotForm.querySelector('[name="meeting_time"]');
-  if (meetingTimeInput) {
-    const timeOption = document.querySelector('option');
-    timeOption.text = 'NA';
-    timeOption.value = 'NA';
-    meetingTimeInput.appendChild(timeOption);
-    if (!meetingTimeInput.value) {
-      meetingTimeInput.value = 'NA';
-    }
-  }
-
   /* qdc */
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   const qdc = qdcCall && qdcCall.checked
