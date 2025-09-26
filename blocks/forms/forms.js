@@ -118,9 +118,9 @@ export default async function decorate(block) {
   window.addEventListener('message', (event) => {
     if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
       if (formConfig.formType === 'events') {
-        const dateInput = block.querySelector('.hs-dateinput input[type="text"]');
-        const meetingDateInput = block.querySelector('[name="meeting_date_text"]');
-        const meetingTimeInput = block.querySelector('[name="meeting_time"]');
+        const dateInput = block?.querySelector('.hs-dateinput input[type="text"]');
+        const meetingDateInput = block?.querySelector('[name="meeting_date_text"]');
+        const meetingTimeInput = block?.querySelector('[name="meeting_time"]');
 
         const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
 
@@ -129,8 +129,8 @@ export default async function decorate(block) {
           meetingDateInput?.closest('.hs-form-field').remove();
           meetingTimeInput?.closest('.hs-form-field').remove();
         } else {
-          const dateLabel = dateInput.closest('.hs-form-field').querySelector('label').textContent;
-          dateInput.setAttribute('placeholder', dateLabel);
+          const dateLabel = dateInput?.closest('.hs-form-field')?.querySelector('label').textContent;
+          dateInput?.setAttribute('placeholder', dateLabel);
           initHTMLDateInput(meetingDateInput, {
             placeholder: dateLabel,
             min: minDate,
