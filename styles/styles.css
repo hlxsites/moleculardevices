@@ -94,6 +94,16 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-state-danger: #f00;
   --color-state-success: #09b571;
 
+  /* Unique Colors */
+  --agenda-links-hover: rgb(19 154 218 / 25%);
+  --cards-gallery-bg: rgb(0 117 141 / 80%);
+  --blog-author-bg: #dcedf4;
+  --card-caption-text: #12141f;
+  --background-parallax-cta-border: #cbdce8;
+  --section-blue-bg: #116da7;
+  --assay-kits-rfq-icon: #f8a306;
+  --carousel-blue-wave-indicator: #23bfd9;
+
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
   --color-mm-border: #ffffff80;
@@ -104,14 +114,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --gutter-product: 30px;
 
   /* Accent Colors */
-  --agenda-links-hover: rgb(19 154 218 / 25%);
-  --cards-gallery-bg: rgb(0 117 141 / 80%);
-  --blog-author-bg: #dcedf4;
-  --card-caption-text: #12141f;
+  --quote-request-progess-bar: #020302;
+  --application-workflow-timeline-author: #242424;
+  --image-list-text: #292e32;
   --card-list-filter-separator: #6d6c8d;
   --card-list-filter-blog-separator: #61a60e;
-  --carousel-blue-wave-indicator: #23bfd9;
-  --carousel-green-wave-indicator: #86c440;
   --video-teaser-bg: #6a747b;
   --column-innovation-text: #6eb441;
   --column-light-dark: #aaa;
@@ -125,29 +132,23 @@ main .section.OneLinkShow_zh.columns-2 {
   --header-menu-nav-search-bar: #555;
   --hero-video-overlay-bg: #00b8dd;
   --hubspot-modal-block-after: #004c70;
-  --image-list-text: #292e32;
   --ordering-option-dropdown-content: #f1f1f1;
   --ordering-option-dropdown-content-2: #dfdfdf;
   --ordering-option-quantity-number: #4b4f53;
   --product-comparison-dark-gray: #8a959b;
   --product-comparison-first-cell: #525b61;
-  --quote-request-progess-bar: #020302;
   --quote-request-progess-bar-inset: #716f6f;
   --quote-request-form-description: #e2e2e2;
   --quote-request-form-cta: #298da9;
   --quote-request-form-privacy-label: #999;
   --assay-kits-feat-text: #008298;
   --assay-kits-wrap-head: #666;
-  --assay-kits-rfq-icon: #f8a306;
-  --application-workflow-timeline-author: #242424;
   --rfq-form-section-embed: #666667;
   --product-finder-border: #d6d6d6;
   --specification-table-row-even-bg: #e0e0e0;
   --specification-table-row-odd-bg: #f0f0f0;
   --featured-products-carousel-item: #efefef;
   --compare-items-banner: #95c872;
-  --background-parallax-cta-border: #cbdce8;
-  --section-blue-bg: #116da7;
 
   /* Black Alpha Colors */
   --color-transparent: rgb(0 0 0 / 0%);
