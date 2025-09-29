@@ -16,7 +16,8 @@ export const formMapping = [
   { type: 'ebook-promo', id: 'b83700e4-f00b-4b92-9124-fab2968f60b5' },
   { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
-  { type: 'events', id: '4decc5b8-acd7-4c3d-ba12-6a840e64ea4b' },
+  // { type: 'events', id: '4decc5b8-acd7-4c3d-ba12-6a840e64ea4b' },
+  { type: 'events', id: 'a346e492-2971-4432-bdce-039a9c65020c' },
 ];
 
 export const DEFAULT_QDC_VALUE = 'Quote';
@@ -76,5 +77,6 @@ export const fieldsObj = [
   { inputName: 'Host_Name__c', inputFieldName: 'host_name' },
   { inputName: 'website', inputFieldName: 'website' },
   { inputName: 'Meeting_Date__c', inputFieldName: 'date' },
-  // { inputName: 'Meeting_Time__c', inputFieldName: 'meeting_time' },
+  { inputName: 'Meeting_Date__c', inputFieldName: 'meeting_date_text' },
+  { inputName: 'Meeting_Time__c', inputFieldName: 'meeting_time' },
 ];

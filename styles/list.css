@@ -14,6 +14,10 @@
 }
 
 /* panel */
+.list > .filter {
+  margin-bottom: 2rem;
+}
+
 .list > .filter > .panel-title {
   font-size: var(--list-heading-font-size-l);
   font-weight: bold;
@@ -183,7 +187,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .list {
     display: flex;
     flex-flow: wrap;
@@ -212,10 +216,6 @@
 
   .list > .filter {
     width: 100%;
-  }
-
-  .list > .filter > .select {
-    max-width: 259px;
   }
 }
 
@@ -247,6 +247,10 @@
   }
 
   .list > .filter > .panel-title {
+    max-width: 259px;
+  }
+
+  .list > .filter > .select {
     max-width: 259px;
   }
 }

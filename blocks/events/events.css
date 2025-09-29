@@ -1,3 +1,11 @@
+.events main {
+  background-color: var(--color-gray-200);
+}
+
+.events .wave {
+  padding-top: 0;
+}
+
 .section.events-container .events-wrapper {
   padding-top: 0;
 }
@@ -36,4 +44,14 @@ main .events label {
 .events input[type="checkbox"].filter-item:checked + span::before {
   background-color: var(--color-tertiary);
   border-color: var(--color-tertiary);
+}
+
+main .event-title,
+main .event-container .event-title {
+  line-height: 1;
+  font-weight: 100;
+  padding-top: 40px;
+  border-bottom: 1px solid var(--color-gray-500);
+  padding-bottom: 20px;
+  width: 100%;
 }

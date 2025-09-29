@@ -67,14 +67,6 @@
   overflow-x: hidden;
 }
 
-.footer .container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  width: var(--section-max-width);
-}
-
 /* row 3 | news events */
 .footer-news-events > div {
   display: flex;
@@ -308,7 +300,7 @@
 .footer-bottom {
   margin-top: 32px;
   padding: 44px 0;
-  background-color: var(--color-primary-bg);
+  background-color: var(--color-primary-dark);
   color: var(--color-white);
 }
 

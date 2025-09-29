@@ -1,7 +1,7 @@
 /* stylelint-disable no-duplicate-selectors, selector-class-pattern */
 .feat_icon .fa-check::before {
-  color: var(--assay-kits-feat-text);
-  border: 1px solid var(--assay-kits-feat-text);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   border-radius: 50%;
   padding: 3px;
   font-size: 16px;
@@ -49,7 +49,7 @@
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  border: 2px solid var(--color-mobile-menu-rfq-cta);
+  border: 2px solid var(--color-secondary);
   padding-top: 35px;
   position: relative;
 }
@@ -58,7 +58,7 @@ a.req_quote {
   float: left;
   width: 100%;
   margin: 20px auto;
-  background: var(--assay-kits-rfq-icon);
+  background: var(--color-secondary);
   font-size: 14px;
   color: var(--color-white);
   text-decoration: none;
@@ -79,7 +79,7 @@ a.req_quote {
 
 .feat strong,
 .feat_col_1 strong {
-  color: var(--assay-kits-feat-text);
+  color: var(--color-primary);
   font-size: 14px;
   font-weight: 600;
 }
@@ -122,7 +122,7 @@ a.req_quote {
 }
 
 .feat_icon {
-  color: var(--assay-kits-feat-text);
+  color: var(--color-primary);
   font-size: 12px;
 }
 

@@ -295,7 +295,7 @@ main .section.ordering-options-container > div:last-child {
   top: 100%;
   margin: 0;
   left: 0;
-  background-color: var(--ordering-option-dropdown-content);
+  background-color: var(--color-gray-150);
   box-shadow: 0 8px 16px 0 var(--color-black-alpha-20);
   z-index: 1;
   border: 1px solid var(--color-black);
@@ -324,7 +324,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down-content a + a {
-  border-top: 1px solid var(--ordering-option-dropdown-content-2);
+  border-top: 1px solid var(--color-gray-300);
 }
 
 .drop-down-content a:hover {

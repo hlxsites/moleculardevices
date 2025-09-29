@@ -237,28 +237,6 @@ main .card-list.assay-kits .card {
   text-align: left;
 }
 
-.card-list.assay-kits .card .badge {
-  background: var(--card-badge-bg);
-  color: var(--color-white);
-  text-align: center;
-  padding: 5px 0;
-  font-weight: bold;
-  position: absolute;
-  width: 22%;
-  top: 8px;
-  right: -6px;
-  z-index: 9;
-}
-
-.card-list.assay-kits .card .badge::before {
-  content: "";
-  border-bottom: 6px solid var(--card-badge-border);
-  border-right: 6px solid transparent;
-  position: absolute;
-  top: -6px;
-  right: 0;
-}
-
 /* ADDITIONAL PRODUCTS + CULTURE-MEDIA-AND-REAGENTS */
 main .section div.card-list-wrapper.additional-products,
 main .section div.card-list-wrapper.culture-media-and-reagents {

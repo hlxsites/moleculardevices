@@ -3,7 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { decorateIcons, socialShareBlock } from '../social-share/social-share.js';
+import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
 const formType = 'submit-story';
 const modalId = `${formType}-modal`;
@@ -64,7 +64,7 @@ export default async function decorate(block) {
   // Social block
   const socials = ['facebook', 'linkedin', 'twitter'];
   const shareSocialBlock = socialShareBlock(shareText, socials);
-  decorateIcons(shareSocialBlock);
+  decorateSocialIcons(shareSocialBlock);
 
   // Share message block
   const shareMessageBlock = div({ class: 'share-message' }, h3(shareMessage));
