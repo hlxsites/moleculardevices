@@ -10,6 +10,7 @@ import {
   loadCSS,
 } from '../../scripts/lib-franklin.js';
 import decorate from '../../blocks/table/table.js';
+import { decorateSocialIcons } from '../../blocks/social-share/social-share.js';
 
 function decorateTitle(parentElem, titleElem) {
   titleElem.classList.add('event-title');
@@ -127,6 +128,5 @@ export function decorateAutoBlock(content) {
 export default function buildAutoBlocks() {
   const container = document.querySelector('main div');
   decorateAutoBlock(container);
-  console.log(container);
-  container.nextElementSibling.insertAdjacentElement('beforeend', buildBlock('social-share', '<p>Share this news</p>'));
+  container.appendChild(buildBlock('social-share', '<p>Share this news</p>'));
 }

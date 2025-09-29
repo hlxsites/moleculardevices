@@ -1,3 +1,7 @@
+.news main .breadcrumbs-wrapper + .section {
+  padding-top: 0;
+}
+
 main .section .default-content-wrapper {
   padding: 0;
 }
