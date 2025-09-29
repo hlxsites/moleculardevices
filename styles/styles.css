@@ -75,7 +75,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-primary: #008da9;
   --color-secondary: #ee7624;
   --color-tertiary: #6eb43f;
-  --color-primary-bg: #003b4d;
+  --color-primary-dark: #003b4d;
   --color-highlight: #00758d;
   --color-highlight-2: #007bc4;
   --color-link: #337ab7;
@@ -100,17 +100,13 @@ main .section.OneLinkShow_zh.columns-2 {
   --blog-author-bg: #dcedf4;
   --card-caption-text: #12141f;
   --background-parallax-cta-border: #cbdce8;
-  --section-blue-bg: #116da7;
-  --assay-kits-rfq-icon: #f8a306;
   --carousel-blue-wave-indicator: #23bfd9;
 
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
   --color-mm-border: #ffffff80;
   --color-mm-heading: #ffffffb2;
-  --color-hamburger-icon: #008296;
   --color-mobile-menu-caret: #c4ccda;
-  --color-mobile-menu-rfq-cta: #f8a100;
   --gutter-product: 30px;
 
   /* Accent Colors */
@@ -128,12 +124,9 @@ main .section.OneLinkShow_zh.columns-2 {
   --coveo-checkbox-span-label: #63666a;
   --coveo-checkbox-border: #bcc3ca;
   --footer-lp-border-top: #6b737b;
-  --header-language-dropdown-hover: #f5f5f5;
   --header-menu-nav-search-bar: #555;
   --hero-video-overlay-bg: #00b8dd;
   --hubspot-modal-block-after: #004c70;
-  --ordering-option-dropdown-content: #f1f1f1;
-  --ordering-option-dropdown-content-2: #dfdfdf;
   --ordering-option-quantity-number: #4b4f53;
   --product-comparison-dark-gray: #8a959b;
   --product-comparison-first-cell: #525b61;
@@ -141,12 +134,8 @@ main .section.OneLinkShow_zh.columns-2 {
   --quote-request-form-description: #e2e2e2;
   --quote-request-form-cta: #298da9;
   --quote-request-form-privacy-label: #999;
-  --assay-kits-feat-text: #008298;
   --assay-kits-wrap-head: #666;
   --rfq-form-section-embed: #666667;
-  --product-finder-border: #d6d6d6;
-  --specification-table-row-even-bg: #e0e0e0;
-  --specification-table-row-odd-bg: #f0f0f0;
   --featured-products-carousel-item: #efefef;
   --compare-items-banner: #95c872;
 
@@ -1506,7 +1495,7 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
   }
 
   main .section.blue {
-    background: var(--section-blue-bg) !important;
+    background: var(--color-link-hover) !important;
     background-image: none;
   }
 

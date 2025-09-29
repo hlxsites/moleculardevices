@@ -300,7 +300,7 @@
 .footer-bottom {
   margin-top: 32px;
   padding: 44px 0;
-  background-color: var(--color-primary-bg);
+  background-color: var(--color-primary-dark);
   color: var(--color-white);
 }
 

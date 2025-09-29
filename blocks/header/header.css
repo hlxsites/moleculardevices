@@ -120,7 +120,7 @@ header .hamburger .icon-bar {
   display: block;
   height: 2px;
   border-radius: 1px;
-  background: var(--color-hamburger-icon);
+  background: var(--color-primary);
   width: 35px;
   line-height: 1;
 }
@@ -715,7 +715,7 @@ header .text-submenu ul > li > a {
 }
 
 header .languages-dropdown a:hover {
-  background-color: var(--header-language-dropdown-hover);
+  background-color: var(--color-gray-75);
 }
 
 header .mobile-menu .back-to-parent a {
@@ -751,7 +751,7 @@ header .resources-submenu-search {
 
 header .mobile-menu .request-quote a {
   line-height: 20px;
-  background: var(--color-mobile-menu-rfq-cta);
+  background: var(--color-secondary);
   font-size: 18px;
   padding: 18px 50px 18px 15px;
   text-shadow: none;

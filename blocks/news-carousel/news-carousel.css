@@ -54,7 +54,7 @@ main .news-carousel .news-carousel-item-thumb {
 main .news-carousel .news-carousel-caption {
   height: calc(100% - 220px);
   padding: 32px;
-  background-color: var(--color-primary-bg);
+  background-color: var(--color-primary-dark);
   color: var(--color-white);
   display: flex;
   flex-direction: column;

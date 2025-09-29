@@ -336,7 +336,7 @@
 }
 
 .product-finder-container .product-finder-step-3 {
-  border-top: 2px solid  var(--product-finder-border);
+  border-top: 2px solid  var(--color-gray-300);
 }
 
 .product-finder-container .product-finder-step-3 .result-count {
@@ -390,7 +390,7 @@
 }
 
 .product-finder-container .product-finder-step-3 .card-caption > .c2a {
-  border-top: 1px solid var(--product-finder-border);
+  border-top: 1px solid var(--color-gray-300);
   padding-top: 8px;
 }
 
