@@ -198,8 +198,8 @@ export default async function decorate(block) {
   const siteLogoPath = '/images/header-menus/mol-dev-logo-2025.svg';
   const footerSiteLogo = p(
     { class: 'footer-site-logo' },
-    a({ href: window.location.origin, title: 'Molecular Devices' },
-      createOptimizedPicture(siteLogoPath, 'Molecular Devices'),
+    a({ href: window.location.origin, title: 'Molecular Devices ' },
+      createOptimizedPicture(siteLogoPath, 'Molecular Devices logo'),
     ));
   const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
   footer.querySelector('.site-logo').appendChild(footerSiteLogo);
