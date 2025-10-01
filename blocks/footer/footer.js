@@ -195,7 +195,7 @@ export default async function decorate(block) {
   footer.innerHTML = html;
 
   const currentYear = new Date().getFullYear();
-  const siteLogoPath = '/images/header-menus/logo.svg';
+  const siteLogoPath = '/images/header-menus/mol-dev-logo-2025.svg';
   const footerSiteLogo = p(
     { class: 'footer-site-logo' },
     a({ href: window.location.origin, title: 'Molecular Devices' },

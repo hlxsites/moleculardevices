@@ -494,7 +494,7 @@ function addPageSchema() {
   try {
     const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
     const moleculardevicesSiteName = 'Molecular Devices';
-    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
+    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/mol-dev-logo-2025.svg';
 
     const h1 = document.querySelector('main h1');
     const schemaTitle = getMetadata('og:title') ? getMetadata('og:title') : h1.textContent;

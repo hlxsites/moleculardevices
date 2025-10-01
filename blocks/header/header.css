@@ -47,7 +47,7 @@ header .navbar-header {
 }
 
 header .nav-brand:not(.custom-logo) {
-  background-image: url("/images/header-menus/logo.svg");
+  background-image: url("/images/header-menus/mol-dev-logo-2025.svg");
   background-position: top;
   background-repeat: no-repeat;
   width: 220px;
