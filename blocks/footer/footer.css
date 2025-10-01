@@ -561,7 +561,9 @@
   .row-5 {
     margin-top: 2rem;
   }
-
+  .row-6 img{
+    width: 120px !important;
+  }
   .row-6 img,
   .row-8 .external-logo-wrapper img {
     display: block;
