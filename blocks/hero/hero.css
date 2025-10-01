@@ -23,6 +23,9 @@ main .hero-advanced-wrapper {
 .hero-inner p {
   margin: 0 0 10px;
 }
+.hero-inner p.picture{
+  margin: 0;
+}
 
 .hero-inner p.button-container {
   margin: 0;
