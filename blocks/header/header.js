@@ -97,7 +97,20 @@ export default async function decorate(block) {
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
-  navbarHeader.append(buildBrandLogo(content));
+//  navbarHeader.append(buildBrandLogo(content));
+
+// With this:
+const logoEl = document.createElement('a');
+logoEl.href = '/';
+logoEl.classList.add('site-logo');
+
+const logoImg = document.createElement('img');
+logoImg.src = '/images/header-menus/logo.svg';
+logoImg.alt = 'Molecular Devices logo';
+
+logoEl.appendChild(logoImg);
+
+navbarHeader.append(logoEl)
   navbarHeader.append(buildTools(content));
   navbarHeader.append(buildHamburger(content));
 

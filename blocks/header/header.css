@@ -52,13 +52,21 @@ header .navbar-header {
 }
 
 header .nav-brand:not(.custom-logo) {
-  background-image: url("/images/header-menus/logo.svg");
+  /*background-image: url("/images/header-menus/logo.svg");
   background-position: top;
   background-repeat: no-repeat;
   width: 220px;
-  height: 73px;
-}
+  height: 73px;*/
 
+}
+header .site-logo{
+  display: inline-block;
+}
+header .site-logo img{
+  width: 220px;
+  height: 73px;
+  display: inline-block;
+}
 header .navbar-header a i.fa.fa-external-link {
   display: none;
 }
@@ -1836,7 +1844,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: initial;
   }
 
-  header .nav-brand:not(.custom-logo) {
+ header .site-logo img {
     width: 100px;
     height: 27px;
   }
