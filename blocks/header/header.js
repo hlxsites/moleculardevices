@@ -105,7 +105,7 @@ export default async function decorate(block) {
   logoEl.classList.add('site-logo');
 
   const logoImg = document.createElement('img');
-  logoImg.src = 'images/header-menus/mol-dev-logo-2025.svg';
+  logoImg.src = '/images/header-menus/mol-dev-logo-2025.svg';
   logoImg.alt = 'Molecular Devices logo';
 
   logoEl.appendChild(logoImg);

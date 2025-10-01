@@ -59,7 +59,7 @@ header .site-logo{
 }
 header .site-logo img{
   width: 220px;
-  height: 73px;
+  height: 65px;
   display: inline-block;
 }
 header .navbar-header a i.fa.fa-external-link {
@@ -1837,7 +1837,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
  header .site-logo img {
     width: 100px;
-    height: 27px;
+    height: 22px;
   }
 
   header .mobile-menu .company-links li:nth-child(2) {
