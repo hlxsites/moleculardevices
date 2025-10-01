@@ -138,6 +138,12 @@ export function buildHero(block) {
 
   let picture = block.querySelector('picture');
 
+  /* removed duplicate breadcrumb block */
+  const hasBreadcrumbBlock = getMetadata('breadcrumbs') === 'auto';
+  if (hasBreadcrumbBlock) {
+    document.querySelector('meta[name="breadcrumbs"]').remove();
+  }
+
   if (picture && block.classList.contains('hero-insider')) {
     const pictureSrc = new URL(picture.lastElementChild.src);
     pictureSrc.searchParams.delete('width');

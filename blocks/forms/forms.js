@@ -7,7 +7,8 @@ import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import decorateProductPage from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
 import {
-  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, updateFormFields,
+  extractFormData, getFormFieldValues, getFormId, handleFormSubmit, initHTMLDateInput,
+  updateFormFields,
 } from './formHelper.js';
 import { formMapping } from './formMapping.js';
 
@@ -76,12 +77,14 @@ export default async function decorate(block) {
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
   const formType = formTypes.find((type) => blockClasses.find((cls) => cls === type));
+  const hasBookTimeOption = blockClasses.find((cls) => cls === 'book-time');
 
   let formHeading = formConfig.heading || '';
 
   formConfig.formType = formType;
   const target = `${formConfig.formType || 'unknown-type'}-form`;
 
+  /* product page form */
   if (template.includes('Product')) {
     const data = PRODUCT_FORM_DATA
       .find((formData) => formData.type.toLowerCase().includes(category.toLowerCase()));
@@ -110,4 +113,31 @@ export default async function decorate(block) {
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }
+
+  // show date/time field for event
+  window.addEventListener('message', (event) => {
+    if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+      if (formConfig.formType === 'events') {
+        const dateInput = block?.querySelector('.hs-dateinput input[type="text"]');
+        const meetingDateInput = block?.querySelector('[name="meeting_date_text"]');
+        const meetingTimeInput = block?.querySelector('[name="meeting_time"]');
+
+        const minDate = new Date(getMetadata('event-start')).toISOString().split('T')[0];
+
+        if (!hasBookTimeOption) {
+          meetingDateInput.closest('.hs-form-field').style.display = 'none';
+          meetingTimeInput.closest('.hs-form-field').style.display = 'none';
+          meetingDateInput.value = 'NA';
+          // meetingTimeInput.value = 'NA';
+        } else {
+          const dateLabel = dateInput?.closest('.hs-form-field')?.querySelector('label').textContent;
+          dateInput?.setAttribute('placeholder', dateLabel);
+          initHTMLDateInput(meetingDateInput, {
+            placeholder: dateLabel,
+            min: minDate,
+          });
+        }
+      }
+    }
+  });
 }

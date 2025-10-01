@@ -47,7 +47,7 @@ Disallow: /sites/default/files/en/assets/ebook/bpd/crispr-cas-9-gene-editing.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/synthetic-biology-for-sustainable-world.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/automating-cell-culture-scalable-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/scaling-with-organoids.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/getting-started-with-organoids.pdf
 
 
 # User Guide
@@ -65,7 +65,7 @@ Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/semi-a
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/full-workflow-automation-for-human-ipsc-derived-3d-cardiac-organoids.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/cellxpress-ai-automated-brain-organoid-generation.pdf
 Disallow: /sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-development-ipsc-3d-neural-organoids-of-calcium-oscillation.pdf
-
+Disallow: /sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection.pdf
 
 
 # HTML Page (App Note HTML Page Block)
@@ -84,8 +84,9 @@ Disallow: /en/assets/app-note/bpd/qpix-flex-color-based-colony-grouping-microbia
 Disallow: /en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-imagexpress-hcs-ai
 Disallow: /en/assets/app-note/br/effect-of-shaking-conditions-on-microbial-growth
 Disallow: /en/assets/app-note/br/3d-cultures-high-throughput-halt-assay
-
-
+Disallow: /en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-and-scanlater
+Disallow: /en/assets/app-note/br/quantitative-lateral-flow-assays-bright-dtech-nanoparticles-scanlater
+Disallow: /en/assets/app-note/dd/3d-biology/automated-2d-adherent-suspension-culture-on-cellxpress-ai
 
 
 # infographics
