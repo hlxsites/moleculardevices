@@ -52,7 +52,10 @@ export function expandMenu(element) {
 
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-
+   const logoImgs = document.createElement('img');
+  logoImgs.src = '/images/header-menus/mol-dev-logo-2025.svg';
+  logoImgs.alt = 'Molecular Devices logo';
+  logoImg.appendChild(logoImgs);
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );

@@ -1932,11 +1932,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .mainmenu-wrapper #header-logo img {
-    width: 158px;
-    max-height: 36px;
-    height: auto;
-    opacity: 0;
-    max-width: 0;
+    width: 220px;
+    height: 36px;
   }
 
   header .mainmenu-wrapper.sticky #header-logo {

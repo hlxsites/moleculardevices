@@ -525,6 +525,9 @@
     flex-flow: column wrap;
     align-items: center;
   }
+  .footer .site-logo picture img{
+    max-width: 160px;
+  }
 
   .row-5 {
     margin-top: 3rem;
