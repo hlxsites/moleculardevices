@@ -564,7 +564,7 @@
   }
 
   .row-6 img {
-    width: 120px !important;
+    max-width: 120px !important;
   }
 
   .row-6 img,
