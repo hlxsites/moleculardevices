@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 /* eslint-disable no-multi-assign, no-self-assign, no-cond-assign,  no-redeclare, no-console,
  no-void ,no-mixed-operators, radix, prefer-template, no-nested-ternary, prefer-arrow-callback,
   no-return-assign, no-use-before-define, vars-on-top, no-var, one-var-declaration-per-line,

@@ -10,7 +10,6 @@ import {
   loadCSS,
 } from '../../scripts/lib-franklin.js';
 import decorate from '../../blocks/table/table.js';
-import { decorateSocialIcons } from '../../blocks/social-share/social-share.js';
 
 function decorateTitle(parentElem, titleElem) {
   titleElem.classList.add('event-title');
