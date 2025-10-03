@@ -1,11 +1,6 @@
-/* eslint-disable no-else-return */
-/* eslint-disable no-lone-blocks */
-/* eslint-disable strict */
-/* eslint-disable lines-around-directive */
-/* eslint-disable no-empty */
-/* eslint-disable no-unsafe-finally */
-/* eslint-disable no-func-assign */
-/* eslint-disable no-new-func, operator-assignment, prefer-spread, array-callback-return,
+/* eslint-disable no-else-return, no-lone-blocks, strict, lines-around-directive, no-empty,
+no-unsafe-finally, no-func-assign,
+no-new-func, operator-assignment, prefer-spread, array-callback-return,
 no-restricted-globals, no-useless-catch, no-useless-escape, no-self-compare, no-floating-decimal,
 prefer-regex-literals, no-sparse-arrays, newline-per-chained-call, no-array-constructor,
 no-prototype-builtins, wrap-iife, no-loop-func, consistent-return, prefer-object-spread,
