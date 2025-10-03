@@ -48,7 +48,7 @@
 
 .footer .site-logo .footer-site-logo a {
   font-size: 0;
-  background-image: url("/images/header-menus/mol-dev-logo-2025.svg");
+  background-image: url("/images/header-menus/mol-dev-logo.svg");
   background-repeat: no-repeat;
   display: block;
   background-position: top left;
@@ -348,7 +348,7 @@
   padding-top: 1rem;
 }
 
-.row-8.columns-wrapper.OneLinkShow_zh{
+.row-8.columns-wrapper.OneLinkShow_zh {
   display: block !important;
 }
 
@@ -525,7 +525,8 @@
     flex-flow: column wrap;
     align-items: center;
   }
-  .footer .site-logo picture img{
+
+  .footer .site-logo picture img {
     max-width: 160px;
   }
 
@@ -561,9 +562,11 @@
   .row-5 {
     margin-top: 2rem;
   }
-  .row-6 img{
+
+  .row-6 img {
     width: 120px !important;
   }
+
   .row-6 img,
   .row-8 .external-logo-wrapper img {
     display: block;

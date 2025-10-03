@@ -46,22 +46,16 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .nav-brand:not(.custom-logo) {
-  /*background-image: url("/images/header-menus/logo.svg");
-  background-position: top;
-  background-repeat: no-repeat;
-  width: 220px;
-  height: 73px;*/
-
-}
 header .site-logo{
   display: inline-block;
 }
+
 header .site-logo img{
   width: 220px;
   height: 65px;
   display: inline-block;
 }
+
 header .navbar-header a i.fa.fa-external-link {
   display: none;
 }
