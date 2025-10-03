@@ -1,43 +1,15 @@
-/* eslint-disable no-new-func */
-/* eslint-disable operator-assignment */
-/* eslint-disable prefer-spread */
-/* eslint-disable array-callback-return */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-useless-catch */
-/* eslint-disable no-useless-escape */
-/* eslint-disable no-self-compare */
-/* eslint-disable no-floating-decimal */
-/* eslint-disable prefer-regex-literals */
-/* eslint-disable no-sparse-arrays */
-/* eslint-disable newline-per-chained-call */
-/* eslint-disable no-array-constructor */
-/* eslint-disable no-prototype-builtins */
-/* eslint-disable wrap-iife */
-/* eslint-disable no-loop-func */
-/* eslint-disable consistent-return */
-/* eslint-disable prefer-object-spread */
-/* eslint-disable arrow-parens */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-fallthrough */
-/* eslint-disable default-case */
-/* eslint-disable no-extend-native */
-/* eslint-disable no-undef */
-/* eslint-disable keyword-spacing */
-/* eslint-disable no-bitwise */
-/* eslint-disable no-continue */
-/* eslint-disable prefer-destructuring */
-/* eslint-disable object-shorthand */
-/* eslint-disable yoda */
-/* eslint-disable prefer-rest-params */
-/* eslint-disable no-plusplus */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-proto */
-/* eslint-disable no-multi-assign, no-self-assign, no-cond-assign,  no-redeclare, no-console,
- no-void ,no-mixed-operators, radix, prefer-template, no-nested-ternary, prefer-arrow-callback,
-  no-return-assign, no-use-before-define, vars-on-top, no-var, one-var-declaration-per-line,
-  one-var, func-names, block-scoped-var, object-curly-newline, no-shadow, quotes, no-unused-vars,
-  no-sequences, no-param-reassign, no-unused-expressions, new-cap, eqeqeq, new-parens */
+/* eslint-disable no-new-func, operator-assignment, prefer-spread, array-callback-return,
+no-restricted-globals, no-useless-catch, no-useless-escape, no-self-compare, no-floating-decimal,
+prefer-regex-literals, no-sparse-arrays, newline-per-chained-call, no-array-constructor,
+no-prototype-builtins, wrap-iife, no-loop-func, consistent-return, prefer-object-spread,
+arrow-parens, no-underscore-dangle, no-fallthrough, default-case, no-extend-native, no-undef,
+keyword-spacing, no-bitwise, no-continue, prefer-destructuring, object-shorthand, yoda,
+prefer-rest-params, no-plusplus, guard-for-in, no-restricted-syntax, no-proto, no-multi-assign,
+no-self-assign, no-cond-assign,  no-redeclare, no-console, no-void ,no-mixed-operators, radix,
+prefer-template, no-nested-ternary, prefer-arrow-callback, no-return-assign, no-use-before-define,
+vars-on-top, no-var, one-var-declaration-per-line, one-var, func-names, block-scoped-var,
+object-curly-newline, no-shadow, quotes, no-unused-vars, no-sequences, no-param-reassign,
+no-unused-expressions, new-cap, eqeqeq, new-parens */
 /**
  * onetrust-banner-sdk
  * v202503.2.0
