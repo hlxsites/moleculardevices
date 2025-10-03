@@ -46,7 +46,7 @@
   width: auto;
 }
 
-.footer .site-logo .footer-site-logo a {
+.footer .site-logo .footer-site-logo {
   font-size: 0;
   background-image: url("/images/header-menus/mol-dev-logo.svg");
   background-repeat: no-repeat;
@@ -369,16 +369,16 @@
   height: auto;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="leica"]),
-.row-8 .external-logo-wrapper p:has([alt="sciex"]) {
+.row-8 .external-logo-wrapper p:has([alt="Leica logo"]),
+.row-8 .external-logo-wrapper p:has([alt="Sciex logo"]) {
   flex-basis: 60px;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="phenomenex"]) {
+.row-8 .external-logo-wrapper p:has([alt="Phenomenex logo"]) {
   flex-basis: 120px;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="beckman coulter"]) {
+.row-8 .external-logo-wrapper p:has([alt="Beckman Coulter logo"]) {
   position: relative;
   top: 4px;
 }
@@ -452,7 +452,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .footer .site-logo .footer-site-logo a {
+  .footer .site-logo .footer-site-logo {
     background-position: top right;
   }
 
