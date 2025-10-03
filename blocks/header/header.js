@@ -1,16 +1,18 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable import/no-cycle */
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
-import { buildBrandLogo, fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
+import { fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
   a, div, li, span, i,
 } from '../../scripts/dom-helpers.js';
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
+export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
+export const SITE_LOGO_ALT_VALUE = 'Molecular Devices logo';
 
 function renderCart() {
   return (
@@ -97,7 +99,14 @@ export default async function decorate(block) {
   // Create wrapper for logo header part
   const navbarHeader = document.createElement('div');
   navbarHeader.classList.add('navbar-header');
-  navbarHeader.append(buildBrandLogo(content));
+
+  // With this:
+  const navBrand = div({ class: 'nav-brand' },
+    a({ href: '/', class: 'site-logo' },
+      createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE),
+    ));
+  navbarHeader.prepend(navBrand);
+
   navbarHeader.append(buildTools(content));
   navbarHeader.append(buildHamburger(content));
 

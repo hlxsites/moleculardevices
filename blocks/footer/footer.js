@@ -12,6 +12,7 @@ import {
 import { getNewsData } from '../news/news.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
+import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from '../header/header.js';
 
 let placeholders = {};
 
@@ -195,12 +196,10 @@ export default async function decorate(block) {
   footer.innerHTML = html;
 
   const currentYear = new Date().getFullYear();
-  const siteLogoPath = '/images/header-menus/logo.svg';
   const footerSiteLogo = p(
     { class: 'footer-site-logo' },
-    a({ href: window.location.origin, title: 'Molecular Devices' },
-      createOptimizedPicture(siteLogoPath, 'Molecular Devices'),
-    ));
+    createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE),
+  );
   const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
   footer.querySelector('.site-logo').appendChild(footerSiteLogo);
   footer.querySelector('.copyright-text').appendChild(copyrightInfo);

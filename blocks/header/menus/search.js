@@ -1,13 +1,8 @@
-import {
-  div,
-  li,
-  h3,
-  form,
-  input,
-  button,
-  i,
-} from '../../../scripts/dom-helpers.js';
+/* eslint-disable import/no-cycle */
 import { addCloseMenuButtonListener } from '../helpers.js';
+import {
+  div, li, h3, form, input, button, i,
+} from '../../../scripts/dom-helpers.js';
 
 export function submitSearchForm(event, searchQueryId) {
   event.preventDefault();

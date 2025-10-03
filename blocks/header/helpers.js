@@ -2,6 +2,8 @@ import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
+// eslint-disable-next-line import/no-cycle
+import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from './header.js';
 
 let elementsWithEventListener = [];
 
@@ -52,7 +54,10 @@ export function expandMenu(element) {
 
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-
+  const logoImgs = document.createElement('img');
+  logoImgs.src = SITE_LOGO_URL;
+  logoImgs.alt = SITE_LOGO_ALT_VALUE;
+  logoImg.appendChild(logoImgs);
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );

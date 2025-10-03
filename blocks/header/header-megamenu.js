@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';

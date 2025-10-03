@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import {
   img, div, a, p, h3, strong,

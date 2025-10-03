@@ -1,19 +1,9 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable import/no-cycle */
 import {
-  reverseElementLinkTagRelation,
-  buildRequestQuote,
-  decorateLanguagesTool,
+  reverseElementLinkTagRelation, buildRequestQuote, decorateLanguagesTool,
 } from '../helpers.js';
 import {
-  div,
-  h1,
-  h2,
-  ul,
-  li,
-  a,
-  nav,
-  span,
-  button,
+  div, h1, h2, ul, li, a, nav, span, button,
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 import { processSectionMetadata } from '../../../scripts/scripts.js';

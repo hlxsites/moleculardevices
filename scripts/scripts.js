@@ -26,6 +26,7 @@ import {
 import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
+import { SITE_LOGO_URL } from '../blocks/header/header.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -494,7 +495,7 @@ function addPageSchema() {
   try {
     const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
     const moleculardevicesSiteName = 'Molecular Devices';
-    const moleculardevicesLogoURL = 'https://www.moleculardevices.com/images/header-menus/logo.svg';
+    const moleculardevicesLogoURL = `https://www.moleculardevices.com${SITE_LOGO_URL}`;
 
     const h1 = document.querySelector('main h1');
     const schemaTitle = getMetadata('og:title') ? getMetadata('og:title') : h1.textContent;

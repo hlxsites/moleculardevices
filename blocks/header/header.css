@@ -46,12 +46,14 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .nav-brand:not(.custom-logo) {
-  background-image: url("/images/header-menus/logo.svg");
-  background-position: top;
-  background-repeat: no-repeat;
+header .site-logo{
+  display: inline-block;
+}
+
+header .site-logo img{
   width: 220px;
-  height: 73px;
+  height: 65px;
+  display: inline-block;
 }
 
 header .navbar-header a i.fa.fa-external-link {
@@ -1827,9 +1829,9 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: initial;
   }
 
-  header .nav-brand:not(.custom-logo) {
+ header .site-logo img {
     width: 100px;
-    height: 27px;
+    height: 22px;
   }
 
   header .mobile-menu .company-links li:nth-child(2) {
@@ -1924,11 +1926,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .mainmenu-wrapper #header-logo img {
-    width: 158px;
-    max-height: 36px;
-    height: auto;
-    opacity: 0;
-    max-width: 0;
+    width: 220px;
+    height: 30px;
   }
 
   header .mainmenu-wrapper.sticky #header-logo {
