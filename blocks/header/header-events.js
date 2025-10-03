@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { submitSearchForm } from './menus/search.js';
 import {
   addListeners,
