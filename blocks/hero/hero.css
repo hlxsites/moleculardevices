@@ -23,10 +23,8 @@ main .hero-advanced-wrapper {
 .hero-inner p {
   margin: 0 0 10px;
 }
-.hero-inner p.picture{
-  margin: 0;
-}
 
+.hero-inner p.picture,
 .hero-inner p.button-container {
   margin: 0;
 }
@@ -262,7 +260,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero.blog .hero-inner p,
-.hero.newsroom .hero-inner p{
+.hero.newsroom .hero-inner p {
   margin-bottom: 0;
 }
 
