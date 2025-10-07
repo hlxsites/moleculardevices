@@ -479,6 +479,16 @@ export function decorateLinkedPictures(container) {
   });
 }
 
+/* add custom css based on template type */
+function addDefaultStylingToTemplates() {
+  const layouts = ['Product', 'Application', 'Category', 'Technology'];
+  const type = getMetadata('template');
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+  if (layouts.some((r) => spTypes.indexOf(r) !== -1)) {
+    loadCSS('/styles/page-layout.css');
+  }
+}
+
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
@@ -1159,6 +1169,7 @@ export async function decorateMain(main) {
   addSectionBgColor(main);
   addBlockBgColor(main);
   addBgToCarousel(main);
+  addDefaultStylingToTemplates();
   addPageSchema();
   addHreflangTags();
 }
