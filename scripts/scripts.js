@@ -481,11 +481,17 @@ export function decorateLinkedPictures(container) {
 
 /* add custom css based on template type */
 function addDefaultStylingToTemplates() {
-  const layouts = ['Product', 'Application', 'Category', 'Technology'];
+  // const layouts = ['Product', 'Application', 'Category', 'Technology'];
+  const layouts = ['Product'];
+  const workflowLayouts = ['Application'];
+  const hasWorkflowTab = document.body.querySelector('.section.tabs[aria-labelledby="workflow"]');
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
   if (layouts.some((r) => spTypes.indexOf(r) !== -1)) {
     loadCSS('/styles/page-layout.css');
+  }
+  if (workflowLayouts.some((r) => spTypes.indexOf(r) !== -1) && hasWorkflowTab) {
+    loadCSS('/fragments/applications/application-workflow-commons.css');
   }
 }
 
