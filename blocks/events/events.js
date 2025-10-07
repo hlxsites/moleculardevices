@@ -10,11 +10,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 const DEFAULT_REGIONS = [
-  'Africa',
-  'Asia Pacific',
-  'Central & South America',
+  'Asia',
   'Europe',
-  'Middle East',
   'North America',
 ];
 
