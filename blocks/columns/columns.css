@@ -27,7 +27,8 @@ main .section > div.columns-wrapper {
 }
 
 .columns ul + p.button-container {
-  margin-left: 40px;
+  margin-left: 20px;
+  margin-top: 1rem;
 }
 
 .columns .video-wrapper {

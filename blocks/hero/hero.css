@@ -23,10 +23,8 @@ main .hero-advanced-wrapper {
 .hero-inner p {
   margin: 0 0 10px;
 }
-.hero-inner p.picture{
-  margin: 0;
-}
 
+.hero-inner p.picture,
 .hero-inner p.button-container {
   margin: 0;
 }
@@ -406,44 +404,17 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   /* Citation Variant - Mobile -- End */
 
-  /* TODO fix heading vars in styles.css */
-  .hero-inner h1 {
-    font-size: var(--heading-font-size-xxl);
-    margin-top: 30px;
-    margin-bottom: 10px;
-  }
-
-  .hero-inner h2 {
-    font-size: var(--heading-font-size-s);
-  }
-
-  .hero-inner .two-column h1 {
-    margin-top: 30px;
-    margin-bottom: 26px;
-  }
-
-  .hero-inner .container > div {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .hero-inner h4 {
-    margin-bottom: 10px;
-  }
-
+  .hero-inner h4,
   .hero-inner p.button-container {
     margin-bottom: 10px;
-  }
-
-  .hero-inner .container > div:nth-child(1) > div > p.button-container,
-  .hero-inner .container > div:nth-child(1) > div > h1 {
-    display: block;
   }
 
   .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay {
     display: none;
   }
 
+  .hero-inner .container > div:nth-child(1) > div > h1,
+  .hero-inner .container > div:nth-child(1) > div > p.button-container,
   .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay.open {
     display: block;
   }
@@ -623,10 +594,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   /* Video Gallery Variant - Desktop -- End */
-
-  .hero-inner h1 {
-    font-size: 45px;
-  }
 
   .hero-inner .container {
     overflow: auto;

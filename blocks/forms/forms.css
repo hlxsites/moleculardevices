@@ -432,10 +432,13 @@ input[type="submit"] {
 
 /* Category Form */
 main .category-form.forms-container {
+  --default-gap: 30px;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-image: url("/templates/product/images/default-background.png");
+  gap: var(--default-gap);
 }
 
 main .category-form.forms-container.wave-section {
@@ -466,54 +469,27 @@ main .category-form.forms-container .hs-submit .actions button {
   border-radius: 10px;
 }
 
-/* main .category-form.forms-container[class*='microplate-readers-form-section'],
-main .category-form.forms-container[class*='3d-biology-form-section'] {
-  background-image: url('/templates/product/images/3d-biology.png');
-}
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: var(--color-purple);
- color: var(--color-white);
-}
-main .category-form.forms-container[class*='3d-biology-form-section'],
-main .category-form.forms-container[class*='3d-biology-form-section'] {
-  background-image: url('/templates/product/images/3d-biology.png');
-}
-main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: var(--color-blue);
- color: var(--color-white);
-}
-main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
-  background-image: url('/templates/product/images/imaging.png');
-}
-main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
- background-color: var(--color-light-green);
- color: var(--color-white);
-} */
-
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
   display: none;
 }
 
 main .category-form.forms-container .forms {
-  background-color: rgb(1 59 78 / 50%);
-  padding: 30px;
+  background-color: var(--category-form-bg);
+  padding: var(--default-gap);
   border-radius: 20px;
   color: var(--color-white);
+}
+
+main .category-form.forms-container h2,
+main .category-form.forms-container h3,
+main .category-form.forms-container .forms h4 {
+  margin-bottom: var(--default-gap);
 }
 
 .product main .hs-form .hs-form-field .hs-field-desc,
 .product main .hs-form .hs-form-field .hs-field-desc a,
 .product main .hs-form a {
   color: inherit;
-}
-
-main .category-form.forms-container .forms h3 {
-  margin-top: 0;
-  font-size: 28px;
-  margin-bottom: 1rem;
-  text-align: center;
 }
 
 main .category-form.forms-container .hs-form-field:first-child .hs-form .hs-form-field .hs-field-desc,
@@ -528,16 +504,6 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
 }
 
 @media only screen and (min-width: 992px) {
-  main .category-form.forms-container {
-    font-size: 21px;
-  }
-
-  main .category-form.forms-container .default-content-wrapper h2:only-of-type {
-    font-size: 48px;
-    padding-bottom: 0;
-    margin-top: 0;
-  }
-
   main .category-form.forms-container.wave-section {
     padding-bottom: 15%;
   }
@@ -545,11 +511,7 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
 
 @media only screen and (max-width: 991px) {
   main .category-form.forms-container {
-    gap: 20px;
-  }
-
-  main .category-form.forms-container .forms {
-    padding: 20px;
+    --default-gap: 20px;
   }
 }
 
@@ -596,14 +558,14 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
 
 /* date field */
 .hs-dateinput,
-.hs-form-field:has(input[name='meeting_date_text']),
-.hs-form-field:has(input[type='date']){
+.hs-form-field:has(input[name="meeting_date_text"]),
+.hs-form-field:has(input[type="date"]) {
   position: relative;
 }
 
 .hs-dateinput::after,
-.hs-form-field:has(input[name='meeting_date_text'])::after,
-.hs-form-field:has(input[type='date'])::after{
+.hs-form-field:has(input[name="meeting_date_text"])::after,
+.hs-form-field:has(input[type="date"])::after {
   content: "\f073";
   display: inline-block;
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
