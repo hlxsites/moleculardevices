@@ -422,7 +422,8 @@ p:first-child {
   margin-top: 0;
 }
 
-p:last-child {
+p:last-child,
+p:last-of-type {
   margin-bottom: 0;
 }
 
@@ -734,8 +735,10 @@ main .section {
 
 main .section > div,
 .container {
-  margin: 0 auto;
-  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
   width: var(--section-max-width);
 }
 
@@ -1047,17 +1050,6 @@ main .event-container .event-date {
   display: block;
   padding-bottom: 30px;
   width: 100%;
-}
-
-main .section .default-content-wrapper h2:only-child {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 10px;
-}
-
-main .section.tabs .default-content-wrapper h2 {
-  padding-bottom: 15px;
 }
 
 main .section.buttons-in-row p.button-container {

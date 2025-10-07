@@ -1,9 +1,4 @@
 /* DESKTOP */
-.section div.card-list-filter-wrapper {
-  padding: 0;
-  margin-top: 25px;
-}
-
 .card-list-filter .active-filter {
   display: none; /* mobile only */
   margin-bottom: 8px;
