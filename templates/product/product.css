@@ -1,12 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 
 /* product section */
-.product .section.tabs h2 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 36px;
-  margin-top: 0;
-}
-
 .product .section.tabs > div > h3 {
   margin: 45px 15px 15px;
 }
@@ -28,7 +22,6 @@
 
 .product .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
-  font-size: 30px;
   color: var(--color-gray-700);
   margin-top: 0;
 }

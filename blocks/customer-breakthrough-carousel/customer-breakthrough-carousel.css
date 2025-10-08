@@ -3,15 +3,6 @@
   color: var(--color-text-primary);
 }
 
-.section.wave.customer-breakthrough-carousel-container > .default-content-wrapper {
-  margin-top: 0;
-}
-
-main .section.customer-breakthrough-carousel-container .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-light);
-  text-align: center;
-}
-
 main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
   width: 1140px;
   padding: 0 15px;

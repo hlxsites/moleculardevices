@@ -94,14 +94,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-state-danger: #f00;
   --color-state-success: #09b571;
 
-  /* Unique Colors */
-  --agenda-links-hover: rgb(19 154 218 / 25%);
-  --cards-gallery-bg: rgb(0 117 141 / 80%);
-  --blog-author-bg: #dcedf4;
-  --card-caption-text: #12141f;
-  --background-parallax-cta-border: #cbdce8;
-  --carousel-blue-wave-indicator: #23bfd9;
-
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
   --color-mm-border: #ffffff80;
@@ -109,7 +101,11 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-mobile-menu-caret: #c4ccda;
   --gutter-product: 30px;
 
-  /* unique Colors */
+  /* Unique Colors */
+  --agenda-links-hover: rgb(19 154 218 / 25%);
+  --card-caption-text: #12141f;
+  --background-parallax-cta-border: #cbdce8;
+  --carousel-blue-wave-indicator: #23bfd9;
   --quote-request-progess-bar: #020302;
   --application-workflow-timeline-author: #242424;
   --image-list-text: #292e32;
@@ -118,7 +114,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --video-teaser-bg: #6a747b;
   --column-innovation-text: #6eb441;
   --column-light-dark: #aaa;
-  --column-col-4-bg: #f0f7f8;
   --coveo-checkbox-span-label-suffix: #67768b;
   --coveo-facet-value-count: #a5a6a8;
   --coveo-checkbox-span-label: #63666a;
@@ -136,7 +131,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --quote-request-form-privacy-label: #999;
   --assay-kits-wrap-head: #666;
   --featured-products-carousel-item: #efefef;
-  --compare-items-banner: #95c872;
   --category-form-bg: rgb(1 59 78 / 50%);
 
   /* Black Alpha Colors */
@@ -551,22 +545,23 @@ p.video-title {
 }
 
 /* buttons */
+
 a.button:any-link,
+a[role="button"],
 button {
-  box-sizing: border-box;
+  --btn-base-color: var(--color-transparent);
+  --btn-text-color: var(--color-link);
+
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
-  font-size: var(--body-font-size-m);
-  color: var(--color-link);
   line-height: 18px;
   display: inline-block;
-  border: 0;
   border-radius: 0;
   transition: all 0.2s;
   min-width: 140px;
   position: relative;
   height: auto;
-  padding: 15px 18px 16px;
+  padding: 17px 18px;
   margin-bottom: 0;
   text-align: center;
   text-decoration: none;
@@ -575,12 +570,9 @@ button {
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
-}
-
-a[role="button"] {
-  cursor: pointer;
-  touch-action: manipulation;
-  user-select: none;
+  color: var(--btn-text-color);
+  background-color: var(--btn-base-color);
+  border: 2px solid var(--btn-base-color);
 }
 
 a.button:any-link:has(span.icon),
@@ -601,41 +593,111 @@ a.button i.fa {
   color: inherit;
 }
 
+button:disabled,
+button:disabled:hover {
+  --btn-base-color: var(--color-gray-200);
+
+  cursor: unset;
+}
+
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  cursor: pointer;
-  color: var(--color-link-hover);
-}
+  --btn-base-color: var(--color-transparent);
+  --btn-text-color: var(--color-link-hover);
 
-button:disabled,
-button:disabled:hover {
-  background-color: var(--color-gray-200);
-  cursor: unset;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 a.button.primary,
 button.primary {
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border: 0;
+  --btn-base-color: var(--color-primary);
+  --btn-text-color: var(--color-white);
+
   white-space: break-spaces;
-  padding: 14px 18px;
-  line-height: 21px;
 }
 
-.button-container:has(+ .button-container) a.button.primary {
-  margin-bottom: 0;
+a.button.secondary,
+button.secondary {
+  --btn-base-color: var(--color-button-secondary);
+  --btn-text-color: var(--color-button-primary);
+
+  background-color: transparent;
+  font-style: normal;
 }
 
 a.button.primary:hover,
 a.button.primary:focus,
 button.primary:hover,
-button.primary:focus {
-  color: var(--color-link-hover);
-  background-color: var(--color-white);
-  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
+button.primary:focus,
+a.button.secondary:hover,
+a.button.secondary:focus,
+button.secondary:hover,
+button.secondary:focus {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-link-hover);
+
+  background-color: var(--btn-base-color);
+}
+
+main div.orange-buttons .button.primary:any-link,
+main div.orange-buttons button.primary {
+  --btn-base-color: var(--color-secondary);
+  --btn-text-color: var(--color-white);
+}
+
+main div.orange-buttons .button.secondary:any-link,
+main div.orange-buttons button.secondary {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-white);
+}
+
+main div.orange-buttons .button.primary:hover,
+main div.orange-buttons .button.primary:active,
+main div.orange-buttons .button.primary:visited,
+main div.orange-buttons .button.secondary:hover,
+main div.orange-buttons .button.secondary:active,
+main div.orange-secondary-buttons .button.secondary:hover,
+main div.orange-secondary-buttons .button.secondary:active {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-secondary);
+}
+
+main div.orange-secondary-buttons .button.secondary:link,
+main div.orange-secondary-buttons .button.secondary:visited {
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+}
+
+main .section.buttons-in-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.buttons-in-row > div {
+  padding: 0;
+}
+
+main .section.buttons-in-row p.button-container {
+  margin-top: 0;
+}
+
+main .section.buttons-in-row p.button-container,
+main .section.wave.orange-buttons p.button-container {
+  display: inline-block;
+}
+
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+}
+
+main .section.features-section .button-container {
+  margin-top: 50px;
+}
+
+.button-container:has(+ .button-container) a.button.primary {
+  margin-bottom: 0;
 }
 
 a.button.primary:hover .button-border {
@@ -645,26 +707,30 @@ a.button.primary:hover .button-border {
   position: absolute;
   margin-left: 0;
   height: 4px;
-  background: var(--color-link-hover);
   left: 25%;
   bottom: -5px;
+  background-color: var(--btn-text-color);
 }
 
-a.button.secondary,
-button.secondary {
-  font-style: normal;
-  border: 2px solid var(--color-button-secondary);
-  color: var(--color-button-primary);
+@media only screen and (max-width: 767px) {
+  a.button:any-link,
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  main .section.buttons-in-row p.button-container,
+  main .section.wave.orange-buttons p.button-container {
+    display: block;
+  }
+
+  main .section.buttons-in-row p.button-container + p.button-container,
+  main .section.wave.orange-buttons p.button-container + p.button-container {
+    margin-left: 0;
+  }
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus,
-button.secondary:hover,
-button.secondary:focus {
-  color: var(--color-link-hover);
-  background-color: var(--color-white);
-  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
-}
+/* buttons end */
 
 main input:not([type="radio"], [type="checkbox"]),
 main textarea,
@@ -742,15 +808,6 @@ main .section > div,
   width: var(--section-max-width);
 }
 
-main .section.buttons-in-row {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-main .section.buttons-in-row > div {
-  padding: 0;
-}
-
 @media (max-width: 767px) {
   main .section.wavecarousel {
     padding-top: 200px;
@@ -758,8 +815,6 @@ main .section.buttons-in-row > div {
 }
 
 /* Marked as !important as these should not get overriden */
-main .section.hero-container,
-main .section.hero-advanced-container,
 main .section.page-tabs-container,
 main .section.html-snippet-container {
   padding-top: 0 !important;
@@ -793,13 +848,6 @@ main .section.columns-2 > div {
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
-  }
-
-  a.button:any-link,
-  button {
-    font-size: var(--body-font-size-xs);
-    width: 100%;
-    max-width: 200px;
   }
 
   main .breadcrumbs-wrapper {
@@ -1052,19 +1100,6 @@ main .event-container .event-date {
   width: 100%;
 }
 
-main .section.buttons-in-row p.button-container {
-  margin-top: 0;
-}
-
-main .section.buttons-in-row p.button-container,
-main .section.wave.orange-buttons p.button-container {
-  display: inline-block;
-}
-
-main .section.wave.orange-buttons p.button-container {
-  margin-top: 20px;
-}
-
 /* services & support */
 
 main .section.service-support .default-content-wrapper h2 {
@@ -1110,22 +1145,10 @@ main .section.applications-carousel-container .default-content-wrapper {
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper h2,
-main .section.applications-carousel-container .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
-  margin-bottom: 0;
-  padding: 0;
-}
-
 main .section.features-section .default-content-wrapper::after {
   content: "";
   clear: both;
   display: block;
-}
-
-main .section.features-section .button-container {
-  margin-top: 50px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -1146,16 +1169,6 @@ main .section.features-section .button-container {
   main .section.features-section .default-content-wrapper em {
     width: 100%;
     padding: 0 15px;
-  }
-
-  main .section.buttons-in-row p.button-container,
-  main .section.wave.orange-buttons p.button-container {
-    display: block;
-  }
-
-  main .section.buttons-in-row p.button-container + p.button-container,
-  main .section.wave.orange-buttons p.button-container + p.button-container {
-    margin-left: 0;
   }
 }
 
@@ -1341,23 +1354,6 @@ main div.section.wave:last-child img {
   display: block;
 }
 
-main div.section.wave .default-content-wrapper {
-  margin-top: 50px;
-  padding: 0 15px;
-  padding-right: 15px;
-}
-
-main div.section.wave .default-content-wrapper h2 {
-  font-size: var(--heading-font-size-xl);
-  margin-bottom: 30px;
-  line-height: 1;
-  font-family: var(--ff-proxima-light);
-}
-
-main div.section.wave p {
-  margin: 0;
-}
-
 main div.section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
@@ -1535,55 +1531,6 @@ main div.green-secondary-buttons .button.secondary {
   color: var(--color-text-primary);
 }
 
-/* Orange Buttons */
-main div.orange-buttons .button {
-  height: 50px;
-  min-width: 200px;
-}
-
-main div.orange-buttons .button.primary:link,
-main div.orange-buttons .button.primary:visited {
-  color: var(--color-white);
-  background: var(--color-secondary);
-  text-transform: none;
-}
-
-main div.orange-buttons .button.primary:hover,
-main div.orange-buttons .button.primary:active {
-  color: var(--color-secondary);
-  background: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
-}
-
-main div.orange-buttons .button.secondary:link,
-main div.orange-buttons .button.secondary:visited,
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--color-white);
-  background: transparent;
-  border: 2px solid var(--color-white);
-  text-transform: none;
-}
-
-main div.orange-buttons .button.secondary:hover,
-main div.orange-buttons .button.secondary:active,
-main div.orange-secondary-buttons .button.secondary:hover,
-main div.orange-secondary-buttons .button.secondary:active {
-  color: var(--color-secondary);
-  background: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
-}
-
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
-}
-
-main div.orange-buttons .button.primary > .button-border {
-  display: none;
-}
-
 main .section.center {
   text-align: center;
 }
@@ -1605,25 +1552,6 @@ main .section.background-molecules {
     background-size: auto 50px;
     height: 50px;
   }
-
-  main div.orange-buttons .button {
-    min-width: 140px;
-    max-width: max-content;
-    width: 100%;
-    font-size: 12px;
-    padding: 9px 12px 10px;
-    height: 37px;
-  }
-
-  main div.orange-buttons .button.secondary:link,
-  main div.orange-buttons .button.secondary:visited,
-  main div.orange-secondary-buttons .button.secondary:link,
-  main div.orange-secondary-buttons .button.secondary:visited {
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
-  }
-
-  /* ------ */
 
   main div.section.wave h2 {
     font-size: 40px;
@@ -1868,7 +1796,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   padding-top: 20px;
 }
 
-.product main .section.tabs:not(.related-applications-container) h2,
 .technology main .section.tabs:not(.related-applications-container) h2,
 .application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
@@ -1900,7 +1827,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   padding-bottom: 0;
 }
 
-.product .section.resources-container .default-content-wrapper:first-child h2,
 .technology .section.resources-container .default-content-wrapper:first-child h2,
 .application .section.resources-container .default-content-wrapper:first-child h2 {
   padding-bottom: 0;

@@ -1,18 +1,25 @@
+:root {
+  --compare-items-banner: rgb(from var(--color-white) r g b / 60%);
+}
+
 /* stylelint-disable selector-class-pattern */
 main .compare-banner {
   position: fixed;
   z-index: 94035;
   left: 0;
-  right: 0;
-  bottom: 0;
+  bottom: -100%;
   background: var(--color-tertiary);
-  display: none;
-  padding: 12px 0;
-  margin-top: -40px;
+  width: 100%;
+  padding: 27px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
 main .compare-banner.show {
-  display: block;
+  bottom: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 main .compare-banner .container {
@@ -33,12 +40,10 @@ main .compare-banner .compare-row {
 main .compare-banner .compare-cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 15px;
 }
 
 main .compare-banner .compare-row .compare-cell .compare-cell {
   width: 33%;
-  border-left: 1px solid var(--compare-items-banner);
   padding: 0;
 }
 
@@ -46,7 +51,15 @@ main .compare-banner .compare-cell.button {
   width: 240px;
   padding: 0;
   text-overflow: unset;
+}
+
+main .compare-banner .compare-row .compare-cell .compare-cell,
+main .compare-banner .compare-cell.button {
   border-left: 1px solid var(--compare-items-banner);
+}
+
+main .compare-banner .compare-row .compare-cell .compare-cell:first-child {
+  border-left: unset;
 }
 
 main .compare-banner .compare-data {
@@ -63,7 +76,7 @@ main .compare-banner .compare-data {
 
 main .compare-banner .gradiant-blue-btn.btn {
   border: 0;
-  transition: all .2s;
+  transition: all 0.2s;
   min-width: 140px;
   color: var(--color-white);
   position: relative;

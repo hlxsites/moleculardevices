@@ -484,6 +484,7 @@ main .category-form.forms-container h2,
 main .category-form.forms-container h3,
 main .category-form.forms-container .forms h4 {
   margin-bottom: var(--default-gap);
+  color: inherit;
 }
 
 .product main .hs-form .hs-form-field .hs-field-desc,

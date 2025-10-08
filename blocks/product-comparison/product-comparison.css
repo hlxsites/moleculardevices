@@ -147,11 +147,8 @@
   padding: 6px 12px;
   font-size: 13px;
   display: inline-block;
-  text-decoration: none;
   text-transform: uppercase;
   margin: 5px 0 10px;
-  font-family: var(--ff-proxima-regular);
-  transition: all .3s;
 }
 
 .product-comparison .responsive-table a.product-info-btn:hover {

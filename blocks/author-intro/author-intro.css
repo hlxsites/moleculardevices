@@ -1,3 +1,7 @@
+:root{
+  --blog-author-bg: rgb(from var(--color-primary) r g b / 14%);
+}
+
 .author-intro {
   margin: 24px 0;
   background: var(--blog-author-bg);
