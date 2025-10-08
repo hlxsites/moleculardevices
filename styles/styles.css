@@ -83,12 +83,19 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-button-primary: #038296;
   --color-button-secondary: #4c9eaf;
   --color-text-primary: #34393d;
-  --color-gray-blue-light: #b3d8e0;
-  --color-gradient-primary: #1591a4;
-  --color-gradient-secondary: #2e9f79;
-  --color-gradient-tertiary: #61b249;
-  --color-gradient-cta-primary: #00748d;
-  --color-gradient-cta-secondary: #0190ac;
+
+  /* RGB Brand Colors */
+  --color-primary-rgb: 0 141 169;
+  --color-secondary-rgb: 238 118 36;
+  --color-tertiary-rgb: 110 180 63;
+  --color-primary-dark-rgb: 0 59 77;
+  --color-highlight-rgb: 0 117 141;
+  --color-highlight-2-rgb: 0 123 196;
+  --color-text-primary-rgb: 52 57 61;
+  --color-link-rgb: 51 122 183;
+  --color-link-hover-rgb: 0 102 164;
+  --color-button-primary-rgb: 3 130 150;
+  --color-button-secondary-rgb: 76 158 175;
 
   /* State Colors */
   --color-state-danger: #f00;
@@ -104,7 +111,6 @@ main .section.OneLinkShow_zh.columns-2 {
   /* Unique Colors */
   --agenda-links-hover: rgb(19 154 218 / 25%);
   --card-caption-text: #12141f;
-  --background-parallax-cta-border: #cbdce8;
   --carousel-blue-wave-indicator: #23bfd9;
   --quote-request-progess-bar: #020302;
   --application-workflow-timeline-author: #242424;
@@ -127,7 +133,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --product-comparison-first-cell: #525b61;
   --quote-request-progess-bar-inset: #716f6f;
   --quote-request-form-description: #e2e2e2;
-  --quote-request-form-cta: #298da9;
   --quote-request-form-privacy-label: #999;
   --assay-kits-wrap-head: #666;
   --featured-products-carousel-item: #efefef;
@@ -180,6 +185,13 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-pink: #d31e83;
   --color-orange: #f97b16;
   --color-light-green: #3be086;
+
+  /* Gradient Healper */
+  --color-gradient-primary: #1591a4;
+  --color-gradient-secondary: #2e9f79;
+  --color-gradient-tertiary: #61b249;
+  --color-gradient-cta-primary: #00748d;
+  --color-gradient-cta-secondary: #0190ac;
 
   /* Gradients */
   --gradient-theme: linear-gradient(
@@ -1282,7 +1294,7 @@ main .section.background-parallax .default-content-wrapper .button-container > a
   color: var(--color-white);
   border-radius: 0;
   padding: 18px 18px 16px;
-  border: 1px solid var(--background-parallax-cta-border);
+  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
 }
 
 @media only screen and (max-width: 991px) {
@@ -1960,7 +1972,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   font-size: var(--body-font-size-m);
   border-radius: 0;
   padding: 15px 40px;
-  border: 1px solid var(--background-parallax-cta-border);
+  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
 }
 
 .category .default-content-wrapper h3 {

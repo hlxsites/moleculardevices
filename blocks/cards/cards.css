@@ -223,7 +223,7 @@
 
 .cards.gallery ul > li .cards-card-body {
   margin: 0;
-  background: rgb(from var(--color-primary) r g b / 92%);
+  background: rgb(var(--color-primary-rgb) / 92%);
 }
 
 .cards.gallery ul > li .cards-card-body:not(:empty) {

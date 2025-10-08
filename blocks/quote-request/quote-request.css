@@ -274,7 +274,7 @@ main .rfq-form .actions {
 main .rfq-form .hs-submit .actions button {
   transition: all 0.2s;
   background: var(--gradient-cta);
-  background-color: var(--quote-request-form-cta);
+  background-color: rgb(var(--color-primary-rgb) / 84%);
   border: none;
   border-radius: 20px;
   color: var(--color-white);

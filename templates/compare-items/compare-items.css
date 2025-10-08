@@ -1,7 +1,3 @@
-:root {
-  --compare-items-banner: rgb(from var(--color-white) r g b / 60%);
-}
-
 /* stylelint-disable selector-class-pattern */
 main .compare-banner {
   position: fixed;
@@ -55,7 +51,7 @@ main .compare-banner .compare-cell.button {
 
 main .compare-banner .compare-row .compare-cell .compare-cell,
 main .compare-banner .compare-cell.button {
-  border-left: 1px solid var(--compare-items-banner);
+  border-left: 1px solid rgb(var(--color-white) / 60%);
 }
 
 main .compare-banner .compare-row .compare-cell .compare-cell:first-child {
