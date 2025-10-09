@@ -2064,7 +2064,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     padding: 6px 12px;
     border: 1px solid var(--gray-250);
     border-radius: 4px;
-    color: var(--header-menu-nav-search-bar);
+    color: var(--color-gray-700);
   }
 
   header .menu-nav-search-bar form button {

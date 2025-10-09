@@ -329,7 +329,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
-  background-color: var(--video-teaser-bg);
+  background-color: var(--color-gray-700);
   color: var(--color-white);
   margin-left: 0;
   padding: 32px;
@@ -341,7 +341,7 @@ main .section > div.columns-wrapper {
 
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) {
-  background-color: var(--column-light-dark);
+  background-color: var(--color-gray-500);
   color: var(--color-white);
 }
 

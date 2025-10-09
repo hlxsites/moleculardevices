@@ -261,7 +261,7 @@ main .section .resources-wrapper {
   padding: 6px 12px;
   border: 1px solid var(--gray-250);
   border-radius: 4px 0 0 4px;
-  color: var(--header-menu-nav-search-bar);
+  color: var(--color-gray-700);
   margin-bottom: 0;
 }
 

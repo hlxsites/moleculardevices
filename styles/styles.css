@@ -110,32 +110,12 @@ main .section.OneLinkShow_zh.columns-2 {
 
   /* Unique Colors */
   --agenda-links-hover: rgb(19 154 218 / 25%);
-  --card-caption-text: #12141f;
   --carousel-blue-wave-indicator: #23bfd9;
-  --quote-request-progess-bar: #020302;
-  --application-workflow-timeline-author: #242424;
-  --image-list-text: #292e32;
   --card-list-filter-separator: #6d6c8d;
   --card-list-filter-blog-separator: #61a60e;
-  --video-teaser-bg: #6a747b;
   --column-innovation-text: #6eb441;
-  --column-light-dark: #aaa;
-  --coveo-checkbox-span-label-suffix: #67768b;
-  --coveo-facet-value-count: #a5a6a8;
-  --coveo-checkbox-span-label: #63666a;
-  --coveo-checkbox-border: #bcc3ca;
-  --footer-lp-border-top: #6b737b;
-  --header-menu-nav-search-bar: #555;
   --hero-video-overlay-bg: #00b8dd;
   --hubspot-modal-block-after: #004c70;
-  --ordering-option-quantity-number: #4b4f53;
-  --product-comparison-dark-gray: #8a959b;
-  --product-comparison-first-cell: #525b61;
-  --quote-request-progess-bar-inset: #716f6f;
-  --quote-request-form-description: #e2e2e2;
-  --quote-request-form-privacy-label: #999;
-  --assay-kits-wrap-head: #666;
-  --featured-products-carousel-item: #efefef;
   --category-form-bg: rgb(1 59 78 / 50%);
 
   /* Black Alpha Colors */
@@ -153,28 +133,21 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-black: rgb(0 0 0 / 100%);
 
   /* Gray Scale Hierarchy */
-  --gray-50: #f7f7f7;
-  --gray-100: #efefef;
-  --gray-200: #e6e6e6;
-  --gray-250: #dcdcdc;
-  --gray-300: #d3d3d3;
-  --gray-350: #c9c9c9;
-  --gray-400: #bfbfbf;
-  --gray-500: #999;
-  --gray-600: #7f7f7f;
-  --gray-650: #666;
-  --gray-700: #4c4c4c;
-  --gray-750: #333;
-  --gray-800: #1a1a1a;
-  --gray-850: #0d0d0d;
-
-  --color-gray-150: #f0f1f2;
-  --color-gray-125: #f1f2f3;
-  --color-gray-100: #f2f2f2;
-  --color-gray-50: #f3f3f3;
-  --color-gray-75: #f5f5f5;
-  --color-gray-25: #f6f6f6; /* accordion trigger */
   --color-white: #fff;
+  --color-gray-50: #f7f7f7;
+  --color-gray-100: #efefef;
+  --color-gray-200: #e6e6e6;
+  --color-gray-250: #dcdcdc;
+  --color-gray-300: #d3d3d3;
+  --color-gray-350: #c9c9c9;
+  --color-gray-400: #bfbfbf;
+  --color-gray-500: #999;
+  --color-gray-600: #7f7f7f;
+  --color-gray-650: #666;
+  --color-gray-700: #4c4c4c;
+  --color-gray-750: #333;
+  --color-gray-800: #1a1a1a;
+  --color-gray-850: #0d0d0d;
 
   /* Color Input */
   --color-input: #5f696b;

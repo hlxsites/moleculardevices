@@ -418,7 +418,7 @@
   position: absolute;
   right: 12px;
   top: 0;
-  background-color: var(--footer-lp-border-top);
+  background-color: var(--color-gray-700);
   width: 1px;
   height: 100%;
 }

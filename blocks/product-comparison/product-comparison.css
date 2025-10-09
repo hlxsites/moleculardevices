@@ -39,7 +39,7 @@
 }
 
 .product-comparison .product-heading .darkgrey {
-  background-color: var(--product-comparison-dark-gray);
+  background-color: var(--color-gray-500);
   color: var(--gray-750);
 }
 
@@ -106,7 +106,7 @@
 }
 
 .product-comparison .responsive-table tbody td:first-child {
-  background-color: var(--product-comparison-first-cell);
+  background-color: var(--color-gray-700);
   min-width: 160px;
   padding: 15px;
   border-right: 1px solid var(--gray-250);

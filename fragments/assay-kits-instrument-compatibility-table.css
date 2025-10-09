@@ -93,7 +93,7 @@ a.req_quote {
 }
 
 .wrap_head_col_1 {
-  color: var(--assay-kits-wrap-head) !important;
+  color: var(--color-gray-650) !important;
   text-transform: capitalize;
   min-height: 300px;
   text-align: left;

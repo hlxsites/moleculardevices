@@ -85,7 +85,7 @@ table i.fa.fa-circle {
 }
 
 .options-compare table td:first-child {
-  background-color: var(--product-comparison-first-cell) !important;
+  background-color: var(--color-gray-700) !important;
   color: var(--color-white);
   width: 190px;
   padding: 15px;
