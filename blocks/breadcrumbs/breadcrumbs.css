@@ -1,5 +1,5 @@
 .breadcrumbs-wrapper:has(+.background-grey){
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
 }
 
 .breadcrumbs {

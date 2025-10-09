@@ -156,7 +156,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .breadcrumbs li + li::before {
-  color: var(--color-gray-350);
+  color: var(--gray-250);
 }
 
 .hero-inner .video-icon {
@@ -177,7 +177,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner.white-bg {
-  background: var(--color-gray-150);
+  background: var(--gray-50);
 }
 
 .hero-inner.white-bg,

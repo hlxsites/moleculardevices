@@ -7,7 +7,7 @@
   border: 1px solid var(--color-state-danger);
   border-radius: 10px;
   padding: 1rem;
-  background-color: var(--color-gray-50);
+  background-color: var(--gray-50);
 }
 
 .forms.block:has(> .type-not-found-msg) > div {

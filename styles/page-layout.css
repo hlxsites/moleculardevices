@@ -14,9 +14,10 @@
     --body-font-size: 18px;
     --heading-1: 70px;
     --heading-2: 54px;
-    --heading-3: 48px;
-    --heading-4: 36px;
+    --heading-3: 36px;
+    --heading-4: 30px;
     --heading-5: 24px;
+    --heading-6: 20px;
   }
 }
 
@@ -64,7 +65,7 @@ h6 {
 /* section tabs */
 .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
-  color: var(--color-gray-700);
+  color: var(--gray-700);
   margin-top: 0;
 }
 

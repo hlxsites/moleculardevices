@@ -25,7 +25,7 @@ main .featured-products-carousel .carousel-item-text {
 }
 
 main .featured-products-carousel.grey .carousel-item {
-  background-color: var(--color-gray-100);
+  background-color: var(--gray-50);
   border: 0;
 }
 

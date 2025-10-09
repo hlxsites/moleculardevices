@@ -1,5 +1,5 @@
 .events main {
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
 }
 
 .events .wave {
@@ -38,7 +38,7 @@ main .events label {
   position: absolute;
   left: 9px;
   background: none;
-  border: 2px solid var(--color-gray-500);
+  border: 2px solid var(--gray-500);
 }
 
 .events input[type="checkbox"].filter-item:checked + span::before {
@@ -51,7 +51,7 @@ main .event-container .event-title {
   line-height: 1;
   font-weight: 100;
   padding-top: 40px;
-  border-bottom: 1px solid var(--color-gray-500);
+  border-bottom: 1px solid var(--gray-500);
   padding-bottom: 20px;
   width: 100%;
 }

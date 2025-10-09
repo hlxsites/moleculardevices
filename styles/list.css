@@ -23,12 +23,12 @@
   font-weight: bold;
   margin: 0;
   padding: 8px 0 22px;
-  border-bottom: 1px solid var(--color-gray-450);
+  border-bottom: 1px solid var(--gray-400);
 }
 
 /* filters */
 .list > .filter > .select {
-  border-bottom: 1px solid var(--color-gray-450);
+  border-bottom: 1px solid var(--gray-400);
   padding: 10px 0 16px;
 }
 
@@ -56,7 +56,7 @@
 
 .list > .filter > .select.open > .dropdown-toggle,
 .list > .filter > .select > .dropdown-toggle:hover {
-  color: var(--color-gray-500);
+  color: var(--gray-500);
 }
 
 .list > .filter > .select.open > .dropdown-toggle::before {
@@ -91,7 +91,7 @@
 .list > .items > .item {
   height: auto;
   max-width: 100%;
-  border-bottom: 2px solid var(--color-gray-300);
+  border-bottom: 2px solid var(--gray-200);
   padding: 37px 0 40px;
 }
 
@@ -124,7 +124,7 @@
   font-size: var(--list-font-size-s);
   font-style: normal;
   font-weight: 600;
-  color: var(--color-gray-900);
+  color: var(--gray-750);
 }
 
 .list > .items > .item > .image {
@@ -148,12 +148,12 @@
 
 .list > .pagination > .pager-item {
   display: inline-block;
-  color: var(--color-gray-500);
+  color: var(--gray-500);
   text-decoration: none;
   min-width: 55px;
   width: 55px;
   height: 55px;
-  border: 1px solid var(--color-gray-500);
+  border: 1px solid var(--gray-500);
   font-weight: bold;
   line-height: 53px;
   text-align: center;
@@ -312,7 +312,7 @@
   width: 100%;
   margin-bottom: 0;
   padding: 1rem 1.5rem;
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--gray-200);
   border-radius: 0.25rem;
   margin-top: 0;
 }
@@ -321,7 +321,7 @@
   padding-right: 0;
   padding-left: 0;
   margin-bottom: 0;
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--gray-200);
   border-bottom: none;
   overflow: hidden;
   flex: none;

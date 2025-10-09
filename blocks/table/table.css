@@ -13,12 +13,12 @@
 }
 
 .table table th {
-  background: var(--color-gray-50);
+  background: var(--gray-50);
 }
 
 .table table th,
 .table table td {
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--gray-200);
   padding: 8px;
   text-align: left;
   vertical-align: top;
@@ -77,7 +77,7 @@ table i.fa.fa-circle {
   padding: 8px;
   line-height: 1.43;
   vertical-align: top;
-  border-top: 1px solid var(--color-gray-300);
+  border-top: 1px solid var(--gray-200);
 }
 
 .table.order table p {
@@ -93,7 +93,7 @@ table i.fa.fa-circle {
 
 .options-compare table th:nth-child(odd),
 .options-compare table td:nth-child(odd) {
-  background-color: var(--color-gray-100);
+  background-color: var(--gray-50);
 }
 
 .table.order table td:first-child {

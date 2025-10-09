@@ -1,6 +1,6 @@
 /* TAB START */
 .tab-wrapper {
-  border-bottom: 4px solid var(--color-gray-750);
+  border-bottom: 4px solid var(--gray-700);
   display: flex;
   flex-wrap: wrap;
 }
@@ -15,7 +15,7 @@
 }
 
 .tab-wrapper > a.active {
-  background-color: var(--color-gray-750);
+  background-color: var(--gray-700);
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -35,7 +35,7 @@
 }
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper {
-  border: 1px solid var(--color-gray-450);
+  border: 1px solid var(--gray-400);
   border-top: 0;
   font-size: var(--body-font-size-s);
   margin-top: -1px;
@@ -50,7 +50,7 @@
 }
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div {
-  border-top: 1px solid var(--color-gray-450);
+  border-top: 1px solid var(--gray-400);
   padding-top: 40px;
 }
 
@@ -124,7 +124,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > picture,
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li > picture {
-  border: 2px solid var(--color-gray-450);
+  border: 2px solid var(--gray-400);
   display: block;
   padding: 10px;
 }
@@ -174,7 +174,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li:not(:last-child)::after,
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li:only-child::after {
-  background-color: var(--color-gray-450);
+  background-color: var(--gray-400);
   bottom: 0;
   content: "";
   display: block;

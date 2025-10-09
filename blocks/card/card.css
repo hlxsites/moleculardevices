@@ -106,7 +106,7 @@ main .card-caption .button.primary {
 }
 
 main .card-caption .c2a .compare-button {
-  color: var(--color-gray-500);
+  color: var(--gray-500);
   letter-spacing: 0.5px;
   align-items: center;
   float: right;
@@ -123,7 +123,7 @@ main .card-caption .c2a .compare-checkbox {
   height: 18px;
   margin-left: 10px;
   vertical-align: middle;
-  border: 2px solid var(--color-gray-500);
+  border: 2px solid var(--gray-500);
   cursor: pointer;
 }
 

@@ -153,19 +153,21 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-black: rgb(0 0 0 / 100%);
 
   /* Gray Scale Hierarchy */
-  --color-gray-900: #333; /* dark gray */
-  --color-gray-800: #454545;
-  --color-gray-750: #5b6670; /* tab color */
-  --color-gray-700: #606a6c;
-  --color-gray-600: #6a747c;
-  --color-gray-500: #adb3b7;
-  --color-gray-450: #ababab; /* border color */
-  --color-gray-400: #c5c5c5;
-  --color-gray-350: #ccc; /* highlight background */
-  --color-gray-325: #cecece;
-  --color-gray-300: #ddd;
-  --color-gray-275: #e6e6e6; /* submenu card */
-  --color-gray-200: #eee; /* overlay background */
+  --gray-50: #f7f7f7;
+  --gray-100: #efefef;
+  --gray-200: #e6e6e6;
+  --gray-250: #dcdcdc;
+  --gray-300: #d3d3d3;
+  --gray-350: #c9c9c9;
+  --gray-400: #bfbfbf;
+  --gray-500: #999;
+  --gray-600: #7f7f7f;
+  --gray-650: #666;
+  --gray-700: #4c4c4c;
+  --gray-750: #333;
+  --gray-800: #1a1a1a;
+  --gray-850: #0d0d0d;
+
   --color-gray-150: #f0f1f2;
   --color-gray-125: #f1f2f3;
   --color-gray-100: #f2f2f2;
@@ -314,7 +316,7 @@ body {
 }
 
 .background-gray main {
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
 }
 
 body.appear {
@@ -503,7 +505,7 @@ em strong {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-600);
+  color: var(--gray-400);
   font-style: italic;
 }
 
@@ -607,7 +609,7 @@ a.button i.fa {
 
 button:disabled,
 button:disabled:hover {
-  --btn-base-color: var(--color-gray-200);
+  --btn-base-color: var(--gray-100);
 
   cursor: unset;
 }
@@ -769,7 +771,7 @@ main textarea {
 }
 
 main pre {
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
   padding: 1em;
   border-radius: 0.25em;
   overflow-x: auto;
@@ -796,7 +798,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--gray-100);
 }
 
 main img,
@@ -904,7 +906,7 @@ main .section.columns-2 > div {
 }
 
 main .section.highlight {
-  background-color: var(--color-gray-350);
+  background-color: var(--gray-250);
 }
 
 main .section.background-grey + .section.wave,
@@ -919,7 +921,7 @@ main .section.background-grey + .section.wave {
 
 main .section.background-grey,
 main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
   margin-top: 0;
 }
 
@@ -927,7 +929,7 @@ main .section.background-grey-top-half::before,
 main .section.background-grey-bottom-half::before,
 main .section.background-grey + .section.wave::before {
   content: "";
-  background-color: var(--color-gray-200);
+  background-color: var(--gray-100);
   position: absolute;
   left: 0;
   height: 200px;
@@ -1000,7 +1002,7 @@ main.error .section > div {
 }
 
 main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--color-gray-350);
+  border-top: 1px solid var(--gray-250);
   padding-top: 45px;
 }
 
@@ -1146,7 +1148,7 @@ main .section.features-section {
     url("/images/molecules-left.png") left bottom,
     url("/images/molecules-right.png") right top;
   background-repeat: no-repeat;
-  background-color: var(--color-gray-100);
+  background-color: var(--gray-50);
 }
 
 main .section.features-section .default-content-wrapper,
@@ -1204,7 +1206,7 @@ main .section.features-section .default-content-wrapper::after {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-600);
+  color: var(--gray-400);
   font-style: italic;
 }
 
@@ -1596,7 +1598,7 @@ main .section.background-molecules {
 
 .company-links li.cart-link i.fa.fa-shopping-cart {
   font-size: 19px;
-  color: var(--color-gray-350);
+  color: var(--gray-250);
   position: relative;
   padding-right: 5px;
 }
@@ -1846,7 +1848,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .technology .columns.block.columns-1-cols,
 .application .columns.block.columns-1-cols {
-  background-color: var(--color-gray-100);
+  background-color: var(--gray-50);
   padding: 15px 26px 15px 32px;
 }
 
@@ -1881,7 +1883,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .application .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
-  color: var(--color-gray-700);
+  color: var(--gray-700);
   margin-top: 0;
 }
 
@@ -2241,7 +2243,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 }
 
 main .columns-separator-line .columns-wrapper .columns {
-  border-bottom: 1px solid var(--color-gray-350);
+  border-bottom: 1px solid var(--gray-250);
   padding-bottom: 3rem;
 }
 
