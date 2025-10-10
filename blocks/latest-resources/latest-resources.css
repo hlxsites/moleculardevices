@@ -90,7 +90,6 @@ main .latest-resources .card .card-description {
     padding-top: 30px;
   }
 
-  .product .latest-resources-container h2,
   .technology .latest-resources-container h2,
   .application .latest-resources-container h2 {
     font-size: 45px;
@@ -135,7 +134,6 @@ main .latest-resources .card .card-description {
     min-height: 150px;
   }
 
-  .product .latest-resources-container h2,
   .technology .latest-resources-container h2,
   .application .latest-resources-container h2 {
     font-size: 36px;

@@ -30,26 +30,8 @@ li.related-link::marker {
   color: var(--color-link);
 }
 
-.related-app h1 {
-  font-size: 36px;
-  margin-top: 0;
-}
-
-.related-app h2,
-.related-app h3 {
-  font-size: 36px;
-  margin-top: 0;
-}
-
 .related-app h3 {
   text-align: left;
-}
-
-.product .section .related-apps-container .related-app h4 {
-  font-size: 24px;
-  color: var(--color-text-primary);
-  margin-bottom: 1rem;
-  font-weight: bold;
 }
 
 .related-app strong {

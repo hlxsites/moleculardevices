@@ -489,10 +489,7 @@ main .category-form.forms-container .forms h4 {
 
 .product main .hs-form .hs-form-field .hs-field-desc,
 .product main .hs-form .hs-form-field .hs-field-desc a,
-.product main .hs-form a {
-  color: inherit;
-}
-
+.product main .hs-form a,
 main .category-form.forms-container .hs-form-field:first-child .hs-form .hs-form-field .hs-field-desc,
 main .category-form.forms-container .hs-form-field:first-child .hs-form a {
   color: inherit;

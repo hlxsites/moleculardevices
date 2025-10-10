@@ -291,13 +291,13 @@ main .section .resources-wrapper {
   z-index: -1;
 }
 
-.product .resources.block,
-.product .resources.loading-coveo {
+.resources.block,
+.resources.loading-coveo {
   min-height: 600px;
 }
 
-.product .resources.loading-coveo:empty::before,
-.product .resources:empty::before {
+.resources.loading-coveo:empty::before,
+.resources:empty::before {
   content: "";
   position: absolute;
   background-image: url("/images/ajax-common-loader-gray.gif");
