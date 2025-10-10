@@ -46,8 +46,8 @@ main .carousel-wrapper.cards .carousel {
 }
 
 .carousel-wrapper.cards .carousel-nav-button:hover {
-  color: var(--gray-500);
-  border: 1.5px solid var(--gray-500);
+  color: var(--color-gray-500);
+  border: 1.5px solid var(--color-gray-500);
   background-color: inherit;
 }
 

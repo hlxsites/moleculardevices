@@ -69,7 +69,7 @@
   left: 0;
   height: 1px;
   width: 100%;
-  background: var(--gray-100);
+  background: var(--color-gray-100);
   position: absolute;
 }
 
@@ -172,7 +172,7 @@ main .section.sidebar h4,
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--gray-400);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 

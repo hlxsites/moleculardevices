@@ -14,7 +14,7 @@ ol, ul {list-style: none;}
 blockquote, q {quotes: none;}
 blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
 table {border-collapse: collapse; border-spacing: 0;}
-h1, h2, h3{font-family:"Klavika Regular","Helvetica Neue",Helvetica,Arial,sans-serif; color:var(--gray-750);}
+h1, h2, h3{font-family:"Klavika Regular","Helvetica Neue",Helvetica,Arial,sans-serif; color:var(--color-gray-750);}
 h1{font-size:2.25em;}
 h2{font-size:2em; text-align:center; margin-bottom:1.09375em;}
 h3{font-size:1.125em; margin-bottom:1.6666666em;}
@@ -97,9 +97,9 @@ display: inline-block; display:-ms-flexbox; display:-webkit-flex; display:flex; 
   #logo-container{padding-left:10px;}
   #lower-head nav{display:block;}
   #lower-head .menu-button-holder{display:block; float:right;}
-  .open-menu{display:block; margin:15px 10px 0; font-weight:bold; border:1px solid var(--gray-250); border-bottom: none;}
-  .main-nav-menu > li{margin-left:0; display:block; border-bottom:1px solid var(--gray-250);}
-  .main-nav-menu a, .main-nav-menu > li > a{padding:10px 54px 10px 10px; background:var(--gray-50); border:0; border-bottom:0;}
+  .open-menu{display:block; margin:15px 10px 0; font-weight:bold; border:1px solid var(--color-gray-250); border-bottom: none;}
+  .main-nav-menu > li{margin-left:0; display:block; border-bottom:1px solid var(--color-gray-250);}
+  .main-nav-menu a, .main-nav-menu > li > a{padding:10px 54px 10px 10px; background:var(--color-gray-50); border:0; border-bottom:0;}
   .main-nav-menu li ul li{color:var(--color-white);}
   .main-nav-menu li ul li a{color:inherit;}
   .main-nav-menu > li > ul > li > a{background:#004d5b; border-bottom:1px solid #006375;}

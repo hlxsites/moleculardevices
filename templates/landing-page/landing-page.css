@@ -86,12 +86,12 @@
 
 .landing-page .no-form-embed .default-content-wrapper *:not(a, h2),
 .landing-page .download-form .default-content-wrapper *:not(a, h2) {
-  color: var(--gray-400);
+  color: var(--color-gray-400);
 }
 
 .landing-page .no-form-embed.text-dark .default-content-wrapper *:not(a, h2),
 .landing-page .download-form.text-dark .default-content-wrapper *:not(a, h2) {
-  color: var(--gray-750);
+  color: var(--color-gray-750);
 }
 
 .landing-page .download-form .embed h2,
@@ -130,7 +130,7 @@
 
 .landing-page main .download-form .embed {
   width: 100%;
-  background-color: var(--gray-50);
+  background-color: var(--color-gray-50);
   padding: 20px 5px 0;
   margin-top: 0;
 }
@@ -171,7 +171,7 @@
 
 /* huspot form */
 .landing-page main .section > div.forms-wrapper > div{
-  background-color: var(--gray-50);
+  background-color: var(--color-gray-50);
   padding: 20px;
 }
 
@@ -300,7 +300,7 @@ body .thank-you-page h3 {
 
 body .thank-you-page h4 {
   font-size: 30px;
-  color: var(--gray-400);
+  color: var(--color-gray-400);
   font-family: var(--ff-proxima-regular);
 }
 

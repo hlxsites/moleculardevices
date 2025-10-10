@@ -14,13 +14,13 @@ body.modal-open {
 .share-story > div {
   flex-basis: 33.33%;
   padding: 40px 0;
-  border-top: 1px solid var(--gray-50);
-  border-bottom: 1px solid var(--gray-50);
+  border-top: 1px solid var(--color-gray-50);
+  border-bottom: 1px solid var(--color-gray-50);
   align-items: center;
 }
 
 .share-story .share-event {
-  border-right: 1px solid var(--gray-50);
+  border-right: 1px solid var(--color-gray-50);
   float: left;
   padding: 40px 0;
 }

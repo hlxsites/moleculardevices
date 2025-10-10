@@ -254,7 +254,7 @@ main .rfq-form .hs-form-field {
 }
 
 main .rfq-form .hs-form-field .hs-field-desc {
-  color: var(--gray-200);
+  color: var(--color-gray-200);
   font-size: 13px;
   font-weight: 100;
   letter-spacing: 0.5px;
@@ -292,7 +292,7 @@ main .rfq-form .privacy {
 
 main .rfq-form .privacy,
 main .rfq-form .privacy > label {
-  color: var(--gray-500);
+  color: var(--color-gray-500);
   line-height: 1.4em;
   margin: 0 auto;
   font-size: 13px;

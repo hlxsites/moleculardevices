@@ -37,7 +37,7 @@
   position: absolute;
   left: 9px;
   background: none;
-  border: 2px solid var(--gray-500);
+  border: 2px solid var(--color-gray-500);
 }
 
 .newsletters input[type='checkbox'].filter-item:checked + span::before {

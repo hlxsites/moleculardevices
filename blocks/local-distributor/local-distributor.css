@@ -24,8 +24,8 @@
 }
 
 .local-distributor {
-  border: 1px solid var(--gray-400);
-  border-top: 7px solid var(--gray-700);
+  border: 1px solid var(--color-gray-400);
+  border-top: 7px solid var(--color-gray-700);
   font-size: var(--body-font-size-s);
   position: relative;
 }
@@ -59,7 +59,7 @@
 }
 
 .local-distributor > div.search-result {
-  border-top: 1px solid var(--gray-400);
+  border-top: 1px solid var(--color-gray-400);
   padding-top: 40px;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .local-distributor .form .form-group .fields .select-wrapper span {
-  color: var(--gray-700);
+  color: var(--color-gray-700);
   position: absolute;
   right: 20px;
   top: 16px;

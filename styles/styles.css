@@ -289,7 +289,7 @@ body {
 }
 
 .background-gray main {
-  background-color: var(--gray-100);
+  background-color: var(--color-gray-100);
 }
 
 body.appear {
@@ -478,7 +478,7 @@ em strong {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--gray-400);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 
@@ -582,7 +582,7 @@ a.button i.fa {
 
 button:disabled,
 button:disabled:hover {
-  --btn-base-color: var(--gray-100);
+  --btn-base-color: var(--color-gray-100);
 
   cursor: unset;
 }
@@ -744,7 +744,7 @@ main textarea {
 }
 
 main pre {
-  background-color: var(--gray-100);
+  background-color: var(--color-gray-100);
   padding: 1em;
   border-radius: 0.25em;
   overflow-x: auto;
@@ -771,7 +771,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--color-gray-100);
 }
 
 main img,
@@ -879,7 +879,7 @@ main .section.columns-2 > div {
 }
 
 main .section.highlight {
-  background-color: var(--gray-250);
+  background-color: var(--color-gray-250);
 }
 
 main .section.background-grey + .section.wave,
@@ -894,7 +894,7 @@ main .section.background-grey + .section.wave {
 
 main .section.background-grey,
 main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
-  background-color: var(--gray-100);
+  background-color: var(--color-gray-100);
   margin-top: 0;
 }
 
@@ -902,7 +902,7 @@ main .section.background-grey-top-half::before,
 main .section.background-grey-bottom-half::before,
 main .section.background-grey + .section.wave::before {
   content: "";
-  background-color: var(--gray-100);
+  background-color: var(--color-gray-100);
   position: absolute;
   left: 0;
   height: 200px;
@@ -975,7 +975,7 @@ main.error .section > div {
 }
 
 main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--gray-250);
+  border-top: 1px solid var(--color-gray-250);
   padding-top: 45px;
 }
 
@@ -1121,7 +1121,7 @@ main .section.features-section {
     url("/images/molecules-left.png") left bottom,
     url("/images/molecules-right.png") right top;
   background-repeat: no-repeat;
-  background-color: var(--gray-50);
+  background-color: var(--color-gray-50);
 }
 
 main .section.features-section .default-content-wrapper,
@@ -1179,7 +1179,7 @@ main .section.features-section .default-content-wrapper::after {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--gray-400);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 
@@ -1571,7 +1571,7 @@ main .section.background-molecules {
 
 .company-links li.cart-link i.fa.fa-shopping-cart {
   font-size: 19px;
-  color: var(--gray-250);
+  color: var(--color-gray-250);
   position: relative;
   padding-right: 5px;
 }
@@ -1821,7 +1821,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .technology .columns.block.columns-1-cols,
 .application .columns.block.columns-1-cols {
-  background-color: var(--gray-50);
+  background-color: var(--color-gray-50);
   padding: 15px 26px 15px 32px;
 }
 
@@ -1856,7 +1856,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .application .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
   font-size: 30px;
-  color: var(--gray-700);
+  color: var(--color-gray-700);
   margin-top: 0;
 }
 
@@ -2216,7 +2216,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 }
 
 main .columns-separator-line .columns-wrapper .columns {
-  border-bottom: 1px solid var(--gray-250);
+  border-bottom: 1px solid var(--color-gray-250);
   padding-bottom: 3rem;
 }
 

@@ -66,11 +66,11 @@ main .section .specifications-wrapper {
 }
 
 .specifications .responsive-table tbody tr:nth-child(even) {
-  background: var(--gray-100);
+  background: var(--color-gray-100);
 }
 
 .specifications .responsive-table tbody tr:nth-child(odd) {
-  background: var(--gray-50);
+  background: var(--color-gray-50);
 }
 
 .specifications .responsive-table tbody tr:first-child {

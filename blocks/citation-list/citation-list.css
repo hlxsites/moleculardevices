@@ -131,7 +131,7 @@ main .citation-list-container .default-content-wrapper p {
 .citation-list .card-body i {
   margin-left: 5px;
   font-size: 17px;
-  color: var(--gray-500);
+  color: var(--color-gray-500);
 }
 
 @media (min-width: 991px) and (max-width: 1199px) {

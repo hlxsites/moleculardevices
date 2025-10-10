@@ -125,7 +125,7 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 100%;
-  background: var(--gray-50);
+  background: var(--color-gray-50);
   text-align: center;
   line-height: 1;
   text-decoration: none;
@@ -139,8 +139,8 @@
   main .section > div.featured-highlights-wrapper {
     width: unset;
     min-height: 375px;
-    border-bottom: 1px solid var(--gray-200);
-    background-color: var(--gray-50);
+    border-bottom: 1px solid var(--color-gray-200);
+    background-color: var(--color-gray-50);
     position: relative;
   }
 
@@ -195,7 +195,7 @@
     border-radius: 100%;
     overflow: hidden;
     padding: 620px 702px 0 0;
-    background: var(--gray-50);
+    background: var(--color-gray-50);
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -232,7 +232,7 @@
     position: absolute;
     width: 6px;
     height: 100px;
-    background: var(--gray-50);
+    background: var(--color-gray-50);
     top: -80px;
     right: 0;
     transform: rotate(30deg);

@@ -24,7 +24,7 @@ main .pro-comparison-result .col-sm-3 {
 
 main .pro-comparison-result .product-comparison {
   position: relative;
-  background: var(--gray-50);
+  background: var(--color-gray-50);
   height: 95vh;
 }
 
@@ -52,7 +52,7 @@ main .pro-comparison-result .section-heading {
   padding: 20px 60px 20px 20px;
   top: 0;
   z-index: 1;
-  background: var(--gray-200);
+  background: var(--color-gray-200);
   left: 15px;
   right: 15px;
 }
@@ -205,7 +205,7 @@ main .pro-comparison-result .link_wrap .linkBtn svg {
 
 main .pro-comparison-result .comparison-table .comparison-row {
   width: 100%;
-  border-bottom: 1px solid var(--gray-500);
+  border-bottom: 1px solid var(--color-gray-500);
 }
 
 main .pro-comparison-result .comparison-table .comparison-row > .row,
@@ -328,11 +328,11 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
   }
 
   main .pro-comparison-result .scroll_div .col-sm-3 {
-    border: 1px solid var(--gray-250);
+    border: 1px solid var(--color-gray-250);
   }
 
   main .pro-comparison-result .scroll_div .comparison-cell.title {
     font-weight: bold;
-    background-color: var(--gray-50);
+    background-color: var(--color-gray-50);
   }
 }
