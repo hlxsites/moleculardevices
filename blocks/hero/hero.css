@@ -12,11 +12,6 @@ main .hero-advanced-wrapper {
 .hero,
 .hero-inner {
   position: relative;
-}
-
-.hero,
-.hero-inner,
-.hero-inner a:any-link {
   color: var(--color-white);
 }
 
@@ -27,10 +22,6 @@ main .hero-advanced-wrapper {
 .hero-inner p.picture,
 .hero-inner p.button-container {
   margin: 0;
-}
-
-.hero-inner a.button.secondary {
-  border-color: var(--color-white);
 }
 
 .hero-inner ul {
@@ -260,7 +251,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero.blog .hero-inner p,
-.hero.newsroom .hero-inner p{
+.hero.newsroom .hero-inner p {
   margin-bottom: 0;
 }
 
@@ -388,6 +379,19 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: 180px;
     padding-top: 30px;
     padding-bottom: 40px;
+  }
+
+  .orange-buttons .hero-inner .button.secondary:any-link,
+  .orange-buttons .hero-inner button.secondary {
+    --btn-base-color: var(--color-secondary);
+    --btn-text-color: var(--color-secondary);
+  }
+
+  .orange-buttons .hero-inner .button.secondary:any-link:hover,
+  .orange-buttons .hero-inner button.secondary:hover,
+  .orange-buttons .hero-inner .button.secondary:any-link:focus,
+  .orange-buttons .hero-inner button.secondary:focus {
+    --btn-base-color: var(--color-white);
   }
 
   /* Citation Variant - Mobile -- Start */

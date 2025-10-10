@@ -18,11 +18,6 @@
     margin-bottom: 30px;
   }
 
-  .hero-advanced .hero-inner a.button.secondary {
-   border: 2px solid var(--color-white);
-   padding: 13px 18px;
-  }
-
   .hero-advanced .container > div{
     max-width: 66.67%;
   }
@@ -67,12 +62,6 @@
 
   .hero-advanced .hero-inner p {
     font-size: var(--body-font-size-l);
-  }
-
-  .hero-advanced .hero-inner a.button.secondary {
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 8px 12px;
   }
 
   .hero-advanced .hero-inner p.button-container {
