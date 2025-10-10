@@ -940,7 +940,7 @@ header .nav-tabs .menu-nav-submenu > div {
 header .nav-tabs .menu-nav-submenu h1 {
   font-size: 36px;
   font-family: var(--ff-proxima-light);
-  color: var(--color-mm-heading);
+  color:  rgb(var(--color-white-rgb) / 70%);;
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
@@ -1006,8 +1006,8 @@ header .nav-tabs .menu-nav-submenu-head {
 
 header .nav-tabs .menu-nav-submenu-sections {
   display: block;
-  border-right: 1px solid var(--color-mm-border);
-  border-top: 1px solid var(--color-mm-border);
+  border-right: 1px solid rgb(var(--color-white-rgb) / 50%);
+  border-top: 1px solid rgb(var(--color-white-rgb) / 50%);
   width: 330px;
   margin-top: 0;
 }
