@@ -4,8 +4,7 @@ main .citations-container {
   padding: 90px 50px 50px;
 }
 
-main .citations-container .default-content-wrapper h3,
-.product main .citations-container .default-content-wrapper h3 {
+main .citations-container .default-content-wrapper h3 {
   margin: 25px 0 10px;
   font-family: var(--ff-proxima-regular);
 }
@@ -56,8 +55,7 @@ main .citations-container > .default-content-wrapper {
   font-style: normal;
 }
 
-.citations .citation-header h2,
-.product .section.tabs .citations .citation-header h2 {
+.citations .citation-header h2 {
   font-family: var(--ff-proxima-regular);
   padding-bottom: 15px;
   margin-bottom: 10px;

@@ -39,12 +39,6 @@ main .carousel.applications-carousel {
   min-height: auto;
 }
 
-.carousel.applications-carousel .card-description {
-  font-size: var(--body-font-size-xs);
-  color: var(--color-text-primary);
-  margin-bottom: 10px;
-}
-
 .carousel.applications-carousel .card .button-container {
   width: 100%;
   margin-top: auto;
@@ -62,12 +56,6 @@ main .carousel.applications-carousel {
 
 main .section.applications-carousel-container:has(.applications-carousel.block:empty) {
   display: none;
-}
-
-main .section.applications-carousel-container .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
-  text-align: center;
 }
 
 @media only screen and (max-width: 1199px) {

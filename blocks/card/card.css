@@ -69,29 +69,21 @@ main .card-caption {
   display: flex;
   flex-direction: column;
   padding: 10px 20px 20px;
-  color: var(--card-caption-text);
+  color: var(--color-gray-800);
   height: 100%;
   min-height: auto;
+  text-align: left;
 }
 
-main .card-caption h3 {
-  font-size: 22px;
+main .card-caption h5 {
   font-weight: normal;
-  text-align: left;
   min-height: 49px;
   margin-top: 14px;
   margin-bottom: 15px;
 }
 
-main .card-caption h3 a {
+main .card-caption h5 a {
   color: inherit;
-}
-
-main .card-caption .card-description {
-  font-size: var(--body-font-size-s);
-  text-align: left;
-  margin-bottom: 1rem;
-  margin-top: 0;
 }
 
 main .card-caption .c2a {

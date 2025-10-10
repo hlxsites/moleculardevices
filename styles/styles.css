@@ -83,61 +83,38 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-button-primary: #038296;
   --color-button-secondary: #4c9eaf;
   --color-text-primary: #34393d;
-  --color-gray-blue-light: #b3d8e0;
-  --color-gradient-primary: #1591a4;
-  --color-gradient-secondary: #2e9f79;
-  --color-gradient-tertiary: #61b249;
-  --color-gradient-cta-primary: #00748d;
-  --color-gradient-cta-secondary: #0190ac;
+
+  /* RGB Brand Colors */
+  --color-primary-rgb: 0 141 169;
+  --color-secondary-rgb: 238 118 36;
+  --color-tertiary-rgb: 110 180 63;
+  --color-primary-dark-rgb: 0 59 77;
+  --color-highlight-rgb: 0 117 141;
+  --color-highlight-2-rgb: 0 123 196;
+  --color-text-primary-rgb: 52 57 61;
+  --color-link-rgb: 51 122 183;
+  --color-link-hover-rgb: 0 102 164;
+  --color-button-primary-rgb: 3 130 150;
+  --color-button-secondary-rgb: 76 158 175;
+  --color-white-rgb: 255 255 255;
 
   /* State Colors */
   --color-state-danger: #f00;
   --color-state-success: #09b571;
 
-  /* Unique Colors */
-  --agenda-links-hover: rgb(19 154 218 / 25%);
-  --cards-gallery-bg: rgb(0 117 141 / 80%);
-  --blog-author-bg: #dcedf4;
-  --card-caption-text: #12141f;
-  --background-parallax-cta-border: #cbdce8;
-  --carousel-blue-wave-indicator: #23bfd9;
-
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
-  --color-mm-border: #ffffff80;
-  --color-mm-heading: #ffffffb2;
   --color-mobile-menu-caret: #c4ccda;
   --gutter-product: 30px;
 
-  /* Accent Colors */
-  --quote-request-progess-bar: #020302;
-  --application-workflow-timeline-author: #242424;
-  --image-list-text: #292e32;
-  --card-list-filter-separator: #6d6c8d;
-  --card-list-filter-blog-separator: #61a60e;
-  --video-teaser-bg: #6a747b;
-  --column-innovation-text: #6eb441;
-  --column-light-dark: #aaa;
-  --column-col-4-bg: #f0f7f8;
-  --coveo-checkbox-span-label-suffix: #67768b;
-  --coveo-facet-value-count: #a5a6a8;
-  --coveo-checkbox-span-label: #63666a;
-  --coveo-checkbox-border: #bcc3ca;
-  --footer-lp-border-top: #6b737b;
-  --header-menu-nav-search-bar: #555;
-  --hero-video-overlay-bg: #00b8dd;
+  /* Unique Colors */
+  --agenda-links-hover: rgb(19 154 218 / 25%);
+  --category-form-bg: rgb(1 59 78 / 50%);
+  --carousel-blue-wave-indicator: #23bfd9;
   --hubspot-modal-block-after: #004c70;
-  --ordering-option-quantity-number: #4b4f53;
-  --product-comparison-dark-gray: #8a959b;
-  --product-comparison-first-cell: #525b61;
-  --quote-request-progess-bar-inset: #716f6f;
-  --quote-request-form-description: #e2e2e2;
-  --quote-request-form-cta: #298da9;
-  --quote-request-form-privacy-label: #999;
-  --assay-kits-wrap-head: #666;
-  --rfq-form-section-embed: #666667;
-  --featured-products-carousel-item: #efefef;
-  --compare-items-banner: #95c872;
+  --hero-video-overlay-bg: #00b8dd;
+  --card-list-filter-blog-separator: #61a60e;
+  --card-list-filter-separator: #6d6c8d;
 
   /* Black Alpha Colors */
   --color-transparent: rgb(0 0 0 / 0%);
@@ -154,26 +131,21 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-black: rgb(0 0 0 / 100%);
 
   /* Gray Scale Hierarchy */
-  --color-gray-900: #333; /* dark gray */
-  --color-gray-800: #454545;
-  --color-gray-750: #5b6670; /* tab color */
-  --color-gray-700: #606a6c;
-  --color-gray-600: #6a747c;
-  --color-gray-500: #adb3b7;
-  --color-gray-450: #ababab; /* border color */
-  --color-gray-400: #c5c5c5;
-  --color-gray-350: #ccc; /* highlight background */
-  --color-gray-325: #cecece;
-  --color-gray-300: #ddd;
-  --color-gray-275: #e6e6e6; /* submenu card */
-  --color-gray-200: #eee; /* overlay background */
-  --color-gray-150: #f0f1f2;
-  --color-gray-125: #f1f2f3;
-  --color-gray-100: #f2f2f2;
-  --color-gray-50: #f3f3f3;
-  --color-gray-75: #f5f5f5;
-  --color-gray-25: #f6f6f6; /* accordion trigger */
   --color-white: #fff;
+  --color-gray-50: #f7f7f7;
+  --color-gray-100: #efefef;
+  --color-gray-200: #e6e6e6;
+  --color-gray-250: #dcdcdc;
+  --color-gray-300: #d3d3d3;
+  --color-gray-350: #c9c9c9;
+  --color-gray-400: #bfbfbf;
+  --color-gray-500: #999;
+  --color-gray-600: #7f7f7f;
+  --color-gray-650: #666;
+  --color-gray-700: #4c4c4c;
+  --color-gray-750: #333;
+  --color-gray-800: #1a1a1a;
+  --color-gray-850: #0d0d0d;
 
   /* Color Input */
   --color-input: #5f696b;
@@ -186,6 +158,13 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-pink: #d31e83;
   --color-orange: #f97b16;
   --color-light-green: #3be086;
+
+  /* Gradient Healper */
+  --color-gradient-primary: #1591a4;
+  --color-gradient-secondary: #2e9f79;
+  --color-gradient-tertiary: #61b249;
+  --color-gradient-cta-primary: #00748d;
+  --color-gradient-cta-secondary: #0190ac;
 
   /* Gradients */
   --gradient-theme: linear-gradient(
@@ -308,7 +287,7 @@ body {
 }
 
 .background-gray main {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
 }
 
 body.appear {
@@ -422,7 +401,8 @@ p:first-child {
   margin-top: 0;
 }
 
-p:last-child {
+p:last-child,
+p:last-of-type {
   margin-bottom: 0;
 }
 
@@ -496,7 +476,7 @@ em strong {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 
@@ -550,22 +530,23 @@ p.video-title {
 }
 
 /* buttons */
+
 a.button:any-link,
+a[role="button"],
 button {
-  box-sizing: border-box;
+  --btn-base-color: var(--color-transparent);
+  --btn-text-color: var(--color-link);
+
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
-  font-size: var(--body-font-size-m);
-  color: var(--color-link);
   line-height: 18px;
   display: inline-block;
-  border: 0;
   border-radius: 0;
   transition: all 0.2s;
   min-width: 140px;
   position: relative;
   height: auto;
-  padding: 15px 18px 16px;
+  padding: 17px 18px;
   margin-bottom: 0;
   text-align: center;
   text-decoration: none;
@@ -574,12 +555,9 @@ button {
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
-}
-
-a[role="button"] {
-  cursor: pointer;
-  touch-action: manipulation;
-  user-select: none;
+  color: var(--btn-text-color);
+  background-color: var(--btn-base-color);
+  border: 2px solid var(--btn-base-color);
 }
 
 a.button:any-link:has(span.icon),
@@ -600,41 +578,111 @@ a.button i.fa {
   color: inherit;
 }
 
+button:disabled,
+button:disabled:hover {
+  --btn-base-color: var(--color-gray-100);
+
+  cursor: unset;
+}
+
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  cursor: pointer;
-  color: var(--color-link-hover);
-}
+  --btn-base-color: var(--color-transparent);
+  --btn-text-color: var(--color-link-hover);
 
-button:disabled,
-button:disabled:hover {
-  background-color: var(--color-gray-200);
-  cursor: unset;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
 a.button.primary,
 button.primary {
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border: 0;
+  --btn-base-color: var(--color-primary);
+  --btn-text-color: var(--color-white);
+
   white-space: break-spaces;
-  padding: 14px 18px;
-  line-height: 21px;
 }
 
-.button-container:has(+ .button-container) a.button.primary {
-  margin-bottom: 0;
+a.button.secondary,
+button.secondary {
+  --btn-base-color: var(--color-button-secondary);
+  --btn-text-color: var(--color-button-primary);
+
+  background-color: transparent;
+  font-style: normal;
 }
 
 a.button.primary:hover,
 a.button.primary:focus,
 button.primary:hover,
-button.primary:focus {
-  color: var(--color-link-hover);
-  background-color: var(--color-white);
-  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
+button.primary:focus,
+a.button.secondary:hover,
+a.button.secondary:focus,
+button.secondary:hover,
+button.secondary:focus {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-link-hover);
+
+  background-color: var(--btn-base-color);
+}
+
+main div.orange-buttons .button.primary:any-link,
+main div.orange-buttons button.primary {
+  --btn-base-color: var(--color-secondary);
+  --btn-text-color: var(--color-white);
+}
+
+main div.orange-buttons .button.secondary:any-link,
+main div.orange-buttons button.secondary {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-white);
+}
+
+main div.orange-buttons .button.primary:hover,
+main div.orange-buttons .button.primary:active,
+main div.orange-buttons .button.primary:visited,
+main div.orange-buttons .button.secondary:hover,
+main div.orange-buttons .button.secondary:active,
+main div.orange-secondary-buttons .button.secondary:hover,
+main div.orange-secondary-buttons .button.secondary:active {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-secondary);
+}
+
+main div.orange-secondary-buttons .button.secondary:link,
+main div.orange-secondary-buttons .button.secondary:visited {
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+}
+
+main .section.buttons-in-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main .section.buttons-in-row > div {
+  padding: 0;
+}
+
+main .section.buttons-in-row p.button-container {
+  margin-top: 0;
+}
+
+main .section.buttons-in-row p.button-container,
+main .section.wave.orange-buttons p.button-container {
+  display: inline-block;
+}
+
+main .section.wave.orange-buttons p.button-container {
+  margin-top: 20px;
+}
+
+main .section.features-section .button-container {
+  margin-top: 50px;
+}
+
+.button-container:has(+ .button-container) a.button.primary {
+  margin-bottom: 0;
 }
 
 a.button.primary:hover .button-border {
@@ -644,26 +692,30 @@ a.button.primary:hover .button-border {
   position: absolute;
   margin-left: 0;
   height: 4px;
-  background: var(--color-link-hover);
   left: 25%;
   bottom: -5px;
+  background-color: var(--btn-text-color);
 }
 
-a.button.secondary,
-button.secondary {
-  font-style: normal;
-  border: 2px solid var(--color-button-secondary);
-  color: var(--color-button-primary);
+@media only screen and (max-width: 767px) {
+  a.button:any-link,
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  main .section.buttons-in-row p.button-container,
+  main .section.wave.orange-buttons p.button-container {
+    display: block;
+  }
+
+  main .section.buttons-in-row p.button-container + p.button-container,
+  main .section.wave.orange-buttons p.button-container + p.button-container {
+    margin-left: 0;
+  }
 }
 
-a.button.secondary:hover,
-a.button.secondary:focus,
-button.secondary:hover,
-button.secondary:focus {
-  color: var(--color-link-hover);
-  background-color: var(--color-white);
-  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
-}
+/* buttons end */
 
 main input:not([type="radio"], [type="checkbox"]),
 main textarea,
@@ -690,7 +742,7 @@ main textarea {
 }
 
 main pre {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   padding: 1em;
   border-radius: 0.25em;
   overflow-x: auto;
@@ -717,7 +769,7 @@ hr {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   border: 0;
-  border-bottom: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-100);
 }
 
 main img,
@@ -734,30 +786,11 @@ main .section {
 
 main .section > div,
 .container {
-  margin: 0 auto;
-  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
   width: var(--section-max-width);
-}
-
-main .section.buttons-in-row {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-main .section.buttons-in-row > div {
-  padding: 0;
-}
-
-@media (max-width: 991px) {
-  main .section {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  main .section .default-content-wrapper {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -767,8 +800,6 @@ main .section.buttons-in-row > div {
 }
 
 /* Marked as !important as these should not get overriden */
-main .section.hero-container,
-main .section.hero-advanced-container,
 main .section.page-tabs-container,
 main .section.html-snippet-container {
   padding-top: 0 !important;
@@ -781,12 +812,12 @@ main .section > .featured-posts-wrapper {
 
 main .section.columns-2 {
   display: grid;
+  gap: 30px;
   margin: 0 auto;
 }
 
 main .section.columns-2 > div {
   width: 100%;
-  padding: 0 15px;
 }
 
 @media only screen and (max-width: 390px) {
@@ -802,13 +833,6 @@ main .section.columns-2 > div {
     --body-font-size-m: 14px;
     --body-font-size-s: 13px;
     --body-font-size-xs: 12px;
-  }
-
-  a.button:any-link,
-  button {
-    font-size: var(--body-font-size-xs);
-    width: 100%;
-    max-width: 200px;
   }
 
   main .breadcrumbs-wrapper {
@@ -832,6 +856,11 @@ main .section.columns-2 > div {
     padding-right: calc((100vw - var(--section-max-width)) / 2);
   }
 
+  main .section.columns-2 > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   main .section.columns-2.layout-33-66 {
     grid-template-columns: 33fr 66fr;
   }
@@ -848,7 +877,7 @@ main .section.columns-2 > div {
 }
 
 main .section.highlight {
-  background-color: var(--color-gray-350);
+  background-color: var(--color-gray-250);
 }
 
 main .section.background-grey + .section.wave,
@@ -863,7 +892,7 @@ main .section.background-grey + .section.wave {
 
 main .section.background-grey,
 main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   margin-top: 0;
 }
 
@@ -871,7 +900,7 @@ main .section.background-grey-top-half::before,
 main .section.background-grey-bottom-half::before,
 main .section.background-grey + .section.wave::before {
   content: "";
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   position: absolute;
   left: 0;
   height: 200px;
@@ -944,7 +973,7 @@ main.error .section > div {
 }
 
 main .section.horizontal-line > div:first-of-type {
-  border-top: 1px solid var(--color-gray-350);
+  border-top: 1px solid var(--color-gray-250);
   padding-top: 45px;
 }
 
@@ -1056,44 +1085,6 @@ main .event-container .event-date {
   width: 100%;
 }
 
-main .section .default-content-wrapper h2:only-child {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 10px;
-}
-
-main .section.tabs .default-content-wrapper h2 {
-  padding-bottom: 15px;
-}
-
-main .section.buttons-in-row p.button-container {
-  margin-top: 0;
-}
-
-main .section.buttons-in-row p.button-container,
-main .section.wave.orange-buttons p.button-container {
-  display: inline-block;
-}
-
-main .section.wave.orange-buttons p.button-container {
-  margin-top: 20px;
-}
-
-main .section.buttons-in-row p.button-container + p.button-container {
-  margin-left: 20px;
-}
-
-main .section .columns > div > div > p.button-container,
-main .section .columns > div > div > p.button-container:only-of-type {
-  margin-left: 0;
-}
-
-main .section .columns > div > div ul + p.button-container,
-main .section.wave.orange-buttons p.button-container + p.button-container {
-  margin-left: 20px;
-}
-
 /* services & support */
 
 main .section.service-support .default-content-wrapper h2 {
@@ -1128,7 +1119,7 @@ main .section.features-section {
     url("/images/molecules-left.png") left bottom,
     url("/images/molecules-right.png") right top;
   background-repeat: no-repeat;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
 }
 
 main .section.features-section .default-content-wrapper,
@@ -1139,22 +1130,10 @@ main .section.applications-carousel-container .default-content-wrapper {
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper h2,
-main .section.applications-carousel-container .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
-  margin-bottom: 0;
-  padding: 0;
-}
-
 main .section.features-section .default-content-wrapper::after {
   content: "";
   clear: both;
   display: block;
-}
-
-main .section.features-section .button-container {
-  margin-top: 50px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -1175,16 +1154,6 @@ main .section.features-section .button-container {
   main .section.features-section .default-content-wrapper em {
     width: 100%;
     padding: 0 15px;
-  }
-
-  main .section.buttons-in-row p.button-container,
-  main .section.wave.orange-buttons p.button-container {
-    display: block;
-  }
-
-  main .section.buttons-in-row p.button-container + p.button-container,
-  main .section.wave.orange-buttons p.button-container + p.button-container {
-    margin-left: 0;
   }
 }
 
@@ -1208,7 +1177,7 @@ main .section.features-section .button-container {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 
@@ -1298,7 +1267,7 @@ main .section.background-parallax .default-content-wrapper .button-container > a
   color: var(--color-white);
   border-radius: 0;
   padding: 18px 18px 16px;
-  border: 1px solid var(--background-parallax-cta-border);
+  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
 }
 
 @media only screen and (max-width: 991px) {
@@ -1370,23 +1339,6 @@ main div.section.wave:last-child img {
   display: block;
 }
 
-main div.section.wave .default-content-wrapper {
-  margin-top: 50px;
-  padding: 0 15px;
-  padding-right: 15px;
-}
-
-main div.section.wave .default-content-wrapper h2 {
-  font-size: var(--heading-font-size-xl);
-  margin-bottom: 30px;
-  line-height: 1;
-  font-family: var(--ff-proxima-light);
-}
-
-main div.section.wave p {
-  margin: 0;
-}
-
 main div.section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
@@ -1436,12 +1388,6 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
 .application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
   margin-top: 0;
   padding-top: 0;
-}
-
-main div.section.wave.bluegreen .default-content-wrapper h2,
-main div.section.wave.bluegreen2 .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 60px;
 }
 
 main div.section.wave.bluegreen::after {
@@ -1564,55 +1510,6 @@ main div.green-secondary-buttons .button.secondary {
   color: var(--color-text-primary);
 }
 
-/* Orange Buttons */
-main div.orange-buttons .button {
-  height: 50px;
-  min-width: 200px;
-}
-
-main div.orange-buttons .button.primary:link,
-main div.orange-buttons .button.primary:visited {
-  color: var(--color-white);
-  background: var(--color-secondary);
-  text-transform: none;
-}
-
-main div.orange-buttons .button.primary:hover,
-main div.orange-buttons .button.primary:active {
-  color: var(--color-secondary);
-  background: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
-}
-
-main div.orange-buttons .button.secondary:link,
-main div.orange-buttons .button.secondary:visited,
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--color-white);
-  background: transparent;
-  border: 2px solid var(--color-white);
-  text-transform: none;
-}
-
-main div.orange-buttons .button.secondary:hover,
-main div.orange-buttons .button.secondary:active,
-main div.orange-secondary-buttons .button.secondary:hover,
-main div.orange-secondary-buttons .button.secondary:active {
-  color: var(--color-secondary);
-  background: var(--color-white);
-  box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
-}
-
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
-}
-
-main div.orange-buttons .button.primary > .button-border {
-  display: none;
-}
-
 main .section.center {
   text-align: center;
 }
@@ -1627,7 +1524,6 @@ main .section.background-molecules {
 
 @media only screen and (max-width: 767px) {
   main .section .default-content-wrapper {
-    padding: 0 15px;
     overflow: hidden;
   }
 
@@ -1635,25 +1531,6 @@ main .section.background-molecules {
     background-size: auto 50px;
     height: 50px;
   }
-
-  main div.orange-buttons .button {
-    min-width: 140px;
-    max-width: max-content;
-    width: 100%;
-    font-size: 12px;
-    padding: 9px 12px 10px;
-    height: 37px;
-  }
-
-  main div.orange-buttons .button.secondary:link,
-  main div.orange-buttons .button.secondary:visited,
-  main div.orange-secondary-buttons .button.secondary:link,
-  main div.orange-secondary-buttons .button.secondary:visited {
-    color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
-  }
-
-  /* ------ */
 
   main div.section.wave h2 {
     font-size: 40px;
@@ -1686,7 +1563,7 @@ main .section.background-molecules {
 
 .company-links li.cart-link i.fa.fa-shopping-cart {
   font-size: 19px;
-  color: var(--color-gray-350);
+  color: var(--color-gray-250);
   position: relative;
   padding-right: 5px;
 }
@@ -1705,59 +1582,6 @@ main .section.background-molecules {
   top: -11px;
   min-width: 21px;
   max-width: 40px;
-}
-
-.product .cart-widget {
-  display: inline-block;
-  margin-right: 8px;
-  position: fixed;
-  top: 50%;
-  right: -110px;
-  transform: translateY(-50%);
-  background: var(--color-secondary);
-  padding: 16px 24px;
-  border-radius: 30px 0 0 30px;
-  transition: right 0.3s;
-  z-index: 1;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.product .cart-widget.open {
-  right: -15px;
-}
-
-.product .cart-widget i {
-  margin-right: 15px;
-  color: var(--color-white);
-}
-
-.product .cart-widget .view-cart-link {
-  color: var(--color-white);
-}
-
-.product .cart-widget .view-cart-link:hover {
-  text-decoration: underline;
-}
-
-.product .cart-widget .fa-shopping-cart::before {
-  content: "\f07a";
-}
-
-.product .cart-widget .cart-count {
-  position: absolute;
-  top: -12px;
-  left: 29px;
-  background: var(--color-white);
-  color: var(--color-secondary);
-  padding: 0;
-  font-size: 75%;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
-  border: 1px solid var(--color-secondary);
 }
 
 .sticky {
@@ -1905,10 +1729,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 @media only screen and (max-width: 991px) {
-  .product main .section {
-    padding: 67px 0 70px;
-  }
-
   .section.home-promo .columns.layout-60-40 > div {
     display: block;
   }
@@ -1918,76 +1738,18 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .product main .section {
-    padding: 30px 0 45px;
-  }
-
-  .product main .video-title {
-    font-size: 14px;
-  }
-}
-
-.product .section.tabs h2 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 36px;
-  margin-top: 0;
-}
-
-.product .section.tabs > div > h3 {
-  margin: 45px 15px 15px;
-}
-
-.product .section.tabs > div > h3 ~ p {
-  margin: 0 15px;
-}
-
-.product p.video-title {
-  font-size: 24px;
-  font-family: var(--ff-proxima-xbold);
-  font-style: normal;
-}
-
-.product .section.tabs h2:has(+ h4) {
-  font-family: var(--ff-proxima-light);
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.product .section.tabs h4 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 30px;
-  color: var(--color-gray-700);
-  margin-top: 0;
-}
-
-.product .section.tabs h4:last-child {
-  margin-bottom: 45px;
-}
-
-.product .section.tabs:not(.feature-section) .default-content-wrapper + .image-list-wrapper {
-  margin-top: 50px;
-}
-
 /* -- Technology -- */
 
 .application .section h2 {
   font-size: 36px;
 }
 
-.product .section > div,
 .technology .section > div,
 .application .section > div {
   padding-bottom: 20px;
   padding-top: 20px;
 }
 
-.product .section > div.default-content-wrapper {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.product .section.tabs .columns-wrapper h2,
 .technology
   .section.tabs:not(.wave)
   .default-content-wrapper
@@ -2013,7 +1775,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   padding-top: 20px;
 }
 
-.product main .section.tabs:not(.related-applications-container) h2,
 .technology main .section.tabs:not(.related-applications-container) h2,
 .application main .section.tabs:not(.related-applications-container) h2 {
   margin: 20px 0 10px;
@@ -2045,7 +1806,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   padding-bottom: 0;
 }
 
-.product .section.resources-container .default-content-wrapper:first-child h2,
 .technology .section.resources-container .default-content-wrapper:first-child h2,
 .application .section.resources-container .default-content-wrapper:first-child h2 {
   padding-bottom: 0;
@@ -2053,7 +1813,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .technology .columns.block.columns-1-cols,
 .application .columns.block.columns-1-cols {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
   padding: 15px 26px 15px 32px;
 }
 
@@ -2077,7 +1837,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-bottom: 10px;
 }
 
-.product .section.tabs h2 + h4,
 .technology .section.tabs h2 + h4,
 .application .section.tabs h2 + h4 {
   font-family: var(--ff-proxima-light);
@@ -2085,7 +1844,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   padding-bottom: 0;
 }
 
-.product .section.tabs h4,
 .technology .section.tabs h4,
 .application .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
@@ -2094,7 +1852,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-top: 0;
 }
 
-.product .section.tabs h4:last-child,
 .technology .section.tabs h4:last-child,
 .application .section.tabs h4:last-child {
   margin-bottom: 45px;
@@ -2182,7 +1939,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   font-size: var(--body-font-size-m);
   border-radius: 0;
   padding: 15px 40px;
-  border: 1px solid var(--background-parallax-cta-border);
+  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
 }
 
 .category .default-content-wrapper h3 {
@@ -2211,14 +1968,8 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-bottom: 0;
 }
 
-.category main .columns-wrapper h3:first-child,
-.section.product-titles .default-content-wrapper > h2,
-.section.product-titles .default-content-wrapper > h3 {
+.category main .columns-wrapper h3:first-child {
   font-size: 40px;
-}
-
-.section.product-titles .default-content-wrapper > h4 {
-  font-size: 30px;
 }
 
 .section.blue-title .default-content-wrapper > h2,
@@ -2457,7 +2208,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 }
 
 main .columns-separator-line .columns-wrapper .columns {
-  border-bottom: 1px solid var(--color-gray-350);
+  border-bottom: 1px solid var(--color-gray-250);
   padding-bottom: 3rem;
 }
 

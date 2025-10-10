@@ -109,7 +109,7 @@
   top: 272px;
   left: 0;
   right: 0;
-  background: var(--color-gray-275);
+  background: var(--color-gray-100);
   z-index: -1;
   margin: 0 auto;
 }
@@ -246,7 +246,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 24px;
-  color: var(--application-workflow-timeline-author);
+  color: var(--color-gray-850);
   text-align: right;
 }
 

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import {
-  button, div, h3, li, p, ul,
+  button, div, h4, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import { getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
@@ -92,7 +92,7 @@ export default async function decorate(block) {
   }
 
   const form = div(
-    formHeading ? h3(formHeading) : '',
+    formHeading ? h4({ class: 'text-center' }, formHeading) : '',
     div({
       id: target,
       class: 'hubspot-form',
