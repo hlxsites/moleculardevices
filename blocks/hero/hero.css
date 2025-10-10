@@ -37,30 +37,6 @@ main .hero-advanced-wrapper {
   margin-bottom: 2px;
 }
 
-.hero-inner h1 {
-  margin-top: 20px;
-  margin-bottom: 35px;
-  color: var(--color-white);
-  line-height: 1;
-}
-
-.hero-inner h2 {
-  font-size: var(--heading-font-size-m);
-}
-
-.hero-inner h6 {
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 5px;
-  margin-top: 30px;
-  font-weight: 700;
-  font-size: var(--heading-font-size-m);
-}
-
-.hero-inner h6:first-child {
-  margin-top: 0;
-}
-
 .hero-inner .hero-background {
   position: absolute;
   z-index: -1;
@@ -95,10 +71,6 @@ main .section .hero-wrapper,
 main .section .hero-advanced-wrapper {
   width: 100%;
   padding: 0;
-}
-
-.hero-inner .container {
-  font-size: var(--body-font-size-m);
 }
 
 .order-container {
@@ -605,11 +577,8 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     flex-wrap: wrap;
     height: auto;
     display: flex;
+    padding-top: 45px;
     padding-bottom: 45px;
-  }
-
-  .hero.order .hero-inner .container {
-    overflow: visible;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -631,13 +600,9 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     right: 0;
   }
 
-  .hero-inner .container.two-column > div:nth-child(2) {
+  /* .hero-inner .container.two-column > div:nth-child(2) {
     border-left: 2px solid var(--color-white);
-  }
-
-  .hero-inner .container.two-column > div:nth-child(2).video-column {
-    border: none;
-  }
+  } */
 
   .hero-inner .container > div:nth-child(1) .button-container {
     margin-top: 30px;
@@ -659,18 +624,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (min-width: 992px) {
-  .hero-inner h1 {
-    font-size: 70px;
-  }
-
-  .hero-inner .container > div {
-    float: left;
-  }
-
-  .hero.blog .container > div:nth-child(1) {
-    width: unset;
-  }
-
   .hero-inner .container.two-column > div:nth-child(1) {
     width: 66.5%;
   }
@@ -710,14 +663,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (max-width: 767px) {
-  .thankyou .hero-inner h1 {
-    font-size: 32px;
-  }
-
-  .thankyou .hero-inner p {
-    font-size: 27px;
-  }
-
   .thankyou .hero-inner .container.two-column > div:nth-child(2) {
     border: 0;
   }
@@ -773,10 +718,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 .hero.full-page-banner .hero-inner .container {
   justify-content: center;
   padding: 5rem 0;
-}
-
-.hero.full-page-banner .hero-inner .container h1:only-child {
-  margin: 0;
 }
 
 .hero.full-page-banner .hero-inner::after {

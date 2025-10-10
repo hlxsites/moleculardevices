@@ -1390,12 +1390,6 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   padding-top: 0;
 }
 
-main div.section.wave.bluegreen .default-content-wrapper h2,
-main div.section.wave.bluegreen2 .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 60px;
-}
-
 main div.section.wave.bluegreen::after {
   content: none;
 }
