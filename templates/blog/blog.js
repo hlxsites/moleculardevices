@@ -78,7 +78,7 @@ export default async function decorate() {
     const sidebar = div(
       { class: 'spectra-newsletter' },
       h3('Join our journey of scientific discovery'),
-      h5('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
+      p('Each month, we’ll share trends our customers are setting in science and breakthroughs we’re enabling together with promises of a brighter, healthier future.'),
       div({
         class: 'contact-quote-request hubspot-form',
         id: `${formConfig.formType}-form`,

@@ -309,11 +309,14 @@ main.error .hero-wrapper .hero-inner {
   padding: 10px 0;
 }
 
-.full-article.publication main .hero-wrapper .container .metadata .metadata-item,
-.blog main .hero-wrapper .container .metadata .metadata-item {
-  display: flex;
-  gap: 8px;
-  min-width: 120px;
+.full-article.publication main .hero-wrapper .container .metadata .metadata-item:first-child,
+.blog main .hero-wrapper .container .metadata .metadata-item:first-child {
+  min-width: max-content;
+}
+
+.full-article.publication main .hero-wrapper .container .metadata .metadata-item i,
+.blog main .hero-wrapper .container .metadata .metadata-item i {
+  margin-right: 8px;
 }
 
 /* Blog Variant - Desktop -- End */

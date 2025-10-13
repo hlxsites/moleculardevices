@@ -8,11 +8,6 @@
   padding: 0;
 }
 
-.blog main p {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
 .blog main ul,
 .blog main ol {
   margin-top: 0;

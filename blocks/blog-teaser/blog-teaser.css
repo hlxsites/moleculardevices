@@ -83,17 +83,10 @@
 }
 
 .blog-teaser-item .blog-teaser-caption .button.primary {
-  min-width: 140px;
-  max-width: unset;
-  width: unset;
-  color: var(--color-white);
-  position: relative;
-  height: auto;
+  --btn-base-color: var(--gradient-theme);
+  --btn-text-color: var(--color-white);
+
   border-radius: 10px;
-  font-family: var(--ff-proxima-regular);
-  font-size: 18px;
-  line-height: 18px;
-  padding: 15px 18px 16px;
   background: var(--gradient-theme);
 }
 
