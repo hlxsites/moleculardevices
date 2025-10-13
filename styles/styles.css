@@ -612,16 +612,6 @@ button:disabled:hover {
   background-color: transparent;
 }
 
-.button.primary:hover,
-.button.primary:focus,
-.button.secondary:hover,
-.button.secondary:focus {
-  --btn-base-color: var(--color-white);
-  --btn-text-color: var(--color-link-hover);
-
-  background-color: var(--btn-base-color);
-}
-
 .orange-buttons .button.primary {
   --btn-base-color: var(--color-secondary);
   --btn-text-color: var(--color-white);
@@ -632,6 +622,16 @@ button:disabled:hover {
 .orange-buttons .secondary {
   --btn-base-color: var(--color-white);
   --btn-text-color: var(--color-white);
+}
+
+.button.primary:hover,
+.button.primary:focus,
+.button.secondary:hover,
+.button.secondary:focus {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-link-hover);
+
+  background-color: var(--btn-base-color);
 }
 
 main div.orange-buttons .button.primary:hover,
