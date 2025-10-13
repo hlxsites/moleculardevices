@@ -481,8 +481,8 @@ export function decorateLinkedPictures(container) {
 
 /* add custom css based on template type */
 function addDefaultStylingToTemplates() {
-  // const layouts = ['Product', 'Application', 'Category', 'Technology'];
-  const layouts = ['Product', 'Category'];
+  const layouts = ['Product', 'Application', 'Category', 'Technology'];
+  // const layouts = ['Product', 'Category'];
   const includedPaths = ['/products'];
   const path = window.location.pathname;
   const workflowLayouts = ['Application'];

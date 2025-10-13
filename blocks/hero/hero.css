@@ -621,11 +621,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (min-width: 992px) {
-  .hero-inner .container.two-column > div:nth-child(1) {
+  .customer-story .hero-inner .container.two-column > div:nth-child(1) {
     flex-basis: 66.5%;
   }
 
-  .hero-inner .container.two-column > div:nth-child(2) {
+  .customer-story .hero-inner .container.two-column > div:nth-child(2) {
     flex-basis: 33.5%;
   }
 
