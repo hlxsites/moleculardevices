@@ -220,6 +220,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --list-font-size-m: 18px;
   --list-font-size-s: 14px;
   --breadcrumbs-font-size: 12px;
+  --body-font-size: 18px;
 
   /* Layout Variables */
   --nav-height: 170px;
