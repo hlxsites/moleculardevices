@@ -339,12 +339,13 @@ h2 {
   font-family: var(--ff-proxima-light);
 }
 
-h1 {
-  font-size: var(--heading-1);
+h1:last-child,
+h2:last-child {
+  margin-bottom: 0;
 }
 
-h1:last-child {
-  margin-bottom: 0;
+h1 {
+  font-size: var(--heading-1);
 }
 
 h2 {
@@ -1113,19 +1114,8 @@ main .section.service-support .default-content-wrapper h2 {
   line-height: 1;
 }
 
-main .section.service-support.support-options h2 {
-  font-size: 70px;
-}
-
 main .section.related-applications-container h2:first-child {
   padding-top: 26px;
-}
-
-@media (max-width: 991px) {
-  main .section.service-support.support-options h2 {
-    font-size: 36px;
-    padding-top: 30px;
-  }
 }
 
 /* Features Section */
@@ -1220,10 +1210,6 @@ main div.section.featured-asset .default-content-wrapper h2 {
   color: var(--color-tertiary);
 }
 
-main div.section.featured-asset .columns h3 {
-  font-size: 25px;
-}
-
 main div.section.featured-asset .columns > div {
   align-items: unset;
 }
@@ -1275,7 +1261,6 @@ main .section.background-parallax .default-content-wrapper .button-container > a
   border-radius: 0;
   padding: 18px 18px 16px;
   border: 1px solid var(--color-white);
-  font-size: 1rem;
 }
 
 @media only screen and (max-width: 991px) {
@@ -1392,12 +1377,6 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   margin-top: 15px;
 }
 
-.technology .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper,
-.application .section.tabs:not(.wave) .default-content-wrapper + .columns-wrapper {
-  margin-top: 0;
-  padding-top: 0;
-}
-
 main div.section.wave.bluegreen::after {
   content: none;
 }
@@ -1456,11 +1435,6 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
   main div.section.wave.bluegreen .default-content-wrapper {
     margin-top: 50px;
     margin-bottom: 50px;
-  }
-
-  main div.section.wave.bluegreen .default-content-wrapper h2,
-  main div.section.wave.bluegreen2 .default-content-wrapper h2 {
-    font-size: var(--heading-font-size-xxl);
   }
 }
 
@@ -1539,10 +1513,6 @@ main .section.background-molecules {
     background-size: auto 50px;
     height: 50px;
   }
-
-  main div.section.wave h2 {
-    font-size: 40px;
-  }
 }
 
 /* --list-- */
@@ -1608,7 +1578,6 @@ main .section.background-molecules {
 
 .videos-and-webinars .hero.wave .hero-inner p:first-of-type {
   color: var(--color-button-primary);
-  font-size: 25px;
   font-weight: 600;
 }
 
@@ -1619,7 +1588,6 @@ main .section.background-molecules {
 .videos-and-webinars .section.hero-container:has(.hero.wave) ~ .section h2 {
   color: var(--color-primary);
   font-family: var(--ff-proxima-regular);
-  font-size: 36px;
 }
 
 .application .section.tabs:not(.wave) .default-content-wrapper h2 ~ h2:last-child {
@@ -1692,7 +1660,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   background: rgb(0 0 0 / 25%);
   border: 1px solid var(--color-white);
   white-space: normal;
-  font-size: 18px;
   padding: 16px 20px;
   line-height: 24px;
 }
@@ -1721,7 +1688,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   }
 
   .section.home-promo .carousel-item-columns-container .carousel-item-column h3 {
-    font-size: 28px;
     margin-bottom: 2rem;
   }
 
@@ -1747,124 +1713,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 }
 
 /* -- Technology -- */
-
-.application .section h2 {
-  font-size: 36px;
-}
-
-.technology .section > div,
-.application .section > div {
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-
-.technology
-  .section.tabs:not(.wave)
-  .default-content-wrapper
-  h2:not(#latest-resources, #features, .video-resources-title),
-.technology .section.tabs .columns-wrapper h2,
-.application
-  .section.tabs:not(.wave)
-  .default-content-wrapper
-  h2:not(#latest-resources, #features, .video-resources-title),
-.application .section.tabs .columns-wrapper h2 {
-  font-size: 36px;
-  font-family: var(--ff-proxima-regular);
-  margin-top: 0;
-}
-
-.technology .section.tabs .default-content-wrapper p + h2,
-.application .section.tabs .default-content-wrapper p + h2 {
-  padding-top: 50px;
-}
-
-.technology .section.tabs .columns-wrapper p + h2,
-.application .section.tabs .columns-wrapper p + h2 {
-  padding-top: 20px;
-}
-
-.technology main .section.tabs:not(.related-applications-container) h2,
-.application main .section.tabs:not(.related-applications-container) h2 {
-  margin: 20px 0 10px;
-}
-
-.technology .section.tabs h2 + p,
-.application .section.tabs h2 + p {
-  margin-top: 0;
-}
-
-.technology .section .related-links-container,
-.application .section .related-links-container {
-  padding-bottom: 32px;
-}
-
-.technology .section .related-app,
-.application .section .related-app {
-  margin-top: 35px;
-}
-
-.technology .section.resources-container .default-content-wrapper:first-child,
-.application .section.resources-container .default-content-wrapper:first-child,
-.technology .section.tabs.related-products-container .default-content-wrapper:first-child,
-.application .section.tabs.related-products-container .default-content-wrapper:first-child,
-.technology .section.tabs.related-applications-container .default-content-wrapper:first-child,
-.application .section.tabs.related-applications-container .default-content-wrapper:first-child,
-.technology .section.tabs.latest-resources-container .default-content-wrapper:first-child,
-.application .section.tabs.latest-resources-container .default-content-wrapper:first-child {
-  padding-bottom: 0;
-}
-
-.technology .section.resources-container .default-content-wrapper:first-child h2,
-.application .section.resources-container .default-content-wrapper:first-child h2 {
-  padding-bottom: 0;
-}
-
-.technology .columns.block.columns-1-cols,
-.application .columns.block.columns-1-cols {
-  background-color: var(--color-gray-50);
-  padding: 15px 26px 15px 32px;
-}
-
-.technology .columns.block.columns-1-cols h2,
-.application .columns.block.columns-1-cols h2 {
-  font-size: 40px;
-  text-align: center;
-  padding-bottom: 26px;
-}
-
-.technology .columns.block.columns-1-cols h3,
-.application .columns.block.columns-1-cols h3 {
-  font-size: 22px;
-  margin: 10px 0;
-}
-
-.technology .columns.block.columns-1-cols ul li,
-.application .columns.block.columns-1-cols ul li {
-  color: var(--color-link);
-  line-height: 21px;
-  margin-bottom: 10px;
-}
-
-.technology .section.tabs h2 + h4,
-.application .section.tabs h2 + h4 {
-  font-family: var(--ff-proxima-light);
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.technology .section.tabs h4,
-.application .section.tabs h4 {
-  font-family: var(--ff-proxima-regular);
-  font-size: 30px;
-  color: var(--color-gray-700);
-  margin-top: 0;
-}
-
-.technology .section.tabs h4:last-child,
-.application .section.tabs h4:last-child {
-  margin-bottom: 45px;
-}
-
 .blend-image img {
   mix-blend-mode: darken;
 }
@@ -1944,40 +1792,17 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .category main div.section.wave.blue .button-container > a {
   color: var(--color-white);
-  font-size: var(--body-font-size-m);
   border-radius: 0;
   padding: 15px 40px;
   border: 1px solid rgb(var(--color-primary-rgb) / 26%);
-}
-
-.category .default-content-wrapper h3 {
-  font-size: 34px;
 }
 
 .category .default-content-wrapper h3 a {
   color: var(--color-black);
 }
 
-.category .default-content-wrapper h2 + h3 {
-  font-size: 24px;
-}
-
-.category .columns-wrapper h3 + h4,
-.category .columns-wrapper h4 + h4 {
-  font-size: 20px;
-  line-height: 1.5rem;
-}
-
-.category-3d-biology .default-content-wrapper h3 {
-  font-size: 36px;
-}
-
 .category-3d-biology .default-content-wrapper h2 + h3 {
   margin-bottom: 0;
-}
-
-.category main .columns-wrapper h3:first-child {
-  font-size: 40px;
 }
 
 .section.blue-title .default-content-wrapper > h2,
@@ -2048,9 +1873,7 @@ main .block.electric-blue-main-title h2 {
 
 .video-gallery main .section .default-content-wrapper h2 {
   color: var(--color-primary);
-  font-size: 40px;
   margin-bottom: 40px;
-  font-family: var(--ff-proxima-light);
 }
 
 /*
@@ -2097,13 +1920,6 @@ main .section.no-padding-top {
 main .section.space-wrappers > div {
   margin-bottom: 50px;
   margin-top: 50px;
-}
-
-@media only screen and (max-width: 420px) {
-  .section .block.mobile-subtitle-small h3,
-  .section.mobile-subtitle-small > div.default-content-wrapper > h3 {
-    font-size: 16px;
-  }
 }
 
 .block.image-auto-size img {
@@ -2361,7 +2177,6 @@ main .section.no-margin-bottom {
   box-sizing: border-box;
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
-  font-size: var(--body-font-size-l);
   font-style: normal;
   line-height: 18px;
   display: inline-block;
@@ -2396,8 +2211,6 @@ main .section.no-margin-bottom {
 .publication.full-article main .big-sub-heading h4 {
   margin-top: 40px;
   margin-bottom: 10px;
-  font-size: 30px;
-  line-height: 30px;
 }
 
 .blog main .section.block,
@@ -2488,7 +2301,6 @@ main .section.no-margin-bottom {
 
 .application .columns.block.workflow-tab-heading h2 {
   font-family: var(--ff-proxima-light);
-  font-size: 34px;
   text-transform: capitalize;
   background: var(--color-link-hover);
   padding: 8px 24px;
@@ -2498,12 +2310,6 @@ main .section.no-margin-bottom {
   margin: 0 auto !important;
   border-radius: 20px;
   line-height: 1.33;
-}
-
-@media only scrren and (min-width: 768px) {
-  .application .columns.block.workflow-tab-heading h2 {
-    font-size: 48px;
-  }
 }
 
 main div.dark-button.orange-buttons .button.secondary,
