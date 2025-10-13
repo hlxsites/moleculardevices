@@ -107,10 +107,6 @@ main .section .hero-advanced-wrapper {
   }
 }
 
-.customer-story .hero-inner .container {
-  padding-top: 0;
-}
-
 .hero-inner .container > div:nth-child(2) {
   padding-left: 30px;
   padding-bottom: 30px;
@@ -577,7 +573,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     align-items: stretch;
     height: auto;
     display: flex;
-    padding-top: 45px;
+    padding-top: 0;
     padding-bottom: 45px;
     justify-content: space-between;
   }
@@ -627,6 +623,14 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .customer-story .hero-inner .container.two-column > div:nth-child(2) {
     flex-basis: 33.5%;
+  }
+
+  .hero-inner .container.two-column > div:nth-child(1) {
+    width: 66.5%;
+  }
+
+  .hero-inner .container.two-column > div:nth-child(2) {
+    width: 30%;
   }
 
   .hero-inner .container.two-column.right-image > div {
@@ -788,6 +792,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   transform: unset;
   left: unset;
   margin-top: 50px;
+  display: block;
 }
 
 .hero-wrapper .hero.hero-insider .container img {
