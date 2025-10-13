@@ -894,15 +894,14 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-           mainEntityOfPage: {
+            mainEntityOfPage: {
               '@type': 'WebPage',
               id: canonicalHref,
               url: canonicalHref,
-              },
+            },
             sameAs:
               brandSameAs,
           },
-         
         ],
       };
     }

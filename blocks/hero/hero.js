@@ -157,9 +157,9 @@ function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
     if (baseName === refBaseName) {
       const geoCode = extractGeoSuffix(href);
       if (geoCode) {
-        link.classList.add(geoCode, `OneLinkShow_${geoCode}`);
+        link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
       } else {
-        link.classList.add(baseClass);
+        link.parentElement.classList.add(baseClass);
       }
     }
   });
