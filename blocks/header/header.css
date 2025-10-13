@@ -307,7 +307,7 @@ header .company-links img {
 
 header .company-links ul li {
   font-size: 10px;
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -315,6 +315,11 @@ header .company-links ul li {
 header .menu-nav-category a {
   color: var(--color-text-primary);
   text-decoration: none;
+}
+
+header .large-card-submenu ul > li,
+header .large-card-submenu h3 {
+  color: var(--color-white);
 }
 
 header .large-card-submenu ul > li {
@@ -327,12 +332,10 @@ header .large-card-submenu ul > li {
   padding: 0;
   box-shadow: none;
   margin-bottom: 8px;
-  color: var(--color-white);
 }
 
 header .large-card-submenu h3 {
   border: 0;
-  color: var(--color-white);
   padding: 0;
   padding-bottom: 10px;
   font-size: 18px;

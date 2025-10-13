@@ -183,7 +183,7 @@ main .section > div.columns-wrapper {
 }
 
 .columns.contact > div h2 {
-  background-color: var(--color-gray-700);
+  background-color: var(--color-gray-600);
   color: var(--color-white);
   font-size: var(--heading-font-size-m);
   font-family: var(--ff-proxima-regular);

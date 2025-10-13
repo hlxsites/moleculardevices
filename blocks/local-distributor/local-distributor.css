@@ -168,12 +168,6 @@
   padding: 15px 40px 15px 15px;
 }
 
-.local-distributor .form button {
-  background-color: var(--color-primary);
-  border: 0;
-  color: var(--color-white);
-}
-
 .section.local-distributor-container h3.no-result {
   color: var(--color-state-danger);
   text-align: center;
