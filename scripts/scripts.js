@@ -896,7 +896,7 @@ function addPageSchema() {
             },
            mainEntityOfPage: {
               '@type': 'WebPage',
-              @id: moleculardevicesRootURL,
+              id: moleculardevicesRootURL,
               url: moleculardevicesRootURL,
               },
             sameAs:
