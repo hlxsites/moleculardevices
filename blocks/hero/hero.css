@@ -63,6 +63,19 @@ main .hero-advanced-wrapper {
   line-height: 1.5;
 }
 
+.hero-inner h6 {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+}
+
+.hero-inner h6:first-child {
+  margin-top: 0;
+}
+
 .hero-inner .two-column h6 ~ p {
   margin-bottom: 0;
 }
@@ -92,6 +105,10 @@ main .section .hero-advanced-wrapper {
   .order-container {
     height: 500px;
   }
+}
+
+.customer-story .hero-inner .container {
+  padding-top: 0;
 }
 
 .hero-inner .container > div:nth-child(2) {
@@ -353,19 +370,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     padding-bottom: 40px;
   }
 
-  .orange-buttons .hero-inner .button.secondary:any-link,
-  .orange-buttons .hero-inner button.secondary {
-    --btn-base-color: var(--color-secondary);
-    --btn-text-color: var(--color-secondary);
-  }
-
-  .orange-buttons .hero-inner .button.secondary:any-link:hover,
-  .orange-buttons .hero-inner button.secondary:hover,
-  .orange-buttons .hero-inner .button.secondary:any-link:focus,
-  .orange-buttons .hero-inner button.secondary:focus {
-    --btn-base-color: var(--color-white);
-  }
-
   /* Citation Variant - Mobile -- Start */
   .citation main .hero {
     min-height: 120px;
@@ -385,6 +389,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     margin-bottom: 10px;
   }
 
+  .hero-inner .video-icon img {
+    height: 71px;
+    width: 70px;
+  }
+
   .hero-advanced .hero-inner .container.two-column > div:nth-child(1) > p .overlay {
     display: none;
   }
@@ -397,24 +406,12 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   .hero-inner .container > div:nth-child(2) {
     font-size: var(--body-font-size-m);
-  }
-
-  .hero-inner .container.two-column > div.video-column {
-    padding-top: 30px;
     padding-left: 0;
   }
 
-  .hero-inner .container.two-column > div:nth-child(2) > div {
-    border-top: 2px solid var(--color-white);
-    padding-top: 30px;
-  }
-
-  .hero-inner .container.two-column > div.video-column > div {
-    border: none;
-  }
-
-  .hero-inner .button-container a {
-    padding: 9px 12px 10px;
+  .hero-inner .container.two-column > div.video-column {
+    padding-top: 0;
+    padding-left: 0;
   }
 
   .hero.service-support .hero-inner .button-container a {
@@ -539,6 +536,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: unset;
   }
 
+  .customer-story .hero-inner .container.two-column > div:nth-child(2) {
+    border-left: 2px solid var(--color-white);
+  }
+
   .wave-reverse .hero-inner > .right-image {
     padding-top: 40px;
   }
@@ -574,11 +575,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   .hero-inner .container {
     overflow: auto;
     align-items: stretch;
-    flex-wrap: wrap;
     height: auto;
     display: flex;
     padding-top: 45px;
     padding-bottom: 45px;
+    justify-content: space-between;
   }
 
   /* Citation Variant - Mobile -- Start */
@@ -599,10 +600,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     left: 0;
     right: 0;
   }
-
-  /* .hero-inner .container.two-column > div:nth-child(2) {
-    border-left: 2px solid var(--color-white);
-  } */
 
   .hero-inner .container > div:nth-child(1) .button-container {
     margin-top: 30px;
@@ -625,11 +622,11 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
 @media (min-width: 992px) {
   .hero-inner .container.two-column > div:nth-child(1) {
-    width: 66.5%;
+    flex-basis: 66.5%;
   }
 
   .hero-inner .container.two-column > div:nth-child(2) {
-    width: 30%;
+    flex-basis: 33.5%;
   }
 
   .hero-inner .container.two-column.right-image > div {

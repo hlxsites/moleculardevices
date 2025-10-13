@@ -289,7 +289,7 @@ header .company-links > ul > li {
 }
 
 header .company-links a {
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
 }
 
 header .company-links img {
@@ -726,19 +726,11 @@ header .mobile-menu .back-to-parent a {
 
 header .mobile-menu .mobile-menu-subcategory-item > a {
   background: var(--color-gray-100);
+  color: var(--color-text-primary);
   position: relative;
   white-space: normal;
-  display: block;
-  padding: 4px 70px 15px 15px;
-  color: var(--color-text-primary);
-  text-align: left;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
-  text-decoration: none;
-  line-height: 29px;
 }
 
 header .mobile-menu-subcategory-item .mobile-menu-subcategory-item > a {
@@ -1170,7 +1162,7 @@ header .cards-submenu p:nth-child(2) a {
   color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--color-gray-400);
+  background-color: var(--color-gray-600);
   text-align: center;
   display: flex;
   align-items: center;
@@ -1182,7 +1174,7 @@ header .cards-submenu p:nth-child(2) a {
 
 header .white-background p:nth-child(2) a {
   background-color: var(--color-white);
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
 }
 
 header .green-background p:nth-child(2) a {

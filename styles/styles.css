@@ -132,7 +132,7 @@ main .section.OneLinkShow_zh.columns-2 {
 
   /* Gray Scale Hierarchy */
   --color-white: #fff;
-  --color-gray-50: #f7f7f7;
+  --color-gray-50: #f2f2f2;
   --color-gray-100: #efefef;
   --color-gray-200: #e6e6e6;
   --color-gray-250: #dcdcdc;
@@ -140,7 +140,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gray-350: #c9c9c9;
   --color-gray-400: #bfbfbf;
   --color-gray-500: #999;
-  --color-gray-600: #7f7f7f;
+  --color-gray-600: #6a747c;
   --color-gray-650: #666;
   --color-gray-700: #4c4c4c;
   --color-gray-750: #333;
@@ -348,6 +348,10 @@ h1 {
   font-size: var(--heading-font-size-xxl);
 }
 
+h1:last-child {
+  margin-bottom: 0;
+}
+
 h2 {
   font-size: var(--heading-font-size-xl);
 }
@@ -406,7 +410,7 @@ p:last-of-type {
   margin-bottom: 0;
 }
 
-a:any-link {
+a {
   color: var(--color-link);
   text-decoration: none;
 }
@@ -530,13 +534,11 @@ p.video-title {
 }
 
 /* buttons */
-
-a.button:any-link,
-a[role="button"],
-button {
+.button {
   --btn-base-color: var(--color-transparent);
   --btn-text-color: var(--color-link);
 
+  font-size: var(--body-font-size);
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
   line-height: 18px;
@@ -555,29 +557,30 @@ button {
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
+  font-style: normal;
   color: var(--btn-text-color);
   background-color: var(--btn-base-color);
   border: 2px solid var(--btn-base-color);
 }
 
-a.button:any-link:has(span.icon),
-button:has(span.icon) {
+.button:has(span.icon) {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 
-a.button:any-link > span.icon,
-button > span.icon {
+.button > span.icon {
   line-height: 0;
 }
 
-a.button .fa,
-a.button i.fa {
+.button .fa,
+.button i.fa {
   padding: 0 0.25rem;
   color: inherit;
 }
 
+.button:disabled,
+.button:disabled:hover,
 button:disabled,
 button:disabled:hover {
   --btn-base-color: var(--color-gray-100);
@@ -585,66 +588,60 @@ button:disabled:hover {
   cursor: unset;
 }
 
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
+.button:hover,
+.button:focus {
   --btn-base-color: var(--color-transparent);
   --btn-text-color: var(--color-link-hover);
 
+  color: var(--btn-text-color);
   box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
-a.button.primary,
-button.primary {
+.button.primary {
   --btn-base-color: var(--color-primary);
   --btn-text-color: var(--color-white);
 
   white-space: break-spaces;
 }
 
-a.button.secondary,
-button.secondary {
+.button.secondary {
   --btn-base-color: var(--color-button-secondary);
   --btn-text-color: var(--color-button-primary);
 
   background-color: transparent;
-  font-style: normal;
 }
 
-a.button.primary:hover,
-a.button.primary:focus,
-button.primary:hover,
-button.primary:focus,
-a.button.secondary:hover,
-a.button.secondary:focus,
-button.secondary:hover,
-button.secondary:focus {
+.button.primary:hover,
+.button.primary:focus,
+.button.secondary:hover,
+.button.secondary:focus {
   --btn-base-color: var(--color-white);
   --btn-text-color: var(--color-link-hover);
 
   background-color: var(--btn-base-color);
 }
 
-main div.orange-buttons .button.primary:any-link,
-main div.orange-buttons button.primary {
+.orange-buttons .button.primary {
   --btn-base-color: var(--color-secondary);
   --btn-text-color: var(--color-white);
 }
 
-main div.orange-buttons .button.secondary:any-link,
-main div.orange-buttons button.secondary {
+.hero .button.secondary,
+.hero-advanced .button.secondary,
+.orange-buttons .secondary {
   --btn-base-color: var(--color-white);
   --btn-text-color: var(--color-white);
 }
 
 main div.orange-buttons .button.primary:hover,
 main div.orange-buttons .button.primary:active,
-main div.orange-buttons .button.primary:visited,
+main div.orange-buttons .button.primary:focus,
 main div.orange-buttons .button.secondary:hover,
 main div.orange-buttons .button.secondary:active,
+main div.orange-buttons .button.secondary:focus,
 main div.orange-secondary-buttons .button.secondary:hover,
-main div.orange-secondary-buttons .button.secondary:active {
+main div.orange-secondary-buttons .button.secondary:active,
+main div.orange-secondary-buttons .button.secondary:focus {
   --btn-base-color: var(--color-white);
   --btn-text-color: var(--color-secondary);
 }
@@ -685,7 +682,7 @@ main .section.features-section .button-container {
   margin-bottom: 0;
 }
 
-a.button.primary:hover .button-border {
+.button.primary:hover .button-border {
   display: block;
   width: 50%;
   margin-bottom: 0;
@@ -697,11 +694,37 @@ a.button.primary:hover .button-border {
   background-color: var(--btn-text-color);
 }
 
+@media only screen and (min-width: 768px) {
+  .hero .button.secondary,
+  .hero-advanced .button.secondary {
+    min-width: 200px;
+  }
+}
+
 @media only screen and (max-width: 767px) {
-  a.button:any-link,
+  .button,
   button {
     width: 100%;
+    min-width: max-content;
     max-width: 200px;
+    padding: 13px 16px;
+  }
+
+  .hero-advanced .button.secondary {
+    --btn-base-color: var(--color-primary);
+    --btn-text-color: var(--color-primary);
+  }
+
+  .hero-advanced.orange-buttons .button.secondary {
+    --btn-base-color: var(--color-secondary);
+    --btn-text-color: var(--color-secondary);
+  }
+
+  .hero-advanced .button.secondary:hover,
+  .hero-advanced .button.secondary:focus,
+  .hero-advanced.orange-buttons .button.secondary:hover,
+  .hero-advanced.orange-buttons .button.secondary:focus {
+    --btn-base-color: var(--color-white);
   }
 
   main .section.buttons-in-row p.button-container,
@@ -837,10 +860,6 @@ main .section.columns-2 > div {
 
   main .breadcrumbs-wrapper {
     height: 30px;
-  }
-
-  main .section.columns-2 {
-    padding: 0;
   }
 }
 
@@ -1122,6 +1141,10 @@ main .section.features-section {
   background-color: var(--color-gray-50);
 }
 
+main .section.features-section h2 {
+  margin-bottom: 0;
+}
+
 main .section.features-section .default-content-wrapper,
 main .section.applications-carousel-container .default-content-wrapper {
   padding-top: 0;
@@ -1130,25 +1153,9 @@ main .section.applications-carousel-container .default-content-wrapper {
   margin-bottom: 30px;
 }
 
-main .section.features-section .default-content-wrapper::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
-@media only screen and (max-width: 991px) {
-  .section.features-section .default-content-wrapper h2 {
-    font-size: 45px;
-  }
-}
-
 @media only screen and (max-width: 767px) {
   main .section.features-section {
     padding-top: 30px;
-  }
-
-  .section.features-section .default-content-wrapper h2 {
-    font-size: 36px;
   }
 
   main .section.features-section .default-content-wrapper em {
@@ -1267,7 +1274,8 @@ main .section.background-parallax .default-content-wrapper .button-container > a
   color: var(--color-white);
   border-radius: 0;
   padding: 18px 18px 16px;
-  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
+  border: 1px solid var(--color-white);
+  font-size: 1rem;
 }
 
 @media only screen and (max-width: 991px) {

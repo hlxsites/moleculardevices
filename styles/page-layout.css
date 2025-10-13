@@ -3,7 +3,7 @@
   --body-font-size: 16px;
   --heading-1: 48px;
   --heading-2: 40px;
-  --heading-3: 36px;
+  --heading-3: 28px;
   --heading-4: 24px;
   --heading-5: 20px;
   --heading-6: var(--body-font-size);
@@ -66,7 +66,6 @@ h6 {
 .section.tabs h4 {
   font-family: var(--ff-proxima-regular);
   color: var(--color-gray-700);
-  margin-top: 0;
 }
 
 .section.tabs h2 + h4 {

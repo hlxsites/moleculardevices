@@ -18,12 +18,6 @@ main .section.tabs h2:has(+ h4) {
   padding-bottom: 0;
 }
 
-main .section.tabs h4 {
-  font-family: var(--ff-proxima-regular);
-  color: var(--color-gray-700);
-  margin-top: 0;
-}
-
 main .section.tabs h4:last-child {
   margin-bottom: 45px;
 }

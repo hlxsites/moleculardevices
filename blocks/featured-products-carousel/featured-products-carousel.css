@@ -128,6 +128,7 @@ main .featured-products-carousel .carousel-item-text .button-container .secondar
   main .section.columns-2 .featured-products-carousel-wrapper.mini {
     width: 80vw;
     margin-bottom: 20px;
+    justify-self: center;
   }
 
   main .section.columns-2.featured-products-carousel-container {
