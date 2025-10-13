@@ -220,7 +220,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --list-font-size-m: 18px;
   --list-font-size-s: 14px;
   --breadcrumbs-font-size: 12px;
-  --body-font-size: 18px;
 
   /* Layout Variables */
   --nav-height: 170px;
@@ -230,6 +229,27 @@ main .section.OneLinkShow_zh.columns-2 {
   --carousel-max-width: var(--carousel-container-width);
   --section-max-width: var(--container-width);
   --center-space: calc((100vw - var(--section-max-width)) / 2);
+
+  /* NEW PAGE LAYOUT */
+  --body-font-size: 16px;
+  --heading-1: 48px;
+  --heading-2: 40px;
+  --heading-3: 28px;
+  --heading-4: 24px;
+  --heading-5: 20px;
+  --heading-6: var(--body-font-size);
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --body-font-size: 18px;
+    --heading-1: 70px;
+    --heading-2: 54px;
+    --heading-3: 36px;
+    --heading-4: 30px;
+    --heading-5: 24px;
+    --heading-6: 20px;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -249,7 +269,6 @@ main .section.OneLinkShow_zh.columns-2 {
 @media (max-width: 767px) {
   :root {
     --section-max-width: 100%;
-    --body-font-size: 16px;
   }
 }
 
@@ -277,8 +296,13 @@ header {
   }
 }
 
+.background-gray main {
+  background-color: var(--color-gray-100);
+}
+
+/* base */
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size);
   margin: 0;
   font-family: var(--ff-proxima-regular);
   line-height: 1.33;
@@ -288,32 +312,8 @@ body {
   overflow-x: hidden;
 }
 
-.background-gray main {
-  background-color: var(--color-gray-100);
-}
-
 body.appear {
   display: unset;
-}
-
-/* SCREEN READER TEXT */
-.screen-reader-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* progressive section appearance */
-main .section[data-section-status="loading"],
-main .section[data-section-status="initialized"],
-main .section[aria-hidden="true"] {
-  display: none !important;
-  visibility: hidden !important;
 }
 
 body.no-scroll {
@@ -327,27 +327,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: inherit;
-  line-height: 1.1;
-  font-weight: 100;
   margin-top: 0;
-  scroll-margin: calc(var(--nav-height) + 1em);
-}
-
-h1,
-h2 {
-  font-family: var(--ff-proxima-light);
-}
-
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--ff-proxima-regular);
+  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--heading-1);
 }
 
 h1:last-child {
@@ -355,38 +341,23 @@ h1:last-child {
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
-}
-
-@media only screen and (max-width: 991px) {
-  h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+  font-size: var(--heading-2);
 }
 
 h3 {
-  font-size: var(--heading-font-size-l);
-}
-
-h2,
-h3 {
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  font-size: var(--heading-3);
 }
 
 h4 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-4);
 }
 
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-5);
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--heading-6);
 }
 
 p,
@@ -462,6 +433,11 @@ em strong {
   font-weight: 700;
 }
 
+iframe {
+  border: 0;
+  width: 100%;
+}
+
 .text-left {
   text-align: left;
 }
@@ -486,9 +462,24 @@ em strong {
   font-style: italic;
 }
 
-iframe {
+/* SCREEN READER TEXT */
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
   border: 0;
-  width: 100%;
+}
+
+/* progressive section appearance */
+main .section[data-section-status="loading"],
+main .section[data-section-status="initialized"],
+main .section[aria-hidden="true"] {
+  display: none !important;
+  visibility: hidden !important;
 }
 
 /* video player styles and overlays */
@@ -1186,7 +1177,7 @@ main .section.applications-carousel-container .default-content-wrapper {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-400);
+  color: var(--color-gray-600);
   font-style: italic;
 }
 
