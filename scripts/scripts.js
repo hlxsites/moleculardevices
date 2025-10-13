@@ -582,7 +582,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application' || type === 'Landing Page') {
+    if (type === 'Application') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -861,6 +861,51 @@ function addPageSchema() {
               '@type': 'WebPage',
               url: 'https://www.moleculardevices.com/for-whats-next',
             },
+          },
+        ],
+      };
+    }
+    if (type === 'Landing Page') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            url: canonicalHref,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+           mainEntityOfPage: {
+              '@type': 'WebPage',
+              @id: moleculardevicesRootURL,
+              url: moleculardevicesRootURL,
+              },
+            sameAs:
+              brandSameAs,
+          },
+          {
+            '@type': 'ImageObject',
+            name: schemaTitle,
+            url: schemaImageUrl,
           },
         ],
       };
