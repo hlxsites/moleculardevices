@@ -482,7 +482,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -862,6 +862,47 @@ function addPageSchema() {
               url: 'https://www.moleculardevices.com/for-whats-next',
             },
           },
+        ],
+      };
+    }
+    if (type === 'Landing Page') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            url: canonicalHref,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+           mainEntityOfPage: {
+              '@type': 'WebPage',
+              id: canonicalHref,
+              url: canonicalHref,
+              },
+            sameAs:
+              brandSameAs,
+          },
+         
         ],
       };
     }
