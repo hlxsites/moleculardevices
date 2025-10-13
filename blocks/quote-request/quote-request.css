@@ -200,6 +200,7 @@ main div.section.quote-request-container + .section.wave {
 .rfq-form {
   border: none;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .progress-wrapper {
