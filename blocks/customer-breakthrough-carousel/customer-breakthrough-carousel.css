@@ -4,7 +4,7 @@
 }
 
 main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -56,20 +56,13 @@ main .customer-breakthrough-carousel .card .card-description {
     width: 100%;
   }
 
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper.list .carousel-nav-button {
-    display: none;
-  }
-
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper.list .carousel-nav-button,
   main .customer-breakthrough-carousel.list .carousel-item.clone {
     display: none;
   }
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-    width: 940px;
-  }
-
   main .carousel.customer-breakthrough-carousel.list .carousel-item {
     width: 50%;
     max-width: 360px;
@@ -84,10 +77,6 @@ main .customer-breakthrough-carousel .card .card-description {
   .technology .customer-breakthrough-carousel-container h2,
   .application .customer-breakthrough-carousel-container h2 {
     font-size: 45px;
-  }
-
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-    width: 750px;
   }
 
   main .carousel.customer-breakthrough-carousel {

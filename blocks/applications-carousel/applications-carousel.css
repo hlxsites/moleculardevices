@@ -1,5 +1,5 @@
 main .carousel-wrapper.applications-carousel-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -59,10 +59,6 @@ main .section.applications-carousel-container:has(.applications-carousel.block:e
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.applications-carousel-wrapper {
-    width: 940px;
-  }
-
   .applications-carousel .carousel-item {
     width: 50%;
     max-width: 50%;
@@ -70,15 +66,6 @@ main .section.applications-carousel-container:has(.applications-carousel.block:e
 }
 
 @media only screen and (max-width: 991px) {
-  main .carousel-wrapper.applications-carousel-wrapper {
-    width: 100%;
-  }
-
-  .applications-carousel .carousel-item {
-    width: 50%;
-    max-width: 50%;
-  }
-
   .carousel.applications-carousel .card-caption h3 {
     font-size: 18px;
   }

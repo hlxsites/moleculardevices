@@ -2,7 +2,7 @@
   Cards Carousel specific styling.
 */
 main .carousel-wrapper.cards {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px 30px;
   margin: 0 auto;
 }
@@ -28,8 +28,6 @@ main .carousel-wrapper.cards .carousel {
 .carousel-wrapper.cards div > picture img,
 .carousel-wrapper.cards .card-thumb,
 .carousel-wrapper.cards .card-thumb img {
-  /* height: 190px;
-  min-height: 190px; */
   width: 100%;
   min-width: auto;
   object-fit: cover;
@@ -242,10 +240,6 @@ main .carousel-wrapper.cards .carousel {
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.cards {
-    width: 940px;
-  }
-
   .carousel-wrapper.cards .carousel-item {
     width: 50%;
     max-width: 50%;
@@ -253,10 +247,6 @@ main .carousel-wrapper.cards .carousel {
 }
 
 @media only screen and (max-width: 991px) {
-  main .carousel-wrapper.cards {
-    width: 100%;
-  }
-
   .carousel-wrapper.cards .carousel .card-caption h3 {
     font-size: 18px;
   }

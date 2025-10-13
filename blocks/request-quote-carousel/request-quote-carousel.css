@@ -1,5 +1,5 @@
 main .carousel-wrapper.request-quote-carousel-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -86,10 +86,6 @@ main .carousel.request-quote-carousel {
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.request-quote-carousel-wrapper {
-    width: 940px;
-  }
-
   .request-quote-carousel .carousel-item {
     width: 50%;
     max-width: 50%;
@@ -97,15 +93,6 @@ main .carousel.request-quote-carousel {
 }
 
 @media only screen and (max-width: 991px) {
-  main .carousel-wrapper.request-quote-carousel-wrapper {
-    width: 100%;
-  }
-
-  .request-quote-carousel .carousel-item {
-    width: 50%;
-    max-width: 50%;
-  }
-
   .carousel.request-quote-carousel .card-caption h3 {
     font-size: 18px;
   }

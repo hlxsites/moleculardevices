@@ -46,11 +46,11 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .site-logo{
+header .site-logo {
   display: inline-block;
 }
 
-header .site-logo img{
+header .site-logo img {
   width: 220px;
   height: 65px;
   display: inline-block;
@@ -289,7 +289,7 @@ header .company-links > ul > li {
 }
 
 header .company-links a {
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
 }
 
 header .company-links img {
@@ -307,7 +307,7 @@ header .company-links img {
 
 header .company-links ul li {
   font-size: 10px;
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -867,9 +867,9 @@ header .mobile-menu .languages-dropdown {
   width: 100%;
   position: absolute;
   background-color: var(--color-white);
-  border: 1px solid rgba(0 0 0 / 15%);
+  border: 1px solid var(--color-black-alpha-10);
   border-radius: 4px;
-  box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+  box-shadow: 0 6px 12px var(--color-black-alpha-20);
 }
 
 header .mobile-menu .languages-dropdown a {
@@ -935,7 +935,7 @@ header .nav-tabs .menu-nav-submenu > div {
 header .nav-tabs .menu-nav-submenu h1 {
   font-size: 36px;
   font-family: var(--ff-proxima-light);
-  color:  rgb(var(--color-white-rgb) / 70%);;
+  color: rgb(var(--color-white-rgb) / 70%);
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
@@ -1165,7 +1165,7 @@ header .cards-submenu p:nth-child(2) a {
   color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--color-gray-600);
+  background-color: var(--color-theme-gray);
   text-align: center;
   display: flex;
   align-items: center;
@@ -1177,7 +1177,7 @@ header .cards-submenu p:nth-child(2) a {
 
 header .white-background p:nth-child(2) a {
   background-color: var(--color-white);
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
 }
 
 header .green-background p:nth-child(2) a {
@@ -1824,7 +1824,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: initial;
   }
 
- header .site-logo img {
+  header .site-logo img {
     width: 100px;
     height: 22px;
   }

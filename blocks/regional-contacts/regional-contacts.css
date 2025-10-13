@@ -1,6 +1,6 @@
 /* TAB START */
 .tab-wrapper {
-  border-bottom: 4px solid var(--color-gray-600);
+  border-bottom: 4px solid var(--color-theme-gray);
   display: flex;
   flex-wrap: wrap;
 }
@@ -15,7 +15,7 @@
 }
 
 .tab-wrapper > a.active {
-  background-color: var(--color-gray-600);
+  background-color: var(--color-theme-gray);
   font-weight: 600;
   letter-spacing: 1px;
 }
@@ -275,6 +275,7 @@
     margin-top: 0;
     max-width: 330px;
     padding-left: 48px;
+    margin-bottom: 1rem;
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child {

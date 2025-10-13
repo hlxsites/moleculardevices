@@ -423,6 +423,6 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
 }
 
 .cards.color-shades ul li {
-  flex: 1 1 100px;
+  flex: 1 1 160px;
   border: none;
 }

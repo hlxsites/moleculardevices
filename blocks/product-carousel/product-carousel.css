@@ -1,5 +1,5 @@
 main .carousel-wrapper.product-carousel-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: unset;
   margin-top: 40px;
 }
@@ -62,20 +62,12 @@ main .carousel.product-carousel {
 }
 
 @media only screen and (max-width: 1200px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 940px;
-  }
-
   .product-carousel .carousel-item {
     max-width: unset;
   }
 }
 
 @media only screen and (max-width: 991px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 100%;
-  }
-
   .product-carousel .carousel-item {
     width: 50%;
   }

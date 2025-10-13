@@ -14,7 +14,7 @@ main .section.latest-resources-container .default-content-wrapper h2 {
 }
 
 main .carousel-wrapper.latest-resources-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -66,20 +66,13 @@ main .latest-resources .card .card-description {
     width: 100%;
   }
 
-  main .carousel-wrapper.latest-resources-wrapper.list .carousel-nav-button {
-    display: none;
-  }
-
+  main .carousel-wrapper.latest-resources-wrapper.list .carousel-nav-button,
   main .latest-resources.list .carousel-item.clone {
     display: none;
   }
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.latest-resources-wrapper {
-    width: 940px;
-  }
-
   main .carousel.latest-resources.list .carousel-item {
     width: 50%;
     max-width: 360px;
@@ -94,10 +87,6 @@ main .latest-resources .card .card-description {
   .technology .latest-resources-container h2,
   .application .latest-resources-container h2 {
     font-size: 45px;
-  }
-
-  main .carousel-wrapper.latest-resources-wrapper {
-    width: 750px;
   }
 
   main .carousel.latest-resources {

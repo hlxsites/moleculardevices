@@ -197,7 +197,7 @@
 
 .coveo-main-section .coveo-dynamic-facet-value .coveo-checkbox-label button + .coveo-checkbox-span-label {
   font-size: 14px;
-  color: var(--color-gray-650);
+  color: var(--color-gray-600);
   width: 400px;
   font-weight: normal;
 }
@@ -244,7 +244,7 @@
 
 .coveo-main-section .coveo-result-cell .coveo-excerpt {
   font-size: 14px;
-  color: var(--color-gray-650);
+  color: var(--color-gray-600);
   line-height: 20px;
 }
 

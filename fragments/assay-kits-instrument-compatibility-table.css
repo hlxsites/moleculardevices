@@ -93,7 +93,7 @@ a.req_quote {
 }
 
 .wrap_head_col_1 {
-  color: var(--color-gray-650) !important;
+  color: var(--color-gray-600) !important;
   text-transform: capitalize;
   min-height: 300px;
   text-align: left;

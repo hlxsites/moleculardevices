@@ -1,5 +1,5 @@
 main div.recent-blogs-carousel-container {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 60px auto 0;
 }
@@ -38,10 +38,6 @@ main .blog-card-thumb:hover img {
 }
 
 @media only screen and (max-width: 1200px) {
-  main div.recent-blogs-carousel-container {
-    width: 940px;
-  }
-
   main .carousel.recent-blogs-carousel .carousel-item {
     width: 303.33px;
   }
@@ -54,10 +50,6 @@ main .blog-card-thumb:hover img {
 }
 
 @media only screen and (max-width: 991px) {
-  main div.recent-blogs-carousel-container {
-    width: 720px;
-  }
-
   main .carousel-wrapper.recent-blogs-carousel-wrapper  .carousel-nav-left {
     left: -10px;
   }

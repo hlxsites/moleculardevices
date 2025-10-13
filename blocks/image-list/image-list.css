@@ -43,7 +43,7 @@ main div.image-list-wrapper {
 }
 
 .image-list.block p {
-  color: var(--color-gray-850);
+  color: var(--color-gray-900);
 }
 
 .image-list.block .item + .item {
