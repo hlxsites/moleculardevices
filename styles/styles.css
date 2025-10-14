@@ -246,30 +246,29 @@ main .section.OneLinkShow_zh.columns-2 {
     --heading-1: 70px;
     --heading-2: 54px;
     --heading-3: 36px;
-    --heading-4: 30px;
-    --heading-5: 24px;
-    --heading-6: 20px;
+    --heading-4: 24px;
+    --heading-5: 20px;
   }
 }
 
 @media (max-width: 1199px) {
   :root {
     --section-max-width: 970px;
-    --carousel-max-width: 940px;
+    --carousel-container-width: 940px;
   }
 }
 
 @media (max-width: 991px) {
   :root {
     --section-max-width: 750px;
-    --carousel-max-width: 720px;
+    --carousel-container-width: 720px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
     --section-max-width: 100%;
-    --carousel-max-width: 100%;
+    --carousel-container-width: 100%;
   }
 }
 
@@ -332,7 +331,7 @@ h6 {
   line-height: 1.1;
   font-weight: 100;
   margin-top: 0;
-  scroll-margin: calc(var(--nav-height) + 1em);
+  margin-bottom: 1rem;
 }
 
 h1,
@@ -345,8 +344,30 @@ h2:last-child {
   margin-bottom: 0;
 }
 
-h2:only-child {
-  margin-bottom: 1rem;
+h2:only-child,
+h2:has(+ h3) {
+  padding-bottom: 1rem;
+}
+
+p:has(+ h2),
+p:has(+ h3),
+p:has(+ h4) {
+  margin-bottom: 0;
+}
+
+p + h2,
+ul + h2{
+  padding-top: 50px;
+}
+
+p + h3,
+ul + h3 {
+  padding-top: 30px;
+}
+
+p + h4,
+ul + h4 {
+  padding-top: 1rem;
 }
 
 h1 {
@@ -363,6 +384,7 @@ h3 {
 
 h4 {
   font-size: var(--heading-4);
+  margin-bottom: 0.5rem;
 }
 
 h5 {
@@ -373,14 +395,13 @@ h6 {
   font-size: var(--heading-6);
 }
 
-p,
 dl,
 ol,
 ul,
 pre,
 blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 ul,
@@ -388,11 +409,8 @@ ol {
   padding-left: 20px;
 }
 
-ul ul {
-  margin-top: 0;
-}
-
-p:first-child {
+ul ul,
+p {
   margin-top: 0;
 }
 
@@ -458,7 +476,7 @@ iframe {
 
 @media only screen and (min-width: 768px) {
   h2:only-child {
-    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 }
 
@@ -482,7 +500,7 @@ iframe {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-400);
+  color: var(--color-theme-gray);
   font-style: italic;
 }
 
@@ -1119,10 +1137,6 @@ main .section.service-support .default-content-wrapper h2 {
   line-height: 1;
 }
 
-main .section.related-applications-container h2:first-child {
-  padding-top: 26px;
-}
-
 /* Features Section */
 main .section.features-section {
   padding-top: 50px;
@@ -1324,7 +1338,6 @@ main div.section.wave:not(.bluegreen):last-child {
 }
 
 main .section.wave.orange-buttons {
-  padding-bottom: 0;
   margin-bottom: 48px;
 }
 
@@ -1418,31 +1431,6 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
   }
 }
 
-@media only screen and (max-width: 767px) {
-  main .section.bluegreen {
-    background: var(--gradient-theme) !important;
-    background-image: none;
-  }
-
-  main div.section.wave.bluegreen2 {
-    padding-bottom: 100px;
-  }
-
-  main div.section.wave.bluegreen2::after {
-    background-image: none;
-  }
-
-  main .section.blue {
-    background: var(--color-link-hover) !important;
-    background-image: none;
-  }
-
-  main div.section.wave.bluegreen .default-content-wrapper {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-}
-
 /* Service Support Variant */
 main div.section.wave.bg-support-service {
   background-position: 100% 30%;
@@ -1471,20 +1459,32 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
   margin-bottom: 40px;
 }
 
-main div.section.wave.wavecarousel.blue:not(.no-margin-top),
-main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
-  margin-top: 30px;
-}
-
 main div.block.no-margin-bottom,
 main div.section.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
 @media only screen and (max-width: 767px) {
-  main div.section.wave.wavecarousel {
-    min-height: 100%;
-    margin-top: 240px;
+  main .section.bluegreen {
+    background: var(--gradient-theme) !important;
+    background-image: none;
+  }
+
+  main div.section.wave.bluegreen2 {
+    padding-bottom: 100px;
+  }
+
+  main div.section.wave.bluegreen2::after {
+    background-image: none;
+  }
+
+  main div.section.wave.wavecarousel.blue {
+    background-image: linear-gradient(transparent 170px, var(--color-link-hover));
+  }
+
+  main div.section.wave.bluegreen .default-content-wrapper {
+    margin-top: 0;
+    margin-bottom: 50px;
   }
 }
 
@@ -1790,18 +1790,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   Category page
 */
 
-/* Button in blue wave carousels */
-.category main div.section.wave.blue .button-container {
-  margin-top: 30px;
-}
-
-.category main div.section.wave.blue .button-container > a {
-  color: var(--color-white);
-  border-radius: 0;
-  padding: 15px 40px;
-  border: 1px solid rgb(var(--color-primary-rgb) / 26%);
-}
-
 .category .default-content-wrapper h3 a {
   color: var(--color-black);
 }
@@ -2041,12 +2029,6 @@ main .columns-separator-line .columns-wrapper .columns {
   padding-bottom: 3rem;
 }
 
-/* technology */
-.technology main .default-content-wrapper + div.columns-wrapper {
-  margin-top: 0;
-  padding-top: 0;
-}
-
 /* title with green/theme highlight */
 .title-with-green-highlight h2:first-child em,
 .title-with-green-highlight h3:first-child em,
@@ -2210,14 +2192,6 @@ main .section.no-margin-bottom {
 }
 
 /* COMMON STYLING */
-.blog main h3,
-.blog main .big-sub-heading h4,
-.publication.full-article main .social-share-container h3,
-.publication.full-article main .big-sub-heading h4 {
-  margin-top: 40px;
-  margin-bottom: 10px;
-}
-
 .blog main .section.block,
 .publication.full-article main .section.block {
   padding: 20px 0;
@@ -2324,50 +2298,10 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 /* whats next | new layout */
-.what-next {
-  --h2: 62px;
-  --h3: 36px;
-}
-
-@media only screen and (max-width: 991px) {
-  .what-next {
-    --h2: 36px;
-    --h3: var(--heading-font-size-l);
-  }
-}
-
-.what-next .section h2 {
-  font-size: var(--h2);
-}
-
-.what-next .section h3 {
-  font-size: var(--h3);
-}
-
 .what-next a i.fa-external-link {
   color: inherit;
 }
 
-.what-next .section p,
-.what-next .section h2,
-.what-next .section h3,
-.what-next .section h4,
-.what-next .section h5,
-.what-next .section h6,
-.what-next .section ul,
-.what-next .section ol {
-  margin-bottom: 20px;
-  padding-bottom: 0;
-  margin-top: 0;
-}
-
-.what-next .section h2:only-child,
-.what-next .section .default-content-wrapper h2:only-child {
-  margin-bottom: 2rem;
-  padding-bottom: 0;
-}
-
-.what-next .section p:last-child,
 .what-next .carousel.cards .carousel-item .card {
   margin-bottom: 0;
 }

@@ -35,10 +35,9 @@ main .section .resources-wrapper {
   margin-bottom: 10px;
 }
 
-.resources .resource-header h3 {
-  font-family: var(--ff-proxima-light);
-  font-weight: 300;
-  font-size: 22px;
+.resources .resource-header h5 {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .resources .resource-description {
@@ -217,12 +216,8 @@ main .section .resources-wrapper {
   padding-left: 0;
 }
 
-.section.resources-container .default-content-wrapper {
-  padding-top: 20px;
-}
-
 .section .resources .cover-banner .coveo-search-section {
-  margin: 50px 0 20px 10px;
+  margin: 0;
   padding: 0;
   max-width: 450px;
 }
@@ -381,7 +376,6 @@ main .section .resources-wrapper {
   }
 
   .section .resources .cover-banner .coveo-search-section {
-    margin: 0;
     padding: 20px;
   }
 

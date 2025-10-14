@@ -47,15 +47,17 @@ li.related-link::marker {
 }
 
 .related-applications-container .related-links-container {
-  padding-top: 26px;
   margin-top: 0;
+  margin-bottom: 3rem;
 }
 
 .related-applications-container.toc-grey .default-content-wrapper h2,
 .related-applications-container.toc-grey .related-links-container {
+  padding: 2rem 2.5rem;
   background-color: var(--color-gray-50);
 }
 
+.related-applications-container.toc-grey .related-links-container,
 .related-applications-container div.related-applications-wrapper {
   padding-top: 0;
 }

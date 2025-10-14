@@ -377,7 +377,7 @@ header .mobile-menu .company-links li {
   text-align: center;
   text-transform: capitalize;
   font-size: 17px !important;
-  color: var(--color-gray-400);
+  color: var(--color-theme-gray);
   width: 35%;
   margin-top: 15px;
 }

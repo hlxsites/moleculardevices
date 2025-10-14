@@ -26,10 +26,6 @@ main div.carousel-wrapper.container-width-carousel {
   width: var(--section-max-width);
 }
 
-main div.carousel-wrapper:last-child {
-  margin-bottom: 0 !important;
-}
-
 main .carousel,
 main .carousel-item {
   display: flex;
@@ -58,7 +54,7 @@ main .carousel-item[style*="background-image"] {
 }
 
 main .carousel-item-columns-container {
-  max-width: 1140px;
+  max-width: var(--carousel-max-width);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,11 +85,6 @@ main .carousel.full-bg .carousel-item {
   border-width: 1px;
 }
 
-main .carousel-item-text h3 {
-  font-size: 32px;
-  font-weight: lighter;
-}
-
 main .carousel-item-text .button-container {
   display: inline-block;
   margin-top: 0;
@@ -108,7 +99,7 @@ main .carousel.full-bg .primary {
   width: 100%;
 }
 
-main .carousel-item-text .button-container .secondary {
+main .carousel-item-text .button-container .secondary.button:not(:only-child) {
   margin-left: 15px;
 }
 
@@ -333,21 +324,11 @@ main .section.global-carousel .carousel h2 + h3 {
     padding: 20px;
   }
 
-  main .carousel-item-text h3 {
-    font-size: 24px;
-  }
-
   main .carousel-item-text .button-container {
     margin-top: 20px;
     margin-bottom: 0;
     max-width: 100%;
     width: 100%;
-  }
-
-  main .carousel-item-text .button-container .button {
-    max-width: 100%;
-    width: 100%;
-    font-size: 12px;
   }
 
   main .carousel-nav-button .icon {
@@ -432,9 +413,11 @@ main .carousel.wave .carousel-item-text p {
 
 main .carousel.wave .carousel-item-text .button-container a.secondary,
 main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
+  --btn-base-color: var(--color-white);
+  --btn-text-color: var(--color-white);
+
+  border-width: 1px;
   background-color: transparent;
-  color: var(--color-white);
-  border: 1.5px solid var(--color-white);
 }
 
 main .carousel-wrapper.wave .carousel-dot-buttons {
@@ -486,6 +469,10 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     */
     padding-top: 170px;
     margin-top: -170px;
+  }
+
+  .section.wave.wavecarousel {
+    padding-top: 170px;
   }
 
   main .carousel.wave .carousel-item {

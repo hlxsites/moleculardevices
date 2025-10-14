@@ -34,7 +34,7 @@ export default async function decorate(block) {
     && !cerosTitle.querySelector('a')
     && block.parentElement.appendChild(cerosTitle);
 
-  let buttonClasses = 'primary open';
+  let buttonClasses = 'primary open button secondary';
   if (cerosPoster) {
     buttonClasses += ' ceros-poster-overlay';
   }

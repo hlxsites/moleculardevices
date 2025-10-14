@@ -467,6 +467,13 @@ export default async function decorate(block) {
     return;
   }
 
+  // blue/customer story carousel
+  const customerStoryCarousel = block.classList.contains('blue');
+  if (customerStoryCarousel) {
+    const anchors = block.querySelectorAll('.button-container a');
+    anchors.forEach((anchor) => anchor.classList.add('button', 'secondary'));
+  }
+
   // use the default carousel
   await createCarousel(block);
 }

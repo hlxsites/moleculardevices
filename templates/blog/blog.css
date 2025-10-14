@@ -1,25 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.blog,
-.blog main strong {
-  font-family: var(--ff-proxima-regular);
-}
-
-.blog main .section .default-content-wrapper {
-  padding: 0;
-}
-
-.blog main ul,
-.blog main ol {
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding-left: 40px;
-}
-
-.blog main ul li,
-.blog main ol li {
-  margin-bottom: 4px;
-}
-
 .blog main ul ul,
 .blog main ol ol,
 .blog main .section .default-content-wrapper > p:last-child {
@@ -39,7 +18,10 @@
 .blog main .video-wrapper,
 .blog main .vidyard-lightbox-thumbnail {
   max-width: 100% !important;
-  margin: 0;
+}
+
+.blog main .section > div.embed-wrapper {
+  padding-top: 0;
 }
 
 .blog main .no-indent ul,
@@ -84,8 +66,6 @@
 
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
   max-width: 800px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .blog main .section > div.embed-wrapper > div.embed {

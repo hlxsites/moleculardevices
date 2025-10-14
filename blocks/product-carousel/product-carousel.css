@@ -2,6 +2,7 @@ main .carousel-wrapper.product-carousel-wrapper {
   width: var(--carousel-container-width);
   padding: unset;
   margin-top: 40px;
+  overflow: hidden;
 }
 
 main .carousel.product-carousel {

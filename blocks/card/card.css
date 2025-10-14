@@ -68,7 +68,7 @@ main .card .card-category {
 main .card-caption {
   display: flex;
   flex-direction: column;
-  padding: 10px 20px 20px;
+  padding: 20px;
   color: var(--color-gray-800);
   height: 100%;
   min-height: auto;
@@ -78,8 +78,7 @@ main .card-caption {
 main .card-caption h5 {
   font-weight: normal;
   min-height: 49px;
-  margin-top: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 main .card-caption h5 a {
@@ -92,17 +91,12 @@ main .card-caption .c2a {
 }
 
 main .card-caption .button.primary {
-  border: 1px solid var(--color-tertiary);
-  color: var(--color-text-primary);
-  padding-bottom: 10px;
-  padding-top: 11px;
-  background: none;
-  border-radius: 0;
-  font-size: 18px;
-  max-width: unset;
-  width: unset;
-  white-space: break-spaces;
-  word-break: break-word;
+  --btn-base-color: var(--color-tertiary);
+  --btn-text-color: var(--color-text-primary);
+
+  border-width: 1px;
+  padding: 14px 18px;
+  background-color: transparent;
 }
 
 main .card-caption .c2a .compare-button {
@@ -149,6 +143,7 @@ main .card-date {
   display: block;
   width: 100%;
   text-align: left;
+  margin-bottom: 0.5rem;
 }
 
 main .card a .icon.icon-chevron-right-outline {
@@ -166,10 +161,6 @@ main .card a .icon.icon-chevron-right-outline svg path {
 }
 
 @media only screen and (max-width: 767px) {
-  main .card-thumb img {
-    height: 190px;
-  }
-
   main .card .card-category {
     font-size: 14px;
   }

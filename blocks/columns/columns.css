@@ -1,6 +1,7 @@
 /* stylelint-disable no-descending-specificity */
 main .section > div.columns-wrapper {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .columns > div {
@@ -509,10 +510,6 @@ main .section > div.columns-wrapper {
 
   .columns[class*='layout-'] > div {
     display: grid;
-  }
-
-  .columns[class*='layout-'] h3 {
-    margin-top: 0;
   }
 
   .columns.layout-20-80 > div {

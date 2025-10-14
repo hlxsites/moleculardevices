@@ -106,7 +106,7 @@
 }
 
 .product-comparison .responsive-table tbody td:first-child {
-  background-color: var(--color-gray-700);
+  background-color: var(--color-theme-gray);
   min-width: 160px;
   padding: 15px;
   border-right: 1px solid var(--color-gray-250);
@@ -119,12 +119,12 @@
 }
 
 .product-comparison-container .product-comparison .responsive-table th:first-child {
-  background: var(--color-white) !important;
+  background: var(--color-white);
 }
 
 .background-gray.product-comparison-container .product-comparison .responsive-table th:first-child,
 .background-grey.product-comparison-container .product-comparison .responsive-table th:first-child {
-  background: var(--color-gray-50) !important;
+  background: var(--color-gray-50);
 }
 
 .product-comparison .product-heading .product-heading-title  {

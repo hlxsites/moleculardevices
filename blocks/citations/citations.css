@@ -1,11 +1,9 @@
 main .citations-container {
   --heading-font-size-l: 36px;
-
-  padding: 90px 50px 50px;
 }
 
-main .citations-container .default-content-wrapper h3 {
-  margin: 25px 0 10px;
+main .section.citations-container .default-content-wrapper h3 {
+  margin: 0 0 10px;
   font-family: var(--ff-proxima-regular);
 }
 
@@ -55,15 +53,13 @@ main .citations-container > .default-content-wrapper {
   font-style: normal;
 }
 
-.citations .citation-header h2 {
-  font-family: var(--ff-proxima-regular);
+.citations .citation-header h5 {
   padding-bottom: 15px;
   margin-bottom: 10px;
   margin-top: 10px;
-  font-size: 22px;
 }
 
-.citations h2 > a {
+.citations h5 > a {
   color: inherit;
 }
 

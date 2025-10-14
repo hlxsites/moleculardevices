@@ -325,14 +325,6 @@ main.error .hero-wrapper .hero-inner {
   color: var(--color-primary);
 }
 
-/* Technology Variant - Desktop -- Start */
-
-.technology .hero .hero-inner.short {
-  min-height: 450px;
-}
-
-/* Technology Variant - Desktop -- End */
-
 /* Service Support Variant - Desktop -- Start */
 
 main .hero.service-support .two-column > div:nth-of-type(2) > p {
@@ -364,7 +356,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero-inner {
-    min-height: 180px;
+    min-height: 240px;
     padding-top: 30px;
     padding-bottom: 40px;
   }
@@ -533,7 +525,8 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (min-width: 768px) {
-  .hero-inner {
+  .hero-inner,
+  .technology .hero .hero-inner.short {
     min-height: 450px;
   }
 
