@@ -20,6 +20,11 @@
   max-width: 100% !important;
 }
 
+.blog main .video-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
 .blog main .section > div.embed-wrapper {
   padding-top: 0;
 }

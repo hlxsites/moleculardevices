@@ -96,7 +96,7 @@
     width: 0;
     height: 0;
     min-height: 12px;
-    color: var(--card-list-filter-blog-separator);
+    color: var(--color-tertiary);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */

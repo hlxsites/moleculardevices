@@ -356,7 +356,7 @@ p:has(+ h4) {
 }
 
 p + h2,
-ul + h2{
+ul + h2 {
   padding-top: 50px;
 }
 
@@ -569,6 +569,10 @@ p.video-title {
 }
 
 /* buttons */
+button {
+  cursor: pointer;
+}
+
 .button {
   --btn-base-color: var(--color-transparent);
   --btn-text-color: var(--color-link);
@@ -1163,6 +1167,11 @@ main .section.applications-carousel-container .default-content-wrapper {
 }
 
 @media only screen and (max-width: 767px) {
+  main .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
   main .section.features-section {
     padding-top: 30px;
   }
