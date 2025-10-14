@@ -159,6 +159,10 @@
   padding: 0 0 15px;
 }
 
+.footer-newsletter-form .hubspot-form .hs-submit .actions button {
+  padding: 13px 18px;
+}
+
 .footer-newsletter-form ul:not(.hs-error-msgs) li {
   margin-bottom: 5px;
   max-width: 162px;

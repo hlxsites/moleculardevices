@@ -16,6 +16,11 @@ main div.carousel-wrapper.container-width-carousel {
   position: relative;
 }
 
+main .section.carousel-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 main div.fragments-carousel-wrapper.carousel-wrapper,
 main div.carousel-wrapper.container-width-carousel {
   width: var(--section-max-width);

@@ -34,7 +34,6 @@ main .carousel-wrapper.cards .carousel {
   transition: all 0.5s ease-in-out;
 }
 
-.carousel-wrapper.cards > div:not(picture:only-child),
 .carousel-wrapper.cards .card-caption {
   padding-top: 20px;
 }
@@ -79,10 +78,7 @@ main .carousel-wrapper.cards .carousel {
 }
 
 .carousel.cards .carousel-item h3 {
-  color: var(--color-text-primary);
-  font-size: var(--heading-font-size-l);
-  margin-bottom: 15px;
-  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .carousel.cards.three-lines-heading .carousel-item h3 {

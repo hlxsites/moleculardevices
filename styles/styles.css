@@ -345,6 +345,10 @@ h2:last-child {
   margin-bottom: 0;
 }
 
+h2:only-child {
+  margin-bottom: 2.5rem;
+}
+
 h1 {
   font-size: var(--heading-1);
 }
@@ -377,6 +381,11 @@ pre,
 blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+ul,
+ol {
+  padding-left: 20px;
 }
 
 ul ul {
@@ -1070,17 +1079,6 @@ main .default-content-wrapper ul li:not(:last-child) {
 .section.no-paragraph-spacing p {
   margin-top: 0;
   margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-  .section.title-big > div.default-content-wrapper > h2 {
-    font-size: 70px;
-  }
-}
-
-.section.title-light > div.default-content-wrapper > h2,
-.section.title-light > div.default-content-wrapper > h2 > strong {
-  font-family: var(--ff-proxima-light);
 }
 
 main .section .columns > div > div > h3 + ul {
@@ -2472,4 +2470,19 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 .section.heading-36 .default-content-wrapper h3:only-child {
   font-size: 36px;
   font-family: var(--ff-proxima-regular);
+}
+
+/* product titles */
+.section.product-titles h2 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section.product-titles h2 + h4 {
+  color: var(--color-theme-gray);
+  margin-bottom: 2.5rem;
+}
+
+.section.product-titles ul li {
+  margin-bottom: 10px;
 }

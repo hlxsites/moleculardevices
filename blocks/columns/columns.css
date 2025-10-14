@@ -26,11 +26,6 @@ main .section > div.columns-wrapper {
   margin-right: 10px;
 }
 
-.columns ul + p.button-container {
-  margin-left: 20px;
-  margin-top: 1rem;
-}
-
 .columns .video-wrapper {
   margin-top: 0;
 }
@@ -56,10 +51,6 @@ main .section > div.columns-wrapper {
 
 .columns.line h4 {
   font-size: 26px;
-}
-
-.columns p.video-title {
-  font-size: var(--body-font-size-m);
 }
 
 .columns.light-and-dark-grey > div > div {

@@ -360,6 +360,7 @@ class Carousel {
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       // add default carousel classes to apply default CSS
       defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
+      this.block.closest('.section').classList.add('carousel-section');
       this.block.parentElement.classList.add('carousel-wrapper');
       this.block.classList.add('carousel');
     }

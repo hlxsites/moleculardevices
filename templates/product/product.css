@@ -7,29 +7,8 @@ main .section.tabs > div > h3 ~ p {
   margin: 0 15px;
 }
 
-main p.video-title {
-  font-family: var(--ff-proxima-xbold);
-  font-style: normal;
-}
-
-main .section.tabs h2:has(+ h4) {
-  font-family: var(--ff-proxima-light);
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-main .section.tabs h4:last-child {
-  margin-bottom: 45px;
-}
-
 main .section.tabs:not(.feature-section) .default-content-wrapper + .image-list-wrapper {
   margin-top: 50px;
-}
-
-@media only screen and (min-width: 768px) {
-  main .video-title {
-    font-size: 24px;
-  }
 }
 
 /* cart-widget */
