@@ -43,7 +43,7 @@ main .card-thumb a {
 }
 
 main .card-thumb img {
-  height: 200px;
+  height: 190px;
   width: 100%;
   min-width: auto;
   object-fit: cover;
@@ -166,13 +166,8 @@ main .card a .icon.icon-chevron-right-outline svg path {
 }
 
 @media only screen and (max-width: 767px) {
-  main .card-thumb {
-    height: 150px;
-    min-height: 150px;
-  }
-
   main .card-thumb img {
-    height: 150px;
+    height: 190px;
   }
 
   main .card .card-category {

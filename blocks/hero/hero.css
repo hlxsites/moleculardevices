@@ -408,6 +408,12 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     padding-left: 0;
   }
 
+  .hero-inner .container > div:nth-child(2) > picture img {
+    max-width: 300px;
+    display: block;
+    margin: auto;
+  }
+
   .hero-inner .container.two-column > div.video-column {
     padding-top: 0;
     padding-left: 0;

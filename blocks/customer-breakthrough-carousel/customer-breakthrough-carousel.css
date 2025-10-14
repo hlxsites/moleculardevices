@@ -26,16 +26,6 @@ main .customer-breakthrough-carousel .card .card-type {
   display: block;
 }
 
-main .customer-breakthrough-carousel .card .card-thumb {
-  height: 190px;
-  min-height: 190px;
-  overflow: hidden;
-}
-
-main .customer-breakthrough-carousel .card .card-thumb img {
-  height: 190px;
-}
-
 main .customer-breakthrough-carousel .card .card-description {
   display: block;
   display: -webkit-box;
@@ -108,12 +98,6 @@ main .customer-breakthrough-carousel .card .card-description {
 
   main .carousel-wrapper.customer-breakthrough-carousel-wrapper .carousel-nav-button {
     display: none;
-  }
-
-  main .carousel.customer-breakthrough-carousel .card-thumb,
-  main .customer-breakthrough-carousel .card-thumb img {
-    height: 150px;
-    min-height: 150px;
   }
 
   .technology .customer-breakthrough-carousel-container h2,

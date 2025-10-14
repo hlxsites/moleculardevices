@@ -346,7 +346,7 @@ h2:last-child {
 }
 
 h2:only-child {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -456,6 +456,12 @@ iframe {
   width: 100%;
 }
 
+@media only screen and (min-width: 768px) {
+  h2:only-child {
+    margin-bottom: 2.5rem;
+  }
+}
+
 .text-left {
   text-align: left;
 }
@@ -556,7 +562,7 @@ p.video-title {
   display: inline-block;
   border-radius: 0;
   transition: all 0.2s;
-  min-width: 140px;
+  min-width: 200px;
   position: relative;
   height: auto;
   padding: 17px 18px;
@@ -1504,7 +1510,7 @@ main .section.background-molecules {
 }
 
 @media only screen and (max-width: 767px) {
-  main .section .default-content-wrapper {
+  main .section.background-molecules .default-content-wrapper {
     overflow: hidden;
   }
 

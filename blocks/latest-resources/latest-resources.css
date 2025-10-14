@@ -36,10 +36,6 @@ main .latest-resources .card .card-thumb {
   overflow: hidden;
 }
 
-main .latest-resources .card .card-thumb img {
-  height: 190px;
-}
-
 main .latest-resources .card .card-description {
   display: block;
   display: -webkit-box;
@@ -111,11 +107,6 @@ main .latest-resources .card .card-description {
 
   main .carousel-wrapper.latest-resources-wrapper .carousel-nav-button {
     display: none;
-  }
-
-  main .carousel.latest-resources .card-thumb, main .latest-resources .card-thumb img {
-    height: 150px;
-    min-height: 150px;
   }
 
   .technology .latest-resources-container h2,

@@ -28,6 +28,7 @@ main .carousel-wrapper.cards .carousel {
 .carousel-wrapper.cards div > picture img,
 .carousel-wrapper.cards .card-thumb,
 .carousel-wrapper.cards .card-thumb img {
+  height: 190px;
   width: 100%;
   min-width: auto;
   object-fit: cover;
@@ -270,12 +271,4 @@ main .carousel-wrapper.cards .carousel {
   .carousel-wrapper.cards .carousel-nav-button {
     display: none;
   }
-
-  /* .carousel-wrapper.cards div > picture,
-  .carousel-wrapper.cards div > picture img,
-  .carousel-wrapper.cards .card-thumb,
-  .carousel-wrapper.cards .card-thumb img {
-    height: 150px;
-    min-height: 150px;
-  } */
 }
