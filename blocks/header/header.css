@@ -1908,9 +1908,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .mainmenu-wrapper #header-logo {
     float: left;
-    width: 19%;
     vertical-align: middle;
-    margin-right: 9px;
+    margin-right: 30px;
     padding: 5px 0;
     display: none;
   }
@@ -1921,7 +1920,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .mainmenu-wrapper #header-logo img {
-    width: 220px;
+    width: auto;
     height: 30px;
   }
 
