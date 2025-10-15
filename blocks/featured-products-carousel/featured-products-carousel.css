@@ -12,6 +12,10 @@ main .section.columns-2.featured-products-carousel-container {
   grid-template-columns: auto auto;
 }
 
+main .section.columns-2.featured-products-carousel-container h2 {
+  text-align: left;
+}
+
 main .featured-products-carousel .carousel-item {
   border: 3px solid var(--color-gray-100);
 }
