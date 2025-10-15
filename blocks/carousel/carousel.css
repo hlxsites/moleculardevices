@@ -1,29 +1,8 @@
-/*
-  Default Carousel Styling.
-  Same as .products on the landing page.
-  Variant stylings can be found below.
-*/
-
 /* stylelint-disable no-descending-specificity */
 
 main div.carousel-wrapper {
   width: 100%;
   max-width: unset;
-}
-
-main div.carousel-wrapper,
-main div.carousel-wrapper.container-width-carousel {
-  position: relative;
-}
-
-main .section.carousel-section h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-main div.fragments-carousel-wrapper.carousel-wrapper,
-main div.carousel-wrapper.container-width-carousel {
-  width: var(--section-max-width);
 }
 
 main .carousel,
@@ -40,7 +19,6 @@ main .carousel {
 
 main .carousel-item {
   width: 100%;
-  margin-right: 30px;
   flex: 1 0 auto;
   align-items: center;
   justify-content: center;
@@ -53,6 +31,16 @@ main .carousel-item[style*="background-image"] {
   background-repeat: no-repeat;
 }
 
+main div.carousel-wrapper,
+main div.carousel-wrapper.container-width-carousel {
+  position: relative;
+}
+
+main .section.carousel-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 main .carousel-item-columns-container {
   max-width: var(--carousel-max-width);
   display: flex;
@@ -61,7 +49,7 @@ main .carousel-item-columns-container {
 }
 
 main .carousel-item-column {
-  width: 50%;
+  width: 100%;
 }
 
 main .carousel-item-column:empty {
@@ -103,6 +91,7 @@ main .carousel-item-text .button-container .secondary.button:not(:only-child) {
   margin-left: 15px;
 }
 
+/* CAROUSEL NAVIGATION */
 main .carousel-nav-button {
   z-index: 9;
   min-width: unset;
@@ -126,7 +115,7 @@ main .carousel-nav-button.disabled {
 main .carousel-nav-button:hover {
   background-color: var(--color-gray-500);
   color: var(--color-white);
-  border: 1.5px solid var(--color-white);
+  border-color: var(--color-white);
 }
 
 main .carousel-nav-button .icon {
@@ -143,6 +132,7 @@ main .carousel-nav-right {
   right: 20px;
 }
 
+/* CAROUSEL DOT BUTTON */
 main .carousel-dot-buttons {
   display: flex;
   justify-content: center;
@@ -166,6 +156,7 @@ main .carousel-dot-button.selected {
   border: 0;
 }
 
+/* CAROUSEL WITH IMAGE INDICATORS */
 main .carousel-dot-img-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -195,36 +186,17 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
   opacity: 1;
 }
 
-/* GLOBAL CAROUSEL */
-main .global-carousel .carousel-item-column:has(+ .carousel-item-column:empty) {
-  width: 100%;
-}
-
-main .global-carousel .carousel-item-column:empty {
-  display: none;
-}
-
-main .global-carousel.blue-title h2 {
-  color: var(--color-primary);
-}
-
-main .global-carousel.title-center h2 {
-  text-align: center;
-}
-
-main .section.global-carousel .carousel h2:only-child,
-main .section.global-carousel .carousel h2 + h3 {
-  margin-bottom: 18px;
-}
-
 @media only screen and (min-width: 768px) {
-  main .section.global-carousel .carousel h2:only-child,
-  main .section.global-carousel .carousel h2 + h3 {
-    margin-bottom: 48px;
+  main .carousel-item {
+    margin-right: 30px;
   }
 }
 
 @media only screen and (min-width: 992px) {
+  main .carousel-item-column {
+    width: 50%;
+  }
+
   main .carousel.full-bg .primary {
     background-color: transparent;
     border: 1px solid var(--color-white);
@@ -371,16 +343,14 @@ main .section.global-carousel .carousel h2 + h3 {
 }
 
 /* WAVE carousel variant */
-main div.carousel-wrapper.wave {
+main div.carousel-wrapper.wave,
+main div.fragments-carousel-wrapper.carousel-wrapper,
+main div.carousel-wrapper.container-width-carousel {
   width: var(--section-max-width);
 }
 
 main .carousel.wave {
   padding: 0;
-}
-
-main .carousel.wave .carousel-item-columns-container {
-  gap: 2em;
 }
 
 main .carousel.wave .carousel-item {
@@ -389,30 +359,25 @@ main .carousel.wave .carousel-item {
 }
 
 main .carousel.wave .carousel-item-column {
-  width: unset;
   padding: 0;
 }
 
 main .carousel.wave .carousel-item-image img {
-  height: 353px;
-  width: 330px;
+  width: 100%;
+  height: 100%;
+  max-height: 350px;
 }
 
 main .carousel.wave .carousel-item-text {
-  margin-top: 13%;
-  max-width: 597px;
-  padding-right: 15px;
   text-align: center;
   position: relative;
 }
 
 main .carousel.wave .carousel-item-text p {
   color: var(--color-white);
-  font-size: 27px;
 }
 
-main .carousel.wave .carousel-item-text .button-container a.secondary,
-main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
+main .carousel.wave .carousel-item-text .button-container a.secondary {
   --btn-base-color: var(--color-white);
   --btn-text-color: var(--color-white);
 
@@ -420,18 +385,70 @@ main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
   background-color: transparent;
 }
 
+main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
+  --btn-text-color: var(--color-link);
+
+  background-color: var(--btn-base-color);
+}
+
 main .carousel-wrapper.wave .carousel-dot-buttons {
   margin-top: 0;
 }
 
-main .carousel-wrapper.wave .carousel-dot-button {
-  background-color: var(--color-white);
+main .carousel-wrapper.wave .carousel-nav-button {
+  color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
   color: var(--color-gray-500);
   border: 1.5px solid var(--color-gray-500);
   background-color: inherit;
+}
+
+main div.section.wave.wavecarousel::after {
+  content: none;
+}
+
+main div.carousel-wrapper.wave.blue .carousel-dot-button {
+  background-color: var(--color-white);
+}
+
+main div.carousel-wrapper.wave.blue .carousel-dot-button.selected {
+  background-color: var(--carousel-blue-wave-indicator);
+}
+
+main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
+  background-color: var(--color-tertiary);
+}
+
+main div.section.wave.wavecarousel.blue:not(.no-margin-bottom),
+main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
+  margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 992px) {
+  .section.wave.wavecarousel {
+    min-height: 550px;
+    background-size: 100% 100%;
+  }
+
+  main .carousel.wave .carousel-item-text p {
+    font-size: 27px;
+  }
+
+  main div.section.wave.wavecarousel.blue {
+    background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
+  }
+
+  main div.section.wave.wavecarousel.bluegreen {
+    background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
+  }
+
+  main .carousel.wave .carousel-item-text {
+    margin-top: 13%;
+    max-width: 597px;
+  }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
@@ -441,96 +458,68 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     margin: auto;
   }
 
-  main .carousel.wave .carousel-item-columns-container {
-    gap: 1em;
-  }
-
   main .carousel.wave .carousel-item-text {
     max-width: 530px;
   }
 
   main .carousel.wave .carousel-item-image img {
-    height: 310px;
-    width: 200px;
+    max-height: 310px;
   }
 }
 
-@media only screen and (max-width: 992px) {
-  main .carousel.wave .carousel-item-image img {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  main .carousel.wave {
-    /*
-      Ugly hack because you cannot mix overflow-x: hidden with overflow-y: visible
-      https://stackoverflow.com/a/39554003
-    */
-    padding-top: 170px;
-    margin-top: -170px;
-  }
-
+@media only screen and (max-width: 991px) {
   .section.wave.wavecarousel {
-    padding-top: 170px;
+    --image-height: 290px;
+    --image-overlap-gap: calc(var(--image-height) / 1.7);
+
+    padding-top: var(--image-overlap-gap);
+  }
+
+  .section.wave.wavecarousel .block {
+    margin-top: calc(var(--image-overlap-gap) * -1);
   }
 
   main .carousel.wave .carousel-item {
     position: relative;
     padding: 0 30px;
-    max-width: 90%;
-  }
-
-  main .carousel.wave .carousel-item-columns-container {
-    gap: 0;
+    max-width: 100%;
   }
 
   main .carousel.wave .carousel-item-image img {
-    max-width: unset;
     display: block;
-    height: 290px;
-    width: 260px;
-    flex-shrink: 0;
-  }
-
-  main .carousel.wave .carousel-item-image {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0);
-    margin: auto;
-    display: block;
-    top: -180px;
-  }
-
-  main .carousel.wave .carousel-item-text {
-    margin-top: 140px;
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 25px;
-    max-width: unset;
+    margin: 0 auto;
+    max-height: var(--image-height);
   }
 
   main .carousel-wrapper.wave .carousel-dot-buttons {
-    margin-bottom: 25px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
-  main .section.global-carousel .carousel h2 + h3 {
-    margin-bottom: 1.75rem;
+  main div.section.wave.wavecarousel.blue {
+    background-image: unset;
   }
 
-  .slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
-    font-size: 24px;
+  main div.section.wave.wavecarousel.blue .carousel-wrapper.wave {
+    background-color: var(--color-link-hover);
+    width: 100%;
   }
+}
 
-  .slas-page main .section.slas-resource-list .columns > div {
-    padding-left: 15px;
-    padding-right: 15px;
+@media only screen and (max-width: 767px) {
+  .section.wave.wavecarousel {
+    --image-height: 200px;
   }
 
   main .carousel-dot-img-buttons .carousel-dot-button {
     max-width: 60px;
     padding: 5px;
     margin-right: 0;
+  }
+
+  .slas-page main .section.slas-resource-list .columns > div {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
@@ -550,16 +539,7 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   }
 }
 
-/* WAVE Blue Variant */
-main div.carousel-wrapper.wave.blue .carousel-dot-button.selected {
-  background-color: var(--carousel-blue-wave-indicator);
-}
-
-/* WAVE BlueGreen Variant */
-main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
-  background-color: var(--color-tertiary);
-}
-
+/* blockquote */
 main .carousel .carousel-item-text blockquote {
   margin: 0;
   position: static;

@@ -7,6 +7,7 @@ header {
   top: 0;
   background: var(--color-white);
   width: 100%;
+  height: var(--nav-height);
 }
 
 header a i.fa.fa-external-link {
@@ -1794,8 +1795,13 @@ header .company-right-submenu > div:last-child > div:last-child img {
     visibility: visible;
   }
 
+  header {
+    height: var(--nav-height-mobile);
+  }
+
   header .container {
     width: 100%;
+    box-shadow: 0 0 10px -5px var(--color-black-alpha-70);
   }
 
   header .block {

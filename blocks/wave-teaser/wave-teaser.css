@@ -1,16 +1,13 @@
-main .section.wave.bluegreen.wave-teaser-container {
-  background-size: 100% 80%;
-  background-position-y: center;
-}
-
 main .section .wave-teaser-wrapper {
   width: 100%;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .wave-teaser > div {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .wave-teaser > div > div:last-child {
@@ -20,17 +17,8 @@ main .section .wave-teaser-wrapper {
   margin: auto;
 }
 
-.wave-teaser.image-right > div > div:first-child {
-  order: 2;
-  align-self: flex-end;
-}
-
-.wave-teaser.image-right > div > div:last-child {
-  order: 1;
-}
-
-.wave-teaser img {
-  height: 650px;
+.wave-teaser .button-container a {
+  color: var(--color-white);
 }
 
 .wave-teaser h4 {
@@ -38,56 +26,68 @@ main .section .wave-teaser-wrapper {
   font-size: 30px;
 }
 
-.wave-teaser p {
-  font-size: 50px;
-  line-height: 50px;
-}
+@media only screen and (min-width: 992px) {
+  .wave-teaser > div {
+    flex-direction: row;
+  }
 
-main .section.wave .wave-teaser .button-container {
-  text-align: right;
-  margin-top: 10px;
-}
+  .wave-teaser p {
+    font-size: 50px;
+    line-height: 50px;
+  }
 
-.wave-teaser .button-container a {
-  color: var(--color-white);
-  font-size: 22px;
+  .wave-teaser .button-container a {
+    font-size: 22px;
+  }
+
+  .wave-teaser h4 {
+    color: var(--color-gray-250);
+  }
+
+  .wave-teaser .button-container {
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  .wave-teaser img {
+    height: 650px;
+  }
+
+  .wave-teaser.image-right > div > div:first-child {
+    order: 2;
+    align-self: flex-end;
+  }
+
+  .wave-teaser.image-right > div > div:last-child {
+    order: 1;
+  }
+
+  main .section.wave.bluegreen.wave-teaser-container {
+    background-size: 100% 80%;
+    background-position-y: center;
+  }
 }
 
 @media only screen and (max-width: 1199px) {
   .wave-teaser > div > div:last-child {
     max-width: 500px;
   }
-
-  .wave-teaser p {
-    font-size: 30px;
-    line-height: 30px;
-  }
 }
 
 @media only screen and (max-width: 991px) {
+  .section.wave.wavecarousel.wave-teaser-container {
+    --image-height: 500px;
+    --image-overlap-gap: calc(var(--image-height) / 2);
+
+    padding-bottom: 0;
+  }
+
+  main .wave-teaser-container .wave-teaser-wrapper {
+    padding-bottom: 40px;
+  }
+
   .wave-teaser img {
-    max-width: 400px;
-    height: 500px;
-  }
-
-  .wave-teaser h4 {
-    font-size: 20px;
-  }
-
-  .wave-teaser p, .wave-teaser .button-container a {
-    font-size: 20px;
-    line-height: 30px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .wave-teaser {
-    position: relative;
-    top: -200px;
-  }
-
-  .wave-teaser > div {
-    flex-direction: column;
+    height: var(--image-height);
   }
 
   .wave-teaser > div > div:first-child {
@@ -95,15 +95,18 @@ main .section.wave .wave-teaser .button-container {
   }
 
   .wave-teaser.image-right > div > div:first-child {
-    order: 1;
+    align-self: flex-end;
   }
+}
 
-  .wave-teaser.image-right > div > div:last-child {
-    order: 2;
+@media only screen and (max-width: 767px) {
+  .section.wave.wavecarousel.wave-teaser-container {
+    --image-height: 400px;
   }
+}
 
-  .wave-teaser img {
-    max-width: 600px;
-    height: 400px;
+@media only screen and (max-width: 575px) {
+  .section.wave.wavecarousel.wave-teaser-container {
+    --image-height: 300px;
   }
 }

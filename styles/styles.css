@@ -286,16 +286,6 @@ html {
   }
 }
 
-header {
-  height: var(--nav-height);
-}
-
-@media (max-width: 991px) {
-  header {
-    height: var(--nav-height-mobile);
-  }
-}
-
 .background-gray main {
   background-color: var(--color-gray-100);
 }
@@ -339,34 +329,36 @@ h2 {
   font-family: var(--ff-proxima-light);
 }
 
-h1:last-child,
-h2:last-child {
-  margin-bottom: 0;
-}
-
 h2:only-child,
-h2:has(+ h3) {
+main h2:has(+ h3) {
   padding-bottom: 1rem;
 }
 
+h2:has(+ h3) {
+  padding-top: 0;
+}
+
+h1:last-child,
+h2:last-child,
+h2:has(+ h3),
 p:has(+ h2),
 p:has(+ h3),
 p:has(+ h4) {
   margin-bottom: 0;
 }
 
-p + h2,
-ul + h2 {
+main p + h2,
+main ul + h2 {
   padding-top: 50px;
 }
 
-p + h3,
-ul + h3 {
+main p + h3,
+main ul + h3 {
   padding-top: 30px;
 }
 
-p + h4,
-ul + h4 {
+main p + h4,
+main ul + h4 {
   padding-top: 1rem;
 }
 
@@ -505,6 +497,7 @@ iframe {
 }
 
 /* SCREEN READER TEXT */
+.columns-wrapper:has(> .screen-reader-text:only-child),
 .screen-reader-text {
   position: absolute;
   width: 1px;
@@ -855,12 +848,6 @@ main .section > div,
   width: var(--section-max-width);
 }
 
-@media (max-width: 767px) {
-  main .section.wavecarousel {
-    padding-top: 200px;
-  }
-}
-
 /* Marked as !important as these should not get overriden */
 main .section.page-tabs-container,
 main .section.html-snippet-container {
@@ -910,8 +897,8 @@ main .section.columns-2 > div {
 
   main .section.columns-2 {
     grid-template-columns: 1fr;
-    padding-left: calc((100vw - var(--section-max-width)) / 2);
-    padding-right: calc((100vw - var(--section-max-width)) / 2);
+    padding-left: var(--center-space);
+    padding-right: var(--center-space);
   }
 
   main .section.columns-2 > div {
@@ -992,6 +979,7 @@ main .section.full-width .html-snippet-wrapper {
 
 main .section.full-width img {
   width: 100%;
+  display: block;
 }
 
 /* nav */
@@ -1445,38 +1433,20 @@ main div.section.wave.bg-support-service {
   background-position: 100% 30%;
 }
 
-/* Carousel Variant */
-main div.section.wave.wavecarousel::after {
-  content: none;
-}
-
-main div.section.wave.wavecarousel {
-  min-height: 550px;
-  background-size: 100% 100%;
-}
-
-main div.section.wave.wavecarousel.blue {
-  background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
-}
-
-main div.section.wave.wavecarousel.bluegreen {
-  background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
-}
-
-main div.section.wave.wavecarousel.blue:not(.no-margin-bottom),
-main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
-  margin-bottom: 40px;
-}
-
 main div.block.no-margin-bottom,
 main div.section.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
-@media only screen and (max-width: 767px) {
-  main .section.bluegreen {
+@media only screen and (max-width: 991px) {
+  main .section.bluegreen,
+  main .section.bluegreen .wave-teaser-wrapper {
     background: var(--gradient-theme) !important;
     background-image: none;
+  }
+
+  main .section.bluegreen:has(> .wave-teaser-wrapper) {
+    background: transparent !important;
   }
 
   main div.section.wave.bluegreen2 {
@@ -1485,10 +1455,6 @@ main div.section.no-margin-bottom {
 
   main div.section.wave.bluegreen2::after {
     background-image: none;
-  }
-
-  main div.section.wave.wavecarousel.blue {
-    background-image: linear-gradient(transparent 170px, var(--color-link-hover));
   }
 
   main div.section.wave.bluegreen .default-content-wrapper {
@@ -2092,10 +2058,6 @@ main .section.no-margin-bottom {
   margin-bottom: 0 !important;
 }
 
-.slas-page .section .columns.tutorials-posters > div:not(:last-child) {
-  margin: 0;
-}
-
 .slas-page .section .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) {
   padding: 20px 0;
   border-bottom: 1px solid;
@@ -2107,25 +2069,20 @@ main .section.no-margin-bottom {
   text-align: left;
 }
 
-.slas-page .section .default-content-wrapper h2 + h3,
-.slas-page .columns.tutorials-posters h3,
-.slas-page .columns.tutorials-posters h4 {
-  font-family: var(--ff-proxima-regular);
-  color: var(--color-text-primary);
+.slas-page main .section h2 {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0;
 }
 
 .slas-page main .section h3 {
   padding-top: 0;
 }
 
-.slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
-  font-size: 36px;
-}
-
-.slas-page .section .default-content-wrapper h2 + h3 {
+.slas-page main .section.blue-title h2 + h3 {
+  color: var(--color-text-primary);
   text-align: left;
-  margin-top: 30px;
-  margin-bottom: 50px;
 }
 
 .slas-page .columns.tutorials-posters h4 {
@@ -2135,18 +2092,6 @@ main .section.no-margin-bottom {
 
 .slas-page .columns.tutorials-posters p {
   margin: 0;
-}
-
-.slas-page .slas-resource-list .columns > div > div h3 {
-  padding-top: 0;
-  font-size: 24px;
-  color: inherit;
-  font-weight: bold;
-}
-
-.slas-page .slas-resource-list .columns > div > div h3 + ul {
-  padding-top: 0;
-  padding-left: 20px;
 }
 
 /* eBook contact */
@@ -2348,8 +2293,8 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 .what-next main .section.newsletter-form {
   border: none;
   position: relative;
-  padding-left: calc((100dvw - var(--section-max-width)) / 2);
-  padding-right: calc((100dvw - var(--section-max-width)) / 2);
+  padding-left: var(--center-space);
+  padding-right: var(--center-space);
 }
 
 .what-next main .section.newsletter-form a {

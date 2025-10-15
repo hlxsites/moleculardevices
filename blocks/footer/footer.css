@@ -408,7 +408,6 @@
   margin-top: 8px;
   margin-bottom: 0;
   display: flex;
-  justify-content: center;
 }
 
 .footer .footer-landing-page ul li {
@@ -433,12 +432,6 @@
 
 /* MEDIA QUERY */
 @media only screen and (min-width: 768px) {
-  .columns > div {
-    display: flex;
-    flex-direction: unset;
-    gap: unset;
-  }
-
   .footer-wrap .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -448,10 +441,6 @@
   .footer-landing-page .container {
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .footer .footer-landing-page ul {
-    justify-content: flex-start;
   }
 }
 
@@ -583,6 +572,6 @@
 
   .footer .container {
     display: grid;
-    gap: 30px;
+    gap: 20px;
   }
 }

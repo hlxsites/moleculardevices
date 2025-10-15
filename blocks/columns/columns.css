@@ -487,7 +487,6 @@ main .section > div.columns-wrapper {
 
 @media (min-width: 768px) {
   .columns > div {
-    display: flex;
     flex-direction: unset;
     gap: unset;
   }
