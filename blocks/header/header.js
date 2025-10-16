@@ -4,7 +4,7 @@ import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
 import { fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
-  a, div, li, span, i,
+  a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
@@ -97,21 +97,17 @@ export default async function decorate(block) {
   const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
 
   // Create wrapper for logo header part
-  const navbarHeader = document.createElement('div');
-  navbarHeader.classList.add('navbar-header');
-
-  // With this:
+  const navbarHeader = domEl('div', { class: 'navbar-header' });
   const navBrand = div({ class: 'nav-brand' },
     a({ href: '/', class: 'site-logo' },
       createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE),
     ));
-  navbarHeader.prepend(navBrand);
 
+  navbarHeader.prepend(navBrand);
   navbarHeader.append(buildTools(content));
   navbarHeader.append(buildHamburger(content));
 
-  const headerWrapper = document.createElement('div');
-  headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
+  const headerWrapper = domEl('div', { class: 'container sticky-element sticky-mobile' });
   headerWrapper.append(navbarHeader);
 
   const hideSearch = hasCustomLogo;
@@ -124,6 +120,5 @@ export default async function decorate(block) {
   block.querySelectorAll('a').forEach(decorateExternalLink);
 
   addIndividualComponents(block);
-
   handleViewportChanges(block);
 }

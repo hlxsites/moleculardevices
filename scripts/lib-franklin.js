@@ -348,6 +348,30 @@ function decorateBlockLocale(block) {
 }
 
 /**
+ * Replaces a DOM element with a new tag (e.g., <section>, <article>)
+ * while preserving its children, classes, and attributes.
+ *
+ * @param {HTMLElement} oldEl - The existing DOM element to replace.
+ * @param {string} newTag - The tag name of the new element (e.g., 'main').
+ * @returns {HTMLElement} - The new element that replaced the old one.
+ */
+export function replaceHTMLTag(oldEl, newTag) {
+  if (!oldEl || typeof newTag !== 'string') return oldEl;
+
+  const newEl = domEl(newTag);
+
+  // copy classes and attributes
+  newEl.className = oldEl.className;
+  [...oldEl.attributes].forEach((attr) => {
+    newEl.setAttribute(attr.name, attr.value);
+  });
+
+  newEl.append(...oldEl.childNodes);
+  oldEl.parentNode.replaceChild(newEl, oldEl);
+  return newEl;
+}
+
+/**
  * Decorates a block.
  * @param {Element} block The block element
  */
@@ -355,7 +379,8 @@ export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
   const articleIncluded = ['Blog'];
   const hasArticle = articleIncluded.includes(getMetadata('template'));
-  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'carousel', 'recent-blogs-carousel'];
+  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'carousel', 'recent-blogs-carousel', 'card-list-filter'];
+
   const decoratedBlock = block;
   const parent = block.parentNode;
 
@@ -363,16 +388,9 @@ export function decorateBlock(block) {
 
   // Replace block's parent with <article>
   if (hasArticle && parent && parent.tagName === 'DIV'
-    && !hasExcludedClass(block)
-    && !hasExcludedClass(parent)
+    && !hasExcludedClass(block) && !hasExcludedClass(parent)
   ) {
-    const article = domEl('article');
-    article.className = parent.className;
-    [...parent.attributes].forEach((attr) => {
-      article.setAttribute(attr.name, attr.value);
-    });
-    article.append(...parent.childNodes);
-    parent.parentNode.replaceChild(article, parent);
+    replaceHTMLTag(block.parentElement, 'article');
   }
 
   if (shortBlockName) {
