@@ -76,7 +76,8 @@ function addIndividualComponents(block) {
   if (!resourceEl) return;
 
   const resources = resourceEl.parentElement;
-  const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
+  const mainMenu = resources.querySelector('.menu-nav-submenu');
+  const rightSubMenu = mainMenu.querySelector('div > .right-submenu');
 
   // add search bar to right submenu
   const searchBar = buildSearchBar('resourcesSearchForm');
@@ -94,9 +95,8 @@ export default async function decorate(block) {
   // fetch nav content
   const content = await fetchHeaderContent();
 
-  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
-
   // Create wrapper for logo header part
+  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
   const navbarHeader = domEl('div', { class: 'navbar-header' });
   const navBrand = div({ class: 'nav-brand' },
     a({ href: '/', class: 'site-logo' },

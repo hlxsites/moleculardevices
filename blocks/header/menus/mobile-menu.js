@@ -3,7 +3,7 @@ import {
   reverseElementLinkTagRelation, buildRequestQuote, decorateLanguagesTool,
 } from '../helpers.js';
 import {
-  div, h1, h2, ul, li, a, nav, span, button,
+  div, ul, li, a, nav, span, button, p,
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
 import { processSectionMetadata } from '../../../scripts/scripts.js';
@@ -42,7 +42,7 @@ function getResponseMetadata(content, metadataField) {
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
 async function buildMobileMenuItem(menuItem, menuId) {
-  const menuName = menuItem.querySelector('h1 a').textContent;
+  const menuName = menuItem.querySelector('a').textContent;
   const menuParentLink = menuItem.getAttribute('menu-link');
 
   await fetch(`/fragments/megamenu/${menuId}`, window.location.pathname.endsWith(`/${menuId}`) ? { cache: 'reload' } : {}).then(async (response) => {
@@ -54,34 +54,18 @@ async function buildMobileMenuItem(menuItem, menuId) {
       submenuContent.innerHTML = content;
 
       // get all H2s and create a list of them
-      const subcategoriesContent = [...submenuContent.querySelectorAll('h2')];
+      const subcategoriesContent = [...submenuContent.querySelectorAll('main div > p:first-child:has(a[href]):not(picture)')];
+      const mobileStyle = getResponseMetadata(content, 'mobile-style') !== 'No Parent Link';
 
-      const subCategories = ul({ class: 'mobile-menu-subcategories', 'menu-id': menuId });
-
-      // add back to parent button
-      const backToParentMenuItem = li(
-        { class: 'back-to-parent' },
-        a(
-          { href: '#', 'aria-label': 'Go Back' },
-          menuName,
+      const subCategories = ul({ class: 'mobile-menu-subcategories', 'menu-id': menuId },
+        li({ class: 'back-to-parent' },
+          a({ href: '#', 'aria-label': 'Go Back' }, menuName),
         ),
+        mobileStyle
+          ? li({ class: 'mobile-menu-subcategory-item' },
+            a({ href: menuParentLink }, p(menuName)))
+          : '',
       );
-      subCategories.append(backToParentMenuItem);
-
-      // add button to parent directly. This depends on the mobile-style meta tag
-      const mobileStyle = getResponseMetadata(content, 'mobile-style');
-      if (mobileStyle !== 'No Parent Link') {
-        const parentItem = li(
-          { class: 'mobile-menu-subcategory-item' },
-          a(
-            { href: menuParentLink },
-            h2(
-              menuName,
-            ),
-          ),
-        );
-        subCategories.append(parentItem);
-      }
 
       // add H2s to list
       subcategoriesContent.forEach((subcategoryContent) => {
@@ -97,23 +81,15 @@ async function buildMobileMenuItem(menuItem, menuId) {
         // create clone of subcategoryContent to avoid modifying the original
         const element = reverseElementLinkTagRelation(subcategoryContent);
         const caret = span({ class: 'caret' });
-
-        const subcategory = li(
-          { class: 'mobile-menu-subcategory-item' },
-          element,
-        );
+        const subcategory = li({ class: 'mobile-menu-subcategory-item' }, element);
 
         // if mobileMode is null or is not set to "No Expand" then add the caret
         const addSubmenu = mobileMode === null || mobileMode !== 'No Expand';
         if (addSubmenu) {
           element.append(caret);
 
-          const backToParentCategory = li(
-            { class: 'back-to-parent' },
-            a(
-              { href: '#', 'aria-label': 'Go Back' },
-              element.textContent,
-            ),
+          const backToParentCategory = li({ class: 'back-to-parent' },
+            a({ href: '#', 'aria-label': 'Go Back' }, element.textContent),
           );
 
           // create the list of items inside this subcategory (3rd menu level)
@@ -125,10 +101,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
           // get subcategory items from the content. This elements are in a div
           // within the same parent as the H2
           subcategoryItems.forEach((item) => {
-            const listItem = li(
-              { class: 'mobile-menu-subcategory-item' },
-              item,
-            );
+            const listItem = li({ class: 'mobile-menu-subcategory-item' }, item);
             items.append(listItem);
           });
 
@@ -148,7 +121,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
       menuItem.append(subCategories);
 
       // add listener to close subcategories
-      backToParentMenuItem.addEventListener('click', (e) => {
+      subCategories.querySelector('a[aria-label="Go Back"]').addEventListener('click', (e) => {
         e.stopPropagation();
         const parentMenuItem = menuItem.closest('.mobile-menu-item');
         closeSubMenu(parentMenuItem);
@@ -168,7 +141,7 @@ function addHamburgerListener(content, hamburger) {
     e.stopPropagation();
     toggleMobileMenu();
 
-    const titles = content.querySelectorAll('h1');
+    const titles = content.querySelectorAll('.menu-nav-heading');
     titles.forEach((title) => {
       const menuId = title.getAttribute('id');
       if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${menuId}"]`)) {
@@ -189,44 +162,28 @@ export function buildMobileMenuTools(menuItems, content, hideGlobalRFQ) {
 
   // create Tools buttons
   const toolsList = content.querySelector('div:nth-child(2)');
-  const toolsWrapper = li(
-    { class: 'mobile-menu-item company-links' },
-    toolsList,
-  );
+  const toolsWrapper = li({ class: 'mobile-menu-item company-links' }, toolsList);
   decorateLanguagesTool(toolsWrapper);
-
   menuItems.append(toolsWrapper);
 }
 
 export async function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
-  const navigation = nav(
-    { class: 'mobile-menu' },
-    ul(
-      { class: 'mobile-menu-items' },
+  const navigation = nav({ class: 'mobile-menu' },
+    ul({ class: 'mobile-menu-items' },
       (!hideSearch)
-        ? li(
-          { class: 'headersearch-item' },
-          buildMobileSearch(),
-        )
-        : '',
-    ),
-  );
+        ? li({ class: 'headersearch-item' }, buildMobileSearch())
+        : ''));
 
   // add menu items
-  [...content.querySelectorAll('h1')].forEach((menu) => {
+  [...content.querySelectorAll('.menu-nav-heading')].forEach((menu) => {
     const id = menu.getAttribute('id');
     const menuLink = menu.querySelector('a');
 
-    const submenuLink = a(
-      { href: '#', 'aria-label': menuLink.textContent },
-      menuLink.textContent,
-    );
+    const submenuLink = a({ href: '#', 'aria-label': menuLink.textContent }, menuLink.textContent);
 
     const listItem = li(
       { class: 'mobile-menu-item', 'menu-id': id, 'menu-link': menuLink.getAttribute('href') },
-      h1(
-        submenuLink,
-      ),
+      submenuLink,
     );
 
     processSectionMetadata(menu.parentElement);
@@ -252,23 +209,12 @@ export async function buildMobileMenu(content, hideSearch, hideGlobalRFQ) {
 export function buildHamburger(content) {
   const hamburger = button(
     { class: 'hamburger' },
-    span(
-      { class: 'sr-only' },
-      'Toggle navigation',
-    ),
-    span(
-      { class: 'icon-bar' },
-    ),
-    span(
-      { class: 'icon-bar' },
-    ),
-    span(
-      { class: 'icon-bar' },
-    ),
+    span({ class: 'sr-only' }, 'Toggle navigation'),
+    span({ class: 'icon-bar' }),
+    span({ class: 'icon-bar' }),
+    span({ class: 'icon-bar' }),
   );
 
-  // add listener to toggle hamburger
   addHamburgerListener(content, hamburger);
-
   return hamburger;
 }

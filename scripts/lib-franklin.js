@@ -356,16 +356,23 @@ function decorateBlockLocale(block) {
  * @returns {HTMLElement} - The new element that replaced the old one.
  */
 export function replaceHTMLTag(oldEl, newTag) {
-  if (!oldEl || typeof newTag !== 'string') return oldEl;
+  if (!oldEl
+    || typeof newTag !== 'string'
+    || oldEl.closest('header, footer, .blog-heading, .social-share-container')
+  ) {
+    return oldEl;
+  }
 
-  const newEl = domEl(newTag);
+  // extract all attributes into an object
+  const attributes = [...oldEl.attributes].reduce((acc, attr) => {
+    acc[attr.name] = attr.value;
+    return acc;
+  }, {});
 
-  // copy classes and attributes
-  newEl.className = oldEl.className;
-  [...oldEl.attributes].forEach((attr) => {
-    newEl.setAttribute(attr.name, attr.value);
-  });
+  // create new element with domEl, including attributes
+  const newEl = domEl(newTag, attributes, ...oldEl.childNodes);
 
+  // replace in DOM
   newEl.append(...oldEl.childNodes);
   oldEl.parentNode.replaceChild(newEl, oldEl);
   return newEl;
@@ -379,7 +386,7 @@ export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
   const articleIncluded = ['Blog'];
   const hasArticle = articleIncluded.includes(getMetadata('template'));
-  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'carousel', 'recent-blogs-carousel', 'card-list-filter'];
+  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'card-list-filter'];
 
   const decoratedBlock = block;
   const parent = block.parentNode;

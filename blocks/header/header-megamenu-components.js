@@ -354,7 +354,7 @@ function addIndividualComponents(rightSubMenu, submenuId) {
     return;
   }
 
-  if (submenuId === 'accessories--consumables') {
+  if (submenuId === 'accessories-consumables') {
     rightSubMenu.parentElement.appendChild(
       img({
         class: 'spectra-accessories',
