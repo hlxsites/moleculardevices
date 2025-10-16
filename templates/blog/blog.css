@@ -8,16 +8,16 @@
   padding: 0;
 }
 
-.blog main p {
+.blog main p,
+.blog main ul,
+.blog main ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
 .blog main ul,
 .blog main ol {
-  margin-top: 0;
-  margin-bottom: 10px;
-  padding-left: 40px;
+  padding-left: 20px;
 }
 
 .blog main ul li,
@@ -47,11 +47,6 @@
   margin: 0;
 }
 
-.blog main .no-indent ul,
-.blog main .no-indent ol {
-  padding-left: 20px;
-}
-
 .blog main ol li > picture img,
 .blog main ul li > picture img {
   display: block;
@@ -73,18 +68,25 @@
   position: absolute;
 }
 
-.blog main h2 {
-  font-size: 54px;
-  color: var(--color-primary);
-  font-family: inherit;
-  line-height: 1;
-  font-weight: 100;
-  margin-top: 43px;
-  margin-bottom: 20px;
+main .section h2,
+main .section .default-content-wrapper h2:only-child,
+main .section h4,
+main .toc-container.toc-sub-heading .default-content-wrapper h4 {
+  font-family: var(--ff-proxima-regular);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
 }
 
-.blog main .card-caption h3 {
-  line-height: 1.1;
+.blog main .section h2,
+.blog main .section .default-content-wrapper h2:only-child {
+  font-size: 40px;
+  margin-top: 40px;
+}
+
+main .section h4,
+main .toc-container.toc-sub-heading .default-content-wrapper h4 {
+  margin-top: 20px;
 }
 
 .blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
