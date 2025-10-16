@@ -2,7 +2,7 @@ main {
   position: relative;
 }
 
-main div.section.quote-request-container {
+main .section.quote-request-container {
   background-attachment: fixed;
   background-size: cover;
   padding-top: 80px;
@@ -10,7 +10,7 @@ main div.section.quote-request-container {
   position: relative;
 }
 
-main div.section.quote-request-container + .section.wave {
+main .section.quote-request-container + .section.wave {
   position: absolute;
   bottom: 0;
   background-color: transparent !important;

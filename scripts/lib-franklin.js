@@ -11,6 +11,8 @@
  * governing permissions and limitations under the License.
  */
 
+import { domEl } from './dom-helpers.js';
+
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -413,12 +415,17 @@ export function readBlockConfig(block) {
 export function decorateSections(main) {
   const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
 
-  main.querySelectorAll(':scope > div').forEach((section) => {
+  main.querySelectorAll(':scope > div').forEach((divSection) => {
     const wrappers = [];
     let defaultContent = false;
-    [...section.children].forEach((e) => {
+
+    // Change the tag name of div to section
+    const section = domEl('section');
+    divSection.replaceWith(section);
+
+    [...divSection.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
-        const wrapper = document.createElement('div');
+        const wrapper = domEl('div');
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -430,7 +437,7 @@ export function decorateSections(main) {
     section.setAttribute('data-section-status', 'initialized');
 
     /* process section metadata */
-    const sectionMeta = section.querySelector('div.section-metadata');
+    const sectionMeta = section.querySelector('.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
@@ -473,7 +480,7 @@ export function decorateSections(main) {
 export function updateSectionsStatus(main) {
   if (!main) return;
 
-  const sections = [...main.querySelectorAll(':scope > div.section')];
+  const sections = [...main.querySelectorAll(':scope > .section')];
   for (let i = 0; i < sections.length; i += 1) {
     const section = sections[i];
     const status = section.getAttribute('data-section-status');
@@ -495,7 +502,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('.section > div > div')
     .forEach(decorateBlock);
 }
 

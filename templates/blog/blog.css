@@ -89,7 +89,7 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   margin-top: 20px;
 }
 
-.blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
+.blog main .section:not(.hero-container, .blog-teaser-container, .card-list-container) > div {
   max-width: 800px;
   padding-left: 15px;
   padding-right: 15px;
@@ -201,6 +201,10 @@ main .section.sidebar h4,
   font-family: var(--ff-proxima-xbold);
 }
 
+main .section.background-molecules {
+  padding-top: 50px;
+}
+
 @media only screen and (max-width: 767px) {
   .blog main .section.blog-heading > div:first-of-type {
     overflow: visible;
@@ -241,7 +245,7 @@ main.sidebar .section.sidebar {
 }
 
 /* full width sections */
-main.sidebar div.section.hero-container,
+main.sidebar .section.hero-container,
 main.sidebar .section.wave,
 main.sidebar > .section.full-width-no-sidebar {
   grid-column: 1 / -1;

@@ -35,7 +35,7 @@
   display: none;
 }
 
-.media-gallery .overlay-carousel > div.section {
+.media-gallery .overlay-carousel > .section {
   width: 100%;
   padding-top: 0;
   flex-shrink: 0;
@@ -43,7 +43,7 @@
   position: relative;
 }
 
-.media-gallery .overlay-carousel > div.section p.picture {
+.media-gallery .overlay-carousel > .section p.picture {
   height: 100%;
 }
 
