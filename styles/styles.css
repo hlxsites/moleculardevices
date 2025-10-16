@@ -247,6 +247,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --nav-height-mobile: 70px;
   --container-width: 1170px;
   --carousel-container-width: 1140px;
+  --blog-width: 800px;
   --carousel-max-width: var(--carousel-container-width);
   --section-max-width: var(--container-width);
   --center-space: calc((100vw - var(--section-max-width)) / 2);
@@ -733,9 +734,12 @@ main .section {
 }
 
 main .section > div,
+main .section > article,
 .container {
-  margin: 0 auto;
-  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
   width: var(--section-max-width);
 }
 
@@ -1541,11 +1545,6 @@ main .section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
 main .section.wave.wavecarousel.blue:not(.no-margin-top),
 main .section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
-}
-
-main div.block.no-margin-bottom,
-main .section.no-margin-bottom {
-  margin-bottom: 0 !important;
 }
 
 @media only screen and (max-width: 767px) {

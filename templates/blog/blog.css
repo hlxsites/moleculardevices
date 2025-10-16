@@ -4,10 +4,6 @@
   font-family: var(--ff-proxima-regular);
 }
 
-.blog main .section .default-content-wrapper {
-  padding: 0;
-}
-
 .blog main p,
 .blog main ul,
 .blog main ol {
@@ -89,10 +85,9 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   margin-top: 20px;
 }
 
-.blog main .section:not(.hero-container, .blog-teaser-container, .card-list-container) > div {
-  max-width: 800px;
-  padding-left: 15px;
-  padding-right: 15px;
+.blog main .section > article,
+.blog main .section > .default-content-wrapper {
+  max-width: var(--blog-width);
 }
 
 .blog main .section > div.embed-wrapper > div.embed {
@@ -117,18 +112,22 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
 .blog main .section.blog-heading > div {
   max-width: unset;
   width: unset;
-  margin: 0;
 }
 
-.blog main .section.blog-heading > div.default-content-wrapper:first-of-type {
+.blog main .section.blog-heading > .default-content-wrapper {
   display: flex;
   justify-content: space-between;
   position: relative;
+  padding-left: 0;
+  padding-right: 0;
   margin: 0 15px 50px;
-  padding: 0;
 }
 
-.blog main .section.blog-heading > div:first-of-type::after {
+.blog main .section.blog-heading > .default-content-wrapper h4 {
+  margin-bottom: 0;
+}
+
+.blog main .section.blog-heading > .default-content-wrapper::after {
   content: "";
   position: absolute;
   bottom: -21px;
@@ -139,7 +138,7 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   background-image: var(--gradient-theme);
 }
 
-.blog main .section.blog-heading > div:first-of-type p {
+.blog main .section.blog-heading > .default-content-wrapper p {
   margin: 0;
 }
 

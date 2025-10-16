@@ -353,15 +353,40 @@ function decorateBlockLocale(block) {
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
+  const articleIncluded = ['Blog'];
+  const hasArticle = articleIncluded.includes(getMetadata('template'));
+  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'carousel', 'recent-blogs-carousel'];
+  const decoratedBlock = block;
+  const parent = block.parentNode;
+
+  const hasExcludedClass = (el) => excludeArticleTag.some((cls) => el.classList.contains(cls));
+
+  // Replace block's parent with <article>
+  if (hasArticle && parent && parent.tagName === 'DIV'
+    && !hasExcludedClass(block)
+    && !hasExcludedClass(parent)
+  ) {
+    const article = domEl('article');
+    article.className = parent.className;
+    [...parent.attributes].forEach((attr) => {
+      article.setAttribute(attr.name, attr.value);
+    });
+    article.append(...parent.childNodes);
+    parent.parentNode.replaceChild(article, parent);
+  }
+
   if (shortBlockName) {
-    block.classList.add('block');
-    block.setAttribute('data-block-name', shortBlockName);
-    block.setAttribute('data-block-status', 'initialized');
-    const blockWrapper = block.parentElement;
+    decoratedBlock.classList.add('block');
+    decoratedBlock.setAttribute('data-block-name', shortBlockName);
+    decoratedBlock.setAttribute('data-block-status', 'initialized');
+
+    const blockWrapper = decoratedBlock.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
-    const section = block.closest('.section');
+
+    const section = decoratedBlock.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
-    decorateBlockLocale(block);
+
+    decorateBlockLocale(decoratedBlock);
   }
 }
 
@@ -609,7 +634,7 @@ export async function loadBlock(block) {
  */
 export async function loadBlocks(main) {
   updateSectionsStatus(main);
-  const blocks = [...main.querySelectorAll('div.block')];
+  const blocks = [...main.querySelectorAll('.block')];
   for (let i = 0; i < blocks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
     await loadBlock(blocks[i]);
