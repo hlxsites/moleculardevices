@@ -64,11 +64,6 @@ main .customer-breakthrough-carousel .card .card-description {
     padding-top: 30px;
   }
 
-  .technology .customer-breakthrough-carousel-container h2,
-  .application .customer-breakthrough-carousel-container h2 {
-    font-size: 45px;
-  }
-
   main .carousel.customer-breakthrough-carousel {
     width: 85%;
   }
@@ -98,10 +93,5 @@ main .customer-breakthrough-carousel .card .card-description {
 
   main .carousel-wrapper.customer-breakthrough-carousel-wrapper .carousel-nav-button {
     display: none;
-  }
-
-  .technology .customer-breakthrough-carousel-container h2,
-  .application .customer-breakthrough-carousel-container h2 {
-    font-size: 36px;
   }
 }
