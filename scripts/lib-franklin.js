@@ -358,7 +358,7 @@ function decorateBlockLocale(block) {
 export function replaceHTMLTag(oldEl, newTag) {
   if (!oldEl
     || typeof newTag !== 'string'
-    || oldEl.closest('header, footer, .blog-heading, .social-share-container')
+    || oldEl.closest('header, footer, .blog-heading, .social-share-container, .blog-wide, .sidebar')
   ) {
     return oldEl;
   }
