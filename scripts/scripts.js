@@ -138,7 +138,7 @@ function decorateWaveSection(main) {
  */
 function decorateEmbeddedBlocks(container) {
   container
-    .querySelectorAll('div.section > div')
+    .querySelectorAll('.section > div')
     .forEach(decorateBlock);
 }
 
@@ -411,8 +411,8 @@ function decoratePageNav(main) {
   const pageTabsBlock = main.querySelector('.page-tabs');
   if (!pageTabsBlock) return;
 
-  const pageTabSection = pageTabsBlock.closest('div.section');
-  let sections = [...main.querySelectorAll('div.section')];
+  const pageTabSection = pageTabsBlock.closest('.section');
+  let sections = [...main.querySelectorAll('.section')];
   sections = sections.slice(sections.indexOf(pageTabSection) + 1);
 
   const namedSections = sections.filter((section) => section.hasAttribute('data-name'));

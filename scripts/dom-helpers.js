@@ -60,6 +60,7 @@ export function domEl(tag, ...items) {
   domEl function from above can be used for one off DOM element occurrences.
 */
 export function div(...items) { return domEl('div', ...items); }
+export function section(...items) { return domEl('section', ...items); }
 export function p(...items) { return domEl('p', ...items); }
 export function a(...items) { return domEl('a', ...items); }
 export function h1(...items) { return domEl('h1', ...items); }

@@ -247,6 +247,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --nav-height-mobile: 70px;
   --container-width: 1170px;
   --carousel-container-width: 1140px;
+  --blog-width: 800px;
   --carousel-max-width: var(--carousel-container-width);
   --section-max-width: var(--container-width);
   --center-space: calc((100vw - var(--section-max-width)) / 2);
@@ -733,9 +734,12 @@ main .section {
 }
 
 main .section > div,
+main .section > article,
 .container {
-  margin: 0 auto;
-  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
   width: var(--section-max-width);
 }
 
@@ -830,6 +834,11 @@ main .section.columns-2 > div {
     grid-template-columns: 1fr;
     padding-left: calc((100vw - var(--section-max-width)) / 2);
     padding-right: calc((100vw - var(--section-max-width)) / 2);
+  }
+
+  main .section .section.columns-2 {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   main .section.columns-2.layout-33-66 {
@@ -1213,7 +1222,7 @@ main .section.features-section .button-container {
 }
 
 /* Featured Asset section */
-main div.section.featured-asset {
+main .section.featured-asset {
   background-image: url("/images/featured-asset-background.webp"), url("/images/featured-asset-background.jpg");
   background-position: center top;
   background-size: cover;
@@ -1221,34 +1230,34 @@ main div.section.featured-asset {
   padding-bottom: 100px;
 }
 
-main div.section.featured-asset .button-container {
+main .section.featured-asset .button-container {
   margin-top: 2em;
 }
 
-main div.section.featured-asset a.button.secondary,
-main div.section.featured-asset button.secondary {
+main .section.featured-asset a.button.secondary,
+main .section.featured-asset button.secondary {
   border: 2px solid var(--color-white);
   color: var(--color-white);
 }
 
-main div.section.featured-asset a.button.secondary:hover,
-main div.section.featured-asset a.button.secondary:focus,
-main div.section.featured-asset button.secondary:hover,
-main div.section.featured-asset button.secondary:focus {
+main .section.featured-asset a.button.secondary:hover,
+main .section.featured-asset a.button.secondary:focus,
+main .section.featured-asset button.secondary:hover,
+main .section.featured-asset button.secondary:focus {
   color: var(--color-link-hover);
 }
 
-main div.section.featured-asset .default-content-wrapper h2 {
+main .section.featured-asset .default-content-wrapper h2 {
   margin-top: 0;
   font-family: var(--ff-proxima-regular);
   color: var(--color-tertiary);
 }
 
-main div.section.featured-asset .columns h3 {
+main .section.featured-asset .columns h3 {
   font-size: 25px;
 }
 
-main div.section.featured-asset .columns > div {
+main .section.featured-asset .columns > div {
   align-items: unset;
 }
 
@@ -1261,16 +1270,16 @@ main .section .columns.no-row-gap > div:not(:last-child) {
 }
 
 @media only screen and (max-width: 767px) {
-  main div.section.featured-asset {
+  main .section.featured-asset {
     padding: 0;
   }
 
-  main div.section.featured-asset > div {
+  main .section.featured-asset > div {
     padding: 30px 15px;
     overflow: hidden;
   }
 
-  main div.section.featured-asset img {
+  main .section.featured-asset img {
     margin-top: 30px;
   }
 }
@@ -1302,18 +1311,18 @@ main .section.background-parallax .default-content-wrapper .button-container > a
 }
 
 @media only screen and (max-width: 991px) {
-  main div.section.background-parallax {
+  main .section.background-parallax {
     padding-top: 67px;
     padding-bottom: 67px;
   }
 
-  main div.section.background-parallax .default-content-wrapper .button-container {
+  main .section.background-parallax .default-content-wrapper .button-container {
     margin-left: 0;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  main div.section.background-parallax {
+  main .section.background-parallax {
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -1327,7 +1336,7 @@ main .section.background-parallax .default-content-wrapper .button-container > a
 
 /* Wave sections */
 
-main div.section.wave {
+main .section.wave {
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -1341,17 +1350,17 @@ main div.section.wave {
   clear: both;
 }
 
-main.error div.section.wave {
+main.error .section.wave {
   color: var(--color-text-primary);
   text-align: unset;
 }
 
-main.error div.section.wave:last-child {
+main.error .section.wave:last-child {
   margin-top: 0;
 }
 
 main .section.wave.orange-buttons,
-main div.section.wave:not(.bluegreen):last-child {
+main .section.wave:not(.bluegreen):last-child {
   margin: 0;
   padding-bottom: 0;
 }
@@ -1364,30 +1373,30 @@ main .section.wave.orange-buttons {
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.wave > picture,
 main .section.wave > picture > img,
-main div.section.wave:last-child picture,
-main div.section.wave:last-child img {
+main .section.wave:last-child picture,
+main .section.wave:last-child img {
   width: 100%;
   display: block;
 }
 
-main div.section.wave .default-content-wrapper {
+main .section.wave .default-content-wrapper {
   margin-top: 50px;
   padding: 0 15px;
   padding-right: 15px;
 }
 
-main div.section.wave .default-content-wrapper h2 {
+main .section.wave .default-content-wrapper h2 {
   font-size: var(--heading-font-size-xl);
   margin-bottom: 30px;
   line-height: 1;
   font-family: var(--ff-proxima-light);
 }
 
-main div.section.wave p {
+main .section.wave p {
   margin: 0;
 }
 
-main div.section.wave .default-content-wrapper p:first-of-type {
+main .section.wave .default-content-wrapper p:first-of-type {
   padding: 0 20px 20px;
   margin-bottom: 10px;
 }
@@ -1397,7 +1406,7 @@ main .section.columns-2 .default-content-wrapper:has(.video-wrapper) {
   text-align: center;
 }
 
-main div.section.background-molecules-enhance {
+main .section.background-molecules-enhance {
   background-image: url("/images/molecules-enhance.png");
   background-repeat: no-repeat;
 }
@@ -1405,11 +1414,11 @@ main div.section.background-molecules-enhance {
 /* WAVE sections variants */
 
 /* BlueGreen Variant */
-main div.section.wave.bluegreen {
+main .section.wave.bluegreen {
   background-size: 100% 100%;
 }
 
-main div.section.wave.wave-bottom-section {
+main .section.wave.wave-bottom-section {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1419,12 +1428,12 @@ main div.section.wave.wave-bottom-section {
   justify-content: flex-end;
 }
 
-main div.section.wave.bluegreen .default-content-wrapper {
+main .section.wave.bluegreen .default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 100px;
 }
 
-main div.section.wave.wave-bottom-section .default-content-wrapper {
+main .section.wave.wave-bottom-section .default-content-wrapper {
   margin-bottom: 0;
 }
 
@@ -1438,19 +1447,19 @@ main div.section.wave.wave-bottom-section .default-content-wrapper {
   padding-top: 0;
 }
 
-main div.section.wave.bluegreen .default-content-wrapper h2,
-main div.section.wave.bluegreen2 .default-content-wrapper h2 {
+main .section.wave.bluegreen .default-content-wrapper h2,
+main .section.wave.bluegreen2 .default-content-wrapper h2 {
   font-family: var(--ff-proxima-regular);
   font-size: 60px;
 }
 
-main div.section.wave.bluegreen::after {
+main .section.wave.bluegreen::after {
   content: none;
 }
 
 /* BlueGreen2 Variant */
 
-main div.section.wave.bluegreen2:not([style*="background-image"]) {
+main .section.wave.bluegreen2:not([style*="background-image"]) {
   padding-bottom: 150px;
   position: relative;
   background: var(--gradient-theme) !important;
@@ -1458,7 +1467,7 @@ main div.section.wave.bluegreen2:not([style*="background-image"]) {
   margin-bottom: 30px;
 }
 
-main div.section.wave.bluegreen2:has(picture img[src*="wave-footer-bg-top.png"]) {
+main .section.wave.bluegreen2:has(picture img[src*="wave-footer-bg-top.png"]) {
   padding-bottom: 0;
 }
 
@@ -1469,13 +1478,13 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 }
 
 @media only screen and (min-width: 768px) {
-  main div.section.wave.wave-bottom-section {
+  main .section.wave.wave-bottom-section {
     min-height: 549px;
   }
 }
 
 @media only screen and (min-width: 1500px) {
-  main div.section.wave.wave-bottom-section {
+  main .section.wave.wave-bottom-section {
     min-height: 700px;
   }
 }
@@ -1486,11 +1495,11 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
     background-image: none;
   }
 
-  main div.section.wave.bluegreen2 {
+  main .section.wave.bluegreen2 {
     padding-bottom: 100px;
   }
 
-  main div.section.wave.bluegreen2::after {
+  main .section.wave.bluegreen2::after {
     background-image: none;
   }
 
@@ -1499,57 +1508,52 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
     background-image: none;
   }
 
-  main div.section.wave.bluegreen .default-content-wrapper {
+  main .section.wave.bluegreen .default-content-wrapper {
     margin-top: 50px;
     margin-bottom: 50px;
   }
 
-  main div.section.wave.bluegreen .default-content-wrapper h2,
-  main div.section.wave.bluegreen2 .default-content-wrapper h2 {
+  main .section.wave.bluegreen .default-content-wrapper h2,
+  main .section.wave.bluegreen2 .default-content-wrapper h2 {
     font-size: var(--heading-font-size-xxl);
   }
 }
 
 /* Service Support Variant */
-main div.section.wave.bg-support-service {
+main .section.wave.bg-support-service {
   background-position: 100% 30%;
 }
 
 /* Carousel Variant */
-main div.section.wave.wavecarousel::after {
+main .section.wave.wavecarousel::after {
   content: none;
 }
 
-main div.section.wave.wavecarousel {
+main .section.wave.wavecarousel {
   min-height: 550px;
   background-size: 100% 100%;
 }
 
-main div.section.wave.wavecarousel.blue {
+main .section.wave.wavecarousel.blue {
   background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
 }
 
-main div.section.wave.wavecarousel.bluegreen {
+main .section.wave.wavecarousel.bluegreen {
   background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
 }
 
-main div.section.wave.wavecarousel.blue:not(.no-margin-bottom),
-main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
+main .section.wave.wavecarousel.blue:not(.no-margin-bottom),
+main .section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
   margin-bottom: 40px;
 }
 
-main div.section.wave.wavecarousel.blue:not(.no-margin-top),
-main div.section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
+main .section.wave.wavecarousel.blue:not(.no-margin-top),
+main .section.wave.wavecarousel.bluegreen:not(.no-margin-top) {
   margin-top: 30px;
 }
 
-main div.block.no-margin-bottom,
-main div.section.no-margin-bottom {
-  margin-bottom: 0 !important;
-}
-
 @media only screen and (max-width: 767px) {
-  main div.section.wave.wavecarousel {
+  main .section.wave.wavecarousel {
     min-height: 100%;
     margin-top: 240px;
   }
@@ -1565,51 +1569,51 @@ main div.green-secondary-buttons .button.secondary {
 }
 
 /* Orange Buttons */
-main div.orange-buttons .button {
+main .orange-buttons .button {
   height: 50px;
   min-width: 200px;
 }
 
-main div.orange-buttons .button.primary:link,
-main div.orange-buttons .button.primary:visited {
+main .orange-buttons .button.primary:link,
+main .orange-buttons .button.primary:visited {
   color: var(--color-white);
   background: var(--color-secondary);
   text-transform: none;
 }
 
-main div.orange-buttons .button.primary:hover,
-main div.orange-buttons .button.primary:active {
+main .orange-buttons .button.primary:hover,
+main .orange-buttons .button.primary:active {
   color: var(--color-secondary);
   background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main div.orange-buttons .button.secondary:link,
-main div.orange-buttons .button.secondary:visited,
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
+main .orange-buttons .button.secondary:link,
+main .orange-buttons .button.secondary:visited,
+main .orange-secondary-buttons .button.secondary:link,
+main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-white);
   background: transparent;
   border: 2px solid var(--color-white);
   text-transform: none;
 }
 
-main div.orange-buttons .button.secondary:hover,
-main div.orange-buttons .button.secondary:active,
-main div.orange-secondary-buttons .button.secondary:hover,
-main div.orange-secondary-buttons .button.secondary:active {
+main .orange-buttons .button.secondary:hover,
+main .orange-buttons .button.secondary:active,
+main .orange-secondary-buttons .button.secondary:hover,
+main .orange-secondary-buttons .button.secondary:active {
   color: var(--color-secondary);
   background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
+main .orange-secondary-buttons .button.secondary:link,
+main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-secondary);
   border: 2px solid var(--color-secondary);
 }
 
-main div.orange-buttons .button.primary > .button-border {
+main .orange-buttons .button.primary > .button-border {
   display: none;
 }
 
@@ -1655,7 +1659,7 @@ main .section.background-molecules {
 
   /* ------ */
 
-  main div.section.wave h2 {
+  main .section.wave h2 {
     font-size: 40px;
   }
 }
@@ -2173,11 +2177,11 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 */
 
 /* Button in blue wave carousels */
-.category main div.section.wave.blue .button-container {
+.category main .section.wave.blue .button-container {
   margin-top: 30px;
 }
 
-.category main div.section.wave.blue .button-container > a {
+.category main .section.wave.blue .button-container > a {
   color: var(--color-white);
   font-size: var(--body-font-size-m);
   border-radius: 0;

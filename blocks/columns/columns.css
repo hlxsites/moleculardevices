@@ -1,5 +1,5 @@
 /* stylelint-disable no-descending-specificity */
-main .section > div.columns-wrapper {
+main .section > .columns-wrapper {
   margin-top: 20px;
 }
 

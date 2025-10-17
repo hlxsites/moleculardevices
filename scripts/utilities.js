@@ -39,7 +39,7 @@ export function activateTab(tabLink, scrollTarget = null) {
   const tabItem = tabLink.closest('li');
   const main = tabItem.closest('main');
   const tabId = tabLink.getAttribute('href').substring(1);
-  const tabSection = main.querySelector(`div.section[aria-labelledby="${tabId}"]`);
+  const tabSection = main.querySelector(`.section[aria-labelledby="${tabId}"]`);
   const isAlreadyActive = tabLink.getAttribute('aria-selected') === 'true'
     && tabSection?.getAttribute('aria-hidden') === 'false';
 
@@ -52,12 +52,12 @@ export function activateTab(tabLink, scrollTarget = null) {
   // Deactivate existing tabs and hide their sections
   tabItem.parentNode.querySelectorAll('li[aria-selected="true"]')
     .forEach((tab) => tab.setAttribute('aria-selected', false));
-  main.querySelectorAll('div.section.tabs[aria-hidden="false"]')
+  main.querySelectorAll('.section.tabs[aria-hidden="false"]')
     .forEach((section) => section.setAttribute('aria-hidden', true));
 
   // Activate the selected tab
   tabItem.setAttribute('aria-selected', true);
-  main.querySelectorAll(`div.section[aria-labelledby="${tabId}"]`)
+  main.querySelectorAll(`.section[aria-labelledby="${tabId}"]`)
     .forEach((section) => section.setAttribute('aria-hidden', false));
 
   if (tabId === COVEO_TAB_NAME) {
@@ -101,7 +101,7 @@ export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
   const tabId = isCoveo ? COVEO_TAB_NAME : hash;
 
   const tabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
-  const tabSection = document.querySelector(`div.section[aria-labelledby="${tabId}"]`);
+  const tabSection = document.querySelector(`.section[aria-labelledby="${tabId}"]`);
 
   if (tabLink && tabSection) {
     activateTab(tabLink, tabSection);
