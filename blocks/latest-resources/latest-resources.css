@@ -1,9 +1,10 @@
+/* stylelint-disable no-descending-specificity */
 .latest-resources-container .latest-resources-button {
   text-align: center;
   padding: 50px 0;
 }
 
-main .section.latest-resources-container:has( .latest-resources.block:empty){
+main .section.latest-resources-container:has(.latest-resources.block:empty) {
   display: none;
 }
 
@@ -74,43 +75,37 @@ main .latest-resources .card .card-description {
     padding-top: 30px;
   }
 
-  .technology .latest-resources-container h2,
-  .application .latest-resources-container h2 {
-    font-size: 45px;
-  }
-
   main .carousel.latest-resources {
     width: 85%;
   }
 
   main .carousel.latest-resources .carousel-item {
-    width: 50%;
     max-width: 50%;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  main .carousel-wrapper.latest-resources-wrapper {
+  main .carousel-wrapper.latest-resources-wrapper,
+  main .carousel.latest-resources .carousel-item,
+  main .carousel.latest-resources.list .carousel-item,
+  main .carousel.latest-resources {
     width: 100%;
+  }
+
+  main .carousel-wrapper.latest-resources-wrapper {
     padding: 0;
   }
 
   main .carousel.latest-resources {
-    width: 100%;
     padding: 0 10%;
   }
 
-  main .carousel.latest-resources .carousel-item, main .carousel.latest-resources.list .carousel-item {
-    width: 100%;
+  main .carousel.latest-resources .carousel-item,
+  main .carousel.latest-resources.list .carousel-item {
     max-width: 100%;
   }
 
   main .carousel-wrapper.latest-resources-wrapper .carousel-nav-button {
     display: none;
-  }
-
-  .technology .latest-resources-container h2,
-  .application .latest-resources-container h2 {
-    font-size: 36px;
   }
 }
