@@ -1564,51 +1564,51 @@ main div.green-secondary-buttons .button.secondary {
 }
 
 /* Orange Buttons */
-main div.orange-buttons .button {
+main .orange-buttons .button {
   height: 50px;
   min-width: 200px;
 }
 
-main div.orange-buttons .button.primary:link,
-main div.orange-buttons .button.primary:visited {
+main .orange-buttons .button.primary:link,
+main .orange-buttons .button.primary:visited {
   color: var(--color-white);
   background: var(--color-secondary);
   text-transform: none;
 }
 
-main div.orange-buttons .button.primary:hover,
-main div.orange-buttons .button.primary:active {
+main .orange-buttons .button.primary:hover,
+main .orange-buttons .button.primary:active {
   color: var(--color-secondary);
   background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main div.orange-buttons .button.secondary:link,
-main div.orange-buttons .button.secondary:visited,
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
+main .orange-buttons .button.secondary:link,
+main .orange-buttons .button.secondary:visited,
+main .orange-secondary-buttons .button.secondary:link,
+main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-white);
   background: transparent;
   border: 2px solid var(--color-white);
   text-transform: none;
 }
 
-main div.orange-buttons .button.secondary:hover,
-main div.orange-buttons .button.secondary:active,
-main div.orange-secondary-buttons .button.secondary:hover,
-main div.orange-secondary-buttons .button.secondary:active {
+main .orange-buttons .button.secondary:hover,
+main .orange-buttons .button.secondary:active,
+main .orange-secondary-buttons .button.secondary:hover,
+main .orange-secondary-buttons .button.secondary:active {
   color: var(--color-secondary);
   background: var(--color-white);
   box-shadow: 0 0 10px 1px rgb(0 0 0 / 20%);
 }
 
-main div.orange-secondary-buttons .button.secondary:link,
-main div.orange-secondary-buttons .button.secondary:visited {
+main .orange-secondary-buttons .button.secondary:link,
+main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-secondary);
   border: 2px solid var(--color-secondary);
 }
 
-main div.orange-buttons .button.primary > .button-border {
+main .orange-buttons .button.primary > .button-border {
   display: none;
 }
 
