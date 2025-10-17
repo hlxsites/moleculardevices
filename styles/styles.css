@@ -407,6 +407,11 @@ p {
   margin-top: 0;
 }
 
+p:empty,
+p.picture {
+  margin: 0;
+}
+
 p:last-child,
 p:last-of-type {
   margin-bottom: 0;
@@ -709,6 +714,10 @@ main .section.wave.orange-buttons p.button-container {
 
 main .section.features-section .button-container {
   margin-top: 50px;
+}
+
+main .section.features-section .button-container:has(a > picture:only-child) {
+  margin-top: 0;
 }
 
 .button-container:has(+ .button-container) a.button.primary {
@@ -1839,23 +1848,24 @@ main .block.electric-blue-main-title h2 {
   text-align: left;
 }
 
-/*
-  Video Gallery
-*/
-.video-gallery .section {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-
+/* Video Gallery */
 .video-gallery main .section .default-content-wrapper h2 {
   color: var(--color-primary);
-  margin-bottom: 40px;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
 }
 
-/*
-  Contact us page
-*/
+.video-gallery main .columns h3,
+.video-gallery main .columns h4 {
+  margin-bottom: 1rem;
+}
 
+.video-gallery main .columns .button-container {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Contact us page */
 .contact main .section.hero-container .hero-inner img {
   object-position: center center;
 }
@@ -2010,6 +2020,7 @@ main .qa-list .columns-wrapper .image-right ul li::before {
 main .columns-separator-line .columns-wrapper .columns {
   border-bottom: 1px solid var(--color-gray-250);
   padding-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
 /* title with green/theme highlight */

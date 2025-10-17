@@ -37,21 +37,12 @@ main .section > .columns-wrapper {
 
 .columns.line > div {
   flex-wrap: wrap;
-  padding: 40px 0;
+  padding-bottom: 40px;
+  margin-bottom: 50px;
 }
 
-.columns.line > div::after {
-  flex-wrap: wrap;
-  content: '';
-  width: 94%;
-  padding-top: 50px;
+.columns.line > div:not(:last-child) {
   border-bottom: 2px solid var(--color-gray-250);
-  margin-left: 14px;
-  margin-bottom: 16px;
-}
-
-.columns.line h4 {
-  font-size: 26px;
 }
 
 .columns.light-and-dark-grey > div > div {
@@ -635,10 +626,6 @@ main .section > .columns-wrapper {
     flex-wrap: nowrap;
     gap: 20px;
     padding: 0 0 25px;
-  }
-
-  .columns.line > div::after {
-    padding-top: 30px;
   }
 
   .columns.light-and-dark-grey > div > div {

@@ -60,9 +60,8 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   padding-bottom: 0;
 }
 
-.blog main .section h2,
+.blog main .section h2:first-child,
 .blog main .section .default-content-wrapper h2:only-child {
-  font-size: 38px;
   margin-top: 40px;
 }
 
@@ -141,7 +140,6 @@ main .section.sidebar p.picture {
 
 main .section.sidebar h4,
 .blog .section.blog-heading h4 {
-  font-size: 30px;
   font-weight: bold;
   margin: 0;
   margin-bottom: 10px;

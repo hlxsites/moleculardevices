@@ -2,7 +2,8 @@
   margin-top: 20px;
 }
 
-.tabs-horizontal .section > div {
+.tabs-horizontal .section > div,
+.tabs-horizontal .tab-pane .columns {
   width: 100%;
 }
 
@@ -26,16 +27,6 @@
   display: block;
 }
 
-.tabs-horizontal .tab-pane > div,
-.section .tabs-horizontal .tab-pane > .section {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
-.tabs-horizontal .tab-pane .columns {
-  width: 100%;
-}
-
 .tabs-horizontal ul.tabs-nav {
   display: flex;
   flex-wrap: wrap;
@@ -52,22 +43,27 @@
   align-items: center;
   justify-content: center;
   color: var(--color-white);
-  border: 1px solid var(--color-white);
-  border-bottom-color: var(--color-theme-gray);
+  border-bottom: 1px solid var(--color-theme-gray);
   background-color: var(--color-gray-400);
   cursor: pointer;
+}
+
+.tabs-horizontal li.tabs-nav-item:not(:last-child) {
+  border-right: 2px solid var(--color-white);
 }
 
 .tabs-horizontal li.tabs-nav-item.active {
   background-color: var(--color-theme-gray);
 }
 
-@media only screen and (max-width: 767px) {
-  .tabs-horizontal .tab-pane > div {
-    padding-left: 20px;
-    padding-right: 20px;
+@media only screen and (min-width: 768px) {
+  .tabs-horizontal .tab-pane > .section {
+    padding-left: 50px;
+    padding-right: 50px;
   }
+}
 
+@media only screen and (max-width: 767px) {
   .tabs-horizontal li.tabs-nav-item {
     width: 100% !important;
   }
