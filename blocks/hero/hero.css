@@ -197,6 +197,11 @@ main .section .hero-advanced-wrapper {
   align-items: flex-start;
 }
 
+.hero-inner h1 {
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
 .thankyou .hero-inner h1 {
   font-weight: bold;
 }
