@@ -1,26 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.blog,
-.blog main strong {
-  font-family: var(--ff-proxima-regular);
-}
-
-.blog main p,
-.blog main ul,
-.blog main ol {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.blog main ul,
-.blog main ol {
-  padding-left: 20px;
-}
-
-.blog main ul li,
-.blog main ol li {
-  margin-bottom: 4px;
-}
-
 .blog main ul ul,
 .blog main ol ol,
 .blog main .section .default-content-wrapper > p:last-child {
@@ -40,7 +18,15 @@
 .blog main .video-wrapper,
 .blog main .vidyard-lightbox-thumbnail {
   max-width: 100% !important;
-  margin: 0;
+}
+
+.blog main .video-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog main .section > div.embed-wrapper {
+  padding-top: 0;
 }
 
 .blog main ol li > picture img,
@@ -60,7 +46,7 @@
   left: 0;
   height: 1px;
   width: 100%;
-  background: var(--color-gray-200);
+  background: var(--color-gray-100);
   position: absolute;
 }
 
@@ -74,9 +60,8 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   padding-bottom: 0;
 }
 
-.blog main .section h2,
+.blog main .section h2:first-child,
 .blog main .section .default-content-wrapper h2:only-child {
-  font-size: 38px;
   margin-top: 40px;
 }
 
@@ -155,7 +140,6 @@ main .section.sidebar p.picture {
 
 main .section.sidebar h4,
 .blog .section.blog-heading h4 {
-  font-size: 30px;
   font-weight: bold;
   margin: 0;
   margin-bottom: 10px;
@@ -179,7 +163,7 @@ main .section.sidebar h4,
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
   font-style: italic;
 }
 

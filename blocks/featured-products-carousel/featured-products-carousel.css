@@ -12,8 +12,12 @@ main .section.columns-2.featured-products-carousel-container {
   grid-template-columns: auto auto;
 }
 
+main .section.columns-2.featured-products-carousel-container h2 {
+  text-align: left;
+}
+
 main .featured-products-carousel .carousel-item {
-  border: 3px solid var(--featured-products-carousel-item);
+  border: 3px solid var(--color-gray-100);
 }
 
 main .featured-products-carousel .carousel-item-columns-container {
@@ -25,7 +29,7 @@ main .featured-products-carousel .carousel-item-text {
 }
 
 main .featured-products-carousel.grey .carousel-item {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
   border: 0;
 }
 
@@ -128,6 +132,7 @@ main .featured-products-carousel .carousel-item-text .button-container .secondar
   main .section.columns-2 .featured-products-carousel-wrapper.mini {
     width: 80vw;
     margin-bottom: 20px;
+    justify-self: center;
   }
 
   main .section.columns-2.featured-products-carousel-container {
