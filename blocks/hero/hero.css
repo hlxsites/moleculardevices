@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
-main .hero-container,
-main .hero-advanced-container {
+main .section.hero-container,
+main .section.hero-advanced-container {
   padding: 0;
 }
 

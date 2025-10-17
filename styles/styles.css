@@ -1269,7 +1269,7 @@ main .section.background-parallax a {
 }
 
 main .section.background-parallax .default-content-wrapper .button-container {
-  margin: 60px 30px;
+  margin: 60px 0;
 }
 
 main .section.background-parallax .default-content-wrapper .button-container > a {
@@ -1277,6 +1277,7 @@ main .section.background-parallax .default-content-wrapper .button-container > a
   border-radius: 0;
   padding: 18px 18px 16px;
   border: 1px solid var(--color-white);
+  display: inline-block;
 }
 
 @media only screen and (max-width: 991px) {
