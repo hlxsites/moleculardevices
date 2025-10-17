@@ -67,13 +67,14 @@
     max-width: unset;
     padding: 0;
     position: relative;
+    margin-top: 0;
   }
 
   .card-list-filter.blog {
     background-color: var(--color-black-alpha-50);
     position: absolute;
     width: 100%;
-    bottom: 115px;
+    bottom: 50px;
     margin: 0;
   }
 

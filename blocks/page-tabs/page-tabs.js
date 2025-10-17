@@ -41,7 +41,7 @@ async function createTabList(sections, active) {
 
 export default async function decorate(block) {
   const main = block.closest('main');
-  const sections = main.querySelectorAll('div.section.tabs');
+  const sections = main.querySelectorAll('.section.tabs');
   const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
 
   if (namedSections.length) {

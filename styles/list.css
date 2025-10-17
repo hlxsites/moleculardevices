@@ -333,6 +333,7 @@
   transition: all 0.3s ease-in-out;
   min-height: 160px;
   object-fit: cover;
+  aspect-ratio: 16 / 9;
 }
 
 .events .list > .items > .item > .image:hover img {

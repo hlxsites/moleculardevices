@@ -29,11 +29,6 @@
   padding-top: 0;
 }
 
-.blog main .no-indent ul,
-.blog main .no-indent ol {
-  padding-left: 20px;
-}
-
 .blog main ol li > picture img,
 .blog main ul li > picture img {
   display: block;
@@ -55,25 +50,39 @@
   position: absolute;
 }
 
-.blog main h2 {
-  font-size: 54px;
-  color: var(--color-primary);
-  font-family: inherit;
-  line-height: 1;
-  font-weight: 100;
-  margin-top: 43px;
-  margin-bottom: 20px;
+main .section h2,
+main .section .default-content-wrapper h2:only-child,
+main .section h4,
+main .toc-container.toc-sub-heading .default-content-wrapper h4 {
+  font-family: var(--ff-proxima-regular);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
 }
 
-.blog main .card-caption h3 {
-  line-height: 1.1;
+.blog main .section h2,
+.blog main .section .default-content-wrapper h2:only-child {
+  font-size: 38px;
+  margin-top: 40px;
 }
 
-.blog main .section > div:not(.hero-wrapper, .card-list-filter-wrapper, .blog-teaser-wrapper) {
-  max-width: 800px;
+main .section h4,
+main .toc-container.toc-sub-heading .default-content-wrapper h4 {
+  margin-top: 20px;
 }
 
-.blog main .section > div.embed-wrapper > div.embed {
+.blog main .section > article,
+.blog main .section > .default-content-wrapper {
+  max-width: var(--blog-width);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.blog main .section.embed-container:not(:first-child) {
+  padding-top: 0;
+}
+
+.blog main .section > .embed-wrapper > .embed {
   margin-top: 10px;
   width: unset;
 }
@@ -95,18 +104,22 @@
 .blog main .section.blog-heading > div {
   max-width: unset;
   width: unset;
-  margin: 0;
 }
 
-.blog main .section.blog-heading > div.default-content-wrapper:first-of-type {
+.blog main .section.blog-heading > .default-content-wrapper {
   display: flex;
   justify-content: space-between;
   position: relative;
+  padding-left: 0;
+  padding-right: 0;
   margin: 0 15px 50px;
-  padding: 0;
 }
 
-.blog main .section.blog-heading > div:first-of-type::after {
+.blog main .section.blog-heading > .default-content-wrapper h4 {
+  margin-bottom: 0;
+}
+
+.blog main .section.blog-heading > .default-content-wrapper::after {
   content: "";
   position: absolute;
   bottom: -21px;
@@ -117,7 +130,7 @@
   background-image: var(--gradient-theme);
 }
 
-.blog main .section.blog-heading > div:first-of-type p {
+.blog main .section.blog-heading > .default-content-wrapper p {
   margin: 0;
 }
 
@@ -179,6 +192,10 @@ main .section.sidebar h4,
   font-family: var(--ff-proxima-xbold);
 }
 
+main .section.background-molecules {
+  padding-top: 50px;
+}
+
 @media only screen and (max-width: 767px) {
   .blog main .section.blog-heading > div:first-of-type {
     overflow: visible;
@@ -219,7 +236,7 @@ main.sidebar .section.sidebar {
 }
 
 /* full width sections */
-main.sidebar div.section.hero-container,
+main.sidebar .section.hero-container,
 main.sidebar .section.wave,
 main.sidebar > .section.full-width-no-sidebar {
   grid-column: 1 / -1;
@@ -249,7 +266,7 @@ main .section.sidebar h4::after {
   margin-top: 0;
 }
 
-.blog main .section div.spectra-newsletter {
+.blog main .section .spectra-newsletter {
   display: block;
   text-align: center;
   padding: 20px 16px;
@@ -261,37 +278,37 @@ main .section.sidebar h4::after {
   margin-bottom: 50px;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request {
+.blog main .section .spectra-newsletter .contact-quote-request {
   padding: 0 15px;
   text-align: center;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message {
+.blog main .section .spectra-newsletter .contact-quote-request .submitted-message {
   padding: 30px 0;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request .submitted-message p {
+.blog main .section .spectra-newsletter .contact-quote-request .submitted-message p {
   font-size: 18px;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request label.privacy,
-.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label {
+.blog main .section .spectra-newsletter .contact-quote-request label.privacy,
+.blog main .section .spectra-newsletter .contact-quote-request .privacy > label {
   text-align: center;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request label.privacy a,
-.blog main .section div.spectra-newsletter .contact-quote-request div.privacy > label a {
+.blog main .section .spectra-newsletter .contact-quote-request label.privacy a,
+.blog main .section .spectra-newsletter .contact-quote-request .privacy > label a {
   color: inherit;
   text-decoration: underline;
 }
 
-.blog main .section div.spectra-newsletter .contact-quote-request .hs-submit .actions {
+.blog main .section .spectra-newsletter .contact-quote-request .hs-submit .actions {
   margin-top: 2px;
   margin-bottom: 17px;
   max-width: 200px;
 }
 
-.blog main .section div.spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
+.blog main .section .spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
   margin-top: 5px;
   padding-left: 0;
 }
@@ -302,7 +319,7 @@ main .section.sidebar h4::after {
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.blog main .section div.spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+.blog main .section .spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
 }

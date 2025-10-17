@@ -373,16 +373,16 @@
   height: auto;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="Leica logo"]),
-.row-8 .external-logo-wrapper p:has([alt="Sciex logo"]) {
+.row-8 .external-logo-wrapper p:has([alt*="Leica"], [alt*="leica"]),
+.row-8 .external-logo-wrapper p:has([alt*="Sciex"], [alt*="sciex"]) {
   flex-basis: 60px;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="Phenomenex logo"]) {
+.row-8 .external-logo-wrapper p:has([alt*="Phenomenex"], [alt*="phenomenex"]) {
   flex-basis: 120px;
 }
 
-.row-8 .external-logo-wrapper p:has([alt="Beckman Coulter logo"]) {
+.row-8 .external-logo-wrapper p:has([alt*="Beckman Coulter"], [alt*="beckman coulter"]) {
   position: relative;
   top: 4px;
 }

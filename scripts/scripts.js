@@ -138,7 +138,7 @@ function decorateWaveSection(main) {
  */
 function decorateEmbeddedBlocks(container) {
   container
-    .querySelectorAll('div.section > div')
+    .querySelectorAll('.section > div')
     .forEach(decorateBlock);
 }
 
@@ -411,8 +411,8 @@ function decoratePageNav(main) {
   const pageTabsBlock = main.querySelector('.page-tabs');
   if (!pageTabsBlock) return;
 
-  const pageTabSection = pageTabsBlock.closest('div.section');
-  let sections = [...main.querySelectorAll('div.section')];
+  const pageTabSection = pageTabsBlock.closest('.section');
+  let sections = [...main.querySelectorAll('.section')];
   sections = sections.slice(sections.indexOf(pageTabSection) + 1);
 
   const namedSections = sections.filter((section) => section.hasAttribute('data-name'));
@@ -500,7 +500,7 @@ function addDefaultStylingToTemplates() {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -879,6 +879,46 @@ function addPageSchema() {
               '@type': 'WebPage',
               url: 'https://www.moleculardevices.com/for-whats-next',
             },
+          },
+        ],
+      };
+    }
+    if (type === 'Landing Page') {
+      schemaInfo = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'TechArticle',
+            headline: schemaTitle,
+            name: schemaTitle,
+            description,
+            keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            url: canonicalHref,
+            image: {
+              '@type': 'ImageObject',
+              representativeOfPage: 'True',
+              url: schemaImageUrl,
+            },
+            author: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: moleculardevicesSiteName,
+              url: moleculardevicesRootURL,
+              logo,
+            },
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              id: canonicalHref,
+              url: canonicalHref,
+            },
+            sameAs:
+              brandSameAs,
           },
         ],
       };

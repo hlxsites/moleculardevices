@@ -354,7 +354,7 @@ function addIndividualComponents(rightSubMenu, submenuId) {
     return;
   }
 
-  if (submenuId === 'accessories--consumables') {
+  if (submenuId === 'accessories-consumables') {
     rightSubMenu.parentElement.appendChild(
       img({
         class: 'spectra-accessories',
@@ -366,18 +366,11 @@ function addIndividualComponents(rightSubMenu, submenuId) {
 }
 
 export default function buildRightSubmenu(contentHeader, subMenuId) {
-  // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const rightSubmenuWrapper = div({ class: 'right-submenu' });
-
-  // insert a div inside products-megamenu-head containing all its content
   const rightSubmenuRow = div({ class: 'right-submenu-row flex-space-between' });
-
-  // get div in the parent of the H2/H1 header
   const headerParentDiv = contentHeader.parentElement;
-  // get all divs with a class right-submenu
   const rightSubmenus = [...headerParentDiv.querySelectorAll('.right-submenu-content')];
 
-  // add all right-submenu divs to the H2
   rightSubmenus.forEach((rightSubmenu) => {
     // get the class name that has a suffix -submenu
     const rightSubmenuClass = rightSubmenu.classList.value
@@ -388,8 +381,6 @@ export default function buildRightSubmenu(contentHeader, subMenuId) {
       rightSubmenuBuilder(rightSubmenu);
       rightSubmenuRow.appendChild(rightSubmenu);
     }
-
-    // add individual components
     addIndividualComponents(rightSubmenu, subMenuId);
   });
 

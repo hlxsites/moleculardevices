@@ -11,6 +11,8 @@
  * governing permissions and limitations under the License.
  */
 
+import { domEl } from './dom-helpers.js';
+
 /**
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
@@ -346,20 +348,70 @@ function decorateBlockLocale(block) {
 }
 
 /**
+ * Replaces a DOM element with a new tag (e.g., <section>, <article>)
+ * while preserving its children, classes, and attributes.
+ *
+ * @param {HTMLElement} oldEl - The existing DOM element to replace.
+ * @param {string} newTag - The tag name of the new element (e.g., 'main').
+ * @returns {HTMLElement} - The new element that replaced the old one.
+ */
+export function replaceHTMLTag(oldEl, newTag) {
+  if (!oldEl
+    || typeof newTag !== 'string'
+    || oldEl.closest('header, footer, .blog-heading, .social-share-container, .blog-wide, .sidebar')
+  ) {
+    return oldEl;
+  }
+
+  // extract all attributes into an object
+  const attributes = [...oldEl.attributes].reduce((acc, attr) => {
+    acc[attr.name] = attr.value;
+    return acc;
+  }, {});
+
+  // create new element with domEl, including attributes
+  const newEl = domEl(newTag, attributes, ...oldEl.childNodes);
+
+  // replace in DOM
+  newEl.append(...oldEl.childNodes);
+  oldEl.parentNode.replaceChild(newEl, oldEl);
+  return newEl;
+}
+
+/**
  * Decorates a block.
  * @param {Element} block The block element
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
+  const articleIncluded = ['Blog'];
+  const hasArticle = articleIncluded.includes(getMetadata('template'));
+  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'card-list-filter'];
+
+  const decoratedBlock = block;
+  const parent = block.parentNode;
+
+  const hasExcludedClass = (el) => excludeArticleTag.some((cls) => el.classList.contains(cls));
+
+  // Replace block's parent with <article>
+  if (hasArticle && parent && parent.tagName === 'DIV'
+    && !hasExcludedClass(block) && !hasExcludedClass(parent)
+  ) {
+    replaceHTMLTag(block.parentElement, 'article');
+  }
+
   if (shortBlockName) {
-    block.classList.add('block');
-    block.setAttribute('data-block-name', shortBlockName);
-    block.setAttribute('data-block-status', 'initialized');
-    const blockWrapper = block.parentElement;
+    decoratedBlock.classList.add('block');
+    decoratedBlock.setAttribute('data-block-name', shortBlockName);
+    decoratedBlock.setAttribute('data-block-status', 'initialized');
+
+    const blockWrapper = decoratedBlock.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
-    const section = block.closest('.section');
+
+    const section = decoratedBlock.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
-    decorateBlockLocale(block);
+
+    decorateBlockLocale(decoratedBlock);
   }
 }
 
@@ -413,12 +465,17 @@ export function readBlockConfig(block) {
 export function decorateSections(main) {
   const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
 
-  main.querySelectorAll(':scope > div').forEach((section) => {
+  main.querySelectorAll(':scope > div').forEach((divSection) => {
     const wrappers = [];
     let defaultContent = false;
-    [...section.children].forEach((e) => {
+
+    // Change the tag name of div to section
+    const section = domEl('section');
+    divSection.replaceWith(section);
+
+    [...divSection.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
-        const wrapper = document.createElement('div');
+        const wrapper = domEl('div');
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -430,7 +487,7 @@ export function decorateSections(main) {
     section.setAttribute('data-section-status', 'initialized');
 
     /* process section metadata */
-    const sectionMeta = section.querySelector('div.section-metadata');
+    const sectionMeta = section.querySelector('.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
@@ -473,7 +530,7 @@ export function decorateSections(main) {
 export function updateSectionsStatus(main) {
   if (!main) return;
 
-  const sections = [...main.querySelectorAll(':scope > div.section')];
+  const sections = [...main.querySelectorAll(':scope > .section')];
   for (let i = 0; i < sections.length; i += 1) {
     const section = sections[i];
     const status = section.getAttribute('data-section-status');
@@ -495,7 +552,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('.section > div > div')
     .forEach(decorateBlock);
 }
 
@@ -602,7 +659,7 @@ export async function loadBlock(block) {
  */
 export async function loadBlocks(main) {
   updateSectionsStatus(main);
-  const blocks = [...main.querySelectorAll('div.block')];
+  const blocks = [...main.querySelectorAll('.block')];
   for (let i = 0; i < blocks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
     await loadBlock(blocks[i]);

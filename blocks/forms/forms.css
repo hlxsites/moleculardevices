@@ -342,7 +342,7 @@ input[type="submit"] {
 .forms.inquiry-with-thankyou h4 {
   text-align: center;
   color: var(--color-primary);
-  font-size: var(--heading-font-size-xxl);
+  font-size: 36px;
   margin-bottom: 30px;
 }
 

@@ -132,11 +132,48 @@ function showHidePricingRequestButton(block) {
   }
 }
 
+/* add class on geo location base */
+function extractGeoSuffix(href) {
+  const match = href.match(/-([a-z]{2})\.pdf$/);
+  return match ? match[1] : '';
+}
+
+function extractBaseName(href) {
+  const file = href.split('/').pop();
+  return file.replace(/(-[a-z]{2})?\.pdf$/, '');
+}
+
+function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
+  if (!referenceLink || !referenceLink.href) return;
+
+  const refHref = referenceLink.getAttribute('href');
+  const refBaseName = extractBaseName(refHref);
+  const anchors = document.querySelectorAll('a[href$=".pdf"]');
+
+  anchors.forEach((link) => {
+    const href = link.getAttribute('href');
+    const baseName = extractBaseName(href);
+
+    if (baseName === refBaseName) {
+      const geoCode = extractGeoSuffix(href);
+      if (geoCode) {
+        link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
+      } else {
+        link.parentElement.classList.add(baseClass);
+      }
+    }
+  });
+}
+
 export function buildHero(block) {
   const inner = div({ class: 'hero-inner' });
   const container = div({ class: 'container' });
 
   let picture = block.querySelector('picture');
+
+  /* show/hide cta in geo sites */
+  const ctaLinks = block.querySelectorAll('a');
+  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink, 'OneLinkHide'));
 
   /* removed duplicate breadcrumb block */
   const hasBreadcrumbBlock = getMetadata('breadcrumbs') === 'auto';

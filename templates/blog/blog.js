@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import {
-  div, img, h3, p, strong, i, a,
+  div, img, h3, p, h5, strong, i, a,
+  article,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
@@ -109,7 +110,7 @@ export default async function decorate() {
   if (isArticlePage) {
     const publisher = getMetadata('publisher');
     const gatedUrl = getMetadata('article-url');
-    const creditParagraph = div({ class: 'credit-paragraph' },
+    const creditParagraph = article({ class: 'credit-paragraph' },
       p(strong(
         i('This article was originally published on', a({ href: gatedUrl }, ` ${publisher}`), ' and reprinted here with permission.'),
       )),
