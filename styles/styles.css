@@ -836,6 +836,11 @@ main .section.columns-2 > div {
     padding-right: calc((100vw - var(--section-max-width)) / 2);
   }
 
+  main .section .section.columns-2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   main .section.columns-2.layout-33-66 {
     grid-template-columns: 33fr 66fr;
   }

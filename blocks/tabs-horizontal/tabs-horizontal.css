@@ -27,7 +27,8 @@
   display: block;
 }
 
-.tabs-horizontal .tab-pane > div {
+.tabs-horizontal .tab-pane > div,
+.section .tabs-horizontal .tab-pane > .section {
   padding-left: 50px;
   padding-right: 50px;
 }
