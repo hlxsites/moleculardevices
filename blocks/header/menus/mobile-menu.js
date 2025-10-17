@@ -53,7 +53,6 @@ async function buildMobileMenuItem(menuItem, menuId) {
       const submenuContent = div();
       submenuContent.innerHTML = content;
 
-      // get all H2s and create a list of them
       const subcategoriesContent = [...submenuContent.querySelectorAll('main div > p:first-child:has(a[href]):not(picture)')];
       const mobileStyle = getResponseMetadata(content, 'mobile-style') !== 'No Parent Link';
 
@@ -67,7 +66,6 @@ async function buildMobileMenuItem(menuItem, menuId) {
           : '',
       );
 
-      // add H2s to list
       subcategoriesContent.forEach((subcategoryContent) => {
         processSectionMetadata(subcategoryContent.parentElement);
         const mobileMode = subcategoryContent.parentElement.getAttribute('data-mobile-mode');
@@ -98,8 +96,6 @@ async function buildMobileMenuItem(menuItem, menuId) {
             backToParentCategory,
           );
 
-          // get subcategory items from the content. This elements are in a div
-          // within the same parent as the H2
           subcategoryItems.forEach((item) => {
             const listItem = li({ class: 'mobile-menu-subcategory-item' }, item);
             items.append(listItem);

@@ -25,36 +25,30 @@ function menuHasNoDropdown(menu) {
 
 function buildMegaMenu(block, content) {
   const titles = content.querySelectorAll('div > div > p:first-child:has(a[href])');
-
-  // for each title get the h2s in the same section
   titles.forEach((title) => {
     const menuId = toClassName(title.querySelector('a').textContent);
     title.id = menuId;
     title.classList.add('menu-nav-heading');
 
     const dropdownElement = block.querySelector(`.menu-nav-category[menu-id="${menuId}"]`);
-    if (menuHasNoDropdown(dropdownElement)) {
-      return;
-    }
+    if (menuHasNoDropdown(dropdownElement)) return;
 
-    // get the h2s in the same parent as title
-    const sectionH2s = title.parentElement.querySelectorAll('ul > li');
-    const h2List = ul({ class: 'menu-nav-submenu-sections' });
+    const sectionListItems = title.parentElement.querySelectorAll('ul > li');
+    const listItemList = ul({ class: 'menu-nav-submenu-sections' });
 
-    // add H2s to list
-    sectionH2s.forEach((h2) => {
-      if (h2.textContent === '--') {
-        h2List.append(li({ class: 'line-divider' }));
+    sectionListItems.forEach((listItem) => {
+      if (listItem.textContent === '--') {
+        listItemList.append(li({ class: 'line-divider' }));
       } else {
-        const sectionId = toClassName(h2.textContent);
-        const element = reverseElementLinkTagRelation(h2);
-        h2.id = sectionId;
+        const sectionId = toClassName(listItem.textContent);
+        const element = reverseElementLinkTagRelation(listItem);
+        listItem.id = sectionId;
 
-        const h2ListItem = li(
+        const listItemListItem = li(
           { class: 'menu-nav-submenu-section', 'submenu-id': sectionId },
           element,
         );
-        h2List.append(h2ListItem);
+        listItemList.append(listItemListItem);
       }
     });
 
@@ -63,7 +57,7 @@ function buildMegaMenu(block, content) {
       div(
         title.cloneNode(true),
         buildRightSubmenu(title, menuId),
-        h2List,
+        listItemList,
       ),
     );
 
@@ -109,26 +103,24 @@ export async function buildLazyMegaMenus() {
     await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {
         if (submenuResponse.ok) {
-          // eslint-disable-next-line no-await-in-loop
           const submenuHtml = await submenuResponse.text();
 
           const submenuContent = div();
           submenuContent.innerHTML = submenuHtml;
+          const menuHeadings = [...submenuContent.querySelectorAll('div > p:first-child')];
+          const menuHeadingList = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
 
-          // get all H2s and create a list of them
-          const h2s = [...submenuContent.querySelectorAll('div > p:first-child')];
-          const h2List = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
+          menuHeadings.forEach((menuHeading) => {
+            const submenuId = toClassName(menuHeading.textContent);
+            const element = reverseElementLinkTagRelation(menuHeading);
 
-          // add H2s to list
-          h2s.forEach((h2) => {
-            const submenuId = toClassName(h2.textContent);
-            const element = reverseElementLinkTagRelation(h2);
-
-            const h2ListItem = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
-            if (h2ListItem) h2ListItem.appendChild(buildRightSubmenu(element, submenuId));
+            const menuHeadingSubHeading = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
+            if (menuHeadingSubHeading) {
+              menuHeadingSubHeading.appendChild(buildRightSubmenu(element, submenuId));
+            }
           });
 
-          h2List.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
+          menuHeadingList.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
             el.addEventListener('mouseover', (e) => {
               e.preventDefault();
               e.stopPropagation();
