@@ -234,7 +234,7 @@ main .section.OneLinkShow_zh.columns-2 {
   /* NEW PAGE LAYOUT */
   --body-font-size: 16px;
   --heading-1: 48px;
-  --heading-2: 40px;
+  --heading-2: 36px;
   --heading-3: 28px;
   --heading-4: 24px;
   --heading-5: 20px;
@@ -261,6 +261,7 @@ main .section.OneLinkShow_zh.columns-2 {
 
 @media (max-width: 991px) {
   :root {
+    --blog-width: 100%;
     --section-max-width: 750px;
     --carousel-container-width: 720px;
   }
@@ -325,6 +326,15 @@ h6 {
   margin-bottom: 1rem;
 }
 
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+}
+
 h1,
 h2 {
   font-family: var(--ff-proxima-light);
@@ -373,6 +383,7 @@ h2 {
 
 h3 {
   font-size: var(--heading-3);
+  font-weight: normal;
 }
 
 h4 {
@@ -400,6 +411,11 @@ blockquote {
 ul,
 ol {
   padding-left: 20px;
+}
+
+main ul li,
+main ol li {
+  margin-bottom: 4px;
 }
 
 ul ul,
@@ -746,8 +762,8 @@ main .section.features-section .button-container:has(a > picture:only-child) {
 @media only screen and (max-width: 767px) {
   .button,
   button {
-    width: 100%;
-    min-width: max-content;
+    width: max-content;
+    min-width: 100%;
     max-width: 200px;
     padding: 13px 16px;
   }
@@ -897,6 +913,10 @@ main .section.columns-2 > div {
 
   main .breadcrumbs-wrapper {
     height: 30px;
+  }
+
+  main .breadcrumbs-wrapper:empty {
+    height: unset;
   }
 }
 
@@ -2165,6 +2185,35 @@ main .section.no-margin-bottom {
 }
 
 /* COMMON STYLING */
+main .section.blog-heading > .default-content-wrapper {
+  width: 100%;
+  max-width: unset;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 0 30px;
+}
+
+main .section.blog-heading > .default-content-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 15px;
+  height: 4px;
+  width: calc(100% - (15px * 2));
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
+}
+
+main .section.blog-heading > .default-content-wrapper p {
+  margin: 0;
+}
+
+main .section.blog-heading > .default-content-wrapper h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
 .blog main .section.block,
 .publication.full-article main .section.block {
   padding: 20px 0;

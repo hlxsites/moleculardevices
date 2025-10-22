@@ -118,11 +118,6 @@ main .section.social-share-container {
 }
 
 @media only screen and (max-width: 767px) {
-  .full-article .social-share,
-  .blog .social-share {
-    margin-top: 60px;
-  }
-
   .full-article .share-event ul.button-container,
   .blog .share-event ul.button-container {
     position: static;

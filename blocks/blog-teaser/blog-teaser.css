@@ -1,20 +1,26 @@
-.blog .section .blog-teaser-wrapper {
-  max-width: unset;
-  margin-bottom: 100px;
+.section .blog-teaser-wrapper {
   padding-top: 0;
+
+  --heading-2: 40px;
 }
 
-.blog .section.full-width-no-sidebar .blog-teaser-wrapper {
+.section.full-width-no-sidebar .blog-teaser-wrapper {
   padding-top: 40px;
 }
 
-.blog .section.blog-heading div.blog-teaser-wrapper {
-  margin-bottom: 0;
+.section:not(.full-width-no-sidebar) .blog-teaser-wrapper {
+  width: unset;
 }
 
-.blog-teaser-item {
+.section .blog-teaser-item {
   box-shadow: 0 1px 15px var(--color-black-alpha-40);
   margin: 50px 0;
+}
+
+.section .blog-teaser-item .blog-teaser-caption h2 {
+  margin-top: 0;
+  font-family: var(--ff-proxima-regular);
+  font-weight: normal;
 }
 
 .blog-teaser-item .blog-teaser-thumb {
@@ -33,14 +39,14 @@
 }
 
 .blog-teaser-item .blog-teaser-thumb img {
-  transition: transform .5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   width: 100%;
   height: auto;
   max-height: 290px;
   object-fit: cover;
 }
 
-.featured .blog-teaser-item .blog-teaser-thumb img{
+.featured .blog-teaser-item .blog-teaser-thumb img {
   max-height: 575px;
 }
 
@@ -53,7 +59,7 @@
   text-align: center;
 }
 
-.blog-teaser-item .blog-teaser-caption h3 {
+/* .blog-teaser-item .blog-teaser-caption h3 {
   font-size: 40px;
   font-family: var(--ff-proxima-regular);
   margin-top: 14px;
@@ -61,29 +67,32 @@
   min-height: 49px;
   font-weight: bold;
   line-height: 1.1;
-}
+} */
 
 .blog-teaser-item .blog-teaser-caption h3 a {
   color: inherit;
 }
 
 .blog-teaser-item .blog-teaser-caption .metadata {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 0 0 20px;
+  font-size: 14px;
 }
 
 .blog-teaser-item .blog-teaser-caption .metadata > div {
-  font-size: 17px;
   display: inline-block;
-  margin-right: 15px;
   font-family: var(--ff-proxima-regular);
 }
 
-.blog-teaser-item .blog-teaser-caption .metadata i {
+.blog-teaser-item .blog-teaser-caption .metadata > div i {
   margin-right: 4px;
 }
 
 .blog-teaser-item .blog-teaser-caption .button-container {
-  margin-top: 40px
+  margin-top: 40px;
 }
 
 .blog-teaser-item .blog-teaser-caption .button.primary {

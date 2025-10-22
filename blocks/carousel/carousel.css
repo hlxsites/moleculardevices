@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 
-main div.carousel-wrapper {
+main .carousel-wrapper {
   width: 100%;
   max-width: unset;
 }
@@ -31,8 +31,8 @@ main .carousel-item[style*="background-image"] {
   background-repeat: no-repeat;
 }
 
-main div.carousel-wrapper,
-main div.carousel-wrapper.container-width-carousel {
+main .carousel-wrapper,
+main .carousel-wrapper.container-width-carousel {
   position: relative;
 }
 
@@ -343,9 +343,9 @@ main .carousel-dot-img-buttons .carousel-dot-button.selected {
 }
 
 /* WAVE carousel variant */
-main div.carousel-wrapper.wave,
-main div.fragments-carousel-wrapper.carousel-wrapper,
-main div.carousel-wrapper.container-width-carousel {
+main .carousel-wrapper.wave,
+main .fragments-carousel-wrapper.carousel-wrapper,
+main .carousel-wrapper.container-width-carousel {
   width: var(--section-max-width);
 }
 
@@ -406,24 +406,24 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   background-color: inherit;
 }
 
-main div.section.wave.wavecarousel::after {
+main .section.wave.wavecarousel::after {
   content: none;
 }
 
-main div.carousel-wrapper.wave.blue .carousel-dot-button {
+main .carousel-wrapper.wave.blue .carousel-dot-button {
   background-color: var(--color-white);
 }
 
-main div.carousel-wrapper.wave.blue .carousel-dot-button.selected {
+main .carousel-wrapper.wave.blue .carousel-dot-button.selected {
   background-color: var(--carousel-blue-wave-indicator);
 }
 
-main div.carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
+main .carousel-wrapper.wave.bluegreen .carousel-dot-button.selected {
   background-color: var(--color-tertiary);
 }
 
-main div.section.wave.wavecarousel.blue:not(.no-margin-bottom),
-main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
+main .section.wave.wavecarousel.blue:not(.no-margin-bottom),
+main .section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
   margin-bottom: 40px;
 }
 
@@ -437,11 +437,11 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
     font-size: 27px;
   }
 
-  main div.section.wave.wavecarousel.blue {
+  main .section.wave.wavecarousel.blue {
     background-image: url("/images/wave-background-blue.webp"), url("/images/wave-background-blue.png");
   }
 
-  main div.section.wave.wavecarousel.bluegreen {
+  main .section.wave.wavecarousel.bluegreen {
     background-image: url("/images/wave-background-blue-green.webp"), url("/images/wave-background-blue-green.png");
   }
 
@@ -496,11 +496,11 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
     padding-bottom: 40px;
   }
 
-  main div.section.wave.wavecarousel.blue {
+  main .section.wave.wavecarousel.blue {
     background-image: unset;
   }
 
-  main div.section.wave.wavecarousel.blue .carousel-wrapper.wave {
+  main .section.wave.wavecarousel.blue .carousel-wrapper.wave {
     background-color: var(--color-link-hover);
     width: 100%;
   }
@@ -522,19 +522,19 @@ main div.section.wave.wavecarousel.bluegreen:not(.no-margin-bottom) {
     padding-right: 15px;
   }
 
-  .slas-page main div.carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
+  .slas-page main .carousel-wrapper.container-width-carousel .carousel-dot-img-buttons {
     margin-top: 20px;
   }
 
-  .slas-page main div.carousel-wrapper.container-width-carousel .columns > div > div:first-child {
+  .slas-page main .carousel-wrapper.container-width-carousel .columns > div > div:first-child {
     margin-bottom: 24px;
   }
 
-  main div.carousel-wrapper.container-width-carousel .carousel-nav-left {
+  main .carousel-wrapper.container-width-carousel .carousel-nav-left {
     left: -10px;
   }
 
-  main div.carousel-wrapper.container-width-carousel .carousel-nav-right {
+  main .carousel-wrapper.container-width-carousel .carousel-nav-right {
     right: -10px;
   }
 }

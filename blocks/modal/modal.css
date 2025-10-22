@@ -109,6 +109,10 @@
   margin-top: 0;
 }
 
+.modal-inner-wrapper .modal-form h3:has(+ h3){
+  margin-bottom: 0;
+}
+
 .modal-inner-wrapper .modal-form label.privacy,
 .modal-inner-wrapper .modal-form div.privacy > label {
   text-align: center;
@@ -232,6 +236,15 @@
 @media only screen and (max-width: 991px) {
   .modal-inner-wrapper {
     width: 100%;
+  }
+
+  .newsletter-inner-wrapper .columns-2-cols .col-left {
+    gap: 0;
+  }
+
+  .newsletter-inner-wrapper .columns-2-cols .col-left img {
+    max-height: 300px;
+    width: auto;
   }
 }
 

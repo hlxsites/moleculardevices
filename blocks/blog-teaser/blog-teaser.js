@@ -1,5 +1,5 @@
 import {
-  a, div, h3, i, p, span,
+  a, div, h2, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
 import {
   createOptimizedPicture,
@@ -19,7 +19,9 @@ function renderBlockTeaser(blogData) {
     ),
     div(
       { class: 'blog-teaser-caption' },
-      h3(a({ href: blogData.path }, blogData.header)),
+      blogData.isFeaturedPost
+        ? h2(a({ href: blogData.path }, blogData.header))
+        : h3(a({ href: blogData.path }, blogData.header)),
       div(
         { class: 'metadata' },
         blogData.publicationDate
@@ -118,6 +120,7 @@ export default async function decorate(block) {
           c2aButtonText,
           publicationDate,
           author,
+          isFeaturedPost: block.classList.contains('featured'),
         };
       }
     }),

@@ -1,46 +1,47 @@
 /* stylelint-disable no-descending-specificity */
-.blog main ul ul,
-.blog main ol ol,
-.blog main .section .default-content-wrapper > p:last-child {
-  margin-bottom: 0;
+main {
+  --heading-1: 48px;
+  --heading-2: 38px;
+  --heading-3: 30px;
+  --heading-4: 30px;
 }
 
-.blog main table ul,
-.blog main table ol {
+main table ul,
+main table ol {
   margin-left: 15px;
 }
 
-.blog main h3 + ol,
-.blog main h3 + ul {
+main h3 + ol,
+main h3 + ul {
   margin-top: 10px;
 }
 
-.blog main .video-wrapper,
-.blog main .vidyard-lightbox-thumbnail {
+main .video-wrapper,
+main .vidyard-lightbox-thumbnail {
   max-width: 100% !important;
 }
 
-.blog main .video-wrapper {
+main .video-wrapper {
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-.blog main .section > div.embed-wrapper {
+main .section > div.embed-wrapper {
   padding-top: 0;
 }
 
-.blog main ol li > picture img,
-.blog main ul li > picture img {
+main ol li > picture img,
+main ul li > picture img {
   display: block;
   margin: 20px auto;
 }
 
-.blog main ol.text-caption {
+main ol.text-caption {
   margin-top: 40px;
   position: relative;
 }
 
-.blog main ol.text-caption::before {
+main ol.text-caption::before {
   content: "";
   top: -21px;
   left: 0;
@@ -60,8 +61,8 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   padding-bottom: 0;
 }
 
-.blog main .section h2:first-child,
-.blog main .section .default-content-wrapper h2:only-child {
+main .section h2:first-child,
+main .section .default-content-wrapper h2:only-child {
   margin-top: 40px;
 }
 
@@ -70,67 +71,28 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   margin-top: 20px;
 }
 
-.blog main .section > article,
-.blog main .section > .default-content-wrapper {
-  max-width: var(--blog-width);
-  padding-left: 15px;
-  padding-right: 15px;
+main .section > article,
+main .section > .default-content-wrapper {
+  width: var(--blog-width);
 }
 
-.blog main .section.embed-container:not(:first-child) {
-  padding-top: 0;
-}
-
-.blog main .section > .embed-wrapper > .embed {
+main .section > .embed-wrapper > .embed {
   margin-top: 10px;
   width: unset;
 }
 
-.blog main .columns-wrapper:has(h3) {
+main .columns-wrapper:has(h3) {
   margin-top: 30px;
 }
 
-.blog main .section.blog-wide {
+main .section.blog-wide {
   padding: 0;
 }
 
-.blog main .section.blog-wide > div {
+main .section.blog-wide > div {
   max-width: var(--container-width);
   width: unset;
   margin: 0 auto;
-}
-
-.blog main .section.blog-heading > div {
-  max-width: unset;
-  width: unset;
-}
-
-.blog main .section.blog-heading > .default-content-wrapper {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0 15px 50px;
-}
-
-.blog main .section.blog-heading > .default-content-wrapper h4 {
-  margin-bottom: 0;
-}
-
-.blog main .section.blog-heading > .default-content-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: -21px;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background-color: var(--color-tertiary);
-  background-image: var(--gradient-theme);
-}
-
-.blog main .section.blog-heading > .default-content-wrapper p {
-  margin: 0;
 }
 
 main .section.sidebar p.picture {
@@ -138,28 +100,27 @@ main .section.sidebar p.picture {
   z-index: 2;
 }
 
-main .section.sidebar h4,
-.blog .section.blog-heading h4 {
+main .section.sidebar h4 {
   font-weight: bold;
-  margin: 0;
-  margin-bottom: 10px;
-}
-
-.blog main .section.sidebar h4 {
-  margin-bottom: 50px;
+  margin: 0 0 50px;
   position: relative;
 }
 
-.blog main .section.green-secondary-buttons .button {
+main .section.green-secondary-buttons .button {
   color: var(--color-tertiary);
 }
 
-.blog main .section.orange-buttons .button.secondary {
+main .section.orange-buttons .button.secondary {
   color: var(--color-secondary);
   border: 2px solid var(--color-secondary);
 }
 
-.blog main .columns p.video-title {
+main.sidebar .section.sidebar .social-media-buttons {
+  margin-left: unset;
+  margin-right: unset;
+}
+
+main .columns p.video-title {
   margin: 15px 0 25px;
   font-size: var(--body-font-size-xs);
   display: block;
@@ -167,26 +128,27 @@ main .section.sidebar h4,
   font-style: italic;
 }
 
-.blog main .columns .video-wrapper,
-.blog main .toc-container .columns .button-container {
-  margin-bottom: 0;
-}
-
-.blog main .section .credit-paragraph {
+main .section .credit-paragraph {
   margin-top: 30px;
   padding-bottom: 30px;
 }
 
-.blog main .section .credit-paragraph p {
+main .section .credit-paragraph p {
   color: var(--color-text-primary);
   margin-bottom: 1rem;
 }
 
-.blog main .section .credit-paragraph p:last-child {
+main ul ul,
+main ol ol,
+main .card-list-filter ul,
+main .section .default-content-wrapper > p:last-child,
+main .columns .video-wrapper,
+main .toc-container .columns .button-container,
+main .section .credit-paragraph p:last-child {
   margin-bottom: 0;
 }
 
-.blog main .section .credit-paragraph strong {
+main .section .credit-paragraph strong {
   font-family: var(--ff-proxima-xbold);
 }
 
@@ -195,12 +157,21 @@ main .section.background-molecules {
 }
 
 @media only screen and (max-width: 767px) {
-  .blog main .section.blog-heading > div:first-of-type {
+  main {
+    --heading-1: 36px;
+  }
+
+  main .section.blog-heading > div:first-of-type {
     overflow: visible;
   }
 
-  .blog main .section.blog-heading .icon-view-all-posts img {
+  main .section.blog-heading .icon-view-all-posts img {
     width: 120px;
+  }
+
+  main .section > .default-content-wrapper h2:first-child,
+  main .section > .default-content-wrapper h2:only-child {
+    margin-top: 0;
   }
 }
 
@@ -256,15 +227,15 @@ main .section.sidebar h4::after {
   background-image: var(--gradient-theme);
 }
 
-.blog main .section.sidebar .embed-wrapper {
+main .section.sidebar .embed-wrapper {
   padding-top: 0;
 }
 
-.blog main .section.sidebar .embed-twitter {
+main .section.sidebar .embed-twitter {
   margin-top: 0;
 }
 
-.blog main .section .spectra-newsletter {
+main .section .spectra-newsletter {
   display: block;
   text-align: center;
   padding: 20px 16px;
@@ -276,58 +247,57 @@ main .section.sidebar h4::after {
   margin-bottom: 50px;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request {
+main .section .spectra-newsletter .contact-quote-request {
   padding: 0 15px;
   text-align: center;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .submitted-message {
+main .section .spectra-newsletter .contact-quote-request .submitted-message {
   padding: 30px 0;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .submitted-message p {
+main .section .spectra-newsletter .contact-quote-request .submitted-message p {
   font-size: 18px;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request label.privacy,
-.blog main .section .spectra-newsletter .contact-quote-request .privacy > label {
+main .section .spectra-newsletter .contact-quote-request label.privacy,
+main .section .spectra-newsletter .contact-quote-request .privacy > label {
   text-align: center;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request label.privacy a,
-.blog main .section .spectra-newsletter .contact-quote-request .privacy > label a {
+main .section .spectra-newsletter .contact-quote-request label.privacy a,
+main .section .spectra-newsletter .contact-quote-request .privacy > label a {
   color: inherit;
   text-decoration: underline;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .hs-submit .actions {
+main .section .spectra-newsletter .contact-quote-request .hs-submit .actions {
   margin-top: 2px;
   margin-bottom: 17px;
   max-width: 200px;
 }
 
-.blog main .section .spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
+main .section .spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
   margin-top: 5px;
   padding-left: 0;
 }
 
-.blog main .card-list-filter ul {
+main .card-list-filter ul {
   padding-left: 0;
-  margin-bottom: 0;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.blog main .section .spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+main .section .spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
 }
 
-.blog main .carousel-wrapper.cards .carousel {
+main .carousel-wrapper.cards .carousel {
   width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
-  .blog main .card-list-filter.blog ul li a {
+  main .card-list-filterul li a {
     padding: 16px 20px;
   }
 }
