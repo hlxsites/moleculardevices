@@ -10,7 +10,7 @@ export default async function decorate(block) {
   const toc = block.classList.contains('numbers') ? document.createElement('ol') : document.createElement('ul');
   const section = block.closest('.section');
   const tocPosition = Array.from(section.children).indexOf(block.parentElement);
-  const hTagNames = ['H3', 'H4', 'H5', 'H6'];
+  const hTagNames = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
   const headings = section.querySelectorAll(hTagNames.map((i) => `div:nth-child(n+${tocPosition + 1}) ${i}`).join(','));
   const firstHTagName = headings[0].tagName;
   const firstHTagNameIndex = hTagNames.indexOf(firstHTagName);
