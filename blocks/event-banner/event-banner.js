@@ -55,6 +55,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
 }
 
 export default async function decorate(block) {
+  block.parentElement.parentElement.classList.add('no-padding-top', 'no-padding-bottom');
   const featuredEventPath = new URL(block.querySelector('a').href).pathname;
   const isFeaturedEventBanner = block?.classList?.contains('featured');
   let eventObj;
