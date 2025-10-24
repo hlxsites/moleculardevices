@@ -21,7 +21,7 @@ h3{font-size:1.125em; margin-bottom:1.6666666em;}
 .container::after{clear:both; content: " "; display: table;}
 /**********************************MAIN**********************************/
 html, body{height:100%; font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;}
-body{background:#1d2528; text-align:center;}
+body{background:#ffffff; text-align:center;}
 a{text-decoration:none;}
 #main-wrapper{max-width:1140px; margin:0 auto; text-align:left; background:var(--color-white);}
 .pull-left{float:left;}
@@ -31,7 +31,7 @@ img{max-width:100%;}
 -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transform: translate(0, 0);}
 
 /**********************************HEADER**********************************/
-#main-head{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; background:#1d2528;}
+#main-head{font-family:"Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif; background:#CED4DD;}
 #top-head{float:right; margin-right:5em; height:2.75em;}
 #top-head nav, #top-head nav a, #search-field, #search-field input, #search-field button{display:inline-block;}
 #top-head nav{border-right:1px solid #666;}
