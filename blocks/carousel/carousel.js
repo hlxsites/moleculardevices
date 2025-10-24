@@ -360,6 +360,7 @@ class Carousel {
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
       // add default carousel classes to apply default CSS
       defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
+      this.block.closest('.section').classList.add('carousel-section');
       this.block.parentElement.classList.add('carousel-wrapper');
       this.block.classList.add('carousel');
     }
@@ -464,6 +465,13 @@ export default async function decorate(block) {
   if (useCardsStyle) {
     await createCarousel(block, [...block.children], cardStyleConfig);
     return;
+  }
+
+  // blue/customer story carousel
+  const customerStoryCarousel = block.classList.contains('blue');
+  if (customerStoryCarousel) {
+    const anchors = block.querySelectorAll('.button-container a');
+    anchors.forEach((anchor) => anchor.classList.add('button', 'secondary'));
   }
 
   // use the default carousel

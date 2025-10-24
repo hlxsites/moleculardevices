@@ -1,6 +1,7 @@
 /* stylelint-disable no-descending-specificity */
 main .section > .columns-wrapper {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .columns > div {
@@ -26,10 +27,6 @@ main .section > .columns-wrapper {
   margin-right: 10px;
 }
 
-.columns ul + p.button-container {
-  margin-left: 40px;
-}
-
 .columns .video-wrapper {
   margin-top: 0;
 }
@@ -40,30 +37,12 @@ main .section > .columns-wrapper {
 
 .columns.line > div {
   flex-wrap: wrap;
-  padding: 40px 0;
+  padding-bottom: 40px;
+  margin-bottom: 50px;
 }
 
-.columns.line > div::after {
-  flex-wrap: wrap;
-  content: '';
-  width: 94%;
-  padding-top: 50px;
-  border-bottom: 2px solid var(--color-gray-350);
-  margin-left: 14px;
-  margin-bottom: 16px;
-}
-
-.columns.line h4 {
-  font-size: 26px;
-}
-
-.columns p.video-title {
-  font-size: var(--body-font-size-m);
-}
-
-.columns.innovation img {
-  width: 165px;
-  height: 167px;
+.columns.line > div:not(:last-child) {
+  border-bottom: 2px solid var(--color-gray-250);
 }
 
 .columns.light-and-dark-grey > div > div {
@@ -186,8 +165,12 @@ main .section > .columns-wrapper {
   padding: 0 24px;
 }
 
+.columns.contact > div > div > p {
+  margin-top: 1em;
+}
+
 .columns.contact > div h2 {
-  background-color: var(--color-gray-750);
+  background-color: var(--color-theme-gray);
   color: var(--color-white);
   font-size: var(--heading-font-size-m);
   font-family: var(--ff-proxima-regular);
@@ -243,7 +226,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
-  background-color: var(--color-gray-450);
+  background-color: var(--color-gray-400);
   bottom: -10px;
   content: '';
   display: block;
@@ -306,7 +289,7 @@ main .section > .columns-wrapper {
   justify-content: center;
 }
 
-.columns.columns-3-cols:not(.innovation, .collaboration) {
+.columns.columns-3-cols:not(.collaboration) {
   margin-left: -15px;
   margin-right: -15px;
 }
@@ -328,7 +311,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
-  background-color: var(--video-teaser-bg);
+  background-color: var(--color-gray-700);
   color: var(--color-white);
   margin-left: 0;
   padding: 32px;
@@ -340,7 +323,7 @@ main .section > .columns-wrapper {
 
 .columns.light-and-dark-grey > div:nth-child(odd) > div:nth-child(odd),
 .columns.light-and-dark-grey > div:nth-child(even) > div:nth-child(even) {
-  background-color: var(--column-light-dark);
+  background-color: var(--color-gray-500);
   color: var(--color-white);
 }
 
@@ -435,20 +418,6 @@ main .section > .columns-wrapper {
   padding: 0 20px;
 }
 
-.columns.innovation div > p:nth-of-type(2) {
-  color: var(--column-innovation-text);
-}
-
-.columns.innovation div > p:last-of-type {
-  font-style: italic;
-  font-size: 13px;
-}
-
-.columns.innovation .picture {
-  justify-content: center;
-  display: flex;
-}
-
 .section .columns p:has(> .video-wrapper),
 .section .columns p:has(> .video-wrapper) ~ p,
 .section .columns div:has(> picture),
@@ -513,7 +482,6 @@ main .section > .columns-wrapper {
 
 @media (min-width: 768px) {
   .columns > div {
-    display: flex;
     flex-direction: unset;
     gap: unset;
   }
@@ -536,10 +504,6 @@ main .section > .columns-wrapper {
 
   .columns[class*='layout-'] > div {
     display: grid;
-  }
-
-  .columns[class*='layout-'] h3 {
-    margin-top: 0;
   }
 
   .columns.layout-20-80 > div {
@@ -664,10 +628,6 @@ main .section > .columns-wrapper {
     padding: 0 0 25px;
   }
 
-  .columns.line > div::after {
-    padding-top: 30px;
-  }
-
   .columns.light-and-dark-grey > div > div {
     padding: 20px;
   }
@@ -683,22 +643,6 @@ main .section > .columns-wrapper {
 
 .section .columns.collaboration > div h3 strong {
   font-family: inherit;
-}
-
-.product:not(.category) .section.columns-container .columns.columns-2-cols > div h3 {
-  font-size: 24px;
-  margin-bottom: 0;
-}
-
-.product .section.columns-container .columns.columns-2-cols > div ul {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 20px;
-}
-
-.product .section.columns-container .columns.columns-2-cols > div ul li {
-  margin-bottom: 10px;
-  line-height: 20px;
 }
 
 main .columns.columns-align-top > div {
@@ -906,69 +850,3 @@ main .columns-wrapper:has(> .columns.no-margin-top) {
 main .gradient-column div.orange-buttons .button {
   min-width: 180px;
 }
-
-/* cols 4 */
-main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
-  margin-bottom: 0.75rem;
-}
-
-main .section .cards.cols-4 p {
-  margin-top: 0;
-}
-
-main .section .cards.cols-4 ul li {
-  border: none;
-}
-
-main .section .cards.cols-4 .cards-card-wrapper {
-  height: 100%;
-  background-color: var(--column-col-4-bg);
-  color: var(--color-black);
-}
-
-main .section .cards.cols-4 .cards-card-wrapper a {
-  color: inherit;
-}
-
-main .section .cards.cols-4 .cards-card-wrapper h4 {
-  font-family: var(--ff-proxima-regular);
-  font-size: var(--heading-font-size-l);
-  border-bottom: 2px solid;
-  padding-bottom: 8px;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-main .section .cards.cols-4 .cards-card-image {
-  overflow: hidden;
-}
-
-main .section .cards.cols-4 .cards-card-image img {
-  transition: all 0.2s ease-in-out;
-}
-
-main .section .cards.cols-4 .cards-card-image img:hover {
-  transform: scale(1.05);
-}
-
-@media only screen and (min-width: 768px) {
-  main .section .cards.cols-4 .cards-card-wrapper h4 {
-    min-height: 62px;
-  }
-
-  .cards.cols-4 > ul {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .cards.cols-4 > ul > li {
-    margin: 0;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .cards.cols-4 > ul {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-

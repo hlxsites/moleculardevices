@@ -3,18 +3,8 @@
   color: var(--color-text-primary);
 }
 
-.section.wave.customer-breakthrough-carousel-container > .default-content-wrapper {
-  margin-top: 0;
-}
-
-main .section.customer-breakthrough-carousel-container .default-content-wrapper h2 {
-  font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
-  text-align: center;
-}
-
 main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-  width: 1140px;
+  width: var(--carousel-container-width);
   padding: 0 15px;
   margin: 0 auto;
 }
@@ -34,16 +24,6 @@ main .customer-breakthrough-carousel .carousel-item {
 
 main .customer-breakthrough-carousel .card .card-type {
   display: block;
-}
-
-main .customer-breakthrough-carousel .card .card-thumb {
-  height: 190px;
-  min-height: 190px;
-  overflow: hidden;
-}
-
-main .customer-breakthrough-carousel .card .card-thumb img {
-  height: 190px;
 }
 
 main .customer-breakthrough-carousel .card .card-description {
@@ -66,20 +46,13 @@ main .customer-breakthrough-carousel .card .card-description {
     width: 100%;
   }
 
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper.list .carousel-nav-button {
-    display: none;
-  }
-
+  main .carousel-wrapper.customer-breakthrough-carousel-wrapper.list .carousel-nav-button,
   main .customer-breakthrough-carousel.list .carousel-item.clone {
     display: none;
   }
 }
 
 @media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-    width: 940px;
-  }
-
   main .carousel.customer-breakthrough-carousel.list .carousel-item {
     width: 50%;
     max-width: 360px;
@@ -89,16 +62,6 @@ main .customer-breakthrough-carousel .card .card-description {
 @media only screen and (max-width: 991px) {
   .customer-breakthrough-carousel-container {
     padding-top: 30px;
-  }
-
-  .product .customer-breakthrough-carousel-container h2,
-  .technology .customer-breakthrough-carousel-container h2,
-  .application .customer-breakthrough-carousel-container h2 {
-    font-size: 45px;
-  }
-
-  main .carousel-wrapper.customer-breakthrough-carousel-wrapper {
-    width: 750px;
   }
 
   main .carousel.customer-breakthrough-carousel {
@@ -130,17 +93,5 @@ main .customer-breakthrough-carousel .card .card-description {
 
   main .carousel-wrapper.customer-breakthrough-carousel-wrapper .carousel-nav-button {
     display: none;
-  }
-
-  main .carousel.customer-breakthrough-carousel .card-thumb,
-  main .customer-breakthrough-carousel .card-thumb img {
-    height: 150px;
-    min-height: 150px;
-  }
-
-  .product .customer-breakthrough-carousel-container h2,
-  .technology .customer-breakthrough-carousel-container h2,
-  .application .customer-breakthrough-carousel-container h2 {
-    font-size: 36px;
   }
 }

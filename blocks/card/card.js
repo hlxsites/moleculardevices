@@ -7,7 +7,7 @@ import {
   formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p, i, span,
+  a, div, p, i, span, h5,
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
@@ -181,7 +181,7 @@ class Card {
         div({ class: 'card-caption' },
           item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
           this.showDate ? div({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
-          h3(
+          h5(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',

@@ -2,7 +2,7 @@ import {
   decorateLinks, fetchFragment, formatNumberInUs, sortDataByDate,
 } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p, span,
+  a, div, h3, h5, p, span,
 } from '../../scripts/dom-helpers.js';
 import {
   createOptimizedPicture, getMetadata, toClassName,
@@ -68,11 +68,14 @@ async function parseCitationFragments(fragmentPaths) {
       const fragmentElement = div();
       fragmentElement.innerHTML = fragmentHtml;
 
-      const titleBlock = fragmentElement.querySelector('h2');
+      let titleBlock = fragmentElement.querySelector('h2, h5');
       // remove the 'Citations : ' prefix from the title
       if (titleBlock) {
         const link = titleBlock.querySelector('a');
         link.innerText = link.innerText.replace('Citations : ', '');
+        if (titleBlock.tagName !== 'H5') {
+          titleBlock = h5({ id: toClassName(link.innerText) }, link);
+        }
       }
 
       const pTags = fragmentElement.querySelectorAll('p');

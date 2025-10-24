@@ -1,6 +1,6 @@
 .author-intro {
   margin: 24px 0;
-  background: var(--blog-author-bg);
+  background: rgb(var(--color-primary-rgb) / 14%);
 }
 
 .author-intro-content-wrapper {

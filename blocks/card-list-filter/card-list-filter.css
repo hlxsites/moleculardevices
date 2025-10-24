@@ -1,9 +1,4 @@
 /* DESKTOP */
-.section div.card-list-filter-wrapper {
-  padding: 0;
-  margin-top: 25px;
-}
-
 .card-list-filter .active-filter {
   display: none; /* mobile only */
   margin-bottom: 8px;
@@ -102,7 +97,7 @@
     width: 0;
     height: 0;
     min-height: 12px;
-    color: var(--card-list-filter-blog-separator);
+    color: var(--color-tertiary);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */

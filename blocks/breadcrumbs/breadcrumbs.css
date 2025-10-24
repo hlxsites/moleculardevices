@@ -1,5 +1,5 @@
 .breadcrumbs-wrapper:has(+.background-grey){
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
 }
 
 .breadcrumbs {
@@ -31,7 +31,7 @@
 }
 
 .breadcrumbs li a {
-  color: var(--color-text-primary);
+  color: inherit;
   cursor: pointer;
 }
 
