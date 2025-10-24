@@ -87,7 +87,7 @@ Disallow: /en/assets/app-note/br/3d-cultures-high-throughput-halt-assay
 Disallow: /en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-and-scanlater
 Disallow: /en/assets/app-note/br/quantitative-lateral-flow-assays-bright-dtech-nanoparticles-scanlater
 Disallow: /en/assets/app-note/dd/3d-biology/automated-2d-adherent-suspension-culture-on-cellxpress-ai
-
+Disallow: /en/assets/app-note/dd/img/ai-enabled-label-free-detection-with-in-carta-software
 
 # infographics
 Disallow: /sites/default/files/en/assets/infographics/bpd/smarter-microbial-cloning-qpix-flex-spectramax-id3s.pdf
@@ -133,7 +133,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/evolution-liver-toxicity-high-conte
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/innovation-in-cardiac-drug-discovery      
 Disallow: /en/assets/tutorials-videos/dd/img/image-to-insight-machine-learning-high-content-screening
 Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
-
+Disallow: /en/assets/tutorials-videos/br/elevating-cell-based-research-spectramax-id-series
 
 
 
