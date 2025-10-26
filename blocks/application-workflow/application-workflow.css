@@ -1,0 +1,310 @@
+/* stylelint-disable no-descending-specificity */
+.application-workflow-container {
+  counter-reset: timeline;
+
+  --top-space: 75px;
+  --arrow-width: 142px;
+  --arrow-height: 17px;
+  --arrow-position: calc(50% + 90px);
+  --counter-size: 90px;
+  --timeline-space: 100px;
+  --divider-count: calc(var(--timeline-space) + var(--top-space) + calc(var(--counter-size) / 2));
+}
+
+.section.application-workflow-container .columns-wrapper {
+  counter-increment: timeline;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 0;
+  padding: var(--timeline-space) 20px 10px;
+  color: var(--color-black-alpha-70);
+}
+
+.application-workflow-container .columns-wrapper,
+.application-workflow-container .columns-wrapper .timeline-article {
+  position: relative;
+}
+
+.application-workflow-container .columns-wrapper::after,
+.application-workflow-container .columns-wrapper .timeline-article::after {
+  content: "";
+}
+
+.application-workflow-container .columns-wrapper::after,
+.application-workflow-container .columns-wrapper .timeline-article::before,
+.application-workflow-container .columns-wrapper .timeline-article::after {
+  position: absolute;
+}
+
+.application-workflow-container .columns-wrapper .timeline-article::before,
+.application-workflow-container .columns-wrapper .timeline-article::after {
+  left: -43px;
+}
+
+.application-workflow-container .columns-wrapper::after {
+  background: var(--color-gray-275);
+  width: 20px;
+  height: 100%;
+  top: 0;
+  z-index: -1;
+  left: 40px;
+}
+
+.application-workflow-container .columns-wrapper:nth-child(2)::after {
+  top: var(--divider-count);
+}
+
+.application-workflow-container .columns-wrapper:last-child::after {
+  height: var(--divider-count);
+}
+
+.application-workflow-container .columns-wrapper .timeline-article::before {
+  content: "0" counter(timeline);
+  background: var(--color-link-hover);
+  color: var(--color-white);
+  top: var(--top-space);
+  width: var(--counter-size);
+  height: var(--counter-size);
+  line-height: var(--counter-size);
+  border-radius: 100%;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.application-workflow-container .columns-wrapper .timeline-article::after {
+  background-image: url("/fragments/workflow/bullet-arrow.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: var(--arrow-width);
+  height: var(--arrow-height);
+  left: var(--arrow-position);
+  top: calc(var(--top-space) + 40px);
+  transform: translateX(-45px);
+  z-index: -1;
+}
+
+.section.application-workflow-container .application-workflow.block h2:first-child {
+  margin-top: 0;
+  font-family: var(--ff-proxima-regular);
+}
+
+.application-workflow-container .application-workflow h3 {
+  background: var(--color-link-hover);
+  font-family: var(--ff-proxima-light);
+  color: var(--color-white);
+  text-transform: capitalize;
+  padding: 7px 23px;
+  border-radius: 20px;
+  width: 100%;
+  line-height: 1.33;
+  text-align: center;
+}
+
+.application-workflow-container .application-workflow p + h3 {
+  margin-top: 3rem;
+}
+
+.application-workflow-container .columns-wrapper .timeline-article .timeline:not(.timeline-box) img {
+  width: unset;
+  display: block;
+  margin: 0 auto;
+}
+
+.application-workflow-container .columns-wrapper {
+  padding-top: var(--timeline-space);
+}
+
+.application-workflow-container .columns-wrapper .columns > div {
+  justify-content: space-between;
+}
+
+.application-workflow-container .columns-wrapper .columns .timeline {
+  width: 100%;
+  position: relative;
+}
+
+.spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) {
+  background-image: url("/fragments/workflow/chat-bbls.png");
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: 91% 100%;
+  background-position: center;
+  height: 311px;
+  width: 494px;
+  margin-left: -35px;
+  padding: 50px 41px;
+  color: var(--color-primary);
+}
+
+.spectra-image .timeline .timeline-content + .picture img[alt="Spectra Robot"] {
+  margin-top: -88px;
+}
+
+.spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) h4 {
+  color: inherit;
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  margin-bottom: 25px;
+  margin-top: 20px;
+}
+
+.application-workflow-container .timeline-article .timeline .picture {
+  margin-bottom: 0;
+}
+
+.application-workflow-container .timeline-article .timeline-box {
+  background-color: var(--color-white);
+  min-height: 400px;
+  box-shadow: 0 1px 16px var(--color-black-alpha-20);
+  text-align: left;
+  height: 100%;
+}
+
+.application-workflow-container .timeline-article .timeline-box .timeline-content {
+  padding: 25px 20px;
+  margin-top: 0 !important;
+}
+
+.application-workflow-container .timeline-article .timeline-box p {
+  text-align: inherit !important;
+}
+
+.application-workflow-container .timeline-article .timeline-box .button-container > a {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.application-workflow-container .timeline-article .timeline-box .button-container > a > span svg {
+  width: 18px;
+}
+
+.timeline-article.highlighted-box-image .timeline-box .picture {
+  margin-top: calc(var(--timeline-space) * -1);
+}
+
+.timeline-article.highlighted-box-image .timeline-box .picture img {
+  width: unset;
+  display: block;
+  margin: auto;
+}
+
+.timeline-article.text-on-image .timeline-box h4 {
+  font-weight: 600;
+  margin-bottom: 25px;
+  font-size: 30px;
+  color: inherit;
+}
+
+.timeline-article.text-on-image .timeline:not(.timeline-box) h4 {
+  color: var(--color-link-hover);
+}
+
+.timeline-article.image-list .timeline .timeline-content:has(+ .picture) {
+  margin-bottom: 1rem;
+}
+
+.timeline-article.image-list .timeline .picture:nth-last-child(2) {
+  margin: 0;
+  position: absolute;
+}
+
+.timeline-article.image-list .timeline .picture:nth-last-child(2) + .timeline-content {
+  margin-left: 78px;
+  padding-top: 10px;
+  font-family: var(--ff-proxima-regular);
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.timeline-article.image-list .timeline .picture:nth-last-child(2) img {
+  max-width: 60px;
+  height: auto;
+}
+
+.timeline-article.image-list .timeline .picture:nth-last-child(2) + .timeline-content a {
+  color: inherit;
+}
+
+@media only screen and (min-width: 992px) {
+  .application-workflow-container .columns-wrapper:nth-child(even) .timeline-article::after {
+    transform: translateX(45px) rotate(180deg);
+    left: auto;
+    right: var(--arrow-position);
+  }
+
+  .application-workflow-container .columns-wrapper .columns .timeline {
+    max-width: 40%;
+  }
+
+  .application-workflow-container .columns-wrapper::after,
+  .application-workflow-container .columns-wrapper .timeline-article::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .application-workflow-container .columns-wrapper .timeline-article::before {
+    font-size: 36px;
+  }
+
+  .section.application-workflow-container > .application-workflow-wrapper {
+    padding-top: 0;
+    padding-bottom: 67px;
+  }
+
+  .application-workflow-container .application-workflow h3 {
+    font-size: 48px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .application-workflow-container {
+    --counter-size: 70px;
+    --timeline-space: 60px;
+  }
+
+  .section.application-workflow-container .columns-wrapper {
+    padding-left: 60px;
+  }
+
+  .application-workflow-container .columns-wrapper .columns > div {
+    gap: 50px;
+    flex-direction: column;
+    padding-left: 40px;
+  }
+
+  .application-workflow-container .columns-wrapper .columns.mobile-swap > div {
+    flex-direction: column-reverse;
+  }
+
+  .application-workflow-container .application-workflow h3 {
+    padding: 10px 23px;
+  }
+
+  .application-workflow-container .columns-wrapper .timeline-article::after {
+    top: calc(var(--top-space) + 30px);
+    transform: unset;
+    left: 0;
+    height: 13px;
+    width: 100px;
+  }
+
+  .timeline-article.highlighted-box-image:not(.mobile-swap) .timeline:not(:last-child) {
+    margin-bottom: var(--timeline-space);
+  }
+
+  .application-workflow-container .columns-wrapper::after {
+    left: 42px;
+  }
+
+  .spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) {
+    margin-left: 30px;
+    height: 270px;
+    width: 400px;
+  }
+
+  .spectra-image .timeline .timeline-content + .picture img[alt="Spectra Robot"] {
+    margin-top: -58px;
+  }
+}
