@@ -153,6 +153,11 @@
   margin-bottom: 0;
 }
 
+.application-workflow-container .timeline-article .timeline .picture img {
+  display: block;
+  margin: 0 auto;
+}
+
 .application-workflow-container
   .timeline-article
   .timeline:not(.timeline-box)
