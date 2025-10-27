@@ -123,7 +123,7 @@
   position: relative;
 }
 
-.spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) {
+.application-workflow-container .spectra-image .timeline.spectra-robot-box .timeline-content {
   background-image: url("/fragments/workflow/chat-bbls.png");
   position: relative;
   background-repeat: no-repeat;
@@ -134,13 +134,14 @@
   margin-left: -35px;
   padding: 50px 41px;
   color: var(--color-primary);
+  text-align: center;
 }
 
-.spectra-image .timeline .timeline-content + .picture img[alt="Spectra Robot"] {
-  margin-top: -88px;
+.application-workflow-container .spectra-image .timeline.spectra-robot-box .picture {
+  margin-top: -60px;
 }
 
-.spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) h4 {
+.application-workflow-container .spectra-image .timeline.spectra-robot-box .timeline-content h4 {
   color: inherit;
   font-family: var(--ff-proxima-light);
   font-weight: 600;
@@ -152,6 +153,14 @@
   margin-bottom: 0;
 }
 
+.application-workflow-container
+  .timeline-article
+  .timeline:not(.timeline-box)
+  .picture:first-child
+  + .timeline-content {
+  margin-top: -180px;
+}
+
 .application-workflow-container .timeline-article .timeline-box {
   background-color: var(--color-white);
   min-height: 400px;
@@ -160,13 +169,19 @@
   height: 100%;
 }
 
-.application-workflow-container .timeline-article .timeline-box .timeline-content {
+.application-workflow-container .timeline-article .timeline-box.spectra-robot-box {
+  box-shadow: none;
+}
+
+.application-workflow-container .timeline-box .timeline-content {
   padding: 25px 20px;
   margin-top: 0 !important;
 }
 
-.application-workflow-container .timeline-article .timeline-box p {
+.application-workflow-container .timeline-article .timeline-box p,
+.application-workflow-container .timeline-article .timeline-box .video-wrapper {
   text-align: inherit !important;
+  margin-bottom: 0;
 }
 
 .application-workflow-container .timeline-article .timeline-box .button-container > a {
@@ -190,7 +205,6 @@
 }
 
 .timeline-article.text-on-image .timeline-box h4 {
-  font-weight: 600;
   margin-bottom: 25px;
   font-size: 30px;
   color: inherit;
@@ -235,7 +249,8 @@
   }
 
   .application-workflow-container .columns-wrapper .columns .timeline {
-    max-width: 40%;
+    max-width: 440px;
+    width: 40%;
   }
 
   .application-workflow-container .columns-wrapper::after,
@@ -298,13 +313,13 @@
     left: 42px;
   }
 
-  .spectra-image .timeline .timeline-content:has(+ .picture img[alt="Spectra Robot"]) {
+  .application-workflow-container .spectra-image .timeline.spectra-robot-box .timeline-content {
     margin-left: 30px;
     height: 270px;
     width: 400px;
   }
 
-  .spectra-image .timeline .timeline-content + .picture img[alt="Spectra Robot"] {
+  .application-workflow-container .spectra-image .timeline .timeline-content + .spectra-robot-box {
     margin-top: -58px;
   }
 }
