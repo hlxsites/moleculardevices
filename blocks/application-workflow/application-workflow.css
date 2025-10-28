@@ -20,6 +20,18 @@
   color: var(--color-black-alpha-70);
 }
 
+.section.application-workflow-container .columns-wrapper .timeline-article.highlighted-box-image::before {
+  top: -30px;
+}
+
+.section.application-workflow-container .columns-wrapper .timeline-article.highlighted-box-image::after {
+  top: calc(calc(var(--counter-size) / 2) - 30px);
+}
+
+.application-workflow-container .columns-wrapper:nth-child(2):has(.highlighted-box-image)::after {
+  top: var(--timeline-space);
+}
+
 .application-workflow-container .columns-wrapper,
 .application-workflow-container .columns-wrapper .timeline-article {
   position: relative;
@@ -197,6 +209,13 @@
 
 .application-workflow-container .timeline-article .timeline-box .button-container > a > span svg {
   width: 18px;
+}
+
+.application-workflow-container .timeline-article .vidyard-player-container img {
+  height: 100%;
+  width: auto;
+  right: 0;
+  margin: auto;
 }
 
 .timeline-article.highlighted-box-image .timeline-box .picture {
