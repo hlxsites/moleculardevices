@@ -7,7 +7,7 @@
   --arrow-height: 17px;
   --arrow-position: calc(50% + 90px);
   --counter-size: 90px;
-  --timeline-space: 100px;
+  --timeline-space: 67px;
   --divider-count: calc(var(--timeline-space) + var(--top-space) + calc(var(--counter-size) / 2));
 }
 
@@ -20,6 +20,10 @@
   color: var(--color-black-alpha-70);
 }
 
+.section.application-workflow-container .columns-wrapper:has(.highlighted-box-image) {
+  padding-top: calc(var(--timeline-space) * 2);
+}
+
 .section.application-workflow-container .columns-wrapper .timeline-article.highlighted-box-image::before {
   top: -30px;
 }
@@ -29,7 +33,7 @@
 }
 
 .application-workflow-container .columns-wrapper:nth-child(2):has(.highlighted-box-image)::after {
-  top: var(--timeline-space);
+  top: calc(var(--timeline-space) + var(--counter-size));
 }
 
 .application-workflow-container .columns-wrapper,
@@ -116,10 +120,14 @@
   margin-top: 3rem;
 }
 
-.application-workflow-container .columns-wrapper .timeline-article .timeline:not(.timeline-box) img {
-  width: unset;
+.application-workflow-container .timeline-article .timeline .picture img {
+  width: 100%;
   display: block;
   margin: 0 auto;
+}
+
+.application-workflow-container .timeline-article .timeline:not(.timeline-box) img {
+  width: unset;
 }
 
 .application-workflow-container .columns-wrapper {
@@ -165,16 +173,7 @@
   margin-bottom: 0;
 }
 
-.application-workflow-container .timeline-article .timeline .picture img {
-  display: block;
-  margin: 0 auto;
-}
-
-.application-workflow-container
-  .timeline-article
-  .timeline:not(.timeline-box)
-  .picture:first-child
-  + .timeline-content {
+.application-workflow-container .text-on-image .timeline:not(.timeline-box) .picture:first-child + .timeline-content {
   margin-top: -180px;
 }
 
@@ -218,26 +217,29 @@
   margin: auto;
 }
 
-.timeline-article.highlighted-box-image .timeline-box .picture {
+.application-workflow-container .timeline-article.highlighted-box-image .timeline-box .picture {
   margin-top: calc(var(--timeline-space) * -1);
 }
 
-.timeline-article.highlighted-box-image .timeline-box .picture img {
+.application-workflow-container .timeline-article.highlighted-box-image .timeline-box .picture img {
   width: unset;
   display: block;
   margin: auto;
 }
 
-.timeline-article.text-on-image .timeline-box h4 {
-  margin-bottom: 25px;
+.application-workflow-container .timeline-article .timeline h4 {
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 30px;
-  color: inherit;
-}
-
-.timeline-article.text-on-image .timeline:not(.timeline-box) h4 {
   color: var(--color-link-hover);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
+}
+
+.application-workflow-container .timeline-article.text-on-image .timeline-box h4 {
+  color: inherit;
+  font-family: var(--ff-proxima-regular);
+  font-weight: 100;
 }
 
 .timeline-article.image-list .timeline .timeline-content:has(+ .picture) {
@@ -291,7 +293,7 @@
 
   .section.application-workflow-container > .application-workflow-wrapper {
     padding-top: 0;
-    padding-bottom: 67px;
+    padding-bottom: 0;
   }
 
   .application-workflow-container .application-workflow h3 {

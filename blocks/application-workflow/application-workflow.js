@@ -5,7 +5,6 @@ const RIGHT_BOX_CLASS = 'right-box';
 
 function addIconToCTA(parentEl) {
   if (!parentEl) return;
-  parentEl.classList.add('timeline-box');
   const ctaBtns = parentEl.querySelectorAll('.button-container > a');
   ctaBtns.forEach((btn) => {
     const ctaIcon = span({ class: 'icon icon-chevron-right-outline' });
@@ -37,9 +36,11 @@ export default async function decorate(block) {
 
   timelineArticles.forEach((article) => {
     /* add CTA Icon */
+    const hasBoxClass = article.classList.value.includes('-box');
     const isRightbox = article.classList.contains(RIGHT_BOX_CLASS);
     let parentEl = article.querySelector(':scope > div > div:first-child');
     if (isRightbox) parentEl = article.querySelector(':scope > div > div:last-child');
+    if (hasBoxClass) parentEl.classList.add('timeline-box');
     addIconToCTA(parentEl);
 
     const mediaWrappers = article.querySelectorAll(':scope .timeline, :scope > div > div');
