@@ -152,7 +152,7 @@
   justify-content: center;
 }
 
-.application-workflow-container .columns-wrapper .columns .timeline {
+.application-workflow-container .timeline {
   width: 100%;
   position: relative;
 }
@@ -190,15 +190,17 @@
   margin-top: 20px;
 }
 
-.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content {
-  color: inherit;
+.application-workflow-container .title-secondary .timeline.spectra-robot-box .timeline-content {
+  color: var(--color-text-primary);
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content p {
+.application-workflow-container .title-secondary .timeline.spectra-robot-box .timeline-content p {
   margin-top: 0;
 }
 
-.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content h4 {
+.application-workflow-container .title-secondary .timeline.spectra-robot-box .timeline-content h4 {
   color: var(--color-secondary);
   margin-bottom: 10px;
 }
@@ -310,16 +312,12 @@
     right: var(--arrow-position);
   }
 
-  .application-workflow-container .columns-wrapper .columns .timeline {
+  .application-workflow-container .timeline {
     max-width: 440px;
     width: 40%;
   }
 
-  .application-workflow-container .spectra-full-width .spectra-robot-box-wrapper {
-    justify-content: center;
-  }
-
-  .application-workflow-container .spectra-full-width .spectra-robot-box-wrapper .spectra-robot-box {
+  .application-workflow-container .spectra-full-width .spectra-robot-box {
     max-width: 100%;
     width: 100%;
   }

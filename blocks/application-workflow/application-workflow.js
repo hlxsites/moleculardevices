@@ -1,5 +1,6 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { div, span } from '../../scripts/dom-helpers.js';
+import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
+import { a, div, span } from '../../scripts/dom-helpers.js';
+import { decorateLinks } from '../../scripts/scripts.js';
 
 const RIGHT_BOX_CLASS = 'right-box';
 
@@ -57,6 +58,22 @@ export default async function decorate(block) {
       // detect special spectra image case
       const spectraImg = wrapper.querySelector('.picture img[alt="Spectra Robot"]');
       if (spectraImg) wrapper.classList.add('spectra-robot-box');
+
+      /* add rfq link to spectra */
+      const hasRFQLink = article.classList.contains('quote-request-link');
+      const familyID = getMetadata('family-id');
+
+      if (hasRFQLink && familyID) {
+        const RFQAnchor = a({ href: `/quote-request?pid=${familyID}` });
+
+        // wrapper.childNodes.forEach((child) => {
+        //   RFQAnchor.appendChild(child.cloneNode(true)); // deep clone
+        // });
+
+        // const RFQContainer = div({ class: 'timeline spectra-robot-box' }, RFQAnchor);
+        wrapper.parentNode.insertBefore(RFQAnchor, wrapper);
+        RFQAnchor.appendChild(wrapper);
+      }
 
       // wrap non-media children .timeline-content
       let currentWrapper = null;
