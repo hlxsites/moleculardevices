@@ -236,6 +236,8 @@
 
 .timeline-article.text-on-image .timeline:not(.timeline-box) h4 {
   color: var(--color-link-hover);
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
 }
 
 .timeline-article.image-list .timeline .timeline-content:has(+ .picture) {
