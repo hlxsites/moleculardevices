@@ -41,6 +41,10 @@
   position: relative;
 }
 
+.application-workflow-container .columns-wrapper .columns.block.columns-1-cols {
+  background-color: transparent;
+}
+
 .application-workflow-container .columns-wrapper::after,
 .application-workflow-container .columns-wrapper .timeline-article::after {
   content: "";
@@ -55,6 +59,12 @@
 .application-workflow-container .columns-wrapper .timeline-article::before,
 .application-workflow-container .columns-wrapper .timeline-article::after {
   left: -43px;
+}
+
+.application-workflow-container .columns-wrapper:last-child:has(.spectra-full-width)::after,
+.application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::before,
+.application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::after {
+  display: none;
 }
 
 .application-workflow-container .columns-wrapper::after {
@@ -138,12 +148,16 @@
   justify-content: space-between;
 }
 
+.application-workflow-container .columns-wrapper .columns.spectra-full-width > div {
+  justify-content: center;
+}
+
 .application-workflow-container .columns-wrapper .columns .timeline {
   width: 100%;
   position: relative;
 }
 
-.application-workflow-container .spectra-image .timeline.spectra-robot-box .timeline-content {
+.application-workflow-container .spectra-image.spectra-bubble .spectra-robot-box .timeline-content {
   background-image: url("/fragments/workflow/chat-bbls.png");
   position: relative;
   background-repeat: no-repeat;
@@ -157,7 +171,14 @@
   text-align: center;
 }
 
-.application-workflow-container .spectra-image .timeline.spectra-robot-box .picture {
+.application-workflow-container .spectra-image.ask-me-bubble .spectra-robot-box .timeline-content {
+  margin: 0 auto;
+  height: 250px;
+  padding: 31px 70px;
+  background-image: url("/fragments/workflow/ask-me-bubble.png");
+}
+
+.application-workflow-container .spectra-image:not(.ask-me-bubble) .timeline.spectra-robot-box .picture {
   margin-top: -60px;
 }
 
@@ -167,6 +188,19 @@
   font-weight: 600;
   margin-bottom: 25px;
   margin-top: 20px;
+}
+
+.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content {
+  color: inherit;
+}
+
+.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content p {
+  margin-top: 0;
+}
+
+.application-workflow-container .orange-sprectra-title .timeline.spectra-robot-box .timeline-content h4 {
+  color: var(--color-secondary);
+  margin-bottom: 10px;
 }
 
 .application-workflow-container .timeline-article .timeline .picture {
@@ -281,6 +315,15 @@
     width: 40%;
   }
 
+  .application-workflow-container .spectra-full-width .spectra-robot-box-wrapper {
+    justify-content: center;
+  }
+
+  .application-workflow-container .spectra-full-width .spectra-robot-box-wrapper .spectra-robot-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
   .application-workflow-container .columns-wrapper::after,
   .application-workflow-container .columns-wrapper .timeline-article::before {
     left: 50%;
@@ -309,6 +352,14 @@
 
   .section.application-workflow-container .columns-wrapper {
     padding-left: 60px;
+  }
+
+  .section.application-workflow-container .columns-wrapper:not(.spectra-full-width) {
+    padding-left: 20px;
+  }
+
+  .application-workflow-container .columns-wrapper:not(.spectra-full-width) .columns > div {
+    padding-left: 0;
   }
 
   .application-workflow-container .columns-wrapper .columns > div {
