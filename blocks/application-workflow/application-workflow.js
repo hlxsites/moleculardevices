@@ -24,7 +24,7 @@ function applyMargin(timelineArticle, contentEl) {
   if (!contentEl) return;
   const classList = Array.from(timelineArticle.classList);
   const positionValue = extractPositionValue(classList);
-  if (positionValue) contentEl.style.marginTop = `-${positionValue}px`;
+  if (positionValue) contentEl.style.bottom = `${positionValue}px`;
 }
 
 export default async function decorate(block) {
