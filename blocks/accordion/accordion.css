@@ -1,8 +1,8 @@
 /* stylelint-disable no-descending-specificity */
 .accordion .accordion-trigger {
   display: flex;
-  background-color: var(--color-gray-25);
-  color: var(--color-gray-800);
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-700);
   border: 1px solid var(--color-gray-400);
   border-top-right-radius: 3px;
   cursor: pointer;
@@ -87,8 +87,8 @@
   display: none;
   overflow: hidden;
   background-color: var(--color-white);
-  border: 1px solid var(--color-gray-300);
-  color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-gray-750);
   padding: 20px 30px;
   border-top: 0;
 }

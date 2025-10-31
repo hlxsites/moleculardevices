@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateButtons, decorateIcons } from '../../scripts/lib-franklin.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);
@@ -34,8 +34,8 @@ function searchDistributorForm(countryList, productFamilyList) {
                     <span class="fa fa-chevron-down"></span>
                   </div>
                 </div>
-                <div class="button" id="searchButton">
-                  <button>SEARCH</button>
+                <div id="searchButton">
+                  <button class="button primary">SEARCH</button>
                 </div>
               </div>
             </div>
@@ -256,5 +256,6 @@ export default async function decorate(block) {
   hideResult();
   renderAddress();
 
-  await decorateIcons(block);
+  decorateIcons(block);
+  decorateButtons(block);
 }

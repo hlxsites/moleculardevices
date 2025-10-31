@@ -1,29 +1,33 @@
-main .section>div.page-tabs-wrapper {
-  width: 100%;
-  padding: 0;
+/* stylelint-disable no-descending-specificity */
+main .section.page-tabs-container {
+  --anchor-height: 100px;
+  --anchor-height-sticky: 60px;
+  --active-bar-height: 35px;
+  --transition: all 0.1s ease-in-out;
+
   background-image: url("/images/tabLinksBg.jpg");
   background-size: cover;
   background-position: right center;
+  transition: var(--transition);
+}
+
+main .section.page-tabs-container.sticky {
+  --anchor-height: 60px;
+  --active-bar-height: 17px;
+
+  position: sticky;
   z-index: 99;
 }
 
-main .page-tabs {
-  margin: 0 auto;
-  padding: 0 15px;
-  height: 60px;
-  white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: var(--section-max-width);
-}
-
-main .page-tabs-wrapper.sticky .page-tabs {
-  height: 60px;
+@media only screen and (max-width: 991px) {
+  main .section.page-tabs-container {
+    --anchor-height: 60px;
+    --active-bar-height: 17px;
+  }
 }
 
 main .page-tabs ul {
   margin: 0;
-  height: 100%;
   padding: 0;
   touch-action: auto;
   list-style: none;
@@ -31,7 +35,6 @@ main .page-tabs ul {
 
 main .page-tabs li {
   position: relative;
-  height: 100%;
   margin: 0 25px;
   text-align: center;
   display: inline-block;
@@ -45,7 +48,6 @@ main .page-tabs li:last-of-type {
   margin-right: 0;
 }
 
-
 main .page-tabs li a {
   color: var(--color-white);
   background: none;
@@ -53,8 +55,9 @@ main .page-tabs li a {
   font-family: var(--ff-proxima-light);
   font-weight: 300;
   font-size: 18px;
-  line-height: 60px;
+  line-height: var(--anchor-height);
   margin: 0;
+  transition: var(--transition);
 }
 
 main .page-tabs li[aria-selected="true"] a {
@@ -62,63 +65,34 @@ main .page-tabs li[aria-selected="true"] a {
   font-weight: bold;
 }
 
-html[lang="de"] main .page-tabs li a {
-  font-size: 14px;
+main .page-tabs-container.sticky .page-tabs li a {
+  line-height: var(--anchor-height-sticky);
 }
 
-main .page-tabs-wrapper.sticky .page-tabs li a {
-  line-height: 60px;
+main .page-tabs li[aria-selected="true"]::before,
+main .page-tabs li[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  background: var(--color-white);
+  left: 50%;
+  transform: translateX(-50%);
+  transition: var(--transition);
 }
 
 main .page-tabs li[aria-selected="true"]::before {
-  position: absolute;
-  content: "";
-  background: var(--color-white);
   width: 2px;
-  height: 10px;
-  margin-top: 50px;
-  left: 50%;
-}
-
-main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
-  margin-top: 43px;
+  bottom: 0;
+  height: var(--active-bar-height);
 }
 
 main .page-tabs li[aria-selected="true"]::after {
-  position: absolute;
-  content: "";
-  background: var(--color-white);
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  margin-top: 40px;
-  margin-left: -4px;
-  left: 50%;
+  bottom: calc(var(--active-bar-height) - 8px);
 }
 
-main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::after {
-  margin-top: 43px;
-}
-
-@media (min-width: 992px) {
-  main .page-tabs {
-    height: 100px;
-  }
-
-  main .page-tabs li a {
-    line-height: 100px;
-  }
-
-  main .page-tabs li[aria-selected="true"]::before {
-    height: 35px;
-    margin-top: 65px;
-  }
-
-  main .page-tabs-wrapper.sticky .page-tabs li[aria-selected="true"]::before {
-    height: 17px;
-  }
-
-  main .page-tabs li[aria-selected="true"]::after {
-    margin-top: 65px;
-  }
+/* modify font size for de */
+html[lang="de"] main .page-tabs li a {
+  font-size: 14px;
 }
