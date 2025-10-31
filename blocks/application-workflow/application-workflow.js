@@ -34,6 +34,9 @@ function applyCustomSpacing(article, element, className, cssProperty = 'bottom')
   if (positionValue && cssProperty === 'marginTop') {
     element.style.marginTop = `-${positionValue}px`;
   }
+  if (positionValue && cssProperty === 'paddingTop') {
+    element.style.paddingTop = `${positionValue}px`;
+  }
 }
 
 function wrapTimelineContent(wrapper, article) {
@@ -119,6 +122,7 @@ export default async function decorate(block) {
         applyCustomSpacing(article, wrapper.querySelector('.picture'), 'highlighted-box-image-position', 'marginTop');
       } else {
         applyCustomSpacing(article, wrapper, 'timeline-top-space');
+        applyCustomSpacing(article, wrapper, 'timeline-top-positive-space', 'paddingTop');
       }
 
       const children = Array.from(wrapper.children);
