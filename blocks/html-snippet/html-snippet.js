@@ -42,7 +42,7 @@ function decorateVidyardVideos(block) {
   });
 }
 
-async function decorateSnippet(block, fragmentURL) {
+export async function decorateSnippet(block, fragmentURL) {
   const fragment = await getFragmentFromFile(fragmentURL);
   block.innerHTML = fragment;
   processScriptNodes(block.parentElement, block);
