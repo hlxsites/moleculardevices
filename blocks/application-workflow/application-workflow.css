@@ -136,9 +136,6 @@
 
 .application-workflow-container .timeline-article .timeline-box .picture img {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: center;
 }
 
 .application-workflow-container .timeline-article.image-auto-size .timeline-box .picture img {
