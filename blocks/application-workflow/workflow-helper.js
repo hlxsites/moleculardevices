@@ -2,30 +2,6 @@ import { a, div, span } from '../../scripts/dom-helpers.js';
 import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
 
 /**
- * Waits until an element is visible in the DOM (i.e., not display:none).
- * @param {HTMLElement} el - Element to observe for visibility.
- * @returns {Promise<void>} Resolves once the element becomes visible.
- */
-const waitForVisible = (el) => new Promise((resolve) => {
-  const check = () => (el.offsetParent !== null ? resolve() : requestAnimationFrame(check));
-  check();
-});
-
-/**
- * Waits for all <img> elements inside a wrapper to finish loading or erroring.
- * @param {HTMLElement} wrapper - The container to scan for <img> elements.
- * @returns {Promise<void[]>} Resolves once all images have finished loading.
- */
-const waitForImages = (wrapper) => Promise.all(
-  Array.from(wrapper.querySelectorAll('img')).map((img) => img.complete
-    || new Promise((resolve) => {
-      img.addEventListener('load', resolve, { once: true });
-      img.addEventListener('error', resolve, { once: true });
-    }),
-  ),
-);
-
-/**
  * Extracts a numeric value from a class name like "position-bottom-40".
  * @param {string[]} classList - Array of class names.
  * @param {string} base - Base class name prefix to match.
@@ -114,22 +90,6 @@ export function applyImageTextSpacing(article, wrapper) {
   const img = firstPicture.querySelector('img');
   if (img && !img.complete) img.addEventListener('load', applySpacing, { once: true });
   else applySpacing();
-}
-
-/**
- * Adjusts the min-height of Spectra timeline content after all assets are loaded.
- * @param {HTMLElement} wrapper - The timeline wrapper containing Spectra content.
- * @returns {Promise<void>}
- */
-export async function handleSpectraAdjustment(wrapper) {
-  const content = wrapper.querySelector('.timeline-content');
-  if (!content) return;
-
-  await Promise.all([waitForImages(wrapper), waitForVisible(content)]);
-  requestAnimationFrame(() => {
-    const rect = content.getBoundingClientRect();
-    if (rect.height > 0) content.style.minHeight = `${Math.floor(rect.height + 30)}px`;
-  });
 }
 
 /**

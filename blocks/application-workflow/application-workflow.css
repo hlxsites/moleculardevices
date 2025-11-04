@@ -315,7 +315,7 @@
 .timeline-article.image-list .timeline .image-list-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1rem;
   padding-top: 8px;
 }
 

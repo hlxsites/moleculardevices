@@ -1,6 +1,6 @@
 import {
   addIconToCTA, applyImageTextSpacing, applyWrapperSpacing, handleCTALinks,
-  handleSpectraAdjustment, wrapTimelineContent,
+  wrapTimelineContent,
 } from './workflow-helper.js';
 
 const RIGHT_BOX_CLASS = 'right-box';
@@ -42,9 +42,6 @@ export default async function decorate(block) {
 
       handleCTALinks(article, wrapper);
       wrapTimelineContent(wrapper, article);
-
-      if (spectraImg) handleSpectraAdjustment(wrapper);
-
       applyImageTextSpacing(article, wrapper);
     });
 
