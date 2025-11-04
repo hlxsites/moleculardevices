@@ -117,19 +117,6 @@ export function applyImageTextSpacing(article, wrapper) {
 }
 
 /**
- * Recalculates a timeline item’s height based on image and content dimensions.
- * @param {HTMLImageElement} image - The image element inside the timeline.
- * @param {HTMLElement} content - The content element inside the timeline.
- * @param {HTMLElement} timeline - The timeline container to resize.
- */
-function updateTimelineHeight(image, content, timeline) {
-  if (!timeline || !image || !content) return;
-
-  const totalHeight = (image.offsetHeight || 0) + (content.offsetHeight || 0);
-  timeline.style.height = `${totalHeight}px`;
-}
-
-/**
  * Adjusts the min-height of Spectra timeline content after all assets are loaded.
  * @param {HTMLElement} wrapper - The timeline wrapper containing Spectra content.
  * @returns {Promise<void>}
@@ -215,44 +202,4 @@ export function handleCTALinks(article, wrapper) {
     wrapper.parentNode.insertBefore(RFQAnchor, wrapper);
     RFQAnchor.appendChild(wrapper);
   }
-}
-
-/**
- * Sets up dynamic height calculation for "text-on-image" timeline variants.
- * - Adjusts height based on image/content ratio
- * - Observes content resizing
- * - Responds to window resizing (debounced)
- * @param {HTMLElement} article - The timeline article element.
- */
-export function setupTextOnImage(article) {
-  const timelines = article.querySelectorAll('.timeline:not(.timeline-box, .spectra-robot-box)');
-  if (!timelines.length) return;
-
-  const updateHeights = () => {
-    timelines.forEach((timeline) => {
-      const image = timeline.querySelector('.picture img');
-      const content = timeline.querySelector('.timeline-content');
-      if (image && content) updateTimelineHeight(image, content, timeline);
-    });
-  };
-
-  timelines.forEach((timeline) => {
-    const image = timeline.querySelector('.picture img');
-    const content = timeline.querySelector('.timeline-content');
-    if (!image || !content) return;
-
-    const handleLoad = () => updateTimelineHeight(image, content, timeline);
-    image.addEventListener('load', handleLoad, { once: true });
-    if (image.complete) handleLoad();
-
-    const timelineObserver = new ResizeObserver(
-      () => updateTimelineHeight(image, content, timeline));
-    timelineObserver.observe(content);
-  });
-
-  // Debounced resize listener
-  window.addEventListener('resize', () => {
-    clearTimeout(window.timelineResizeTimer);
-    window.timelineResizeTimer = setTimeout(updateHeights, 150);
-  });
 }
