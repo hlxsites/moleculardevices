@@ -1,4 +1,4 @@
-import { a, span } from '../../scripts/dom-helpers.js';
+import { a, div, span } from '../../scripts/dom-helpers.js';
 import { decorateIcons } from '../../scripts/lib-franklin.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -8,12 +8,9 @@ export function openMediaGallery(mg) {
 }
 
 export async function buildMediaGallery(mg) {
-  const overlay = document.createElement('div');
-  overlay.classList.add('overlay');
-  const content = document.createElement('div');
-  content.classList.add('overlay-content');
-  const carousel = document.createElement('div');
-  carousel.classList.add('overlay-carousel');
+  const overlay = div({ class: 'overlay' });
+  const content = div({ class: 'overlay-content' });
+  const carousel = div({ class: 'overlay-carousel' });
   overlay.appendChild(content);
   content.appendChild(carousel);
   mg.after(overlay);
