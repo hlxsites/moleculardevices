@@ -61,7 +61,6 @@
   left: -43px;
 }
 
-/* .application-workflow-container .columns-wrapper:last-child:has(.spectra-full-width)::after, */
 .application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::before,
 .application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::after {
   display: none;
@@ -451,8 +450,16 @@
     padding-left: 20px;
   }
 
+  .application-workflow-container .columns-wrapper:has(+ .columns-wrapper .spectra-full-width)::after {
+    height: var(--divider-count);
+  }
+
   .application-workflow-container .timeline {
     padding-top: 0 !important;
+  }
+
+  .section.application-workflow-container .columns-wrapper:has(.spectra-full-width)::after {
+    display: none;
   }
 }
 
