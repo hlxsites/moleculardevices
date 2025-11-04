@@ -465,6 +465,10 @@
     margin-bottom: 16px;
     font-size: 24px;
   }
+
+  .application-workflow-container .columns-wrapper .timeline-article::after {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 400px) {
