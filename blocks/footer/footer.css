@@ -429,12 +429,6 @@
 
 /* MEDIA QUERY */
 @media only screen and (min-width: 768px) {
-  .columns > div {
-    display: flex;
-    flex-direction: unset;
-    gap: unset;
-  }
-
   .footer-wrap .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
