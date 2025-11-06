@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import {
-  div, img, h3, p, h5, strong, i, a,
+  div, img, h3, p, strong, i, a,
   article,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
