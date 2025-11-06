@@ -138,7 +138,7 @@ Disallow: /en/assets/tutorials-videos/dd/3d-biology/innovation-in-cardiac-drug-d
 Disallow: /en/assets/tutorials-videos/dd/img/image-to-insight-machine-learning-high-content-screening
 Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
 Disallow: /en/assets/tutorials-videos/br/elevating-cell-based-research-spectramax-id-series
-
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/how-ai-powered-automation-enables-fully-automated-cell-culture
 
 
 #EU webinars to imaging video gallery page
