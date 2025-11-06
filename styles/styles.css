@@ -651,6 +651,11 @@ button:disabled:hover {
   box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
 }
 
+a.button .fa,
+a.button i.fa {
+  color: inherit;
+}
+
 .button.primary {
   --btn-base-color: var(--color-primary);
   --btn-text-color: var(--color-white);
