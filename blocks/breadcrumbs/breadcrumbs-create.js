@@ -3,6 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
+import { toTitleCase } from '../../scripts/scripts.js';
 import customBreadcrumbs, { customResourcesBreadcrumb } from './customBreadcrumbs.js';
 
 const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
@@ -92,7 +93,7 @@ export default async function createBreadcrumbs(container) {
       ...pathSplit.slice(1, -1).map((part, index) => {
         const url = urlForIndex(index);
         return {
-          name: getName(pageIndex, url, part, false),
+          name: toTitleCase(getName(pageIndex, url, part, false)),
           url_path: getCustomUrl(url, part),
         };
       }),
