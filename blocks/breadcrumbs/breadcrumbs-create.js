@@ -3,7 +3,6 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.js';
-import { toTitleCase } from '../../scripts/scripts.js';
 import customBreadcrumbs, { customResourcesBreadcrumb } from './customBreadcrumbs.js';
 
 const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
@@ -50,8 +49,7 @@ function getName(pageIndex, path, part, current) {
       .replace(/<br\s*\/?>/gi, ' ')
       .replace(/<[^>]+>/g, '');
 
-    const breadcrumbTitle = document.originalTitle
-      || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    const breadcrumbTitle = document.originalTitle || heading || document.title;
     return decodeHTMLEntities(breadcrumbTitle);
   }
 
@@ -63,14 +61,8 @@ export default async function createBreadcrumbs(container) {
 
   const path = window.location.pathname;
   const pathSplit = skipParts(path.split('/'));
-  const isNewsTemplate = pathSplit.includes('news');
 
-  let pageIndex;
-  if (isNewsTemplate) {
-    pageIndex = await ffetch('/query-index.json').sheet('news').all();
-  } else {
-    pageIndex = await ffetch('/query-index.json').all();
-  }
+  const pageIndex = await ffetch('/query-index.json').all();
   const pg = pageIndex.find((page) => page.path === path);
 
   // default Home breadcrumb
@@ -93,7 +85,7 @@ export default async function createBreadcrumbs(container) {
       ...pathSplit.slice(1, -1).map((part, index) => {
         const url = urlForIndex(index);
         return {
-          name: toTitleCase(getName(pageIndex, url, part, false)),
+          name: getName(pageIndex, url, part, false),
           url_path: getCustomUrl(url, part),
         };
       }),
