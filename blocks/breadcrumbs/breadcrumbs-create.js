@@ -49,8 +49,7 @@ function getName(pageIndex, path, part, current) {
       .replace(/<br\s*\/?>/gi, ' ')
       .replace(/<[^>]+>/g, '');
 
-    const breadcrumbTitle = document.originalTitle
-      || (document.title.includes('| Molecular Devices') ? heading : document.title);
+    const breadcrumbTitle = document.originalTitle || heading || document.title;
     return decodeHTMLEntities(breadcrumbTitle);
   }
 
