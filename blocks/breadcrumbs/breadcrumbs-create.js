@@ -62,8 +62,14 @@ export default async function createBreadcrumbs(container) {
 
   const path = window.location.pathname;
   const pathSplit = skipParts(path.split('/'));
+  const isNewsTemplate = pathSplit.includes('news');
 
-  const pageIndex = await ffetch('/query-index.json').all();
+  let pageIndex;
+  if (isNewsTemplate) {
+    pageIndex = await ffetch('/query-index.json').sheet('news').all();
+  } else {
+    pageIndex = await ffetch('/query-index.json').all();
+  }
   const pg = pageIndex.find((page) => page.path === path);
 
   // default Home breadcrumb
