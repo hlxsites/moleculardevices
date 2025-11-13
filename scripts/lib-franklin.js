@@ -384,7 +384,7 @@ export function replaceHTMLTag(oldEl, newTag) {
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
-  const articleIncluded = ['Blog'];
+  const articleIncluded = ['Blog', 'Publication'];
   const hasArticle = articleIncluded.includes(getMetadata('template'));
   const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'card-list-filter'];
 

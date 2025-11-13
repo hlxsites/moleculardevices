@@ -70,7 +70,7 @@ main .section .specifications-wrapper {
 }
 
 .specifications .responsive-table tbody tr:nth-child(odd) {
-  background: var(--color-gray-150);
+  background: var(--color-gray-50);
 }
 
 .specifications .responsive-table tbody tr:first-child {
@@ -88,6 +88,11 @@ main .section .specifications-wrapper {
 
 .specifications .table-container.multiple-products thead th {
   z-index: 0;
+}
+
+.specifications .responsive-table td h3 {
+  margin-bottom: 0;
+  margin-top: 1rem;
 }
 
 /* Table with only one product */

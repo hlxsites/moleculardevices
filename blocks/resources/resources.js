@@ -8,7 +8,7 @@ import {
 } from '../../scripts/scripts.js';
 import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
-  div, a, p, h3, i, h2, span, ul, li,
+  div, a, p, i, h2, span, ul, li, h5,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import resourceMapping from './resource-mapping.js';
@@ -108,7 +108,7 @@ export async function decorateResources(block) {
         div(
           { class: 'resource-header' },
           p(item.displayType),
-          h3(itemSearchTitle(item)),
+          h5(itemSearchTitle(item)),
         ),
         div(
           { class: 'resource-description' },

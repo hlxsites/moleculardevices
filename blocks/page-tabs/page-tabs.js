@@ -86,6 +86,6 @@ export default async function decorate(block) {
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
   if (pageTabsBlock) {
-    pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
+    pageTabsBlock.parentElement.classList.add('sticky-element', 'sticky-desktop');
   }
 }

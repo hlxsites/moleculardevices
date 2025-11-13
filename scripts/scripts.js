@@ -479,6 +479,17 @@ export function decorateLinkedPictures(container) {
   });
 }
 
+/* add custom css based on template type */
+function addDefaultStylingToTemplates() {
+  const workflowLayouts = ['Application'];
+  const hasWorkflowTab = document.body.querySelector('.section.tabs[aria-labelledby="workflow"]');
+  const type = getMetadata('template');
+  const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
+  if (workflowLayouts.some((r) => spTypes.indexOf(r) !== -1) && hasWorkflowTab) {
+    loadCSS('/fragments/applications/application-workflow-commons.css');
+  }
+}
+
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
@@ -1199,6 +1210,7 @@ export async function decorateMain(main) {
   addSectionBgColor(main);
   addBlockBgColor(main);
   addBgToCarousel(main);
+  addDefaultStylingToTemplates();
   addPageSchema();
   addHreflangTags();
 }
