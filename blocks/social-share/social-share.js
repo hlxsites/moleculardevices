@@ -87,9 +87,35 @@ export function decorateSocialIcons(element) {
   });
 }
 
+export function decorateFooterSocialIcons(element) {
+  element.querySelectorAll('li').forEach((social) => {
+    const type = social.getAttribute('data-type');
+    const icon = social.querySelector('i');
+
+    switch (type) {
+      case 'facebook-f':
+        decorateLink(social, 'Facebook', icon, 'https://www.facebook.com/MolecularDevices');
+        break;
+      case 'linkedin-in':
+        decorateLink(social, 'LinkedIn', icon, 'https://www.linkedin.com/company/molecular-devices');
+        break;
+      case 'x-twitter':
+        decorateLink(social, 'X', icon, 'https://x.com/moldev');
+        break;
+      case 'youtube':
+        decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
+        break;
+      default:
+        // eslint-disable-next-line no-console
+        console.warn('Unhandled social type:', type);
+        break;
+    }
+  });
+}
+
 export function socialShareBlock(title, socials) {
   return div({ class: 'share-event' },
-    p(title),
+    title ? p(title) : '',
     div({ class: 'social-links' },
       ul({ class: 'button-container' },
         ...socials.map((social) => li({ class: `share-${social}`, 'data-type': social },

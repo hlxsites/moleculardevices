@@ -242,7 +242,7 @@ function mapOnelinkClass(className) {
  * @param {Element} element
  */
 export function decorateIcons(element = document) {
-  const iconPrefix = 'fa'; // Font Awesome prefix
+  const iconPrefix = 'fa' || 'fa-brands'; // Font Awesome prefix
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
     if (span.dataset.iconDecorated === 'true') return;
