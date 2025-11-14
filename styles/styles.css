@@ -441,8 +441,7 @@ a i.fa {
 }
 
 .fa-facebook-f {
-  position: relative;
-  top: -2px;
+  margin-top: -2px;
 }
 
 a i.fa.fa-external-link {
