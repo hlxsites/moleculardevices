@@ -230,6 +230,7 @@
 
 .footer .row-4 h3:first-of-type {
   padding-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .row-4 ul:first-of-type {
