@@ -53,7 +53,13 @@ export function decorateSocialIcons(element) {
       case 'facebook':
         decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
         break;
+      case 'facebook-f':
+        decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+        break;
       case 'linkedin':
+        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
+        break;
+      case 'linkedin-in':
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
         break;
       case 'twitter':
@@ -64,7 +70,39 @@ export function decorateSocialIcons(element) {
         decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
         icon.remove();
         break;
+      case 'x-twitter':
+        decorateLink(social, 'X', icon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
+        break;
       case 'youtube-play':
+        decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
+        break;
+      case 'youtube':
+        decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
+        break;
+      default:
+        // eslint-disable-next-line no-console
+        console.warn('Unhandled social type:', type);
+        break;
+    }
+  });
+}
+
+export function decorateFooterSocialIcons(element) {
+  element.querySelectorAll('li').forEach((social) => {
+    const type = social.getAttribute('data-type');
+    const icon = social.querySelector('i');
+
+    switch (type) {
+      case 'facebook-f':
+        decorateLink(social, 'Facebook', icon, 'https://www.facebook.com/MolecularDevices');
+        break;
+      case 'linkedin-in':
+        decorateLink(social, 'LinkedIn', icon, 'https://www.linkedin.com/company/molecular-devices');
+        break;
+      case 'x-twitter':
+        decorateLink(social, 'X', icon, 'https://x.com/moldev');
+        break;
+      case 'youtube':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
       default:
@@ -77,11 +115,11 @@ export function decorateSocialIcons(element) {
 
 export function socialShareBlock(title, socials) {
   return div({ class: 'share-event' },
-    p(title),
+    title ? p(title) : '',
     div({ class: 'social-links' },
       ul({ class: 'button-container' },
         ...socials.map((social) => li({ class: `share-${social}`, 'data-type': social },
-          i({ class: `fa fa-${social}` }),
+          i({ class: `fa-brands fa-${social}` }),
         ),
         ),
       ),
@@ -114,8 +152,8 @@ export default function decorate(block) {
   }
 
   const socials = (template === 'blog' || theme === 'Full Article')
-    ? ['linkedin', 'facebook', 'twitter', 'youtube-play']
-    : ['facebook', 'linkedin', 'twitter', 'youtube-play'];
+    ? ['linkedin-in', 'facebook-f', 'x-twitter', 'youtube']
+    : ['facebook-f', 'linkedin-in', 'x-twitter', 'youtube'];
 
   block.innerHTML = '';
   block.appendChild(socialShareBlock(title, socials));

@@ -62,7 +62,7 @@ export default async function decorate(block) {
   const submitText = placeholders.submitYourStory || 'Submit your story';
 
   // Social block
-  const socials = ['facebook', 'linkedin', 'twitter'];
+  const socials = ['facebook-f', 'linkedin-in', 'x-twitter'];
   const shareSocialBlock = socialShareBlock(shareText, socials);
   decorateSocialIcons(shareSocialBlock);
 
