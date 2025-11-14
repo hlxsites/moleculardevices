@@ -7,7 +7,7 @@ import {
   a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, decorateLinkedPictures, formatDate, unixDateToString,
+  decorateExternalLink, decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getNewsData } from '../news/news.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
@@ -105,10 +105,6 @@ async function buildNewsEvents(container) {
   renderEvents(container.querySelector('.events-list'));
 
   addEventListeners(container);
-}
-
-function toCapitalize(sting) {
-  return sting[0].toUpperCase() + sting.slice(1);
 }
 
 async function getNewslettersList() {
