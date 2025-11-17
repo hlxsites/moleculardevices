@@ -20,18 +20,22 @@ function onSocialShareClick(event) {
 }
 
 function decorateLink(social, type, icon, url) {
+  const isFooterSocialList = social.closest('.social-media-list');
   icon.setAttribute('aria-label', type);
   if (!url) return;
 
-  social.append(
-    a({
-      href: url,
-      'aria-label': `Share to ${type}`,
-      target: '_blank',
-      rel: 'noopener noreferrer',
-      onclick: onSocialShareClick,
-    }, icon),
-  );
+  const linkProps = {
+    href: url,
+    'aria-label': `Share to ${type}`,
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  };
+
+  if (!isFooterSocialList) {
+    linkProps.onclick = onSocialShareClick;
+  }
+
+  social.append(a(linkProps, icon));
 }
 
 export function decorateSocialIcons(element) {
