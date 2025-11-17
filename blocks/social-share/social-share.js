@@ -61,10 +61,10 @@ export function decorateSocialIcons(element) {
         decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
         break;
       case 'linkedin':
-        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
+        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${decodeURIComponent(url)}`);
         break;
       case 'linkedin-in':
-        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`);
+        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${decodeURIComponent(url)}`);
         break;
       case 'twitter':
         decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
