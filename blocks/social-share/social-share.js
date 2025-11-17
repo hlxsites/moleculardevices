@@ -20,12 +20,8 @@ function onSocialShareClick(event) {
 }
 
 function buildFullUrl(pathOrUrl) {
-  // If already absolute URL -> return same
-  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
-    return pathOrUrl;
-  }
-  // Otherwise prepend domain
-  return `https://www.moleculardevices.com${pathOrUrl}`;
+  const pathName = new URL(decodeURIComponent(pathOrUrl)).pathname;
+  return `https://www.moleculardevices.com${pathName}`;
 }
 
 function decorateLink(social, type, icon, url) {
