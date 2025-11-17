@@ -19,6 +19,15 @@ function onSocialShareClick(event) {
   window.open(href, 'popup', 'width=800,height=700,scrollbars=no,resizable=no');
 }
 
+function buildFullUrl(pathOrUrl) {
+  // If already absolute URL -> return same
+  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
+    return pathOrUrl;
+  }
+  // Otherwise prepend domain
+  return `https://www.moleculardevices.com${pathOrUrl}`;
+}
+
 function decorateLink(social, type, icon, url) {
   const isFooterSocialList = social.closest('.social-media-list');
   icon.setAttribute('aria-label', type);
@@ -31,9 +40,7 @@ function decorateLink(social, type, icon, url) {
     rel: 'noopener noreferrer',
   };
 
-  if (!isFooterSocialList) {
-    linkProps.onclick = onSocialShareClick;
-  }
+  if (!isFooterSocialList) linkProps.onclick = onSocialShareClick;
 
   social.append(a(linkProps, icon));
 }
@@ -41,52 +48,55 @@ function decorateLink(social, type, icon, url) {
 export function decorateSocialIcons(element) {
   const template = getMetadata('template').toLowerCase();
   const theme = getMetadata('theme');
-  const url = getURL();
-  const title = getTitle();
+  const rawUrl = getURL();
+  const title = encodeURIComponent(getTitle() || '');
+  const fullUrl = encodeURIComponent(buildFullUrl(rawUrl));
 
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
+
     const xIcon = span({ class: 'icon icon-x-white' });
     const xIconTeal = span({ class: 'icon icon-x-blue' });
-    const updatedXIcon = (template === 'blog' || theme === 'Full Article')
-      ? xIcon
-      : xIconTeal;
+    const updatedXIcon = template === 'blog' || theme === 'Full Article' ? xIcon : xIconTeal;
 
     switch (type) {
       case 'facebook':
-        decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
-        break;
       case 'facebook-f':
-        decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${url}`);
+        decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${fullUrl}`);
         break;
+
       case 'linkedin':
-        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${decodeURIComponent(url)}`);
-        break;
       case 'linkedin-in':
-        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${decodeURIComponent(url)}`);
+        decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${fullUrl}`);
         break;
+
       case 'twitter':
-        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
-        icon.remove();
-        break;
       case 'x':
-        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
+        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?url=${fullUrl}&text=${title}`);
         icon.remove();
         break;
+
       case 'x-twitter':
-        decorateLink(social, 'X', icon, `https://www.x.com/intent/post?&url=${url}&text=${title}`);
+        decorateLink(social, 'X', icon, `https://www.x.com/intent/post?url=${fullUrl}&text=${title}`);
         break;
+
+      case 'youtube':
       case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
-      case 'youtube':
-        decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
+
+      case 'whatsapp':
+        decorateLink(social, 'WhatsApp', icon, `https://wa.me/?text=${title}%20${fullUrl}`);
         break;
+
+      case 'email':
+        decorateLink(social, 'Email', icon, `mailto:?subject=${title}&body=${fullUrl}`);
+        break;
+
       default:
         // eslint-disable-next-line no-console
         console.warn('Unhandled social type:', type);
-        break;
     }
   });
 }
