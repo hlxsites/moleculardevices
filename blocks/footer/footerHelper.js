@@ -133,7 +133,7 @@ export async function buildNewsletter(container) {
 /* social icon */
 function footerSocialIcons(element, className) {
   const parentEl = element.querySelector(className);
-  const socials = ['linkedin-in', 'facebook-f', 'youtube'];
+  const socials = ['linkedin-in', 'facebook-f', 'x-twitter', 'youtube'];
   parentEl.appendChild(socialShareBlock('', socials));
 }
 

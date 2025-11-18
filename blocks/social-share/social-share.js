@@ -143,8 +143,8 @@ export default function decorate(block) {
   }
 
   const socials = (template === 'blog' || theme === 'Full Article')
-    ? ['linkedin-in', 'facebook-f', 'youtube']
-    : ['facebook-f', 'linkedin-in', 'youtube'];
+    ? ['linkedin-in', 'facebook-f', 'x-twitter', 'youtube']
+    : ['facebook-f', 'linkedin-in', 'x-twitter', 'youtube'];
 
   block.innerHTML = '';
   block.appendChild(socialShareBlock(title, socials));

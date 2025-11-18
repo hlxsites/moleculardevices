@@ -22,7 +22,7 @@ async function latestEvents() {
 
 /* html of event banner */
 export function createEventBanner(eventObj, isFeaturedBanner = false) {
-  const socials = ['facebook-f', 'linkedin-in', 'youtube'];
+  const socials = ['facebook-f', 'linkedin-in', 'x-twitter', 'youtube'];
   const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
   const bannerClasses = `event-banner event-thumb-${toClassName(imageThumbPosition)} ${isFeaturedBanner ? 'featured-event-banner' : ''}`;
 
