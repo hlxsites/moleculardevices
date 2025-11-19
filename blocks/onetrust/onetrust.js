@@ -53,7 +53,7 @@ async function onetrsutInitializationHandler(ontrustID) {
     }
     const koreanTitles = document.getElementsByClassName('korean-title');
     for (let i = 0; i < koreanTitles.length; i += 1) {
-      koreanTitles[i].innerHTML = 'Jinny Park, JAPAC Marketing Manager, Lydia Yoon, General Manager, Korea';
+      koreanTitles[i].innerHTML = 'Sungwon (Lydia) Yoon, General Manager, Korea';
     }
   }, 500);
 }
