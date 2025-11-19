@@ -47,6 +47,15 @@ async function onetrsutInitializationHandler(ontrustID) {
     for (let i = 0; i < element.length; i += 1) {
       element[i].remove();
     }
+    const koreanAddr = document.getElementsByClassName("korean_address");
+    for (let i = 0; i < koreanAddr.length; i += 1) {
+      koreanAddr[i].innerHTML = 'Molecular Devices Korea LLC 15F Samsung Bldg.623 Teheran-ro Gangnam-gu, Seoul Korea';
+    }
+    const koreanTitles  = document.getElementsByClassName("korean-title");
+    for (let i = 0; i < koreanTitles.length; i += 1) {
+      koreanTitles[i].innerHTML = 'Jinny Park, JAPAC Marketing Manager, Lydia Yoon, General Manager, Korea';
+    }
+
   }, 500);
 }
 
