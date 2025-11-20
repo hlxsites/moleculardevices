@@ -6,7 +6,7 @@ import {
   videoButton,
 } from '../../scripts/scripts.js';
 import {
-  a, div, i, img, ol, span,
+  a, div, i, img, nav, ol, span,
 } from '../../scripts/dom-helpers.js';
 
 function addMetadata(container) {
@@ -244,27 +244,23 @@ export function buildHero(block) {
     }
   });
 
-  const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
+  const breadcrumbs = nav({ class: 'breadcrumbs' }, ol());
   block.appendChild(inner);
   inner.appendChild(breadcrumbs);
   inner.appendChild(container);
 
-  if (block.classList.contains('blog')) {
+  const articlePages = ['blog', 'newsroom'];
+  const hasArticle = articlePages.some((page) => block.classList.contains(page));
+  if (hasArticle) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
-    block.parentElement.appendChild(container);
+    block.appendChild(inner);
   }
 
   if (block.classList.contains('hero-insider')) {
     inner.classList.remove('white-bg');
     inner.appendChild(container);
     block.appendChild(inner);
-  }
-
-  if (block.classList.contains('newsroom')) {
-    addMetadata(container);
-    addBlockSticker(breadcrumbs);
-    block.parentElement.appendChild(container);
   }
 
   showHidePricingRequestButton(block);
