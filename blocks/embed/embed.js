@@ -1,6 +1,10 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
+import {
+  decorateVidyardAudio, embedVidyardAudio,
+} from './vidyard-podcast.js';
+import { decorateSoundcloudMP4, embedSoundcloudMP4 } from './mp4-podcast.js';
 
 const getDefaultEmbed = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
@@ -172,6 +176,40 @@ export const loadEmbed = (block, link) => {
     return;
   }
 
+  if (block.classList.contains('podcast') && link.includes('vid')) {
+    block.closest('.section').remove();
+    // (async () => {
+    // const originalLink = block.querySelector('a');
+    // if (originalLink) {
+    //   originalLink.replaceWith(...originalLink.childNodes);
+    // }
+
+    // const id = extractVidyardId(link);
+    // if (!id) return;
+
+    // const metadata = await fetchVidyardMetadata(id);
+    // const mp4 = getVidyardMp4(metadata);
+
+    // if (!mp4) {
+    //   // eslint-disable-next-line no-console
+    //   console.warn('No MP4 found in Vidyard JSON.');
+    //   return;
+    // }
+
+    // const poster = metadata.chapter.poster || '/icons/vidyard-audio-poster.jpg';
+
+    // const embedBlock = document.createElement('div');
+    // embedBlock.innerHTML = embedVidyardAudio(mp4, poster);
+
+    // block.append(embedBlock);
+    // block.classList.add('block', 'embed', 'embed-is-loaded', 'embed-vidyard');
+
+    // decorateVidyardAudio(block);
+    // })();
+
+    // return; // STOP further embed handling
+  }
+
   const EMBEDS_CONFIG = [
     {
       match: ['soundcloud'],
@@ -204,6 +242,16 @@ export const loadEmbed = (block, link) => {
       embed: embedHubspot,
       decorate: decorateHubspot,
     },
+    {
+      match: ['.mp4'],
+      embed: embedSoundcloudMP4,
+      decorate: decorateSoundcloudMP4,
+    },
+    {
+      match: ['vids.moleculardevices.com/watch'],
+      embed: embedVidyardAudio,
+      decorate: decorateVidyardAudio,
+    },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
@@ -224,7 +272,7 @@ export default function decorate(block) {
   const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6, h7');
   const link = block.querySelector('a').href;
 
-  if (isVideo(new URL(link))) {
+  if (isVideo(new URL(link)) && !block.classList.contains('podcast')) {
     block.classList.add('video');
   } else {
     block.textContent = '';

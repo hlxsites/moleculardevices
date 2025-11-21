@@ -294,7 +294,7 @@ export function decorateLinks(main) {
     const url = new URL(href, window.location.origin);
 
     // Handle video decoration
-    if (isVideo(url) && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
+    if (isVideo(url) && !link.closest('.block.podcast') && !link.closest('.block.hero-advanced') && !link.closest('.block.hero')) {
       const closestButtonContainer = link.closest('.button-container');
       if (link.closest('.block.cards')
         || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {

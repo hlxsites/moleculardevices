@@ -1,4 +1,4 @@
-main .section>div.embed-wrapper {
+main .section > div.embed-wrapper {
   padding-top: 35px;
 }
 
@@ -29,7 +29,7 @@ main .embed > div {
   justify-content: center;
 }
 
-main .embed.embed-facebook > div{
+main .embed.embed-facebook > div {
   display: block;
 }
 
@@ -68,7 +68,7 @@ main .embed.embed-twitter > div {
 }
 
 main .embed.embed-ceros > div > div {
-  padding-top:57%;
+  padding-top: 57%;
 }
 
 main .embed.embed-ceros.full-width > div > div {
@@ -164,7 +164,7 @@ main .embed.small {
   height: 30px;
   top: -15px;
   right: -15px;
-  background-image: url('/images/close-button.png');
+  background-image: url("/images/close-button.png");
   cursor: pointer;
 }
 
@@ -175,4 +175,122 @@ main .embed.small {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.vidyard-podcast iframe {
+  height: 154px;
+}
+
+main .vidyard-podcast .vidyard-player-container [aria-label="Vidyard media player"] {
+  padding-bottom: 21% !important;
+}
+
+/* custom video container */
+.sc-player.simple {
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.sc-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--color-black-alpha-20);
+}
+
+.sc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sc-play-btn {
+  min-width: unset;
+  width: 36px;
+  height: 36px;
+  background: var(--color-black-alpha-60);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  z-index: 2;
+}
+
+.sc-play-btn:hover {
+  background: var(--color-black-alpha-80);
+}
+
+.sc-play-icon,
+.sc-pause-icon {
+  fill: var(--color-white);
+  width: 18px;
+  height: 18px;
+}
+
+.sc-pause-icon,
+.playing .sc-play-icon {
+  display: none;
+}
+
+.playing .sc-pause-icon {
+  display: block;
+}
+
+.sc-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sc-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #222;
+}
+
+.sc-progress-container {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-gray-200);
+  cursor: pointer;
+}
+
+.sc-progress {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-gray-200);
+}
+
+.sc-progress-filled {
+  position: absolute;
+  height: 100%;
+  width: 0;
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+.sc-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--card-caption-text);
 }
