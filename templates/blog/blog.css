@@ -92,10 +92,6 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   padding-right: 15px;
 }
 
-.blog main .section.embed-container:not(:first-child) {
-  padding-top: 0;
-}
-
 .blog main .section > .embed-wrapper > .embed {
   margin-top: 10px;
   width: unset;
