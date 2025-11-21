@@ -22,6 +22,11 @@
 }
 
 .blog main ul ul,
+.blog main ol ol{
+  margin-top: 4px;
+}
+
+.blog main ul ul,
 .blog main ol ol,
 .blog main .section .default-content-wrapper > p:last-child {
   margin-bottom: 0;
@@ -90,10 +95,6 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   max-width: var(--blog-width);
   padding-left: 15px;
   padding-right: 15px;
-}
-
-.blog main .section.embed-container:not(:first-child) {
-  padding-top: 0;
 }
 
 .blog main .section > .embed-wrapper > .embed {

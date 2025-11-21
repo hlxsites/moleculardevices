@@ -1,9 +1,3 @@
-.leader-profiles-modal-carousel-nav > div {
-  position: absolute;
-  top: 55%;
-  transform: translateY(-50%);
-}
-
 .leader-profiles > ul {
   display: flex;
   grid-gap: 0;
@@ -32,11 +26,24 @@
   display: block;
   height: auto;
   margin: auto;
-  max-width: 100%;
   width: 100%;
+  max-width: 300px;
 }
 
-.leader-profiles-modal-footer a {
+.leader-profiles-modal-footer {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: calc(100% + 100px);
+  left: -50px;
+}
+
+.leader-profiles-modal-carousel-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leader-profiles-modal-carousel-nav a {
   align-items: center;
   color: var(--color-white);
   display: flex;
@@ -46,6 +53,8 @@
 
 .leader-profiles-modal-pagination a {
   color: var(--color-white);
+  display: flex;
+  gap: 10px;
 }
 
 .leader-profiles-modal-carousel-nav > div a {
@@ -135,6 +144,11 @@
   color: var(--color-white);
 }
 
+.leader-profiles-modal a i.fa {
+  margin-left: 0;
+  display: block;
+}
+
 .leader-profiles-modal-body {
   overflow: hidden;
   position: relative;
@@ -146,10 +160,14 @@
 
 .leader-profiles-modal-body .leader-profiles-modal-carousel-content {
   background-color: var(--color-white);
-  background-image: url('images/grey_molecules_tp.png'), url('images/grey_molecules.png');
-  background-position: center top, center bottom;
+  background-image: url("images/grey_molecules_tp.png"), url("images/grey_molecules.png");
+  background-position:
+    center top,
+    center bottom;
   background-repeat: no-repeat;
-  background-size: 140% auto, 100% auto;
+  background-size:
+    140% auto,
+    100% auto;
   height: calc(100% - 60px);
   -ms-overflow-style: none;
   overflow-y: auto;
@@ -190,29 +208,13 @@
 .leader-profiles-modal-pagination {
   align-items: center;
   background: var(--color-link-hover);
-  bottom: 0;
+  bottom: 1px;
   display: flex;
   justify-content: space-between;
   left: 0;
   padding: 20px 50px;
   position: absolute;
   width: 100%;
-}
-
-.leader-profiles-modal-pagination .prev-item a > i {
-  margin-right: 10px;
-}
-
-.leader-profiles-modal-pagination .next-item a > i {
-  margin-left: 10px;
-}
-
-.leader-profiles-modal-carousel-nav > .prev-item {
-  left: -40px;
-}
-
-.leader-profiles-modal-carousel-nav > .next-item {
-  right: -40px;
 }
 
 /* LEADERSHIP MODAL */
@@ -275,7 +277,6 @@
   .leader-profiles-modal-body .leader-profiles-card-image {
     float: right;
     margin-left: 50px;
-    max-width: 300px;
   }
 }
 
@@ -288,7 +289,7 @@
 @media only screen and (max-width: 767px) {
   .leader-profiles-modal-body {
     height: 80vh;
-    margin:10px;
+    margin: 20px;
     bottom: 35px;
   }
 
@@ -296,6 +297,7 @@
     float: none;
     margin: 0 auto 30px;
     max-width: 70%;
+    min-height: unset !important;
   }
 
   .leader-profiles-modal-close {
@@ -303,6 +305,7 @@
     height: 40px;
     line-height: 40px;
     width: 40px;
+    margin-right: 20px;
   }
 
   .leader-profiles-modal-wrapper {
@@ -311,17 +314,15 @@
   }
 
   .leader-profiles-modal-body .leader-profiles-modal-carousel-content {
-    padding: 50px 10px 40px;
+    padding: 50px 20px 40px;
   }
 
   .leader-profiles-modal-footer a {
     font-size: var(--body-font-size-xs);
   }
 
-  .leader-profiles-modal-footer .leader-profiles-modal-pagination {
-    margin: 0 10px;
-    padding: 20px 10px;
-    width: calc(100% - 20px);
+  .leader-profiles-modal-pagination {
+    padding: 20px;
   }
 
   .leader-profiles-modal-footer .leader-profiles-modal-carousel-nav {

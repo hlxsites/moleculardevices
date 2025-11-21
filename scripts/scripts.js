@@ -1717,6 +1717,13 @@ export function itemSearchTitle(item) {
   return '';
 }
 
+/**
+ * Converts a string to title case, by splitting the string on whitespace and/or dashes
+ * and then capitalizing the first letter of each resulting substring.
+ *
+ * @param {string} str - The string to convert to title case.
+ * @returns {string} The string in title case.
+ */
 export function toTitleCase(str) {
   if (!str) return '';
   return str
@@ -1724,6 +1731,16 @@ export function toTitleCase(str) {
     .split(/[\s-]+/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+/**
+ * Capitalizes the first letter of a string and leaves the rest of the string unchanged.
+ *
+ * @param {string} sting - The string to capitalize.
+ * @returns {string} The capitalized string.
+ */
+export function toCapitalize(sting) {
+  return sting[0].toUpperCase() + sting.slice(1);
 }
 
 loadPage();

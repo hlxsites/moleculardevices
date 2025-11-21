@@ -130,7 +130,7 @@ function createBackBtn(stepNum) {
         backOneStep(stepNum);
       },
     },
-    i({ class: 'fa-angle-left fa' }),
+    i({ class: 'fa-solid fa-angle-left' }),
   );
 }
 

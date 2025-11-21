@@ -440,6 +440,10 @@ a i.fa {
   margin-left: 5px;
 }
 
+.fa-facebook-f {
+  margin-top: -2px;
+}
+
 a i.fa.fa-external-link {
   position: relative;
   top: -5px;
