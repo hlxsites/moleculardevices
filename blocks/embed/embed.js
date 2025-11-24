@@ -1,6 +1,9 @@
 import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
+import {
+  decorateVidyardAudio, embedVidyardAudio,
+} from './vidyard-podcast.js';
 
 const getDefaultEmbed = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
@@ -203,6 +206,11 @@ export const loadEmbed = (block, link) => {
       match: ['info.moleculardevices.com'],
       embed: embedHubspot,
       decorate: decorateHubspot,
+    },
+    {
+      match: ['vids.moleculardevices.com/watch'],
+      embed: embedVidyardAudio,
+      decorate: decorateVidyardAudio,
     },
   ];
 
