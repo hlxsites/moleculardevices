@@ -291,6 +291,10 @@
   margin: auto;
 }
 
+.application-workflow-container .timeline-content {
+  position: relative;
+}
+
 .application-workflow-container .timeline-article .timeline h4 {
   margin-top: 20px;
   margin-bottom: 20px;

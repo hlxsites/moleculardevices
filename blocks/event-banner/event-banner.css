@@ -83,12 +83,12 @@
   margin-bottom: 0.5rem;
 }
 
-.share-event {
+main .share-event {
   float: left;
   padding: 15px 0 0;
 }
 
-.share-event p {
+main .share-event p {
   margin: 0 0 15px;
   text-transform: uppercase;
   font-family: var(--ff-proxima-light);

@@ -183,14 +183,13 @@ main .section.quote-request-container + .section.wave {
   position: absolute;
   text-align: center;
   width: 60px;
+  font-size: 3em;
+  display: flex;
+  align-items: center;
 }
 
 .back-step-btn .fa {
   color: var(--color-white);
-  font-size: 80px;
-  left: 13px;
-  line-height: 0;
-  position: absolute;
 }
 
 .hide-back-btn .back-step-btn {
