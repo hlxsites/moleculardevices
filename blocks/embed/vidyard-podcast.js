@@ -24,10 +24,11 @@ export async function getVidyardVideoFile(url) {
 
 export function embedVidyardAudio(url) {
   console.log(url);
-  return (`
-  <audio id="vy-audio" preload="metadata" src=""></audio>
-  <img src="" alt="Vidyard audio thumbnail" />
-  `);
+  // return (`
+  // <audio id="vy-audio" preload="metadata" src=""></audio>
+  // <img src="" alt="Vidyard audio thumbnail" />
+  // `);
+  return '<img style="width: 100%; margin: auto; display: block;" class="vidyard-player-embed" src="https://play.vidyard.com/E16tuRdC8MYekAvHKqAonF.jpg"   data-uuid="E16tuRdC8MYekAvHKqAonF" data-v="4" data-type="inline">';
 }
 
 export function decorateVidyardAudio(block) {
