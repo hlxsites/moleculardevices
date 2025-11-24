@@ -1,4 +1,4 @@
-main .section > div.embed-wrapper {
+main .section>div.embed-wrapper {
   padding-top: 35px;
 }
 
@@ -29,7 +29,7 @@ main .embed > div {
   justify-content: center;
 }
 
-main .embed.embed-facebook > div {
+main .embed.embed-facebook > div{
   display: block;
 }
 
@@ -68,7 +68,7 @@ main .embed.embed-twitter > div {
 }
 
 main .embed.embed-ceros > div > div {
-  padding-top: 57%;
+  padding-top:57%;
 }
 
 main .embed.embed-ceros.full-width > div > div {
@@ -164,7 +164,7 @@ main .embed.small {
   height: 30px;
   top: -15px;
   right: -15px;
-  background-image: url("/images/close-button.png");
+  background-image: url('/images/close-button.png');
   cursor: pointer;
 }
 
@@ -175,12 +175,4 @@ main .embed.small {
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.vidyard-podcast iframe {
-  height: 154px;
-}
-
-main .vidyard-podcast .vidyard-player-container [aria-label="Vidyard media player"] {
-  padding-bottom: 21% !important;
 }
