@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable max-classes-per-file,  */
 /*
  * Copyright 2022 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -241,16 +241,8 @@ function mapOnelinkClass(className) {
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
  */
-// Simple cache for SVG icons
 const svgCache = new Map();
 
-/**
- * Decorate Franklin icons:
- *  - :fa-*           → Font Awesome
- *  - any other       → custom SVG from /icons/
- *
- * @param {Document|HTMLElement} element
- */
 export function decorateIcons(element = document) {
   const fa7Styles = ['fa-solid', 'fa-regular', 'fa-light', 'fa-thin', 'fa-brands', 'fa-duotone'];
 
@@ -263,7 +255,7 @@ export function decorateIcons(element = document) {
 
     const raw = iconClass.substring(5); // strip "icon-"
 
-    // ----------------- FONT AWESOME -----------------
+    /* FONT AWESOME */
     if (raw.startsWith('fa-')) {
       const segments = raw.split('-');
       let style = 'fa-solid';
@@ -273,7 +265,7 @@ export function decorateIcons(element = document) {
         const possibleStyle = `fa-${segments[1]}`;
         if (fa7Styles.includes(possibleStyle)) {
           style = possibleStyle;
-          icon = 'fa-' + segments.slice(2).join('-');
+          icon = `fa-${segments.slice(2).join('-')}`;
         }
       }
 
@@ -291,14 +283,11 @@ export function decorateIcons(element = document) {
       return;
     }
 
-    // ----------------- CUSTOM SVG -----------------
+    /* CUSTOM SVG */
     const iconName = raw;
-
-    // Mark as decorated early to prevent duplicates
     span.dataset.iconDecorated = 'true';
-    span.innerHTML = ''; // clear previous content
+    span.innerHTML = '';
 
-    // If cached, reuse
     if (svgCache.has(iconName)) {
       const cachedSVG = svgCache.get(iconName).cloneNode(true);
       span.appendChild(cachedSVG);
@@ -323,15 +312,14 @@ export function decorateIcons(element = document) {
           svgElement = template.content.firstChild;
         }
 
-        // Add to DOM
         span.appendChild(svgElement);
-
-        // Cache the element for reuse (clone before inserting next time)
         svgCache.set(iconName, svgElement.cloneNode(true));
       } else {
+        // eslint-disable-next-line no-console
         console.error(`SVG not found: ${iconName}`);
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error(`Failed to load SVG: ${iconName}`, err);
     }
   });
