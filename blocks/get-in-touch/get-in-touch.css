@@ -54,7 +54,7 @@
   height: 450px;
 }
 
-.get-in-touch > div > div .fa {
+.get-in-touch > div > div i[class*='fa'] {
   color: var(--color-tertiary);
   font-size: 36px;
   padding-right: 20px;

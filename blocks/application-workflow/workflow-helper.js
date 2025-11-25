@@ -1,4 +1,4 @@
-import { a, div, span } from '../../scripts/dom-helpers.js';
+import { a, div, i } from '../../scripts/dom-helpers.js';
 import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
 
 /**
@@ -143,7 +143,7 @@ export function addIconToCTA(parentEl) {
   const buttons = parentEl.querySelectorAll('.button-container > a');
   buttons.forEach((btn) => {
     if (!btn.querySelector('span.icon')) {
-      btn.appendChild(span({ class: 'icon icon-chevron-right-outline' }));
+      btn.appendChild(i({ class: 'fa-solid fa-chevron-circle-right' }));
     }
   });
   decorateIcons(parentEl);

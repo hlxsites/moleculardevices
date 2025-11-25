@@ -30,7 +30,7 @@ function buildTopicCard(topic) {
         a(
           { href: topic.path },
           placeholders.viewCitation || 'View Citation',
-          i({ class: 'fa fa-arrow-circle-o-right' }),
+          i({ class: 'fa-solid fa-chevron-circle-right' }),
         ),
       ),
     ),

@@ -13,7 +13,7 @@ main .section > .columns-wrapper {
   margin-top: 0;
 }
 
-.columns[class*='layout-'] > div {
+.columns[class*="layout-"] > div {
   gap: 30px;
 }
 
@@ -45,7 +45,7 @@ main .section > .columns-wrapper {
 
 .columns.line > div::after {
   flex-wrap: wrap;
-  content: '';
+  content: "";
   width: 94%;
   padding-top: 50px;
   border-bottom: 2px solid var(--color-gray-350);
@@ -201,6 +201,11 @@ main .section > .columns-wrapper {
   margin-bottom: 16px;
   padding-top: 8px;
   position: relative;
+  display: grid;
+  grid-template-areas:
+    "icon detail"
+    "icon list";
+  grid-template-columns: 56px calc(100% - 56px);
 }
 
 .columns.contact > div ul li a {
@@ -230,22 +235,20 @@ main .section > .columns-wrapper {
 
 .columns.contact > div > div > ul > li > i {
   color: var(--color-tertiary);
-  float: left;
   font-size: var(--heading-font-size-l);
-  padding-right: 20px;
 }
 
 .columns.contact > div ul li::after,
 .columns.contact > div > div ul ul::before {
   clear: both;
-  content: '';
+  content: "";
   display: table;
 }
 
 .columns.contact > div > div > ul > li:not(:last-child)::after {
   background-color: var(--color-gray-450);
   bottom: -10px;
-  content: '';
+  content: "";
   display: block;
   height: 1px;
   position: absolute;
@@ -253,14 +256,10 @@ main .section > .columns-wrapper {
   width: calc(100% - 56px);
 }
 
-.columns.contact > div ul li span.icon {
-  float: left;
-  padding-right: 20px;
-}
-
 .columns.contact > div ul li span.icon,
 .columns.contact > div > div > ul > li > i {
-  width: 40px;
+  grid-area: icon;
+  padding-right: 20px;
 }
 
 .columns.contact > div ul li span.icon svg,
@@ -293,13 +292,9 @@ main .section > .columns-wrapper {
 
 .columns.contact > div > div ul ul {
   list-style: disc;
-  margin-bottom: 0;
+  margin-bottom: 8px;
   margin-top: 8px;
-  padding-left: 70px;
-}
-
-.columns.contact > div ul li .fa-clock-o {
-  height: 75px;
+  padding-left: 20px;
 }
 
 .columns.collaboration.columns-3-cols {
@@ -528,17 +523,17 @@ main .section > .columns-wrapper {
   }
 
   .columns.columns-3-cols > div,
-  .columns[class*='layout-'] > div,
+  .columns[class*="layout-"] > div,
   .blog .columns > div,
   .columns.contact > div {
     align-items: unset;
   }
 
-  .columns[class*='layout-'] > div {
+  .columns[class*="layout-"] > div {
     display: grid;
   }
 
-  .columns[class*='layout-'] h3 {
+  .columns[class*="layout-"] h3 {
     margin-top: 0;
   }
 
@@ -574,7 +569,7 @@ main .section > .columns-wrapper {
     grid-template-columns: 60fr 40fr;
   }
 
-  .columns[class*='layout-'] > div > div {
+  .columns[class*="layout-"] > div > div {
     padding: 0;
     margin: 0;
   }
@@ -639,7 +634,7 @@ main .section > .columns-wrapper {
   }
 
   .columns.contact > div > div > ul > li > i {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 
@@ -971,4 +966,3 @@ main .section .cards.cols-4 .cards-card-image img:hover {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-

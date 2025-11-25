@@ -100,6 +100,8 @@ export function decorateSocialIcons(element) {
 export function decorateFooterSocialIcons(element) {
   element.querySelectorAll('li').forEach((social) => {
     const type = social.getAttribute('data-type');
+    if (!type) return;
+
     const icon = social.querySelector('i');
 
     switch (type) {
@@ -118,7 +120,6 @@ export function decorateFooterSocialIcons(element) {
       default:
         // eslint-disable-next-line no-console
         console.warn('Unhandled social type:', type);
-        break;
     }
   });
 }
