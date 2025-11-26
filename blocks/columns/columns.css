@@ -213,6 +213,10 @@ main .section > .columns-wrapper {
   cursor: pointer;
 }
 
+.columns.contact > div ul li .icon + strong {
+  font-size: var(--heading-font-size-l);
+}
+
 .columns.bullet-points p.button-container a {
   font-weight: bold;
   display: flex;

@@ -253,7 +253,11 @@ export function decorateIcons(element = document) {
     const iconClass = classes.find((cls) => cls.startsWith('icon-') && cls !== 'icon');
     if (!iconClass || span.children.length !== 0 || span.innerHTML.trim() !== '') return;
 
-    const raw = iconClass.substring(5); // strip "icon-"
+    const raw = iconClass.replace(/^(icon-)+/, ''); // strip "icon-"
+    classes.forEach((cls) => {
+      if (cls.startsWith('icon-')) span.classList.remove(cls);
+    });
+    span.classList.add('icon', `icon-${raw}`);
 
     /* FONT AWESOME */
     if (raw.startsWith('fa-')) {
@@ -275,10 +279,7 @@ export function decorateIcons(element = document) {
       }
 
       span.dataset.iconDecorated = 'true';
-
-      const i = document.createElement('i');
-      i.setAttribute('aria-hidden', 'true');
-      i.className = `${style} ${icon}`;
+      const i = domEl('i', { ariaHidden: 'true', class: `${style} ${icon}` });
       span.replaceWith(i);
       return;
     }
@@ -302,12 +303,11 @@ export function decorateIcons(element = document) {
 
         if (svgText.includes('<style')) {
           // Use <img> for complex SVGs
-          svgElement = document.createElement('img');
+          svgElement = domEl('img', { alt: iconName.replace(/-/g, ' ') });
           svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
-          svgElement.alt = iconName.replace(/-/g, ' ');
         } else {
           // Inline SVG
-          const template = document.createElement('template');
+          const template = domEl('template');
           template.innerHTML = svgText.trim();
           svgElement = template.content.firstChild;
         }
@@ -605,13 +605,13 @@ export function decorateBlocks(main) {
  */
 export function buildBlock(blockName, content) {
   const table = Array.isArray(content) ? content : [[content]];
-  const blockEl = document.createElement('div');
+  const blockEl = domEl('div');
   // build image block nested div structure
   blockEl.classList.add(blockName);
   table.forEach((row) => {
-    const rowEl = document.createElement('div');
+    const rowEl = domEl('div');
     row.forEach((col) => {
-      const colEl = document.createElement('div');
+      const colEl = domEl('div');
       const vals = col.elems ? col.elems : [col];
       vals.forEach((val) => {
         if (val) {
@@ -826,8 +826,7 @@ export function decorateButtons(element) {
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
           a.className = 'button primary';
           twoup.classList.add('button-container');
-          const btnBorder = document.createElement('span');
-          btnBorder.className = 'button-border';
+          const btnBorder = domEl('span', { class: 'button-border' });
           a.append(btnBorder);
         }
         if (up.childNodes.length === 1 && up.tagName === 'EM'
