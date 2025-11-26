@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable max-classes-per-file,  */
 /*
  * Copyright 2022 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -241,44 +241,86 @@ function mapOnelinkClass(className) {
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
  */
+const svgCache = new Map();
+
 export function decorateIcons(element = document) {
-  const iconPrefix = 'fa' || 'fa-brands'; // Font Awesome prefix
+  const fa7Styles = ['fa-solid', 'fa-regular', 'fa-light', 'fa-thin', 'fa-brands', 'fa-duotone'];
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
     if (span.dataset.iconDecorated === 'true') return;
 
     const classes = [...span.classList];
     const iconClass = classes.find((cls) => cls.startsWith('icon-') && cls !== 'icon');
-
     if (!iconClass || span.children.length !== 0 || span.innerHTML.trim() !== '') return;
 
-    const icon = iconClass.substring(5);
+    const raw = iconClass.substring(5); // strip "icon-"
 
-    if (icon.startsWith(iconPrefix)) {
+    /* FONT AWESOME */
+    if (raw.startsWith('fa-')) {
+      const segments = raw.split('-');
+      let style = 'fa-solid';
+      let icon = null;
+
+      if (segments.length >= 3) {
+        const possibleStyle = `fa-${segments[1]}`;
+        if (fa7Styles.includes(possibleStyle)) {
+          style = possibleStyle;
+          icon = `fa-${segments.slice(2).join('-')}`;
+        }
+      }
+
+      if (!icon) {
+        icon = raw;
+        style = 'fa-solid';
+      }
+
+      span.dataset.iconDecorated = 'true';
+
       const i = document.createElement('i');
       i.setAttribute('aria-hidden', 'true');
-      i.className = `${iconPrefix} ${icon}`;
+      i.className = `${style} ${icon}`;
       span.replaceWith(i);
       return;
     }
 
+    /* CUSTOM SVG */
+    const iconName = raw;
+    span.dataset.iconDecorated = 'true';
+    span.innerHTML = '';
+
+    if (svgCache.has(iconName)) {
+      const cachedSVG = svgCache.get(iconName).cloneNode(true);
+      span.appendChild(cachedSVG);
+      return;
+    }
+
     try {
-      const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
+      const resp = await fetch(`${window.hlx.codeBasePath}/icons/${iconName}.svg`);
       if (resp.ok) {
-        const iconHTML = await resp.text();
-        if (iconHTML.includes('<style')) {
-          const img = document.createElement('img');
-          img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
-          img.alt = icon.replace(/-/g, ' ');
-          span.appendChild(img);
+        const svgText = await resp.text();
+        let svgElement;
+
+        if (svgText.includes('<style')) {
+          // Use <img> for complex SVGs
+          svgElement = document.createElement('img');
+          svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
+          svgElement.alt = iconName.replace(/-/g, ' ');
         } else {
-          span.innerHTML = iconHTML;
+          // Inline SVG
+          const template = document.createElement('template');
+          template.innerHTML = svgText.trim();
+          svgElement = template.content.firstChild;
         }
-        span.dataset.iconDecorated = 'true';
+
+        span.appendChild(svgElement);
+        svgCache.set(iconName, svgElement.cloneNode(true));
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(`SVG not found: ${iconName}`);
       }
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error(`Failed to load icon: ${icon}`, err);
+      console.error(`Failed to load SVG: ${iconName}`, err);
     }
   });
 }
