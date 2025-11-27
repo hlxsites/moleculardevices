@@ -307,9 +307,7 @@ export function decorateIcons(element = document) {
           svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
         } else {
           // Inline SVG
-          const template = domEl('template');
-          template.innerHTML = svgText.trim();
-          svgElement = template.content.firstChild;
+          span.innerHTML = svgText;
         }
 
         span.appendChild(svgElement);
@@ -320,7 +318,7 @@ export function decorateIcons(element = document) {
       }
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error(`Failed to load SVG: ${iconName}`, err);
+      console.error(`Failed to load icon: ${iconName}`, err);
     }
   });
 }
