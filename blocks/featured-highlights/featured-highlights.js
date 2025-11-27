@@ -39,11 +39,11 @@ export default async function decorate(block) {
       activeItem(slider, e.target, null);
     });
   });
-  block.parentElement.prepend(a({ id: 'product-finder', class: 'product-finder-cta', href: '/product-finder' }, span({ class: 'icon icon-search' }), span('Product'), span('Finder')));
+  block.parentElement.prepend(a({ id: 'product-finder', class: 'product-finder-cta', href: '/product-finder' }, span({ class: 'fa-solid fa-search' }), span('Product'), span('Finder')));
   block.appendChild(slider);
   block.appendChild(carousel);
-  decorateIcons(block);
 
   left.addEventListener('click', () => { activeItem(slider, null, -1); });
   right.addEventListener('click', () => { activeItem(slider, null, +1); });
+  decorateIcons(block);
 }
