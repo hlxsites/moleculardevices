@@ -13,7 +13,7 @@ import {
   unselectSpecificComparedItem,
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
-import { createCompareModalInterface } from './compare-modal.js';
+import createCompareModalInterface from './compare-modal.js';
 
 class CompareBanner {
   constructor(config = {}) {
