@@ -37,7 +37,9 @@
 }
 
 .product-finder-container .reset {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-size: 14px;
   margin-left: 0;
 }
@@ -313,7 +315,7 @@
 .product-finder-container .card-caption svg {
   height: 18px;
   width: 18px;
-  color: var(--color-primary);
+  color: inherit;
   vertical-align: middle;
 }
 
@@ -329,6 +331,7 @@
 .product-finder-container .card a .icon.icon-chevron-right-outline {
   vertical-align: middle;
   font-size: inherit;
+  color: inherit;
 }
 
 .product-finder-container.icon-title {

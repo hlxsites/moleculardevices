@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import {
-  a, div, i, li, p, span, ul,
+  a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 
 function getURL() {
@@ -42,8 +42,6 @@ function decorateLink(social, type, icon, url) {
 }
 
 export function decorateSocialIcons(element) {
-  const template = getMetadata('template').toLowerCase();
-  const theme = getMetadata('theme');
   const rawUrl = getURL();
   const title = encodeURIComponent(getTitle() || '');
   const fullUrl = encodeURIComponent(buildFullUrl(rawUrl));
@@ -52,25 +50,13 @@ export function decorateSocialIcons(element) {
     const type = social.getAttribute('data-type');
     const icon = social.querySelector('i');
 
-    const xIcon = span({ class: 'icon icon-x-white' });
-    const xIconTeal = span({ class: 'icon icon-x-blue' });
-    const updatedXIcon = template === 'blog' || theme === 'Full Article' ? xIcon : xIconTeal;
-
     switch (type) {
-      case 'facebook':
       case 'facebook-f':
         decorateLink(social, 'Facebook', icon, `https://www.facebook.com/sharer/sharer.php?u=${fullUrl}`);
         break;
 
-      case 'linkedin':
       case 'linkedin-in':
         decorateLink(social, 'LinkedIn', icon, `https://www.linkedin.com/sharing/share-offsite/?url=${fullUrl}`);
-        break;
-
-      case 'twitter':
-      case 'x':
-        decorateLink(social, 'X', updatedXIcon, `https://www.x.com/intent/post?url=${fullUrl}&text=${title}`);
-        icon.remove();
         break;
 
       case 'x-twitter':
@@ -78,7 +64,6 @@ export function decorateSocialIcons(element) {
         break;
 
       case 'youtube':
-      case 'youtube-play':
         decorateLink(social, 'Youtube', icon, 'https://www.youtube.com/user/MolecularDevicesInc');
         break;
 
