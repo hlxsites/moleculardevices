@@ -101,7 +101,8 @@ export default function decorate(block) {
   ul.classList.add('nav-tabs');
 
   const tabList = block.querySelector('div');
-  tabList.classList.add('tabs-vertical-list');
+  tabList.querySelector('img').width = 660;
+  tabList.querySelector('img').height = 800;
   tabList.querySelector('div').appendChild(ul);
 
   const tabMainContent = document.createElement('div');
@@ -114,6 +115,8 @@ export default function decorate(block) {
       tabPane.classList.add('tabs-vertical-pane');
 
       const picture = row.querySelector('picture');
+      picture.querySelector('img').width = 1240;
+      picture.querySelector('img').height = 800;
       tabPane.appendChild(picture);
 
       row.classList.add('tabs-vertical-pane-inside');
