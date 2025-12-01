@@ -458,6 +458,32 @@ export function decorateBlock(block) {
 }
 
 /**
+ * Optimize images for performance
+ * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
+ * - All others remain lazy with async decoding
+ */
+export function decorateImages() {
+  const images = [...document.querySelectorAll('img')];
+  if (images.length === 0) return;
+
+  // Identify first image in viewport (LCP candidate)
+  const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+  if (lcpImage) {
+    lcpImage.setAttribute('loading', 'eager');
+    lcpImage.setAttribute('fetchpriority', 'high');
+    lcpImage.setAttribute('decoding', 'async');
+  }
+
+  // Optimize all remaining images
+  images.forEach((img) => {
+    if (img !== lcpImage) {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    }
+  });
+}
+
+/**
  * Extracts the config from a block.
  * @param {Element} block The block element
  * @returns {object} The block config
