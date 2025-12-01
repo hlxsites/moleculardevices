@@ -1,7 +1,7 @@
 const iconPlus = 'fa-plus';
 const iconMinus = 'fa-minus';
 const classActive = 'active';
-const verticalMediaQuery = '(max-width: 768px)';
+const verticalMediaQuery = '(max-width: 767px)';
 
 function getEmptyHeight(tabPane) {
   const tabPaneInside = tabPane.querySelector('.tabs-vertical-pane-inside');
@@ -103,6 +103,7 @@ export default function decorate(block) {
   const tabList = block.querySelector('div');
   tabList.querySelector('img').width = 660;
   tabList.querySelector('img').height = 800;
+  tabList.classList.add('tabs-vertical-list');
   tabList.querySelector('div').appendChild(ul);
 
   const tabMainContent = document.createElement('div');
