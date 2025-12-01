@@ -1,7 +1,8 @@
 import {
   div, a, p, h3, span, button,
+  i,
 } from '../../scripts/dom-helpers.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
@@ -38,11 +39,12 @@ function createModal() {
       class: `${formType}-modal-close`,
       id: `${formType}-modal-close`,
       onclick: handleHideModal,
-    }, 'x'),
+    }, i({ class: 'fa-solid fa-times' })),
     div({ class: `${formType}-modal-wrapper` },
       div({ class: 'hubspot-form show-label', id: formId }),
     ),
   );
+  decorateIcons(modal);
 
   const overlay = div({
     class: overlayId,

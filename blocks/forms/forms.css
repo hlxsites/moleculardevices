@@ -337,6 +337,13 @@ input[type="submit"] {
 
 .show-label .hs-form .hs-form-field label,
 .show-label .hs-form .hs-form-field .hs-field-desc {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
   display: block;
   color: var(--color-text-primary);
   font-weight: 600;
@@ -351,6 +358,22 @@ input[type="submit"] {
 
 .show-label .hs-form .hs-form-field .hs-field-desc {
   font-size: 13px;
+}
+
+.show-label .hs-form .hs-form-field .hs-form-checkbox,
+.show-label .hs-form .hs-fieldtype-booleancheckbox {
+  position: relative;
+}
+
+.show-label .hs-form .hs-form-field .hs-form-checkbox label span::before,
+.show-label .hs-form .hs-form-field .hs-form-booleancheckbox label span::before {
+  left: 0;
+  top: 9px;
+}
+
+.show-label .hs-form .hs-form-field .hs-input[type="checkbox"]:checked ~ span::after {
+  left: 0;
+  line-height: 1.5;
 }
 
 /* INQUERY/EVENTS FORM */
