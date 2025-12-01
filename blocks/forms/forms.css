@@ -103,19 +103,34 @@
 
 .hs-form .hs-form-field .hs-field-desc,
 .hs-form .hs-form-field label:not(.hs-form-checkbox-display) {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+.hs-form .hs-form-field.hs_email .hs-error-msgs label,
+.hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label a:hover {
   color: var(--color-state-danger);
-}
-
-.hubspot-form .hs-form .hs-form-field .hs-field-desc {
-  display: block;
 }
 
 .hs-form .hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label {
@@ -466,32 +481,6 @@ main .category-form.forms-container .hs-submit .actions button {
   border-radius: 10px;
 }
 
-/* main .category-form.forms-container[class*='microplate-readers-form-section'],
-main .category-form.forms-container[class*='3d-biology-form-section'] {
-  background-image: url('/templates/product/images/3d-biology.png');
-}
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button,
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: var(--color-purple);
- color: var(--color-white);
-}
-main .category-form.forms-container[class*='3d-biology-form-section'],
-main .category-form.forms-container[class*='3d-biology-form-section'] {
-  background-image: url('/templates/product/images/3d-biology.png');
-}
-main .category-form.forms-container[class*='microplate-readers-form-section'] .hs-submit .actions button,
-main .category-form.forms-container[class*='3d-biology-form-section'] .hs-submit .actions button{
- background-color: var(--color-blue);
- color: var(--color-white);
-}
-main .category-form.forms-container[class*='cellular-imaging-systems-form-section']{
-  background-image: url('/templates/product/images/imaging.png');
-}
-main .category-form.forms-container[class*='cellular-imaging-systems-form-section'] .hs-submit .actions button{
- background-color: var(--color-light-green);
- color: var(--color-white);
-} */
-
 main .category-form.forms-container.product-rfq-thankyou-section .default-content-wrapper {
   display: none;
 }
@@ -596,14 +585,14 @@ main h3:has(~ .product-rfq-thankyou-section .submitted-message) {
 
 /* date field */
 .hs-dateinput,
-.hs-form-field:has(input[name='meeting_date_text']),
-.hs-form-field:has(input[type='date']){
+.hs-form-field:has(input[name="meeting_date_text"]),
+.hs-form-field:has(input[type="date"]) {
   position: relative;
 }
 
 .hs-dateinput::after,
-.hs-form-field:has(input[name='meeting_date_text'])::after,
-.hs-form-field:has(input[type='date'])::after{
+.hs-form-field:has(input[name="meeting_date_text"])::after,
+.hs-form-field:has(input[type="date"])::after {
   content: "\f073";
   display: inline-block;
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
@@ -633,19 +622,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
 
-input[type="date"]::-webkit-clear-button {
-  display: none;
-}
-
+input[type="date"]::-webkit-clear-button,
 input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-outer-spin-button {
-  display: none;
-}
-
-input[type="date"]::-moz-calendar-picker-indicator {
-  display: none;
-}
-
+input[type="date"]::-webkit-outer-spin-button,
+input[type="date"]::-moz-calendar-picker-indicator,
 input[type="date"]::-ms-expand {
   display: none;
 }

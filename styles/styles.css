@@ -725,8 +725,8 @@ hr {
   border-bottom: 1px solid var(--color-gray-200);
 }
 
-main img,
-main video {
+img,
+video {
   max-width: 100%;
   width: auto;
   height: auto;

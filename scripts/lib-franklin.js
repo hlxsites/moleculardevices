@@ -305,13 +305,15 @@ export function decorateIcons(element = document) {
           // Use <img> for complex SVGs
           svgElement = domEl('img', { alt: iconName.replace(/-/g, ' ') });
           svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
+          span.appendChild(svgElement);
         } else {
           // Inline SVG
           span.innerHTML = svgText;
+          const svg = span.querySelector('svg') || span.firstElementChild;
+          svgElement = svg;
         }
 
-        span.appendChild(svgElement);
-        svgCache.set(iconName, svgElement.cloneNode(true));
+        if (svgElement) svgCache.set(iconName, svgElement.cloneNode(true));
       } else {
         // eslint-disable-next-line no-console
         console.error(`SVG not found: ${iconName}`);
