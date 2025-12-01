@@ -727,7 +727,7 @@ export function getHref() {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 400px)', width: '2000' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = true, breakpoints = [{ media: '(min-width: 400px)', width: '2000' }, { width: '750' }]) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
   const { pathname } = url;
@@ -753,6 +753,8 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
+      img.setAttribute('fetchpriority', 'high');
+      img.setAttribute('decoding', 'async');
       // img.setAttribute('title', alt);
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
