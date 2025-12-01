@@ -756,6 +756,10 @@ export function createOptimizedPicture(src, alt = '', eager = true, breakpoints 
       img.setAttribute('fetchpriority', 'high');
       img.setAttribute('decoding', 'async');
       // img.setAttribute('title', alt);
+
+      if (br.width) img.setAttribute('width', br.width);
+      if (br.height) img.setAttribute('height', br.height);
+
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }

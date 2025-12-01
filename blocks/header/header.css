@@ -429,6 +429,11 @@ header .mainmenu-wrapper {
   display: none;
 }
 
+header .mainmenu-wrapper #header-logo img {
+  object-fit: contain;
+  object-position: left;
+}
+
 /* sections */
 header .nav-tabs {
   display: flex;

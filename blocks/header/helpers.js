@@ -57,6 +57,8 @@ export function buildBrandLogo(content) {
   const logoImgs = document.createElement('img');
   logoImgs.src = SITE_LOGO_URL;
   logoImgs.alt = SITE_LOGO_ALT_VALUE;
+  logoImgs.width = 220;
+  logoImgs.height = 30;
   logoImg.appendChild(logoImgs);
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
