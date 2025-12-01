@@ -1,6 +1,10 @@
 import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
+  if (window.innerWidth < 768) {
+    teaserPicture.width = '768';
+    teaserPicture.height = '400';
+  }
   teaserPicture.parentElement.classList.add('video-cover');
   target.appendChild(teaserPicture.parentElement);
 }
