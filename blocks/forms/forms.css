@@ -114,7 +114,8 @@
   border: 0;
 }
 
-.hs-form .hs-form-field.hs_email .hs-error-msgs label {
+.hs-form .hs-form-field.hs_email .hs-error-msgs label,
+.hubspot-form .hs-form .hs-form-field .hs-field-desc {
   position: static;
   width: auto;
   height: auto;
@@ -122,10 +123,6 @@
   overflow: visible;
   clip: auto;
   white-space: normal;
-}
-
-.hs-form .hs-form-field.hs_email .hs-error-msgs label,
-.hubspot-form .hs-form .hs-form-field .hs-field-desc {
   display: block;
 }
 
