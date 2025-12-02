@@ -16,7 +16,8 @@ function activeItem(slider, item, diff) {
     if (i === index) sliderItem.classList.add('active');
   });
   const scroll = (leftScroll) => carousel.scrollTo({ top: 0, left: leftScroll, behavior: 'smooth' });
-  scroll(carousel.offsetWidth * index);
+  const carouselWidth = carousel.offsetWidth;
+  scroll(carouselWidth * index);
 }
 
 export default async function decorate(block) {

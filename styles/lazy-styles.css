@@ -1,7 +1,3 @@
-/* below the fold CSS goes here */
-@import url("font-awesome.min.css");
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css');
-
 @font-face {
   font-display: swap;
   font-family: 'Proxima Nova Regular';
@@ -27,4 +23,20 @@
   src: url('/fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Light.woff2') format('woff2'), url('/fonts/ProximaNova-Light.woff') format('woff'), url('/fonts/ProximaNova-Light.ttf') format('truetype'), url('/fonts/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
   font-weight: 300;
   font-style: normal
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: url("/fonts/fa-solid-900.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  src: url("/fonts/fa-brands-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

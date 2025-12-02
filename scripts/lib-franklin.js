@@ -305,13 +305,15 @@ export function decorateIcons(element = document) {
           // Use <img> for complex SVGs
           svgElement = domEl('img', { alt: iconName.replace(/-/g, ' ') });
           svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
+          span.appendChild(svgElement);
         } else {
           // Inline SVG
           span.innerHTML = svgText;
+          const svg = span.querySelector('svg') || span.firstElementChild;
+          svgElement = svg;
         }
 
-        span.appendChild(svgElement);
-        svgCache.set(iconName, svgElement.cloneNode(true));
+        if (svgElement) svgCache.set(iconName, svgElement.cloneNode(true));
       } else {
         // eslint-disable-next-line no-console
         console.error(`SVG not found: ${iconName}`);
@@ -453,6 +455,32 @@ export function decorateBlock(block) {
 
     decorateBlockLocale(decoratedBlock);
   }
+}
+
+/**
+ * Optimize images for performance
+ * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
+ * - All others remain lazy with async decoding
+ */
+export function decorateImages() {
+  const images = [...document.querySelectorAll('img')];
+  if (images.length === 0) return;
+
+  // Identify first image in viewport (LCP candidate)
+  const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+  if (lcpImage) {
+    lcpImage.setAttribute('loading', 'eager');
+    lcpImage.setAttribute('fetchpriority', 'high');
+    lcpImage.setAttribute('decoding', 'async');
+  }
+
+  // Optimize all remaining images
+  images.forEach((img) => {
+    if (img !== lcpImage) {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    }
+  });
 }
 
 /**
@@ -727,7 +755,7 @@ export function getHref() {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 400px)', width: '2000' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = true, breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }]) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
   const { pathname } = url;
@@ -753,7 +781,13 @@ export function createOptimizedPicture(src, alt = '', eager = false, breakpoints
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
+      img.setAttribute('fetchpriority', 'high');
+      img.setAttribute('decoding', 'async');
       // img.setAttribute('title', alt);
+
+      if (br.width) img.setAttribute('width', br.width);
+      if (br.height) img.setAttribute('height', br.height);
+
       picture.appendChild(img);
       img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
     }

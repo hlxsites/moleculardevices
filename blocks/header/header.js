@@ -100,7 +100,10 @@ export default async function decorate(block) {
   const navbarHeader = domEl('div', { class: 'navbar-header' });
   const navBrand = div({ class: 'nav-brand' },
     a({ href: '/', class: 'site-logo' },
-      createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE),
+      createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE, true, [
+        { media: '(min-width: 992px)', width: 220, height: 65 },
+        { width: 220, height: 65 },
+      ]),
     ));
 
   navbarHeader.prepend(navBrand);

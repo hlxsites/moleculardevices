@@ -17,9 +17,10 @@ export default async function decorate(block) {
   const childrenLength = block.children.length;
   const scroll = (leftScroll) => {
     let resultingLeftScroll = leftScroll;
+    const innerBlockWidth = innerBlock.offsetWidth;
     if (leftScroll < 0) {
-      resultingLeftScroll = leftScroll + innerBlock.offsetWidth * childrenLength;
-    } else if (leftScroll + innerBlock.offsetWidth > innerBlock.offsetWidth * childrenLength) {
+      resultingLeftScroll = leftScroll + innerBlockWidth * childrenLength;
+    } else if (leftScroll + innerBlockWidth > innerBlockWidth * childrenLength) {
       resultingLeftScroll = 0;
     }
     innerBlock.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });

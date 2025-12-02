@@ -132,14 +132,14 @@ body.modal-open {
   border-radius: 50%;
   color: var(--color-white);
   display: block;
-  font-size: 58px;
   height: 48px;
-  line-height: 50px;
+  line-height: 52px;
   margin: 0 auto 10px;
   margin-right: 0;
   min-width: auto;
   padding: 0;
   width: 48px;
+  font-size: 1.75rem;
 }
 
 .submit-story-modal-close:hover {

@@ -27,7 +27,10 @@ export default async function decorate(block) {
   const currentYear = new Date().getFullYear();
 
   const footerSiteLogo = p({ class: 'footer-site-logo' },
-    createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE),
+    createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE, true, [
+      { media: '(min-width: 992px)', width: 220, height: 65 },
+      { width: 220, height: 65 },
+    ]),
   );
   const copyrightInfo = p(`\u00A9${currentYear} Molecular Devices, LLC. All rights reserved.`);
 
