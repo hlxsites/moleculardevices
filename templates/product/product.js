@@ -12,7 +12,7 @@ import { RFQ_CMP_ID } from '../../blocks/forms/formMapping.js';
 const formType = 'product-rfq';
 export const productThankyouSection = `${formType}-thankyou-section`;
 
-function rfqThankyouMessage() {
+export function rfqThankyouMessage() {
   return div({ class: 'submitted-message forms' },
     h2('Thank you!'),
     p('We have received your request for quote and would like to thank you for contacting us. We have sent you an email to confirm your details.'),
