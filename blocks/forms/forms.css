@@ -523,6 +523,11 @@ main .category-form .hs-form a {
   color: inherit;
 }
 
+.application .section.category-form h2 + p,
+main .category-form.forms-container .default-content-item h2 ~ p {
+  margin-bottom: 1em;
+}
+
 main .category-form.forms-container .forms h3 {
   margin-top: 0;
   font-size: 28px;
