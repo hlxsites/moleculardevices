@@ -2,7 +2,7 @@
 import {
   button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
-import { getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import decorateProductPage from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
@@ -71,8 +71,10 @@ export function loadHubSpotScript(callback) {
 }
 
 export default async function decorate(block) {
+  const WAVE_SECTION = 'wave-section';
   const category = getMetadata('category');
   const template = getMetadata('template');
+  const hasWaveSection = block.closest(`.${WAVE_SECTION}`);
   const formConfig = await extractFormData(block);
   const blockClasses = block.classList.value.split(' ');
   const formTypes = formMapping.map((item) => item.type);
@@ -140,4 +142,18 @@ export default async function decorate(block) {
       }
     }
   });
+
+  /* add wave to category-form section */
+  console.log(123);
+  if (hasWaveSection) {
+    console.log(456);
+    const waveImage = createOptimizedPicture('/images/wave-footer-bg-top.png', 'wave', false, [
+      { media: '(min-width: 992px)', width: '1663' },
+      { width: '900' },
+    ]);
+    const blockSection = block.closest('section');
+    blockSection.appendChild(div({ class: 'wave' }, waveImage));
+    blockSection.classList.add(WAVE_SECTION);
+    block.classList.remove(WAVE_SECTION);
+  }
 }
