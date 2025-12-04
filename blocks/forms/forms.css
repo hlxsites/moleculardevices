@@ -526,6 +526,7 @@ main .category-form .hs-form a {
 .application .section.category-form h2 + p,
 main .category-form.forms-container .default-content-item h2 ~ p {
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 main .category-form.forms-container .forms h3 {
