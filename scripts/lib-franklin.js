@@ -194,20 +194,29 @@ export function toClassName(name) {
 }
 
 /**
- * Converts a string into a CSS-safe class name.
- * Keeps Unicode characters (e.g., Chinese) and replaces invalid characters with hyphens.
+ * Converts a string into a CSS-safe class name (supports major languages).
  *
  * @param {string} name
  * @returns {string}
  */
 export function geoFriendlyClassName(name) {
   if (typeof name !== 'string') return '';
-  // Allow: letters (all languages), numbers, underscore, hyphen
-  return name
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}_-]+/gu, '-') // keep Unicode letters & numbers
-    .replace(/-+/g, '-') // collapse consecutive hyphens
-    .replace(/^-|-$/g, ''); // trim hyphens from both ends
+
+  let result = name.toLowerCase();
+
+  try {
+    // Preferred: full Unicode letters + numbers (modern engines)
+    result = result.replace(/[^\p{L}\p{N}_-]+/gu, '-');
+  } catch (e) {
+    // Fallback: Latin (with accents), CJK, Hiragana, Katakana, Hangul
+    result = result.replace(
+      /[^0-9a-z_\u00C0-\u024F\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF-]+/g,
+      '-');
+  }
+
+  return result
+    .replace(/-+/g, '-') // collapse multiple hyphens
+    .replace(/^-|-$/g, ''); // trim leading/trailing hyphens
 }
 
 /*
