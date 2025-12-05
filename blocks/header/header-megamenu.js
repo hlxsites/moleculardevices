@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
-import { decorateIcons, geoFriendlyClassName } from '../../scripts/lib-franklin.js';
+import { decorateIcons, geoFriendlyClassName, toClassName } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div, li, nav, ul,
@@ -96,9 +96,20 @@ export async function buildLazyMegaMenus() {
     }
 
     const menuId = category.getAttribute('menu-id');
+    const primaryMenuLink = document.getElementById(menuId).querySelector('a').href;
+    let menuIdClean = toClassName(new URL(primaryMenuLink).pathname);
 
-    // replace -- by - in menuId
-    const menuIdClean = menuId.replace('--', '-');
+    switch (menuIdClean) {
+      case 'search-results':
+        menuIdClean = 'resources';
+        break;
+      case 'about-us':
+        menuIdClean = 'company';
+        break;
+
+      default:
+        break;
+    }
 
     await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {
