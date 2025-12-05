@@ -193,6 +193,30 @@ export function toClassName(name) {
     : '';
 }
 
+/**
+ * Converts a string into a CSS-safe class name (supports major languages).
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+export function geoFriendlyClassName(name) {
+  if (typeof name !== 'string') return '';
+
+  let result = name.toLowerCase();
+
+  try {
+    // Preferred: full Unicode letters + numbers (modern engines)
+    result = result.replace(/[^\p{L}\p{N}_-]+/gu, '-');
+  } catch (e) {
+    // Fallback: Latin (with accents), CJK, Hiragana, Katakana, Hangul
+    result = result.replace(
+      /[^0-9a-z_\u00C0-\u024F\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF-]+/g,
+      '-');
+  }
+
+  return result.replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
 /*
  * Sanitizes a name for use as a js property name.
  * @param {string} name The unsanitized name

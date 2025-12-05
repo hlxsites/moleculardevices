@@ -907,6 +907,17 @@ main .section.background-grey-bottom-half::before {
     background-size: auto 50px;
     padding-top: 50px;
   }
+
+  main .section.background-grey-top-half::before,
+  main .section.background-grey-bottom-half::before,
+  main .section.background-grey + .section.wave::before {
+    height: 100%;
+    top: -50%;
+  }
+
+  main .section.wave.wavecarousel.blue:not(.no-margin-top), main .section.wave.wavecarousel.bluegreen:not(.no-margin-top){
+    margin-top: 100px !important;
+  }
 }
 
 main .section.full-width .default-content-wrapper,

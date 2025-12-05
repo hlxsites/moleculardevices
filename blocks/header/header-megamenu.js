@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
-import { decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
+import { decorateIcons, geoFriendlyClassName } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div, li, nav, ul,
@@ -26,7 +26,7 @@ function menuHasNoDropdown(menu) {
 function buildMegaMenu(block, content) {
   const titles = content.querySelectorAll('div > div > p:first-child:has(a[href])');
   titles.forEach((title) => {
-    const menuId = toClassName(title.querySelector('a').textContent);
+    const menuId = geoFriendlyClassName(title.querySelector('a').textContent);
     title.id = menuId;
     title.classList.add('menu-nav-heading');
 
@@ -40,7 +40,7 @@ function buildMegaMenu(block, content) {
       if (listItem.textContent === '--') {
         listItemList.append(li({ class: 'line-divider' }));
       } else {
-        const sectionId = toClassName(listItem.textContent);
+        const sectionId = geoFriendlyClassName(listItem.textContent);
         const element = reverseElementLinkTagRelation(listItem);
         listItem.id = sectionId;
 
@@ -111,7 +111,7 @@ export async function buildLazyMegaMenus() {
           const menuHeadingList = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
 
           menuHeadings.forEach((menuHeading) => {
-            const submenuId = toClassName(menuHeading.textContent);
+            const submenuId = geoFriendlyClassName(menuHeading.textContent);
             const element = reverseElementLinkTagRelation(menuHeading);
 
             const menuHeadingSubHeading = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
@@ -143,7 +143,7 @@ export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   menuHeadings.forEach((heading) => {
     const headingLink = heading.querySelector('a');
     const headText = headingLink.textContent;
-    const id = toClassName(headText);
+    const id = geoFriendlyClassName(headText);
 
     let category = div({ class: 'menu-nav-category', 'menu-id': id }, headText);
 
