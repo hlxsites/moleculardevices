@@ -10,6 +10,7 @@ import {
   buildBrandLogo,
   buildRequestQuote,
   addCloseMenuButtonListener,
+  fetchMenuId,
 } from './helpers.js';
 import { processSectionMetadata } from '../../scripts/scripts.js';
 
@@ -96,9 +97,7 @@ export async function buildLazyMegaMenus() {
     }
 
     const menuId = category.getAttribute('menu-id');
-
-    // replace -- by - in menuId
-    const menuIdClean = menuId.replace('--', '-');
+    const menuIdClean = fetchMenuId(menuId);
 
     await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {

@@ -6,6 +6,7 @@ import {
   collapseAllSubmenus,
   removeAllEventListeners,
   getElementsWithEventListener,
+  fetchMenuId,
 } from './helpers.js';
 import {
   showRightSubmenu,
@@ -27,8 +28,8 @@ function addEventListenersDesktop() {
     }
 
     const menuId = e.currentTarget.getAttribute('menu-id');
-    // replace any -- by -
-    const cleanedMenuId = menuId.replace('--', '-');
+    const cleanedMenuId = fetchMenuId(menuId);
+
     const submenuClass = `${cleanedMenuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
     expandMenu(menu.parentElement);
