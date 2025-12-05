@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import {
   reverseElementLinkTagRelation, buildRequestQuote, decorateLanguagesTool,
+  fetchMenuId,
 } from '../helpers.js';
 import {
   div, ul, li, a, nav, span, button, p,
@@ -140,11 +141,12 @@ function addHamburgerListener(content, hamburger) {
     const titles = content.querySelectorAll('.menu-nav-heading');
     titles.forEach((title) => {
       const menuId = title.getAttribute('id');
+      const menuIdClean = fetchMenuId(menuId);
       if (!document.querySelector(`.mobile-menu-subcategories[menu-id="${menuId}"]`)) {
         const submenuListItem = document.querySelector(`.mobile-menu-item[menu-id="${menuId}"]`);
         const hasSubmenu = submenuListItem.getAttribute('data-dropdown');
         if (hasSubmenu === 'false' || hasSubmenu === 'False') return;
-        buildMobileMenuItem(submenuListItem, menuId);
+        buildMobileMenuItem(submenuListItem, menuIdClean);
       }
     });
   });

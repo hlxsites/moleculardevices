@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
@@ -151,4 +151,22 @@ export function decorateLanguagesTool(tools) {
       languagesList.classList.remove('show');
     }
   });
+}
+
+export function fetchMenuId(menuId) {
+  const primaryMenuLink = document.getElementById(menuId).querySelector('a').href;
+  let cleanedMenuId = toClassName(new URL(primaryMenuLink).pathname);
+
+  switch (cleanedMenuId) {
+    case 'search-results':
+      cleanedMenuId = 'resources';
+      break;
+    case 'about-us':
+      cleanedMenuId = 'company';
+      break;
+
+    default:
+      break;
+  }
+  return cleanedMenuId;
 }

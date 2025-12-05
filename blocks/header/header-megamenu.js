@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
-import { decorateIcons, geoFriendlyClassName, toClassName } from '../../scripts/lib-franklin.js';
+import { decorateIcons, geoFriendlyClassName } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div, li, nav, ul,
@@ -10,6 +10,7 @@ import {
   buildBrandLogo,
   buildRequestQuote,
   addCloseMenuButtonListener,
+  fetchMenuId,
 } from './helpers.js';
 import { processSectionMetadata } from '../../scripts/scripts.js';
 
@@ -96,20 +97,7 @@ export async function buildLazyMegaMenus() {
     }
 
     const menuId = category.getAttribute('menu-id');
-    const primaryMenuLink = document.getElementById(menuId).querySelector('a').href;
-    let menuIdClean = toClassName(new URL(primaryMenuLink).pathname);
-
-    switch (menuIdClean) {
-      case 'search-results':
-        menuIdClean = 'resources';
-        break;
-      case 'about-us':
-        menuIdClean = 'company';
-        break;
-
-      default:
-        break;
-    }
+    const menuIdClean = fetchMenuId(menuId);
 
     await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
       .then(async (submenuResponse) => {

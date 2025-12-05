@@ -6,13 +6,13 @@ import {
   collapseAllSubmenus,
   removeAllEventListeners,
   getElementsWithEventListener,
+  fetchMenuId,
 } from './helpers.js';
 import {
   showRightSubmenu,
   buildLazyMegaMenus,
 } from './header-megamenu.js';
 import { toggleMobileMenu } from './menus/mobile-menu.js';
-import { toClassName } from '../../scripts/lib-franklin.js';
 
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
 
@@ -28,20 +28,7 @@ function addEventListenersDesktop() {
     }
 
     const menuId = e.currentTarget.getAttribute('menu-id');
-    const primaryMenuLink = document.getElementById(menuId).querySelector('a').href;
-    let cleanedMenuId = toClassName(new URL(primaryMenuLink).pathname);
-
-    switch (cleanedMenuId) {
-      case 'search-results':
-        cleanedMenuId = 'resources';
-        break;
-      case 'about-us':
-        cleanedMenuId = 'company';
-        break;
-
-      default:
-        break;
-    }
+    const cleanedMenuId = fetchMenuId(menuId);
 
     const submenuClass = `${cleanedMenuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
