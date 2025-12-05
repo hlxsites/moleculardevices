@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
-import { decorateIcons, toClassName } from '../../scripts/lib-franklin.js';
+import { decorateIcons, geoFriendlyClassName, toClassName } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div, li, nav, ul,
@@ -143,7 +143,7 @@ export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   menuHeadings.forEach((heading) => {
     const headingLink = heading.querySelector('a');
     const headText = headingLink.textContent;
-    const id = toClassName(headText);
+    const id = geoFriendlyClassName(headText);
 
     let category = div({ class: 'menu-nav-category', 'menu-id': id }, headText);
 

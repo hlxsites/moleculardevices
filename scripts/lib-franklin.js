@@ -193,6 +193,23 @@ export function toClassName(name) {
     : '';
 }
 
+/**
+ * Converts a string into a CSS-safe class name.
+ * Keeps Unicode characters (e.g., Chinese) and replaces invalid characters with hyphens.
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+export function geoFriendlyClassName(name) {
+  if (typeof name !== 'string') return '';
+  // Allow: letters (all languages), numbers, underscore, hyphen
+  return name
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}_-]+/gu, '-') // keep Unicode letters & numbers
+    .replace(/-+/g, '-') // collapse consecutive hyphens
+    .replace(/^-|-$/g, ''); // trim hyphens from both ends
+}
+
 /*
  * Sanitizes a name for use as a js property name.
  * @param {string} name The unsanitized name
