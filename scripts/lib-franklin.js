@@ -214,9 +214,7 @@ export function geoFriendlyClassName(name) {
       '-');
   }
 
-  return result
-    .replace(/-+/g, '-') // collapse multiple hyphens
-    .replace(/^-|-$/g, ''); // trim leading/trailing hyphens
+  return result.replace(/-+/g, '-').replace(/^-|-$/g, '');
 }
 
 /*
