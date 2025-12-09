@@ -25,9 +25,7 @@ function wrapLinkAroundComponent(link, component, removeLink = false) {
   // Move the existing div inside the new div
   linkCopy.appendChild(component);
 
-  if (removeLink) {
-    link.remove();
-  }
+  if (removeLink) link.remove();
 
   return linkCopy;
 }
@@ -36,11 +34,13 @@ function buildLargeCardsMenu(cardContent) {
   const links = cardContent.querySelectorAll('a');
   const pictures = cardContent.querySelectorAll('picture');
 
-  if (links && pictures) {
+  if (links.length > 0 && pictures.length > 0) {
     wrapLinkAroundComponent(links[0], pictures[0]);
+
     pictures.forEach((picture) => {
-      if (picture.nextElementSibling && picture.nextElementSibling.tagName === 'A') {
-        wrapLinkAroundComponent(picture.nextElementSibling.href, picture);
+      const siblingLink = picture.nextElementSibling;
+      if (siblingLink && siblingLink.tagName === 'A') {
+        wrapLinkAroundComponent(siblingLink, picture);
       }
     });
   }
@@ -65,29 +65,35 @@ function buildCardsMenu(cardContent) {
     // for each card inside the row
     const cards = [...row.querySelectorAll('div')];
     cards.forEach((card) => {
-      // if card div is not empty
-      if (card.innerHTML.trim() !== '') {
-        const link = card.querySelector('a');
-        const picture = card.querySelector('picture');
+      // return, if card div is empty
+      if (card.innerHTML.trim() === '') return;
 
-        wrapLinkAroundComponent(link, picture);
+      const link = card.querySelector('a');
+      const picture = card.querySelector('picture');
 
-        // if the second paragraph of the card contains the string (expand-image),
-        // we style the image. We need this because some images fill the card, others dont
-        const secondParagraph = card.querySelector('p:nth-child(2)');
-        if (secondParagraph.textContent.includes('expand-image')) {
-          picture.classList.add('expanded-image');
-          // delete the second paragraph
-          secondParagraph.remove();
-        }
-        if (secondParagraph.textContent.includes('new')) {
+      // Only wrap if we have both
+      if (link && picture) wrapLinkAroundComponent(link, picture);
+
+      // if the second paragraph of the card contains the string (expand-image),
+      // we style the image. We need this because some images fill the card, others dont
+      const secondParagraph = card.querySelector('p:nth-child(2)');
+      const text = (secondParagraph.textContent || '').toLowerCase();
+
+      if (text.includes('expand-image')) {
+        if (picture) picture.classList.add('expanded-image');
+        secondParagraph.remove();
+      }
+      if (text.includes('new')) {
+        const hasValidImage = picture
+          && picture.parentElement
+          && picture.parentElement.parentElement;
+        if (hasValidImage) {
           const newProductTag = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
           newProductTag.classList.add('new-product-tag');
-          picture.parentElement.parentElement.classList.add('new-product');
-          picture.parentElement.parentElement.appendChild(newProductTag);
-          // delete the second paragraph
-          secondParagraph.remove();
+          hasValidImage.classList.add('new-product');
+          hasValidImage.appendChild(newProductTag);
         }
+        secondParagraph.remove();
       }
     });
   });

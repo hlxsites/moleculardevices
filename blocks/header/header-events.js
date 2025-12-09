@@ -16,6 +16,20 @@ import { toggleMobileMenu } from './menus/mobile-menu.js';
 
 const mediaQueryList = window.matchMedia('only screen and (min-width: 991px)');
 
+function attachSearchFormListeners(ids, onSubmitExtra = () => { }) {
+  ids.forEach((id) => {
+    const form = document.getElementById(id);
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      submitSearchForm(e, id);
+      onSubmitExtra();
+    });
+  });
+}
+
 function addEventListenersDesktop() {
   addListeners('.menu-nav-category', 'mousedown', (e) => {
     e.preventDefault();
@@ -28,13 +42,17 @@ function addEventListenersDesktop() {
     }
 
     const menuId = e.currentTarget.getAttribute('menu-id');
-    const cleanedMenuId = fetchMenuId(menuId);
+    if (!menuId) return;
 
+    const cleanedMenuId = fetchMenuId(menuId);
     const submenuClass = `${cleanedMenuId}-right-submenu`;
     const menu = document.querySelector(`[menu-id="${menuId}"]`);
+    if (!menu) return;
+
     expandMenu(menu.parentElement);
+
     const rightMenu = document.querySelector(`.${submenuClass}`).parentElement.parentElement;
-    showRightSubmenu(rightMenu);
+    if (rightMenu) showRightSubmenu(rightMenu);
   });
 
   addListeners('.searchlink', 'mousedown', (e) => {
@@ -46,30 +64,24 @@ function addEventListenersDesktop() {
     }
   });
 
-  const searchFormsIds = [
-    'resourcesSearchForm',
-    'mainSearchForm',
-  ];
-  searchFormsIds.forEach((id) => {
-    const element = document.getElementById(id);
-    element?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      submitSearchForm(e, id);
-      collapseAllSubmenus(document);
-    });
-  });
+  attachSearchFormListeners(
+    ['resourcesSearchForm', 'mainSearchForm'],
+    () => collapseAllSubmenus(document),
+  );
 }
 
 function addEventListenersMobile() {
   function toggleMenu(element) {
     const expanded = element.getAttribute('aria-expanded') === 'true';
-    collapseAllSubmenus(element.closest('ul'));
+    const container = element.closest('ul');
+    if (container) collapseAllSubmenus(container);
     element.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   }
 
+  const registeredElements = getElementsWithEventListener();
+
   document.querySelectorAll('.menu-expandable').forEach((linkElement) => {
-    getElementsWithEventListener().push(linkElement);
+    registeredElements.push(linkElement);
 
     linkElement.addEventListener('click', (e) => {
       e.preventDefault();
@@ -78,18 +90,10 @@ function addEventListenersMobile() {
     });
   });
 
-  const searchFormsIds = [
-    'mobileSearchForm',
-  ];
-  searchFormsIds.forEach((id) => {
-    const element = document.getElementById(id);
-    element?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      submitSearchForm(e, id);
-      toggleMobileMenu();
-    });
-  });
+  attachSearchFormListeners(
+    ['mobileSearchForm'],
+    () => toggleMobileMenu(),
+  );
 }
 
 function reAttachEventListeners() {

@@ -6,17 +6,17 @@ import {
   div, li, nav, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  reverseElementLinkTagRelation,
-  buildBrandLogo,
-  buildRequestQuote,
-  addCloseMenuButtonListener,
-  fetchMenuId,
+  buildBrandLogo, buildRequestQuote, fetchMenuId,
+  addCloseMenuButtonListener, reverseElementLinkTagRelation,
 } from './helpers.js';
 import { processSectionMetadata } from '../../scripts/scripts.js';
 
 export function showRightSubmenu(element) {
-  document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-  element.setAttribute('aria-expanded', 'true');
+  if (!element) return;
+
+  document
+    .querySelectorAll('header .right-submenu')
+    .forEach((el) => el.setAttribute('aria-expanded', el === element ? 'true' : 'false'));
 }
 
 function menuHasNoDropdown(menu) {
@@ -26,15 +26,21 @@ function menuHasNoDropdown(menu) {
 
 function buildMegaMenu(block, content) {
   const titles = content.querySelectorAll('div > div > p:first-child:has(a[href])');
+
   titles.forEach((title) => {
-    const menuId = geoFriendlyClassName(title.querySelector('a').textContent);
+    const titleLink = title.querySelector('a');
+    if (!titleLink) return;
+
+    const menuId = geoFriendlyClassName(titleLink.textContent);
     title.id = menuId;
     title.classList.add('menu-nav-heading');
 
     const dropdownElement = block.querySelector(`.menu-nav-category[menu-id="${menuId}"]`);
-    if (menuHasNoDropdown(dropdownElement)) return;
+    if (!dropdownElement || menuHasNoDropdown(dropdownElement)) return;
 
-    const sectionListItems = title.parentElement.querySelectorAll('ul > li');
+    const sectionListItems = [
+      ...(title.parentElement?.querySelectorAll('ul > li') || []),
+    ];
     const listItemList = ul({ class: 'menu-nav-submenu-sections' });
 
     sectionListItems.forEach((listItem) => {
@@ -53,13 +59,8 @@ function buildMegaMenu(block, content) {
       }
     });
 
-    const submenu = div(
-      { class: 'menu-nav-submenu', 'menu-id': menuId },
-      div(
-        title.cloneNode(true),
-        buildRightSubmenu(title, menuId),
-        listItemList,
-      ),
+    const submenu = div({ class: 'menu-nav-submenu', 'menu-id': menuId },
+      div(title.cloneNode(true), buildRightSubmenu(title, menuId), listItemList),
     );
 
     const backgroundImg = content.querySelector('.submenu-background img');
@@ -75,8 +76,9 @@ function buildMegaMenu(block, content) {
       el.addEventListener('mouseover', (e) => {
         e.preventDefault();
         e.stopPropagation();
+
         const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
-        showRightSubmenu(rightMenu);
+        if (rightMenu) showRightSubmenu(rightMenu);
       });
     });
 
@@ -92,20 +94,23 @@ export async function buildLazyMegaMenus() {
 
   // for each category, get the menu-id attribute
   categories.forEach(async (category) => {
-    if (menuHasNoDropdown(category)) {
-      return;
-    }
+    if (menuHasNoDropdown(category)) return;
 
     const menuId = category.getAttribute('menu-id');
     const menuIdClean = fetchMenuId(menuId);
 
-    await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
+    const url = `/fragments/megamenu/${menuIdClean}.plain.html`;
+    const options = window.location.pathname.endsWith(`/${menuIdClean}`)
+      ? { cache: 'reload' }
+      : {};
+
+    await fetch(url, options)
       .then(async (submenuResponse) => {
         if (submenuResponse.ok) {
           const submenuHtml = await submenuResponse.text();
-
           const submenuContent = div();
           submenuContent.innerHTML = submenuHtml;
+
           const menuHeadings = [...submenuContent.querySelectorAll('div > p:first-child')];
           const menuHeadingList = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
 
@@ -124,15 +129,14 @@ export async function buildLazyMegaMenus() {
               e.preventDefault();
               e.stopPropagation();
               const rightMenu = e.currentTarget.querySelector('.right-submenu');
-              showRightSubmenu(rightMenu);
+              if (rightMenu) showRightSubmenu(rightMenu);
             });
           });
         }
       });
   });
 
-  const body = document.querySelector('body');
-  body.setAttribute('built-lazy-megamenus', 'true');
+  document.body.setAttribute('built-lazy-megamenus', 'true');
 }
 
 export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
@@ -141,14 +145,20 @@ export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
 
   menuHeadings.forEach((heading) => {
     const headingLink = heading.querySelector('a');
+    if (!headingLink) return;
+
     const headText = headingLink.textContent;
     const id = geoFriendlyClassName(headText);
 
-    let category = div({ class: 'menu-nav-category', 'menu-id': id }, headText);
-
     processSectionMetadata(heading.parentElement);
+
     const dropdownFlag = heading.parentElement.getAttribute('data-dropdown');
-    if (dropdownFlag === 'False' || dropdownFlag === 'false') {
+    const hasDropdownFlag = !(dropdownFlag === 'False' || dropdownFlag === 'false');
+
+    let category;
+    if (hasDropdownFlag) {
+      category = div({ class: 'menu-nav-category', 'menu-id': id }, headText);
+    } else {
       category = div({ class: 'menu-nav-category', 'menu-id': id, 'menu-dropdown': 'false' },
         headingLink.cloneNode(true),
       );
@@ -161,9 +171,12 @@ export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
   if (!hideSearch) navMenuUl.append(buildSearch(content));
   if (!hideGlobalRFQ) navMenuUl.append(buildRequestQuote('header-rfq'));
 
-  const megaMenu = div({ class: 'mainmenu-wrapper sticky-element sticky-desktop' },
+  const brandLogo = buildBrandLogo(content);
+
+  const megaMenu = div(
+    { class: 'mainmenu-wrapper sticky-element sticky-desktop' },
     div({ class: 'container' },
-      await buildBrandLogo(content),
+      brandLogo,
       nav({ id: 'nav' }, div({ class: 'nav-menu' }, navMenuUl),
       ),
     ),
