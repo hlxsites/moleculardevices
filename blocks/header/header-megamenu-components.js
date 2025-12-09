@@ -390,6 +390,6 @@ export default function buildRightSubmenu(contentHeader, subMenuId) {
     addIndividualComponents(rightSubmenu, subMenuId);
   });
 
-  rightSubmenuWrapper.appendChild(rightSubmenuRow);
+  rightSubmenuWrapper.innerHTML = rightSubmenuRow.outerHTML;
   return rightSubmenuWrapper;
 }
