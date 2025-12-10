@@ -517,10 +517,16 @@ main .category-form.forms-container .forms {
   color: var(--color-white);
 }
 
-.product main .hs-form .hs-form-field .hs-field-desc,
-.product main .hs-form .hs-form-field .hs-field-desc a,
-.product main .hs-form a {
+main .category-form .hs-form .hs-form-field .hs-field-desc,
+main .category-form .hs-form .hs-form-field .hs-field-desc a,
+main .category-form .hs-form a {
   color: inherit;
+}
+
+.application .section.category-form h2 + p,
+main .category-form.forms-container .default-content-item h2 ~ p {
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 main .category-form.forms-container .forms h3 {
