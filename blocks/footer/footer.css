@@ -260,6 +260,20 @@
   margin-top: 3px;
 }
 
+.row-4 .footer-contact li:has(i):not(img) {
+  display: flex;
+  margin-left: -36px;
+  margin-top: 20px;
+  gap: 6px;
+}
+
+.row-4 .footer-contact li > i {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .row-4 .row-4-inner-wrapper picture {
   position: relative;
   top: 30px;
