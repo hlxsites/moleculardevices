@@ -43,6 +43,11 @@ const embedHubspot = (url) => {
   return embedHTML;
 };
 
+function embedSpotify(url) {
+  const embedHTML = `<iframe data-testid="embed-iframe" style="border-radius:12px" src="${url.href}" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  return embedHTML;
+}
+
 const embedSoundcloud = (url) => {
   const embedHTML = `<div style="left: 0; width: 100%; height: 166px; position: relative;">
         <iframe src="${url.href}"
@@ -203,6 +208,10 @@ export const loadEmbed = (block, link) => {
       match: ['info.moleculardevices.com'],
       embed: embedHubspot,
       decorate: decorateHubspot,
+    },
+    {
+      match: ['open.spotify.com'],
+      embed: embedSpotify,
     },
   ];
 
