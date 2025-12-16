@@ -79,6 +79,12 @@
   flex-flow: wrap;
 }
 
+.list > .filter > .select > .dropdown-menu::-webkit-scrollbar {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .list > .filter > .select > .dropdown-menu::-webkit-scrollbar:vertical {
   width: 11px;
 }
