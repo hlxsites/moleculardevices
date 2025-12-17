@@ -582,12 +582,16 @@ button {
   vertical-align: middle;
   cursor: pointer;
   touch-action: manipulation;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-user-select: none;
   user-select: none;
 }
 
 a[role="button"] {
   cursor: pointer;
   touch-action: manipulation;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -2363,6 +2367,14 @@ main .section.no-padding-bottom {
 
 main .section.no-padding-top {
   padding-top: 0;
+}
+
+main .section > div:has(> .block.no-padding-top) {
+  padding-top: 0;
+}
+
+main .section > div:has(> .block.no-padding-bottom) {
+  padding-bottom: 0;
 }
 
 main .section.space-wrappers > div {
