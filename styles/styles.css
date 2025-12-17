@@ -481,19 +481,23 @@ em strong {
   font-weight: 700;
 }
 
-.text-left {
+.text-left,
+div[data-align="left"] {
   text-align: left;
 }
 
-.text-center {
+.text-center,
+div[data-align="center"] {
   text-align: center;
 }
 
-.text-right {
+.text-right,
+div[data-align="right"] {
   text-align: right;
 }
 
-.text-justify {
+.text-justify,
+div[data-align="justify"] {
   text-align: justify;
 }
 
@@ -578,12 +582,16 @@ button {
   vertical-align: middle;
   cursor: pointer;
   touch-action: manipulation;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-user-select: none;
   user-select: none;
 }
 
 a[role="button"] {
   cursor: pointer;
   touch-action: manipulation;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -1234,6 +1242,24 @@ main .section.features-section .button-container {
   display: block;
   color: var(--color-gray-600);
   font-style: italic;
+}
+
+.caption-left .picture + p > em:only-child,
+.caption-left .columns-wrapper + div > p:first-child > em:only-child,
+.caption-left .vidyard-wrapper + div > p:first-child > em:only-child,
+.caption-left .table-wrapper + div > p:first-child > em:only-child {
+  text-align: left;
+}
+
+.caption-right .picture + p > em:only-child,
+.caption-right .columns-wrapper + div > p:first-child > em:only-child,
+.caption-right .vidyard-wrapper + div > p:first-child > em:only-child,
+.caption-right .table-wrapper + div > p:first-child > em:only-child {
+  text-align: right;
+}
+
+.caption-left .picture img {
+  display: block;
 }
 
 /* Featured Asset section */
@@ -2008,12 +2034,12 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .product .section.tabs .columns-wrapper h2,
 .technology
-  .section.tabs:not(.wave)
+  .section.tabs:not(.wave, .category-form)
   .default-content-wrapper
   h2:not(#latest-resources, #features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
 .application
-  .section.tabs:not(.wave)
+  .section.tabs:not(.wave, .category-form)
   .default-content-wrapper
   h2:not(#latest-resources, #features, .video-resources-title),
 .application .section.tabs .columns-wrapper h2 {
@@ -2352,6 +2378,14 @@ main .section.no-padding-bottom {
 
 main .section.no-padding-top {
   padding-top: 0;
+}
+
+main .section > div:has(> .block.no-padding-top) {
+  padding-top: 0;
+}
+
+main .section > div:has(> .block.no-padding-bottom) {
+  padding-bottom: 0;
 }
 
 main .section.space-wrappers > div {
