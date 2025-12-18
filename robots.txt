@@ -142,7 +142,7 @@ Disallow: /en/assets/tutorials-videos/dd/img/image-to-insight-machine-learning-h
 Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
 Disallow: /en/assets/tutorials-videos/br/elevating-cell-based-research-spectramax-id-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/how-ai-powered-automation-enables-fully-automated-cell-culture
-
+Disallow: /en/assets/tutorials-videos/dd/3d-biology/automated-brain-organoid-research-generation
 
 #EU webinars to imaging video gallery page
 
@@ -185,8 +185,6 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-no-no.pdf
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-pt-pt.pdf
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
-
-
 
 
 Disallow: /contact/thank-you
