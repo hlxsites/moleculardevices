@@ -15,6 +15,10 @@ main .section .default-content-wrapper {
   padding-inline: 15px;
 }
 
+.publication.full-article .section .embed {
+  width: 100%;
+}
+
 .publication.full-article .section .columns-wrapper {
   margin-bottom: 20px;
 }
