@@ -187,8 +187,6 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
 
 
-
-
 Disallow: /contact/thank-you
 
 
