@@ -2,8 +2,54 @@ import { toClassName } from '../../scripts/lib-franklin.js';
 import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
+/* Utilities */
+const loadedScripts = new Set();
+
+function loadOnce(src, ...args) {
+  if (loadedScripts.has(src)) return;
+  loadedScripts.add(src);
+  loadScript(src, ...args);
+}
+
+function applyPadding(block) {
+  const wrapper = block.querySelector('iframe').parentElement;
+  if (!wrapper) return;
+
+  const classes = [...block.classList];
+
+  const getPadding = (prefix) => {
+    const cls = classes.find((c) => c.startsWith(prefix));
+    return cls ? `${cls.split('-').pop()}%` : null;
+  };
+
+  const padding = {
+    base: getPadding('padding-top-'),
+    md: getPadding('padding-top-md-'),
+    lg: getPadding('padding-top-lg-'),
+  };
+
+  const apply = () => {
+    let value = padding.base;
+
+    if (window.innerWidth >= 900 && padding.lg) {
+      value = padding.lg;
+    } else if (window.innerWidth >= 600 && padding.md) {
+      value = padding.md;
+    }
+
+    if (value) {
+      wrapper.style.paddingTop = value;
+      wrapper.style.position = 'relative';
+    }
+  };
+
+  apply();
+  window.addEventListener('resize', apply, { passive: true });
+}
+
+/* Default Embed */
 const getDefaultEmbed = (url) => {
-  const embedHTML = `<div style="left: 0; width: 100%; position: relative;">
+  const embedHTML = `<div style="width: 100%; position: relative;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
         scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
@@ -12,39 +58,33 @@ const getDefaultEmbed = (url) => {
   return embedHTML;
 };
 
-function decorateHubspot(block) {
-  const iframeID = block.querySelector('#iframeContent');
-  if (iframeID) {
-    iframeID.addEventListener('load', () => {
-      /* global iFrameResize */
-      /* eslint no-undef: "error" */
-      iFrameResize({ log: false }, iframeID);
-    });
-  }
-}
-
+/* Vendor Embeds */
 const embedHubspot = (url) => {
-  // clean up hubspot url query paramaters
-  loadScript('/scripts/iframeResizer.min.js');
-  const formID = 'iframeContent';
+  loadOnce('/scripts/iframeResizer.min.js');
+
   const cmpCookieValue = getCookie('cmp');
-  let urlStr = url.href.replaceAll('%20', ' ');
-  const embededURL = new URL(urlStr);
+  const embededURL = new URL(url.href.replaceAll('%20', ' '));
   embededURL.searchParams.set('source_url', window.location.href);
 
-  if (cmpCookieValue) {
-    if (embededURL.searchParams.get('cmp')) {
-      embededURL.searchParams.set('cmp', cmpCookieValue);
-    }
+  if (cmpCookieValue && embededURL.searchParams.has('cmp')) {
+    embededURL.searchParams.set('cmp', cmpCookieValue);
   }
 
-  urlStr = embededURL.toString();
-  const embedHTML = `<iframe src="${urlStr}" id='${formID}' loading="lazy" class="iframe-content"></iframe>`;
-  return embedHTML;
+  return `<iframe src="${embededURL}" id='iframeContent' loading="lazy" class="iframe-content"></iframe>`;
 };
 
+function decorateHubspot(block) {
+  const iframe = block.querySelector('#iframeContent');
+  if (!iframe) return;
+
+  iframe.addEventListener('load', () => {
+    /* global iFrameResize */
+    iFrameResize({ log: false }, iframe);
+  });
+}
+
 function embedSpotify(url) {
-  const embedHTML = `<iframe data-testid="embed-iframe" style="border-radius:12px" src="${url.href}" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+  const embedHTML = `<iframe style="border-radius:12px" src="${url.href}" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
   return embedHTML;
 }
 
@@ -58,6 +98,7 @@ const embedSoundcloud = (url) => {
 };
 
 const embedTwitterFeed = (url) => {
+  loadOnce('https://platform.twitter.com/widgets.js', null, null, true);
   const embedHTML = `
     <a
       class="twitter-timeline"
@@ -66,24 +107,24 @@ const embedTwitterFeed = (url) => {
       href="${url}">
     </a>
   `;
-  loadScript('https://platform.twitter.com/widgets.js', null, null, true);
 
   return embedHTML;
 };
 
 const embedFacebookFeed = (url) => {
+  loadOnce('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0', null, null, true);
   const embedHTML = `
   <div id="fb-root"></div>
   <div class="fb-page" data-href="${url}" data-tabs="timeline" data-width="385" data-height="600" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true">
     <blockquote cite="${url}" class="fb-xfbml-parse-ignore"><a href="${url}">Molecular Devices LLC</a></blockquote>
   </div>
   `;
-  loadScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v17.0', null, null, true);
 
   return embedHTML;
 };
 
 export function embedCerosFrame(url) {
+  loadOnce('https://view.ceros.com/scroll-proxy.min.js');
   const embedHTML = `
   <div style="left: 0; width: 100%; position: relative;">
   <iframe
@@ -98,17 +139,7 @@ export function embedCerosFrame(url) {
   ></iframe>
   </div>
   `;
-  loadScript('https://view.ceros.com/scroll-proxy.min.js');
   return embedHTML;
-}
-
-function decorateCeros(block) {
-  block.classList.forEach((cls) => {
-    if (cls.indexOf('padding-top') > -1) {
-      const paddiingValue = cls.split('-')[2];
-      block.children[0].children[0].style.paddingTop = `${paddiingValue}%`;
-    }
-  });
 }
 
 function embedFlippingBook(url) {
@@ -136,19 +167,8 @@ function decorateFlippingBook(block, url) {
     return;
   }
 
-  const divContent = `<div>
-<span class="close-button"></span>
-<iframe
-    allowfullscreen
-    src="${url.href}"
-    scrolling="no"
-    loading="lazy"
-    title="Content from ${url.hostname}"
-></iframe></div>`;
-  const modalDiv = div({
-    class: 'flippingbook-modal-overlay',
-    'aria-hidden': true,
-  });
+  const modalDiv = div({ class: 'flippingbook-modal-overlay', 'aria-hidden': true });
+  const divContent = `<div><span class="close-button"></span><iframe allowfullscreen src="${url.href}" scrolling="no" loading="lazy" title="Content from ${url.hostname}"></iframe></div>`;
   modalDiv.innerHTML = divContent;
   document.body.append(modalDiv);
 
@@ -172,80 +192,85 @@ function embedAdobeIndesign(url) {
     </div>`;
 }
 
+function embedYouTube(url) {
+  const videoId = url.searchParams.get('v')
+    || url.pathname.split('/').pop();
+
+  if (!videoId) return getDefaultEmbed(url);
+
+  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+  return `
+    <div style="width: 100%; position: relative; padding-top: 56.25%;">
+      <iframe
+        src="${embedUrl}"
+        loading="lazy"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title="Content from ${url.hostname}"
+        style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;"
+        frameborder="0">
+      </iframe>
+    </div>
+  `;
+}
+
+/* Loader */
 export const loadEmbed = (block, link) => {
-  if (block.classList.contains('embed-is-loaded')) {
-    return;
-  }
+  if (block.classList.contains('embed-is-loaded')) return;
 
   const EMBEDS_CONFIG = [
-    {
-      match: ['soundcloud'],
-      embed: embedSoundcloud,
-    },
-    {
-      match: ['twitter'],
-      embed: embedTwitterFeed,
-    },
-    {
-      match: ['facebook'],
-      embed: embedFacebookFeed,
-    },
-    {
-      match: ['ceros'],
-      embed: embedCerosFrame,
-      decorate: decorateCeros,
-    },
-    {
-      match: ['flippingbook'],
-      embed: embedFlippingBook,
-      decorate: decorateFlippingBook,
-    },
-    {
-      match: ['indd.adobe'],
-      embed: embedAdobeIndesign,
-    },
-    {
-      match: ['info.moleculardevices.com'],
-      embed: embedHubspot,
-      decorate: decorateHubspot,
-    },
-    {
-      match: ['open.spotify.com'],
-      embed: embedSpotify,
-    },
+    { match: ['soundcloud'], embed: embedSoundcloud },
+    { match: ['twitter'], embed: embedTwitterFeed },
+    { match: ['facebook'], embed: embedFacebookFeed },
+    { match: ['ceros'], embed: embedCerosFrame },
+    { match: ['flippingbook'], embed: embedFlippingBook, decorate: decorateFlippingBook },
+    { match: ['indd.adobe'], embed: embedAdobeIndesign },
+    { match: ['info.moleculardevices.com'], embed: embedHubspot, decorate: decorateHubspot },
+    { match: ['open.spotify.com'], embed: embedSpotify },
+    { match: ['youtube.com', 'youtu.be'], embed: embedYouTube },
   ];
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
-  const embedBlock = document.createElement('div');
+
+  const embedBlock = div();
   embedBlock.innerHTML = config ? config.embed(url) : getDefaultEmbed(url);
   block.append(embedBlock);
   block.classList.add('block', 'embed', 'embed-is-loaded');
-  const className = toClassName(config.match[0]);
-  if (config) block.classList.add(`embed-${className}`);
 
-  if (config.decorate) {
+  if (config?.match?.length) {
+    block.classList.add(`embed-${toClassName(config.match[0])}`);
+  }
+
+  applyPadding(block);
+
+  if (config && typeof config.decorate === 'function') {
     config.decorate(block, url);
   }
 };
 
+/* Block Decorator */
 export default function decorate(block) {
-  const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6, h7');
-  const link = block.querySelector('a').href;
+  const headings = block.querySelectorAll('h1, h2, h3, h4, h5, h6');
+  const link = block.querySelector('a')?.href;
+
+  if (!link) return;
 
   if (isVideo(new URL(link))) {
     block.classList.add('video');
-  } else {
-    block.textContent = '';
-    [...headings].forEach((heading) => {
-      block.prepend(heading);
-    });
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        observer.disconnect();
-        loadEmbed(block, link);
-      }
-    });
-    observer.observe(block);
+    return;
   }
+
+  block.textContent = '';
+  headings.forEach((h) => block.prepend(h));
+
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      observer.disconnect();
+      loadEmbed(block, link);
+    }
+  });
+
+  observer.observe(block);
 }
