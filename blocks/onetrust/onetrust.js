@@ -49,7 +49,7 @@ async function onetrsutInitializationHandler(ontrustID) {
     }
     const koreanAddr = document.getElementsByClassName('korean_address');
     for (let i = 0; i < koreanAddr.length; i += 1) {
-      koreanAddr[i].innerHTML = 'Molecular Devices Korea LLC </br> 15F Samsung Bldg.623 Teheran-ro Gangnam-gu,</br> Seoul Korea,</br>Phone:+82.2.3471.9531 </br> Email: koreapriivacy@moldev.com';
+      koreanAddr[i].innerHTML = 'Molecular Devices Korea LLC </br> 15F Samsung Bldg.623 Teheran-ro Gangnam-gu,</br> Seoul Korea,</br>Phone:+82.2.3471.9531 </br> Email: koreaprivacy@moldev.com';
     }
     const koreanTitles = document.getElementsByClassName('korean-title');
     for (let i = 0; i < koreanTitles.length; i += 1) {
