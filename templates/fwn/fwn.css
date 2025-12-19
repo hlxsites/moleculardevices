@@ -1,13 +1,17 @@
 /* stylelint-disable no-descending-specificity */
-.what-next {
-  --font-size-h2: 62px;
-  --font-size-h3: 36px;
+:root {
+  --color-blue: #0d6efd;
+  --color-purple: #660ff3;
+  --color-cyan: #6be6df;
+  --color-pink: #d31e83;
+  --color-orange: #f97b16;
+  --color-light-green: #3be086;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (min-width: 992px) {
   .what-next {
-    --font-size-h2: 36px;
-    --font-size-h3: var(--font-size-h3);
+    --font-size-h2: 62px;
+    --font-size-h3: 36px;
   }
 }
 

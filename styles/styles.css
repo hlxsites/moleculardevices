@@ -2722,21 +2722,6 @@ main .section.no-margin-bottom {
   height: 100%;
 }
 
-.social-links li a span[aria-label="X"] img {
-  max-width: 21px;
-  width: 100%;
-  display: block;
-}
-
-.customer-breakthrough .social-links li a span.icon-x-blue:is(:empty) {
-  background-image: url("/icons/x-blue.svg");
-  background-size: 21px;
-  width: 21px;
-  height: 25px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .section.events-container .events.block .list {
   padding-top: 0;
 }
