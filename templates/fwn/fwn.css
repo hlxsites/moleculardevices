@@ -1,0 +1,140 @@
+/* stylelint-disable no-descending-specificity */
+.what-next {
+  --font-size-h2: 62px;
+  --font-size-h3: 36px;
+}
+
+@media only screen and (max-width: 991px) {
+  .what-next {
+    --font-size-h2: 36px;
+    --font-size-h3: var(--font-size-h3);
+  }
+}
+
+.what-next a i.fa-external-link {
+  color: inherit;
+}
+
+.what-next .section p,
+.what-next .section h2,
+.what-next .section h3,
+.what-next .section h4,
+.what-next .section h5,
+.what-next .section h6,
+.what-next .section ul,
+.what-next .section ol {
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
+.what-next .section h2:only-child,
+.what-next .section .default-content-wrapper h2:only-child {
+  margin-bottom: 2rem;
+  padding-bottom: 0;
+}
+
+.what-next .section p:last-child,
+.what-next .carousel.cards .carousel-item .card {
+  margin-bottom: 0;
+}
+
+.what-next .carousel.cards .carousel-item .card h4:first-child {
+  color: var(--color-tertiary);
+  margin-bottom: 0.5rem;
+  font-size: 90%;
+}
+
+.what-next .section .card img {
+  max-height: 170px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.what-next .carousel.cards .carousel-item a {
+  font-size: inherit;
+  color: inherit;
+}
+
+.what-next .carousel.cards .carousel-item a:hover {
+  color: var(--color-text-primary);
+}
+
+.what-next .forms.lab-notes {
+  border-radius: 18px;
+  position: relative;
+  padding: 40px;
+  color: var(--color-white);
+  background-color: var(--color-black-alpha-50);
+  text-align: center;
+}
+
+.what-next main .section.newsletter-form {
+  border: none;
+  position: relative;
+  padding-left: calc((100dvw - var(--layout-max-width)) / 2);
+  padding-right: calc((100dvw - var(--layout-max-width)) / 2);
+}
+
+.what-next main .section.newsletter-form a {
+  color: inherit;
+}
+
+.what-next main .section.newsletter-form .default-content-wrapper,
+.what-next main .section.newsletter-form .columns-wrapper,
+.what-next main .section.newsletter-form .forms-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.what-next main .section.newsletter-form .default-content-wrapper {
+  grid-area: heading;
+}
+
+.what-next main .section.newsletter-form .columns-wrapper {
+  grid-area: spectra;
+}
+
+.what-next main .section.newsletter-form .forms-wrapper {
+  grid-area: newsletterForm;
+}
+
+.what-next main .section.newsletter-form .columns-wrapper .columns > div {
+  position: relative;
+  align-items: center;
+}
+
+.what-next main .section.newsletter-form .columns-wrapper img {
+  display: block;
+}
+
+@media only screen and (min-width: 768px) {
+  .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
+    margin-left: -10%;
+    font-size: 21px;
+    line-height: 31px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .what-next main .section.newsletter-form {
+    display: grid;
+    align-items: center;
+    gap: 30px;
+    grid-template-areas:
+      "heading heading"
+      "spectra newsletterForm";
+    grid-template-columns: auto 430px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .what-next main .section.newsletter-form {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
+    margin-bottom: 1.5rem;
+  }
+}
