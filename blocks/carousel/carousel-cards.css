@@ -82,7 +82,7 @@ main .carousel-wrapper.cards .carousel {
 
 .carousel.cards .carousel-item h3 {
   color: var(--color-text-primary);
-  font-size: var(--heading-font-size-l);
+  font-size: var(--fs-h3);
   margin-bottom: 15px;
   margin-top: 0;
 }
