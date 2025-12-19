@@ -9,7 +9,7 @@
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .table table th {

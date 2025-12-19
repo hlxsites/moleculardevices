@@ -130,7 +130,7 @@
 }
 
 .list > .items > .item > .content > p > .title {
-  font-size: var(--list-font-size);
+  font-size: var(--fs-body-xl);
   font-weight: bold;
   line-height: 1.1;
   margin-top: 15px;

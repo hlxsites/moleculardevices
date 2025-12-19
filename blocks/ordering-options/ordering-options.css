@@ -241,7 +241,7 @@ main .section.ordering-options-container > div:last-child {
   text-align: left;
   background-color: transparent;
   font-size: large;
-  font-family: var(--body-font-size-m);
+  font-family: var(--font-size-body-m);
   padding: 0;
 }
 
@@ -316,7 +316,7 @@ main .section.ordering-options-container > div:last-child {
   display: block;
   border-top: none;
   font-size: 16px;
-  font-family: var(--body-font-size-m);
+  font-family: var(--font-size-body-m);
   white-space: nowrap;
   min-width: 100%;
   height: 60px;

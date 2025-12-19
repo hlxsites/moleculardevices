@@ -358,7 +358,7 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
 
 .cards.cards-with-hover-image ul > li .cards-card-body code {
   font-family: var(--ff-proxima-regular);
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .cards.cards-with-hover-image ul > li .cards-card-body:first-child > p {

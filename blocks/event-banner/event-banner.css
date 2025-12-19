@@ -132,7 +132,7 @@ p.cite {
 
   .event-banner .event-title,
   .event-banner h1 {
-    font-size: var(--body-font-size-xl);
+    font-size: var(--font-size-body-xl);
   }
 
   .event-banner .right-col {

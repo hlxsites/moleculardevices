@@ -58,7 +58,7 @@ main .section > .columns-wrapper {
 }
 
 .columns p.video-title {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .columns.innovation img {
@@ -106,13 +106,13 @@ main .section > .columns-wrapper {
 .columns.columns-sitemap h4 {
   font-family: var(--ff-proxima-regular);
   font-weight: bold;
-  font-size: var(--list-font-size);
+  font-size: var(--fs-body-xl);
   text-transform: uppercase;
 }
 
 .columns.columns-sitemap h5 {
   font-weight: bold;
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .columns.columns-sitemap ul,
@@ -177,7 +177,7 @@ main .section > .columns-wrapper {
 
 .columns.contact > div p,
 .columns.contact > div ul li {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .columns.contact > div > div > p,
@@ -290,7 +290,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.contact > div ul li span.icon-spectra ~ a {
-  font-size: var(--body-font-size-l);
+  font-size: var(--font-size-body-l);
   font-weight: bold;
 }
 

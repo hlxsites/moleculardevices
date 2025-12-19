@@ -34,7 +34,7 @@
   position: relative;
   vertical-align: top;
   white-space: pre-line;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   border-bottom: 1px solid var(--color-gray-250);
 }
 

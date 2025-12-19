@@ -88,7 +88,7 @@ main .card-caption h3 a {
 }
 
 main .card-caption .card-description {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   text-align: left;
   margin-bottom: 1rem;
   margin-top: 0;
@@ -145,12 +145,12 @@ main .card-type {
   text-align: left;
   text-transform: uppercase;
   color: var(--color-tertiary);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   margin: 5px 0;
 }
 
 main .card-date {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
   font-style: normal;

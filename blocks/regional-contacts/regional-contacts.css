@@ -37,7 +37,7 @@
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper {
   border: 1px solid var(--color-gray-400);
   border-top: 0;
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin-top: -1px;
   padding: 0 15px 20px;
   position: relative;
@@ -88,7 +88,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li {
   position: relative;
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   line-height: 1.2;
   margin-bottom: 0;
 }
@@ -111,7 +111,7 @@
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:first-child > li {
   align-items: center;
   display: flex;
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
   margin-bottom: 0;
 }
 
@@ -214,7 +214,7 @@
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li i {
   color: var(--color-tertiary);
   float: left;
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
 }
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(odd) > ul:not(:first-child) li img {
@@ -233,7 +233,7 @@
 
 .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) strong {
   font-family: var(--ff-proxima-regular);
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   font-weight: 600;
 }
 
@@ -305,7 +305,7 @@
     color: var(--color-white);
     cursor: pointer;
     display: flex;
-    font-size: var(--body-font-size-s);
+    font-size: var(--font-size-body-s);
     justify-content: space-between;
     padding: 12px 15px;
   }
@@ -343,7 +343,7 @@
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li,
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(3) {
-    font-size: var(--body-font-size-xs);
+    font-size: var(--font-size-body-xs);
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) {

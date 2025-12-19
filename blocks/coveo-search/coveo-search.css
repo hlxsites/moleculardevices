@@ -94,7 +94,7 @@
 .coveo-tab-section .coveo-tab p {
   height: 100%;
   color: var(--color-white);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   padding-top: 10px;
   border-bottom: 2px solid transparent;
 }
@@ -456,7 +456,7 @@
     width: 96%;
     padding: 20px 10px;
     margin: 0;
-    font-size: var(--body-font-size-s);
+    font-size: var(--font-size-body-s);
     font-weight: normal;
     margin-top: 4px;
   }

@@ -56,7 +56,7 @@
 
 .get-in-touch > div > div i[class*='fa'] {
   color: var(--color-tertiary);
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
   padding-right: 20px;
   float: left;
   line-height: 25px;

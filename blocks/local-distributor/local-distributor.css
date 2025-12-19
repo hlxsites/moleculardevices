@@ -26,7 +26,7 @@
 .local-distributor {
   border: 1px solid var(--color-gray-400);
   border-top: 7px solid var(--color-theme-gray);
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   position: relative;
 }
 
@@ -48,13 +48,13 @@
 }
 
 .local-distributor-wrapper h3 {
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
   margin: 0;
   padding-bottom: 35px;
 }
 
 .local-distributor-wrapper p {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   margin-top: 0;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .local-distributor > div.search-result p {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin-bottom: 0;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .local-distributor > div.search-result div {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   line-height: 1.4;
   margin-bottom: 30px;
 }
@@ -95,7 +95,7 @@
 
 .local-distributor > div.search-result .search-result-content .type {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   font-weight: bold;
   margin: 8px 0 5px;
   position: relative;

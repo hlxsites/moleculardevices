@@ -42,7 +42,7 @@ main .section .resources-wrapper {
 }
 
 .resources .resource-description {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin: 15px 0;
 }
 

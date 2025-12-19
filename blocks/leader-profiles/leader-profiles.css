@@ -47,7 +47,7 @@
   align-items: center;
   color: var(--color-white);
   display: flex;
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   font-weight: bold;
 }
 
@@ -177,7 +177,7 @@
 
 .leader-profiles-modal-body .leader-profiles-card-body,
 .leader-profiles-modal-body .leader-profiles-card-body p {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .leader-profiles-modal-body .leader-profiles-card-body h2 {
@@ -318,7 +318,7 @@
   }
 
   .leader-profiles-modal-footer a {
-    font-size: var(--body-font-size-xs);
+    font-size: var(--font-size-body-xs);
   }
 
   .leader-profiles-modal-pagination {

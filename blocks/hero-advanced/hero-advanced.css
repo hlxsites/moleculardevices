@@ -67,7 +67,7 @@
   }
 
   .hero-advanced .hero-inner p {
-    font-size: var(--body-font-size-l);
+    font-size: var(--font-size-body-l);
   }
 
   .hero-advanced .hero-inner a.button.secondary {

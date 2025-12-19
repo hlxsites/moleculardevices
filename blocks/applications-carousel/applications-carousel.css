@@ -40,7 +40,7 @@ main .carousel.applications-carousel {
 }
 
 .carousel.applications-carousel .card-description {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   color: var(--color-text-primary);
   margin-bottom: 10px;
 }

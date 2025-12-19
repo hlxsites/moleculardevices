@@ -18,7 +18,7 @@ main .insider-carousel .carousel-item {
 }
 
 main .insider-carousel .carousel-item h3 > em {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   display: block;
   margin-top: 4px;
 }

@@ -102,7 +102,7 @@ main .carousel-wrapper.cards .carousel {
 
 .carousel.cards .carousel-item p,
 .carousel-wrapper.cards .card-description {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   color: var(--color-text-primary);
   margin-bottom: 10px;
   display: block;

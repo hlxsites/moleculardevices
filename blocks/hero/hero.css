@@ -107,7 +107,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .container {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .order-container {
@@ -135,7 +135,7 @@ main .section .hero-advanced-wrapper {
   padding-left: 30px;
   padding-bottom: 30px;
   padding-top: 35px;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .hero-inner .container > div:nth-child(2).video-column {
@@ -145,7 +145,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner .container > div:nth-child(2) .button-container {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin-top: 5px;
   color: var(--color-white);
 }
@@ -447,7 +447,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   }
 
   .hero-inner .container > div:nth-child(2) {
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-body-m);
   }
 
   .hero-inner .container.two-column > div.video-column {

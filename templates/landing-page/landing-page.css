@@ -268,7 +268,7 @@
 
 .section.thank-you-page .carousel-item > .card .card-caption .card-description {
   color: var(--color-text-primary);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .thank-you-page p.button-container span[aria-hidden='true'] {
