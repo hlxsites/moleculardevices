@@ -53,7 +53,7 @@ main .carousel-item[style*="background-image"] {
 }
 
 main .carousel-item-columns-container {
-  max-width: 1140px;
+  max-width: var(--layout-carousel-max-width);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -467,7 +467,7 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   main .carousel.wave .carousel-item-image img {
     display: none;
   }
@@ -483,10 +483,15 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     margin-top: -170px;
   }
 
+  main div.carousel-wrapper.wave {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   main .carousel.wave .carousel-item {
     position: relative;
     padding: 0 30px;
-    max-width: 90%;
+    margin-right: 0;
   }
 
   main .carousel.wave .carousel-item-columns-container {
@@ -609,7 +614,7 @@ main .carousel blockquote::after {
   bottom: -60px;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   main .carousel blockquote::before,
   main .carousel blockquote::after {
     width: 33px;

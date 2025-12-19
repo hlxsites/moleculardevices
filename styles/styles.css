@@ -259,13 +259,15 @@ main .section.OneLinkShow_zh.columns-2 {
     --layout-max-width: 100%;
     --font-size-body-xs: 0.875rem; /* 14px */
     --font-size-body-s: 1rem; /* 16px */
-    --font-size-body-m: 1rem; /* 16px */
+    --font-size-body-m: 0.875rem; /* 14px */
     --font-size-body-l: 1.25rem; /* 20px */
     --font-size-body-xl: 1.5rem; /* 24px */
-    --font-size-h1: 1.875rem; /* 30px */
-    --font-size-h2: 1.5rem; /* 24px */
-    --font-size-h3: 1.25rem; /* 20px */
-    --font-size-h4: 1rem; /* 16px */
+    --font-size-h1: 2.25rem; /* 36px */
+    --font-size-h2: 1.875rem; /* 30px */
+    --font-size-h3: 1.5rem; /* 24px */
+    --font-size-h4: 1.125rem; /* 18px */
+    --font-size-h5: 0.875rem; /* 14px */
+    --font-size-h6: 0.75rem; /* 12px */
   }
 }
 
@@ -364,13 +366,6 @@ h5 {
 
 h6 {
   font-size: var(--font-size-h6);
-}
-
-@media only screen and (max-width: 991px) {
-  h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
 }
 
 a:any-link {
@@ -982,9 +977,9 @@ main .event-container::after {
 
 @media (max-width: 767px) {
   main .event-container p {
-    --font-size-body-m: 14px;
-    --font-size-body-s: 13px;
-    --font-size-body-xs: 12px;
+    --font-size-body-m: 0.875rem; /* 14px */
+    --font-size-body-s: 0.8125rem; /* 13px */
+    --font-size-body-xs: 0.75rem; /* 12px */
   }
 
   .event,
