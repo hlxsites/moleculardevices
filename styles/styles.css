@@ -94,6 +94,7 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-button-secondary-rgb: 76 158 175;
   --color-text-primary: #34393d;
   --color-text-primary-rgb: 52 57 61;
+  --color-theme-gray: #6a747c;
 
   /* State Colors */
   --color-state-danger: #f00;
