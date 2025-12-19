@@ -177,7 +177,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero-inner.white-bg {
-  background: var(--color-gray-150);
+  background: var(--color-gray-50);
 }
 
 .hero-inner.white-bg,

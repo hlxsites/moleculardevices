@@ -98,7 +98,7 @@ main .section .resources-wrapper {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: var(--color-gray-900);
+  background-color: var(--color-gray-750);
   opacity: 0.65;
   transition: opacity 0.2s linear;
   overflow: hidden;
@@ -259,9 +259,9 @@ main .section .resources-wrapper {
   font-family: var(--ff-proxima-light);
   font-size: 16px;
   padding: 6px 12px;
-  border: 1px solid var(--color-gray-350);
+  border: 1px solid var(--color-gray-250);
   border-radius: 4px 0 0 4px;
-  color: var(--header-menu-nav-search-bar);
+  color: var(--color-gray-700);
   margin-bottom: 0;
 }
 

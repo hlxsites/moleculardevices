@@ -67,7 +67,7 @@
 }
 
 .application-workflow-container .columns-wrapper::after {
-  background: var(--color-gray-275);
+  background: var(--color-gray-100);
   width: 20px;
   height: 100%;
   top: 0;

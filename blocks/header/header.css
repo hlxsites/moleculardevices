@@ -7,6 +7,7 @@ header {
   top: 0;
   background: var(--color-white);
   width: 100%;
+  height: var(--nav-height);
 }
 
 header a i.fa.fa-external-link {
@@ -85,7 +86,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i,
 header .navbar-header > .header-logo-wrapper .cn-header-phone a,
 header .navbar-header > .header-logo-wrapper .cn-header-phone span {
   display: block;
-  color: var(--color-gray-600);
+  color: var(--color-gray-400);
 }
 
 header .navbar-header > .header-logo-wrapper .cn-header-phone i {
@@ -198,7 +199,7 @@ header .actionable-card-submenu li {
 
 header .image-card-submenu {
   background-color: var(--color-black-alpha-30);
-  color: var(--color-gray-275);
+  color: var(--color-gray-100);
   position: relative;
   height: 100%;
 }
@@ -289,7 +290,7 @@ header .company-links > ul > li {
 }
 
 header .company-links a {
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
 }
 
 header .company-links img {
@@ -307,7 +308,7 @@ header .company-links img {
 
 header .company-links ul li {
   font-size: 10px;
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -367,13 +368,13 @@ header .nav-tabs .menu-nav-submenu-section:hover {
 }
 
 header .mobile-menu .company-links li {
-  border-bottom: 1px solid var(--color-gray-125);
+  border-bottom: 1px solid var(--color-gray-50);
   float: none;
   border-top: 0;
   text-align: center;
   text-transform: capitalize;
   font-size: 17px !important;
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
   width: 35%;
   margin-top: 15px;
 }
@@ -386,7 +387,7 @@ header .mobile-menu .company-links li picture {
 
 header .mobile-menu li:hover {
   color: var(--color-link);
-  background: var(--color-gray-200);
+  background: var(--color-gray-100);
 }
 
 header .company-links li:hover {
@@ -406,7 +407,7 @@ header .company-links > ul > li:last-child {
 header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
   line-height: 29px;
   font-size: 18px;
-  border-bottom: 1px solid var(--color-gray-125);
+  border-bottom: 1px solid var(--color-gray-50);
 }
 
 header .nav-tabs .menu-nav-submenu-section > a > li {
@@ -552,7 +553,7 @@ header .mobile-menu > ul {
 
 header .mobile-menu .headersearch {
   position: static;
-  background: var(--color-gray-200);
+  background: var(--color-gray-100);
   padding: 25px 22px;
   height: auto;
   display: block;
@@ -567,7 +568,7 @@ header .mobile-menu .search {
 
 header .mobile-menu .search > form {
   border: 0;
-  border-bottom: 1px solid var(--color-gray-600);
+  border-bottom: 1px solid var(--color-gray-400);
   margin: 0;
   padding: 0;
 }
@@ -635,7 +636,7 @@ header .cards-submenu ul li a {
 }
 
 header .mobile-menu-item {
-  border-bottom: 1px solid var(--color-gray-125);
+  border-bottom: 1px solid var(--color-gray-50);
   float: none;
   border-top: 0;
   position: relative;
@@ -713,7 +714,7 @@ header .text-submenu ul > li > a {
 }
 
 header .languages-dropdown a:hover {
-  background-color: var(--color-gray-75);
+  background-color: var(--color-gray-50);
 }
 
 header .mobile-menu .back-to-parent a {
@@ -721,7 +722,7 @@ header .mobile-menu .back-to-parent a {
 }
 
 header .mobile-menu .mobile-menu-subcategory-item > a {
-  background: var(--color-gray-200);
+  background: var(--color-gray-100);
   white-space: normal;
   padding: 4px 70px 15px 15px;
   color: var(--color-text-primary);
@@ -809,7 +810,7 @@ header .mobile-menu .caret::before {
 }
 
 header .mobile-menu .company-links {
-  background: var(--color-gray-200);
+  background: var(--color-gray-100);
   padding: 4px 15px 10px;
   position: relative;
   top: auto;
@@ -939,7 +940,7 @@ header .nav-tabs .menu-nav-submenu .menu-nav-heading {
   line-height: 1.1;
   font-weight: 100;
   font-family: var(--ff-proxima-light);
-  color: var(--color-mm-heading);
+  color: rgb(var(--color-white-rgb) / 70%);
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
@@ -1005,8 +1006,8 @@ header .nav-tabs .menu-nav-submenu-head {
 
 header .nav-tabs .menu-nav-submenu-sections {
   display: block;
-  border-right: 1px solid var(--color-mm-border);
-  border-top: 1px solid var(--color-mm-border);
+  border-right: 1px solid rgb(var(--color-white-rgb) / 50%);
+  border-top: 1px solid rgb(var(--color-white-rgb) / 50%);
   width: 330px;
   margin-top: 0;
 }
@@ -1169,7 +1170,7 @@ header .cards-submenu p:nth-child(2) a {
   color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--color-gray-600);
+  background-color: var(--color-theme-gray);
   text-align: center;
   display: flex;
   align-items: center;
@@ -1181,7 +1182,7 @@ header .cards-submenu p:nth-child(2) a {
 
 header .white-background p:nth-child(2) a {
   background-color: var(--color-white);
-  color: var(--color-gray-600);
+  color: var(--color-theme-gray);
 }
 
 header .green-background p:nth-child(2) a {
@@ -1231,7 +1232,7 @@ header .text-submenu ul > li > a:hover {
 
 header .actionable-card-submenu {
   background-color: var(--color-black-alpha-30);
-  color: var(--color-gray-275);
+  color: var(--color-gray-100);
   padding: 24px;
   border: 1px solid rgba(255 255 255 / 50%);
   position: relative;
@@ -1365,7 +1366,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   line-height: 10px;
   font-size: 13px;
   text-align: left;
-  color: var(--color-gray-275);
+  color: var(--color-gray-100);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23e6e6e6' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 205px center;
@@ -1522,7 +1523,7 @@ header .right-submenu-content p em > a:hover {
 /* header .products-right-submenu, */
 header .applications-right-submenu {
   background-color: var(--color-black-alpha-30);
-  color: var(--color-gray-275);
+  color: var(--color-gray-100);
   padding: 0;
   position: relative;
   height: 100%;
@@ -1595,7 +1596,7 @@ header .products-right-submenu {
   padding: 0;
   display: flex;
   gap: 20px;
-  color: var(--color-gray-275);
+  color: var(--color-gray-100);
   background-color: transparent;
 }
 
@@ -1798,6 +1799,10 @@ header .company-right-submenu > div:last-child > div:last-child img {
     visibility: visible;
   }
 
+  header {
+    height: var(--nav-height-mobile);
+  }
+
   header .container {
     width: 100%;
   }
@@ -1976,7 +1981,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     height: 2000px;
     padding-bottom: 9.4%;
     background-color: var(--color-primary);
-    box-shadow: inset 0 19px 33px -28px var(--color-gray-900);
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-750);
   }
 
   header .menu-nav-search-view > div {
@@ -2061,9 +2066,9 @@ header .company-right-submenu > div:last-child > div:last-child img {
     font-family: var(--ff-proxima-light);
     font-size: 16px;
     padding: 6px 12px;
-    border: 1px solid var(--color-gray-350);
+    border: 1px solid var(--color-gray-250);
     border-radius: 4px;
-    color: var(--header-menu-nav-search-bar);
+    color: var(--color-gray-700);
   }
 
   header .menu-nav-search-bar form button {
@@ -2120,7 +2125,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .nav-tabs .menu-nav-submenu {
     min-height: 782px;
-    box-shadow: inset 0 19px 33px -28px var(--color-gray-900);
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-750);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;

@@ -472,10 +472,13 @@ input[type="submit"] {
 
 /* Category Form */
 main .category-form.forms-container {
+  --default-gap: 30px;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-image: url("/templates/product/images/default-background.png");
+  gap: var(--default-gap);
 }
 
 main .category-form.forms-container.wave-section {
@@ -511,8 +514,8 @@ main .category-form.forms-container.product-rfq-thankyou-section .default-conten
 }
 
 main .category-form.forms-container .forms {
-  background-color: rgb(1 59 78 / 50%);
-  padding: 30px;
+  background-color: var(--category-form-bg);
+  padding: var(--default-gap);
   border-radius: 20px;
   color: var(--color-white);
 }
@@ -536,6 +539,9 @@ main .category-form.forms-container .forms h3 {
   text-align: center;
 }
 
+.product main .hs-form .hs-form-field .hs-field-desc,
+.product main .hs-form .hs-form-field .hs-field-desc a,
+.product main .hs-form a,
 main .category-form.forms-container .hs-form-field:first-child .hs-form .hs-form-field .hs-field-desc,
 main .category-form.forms-container .hs-form-field:first-child .hs-form a {
   color: inherit;
@@ -548,16 +554,6 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
 }
 
 @media only screen and (min-width: 992px) {
-  main .category-form.forms-container {
-    font-size: 21px;
-  }
-
-  main .category-form.forms-container .default-content-wrapper h2:only-of-type {
-    font-size: 48px;
-    padding-bottom: 0;
-    margin-top: 0;
-  }
-
   main .category-form.forms-container.wave-section {
     padding-bottom: 15%;
   }
@@ -565,7 +561,7 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
 
 @media only screen and (max-width: 991px) {
   main .category-form.forms-container {
-    gap: 20px;
+    --default-gap: 20px;
   }
 
   main .category-form.forms-container .forms {
