@@ -102,7 +102,7 @@
     width: 0;
     height: 0;
     min-height: 12px;
-    color: var(--card-list-filter-blog-separator);
+    color: var(--color-tertiary);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
@@ -114,7 +114,7 @@
   .card-list-filter.blog ul li a:hover,
   .card-list-filter.blog ul li a:active,
   .card-list-filter.blog ul li a.active {
-    color: var(--card-list-filter-blog-separator);
+    color: var(--color-tertiary);
     border: none;
   }
 }
