@@ -378,7 +378,7 @@ a:hover {
 }
 
 .background-gray main {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
 }
 
 /* SCREEN READER TEXT */
@@ -858,7 +858,7 @@ main .section.background-grey + .section.wave {
 
 main .section.background-grey,
 main .section.background-grey + .section.wave:not(.background-grey-top-half, .bluegreen) {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   margin-top: 0;
 }
 
@@ -866,7 +866,7 @@ main .section.background-grey-top-half::before,
 main .section.background-grey-bottom-half::before,
 main .section.background-grey + .section.wave::before {
   content: "";
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   position: absolute;
   left: 0;
   height: 200px;
