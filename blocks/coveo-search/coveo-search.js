@@ -213,7 +213,7 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     /* global Coveo */
     Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
     Coveo.init(document.getElementById('search'), {
-      searchHub: 'websiteSearch',
+      searchHub: 'resourceHubSearch',
       ExcerptConditionalRendering: {
         values: ['public'],
         compareValue: pCookie,
