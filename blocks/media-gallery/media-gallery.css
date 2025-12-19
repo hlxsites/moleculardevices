@@ -18,7 +18,7 @@
 
 .media-gallery .overlay-content {
   margin: 30px auto;
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
   padding: 0 15px;
   position: relative;
   text-align: center;

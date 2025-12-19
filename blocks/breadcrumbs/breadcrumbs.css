@@ -3,7 +3,7 @@
 }
 
 .breadcrumbs {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
   padding: 40px 15px 42.5px;
   margin: 0 auto;
 }
@@ -16,7 +16,7 @@
 
 .breadcrumbs li {
   display: inline;
-  font-size: var(--breadcrumbs-font-size);
+  font-size: var(--heading-font-size-xs);
   vertical-align: middle;
   font-family: var(--ff-proxima-xbold);
 }

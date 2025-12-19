@@ -14,7 +14,7 @@
 }
 
 .image-gallery-lightbox-overlay > div {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
   max-width: 100%;
   padding: 32px 56px;
   margin: 0 auto;

@@ -75,7 +75,7 @@
 
 .cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--list-font-size-s);
+  font-size: var(--heading-font-size-s);
   font-style: normal;
   font-weight: 600;
   color: var(--color-tertiary);

@@ -9,7 +9,7 @@ main .section.card-list-container .default-content-wrapper h2 {
 }
 
 main .section div.card-list-wrapper {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
   max-width: unset;
   padding: 0 15px;
   margin-top: 40px;

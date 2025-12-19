@@ -932,7 +932,7 @@ header .nav-tabs .menu-nav-submenu > div {
   display: block;
   position: relative;
   padding-top: 30px;
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 header .nav-tabs .menu-nav-submenu .menu-nav-heading {

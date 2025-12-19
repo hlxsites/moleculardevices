@@ -18,7 +18,7 @@ main div.carousel-wrapper.container-width-carousel {
 
 main div.fragments-carousel-wrapper.carousel-wrapper,
 main div.carousel-wrapper.container-width-carousel {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 main div.carousel-wrapper:last-child {
@@ -386,7 +386,7 @@ main .section.global-carousel .carousel h2 + h3 {
 
 /* WAVE carousel variant */
 main div.carousel-wrapper.wave {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 main .carousel.wave {

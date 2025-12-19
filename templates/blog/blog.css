@@ -92,7 +92,7 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
 
 .blog main .section > article,
 .blog main .section > .default-content-wrapper {
-  max-width: var(--blog-width);
+  max-width: var(--layout-blog-width);
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -111,7 +111,7 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
 }
 
 .blog main .section.blog-wide > div {
-  max-width: var(--container-width);
+  max-width: var(--layout-max-width);
   width: unset;
   margin: 0 auto;
 }

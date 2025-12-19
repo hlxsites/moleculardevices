@@ -21,7 +21,7 @@ main .compare-banner .container {
   padding-left: 15px;
   padding-right: 15px;
   width: 100%;
-  max-width: var(--section-max-width);
+  max-width: var(--layout-max-width);
 }
 
 main .compare-banner .compare-row {

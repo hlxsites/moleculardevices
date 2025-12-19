@@ -88,8 +88,8 @@ main .carousel-wrapper.cards .carousel {
 }
 
 .carousel.cards.three-lines-heading .carousel-item h3 {
-  display: block;
   display: -webkit-box;
+  display: block;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;

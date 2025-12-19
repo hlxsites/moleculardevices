@@ -40,7 +40,7 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
   display: flex;
   flex-direction: column;
 
-  /* width: var(--section-max-width); */
+  /* width: var(--layout-max-width); */
 }
 
 .what-next .insider-carousel-wrapper .carousel-dot-img-buttons {

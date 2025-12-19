@@ -106,7 +106,7 @@ main .section > .columns-wrapper {
 .columns.columns-sitemap h4 {
   font-family: var(--ff-proxima-regular);
   font-weight: bold;
-  font-size: var(--list-font-size-l);
+  font-size: var(--list-font-size);
   text-transform: uppercase;
 }
 
