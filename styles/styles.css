@@ -67,7 +67,6 @@ main .section.OneLinkShow_zh.columns-2 {
 .OneLinkHide {
   display: block;
 }
-
 /* stylelint-enable */
 
 :root {
@@ -202,35 +201,28 @@ main .section.OneLinkShow_zh.columns-2 {
   --line-height-heading: 1.1;
 
   /* Base font sizes */
-  --font-size-base: 18px;
-  --list-font-size: 1.1111rem; /* 20px */
+  --font-size-base: 16px;
+  --list-font-size: 1.25rem; /* 20px */
 
   /* Body text (desktop) */
-  --font-size-body-xs: 0.7778rem; /* 14px */
-  --font-size-body-s: 0.8889rem; /* 16px */
-  --font-size-body-m: 1rem; /* 18px */
-  --font-size-body-l: 1.2222rem; /* 22px */
-  --font-size-body-xl: 1.4444rem; /* 26px */
-  --body-font-size-xl: var(--font-size-body-xl);
-  --body-font-size-l: var(--font-size-body-l);
-  --body-font-size-m: var(--font-size-body-m);
-  --body-font-size-s: var(--font-size-body-s);
+  --font-size-body-xs: 0.875rem; /* 14px */
+  --font-size-body-s: 1rem; /* 16px */
+  --font-size-body-m: 1.125rem; /* 18px */
+  --font-size-body-l: 1.375rem; /* 22px */
+  --font-size-body-xl: 1.625rem; /* 26px */
   --body-font-size-xs: var(--font-size-body-xs);
+  --body-font-size-s: var(--font-size-body-s);
+  --body-font-size-m: var(--font-size-body-m);
+  --body-font-size-l: var(--font-size-body-l);
+  --body-font-size-xl: var(--font-size-body-xl);
 
   /* Headings (desktop) */
-  --font-size-h1: 2rem; /* 36px */
-  --font-size-h2: 1.6667rem; /* 30px */
-  --font-size-h3: 1.3333rem; /* 24px */
-  --font-size-h4: 1rem; /* 18px */
-  --font-size-h5: 0.7778rem; /* 14px */
-  --font-size-h6: 0.6667rem; /* 12px */
-  --heading-font-size-xxl: var(--font-size-h1);
-  --heading-font-size-xl: var(--font-size-h2);
-  --heading-font-size-l: var(--font-size-h3);
-  --heading-font-size-m: var(--font-size-h4);
-  --heading-font-size-s: var(--font-size-h5);
-  --heading-font-size-xs: var(--font-size-h6);
-
+  --font-size-h1: 2.25rem; /* 36px */
+  --font-size-h2: 1.875rem; /* 30px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-h4: 1.125rem; /* 18px */
+  --font-size-h5: 0.875rem; /* 14px */
+  --font-size-h6: 0.75rem; /* 12px */
 
   /* ================ Layout Variables ================ */
   --nav-height: 170px;
@@ -243,8 +235,8 @@ main .section.OneLinkShow_zh.columns-2 {
 
 @media only screen and (min-width: 768px) {
   :root {
-    --font-size-h1: 3.8889rem;
-    --font-size-h2: 3.8889rem;
+    --font-size-h1: 4.375rem; /* 70px */
+    --font-size-h2: 4.375rem; /* 70px */
   }
 }
 
@@ -265,16 +257,11 @@ main .section.OneLinkShow_zh.columns-2 {
 @media only screen and (max-width: 767px) {
   :root {
     --layout-max-width: 100%;
-    --font-size-base: 16px;
-
-    /* Body (mobile recalibration) */
     --font-size-body-xs: 0.875rem; /* 14px */
     --font-size-body-s: 1rem; /* 16px */
     --font-size-body-m: 1rem; /* 16px */
     --font-size-body-l: 1.25rem; /* 20px */
     --font-size-body-xl: 1.5rem; /* 24px */
-
-    /* Headings (mobile) */
     --font-size-h1: 1.875rem; /* 30px */
     --font-size-h2: 1.5rem; /* 24px */
     --font-size-h3: 1.25rem; /* 20px */
@@ -284,8 +271,8 @@ main .section.OneLinkShow_zh.columns-2 {
 
 @media only screen and (max-width: 390px) {
   :root {
-    --font-size-h1: 30px;
-    --font-size-h2: 30px;
+    --font-size-h1: 1.875rem; /* 30px */
+    --font-size-h2: 1.875rem; /* 30px */
   }
 }
 
@@ -356,27 +343,27 @@ h6 {
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--font-size-h1);
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
 }
 
 h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
 }
 
 h4 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: var(--font-size-h5);
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--font-size-h6);
 }
 
 @media only screen and (max-width: 991px) {
@@ -497,6 +484,7 @@ div[data-align="left"] {
 }
 
 .text-center,
+.center,
 div[data-align="center"] {
   text-align: center;
 }
@@ -1166,7 +1154,7 @@ main .section.applications-carousel-container .default-content-wrapper {
 main .section.features-section .default-content-wrapper h2,
 main .section.applications-carousel-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
   margin-bottom: 0;
   padding: 0;
 }
@@ -1418,7 +1406,7 @@ main .section.wave .default-content-wrapper {
 }
 
 main .section.wave .default-content-wrapper h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
   margin-bottom: 30px;
   line-height: 1;
   font-family: var(--ff-proxima-light);
@@ -1546,7 +1534,7 @@ main .section.wave.bluegreen2:not(.background-grey-top-half, .bluegreen) {
 
   main .section.wave.bluegreen .default-content-wrapper h2,
   main .section.wave.bluegreen2 .default-content-wrapper h2 {
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--font-size-h1);
   }
 }
 
@@ -2799,7 +2787,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 @media only screen and (max-width: 991px) {
   .what-next {
     --h2: 36px;
-    --h3: var(--heading-font-size-l);
+    --h3: var(--font-size-h3);
   }
 }
 

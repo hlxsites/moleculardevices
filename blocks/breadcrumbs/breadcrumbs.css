@@ -16,7 +16,7 @@
 
 .breadcrumbs li {
   display: inline;
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--font-size-h6);
   vertical-align: middle;
   font-family: var(--ff-proxima-xbold);
 }

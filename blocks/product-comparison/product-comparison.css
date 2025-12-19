@@ -3,7 +3,7 @@
   text-align: center;
   padding-bottom: 0;
   margin-bottom: 30px;
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
   font-family: var(--ff-proxima-light);
   margin-top: 30px;
 }

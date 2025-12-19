@@ -189,7 +189,7 @@ main .section > .columns-wrapper {
 .columns.contact > div h2 {
   background-color: var(--color-theme-gray);
   color: var(--color-white);
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
   font-family: var(--ff-proxima-regular);
   font-weight: bold;
   margin: 0;
@@ -214,7 +214,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.contact > div ul li .icon + strong {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
 }
 
 .columns.bullet-points p.button-container a {
@@ -239,7 +239,7 @@ main .section > .columns-wrapper {
 
 .columns.contact > div > div > ul > li > i {
   color: var(--color-tertiary);
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
 }
 
 .columns.contact > div ul li::after,
@@ -395,7 +395,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.collaboration > div h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   color: var(--color-tertiary);
   font-family: inherit;
   margin-top: 20px;
@@ -609,7 +609,7 @@ main .section > .columns-wrapper {
 
 @media (min-width: 992px) {
   .columns.contact > div h2 {
-    font-size: var(--heading-font-size-l);
+    font-size: var(--font-size-h3);
   }
 
   .columns.contact > div > div > p,

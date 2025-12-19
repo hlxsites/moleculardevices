@@ -4,7 +4,7 @@
 }
 
 .list > * {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .list .event-title {
@@ -19,7 +19,7 @@
 }
 
 .list > .filter > .panel-title {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   font-weight: bold;
   margin: 0;
   padding: 8px 0 22px;
@@ -141,7 +141,7 @@
 
 .list > .items > .item > .content > .cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-s);
+  font-size: var(--font-size-h5);
   font-style: normal;
   font-weight: 600;
   color: var(--color-gray-750);
@@ -177,7 +177,7 @@
   font-weight: bold;
   line-height: 53px;
   text-align: center;
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   padding: 0;
   margin: 4px;
 }

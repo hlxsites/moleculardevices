@@ -473,12 +473,14 @@ input[type="submit"] {
 /* Category Form */
 main .category-form.forms-container {
   --default-gap: 30px;
+  --font-size-h2: 48px;
+  --font-size-h3: 28px;
 
+  font-size: 21px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-image: url("/templates/product/images/default-background.png");
-  gap: var(--default-gap);
 }
 
 main .category-form.forms-container.wave-section {
@@ -534,7 +536,6 @@ main .category-form.forms-container .default-content-item h2 ~ p {
 
 main .category-form.forms-container .forms h3 {
   margin-top: 0;
-  font-size: 28px;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -557,11 +558,21 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
   main .category-form.forms-container.wave-section {
     padding-bottom: 15%;
   }
+
+  main .category-form.forms-container .default-content-wrapper h2:only-of-type {
+    padding-bottom: 0;
+    margin-top: 0;
+  }
 }
 
 @media only screen and (max-width: 991px) {
   main .category-form.forms-container {
     --default-gap: 20px;
+    --font-size-h2: 30px;
+    --font-size-h3: 28px;
+
+    font-size: 14px;
+    gap: var(--default-gap);
   }
 
   main .category-form.forms-container .forms {

@@ -65,7 +65,7 @@ main .featured-products-carousel.mini .carousel-item-text {
 
 main .featured-products-carousel.mini .carousel-item-text h3 {
   margin: 0;
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 main .featured-products-carousel.mini .carousel-item-text a {
@@ -107,7 +107,7 @@ main .featured-products-carousel-wrapper.mini .carousel-nav-left {
 }
 
 main .featured-products-carousel-wrapper.mini .carousel-counter-text {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--font-size-h6);
   padding: 0 5px;
   order: 2;
 }

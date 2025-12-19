@@ -9,13 +9,13 @@
 
 .onetrust .otnotice-content .otnotice-section-content h1,
 .onetrust .otnotice-content .otnotice-section-header {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   font-family: var(--ff-proxima-xbold);
   margin-top: 0;
 }
 
 .onetrust .otnotice-content .otnotice-section-header {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .onetrust .otnotice-content .otnotice-sections .otnotice-section-content ul {

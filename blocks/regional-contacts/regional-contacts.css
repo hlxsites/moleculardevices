@@ -312,7 +312,7 @@
 
   .regional-contacts-wrapper .regional-contacts .accordian-btn h3 {
     margin: 0;
-    font-size: var(--heading-font-size-m);
+    font-size: var(--font-size-h4);
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper {
@@ -347,7 +347,7 @@
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) {
-    min-height: auto;
+    min-height: unset;
   }
 
   .regional-contacts-wrapper .regional-contacts .tab-accordian-wrapper > div:nth-child(even) > ul > li:nth-child(2) strong {

@@ -240,7 +240,7 @@
 .leader-profiles > ul > li > div.leader-profiles-card-body h2 {
   color: var(--color-text-primary);
   font-family: var(--ff-proxima-regular);
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   font-weight: bold;
   margin: 0 0 10px;
 }
@@ -248,7 +248,7 @@
 .leader-profiles > ul > li > div.leader-profiles-card-body h4 {
   color: var(--color-text-primary);
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: var(--font-size-h5);
   line-height: 18px;
   margin: 0;
 }

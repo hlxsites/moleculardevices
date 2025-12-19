@@ -54,7 +54,7 @@ main .hero-advanced-wrapper {
 }
 
 .hero-inner h2 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .hero-inner h6 {
@@ -63,7 +63,7 @@ main .hero-advanced-wrapper {
   margin-bottom: 5px;
   margin-top: 30px;
   font-weight: 700;
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .hero-inner h6:first-child {
@@ -406,13 +406,13 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   /* TODO fix heading vars in styles.css */
   .hero-inner h1 {
-    font-size: var(--heading-font-size-xxl);
+    font-size: var(--font-size-h1);
     margin-top: 30px;
     margin-bottom: 10px;
   }
 
   .hero-inner h2 {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--font-size-h5);
   }
 
   .hero-inner .two-column h1 {

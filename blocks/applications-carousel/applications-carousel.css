@@ -66,7 +66,7 @@ main .section.applications-carousel-container:has(.applications-carousel.block:e
 
 main .section.applications-carousel-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
   text-align: center;
 }
 

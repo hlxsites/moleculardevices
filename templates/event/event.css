@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 .event main .section .default-content-wrapper h2:only-child {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--font-size-h1);
   font-family: var(--ff-proxima-regular);
   text-align: center;
 }

@@ -48,7 +48,7 @@
 
 .event-banner .event-title,
 .event-banner h1 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   margin-top: 0;
   line-height: 1.1;
   margin-bottom: 1rem;
@@ -75,7 +75,7 @@
 
 .cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-s);
+  font-size: var(--font-size-h5);
   font-style: normal;
   font-weight: 600;
   color: var(--color-tertiary);
