@@ -391,8 +391,7 @@ a:any-link {
   text-decoration: none;
 }
 
-a:any-link:hover,
-a:any-link:focus {
+a:hover {
   color: var(--color-link-hover);
 }
 
