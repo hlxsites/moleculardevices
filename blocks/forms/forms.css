@@ -560,6 +560,7 @@ main .category-form.forms-container .hs-form-field:first-child .hs-submit .actio
   }
 
   main .category-form.forms-container .default-content-wrapper h2:only-of-type {
+    font-size: 48px;
     padding-bottom: 0;
     margin-top: 0;
   }
