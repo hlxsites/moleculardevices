@@ -253,7 +253,6 @@ main .section.OneLinkShow_zh.columns-2 {
   :root {
     --font-size-h1: var(--fs-display-xl); /* 70px */
     --font-size-h2: var(--fs-display-xl); /* 70px */
-    --fs-h1:  var(--fs-display-xl); /* 70px */
   }
 }
 

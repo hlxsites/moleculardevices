@@ -483,10 +483,6 @@ main .category-form.forms-container {
   background-image: url("/templates/product/images/default-background.png");
 }
 
-main .category-form.forms-container .default-content-wrapper h2:only-of-type {
-  font-size: var(--font-size-h2);
-}
-
 main .category-form.forms-container.wave-section {
   position: relative;
   padding-bottom: 18%;
