@@ -95,7 +95,7 @@
 }
 
 .footer-news-events .toggle:not(.on) h3 {
-  color: var(--color-gray-400);
+  color: var(--color-theme-gray);
 }
 
 .footer-news-events p:last-of-type {
@@ -107,7 +107,7 @@
 }
 
 .footer-news-events > div:first-of-type > div {
-  border-bottom: 2px solid var(--color-gray-250);
+  border-bottom: 2px solid var(--color-gray-350);
   margin-left: 0;
   cursor: pointer;
 }
