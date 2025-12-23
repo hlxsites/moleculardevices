@@ -11,12 +11,13 @@ export default async function decorate(block) {
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    isShopifyCard: isCountryCodeUS,
-    c2aLinkStyle: !isCountryCodeUS,
+    isShopifyCard: false,
+    c2aLinkStyle: true,
     isRequestQuoteCard: !isCountryCodeUS,
     defaultButtonText: placeholders.requestQuote || 'Request Quote',
   });
-
+//c2aLinkStyle: !isCountryCodeUS,
+ // console.log(cardRenderer);
   let fragments;
   if (isCountryCodeUS) {
     fragments = await ffetch('/query-index.json')
