@@ -7,19 +7,21 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const isCountryCodeUS = await getCountryCode() === 'US';
+  const isShopifyCard = false;
   const placeholders = await fetchPlaceholders();
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    isShopifyCard: false,
+    isShopifyCard: isShopifyCard,
     c2aLinkStyle: true,
-    isRequestQuoteCard: !isCountryCodeUS,
+    isRequestQuoteCard: true,
     defaultButtonText: placeholders.requestQuote || 'Request Quote',
   });
-//c2aLinkStyle: !isCountryCodeUS,
+// c2aLinkStyle: !isCountryCodeUS,
+// isRequestQuoteCard: !isCountryCodeUS,
  // console.log(cardRenderer);
   let fragments;
-  if (isCountryCodeUS) {
+  if (isCountryCodeUS && isShopifyCard) {
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
