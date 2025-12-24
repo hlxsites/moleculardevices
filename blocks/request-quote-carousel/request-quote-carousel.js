@@ -2,30 +2,38 @@ import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getCountryCode, sortDataByTitle } from '../../scripts/scripts.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, toClassName } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const isCountryCodeUS = await getCountryCode() === 'US';
-  const isShopifyCard = false;
   const placeholders = await fetchPlaceholders();
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    isShopifyCard: isShopifyCard,
+    isShopifyCard: isCountryCodeUS,
+    // c2aLinkStyle: !isCountryCodeUS,
     c2aLinkStyle: true,
-    isRequestQuoteCard: true,
+    isRequestQuoteCard: !isCountryCodeUS,
     defaultButtonText: placeholders.requestQuote || 'Request Quote',
   });
-// c2aLinkStyle: !isCountryCodeUS,
-// isRequestQuoteCard: !isCountryCodeUS,
- // console.log(cardRenderer);
+
   let fragments;
-  if (isCountryCodeUS && isShopifyCard) {
+  if (isCountryCodeUS) {
     fragments = await ffetch('/query-index.json')
       .sheet('applications')
       .filter((frag) => fragmentPaths.includes(frag.path))
       .all();
+    fragments.forEach((fragment) => {
+      const hasShopifyURL = fragment.shopifyUrl && fragment.shopifyUrl !== '0';
+      const rfqLink = `/quote-request?pid=${toClassName(fragment.identifier)}`;
+      fragment.c2aLinkConfig = {
+        href: hasShopifyURL ? fragment.shopifyUrl : rfqLink,
+        'aria-label': hasShopifyURL ? 'Order' : 'Request Quote',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      };
+    });
   } else {
     fragments = await ffetch('/query-index.json')
       .filter((frag) => fragmentPaths.includes(frag.path))

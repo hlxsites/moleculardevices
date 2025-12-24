@@ -77,14 +77,6 @@ class Card {
       this.cssFiles.push('/blocks/card/card.css');
     }
 
-    if (this.isShopifyCard) {
-      this.defaultButtonText = 'Order';
-    }
-
-    if (this.isRequestQuoteCard) {
-      this.defaultButtonText = 'Request Quote';
-    }
-
     if (!this.showFullDescription) {
       this.descriptionLength = 75;
     }
@@ -92,6 +84,7 @@ class Card {
 
   renderItem(item) {
     const cardTitle = itemSearchTitle(item);
+    const hasShopifyURL = item.shopifyUrl && item.shopifyUrl !== '0';
     this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
     let itemImage = this.defaultImage;
@@ -109,7 +102,7 @@ class Card {
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {
-      cardLink = item.shopifyUrl;
+      cardLink = item.shopifyUrl !== '0' ? item.shopifyUrl : `/quote-request?pid=${item.familyID}`;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
     }
@@ -123,7 +116,13 @@ class Card {
     if (item.c2aLinkConfig) {
       c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
-    if (this.c2aLinkStyle) {
+
+    if (hasShopifyURL) {
+      c2aLinkBlock.textContent = 'Order';
+      c2aLinkBlock.classList.add('button', 'primary');
+    }
+
+    if (this.c2aLinkStyle && !hasShopifyURL) {
       c2aLinkBlock.classList.remove('button', 'primary');
       c2aLinkBlock.append(
         this.c2aLinkIconFull
