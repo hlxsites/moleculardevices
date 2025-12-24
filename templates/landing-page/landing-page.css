@@ -337,7 +337,7 @@ body .thank-you-page h4 {
   }
 
   .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
-    margin-left: calc((100vw - var(--layout-max-width)) / 2);
+    margin-left: var(--center-space);
     padding-top: 25px;
   }
 
@@ -346,7 +346,7 @@ body .thank-you-page h4 {
   }
 
   .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
-    margin-left: calc((100vw - var(--layout-max-width)) / 2);
+    margin-left: var(--center-space);
   }
 
   .landing-page main .section.download-form:not(.center) .default-content-wrapper:nth-child(2) {
