@@ -1,5 +1,5 @@
 /* stylelint-disable no-descending-specificity */
-.product .product-comparison-container.tabs .default-content-wrapper > h2{
+.product .product-comparison-container.tabs .default-content-wrapper > h2 {
   text-align: center;
   padding-bottom: 0;
   margin-bottom: 30px;
@@ -39,7 +39,7 @@
 }
 
 .product-comparison .product-heading .darkgrey {
-  background-color: var(--color-gray-500);
+  background-color: var(--product-comparison-dark-gray);
   color: var(--color-gray-750);
 }
 
@@ -52,7 +52,7 @@
   width: 220px;
 }
 
-.product-comparison .product-heading picture{
+.product-comparison .product-heading picture {
   display: block;
 }
 
@@ -62,7 +62,7 @@
   margin-top: 15px;
   margin-bottom: 10px;
   object-fit: contain;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .product-comparison .product-heading img:hover {
@@ -94,7 +94,7 @@
 .product-comparison .responsive-table td:first-child,
 .product-comparison .responsive-table th:last-child,
 .product-comparison .responsive-table td:last-child {
-  border-right: 1px solid  var(--color-gray-250);
+  border-right: 1px solid var(--color-gray-250);
 }
 
 .product-comparison .responsive-table th:first-child,
@@ -106,7 +106,7 @@
 }
 
 .product-comparison .responsive-table tbody td:first-child {
-  background-color: var(--color-theme-gray);
+  background-color: var(--product-comparison-first-cell);
   min-width: 160px;
   padding: 15px;
   border-right: 1px solid var(--color-gray-250);
@@ -127,7 +127,7 @@
   background: var(--color-gray-50) !important;
 }
 
-.product-comparison .product-heading .product-heading-title  {
+.product-comparison .product-heading .product-heading-title {
   padding: 20px 5px;
   line-height: normal;
   min-height: 115px;
@@ -141,7 +141,7 @@
   background-color: var(--color-primary);
 }
 
-.product-comparison .responsive-table .product-info-btn  {
+.product-comparison .responsive-table .product-info-btn {
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
   padding: 6px 12px;
@@ -151,7 +151,7 @@
   text-transform: uppercase;
   margin: 5px 0 10px;
   font-family: var(--ff-proxima-regular);
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .product-comparison .responsive-table a.product-info-btn:hover {

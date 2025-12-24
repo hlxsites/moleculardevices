@@ -113,6 +113,8 @@ main .section.OneLinkShow_zh.columns-2 {
   --hubspot-modal-block-after: #004c70;
   --hero-video-overlay-bg: #00b8dd;
   --card-list-filter-separator: #6d6c8d;
+  --product-comparison-dark-gray: #8a959b;
+  --product-comparison-first-cell: #525b61;
 
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
