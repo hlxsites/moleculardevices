@@ -68,7 +68,7 @@ main .card .card-category {
 main .card-caption {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px 20px 20px;
   color: var(--color-gray-800);
   height: 100%;
   min-height: unset;

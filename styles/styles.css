@@ -1153,7 +1153,7 @@ main .section.features-section {
     url("/images/molecules-left.png") left bottom,
     url("/images/molecules-right.png") right top;
   background-repeat: no-repeat;
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
 }
 
 main .section.features-section .default-content-wrapper,
