@@ -441,8 +441,8 @@ main .carousel-wrapper.wave .carousel-dot-button {
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
-  color: var(--color-gray-500);
-  border: 1.5px solid var(--color-gray-500);
+  color: var(--color-gray-300);
+  border: 1.5px solid var(--color-gray-300);
   background-color: inherit;
 }
 
