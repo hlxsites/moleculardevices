@@ -1,5 +1,5 @@
 import {
-  a, div, h1, h2, p,
+  a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateLinks, formatDate, unixDateToString,
