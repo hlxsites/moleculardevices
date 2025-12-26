@@ -4,7 +4,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
 import {
-  formatDateUTCSeconds, getCountryCode, isGatedResource, itemSearchTitle, summariseDescription,
+  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
