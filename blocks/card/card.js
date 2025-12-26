@@ -4,7 +4,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line import/no-cycle
 import {
-  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
+  formatDateUTCSeconds, getCountryCode, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
@@ -17,6 +17,7 @@ import {
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
 import { isNotOlderThan365Days } from '../product-finder/product-finder.js';
+import { isCountryCodeUS } from '../request-quote-carousel/request-quote-carousel.js';
 
 let placeholders = {};
 
@@ -84,7 +85,7 @@ class Card {
 
   renderItem(item) {
     const cardTitle = itemSearchTitle(item);
-    const hasShopifyURL = item.shopifyUrl && item.shopifyUrl !== '0';
+    const hasShopifyURL = isCountryCodeUS && (item.shopifyUrl && item.shopifyUrl !== '0');
     this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
     let itemImage = this.defaultImage;
