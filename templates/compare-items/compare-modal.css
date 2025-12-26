@@ -24,7 +24,7 @@ main .pro-comparison-result .col-sm-3 {
 
 main .pro-comparison-result .product-comparison {
   position: relative;
-  background: var(--color-gray-150);
+  background: var(--color-gray-50);
   height: 95vh;
 }
 
@@ -333,9 +333,4 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
   main .pro-comparison-result .scroll_div .col-sm-3 {
     border: 1px solid var(--color-gray-350);
   }
-
-  /* main .pro-comparison-result .scroll_div .comparison-cell.title {
-    font-weight: bold;
-    background-color: var(--color-gray-50);
-  } */
 }

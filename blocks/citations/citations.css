@@ -1,5 +1,5 @@
 main .citations-container {
-  --heading-font-size-l: 36px;
+  --font-size-h3: 36px;
 
   padding: 90px 50px 50px;
 }
@@ -16,7 +16,7 @@ main .citations-container > .default-content-wrapper {
   margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 .citations .citation {

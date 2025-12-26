@@ -70,7 +70,7 @@ main .teaser-video-container::before {
 main .overlay {
   text-align: center;
   z-index: 1;
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
   margin-left: auto;
   margin-right: auto;
   padding: 15px;
@@ -259,8 +259,8 @@ main .full-video-container .play-pause-fullscreen-button svg {
 
 @media only screen and (max-width: 992px) {
   :root {
-    --heading-font-size-xxl: 36px;
-    --heading-font-size-xl: 36px;
+    --font-size-h1: 36px;
+    --font-size-h2: 36px;
   }
 
   main .overlay h1 {

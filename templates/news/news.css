@@ -11,7 +11,7 @@ main .section .default-content-wrapper {
 }
 
 .publication.full-article .section > div:not(.hero-wrapper) {
-  max-width: 800px;
+  max-width: var(--layout-blog-width);
   padding-inline: 15px;
 }
 

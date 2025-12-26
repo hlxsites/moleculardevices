@@ -70,7 +70,7 @@ main .section .specifications-wrapper {
 }
 
 .specifications .responsive-table tbody tr:nth-child(odd) {
-  background: var(--color-gray-150);
+  background: var(--color-gray-50);
 }
 
 .specifications .responsive-table tbody tr:first-child {

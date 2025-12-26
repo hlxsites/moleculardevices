@@ -10,14 +10,19 @@ export default async function decorate(block) {
   authorImg.classList.add('author-intro-image');
 
   /* remove extra margin */
-  if (isBlogPage) {
-    const prevEl = block.parentElement.previousElementSibling;
-    const nextEl = block.parentElement.nextElementSibling;
-    if (prevEl.lastChild.nodeName === 'H1' || prevEl.lastChild.nodeName === 'H2' || prevEl.lastChild.nodeName === 'H3' || prevEl.lastChild.nodeName === 'H4' || prevEl.lastChild.nodeName === 'H5' || prevEl.lastChild.nodeName === 'H6') {
-      block.classList.add('no-margin-top');
-    }
-    if (nextEl.firstChild.nodeName === 'H1' || nextEl.firstChild.nodeName === 'H2' || nextEl.firstChild.nodeName === 'H3' || nextEl.firstChild.nodeName === 'H4' || nextEl.firstChild.nodeName === 'H5' || nextEl.firstChild.nodeName === 'H6') {
-      block.classList.add('no-margin-bottom');
-    }
+  if (!isBlogPage) return;
+
+  const isHeading = (el) => el?.nodeType === Node.ELEMENT_NODE && /^H[1-6]$/.test(el.tagName);
+
+  const parent = block?.parentElement;
+  const prevEl = parent?.previousElementSibling;
+  const nextEl = parent?.nextElementSibling;
+
+  if (isHeading(prevEl?.lastElementChild)) {
+    block.classList.add('no-margin-top');
+  }
+
+  if (isHeading(nextEl?.firstElementChild)) {
+    block.classList.add('no-margin-bottom');
   }
 }

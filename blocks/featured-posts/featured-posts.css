@@ -82,7 +82,7 @@ main .section .featured-posts .post picture::after {
 
   main .section .featured-posts .post-1 h3,
   main .section .featured-posts .post-1 .button-container {
-    font-size: var(--body-font-size-xl);
+    font-size: var(--font-size-body-xl);
   }
 
   main .section .featured-posts .post-1 {

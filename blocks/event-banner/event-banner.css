@@ -4,7 +4,7 @@
   overflow: hidden;
   border-radius: 0.25rem;
   font-size: 1rem;
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--color-gray-200);
   background: var(--color-white);
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-left: 1px solid var(--color-gray-300);
+  border-left: 1px solid var(--color-gray-200);
 }
 
 .event-banner .event-title,
@@ -48,7 +48,7 @@
 
 .event-banner .event-title,
 .event-banner h1 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   margin-top: 0;
   line-height: 1.1;
   margin-bottom: 1rem;
@@ -75,7 +75,7 @@
 
 .cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--list-font-size-s);
+  font-size: var(--font-size-h5);
   font-style: normal;
   font-weight: 600;
   color: var(--color-tertiary);
@@ -132,7 +132,7 @@ p.cite {
 
   .event-banner .event-title,
   .event-banner h1 {
-    font-size: var(--body-font-size-xl);
+    font-size: var(--font-size-body-xl);
   }
 
   .event-banner .right-col {

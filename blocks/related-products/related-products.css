@@ -39,7 +39,7 @@ main .section .related-products-wrapper {
 }
 
 .related-products .card-caption .card-description {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .related-products .card .button-container {

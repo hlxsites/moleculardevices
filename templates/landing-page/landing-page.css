@@ -268,7 +268,7 @@
 
 .section.thank-you-page .carousel-item > .card .card-caption .card-description {
   color: var(--color-text-primary);
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .thank-you-page p.button-container span[aria-hidden='true'] {
@@ -331,13 +331,13 @@ body .thank-you-page h4 {
 
 @media (min-width: 768px) {
   .landing-page .download-form > div {
-    width: calc(var(--section-max-width) / 2);
+    width: calc(var(--layout-max-width) / 2);
     display: inline-block;
     vertical-align: top;
   }
 
   .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
-    margin-left: calc((100vw - var(--section-max-width)) / 2);
+    margin-left: var(--center-space);
     padding-top: 25px;
   }
 
@@ -346,7 +346,7 @@ body .thank-you-page h4 {
   }
 
   .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
-    margin-left: calc((100vw - var(--section-max-width)) / 2);
+    margin-left: var(--center-space);
   }
 
   .landing-page main .section.download-form:not(.center) .default-content-wrapper:nth-child(2) {
