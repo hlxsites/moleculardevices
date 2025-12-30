@@ -442,7 +442,7 @@
   position: absolute;
   right: 12px;
   top: 0;
-  background-color: var(--color-gray-700);
+  background-color: var(--color-theme-gray);
   width: 1px;
   height: 100%;
 }

@@ -54,13 +54,13 @@
   justify-content: center;
   color: var(--color-white);
   border: 1px solid var(--color-white);
-  border-bottom-color: var(--color-theme-gray);
+  border-bottom-color: var(--color-theme-gray-dark);
   background-color: var(--color-gray-400);
   cursor: pointer;
 }
 
 .tabs-horizontal li.tabs-nav-item.active {
-  background-color: var(--color-theme-gray);
+  background-color: var(--color-theme-gray-dark);
 }
 
 @media only screen and (max-width: 767px) {

@@ -205,7 +205,7 @@
 }
 
 .product-finder-container .finder-filters .select-wrapper span {
-  color: var(--color-gray-700);
+  color: var(--color-theme-gray-dark);
   position: absolute;
   right: 20px;
   top: 16px;

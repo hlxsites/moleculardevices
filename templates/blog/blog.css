@@ -180,7 +180,7 @@ main .section.sidebar h4,
   margin: 15px 0 25px;
   font-size: var(--font-size-body-xs);
   display: block;
-  color: var(--color-gray-400);
+  color: var(--color-theme-gray);
   font-style: italic;
 }
 

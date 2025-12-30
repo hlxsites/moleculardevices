@@ -224,7 +224,7 @@ main .section.quote-request-container + .section.wave {
 .progress-bar {
   background-color: var(--color-gray-900);
   border-radius: 20px;
-  box-shadow: inset 7px 0 58px var(--color-gray-700);
+  box-shadow: inset 7px 0 58px var(--color-theme-gray);
   height: 50px;
   margin: 55px auto 0;
   position: relative;

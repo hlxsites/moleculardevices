@@ -187,7 +187,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.contact > div h2 {
-  background-color: var(--color-theme-gray);
+  background-color: var(--color-theme-gray-dark);
   color: var(--color-white);
   font-size: var(--font-size-h4);
   font-family: var(--ff-proxima-regular);
@@ -327,7 +327,7 @@ main .section > .columns-wrapper {
 }
 
 .columns.video-teaser > div > div:not(:has(div.video-wrapper)) {
-  background-color: var(--color-gray-700);
+  background-color: var(--color-theme-gray);
   color: var(--color-white);
   margin-left: 0;
   padding: 32px;
@@ -907,7 +907,7 @@ main .section .cards.cols-4 ul li {
 
 main .section .cards.cols-4 .cards-card-wrapper {
   height: 100%;
-  background-color: var(--column-col-4-bg);
+  background-color: var(--color-primary-alpha-5);
   color: var(--color-black);
 }
 
