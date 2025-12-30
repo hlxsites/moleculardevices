@@ -52,7 +52,7 @@
 .card-list-filter ul li a.active::after {
   display: table;
   width: 100%;
-  border-bottom: 1px solid var(--card-list-filter-separator);
+  border-bottom: 1px solid var(--color-theme-gray);
   content: " ";
   margin-top: -1px;
 }
@@ -244,6 +244,6 @@
   }
 
   .card-list-filter.video-gallery .filter-title {
-    border-bottom: 1px solid var(--card-list-filter-separator);
+    border-bottom: 1px solid var(--color-theme-gray);
   }
 }
