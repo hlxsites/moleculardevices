@@ -20,13 +20,13 @@
 }
 
 .customer-story p {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   font-family: var(--ff-proxima-light);
   font-weight: 600;
 }
 
 .customer-story p a {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   font-family: var(--ff-proxima-regular);
   font-weight: initial;
   color: var(--color-white);
@@ -61,6 +61,6 @@ main .section.wave .customer-story p {
   }
 
   .customer-story p {
-    font-size: var(--body-font-size-m);
+    font-size: var(--font-size-body-m);
   }
 }

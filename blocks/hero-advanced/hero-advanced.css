@@ -19,18 +19,18 @@
   }
 
   .hero-advanced .hero-inner a.button.secondary {
-   border: 2px solid var(--color-white);
-   padding: 13px 18px;
+    border: 2px solid var(--color-white);
+    padding: 13px 18px;
   }
 
-  .hero-advanced .container > div{
+  .hero-advanced .container > div {
     max-width: 66.67%;
   }
 }
 
 @media (max-width: 767px) {
   .hero-advanced .hero-inner {
-    background-color: var(--color-gray-150);
+    background-color: var(--color-gray-50);
     color: var(--color-text-primary);
     padding-top: 30px;
   }
@@ -48,7 +48,7 @@
     font-family: var(--ff-proxima-light);
   }
 
-  .hero-advanced .hero-inner .two-column h1+div {
+  .hero-advanced .hero-inner .two-column h1 + div {
     text-align: center;
   }
 
@@ -61,12 +61,13 @@
 
   .hero-advanced .hero-inner .video-column {
     position: absolute;
-    top: 25%;
-    left: 40%;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .hero-advanced .hero-inner p {
-    font-size: var(--body-font-size-l);
+    font-size: var(--font-size-body-l);
   }
 
   .hero-advanced .hero-inner a.button.secondary {

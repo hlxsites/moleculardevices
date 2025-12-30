@@ -113,7 +113,7 @@ main .section.ordering-options-container > div:last-child {
   font-size: 14px;
   height: 40px;
   margin-bottom: 3px;
-  background: var(--color-gray-150);
+  background: var(--color-gray-50);
   border: 1px solid var(--color-gray-500);
   white-space: nowrap;
   display: flex;
@@ -241,7 +241,7 @@ main .section.ordering-options-container > div:last-child {
   text-align: left;
   background-color: transparent;
   font-size: large;
-  font-family: var(--body-font-size-m);
+  font-family: var(--font-size-body-m);
   padding: 0;
 }
 
@@ -295,7 +295,7 @@ main .section.ordering-options-container > div:last-child {
   top: 100%;
   margin: 0;
   left: 0;
-  background-color: var(--color-gray-150);
+  background-color: var(--color-gray-50);
   box-shadow: 0 8px 16px 0 var(--color-black-alpha-20);
   z-index: 1;
   border: 1px solid var(--color-black);
@@ -316,7 +316,7 @@ main .section.ordering-options-container > div:last-child {
   display: block;
   border-top: none;
   font-size: 16px;
-  font-family: var(--body-font-size-m);
+  font-family: var(--font-size-body-m);
   white-space: nowrap;
   min-width: 100%;
   height: 60px;
@@ -324,11 +324,11 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .drop-down-content a + a {
-  border-top: 1px solid var(--color-gray-300);
+  border-top: 1px solid var(--color-gray-200);
 }
 
 .drop-down-content a:hover {
-  background-color: var(--color-gray-300);
+  background-color: var(--color-gray-200);
 }
 
 .drop-down.show .drop-down-content {
@@ -390,7 +390,7 @@ main .section.ordering-options-container > div:last-child {
 }
 
 .order-container .quantity-container button {
-  color: var(--color-gray-750);
+  color: var(--color-gray-700);
   font-family: var(--ff-proxima-light);
 }
 
@@ -423,11 +423,11 @@ main .section.ordering-options-container > div:last-child {
   font-size: 24px;
   border-radius: 0;
   padding: 0;
-  border-top: 1px solid var(--ordering-option-quantity-number);
-  border-bottom: 1px solid var(--ordering-option-quantity-number);
+  border-top: 1px solid var(--color-gray-700);
+  border-bottom: 1px solid var(--color-gray-700);
   margin: 0;
   font-family: var(--ff-proxima-xbold);
-  color: var(--color-gray-750);
+  color: var(--color-gray-700);
 }
 
 .order-container .quantity-number:focus-visible,

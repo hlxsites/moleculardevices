@@ -43,6 +43,7 @@ const TEMPLATE_LIST = [
   'newsroom',
   'landing-page',
   'product',
+  'fwn',
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 

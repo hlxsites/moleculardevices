@@ -24,9 +24,9 @@
 }
 
 .local-distributor {
-  border: 1px solid var(--color-gray-450);
-  border-top: 7px solid var(--color-gray-750);
-  font-size: var(--body-font-size-s);
+  border: 1px solid var(--color-gray-400);
+  border-top: 7px solid var(--color-theme-gray);
+  font-size: var(--font-size-body-s);
   position: relative;
 }
 
@@ -42,24 +42,24 @@
   bottom: 7px;
 }
 
-.local-distributor > div:nth-child(2) {
+.local-distributor > div:nth-child(2),
+.local-distributor-wrapper h3 {
   background-color: rgb(240 241 242 / 50%);
 }
 
 .local-distributor-wrapper h3 {
-  background-color: rgb(240 241 242 / 50%);
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
   margin: 0;
   padding-bottom: 35px;
 }
 
 .local-distributor-wrapper p {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   margin-top: 0;
 }
 
 .local-distributor > div.search-result {
-  border-top: 1px solid var(--color-gray-450);
+  border-top: 1px solid var(--color-gray-400);
   padding-top: 40px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .local-distributor > div.search-result p {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin-bottom: 0;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .local-distributor > div.search-result div {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   line-height: 1.4;
   margin-bottom: 30px;
 }
@@ -95,7 +95,7 @@
 
 .local-distributor > div.search-result .search-result-content .type {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   font-weight: bold;
   margin: 8px 0 5px;
   position: relative;
@@ -150,7 +150,7 @@
 }
 
 .local-distributor .form .form-group .fields .select-wrapper span {
-  color: var(--color-gray-750);
+  color: var(--color-theme-gray);
   position: absolute;
   right: 20px;
   top: 16px;

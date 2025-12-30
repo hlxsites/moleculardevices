@@ -53,21 +53,24 @@
   display: flex;
 }
 
+.modal-content,
+.modal-content iframe {
+  max-width: var(--layout-blog-width);
+}
+
 .modal-content {
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px var(--color-black-alpha-30);
   width: 80vw;
-  max-width: 800px;
   height: 90vh;
   position: relative;
 }
 
 .modal-content iframe {
   width: 100vw;
-  max-width: 800px;
   height: 100vh;
-  background-color: var(--color-gray-150);
+  background-color: var(--color-gray-50);
   border: none;
 }
 
@@ -75,9 +78,8 @@
   .modal-content iframe {
     width: 90vw;
     margin-left: 8.5vw;
-    max-width: 600px;
     height: 100vh;
-    background-color: var(--color-gray-150);
+    background-color: var(--color-gray-50);
     border: none;
   }
 }

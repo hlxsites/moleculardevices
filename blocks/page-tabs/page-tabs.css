@@ -14,7 +14,7 @@ main .page-tabs {
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 main .page-tabs-wrapper.sticky .page-tabs {

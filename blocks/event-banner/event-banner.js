@@ -1,5 +1,5 @@
 import {
-  a, div, h1, h2, p,
+  a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateLinks, formatDate, unixDateToString,
@@ -33,7 +33,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
   const rightCol = div({ class: 'right-col' },
     div({ class: 'event-details' },
       p({ class: 'cite' }, eventObj?.eventType),
-      isFeaturedBanner ? h2({ class: 'event-title' }, a({ href: eventObj?.path }, eventObj?.title)) : h1({ class: 'event-title' }, eventObj?.title),
+      isFeaturedBanner ? h2({ class: 'event-title' }, a({ href: eventObj?.path }, eventObj?.title)) : eventObj?.title,
       eventObj?.eventStart ? p({ class: 'event-date' }, formatEventDateRange(eventObj?.eventStart, eventObj?.eventEnd)) : '',
       p(eventObj?.eventAddress),
       p(eventObj?.eventRegion),

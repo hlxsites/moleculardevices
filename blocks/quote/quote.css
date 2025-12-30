@@ -55,7 +55,7 @@
 }
 
 .customer-breakthrough .quote .quote-text {
-  font-size: var(--body-font-size-l);
+  font-size: var(--font-size-body-l);
   color: var(--color-link-hover);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .customer-breakthrough .quote .quote-author {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   padding: 10px 0;
 }
 

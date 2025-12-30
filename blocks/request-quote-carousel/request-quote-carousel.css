@@ -44,7 +44,7 @@ main .carousel.request-quote-carousel {
 }
 
 .carousel.request-quote-carousel .card-description {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   color: var(--color-text-primary);
   display: -webkit-box;
   display: block;
@@ -75,7 +75,7 @@ main .carousel.request-quote-carousel {
 
 .carousel.request-quote-carousel .card .button-container a:not(.button) {
   color: var(--color-primary);
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   display: flex;
   min-width: 135px;
   align-items: center;

@@ -4,7 +4,7 @@ main .carousel.press-release-carousel {
 
 main .press-carousel-item h4 {
   color: var(--color-tertiary);
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
   margin-bottom: 20px;
   font-weight: bold;
 }

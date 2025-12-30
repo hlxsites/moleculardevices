@@ -9,13 +9,13 @@
 
 .onetrust .otnotice-content .otnotice-section-content h1,
 .onetrust .otnotice-content .otnotice-section-header {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   font-family: var(--ff-proxima-xbold);
   margin-top: 0;
 }
 
 .onetrust .otnotice-content .otnotice-section-header {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .onetrust .otnotice-content .otnotice-sections .otnotice-section-content ul {
@@ -38,7 +38,7 @@
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .onetrust .otnotice-content table:has( ~ p){
@@ -62,7 +62,7 @@
 
 .onetrust .otnotice-content table th,
 .onetrust .otnotice-content table td {
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--color-gray-200);
   padding: 8px;
   text-align: left;
   vertical-align: top;

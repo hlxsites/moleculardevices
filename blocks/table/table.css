@@ -9,17 +9,16 @@
   width: 100%;
   max-width: 100%;
   border-collapse: collapse;
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
 }
 
 .table table th {
   background: var(--color-gray-50);
-  color: var(--card-caption-text);
 }
 
 .table table th,
 .table table td {
-  border: 1px solid var(--color-gray-300);
+  border: 1px solid var(--color-gray-200);
   padding: 8px;
   text-align: left;
   vertical-align: top;
@@ -78,7 +77,7 @@ table i.fa.fa-circle {
   padding: 8px;
   line-height: 1.43;
   vertical-align: top;
-  border-top: 1px solid var(--color-gray-300);
+  border-top: 1px solid var(--color-gray-200);
 }
 
 .table.order table p {
@@ -86,7 +85,7 @@ table i.fa.fa-circle {
 }
 
 .options-compare table td:first-child {
-  background-color: var(--product-comparison-first-cell) !important;
+  background-color:  var(--color-theme-gray) !important;
   color: var(--color-white);
   width: 190px;
   padding: 15px;
@@ -94,7 +93,7 @@ table i.fa.fa-circle {
 
 .options-compare table th:nth-child(odd),
 .options-compare table td:nth-child(odd) {
-  background-color: var(--color-gray-100);
+  background-color: var(--color-gray-50);
 }
 
 .table.order table td:first-child {

@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 .newsroom main .section h2 {
-  --heading-font-size-xl: 42px;
+  --font-size-h2: 42px;
 
   color: var(--color-primary);
   font-family: var(--ff-proxima-regular);
@@ -18,7 +18,7 @@
 }
 
 .newsroom main .section.right .default-content-wrapper:last-of-type {
-  background-color: var(--color-gray-200);
+  background-color: var(--color-gray-100);
   padding: 15px;
   margin-top: 50px;
 }
@@ -50,12 +50,12 @@
   }
 
   .newsroom main .section.left {
-    width: calc(var(--section-max-width) * 0.66);
-    margin-left: calc((100vw / 2) - (var(--section-max-width) / 2));
+    width: calc(var(--layout-max-width) * 0.66);
+    margin-left: calc((100vw / 2) - (var(--layout-max-width) / 2));
   }
 
   .newsroom main .section.right {
-    width: calc(var(--section-max-width) * 0.33);
+    width: calc(var(--layout-max-width) * 0.33);
   }
 }
 @media (min-width: 992px) {

@@ -18,7 +18,7 @@ main div.carousel-wrapper.container-width-carousel {
 
 main div.fragments-carousel-wrapper.carousel-wrapper,
 main div.carousel-wrapper.container-width-carousel {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 main div.carousel-wrapper:last-child {
@@ -53,7 +53,7 @@ main .carousel-item[style*="background-image"] {
 }
 
 main .carousel-item-columns-container {
-  max-width: 1140px;
+  max-width: var(--layout-carousel-max-width);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,8 +118,8 @@ main .carousel-nav-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--color-gray-500);
-  border: 1.5px solid var(--color-gray-500);
+  color: var(--color-gray-400);
+  border: 1.5px solid var(--color-gray-400);
   background-color: inherit;
 }
 
@@ -386,7 +386,7 @@ main .section.global-carousel .carousel h2 + h3 {
 
 /* WAVE carousel variant */
 main div.carousel-wrapper.wave {
-  width: var(--section-max-width);
+  width: var(--layout-max-width);
 }
 
 main .carousel.wave {
@@ -441,8 +441,8 @@ main .carousel-wrapper.wave .carousel-dot-button {
 }
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
-  color: var(--color-gray-500);
-  border: 1.5px solid var(--color-gray-500);
+  color: var(--color-gray-300);
+  border: 1.5px solid var(--color-gray-300);
   background-color: inherit;
 }
 
@@ -467,7 +467,7 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   main .carousel.wave .carousel-item-image img {
     display: none;
   }
@@ -483,10 +483,15 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
     margin-top: -170px;
   }
 
+  main div.carousel-wrapper.wave {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   main .carousel.wave .carousel-item {
     position: relative;
     padding: 0 30px;
-    max-width: 90%;
+    margin-right: 0;
   }
 
   main .carousel.wave .carousel-item-columns-container {
@@ -609,7 +614,7 @@ main .carousel blockquote::after {
   bottom: -60px;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 991px) {
   main .carousel blockquote::before,
   main .carousel blockquote::after {
     width: 33px;
