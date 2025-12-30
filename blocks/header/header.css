@@ -199,7 +199,7 @@ header .actionable-card-submenu li {
 
 header .image-card-submenu {
   background-color: var(--color-black-alpha-30);
-  color: var(--color-gray-100);
+  color: var(--color-gray-200);
   position: relative;
   height: 100%;
 }
