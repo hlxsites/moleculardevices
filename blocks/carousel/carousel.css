@@ -130,6 +130,7 @@ main .carousel-nav-button.disabled {
 main .carousel-nav-button:hover {
   background-color: var(--color-gray-400);
   color: var(--color-white);
+  border-color: var(--color-white);
 }
 
 main .carousel-nav-button .icon {
