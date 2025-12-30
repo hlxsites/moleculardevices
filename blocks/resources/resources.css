@@ -98,7 +98,7 @@ main .section .resources-wrapper {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: var(--color-gray-750);
+  background-color: var(--color-theme-gray);
   opacity: 0.65;
   transition: opacity 0.2s linear;
   overflow: hidden;

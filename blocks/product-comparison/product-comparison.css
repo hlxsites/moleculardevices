@@ -39,7 +39,7 @@
 }
 
 .product-comparison .product-heading .darkgrey {
-  background-color: var(--color-theme-gray-dark);
+  background-color: var(--product-comparison-dark-gray);
   color: var(--color-gray-750);
 }
 
