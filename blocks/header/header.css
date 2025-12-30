@@ -86,7 +86,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i,
 header .navbar-header > .header-logo-wrapper .cn-header-phone a,
 header .navbar-header > .header-logo-wrapper .cn-header-phone span {
   display: block;
-  color: var(--color-gray-400);
+  color: var(--color-theme-gray);
 }
 
 header .navbar-header > .header-logo-wrapper .cn-header-phone i {
@@ -568,7 +568,7 @@ header .mobile-menu .search {
 
 header .mobile-menu .search > form {
   border: 0;
-  border-bottom: 1px solid var(--color-gray-400);
+  border-bottom: 1px solid var(--color-theme-gray);
   margin: 0;
   padding: 0;
 }
@@ -1170,7 +1170,7 @@ header .cards-submenu p:nth-child(2) a {
   color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--color-theme-gray);
+  background-color: var(--color-theme-gray-dark);
   text-align: center;
   display: flex;
   align-items: center;
@@ -2068,7 +2068,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     padding: 6px 12px;
     border: 1px solid var(--color-gray-250);
     border-radius: 4px;
-    color: var(--color-gray-700);
+    color: var(--color-gray-650);
   }
 
   header .menu-nav-search-bar form button {

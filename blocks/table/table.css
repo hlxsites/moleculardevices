@@ -85,7 +85,7 @@ table i.fa.fa-circle {
 }
 
 .options-compare table td:first-child {
-  background-color:  var(--color-theme-gray) !important;
+  background-color:  var(--color-theme-gray-dark) !important;
   color: var(--color-white);
   width: 190px;
   padding: 15px;

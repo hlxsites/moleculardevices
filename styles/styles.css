@@ -96,7 +96,6 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-button-secondary-rgb: 76 158 175;
   --color-text-primary: #34393d;
   --color-text-primary-rgb: 52 57 61;
-  --color-theme-gray: #6a747c;
 
   /* State Colors */
   --color-state-danger: #f00;
@@ -114,8 +113,10 @@ main .section.OneLinkShow_zh.columns-2 {
   --hero-video-overlay-bg: #00b8dd;
   --card-list-filter-separator: #6d6c8d;
   --product-comparison-dark-gray: #8a959b;
-  --product-comparison-first-cell: #525b61;
-  --column-col-4-bg: #f0f7f8;
+  --color-theme-gray: #6a747c;
+  --color-theme-gray-dark: #5b6670;
+  --color-primary-alpha-5: rgb(var(--color-primary-rgb) / 5%);
+
 
   /* Mega Menu */
   --color-mm-product-card: #161e2d;
@@ -139,6 +140,7 @@ main .section.OneLinkShow_zh.columns-2 {
   /* Gray Scale Hierarchy */
   --color-white-rgb: 255 255 255;
   --color-white: #fff;
+  --color-gray-25: #fafafa;
   --color-gray-50: #f2f2f2;
   --color-gray-100: #efefef;
   --color-gray-200: #e6e6e6;
@@ -147,7 +149,9 @@ main .section.OneLinkShow_zh.columns-2 {
   --color-gray-350: #c9c9c9;
   --color-gray-400: #bfbfbf;
   --color-gray-500: #999;
+  --color-gray-550: #7f7f7f;
   --color-gray-600: #666;
+  --color-gray-650: #595959;
   --color-gray-700: #4c4c4c;
   --color-gray-750: #333;
   --color-gray-800: #1a1a1a;

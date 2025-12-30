@@ -128,9 +128,8 @@ main .carousel-nav-button.disabled {
 }
 
 main .carousel-nav-button:hover {
-  background-color: var(--color-gray-500);
+  background-color: var(--color-gray-400);
   color: var(--color-white);
-  border: 1.5px solid var(--color-white);
 }
 
 main .carousel-nav-button .icon {
@@ -442,7 +441,7 @@ main .carousel-wrapper.wave .carousel-dot-button {
 
 main .carousel-wrapper.wave .carousel-nav-button:hover {
   color: var(--color-gray-300);
-  border: 1.5px solid var(--color-gray-300);
+  border-color: var(--color-gray-300);
   background-color: inherit;
 }
 
