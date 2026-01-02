@@ -532,6 +532,10 @@ main .section > .columns-wrapper {
     padding-bottom: 40px;
   }
 
+  .columns.columns-3-cols .columns-row:not(:only-child) .columns-col {
+    padding-bottom: 0;
+  }
+
   .columns.columns-3-cols.collaboration > div:not(:only-child) {
     flex-basis: 25%;
     width: 25%;
