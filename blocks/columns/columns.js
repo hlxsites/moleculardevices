@@ -36,16 +36,16 @@ export default function decorate(block) {
         col.replaceWith(article);
       }
     });
+
+    // Handle Left/Right positioning classes
+    const updatedCols = row.querySelectorAll('.columns-col');
+    if (updatedCols.length > 0) {
+      if (updatedCols[0].tagName === 'FIGURE') {
+        row.classList.add('image-left');
+      }
+      if (updatedCols[updatedCols.length - 1].tagName === 'FIGURE') {
+        row.classList.add('image-right');
+      }
+    }
   });
-
-  // Handle Left/Right positioning classes
-  const firstCol = block.querySelector('.columns-col:first-child');
-  const lastCol = block.querySelector('.columns-col:last-child');
-
-  if (firstCol?.querySelector('picture')) {
-    block.classList.add('image-left');
-  }
-  if (lastCol?.querySelector('picture')) {
-    block.classList.add('image-right');
-  }
 }
