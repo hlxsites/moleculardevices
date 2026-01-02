@@ -8,6 +8,9 @@ import {
 } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
+  article,
+  figure,
+  time,
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
@@ -168,19 +171,17 @@ class Card {
     }
 
     return (
-      div({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
+      article({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
         this.isInPastYear ? div({ class: 'new-product-tag' },
           createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag')) : '',
-        this.showImageThumbnail ? div({ class: 'card-thumb' },
-          this.thumbnailLink ? a({ href: cardLink },
-            thumbnailBlock,
-          ) : thumbnailBlock,
-        ) : '',
+        this.showImageThumbnail ? figure({ class: 'card-thumb' },
+          this.thumbnailLink ? a({ href: cardLink }, thumbnailBlock) : thumbnailBlock) : '',
         item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
-        this.showCategory ? span({ class: 'card-category' }, item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
+        this.showCategory ? span({ class: 'card-category' },
+          item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
         div({ class: 'card-caption' },
           item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
-          this.showDate ? div({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
+          this.showDate ? time({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
           h3(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),

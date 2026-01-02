@@ -29,6 +29,8 @@
 
 .cards .cards-card-image {
   line-height: 0;
+  margin: 0;
+  display: block;
 }
 
 .cards .cards-card-image picture {
@@ -166,11 +168,6 @@
   color: var(--color-tertiary);
 }
 
-.cards.gallery ul > li {
-  border: none;
-  position: relative;
-}
-
 .cards.hover .cards-card-wrapper {
   transition: transform ease-in-out 0.3s;
 }
@@ -191,6 +188,7 @@
 .cards.text-over-image .cards-card-image {
   height: 100%;
   width: 100%;
+  margin: 0;
 }
 
 .cards.text-over-image img {
@@ -220,6 +218,11 @@
 }
 
 /* ================ GALLERY BLOCK ================ */
+
+.cards.gallery ul > li {
+  border: none;
+  position: relative;
+}
 
 .cards.gallery ul > li .cards-card-body {
   margin: 0;
