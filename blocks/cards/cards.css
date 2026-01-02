@@ -29,6 +29,8 @@
 
 .cards .cards-card-image {
   line-height: 0;
+  margin: 0;
+  display: block;
 }
 
 .cards .cards-card-image picture {
