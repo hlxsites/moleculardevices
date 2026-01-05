@@ -31,7 +31,7 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ul);
 
-  if (block.classList.contains('image-link') || block.classList.contains('who-we-are')) {
+  if (block.classList.contains('image-link') || block.classList.contains('cards-with-hover-image')) {
     block.querySelectorAll('li').forEach((li) => {
       const link = li.querySelector('a');
       if (link) {
