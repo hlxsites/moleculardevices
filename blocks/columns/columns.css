@@ -471,10 +471,6 @@ main .section > .columns-wrapper {
     margin-inline-start: 32px;
   }
 
-  .columns.columns-3-cols .columns-row {
-    flex-grow: 1;
-  }
-
   .columns.columns-3-col .columns-row,
   .columns[class*="layout-"] .columns-row,
   .blog .columns .columns-row,
@@ -532,12 +528,14 @@ main .section > .columns-wrapper {
     margin-inline-start: unset;
   }
 
-  .columns.columns-3-cols .columns-col {
+  .columns.columns-3-cols .columns-row:not(:only-child),
+  .columns.columns-3-cols .columns-row {
     flex-basis: 33.33%;
     width: 100%;
     flex-wrap: wrap;
     column-gap: 30px;
     padding-bottom: 40px;
+    flex-grow: 1;
   }
 
   .columns.columns-3-cols .columns-row:not(:only-child) .columns-col {
