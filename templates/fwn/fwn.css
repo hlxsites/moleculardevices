@@ -103,7 +103,7 @@
   grid-area: newsletterForm;
 }
 
-.what-next main .section.newsletter-form .columns-wrapper .columns > div {
+.what-next main .section.newsletter-form .columns-wrapper .columns .columns-row {
   position: relative;
   align-items: center;
 }
@@ -113,7 +113,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
+  .what-next main .section.newsletter-form .columns-wrapper .columns .columns-row .columns-col:last-child {
     margin-left: -10%;
     font-size: 21px;
     line-height: 31px;
@@ -138,7 +138,7 @@
     padding-bottom: 40px;
   }
 
-  .what-next main .section.newsletter-form .columns-wrapper .columns > div > div:last-child {
+  .what-next main .section.newsletter-form .columns-wrapper .columns .columns-row .columns-col:last-child {
     margin-bottom: 1.5rem;
   }
 }

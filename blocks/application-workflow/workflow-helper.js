@@ -101,6 +101,8 @@ export function applyImageTextSpacing(article, wrapper) {
  * @param {HTMLElement} article - The article element for context.
  */
 export function wrapTimelineContent(wrapper, article) {
+  if (wrapper.querySelector(':scope > .timeline-content')) return;
+
   const isImageList = article.classList.contains('image-list');
   const pictures = Array.from(wrapper.querySelectorAll('.picture, .video-wrapper'));
   const firstPicture = pictures[0];

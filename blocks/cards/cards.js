@@ -1,58 +1,68 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { a, li as liHelper, div as divHelper } from '../../scripts/dom-helpers.js';
+import { domEl } from '../../scripts/dom-helpers.js';
 import { applyAdaptiveTextColor } from '../../scripts/utilities.js';
 
-// prettier-ignore
 export default function decorate(block) {
-  /* change to ul, li */
-  const ul = document.createElement('ul');
+  const ul = domEl('ul');
+
   [...block.children].forEach((row) => {
-    const wrappingDiv = divHelper({ class: 'cards-card-wrapper' }, ...row.children);
-    [...wrappingDiv.children].forEach((div) => {
+    const article = domEl('article', { class: 'cards-card-wrapper' }, ...row.children);
+
+    [...article.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
-        div.className = 'cards-card-image';
+        const figure = domEl('figure', { class: 'cards-card-image' });
+        figure.append(...div.childNodes);
+        div.replaceWith(figure);
       } else {
         div.className = 'cards-card-body';
       }
     });
 
-    const li = liHelper(wrappingDiv);
-
+    const li = domEl('li', article);
     ul.append(li);
   });
-  ul.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+
+  /* optimize picture */
+  ul.querySelectorAll('img').forEach((img) => {
+    const optimizedPicture = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    img.closest('picture').replaceWith(optimizedPicture);
+  });
+
   block.textContent = '';
   block.append(ul);
 
-  if (block.classList.contains('image-link') || block.classList.contains('who-we-are')) {
+  if (block.classList.contains('image-link') || block.classList.contains('cards-with-hover-image')) {
     block.querySelectorAll('li').forEach((li) => {
       const link = li.querySelector('a');
-      li.querySelectorAll('picture').forEach((picture) => {
-        const pictureClone = picture.cloneNode(true);
-        const newLink = a({ href: link.href }, pictureClone);
-        picture.parentNode.replaceChild(newLink, picture);
-      });
+      if (link) {
+        li.querySelectorAll('picture').forEach((picture) => {
+          const pictureClone = picture.cloneNode(true);
+          const newLink = domEl('a', { href: link.href }, pictureClone);
+          picture.parentNode.replaceChild(newLink, picture);
+        });
+      }
     });
   } else if (block.classList.contains('image-only')) {
     block.querySelectorAll('li').forEach((li) => {
       const link = li.querySelector('a');
       const picture = li.querySelector('picture');
-      const pictureClone = picture.cloneNode(true);
-      const newLink = a({ href: link.href }, pictureClone);
-      picture.parentNode.replaceChild(newLink, picture);
-      const cardBody = li.querySelector('.cards-card-body');
-      cardBody.parentNode.removeChild(cardBody);
+      if (link && picture) {
+        const pictureClone = picture.cloneNode(true);
+        const newLink = domEl('a', { href: link.href }, pictureClone);
+        picture.parentNode.replaceChild(newLink, picture);
+        const cardBody = li.querySelector('.cards-card-body');
+        cardBody.parentNode.removeChild(cardBody);
+      }
     });
   }
 
   /* color preview card */
-  const hasColorPreviewClass = block.classList.contains('color-preview-cards');
-  if (hasColorPreviewClass) {
-    const cards = block.querySelectorAll(':scope > ul > li');
-    cards.forEach((card) => {
-      const bg = card.getElementsByClassName('cards-card-body')[0].textContent;
-      card.style.background = bg;
-      applyAdaptiveTextColor(card, bg);
+  if (block.classList.contains('color-preview-cards')) {
+    block.querySelectorAll('.cards-card-wrapper').forEach((card) => {
+      const body = card.querySelector('.cards-card-body');
+      const bg = body.textContent.trim();
+      card.closest('li').style.background = bg;
+      applyAdaptiveTextColor(card.closest('li'), bg);
     });
   }
 }

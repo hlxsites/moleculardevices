@@ -583,7 +583,7 @@ button {
   color: var(--color-link);
   line-height: 18px;
   display: inline-block;
-  border: 0;
+  border: 2px solid transparent;
   border-radius: 0;
   transition: all 0.2s;
   min-width: 140px;
@@ -646,7 +646,6 @@ a.button.primary,
 button.primary {
   color: var(--color-white);
   background-color: var(--color-primary);
-  border: 0;
   white-space: break-spaces;
   padding: 14px 18px;
   line-height: 21px;
@@ -680,7 +679,7 @@ a.button.primary:hover .button-border {
 a.button.secondary,
 button.secondary {
   font-style: normal;
-  border: 2px solid var(--color-button-secondary);
+  border-color: var(--color-button-secondary);
   color: var(--color-button-primary);
 }
 
@@ -1062,12 +1061,12 @@ main .default-content-wrapper ul li:not(:last-child) {
   font-family: var(--ff-proxima-light);
 }
 
-main .section .columns > div > div > h3 + ul {
+main .section .columns .columns-col h3 + ul {
   padding-top: 20px;
 }
 
-main .section .columns > div > div > h3 + ul,
-main .section .columns > div > div > p + ul {
+main .section .columns .columns-col h3 + ul,
+main .section .columns .columns-col p + ul {
   padding-left: 20px;
 }
 
@@ -1113,8 +1112,8 @@ main .section.buttons-in-row p.button-container + p.button-container {
   margin-left: 20px;
 }
 
-main .section .columns > div > div > p.button-container,
-main .section .columns > div > div > p.button-container:only-of-type {
+main .section .columns .columns-col .button-container,
+main .section .columns .columns-col .button-container:only-of-type {
   margin-left: 0;
 }
 
@@ -1274,7 +1273,7 @@ main .section.featured-asset .button-container {
 
 main .section.featured-asset a.button.secondary,
 main .section.featured-asset button.secondary {
-  border: 2px solid var(--color-white);
+  border-color: var(--color-white);
   color: var(--color-white);
 }
 
@@ -1630,7 +1629,7 @@ main .orange-secondary-buttons .button.secondary:link,
 main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-white);
   background: transparent;
-  border: 2px solid var(--color-white);
+  border-color: var(--color-white);
   text-transform: none;
 }
 
@@ -1646,7 +1645,7 @@ main .orange-secondary-buttons .button.secondary:active {
 main .orange-secondary-buttons .button.secondary:link,
 main .orange-secondary-buttons .button.secondary:visited {
   color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 main .orange-buttons .button.primary > .button-border {
@@ -1690,7 +1689,7 @@ main .section.background-molecules {
   main div.orange-secondary-buttons .button.secondary:link,
   main div.orange-secondary-buttons .button.secondary:visited {
     color: var(--color-secondary);
-    border: 2px solid var(--color-secondary);
+    border-color: var(--color-secondary);
   }
 
   /* ------ */
@@ -1892,7 +1891,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 .section.home-promo .carousel-item-columns-container .carousel-item-column a.button.secondary {
   color: var(--color-white);
   background: rgb(0 0 0 / 25%);
-  border: 1px solid var(--color-white);
+  border-color: var(--color-white);
   white-space: normal;
   font-size: 18px;
   padding: 16px 20px;
@@ -2058,16 +2057,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-top: 0;
 }
 
-.technology .section .related-links-container,
-.application .section .related-links-container {
-  padding-bottom: 32px;
-}
-
-.technology .section .related-app,
-.application .section .related-app {
-  margin-top: 35px;
-}
-
 .technology .section.resources-container .default-content-wrapper:first-child,
 .application .section.resources-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-products-container .default-content-wrapper:first-child,
@@ -2111,9 +2100,9 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-bottom: 10px;
 }
 
-.product .section.tabs h2 + h4,
-.technology .section.tabs h2 + h4,
-.application .section.tabs h2 + h4 {
+.product .section.tabs h2 + h4:only-of-type,
+.technology .section.tabs h2 + h4:only-of-type,
+.application .section.tabs h2 + h4:only-of-type {
   font-family: var(--ff-proxima-light);
   margin-bottom: 0;
   padding-bottom: 0;

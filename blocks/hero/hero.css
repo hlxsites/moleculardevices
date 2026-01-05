@@ -118,7 +118,7 @@ main .section .hero-advanced-wrapper {
 }
 
 .hero.newsletters .hero-inner {
-  min-height: auto;
+  min-height: unset;
 }
 
 .hero.newsletters .hero-inner .container:empty {

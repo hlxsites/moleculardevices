@@ -36,7 +36,7 @@ main .carousel.applications-carousel {
   font-size: 24px;
   margin-bottom: 8px;
   margin-top: 0;
-  min-height: auto;
+  min-height: unset;
 }
 
 .carousel.applications-carousel .card-description {

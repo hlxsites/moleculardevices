@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 .application-workflow-container {
-  counter-reset: timeline;
+  counter-reset: timeline 0;
 
   --top-space: 75px;
   --arrow-width: 142px;
@@ -11,8 +11,7 @@
   --divider-count: calc(var(--timeline-space) + var(--top-space) + calc(var(--counter-size) / 2));
 }
 
-.section.application-workflow-container .columns-wrapper {
-  counter-increment: timeline;
+.section.application-workflow-container .application-workflow-wrapper {
   text-align: center;
   overflow: hidden;
   margin-top: 0;
@@ -20,53 +19,61 @@
   color: var(--color-black-alpha-70);
 }
 
-.section.application-workflow-container .columns-wrapper:has(.highlighted-box-image) {
+.application-workflow-container .application-workflow-wrapper:not(:first-of-type) {
+  counter-increment: timeline;
+}
+
+.application-workflow-container .application-workflow-wrapper:has(.header) {
+  text-align: left;
+  padding: 20px 15px;
+}
+
+.application-workflow-container .application-workflow-wrapper:has(.highlighted-box-image) {
   padding-top: calc(var(--timeline-space) * 2);
 }
 
-.section.application-workflow-container .columns-wrapper .timeline-article.highlighted-box-image::before {
+.application-workflow-container .timeline-article.highlighted-box-image::before {
   top: -30px;
 }
 
-.section.application-workflow-container .columns-wrapper .timeline-article.highlighted-box-image::after {
+.application-workflow-container .timeline-article.highlighted-box-image::after {
   top: calc(calc(var(--counter-size) / 2) - 30px);
 }
 
-.application-workflow-container .columns-wrapper:nth-child(2):has(.highlighted-box-image)::after {
+.application-workflow-container .application-workflow-wrapper:nth-child(2):has(.highlighted-box-image)::after {
   top: calc(var(--timeline-space) + var(--counter-size));
 }
 
-.application-workflow-container .columns-wrapper,
-.application-workflow-container .columns-wrapper .timeline-article {
+.application-workflow-container .application-workflow-wrapper,
+.application-workflow-container .timeline-article {
   position: relative;
 }
 
-.application-workflow-container .columns-wrapper .columns.block.columns-1-cols {
-  background-color: transparent;
-}
-
-.application-workflow-container .columns-wrapper::after,
-.application-workflow-container .columns-wrapper .timeline-article::after {
+.application-workflow-container .application-workflow-wrapper::after,
+.application-workflow-container .timeline-article::after {
   content: "";
 }
 
-.application-workflow-container .columns-wrapper::after,
-.application-workflow-container .columns-wrapper .timeline-article::before,
-.application-workflow-container .columns-wrapper .timeline-article::after {
+.application-workflow-container .application-workflow-wrapper::after,
+.application-workflow-container .timeline-article::before,
+.application-workflow-container .timeline-article::after {
   position: absolute;
 }
 
-.application-workflow-container .columns-wrapper .timeline-article::before,
-.application-workflow-container .columns-wrapper .timeline-article::after {
+.application-workflow-container .timeline-article::before,
+.application-workflow-container .timeline-article::after {
   left: -43px;
 }
 
-.application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::before,
-.application-workflow-container .columns-wrapper .spectra-full-width.timeline-article::after {
+.application-workflow-container .application-workflow.header::before,
+.application-workflow-container .application-workflow.header::after,
+.application-workflow-container .application-workflow-wrapper:has(.header)::after,
+.application-workflow-container .application-workflow .spectra-full-width.timeline-article::before,
+.application-workflow-container .application-workflow .spectra-full-width.timeline-article::after {
   display: none;
 }
 
-.application-workflow-container .columns-wrapper::after {
+.application-workflow-container .application-workflow-wrapper::after {
   background: var(--color-gray-200);
   width: 20px;
   height: 100%;
@@ -75,15 +82,15 @@
   left: 40px;
 }
 
-.application-workflow-container .columns-wrapper:nth-child(2)::after {
+.application-workflow-container .application-workflow-wrapper:nth-child(2)::after {
   top: var(--divider-count);
 }
 
-.application-workflow-container .columns-wrapper:last-child::after {
+.application-workflow-container .application-workflow-wrapper:last-child::after {
   height: var(--divider-count);
 }
 
-.application-workflow-container .columns-wrapper .timeline-article::before {
+.application-workflow-container .timeline-article::before {
   content: "0" counter(timeline);
   background: var(--color-link-hover);
   color: var(--color-white);
@@ -96,7 +103,7 @@
   font-weight: 600;
 }
 
-.application-workflow-container .columns-wrapper .timeline-article::after {
+.application-workflow-container .timeline-article::after {
   background-image: url("/fragments/workflow/bullet-arrow.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -108,8 +115,7 @@
   z-index: -1;
 }
 
-.section.application-workflow-container .application-workflow.block h2:first-child {
-  margin-top: 0;
+.application-workflow-container .application-workflow.block h2:first-child {
   font-family: var(--ff-proxima-regular);
 }
 
@@ -143,16 +149,13 @@
   object-fit: contain;
 }
 
-.application-workflow-container .columns-wrapper {
-  padding-top: var(--timeline-space);
-}
-
-.application-workflow-container .columns-wrapper .columns > div {
+.application-workflow-container .timeline-article > div {
+  display: flex;
   justify-content: space-between;
   gap: var(--counter-size);
 }
 
-.application-workflow-container .columns-wrapper .columns.spectra-full-width > div {
+.application-workflow-container .application-workflow .spectra-full-width > div {
   justify-content: center;
 }
 
@@ -259,6 +262,10 @@
   margin-bottom: 0;
 }
 
+.application-workflow-container .timeline-article .timeline-box .video-wrapper {
+  margin-top: 0;
+}
+
 .application-workflow-container .timeline-article .button-container > a {
   display: inline-flex;
   gap: 4px;
@@ -348,12 +355,12 @@
 
 @media only screen and (min-width: 992px) {
   .application-workflow-container:not(.start-from-right)
-    .columns-wrapper:nth-child(even)
+    .application-workflow-wrapper:nth-child(even)
     .timeline-article:not(.right-arrow)::after,
   .application-workflow-container.start-from-right
-    .columns-wrapper:nth-child(odd)
+    .application-workflow-wrapper:nth-child(odd)
     .timeline-article:not(.right-arrow)::after,
-  .application-workflow-container .columns-wrapper .timeline-article.left-arrow::after {
+  .application-workflow-container .timeline-article.left-arrow::after {
     transform: translateX(45px) rotate(180deg);
     left: auto;
     right: var(--arrow-position);
@@ -369,17 +376,17 @@
     width: 100%;
   }
 
-  .application-workflow-container .columns-wrapper::after,
-  .application-workflow-container .columns-wrapper .timeline-article::before {
+  .application-workflow-container .application-workflow-wrapper::after,
+  .application-workflow-container .timeline-article::before {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .application-workflow-container .columns-wrapper .timeline-article::before {
+  .application-workflow-container .timeline-article::before {
     font-size: 36px;
   }
 
-  .section.application-workflow-container > .application-workflow-wrapper {
+  .application-workflow-container > .application-workflow {
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -400,6 +407,16 @@
   .application-workflow-container .spectra-image.spectra-bubble .spectra-robot-box .timeline-content {
     min-width: 494px;
   }
+
+  .section.application-workflow-container .application-workflow-wrapper:has(.header) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .application-workflow-container .timeline-article .button-container {
+    display: inline-block;
+    margin-right: 10px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -408,16 +425,24 @@
     --timeline-space: 60px;
   }
 
-  .section.application-workflow-container .columns-wrapper {
-    padding-left: 60px;
-  }
-
-  .application-workflow-container .columns-wrapper .columns > div {
+  .application-workflow-container .timeline-article > div {
     flex-direction: column;
     padding-left: 40px;
   }
 
-  .application-workflow-container .columns-wrapper .columns.mobile-swap > div {
+  .section.application-workflow-container .application-workflow-wrapper {
+    padding-left: 60px;
+  }
+
+  .application-workflow-container .application-workflow-wrapper > div {
+    flex-direction: column;
+  }
+
+  .application-workflow-container .application-workflow-wrapper:has(.header) {
+    padding-left: 15px;
+  }
+
+  .application-workflow-container .application-workflow-wrapper .mobile-swap > div {
     flex-direction: column-reverse;
   }
 
@@ -425,7 +450,7 @@
     padding: 10px 23px;
   }
 
-  .application-workflow-container .columns-wrapper .timeline-article::after {
+  .application-workflow-container .timeline-article::after {
     top: calc(var(--top-space) + 30px);
     transform: unset;
     left: 0;
@@ -433,7 +458,7 @@
     width: 100px;
   }
 
-  .application-workflow-container .columns-wrapper::after {
+  .application-workflow-container .application-workflow-wrapper::after {
     left: 42px;
   }
 
@@ -446,15 +471,15 @@
     max-width: 400px;
   }
 
-  .application-workflow-container .columns-wrapper .columns.spectra-full-width > div {
+  .application-workflow-container .application-workflow .spectra-full-width > div {
     padding-left: 0;
   }
 
-  .section.application-workflow-container .columns-wrapper:has(.spectra-full-width) {
+  .application-workflow-container .application-workflow:has(.spectra-full-width) {
     padding-left: 20px;
   }
 
-  .application-workflow-container .columns-wrapper:has(+ .columns-wrapper .spectra-full-width)::after {
+  .application-workflow-container .application-workflow:has(+ .application-workflow .spectra-full-width)::after {
     height: var(--divider-count);
   }
 
@@ -462,7 +487,7 @@
     padding-top: 0 !important;
   }
 
-  .section.application-workflow-container .columns-wrapper:has(.spectra-full-width)::after {
+  .application-workflow-container .application-workflow:has(.spectra-full-width)::after {
     display: none;
   }
 }
@@ -477,7 +502,7 @@
     font-size: 24px;
   }
 
-  .application-workflow-container .columns-wrapper .timeline-article::after {
+  .application-workflow-container .timeline-article::after {
     display: none;
   }
 }

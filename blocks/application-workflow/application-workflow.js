@@ -44,8 +44,8 @@ export default async function decorate(block) {
       wrapTimelineContent(wrapper, article);
       applyImageTextSpacing(article, wrapper);
     });
-
-    // Add CTA Icon
-    addIconToCTA(article);
   });
+
+  // Add CTA Icon
+  addIconToCTA(block);
 }
