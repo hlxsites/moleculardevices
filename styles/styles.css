@@ -2057,16 +2057,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-top: 0;
 }
 
-.technology .section .related-links-container,
-.application .section .related-links-container {
-  padding-bottom: 32px;
-}
-
-.technology .section .related-app,
-.application .section .related-app {
-  margin-top: 35px;
-}
-
 .technology .section.resources-container .default-content-wrapper:first-child,
 .application .section.resources-container .default-content-wrapper:first-child,
 .technology .section.tabs.related-products-container .default-content-wrapper:first-child,

@@ -116,7 +116,6 @@
 }
 
 .application-workflow-container .application-workflow.block h2:first-child {
-  margin-top: 0 !important;
   font-family: var(--ff-proxima-regular);
 }
 

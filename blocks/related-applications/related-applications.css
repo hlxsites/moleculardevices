@@ -19,6 +19,7 @@
 .related-app {
   flex-basis: calc(50% - var(--related-app-gap) / 2);
   min-height: 1px;
+  margin-top: 35px;
 }
 
 .related-link {
@@ -65,8 +66,8 @@ li.related-link::marker {
 }
 
 .related-applications-container .related-links-container {
-  padding-top: 26px;
-  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 20px;
 }
 
 .related-applications-container.toc-grey .default-content-wrapper h2,
