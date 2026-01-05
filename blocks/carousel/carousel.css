@@ -429,7 +429,7 @@ main .carousel.wave .carousel-item-text .button-container a.secondary,
 main .carousel.wave .carousel-item-text .button-container a.secondary:hover {
   background-color: transparent;
   color: var(--color-white);
-  border: 1.5px solid var(--color-white);
+  border-color: var(--color-white);
 }
 
 main .carousel-wrapper.wave .carousel-dot-buttons {

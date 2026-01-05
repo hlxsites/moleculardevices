@@ -173,7 +173,7 @@ main .section.sidebar h4,
 
 .blog main .section.orange-buttons .button.secondary {
   color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
+  border-color: var(--color-secondary);
 }
 
 .blog main .columns p.video-title {

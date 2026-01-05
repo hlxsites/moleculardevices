@@ -102,7 +102,7 @@ main .card-caption .c2a {
 }
 
 main .card-caption .button.primary {
-  border: 1px solid var(--color-tertiary);
+  border-color: var(--color-tertiary);
   color: var(--color-text-primary);
   padding-bottom: 10px;
   padding-top: 11px;
