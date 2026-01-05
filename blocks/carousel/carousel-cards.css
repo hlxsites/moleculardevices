@@ -105,8 +105,8 @@ main .carousel-wrapper.cards .carousel {
   font-size: var(--font-size-body-s);
   color: var(--color-text-primary);
   margin-bottom: 10px;
-  display: block;
   display: -webkit-box;
+  display: block;
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -153,7 +153,7 @@ main .carousel-wrapper.cards .carousel {
   flex-direction: column;
   padding: 20px;
   height: 100%;
-  min-height: auto;
+  min-height: unset;
 }
 
 /* c2a */
