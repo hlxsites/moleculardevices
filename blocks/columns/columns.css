@@ -304,7 +304,7 @@ main .section > .columns-wrapper {
 }
 
 /* Columns 3 cols */
-.columns.columns-3-cols:not(.collaboration) {
+.columns.columns-3-cols {
   margin-inline-start: -15px;
   margin-inline-end: -15px;
 }

@@ -281,7 +281,11 @@ main .section.sidebar h4::after {
   margin-top: 0;
 }
 
-.blog main .section .spectra-newsletter {
+.blog main .section .spectra-newsletter-column .columns-row {
+  display: block;
+}
+
+.blog main .section .spectra-newsletter-column .columns-text-col {
   display: block;
   text-align: center;
   padding: 20px 16px;
@@ -291,39 +295,40 @@ main .section.sidebar h4::after {
   color: var(--color-white);
   margin-top: -17px;
   margin-bottom: 50px;
+  margin-left: 0;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request {
   padding: 0 15px;
   text-align: center;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .submitted-message {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request .submitted-message {
   padding: 30px 0;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .submitted-message p {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request .submitted-message p {
   font-size: 18px;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request label.privacy,
-.blog main .section .spectra-newsletter .contact-quote-request .privacy > label {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request label.privacy,
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request .privacy > label {
   text-align: center;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request label.privacy a,
-.blog main .section .spectra-newsletter .contact-quote-request .privacy > label a {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request label.privacy a,
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request .privacy > label a {
   color: inherit;
   text-decoration: underline;
 }
 
-.blog main .section .spectra-newsletter .contact-quote-request .hs-submit .actions {
+.blog main .section .spectra-newsletter-column .columns-text-col .contact-quote-request .hs-submit .actions {
   margin-top: 2px;
   margin-bottom: 17px;
   max-width: 200px;
 }
 
-.blog main .section .spectra-newsletter .hubspot-form .hs-error-msgs.inputs-list {
+.blog main .section .spectra-newsletter-column .columns-text-col .hubspot-form .hs-error-msgs.inputs-list {
   margin-top: 5px;
   padding-left: 0;
 }
@@ -334,7 +339,7 @@ main .section.sidebar h4::after {
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
-.blog main .section .spectra-newsletter .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
+.blog main .section .spectra-newsletter-column .columns-text-col .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
 }

@@ -73,7 +73,7 @@ export default async function decorate() {
   const newsletterCMP = getMetadata('newsletter-form-cmp');
   const hasNewsletterMetaData = newsletterMetaData.toLowerCase() === 'hide';
 
-  const spectraNewsletter = document.querySelector('.spectra-newsletter-column');
+  const spectraNewsletter = document.querySelector('.spectra-newsletter-column > div');
   if (spectraNewsletter) {
     // const sidebarIframeID = 'newsletter-sidebar';
     const sidebar = div(
