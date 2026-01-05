@@ -593,7 +593,8 @@ main .section > .columns-wrapper {
     margin: 15px 0 0;
   }
 
-  .columns.mobile-swap .columns-row {
+  .columns.mobile-swap .columns-row,
+  .columns-row.image-right {
     flex-direction: column-reverse;
   }
 
