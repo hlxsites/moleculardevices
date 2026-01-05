@@ -125,7 +125,6 @@ const embedFacebookFeed = (url) => {
 
 export function embedCerosFrame(url) {
   loadOnce('https://view.ceros.com/scroll-proxy.min.js');
-  loadOnce('./embed.css');
   const embedHTML = `
   <div style="left: 0; width: 100%; position: relative;">
   <iframe
