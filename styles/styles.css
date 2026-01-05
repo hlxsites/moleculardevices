@@ -2205,7 +2205,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   font-size: var(--font-size-body-m);
   border-radius: 0;
   padding: 15px 40px;
-  border-color: var(--color-white);
+  border: 1px solid var(--color-white);
 }
 
 .category .default-content-wrapper h3 {
