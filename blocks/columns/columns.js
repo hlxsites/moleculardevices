@@ -4,10 +4,9 @@ import { embedCerosFrame } from '../embed/embed.js';
 function decorateEmbed(elems) {
   elems.forEach((elem) => {
     const embedHTML = embedCerosFrame(elem);
-    const parentEl = elem.parentElement;
-    const container = domEl('aside', { class: 'embed embed-ceros' }, embedHTML);
-
-    parentEl.replaceWith(container);
+    const container = domEl('aside', { class: 'embed embed-ceros' });
+    container.innerHTML = embedHTML;
+    elem.replaceWith(container);
   });
 }
 

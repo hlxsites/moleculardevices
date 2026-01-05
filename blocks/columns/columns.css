@@ -656,7 +656,7 @@ main .columns .embed.embed-ceros {
   display: block;
 }
 
-main .columns .embed.embed-ceros .columns-row {
+main .columns .embed.embed-ceros > div {
   padding-top: 57%;
 }
 
