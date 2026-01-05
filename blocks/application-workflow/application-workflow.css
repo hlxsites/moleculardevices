@@ -11,22 +11,21 @@
   --divider-count: calc(var(--timeline-space) + var(--top-space) + calc(var(--counter-size) / 2));
 }
 
-.application-workflow-container .application-workflow-wrapper {
+.section.application-workflow-container .application-workflow-wrapper {
   text-align: center;
   overflow: hidden;
   margin-top: 0;
   padding: var(--timeline-space) 20px 10px;
   color: var(--color-black-alpha-70);
-  padding-top: var(--timeline-space);
 }
 
 .application-workflow-container .application-workflow-wrapper:not(:first-of-type) {
   counter-increment: timeline;
 }
 
-.application-workflow-container .application-workflow.header {
-  padding: 0;
+.application-workflow-container .application-workflow-wrapper:has(.header) {
   text-align: left;
+  padding: 20px 15px;
 }
 
 .application-workflow-container .application-workflow-wrapper:has(.highlighted-box-image) {
@@ -49,10 +48,6 @@
 .application-workflow-container .timeline-article {
   position: relative;
 }
-
-/* .application-workflow-container .application-workflow .block.columns-1-cols {
-  background-color: transparent;
-} */
 
 .application-workflow-container .application-workflow-wrapper::after,
 .application-workflow-container .timeline-article::after {
@@ -121,7 +116,7 @@
 }
 
 .application-workflow-container .application-workflow.block h2:first-child {
-  margin-top: 0;
+  margin-top: 0 !important;
   font-family: var(--ff-proxima-regular);
 }
 
@@ -413,6 +408,16 @@
   .application-workflow-container .spectra-image.spectra-bubble .spectra-robot-box .timeline-content {
     min-width: 494px;
   }
+
+  .section.application-workflow-container .application-workflow-wrapper:has(.header) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .application-workflow-container .timeline-article .button-container {
+    display: inline-block;
+    margin-right: 10px;
+  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -426,24 +431,23 @@
     padding-left: 40px;
   }
 
-  .application-workflow-container .application-workflow-wrapper {
+  .section.application-workflow-container .application-workflow-wrapper {
     padding-left: 60px;
-  }
-
-  .application-workflow-container .application-workflow-wrapper:has(.header) {
-    padding-left: 20px;
   }
 
   .application-workflow-container .application-workflow-wrapper > div {
     flex-direction: column;
-    padding-left: 40px;
+  }
+
+  .application-workflow-container .application-workflow-wrapper:has(.header) {
+    padding-left: 15px;
   }
 
   .application-workflow-container .application-workflow-wrapper .mobile-swap > div {
     flex-direction: column-reverse;
   }
 
-  .application-workflow-container .timeline-article h3 {
+  .application-workflow-container .application-workflow h3 {
     padding: 10px 23px;
   }
 
