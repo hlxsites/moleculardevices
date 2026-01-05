@@ -2100,9 +2100,9 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin-bottom: 10px;
 }
 
-.product .section.tabs h2 + h4,
-.technology .section.tabs h2 + h4,
-.application .section.tabs h2 + h4 {
+.product .section.tabs h2 + h4:only-of-type,
+.technology .section.tabs h2 + h4:only-of-type,
+.application .section.tabs h2 + h4:only-of-type {
   font-family: var(--ff-proxima-light);
   margin-bottom: 0;
   padding-bottom: 0;
