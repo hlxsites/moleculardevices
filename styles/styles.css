@@ -1836,7 +1836,8 @@ main .section.background-molecules {
   margin-bottom: 30px;
 }
 
-.homepage .section > div {
+.homepage .section > div,
+.homepage .section > article {
   padding: 70px 15px 0;
 }
 
@@ -2007,7 +2008,10 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .product .section > div,
 .technology .section > div,
-.application .section > div {
+.application .section > div,
+.product .section > article,
+.technology .section > article,
+.application .section > article {
   padding-bottom: 20px;
   padding-top: 20px;
 }
