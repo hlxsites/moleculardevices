@@ -4,6 +4,13 @@ main strong {
   font-family: var(--ff-proxima-regular);
 }
 
+.blog main p,
+.blog main ul,
+.blog main ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 main ul,
 main ol {
   padding-left: 20px;
@@ -144,8 +151,9 @@ main .section > .columns-wrapper {
   margin-bottom: 20px;
 }
 
-main .columns-wrapper:has(h3) {
+.blog main .columns-wrapper:has(h3) {
   margin-top: 30px;
+  margin-bottom: 0;
 }
 
 main .section.blog-wide {
@@ -159,12 +167,51 @@ main .section.blog-wide > article {
   margin: 0 auto;
 }
 
+.blog main .section.blog-heading > div {
+  max-width: unset;
+  width: unset;
+}
+
+.blog main .section.blog-heading > .default-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 15px 50px;
+  width: unset;
+}
+
+.blog main .section.blog-heading > .default-content-wrapper h4 {
+  margin-bottom: 0;
+}
+
+.blog main .section.blog-heading > .default-content-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
+}
+
+.blog main .section.blog-heading > .default-content-wrapper p {
+  margin: 0;
+}
+
 main .section.sidebar p.picture {
   position: relative;
   z-index: 2;
 }
 
+main .section.sidebar h3 {
+  line-height: 30px;
+}
+
 main .section.sidebar h4,
+.blog .section.blog-heading h4,
 .section.recent-blogs-carousel-container h4 {
   font-size: 30px;
   font-weight: bold;
@@ -428,7 +475,7 @@ main .carousel-wrapper.cards .carousel {
 }
 
 @media only screen and (min-width: 768px) {
-  main .card-list-filterul li a {
+  .blog main .card-list-filter.blog ul li a {
     padding: 16px 20px;
   }
 }

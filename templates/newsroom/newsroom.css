@@ -7,6 +7,7 @@
 }
 
 .newsroom main .section > div,
+.newsroom main .section > article,
 .newsroom main .section .embed {
   max-width: 100%;
   padding-top: 0;
