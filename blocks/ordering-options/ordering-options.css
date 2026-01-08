@@ -10,7 +10,7 @@ main .section.ordering-options-container > div.ordering-options-wrapper::after {
   clear: both;
 }
 
-main .section.ordering-options-container > div.ordering-options-wrapper + div.default-content-wrapper {
+main .section.ordering-options-container > div.ordering-options-wrapper + .default-content-wrapper {
   margin-top: 50px;
 }
 

@@ -422,24 +422,27 @@ function decorateBlockLocale(block) {
  * @returns {HTMLElement} - The new element that replaced the old one.
  */
 export function replaceHTMLTag(oldEl, newTag) {
-  if (!oldEl
+  if (
+    !oldEl
     || typeof newTag !== 'string'
-    || oldEl.closest('header, footer, .blog-heading, .social-share-container, .blog-wide, .sidebar')
+    || oldEl.closest('header, footer, .recent-blogs-carousel-container, .social-share-container, .blog-wide, .sidebar')
   ) {
     return oldEl;
   }
 
-  // extract all attributes into an object
-  const attributes = [...oldEl.attributes].reduce((acc, attr) => {
-    acc[attr.name] = attr.value;
-    return acc;
-  }, {});
+  // create new element
+  const newEl = document.createElement(newTag);
 
-  // create new element with domEl, including attributes
-  const newEl = domEl(newTag, attributes, ...oldEl.childNodes);
+  // copy attributes
+  [...oldEl.attributes].forEach(({ name, value }) => {
+    newEl.setAttribute(name, value);
+  });
 
-  // replace in DOM
-  newEl.append(...oldEl.childNodes);
+  // move children
+  while (oldEl.firstChild) {
+    newEl.appendChild(oldEl.firstChild);
+  }
+
   oldEl.parentNode.replaceChild(newEl, oldEl);
   return newEl;
 }
@@ -450,21 +453,7 @@ export function replaceHTMLTag(oldEl, newTag) {
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
-  const articleIncluded = ['Blog'];
-  const hasArticle = articleIncluded.includes(getMetadata('template'));
-  const excludeArticleTag = ['hero', 'blog-teaser', 'card-list', 'card-list-filter'];
-
   const decoratedBlock = block;
-  const parent = block.parentNode;
-
-  const hasExcludedClass = (el) => excludeArticleTag.some((cls) => el.classList.contains(cls));
-
-  // Replace block's parent with <article>
-  if (hasArticle && parent && parent.tagName === 'DIV'
-    && !hasExcludedClass(block) && !hasExcludedClass(parent)
-  ) {
-    replaceHTMLTag(block.parentElement, 'article');
-  }
 
   if (shortBlockName) {
     decoratedBlock.classList.add('block');
@@ -571,9 +560,9 @@ export function decorateSections(main) {
 
     [...divSection.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
-        const wrapper = domEl('div');
-        wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
+        const wrapper = defaultContent ? domEl('article') : domEl('div');
+        wrappers.push(wrapper);
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
       }
       wrappers[wrappers.length - 1].append(e);

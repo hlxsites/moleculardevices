@@ -74,6 +74,7 @@ export function decorateAutoBlock(content) {
   }
 
   if (isFullArticlePage) {
+    loadCSS('/templates/blog/blog.css');
     const publisher = getMetadata('publisher');
     const gatedUrl = getMetadata('article-url');
     const creditParagraph = div({ style: 'margin-block: 30px;' },
