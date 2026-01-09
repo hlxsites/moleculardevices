@@ -99,7 +99,7 @@ main ul li > picture img {
   margin: 20px auto;
 }
 
-main ol.text-caption {
+.blog main ol.text-caption {
   margin-top: 40px;
   position: relative;
 }
