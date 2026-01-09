@@ -33,6 +33,10 @@
   padding-right: 50px;
 }
 
+.section .tabs-horizontal .tab-pane > .section article {
+  width: 100%;
+}
+
 .tabs-horizontal .tab-pane .columns {
   width: 100%;
 }

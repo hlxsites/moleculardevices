@@ -32,11 +32,6 @@ main table ol {
   margin-left: 15px;
 }
 
-main h3 + ol,
-main h3 + ul {
-  margin-top: 10px;
-}
-
 /* hero */
 main .hero-wrapper {
   margin-top: 0;
@@ -87,6 +82,15 @@ main .video-wrapper,
 main .vidyard-lightbox-thumbnail {
   max-width: 100% !important;
   margin: 0;
+}
+
+main .hero-container + .section.social-share-container {
+  padding-top: 50px;
+}
+
+main .hero-container + .section.social-share-container > .default-content-wrapper h2:first-child,
+main .hero-container + .section.social-share-container > .default-content-wrapper h3:first-child {
+  margin-top: 0;
 }
 
 main ol li > picture img,
@@ -484,6 +488,10 @@ main .carousel-wrapper.cards .carousel {
     grid-column: 2;
     grid-row: unset;
     display: block;
+  }
+
+  main .hero-container + .section.social-share-container {
+    padding-top: 20px;
   }
 }
 
