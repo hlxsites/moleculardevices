@@ -972,7 +972,8 @@ main.error .section > div {
   padding: 15px 15px 0;
 }
 
-main .section.horizontal-line > div:first-of-type {
+main .section.horizontal-line > div:first-child,
+main .section.horizontal-line > article:first-child {
   border-top: 1px solid var(--color-gray-350);
   padding-top: 45px;
 }

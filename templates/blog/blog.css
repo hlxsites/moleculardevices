@@ -11,11 +11,6 @@ main strong {
   margin-bottom: 10px;
 }
 
-main ul,
-main ol {
-  padding-left: 20px;
-}
-
 main ul li,
 main ol li {
   margin-bottom: 4px;
