@@ -330,7 +330,8 @@ body .thank-you-page h4 {
 }
 
 @media (min-width: 768px) {
-  .landing-page .download-form > div {
+  .landing-page .download-form > div,
+  .landing-page .download-form > article {
     width: calc(var(--layout-max-width) / 2);
     display: inline-block;
     vertical-align: top;
