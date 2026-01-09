@@ -115,7 +115,9 @@
 }
 
 .hs-form .hs-form-field.hs_email .hs-error-msgs label,
-.hubspot-form .hs-form .hs-form-field .hs-field-desc {
+.hubspot-form .hs-form .hs-form-field .hs-field-desc,
+.hs-form .hs-error-msgs.inputs-list,
+.hs-form .hs-error-msgs.inputs-list .hs-error-msg {
   position: static;
   width: auto;
   height: auto;

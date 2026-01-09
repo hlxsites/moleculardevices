@@ -4,6 +4,40 @@ main .recent-blogs-carousel-container {
   margin: 60px auto 0;
 }
 
+main .section.recent-blogs-carousel-container > div,
+main .section.recent-blogs-carousel-container > article {
+  max-width: unset;
+  width: unset;
+}
+
+main .section.recent-blogs-carousel-container > .default-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0 15px 50px;
+}
+
+main .section.recent-blogs-carousel-container > .default-content-wrapper h4 {
+  margin-bottom: 0;
+}
+
+main .section.recent-blogs-carousel-container > .default-content-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -21px;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: var(--color-tertiary);
+  background-image: var(--gradient-theme);
+}
+
+main .section.recent-blogs-carousel-container > .default-content-wrapper p {
+  margin: 0;
+}
+
 main .carousel-wrapper.recent-blogs-carousel-wrapper {
   padding: 0 !important;
 }

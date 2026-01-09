@@ -1,4 +1,5 @@
 .blog .section .blog-teaser-wrapper {
+  width: var(--layout-max-width);
   max-width: unset;
   margin-bottom: 100px;
   padding-top: 0;
@@ -33,14 +34,14 @@
 }
 
 .blog-teaser-item .blog-teaser-thumb img {
-  transition: transform .5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   width: 100%;
   height: auto;
   max-height: 290px;
   object-fit: cover;
 }
 
-.featured .blog-teaser-item .blog-teaser-thumb img{
+.featured .blog-teaser-item .blog-teaser-thumb img {
   max-height: 575px;
 }
 
@@ -83,7 +84,7 @@
 }
 
 .blog-teaser-item .blog-teaser-caption .button-container {
-  margin-top: 40px
+  margin-top: 40px;
 }
 
 .blog-teaser-item .blog-teaser-caption .button.primary {

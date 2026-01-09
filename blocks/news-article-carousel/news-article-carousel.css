@@ -28,7 +28,7 @@ main .carousel.news-article-carousel .card-caption h3 {
   font-size: 24px;
   margin-bottom: 8px;
   margin-top: 0;
-  min-height: auto;
+  min-height: unset;
 }
 
 @media only screen and (max-width: 1199px) {
