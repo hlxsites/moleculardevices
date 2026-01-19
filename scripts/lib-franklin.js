@@ -475,26 +475,26 @@ export function decorateBlock(block) {
  * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
  * - All others remain lazy with async decoding
  */
-export function decorateImages() {
-  const images = [...document.querySelectorAll('img')];
-  if (images.length === 0) return;
+// export function decorateImages() {
+//   const images = [...document.querySelectorAll('img')];
+//   if (images.length === 0) return;
 
-  // Identify first image in viewport (LCP candidate)
-  const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
-  if (lcpImage) {
-    lcpImage.setAttribute('loading', 'eager');
-    lcpImage.setAttribute('fetchpriority', 'high');
-    lcpImage.setAttribute('decoding', 'async');
-  }
+//   // Identify first image in viewport (LCP candidate)
+//   const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+//   if (lcpImage) {
+//     lcpImage.setAttribute('loading', 'eager');
+//     lcpImage.setAttribute('fetchpriority', 'high');
+//     lcpImage.setAttribute('decoding', 'async');
+//   }
 
-  // Optimize all remaining images
-  images.forEach((img) => {
-    if (img !== lcpImage) {
-      img.setAttribute('loading', 'lazy');
-      img.setAttribute('decoding', 'async');
-    }
-  });
-}
+//   // Optimize all remaining images
+//   images.forEach((img) => {
+//     if (img !== lcpImage) {
+//       img.setAttribute('loading', 'lazy');
+//       img.setAttribute('decoding', 'async');
+//     }
+//   });
+// }
 
 /**
  * Extracts the config from a block.
@@ -784,41 +784,44 @@ export function getHref() {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = true, breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = true,
+  breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }],
+  sizes = '(max-width: 767px) 100vw, 1200px',
+) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
   const { pathname } = url;
-  const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
+  const ext = pathname.split('.').pop();
 
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
-    if (br.media) source.setAttribute('media', br.media);
-    source.setAttribute('type', 'image/webp');
-    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    if (br.media) source.media = br.media;
+    source.type = 'image/webp';
+    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
     picture.appendChild(source);
   });
 
-  // fallback
+  // fallback image
   breakpoints.forEach((br, i) => {
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
-      if (br.media) source.setAttribute('media', br.media);
-      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      if (br.media) source.media = br.media;
+      source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
-      img.setAttribute('loading', eager ? 'eager' : 'lazy');
-      img.setAttribute('alt', alt);
-      img.setAttribute('fetchpriority', 'high');
-      img.setAttribute('decoding', 'async');
-      // img.setAttribute('title', alt);
+      img.alt = alt;
+      img.decoding = 'async';
+      img.sizes = sizes;
+      img.loading = eager ? 'eager' : 'lazy';
+      img.fetchPriority = 'high';
 
       if (br.width) img.setAttribute('width', br.width);
       if (br.height) img.setAttribute('height', br.height);
 
       picture.appendChild(img);
-      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
     }
   });
 
