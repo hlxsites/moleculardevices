@@ -238,7 +238,7 @@ export function buildHero(block) {
           container.appendChild(column);
         });
       } else {
-        if (row.querySelector('h1:last-child')) inner.classList.add('short');
+        // if (row.querySelector('h1:last-child')) inner.classList.add('short');
         container.appendChild(row);
       }
     } else {
