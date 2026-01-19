@@ -481,17 +481,17 @@ export function decorateBlock(block) {
 
 //   // Identify first image in viewport (LCP candidate)
 //   const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+//   lcpImage.decoding = 'async';
+
 //   if (lcpImage) {
-//     lcpImage.setAttribute('loading', 'eager');
-//     lcpImage.setAttribute('fetchpriority', 'high');
-//     lcpImage.setAttribute('decoding', 'async');
+//     lcpImage.loading = 'eager';
+//     lcpImage.fetchPriority = 'high';
 //   }
 
 //   // Optimize all remaining images
 //   images.forEach((img) => {
 //     if (img !== lcpImage) {
-//       img.setAttribute('loading', 'lazy');
-//       img.setAttribute('decoding', 'async');
+//       lcpImage.loading = 'lazy';
 //     }
 //   });
 // }

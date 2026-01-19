@@ -177,9 +177,9 @@ function decorateHeroImage(inner, block) {
   const imgEl = picture.querySelector('img');
   if (!imgEl) return;
   if (imgEl.alt && heading) { imgEl.alt = heading.textContent; }
-  imgEl.removeAttribute('loading');
-  imgEl.setAttribute('fetchpriority', 'high');
-  imgEl.setAttribute('decoding', 'async');
+  img.loading = 'eager';
+  img.fetchPriority = 'high';
+  img.decoding = 'async';
 
   picture.classList.add('hero-background');
 
