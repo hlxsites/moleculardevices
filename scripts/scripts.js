@@ -28,6 +28,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import postDecorateSemanticFixes from './semanticFixes.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1231,6 +1232,7 @@ async function loadEager(doc) {
     await decorateMain(main);
     createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
+    postDecorateSemanticFixes(main);
   }
   if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
 
