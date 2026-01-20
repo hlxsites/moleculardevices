@@ -117,7 +117,10 @@ main .section .hero-advanced-wrapper {
   display: inline-block;
 }
 
-.hero.newsletters .hero-inner {
+.hero.newsletters .hero-inner,
+.citation .hero .hero-inner,
+.application-note .hero .hero-inner,
+.videos-and-webinars .hero .hero-inner {
   min-height: unset;
 }
 
