@@ -1,8 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.hero-inner {
-  min-height: inherit;
-}
-
 .hero-inner .container > div:nth-child(2) {
   padding: 0 15px;
 }
@@ -339,7 +335,7 @@
 }
 
 .product-finder-container .product-finder-step-3 {
-  border-top: 2px solid  var(--color-gray-200);
+  border-top: 2px solid var(--color-gray-200);
 }
 
 .product-finder-container .product-finder-step-3 .result-count {
@@ -424,6 +420,10 @@
 }
 
 @media (min-width: 768px) {
+  .hero-inner {
+    min-height: 245px;
+  }
+
   .hero-inner .container {
     padding-bottom: 0;
   }
@@ -436,7 +436,7 @@
 @media (max-width: 991px) {
   .hero-inner .container.two-column > div:nth-child(2) {
     border-top: unset;
-    padding-top: 0;
+    padding: 0;
   }
 
   .hero-inner .container.two-column h1 {
