@@ -153,20 +153,24 @@ export function decorateLanguagesTool(tools) {
   });
 }
 
+// eslint-disable-next-line consistent-return
 export function fetchMenuId(menuId) {
-  const primaryMenuLink = document.getElementById(menuId).querySelector('a').href;
-  let cleanedMenuId = toClassName(new URL(primaryMenuLink).pathname);
+  const primaryMenuLink = document.getElementById(menuId)?.querySelector('a').href;
 
-  switch (cleanedMenuId) {
-    case 'search-results':
-      cleanedMenuId = 'resources';
-      break;
-    case 'about-us':
-      cleanedMenuId = 'company';
-      break;
+  if (primaryMenuLink) {
+    let cleanedMenuId = toClassName(new URL(primaryMenuLink).pathname);
 
-    default:
-      break;
+    switch (cleanedMenuId) {
+      case 'search-results':
+        cleanedMenuId = 'resources';
+        break;
+      case 'about-us':
+        cleanedMenuId = 'company';
+        break;
+
+      default:
+        break;
+    }
+    return cleanedMenuId;
   }
-  return cleanedMenuId;
 }

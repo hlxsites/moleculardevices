@@ -117,7 +117,10 @@ main .section .hero-advanced-wrapper {
   display: inline-block;
 }
 
-.hero.newsletters .hero-inner {
+.hero.newsletters .hero-inner,
+.citation .hero .hero-inner,
+.application-note .hero .hero-inner,
+.videos-and-webinars .hero .hero-inner {
   min-height: unset;
 }
 
@@ -793,6 +796,10 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
   max-width: 100%;
   height: auto;
   width: auto;
+}
+
+.hero-wrapper .hero.hero-insider .container .metadata {
+  padding: 0;
 }
 
 @media only screen and (min-width: 768px) {

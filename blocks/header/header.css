@@ -97,7 +97,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i {
 header button.hamburger {
   padding: 0;
   position: absolute;
-  right: 15px;
+  right: 0;
   top: 16px;
   cursor: pointer;
   min-width: 37px;
@@ -2324,4 +2324,12 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
   object-fit: cover;
+}
+
+@media only screen and (max-width: 767px) {
+  header .navbar-header,
+  .hero-inner .container > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
