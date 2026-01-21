@@ -138,12 +138,11 @@
 
 .featured-highlights-wrapper .product-finder-cta .fa-search {
   font-size: 2.5rem;
-  min-height: 50px;
   line-height: 50px;
   margin-bottom: 4px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   main .section > div.featured-highlights-wrapper {
     width: unset;
     min-height: 375px;
@@ -171,6 +170,12 @@
     z-index: 1;
     height: 70px;
     font-size: 10px;
+  }
+
+  .featured-highlights-wrapper .product-finder-cta .fa-search {
+    font-size: 1.5rem;
+    min-height: unset;
+    line-height: unset;
   }
 }
 
