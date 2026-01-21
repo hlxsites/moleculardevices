@@ -74,16 +74,20 @@ main .section.wave .wave-teaser .button-container {
     font-size: 20px;
   }
 
-  .wave-teaser p, .wave-teaser .button-container a {
+  .wave-teaser p,
+  .wave-teaser .button-container a {
     font-size: 20px;
     line-height: 30px;
   }
 }
 
 @media only screen and (max-width: 767px) {
+  .wave-teaser-wrapper {
+    margin-top: -13em;
+  }
+
   .wave-teaser {
     position: relative;
-    top: -200px;
   }
 
   .wave-teaser > div {
@@ -105,5 +109,9 @@ main .section.wave .wave-teaser .button-container {
   .wave-teaser img {
     max-width: 600px;
     height: 400px;
+  }
+
+  main .section.wave .wave-teaser .button-container {
+    text-align: center;
   }
 }
