@@ -1,6 +1,8 @@
 main .citations-container {
   --font-size-h3: 36px;
+}
 
+.citation main .citations-container {
   padding: 90px 50px 50px;
 }
 

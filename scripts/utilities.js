@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle, no-console */
+/* eslint-disable import/no-cycle */
 import { coveoResources } from '../blocks/resources/resources.js';
 
 export const COVEO_TAB_NAME = 'resources';
@@ -19,6 +19,11 @@ export function scrollToElement(target) {
     const y = target.offsetTop;
     window.scrollTo({ top: y - 200, behavior: 'smooth' });
   });
+}
+
+export function scrollToWithOffset(el, offset = 50) {
+  const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
 export function debounce(fn, delay = 300) {
@@ -112,7 +117,10 @@ export function scrollToHashTarget(rawHash, retries = 20, delay = 300) {
   const containingTab = fallbackTarget?.closest('.section.tabs[aria-labelledby]');
   if (containingTab) {
     const parentTabId = containingTab.getAttribute('aria-labelledby');
-    if (parentTabId) goToTabSection(parentTabId);
+    if (parentTabId) {
+      goToTabSection(parentTabId);
+      scrollToWithOffset(fallbackTarget);
+    }
   }
 
   const tryScroll = () => {
