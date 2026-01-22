@@ -37,6 +37,7 @@ const POSITION_BOTTOM = 'bottom';
 const SPECTRA_SPACE = 'spectra-space';
 const HIGHLIGHTED_BOX_IMAGE_POSITION = 'highlighted-box-image-position';
 const TIMELINE_TOP_POSITIVE_SPACE = 'timeline-top-positive-space';
+
 export function applyCustomSpacing(article, element, className, cssProperty = MARGIN_TOP) {
   if (!element) return;
 
@@ -50,6 +51,17 @@ export function applyCustomSpacing(article, element, className, cssProperty = MA
   const unit = positionValue.unit || 'px';
   if (!element.closest('.timeline').classList.contains('spectra-robot-box')) {
     element.style[property] = `${value}${unit}`;
+  }
+
+  if (element.classList.contains('timeline-content')) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const height = element.scrollHeight;
+        if (height > 0) {
+          element.style.height = `${height}px`;
+        }
+      });
+    });
   }
 }
 
