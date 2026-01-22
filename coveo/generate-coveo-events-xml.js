@@ -195,6 +195,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_eventend><![CDATA[ ${item.eventEnd} ]]></md_eventend>`);
     xmlData.push(`      <md_carddescription><![CDATA[ ${item.cardDescription} ]]></md_carddescription>`); 
     xmlData.push(`      <md_eventdescription><![CDATA[ ${item.description} ]]></md_eventdescription>`); 
+    xmlData.push(`      <md_location><![CDATA[ location ]]></md_location>`); 
     xmlData.push('    </coveo:metadata>');
     xmlData.push('    <md_pagesort>1</md_pagesort>');
     xmlData.push('  </url>');
