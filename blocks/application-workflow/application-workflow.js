@@ -4,6 +4,8 @@ import {
 } from './workflow-helper.js';
 
 const RIGHT_BOX_CLASS = 'right-box';
+const SPECTRA_IMAGE = 'spectra-image';
+const SPECTRA_ROBOT_BOX = 'spectra-robot-box';
 
 export default async function decorate(block) {
   const section = block.closest('.section');
@@ -37,8 +39,9 @@ export default async function decorate(block) {
       if (!hasContent) return;
 
       // Handle Spectra Robot
-      const spectraImg = wrapper.querySelector('.picture img[alt*="Spectra Robot"]');
-      if (spectraImg) wrapper.classList.add('spectra-robot-box');
+      if (article.classList.contains(SPECTRA_IMAGE)) {
+        if (wrapper.querySelector('.picture img[alt^="Spectra"]')) wrapper.classList.add(SPECTRA_ROBOT_BOX);
+      }
 
       handleCTALinks(article, wrapper);
       wrapTimelineContent(wrapper, article);
