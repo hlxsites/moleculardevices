@@ -39,7 +39,7 @@ export default async function decorate(block) {
       if (!hasContent) return;
 
       // Handle Spectra Robot
-      if (article.classList.contains(SPECTRA_IMAGE)) {
+      if (article.classList.contains(SPECTRA_IMAGE) && wrapper.querySelector('.picture img[alt*="Spectra"]')) {
         wrapper.classList.add(SPECTRA_ROBOT_BOX);
       }
 
