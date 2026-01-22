@@ -1,0 +1,921 @@
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:coveo="http://www.coveo.com/schemas/metadata" xsi:schemaLocation="http://www.google.com/schemas/sitemap/0.84 http://www.google.com/schemas/sitemap/0.84/sitemap.xsd">
+  <url>
+    <loc>https://www.moleculardevices.com/events/webinar-from-image-to-insight</loc>
+    <lastmod>2027-04-07T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ From Image to Insight: Using Machine Learning Tools for Smarter Analysis in High-Content Screening ]]></md_title>
+      <md_eventtype><![CDATA[ Webinar ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1996b40ba01a09f7cba60cb4c4cd94b0eeafe8208.png</md_img>
+      <md_eventaddress><![CDATA[ ONLINE EVENT ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1753833600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1753919940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us for this expert-led webinar, where Dr. Misha Bashkurov will explore how AI is redefining image and data analysis in high-content workflows. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/mps-world-summit</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ MPS World Summit ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1ad6febcecf0c34037b6ce4f3657270a9d9962b14.jpg</md_img>
+      <md_eventaddress><![CDATA[ Brussels, Belgium ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1749427200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1749859140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the MPS World Summit to explore cutting-edge microphysiological systems, stem-cell tech, and global collaborations driving innovation in organ-on-a-chip research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/sfn-society-for-neuroscience</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society for Neuroscience (SfN) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_19059f3f527d7a81645bcb91fcfb9dd0bbe5a1153.png</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1763164800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1763596740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join top scientists worldwide to share research, network, attend sessions, and explore innovations at this premier scientific event. Discover the best in the field! ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/3d-tissue-models</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ 3D Tissue Models Summit ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_120a26a5fc8d7b0290763307cc5117c3a69f2eb4f.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1746489600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1746748740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join an exclusive industry-focused forum to master complex in vitro models, enhance discovery & development workflows, and drive clinical translatability with confidence. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/biomolecular-imaging-and-informatics-sbi2</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ The Society of Biomolecular Imaging and Informatics (SBI2) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_16c95bddae96a867ed6497d1342eeae120c9b7f53.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1761523200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1761782340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join SBI2’s 13th anniversary event to explore cutting-edge imaging & informatics innovations. Connect with global experts advancing quantitative biological modeling. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/labdays-aarhus</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ LabDays Aarhus ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1c4a956b4d55f6ff8aa7794e8b8edfb32b9410c6e.png</md_img>
+      <md_eventaddress><![CDATA[ Aarhus, Denmark ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1757462400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1757635140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join LabDays Aarhus for two intensive days of networking, innovation, and insights for laboratory professionals. Discover the latest tech and trends in the lab industry. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/ilmac</loc>
+    <lastmod>2026-05-03T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ILMAC ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_19a19992a34285450ead1a8470967fce07333f06e.png</md_img>
+      <md_eventaddress><![CDATA[ Basel, Switzerland ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1757980800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1758239940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Ilmac Basel is Switzerland’s leading event for the chemical & life science industry, showcasing innovations, trends, and networking opportunities in research and industry. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/world-organoid-research-day-2026</loc>
+    <lastmod>2026-01-08T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ World Organoid Research Day ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1d4606b1c9893bcc4d479a2ff1c661ac0f04a1893.jpg</md_img>
+      <md_eventaddress><![CDATA[ Cambridge, UK ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1770163200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1770335940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Molecular Devices presents innovative solutions for organoid culture, high-content imaging, and advanced biological data analysis on World Organoid Research Day. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/biophysical-society-bps</loc>
+    <lastmod>2025-11-13T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Biophysical Society (BPS) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_113ebd0b88a2331cff751f2fd77f4cc29f5dfbdf1.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Francisco, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1771632000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1772063940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit us at BPS 2026 to explore advanced biophysics solutions, including Axon electrophysiology, ImageXpress HCS.ai, and SpectraMax microplate readers. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-of-toxicology-sot</loc>
+    <lastmod>2025-11-13T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society of Toxicology (SOT) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1783fe4982e3511e68fb1386571355ae0e5ebeeeb.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1774137600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1774483140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us SOT 2026 to explore innovations in high-content imaging, multi-mode detection, and automated cell culture for advanced toxicology research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-for-laboratory-automation-and-screening-slas</loc>
+    <lastmod>2025-11-13T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society for Laboratory Automation and Screening (SLAS) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_133eae71d978795d3af938eddaac72b0bab8df853.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1770422400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1770854340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit us at SLAS in Boston to explore cutting-edge lab automation technologies from Molecular Devices and Danaher that accelerate scientific discovery. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/imagexpress-user-group-meeting</loc>
+    <lastmod>2025-10-07T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ImageXpress High-Content Imaging User Group Meeting ]]></md_title>
+      <md_eventtype><![CDATA[ User Meeting ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1e5482b5e94d968a66ef3e1d40db247034fe9a096.jpg</md_img>
+      <md_eventaddress><![CDATA[ South San Francisco, CA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1761211800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1761235200 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us in South San Francisco for an exclusive ImageXpress® High-Content Imaging User Meeting, focused on the latest advancements in high-content screening. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/microbiological-society-of-korea-msk</loc>
+    <lastmod>2025-09-30T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ The Microbiological Society of Korea (MSK) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_172a98dfa9b73f74984bb8149aa7e0558cd68b518.jpg</md_img>
+      <md_eventaddress><![CDATA[ Suwon, Korea ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1761436800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1761609600 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join MSK 2025 in Suwon, Korea, Oct 26-28 at booth 48 to explore innovative solutions that streamline workflows, accelerate discovery, and enhance your research confidence. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/labdays-oslo</loc>
+    <lastmod>2025-09-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ LabDays Oslo ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1fdae55b016c438ba0c73db15a8354a8f3d8106f2.png</md_img>
+      <md_eventaddress><![CDATA[ Oslo, Norway ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1761091200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1761177600 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit Booth 65 at LabDays Oslo 2025 to see how our end-to-end solutions streamline workflows, accelerate discovery, and boost research confidence. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/spanish-portuguese-optical-microscopy-spaom</loc>
+    <lastmod>2025-09-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Spanish & Portuguese Advanced Optical Microscopy Meeting (SPAOM) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_184901b237b5124465b9f86fce8ab9bc6bfce9b74.jpg</md_img>
+      <md_eventaddress><![CDATA[ Braga, Portugal ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1762300800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1762473600 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us at SPAOM 2025 in Braga, Portugal, Nov 5-7 to explore imaging and analysis solutions that boost productivity, deepen insights, and accelerate discovery. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/festival-of-biologics</loc>
+    <lastmod>2025-08-01T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Festival of Biologics ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1261be2239ee9483afb450cd378ebb61d265f5872.jpg</md_img>
+      <md_eventaddress><![CDATA[ Messe, Basel ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1759190400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1759449540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Europe’s largest biologics event in Basel—covering antibody therapies, cell and gene therapy, immunotherapy, and biosimilars from start to finish. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/elrig-drug-discovery-2025</loc>
+    <lastmod>2025-03-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ELRIG Drug Discovery 2025 ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_130c80426a3c444c2b1597cdb1baa9148690ec7e8.png</md_img>
+      <md_eventaddress><![CDATA[ Liverpool, UK ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1761004800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1761177540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join ELRIG Drug Discovery 2025 in Liverpool, Europe’s leading life sciences conference, featuring cutting-edge research, industry leaders, and a vibrant exhibition hall. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/cell-bio-ascb</loc>
+    <lastmod>2025-03-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Cell Bio (ASCB) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1226f74857270434b511866089ae24bd3e3095efa.png</md_img>
+      <md_eventaddress><![CDATA[ Philadelphia, PA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1764979200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1765411140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Cell Bio 2025, the ASCB & EMBO joint meeting, to explore groundbreaking science, network globally, and discover cutting-edge tools shaping the future of cell biology. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/bioprocess-international</loc>
+    <lastmod>2025-03-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ BioProcess International ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1996ff19eba6ae61558976d5f5adca3e965aa0622.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1757894400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1758239940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the largest bioprocessing event to accelerate biologics, cell & gene therapies. Gain insights, tech, and connections to optimize biopharma development & production. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/forum-labo</loc>
+    <lastmod>2025-02-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Forum LABO ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_15f9557f7ba36b553ddec3b08138eb89c232fa5fd.jpg</md_img>
+      <md_eventaddress><![CDATA[ Paris, France ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1742860800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1743119940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Forum LABO, a CIFL event, unites laboratory professionals, researchers, and industry leaders to explore innovations in research, analysis, and scientific instrumentation. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/german-neuroscience-society-meeting</loc>
+    <lastmod>2025-02-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ 16th Göttingen Meeting of the German Neuroscience Society ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1cf3907ac93c675795bfe58404231150edb2ce0ba.jpg</md_img>
+      <md_eventaddress><![CDATA[ Göttingen, Germany ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1742947200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1743292740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at the German Neuroscience Society Meeting to explore advanced imaging and analysis solutions for cutting-edge neuroscience research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/slas-europe-2025</loc>
+    <lastmod>2025-02-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SLAS Europe 2025 ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_175e25c0f765a20db12237e153acda41f98039260.jpg</md_img>
+      <md_eventaddress><![CDATA[ Hamburg, Germany ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1747699200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1747958340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ SLAS unites researchers and innovators in lab automation through conferences, publishing, education, and networking for scientific and career advancement. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/slas-2025</loc>
+    <lastmod>2024-11-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SLAS (Society for Laboratory Automation and Screening) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_12af59787293b1e774a9df359f539f590760aab41.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1737763200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1738195140 ]]></md_eventend>
+      <md_carddescription><![CDATA[ The Society for Laboratory Automation and Screening (SLAS) is an international professional society of academic, industry and government researchers as well as developers and providers of laboratory automation technology and tools. ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit Molecular Devices at SLAS 2025 to explore the latest in lab automation, high-throughput screening, and innovative technologies for life science research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/biophysical-society-bps-2025</loc>
+    <lastmod>2024-11-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ BPS (Biophysical Society) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_189171c859449b82a06750018d14d44a41b3188ed.jpg</md_img>
+      <md_eventaddress><![CDATA[ Los Angeles, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1739577600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1740009540 ]]></md_eventend>
+      <md_carddescription><![CDATA[ As science becomes increasingly interdisciplinary, the Biophysical Society Annual Meeting continues its long-held reputation for bringing together leading scientists from the all over the world who work at the interface of the life, physical, and computational sciences. ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit Molecular Devices at BPS 2025 to discover advanced solutions for biophysics, structural biology, and high-performance molecular analysis. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-of-toxicology-2025</loc>
+    <lastmod>2024-11-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society of Toxicology ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1e9c776f54a94df5ccd4a5c59508344a79f1573c6.jpg</md_img>
+      <md_eventaddress><![CDATA[ Orlando, FL USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1742083200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1742515140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at SOT 2025 to discover advanced toxicology solutions, including high-throughput screening and human-relevant model technologies. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/american-association-of-cancer-research-aacr-2025</loc>
+    <lastmod>2024-11-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ American Association of Cancer Research (AACR) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_16dd1dfaf6c9eaa0418add16659f53c5c7d673f9c.jpg</md_img>
+      <md_eventaddress><![CDATA[ Chicago, IL USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1745539200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1746057540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The AACR Annual Meeting brings together the global cancer research community to share cutting-edge advances in cancer science, medicine, and patient care. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/synbiobeta-2025</loc>
+    <lastmod>2024-11-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SynBioBeta ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1290154e14ed22cdc15d863aebc9f1a8b53accf9e.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Jose, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1746403200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1746748740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us at SynBioBeta 2025 summit to explore cutting-edge technologies advancing synthetic biology, automation, and high-throughput workflows. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/ilmac-industry</loc>
+    <lastmod>2024-08-16T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ILMAC ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_160152bf026755631ff92ac4111611f6ea8aae7cb.jpg</md_img>
+      <md_eventaddress><![CDATA[ Basel, Switzerland ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1726617600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1726790340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The Ilmac industry has its origins in the Swiss trade fair for international laboratory, measurement and automation technology in chemistry ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/labdays-copenhagen</loc>
+    <lastmod>2024-08-16T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ LabDays Copenhagen ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_16249278d5093e1202f8d57a2a8c46a3fb6be11f4.jpg</md_img>
+      <md_eventaddress><![CDATA[ Copenhagen, Denmark ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1725408000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1725580740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ LabDays are conducted over two intensive days for everyone working within the laboratory industry. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/world-of-industry-technology-and-science-wots</loc>
+    <lastmod>2024-08-16T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ World of Industry, Technology & Science (WoTS) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1a4c4f652181ba3ea60d20ca406e9912f42f1f29c.jpg</md_img>
+      <md_eventaddress><![CDATA[ Utrecht, Netherlands ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1727136000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1727481540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Visit WoTS 2024 and actively participate in the interactive trade fair projects and the appealing and current seminar program. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/advanced-imaging-and-organoid-technologies-user-meeting</loc>
+    <lastmod>2024-08-07T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Advanced Imaging and Organoid Technologies User Meeting ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1bf42ea124ec6979e16377edbea970e6bf479e93f.jpg</md_img>
+      <md_eventaddress><![CDATA[ Hilton London Canary Wharf ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1727766000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1727802000 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices' User Meeting to explore the latest in advanced imaging, organoid technologies, and tools accelerating human-relevant model research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-of-biomolecular-imaging-and-informatics-sbi2</loc>
+    <lastmod>2024-05-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ The Society of Biomolecular Imaging and Informatics (SBI2) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_16134f6cc78925b894ba78c609a536bfee1e2b32a.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1726617600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1726876740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the Society of Biomolecular Imaging and Informatics (SBI2) event to explore cutting-edge advancements in high-content imaging, informatics, and cell line development. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/mps-world-summit-2024</loc>
+    <lastmod>2024-05-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ MPS World Summit ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1c25f03029009dc2625eaba058dee94cea96d35a4.jpg</md_img>
+      <md_eventaddress><![CDATA[ Seattle, WA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1717977600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1718409540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Connect with Molecular Devices at MPS World Summit 2024 to explore innovations in microphysiological systems and human-relevant model technologies. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-for-neuroscience-sfn</loc>
+    <lastmod>2024-05-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society for Neuroscience (SfN) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1748ef26ccd8bf3a87790a26f2effa52c5adc5f2d.jpg</md_img>
+      <md_eventaddress><![CDATA[ Chicago, IL USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1728086400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1728518340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ This event allows attendees to present research, network with scientists, attend sessions and events, and browse the exhibit hall. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/cell-bio-ascb-2024</loc>
+    <lastmod>2024-05-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Cell Bio (ASCB) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_14b60fdf35d9f12a85cac815312c6b9721a60d5eb.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1734134400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1734566340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Meet Molecular Devices at Cell Bio ASCB 2024 to discover cutting-edge tools for cell imaging, analysis, and automation in cellular and molecular biology. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/slas-2024-europe</loc>
+    <lastmod>2024-04-30T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SLAS Europe 2024 ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1cfd7934197636dee3db3fa1f84fda99277dff9b7.jpg</md_img>
+      <md_eventaddress><![CDATA[ Barcelona, Spain ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1716768000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1717027140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us in Barcelona, 27-29 May, for the SLAS 2024 Europe conference and exhibition at the southern European epicenter of the life sciences and biotechnology sectors. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/elrig-drug-discovery-2024</loc>
+    <lastmod>2024-02-27T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ELRIG Drug Discovery ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1eace0aec20598d9fd8110b8022f47e06ab32b49f.jpg</md_img>
+      <md_eventaddress><![CDATA[ UK ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1727827200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1727999940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Europe’s largest drug discovery conference in London, featuring scientific tracks on ageing mechanisms, cell and gene therapy, and more. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/isscr-2014</loc>
+    <lastmod>2024-02-27T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ISSCR ]]></md_title>
+      <md_eventtype><![CDATA[ Annual Meeting ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1585fd488ef5b2c552adba1a42fcb333c8816d7fb.jpg</md_img>
+      <md_eventaddress><![CDATA[ Germany ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1720569600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1720915140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the ISSCR Annual Meeting scientific program where the year’s most significant new advances in stem cell research and regenerative medicine comprise. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/fens-forum-2024</loc>
+    <lastmod>2024-02-22T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ FENS Forum 2024 (The Federation of European Neuroscience Societies) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1e56a30ce197f691311f709e62f0150bc905f391e.jpg</md_img>
+      <md_eventaddress><![CDATA[ Vienna, Austria ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1719273600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1719705540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at FENS Forum 2024 to explore advanced imaging and analysis solutions driving neuroscience research and discovery. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/3d-tissue-models-summit</loc>
+    <lastmod>2024-02-21T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ 3D Tissue Models Summit ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_131443014ec2da2b14dad7402199c06f4a0bd8b3a.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, MA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1716249600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1716508740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join us to learn from and meet the ‘front-line’ experts optimizing and leveraging advanced 3D models to confidently empower your own drug development workflows. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/american-society-of-gene-and-cell-therapy-asgct</loc>
+    <lastmod>2024-02-21T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ ASGCT (American Society of Gene & Cell Therapy) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_15097b56494ce20ca897f1f440c04dfccca2074e3.jpg</md_img>
+      <md_eventaddress><![CDATA[ Baltimore, MD USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1715040000 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1715471940 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the American Society of Gene and Cell Therapy’s (ASGCT) Annual Meeting is the premier event for professionals in gene and cell therapy. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/association-for-gxp-excellence-agxpe</loc>
+    <lastmod>2024-02-21T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ The Association for GXP Excellence (AGXPE) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_19e29938c2e58a59e625dfed24907d7ba848dc82a.jpg</md_img>
+      <md_eventaddress><![CDATA[ Tampa, FL USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1713052800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1713398340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The AGXPE conference provides robust content that keeps teams current, informed and educated on current quality and compliance issues. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/american-association-of-cancer-research-aacr</loc>
+    <lastmod>2024-02-21T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ American Association Cancer Research (AACR) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_145578e948ae2cbed9ff3126f54e3590ea311619d.png</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1712275200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1712793540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The AACR Annual Meeting highlights the work of the best minds in cancer research from institutions all over the world. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/analytica-2024</loc>
+    <lastmod>2024-01-29T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Analytica 2024 ]]></md_title>
+      <md_eventtype><![CDATA[ Tradeshow ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1071403235d6553e65c12b0375d87881301b4788d.jpg</md_img>
+      <md_eventaddress><![CDATA[ Munich, Germany ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1712620800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1712966340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Analytica 2024 is an Europe's Leading Trade Fair for laboratory technology, analysis, biotechnology and analytica conference. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/biomanufacturing-and-microbiology-symposium-workshop</loc>
+    <lastmod>2024-01-22T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Biomanufacturing & Microbiology Symposium and Workshop ]]></md_title>
+      <md_eventtype><![CDATA[ User Meeting ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1a5499d8fa87c72aabc768250b1be157677ae772d.jpg</md_img>
+      <md_eventaddress><![CDATA[ Dublin, Ireland ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1710201600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1710460740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join the UCD and Beckman University Biomanufacturing Symposium Institute to explore biomanufacturing trends, gain hands-on experience, and connect with experts. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/french-society-of-stem-cell-research-meeting-2024</loc>
+    <lastmod>2024-01-15T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ French Society of Stem Cell Research Meeting 2024 ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_17d596f2efdc7035213dc64b00ac32828901cd6a6.jpg</md_img>
+      <md_eventaddress><![CDATA[ France ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1705881600 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1706137200 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The French Society of Stem Cell Research Meeting 2024 fosters collaboration and knowledge exchange among the French and international communities of stem cell researchers. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/festival-biologics</loc>
+    <lastmod>2024-01-15T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Festival of Biologics ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1a18227deec7171ae0ca28cd8658b4217df538f1d.jpg</md_img>
+      <md_eventaddress><![CDATA[ Basel, Switzerland ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1728950400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1729209540 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ The Festival of Biologics brings together pharma & biotech, academics, and research institutes, together with their partners across the value chain. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/slas-society-for-laboratory-automation-and-screening</loc>
+    <lastmod>2023-11-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society for Laboratory Automation and Screening (SLAS) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_15671dd15abf654639a5984a587d852613ecb5f67.jpg</md_img>
+      <md_eventaddress><![CDATA[ Boston, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1706918400 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1707350340 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at SLAS to explore the latest in laboratory automation, high-throughput screening, and innovative technologies for life science research. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/society-of-toxicology</loc>
+    <lastmod>2023-11-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Society of Toxicology (SOT) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1a249c163f4e5a31c816984238bcc93745649791b.jpg</md_img>
+      <md_eventaddress><![CDATA[ Salt Lake City, UT USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1710028800 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1710460740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at the Society of Toxicology (SOT) event to explore cutting-edge tools and technologies advancing toxicology research and testing. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/bpi-west-bioprocess-international-us-west</loc>
+    <lastmod>2023-01-09T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ BPI West (BioProcess International US West) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1b885112d0a8343256a394fd74d545b326b398a75.jpg</md_img>
+      <md_eventaddress><![CDATA[ San Diego, CA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1710115200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1710460740 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Connect with Molecular Devices at BPI West to discover innovative solutions for bioprocessing, clone screening, and accelerating biologics development. ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/bps-biophysical-society</loc>
+    <lastmod>2023-01-09T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Biophysical Society (BPS) ]]></md_title>
+      <md_eventtype><![CDATA[ Conference ]]></md_eventtype>
+      <md_img>https://www.moleculardevices.com/events/media_1bdb287a4fe17101a61db1e12f6e58cb071f9db52.jpg</md_img>
+      <md_eventaddress><![CDATA[ Philadelphia, PA USA ]]></md_eventaddress>
+      <md_eventstart><![CDATA[ 1707523200 ]]></md_eventstart>
+      <md_eventend><![CDATA[ 1707955140 ]]></md_eventend>
+      <md_carddescription><![CDATA[  ]]></md_carddescription>
+      <md_eventdescription><![CDATA[ Join Molecular Devices at the Biophysical Society Annual Meeting to explore cutting-edge technologies for drug discovery, biophysics, and more. Visit our booth! ]]></md_eventdescription>
+      <md_location><![CDATA[ location test ]]></md_location>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+</urlset>
+<!-- build timestamp: 2026-01-22T05:47:09.840Z -->
