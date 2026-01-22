@@ -56,7 +56,7 @@ export function applyCustomSpacing(article, element, className, cssProperty = MA
   if (element.classList.contains('timeline-content')) {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        const height = element.scrollHeight + 50;
+        const height = element.scrollHeight;
         if (height > 0) {
           element.style.height = `${height}px`;
         }
