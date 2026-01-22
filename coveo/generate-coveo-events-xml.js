@@ -7,58 +7,6 @@ const BASE_URL = 'https://www.moleculardevices.com';
 
 const INDENTIFIER_MAPPING = new Map();
 
-const RESOURCES = [
-  'News',
-  'Publications',
-  'Videos & Webinars',
-  'Application Note',
-  'Customer Breakthrough',
-  'Data Sheet',
-  'Brochure',
-  'Scientific Poster',
-  'Flyer',
-  'Infographic',
-  'Presentations',
-  'Cell Counter',
-  'eBook',
-  'User Guide',
-  'Newsletter',
-  'Interactive Demo',
-  'Product Insert',
-  'Assay Data',
-  'Legal',
-  'Blog',
-  'COA',
-  'SDS',
-  'Training Material',
-  'Technical Guide',
-  'White Paper',
-  'Declaration of Conformity',
-];
-
-const PRIORITYMAPPING = {
-  '/': 0.1,
-  '/contact': 0.1,
-  '/customer-breakthroughs': 0.1,
-  '/events': 0.1,
-  '/newsroom/in-the-news': 0.1,
-  '/newsroom/news': 0.1,
-  '/newsroom': 0.1,
-  '/product-finder': 0.1,
-  '/quote-request': 0.1,
-  '/search-results': 0.1,
-  'video-gallery': 0.1,
-  '/applications': 0.1,
-  '/citations': 0.1,
-  '/service-support': 0.1,
-  '/lab-notes': 0.1,
-  '/applications/cell-counting/counting-cells-without-cell-staining': 0.1,
-  '/products/cellular-imaging-systems/high-content-imaging/pico/cell-counting-using-automated-cell-imaging': 0.5,
-  '/products/cellular-imaging-systems/high-content-imaging/pico/apoptosis-analysis-using-automated-cell-imaging': 0.5,
-  Product: 0.2,
-  Category: 0.2,
-};
-
 async function getData() {
   return new Promise((resolve) => {
     https.get('https://www.moleculardevices.com/query-index.json?sheet=events&limit=500', (res) => {
@@ -79,37 +27,7 @@ async function getData() {
   });
 }
 
-async function getCoveoIcons() {
-  return new Promise((resolve) => {
-    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-icon-mapping&limit=50', (res) => {
-      const data = [];
 
-      res.on('data', (chunk) => {
-        data.push(chunk);
-      });
-
-      res.on('end', () => {
-        try {
-          const entries = JSON.parse(Buffer.concat(data).toString());
-          const iconMap = {};
-          entries.data.forEach((entry) => {
-            if (entry['Asset Type'] && entry['Resource Icon']) {
-              iconMap[entry['Asset Type']] = entry['Resource Icon'];
-            }
-          });
-
-          console.log(`Successfully mapped ${Object.keys(iconMap).length} icons.`);
-          resolve(iconMap);
-        } catch (err) {
-          console.error('Failed to parse or transform icon mapping:', err);
-          resolve({});
-        }
-      });
-    }).on('error', (err) => {
-      console.log('Error: ', err.message);
-    });
-  });
-}
 
 function isNotEmpty(field) {
   return field && field !== '0' && field !== '#N/A';
@@ -129,7 +47,7 @@ function preprocess(index) {
   });
 }
 
-function createCoveoFields(index, icons) {
+function createCoveoFields(index) {
   console.log('Procesing data...');
   index.data.forEach((item) => {
     if (isNotEmpty(item.title)) {
@@ -165,7 +83,7 @@ function createCoveoFields(index, icons) {
     item.md_img = eventImageURL.toString();
 
 
-    item.priority = PRIORITYMAPPING[item.internal_path] || PRIORITYMAPPING[item.md_pagetype] || 0.5;
+    item.priority =  0.5;
   });
 }
 
@@ -195,7 +113,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_eventend><![CDATA[ ${item.eventEnd} ]]></md_eventend>`);
     xmlData.push(`      <md_carddescription><![CDATA[ ${item.cardDescription} ]]></md_carddescription>`); 
     xmlData.push(`      <md_eventdescription><![CDATA[ ${item.description} ]]></md_eventdescription>`); 
-    xmlData.push(`      <md_location><![CDATA[ location ]]></md_location>`); 
+    xmlData.push(`      <md_location><![CDATA[ location test ]]></md_location>`); 
     xmlData.push('    </coveo:metadata>');
     xmlData.push('    <md_pagesort>1</md_pagesort>');
     xmlData.push('  </url>');
@@ -216,10 +134,9 @@ async function writeCoveoSitemapXML(index) {
 
 async function main() {
   const index = await getData();
-  const icons = await getCoveoIcons();
 
   preprocess(index);
-  createCoveoFields(index, '');
+  createCoveoFields(index);
   writeCoveoSitemapXML(index);
 }
 
