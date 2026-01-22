@@ -49,6 +49,6 @@ export default async function decorate(block) {
     });
   });
 
-  // Add CTA Icon
+  // Add CTA Icon..
   addIconToCTA(block);
 }
