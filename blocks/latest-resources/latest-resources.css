@@ -1,4 +1,3 @@
-
 .latest-resources-container .latest-resources-button {
   text-align: center;
   padding: 50px 0;
@@ -10,7 +9,7 @@ main .section.latest-resources-container:has( .latest-resources.block:empty){
 
 main .section.latest-resources-container .default-content-wrapper h2 {
   font-family: var(--ff-proxima-light);
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--font-size-h2);
   text-align: center;
 }
 
@@ -51,6 +50,7 @@ main .latest-resources .card .card-description {
   display: block;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

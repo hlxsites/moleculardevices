@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { buildSearchBar, submitSearchForm } from './menus/search.js';
 import {
   img, div, a, p, h3, strong,
@@ -24,9 +25,7 @@ function wrapLinkAroundComponent(link, component, removeLink = false) {
   // Move the existing div inside the new div
   linkCopy.appendChild(component);
 
-  if (removeLink) {
-    link.remove();
-  }
+  if (removeLink) link.remove();
 
   return linkCopy;
 }
@@ -35,11 +34,13 @@ function buildLargeCardsMenu(cardContent) {
   const links = cardContent.querySelectorAll('a');
   const pictures = cardContent.querySelectorAll('picture');
 
-  if (links && pictures) {
+  if (links.length > 0 && pictures.length > 0) {
     wrapLinkAroundComponent(links[0], pictures[0]);
+
     pictures.forEach((picture) => {
-      if (picture.nextElementSibling && picture.nextElementSibling.tagName === 'A') {
-        wrapLinkAroundComponent(picture.nextElementSibling.href, picture);
+      const siblingLink = picture.nextElementSibling;
+      if (siblingLink && siblingLink.tagName === 'A') {
+        wrapLinkAroundComponent(siblingLink, picture);
       }
     });
   }
@@ -64,29 +65,35 @@ function buildCardsMenu(cardContent) {
     // for each card inside the row
     const cards = [...row.querySelectorAll('div')];
     cards.forEach((card) => {
-      // if card div is not empty
-      if (card.innerHTML.trim() !== '') {
-        const link = card.querySelector('a');
-        const picture = card.querySelector('picture');
+      // return, if card div is empty
+      if (card.innerHTML.trim() === '') return;
 
-        wrapLinkAroundComponent(link, picture);
+      const link = card.querySelector('a');
+      const picture = card.querySelector('picture');
 
-        // if the second paragraph of the card contains the string (expand-image),
-        // we style the image. We need this because some images fill the card, others dont
-        const secondParagraph = card.querySelector('p:nth-child(2)');
-        if (secondParagraph.textContent.includes('expand-image')) {
-          picture.classList.add('expanded-image');
-          // delete the second paragraph
-          secondParagraph.remove();
-        }
-        if (secondParagraph.textContent.includes('new')) {
+      // Only wrap if we have both
+      if (link && picture) wrapLinkAroundComponent(link, picture);
+
+      // if the second paragraph of the card contains the string (expand-image),
+      // we style the image. We need this because some images fill the card, others dont
+      const secondParagraph = card.querySelector('p:nth-child(2)');
+      const text = (secondParagraph.textContent || '').toLowerCase();
+
+      if (text.includes('expand-image')) {
+        if (picture) picture.classList.add('expanded-image');
+        secondParagraph.remove();
+      }
+      if (text.includes('new')) {
+        const hasValidImage = picture
+          && picture.parentElement
+          && picture.parentElement.parentElement;
+        if (hasValidImage) {
           const newProductTag = createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag');
           newProductTag.classList.add('new-product-tag');
-          picture.parentElement.parentElement.classList.add('new-product');
-          picture.parentElement.parentElement.appendChild(newProductTag);
-          // delete the second paragraph
-          secondParagraph.remove();
+          hasValidImage.classList.add('new-product');
+          hasValidImage.appendChild(newProductTag);
         }
+        secondParagraph.remove();
       }
     });
   });
@@ -183,7 +190,7 @@ async function getRecentBlogPostsHandler(featuredPostUrl) {
     recentPostLinks.forEach((post) => {
       const postTitle = post.h1 || post.title;
       const link = p(a({ href: post.path }, createOptimizedPicture(post.thumbnail, post.header)));
-      const title = p(a({ href: post.path }, `${postTitle.trim().substring(0, 40)}...`));
+      const title = p(a({ href: post.path }, `${postTitle.trim().substring(0, 35)}...`));
       const postWrapper = div(link, title);
       recentPosts.appendChild(postWrapper);
     });
@@ -353,7 +360,7 @@ function addIndividualComponents(rightSubMenu, submenuId) {
     return;
   }
 
-  if (submenuId === 'accessories--consumables') {
+  if (submenuId === 'accessories-consumables') {
     rightSubMenu.parentElement.appendChild(
       img({
         class: 'spectra-accessories',
@@ -365,18 +372,11 @@ function addIndividualComponents(rightSubMenu, submenuId) {
 }
 
 export default function buildRightSubmenu(contentHeader, subMenuId) {
-  // get products-megamenu-head-wrapper located in the parent div of the div containing h1
   const rightSubmenuWrapper = div({ class: 'right-submenu' });
-
-  // insert a div inside products-megamenu-head containing all its content
   const rightSubmenuRow = div({ class: 'right-submenu-row flex-space-between' });
-
-  // get div in the parent of the H2/H1 header
   const headerParentDiv = contentHeader.parentElement;
-  // get all divs with a class right-submenu
   const rightSubmenus = [...headerParentDiv.querySelectorAll('.right-submenu-content')];
 
-  // add all right-submenu divs to the H2
   rightSubmenus.forEach((rightSubmenu) => {
     // get the class name that has a suffix -submenu
     const rightSubmenuClass = rightSubmenu.classList.value
@@ -387,8 +387,6 @@ export default function buildRightSubmenu(contentHeader, subMenuId) {
       rightSubmenuBuilder(rightSubmenu);
       rightSubmenuRow.appendChild(rightSubmenu);
     }
-
-    // add individual components
     addIndividualComponents(rightSubmenu, subMenuId);
   });
 

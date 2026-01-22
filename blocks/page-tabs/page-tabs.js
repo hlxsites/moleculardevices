@@ -1,25 +1,30 @@
+/* eslint-disable import/no-cycle */
 import { a, li, ul } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
-import { coveoResources } from '../resources/resources.js';
+import { activateTab, scrollToHashTarget, scrollToWithOffset } from '../../scripts/utilities.js';
 
-function openTab(target) {
-  const parent = target.parentNode;
-  const main = parent.closest('main');
-  const selected = target.getAttribute('aria-selected') === 'true';
-  if (!selected) {
-    // close all open tabs
-    const openPageNav = parent.parentNode.querySelectorAll('li[aria-selected="true"]');
-    const openContent = main.querySelectorAll('div.section[aria-hidden="false"]');
-    openPageNav.forEach((tab) => tab.setAttribute('aria-selected', false));
-    openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
-    // open clicked tab
-    parent.setAttribute('aria-selected', true);
-    const tabs = main.querySelectorAll(`div.section[aria-labelledby="${target.getAttribute('href').substring(1)}"]`);
-    tabs.forEach((tab) => tab.setAttribute('aria-hidden', false));
+const TAB_SCROLL_OFFSET = 50;
+
+function resetNativeHashScroll() {
+  if (window.location.hash) {
+    window.scrollTo(0, 0);
   }
+}
 
-  /* COVEO RESOURCES */
-  coveoResources(target);
+function scrollToTabsContainer() {
+  const target = document.querySelector('.page-tabs-container');
+  if (!target) return;
+
+  scrollToWithOffset(target, TAB_SCROLL_OFFSET);
+}
+
+function handleTabClick(e) {
+  e.preventDefault();
+  const tabLink = e.currentTarget;
+
+  window.history.replaceState(null, '', tabLink.getAttribute('href'));
+  activateTab(tabLink);
+  requestAnimationFrame(scrollToTabsContainer);
 }
 
 async function createTabList(sections, active) {
@@ -28,16 +33,17 @@ async function createTabList(sections, active) {
   return ul(
     ...sections.map((section) => {
       const sectionName = section.getAttribute('data-name');
-      // use placeholders if we have them, to make translations work, otherwise best effort
       section.title = placeholders[toCamelCase(sectionName)] || section.title;
 
-      return (
-        li({ 'aria-selected': sectionName === active },
-          a({
+      return li(
+        { 'aria-selected': sectionName === active },
+        a(
+          {
             href: `#${sectionName}`,
-            onclick: (e) => { openTab(e.target); },
-          }, section.title),
-        )
+            onclick: handleTabClick,
+          },
+          section.title,
+        ),
       );
     }),
   );
@@ -45,68 +51,49 @@ async function createTabList(sections, active) {
 
 export default async function decorate(block) {
   const main = block.closest('main');
-  const sections = main.querySelectorAll('div.section.tabs');
-  const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
-  if (namedSections) {
-    const activeHash = window.location.hash;
-    const id = activeHash.substring(1, activeHash.length).toLocaleLowerCase();
-
-    const tabExists = namedSections.some((section) => section.getAttribute('data-name') === id);
-    let activeTab = id;
-    if (!tabExists) {
-      const element = document.getElementById(id);
-      if (element) {
-        activeTab = element.closest('.tabs')?.getAttribute('aria-labelledby');
-        setTimeout(() => {
-          element.scrollIntoView();
-        }, 5000);
-      } else {
-        activeTab = namedSections[0].getAttribute('data-name');
-      }
-    }
-
-    sections.forEach((section) => {
-      if (activeTab === section.getAttribute('aria-labelledby')) {
-        section.setAttribute('aria-hidden', false);
-      } else {
-        section.setAttribute('aria-hidden', true);
-      }
-    });
-
-    block.append(await createTabList(namedSections, activeTab));
-  }
-
-  window.addEventListener('hashchange', () => {
-    let activeHash = window.location.hash;
-    activeHash = activeHash ? activeHash.substring(1) : namedSections[0].getAttribute('data-name');
-    if (!activeHash) return;
-
-    const element = document.getElementById(activeHash);
-    const tab = element?.closest('.tabs');
-    if (tab) {
-      const targetTabName = tab.getAttribute('aria-labelledby');
-      const targetTab = block.querySelector(`a[href="#${targetTabName}"]`);
-      if (!targetTab) return;
-      openTab(targetTab);
-      document.getElementById(activeHash).scrollIntoView();
-    }
-
-    const targetTab = block.querySelector(`a[href="#${activeHash}"]`);
-    if (!targetTab) return;
-
-    openTab(targetTab);
-
-    // scroll content into view
-    const firstVisibleSection = main.querySelector(`div.section[aria-labelledby="${activeHash}"]`);
-    if (!firstVisibleSection) return;
-
-    window.scrollTo({
-      left: 0,
-      top: firstVisibleSection.offsetTop - 10,
-      behavior: 'smooth',
-    });
-  });
 
   const pageTabsBlock = main.querySelector('.page-tabs-wrapper');
-  pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
+  if (pageTabsBlock) {
+    pageTabsBlock.classList.add('sticky-element', 'sticky-desktop');
+  }
+
+  resetNativeHashScroll();
+
+  const sections = main.querySelectorAll('.section.tabs');
+  const namedSections = [...sections].filter((section) => section.hasAttribute('data-name'));
+  if (!namedSections.length) return;
+
+  const rawHash = window.location.hash?.substring(1);
+  const hashKey = rawHash?.toLowerCase();
+
+  let activeTab = rawHash;
+
+  const matchedSection = namedSections.find(
+    (s) => s.getAttribute('data-name')?.toLowerCase() === hashKey
+      || s.getAttribute('aria-labelledby')?.toLowerCase() === hashKey,
+  );
+
+  if (!matchedSection) {
+    let fallbackTabId = namedSections[0].getAttribute('data-name');
+    const fallbackEl = document.getElementById(rawHash);
+    if (fallbackEl) {
+      const parentTabs = fallbackEl.closest('.tabs');
+      if (parentTabs?.hasAttribute('aria-labelledby')) {
+        fallbackTabId = parentTabs.getAttribute('aria-labelledby');
+      }
+    }
+    activeTab = fallbackTabId;
+  }
+
+  sections.forEach((section) => {
+    const isActive = section.getAttribute('aria-labelledby') === activeTab;
+    section.setAttribute('aria-hidden', !isActive);
+  });
+
+  const tabList = await createTabList(namedSections, activeTab);
+  block.append(tabList);
+
+  if (rawHash) {
+    requestAnimationFrame(() => scrollToHashTarget(rawHash));
+  }
 }

@@ -8,6 +8,9 @@ import {
 } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span,
+  article,
+  figure,
+  time,
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
@@ -17,6 +20,7 @@ import {
   updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
 import { isNotOlderThan365Days } from '../product-finder/product-finder.js';
+import { isCountryCodeUS } from '../request-quote-carousel/request-quote-carousel.js';
 
 let placeholders = {};
 
@@ -79,14 +83,6 @@ class Card {
       this.cssFiles.push('/blocks/card/card.css');
     }
 
-    if (this.isShopifyCard) {
-      this.defaultButtonText = 'Order';
-    }
-
-    if (this.isRequestQuoteCard) {
-      this.defaultButtonText = 'Request Quote';
-    }
-
     if (!this.showFullDescription) {
       this.descriptionLength = 75;
     }
@@ -94,6 +90,7 @@ class Card {
 
   renderItem(item) {
     const cardTitle = itemSearchTitle(item);
+    const hasShopifyURL = isCountryCodeUS && (item.shopifyUrl && item.shopifyUrl !== '0');
     this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
     let itemImage = this.defaultImage;
@@ -111,7 +108,7 @@ class Card {
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {
-      cardLink = item.shopifyUrl;
+      cardLink = item.shopifyUrl !== '0' ? item.shopifyUrl : `/quote-request?pid=${item.familyID}`;
     } else if (item.redirectPath && item.redirectPath !== '0') {
       cardLink = item.redirectPath;
     }
@@ -125,7 +122,13 @@ class Card {
     if (item.c2aLinkConfig) {
       c2aLinkBlock = a(item.c2aLinkConfig, buttonText);
     }
-    if (this.c2aLinkStyle) {
+
+    if (hasShopifyURL) {
+      c2aLinkBlock.textContent = 'Order';
+      c2aLinkBlock.classList.add('button', 'primary');
+    }
+
+    if (this.c2aLinkStyle && !hasShopifyURL) {
       c2aLinkBlock.classList.remove('button', 'primary');
       c2aLinkBlock.append(
         this.c2aLinkIconFull
@@ -170,20 +173,17 @@ class Card {
     }
 
     return (
-      div({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
+      article({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
         this.isInPastYear ? div({ class: 'new-product-tag' },
           createOptimizedPicture('/images/new-product-tag.png', 'New Product Tag')) : '',
-        this.showImageThumbnail ? div({ class: 'card-thumb' },
-          this.thumbnailLink ? a({ href: cardLink },
-            thumbnailBlock,
-          ) : thumbnailBlock,
-        ) : '',
+        this.showImageThumbnail ? figure({ class: 'card-thumb' },
+          this.thumbnailLink ? a({ href: cardLink }, thumbnailBlock) : thumbnailBlock) : '',
         item.badgeText ? div({ class: 'badge' }, item.badgeText) : '',
-        this.showCategory ? span({ class: 'card-category' }, item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
+        this.showCategory ? span({ class: 'card-category' },
+          item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
         div({ class: 'card-caption' },
-          this.showDisplayType ? div({ class: 'card-display-type' }, item.displayType) : '',
-          this.showType ? div({ class: 'card-type' }, item.type) : '',
-          this.showDate ? div({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
+          item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
+          this.showDate ? time({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
           h3(
             this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
           ),

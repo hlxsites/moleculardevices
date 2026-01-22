@@ -1,8 +1,9 @@
+/* stylelint-disable no-descending-specificity */
 .accordion .accordion-trigger {
   display: flex;
-  background-color: var(--accordion-light-gray-background-color);
-  color: var(--accordion-dark-gray-text-color);
-  border: 1px solid var(--accordion-light-gray-border-color);
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-400);
   border-top-right-radius: 3px;
   cursor: pointer;
   margin: 2px 0 0;
@@ -16,11 +17,17 @@
 }
 
 .accordion .accordion-trigger h2,
+.accordion .accordion-trigger h3,
+.section.tabs .accordion .accordion-item .accordion-trigger > h2,
+.section.tabs .accordion .accordion-item .accordion-trigger > h3  {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.accordion .accordion-trigger h2,
 .accordion .accordion-trigger h3 {
   font-family: var(--ff-proxima-regular);
   font-size: 18px;
-  margin-top: 4px;
-  margin-bottom: 4px;
 }
 
 .accordion.numbers .accordion-trigger > h2,
@@ -33,24 +40,18 @@
   margin: 30px 0 15px;
 }
 
-.section.tabs .accordion .accordion-item .accordion-trigger > h2,
-.section.tabs .accordion .accordion-item .accordion-trigger > h3 {
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-
 .accordion [aria-expanded] .accordion-trigger {
-  background-color: var(--background-color-blue);
-  color: var(--text-white);
-  border: 1px solid var(--background-color-blue);
+  background-color: var(--color-link-hover);
+  color: var(--color-white);
+  border: 1px solid var(--color-link-hover);
   border-top-right-radius: 3px;
 }
 
 .accordion .accordion-trigger .number {
-  background-color: var(--background-color-green);
-  border: 1px solid var(--accordion-color-white);
+  background-color: var(--color-tertiary);
+  border: 1px solid var(--color-white);
   border-radius: 100%;
-  color: var(--accordion-color-white);
+  color: var(--color-white);
   margin-right: 20px;
   width: 50px;
   display: inline-block;
@@ -62,12 +63,12 @@
 }
 
 .accordion.numbers [aria-expanded] .accordion-trigger {
-  background-color: var(--background-color-green);
-  border: 1px solid var(--background-color-green);
+  background-color: var(--color-tertiary);
+  border: 1px solid var(--color-tertiary);
 }
 
 .accordion.numbers .accordion-item:not([aria-expanded]) .accordion-trigger {
-  color: var(--background-color-green);
+  color: var(--color-tertiary);
 }
 
 .accordion .accordion-trigger i,
@@ -85,9 +86,9 @@
 .accordion .accordion-content {
   display: none;
   overflow: hidden;
-  background-color: var(--accordion-color-white);
-  border: 1px solid var(--light-border-color-gray);
-  color: var(--text-dark-gray);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-gray-750);
   padding: 20px 30px;
   border-top: 0;
 }
@@ -104,15 +105,18 @@
   flex-wrap: wrap;
 }
 
+.accordion .accordion-content-col-left,
+.accordion .accordion-content-col-right {
+  padding: 0 15px;
+}
+
 .accordion .accordion-content-col-left {
   width: 33.33%;
-  padding: 0 15px;
 }
 
 .accordion .accordion-content-col-right {
   width: 66.67%;
   text-align: left;
-  padding: 0 15px;
 }
 
 .accordion .accordion-content-col-right .button-container {
@@ -126,10 +130,7 @@
     font-size: 16px;
   }
 
-  .accordion .accordion-content-col-left {
-    width: 100%;
-  }
-
+  .accordion .accordion-content-col-left,
   .accordion .accordion-content-col-right {
     width: 100%;
   }

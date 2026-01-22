@@ -1,88 +1,66 @@
+// eslint-disable-next-line import/no-cycle
 import buildRightSubmenu from './header-megamenu-components.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons, geoFriendlyClassName } from '../../scripts/lib-franklin.js';
 import buildSearch from './menus/search.js';
 import {
   div, li, nav, ul,
 } from '../../scripts/dom-helpers.js';
 import {
-  reverseElementLinkTagRelation,
-  buildBrandLogo,
-  buildRequestQuote,
-  addCloseMenuButtonListener,
+  buildBrandLogo, buildRequestQuote, fetchMenuId,
+  addCloseMenuButtonListener, reverseElementLinkTagRelation,
 } from './helpers.js';
 import { processSectionMetadata } from '../../scripts/scripts.js';
 
 export function showRightSubmenu(element) {
-  document.querySelectorAll('header .right-submenu').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-  element.setAttribute('aria-expanded', 'true');
+  if (!element) return;
+
+  document
+    .querySelectorAll('header .right-submenu')
+    .forEach((el) => el.setAttribute('aria-expanded', el === element ? 'true' : 'false'));
 }
 
 function menuHasNoDropdown(menu) {
-  if (menu.getAttribute('menu-dropdown') === 'false') {
-    return true;
-  }
-
+  if (menu.getAttribute('menu-dropdown') === 'false') return true;
   return false;
 }
 
-function getTitlesWithLineDividers(content) {
-  const titleIds = [];
-  const lineDividers = content.querySelectorAll('p');
-  lineDividers.forEach((lineDivider) => {
-    if (!lineDivider.textContent.trim().includes('--')) {
-      return;
-    }
-    if (lineDivider.nextElementSibling !== null) {
-      // get the h2 id immediately after the p element
-      const h2Id = lineDivider.nextElementSibling.id;
-      titleIds.push(h2Id);
-    }
-  });
-
-  return titleIds;
-}
-
 function buildMegaMenu(block, content) {
-  const titles = content.querySelectorAll('h1');
-  const titlesWithLineDividers = getTitlesWithLineDividers(content);
+  const titles = content.querySelectorAll('div > div > p:first-child:has(a[href])');
 
-  // for each title get the h2s in the same section
   titles.forEach((title) => {
-    const menuId = title.getAttribute('id');
+    const titleLink = title.querySelector('a');
+    if (!titleLink) return;
+
+    const menuId = geoFriendlyClassName(titleLink.textContent);
+    title.id = menuId;
+    title.classList.add('menu-nav-heading');
 
     const dropdownElement = block.querySelector(`.menu-nav-category[menu-id="${menuId}"]`);
-    if (menuHasNoDropdown(dropdownElement)) {
-      return;
-    }
+    if (!dropdownElement || menuHasNoDropdown(dropdownElement)) return;
 
-    // get the h2s in the same parent as title
-    const sectionH2s = title.parentElement.querySelectorAll('h2');
-    const h2List = ul({ class: 'menu-nav-submenu-sections' });
+    const sectionListItems = [
+      ...(title.parentElement?.querySelectorAll('ul > li') || []),
+    ];
+    const listItemList = ul({ class: 'menu-nav-submenu-sections' });
 
-    // add H2s to list
-    sectionH2s.forEach((h2) => {
-      const sectionId = h2.id;
-      const element = reverseElementLinkTagRelation(h2);
+    sectionListItems.forEach((listItem) => {
+      if (listItem.textContent === '--') {
+        listItemList.append(li({ class: 'line-divider' }));
+      } else {
+        const sectionId = geoFriendlyClassName(listItem.textContent);
+        const element = reverseElementLinkTagRelation(listItem);
+        listItem.id = sectionId;
 
-      const h2ListItem = li(
-        { class: 'menu-nav-submenu-section', 'submenu-id': sectionId },
-        element,
-      );
-
-      if (titlesWithLineDividers.includes(sectionId)) {
-        h2List.append(li({ class: 'line-divider' }));
+        const listItemListItem = li(
+          { class: 'menu-nav-submenu-section', 'submenu-id': sectionId },
+          element,
+        );
+        listItemList.append(listItemListItem);
       }
-
-      h2List.append(h2ListItem);
     });
 
-    const submenu = div(
-      { class: 'menu-nav-submenu', 'menu-id': menuId },
-      div(
-        title.cloneNode(true),
-        buildRightSubmenu(title, menuId),
-        h2List,
-      ),
+    const submenu = div({ class: 'menu-nav-submenu', 'menu-id': menuId },
+      div(title.cloneNode(true), buildRightSubmenu(title, menuId), listItemList),
     );
 
     const backgroundImg = content.querySelector('.submenu-background img');
@@ -94,12 +72,13 @@ function buildMegaMenu(block, content) {
 
     const closeButton = div({ class: 'menu-nav-submenu-close' });
 
-    submenu.querySelectorAll('.menu-nav-submenu h1').forEach((el) => {
+    submenu.querySelectorAll('.menu-nav-submenu .menu-nav-heading').forEach((el) => {
       el.addEventListener('mouseover', (e) => {
         e.preventDefault();
         e.stopPropagation();
+
         const rightMenu = e.currentTarget.parentElement.querySelector('.right-submenu');
-        showRightSubmenu(rightMenu);
+        if (rightMenu) showRightSubmenu(rightMenu);
       });
     });
 
@@ -115,109 +94,95 @@ export async function buildLazyMegaMenus() {
 
   // for each category, get the menu-id attribute
   categories.forEach(async (category) => {
-    if (menuHasNoDropdown(category)) {
-      return;
-    }
+    if (menuHasNoDropdown(category)) return;
 
     const menuId = category.getAttribute('menu-id');
+    const menuIdClean = fetchMenuId(menuId);
 
-    // replace -- by - in menuId
-    const menuIdClean = menuId.replace('--', '-');
+    const url = `/fragments/megamenu/${menuIdClean}.plain.html`;
+    const options = window.location.pathname.endsWith(`/${menuIdClean}`)
+      ? { cache: 'reload' }
+      : {};
 
-    await fetch(`/fragments/megamenu/${menuIdClean}.plain.html`, window.location.pathname.endsWith(`/${menuIdClean}`) ? { cache: 'reload' } : {})
+    await fetch(url, options)
       .then(async (submenuResponse) => {
         if (submenuResponse.ok) {
-          // eslint-disable-next-line no-await-in-loop
           const submenuHtml = await submenuResponse.text();
-
           const submenuContent = div();
           submenuContent.innerHTML = submenuHtml;
 
-          // get all H2s and create a list of them
-          const h2s = [...submenuContent.querySelectorAll('h2')];
-          const h2List = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
+          const menuHeadings = [...submenuContent.querySelectorAll('div > p:first-child')];
+          const menuHeadingList = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections`);
 
-          // add H2s to list
-          h2s.forEach((h2) => {
-            const submenuId = h2.id;
-            const element = reverseElementLinkTagRelation(h2);
+          menuHeadings.forEach((menuHeading) => {
+            const submenuId = geoFriendlyClassName(menuHeading.textContent);
+            const element = reverseElementLinkTagRelation(menuHeading);
 
-            const h2ListItem = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
-            h2ListItem.appendChild(buildRightSubmenu(element, submenuId));
+            const menuHeadingSubHeading = document.querySelector(`div[menu-id="${menuId}"] .menu-nav-submenu-sections li[submenu-id*="${submenuId}"]`);
+            if (menuHeadingSubHeading) {
+              menuHeadingSubHeading.appendChild(buildRightSubmenu(element, submenuId));
+            }
           });
 
-          h2List.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
+          menuHeadingList.querySelectorAll('.menu-nav-submenu-section').forEach((el) => {
             el.addEventListener('mouseover', (e) => {
               e.preventDefault();
               e.stopPropagation();
               const rightMenu = e.currentTarget.querySelector('.right-submenu');
-              showRightSubmenu(rightMenu);
+              if (rightMenu) showRightSubmenu(rightMenu);
             });
           });
         }
       });
   });
 
-  const body = document.querySelector('body');
-  body.setAttribute('built-lazy-megamenus', 'true');
+  document.body.setAttribute('built-lazy-megamenus', 'true');
 }
 
 export async function buildNavbar(content, hideSearch, hideGlobalRFQ) {
-  // link section
   const navMenuUl = ul({ class: 'nav-tabs' });
+  const menuHeadings = content.querySelectorAll('div > div > p:first-child:has(a[href])');
 
-  [...content.querySelectorAll('h1')].forEach((menu) => {
-    const id = menu.getAttribute('id');
-    const menuLink = menu.querySelector('a');
+  menuHeadings.forEach((heading) => {
+    const headingLink = heading.querySelector('a');
+    if (!headingLink) return;
 
-    let category = div(
-      { class: 'menu-nav-category', 'menu-id': id },
-      menuLink.textContent,
-    );
+    const headText = headingLink.textContent;
+    const id = geoFriendlyClassName(headText);
 
-    processSectionMetadata(menu.parentElement);
-    const dropdownFlag = menu.parentElement.getAttribute('data-dropdown');
-    if (dropdownFlag === 'False' || dropdownFlag === 'false') {
-      category = div(
-        { class: 'menu-nav-category', 'menu-id': id, 'menu-dropdown': 'false' },
-        menuLink.cloneNode(true),
+    processSectionMetadata(heading.parentElement);
+
+    const dropdownFlag = heading.parentElement.getAttribute('data-dropdown');
+    const hasDropdownFlag = !(dropdownFlag === 'False' || dropdownFlag === 'false');
+
+    let category;
+    if (hasDropdownFlag) {
+      category = div({ class: 'menu-nav-category', 'menu-id': id }, headText);
+    } else {
+      category = div({ class: 'menu-nav-category', 'menu-id': id, 'menu-dropdown': 'false' },
+        headingLink.cloneNode(true),
       );
     }
 
-    const item = li(
-      { class: 'menu-expandable', 'aria-expanded': 'false' },
-      category,
-    );
+    const item = li({ class: 'menu-expandable', 'aria-expanded': 'false' }, category);
     navMenuUl.append(item);
   });
 
-  if (!hideSearch) {
-    navMenuUl.append(buildSearch(content));
-  }
-  if (!hideGlobalRFQ) {
-    navMenuUl.append(buildRequestQuote('header-rfq'));
-  }
+  if (!hideSearch) navMenuUl.append(buildSearch(content));
+  if (!hideGlobalRFQ) navMenuUl.append(buildRequestQuote('header-rfq'));
+
+  const brandLogo = buildBrandLogo(content);
 
   const megaMenu = div(
     { class: 'mainmenu-wrapper sticky-element sticky-desktop' },
-    div(
-      { class: 'container' },
-      await buildBrandLogo(content),
-      nav(
-        {
-          id: 'nav',
-        },
-        div(
-          { class: 'nav-menu' },
-          navMenuUl,
-        ),
+    div({ class: 'container' },
+      brandLogo,
+      nav({ id: 'nav' }, div({ class: 'nav-menu' }, navMenuUl),
       ),
     ),
   );
 
   decorateIcons(megaMenu);
-
-  // Get submenu builder, and build submenu
   buildMegaMenu(navMenuUl, content);
   return megaMenu;
 }

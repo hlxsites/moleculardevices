@@ -19,15 +19,16 @@
 .related-app {
   flex-basis: calc(50% - var(--related-app-gap) / 2);
   min-height: 1px;
+  margin-top: 35px;
 }
 
-.related-link  {
+.related-link {
   line-height: 21px;
   margin-bottom: 10px;
 }
 
 li.related-link::marker {
-  color: #337ab7;;
+  color: var(--color-link);
 }
 
 .related-app h1 {
@@ -45,6 +46,13 @@ li.related-link::marker {
   text-align: left;
 }
 
+.product .section .related-apps-container .related-app h4 {
+  font-size: 24px;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
 .related-app strong {
   font-family: unset;
   font-weight: 700;
@@ -58,13 +66,18 @@ li.related-link::marker {
 }
 
 .related-applications-container .related-links-container {
-  padding-top: 26px;
-  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .related-applications-container.toc-grey .default-content-wrapper h2,
 .related-applications-container.toc-grey .related-links-container {
-  background-color: var(--grey-background-color);
+  background-color: var(--color-gray-50);
+}
+
+.related-applications-container.toc-grey .related-links-container {
+  margin-top: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
 }
 
 .related-applications-container div.related-applications-wrapper {
@@ -89,7 +102,8 @@ li.related-link::marker {
     padding-left: 15px;
   }
 
-  .related-links-container, .related-links-container.cols-3 {
+  .related-links-container,
+  .related-links-container.cols-3 {
     column-count: 1;
   }
 }

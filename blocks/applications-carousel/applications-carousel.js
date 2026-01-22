@@ -2,12 +2,12 @@ import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { goToTabSection } from '../../scripts/utilities.js';
+import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 
-function onReadMoreClick(e) {
+function viewAllHandler(e) {
   e.preventDefault();
-  const appsLink = document.querySelector('.page-tabs li > a[href="#applications"]');
-  appsLink.click();
-  document.querySelector('.page-tabs-container').scrollIntoView();
+  goToTabSection('applications');
 }
 
 function getDescription(element) {
@@ -24,9 +24,16 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
+  const heading = block.closest('.section')?.querySelector('h2');
   const placeholders = await fetchPlaceholders();
   const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
+
+  /* view all CTA */
+  const blockClass = heading.id || heading.innerHTML || '';
+  const ctaHref = hasApplicationTab ? '#applications' : '/applications';
+  const clickHandler = hasApplicationTab ? viewAllHandler : null;
+  addViewAllCTA(block, '', blockClass, ctaHref, clickHandler, 'View Applications');
 
   const fragments = await Promise.all(fragmentPaths.map(async (path) => {
     const fragmentHtml = await fetchFragment(path);
@@ -44,16 +51,16 @@ export default async function decorate(block) {
         imageBlock,
         description,
         c2aLinkConfig: {
-          href: hasApplicationTab ? '#applications' : appLink,
+          href: appLink,
           'aria-label': placeholders.readMore || 'Read More',
-          onclick: hasApplicationTab ? onReadMoreClick : null,
-          target: '_blank',
+          onclick: hasApplicationTab ? viewAllHandler : null,
           rel: 'noopener noreferrer',
         },
       };
     }
     return null;
   }));
+
   const sortedFragments = sortDataByTitle(fragments);
 
   const cardRenderer = await createCard({
@@ -74,16 +81,9 @@ export default async function decorate(block) {
       infiniteScroll: true,
       autoScroll: false,
       visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
+        { items: 1, condition: (width) => width < 768 },
+        { items: 2, condition: (width) => width < 1200 },
+        { items: 3 },
       ],
       cardRenderer,
     },

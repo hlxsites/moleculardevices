@@ -6,10 +6,7 @@
   margin-bottom: 20px;
 }
 
-.toc-container .button-container {
-  margin-bottom: 40px;
-}
-
+.toc-container .button-container,
 .toc-container.accordion-container .toc-wrapper {
   margin-bottom: 40px;
 }

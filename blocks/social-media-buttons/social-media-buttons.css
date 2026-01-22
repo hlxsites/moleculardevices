@@ -1,5 +1,8 @@
-.section div.social-media-buttons-wrapper {
+.section .social-media-buttons-wrapper {
   margin-bottom: 50px;
+}
+
+.section:not(.sidebar) .social-media-buttons-wrapper {
   padding: 0;
 }
 

@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: '22.x'                # set this to the node version to use
+  NODE_VERSION: '25.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
@@ -33,7 +33,8 @@ jobs:
           repository: coveo
           file_pattern: "coveo-xml.xml"
           push_options: --force
-
+          skip_dirty_check: true
+          commit_options: "--allow-empty"
   build-sitemap:
     needs: build-coveo
     runs-on: ubuntu-latest

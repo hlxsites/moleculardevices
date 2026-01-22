@@ -1,0 +1,141 @@
+/* stylelint-disable no-descending-specificity */
+.event-banner {
+  display: grid;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+}
+
+.event-banner .left-col {
+  overflow: hidden;
+}
+
+.event-thumb-left .left-col img {
+  object-position: left;
+}
+
+.event-banner .left-col img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  min-height: 200px;
+  height: 100%;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  aspect-ratio: 16/9;
+}
+
+.event-banner .left-col a img:hover {
+  transform: scale(1.05);
+}
+
+.event-banner .right-col {
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid var(--color-gray-200);
+}
+
+.event-banner .event-title,
+.event-banner h1,
+.event-banner .event-sub-title {
+  color: var(--color-text-primary);
+  font-family: var(--ff-proxima-xbold);
+}
+
+.event-banner .event-title,
+.event-banner h1 {
+  font-size: var(--font-size-h3);
+  margin-top: 0;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  padding: 0;
+  border-bottom: none;
+}
+
+.event-banner .event-sub-title {
+  font-size: 1.25rem;
+}
+
+.event-banner .event-title a {
+  color: inherit;
+}
+
+.event-banner p {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.event-banner p.booth {
+  font-weight: 600;
+}
+
+.cite {
+  font-family: var(--ff-proxima-light);
+  font-size: var(--font-size-h5);
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+main .share-event {
+  float: left;
+  padding: 15px 0 0;
+}
+
+main .share-event p {
+  margin: 0 0 15px;
+  text-transform: uppercase;
+  font-family: var(--ff-proxima-light);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.social-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.social-links li a i {
+  display: inline-block;
+  font-size: 21px;
+}
+
+.featured-event-banner .event-title {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.featured-event-banner p.cite,
+p.cite {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .event-banner {
+    grid-template-columns: 65% 35%;
+  }
+
+  .event-banner .left-col img {
+    min-height: 380px;
+  }
+
+  .event-banner .event-title,
+  .event-banner h1 {
+    font-size: var(--font-size-body-xl);
+  }
+
+  .event-banner .right-col {
+    padding: 1.5rem 2rem 1rem;
+  }
+}

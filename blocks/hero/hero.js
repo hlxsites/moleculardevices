@@ -132,36 +132,83 @@ function showHidePricingRequestButton(block) {
   }
 }
 
+/* add class on geo location base */
+function extractGeoSuffix(href) {
+  const match = href.match(/-([a-z]{2})\.pdf$/);
+  return match ? match[1] : '';
+}
+
+function extractBaseName(href) {
+  const file = href.split('/').pop();
+  return file.replace(/(-[a-z]{2})?\.pdf$/, '');
+}
+
+function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
+  if (!referenceLink || !referenceLink.href) return;
+
+  const refHref = referenceLink.getAttribute('href');
+  const refBaseName = extractBaseName(refHref);
+  const anchors = document.querySelectorAll('a[href$=".pdf"]');
+
+  anchors.forEach((link) => {
+    const href = link.getAttribute('href');
+    const baseName = extractBaseName(href);
+
+    if (baseName === refBaseName) {
+      const geoCode = extractGeoSuffix(href);
+      if (geoCode) {
+        link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
+      } else {
+        link.parentElement.classList.add(baseClass);
+      }
+    }
+  });
+}
+
+function decorateHeroImage(inner, block) {
+  const picture = block.querySelector('picture');
+  const heading = block.querySelector('h1');
+
+  if (!picture) {
+    inner.classList.add('white-bg');
+    return;
+  }
+
+  const imgEl = picture.querySelector('img');
+  if (!imgEl) return;
+  if (imgEl.alt && heading) { imgEl.alt = heading.textContent; }
+  imgEl.loading = 'eager';
+  imgEl.fetchPriority = 'high';
+  imgEl.decoding = 'async';
+
+  picture.classList.add('hero-background');
+
+  if (picture && block.classList.contains('hero-insider')) {
+    const pictureSrc = new URL(picture.lastElementChild.src);
+    pictureSrc.searchParams.delete('width');
+    inner.setAttribute('style', `background-image: url('${pictureSrc.toString()}')`);
+    picture.parentElement.remove();
+  }
+
+  inner.prepend(picture);
+}
+
 export function buildHero(block) {
   const inner = div({ class: 'hero-inner' });
   const container = div({ class: 'container' });
 
-  let picture = block.querySelector('picture');
+  /* show/hide cta in geo sites */
+  const ctaLinks = block.querySelectorAll('a');
+  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink, 'OneLinkHide'));
 
-  if (picture && block.classList.contains('hero-insider')) {
-    inner.setAttribute('style', `background-image: url('${picture.lastElementChild.src}')`);
-    picture.parentElement.remove();
+  /* removed duplicate breadcrumb block */
+  const hasBreadcrumbBlock = getMetadata('breadcrumbs') === 'auto';
+  if (hasBreadcrumbBlock) {
+    const meta = document.querySelector('meta[name="breadcrumbs"]');
+    if (meta) meta.remove();
   }
 
-  if (picture && !block.classList.contains('hero-insider')) {
-    const originalHeroBg = picture.lastElementChild;
-    const optimizedHeroBg = createOptimizedPicture(
-      originalHeroBg.src,
-      originalHeroBg.getAttribute('alt'),
-      true,
-      [
-        { media: '(min-width: 600px)', width: '2000' },
-        { width: '1200' },
-      ],
-    );
-
-    picture.replaceWith(optimizedHeroBg);
-    picture = optimizedHeroBg;
-    picture.classList.add('hero-background');
-    inner.prepend(picture.parentElement);
-  } else {
-    inner.classList.add('white-bg');
-  }
+  decorateHeroImage(inner, block);
 
   const rows = block.children.length;
   [...block.children].forEach((row, indx) => {
@@ -191,7 +238,7 @@ export function buildHero(block) {
           container.appendChild(column);
         });
       } else {
-        if (row.querySelector('h1:last-child')) inner.classList.add('short');
+        // if (row.querySelector('h1:last-child')) inner.classList.add('short');
         container.appendChild(row);
       }
     } else {
@@ -202,9 +249,9 @@ export function buildHero(block) {
   const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
   block.appendChild(inner);
   inner.appendChild(breadcrumbs);
-  inner.appendChild(container);
+  if (container.textContent.trim() !== '') inner.appendChild(container);
 
-  if (block.classList.contains('blog')) {
+  if (block.classList.contains('blog') || block.classList.contains('newsroom')) {
     addMetadata(container);
     addBlockSticker(breadcrumbs);
     block.parentElement.appendChild(container);
@@ -214,12 +261,6 @@ export function buildHero(block) {
     inner.classList.remove('white-bg');
     inner.appendChild(container);
     block.appendChild(inner);
-  }
-
-  if (block.classList.contains('newsroom')) {
-    addMetadata(container);
-    addBlockSticker(breadcrumbs);
-    block.parentElement.appendChild(container);
   }
 
   showHidePricingRequestButton(block);

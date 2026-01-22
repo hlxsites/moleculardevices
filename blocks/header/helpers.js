@@ -1,7 +1,9 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
+// eslint-disable-next-line import/no-cycle
+import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from './header.js';
 
 let elementsWithEventListener = [];
 
@@ -52,7 +54,12 @@ export function expandMenu(element) {
 
 export function buildBrandLogo(content) {
   const logoImg = content.querySelector('.nav-brand');
-
+  const logoImgs = document.createElement('img');
+  logoImgs.src = SITE_LOGO_URL;
+  logoImgs.alt = SITE_LOGO_ALT_VALUE;
+  logoImgs.width = 220;
+  logoImgs.height = 30;
+  logoImg.appendChild(logoImgs);
   const logoLink = a(
     { href: '/', 'aria-label': 'Home' },
   );
@@ -144,4 +151,26 @@ export function decorateLanguagesTool(tools) {
       languagesList.classList.remove('show');
     }
   });
+}
+
+// eslint-disable-next-line consistent-return
+export function fetchMenuId(menuId) {
+  const primaryMenuLink = document.getElementById(menuId)?.querySelector('a').href;
+
+  if (primaryMenuLink) {
+    let cleanedMenuId = toClassName(new URL(primaryMenuLink).pathname);
+
+    switch (cleanedMenuId) {
+      case 'search-results':
+        cleanedMenuId = 'resources';
+        break;
+      case 'about-us':
+        cleanedMenuId = 'company';
+        break;
+
+      default:
+        break;
+    }
+    return cleanedMenuId;
+  }
 }

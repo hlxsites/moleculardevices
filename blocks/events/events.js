@@ -10,11 +10,8 @@ import {
 } from '../../scripts/dom-helpers.js';
 
 const DEFAULT_REGIONS = [
-  'Africa',
-  'Asia Pacific',
-  'Central & South America',
+  'Asia',
   'Europe',
-  'Middle East',
   'North America',
 ];
 
@@ -25,27 +22,20 @@ function splitByComma(value) {
 }
 
 function prepareEntry(entry, showDescription, viewMoreText) {
-  entry.filterEventType = splitByComma(entry.eventType)
-    .map(toClassName);
-  entry.filterEventRegion = splitByComma(entry.eventRegion)
-    .map(toClassName);
+  entry.filterEventType = splitByComma(entry.eventType).map(toClassName);
+  entry.filterEventRegion = splitByComma(entry.eventRegion).map(toClassName);
   entry.date = '0';
   const keywords = [];
   if (entry.eventType !== '0') keywords[keywords.length] = entry.eventType;
   if (entry.eventRegion !== '0') keywords[keywords.length] = entry.eventRegion;
   if (entry.eventAddress !== '0') keywords[keywords.length] = entry.eventAddress;
   entry.keywords = keywords;
-  if (!showDescription) {
-    entry.description = '';
-  }
-  if (viewMoreText) {
-    entry.viewMoreText = viewMoreText;
-  }
+  if (!showDescription) entry.description = '';
+  if (viewMoreText) entry.viewMoreText = viewMoreText;
 }
 
 function createEventsDropdown(options, selected, name, placeholder) {
-  const container = div({ class: 'select' });
-  container.setAttribute('name', name);
+  const container = div({ class: 'select', name });
 
   const btn = div({
     type: 'button',
@@ -99,7 +89,7 @@ function createFilters(options) {
   ];
 }
 
-function compareEvents(eventA, eventB) {
+export function compareEvents(eventA, eventB) {
   if (eventA.eventStart < eventB.eventStart) {
     return -1;
   }
@@ -116,18 +106,12 @@ function sortEvents(data, showFutureEvents) {
   }
 }
 
-async function createOverview(
-  block,
-  options,
-) {
+async function createOverview(block, options) {
   block.innerHTML = '';
   options.data.forEach(
     (entry) => prepareEntry(entry, options.showDescription, options.viewMoreText),
   );
-  await createList(
-    createFilters(options),
-    options,
-    block);
+  await createList(createFilters(options), options, block);
 }
 
 async function fetchEvents(options) {
@@ -181,9 +165,11 @@ export default async function decorate(block) {
   const relatedLink = block.querySelector('a');
   const showFutureEvents = document.querySelector('.events.future');
   const showArchivedEvents = document.querySelector('.events.archive');
+
   placeholders = await fetchPlaceholders();
+
   const options = {
-    limitPerPage: parseInt(config.limitPerPage, 10) || 10,
+    limitPerPage: parseInt(config.limitPerPage, 9) || 9,
     limitForPagination: parseInt(config.limitForPagination, 9) || 9,
     title: title ? title.innerHTML : '',
     panelTitle: `${placeholders.filterBy || 'Filter By'} :`,
@@ -202,7 +188,5 @@ export default async function decorate(block) {
 
   options.data = await fetchEvents(options);
   sortEvents(options.data, showFutureEvents);
-  await createOverview(
-    block,
-    options);
+  await createOverview(block, options);
 }

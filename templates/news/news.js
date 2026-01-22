@@ -74,6 +74,7 @@ export function decorateAutoBlock(content) {
   }
 
   if (isFullArticlePage) {
+    loadCSS('/templates/blog/blog.css');
     const publisher = getMetadata('publisher');
     const gatedUrl = getMetadata('article-url');
     const creditParagraph = div({ style: 'margin-block: 30px;' },
@@ -127,5 +128,5 @@ export function decorateAutoBlock(content) {
 export default function buildAutoBlocks() {
   const container = document.querySelector('main div');
   decorateAutoBlock(container);
-  container.append(buildBlock('social-share', '<p>Share this news</p>'));
+  container.appendChild(buildBlock('social-share', '<p>Share this news</p>'));
 }

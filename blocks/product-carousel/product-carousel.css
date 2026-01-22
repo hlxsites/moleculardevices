@@ -44,16 +44,15 @@ main .carousel.product-carousel {
 }
 
 .product-carousel .carousel-item .card-caption h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--font-size-h3);
   margin-bottom: 8px;
   margin-top: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .product-carousel .carousel-item .card-caption .button-container {
   float: left;
   text-align: left;
-  display: inline-block;
   margin-top: 10px;
   margin-bottom: 0;
 }

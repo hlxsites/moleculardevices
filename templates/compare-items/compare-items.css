@@ -3,16 +3,19 @@ main .compare-banner {
   position: fixed;
   z-index: 94035;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--background-color-green);
-  display: none;
-  padding: 12px 0;
-  margin-top: -40px;
+  bottom: -100%;
+  background: var(--color-tertiary);
+  width: 100%;
+  padding: 27px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
 main .compare-banner.show {
-  display: block;
+  bottom: 0;
+  opacity: 1;
+  visibility: visible;
 }
 
 main .compare-banner .container {
@@ -20,18 +23,8 @@ main .compare-banner .container {
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px;
-}
-
-@media (min-width: 992px) {
-  main .compare-banner .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .compare-banner .container {
-    width: 1170px;
-  }
+  width: 100%;
+  max-width: var(--layout-max-width);
 }
 
 main .compare-banner .compare-row {
@@ -43,12 +36,10 @@ main .compare-banner .compare-row {
 main .compare-banner .compare-cell {
   display: table-cell;
   vertical-align: middle;
-  padding: 15px;
 }
 
 main .compare-banner .compare-row .compare-cell .compare-cell {
   width: 33%;
-  border-left: 1px solid #95c872;
   padding: 0;
 }
 
@@ -56,11 +47,19 @@ main .compare-banner .compare-cell.button {
   width: 240px;
   padding: 0;
   text-overflow: unset;
-  border-left: 1px solid #95c872;
+}
+
+main .compare-banner .compare-row .compare-cell .compare-cell,
+main .compare-banner .compare-cell.button {
+  border-left: 1px solid rgb(var(--color-white-rgb) / 60%);
+}
+
+main .compare-banner .compare-row .compare-cell .compare-cell:first-child {
+  border-left: unset;
 }
 
 main .compare-banner .compare-data {
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 16px;
   line-height: 1.1;
   position: relative;
@@ -73,9 +72,9 @@ main .compare-banner .compare-data {
 
 main .compare-banner .gradiant-blue-btn.btn {
   border: 0;
-  transition: all .2s;
+  transition: all 0.2s;
   min-width: 140px;
-  color: #fff;
+  color: var(--color-white);
   position: relative;
   height: auto;
   border-radius: 0;
@@ -86,22 +85,10 @@ main .compare-banner .gradiant-blue-btn.btn {
 }
 
 main .compare-banner .gradiant-blue-btn.btn:hover {
-  background: #fff;
-  box-shadow: 0 0 10px 1px rgb(0 0 0 /20%);
-  color: #6eb43f;
+  background: var(--color-white);
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-20);
+  color: var(--color-tertiary);
   cursor: pointer;
-}
-
-main .compare-banner .gradiant-blue-btn.btn:hover .btn_bdr {
-  display: block;
-  width: 50%;
-  margin-bottom: 0;
-  position: absolute;
-  margin-left: 0;
-  height: 4px;
-  background: #0066a4;
-  left: 25%;
-  bottom: -5px;
 }
 
 main .compare-banner .compare-data .gradiant-blue-btn.btn {
@@ -112,7 +99,7 @@ main .compare-banner .compare-data .gradiant-blue-btn.btn {
 }
 
 main .compare-banner .gradiant-blue-btn {
-  background: var(--button-bg-color);
+  background: var(--color-primary);
 }
 
 main .compare-banner .compare-data .close {

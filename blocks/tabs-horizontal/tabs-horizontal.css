@@ -8,7 +8,7 @@
 
 .tabs-horizontal h2 {
   font-size: 42px;
-  color: #5f696b;
+  color: var(--color-input);
   font-family: var(--ff-proxima-regular);
 }
 
@@ -19,17 +19,22 @@
 
 .tabs-horizontal .tab-pane {
   display: none;
-  border: 1px solid var(--border-color-gray);
-  background-color: var(--background-color);
+  border: 1px solid var(--color-gray-400);
+  background-color: var(--color-white);
 }
 
 .tabs-horizontal .tab-pane.active {
   display: block;
 }
 
-.tabs-horizontal .tab-pane > div {
+.tabs-horizontal .tab-pane > div,
+.section .tabs-horizontal .tab-pane > .section {
   padding-left: 50px;
   padding-right: 50px;
+}
+
+.section .tabs-horizontal .tab-pane > .section article {
+  width: 100%;
 }
 
 .tabs-horizontal .tab-pane .columns {
@@ -51,15 +56,15 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  color: var(--text-white);
-  border: 1px solid var(--text-white);
-  border-bottom-color: var(--dark-gray-background-color);
-  background-color: var(--border-color-gray);
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-bottom-color: var(--color-theme-gray-dark);
+  background-color: var(--color-gray-400);
   cursor: pointer;
 }
 
 .tabs-horizontal li.tabs-nav-item.active {
-  background-color: var(--dark-gray-background-color);
+  background-color: var(--color-theme-gray-dark);
 }
 
 @media only screen and (max-width: 767px) {

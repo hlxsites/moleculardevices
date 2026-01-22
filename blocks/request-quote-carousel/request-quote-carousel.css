@@ -44,21 +44,21 @@ main .carousel.request-quote-carousel {
 }
 
 .carousel.request-quote-carousel .card-description {
-  font-size: var(--body-font-size-s);
-  color: var(--text-color);
-  margin-bottom: 10px;
-  display: block;
+  font-size: var(--font-size-body-s);
+  color: var(--color-text-primary);
   display: -webkit-box;
+  display: block;
   -webkit-line-clamp: 5;
   line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .carousel.request-quote-carousel .card-caption .c2a {
   display: flex;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: auto;
 }
 
 .carousel.request-quote-carousel.no-description .card-caption .c2a {
@@ -73,12 +73,23 @@ main .carousel.request-quote-carousel {
   margin-bottom: 0;
 }
 
-.carousel.request-quote-carousel .card .button-container a {
-  color: #008ca8;
-  font-size: var(--body-font-size-s);
+.carousel.request-quote-carousel .card .button-container a:not(.button) {
+  color: var(--color-primary);
+  font-size: var(--font-size-body-s);
   display: flex;
   min-width: 135px;
   align-items: center;
+}
+
+.carousel.request-quote-carousel .card .button-container:has(.button) {
+  margin-top: 1rem;
+}
+
+.carousel.request-quote-carousel .card .button-container .button.primary {
+  color: var(--color-tertiary);
+  display: block;
+  font-size: var(--body-font-size-s);
+  padding: 8px 16px;
 }
 
 .carousel.request-quote-carousel .card .button-container a span svg {

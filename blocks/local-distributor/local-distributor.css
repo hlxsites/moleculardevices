@@ -1,5 +1,5 @@
 .section.local-distributor-container {
-  background-color: var(--background-color) !important;
+  background-color: var(--color-white) !important;
   background-image: url('/images/regional-office-bg.jpg');
   background-position: top center;
   background-repeat: no-repeat;
@@ -24,9 +24,9 @@
 }
 
 .local-distributor {
-  border: 1px solid var(--border-color-gray);
-  border-top: 7px solid var(--dark-gray-background-color);
-  font-size: var(--body-font-size-s);
+  border: 1px solid var(--color-gray-400);
+  border-top: 7px solid var(--color-theme-gray-dark);
+  font-size: var(--font-size-body-s);
   position: relative;
 }
 
@@ -42,24 +42,24 @@
   bottom: 7px;
 }
 
-.local-distributor > div:nth-child(2) {
+.local-distributor > div:nth-child(2),
+.local-distributor-wrapper h3 {
   background-color: rgb(240 241 242 / 50%);
 }
 
 .local-distributor-wrapper h3 {
-  background-color: rgb(240 241 242 / 50%);
-  font-size: var(--body-font-size-xl);
+  font-size: var(--font-size-body-xl);
   margin: 0;
   padding-bottom: 35px;
 }
 
 .local-distributor-wrapper p {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   margin-top: 0;
 }
 
 .local-distributor > div.search-result {
-  border-top: 1px solid var(--border-color-gray);
+  border-top: 1px solid var(--color-gray-400);
   padding-top: 40px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .local-distributor > div.search-result p {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin-bottom: 0;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .local-distributor > div.search-result div {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   line-height: 1.4;
   margin-bottom: 30px;
 }
@@ -95,14 +95,14 @@
 
 .local-distributor > div.search-result .search-result-content .type {
   font-family: var(--ff-proxima-light);
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   font-weight: bold;
   margin: 8px 0 5px;
   position: relative;
 }
 
 .local-distributor > div.search-result .search-result-content .type::before {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   display: inline-block;
   font-family: FontAwesome, sans-serif;
   font-size: 32px;
@@ -130,7 +130,7 @@
 }
 
 .local-distributor > div.search-result .search-result-content .productfamily {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   display: inline-block;
   font-size: 12px;
   font-style: italic;
@@ -150,7 +150,7 @@
 }
 
 .local-distributor .form .form-group .fields .select-wrapper span {
-  color: var(--dark-gray-background-color);
+  color: var(--color-theme-gray);
   position: absolute;
   right: 20px;
   top: 16px;
@@ -160,8 +160,8 @@
   appearance: none;
   border: 0;
   border-radius: 0;
-  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
-  color: #34393d;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-10);
+  color: var(--color-text-primary);
   font-size: 18px;
   height: 50px;
   outline: 0;
@@ -169,13 +169,13 @@
 }
 
 .local-distributor .form button {
-  background-color: var(--button-bg-color);
+  background-color: var(--color-primary);
   border: 0;
-  color: var(--button-color);
+  color: var(--color-white);
 }
 
 .section.local-distributor-container h3.no-result {
-  color: red;
+  color: var(--color-state-danger);
   text-align: center;
   width: 100%;
   font-size: 18px;

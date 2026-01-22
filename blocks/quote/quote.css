@@ -12,7 +12,7 @@
 
 .quote .quote-text,
 .quote .quote-author {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: 20px;
 }
 
@@ -32,7 +32,7 @@
   right: 0;
   left: 0;
   margin: 0 auto;
-  background: var(--blog-gradient);
+  background: var(--gradient-theme);
   height: 4px;
   width: 366px;
 }
@@ -55,8 +55,8 @@
 }
 
 .customer-breakthrough .quote .quote-text {
-  font-size: var(--body-font-size-l);
-  color: var(--link-hover-color);
+  font-size: var(--font-size-body-l);
+  color: var(--color-link-hover);
 }
 
 .customer-breakthrough .quote .quote-text::before,
@@ -65,7 +65,7 @@
 }
 
 .customer-breakthrough .quote .quote-author {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
   padding: 10px 0;
 }
 

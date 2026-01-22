@@ -42,12 +42,12 @@ main .section .resources-wrapper {
 }
 
 .resources .resource-description {
-  font-size: var(--body-font-size-s);
+  font-size: var(--font-size-body-s);
   margin: 15px 0;
 }
 
 .resources .resource-link a {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 .resources .video-resources-title {
@@ -62,7 +62,7 @@ main .section .resources-wrapper {
 }
 
 .resources .video-container {
-  box-shadow: 0 1px 15px rgba(0 0 0 / 20%);
+  box-shadow: 0 1px 15px var(--color-black-alpha-20);
   height: 309px;
 }
 
@@ -98,7 +98,7 @@ main .section .resources-wrapper {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: var(--text-dark-gray);
+  background-color: var(--color-theme-gray);
   opacity: 0.65;
   transition: opacity 0.2s linear;
   overflow: hidden;
@@ -140,7 +140,7 @@ main .section .resources-wrapper {
   height: 0;
   margin: -200px 0 -200px -300px;
   border: 200px solid transparent;
-  border-left: 300px solid #fff;
+  border-left: 300px solid var(--color-white);
   border-right: none;
 }
 
@@ -177,7 +177,7 @@ main .section .resources-wrapper {
 }
 
 .resources .filter a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .resources .filter[aria-selected="true"] a {
@@ -253,15 +253,15 @@ main .section .resources-wrapper {
 }
 
 .section .resources .coveo-search-box .magic-box .magic-box-input > input {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   width: 100%;
   height: 35px;
   font-family: var(--ff-proxima-light);
   font-size: 16px;
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-gray-250);
   border-radius: 4px 0 0 4px;
-  color: #555;
+  color: var(--color-gray-650);
   margin-bottom: 0;
 }
 
@@ -301,7 +301,7 @@ main .section .resources-wrapper {
   content: "";
   position: absolute;
   background-image: url("/images/ajax-common-loader-gray.gif");
-  background-color: #fff;
+  background-color: var(--color-white);
   background-size: 50px;
   background-position: center 200px;
   background-repeat: no-repeat;
@@ -365,11 +365,11 @@ main .section .resources-wrapper {
   .resources li.filter[aria-selected="true"] {
     display: block;
     order: -1;
-    color: var(--link-hover-color);
+    color: var(--color-link-hover);
   }
 
   .resources li.filter[aria-selected="true"] a {
-    color: var(--link-hover-color);
+    color: var(--color-link-hover);
   }
 
   .resources li.filter[aria-selected="true"] .icon.icon-chevron-right-outline {

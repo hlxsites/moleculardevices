@@ -34,6 +34,7 @@ function LoadDriftWidget() {
       window.analytics.track("chat_converted");
   }
 });
+    
 };
 /* eslint-enable */
 
@@ -99,7 +100,7 @@ function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
-// SalesForce MCP - start
+// SalesForce MCP - start ...
 
 function loadEvergageScript() {
   const script = document.createElement('script');
@@ -134,7 +135,9 @@ if (!isSidekickLibrary) {
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
   }
-  if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
+  /* if (!window.location.hostname.includes('localhost') && !document.location.hostname.match('.aem.page') && !document.location.hostname.match('www.moleculardevices.com.cn')) {
     LoadDriftWidget();
-  }
+  } */
+
 }
+ 

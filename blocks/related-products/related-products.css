@@ -39,7 +39,7 @@ main .section .related-products-wrapper {
 }
 
 .related-products .card-caption .card-description {
-  font-size: var(--body-font-size-xs);
+  font-size: var(--font-size-body-xs);
 }
 
 .related-products .card .button-container {
@@ -50,7 +50,7 @@ main .section .related-products-wrapper {
 }
 
 .related-products .card .button-container a {
-  color: #008ca8;
+  color: var(--color-primary);
 }
 
 .related-products .carousel-item.clone {

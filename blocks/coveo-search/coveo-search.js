@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { loadCSS } from '../../scripts/lib-franklin.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 
@@ -212,6 +213,7 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     /* global Coveo */
     Coveo.SearchEndpoint.configureCloudV2Endpoint(organizationID, accessToken);
     Coveo.init(document.getElementById('search'), {
+      searchHub: 'resourceHubSearch',
       ExcerptConditionalRendering: {
         values: ['public'],
         compareValue: pCookie,

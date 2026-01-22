@@ -1,46 +1,10 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
-/* eslint-disable max-classes-per-file */
 import { loadCSS, decorateIcons } from '../../scripts/lib-franklin.js';
 import {
   div, button, h2, a, h3, img, span, p,
 } from '../../scripts/dom-helpers.js';
 import { unselectSpecificComparedItem } from '../../scripts/compare-helpers.js';
-
-class Item {
-  constructor(identifier, title, path, thumbnail, familyID, specifications) {
-    this.identifier = identifier;
-    this.title = title;
-    this.path = path;
-    this.thumbnail = thumbnail;
-    this.familyID = familyID;
-    this.specifications = specifications;
-  }
-
-  getTitle() {
-    return this.title;
-  }
-
-  getPath() {
-    return this.path;
-  }
-
-  getIdentifier() {
-    return this.identifier;
-  }
-
-  getThumbnail() {
-    return this.thumbnail;
-  }
-
-  getFamilyID() {
-    return this.familyID;
-  }
-
-  getSpecs() {
-    return this.specifications;
-  }
-}
+import Item from './Item.js';
 
 class CompareModal {
   constructor(compareBanner, config = {}) {
@@ -67,13 +31,8 @@ class CompareModal {
 
   async fetchItemSpecifications(specificationsPath) {
     const resp = await fetch(specificationsPath);
-
-    if (!resp.ok) {
-      return null;
-    }
-
-    const json = await resp.json();
-    return json;
+    if (!resp.ok) return null;
+    return resp.json();
   }
 
   parseSpecificationsSheet(info, json) {
@@ -257,12 +216,8 @@ class CompareModal {
         }
 
         valueColumns.push(
-          div(
-            { class: 'col-xs-6 col-sm-3', 'item-title': this.compareItemsMetadata[i].getTitle() },
-            div(
-              { class: 'comparison-cell' },
-              pElement,
-            ),
+          div({ class: 'col-xs-6 col-sm-3', 'item-title': this.compareItemsMetadata[i].getTitle() },
+            div({ class: 'comparison-cell' }, pElement),
           ),
         );
       }
@@ -270,26 +225,16 @@ class CompareModal {
       const parsedKey = this.parseUnconventionalCharacters(specName);
       const pElement = p();
       pElement.innerHTML = parsedKey;
-      const row = div(
-        { class: 'row' },
-        div(
-          { class: 'col-xs-12 col-sm-3' },
-          div(
-            { class: 'comparison-cell' },
-            pElement,
-          ),
+
+      const row = div({ class: 'row' },
+        div({ class: 'col-xs-12 col-sm-3' },
+          div({ class: 'comparison-cell' }, pElement),
         ),
       );
 
-      valueColumns.forEach((column) => {
-        row.appendChild(column);
-      });
+      valueColumns.forEach((column) => row.appendChild(column));
 
-      const comparisonRow = div(
-        { class: 'comparison-row' },
-        row,
-      );
-
+      const comparisonRow = div({ class: 'comparison-row' }, row);
       rows.push(comparisonRow);
     });
 
@@ -343,18 +288,12 @@ class CompareModal {
         { class: 'trash-icon', src: '/images/trash.png', alt: 'Remove' },
       );
 
-      const itemColumn = div(
-        { class: 'col-xs-6 col-sm-3', 'item-title': item.getTitle() },
-        div(
-          { class: 'comparison-cell' },
-          div(
-            { class: 'pro-container' },
+      const itemColumn = div({ class: 'col-xs-6 col-sm-3', 'item-title': item.getTitle() },
+        div({ class: 'comparison-cell' },
+          div({ class: 'pro-container' },
             removeButton,
-            img(
-              { alt: item.getTitle(), src: item.getThumbnail(), width: '100%' },
-            ),
-            div(
-              { class: 'pro-details' },
+            img({ alt: item.getTitle(), src: item.getThumbnail(), width: '100%' }),
+            div({ class: 'pro-details' },
               h3(item.getTitle()),
             ),
             links,
@@ -380,93 +319,50 @@ class CompareModal {
       itemColumns.push(itemColumn);
     }
 
-    const row = div(
-      { class: 'row' },
-      div(
-        { class: 'col-xs-12 col-sm-3' },
-        div(
-          { class: 'comparison-cell title' },
+    const row = div({ class: 'row' },
+      div({ class: 'col-xs-12 col-sm-3' },
+        div({ class: 'comparison-cell title' },
           h3('Features'),
         ),
       ),
     );
 
-    itemColumns.forEach((item) => {
-      row.appendChild(item);
-    });
+    itemColumns.forEach((item) => row.appendChild(item));
 
-    return div(
-      { class: 'comparison-row' },
-      row,
-    );
+    return div({ class: 'comparison-row' }, row);
   }
 
   // eslint-disable-next-line class-methods-use-this
   render() {
-    const closeBtn = a(
-      { class: 'img-ico img-ico-close emptycomparebox' },
-      img(
-        { src: '/images/close-black.png' },
-      ),
-    );
+    const closeBtn = a({ class: 'img-ico img-ico-close emptycomparebox' },
+      img({ src: '/images/close-black.png' },
+      ));
 
-    const itemsComparisonTable = div(
-      { class: 'comparison-table' },
-      this.createFeaturesRow(),
-    );
+    const itemsComparisonTable = div({ class: 'comparison-table' }, this.createFeaturesRow());
 
+    // append specifications
     const specificationsRows = this.createSpecificationsRows();
     specificationsRows.forEach((row) => {
       itemsComparisonTable.appendChild(row);
     });
 
-    const printBtn = button(
-      { class: 'btn btn-primary pull-right' },
-      'Print',
-    );
+    const printBtn = button({ class: 'btn btn-primary pull-right' }, 'Print');
 
-    const compareModal = div(
-      { class: 'pro-comparison-result popup' },
-      div(
-        { class: 'container' },
-        div(
-          { class: 'product-comparison' },
-          div(
-            { class: 'row' },
-            div(
-              { class: 'col-xs-12' },
-              div(
-                { class: 'section-heading text-center' },
-                printBtn,
-                h2('Product Comparison'),
-                closeBtn,
-              ),
-            ),
-          ),
-          div(
-            { id: 'comp-table-section', class: 'scroll_div' },
-            div(
-              { class: 'row' },
-              div(
-                { class: 'col-xs-12' },
-                itemsComparisonTable,
-              ),
-            ),
-          ),
+    const compareModal = div({ class: 'pro-comparison-result popup' },
+      div({ class: 'product-comparison container' },
+        div({ class: 'section-heading text-center' },
+          printBtn,
+          h2('Product Comparison'),
+          closeBtn,
         ),
+        div({ id: 'comp-table-section', class: 'scroll_div' }, itemsComparisonTable),
       ),
     );
 
-    printBtn.addEventListener('click', () => {
-      window.print();
-    });
+    printBtn.addEventListener('click', () => window.print());
+    closeBtn.addEventListener('click', () => this.hideModal());
 
     this.modal = compareModal;
-
-    closeBtn.addEventListener('click', () => {
-      this.hideModal();
-    });
-
     return compareModal;
   }
 
@@ -504,7 +400,7 @@ observer.observe(document.body, { childList: true, subtree: true });
  * @param {Array}   infos              array of items to compare
  * customizing the rendering and behaviour
  */
-export async function createCompareModalInterface(compareBanner, infos) {
+export default async function createCompareModalInterface(compareBanner, infos) {
   const modalInterface = new CompareModal(compareBanner, {});
   modalInterface.compareItemsMetadata = await modalInterface.createItems(infos);
   await modalInterface.loadCSSFiles();

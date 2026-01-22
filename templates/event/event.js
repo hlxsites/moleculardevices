@@ -1,22 +1,31 @@
-import {
-  div,
-} from '../../scripts/dom-helpers.js';
-
-async function renderDetails(insertAfterElement) {
-  const summary = div({ class: 'event-summary' });
-  insertAfterElement.parentNode.insertBefore(summary, insertAfterElement.nextSibling);
-}
+import { createEventBanner } from '../../blocks/event-banner/event-banner.js';
+import { div } from '../../scripts/dom-helpers.js';
+import { getAllMetadata, getMetadata } from '../../scripts/lib-franklin.js';
 
 export default async function buildAutoBlocks() {
-  const title = document.getElementById('event-details');
-  if (title) title.classList.add('event-title');
+  const {
+    address, booth, end, region, start, type, url,
+  } = getAllMetadata('event');
+  const image = getMetadata('og:image');
+  const title = document.querySelector('main h1');
+  const eventType = type || 'Conference';
+  const main = document.getElementsByTagName('main')[0];
 
-  const moreBtn = document.querySelector('main strong > a:last-of-type');
-  if (moreBtn) {
-    moreBtn.setAttribute('target', '_blank');
-    const par = moreBtn.closest('p');
-    par.classList.add('find-out-more');
-  }
+  const eventObj = {
+    image,
+    title,
+    eventType,
+    booth,
+    eventAddress: address,
+    eventStart: start,
+    eventEnd: end,
+    eventRegion: region,
+    eventURL: url,
+  };
 
-  renderDetails(title);
+  const eventBanner = div(
+    { class: 'section no-padding-top no-padding-bottom' },
+    createEventBanner(eventObj),
+  );
+  main.insertAdjacentElement('afterbegin', eventBanner);
 }

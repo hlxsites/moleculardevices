@@ -18,7 +18,7 @@ main .insider-carousel .carousel-item {
 }
 
 main .insider-carousel .carousel-item h3 > em {
-  font-size: var(--body-font-size-m);
+  font-size: var(--font-size-body-m);
   display: block;
   margin-top: 4px;
 }
@@ -40,7 +40,7 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
   display: flex;
   flex-direction: column;
 
-  /* width: var(--section-div-width); */
+  /* width: var(--layout-max-width); */
 }
 
 .what-next .insider-carousel-wrapper .carousel-dot-img-buttons {
@@ -52,7 +52,7 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
 
 .what-next .insider-carousel-wrapper .carousel-dot-img-buttons .carousel-dot-button {
   margin-right: 0;
-  border: 3px solid var(--text-blue);
+  border: 3px solid var(--color-primary);
   padding: 0;
 }
 
@@ -62,7 +62,7 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
 }
 
 /* .what-next .insider-carousel-wrapper .carousel-nav-button {
-  border-color: var(--text-blue);
+  border-color: var(--color-primary);
 } */
 
 .what-next .insider-carousel-wrapper .carousel-nav-button .icon {
@@ -85,14 +85,14 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
 }
 
 .what-next main .insider-carousel .carousel-item-text .button-container em a {
-  border-color: var(--cyan-color);
+  border-color: var(--color-cyan);
   min-width: 200px;
   margin-top: 30px;
 }
 
 .what-next main .insider-carousel .carousel-item-text .button-container em a:hover,
 .what-next main .insider-carousel .carousel-item-text .button-container em a:focus {
-  color: var(--link-hover-color);
+  color: var(--color-link-hover);
 }
 
 .what-next .insider-carousel-wrapper .carousel-item-image,
@@ -127,11 +127,11 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
 
   .what-next .insider-carousel-wrapper .carousel-nav-button {
     top: 60%;
-    border-color: var(--text-white);
+    border-color: var(--color-white);
   }
 
   .what-next .insider-carousel-wrapper .carousel-nav-button .icon {
-    color: var(--text-white);
+    color: var(--color-white);
   }
 }
 
@@ -155,8 +155,8 @@ main .carousel-dot-img-buttons:has(> .carousel-dot-button:only-child) {
 
   .what-next .insider-carousel-wrapper .carousel-item-image {
     border-radius: 50%;
-    border: 10px solid var(--cyan-color);
-    background-color: #fff;
+    border: 10px solid var(--color-cyan);
+    background-color: var(--color-white);
     overflow: hidden;
     padding-top: 40px;
     aspect-ratio: 1 / 1;

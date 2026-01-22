@@ -18,20 +18,15 @@
     margin-bottom: 30px;
   }
 
-  .hero-advanced .hero-inner a.button.secondary {
-   border: 2px solid #fff;
-   padding: 13px 18px;
-  }
-
-  .hero-advanced .container > div{
+  .hero-advanced .container > div {
     max-width: 66.67%;
   }
 }
 
 @media (max-width: 767px) {
   .hero-advanced .hero-inner {
-    background-color: var(--grey-background-color);
-    color: var(--text-color);
+    background-color: var(--color-gray-50);
+    color: var(--color-text-primary);
     padding-top: 30px;
   }
 
@@ -44,11 +39,11 @@
   }
 
   .hero-advanced .hero-inner h1 {
-    color: var(--text-color);
+    color: var(--color-text-primary);
     font-family: var(--ff-proxima-light);
   }
 
-  .hero-advanced .hero-inner .two-column h1+div {
+  .hero-advanced .hero-inner .two-column h1 + div {
     text-align: center;
   }
 
@@ -61,17 +56,18 @@
 
   .hero-advanced .hero-inner .video-column {
     position: absolute;
-    top: 25%;
-    left: 40%;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .hero-advanced .hero-inner p {
-    font-size: var(--body-font-size-l);
+    font-size: var(--font-size-body-l);
   }
 
   .hero-advanced .hero-inner a.button.secondary {
-    border: 2px solid var(--button-bg-color);
-    color: var(--button-bg-color);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
     padding: 8px 12px;
   }
 

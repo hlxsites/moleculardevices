@@ -1,16 +1,16 @@
-main div.recent-news-carousel-container {
+main .recent-news-carousel-container {
 	width: 1140px;
 	padding: 0 15px;
 	margin: 60px auto 0;
 }
 
-main div.carousel-wrapper.recent-news-carousel-wrapper {
+main .carousel-wrapper.recent-news-carousel-wrapper {
 	padding: 0 !important;
 }
 
 main .carousel-wrapper.recent-news-carousel-wrapper .carousel-nav-button:hover {
-	color: #adb3b7;
-	border: 1.5px solid #adb3b7;
+	color: var(--color-gray-500);
+	border: 1.5px solid var(--color-gray-500);
 	background-color: inherit;
 }
 
@@ -38,7 +38,7 @@ main .blog-card-thumb:hover img {
 }
 
 @media only screen and (max-width: 1200px) {
-	main div.recent-news-carousel-container {
+	main .recent-news-carousel-container {
 		width: 940px;
 	}
 
@@ -54,7 +54,7 @@ main .blog-card-thumb:hover img {
 }
 
 @media only screen and (max-width: 991px) {
-	main div.recent-news-carousel-container {
+	main .recent-news-carousel-container {
 		width: 720px;
 	}
 
@@ -76,7 +76,7 @@ main .blog-card-thumb:hover img {
 }
 
 @media only screen and (max-width: 767px) {
-	main div.recent-news-carousel-container {
+	main .recent-news-carousel-container {
 		width: 100%;
 		padding: 0 30px;
 		margin-top: 50px;

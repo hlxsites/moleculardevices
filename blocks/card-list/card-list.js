@@ -2,7 +2,8 @@ import ffetch from '../../scripts/ffetch.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { div, h2 } from '../../scripts/dom-helpers.js';
-import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
+import { getBlogAndPublications } from '../../templates/blog/blog.js';
+import { activateTab } from '../../scripts/utilities.js';
 
 const viewAllCategory = 'viewall';
 
@@ -451,4 +452,6 @@ export default async function decorate(block) {
     VARIANTS[block.classList[1].toUpperCase()],
   );
   await cardList.render();
+  cardList.filterChanged();
+  activateTab();
 }

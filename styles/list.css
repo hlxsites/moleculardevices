@@ -1,9 +1,10 @@
+/* stylelint-disable no-descending-specificity */
 .list {
   padding-top: 67px;
 }
 
 .list > * {
-  font-size: var(--list-font-size-m);
+  font-size: var(--font-size-h4);
 }
 
 .list .event-title {
@@ -13,17 +14,21 @@
 }
 
 /* panel */
+.list > .filter {
+  margin-bottom: 2rem;
+}
+
 .list > .filter > .panel-title {
-  font-size: var(--list-heading-font-size-l);
+  font-size: var(--font-size-h3);
   font-weight: bold;
   margin: 0;
   padding: 8px 0 22px;
-  border-bottom: 1px solid var(--border-color-gray);
+  border-bottom: 1px solid var(--color-gray-400);
 }
 
 /* filters */
 .list > .filter > .select {
-  border-bottom: 1px solid var(--border-color-gray);
+  border-bottom: 1px solid var(--color-gray-400);
   padding: 10px 0 16px;
 }
 
@@ -40,7 +45,7 @@
   transition-duration: 0.3s;
 }
 
-.list  > .filter > .select > .dropdown-toggle::before {
+.list > .filter > .select > .dropdown-toggle::before {
   right: 21px;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -51,7 +56,7 @@
 
 .list > .filter > .select.open > .dropdown-toggle,
 .list > .filter > .select > .dropdown-toggle:hover {
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
 }
 
 .list > .filter > .select.open > .dropdown-toggle::before {
@@ -74,6 +79,26 @@
   flex-flow: wrap;
 }
 
+.list > .filter > .select > .dropdown-menu::-webkit-scrollbar {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.list > .filter > .select > .dropdown-menu::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.list > .filter > .select > .dropdown-menu::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.list > .filter > .select > .dropdown-menu::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid var(--color-white);
+  background-color: var(--color-black-alpha-50);
+}
+
 .list > .filter > .select > .dropdown-menu.open > p {
   height: 41px;
   line-height: 41px;
@@ -86,7 +111,7 @@
 .list > .items > .item {
   height: auto;
   max-width: 100%;
-  border-bottom: 2px solid var(--light-border-color-gray);
+  border-bottom: 2px solid var(--color-gray-200);
   padding: 37px 0 40px;
 }
 
@@ -105,21 +130,21 @@
 }
 
 .list > .items > .item > .content > p > .title {
-  font-size: var(--list-font-size-l);
+  font-size: var(--fs-body-xl);
   font-weight: bold;
   line-height: 1.1;
   margin-top: 15px;
-  margin-bottom:12px;
+  margin-bottom: 12px;
   color: unset;
   text-decoration: none;
 }
 
 .list > .items > .item > .content > .cite {
   font-family: var(--ff-proxima-light);
-  font-size: var(--list-font-size-s);
+  font-size: var(--font-size-h5);
   font-style: normal;
   font-weight: 600;
-  color: var(--text-dark-gray);
+  color: var(--color-gray-750);
 }
 
 .list > .items > .item > .image {
@@ -143,21 +168,22 @@
 
 .list > .pagination > .pager-item {
   display: inline-block;
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
   text-decoration: none;
   min-width: 55px;
   width: 55px;
   height: 55px;
-  border: 1px solid var(--text-light-gray);
+  border: 1px solid var(--color-gray-500);
   font-weight: bold;
   line-height: 53px;
   text-align: center;
-  font-size: var(--list-heading-font-size-l);
+  font-size: var(--font-size-h3);
   padding: 0;
   margin: 4px;
 }
 
-.list > .pagination > .pager-item.active, .list > .pagination > .pager-item:hover {
+.list > .pagination > .pager-item.active,
+.list > .pagination > .pager-item:hover {
   color: unset;
   border-color: unset;
 }
@@ -166,7 +192,7 @@
   display: none;
 }
 
-.list > .pagination > .pager-item + .pager-item, 
+.list > .pagination > .pager-item + .pager-item,
 .list > .pagination > .pager-item:first-child {
   margin-right: 20px;
 }
@@ -181,7 +207,7 @@
   }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .list {
     display: flex;
     flex-flow: wrap;
@@ -190,7 +216,7 @@
 
   .list > .items > .item {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     padding: 37px 0 20px;
   }
 
@@ -210,10 +236,6 @@
 
   .list > .filter {
     width: 100%;
-  }
-
-  .list > .filter > .select {
-    max-width: 259px;
   }
 }
 
@@ -247,4 +269,95 @@
   .list > .filter > .panel-title {
     max-width: 259px;
   }
+
+  .list > .filter > .select {
+    max-width: 259px;
+  }
 }
+
+/* UPDATED EVENTS */
+.event-summary-container .default-content-wrapper:has(h2:only-child),
+.events .list > .items h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.events .list > .items p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.events .list > .items > .item > .content > .cite {
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.events .list > .items h4 {
+  font-size: 1.25rem;
+  font-family: var(--ff-proxima-xbold);
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.events .list > .items h4 a {
+  color: inherit;
+}
+
+.events .list > .items {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-content: start;
+}
+
+.events .list > .items > .item {
+  flex-direction: column;
+  padding: 0;
+  margin-left: 0;
+  background-color: var(--color-white);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  position: relative;
+  border-bottom: none;
+}
+
+.events .list > .items > .item a,
+.events .list > .items > .item a picture,
+.events .list > .items > .item a picture img {
+  display: block;
+}
+
+.events .list > .items > .item > .content {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.25rem;
+  margin-top: 0;
+}
+
+.events .list > .items > .item .image {
+  padding-right: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  border: 1px solid var(--color-gray-200);
+  border-bottom: none;
+  overflow: hidden;
+  flex: none;
+}
+
+.events .list > .items > .item > .image img {
+  width: 100%;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  min-height: 160px;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.events .list > .items > .item > .image:hover img {
+  transform: scale(1.1);
+}
+
+/* @media only screen and (min-width: 768px) {} */

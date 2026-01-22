@@ -19,9 +19,9 @@ export default async function decorate(block) {
   [...headings].forEach((title, i) => {
     const hTagNameIndex = hTagNames.indexOf(title.tagName);
     if (hTagNameIndex >= firstHTagNameIndex
-        && hTagNameIndex < (firstHTagNameIndex + levels)
-        && i >= (itemsStart - 1)
-        && i < itemsEnd) {
+      && hTagNameIndex < (firstHTagNameIndex + levels)
+      && i >= (itemsStart - 1)
+      && i < itemsEnd) {
       if (hTagNameIndex > previousHTagNameIndex) {
         currentList.append(block.classList.contains('numbers') ? document.createElement('ol') : document.createElement('ul'));
         currentList = currentList.querySelector('ul:last-of-type, ol:last-of-type');

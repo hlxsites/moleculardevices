@@ -1,16 +1,18 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable import/no-cycle */
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
-import { buildBrandLogo, fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
+import { fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
-  a, div, li, span, i,
+  a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
+export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
+export const SITE_LOGO_ALT_VALUE = 'Molecular Devices logo';
 
 function renderCart() {
   return (
@@ -74,7 +76,8 @@ function addIndividualComponents(block) {
   if (!resourceEl) return;
 
   const resources = resourceEl.parentElement;
-  const rightSubMenu = resources.querySelector('.menu-nav-submenu > div > .right-submenu');
+  const mainMenu = resources.querySelector('.menu-nav-submenu');
+  const rightSubMenu = mainMenu.querySelector('div > .right-submenu');
 
   // add search bar to right submenu
   const searchBar = buildSearchBar('resourcesSearchForm');
@@ -92,17 +95,22 @@ export default async function decorate(block) {
   // fetch nav content
   const content = await fetchHeaderContent();
 
-  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
-
   // Create wrapper for logo header part
-  const navbarHeader = document.createElement('div');
-  navbarHeader.classList.add('navbar-header');
-  navbarHeader.append(buildBrandLogo(content));
+  const hasCustomLogo = content.querySelector('.nav-brand.custom-logo');
+  const navbarHeader = domEl('div', { class: 'navbar-header' });
+  const navBrand = div({ class: 'nav-brand' },
+    a({ href: '/', class: 'site-logo' },
+      createOptimizedPicture(SITE_LOGO_URL, SITE_LOGO_ALT_VALUE, true, [
+        { media: '(min-width: 992px)', width: 220, height: 65 },
+        { width: 220, height: 65 },
+      ]),
+    ));
+
+  navbarHeader.prepend(navBrand);
   navbarHeader.append(buildTools(content));
   navbarHeader.append(buildHamburger(content));
 
-  const headerWrapper = document.createElement('div');
-  headerWrapper.classList.add('container', 'sticky-element', 'sticky-mobile');
+  const headerWrapper = domEl('div', { class: 'container sticky-element sticky-mobile' });
   headerWrapper.append(navbarHeader);
 
   const hideSearch = hasCustomLogo;
@@ -115,6 +123,5 @@ export default async function decorate(block) {
   block.querySelectorAll('a').forEach(decorateExternalLink);
 
   addIndividualComponents(block);
-
   handleViewportChanges(block);
 }

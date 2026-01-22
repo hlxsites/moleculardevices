@@ -25,10 +25,11 @@ export async function buildMediaGallery(mg) {
   decorateIcons(carousel.parentElement);
   const wrapper = carousel.parentElement;
   const scroll = (leftScroll) => {
+    const wrapperWidth = wrapper.offsetWidth;
     let resultingLeftScroll = leftScroll;
     if (leftScroll < -100) {
-      resultingLeftScroll = leftScroll + wrapper.offsetWidth * carousel.children.length;
-    } else if (leftScroll + wrapper.offsetWidth > wrapper.offsetWidth * carousel.children.length) {
+      resultingLeftScroll = leftScroll + wrapperWidth * carousel.children.length;
+    } else if (leftScroll + wrapperWidth > wrapperWidth * carousel.children.length) {
       resultingLeftScroll = 0;
     }
     carousel.scrollTo({ top: 0, left: resultingLeftScroll, behavior: 'smooth' });

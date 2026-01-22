@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity, selector-class-pattern */
 main .pro-comparison-result {
-  background: rgb(0 0 0 / 90%);
+  background: var(--color-black-alpha-90);
   padding: 20px 0;
   position: fixed;
   display: none;
@@ -16,34 +16,15 @@ main .pro-comparison-result.show {
   display: block;
 }
 
-main .pro-comparison-result .container {
-  margin-right: auto;
-  margin-left: auto;
+main .pro-comparison-result .col-xs-12,
+main .pro-comparison-result .col-sm-3 {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-@media (min-width: 992px) {
-  main .pro-comparison-result .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 768px) {
-  main .pro-comparison-result .container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main .pro-comparison-result .container {
-    width: 1170px;
-  }
-}
-
 main .pro-comparison-result .product-comparison {
   position: relative;
-  background: var(--grey-background-color);
+  background: var(--color-gray-50);
   height: 95vh;
 }
 
@@ -63,50 +44,38 @@ main .pro-comparison-result .col-xs-12 {
   float: left;
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 main .pro-comparison-result .section-heading {
   width: auto;
-  position: absolute;
-  padding: 20px 60px 20px 20px;
-  top: 0;
-  z-index: 1;
-  background: var(--light-border-color-gray);
-  left: 15px;
-  right: 15px;
+  padding: 15px;
+  padding-right: 60px;
+  margin-left: -15px;
+  margin-right: -15px;
+  background: var(--color-gray-300);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
 main .pro-comparison-result .btn-primary {
-  color: var(--button-color);
-  background-color: var(--link-color);
-  border-color: #2e6da4;
+  color: var(--color-white);
+  background-color: var(--color-link);
 }
 
 main .pro-comparison-result .btn-primary:hover {
-  color: var(--button-color);
-  background-color: #286090;
-  border-color: #204d74;
+  color: var(--color-white);
+  background-color: var(--color-link-hover);
 }
 
 main .pro-comparison-result .btn {
-  display: inline-block;
   padding: 6px 12px;
-  margin-bottom: 0;
   font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4286;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  user-select: none;
-  background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
   min-width: 53px;
+  width: auto;
 }
 
 main .pro-comparison-result .section-heading h2 {
@@ -119,7 +88,7 @@ main .pro-comparison-result .section-heading .img-ico-close {
   width: 30px;
   height: 30px;
   right: 15px;
-  top: 22px;
+  top: 15px;
   position: absolute;
   z-index: 1;
   display: inline-block;
@@ -137,10 +106,10 @@ main .pro-comparison-result .scroll_div {
 }
 
 main .pro-comparison-result .pro-container {
-  background: var(--background-color);
+  background: var(--color-white);
   margin: 0;
   position: relative;
-  box-shadow: 0 1px 10px rgb(0 0 0 / 20%);
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
   transition: all 0.3s;
   display: flex;
   flex-flow: column nowrap;
@@ -208,14 +177,14 @@ main .pro-comparison-result .pro-details h4,
 .pro-details h3 {
   margin-bottom: 8px;
   margin-top: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 main .pro-comparison-result .comparison-table .comparison-row .link_wrap .linkBtn {
   font-size: 13px;
   margin-top: 3px;
   display: block;
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 main .pro-comparison-result .comparison-table .comparison-row .link_wrap .linkBtn span {
@@ -227,18 +196,18 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap .linkBt
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 main .pro-comparison-result .link_wrap .linkBtn svg {
   width: 15px;
   height: 15px;
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 main .pro-comparison-result .comparison-table .comparison-row {
   width: 100%;
-  border-bottom: 1px solid var(--text-light-gray);
+  border-bottom: 1px solid var(--color-gray-500);
 }
 
 main .pro-comparison-result .comparison-table .comparison-row > .row,
@@ -265,15 +234,19 @@ main
   .comparison-table
   .comparison-row:not(:first-child)
   .row
-  [class^="col-"]:nth-child(odd):not(:first-child) {
-  background: #e2e4e6;
+  [class^="col-"]:nth-child(even):not(:first-child),
+main
+  .pro-comparison-result
+  .comparison-table
+  .comparison-row:first-child
+  .row
+  [class^="col-"]:nth-child(even):not(:first-child) {
+  background: var(--color-black-alpha-5);
 }
 
 main .pro-comparison-result .col-sm-3 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
 }
 
 main
@@ -307,14 +280,12 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
 
 @media print {
   header,
-  main > div:not(.pro-comparison-result),
+  main > .section:not(.pro-comparison-result),
   main .pro-comparison-result .product-comparison > .row,
+  main .pro-comparison-result .section-heading,
+  main .compare-banner.show,
   footer {
     display: none !important;
-  }
-
-  main .pro-comparison-result .section-heading {
-    position: static;
   }
 
   main .pro-comparison-result,
@@ -324,6 +295,10 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
+  }
+
+  main .pro-comparison-result.show > .container {
+    width: 100%;
   }
 
   .comparison-table {
@@ -351,17 +326,11 @@ main .pro-comparison-result .comparison-table .comparison-row .link_wrap {
     display: table-cell;
     padding: 10px;
     vertical-align: middle;
-    text-align: center;
-    background-color: #fff !important;
+    background-color: var(--color-white) !important;
     border: none;
   }
 
   main .pro-comparison-result .scroll_div .col-sm-3 {
-    border: 1px solid #ccc;
-  }
-
-  main .pro-comparison-result .scroll_div .comparison-cell.title {
-    font-weight: bold;
-    background-color: #f4f4f4;
+    border: 1px solid var(--color-gray-350);
   }
 }

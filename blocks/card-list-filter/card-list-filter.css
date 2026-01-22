@@ -25,7 +25,7 @@
 .card-list-filter ul li a:visited {
   position: relative;
   display: inline-block;
-  color: #34393d;
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-light);
   text-decoration: none;
   font-size: 17px;
@@ -52,7 +52,7 @@
 .card-list-filter ul li a.active::after {
   display: table;
   width: 100%;
-  border-bottom: 1px solid #6d6c8d;
+  border-bottom: 1px solid var(--color-theme-gray);
   content: " ";
   margin-top: -1px;
 }
@@ -72,13 +72,14 @@
     max-width: unset;
     padding: 0;
     position: relative;
+    margin-top: 0;
   }
 
   .card-list-filter.blog {
-    background-color: rgba(0 0 0 / 50%);
+    background-color: var(--color-black-alpha-50);
     position: absolute;
     width: 100%;
-    bottom: 115px;
+    bottom: 50px;
     margin: 0;
   }
 
@@ -87,7 +88,7 @@
     font-size: 15px;
     padding: 16px 24px;
     text-transform: uppercase;
-    color: var(--text-white);
+    color: var(--color-white);
     font-family: var(--ff-proxima-regular);
   }
 
@@ -101,7 +102,7 @@
     width: 0;
     height: 0;
     min-height: 12px;
-    color: #61a60e;
+    color: var(--color-tertiary);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
@@ -113,7 +114,7 @@
   .card-list-filter.blog ul li a:hover,
   .card-list-filter.blog ul li a:active,
   .card-list-filter.blog ul li a.active {
-    color: #61a60e;
+    color: var(--color-tertiary);
     border: none;
   }
 }
@@ -121,7 +122,7 @@
 /* VIDEO GALLERY Desktop Variant */
 
 /* Cancel any margin below that the hero might have */
-.video-gallery .hero-wrapper, 
+.video-gallery .hero-wrapper,
 .video-gallery .hero {
   margin-bottom: 0 !important;
 }
@@ -150,7 +151,7 @@
 .card-list-filter.video-gallery ul li a:link,
 .card-list-filter.video-gallery ul li a:visited,
 .card-list-filter.video-gallery .active-filter span {
-  color: #fff;
+  color: var(--color-white);
   font-size: 14px;
 }
 
@@ -186,7 +187,7 @@
   .card-list-filter ul li a:visited,
   .card-list-filter .active-filter span {
     line-height: 1.33;
-    color: #34393d;
+    color: var(--color-text-primary);
     padding: 5px 0;
     text-align: left;
     text-transform: none;
@@ -243,6 +244,6 @@
   }
 
   .card-list-filter.video-gallery .filter-title {
-    border-bottom: 1px solid #6d6c8d;
+    border-bottom: 1px solid var(--color-theme-gray);
   }
 }

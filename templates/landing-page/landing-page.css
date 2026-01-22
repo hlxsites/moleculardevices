@@ -25,7 +25,7 @@
 }
 
 .landing-page .hero-inner h2 {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-size: 50px;
 }
 
@@ -40,7 +40,7 @@
   font-size: 42px;
   font-weight: normal;
   margin-bottom: 20px;
-  color: #5f696b;
+  color: var(--color-input);
   margin-top: 0;
   padding-top: 40px;
 }
@@ -54,7 +54,7 @@
 }
 
 .landing-page .hero-inner .two-column p:first-child {
-  color: var(--text-green);
+  color: var(--color-tertiary);
   font-weight: 600;
 }
 
@@ -86,12 +86,12 @@
 
 .landing-page .no-form-embed .default-content-wrapper *:not(a, h2),
 .landing-page .download-form .default-content-wrapper *:not(a, h2) {
-  color: var(--text-gray);
+  color: var(--color-gray-600);
 }
 
 .landing-page .no-form-embed.text-dark .default-content-wrapper *:not(a, h2),
 .landing-page .download-form.text-dark .default-content-wrapper *:not(a, h2) {
-  color: var(--text-dark-gray);
+  color: var(--color-gray-900);
 }
 
 .landing-page .download-form .embed h2,
@@ -103,12 +103,12 @@
 
 .landing-page .no-form-embed .default-content-wrapper h2,
 .landing-page .download-form .default-content-wrapper h2 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
   font-size: 45px;
 }
 
 .landing-page .download-form[style*='background-image'] .default-content-wrapper * {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .landing-page .no-form-embed h3,
@@ -130,21 +130,21 @@
 
 .landing-page main .download-form .embed {
   width: 100%;
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-100);
   padding: 20px 5px 0;
   margin-top: 0;
 }
 
 .landing-page main .download-form.background-dark .embed {
-  background-color: rgb(0 0 0 / 50%);
-  color: #fff;
+  background-color: var(--color-black-alpha-50);
+  color: var(--color-white);
 }
 
 .landing-page main .section > div.forms-wrapper h3,
 .landing-page main .section > div.forms-wrapper h4 ,
 .landing-page .embed h3,
 .landing-page .embed h4 {
-  color: var(--heading-color);
+  color: var(--color-highlight);
   font-size: 30px !important;
   text-align: center;
   padding: 0 20px;
@@ -152,7 +152,7 @@
 }
 
 .landing-page main .download-form.orange-form-title .embed h4 {
-  color: #ee7624;
+  color: var(--color-secondary);
 }
 
 .landing-page .embed > div > div {
@@ -171,7 +171,7 @@
 
 /* huspot form */
 .landing-page main .section > div.forms-wrapper > div{
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-100);
   padding: 20px;
 }
 
@@ -182,7 +182,7 @@
 
 @media (max-width: 767px) {
   .landing-page .hero-inner {
-    background-color: var(--black-background-color);
+    background-color: var(--color-black);
     padding-top: 73px;
   }
 
@@ -233,7 +233,7 @@
 }
 
 .thank-you-page h2 {
-  color: var(--text-blue);
+  color: var(--color-primary);
   font-family: var(--ff-proxima-light);
   font-size: 54px;
   text-align: center;
@@ -250,25 +250,25 @@
   object-fit: cover;
 }
 
-.section.thank-you-page > div.default-content-wrapper:nth-last-child(2) {
+.section.thank-you-page > .default-content-wrapper:nth-last-child(2) {
   padding-top: 50px;
 }
 
-.section.thank-you-page > div.default-content-wrapper:nth-last-child(2) h2 + p {
+.section.thank-you-page > .default-content-wrapper:nth-last-child(2) h2 + p {
   padding-bottom: 2rem;
 }
 
-.section.thank-you-page > div.default-content-wrapper:first-of-type > h2 {
-  color: var(--text-green);
+.section.thank-you-page > .default-content-wrapper:first-of-type > h2 {
+  color: var(--color-tertiary);
 }
 
 .section.thank-you-page .carousel-item > .card > div > p:first-of-type {
-  color: var(--text-green);
+  color: var(--color-tertiary);
 }
 
 .section.thank-you-page .carousel-item > .card .card-caption .card-description {
-  color: var(--text-color);
-  font-size: var(--body-font-size-xs);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body-xs);
 }
 
 .thank-you-page p.button-container span[aria-hidden='true'] {
@@ -291,16 +291,16 @@
   font-size: 22px;
   padding-top: 10px;
   margin-top: 0;
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 body .thank-you-page h3 {
-  color: var(--button-bg-color);
+  color: var(--color-primary);
 }
 
 body .thank-you-page h4 {
   font-size: 30px;
-  color: var(--text-gray);
+  color: var(--color-gray-600);
   font-family: var(--ff-proxima-regular);
 }
 
@@ -321,8 +321,8 @@ body .thank-you-page h4 {
 }
 
 .landing-page.thankyou .carousel.cards p.button-container a {
-  border: 1px solid var(--border-color-green);
-  color: black;
+  border: 1px solid var(--color-tertiary);
+  color: var(--color-black);
 }
 
 .landing-page.thankyou .carousel.cards .card > div:last-child > p:first-child {
@@ -330,14 +330,15 @@ body .thank-you-page h4 {
 }
 
 @media (min-width: 768px) {
-  .landing-page .download-form > div {
-    width: calc(var(--section-div-width) / 2);
+  .landing-page .download-form > div,
+  .landing-page .download-form > article {
+    width: calc(var(--layout-max-width) / 2);
     display: inline-block;
     vertical-align: top;
   }
 
   .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child {
-    margin-left: calc((100vw - var(--section-div-width)) / 2);
+    margin-left: var(--center-space);
     padding-top: 25px;
   }
 
@@ -346,7 +347,7 @@ body .thank-you-page h4 {
   }
 
   .landing-page main .section.download-form:not(.center) .embed-wrapper:first-child {
-    margin-left: calc((100vw - var(--section-div-width)) / 2);
+    margin-left: var(--center-space);
   }
 
   .landing-page main .section.download-form:not(.center) .default-content-wrapper:nth-child(2) {
@@ -383,6 +384,7 @@ body .thank-you-page h4 {
     font-size: 27px;
   }
 
+  .landing-page .hero-inner,
   .landing-page .hero-inner > div {
     padding-top: 90px;
   }
@@ -446,7 +448,7 @@ body .thank-you-page h4 {
 }
 
 .thankyou main .section,
-.thankyou main div.section.wave.wave-bottom-section,
+.thankyou main .section.wave.wave-bottom-section,
 .landing-page:not(.thankyou) main .thankyou-banner,
 .thankyou main .hide-banner-on-thankyou {
   display: none;

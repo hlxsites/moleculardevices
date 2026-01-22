@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable max-classes-per-file,  */
 /*
  * Copyright 2022 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -10,6 +10,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
+import { domEl } from './dom-helpers.js';
 
 /**
  * log RUM if part of the sample.
@@ -191,6 +193,30 @@ export function toClassName(name) {
     : '';
 }
 
+/**
+ * Converts a string into a CSS-safe class name (supports major languages).
+ *
+ * @param {string} name
+ * @returns {string}
+ */
+export function geoFriendlyClassName(name) {
+  if (typeof name !== 'string') return '';
+
+  let result = name.toLowerCase();
+
+  try {
+    // Preferred: full Unicode letters + numbers (modern engines)
+    result = result.replace(/[^\p{L}\p{N}_-]+/gu, '-');
+  } catch (e) {
+    // Fallback: Latin (with accents), CJK, Hiragana, Katakana, Hangul
+    result = result.replace(
+      /[^0-9a-z_\u00C0-\u024F\u4E00-\u9FFF\u3040-\u30FF\uAC00-\uD7AF-]+/g,
+      '-');
+  }
+
+  return result.replace(/-+/g, '-').replace(/^-|-$/g, '');
+}
+
 /*
  * Sanitizes a name for use as a js property name.
  * @param {string} name The unsanitized name
@@ -239,37 +265,86 @@ function mapOnelinkClass(className) {
  * Replace icons with inline SVG and prefix with codeBasePath.
  * @param {Element} element
  */
+const svgCache = new Map();
+
 export function decorateIcons(element = document) {
-  const iconPrefix = 'fa'; // the fontawesome icon prefix
+  const fa7Styles = ['fa-solid', 'fa-regular', 'fa-light', 'fa-thin', 'fa-brands', 'fa-duotone'];
 
   element.querySelectorAll('span.icon').forEach(async (span) => {
-    if (span.classList.length < 2
-      || !span.classList[1].startsWith('icon-')
-      || span.children.length !== 0) {
-      return;
-    }
-    const icon = span.classList[1].substring(5);
+    if (span.dataset.iconDecorated === 'true') return;
 
-    if (icon.startsWith(iconPrefix)) {
-      const i = document.createElement('i');
-      i.setAttribute('aria-hidden', 'true');
-      i.className = `${iconPrefix} ${icon}`;
+    const classes = [...span.classList];
+    const iconClass = classes.find((cls) => cls.startsWith('icon-') && cls !== 'icon');
+    if (!iconClass || span.children.length !== 0 || span.innerHTML.trim() !== '') return;
+
+    const raw = iconClass.replace(/^(icon-)+/, ''); // strip "icon-"
+    classes.forEach((cls) => {
+      if (cls.startsWith('icon-')) span.classList.remove(cls);
+    });
+    span.classList.add('icon', `icon-${raw}`);
+
+    /* FONT AWESOME */
+    if (raw.startsWith('fa-')) {
+      const segments = raw.split('-');
+      let style = 'fa-solid';
+      let icon = null;
+
+      if (segments.length >= 3) {
+        const possibleStyle = `fa-${segments[1]}`;
+        if (fa7Styles.includes(possibleStyle)) {
+          style = possibleStyle;
+          icon = `fa-${segments.slice(2).join('-')}`;
+        }
+      }
+
+      if (!icon) {
+        icon = raw;
+        style = 'fa-solid';
+      }
+
+      span.dataset.iconDecorated = 'true';
+      const i = domEl('i', { ariaHidden: 'true', class: `${style} ${icon}` });
       span.replaceWith(i);
       return;
     }
 
-    // eslint-disable-next-line no-use-before-define
-    const resp = await fetch(`${window.hlx.codeBasePath}/icons/${icon}.svg`);
-    if (resp.ok) {
-      const iconHTML = await resp.text();
-      if (iconHTML.match(/<style/i)) {
-        const img = document.createElement('img');
-        img.src = `data:image/svg+xml,${encodeURIComponent(iconHTML)}`;
-        img.alt = `${icon.split('-').join(' ')}`;
-        span.appendChild(img);
+    /* CUSTOM SVG */
+    const iconName = raw;
+    span.dataset.iconDecorated = 'true';
+    span.innerHTML = '';
+
+    if (svgCache.has(iconName)) {
+      const cachedSVG = svgCache.get(iconName).cloneNode(true);
+      span.appendChild(cachedSVG);
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${window.hlx.codeBasePath}/icons/${iconName}.svg`);
+      if (resp.ok) {
+        const svgText = await resp.text();
+        let svgElement;
+
+        if (svgText.includes('<style')) {
+          // Use <img> for complex SVGs
+          svgElement = domEl('img', { alt: iconName.replace(/-/g, ' ') });
+          svgElement.src = `data:image/svg+xml,${encodeURIComponent(svgText)}`;
+          span.appendChild(svgElement);
+        } else {
+          // Inline SVG
+          span.innerHTML = svgText;
+          const svg = span.querySelector('svg') || span.firstElementChild;
+          svgElement = svg;
+        }
+
+        if (svgElement) svgCache.set(iconName, svgElement.cloneNode(true));
       } else {
-        span.innerHTML = iconHTML;
+        // eslint-disable-next-line no-console
+        console.error(`SVG not found: ${iconName}`);
       }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(`Failed to load icon: ${iconName}`, err);
     }
   });
 }
@@ -336,15 +411,40 @@ function decorateBlockLocale(block) {
       block.parentElement.classList.add('OneLinkHide');
     }
   });
+}
 
-  if (localesFound.length !== 0
-    && !localesFound.includes(document.documentElement.getAttribute('original-lang'))) {
-    // skip block decoration and remove content from blocks which are not displayed due to locale
-    block.setAttribute('data-block-status', 'loaded');
-    block.setAttribute('data-block-skip', true);
-    block.setAttribute('data-block-skip-reason', 'locale');
-    block.innerHTML = '';
+/**
+ * Replaces a DOM element with a new tag (e.g., <section>, <article>)
+ * while preserving its children, classes, and attributes.
+ *
+ * @param {HTMLElement} oldEl - The existing DOM element to replace.
+ * @param {string} newTag - The tag name of the new element (e.g., 'main').
+ * @returns {HTMLElement} - The new element that replaced the old one.
+ */
+export function replaceHTMLTag(oldEl, newTag) {
+  if (
+    !oldEl
+    || typeof newTag !== 'string'
+    || oldEl.closest('header, footer, .recent-blogs-carousel-container, .social-share-container, .blog-wide, .sidebar')
+  ) {
+    return oldEl;
   }
+
+  // create new element
+  const newEl = document.createElement(newTag);
+
+  // copy attributes
+  [...oldEl.attributes].forEach(({ name, value }) => {
+    newEl.setAttribute(name, value);
+  });
+
+  // move children
+  while (oldEl.firstChild) {
+    newEl.appendChild(oldEl.firstChild);
+  }
+
+  oldEl.parentNode.replaceChild(newEl, oldEl);
+  return newEl;
 }
 
 /**
@@ -353,15 +453,20 @@ function decorateBlockLocale(block) {
  */
 export function decorateBlock(block) {
   const shortBlockName = block.classList[0];
+  const decoratedBlock = block;
+
   if (shortBlockName) {
-    block.classList.add('block');
-    block.setAttribute('data-block-name', shortBlockName);
-    block.setAttribute('data-block-status', 'initialized');
-    const blockWrapper = block.parentElement;
+    decoratedBlock.classList.add('block');
+    decoratedBlock.setAttribute('data-block-name', shortBlockName);
+    decoratedBlock.setAttribute('data-block-status', 'initialized');
+
+    const blockWrapper = decoratedBlock.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
-    const section = block.closest('.section');
+
+    const section = decoratedBlock.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
-    decorateBlockLocale(block);
+
+    decorateBlockLocale(decoratedBlock);
   }
 }
 
@@ -415,24 +520,31 @@ export function readBlockConfig(block) {
 export function decorateSections(main) {
   const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
 
-  main.querySelectorAll(':scope > div').forEach((section) => {
+  main.querySelectorAll(':scope > div').forEach((divSection) => {
     const wrappers = [];
     let defaultContent = false;
-    [...section.children].forEach((e) => {
+
+    // Change the tag name of div to section
+    const section = domEl('section');
+    section.classList.add('section');
+    section.setAttribute('data-section-status', 'initialized');
+    if (divSection.className) {
+      section.classList.add(...divSection.classList);
+    }
+
+    [...divSection.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
-        const wrapper = document.createElement('div');
-        wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
+        const wrapper = defaultContent ? domEl('article') : domEl('div');
+        wrappers.push(wrapper);
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
       }
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
-    section.classList.add('section');
-    section.setAttribute('data-section-status', 'initialized');
 
     /* process section metadata */
-    const sectionMeta = section.querySelector('div.section-metadata');
+    const sectionMeta = section.querySelector('.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
@@ -456,15 +568,29 @@ export function decorateSections(main) {
             section.style.background = background;
           }
         } else if (key === 'name') {
-          // section.id = toClassName(meta[key]);
           section.dataset[toCamelCase(key)] = toClassName(meta[key]);
           section.title = meta[key];
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
-      sectionMeta.parentNode.remove();
+      sectionMeta.parentElement.remove();
     }
+
+    /* accessibility addition  */
+    const heading = section.querySelector('h1, h2, h3, h4, h5, h6');
+    if (heading) {
+      const id = heading.id || toClassName(heading.textContent);
+      heading.id = id;
+      section.setAttribute('aria-labelledby', id);
+    } else {
+      const sectionName = section.getAttribute('title') || section.dataset.name;
+      if (sectionName) {
+        section.setAttribute('aria-label', sectionName);
+      }
+    }
+
+    divSection.replaceWith(section);
   });
 }
 
@@ -475,7 +601,7 @@ export function decorateSections(main) {
 export function updateSectionsStatus(main) {
   if (!main) return;
 
-  const sections = [...main.querySelectorAll(':scope > div.section')];
+  const sections = [...main.querySelectorAll(':scope > .section')];
   for (let i = 0; i < sections.length; i += 1) {
     const section = sections[i];
     const status = section.getAttribute('data-section-status');
@@ -497,7 +623,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('.section > div > div')
     .forEach(decorateBlock);
 }
 
@@ -508,13 +634,13 @@ export function decorateBlocks(main) {
  */
 export function buildBlock(blockName, content) {
   const table = Array.isArray(content) ? content : [[content]];
-  const blockEl = document.createElement('div');
+  const blockEl = domEl('div');
   // build image block nested div structure
   blockEl.classList.add(blockName);
   table.forEach((row) => {
-    const rowEl = document.createElement('div');
+    const rowEl = domEl('div');
     row.forEach((col) => {
-      const colEl = document.createElement('div');
+      const colEl = domEl('div');
       const vals = col.elems ? col.elems : [col];
       vals.forEach((val) => {
         if (val) {
@@ -604,7 +730,7 @@ export async function loadBlock(block) {
  */
 export async function loadBlocks(main) {
   updateSectionsStatus(main);
-  const blocks = [...main.querySelectorAll('div.block')];
+  const blocks = [...main.querySelectorAll('.block')];
   for (let i = 0; i < blocks.length; i += 1) {
     // eslint-disable-next-line no-await-in-loop
     await loadBlock(blocks[i]);
@@ -632,35 +758,44 @@ export function getHref() {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 400px)', width: '2000' }, { width: '750' }]) {
+export function createOptimizedPicture(src, alt = '', eager = true,
+  breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }],
+  sizes = '(max-width: 767px) 100vw, 1200px',
+) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
   const { pathname } = url;
-  const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
+  const ext = pathname.split('.').pop();
 
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
-    if (br.media) source.setAttribute('media', br.media);
-    source.setAttribute('type', 'image/webp');
-    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    if (br.media) source.media = br.media;
+    source.type = 'image/webp';
+    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
     picture.appendChild(source);
   });
 
-  // fallback
+  // fallback image
   breakpoints.forEach((br, i) => {
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
-      if (br.media) source.setAttribute('media', br.media);
-      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      if (br.media) source.media = br.media;
+      source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
-      img.setAttribute('loading', eager ? 'eager' : 'lazy');
-      img.setAttribute('alt', alt);
-      // img.setAttribute('title', alt);
+      img.alt = alt;
+      img.decoding = 'async';
+      img.sizes = sizes;
+      img.loading = eager ? 'eager' : 'lazy';
+      img.fetchPriority = 'high';
+
+      if (br.width) img.setAttribute('width', br.width);
+      if (br.height) img.setAttribute('height', br.height);
+
       picture.appendChild(img);
-      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
     }
   });
 
@@ -729,8 +864,7 @@ export function decorateButtons(element) {
           && twoup.childNodes.length === 1 && twoup.tagName === 'P') {
           a.className = 'button primary';
           twoup.classList.add('button-container');
-          const btnBorder = document.createElement('span');
-          btnBorder.className = 'button-border';
+          const btnBorder = domEl('span', { class: 'button-border' });
           a.append(btnBorder);
         }
         if (up.childNodes.length === 1 && up.tagName === 'EM'

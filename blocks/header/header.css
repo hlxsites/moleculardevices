@@ -5,8 +5,9 @@ header {
   position: relative;
   z-index: 500;
   top: 0;
-  background: var(--background-color);
+  background: var(--color-white);
   width: 100%;
+  height: var(--nav-height);
 }
 
 header a i.fa.fa-external-link {
@@ -26,20 +27,15 @@ header .nav-tabs > li {
 }
 
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   width: 100%;
   z-index: 2;
   position: fixed;
 }
 
-header .container {
-  margin-right: auto;
-  margin-left: auto;
-  background: var(--background-color);
-}
-
+header .container,
 header .nav-wrapper .container {
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 header nav {
@@ -51,12 +47,14 @@ header .navbar-header {
   z-index: 99;
 }
 
-header .nav-brand:not(.custom-logo) {
-  background-image: url("/images/header-menus/logo.svg");
-  background-position: top;
-  background-repeat: no-repeat;
+header .site-logo {
+  display: inline-block;
+}
+
+header .site-logo img {
   width: 220px;
-  height: 73px;
+  height: 65px;
+  display: inline-block;
 }
 
 header .navbar-header a i.fa.fa-external-link {
@@ -88,7 +86,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i,
 header .navbar-header > .header-logo-wrapper .cn-header-phone a,
 header .navbar-header > .header-logo-wrapper .cn-header-phone span {
   display: block;
-  color: #6a747c;
+  color: var(--color-theme-gray);
 }
 
 header .navbar-header > .header-logo-wrapper .cn-header-phone i {
@@ -99,7 +97,7 @@ header .navbar-header > .header-logo-wrapper .cn-header-phone i {
 header button.hamburger {
   padding: 0;
   position: absolute;
-  right: 15px;
+  right: 0;
   top: 16px;
   cursor: pointer;
   min-width: 37px;
@@ -125,7 +123,7 @@ header .hamburger .icon-bar {
   display: block;
   height: 2px;
   border-radius: 1px;
-  background: #008296;
+  background: var(--color-primary);
   width: 35px;
   line-height: 1;
 }
@@ -166,7 +164,7 @@ header .languages-dropdown {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   background-clip: padding-box;
   border: 1px solid rgba(0 0 0 / 15%);
   border-radius: 4px;
@@ -200,8 +198,8 @@ header .actionable-card-submenu li {
 }
 
 header .image-card-submenu {
-  background-color: rgba(0 0 0 / 30%);
-  color: #e6e6e6;
+  background-color: var(--color-black-alpha-30);
+  color: var(--color-gray-200);
   position: relative;
   height: 100%;
 }
@@ -222,7 +220,7 @@ header .image-card-submenu > div > div > h3 {
 }
 
 header .image-card-submenu > div > div > h3 > a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 header .image-card-submenu > div > div > p {
@@ -240,7 +238,7 @@ header .image-card-submenu > div > div > p:last-child {
 header .mobile-menu li {
   float: none;
   position: relative;
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 header .text-submenu > div {
@@ -251,7 +249,7 @@ header .text-submenu > div {
 
 header .text-submenu p {
   min-height: inherit;
-  color: #fff;
+  color: var(--color-white);
   padding-left: 0;
   text-transform: uppercase;
   font-size: 15px;
@@ -292,7 +290,7 @@ header .company-links > ul > li {
 }
 
 header .company-links a {
-  color: #6a747c;
+  color: var(--color-theme-gray);
 }
 
 header .company-links img {
@@ -310,13 +308,13 @@ header .company-links img {
 
 header .company-links ul li {
   font-size: 10px;
-  color: #6a747c;
+  color: var(--color-theme-gray);
   text-transform: uppercase;
   text-decoration: none;
 }
 
 header .menu-nav-category a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
@@ -330,12 +328,12 @@ header .large-card-submenu ul > li {
   padding: 0;
   box-shadow: none;
   margin-bottom: 8px;
-  color: var(--background-color);
+  color: var(--color-white);
 }
 
 header .large-card-submenu h3 {
   border: 0;
-  color: var(--background-color);
+  color: var(--color-white);
   padding: 0;
   padding-bottom: 10px;
   font-size: 18px;
@@ -346,7 +344,7 @@ header .large-card-submenu h3 {
 }
 
 header .large-card-submenu h3 a {
-  color: var(--header-mega-menu-green);
+  color: var(--color-tertiary);
   text-decoration: none;
   text-transform: initial;
 }
@@ -360,7 +358,6 @@ header .nav-tabs .menu-nav-submenu-section {
   margin-bottom: 1px;
   padding: 0;
   box-shadow: none;
-  margin-left: -40px;
   background-color: transparent;
   transition: background-color 0.3s ease;
   text-transform: uppercase;
@@ -371,25 +368,15 @@ header .nav-tabs .menu-nav-submenu-section:hover {
 }
 
 header .mobile-menu .company-links li {
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-50);
   float: none;
   border-top: 0;
   text-align: center;
   text-transform: capitalize;
   font-size: 17px !important;
-  color: #6a747c;
+  color: var(--color-theme-gray);
   width: 35%;
   margin-top: 15px;
-}
-
-header .mobile-menu li h1,
-header .mobile-menu li h2 {
-  font-size: 18px;
-  font-family: var(--ff-proxima-light);
-  font-weight: 300;
-  text-shadow: none;
-  margin-bottom: 0;
-  color: inherit;
 }
 
 header .mobile-menu .company-links li picture {
@@ -399,8 +386,8 @@ header .mobile-menu .company-links li picture {
 }
 
 header .mobile-menu li:hover {
-  color: var(--link-color);
-  background: #f0f1f2;
+  color: var(--color-link);
+  background: var(--color-gray-100);
 }
 
 header .company-links li:hover {
@@ -420,25 +407,32 @@ header .company-links > ul > li:last-child {
 header .mobile-menu .mobile-menu-items li:not(.headersearch-item) {
   line-height: 29px;
   font-size: 18px;
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-50);
 }
 
-header .nav-tabs .menu-nav-submenu-section h2 {
+header .nav-tabs .menu-nav-submenu-section > a > li {
   border-bottom: 0;
-  color: var(--background-color);
+  color: var(--color-white);
   font-size: 18px;
   padding: 12px 20px 6px;
   font-family: var(--ff-proxima-light);
   margin: 0 2px 0 0;
+  list-style-type: none;
+  line-height: 1.1;
 }
 
-header .nav-tabs .menu-nav-submenu-section > h2:hover {
+header .nav-tabs .menu-nav-submenu-section > a > li:hover {
   cursor: pointer;
 }
 
 /* Nav */
 header .mainmenu-wrapper {
   display: none;
+}
+
+header .mainmenu-wrapper #header-logo img {
+  object-fit: contain;
+  object-position: left;
 }
 
 /* sections */
@@ -468,7 +462,7 @@ header .nav-tabs .menu-nav-category {
 }
 
 header .nav-tabs .menu-nav-category:hover {
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: default;
 }
 
@@ -517,7 +511,7 @@ header .nav-tabs .menu-nav-submenu {
   opacity: 1;
   visibility: visible;
   position: absolute;
-  background: var(--background-color) url("/images/header-background-filler.jpg") no-repeat right bottom;
+  background: var(--color-white) url("/images/header-background-filler.jpg") no-repeat right bottom;
 }
 
 header .cards-submenu img {
@@ -536,7 +530,7 @@ header .mobile-menu {
   left: 0;
   width: 100%;
   max-width: 100%;
-  background: #fff;
+  background: var(--color-white);
   height: calc(100% - 63px);
   top: 63px;
   overflow-x: hidden;
@@ -559,7 +553,7 @@ header .mobile-menu > ul {
 
 header .mobile-menu .headersearch {
   position: static;
-  background: #f0f1f2;
+  background: var(--color-gray-100);
   padding: 25px 22px;
   height: auto;
   display: block;
@@ -574,7 +568,7 @@ header .mobile-menu .search {
 
 header .mobile-menu .search > form {
   border: 0;
-  border-bottom: 1px solid #6a747c;
+  border-bottom: 1px solid var(--color-theme-gray);
   margin: 0;
   padding: 0;
 }
@@ -592,7 +586,7 @@ header .mobile-menu .form-control {
   border-radius: 0;
   box-shadow: none;
   padding: 0;
-  color: #34393d;
+  color: var(--color-text-primary);
   background: none;
   font-family: var(--ff-proxima-regular);
   width: 100%;
@@ -603,7 +597,7 @@ header .mobile-menu .searchbutton {
   width: 25px;
   min-width: 50px;
   font-size: 25px;
-  color: #34393d;
+  color: var(--color-text-primary);
   background: none;
   border: 0;
   outline: 0;
@@ -625,14 +619,14 @@ header .mobile-menu li a {
   text-decoration: none;
 }
 
-header .menu-nav-submenu h1 > a {
+header .menu-nav-submenu .menu-nav-heading > a {
   color: inherit;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 header .cards-submenu ul li a {
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   font-weight: 300;
   line-height: 15px;
@@ -642,12 +636,12 @@ header .cards-submenu ul li a {
 }
 
 header .mobile-menu-item {
-  border-bottom: 1px solid #f1f2f3;
+  border-bottom: 1px solid var(--color-gray-50);
   float: none;
   border-top: 0;
   position: relative;
   font-size: 18px;
-  color: #34393d;
+  color: var(--color-text-primary);
   font-family: var(--ff-proxima-light);
   font-weight: 300;
   text-shadow: none;
@@ -659,7 +653,7 @@ header .mobile-menu-subcategories {
   left: 0;
   top: 0;
   height: 150%;
-  background: #fff;
+  background: var(--color-white);
   box-shadow: none;
   position: fixed;
   padding: 0;
@@ -694,8 +688,8 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
   position: absolute;
   right: 15px;
   border-radius: 100%;
-  border: 1px solid #c4ccda;
-  color: #34393d;
+  border: 1px solid var(--color-mobile-menu-caret);
+  color: var(--color-text-primary);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -703,12 +697,12 @@ header .mobile-menu .mobile-menu-subcategories .back-to-parent a::before {
 }
 
 header .text-submenu a {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 header .text-submenu ul > li > a {
   font-size: 11px;
-  color: var(--text-white);
+  color: var(--color-white);
   border-bottom: 0;
   line-height: 15px;
   padding-left: 0;
@@ -720,7 +714,7 @@ header .text-submenu ul > li > a {
 }
 
 header .languages-dropdown a:hover {
-  background-color: #f5f5f5;
+  background-color: var(--color-gray-50);
 }
 
 header .mobile-menu .back-to-parent a {
@@ -728,19 +722,14 @@ header .mobile-menu .back-to-parent a {
 }
 
 header .mobile-menu .mobile-menu-subcategory-item > a {
-  background: var(--grey-background-color);
-  position: relative;
+  background: var(--color-gray-100);
   white-space: normal;
-  display: block;
   padding: 4px 70px 15px 15px;
-  color: #34393d;
+  color: var(--color-text-primary);
   text-align: left;
   text-transform: uppercase;
-  margin-bottom: 0;
   font-family: var(--ff-proxima-light);
   font-weight: 300;
-  text-shadow: none;
-  text-decoration: none;
   line-height: 29px;
 }
 
@@ -756,11 +745,11 @@ header .resources-submenu-search {
 
 header .mobile-menu .request-quote a {
   line-height: 20px;
-  background: #f8a100;
+  background: var(--color-secondary);
   font-size: 18px;
   padding: 18px 50px 18px 15px;
   text-shadow: none;
-  color: #fff;
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   text-align: center;
   display: block;
@@ -774,8 +763,14 @@ header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item {
   position: relative;
 }
 
+header .mobile-menu .mobile-menu-items .mobile-menu-subcategory-item p {
+  margin-bottom: 0;
+  margin-top: 20px;
+  line-height: 1.1;
+}
+
 header .mobile-menu .back-to-parent:hover {
-  background: var(--background-color);
+  background: var(--color-white);
 }
 
 header .mobile-menu .mobile-menu-item.submenu-open .mobile-menu-subcategories {
@@ -806,8 +801,8 @@ header .mobile-menu .caret::before {
   position: absolute;
   right: 15px;
   border-radius: 100%;
-  border: 1px solid #c4ccda;
-  color: #34393d;
+  border: 1px solid var(--color-mobile-menu-caret);
+  color: var(--color-text-primary);
   top: 50%;
   display: inline-block;
   font-family: FontAwesome, sans-serif;
@@ -815,7 +810,7 @@ header .mobile-menu .caret::before {
 }
 
 header .mobile-menu .company-links {
-  background: #f0f1f2;
+  background: var(--color-gray-100);
   padding: 4px 15px 10px;
   position: relative;
   top: auto;
@@ -860,6 +855,7 @@ header .large-card-submenu ul {
 
 header .nav-tabs .menu-nav-submenu ul {
   float: none;
+  padding-left: 0;
 }
 
 header .mobile-menu .company-links > div > ul {
@@ -874,14 +870,14 @@ header .mobile-menu .company-links > div > ul {
 header .mobile-menu .languages-dropdown {
   width: 100%;
   position: absolute;
-  background-color: var(--background-color);
+  background-color: var(--color-white);
   border: 1px solid rgba(0 0 0 / 15%);
   border-radius: 4px;
   box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 }
 
 header .mobile-menu .languages-dropdown a {
-  color: #34393d;
+  color: var(--color-text-primary);
   padding: 4px 15px !important;
 }
 
@@ -901,11 +897,10 @@ header .mobile-menu .company-links li:nth-child(2) {
 /* Mobile Menu - END */
 
 header .nav-tabs .menu-nav-submenu-sections > .line-divider {
-  content: "";
   background-color: rgba(255 255 255 / 50%);
   height: 2px;
   width: 50px;
-  margin-left: -16px;
+  margin-left: 20px;
   margin-top: 18px;
   margin-bottom: 20px;
   list-style: none;
@@ -937,12 +932,15 @@ header .nav-tabs .menu-nav-submenu > div {
   display: block;
   position: relative;
   padding-top: 30px;
+  width: var(--layout-max-width);
 }
 
-header .nav-tabs .menu-nav-submenu h1 {
+header .nav-tabs .menu-nav-submenu .menu-nav-heading {
   font-size: 36px;
+  line-height: 1.1;
+  font-weight: 100;
   font-family: var(--ff-proxima-light);
-  color: var(--header-mega-menu-font-color);
+  color: rgb(var(--color-white-rgb) / 70%);
   border-bottom: 0;
   padding: 9px 20px 6px;
   margin: -10px 2px 0 0;
@@ -951,7 +949,7 @@ header .nav-tabs .menu-nav-submenu h1 {
   transition: background-color 0.3s ease;
 }
 
-header .nav-tabs .menu-nav-submenu h1:hover {
+header .nav-tabs .menu-nav-submenu .menu-nav-heading:hover {
   background-color: rgba(255 255 255 / 30%);
   cursor: pointer;
 }
@@ -975,7 +973,7 @@ header .actionable-card-submenu > div:nth-child(2) > div {
   padding-left: 15px;
 }
 
-header .nav-tabs .menu-nav-submenu-section > h2 > a {
+header .nav-tabs .menu-nav-submenu-section > a > li > a {
   color: inherit;
   text-decoration: none;
 }
@@ -997,10 +995,10 @@ header .nav-tabs .menu-nav-submenu-head {
 
 .header .nav-tabs .head-submenu > div {
   background-size: 250px;
-  color: var(--background-color);
+  color: var(--color-white);
   height: 350px;
   background-position: 110% 154%;
-  background-color: #161e2d;
+  background-color: var(--color-mm-product-card);
   position: relative;
   padding-top: 20px;
   width: 50%;
@@ -1008,8 +1006,8 @@ header .nav-tabs .menu-nav-submenu-head {
 
 header .nav-tabs .menu-nav-submenu-sections {
   display: block;
-  border-right: 1px solid var(--header-mega-menu-border-color);
-  border-top: 1px solid var(--header-mega-menu-border-color);
+  border-right: 1px solid rgb(var(--color-white-rgb) / 50%);
+  border-top: 1px solid rgb(var(--color-white-rgb) / 50%);
   width: 330px;
   margin-top: 0;
 }
@@ -1046,9 +1044,9 @@ header .flex-space-between {
 
 header .large-card-submenu {
   background-size: 250px;
-  color: var(--background-color);
+  color: var(--color-white);
   background-position: 110% 154%;
-  background-color: var(--header-mega-menu-product-cards-background-color);
+  background-color: var(--color-mm-product-card);
   background-repeat: no-repeat;
   position: relative;
   padding: 20px 15px 10px;
@@ -1118,7 +1116,7 @@ header .image-without-text-submenu img {
 }
 
 header .image-without-text-submenu p {
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-light);
   font-size: 25px;
   text-transform: none;
@@ -1163,16 +1161,16 @@ header .cards-submenu p:first-child:hover img {
 }
 
 header .cards-submenu p:nth-child(1) {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   min-height: 114px;
   overflow: hidden;
 }
 
 header .cards-submenu p:nth-child(2) a {
-  color: var(--text-white);
+  color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
-  background-color: var(--text-gray);
+  background-color: var(--color-theme-gray-dark);
   text-align: center;
   display: flex;
   align-items: center;
@@ -1183,13 +1181,13 @@ header .cards-submenu p:nth-child(2) a {
 }
 
 header .white-background p:nth-child(2) a {
-  background-color: var(--text-white);
-  color: var(--text-gray);
+  background-color: var(--color-white);
+  color: var(--color-theme-gray);
 }
 
 header .green-background p:nth-child(2) a {
-  background-color: var(--text-green);
-  color: var(--text-white);
+  background-color: var(--color-tertiary);
+  color: var(--color-white);
 }
 
 header .cards-submenu p.new-product {
@@ -1224,7 +1222,7 @@ header .cards-submenu .expanded-image img {
 }
 
 header .cards-submenu ul li a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   text-decoration: underline;
 }
 
@@ -1233,23 +1231,23 @@ header .text-submenu ul > li > a:hover {
 }
 
 header .actionable-card-submenu {
-  background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  background-color: var(--color-black-alpha-30);
+  color: var(--color-gray-100);
   padding: 24px;
   border: 1px solid rgba(255 255 255 / 50%);
   position: relative;
 }
 
 header .mobile-menu-item .mobile-menu-subcategory-item:hover > a {
-  color: var(--link-color);
-  background: var(--background-color);
+  color: var(--color-link);
+  background: var(--color-white);
 }
 
 header .actionable-card-submenu h3 {
   font-size: 18px;
   margin: 0 0 24px;
   padding-bottom: 20px;
-  color: var(--text-white);
+  color: var(--color-white);
   font-family: var(--ff-proxima-regular);
   border-bottom: 1px solid rgba(255 255 255 / 25%);
 }
@@ -1278,7 +1276,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p:nth-la
 }
 
 header .nav-tabs .menu-nav-category a:hover {
-  color: var(--link-color);
+  color: var(--color-link);
   cursor: pointer;
 }
 
@@ -1286,7 +1284,7 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
   font-family: var(--ff-proxima-regular);
   transition: all 0.2s;
   border: 0;
-  color: var(--text-white);
+  color: var(--color-white);
   position: relative !important;
   height: auto;
   width: 178px;
@@ -1297,8 +1295,8 @@ header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a {
 }
 
 header .actionable-card-submenu > div:nth-child(2) > div:nth-child(1) > p > a:hover {
-  background: var(--background-color);
-  color: var(--button-bg-color);
+  background: var(--color-white);
+  color: var(--color-primary);
 }
 
 div.actionable-card-submenu.service-support-right-submenu.right-submenu-content
@@ -1313,8 +1311,8 @@ div.actionable-card-submenu.service-support-right-submenu.right-submenu-content.
   > div
   > p:nth-last-of-type(-n + 2)
   > a:hover {
-  color: var(--background-color-green) !important;
-  background-color: white !important;
+  color: var(--color-tertiary) !important;
+  background-color: var(--color-white) !important;
 }
 
 header .actionable-card-submenu.text-only {
@@ -1368,7 +1366,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   line-height: 10px;
   font-size: 13px;
   text-align: left;
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-100);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23e6e6e6' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 205px center;
@@ -1394,7 +1392,7 @@ header .actionable-card-submenu.text-only > div:nth-child(2) > div:nth-child(1) 
   > div:nth-child(1)
   > p:nth-last-of-type(1)
   > a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -1409,7 +1407,7 @@ header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:
 
 header .actionable-card-submenu.newsroom-right-submenu > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover,
 header .actionable-card-submenu.col-1 > div:nth-child(2) > div:nth-child(1) > p:last-child > a:hover {
-  color: var(--text-white);
+  color: var(--color-white);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.0' xmlns:xlink='http://www.w3.org/1999/xlink' width='13.000000pt' height='13.000000pt' viewBox='0 0 32.000000 32.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,32.000000) scale(0.100000,-0.100000)' fill='%23ffffff' stroke='none'%3E%3Cpath d='M100 273 c-95 -49 -87 -193 13 -232 105 -40 206 61 166 166 -27 70 -111 101 -179 66z m110 -18 c32 -17 60 -61 60 -95 0 -53 -57 -110 -110 -110 -53 0 -110 57 -110 110 0 33 28 78 58 94 35 20 66 20 102 1z'/%3E%3Cpath d='M155 190 l29 -30 -29 -30 c-16 -17 -24 -30 -19 -30 6 0 23 14 39 30 l29 30 -29 30 c-16 17 -33 30 -39 30 -5 0 3 -13 19 -30z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -1459,7 +1457,7 @@ header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-c
 }
 
 header .actionable-card-submenu.customercare-portal div:nth-child(2) > div:nth-child(1) > p:nth-last-of-type(2) > a {
-  background-color: var(--background-color-green);
+  background-color: var(--color-tertiary);
   transition: background-color 0.3s ease;
 }
 
@@ -1484,7 +1482,7 @@ header
   > div:nth-child(1)
   > p:nth-last-of-type(-n + 1)
   > a {
-  border: 1px solid var(--background-color-green);
+  border: 1px solid var(--color-tertiary);
 }
 
 /* PRODUCT/APPLICATION MENU */
@@ -1492,14 +1490,14 @@ header .right-submenu-content p strong > a,
 header .right-submenu-content p em > a {
   font-family: var(--ff-proxima-regular);
   transition: all 0.2s;
-  color: var(--text-white);
+  color: var(--color-white);
   position: relative;
   border-radius: 0;
   padding: 10px 18px;
   display: inline-block;
   text-align: center;
-  background-color: var(--button-bg-color);
-  border: 1px solid var(--button-bg-color);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   min-width: 230px;
   max-width: 80%;
   width: 100%;
@@ -1508,24 +1506,24 @@ header .right-submenu-content p em > a {
 
 header .right-submenu-content p em > a {
   background-color: transparent;
-  border-color: var(--text-white);
+  border-color: var(--color-white);
   font-style: normal;
 }
 
 header .right-submenu-content.border-color-green p em > a {
-  border-color: var(--text-green);
+  border-color: var(--color-tertiary);
 }
 
 header .right-submenu-content p strong > a:hover,
 header .right-submenu-content p em > a:hover {
-  color: var(--button-bg-color);
-  background-color: var(--text-white);
+  color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 /* header .products-right-submenu, */
 header .applications-right-submenu {
-  background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
+  background-color: var(--color-black-alpha-30);
+  color: var(--color-gray-100);
   padding: 0;
   position: relative;
   height: 100%;
@@ -1594,15 +1592,11 @@ header .applications-right-submenu > div > div:last-child picture:last-child img
 }
 
 /* PRODUCTS MENU */
-:root {
-  --product-gutter: 30px;
-}
-
 header .products-right-submenu {
   padding: 0;
   display: flex;
   gap: 20px;
-  color: var(--header-actionable-submenu-text-color);
+  color: var(--color-gray-100);
   background-color: transparent;
 }
 
@@ -1614,9 +1608,9 @@ header .products-right-submenu > div:first-child {
 }
 
 header .products-right-submenu > div:first-child > div {
-  background-color: rgba(0 0 0 / 30%);
+  background-color: var(--color-black-alpha-30);
   overflow: hidden;
-  padding: var(--product-gutter);
+  padding: var(--gutter-product);
   display: flex;
   flex-direction: column;
 }
@@ -1627,7 +1621,7 @@ header .products-right-submenu > div:first-child > div img {
 }
 
 header .products-right-submenu > div:first-child > div > p:first-of-type {
-  margin: calc(var(--product-gutter) * -1) calc(var(--product-gutter) * -1) 0;
+  margin: calc(var(--gutter-product) * -1) calc(var(--gutter-product) * -1) 0;
 }
 
 header .products-right-submenu > div:first-child > div > p:first-of-type > a:first-of-type:has(picture),
@@ -1638,7 +1632,7 @@ header .products-right-submenu > div:first-child > div > p:first-of-type > a pic
 
 header .products-right-submenu > div:first-child > div > p:nth-of-type(2) {
   margin-top: -57%;
-  margin-bottom: var(--product-gutter);
+  margin-bottom: var(--gutter-product);
 }
 
 header .products-right-submenu > div:first-child > div > p:nth-of-type(2) img {
@@ -1700,69 +1694,6 @@ header .biology-3d-right-submenu:last-child:hover > div > div:last-child p:first
   cursor: pointer;
   transform: scale(1.1);
 }
-
-/* COMPANY MENU */
-
-/* header .company-right-submenu {
-  padding: 0;
-  border: none;
-  background-color: rgba(0 0 0 / 30%);
-  color: var(--header-actionable-submenu-text-color);
-  position: relative;
-  height: 100%;
-  min-height: inherit;
-}
-
-header .company-right-submenu div:first-child > div:first-child p {
-  margin: 0;
-}
-
-header .company-right-submenu > div:first-child {
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-}
-
-header .company-right-submenu > div:first-child > div:first-child {
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-}
-
-header .company-right-submenu div:first-child > div:first-child picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 0;
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-  max-height: 100%;
-  margin: 0;
-  transition: all 0.3s ease-in-out;
-}
-
-header .company-right-submenu > div:first-child > div:nth-child(2) {
-  font-size: 16px;
-  display: block;
-  text-align: right;
-  padding: 32px 24px;
-  width: 35%;
-  position: relative;
-}
-
-header .company-right-submenu div:nth-child(2) > div:last-child {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-header .company-right-submenu div:nth-child(2) > div:last-child picture img {
-  transform: none;
-  pointer-events: none;
-  width: 200px;
-  height: 201px;
-  max-height: 100%;
-} */
 
 header .company-right-submenu {
   padding: 0;
@@ -1839,10 +1770,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
     max-width: 420px;
   }
 
-  header .container {
-    width: 750px;
-  }
-
   header .navbar-header {
     margin: 0;
     padding: 30px 0 20px;
@@ -1870,6 +1797,10 @@ header .company-right-submenu > div:last-child > div:last-child img {
     z-index: 99;
     opacity: 1;
     visibility: visible;
+  }
+
+  header {
+    height: var(--nav-height-mobile);
   }
 
   header .container {
@@ -1902,9 +1833,9 @@ header .company-right-submenu > div:last-child > div:last-child img {
     display: initial;
   }
 
-  header .nav-brand:not(.custom-logo) {
+  header .site-logo img {
     width: 100px;
-    height: 27px;
+    height: 22px;
   }
 
   header .mobile-menu .company-links li:nth-child(2) {
@@ -1922,10 +1853,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 @media (min-width: 992px) {
-  header .container {
-    width: 970px;
-  }
-
   header .hamburger {
     display: none;
   }
@@ -1979,8 +1906,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .mainmenu-wrapper {
-    box-shadow: 1px 3px 26px -4px rgb(0 0 0 / 75%);
-    background-color: var(--background-color);
+    box-shadow: 1px 3px 26px -4px var(--color-black-alpha-70);
+    background-color: var(--color-white);
     height: 100%;
     max-height: 46px;
     min-height: 46px;
@@ -2003,11 +1930,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .mainmenu-wrapper #header-logo img {
-    width: 158px;
-    max-height: 36px;
-    height: auto;
-    opacity: 0;
-    max-width: 0;
+    width: 220px;
+    height: 30px;
   }
 
   header .mainmenu-wrapper.sticky #header-logo {
@@ -2056,8 +1980,8 @@ header .company-right-submenu > div:last-child > div:last-child img {
     position: absolute;
     height: 2000px;
     padding-bottom: 9.4%;
-    background-color: #008da9;
-    box-shadow: inset 0 19px 33px -28px #333f;
+    background-color: var(--color-primary);
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-750);
   }
 
   header .menu-nav-search-view > div {
@@ -2080,18 +2004,18 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .nav-tabs > li.fa-search {
-    color: var(--text-color);
+    color: var(--color-text-primary);
     display: block;
     padding: 15px 10px 15px 13px;
     position: static;
   }
 
   header .nav-tabs > li.fa-search::before {
-    background-color: var(--background-color);
+    background-color: var(--color-white);
     padding: 9px;
     border-radius: 50%;
-    border: 2px solid var(--header-color-orange);
-    color: #ee7624;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
     width: 18px;
     height: 18px;
     position: absolute;
@@ -2125,7 +2049,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     text-align: left;
     font-size: 20px;
     font-family: var(--ff-proxima-light);
-    color: white;
+    color: var(--color-white);
     margin-bottom: 11px;
     text-transform: none;
   }
@@ -2136,19 +2060,19 @@ header .company-right-submenu > div:last-child > div:last-child img {
   }
 
   header .menu-nav-search-bar .form-control {
-    background-color: var(--text-white);
+    background-color: var(--color-white);
     width: 100%;
     height: 35px;
     font-family: var(--ff-proxima-light);
     font-size: 16px;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-250);
     border-radius: 4px;
-    color: #555;
+    color: var(--color-gray-650);
   }
 
   header .menu-nav-search-bar form button {
-    color: var(--text-white);
+    color: var(--color-white);
     font-size: 13px;
     font-family: var(--ff-proxima-light);
     min-width: 152px;
@@ -2163,7 +2087,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
   header .nav-tabs > li.header-rfq > a {
     padding: 24px 35px 15px;
     text-transform: uppercase;
-    color: var(--background-color);
+    color: var(--color-white);
     text-align: center;
     border-radius: 100%;
     height: 161px;
@@ -2173,7 +2097,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
     align-items: flex-end;
     box-shadow: -8px 4px rgb(238 118 36 / 30%);
     position: relative;
-    background: var(--header-color-orange);
+    background: var(--color-secondary);
     font-size: 15px;
     transition: all 0.3s;
     justify-content: center;
@@ -2201,7 +2125,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .nav-tabs .menu-nav-submenu {
     min-height: 782px;
-    box-shadow: inset 0 19px 33px -28px #333f;
+    box-shadow: inset 0 19px 33px -28px var(--color-gray-750);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: transparent;
@@ -2224,7 +2148,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
   header .nav-tabs .menu-nav-submenu > div {
     min-height: inherit !important;
-    width: 970px;
   }
 
   .header .nav-tabs .menu-nav-submenu > div > h2 {
@@ -2244,10 +2167,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 @media (min-width: 1200px) {
-  header .container {
-    width: 1140px;
-  }
-
   header .cards-submenu ul li a,
   header .text-submenu ul > li > a {
     font-size: 13px;
@@ -2292,10 +2211,6 @@ header .company-right-submenu > div:last-child > div:last-child img {
   html[lang="fr"] header .nav-tabs > li.header-rfq > a {
     font-size: 14px;
   }
-
-  header .nav-tabs .menu-nav-submenu > div {
-    width: 1170px;
-  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -2336,7 +2251,7 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:first-child,
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:first-child {
-  background-color: var(--text-white);
+  background-color: var(--color-white);
   min-height: 114px;
   overflow: hidden;
 }
@@ -2361,11 +2276,11 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child {
-  background-color: var(--background-color);
+  background-color: var(--color-white);
 }
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child {
-  background: rgb(0 0 0 / 30%);
+  background: var(--color-black-alpha-30);
   height: 100%;
   padding: 15px;
 }
@@ -2385,11 +2300,11 @@ header .company-right-submenu > div:last-child > div:last-child img {
 }
 
 .blog-cards-submenu .blog-posts-block .recent-blog-posts-block > div p:last-child a {
-  color: var(--text-color);
+  color: var(--color-text-primary);
 }
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div p:last-child a {
-  color: var(--text-white);
+  color: var(--color-white);
   display: block;
   text-align: left;
   text-transform: none;
@@ -2409,4 +2324,12 @@ header .company-right-submenu > div:last-child > div:last-child img {
 
 .blog-cards-submenu .blog-posts-block .featured-blog-posts-block > div img {
   object-fit: cover;
+}
+
+@media only screen and (max-width: 767px) {
+  header .navbar-header,
+  .hero-inner .container > div {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

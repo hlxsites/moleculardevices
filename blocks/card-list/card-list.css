@@ -1,4 +1,7 @@
 /* stylelint-disable no-descending-specificity */
+
+/* Desktop - Style like a list */
+
 main .section.card-list-container .default-content-wrapper h2 {
   text-align: center;
   margin-top: 20px;
@@ -6,7 +9,7 @@ main .section.card-list-container .default-content-wrapper h2 {
 }
 
 main .section div.card-list-wrapper {
-  width: 1170px;
+  width: var(--layout-max-width);
   max-width: unset;
   padding: 0 15px;
   margin-top: 40px;
@@ -45,20 +48,10 @@ main .card-list .carousel-item.clone {
 }
 
 main .card-list .carousel-item .card {
-  box-shadow: 0 1px 10px rgba(0 0 0 / 20%);
-}
-
-@media only screen and (max-width: 1200px) {
-  main .section div.card-list-wrapper {
-    width: 970px;
-  }
+  box-shadow: 0 1px 10px var(--color-black-alpha-20);
 }
 
 @media only screen and (max-width: 992px) {
-  main .section div.card-list-wrapper {
-    width: 750px;
-  }
-
   main .card-list .carousel-item {
     width: 45%;
   }
@@ -66,10 +59,6 @@ main .card-list .carousel-item .card {
 
 /* Mobile - Style like a propper carousel */
 @media only screen and (max-width: 767px) {
-  main .section div.card-list-wrapper {
-    width: 100%;
-  }
-
   main .card-list {
     justify-content: start !important;
     flex-wrap: nowrap;
@@ -98,7 +87,7 @@ main .card-list .carousel-item .card {
   }
 }
 
-/* VARIANTS */
+/* ============ VARIANTS ============ */
 
 /* APPLICATIONS */
 .card-list.applications .card-thumb,
@@ -141,8 +130,8 @@ main .card-list.blog {
 }
 
 .card-list.blog .card-caption {
-  padding: 15px 15px 20px;
-  color: #34393d;
+  padding: 15px;
+  color: var(--color-text-primary);
 }
 
 .card-list.blog .card-caption h3 {
@@ -222,6 +211,7 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .card-caption,
 .card-list.assay-kits .card-caption {
   padding: 15px;
+  color: var(--color-text-primary);
 }
 
 .card-list.accessories-and-consumables .card-caption h3,
@@ -235,7 +225,7 @@ main .card-list.assay-kits .card {
 .card-list.assay-kits .card-caption,
 .card-list.accessories-and-consumables .card-caption h3 a,
 .card-list.assay-kits .card-caption h3 a {
-  color: #34393d;
+  color: var(--color-text-primary);
 }
 
 .card-list.accessories-and-consumables .card-caption p,
@@ -247,28 +237,6 @@ main .card-list.assay-kits .card {
 .card-list.accessories-and-consumables .button-container,
 .card-list.assay-kits .button-container {
   text-align: left;
-}
-
-.card-list.assay-kits .card .badge {
-  background: ;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  font-weight: bold;
-  position: absolute;
-  width: 22%;
-  top: 8px;
-  right: -6px;
-  z-index: 9;
-}
-
-.card-list.assay-kits .card .badge::before {
-  content: "";
-  border-bottom: 6px solid #3e592c;
-  border-right: 6px solid transparent;
-  position: absolute;
-  top: -6px;
-  right: 0;
 }
 
 /* ADDITIONAL PRODUCTS + CULTURE-MEDIA-AND-REAGENTS */
@@ -340,7 +308,7 @@ main .section div.card-list-wrapper.culture-media-and-reagents {
 .card-list.additional-products .button-container .button,
 .card-list.culture-media-and-reagents .button-container .button {
   font-size: 18px;
-  color: #008ca8;
+  color: var(--color-primary);
   padding: 0;
   border: none;
   min-width: unset;

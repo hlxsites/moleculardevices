@@ -14,6 +14,8 @@ const relatedResourcesHeaders = {
   Application: 'relatedApplications',
 };
 
+const placeholders = await fetchPlaceholders();
+
 function onViewAllClick(e) {
   e.preventDefault();
   const resourcesLink = document.querySelector('.page-tabs li > a[href="#resources"]');
@@ -47,6 +49,28 @@ async function getFeaturedResources(paths) {
     .all();
 }
 
+export function addViewAllCTA(block, links, containerClass, href, handleClick, btnTitle = 'View all') {
+  if (links.length === 0) {
+    const viewAllBtn = div(
+      {
+        class: `${containerClass}-button`,
+        style: 'display: flex; justify-content: center; padding: 24px 0 50px;',
+      },
+      p({ class: 'button-container' },
+        strong(
+          a({
+            href,
+            class: 'button primary',
+            onclick: handleClick,
+          }, btnTitle),
+        ),
+      ),
+    );
+    decorateButtons(viewAllBtn);
+    block.parentElement.insertAdjacentElement('afterend', viewAllBtn);
+  }
+}
+
 export default async function decorate(block) {
   const blockLinks = block.querySelectorAll('a');
   let resources = [];
@@ -61,7 +85,9 @@ export default async function decorate(block) {
     return;
   }
 
-  const placeholders = await fetchPlaceholders();
+  /* view all CTA */
+  addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View Resources');
+
   const resourceCard = await createCard({
     showDate: true,
     showDisplayType: true,
@@ -86,34 +112,11 @@ export default async function decorate(block) {
       infiniteScroll: true,
       autoScroll: false,
       visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
+        { items: 1, condition: (width) => width < 768 },
+        { items: 2, condition: (width) => width < 1200 },
+        { items: 3 },
       ],
       cardRenderer: resourceCard,
     },
   );
-
-  if (blockLinks.length === 0) {
-    const viewAllBtn = div({ class: 'latest-resources-button' },
-      p({ class: 'button-container' },
-        strong(
-          a({
-            href: '#resources',
-            class: 'button primary',
-            onclick: onViewAllClick,
-          }, placeholders.viewAllResources || 'View all Resources'),
-        ),
-      ),
-    );
-    decorateButtons(viewAllBtn);
-    block.parentElement.parentElement.append(viewAllBtn);
-  }
 }

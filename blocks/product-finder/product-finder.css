@@ -1,8 +1,4 @@
 /* stylelint-disable no-descending-specificity */
-.hero-inner {
-  min-height: inherit;
-}
-
 .hero-inner .container > div:nth-child(2) {
   padding: 0 15px;
 }
@@ -37,12 +33,14 @@
 }
 
 .product-finder-container .reset {
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   font-size: 14px;
   margin-left: 0;
 }
 
-.product-finder-container #start-over i.fa {
+.product-finder-container .reset i.fa {
   margin-left: 0;
   margin-right: 5px;
 }
@@ -94,7 +92,7 @@
 .product-finder-container ul {
   font-size: 14px;
   font-weight: 100;
-  color: #34393d;
+  color: var(--color-text-primary);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -186,8 +184,8 @@
   appearance: none;
   border: 0;
   border-radius: 0;
-  box-shadow: 0 0 10px 1px rgb(0 0 0/ 10%);
-  color: #34393d;
+  box-shadow: 0 0 10px 1px var(--color-black-alpha-10);
+  color: var(--color-text-primary);
   font-size: 18px;
   height: 50px;
   outline: 0;
@@ -197,13 +195,13 @@
 
 .product-finder-container a span {
   font: var(--ff-proxima-light);
-  color: var(--text-color);
+  color: var(--color-text-primary);
   font-size: 24px;
   width: 100%;
 }
 
 .product-finder-container .finder-filters .select-wrapper span {
-  color: var(--dark-gray-background-color);
+  color: var(--color-theme-gray-dark);
   position: absolute;
   right: 20px;
   top: 16px;
@@ -284,7 +282,7 @@
 }
 
 .product-finder-container .card-caption h3 > a {
-  color: var(--link-color);
+  color: var(--color-link);
   line-height: 1.2;
 }
 
@@ -302,23 +300,23 @@
 }
 
 .product-finder-container .icon-card:hover {
-  background: var(--background-color-blue);
+  background: var(--color-link-hover);
   transform: none;
 }
 
 .product-finder-container .icon-card:hover a span {
-  color: var(--text-white);
+  color: var(--color-white);
 }
 
 .product-finder-container .card-caption svg {
   height: 18px;
   width: 18px;
-  color: #008da9;
+  color: inherit;
   vertical-align: middle;
 }
 
-.product-finder-container #step-1 a span,
-.product-finder-container #step-2 a span {
+.product-finder-container .product-finder-step-1 a span,
+.product-finder-container .product-finder-step-2 a span {
   margin-top: 10px;
   margin-bottom: 10px;
   display: block;
@@ -329,46 +327,47 @@
 .product-finder-container .card a .icon.icon-chevron-right-outline {
   vertical-align: middle;
   font-size: inherit;
+  color: inherit;
 }
 
 .product-finder-container.icon-title {
   margin: 10px 0 0;
 }
 
-.product-finder-container #step-3 {
-  border-top: 2px solid #d6d6d6;
+.product-finder-container .product-finder-step-3 {
+  border-top: 2px solid var(--color-gray-200);
 }
 
-.product-finder-container #step-3 .result-count {
+.product-finder-container .product-finder-step-3 .result-count {
   float: left;
   width: 100%;
   font-size: 14px;
-  color: var(--text-light-gray);
+  color: var(--color-gray-500);
   padding-top: 15px;
   padding-bottom: 15px;
   text-transform: uppercase;
 }
 
-.product-finder-container #step-3 .card-thumb {
+.product-finder-container .product-finder-step-3 .card-thumb {
   display: block;
   width: 100%;
   overflow: hidden;
 }
 
-.product-finder-container #step-3 .card-thumb a {
+.product-finder-container .product-finder-step-3 .card-thumb a {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.product-finder-container #step-3 .card-thumb picture {
+.product-finder-container .product-finder-step-3 .card-thumb picture {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.product-finder-container #step-3 .card-thumb img {
+.product-finder-container .product-finder-step-3 .card-thumb img {
   object-position: center;
   object-fit: scale-down;
   height: unset;
@@ -376,40 +375,40 @@
   max-height: 210px;
 }
 
-.product-finder-step-wrapper[data-type="3D Biology Solutions"]#step-3 .card-thumb img {
+.product-finder-step-wrapper[data-type="3D Biology Solutions"].product-finder-step-3 .card-thumb img {
   height: 100%;
   width: 100%;
 }
 
-.product-finder-container #step-3 .card {
+.product-finder-container .product-finder-step-3 .card {
   width: 262px;
 }
 
-.product-finder-container #step-3 .card-caption > p {
+.product-finder-container .product-finder-step-3 .card-caption > p {
   font-size: 14px;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a {
-  border-top: 1px solid #d6d6d6;
+.product-finder-container .product-finder-step-3 .card-caption > .c2a {
+  border-top: 1px solid var(--color-gray-200);
   padding-top: 8px;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a > p {
+.product-finder-container .product-finder-step-3 .card-caption > .c2a > p {
   text-align: left;
 }
 
-.product-finder-container #step-3 .card-caption > .c2a > p > a {
+.product-finder-container .product-finder-step-3 .card-caption > .c2a > p > a {
   font-size: 13px;
 }
 
-.product-finder-container #step-3 .card-caption .button-container {
+.product-finder-container .product-finder-step-3 .card-caption .button-container {
   width: 50%;
   float: left;
   margin-left: 0;
   margin-bottom: 10px;
 }
 
-.product-finder-container #step-3 .card-caption .compare-button {
+.product-finder-container .product-finder-step-3 .card-caption .compare-button {
   font-size: 13px;
   margin-top: 5px;
 }
@@ -421,6 +420,10 @@
 }
 
 @media (min-width: 768px) {
+  .hero-inner {
+    min-height: 245px;
+  }
+
   .hero-inner .container {
     padding-bottom: 0;
   }
@@ -433,7 +436,7 @@
 @media (max-width: 991px) {
   .hero-inner .container.two-column > div:nth-child(2) {
     border-top: unset;
-    padding-top: 0;
+    padding: 0;
   }
 
   .hero-inner .container.two-column h1 {
@@ -451,11 +454,11 @@
     border-left: unset;
   }
 
-  .product-finder-container #step-3 .card {
+  .product-finder-container .product-finder-step-3 .card {
     width: 300px;
   }
 
-  .product-finder-container #step-3 .card-caption .compare-button {
+  .product-finder-container .product-finder-step-3 .card-caption .compare-button {
     margin-top: 7px;
   }
 }

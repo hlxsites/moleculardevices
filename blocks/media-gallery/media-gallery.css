@@ -1,6 +1,6 @@
 .media-gallery .overlay {
   display: none;
-  background-color: #000;
+  background-color: var(--color-black);
   opacity: 1;
   position: fixed;
   top: 0;
@@ -8,7 +8,7 @@
   bottom: 0;
   right: 0;
   z-index: 1050;
-  transition: opacity .15s linear;
+  transition: opacity 0.15s linear;
 }
 
 .media-gallery .overlay.open {
@@ -18,9 +18,8 @@
 
 .media-gallery .overlay-content {
   margin: 30px auto;
-  width: 100%;
+  width: var(--layout-max-width);
   padding: 0 15px;
-  max-width: 1170px;
   position: relative;
   text-align: center;
 }
@@ -36,7 +35,7 @@
   display: none;
 }
 
-.media-gallery .overlay-carousel > div.section {
+.media-gallery .overlay-carousel > .section {
   width: 100%;
   padding-top: 0;
   flex-shrink: 0;
@@ -44,19 +43,20 @@
   position: relative;
 }
 
-.media-gallery .overlay-carousel > div.section p.picture {
+.media-gallery .overlay-carousel > .section p.picture {
   height: 100%;
 }
 
-main .media-gallery .overlay-carousel .section>div {
+main .media-gallery .overlay-carousel .section > div {
   width: unset;
 }
 
 .media-gallery .overlay-content h3 {
-  padding: 0 15px 0 60px;
   font-size: 16px;
-  color: var(--text-white);
+  color: var(--color-white);
   text-align: left;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 .media-gallery .overlay-content img {
@@ -65,20 +65,29 @@ main .media-gallery .overlay-carousel .section>div {
   object-position: center;
 }
 
+.media-gallery .overlay-content .icon-close-video img {
+  width: 20px;
+  height: 20px;
+  max-height: unset;
+}
+
 .media-gallery .overlay-content a {
   position: absolute;
   background-color: unset;
-  color: var(--text-white);
+  color: var(--color-white);
   font-size: 36px;
   border-radius: 50%;
-  border: 1.5px solid #fff;
+  border: 1.5px solid var(--color-white);
 }
 
 .media-gallery .overlay-content a .icon {
   height: 38px;
   width: 38px;
   stroke-width: 20;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .media-gallery a.close {
@@ -92,10 +101,11 @@ main .media-gallery .overlay-carousel .section>div {
   bottom: 20%;
 }
 
-.media-gallery a.right, .media-gallery a.left {
+.media-gallery a.right,
+.media-gallery a.left {
   top: 45vh;
   transform: translate(0, -50%);
-  color: #fff;
+  color: var(--color-white);
   height: auto;
 }
 
@@ -117,7 +127,7 @@ main .media-gallery .overlay-carousel .embed {
   margin-top: 0;
 }
 
-main .media-gallery .overlay-carousel .video-wrapper img{
+main .media-gallery .overlay-carousel .video-wrapper img {
   object-fit: contain;
 }
 
@@ -127,35 +137,23 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
 }
 
 @media (min-width: 768px) {
-  .media-gallery .overlay-content {
-    max-width: 750px;
+  .media-gallery a.close {
+    right: -40px;
   }
 
   main .media-gallery .overlay-carousel .section .default-content-wrapper {
     padding-top: 25px;
     padding-bottom: 25px;
   }
-  
+
   main .media-gallery .overlay-carousel .section .default-content-wrapper:has(p.picture) {
     height: 100%;
   }
 }
 
-@media (min-width: 992px) {
-  .media-gallery .overlay-content {
-    max-width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .media-gallery .overlay-content {
-    max-width: 1170px;
-  }
-}
-
 @media (max-width: 767px) {
   .media-gallery .overlay {
-    color: var(--text-white);
+    color: var(--color-white);
   }
 
   .media-gallery .overlay a {
@@ -165,12 +163,8 @@ main .media-gallery .overlay-carousel .video-wrapper .vidyard-lightbox-thumbnail
   .media-gallery a.right {
     right: 0;
   }
-  
+
   .media-gallery a.left {
     left: 0;
-  }
-
-  .media-gallery .overlay-content h3 {
-    padding: 0;
   }
 }
