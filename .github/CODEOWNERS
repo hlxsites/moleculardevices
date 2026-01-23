@@ -1,0 +1,12 @@
+# CODEOWNERS file
+# This file defines who owns code in this repository.
+# It must be named exactly 'CODEOWNERS' (no extension)
+
+# # Global owner – production gatekeeper
+* @dev-rajneeshkumar
+
+# Example: Frontend files
+# /ui/ @frontend-team
+
+# Example: Backend files
+# /api/ @backend-team
