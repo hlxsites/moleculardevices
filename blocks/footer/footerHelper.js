@@ -4,10 +4,9 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import {
-  decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
+  decorateLinkedPictures, formatDate, latestEvents, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
-import { latestEvents } from '../event-banner/event-banner.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';

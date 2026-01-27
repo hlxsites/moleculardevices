@@ -27,6 +27,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1733,6 +1734,28 @@ export function toTitleCase(str) {
     .split(/[\s-]+/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+export function compareEvents(eventA, eventB) {
+  if (eventA.eventStart < eventB.eventStart) {
+    return -1;
+  }
+  if (eventA.eventStart > eventB.eventStart) {
+    return 1;
+  }
+  return 0;
+}
+
+/* ==================== fetch data ==================== */
+
+// get latest events
+export async function latestEvents() {
+  const now = Date.now();
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((event) => (event.eventEnd * 1000 >= now))
+    .all();
+  return events.sort(compareEvents);
 }
 
 /**

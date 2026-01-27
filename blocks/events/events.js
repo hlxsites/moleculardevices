@@ -9,6 +9,7 @@ import {
 import {
   div, input, label, span,
 } from '../../scripts/dom-helpers.js';
+import { compareEvents } from '../../scripts/scripts.js';
 
 const DEFAULT_REGIONS = [
   'Asia',
@@ -88,16 +89,6 @@ function createFilters(options) {
       placeholders.region || 'Region',
     ),
   ];
-}
-
-export function compareEvents(eventA, eventB) {
-  if (eventA.eventStart < eventB.eventStart) {
-    return -1;
-  }
-  if (eventA.eventStart > eventB.eventStart) {
-    return 1;
-  }
-  return 0;
 }
 
 function sortEvents(data, showFutureEvents) {

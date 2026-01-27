@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, latestEvents, unixDateToString } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
-import { latestEvents } from '../event-banner/event-banner.js';
 
 export function formatEventDates(startUnixStr, endUnixStr) {
   let eventDates = '';

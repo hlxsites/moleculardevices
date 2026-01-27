@@ -3,23 +3,11 @@ import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateLinks, formatDate, unixDateToString,
+  decorateLinks, formatDate, latestEvents, unixDateToString,
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
-import { compareEvents } from '../events/events.js';
-import ffetch from '../../scripts/ffetch.js';
-
-/* get latest events */
-export async function latestEvents() {
-  const now = Date.now();
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((event) => (event.eventEnd * 1000 >= now))
-    .all();
-  return events.sort(compareEvents);
-}
 
 /* html of event banner */
 export function createEventBanner(eventObj, isFeaturedBanner = false) {
