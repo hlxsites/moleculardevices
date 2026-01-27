@@ -87,6 +87,10 @@ export default function decorate(block) {
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
 
+  placeholderImage.loading = 'eager';
+  placeholderImage.fetchPriority = 'high';
+  placeholderImage.decoding = 'async';
+
   preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
