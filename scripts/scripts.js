@@ -1178,6 +1178,14 @@ function loadCarousels(main) {
   });
 }
 
+function addPreconnect() {
+  const urlPath = window.location.href;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = urlPath;
+  document.head.appendChild(link);
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -1203,6 +1211,7 @@ export async function decorateMain(main) {
   addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
+  addPreconnect();
 }
 
 /* function isHomepage() {
