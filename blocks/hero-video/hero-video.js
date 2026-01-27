@@ -80,16 +80,15 @@ export default function decorate(block) {
 
   if (placeholderImage) {
     placeholderImage.classList.add('placeholder-image');
+    placeholderImage.querySelector('img').loading = 'eager';
+    placeholderImage.querySelector('img').fetchPriority = 'high';
+    placeholderImage.querySelector('img').decoding = 'async';
     block.appendChild(placeholderImage);
   }
 
   teaserPicture.loading = 'eager';
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
-
-  placeholderImage.loading = 'eager';
-  placeholderImage.fetchPriority = 'high';
-  placeholderImage.decoding = 'async';
 
   preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
