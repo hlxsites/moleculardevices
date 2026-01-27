@@ -759,8 +759,8 @@ export function getHref() {
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
 export function createOptimizedPicture(src, alt = '', eager = true,
-  breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }],
-  sizes = '(max-width: 767px) 100vw, 1200px',
+  breakpoints = [{ media: '(min-width: 992px)', width: '1663' }, { width: '900' }],
+  sizes = '(max-width: 991px) 100vw, 1200px',
 ) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
@@ -772,7 +772,10 @@ export function createOptimizedPicture(src, alt = '', eager = true,
     const source = document.createElement('source');
     if (br.media) source.media = br.media;
     source.type = 'image/webp';
-    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
+    const widths = [Math.round(br.width * 0.5), br.width].filter(Boolean);
+    source.srcset = widths
+      .map((w) => `${pathname}?width=${w}&format=webp&optimize=medium ${w}w`)
+      .join(', ');
     picture.appendChild(source);
   });
 
@@ -794,8 +797,8 @@ export function createOptimizedPicture(src, alt = '', eager = true,
       if (br.width) img.setAttribute('width', br.width);
       if (br.height) img.setAttribute('height', br.height);
 
+      img.src = `${pathname}?width=${br.width}&format=${ext}&optimize=medium`;
       picture.appendChild(img);
-      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
     }
   });
 

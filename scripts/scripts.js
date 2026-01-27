@@ -1675,10 +1675,11 @@ export async function getCountryCode() {
  */
 export function preloadLCPImage(lcpImageUrl) {
   if (lcpImageUrl) {
+    const urlPath = new URL(lcpImageUrl).pathname;
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = lcpImageUrl;
+    link.href = urlPath;
     document.head.appendChild(link);
   }
 }

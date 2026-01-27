@@ -5,9 +5,6 @@ function decorateTeaserPicture(teaserPicture, target) {
     teaserPicture.width = '768';
     teaserPicture.height = '400';
   }
-  teaserPicture.loading = 'eager';
-  teaserPicture.fetchPriority = 'high';
-  teaserPicture.decoding = 'async';
   teaserPicture.parentElement.classList.add('video-cover');
   target.appendChild(teaserPicture.parentElement);
 }
@@ -85,6 +82,10 @@ export default function decorate(block) {
     placeholderImage.classList.add('placeholder-image');
     block.appendChild(placeholderImage);
   }
+
+  teaserPicture.loading = 'eager';
+  teaserPicture.fetchPriority = 'high';
+  teaserPicture.decoding = 'async';
 
   preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
