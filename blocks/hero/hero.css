@@ -503,6 +503,7 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
     min-height: 450px;
   }
 
+  .hero.short .hero-inner,
   .hero-inner.short {
     min-height: unset;
   }
