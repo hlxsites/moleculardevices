@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
@@ -11,7 +12,7 @@ import { compareEvents } from '../events/events.js';
 import ffetch from '../../scripts/ffetch.js';
 
 /* get latest events */
-async function latestEvents() {
+export async function latestEvents() {
   const now = Date.now();
   const events = await ffetch('/query-index.json')
     .sheet('events')

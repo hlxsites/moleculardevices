@@ -7,6 +7,7 @@ import {
   decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
+import { latestEvents } from '../event-banner/event-banner.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';
@@ -39,17 +40,10 @@ export function initToggleBehavior(container) {
 
 /* news and events */
 async function renderEvents(container) {
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .all();
-
-  const sortedEvents = events
-    .sort((first, second) => first.eventStart - second.eventStart).slice(0, 3);
-
+  let events = await latestEvents();
+  events = events.splice(0, 3);
   clear(container);
-
-  sortedEvents.forEach((item) => {
+  events.forEach((item) => {
     item.date = item.eventStart;
     container.append(formatEntry(item));
   });

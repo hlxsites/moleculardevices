@@ -9,6 +9,7 @@ import { formatEventDates } from '../latest-events/latest-events.js';
 import {
   formatDate, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
+import { latestEvents } from '../event-banner/event-banner.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
@@ -218,10 +219,7 @@ async function recentEventHandler(block) {
   const eventsMenu = div({ class: ['flex-space-between'] });
   document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
 
-  let events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .all();
+  let events = await latestEvents();
 
   const featuredEvents = [];
 

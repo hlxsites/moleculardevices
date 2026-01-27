@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   fetchPlaceholders, readBlockConfig, toCamelCase, toClassName,
 } from '../../scripts/lib-franklin.js';
