@@ -4,7 +4,7 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import {
-  decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
+  decorateLinkedPictures, formatDate, latestEvents, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
@@ -39,17 +39,10 @@ export function initToggleBehavior(container) {
 
 /* news and events */
 async function renderEvents(container) {
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .all();
-
-  const sortedEvents = events
-    .sort((first, second) => first.eventStart - second.eventStart).slice(0, 3);
-
+  let events = await latestEvents();
+  events = events.splice(0, 3);
   clear(container);
-
-  sortedEvents.forEach((item) => {
+  events.forEach((item) => {
     item.date = item.eventStart;
     container.append(formatEntry(item));
   });

@@ -1,6 +1,5 @@
 /* eslint-disable import/no-cycle */
-import ffetch from '../../scripts/ffetch.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, latestEvents, unixDateToString } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatEventDates(startUnixStr, endUnixStr) {
@@ -30,21 +29,7 @@ export function buildList(data, block) {
 
 export default async function decorate(block) {
   const currentDate = Date.now();
-
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .all();
-
-  const sortedEvents = events.sort((x, y) => {
-    if (x.eventEnd < y.eventEnd) {
-      return -1;
-    }
-    if (x.eventEnd > y.eventEnd) {
-      return 1;
-    }
-    return 0;
-  });
-
+  const sortedEvents = await latestEvents();
   const upcomingEvents = sortedEvents.filter((item) => item.eventEnd * 1000 > currentDate);
 
   buildList(upcomingEvents.slice(0, 4), block);

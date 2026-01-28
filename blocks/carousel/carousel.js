@@ -218,9 +218,19 @@ class Carousel {
   setInitialScrollingPosition() {
     const scrollToSelectedItem = () => {
       const item = this.block.querySelector('.carousel-item.selected');
-      item.parentNode.scrollTo({
-        top: 0,
-        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      if (!item) return;
+
+      const itemLeft = item.offsetLeft;
+      const blockLeft = this.block.offsetLeft;
+      const padding = this.getBlockPadding();
+
+      const scrollLeft = itemLeft - padding - blockLeft;
+
+      requestAnimationFrame(() => {
+        item.parentNode.scrollTo({
+          top: 0,
+          left: scrollLeft,
+        });
       });
     };
 

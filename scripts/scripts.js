@@ -27,6 +27,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1177,6 +1178,14 @@ function loadCarousels(main) {
   });
 }
 
+function addPreconnect() {
+  const urlPath = window.location.href;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = urlPath;
+  document.head.appendChild(link);
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -1202,6 +1211,7 @@ export async function decorateMain(main) {
   addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
+  addPreconnect();
 }
 
 /* function isHomepage() {
@@ -1675,10 +1685,11 @@ export async function getCountryCode() {
  */
 export function preloadLCPImage(lcpImageUrl) {
   if (lcpImageUrl) {
+    const urlPath = new URL(lcpImageUrl).pathname;
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = lcpImageUrl;
+    link.href = urlPath;
     document.head.appendChild(link);
   }
 }
@@ -1732,6 +1743,28 @@ export function toTitleCase(str) {
     .split(/[\s-]+/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+export function compareEvents(eventA, eventB) {
+  if (eventA.eventStart < eventB.eventStart) {
+    return -1;
+  }
+  if (eventA.eventStart > eventB.eventStart) {
+    return 1;
+  }
+  return 0;
+}
+
+/* ==================== fetch data ==================== */
+
+// get latest events
+export async function latestEvents() {
+  const now = Date.now();
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((event) => (event.eventEnd * 1000 >= now))
+    .all();
+  return events.sort(compareEvents);
 }
 
 /**

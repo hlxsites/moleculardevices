@@ -759,8 +759,8 @@ export function getHref() {
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
 export function createOptimizedPicture(src, alt = '', eager = true,
-  breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }],
-  sizes = '(max-width: 767px) 100vw, 1200px',
+  breakpoints = [{ media: '(min-width: 992px)', width: '1663' }, { width: '900' }],
+  sizes = '(max-width: 991px) 100vw, 1200px',
 ) {
   const url = new URL(src, getHref());
   const picture = document.createElement('picture');
@@ -769,10 +769,22 @@ export function createOptimizedPicture(src, alt = '', eager = true,
 
   // webp
   breakpoints.forEach((br) => {
+    const baseWidth = Number(br.width);
+
+    // generate responsive widths
+    const widths = [
+      Math.round(baseWidth * 0.25), // ~412
+      Math.round(baseWidth * 0.5), // ~824
+      baseWidth, // fallback
+    ];
+
     const source = document.createElement('source');
     if (br.media) source.media = br.media;
     source.type = 'image/webp';
-    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
+    source.srcset = widths
+      .filter((w) => w > 0)
+      .map((w) => `${pathname}?width=${w}&format=webp&optimize=medium ${w}w`)
+      .join(', ');
     picture.appendChild(source);
   });
 
@@ -794,8 +806,8 @@ export function createOptimizedPicture(src, alt = '', eager = true,
       if (br.width) img.setAttribute('width', br.width);
       if (br.height) img.setAttribute('height', br.height);
 
+      img.src = `${pathname}?width=${Math.round(br.width * 0.25)}&format=${ext}&optimize=medium`;
       picture.appendChild(img);
-      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
     }
   });
 
