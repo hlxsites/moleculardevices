@@ -1674,13 +1674,17 @@ export async function getCountryCode() {
  * @param {string} lcpImageUrl - The URL of the image to preload.
  */
 export function preloadLCPImage(lcpImageUrl) {
-  if (lcpImageUrl) {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = lcpImageUrl;
-    document.head.appendChild(link);
-  }
+  if (!lcpImageUrl) return;
+  if (document.querySelector(`link[href="${lcpImageUrl}"]`)) return;
+
+  const href = lcpImageUrl.split('?')[0];
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = href;
+  link.setAttribute('fetchpriority', 'high');
+  document.head.appendChild(link);
+}
 }
 
 /**
