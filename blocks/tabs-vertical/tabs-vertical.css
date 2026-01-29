@@ -312,4 +312,12 @@ main .tabs-vertical-container .cursor-pointer {
     width: auto;
     max-width: 100%;
   }
+
+  .tabs-vertical-main-content > .tabs-vertical-pane > picture img {
+    display: none;
+  }
+
+  .tabs-vertical-main-content > .tabs-vertical-pane.active > picture img {
+    display: block;
+  }
 }
