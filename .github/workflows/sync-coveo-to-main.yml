@@ -37,6 +37,12 @@ jobs:
       - name: Copy Coveo XML from stage
         run: |
           git checkout moldev-stage -- coveo/coveo-xml.xml
+       - name: Debug XML diff
+        run: |
+          echo "==== MAIN ===="
+          git show main:coveo/coveo-xml.xml | tail -n 5
+          echo "==== STAGE ===="
+          git show moldev-stage:coveo/coveo-xml.xml | tail -n 5   
 
       - name: Check for changes
         id: diffcheck
