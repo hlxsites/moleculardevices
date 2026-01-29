@@ -1685,7 +1685,6 @@ export function preloadLCPImage(lcpImageUrl) {
   link.setAttribute('fetchpriority', 'high');
   document.head.appendChild(link);
 }
-}
 
 /**
  * Checks if a given field is not empty, excluding specific invalid values.
