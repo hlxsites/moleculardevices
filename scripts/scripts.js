@@ -721,6 +721,10 @@ function addPageSchema() {
               '@type': 'City',
               name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
             },
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+            },
           },
         ],
       };
