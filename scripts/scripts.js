@@ -1687,10 +1687,11 @@ export function preloadLCPImage(lcpImageUrl) {
   if (!lcpImageUrl) return;
   if (document.querySelector(`link[href="${lcpImageUrl}"]`)) return;
 
+  const href = lcpImageUrl.split('?')[0];
   const link = document.createElement('link');
   link.rel = 'preload';
   link.as = 'image';
-  link.href = lcpImageUrl;
+  link.href = href;
   link.setAttribute('fetchpriority', 'high');
   document.head.appendChild(link);
 }
