@@ -5,7 +5,7 @@ on:
     branches:
       - moldev-stage
     paths:
-      - "coveo/coveo-xml.xml"
+      - coveo/coveo-xml.xml
 
 permissions:
   contents: write
@@ -26,45 +26,43 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Fetch main branch
-        run: |
-          git fetch origin main:main
-
       - name: Create sync branch from main
         run: |
-          git checkout -B sync-coveo-xml main
+          git checkout origin/main -B sync/coveo-xml
 
       - name: Copy Coveo XML from stage
         run: |
-          git checkout moldev-stage -- coveo/coveo-xml.xml
+          git show origin/moldev-stage:coveo/coveo-xml.xml > coveo/coveo-xml.xml
 
       - name: Check for changes
         id: diffcheck
         run: |
-          if git diff --quiet; then
+          if git status --porcelain | grep coveo/coveo-xml.xml; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "No changes to sync"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            git status
           fi
 
       - name: Commit changes
         if: steps.diffcheck.outputs.changed == 'true'
         run: |
-          git commit -am "Sync Coveo XML from stage"
+          git add coveo/coveo-xml.xml
+          git commit -m "Sync Coveo XML from stage"
 
       - name: Push sync branch
         if: steps.diffcheck.outputs.changed == 'true'
         run: |
-          git push origin sync-coveo-xml --force
+          git push origin sync/coveo-xml --force
 
       - name: Create Pull Request
         if: steps.diffcheck.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: sync-coveo-xml
           base: main
+          head: sync/coveo-xml
           title: "Sync Coveo XML from stage"
-          body: "Automated sync of Coveo XML from moldev-stage to main"
+          body: |
+            Automated sync of coveo-xml.xml from moldev-stage to main.
+          labels: automated, coveo
