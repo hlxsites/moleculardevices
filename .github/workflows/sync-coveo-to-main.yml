@@ -26,9 +26,9 @@ jobs:
           git checkout main
           git checkout -b sync/coveo-xml
 
-      - name: Copy Coveo XML from stage
+       name: Copy Coveo XML from stage
         run: |
-          cp moldev-stage/coveo/coveo-xml.xml coveo/coveo-xml.xml
+          git show moldev-stage:coveo/coveo-xml.xml > coveo/coveo-xml.xml
 
       - name: Check for changes
         id: diffcheck
