@@ -1,9 +1,15 @@
 name: Sync Coveo XML from Stage
 
 on:
+  push:
+    branches:
+      - moldev-stage
+    paths:
+      - 'coveo/coveo-xml.xml'
+
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"   # optional: daily at 3 AM UTC
+    - cron: "0 3 * * *"
 
 jobs:
   sync-coveo-xml:
