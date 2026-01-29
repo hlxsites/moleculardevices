@@ -1760,13 +1760,22 @@ export function compareEvents(eventA, eventB) {
 /* ==================== fetch data ==================== */
 
 // get latest events
-export async function latestEvents() {
-  const now = Date.now();
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((event) => (event.eventEnd * 1000 >= now))
-    .all();
-  return events.sort(compareEvents);
+let eventsCache = null;
+
+export function latestEvents() {
+  if (!eventsCache) {
+    const now = Date.now();
+    eventsCache = ffetch('/query-index.json')
+      .sheet('events')
+      .filter((event) => (event.eventEnd * 1000 >= now))
+      .all()
+      .then((events) => [...events].sort(compareEvents))
+      .catch((err) => {
+        eventsCache = null;
+        throw err;
+      });
+  }
+  return eventsCache;
 }
 
 /**
