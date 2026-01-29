@@ -1,3 +1,4 @@
+
 name: Sync Coveo XML to main
 
 on:
@@ -47,3 +48,7 @@ jobs:
             echo "No changes to sync"
             exit 0
           fi
+
+          git add coveo/coveo-xml.xml
+          git commit -m "chore: sync Coveo XML from moldev-stage"
+          git push origin main
