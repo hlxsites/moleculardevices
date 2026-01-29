@@ -5,7 +5,7 @@ on:
     branches:
       - moldev-stage
     paths:
-      - 'coveo/coveo.xml'
+      - 'coveo/coveo-xml.xml'
 
 permissions:
   contents: write
@@ -32,7 +32,7 @@ jobs:
       - name: Prepare sync branch
         run: |
           git checkout -B sync-coveo origin/main
-          git checkout moldev-stage -- coveo/coveo.xml
+          git checkout moldev-stage -- coveo/coveo-xml.xml
 
       - name: Check for changes
         id: diffcheck
@@ -46,7 +46,7 @@ jobs:
       - name: Commit changes
         if: steps.diffcheck.outputs.changes == 'true'
         run: |
-          git add coveo/coveo.xml
+          git add coveo/coveo-xml.xml
           git commit -m "Sync Coveo XML from stage"
 
       - name: Push sync branch
