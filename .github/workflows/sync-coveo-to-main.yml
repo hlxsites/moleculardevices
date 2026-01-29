@@ -1,3 +1,4 @@
+
 name: Sync Coveo XML to main
 
 on:
@@ -9,7 +10,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   sync:
@@ -21,31 +21,34 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Safety guard: prevent infinite loops
-      - name: Stop if commit already from sync PR
+      - name: Configure Git
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          if echo "$COMMIT_MSG" | grep -q "sync generated coveo.xml"; then
-            echo "Skipping — already a sync commit"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync Coveo XML to main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Ensure branches are up to date
+          git fetch origin
+
+          git checkout main
+          git pull origin main
+
+          git checkout moldev-stage
+          git pull origin moldev-stage
+
+          # Copy ONLY the Coveo XML from stage to main
+          git checkout main
+          git checkout moldev-stage -- coveo/coveo-xml.xml
+
+          # Exit if nothing changed
+          if git diff --quiet; then
+            echo "No changes to sync"
             exit 0
           fi
 
-      - name: Create PR to main
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          branch: bot/sync-coveo-${{ github.run_id }}
-          title: "chore: sync generated coveo.xml from stage"
-          body: |
-            Automated sync of generated `coveo.xml`
-            Source: moldev-stage
-          commit-message: "chore: sync generated coveo.xml"
-          labels: coveo, automation
-          delete-branch: true
-
-      - name: Enable auto-merge
-        run: |
-          gh pr merge --auto --merge
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git add coveo/coveo-xml.xml
+          git commit -m "chore: sync Coveo XML from moldev-stage"
+          git push origin main
