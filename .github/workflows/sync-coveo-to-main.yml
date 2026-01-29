@@ -1,18 +1,12 @@
-name: Sync Coveo XML from stage
+name: Sync Coveo XML from Stage
 
 on:
-  push:
-    branches:
-      - moldev-stage
-    paths:
-      - coveo/coveo-xml.xml
-
-permissions:
-  contents: write
-  pull-requests: write
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"   # optional: daily at 3 AM UTC
 
 jobs:
-  sync:
+  sync-coveo-xml:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,39 +15,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure Git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Create sync branch from main
         run: |
-          git checkout origin/main -B sync/coveo-xml
+          git checkout main
+          git checkout -b sync/coveo-xml
 
       - name: Copy Coveo XML from stage
         run: |
-          git show origin/moldev-stage:coveo/coveo-xml.xml > coveo/coveo-xml.xml
+          cp moldev-stage/coveo/coveo-xml.xml coveo/coveo-xml.xml
 
       - name: Check for changes
         id: diffcheck
         run: |
-          if git status --porcelain | grep coveo/coveo-xml.xml; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
+          if git diff --quiet; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "No changes to sync"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git status
           fi
 
       - name: Commit changes
         if: steps.diffcheck.outputs.changed == 'true'
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add coveo/coveo-xml.xml
           git commit -m "Sync Coveo XML from stage"
-
-      - name: Push sync branch
-        if: steps.diffcheck.outputs.changed == 'true'
-        run: |
-          git push origin sync/coveo-xml --force
 
       - name: Create Pull Request
         if: steps.diffcheck.outputs.changed == 'true'
@@ -61,8 +49,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: main
-          head: sync/coveo-xml
+          branch: sync/coveo-xml
           title: "Sync Coveo XML from stage"
           body: |
-            Automated sync of coveo-xml.xml from moldev-stage to main.
-          labels: automated, coveo
+            Automated sync of `coveo-xml.xml` from moldev-stage to main.
+          labels: automated,coveo
+          delete-branch: true
