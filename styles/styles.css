@@ -320,7 +320,7 @@ html {
 
 body {
   margin: 0;
-  opacity: 0;
+  display: none;
   overflow-x: hidden;
   color: var(--color-text-primary);
   font-size: var(--font-size-body-m);
@@ -330,7 +330,7 @@ body {
 }
 
 body.appear {
-  opacity: 1;
+  display: block;
 }
 
 h1,
