@@ -835,7 +835,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
  */
 export function normalizeHeadings(el, allowedHeadings) {
   const allowed = allowedHeadings.map((h) => h.toLowerCase());
-  el.querySelectorAll('h1, h2, h3, 47h4, h5, h6').forEach((tag) => {
+  el.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
     const h = tag.tagName.toLowerCase();
     if (allowed.indexOf(h) === -1) {
       // current heading is not in the allowed list -> try first to "promote" the heading
