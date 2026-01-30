@@ -1,5 +1,3 @@
-import { preloadLCPImage } from '../../scripts/scripts.js';
-
 function decorateTeaserPicture(teaserPicture, target) {
   if (window.innerWidth < 768) {
     teaserPicture.width = '768';
@@ -80,10 +78,15 @@ export default function decorate(block) {
 
   if (placeholderImage) {
     placeholderImage.classList.add('placeholder-image');
+    placeholderImage.querySelector('img').loading = 'eager';
+    placeholderImage.querySelector('img').fetchPriority = 'high';
+    placeholderImage.querySelector('img').decoding = 'async';
     block.appendChild(placeholderImage);
   }
 
-  preloadLCPImage(teaserPicture.src);
+  teaserPicture.loading = 'eager';
+  teaserPicture.fetchPriority = 'high';
+  teaserPicture.decoding = 'async';
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];
