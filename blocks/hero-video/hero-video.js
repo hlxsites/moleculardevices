@@ -1,5 +1,3 @@
-import { preloadLCPImage } from '../../scripts/scripts.js';
-
 function decorateTeaserPicture(teaserPicture, target) {
   if (window.innerWidth < 768) {
     teaserPicture.width = '768';
@@ -89,8 +87,6 @@ export default function decorate(block) {
   teaserPicture.loading = 'eager';
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
-
-  preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
 
   const overlay = videoBanner.children[1];

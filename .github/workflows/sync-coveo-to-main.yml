@@ -1,18 +1,18 @@
-
-name: Sync Coveo XML to main
+name: Sync Coveo XML from Stage
 
 on:
   push:
     branches:
       - moldev-stage
     paths:
-      - "coveo/coveo-xml.xml"
+      - 'coveo/coveo-xml.xml'
 
-permissions:
-  contents: write
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
 
 jobs:
-  sync:
+  sync-coveo-xml:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,34 +21,43 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Configure Git
+      - name: Create sync branch from main
+        run: |
+          git checkout main
+          git checkout -b sync/coveo-xml
+
+      - name: Copy Coveo XML from stage
+        run: |
+          git show moldev-stage:coveo/coveo-xml.xml > coveo/coveo-xml.xml
+
+      - name: Check for changes
+        id: diffcheck
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes to sync"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git status
+          fi
+
+      - name: Commit changes
+        if: steps.diffcheck.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Sync Coveo XML to main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Ensure branches are up to date
-          git fetch origin
-
-          git checkout main
-          git pull origin main
-
-          git checkout moldev-stage
-          git pull origin moldev-stage
-
-          # Copy ONLY the Coveo XML from stage to main
-          git checkout main
-          git checkout moldev-stage -- coveo/coveo-xml.xml
-
-          # Exit if nothing changed
-          if git diff --quiet; then
-            echo "No changes to sync"
-            exit 0
-          fi
-
           git add coveo/coveo-xml.xml
-          git commit -m "chore: sync Coveo XML from moldev-stage"
-          git push origin main
+          git commit -m "Sync Coveo XML from stage"
+
+      - name: Create Pull Request
+        if: steps.diffcheck.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: sync/coveo-xml
+          title: "Sync Coveo XML from stage"
+          body: |
+            Automated sync of `coveo-xml.xml` from moldev-stage to main.
+          labels: automated,coveo
+          delete-branch: true

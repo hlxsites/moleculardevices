@@ -300,7 +300,7 @@ export function decorateLinks(main) {
       const closestButtonContainer = link.closest('.button-container');
       if (link.closest('.block.cards')
         || (closestButtonContainer && closestButtonContainer.querySelector('strong,em'))) {
-        videoButton(link.closest('div'), link, url);
+        videoButton(link.closest('div, article'), link, url);
       } else {
         const up = link.parentElement;
         const hasAutoplay = link.closest('.block.autoplay-video');
@@ -721,6 +721,10 @@ function addPageSchema() {
             location: {
               '@type': 'City',
               name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+            },
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
             },
           },
         ],
