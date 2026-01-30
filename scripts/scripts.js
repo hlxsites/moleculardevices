@@ -19,6 +19,7 @@ import {
   readBlockConfig,
   toCamelCase,
   createOptimizedPicture,
+  decorateImages,
 } from './lib-franklin.js';
 import {
   a, div, domEl, iframe, p,
@@ -1206,6 +1207,7 @@ export async function decorateMain(main) {
   addBgToCarousel(main);
   addPageSchema();
   addHreflangTags();
+  decorateImages();
 }
 
 /* function isHomepage() {

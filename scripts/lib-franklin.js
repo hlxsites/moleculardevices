@@ -753,6 +753,32 @@ export function getHref() {
 }
 
 /**
+ * Optimize images for performance
+ * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
+ * - All others remain lazy with async decoding
+ */
+export function decorateImages() {
+  const images = [...document.querySelectorAll('img')];
+  if (images.length === 0) return;
+
+  // Identify first image in viewport (LCP candidate)
+  const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+  if (lcpImage) {
+    lcpImage.setAttribute('loading', 'eager');
+    lcpImage.setAttribute('fetchpriority', 'high');
+    lcpImage.setAttribute('decoding', 'async');
+  }
+
+  // Optimize all remaining images
+  images.forEach((img) => {
+    if (img !== lcpImage) {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    }
+  });
+}
+
+/**
  * Returns a picture element with webp and fallbacks
  * @param {string} src The image URL
  * @param {boolean} eager load image eager
@@ -809,7 +835,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
  */
 export function normalizeHeadings(el, allowedHeadings) {
   const allowed = allowedHeadings.map((h) => h.toLowerCase());
-  el.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
+  el.querySelectorAll('h1, h2, h3, 47h4, h5, h6').forEach((tag) => {
     const h = tag.tagName.toLowerCase();
     if (allowed.indexOf(h) === -1) {
       // current heading is not in the allowed list -> try first to "promote" the heading
