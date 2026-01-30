@@ -218,9 +218,17 @@ class Carousel {
   setInitialScrollingPosition() {
     const scrollToSelectedItem = () => {
       const item = this.block.querySelector('.carousel-item.selected');
-      item.parentNode.scrollTo({
-        top: 0,
-        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      const itemRect = item.getBoundingClientRect();
+      const blockRect = this.block.getBoundingClientRect();
+      const padding = this.getBlockPadding();
+      const scrollLeft = (itemRect.left - padding - blockRect.left);
+
+      requestAnimationFrame(() => {
+        item.parentNode.scrollTo({
+          top: 0,
+          left: scrollLeft,
+          behavior: 'instant',
+        });
       });
     };
 
@@ -230,18 +238,16 @@ class Carousel {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes'
           && mutation.attributeName === 'data-section-status'
-          && section.attributes.getNamedItem('data-section-status').value === 'loaded') {
-          scrollToSelectedItem();
+          && section.getAttribute('data-section-status') === 'loaded') {
+          requestAnimationFrame(() => {
+            scrollToSelectedItem();
+          });
           observer.disconnect();
         }
       });
     });
 
-    observer.observe(section, { attributes: true });
-
-    // just in case the mutation observer didn't work
-    setTimeout(scrollToSelectedItem, 700);
-
+    observer.observe(section, { attributes: true, attributeFilter: ['data-section-status'] });
     // ensure that we disconnect the observer
     // if the animation has kicked in, we for sure no longer need it
     setTimeout(() => { observer.disconnect(); }, AUTOSCROLL_INTERVAL);
