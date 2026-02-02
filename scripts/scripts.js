@@ -719,13 +719,16 @@ function addPageSchema() {
               url: schemaImageUrl,
             },
             location: {
-              '@type': 'City',
-              name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
-            },
-            address: {
+              '@type': 'Place',
+              name: getMetadata('event-address'),
+              address: {
               '@type': 'PostalAddress',
-              addressLocality: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+              addressLocality: getMetadata('event-address'),
+              addressRegion: getMetadata('event-region'),
+              addressCountry: '',
+               },
             },
+            
           },
         ],
       };
