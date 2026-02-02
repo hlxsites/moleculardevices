@@ -11,7 +11,6 @@ import {
   loadBlocks,
   toClassName,
   getMetadata,
-  loadCSS,
   loadBlock,
   loadHeader,
   decorateBlock,
