@@ -10,9 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-/* stylelint-disable no-descending-specificity */
-
-/* stylelint-disable | Translations classes from One Link */
+/* stylelint-disable */
+/* Translations classes from One Link */
 .OneLinkShow_jp,
 main .section.OneLinkShow_jp.columns-2,
 .OneLinkShow_de,
@@ -36,6 +35,7 @@ main .section.OneLinkShow_zh.columns-2 {
 }
 /* stylelint-enable */
 
+/* stylelint-disable no-descending-specificity */
 :root {
   /* Brand Colors */
   --color-primary: #008da9;
