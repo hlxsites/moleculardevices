@@ -11,44 +11,8 @@
  */
 
 /* stylelint-disable no-descending-specificity */
-@font-face {
-  font-family: "Proxima Nova Regular Fallback";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Arial");
-  ascent-override: 79.64%;
-  descent-override: 21.17%;
-  line-gap-override: 0%;
-  size-adjust: 99.19%;
-  font-display: swap;
-}
 
-@font-face {
-  font-family: "Proxima Nova ExtraBold Fallback";
-  font-style: normal;
-  font-weight: 800;
-  src: local("Arial");
-  ascent-override: 75.77%;
-  descent-override: 20.14%;
-  line-gap-override: 0%;
-  size-adjust: 104.26%;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Proxima Nova Light Fallback";
-  font-style: normal;
-  font-weight: 300;
-  src: local("Arial");
-  ascent-override: 80.85%;
-  descent-override: 21.49%;
-  line-gap-override: 0%;
-  size-adjust: 97.72%;
-  font-display: swap;
-}
-
-/* stylelint-disable */
-/* Translations classes from One Link */
+/* stylelint-disable | Translations classes from One Link */
 .OneLinkShow_jp,
 main .section.OneLinkShow_jp.columns-2,
 .OneLinkShow_de,

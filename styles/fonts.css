@@ -1,26 +1,78 @@
 @font-face {
-    font-display: swap;
-    font-family: 'Proxima Nova Regular';
-    src: url('/fonts/ProximaNova-Regular.eot');
-    src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Regular.woff2') format('woff2'), url('/fonts/ProximaNova-Regular.woff') format('woff'), url('/fonts/ProximaNova-Regular.ttf') format('truetype'), url('/fonts/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
-    font-weight: normal;
-    font-style: normal
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Proxima Nova ExtraBold';
-    src: url('/fonts/ProximaNova-Extrabld.eot');
-    src: url('/fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Extrabld.woff2') format('woff2'), url('/fonts/ProximaNova-Extrabld.woff') format('woff'), url('/fonts/ProximaNova-Extrabld.ttf') format('truetype'), url('/fonts/ProximaNova-Extrabld.svg#ProximaNova-Extrabld') format('svg');
-    font-weight: 800;
-    font-style: normal
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: 'Proxima Nova Light';
-    src: url('/fonts/ProximaNova-Light.eot');
-    src: url('/fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Light.woff2') format('woff2'), url('/fonts/ProximaNova-Light.woff') format('woff'), url('/fonts/ProximaNova-Light.ttf') format('truetype'), url('/fonts/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
-    font-weight: 300;
-    font-style: normal
-  }
+  font-display: swap;
+  font-family: 'Proxima Nova Regular';
+  src: url('/fonts/ProximaNova-Regular.eot');
+  src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Regular.woff2') format('woff2'), url('/fonts/ProximaNova-Regular.woff') format('woff'), url('/fonts/ProximaNova-Regular.ttf') format('truetype'), url('/fonts/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Proxima Nova ExtraBold';
+  src: url('/fonts/ProximaNova-Extrabld.eot');
+  src: url('/fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Extrabld.woff2') format('woff2'), url('/fonts/ProximaNova-Extrabld.woff') format('woff'), url('/fonts/ProximaNova-Extrabld.ttf') format('truetype'), url('/fonts/ProximaNova-Extrabld.svg#ProximaNova-Extrabld') format('svg');
+  font-weight: 800;
+  font-style: normal
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Proxima Nova Light';
+  src: url('/fonts/ProximaNova-Light.eot');
+  src: url('/fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/ProximaNova-Light.woff2') format('woff2'), url('/fonts/ProximaNova-Light.woff') format('woff'), url('/fonts/ProximaNova-Light.ttf') format('truetype'), url('/fonts/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+  font-weight: 300;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Free";
+  src: url("/fonts/fa-solid-900.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font Awesome 7 Brands";
+  src: url("/fonts/fa-brands-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova Regular Fallback";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arial");
+  ascent-override: 79.64%;
+  descent-override: 21.17%;
+  line-gap-override: 0%;
+  size-adjust: 99.19%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova ExtraBold Fallback";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Arial");
+  ascent-override: 75.77%;
+  descent-override: 20.14%;
+  line-gap-override: 0%;
+  size-adjust: 104.26%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Proxima Nova Light Fallback";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Arial");
+  ascent-override: 80.85%;
+  descent-override: 21.49%;
+  line-gap-override: 0%;
+  size-adjust: 97.72%;
+  font-display: swap;
+}

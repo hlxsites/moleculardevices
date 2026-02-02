@@ -1412,7 +1412,6 @@ async function loadLazy(doc) {
     loadFooter(doc.querySelector('footer'));
     loadBreadcrumbs(main);
 
-    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
     loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
       try {
         if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
