@@ -510,7 +510,7 @@ function addPageSchema() {
     const description = getMetadata('description');
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
-    const eventAddress = getMetadata('event-address');
+    // const eventAddress = getMetadata('event-address');
     // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
@@ -721,13 +721,13 @@ function addPageSchema() {
               '@type': 'Place',
               name: getMetadata('event-address'),
               address: {
-              '@type': 'PostalAddress',
-              addressLocality: getMetadata('event-address'),
-              addressRegion: getMetadata('event-region'),
-              addressCountry: '',
-               },
+                '@type': 'PostalAddress',
+                addressLocality: getMetadata('event-address'),
+                addressRegion: getMetadata('event-region'),
+                addressCountry: '',
+              },
             },
-            
+
           },
         ],
       };
