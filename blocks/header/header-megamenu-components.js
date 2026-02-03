@@ -5,7 +5,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
-import { formatEventDates } from '../latest-events/latest-events.js';
+import { formatEventDates, sortEventsData } from '../latest-events/latest-events.js';
 import {
   formatDate, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
@@ -234,8 +234,7 @@ async function recentEventHandler(block) {
     events = featuredEvents;
   }
 
-  const sortedEvents = events.sort((first, second) => first.eventStart - second.eventStart)
-    .slice(0, 2);
+  const sortedEvents = sortEventsData(events).slice(0, 2);
 
   sortedEvents.forEach((event) => {
     let description;

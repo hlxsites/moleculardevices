@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>404: Page Not Found !</title>
-    <script type="text/javascript">
+    <script>
       const locationURL = new URL(window.location.href);
       let urlAdjusted = false;
       if (locationURL.pathname.endsWith('/')) {
@@ -20,17 +20,17 @@
       }
     </script>
 
-    <script type="text/javascript">
+    <script>
       window.isErrorPage = true;
       window.errorCode = '404';
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
       content="We're sorry, but we are unable to locate the page you have requested. If you have reached this page in error, you may wish to proceed to the home page to locate the information you are looking for. If you continue to receive this message, please do not hesitate to contact us for assistance."
-    />
-    <meta property="og:title" content="404: Page Not Found !" />
-    <meta property="og:site_name" content="Molecular Devices" />
+  >
+    <meta property="og:title" content="404: Page Not Found !">
+    <meta property="og:site_name" content="Molecular Devices">
     <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
     <script type="module">
       import { sampleRUM } from '/scripts/lib-franklin.js';
@@ -38,8 +38,8 @@
         sampleRUM('404', { source: document.referrer, target: window.location.href });
       });
     </script>
-    <link rel="stylesheet" href="/styles/styles.css" />
-    <link rel="stylesheet" href="/styles/lazy-styles.css" />
+    <link rel="stylesheet" href="/styles/fonts.css">
+    <link rel="stylesheet" href="/styles/styles.css">
   </head>
 
   <body>
@@ -50,8 +50,8 @@
           <div>
             <p>
               <picture>
-                <source type="image/webp" srcset="/images/default-banner.webp" />
-                <source type="image/jpeg" srcset="/images/default-banner.jpg" />
+                <source type="image/webp" srcset="/images/default-banner.webp">
+                <source type="image/jpeg" srcset="/images/default-banner.jpg">
                 <img
                   loading="lazy"
                   alt="Background"
@@ -59,7 +59,7 @@
                   src="/images/default-banner.jpg"
                   width="2880"
                   height="400"
-                />
+              >
               </picture>
             </p>
             <h1 id="error">404: Page Not Found !</h1>
