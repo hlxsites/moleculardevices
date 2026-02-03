@@ -8,6 +8,7 @@ import {
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
+import { sortEventsData } from '../latest-events/latest-events.js';
 import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
@@ -44,8 +45,7 @@ async function renderEvents(container) {
     .filter((item) => item.eventEnd * 1000 > Date.now())
     .all();
 
-  const sortedEvents = events
-    .sort((first, second) => first.eventStart - second.eventStart).slice(0, 3);
+  const sortedEvents = sortEventsData(events).slice(0, 3);
 
   clear(container);
 
