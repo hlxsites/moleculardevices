@@ -510,8 +510,14 @@ function addPageSchema() {
     const description = getMetadata('description');
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
+<<<<<<< add-preload
     // const eventAddress = getMetadata('event-address');
     // const publicationDate = getMetadata('publication-date');
+=======
+    const eventAddress = getMetadata('event-address');
+    const eventRegion =  getMetadata('event-region');
+   // const publicationDate = getMetadata('publication-date');
+>>>>>>> moldev-stage
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
@@ -519,7 +525,7 @@ function addPageSchema() {
 
     const logo = {
       '@type': 'ImageObject',
-      representativeOfPage: 'True',
+      representativeOfPage: true,
       url: moleculardevicesLogoURL,
     };
 
@@ -596,7 +602,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -611,6 +617,7 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
+            about:  keywords ? keywords.split(',').map((k) => ({"@type": "Thing","name": k.trim() })) : [],
             sameAs:
               brandSameAs,
           },
@@ -635,7 +642,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -663,7 +670,7 @@ function addPageSchema() {
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -714,18 +721,26 @@ function addPageSchema() {
             endDate: (eventEnd) ? eventEnd.split(',')[0] : '',
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             location: {
               '@type': 'Place',
-              name: getMetadata('event-address'),
+              name: eventAddress,
               address: {
+<<<<<<< add-preload
                 '@type': 'PostalAddress',
                 addressLocality: getMetadata('event-address'),
                 addressRegion: getMetadata('event-region'),
                 addressCountry: '',
               },
+=======
+              '@type': 'PostalAddress',
+              addressLocality: eventAddress,
+              addressRegion: eventRegion,
+              addressCountry: '',
+               },
+>>>>>>> moldev-stage
             },
 
           },
@@ -827,7 +842,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -854,7 +869,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -887,7 +902,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
