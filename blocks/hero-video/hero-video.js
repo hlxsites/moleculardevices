@@ -58,7 +58,7 @@ function decorateTeaser(video, teaserPicture, target) {
   video.remove();
 }
 
-function decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref) {
+function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref) {
   const button = document.createElement('a');
   button.classList.add('video-banner-btn');
   button.href = fullScreenVideoLinkHref;
@@ -103,5 +103,5 @@ export default function decorate(block) {
     return;
   }
   const fullScreenVideoLinkHref = fullScreenVideoLink.href;
-  decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref);
+  decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref);
 }
