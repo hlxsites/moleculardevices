@@ -92,8 +92,8 @@ export default function decorate(block) {
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
 
-  // preloadLCPImage(teaserPicture.src);
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderPicture);
+  preloadLCPImage(teaserPicture.src);
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
