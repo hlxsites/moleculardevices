@@ -76,14 +76,16 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
-  const placeholderImage = heroContent.querySelectorAll('picture')[1];
+  const placeholderPicture = heroContent.querySelectorAll('picture')[1];
 
-  if (placeholderImage) {
-    placeholderImage.classList.add('placeholder-image');
-    placeholderImage.querySelector('img').loading = 'eager';
-    placeholderImage.querySelector('img').fetchPriority = 'high';
-    placeholderImage.querySelector('img').decoding = 'async';
-    block.appendChild(placeholderImage);
+  if (placeholderPicture) {
+    placeholderPicture.classList.add('placeholder-image');
+    const placeholderImg = placeholderPicture.querySelector('img');
+    placeholderImg.loading = 'eager';
+    placeholderImg.fetchPriority = 'high';
+    placeholderImg.decoding = 'async';
+    preloadLCPImage(placeholderImg.src);
+    block.appendChild(placeholderPicture);
   }
 
   teaserPicture.loading = 'eager';
@@ -91,7 +93,7 @@ export default function decorate(block) {
   teaserPicture.decoding = 'async';
 
   preloadLCPImage(teaserPicture.src);
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderPicture);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
