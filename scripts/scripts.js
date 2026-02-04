@@ -611,7 +611,7 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            about:  keywords ? keywords.split(',').map((k) => ({"@type": "Thing","name": k.trim() })) : [];,
+            about:  keywords ? keywords.split(',').map((k) => ({"@type": "Thing","name": k.trim() })) : [],
             sameAs:
               brandSameAs,
           },
