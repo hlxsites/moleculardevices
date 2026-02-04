@@ -1668,7 +1668,7 @@ export function preloadLCPImage(lcpImageUrl) {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.fetchPriority = 'high';
+    // link.fetchPriority = 'high';
     link.href = lcpImageUrl;
     document.head.appendChild(link);
   }
