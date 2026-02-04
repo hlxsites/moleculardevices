@@ -519,7 +519,7 @@ function addPageSchema() {
 
     const logo = {
       '@type': 'ImageObject',
-      representativeOfPage: 'true',
+      representativeOfPage: true,
       url: moleculardevicesLogoURL,
     };
 
@@ -596,7 +596,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -636,7 +636,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -664,7 +664,7 @@ function addPageSchema() {
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -715,7 +715,7 @@ function addPageSchema() {
             endDate: (eventEnd) ? eventEnd.split(',')[0] : '',
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             location: {
@@ -828,7 +828,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -855,7 +855,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -888,7 +888,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'true',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
