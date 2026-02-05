@@ -84,8 +84,8 @@ export default function decorate(block) {
     placeholderImg.loading = 'eager';
     placeholderImg.fetchPriority = 'high';
     placeholderImg.decoding = 'async';
-    preloadLCPImage(placeholderImg.src);
     block.appendChild(placeholderPicture);
+    preloadLCPImage(placeholderImg.src);
   }
 
   teaserPicture.loading = 'eager';
