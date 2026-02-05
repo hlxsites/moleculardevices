@@ -43,6 +43,7 @@ async function renderEvents(container) {
   const events = await ffetch('/query-index.json')
     .sheet('events')
     .filter((item) => item.eventEnd * 1000 > Date.now())
+    .chunks(50)
     .all();
 
   const sortedEvents = sortEventsData(events).slice(0, 3);

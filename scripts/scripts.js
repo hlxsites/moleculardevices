@@ -511,8 +511,8 @@ function addPageSchema() {
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
-    const eventRegion =  getMetadata('event-region');
-   // const publicationDate = getMetadata('publication-date');
+    const eventRegion = getMetadata('event-region');
+    // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
@@ -612,7 +612,8 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            about:  keywords ? keywords.split(',').map((k) => ({"@type": "Thing","name": k.trim() })) : [],
+            // eslint-disable-next-line quotes, quote-props
+            about: keywords ? keywords.split(',').map((k) => ({ "@type": "Thing", "name": k.trim() })) : [],
             sameAs:
               brandSameAs,
           },
@@ -723,13 +724,13 @@ function addPageSchema() {
               '@type': 'Place',
               name: eventAddress,
               address: {
-              '@type': 'PostalAddress',
-              addressLocality: eventAddress,
-              addressRegion: eventRegion,
-              addressCountry: '',
-               },
+                '@type': 'PostalAddress',
+                addressLocality: eventAddress,
+                addressRegion: eventRegion,
+                addressCountry: '',
+              },
             },
-            
+
           },
         ],
       };
@@ -1670,6 +1671,7 @@ export function preloadLCPImage(lcpImageUrl) {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
+    link.fetchPriority = 'high';
     link.href = lcpImageUrl;
     document.head.appendChild(link);
   }
