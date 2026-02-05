@@ -511,8 +511,8 @@ function addPageSchema() {
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
-    const eventRegion =  getMetadata('event-region');
-   // const publicationDate = getMetadata('publication-date');
+    const eventRegion = getMetadata('event-region');
+    // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
     const schema = document.createElement('script');
@@ -612,7 +612,7 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            about:  keywords ? keywords.split(',').map((k) => ({"@type": "Thing","name": k.trim() })) : [],
+            about: keywords ? keywords.split(',').map((k) => ({ '@type': 'Thing', name: k.trim() })) : [],
             sameAs:
               brandSameAs,
           },
@@ -689,7 +689,8 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about:  keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({"@type": "Thing","name": k})): [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()).filter((k) => k.length > 0).slice(0, 8)
+              .map((k) => ({ '@type': 'Thing', name: k })) : [],
             author: {
               '@type': 'Organization',
               name: moleculardevicesSiteName,
@@ -723,13 +724,13 @@ function addPageSchema() {
               '@type': 'Place',
               name: eventAddress,
               address: {
-              '@type': 'PostalAddress',
-              addressLocality: eventAddress,
-              addressRegion: eventRegion,
-              addressCountry: '',
-               },
+                '@type': 'PostalAddress',
+                addressLocality: eventAddress,
+                addressRegion: eventRegion,
+                addressCountry: '',
+              },
             },
-            
+
           },
         ],
       };
