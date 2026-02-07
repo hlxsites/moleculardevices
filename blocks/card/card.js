@@ -68,6 +68,8 @@ class Card {
     this.c2aLinkIconFull = false;
     this.showDate = false;
     this.showCategory = false;
+    this.showType = false;
+    this.showDisplayType = false;
     this.hideDescription = false;
     this.isRequestQuoteCard = false;
     this.isShopifyCard = false;

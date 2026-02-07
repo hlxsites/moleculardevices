@@ -90,6 +90,7 @@ export default async function decorate(block) {
 
   const resourceCard = await createCard({
     showDate: true,
+    showDisplayType: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
   });

@@ -6,8 +6,9 @@ import {
   fetchPlaceholders,
   getMetadata,
 } from '../../scripts/lib-franklin.js';
-import { fetchFragment, formatDate, sortDataByDate } from '../../scripts/scripts.js';
-import ffetch from '../../scripts/ffetch.js';
+
+import { fetchFragment, formatDate } from '../../scripts/scripts.js';
+import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
 
 function renderBlockTeaser(blogData) {
   /* eslint-disable indent */
@@ -63,21 +64,11 @@ export default async function decorate(block) {
     const link = a({ href: (new URL(featuredPostUrl)).pathname });
     blogPostLinks.push(link);
   } else {
-    let data = [];
-    const recentPostLinks = await ffetch('/query-index.json')
-      .sheet('blog')
-      .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
-      .chunks(5)
-      .limit(3)
-      .all();
-    const publications = await ffetch('/query-index.json')
-      .sheet('publications')
-      .filter((resource) => resource.publicationType === 'Full Article')
-      .limit(3)
-      .all();
-    data = [...publications, ...recentPostLinks];
-    data = sortDataByDate(data).slice(0, 3);
-    data.forEach((post) => {
+
+    const recentPostLinks = await getBlogsAndPublications();
+    recentPostLinks.splice(3);
+
+    recentPostLinks.forEach((post) => {
       const link = a({ href: post.path });
       blogPostLinks.push(link);
     });
