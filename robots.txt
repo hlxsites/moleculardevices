@@ -143,6 +143,10 @@ Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
 Disallow: /en/assets/tutorials-videos/br/elevating-cell-based-research-spectramax-id-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/how-ai-powered-automation-enables-fully-automated-cell-culture
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/automated-brain-organoid-research-generation
+Disallow: /en/assets/tutorials-videos/dd/img/evaluation-liver-toxicity-high-content-imaging-and-ai
+
+
+
 
 #EU webinars to imaging video gallery page
 
