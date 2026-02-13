@@ -612,7 +612,12 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            about:  keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({"@type": "Thing","name": k})): [],
+            about: keywords ? keywords.split(',')
+              .map((k) => k.trim())
+              .filter((k) => k.length > 0)
+              .slice(0, 8)
+              // eslint-disable-next-line quote-props
+              .map((k) => ({ '@type': 'Thing', 'name': k })) : [],
             sameAs:
               brandSameAs,
           },
@@ -662,7 +667,7 @@ function addPageSchema() {
             name: schemaTitle,
             description,
             keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
-            about:  keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({"@type": "Thing","name": k})): [],
+            about: keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({ '@type': 'Thing', 'name': k })) : [],
             image: {
               '@type': 'ImageObject',
               representativeOfPage: true,
