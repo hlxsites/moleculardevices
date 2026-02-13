@@ -1,3 +1,5 @@
+import { preloadLCPImage } from '../../scripts/scripts.js';
+
 function decorateTeaserPicture(teaserPicture, target) {
   if (window.innerWidth < 768) {
     teaserPicture.width = '768';
@@ -56,7 +58,7 @@ function decorateTeaser(video, teaserPicture, target) {
   video.remove();
 }
 
-function decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref) {
+function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref) {
   const button = document.createElement('a');
   button.classList.add('video-banner-btn');
   button.href = fullScreenVideoLinkHref;
@@ -74,20 +76,24 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
-  const placeholderImage = heroContent.querySelectorAll('picture')[1];
+  const placeholderPicture = heroContent.querySelectorAll('picture')[1];
 
-  if (placeholderImage) {
-    placeholderImage.classList.add('placeholder-image');
-    placeholderImage.querySelector('img').loading = 'eager';
-    placeholderImage.querySelector('img').fetchPriority = 'high';
-    placeholderImage.querySelector('img').decoding = 'async';
-    block.appendChild(placeholderImage);
+  if (placeholderPicture) {
+    placeholderPicture.classList.add('placeholder-image');
+    const placeholderImg = placeholderPicture.querySelector('img');
+    placeholderImg.loading = 'eager';
+    placeholderImg.fetchPriority = 'high';
+    placeholderImg.decoding = 'async';
+    block.appendChild(placeholderPicture);
+    preloadLCPImage(placeholderImg.src);
   }
 
   teaserPicture.loading = 'eager';
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent, placeholderImage);
+
+  preloadLCPImage(teaserPicture.src);
+  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
@@ -97,5 +103,5 @@ export default function decorate(block) {
     return;
   }
   const fullScreenVideoLinkHref = fullScreenVideoLink.href;
-  decorateOverlayButton(fullScreenVideoLink, block, overlay, fullScreenVideoLinkHref);
+  decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref);
 }
