@@ -612,8 +612,7 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
-            // eslint-disable-next-line quotes, quote-props
-            about: keywords ? keywords.split(',').map((k) => ({ "@type": "Thing", "name": k.trim() })) : [],
+            about:  keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({"@type": "Thing","name": k})): [],
             sameAs:
               brandSameAs,
           },
@@ -663,7 +662,7 @@ function addPageSchema() {
             name: schemaTitle,
             description,
             keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about:  keywords ? keywords.split(',').map(k => k.trim()).filter(k => k.length > 0).slice(0, 8).map(k => ({"@type": "Thing","name": k})): [],
             image: {
               '@type': 'ImageObject',
               representativeOfPage: true,
@@ -690,7 +689,8 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()).filter((k) => k.length > 0).slice(0, 8)
+              .map((k) => ({ '@type': 'Thing', name: k })) : [],
             author: {
               '@type': 'Organization',
               name: moleculardevicesSiteName,
