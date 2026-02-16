@@ -11,7 +11,6 @@ import {
   loadBlocks,
   toClassName,
   getMetadata,
-  loadCSS,
   loadBlock,
   loadHeader,
   decorateBlock,
@@ -512,6 +511,7 @@ function addPageSchema() {
     const eventStart = getMetadata('event-start');
     const eventEnd = getMetadata('event-end');
     const eventAddress = getMetadata('event-address');
+    const eventRegion = getMetadata('event-region');
     // const publicationDate = getMetadata('publication-date');
     const canonicalHref = document.querySelector("link[rel='canonical']").href;
 
@@ -520,7 +520,7 @@ function addPageSchema() {
 
     const logo = {
       '@type': 'ImageObject',
-      representativeOfPage: 'True',
+      representativeOfPage: true,
       url: moleculardevicesLogoURL,
     };
 
@@ -597,7 +597,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -612,6 +612,12 @@ function addPageSchema() {
               url: moleculardevicesRootURL,
               logo,
             },
+            about: keywords ? keywords.split(',')
+              .map((k) => k.trim())
+              .filter((k) => k.length > 0)
+              .slice(0, 8)
+              // eslint-disable-next-line quote-props
+              .map((k) => ({ '@type': 'Thing', 'name': k })) : [],
             sameAs:
               brandSameAs,
           },
@@ -636,7 +642,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -661,10 +667,15 @@ function addPageSchema() {
             name: schemaTitle,
             description,
             keywords: keywords ? keywords.split(',').map((k) => k.trim()) : [],
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',')
+              .map((k) => k.trim())
+              .filter((k) => k.length > 0)
+              .slice(0, 8)
+              // eslint-disable-next-line quote-props
+              .map((k) => ({ '@type': 'Thing', 'name': k })) : [],
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -688,7 +699,8 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()).filter((k) => k.length > 0).slice(0, 8)
+              .map((k) => ({ '@type': 'Thing', name: k })) : [],
             author: {
               '@type': 'Organization',
               name: moleculardevicesSiteName,
@@ -715,17 +727,20 @@ function addPageSchema() {
             endDate: (eventEnd) ? eventEnd.split(',')[0] : '',
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             location: {
-              '@type': 'City',
-              name: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
+              '@type': 'Place',
+              name: eventAddress,
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: eventAddress,
+                addressRegion: eventRegion,
+                addressCountry: '',
+              },
             },
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: eventAddress ? eventAddress.split(',').map((k) => k.trim()) : [],
-            },
+
           },
         ],
       };
@@ -825,7 +840,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -852,7 +867,7 @@ function addPageSchema() {
             description: getMetadata('description'),
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             publisher: {
@@ -885,7 +900,7 @@ function addPageSchema() {
             url: canonicalHref,
             image: {
               '@type': 'ImageObject',
-              representativeOfPage: 'True',
+              representativeOfPage: true,
               url: schemaImageUrl,
             },
             author: {
@@ -1236,15 +1251,6 @@ async function loadEager(doc) {
     createBreadcrumbsSpace(main);
     await waitForLCP(LCP_BLOCKS);
   }
-  if (window.innerWidth >= 900) loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-
-  try {
-    if (sessionStorage.getItem('fonts-loaded')) {
-      loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-    }
-  } catch (e) {
-    // do nothing
-  }
 }
 
 /**
@@ -1411,15 +1417,6 @@ async function loadLazy(doc) {
 
     loadFooter(doc.querySelector('footer'));
     loadBreadcrumbs(main);
-
-    loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-    loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`).then(() => {
-      try {
-        if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-      } catch (e) {
-        // do nothing
-      }
-    });
 
     window.hlx.plugins.run('loadLazy');
 
@@ -1684,6 +1681,7 @@ export function preloadLCPImage(lcpImageUrl) {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
+    link.fetchPriority = 'high';
     link.href = lcpImageUrl;
     document.head.appendChild(link);
   }

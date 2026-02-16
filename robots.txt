@@ -93,7 +93,7 @@ Disallow: /en/assets/app-note/bpd/anaerobic-microbiome-workflows-with-qpix-flex
 Disallow: /en/assets/app-note/dd/3d-biology/automated-organoid-workflow-for-t-cell-screening-using-cellxpress.ai
 Disallow: /en/assets/app-note/br/sensitive-quantitation-plasmid-dna-from-bacteria-cultured-in-microplates
 Disallow: /en/assets/app-note/dd/3d-biology/cellxpress-ai-for-automated-robust-brain-organoid-generation
-
+Disallow: /en/assets/app-note/dd/img/ai-driven-3d-segmentation-drug-toxicity-screening-human-liver-microtissues
 
 
 # infographics
@@ -143,6 +143,10 @@ Disallow: /en/assets/tutorials-videos/br/spectramax-id3s-id5e-readers-webinar
 Disallow: /en/assets/tutorials-videos/br/elevating-cell-based-research-spectramax-id-series
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/how-ai-powered-automation-enables-fully-automated-cell-culture
 Disallow: /en/assets/tutorials-videos/dd/3d-biology/automated-brain-organoid-research-generation
+Disallow: /en/assets/tutorials-videos/dd/img/evaluation-liver-toxicity-high-content-imaging-and-ai
+
+
+
 
 #EU webinars to imaging video gallery page
 
@@ -185,6 +189,8 @@ Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-g
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-no-no.pdf
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-pt-pt.pdf
 Disallow: /sites/default/files/en/assets/user-guide/br/spectramax-mini-install-guide-5090341b-sv-se.pdf
+
+
 
 
 Disallow: /contact/thank-you

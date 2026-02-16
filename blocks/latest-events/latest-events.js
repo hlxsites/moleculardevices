@@ -28,24 +28,19 @@ export function buildList(data, block) {
   });
 }
 
+export function sortEventsData(events) {
+  return events.sort((first, second) => first.eventStart - second.eventStart);
+}
+
 export default async function decorate(block) {
   const currentDate = Date.now();
 
   const events = await ffetch('/query-index.json')
     .sheet('events')
+    .filter((item) => item.eventEnd * 1000 > currentDate)
     .all();
 
-  const sortedEvents = events.sort((x, y) => {
-    if (x.eventEnd < y.eventEnd) {
-      return -1;
-    }
-    if (x.eventEnd > y.eventEnd) {
-      return 1;
-    }
-    return 0;
-  });
+  const sortedEvents = sortEventsData(events).slice(0, 4);
 
-  const upcomingEvents = sortedEvents.filter((item) => item.eventEnd * 1000 > currentDate);
-
-  buildList(upcomingEvents.slice(0, 4), block);
+  buildList(sortedEvents, block);
 }

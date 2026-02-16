@@ -3,11 +3,17 @@
 
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://api.ipstack.com">
 
-<link rel="stylesheet" href="/styles/styles.css">
-<link rel="stylesheet" href="/styles/fontAwesome-v7.css">
+<link rel="preload" href="/styles/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/styles/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="/styles/fontAwesome-v7.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+  <link rel="stylesheet" href="/styles/fonts.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="stylesheet" href="/styles/fontAwesome-v7.css">
+</noscript>
 
 <script src="/scripts/lib-franklin.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
-
-<!-- test new git hub workflow -->
