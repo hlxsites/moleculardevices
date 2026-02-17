@@ -33,6 +33,7 @@ const productCardRender = await createCard({
 });
 
 const blogCardRender = await createCard({
+  showType: true,
   descriptionLength: 85,
 });
 
@@ -254,12 +255,25 @@ const VARIANTS = {
     cardRenderer: blogCardRender,
 
     async getData() {
-      const data = await getBlogAndPublications();
+      const data = await getBlogsAndPublications();
       return data;
     },
 
     getCategories(item) {
-      return [item.category || item.Category];
+      let category = item.path
+        .split('/')[2];
+
+      if (!category || category === 'blog') return null;
+
+      if (category === 'in-the-news' && item.category !== '0') {
+        category = item.category.split(' ').join('-');
+      }
+
+      const filterableCategory = category.split('-')
+        .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
+        .join('-');
+
+      return [filterableCategory];
     },
   },
 

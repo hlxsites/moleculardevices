@@ -1,9 +1,12 @@
+/* eslint-disable import/no-cycle */
 import { createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { getBlogAndPublications } from '../../templates/blog/blog.js';
+import { getBlogsAndPublications } from '../recent-news-carousel/recent-news-carousel.js';
 
 export async function createRecentResourceCarousel(block, data) {
-  const cardRenderer = await createCard();
+  const cardRenderer = await createCard({
+    showType: true,
+  });
   const resources = data
     .filter((resource) => resource.path !== window.location.pathname)
     .slice(0, 6);

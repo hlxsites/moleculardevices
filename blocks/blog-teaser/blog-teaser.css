@@ -49,6 +49,10 @@
   transform: scale(1.1);
 }
 
+.blog-teaser.featured .blog-teaser-item .blog-teaser-thumb img{
+  max-height: 575px;
+}
+
 .blog-teaser-item .blog-teaser-caption {
   padding: 40px 30px;
   text-align: center;

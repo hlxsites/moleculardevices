@@ -67,6 +67,16 @@ main .card .card-category {
   z-index: 1;
 }
 
+main .card .card-type,
+main .card .card-display-type {
+  display: block;
+  text-align: left;
+  text-transform: uppercase;
+  color: #6eb43f;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
 main .card-caption {
   display: flex;
   flex-direction: column;
