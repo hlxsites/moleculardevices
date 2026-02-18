@@ -3,7 +3,9 @@ import { createCard } from '../card/card.js';
 import { getBlogAndPublications } from '../../templates/blog/blog.js';
 
 export async function createRecentResourceCarousel(block, data) {
-  const cardRenderer = await createCard();
+  const cardRenderer = await createCard({
+    isBlogCarousel: true,
+  });
   const resources = data
     .filter((resource) => resource.path !== window.location.pathname)
     .slice(0, 6);

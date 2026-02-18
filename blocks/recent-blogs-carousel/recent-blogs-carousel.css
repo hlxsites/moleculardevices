@@ -19,6 +19,7 @@ main .section.recent-blogs-carousel-container > .default-content-wrapper {
   margin: 0 15px 50px;
 }
 
+main .section.recent-blogs-carousel-container > .default-content-wrapper h3,
 main .section.recent-blogs-carousel-container > .default-content-wrapper h4 {
   margin-bottom: 0;
 }

@@ -3,6 +3,7 @@ import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.
 import {
   formatDate,
   isVideo,
+  preloadLCPImage,
   videoButton,
 } from '../../scripts/scripts.js';
 import {
@@ -182,6 +183,7 @@ function decorateHeroImage(inner, block) {
   imgEl.decoding = 'async';
 
   picture.classList.add('hero-background');
+  preloadLCPImage(imgEl.src);
 
   if (picture && block.classList.contains('hero-insider')) {
     const pictureSrc = new URL(picture.lastElementChild.src);
