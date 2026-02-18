@@ -11,6 +11,7 @@ import {
   article,
   figure,
   time,
+  h4,
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
@@ -73,6 +74,7 @@ class Card {
     this.isShopifyCard = false;
     this.showFullDescription = false;
     this.isInPastYear = false;
+    this.isBlogCarousel = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -87,7 +89,7 @@ class Card {
   }
 
   renderItem(item) {
-    const cardTitle = itemSearchTitle(item);
+    let cardTitle = itemSearchTitle(item);
     const hasShopifyURL = isCountryCodeUS && (item.shopifyUrl && item.shopifyUrl !== '0');
     this.isInPastYear = item.type === 'Product' ? isNotOlderThan365Days(item.date) : '';
 
@@ -170,6 +172,8 @@ class Card {
       cardDescription = summariseDescription(item.description, this.descriptionLength);
     }
 
+    cardTitle = this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle;
+
     return (
       article({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
         this.isInPastYear ? div({ class: 'new-product-tag' },
@@ -182,9 +186,7 @@ class Card {
         div({ class: 'card-caption' },
           item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
           this.showDate ? time({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
-          h3(
-            this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle,
-          ),
+          this.isBlogCarousel ? h4(cardTitle) : h3(cardTitle),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',
           c2aBlock,
         ),

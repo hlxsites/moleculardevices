@@ -126,8 +126,9 @@ main .toc-container.toc-sub-heading .default-content-wrapper h4 {
 
 main .section h2,
 main .section .default-content-wrapper h2:only-child {
-  font-size: 38px;
   margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 30px;
 }
 
 main .section h4,
@@ -181,6 +182,7 @@ main .section.blog-wide > article {
   width: unset;
 }
 
+.blog main .section.blog-heading > .default-content-wrapper h3,
 .blog main .section.blog-heading > .default-content-wrapper h4 {
   margin-bottom: 0;
 }
@@ -209,9 +211,26 @@ main .section.sidebar h3 {
   line-height: 30px;
 }
 
-main .section.sidebar h4,
 .blog .section.blog-heading h4,
 .section.recent-blogs-carousel-container h4 {
+  font-size: 22px;
+  font-weight: normal;
+  text-align: left;
+  min-height: 49px;
+  margin-top: 14px;
+  margin-bottom: 15px;
+}
+
+.blog .section.blog-heading h4 a,
+.section.recent-blogs-carousel-container h4 a {
+  color: inherit;
+}
+
+main .section.sidebar h4,
+.blog .section.blog-heading h3,
+.section.recent-blogs-carousel-container .default-content-wrapper h3,
+.blog .section.blog-heading .default-content-wrapper h4,
+.section.recent-blogs-carousel-container .default-content-wrapper h4 {
   font-size: 30px;
   font-weight: bold;
   margin: 0;
