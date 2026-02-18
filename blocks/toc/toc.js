@@ -11,7 +11,13 @@ export default async function decorate(block) {
   const section = block.closest('.section');
   const tocPosition = Array.from(section.children).indexOf(block.parentElement);
   const hTagNames = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
-  const headings = section.querySelectorAll(hTagNames.map((i) => `div:nth-child(n+${tocPosition + 1}) ${i}`).join(','));
+  const headings = section.querySelectorAll(
+    hTagNames
+      .map((i) => `article:nth-child(n+${tocPosition + 1}) ${i}, div:nth-child(n+${tocPosition + 1}) ${i}`)
+      .join(','),
+  );
+  console.log(section);
+  console.log(headings);
   const firstHTagName = headings[0].tagName;
   const firstHTagNameIndex = hTagNames.indexOf(firstHTagName);
   let previousHTagNameIndex = firstHTagNameIndex;
