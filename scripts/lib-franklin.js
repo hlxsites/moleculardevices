@@ -520,31 +520,24 @@ export function readBlockConfig(block) {
 export function decorateSections(main) {
   const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
 
-  main.querySelectorAll(':scope > div').forEach((divSection) => {
+  main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
-
-    // Change the tag name of div to section
-    const section = domEl('section');
-    section.classList.add('section');
-    section.setAttribute('data-section-status', 'initialized');
-    if (divSection.className) {
-      section.classList.add(...divSection.classList);
-    }
-
-    [...divSection.children].forEach((e) => {
+    [...section.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
-        defaultContent = e.tagName !== 'DIV';
-        const wrapper = defaultContent ? domEl('article') : domEl('div');
+        const wrapper = document.createElement('div');
         wrappers.push(wrapper);
+        defaultContent = e.tagName !== 'DIV';
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
       }
       wrappers[wrappers.length - 1].append(e);
     });
     wrappers.forEach((wrapper) => section.append(wrapper));
+    section.classList.add('section');
+    section.setAttribute('data-section-status', 'initialized');
 
     /* process section metadata */
-    const sectionMeta = section.querySelector('.section-metadata');
+    const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
@@ -568,29 +561,15 @@ export function decorateSections(main) {
             section.style.background = background;
           }
         } else if (key === 'name') {
+          // section.id = toClassName(meta[key]);
           section.dataset[toCamelCase(key)] = toClassName(meta[key]);
           section.title = meta[key];
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
-      sectionMeta.parentElement.remove();
+      sectionMeta.parentNode.remove();
     }
-
-    /* accessibility addition  */
-    const heading = section.querySelector('h1, h2, h3, h4, h5, h6');
-    if (heading) {
-      const id = heading.id || toClassName(heading.textContent);
-      heading.id = id;
-      section.setAttribute('aria-labelledby', id);
-    } else {
-      const sectionName = section.getAttribute('title') || section.dataset.name;
-      if (sectionName) {
-        section.setAttribute('aria-label', sectionName);
-      }
-    }
-
-    divSection.replaceWith(section);
   });
 }
 
