@@ -2692,3 +2692,11 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   font-size: var(--fs-h1);
   font-family: var(--ff-proxima-regular);
 }
+
+/* application notes */
+.application-note h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-family: var(--ff-proxima-regular);
+  font-weight: 400;
+}
