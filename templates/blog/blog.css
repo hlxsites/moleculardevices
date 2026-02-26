@@ -115,7 +115,7 @@ main ol.text-caption::before {
 }
 
 main .section h2,
-main .section .default-content-wrapper h2:only-child,
+main .section h3,
 main .section h4,
 main .toc-container.toc-sub-heading .default-content-wrapper h4 {
   font-family: var(--ff-proxima-regular);
@@ -128,7 +128,7 @@ main .section h2,
 main .section .default-content-wrapper h2:only-child {
   margin-top: 40px;
   margin-bottom: 20px;
-  font-size: 30px;
+  font-size: 36px;
 }
 
 main .section h4,
@@ -182,11 +182,6 @@ main .section.blog-wide > article {
   width: unset;
 }
 
-.blog main .section.blog-heading > .default-content-wrapper h3,
-.blog main .section.blog-heading > .default-content-wrapper h4 {
-  margin-bottom: 0;
-}
-
 .blog main .section.blog-heading > .default-content-wrapper::after {
   content: "";
   position: absolute;
@@ -237,7 +232,7 @@ main .section.sidebar h4,
   margin-bottom: 10px;
 }
 
-main h3,
+main .big-sub-heading h3,
 main .big-sub-heading h4 {
   margin-top: 40px;
   margin-bottom: 10px;
