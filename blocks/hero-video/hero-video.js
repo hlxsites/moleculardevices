@@ -1,25 +1,8 @@
 import { preloadLCPImage } from '../../scripts/scripts.js';
 
-function decorateTeaserPicture(teaserPicture, target) {
-  if (window.innerWidth < 768) {
-    teaserPicture.width = '768';
-    teaserPicture.height = '400';
-  }
-  teaserPicture.parentElement.classList.add('video-cover');
-  target.appendChild(teaserPicture.parentElement);
-}
-
 function decorateTeaser(video, teaserPicture, target) {
   if (!video && !teaserPicture) {
     // nothing to decorate
-    return;
-  }
-
-  if (!video) {
-    // author didn't configure a teaser video
-    // we'll use the image as the hero content for all screen sizes
-    teaserPicture.style.setProperty('display', 'block', 'important');
-    decorateTeaserPicture(teaserPicture, target);
     return;
   }
 
