@@ -24,15 +24,6 @@ function decorateTeaser(video, teaserPicture, target) {
   }
 
   const videoTag = document.createElement('video');
-  if (!teaserPicture) {
-    // author didn't configure a teaser picture
-    // we'll use the video for all screen sizes
-    videoTag.style.setProperty('display', 'block', 'important');
-  } else {
-    videoTag.setAttribute('poster', teaserPicture.currentSrc);
-    decorateTeaserPicture(teaserPicture, target);
-  }
-
   videoTag.classList.add('video-cover');
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
