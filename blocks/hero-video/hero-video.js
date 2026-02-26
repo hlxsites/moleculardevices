@@ -1,38 +1,12 @@
 import { preloadLCPImage } from '../../scripts/scripts.js';
 
-function decorateTeaserPicture(teaserPicture, target) {
-  if (window.innerWidth < 768) {
-    teaserPicture.width = '768';
-    teaserPicture.height = '400';
-  }
-  teaserPicture.parentElement.classList.add('video-cover');
-  target.appendChild(teaserPicture.parentElement);
-}
-
 function decorateTeaser(video, teaserPicture, target) {
   if (!video && !teaserPicture) {
     // nothing to decorate
     return;
   }
 
-  if (!video) {
-    // author didn't configure a teaser video
-    // we'll use the image as the hero content for all screen sizes
-    teaserPicture.style.setProperty('display', 'block', 'important');
-    decorateTeaserPicture(teaserPicture, target);
-    return;
-  }
-
   const videoTag = document.createElement('video');
-  if (!teaserPicture) {
-    // author didn't configure a teaser picture
-    // we'll use the video for all screen sizes
-    videoTag.style.setProperty('display', 'block', 'important');
-  } else {
-    videoTag.setAttribute('poster', teaserPicture.currentSrc);
-    decorateTeaserPicture(teaserPicture, target);
-  }
-
   videoTag.classList.add('video-cover');
   videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('loop', true);
@@ -76,21 +50,17 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
-  const placeholderPicture = heroContent.querySelectorAll('picture')[1];
-
-  if (placeholderPicture) {
-    placeholderPicture.classList.add('placeholder-image');
-    const placeholderImg = placeholderPicture.querySelector('img');
-    placeholderImg.loading = 'eager';
-    placeholderImg.fetchPriority = 'high';
-    placeholderImg.decoding = 'async';
-    block.appendChild(placeholderPicture);
-    preloadLCPImage(placeholderImg.src);
-  }
 
   teaserPicture.loading = 'eager';
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
+
+  const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
+
+  if (placeholderPicture) {
+    placeholderPicture.classList.add('placeholder-image');
+    block.appendChild(placeholderPicture);
+  }
 
   preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent);

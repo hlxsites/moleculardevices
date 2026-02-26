@@ -19,6 +19,7 @@ main .section.hero-video-container > div.hero-video-wrapper img {
   height: 100%;
   display: block;
   min-height: 360px;
+  aspect-ratio: 375 / 176;
 }
 
 main .hero-video {
@@ -161,12 +162,6 @@ main .video-cover {
   overflow: hidden;
 }
 
-main .video-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 main .full-video-container .close-video {
   position: absolute;
   top: 56px;
@@ -235,13 +230,6 @@ main .full-video-container .play-pause-fullscreen-button svg {
   transition: 0.4s all linear;
 }
 
-
-@media only screen and (min-width: 769px) {
-  main .section.hero-video-container > div.hero-video-wrapper picture.video-cover{
-    display: none;
-  }
-}
-
 @media only screen and (max-width: 1200px) {
   main .full-video-container {
     background-color: var(--color-black);
@@ -298,11 +286,6 @@ main .full-video-container .play-pause-fullscreen-button svg {
     width: unset;
     max-width: unset;
     background: var(--color-black-alpha-80)
-  }
-
-  main .section.hero-video-container > div.hero-video-wrapper picture,
-  main .section.hero-video-container > div.hero-video-wrapper img{
-    min-height: 400px;
   }
 }
 
