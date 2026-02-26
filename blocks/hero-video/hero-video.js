@@ -76,8 +76,10 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
-  const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
 
+  preloadLCPImage(teaserPicture.src);
+
+  const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
   if (placeholderPicture) {
     placeholderPicture.classList.add('placeholder-image');
     block.appendChild(placeholderPicture);
@@ -87,7 +89,6 @@ export default function decorate(block) {
   teaserPicture.fetchPriority = 'high';
   teaserPicture.decoding = 'async';
 
-  preloadLCPImage(teaserPicture.src);
   decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
 
   const overlay = videoBanner.children[1];
