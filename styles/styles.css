@@ -2700,3 +2700,8 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   font-family: var(--ff-proxima-regular);
   font-weight: 400;
 }
+
+.application-note h4 {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
