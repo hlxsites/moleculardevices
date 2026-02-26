@@ -19,6 +19,7 @@ main .section.hero-video-container > div.hero-video-wrapper img {
   height: 100%;
   display: block;
   min-height: 360px;
+  aspect-ratio: 375 / 176;
 }
 
 main .hero-video {

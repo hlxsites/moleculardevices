@@ -76,16 +76,11 @@ export default function decorate(block) {
 
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
-  const placeholderPicture = heroContent.querySelectorAll('picture')[1];
+  const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
 
   if (placeholderPicture) {
     placeholderPicture.classList.add('placeholder-image');
-    const placeholderImg = placeholderPicture.querySelector('img');
-    placeholderImg.loading = 'eager';
-    placeholderImg.fetchPriority = 'high';
-    placeholderImg.decoding = 'async';
     block.appendChild(placeholderPicture);
-    preloadLCPImage(placeholderImg.src);
   }
 
   teaserPicture.loading = 'eager';
