@@ -66,7 +66,7 @@ async function addBlockSticker(container) {
   container.appendChild(stickerContainer);
 }
 
-async function loadBreadcrumbs(breadcrumbsContainer) {
+export async function loadBreadcrumbs(breadcrumbsContainer) {
   const breadCrumbsModule = await import('../breadcrumbs/breadcrumbs-create.js');
   breadCrumbsModule.default(breadcrumbsContainer);
 }
