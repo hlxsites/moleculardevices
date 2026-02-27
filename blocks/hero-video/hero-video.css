@@ -65,7 +65,7 @@ main .teaser-video-container p {
   display: none !important;
 }
 
-main .teaser-video-container::before {
+main .teaser-video-container:has(+.overlay:not(:empty))::before {
   content: "";
   top: 0;
   left: 0;
