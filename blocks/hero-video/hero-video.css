@@ -13,7 +13,7 @@ main .section.hero-video-container > div.hero-video-wrapper {
   max-height: 600px;
 }
 
-main .section.hero-video-container > div.hero-video-wrapper:has( .homepage) {
+main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) {
   max-height: 750px;
 }
 
@@ -24,8 +24,8 @@ main .section.hero-video-container > div.hero-video-wrapper img {
   display: block;
 }
 
-main .section.hero-video-container > div.hero-video-wrapper:has( .homepage) picture,
-main .section.hero-video-container > div.hero-video-wrapper:has( .homepage) img{
+main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) picture,
+main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) img {
   min-height: 360px;
   aspect-ratio: 375 / 176;
 }
@@ -65,7 +65,7 @@ main .teaser-video-container p {
   display: none !important;
 }
 
-main .teaser-video-container:has(+.overlay:not(:empty))::before {
+main .teaser-video-container:has(+ .overlay:not(:empty))::before {
   content: "";
   top: 0;
   left: 0;
@@ -99,11 +99,13 @@ main .overlay h1 {
   color: inherit;
 }
 
-main .overlay h3 {
+main .overlay h2 {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 28px;
   color: inherit;
+  line-height: var(--line-height-heading);
+  font-family: var(--ff-proxima-regular);
 }
 
 main .overlay .video-banner-btn {
