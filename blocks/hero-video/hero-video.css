@@ -28,10 +28,12 @@ main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) pictu
 main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) img {
   min-height: 360px;
   aspect-ratio: 375 / 176;
+  object-fit: cover;
 }
 
 main .hero-video {
   width: 100%;
+  min-height: 360px;
 }
 
 main .hero-video-banner {
