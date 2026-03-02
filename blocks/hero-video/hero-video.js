@@ -1,5 +1,5 @@
 import { div, ol } from '../../scripts/dom-helpers.js';
-import { preloadLCPImage } from '../../scripts/scripts.js';
+import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.js';
 import { loadBreadcrumbs } from '../hero/hero.js';
 
 function decorateTeaser(video, teaserPicture, target) {
@@ -49,6 +49,12 @@ export default function decorate(block) {
     const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
     block.parentElement.prepend(breadcrumbs);
     loadBreadcrumbs(breadcrumbs);
+  }
+
+  const homePromoSection = document.body.querySelector('.home-promo');
+  if (homePromoSection) {
+    const imageSrc = getFirstBackgroundImage(homePromoSection);
+    preloadLCPImage(imageSrc);
   }
 
   const videoBanner = block.children[0];
