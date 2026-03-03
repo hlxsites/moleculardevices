@@ -22,13 +22,13 @@ main .section.hero-video-container > div.hero-video-wrapper img {
   width: 100%;
   height: 100%;
   display: block;
+  min-height: 360px;
+  object-fit: cover;
 }
 
 main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) picture,
 main .section.hero-video-container > div.hero-video-wrapper:has(.homepage) img {
-  min-height: 360px;
   aspect-ratio: 375 / 176;
-  object-fit: cover;
 }
 
 main .hero-video {
