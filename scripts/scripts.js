@@ -1748,4 +1748,18 @@ export function toCapitalize(sting) {
   return sting[0].toUpperCase() + sting.slice(1);
 }
 
+/**
+ * Extracts the first image URL from an element's background-image style.
+ * Works with inline styles, CSS classes, and multiple backgrounds.
+ */
+export function getFirstBackgroundImage(element) {
+  const style = window.getComputedStyle(element).backgroundImage;
+
+  // This regex finds the contents of the first url() function found in the string
+  const match = style.match(/url\(["']?([^"']+)["']?\)/);
+
+  // Return the captured group (the URL) or null if no background is set
+  return match ? match[1] : null;
+}
+
 loadPage();

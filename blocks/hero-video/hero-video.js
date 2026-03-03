@@ -1,4 +1,6 @@
-import { preloadLCPImage } from '../../scripts/scripts.js';
+import { div, ol } from '../../scripts/dom-helpers.js';
+import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.js';
+import { loadBreadcrumbs } from '../hero/hero.js';
 
 function decorateTeaser(video, teaserPicture, target) {
   if (!video && !teaserPicture) {
@@ -42,6 +44,19 @@ function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLink
 }
 
 export default function decorate(block) {
+  const isHomepage = window.location.pathname === '/';
+  if (!isHomepage) {
+    const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
+    block.parentElement.prepend(breadcrumbs);
+    loadBreadcrumbs(breadcrumbs);
+  }
+
+  const homePromoSection = document.body.querySelector('.home-promo');
+  if (homePromoSection) {
+    const imageSrc = getFirstBackgroundImage(homePromoSection);
+    preloadLCPImage(imageSrc);
+  }
+
   const videoBanner = block.children[0];
   videoBanner.classList.add('hero-video-banner');
 
