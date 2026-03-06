@@ -27,6 +27,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1760,6 +1761,22 @@ export function getFirstBackgroundImage(element) {
 
   // Return the captured group (the URL) or null if no background is set
   return match ? match[1] : null;
+}
+
+/* cached events */
+let eventsCache;
+export function getEvents() {
+  if (!eventsCache) {
+    const now = Date.now();
+
+    eventsCache = ffetch('/query-index.json')
+      .sheet('events')
+      .filter((item) => item.eventEnd * 1000 > now)
+      .chunks(250)
+      .all();
+  }
+
+  return eventsCache;
 }
 
 loadPage();

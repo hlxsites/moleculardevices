@@ -2,21 +2,16 @@ import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateLinks, formatDate, unixDateToString,
+  decorateLinks, formatDate, getEvents, unixDateToString,
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';
-import ffetch from '../../scripts/ffetch.js';
 
 /* get latest events */
 async function latestEvents() {
-  const now = Date.now();
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((event) => (event.eventEnd * 1000 >= now))
-    .all();
+  const events = await getEvents();
   return events.sort(compareEvents);
 }
 
