@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { coveoResources } from '../blocks/resources/resources.js';
+import ffetch from './ffetch.js';
 
 export const COVEO_TAB_NAME = 'resources';
 export const COVEO_HASH_NAME = 't=resources&sort=relevancy';
@@ -300,4 +301,20 @@ export function isCssVarDark(bgColor) {
 
 export function applyAdaptiveTextColor(el, bgVar) {
   el.style.color = isCssVarDark(bgVar) ? 'var(--color-white)' : 'var(--color-black)';
+}
+
+/* cached events */
+let eventsCache = null;
+export async function getEvents() {
+  if (eventsCache) {
+    return eventsCache;
+  }
+
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((item) => item.eventEnd * 1000 > Date.now())
+    .all();
+
+  eventsCache = events;
+  return events;
 }
