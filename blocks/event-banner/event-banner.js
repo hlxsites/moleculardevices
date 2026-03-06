@@ -2,13 +2,12 @@ import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateLinks, formatDate, unixDateToString,
+  decorateLinks, formatDate, getEvents, unixDateToString,
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';
-import { getEvents } from '../../scripts/utilities.js';
 
 /* get latest events */
 async function latestEvents() {
