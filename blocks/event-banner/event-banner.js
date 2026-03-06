@@ -8,15 +8,11 @@ import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';
-import ffetch from '../../scripts/ffetch.js';
+import { getEvents } from '../../scripts/utilities.js';
 
 /* get latest events */
 async function latestEvents() {
-  const now = Date.now();
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((event) => (event.eventEnd * 1000 >= now))
-    .all();
+  const events = await getEvents();
   return events.sort(compareEvents);
 }
 
