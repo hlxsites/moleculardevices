@@ -312,6 +312,7 @@ export function getEvents() {
     eventsCache = ffetch('/query-index.json')
       .sheet('events')
       .filter((item) => item.eventEnd * 1000 > now)
+      .chunks(200)
       .all();
   }
 

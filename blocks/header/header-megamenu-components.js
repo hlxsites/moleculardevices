@@ -220,6 +220,7 @@ async function recentEventHandler(block) {
   document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
 
   let events = await getEvents();
+
   const featuredEvents = [];
 
   if (featuredEventUrl.length > 0) {
