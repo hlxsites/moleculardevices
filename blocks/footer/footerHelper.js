@@ -73,8 +73,14 @@ export async function buildNewsEvents(container) {
     });
   });
 
-  await renderNews(container.querySelector('.news-list'));
-  await renderEvents(container.querySelector('.events-list'));
+  const newsEl = container.querySelector('.news-list');
+  const eventsEl = container.querySelector('.events-list');
+
+  await Promise.all([
+    renderNews(newsEl),
+    renderEvents(eventsEl),
+  ]);
+
   initToggleBehavior(container);
 }
 
@@ -111,19 +117,32 @@ export async function buildNewsletter(container) {
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
 
+  const [latestNewsletter, newsletterList] = await Promise.all([
+    getLatestNewsletter(),
+    getNewslettersList(),
+  ]);
+
   const formConfig = {
     formType,
-    latestNewsletter: await getLatestNewsletter(),
+    latestNewsletter,
     redirectUrl: 'null',
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+        obs.disconnect();
+      }
+    });
+  });
 
-  const newsletterList = await getNewslettersList();
+  observer.observe(container.querySelector(`#${newsletterId}`));
+
   const isNewsletterListExist = document.querySelector('.newsletter-list');
-
   if (!isNewsletterListExist) {
-    container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
+    const newsletterContainer = container.querySelector(`#${newsletterId}`);
+    newsletterContainer.insertAdjacentElement('afterend', newsletterList);
   }
 }
 
