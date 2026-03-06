@@ -6,7 +6,6 @@ import { toClassName } from '../../scripts/lib-franklin.js';
 import {
   decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
-import { getEvents } from '../../scripts/utilities.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { sortEventsData } from '../latest-events/latest-events.js';
@@ -41,7 +40,12 @@ export function initToggleBehavior(container) {
 
 /* news and events */
 async function renderEvents(container) {
-  const events = await getEvents();
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((item) => item.eventEnd * 1000 > Date.now())
+    .chunks(50)
+    .all();
+
   const sortedEvents = sortEventsData(events).slice(0, 3);
 
   clear(container);
