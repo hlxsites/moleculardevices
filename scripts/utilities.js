@@ -305,12 +305,15 @@ export function applyAdaptiveTextColor(el, bgVar) {
 
 /* cached events */
 let eventsCache;
-export async function getEvents() {
+export function getEvents() {
   if (!eventsCache) {
-    eventsCache = await ffetch('/query-index.json')
+    const now = Date.now();
+
+    eventsCache = ffetch('/query-index.json')
       .sheet('events')
-      .filter((item) => item.eventEnd * 1000 > Date.now())
+      .filter((item) => item.eventEnd * 1000 > now)
       .all();
   }
+
   return eventsCache;
 }
