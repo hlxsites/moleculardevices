@@ -304,17 +304,13 @@ export function applyAdaptiveTextColor(el, bgVar) {
 }
 
 /* cached events */
-let eventsCache = null;
+let eventsCache;
 export async function getEvents() {
-  if (eventsCache) {
-    return eventsCache;
+  if (!eventsCache) {
+    eventsCache = await ffetch('/query-index.json')
+      .sheet('events')
+      .filter((item) => item.eventEnd * 1000 > Date.now())
+      .all();
   }
-
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .all();
-
-  eventsCache = events;
-  return events;
+  return eventsCache;
 }
