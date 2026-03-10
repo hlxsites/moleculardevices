@@ -66,9 +66,9 @@ export default async function decorate(block) {
   } else {
     let data = [];
 
-    const articles = await getData();
-    const publications = articles.fullArticle.slice(0, 3);
-    const recentPosts = articles.blogs.filter((post) => featuredPostUrl.indexOf(post.path) === -1);
+    const { fullArticle, blogs } = await getData();
+    const publications = fullArticle.slice(0, 3);
+    const recentPosts = blogs.filter((post) => featuredPostUrl.indexOf(post.path) === -1);
     const recentPostLinks = recentPosts.slice(0, 3);
 
     data = [...publications, ...recentPostLinks];

@@ -176,8 +176,8 @@ async function getRecentBlogPostsHandler(featuredPostUrl) {
 
   let recentPostLinks = [];
   const blogs = await getRecentBlogPosts(featuredPostUrl, false);
-  const articles = await getData();
-  const publications = articles.fullArticle.slice(0, 4);
+  const { fullArticle } = await getData();
+  const publications = fullArticle.slice(0, 4);
   recentPostLinks = sortDataByDate([...publications, ...blogs]).slice(0, 4);
   const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
 

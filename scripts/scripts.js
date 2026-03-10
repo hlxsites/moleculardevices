@@ -1770,29 +1770,27 @@ export function sortEventsData(events) {
   return [...events].sort((first, second) => first.eventStart - second.eventStart);
 }
 
-export async function fetchData(type, filter) {
-  let request = ffetch('/query-index.json').sheet(type);
-  if (filter) request = request.filter(filter);
-  return request.all();
+export async function fetchQueryIndex(type, filter) {
+  let response = ffetch('/query-index.json').sheet(type);
+  if (filter) response = response.filter(filter);
+  return response.all();
 }
 
 async function fetchAllEvents() {
   const now = Date.now();
   return sortEventsData(
-    await fetchData('events', (item) => item.eventEnd * 1000 > now),
+    await fetchQueryIndex('events', (item) => item.eventEnd * 1000 > now),
   );
 }
 
 async function getNewsData() {
   const { lang } = document.documentElement;
   const sheet = lang === 'zh' ? 'china-news' : 'news';
-  const data = await fetchData(sheet);
+  const data = await fetchQueryIndex(sheet);
   return sortDataByDate(data);
 }
 
 async function loadData() {
-  const publicationsPromise = fetchData('publications');
-
   const [
     events,
     news,
@@ -1802,9 +1800,9 @@ async function loadData() {
   ] = await Promise.all([
     fetchAllEvents(),
     getNewsData(),
-    fetchData('newsletters'),
-    fetchData('blog'),
-    publicationsPromise,
+    fetchQueryIndex('newsletters'),
+    fetchQueryIndex('blog'),
+    fetchQueryIndex('publications'),
   ]);
 
   return {
@@ -1818,9 +1816,7 @@ async function loadData() {
 }
 
 export function getData() {
-  if (!dataPromise) {
-    dataPromise = loadData();
-  }
+  if (!dataPromise) dataPromise = loadData();
   return dataPromise;
 }
 
