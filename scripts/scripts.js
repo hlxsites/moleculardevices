@@ -27,6 +27,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1760,5 +1761,64 @@ export function getFirstBackgroundImage(element) {
   // Return the captured group (the URL) or null if no background is set
   return match ? match[1] : null;
 }
+
+/* Load Data */
+let dataPromise;
+
+export function sortEventsData(events) {
+  return [...events].sort((first, second) => first.eventStart - second.eventStart);
+}
+
+export async function fetchQueryIndex(type, filter) {
+  let response = ffetch('/query-index.json').sheet(type);
+  if (filter) response = response.filter(filter);
+  return response.all();
+}
+
+async function fetchAllEvents() {
+  const now = Date.now();
+  return sortEventsData(
+    await fetchQueryIndex('events', (item) => item.eventEnd * 1000 > now),
+  );
+}
+
+async function getNewsData() {
+  const { lang } = document.documentElement;
+  const sheet = lang === 'zh' ? 'china-news' : 'news';
+  const data = await fetchQueryIndex(sheet);
+  return sortDataByDate(data);
+}
+
+async function loadData() {
+  const [
+    events,
+    news,
+    newsletters,
+    blogs,
+    publications,
+  ] = await Promise.all([
+    fetchAllEvents(),
+    getNewsData(),
+    fetchQueryIndex('newsletters'),
+    fetchQueryIndex('blog'),
+    fetchQueryIndex('publications'),
+  ]);
+
+  return {
+    events,
+    news,
+    newsletters,
+    blogs,
+    publications,
+    fullArticle: publications.filter((r) => r.publicationType === 'Full Article'),
+  };
+}
+
+export function getData() {
+  if (!dataPromise) dataPromise = loadData();
+  return dataPromise;
+}
+
+document.addEventListener('DOMContentLoaded', getData);
 
 loadPage();

@@ -6,7 +6,7 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { decorateModal } from '../../blocks/modal/modal.js';
-import { decorateLinks, sortDataByDate } from '../../scripts/scripts.js';
+import { decorateLinks, getData, sortDataByDate } from '../../scripts/scripts.js';
 import { getMetadata } from '../../scripts/lib-franklin.js';
 
 export async function getLatestNewsletter() {
@@ -55,15 +55,7 @@ export async function newsletterModal(metaCMP = '') {
 
 export async function getBlogAndPublications() {
   let data = [];
-  const publications = await ffetch('/query-index.json')
-    .sheet('publications')
-    .filter((resource) => resource.publicationType === 'Full Article')
-    .all();
-
-  const blogs = await ffetch('/query-index.json')
-    .sheet('blog')
-    .all();
-
+  const { publications, blogs } = await getData();
   data = [...publications, ...blogs];
   return sortDataByDate(data);
 }

@@ -4,9 +4,8 @@ import {
 import {
   createList, createDropdown, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
-import ffetch from '../../scripts/ffetch.js';
 import { iframe, p } from '../../scripts/dom-helpers.js';
-import { toTitleCase } from '../../scripts/scripts.js';
+import { getData, toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
 
@@ -164,12 +163,6 @@ async function updateFilter(event, options) {
   addNewsletterIframe(options.activeFilters.get('month'), options);
 }
 
-export async function fetchData() {
-  return ffetch('/query-index.json')
-    .sheet('newsletters')
-    .all();
-}
-
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
@@ -185,7 +178,8 @@ export default async function decorate(block) {
   options.activeFilters.set('month', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchData();
+  const { newsletters } = await getData();
+  options.data = newsletters;
   options.onFilterClick = updateFilter;
 
   /* add button in hero banner */
