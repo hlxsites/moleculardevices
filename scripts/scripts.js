@@ -1795,4 +1795,8 @@ export function getData() {
   return dataPromise;
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  getData();
+});
+
 loadPage();
