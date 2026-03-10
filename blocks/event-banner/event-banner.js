@@ -2,7 +2,7 @@ import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateLinks, formatDate, getEvents, unixDateToString,
+  decorateLinks, formatDate, getData, unixDateToString,
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
@@ -11,7 +11,7 @@ import { compareEvents } from '../events/events.js';
 
 /* get latest events */
 async function latestEvents() {
-  const events = await getEvents();
+  const { events } = await getData();
   return events.sort(compareEvents);
 }
 

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { formatDate, getEvents, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatEventDates(startUnixStr, endUnixStr) {
@@ -27,12 +27,8 @@ export function buildList(data, block) {
   });
 }
 
-export function sortEventsData(events) {
-  return events.sort((first, second) => first.eventStart - second.eventStart);
-}
-
 export default async function decorate(block) {
-  const events = await getEvents();
-  const sortedEvents = sortEventsData(events).slice(0, 4);
+  const { events } = await getData();
+  const sortedEvents = events.slice(0, 4);
   buildList(sortedEvents, block);
 }

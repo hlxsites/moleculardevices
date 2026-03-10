@@ -5,9 +5,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
-import { formatEventDates, sortEventsData } from '../latest-events/latest-events.js';
+import { formatEventDates } from '../latest-events/latest-events.js';
 import {
-  formatDate, getEvents, sortDataByDate, summariseDescription, unixDateToString,
+  formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
@@ -218,7 +218,7 @@ async function recentEventHandler(block) {
   const eventsMenu = div({ class: ['flex-space-between'] });
   document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
 
-  let events = await getEvents();
+  let { events } = await getData();
 
   const featuredEvents = [];
 
@@ -231,7 +231,7 @@ async function recentEventHandler(block) {
     events = featuredEvents;
   }
 
-  const sortedEvents = sortEventsData(events).slice(0, 2);
+  const sortedEvents = events.slice(0, 2);
 
   sortedEvents.forEach((event) => {
     let description;

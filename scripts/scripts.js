@@ -1764,19 +1764,35 @@ export function getFirstBackgroundImage(element) {
 }
 
 /* cached events */
-let eventsCache;
-export function getEvents() {
-  if (!eventsCache) {
-    const now = Date.now();
+let dataPromise;
 
-    eventsCache = ffetch('/query-index.json')
-      .sheet('events')
-      .filter((item) => item.eventEnd * 1000 > now)
-      .chunks(250)
-      .all();
+export function sortEventsData(events) {
+  return events.sort((first, second) => first.eventStart - second.eventStart);
+}
+
+async function fetchEvents() {
+  const now = Date.now();
+
+  const events = await ffetch('/query-index.json')
+    .sheet('events')
+    .filter((item) => item.eventEnd * 1000 > now)
+    .chunks(250)
+    .all();
+
+  return sortEventsData(events);
+}
+
+async function loadData() {
+  return {
+    events: await fetchEvents(),
+  };
+}
+
+export function getData() {
+  if (!dataPromise) {
+    dataPromise = loadData();
   }
-
-  return eventsCache;
+  return dataPromise;
 }
 
 loadPage();

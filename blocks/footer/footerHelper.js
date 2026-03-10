@@ -4,11 +4,10 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import {
-  decorateLinkedPictures, formatDate, getEvents, toCapitalize, unixDateToString,
+  decorateLinkedPictures, formatDate, getData, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { sortEventsData } from '../latest-events/latest-events.js';
 import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
@@ -40,9 +39,8 @@ export function initToggleBehavior(container) {
 
 /* news and events */
 async function renderEvents(container) {
-  const events = await getEvents();
-
-  const sortedEvents = sortEventsData(events).slice(0, 3);
+  const { events } = await getData();
+  const sortedEvents = events.slice(0, 3);
 
   clear(container);
 
