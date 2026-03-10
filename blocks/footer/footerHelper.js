@@ -1,7 +1,6 @@
 import {
   a, p, i, ul, li, div,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import {
   decorateLinkedPictures, formatDate, getData, toCapitalize, unixDateToString,
@@ -84,10 +83,8 @@ export async function buildNewsEvents(container) {
 
 /* newsletters */
 async function getNewslettersList() {
-  const newsletters = await ffetch('/query-index.json')
-    .sheet('newsletters')
-    .limit(3)
-    .all();
+  const data = await getData();
+  const newsletters = data.newsletters.slice(0, 3);
 
   const list = ul({ class: 'newsletter-list' });
 

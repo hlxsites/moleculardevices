@@ -176,11 +176,8 @@ async function getRecentBlogPostsHandler(featuredPostUrl) {
 
   let recentPostLinks = [];
   const blogs = await getRecentBlogPosts(featuredPostUrl, false);
-  const publications = await ffetch('/query-index.json')
-    .sheet('publications')
-    .filter((resource) => resource.publicationType === 'Full Article')
-    .limit(4)
-    .all();
+  const articles = await getData();
+  const publications = articles.fullArticle.slice(0, 4);
   recentPostLinks = sortDataByDate([...publications, ...blogs]).slice(0, 4);
   const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
 

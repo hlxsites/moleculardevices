@@ -1770,22 +1770,16 @@ export function sortEventsData(events) {
   return events.sort((first, second) => first.eventStart - second.eventStart);
 }
 
-export async function fetchData(type) {
-  const data = await ffetch('/query-index.json')
-    .sheet(type)
-    .all();
-  return data;
+export async function fetchData(type, filter) {
+  let request = await ffetch('/query-index.json').sheet(type);
+  if (filter) request = request.filter(filter);
+  return request.all();
 }
 
 async function fetchAllEvents() {
   const now = Date.now();
-
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > now)
-    .chunks(250)
-    .all();
-
+  const filterEvents = (item) => item.eventEnd * 1000 > now;
+  const events = await fetchData('events', filterEvents);
   return sortEventsData(events);
 }
 
@@ -1805,7 +1799,9 @@ async function loadData() {
     events: await fetchAllEvents(),
     news: await getNewsData(),
     newsletters: await fetchData('newsletters'),
+    blogs: await fetchData('blog'),
     publications: await fetchData('publications'),
+    fullArticle: await fetchData('publications', (resource) => resource.publicationType === 'Full Article'),
   };
 }
 

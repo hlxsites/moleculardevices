@@ -6,8 +6,9 @@ import {
   fetchPlaceholders,
   getMetadata,
 } from '../../scripts/lib-franklin.js';
-import { fetchFragment, formatDate, sortDataByDate } from '../../scripts/scripts.js';
-import ffetch from '../../scripts/ffetch.js';
+import {
+  fetchFragment, formatDate, getData, sortDataByDate,
+} from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
   /* eslint-disable indent */
@@ -64,17 +65,12 @@ export default async function decorate(block) {
     blogPostLinks.push(link);
   } else {
     let data = [];
-    const recentPostLinks = await ffetch('/query-index.json')
-      .sheet('blog')
-      .filter((post) => featuredPostUrl.indexOf(post.path) === -1)
-      .chunks(5)
-      .limit(3)
-      .all();
-    const publications = await ffetch('/query-index.json')
-      .sheet('publications')
-      .filter((resource) => resource.publicationType === 'Full Article')
-      .limit(3)
-      .all();
+
+    const articles = await getData();
+    const publications = articles.fullArticle.slice(0, 3);
+    const recentPosts = articles.blogs.filter((post) => featuredPostUrl.indexOf(post.path) === -1);
+    const recentPostLinks = recentPosts.slice(0, 3);
+
     data = [...publications, ...recentPostLinks];
     data = sortDataByDate(data).slice(0, 3);
     data.forEach((post) => {

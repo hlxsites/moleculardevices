@@ -1,11 +1,9 @@
-import ffetch from '../../scripts/ffetch.js';
+import { getData } from '../../scripts/scripts.js';
 import { buildList } from '../latest-news/latest-news.js';
 
 export default async function decorate(block) {
-  const data = await ffetch('/query-index.json')
-    .sheet('publications')
-    .chunks(5)
-    .limit(4)
-    .all();
-  buildList(data, block);
+  const data = await getData();
+  const publications = data.publications.slice(0, 4);
+
+  buildList(publications, block);
 }
