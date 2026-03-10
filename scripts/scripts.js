@@ -1770,7 +1770,14 @@ export function sortEventsData(events) {
   return events.sort((first, second) => first.eventStart - second.eventStart);
 }
 
-async function fetchEvents() {
+export async function fetchData(type) {
+  const data = await ffetch('/query-index.json')
+    .sheet(type)
+    .all();
+  return data;
+}
+
+async function fetchAllEvents() {
   const now = Date.now();
 
   const events = await ffetch('/query-index.json')
@@ -1782,9 +1789,23 @@ async function fetchEvents() {
   return sortEventsData(events);
 }
 
+async function getNewsData() {
+  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
+  let data = [];
+  if (isCuntryCodeZH) {
+    data = await fetchData('china-news');
+  } else {
+    data = await fetchData('news');
+  }
+  return sortDataByDate(data);
+}
+
 async function loadData() {
   return {
-    events: await fetchEvents(),
+    events: await fetchAllEvents(),
+    news: await getNewsData(),
+    newsletters: await fetchData('newsletters'),
+    publications: await fetchData('publications'),
   };
 }
 

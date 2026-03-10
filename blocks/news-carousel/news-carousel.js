@@ -1,8 +1,7 @@
 import { a, div, p } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
-import { getNewsData } from '../news/news.js';
 
 function renderItem(item) {
   const newsItem = div({ class: 'news-carousel-item' },
@@ -23,11 +22,12 @@ function renderItem(item) {
 }
 
 export default async function decorate(block) {
-  const newsItems = await getNewsData(5);
+  const data = await getData();
+  const news = data.news.slice(0, 5);
 
   await createCarousel(
     block,
-    newsItems,
+    news,
     {
       defaultStyling: true,
       navButtons: true,

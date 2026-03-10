@@ -1,8 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
-import { formatDate, unixDateToString } from '../../scripts/scripts.js';
-import { getNewsData } from '../news/news.js';
+import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
 
 export function buildList(data, block) {
   data.forEach((item, idx) => {
@@ -25,7 +24,7 @@ export function buildList(data, block) {
 }
 
 export default async function decorate(block) {
-  const data = await getNewsData(3);
-
-  buildList(data, block);
+  const data = await getData();
+  const news = data.news.slice(0, 3);
+  buildList(news, block);
 }

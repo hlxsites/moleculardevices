@@ -8,7 +8,6 @@ import {
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
 /* utility helpers */
@@ -53,7 +52,8 @@ async function renderEvents(container) {
 }
 
 async function renderNews(container) {
-  const news = await getNewsData(3);
+  const data = await getData();
+  const news = data.news.slice(0, 3);
   clear(container);
   news.forEach((item) => container.append(formatEntry(item)));
   container.append(addChevron('More News', '/newsroom/news'));

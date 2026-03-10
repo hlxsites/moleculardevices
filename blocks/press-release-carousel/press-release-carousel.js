@@ -2,8 +2,8 @@
 import {
   a, div, h3, h4, p,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { getData } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 
 function renderItem(item) {
@@ -24,15 +24,12 @@ function renderItem(item) {
 }
 
 export default async function decorate(block) {
-  const pressItems = await ffetch('/query-index.json')
-    .sheet('news')
-    .chunks(5)
-    .limit(5)
-    .all();
+  const data = await getData();
+  const news = data.news.slice(0, 5);
 
   await createCarousel(
     block,
-    pressItems,
+    news,
     {
       navButtons: true,
       dotButtons: true,

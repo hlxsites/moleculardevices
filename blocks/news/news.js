@@ -1,9 +1,8 @@
 import {
-  fetchPlaceholders,
-  readBlockConfig,
+  fetchPlaceholders, readBlockConfig,
 } from '../../scripts/lib-franklin.js';
-import ffetch from '../../scripts/ffetch.js';
 import { createList, createDropdown } from '../../scripts/list.js';
+import { getData } from '../../scripts/scripts.js';
 
 let placeholders = {};
 
@@ -42,27 +41,6 @@ export async function createOverview(
     block);
 }
 
-export async function fetchData(type) {
-  const data = await ffetch('/query-index.json')
-    .sheet(type)
-    .all();
-  return data;
-}
-
-export async function getNewsData(newsCount) {
-  const isCuntryCodeZH = document.querySelector('html').getAttribute('lang') === 'zh';
-  let data = [];
-  if (isCuntryCodeZH) {
-    data = await fetchData('china-news');
-  } else {
-    data = await fetchData('news');
-  }
-  if (newsCount) {
-    data = data.slice(0, newsCount);
-  }
-  return data;
-}
-
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   placeholders = await fetchPlaceholders();
@@ -77,7 +55,8 @@ export default async function decorate(block) {
   options.activeFilters.set('year', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await getNewsData();
+  const { news } = await getData();
+  options.data = news;
 
   await createOverview(
     block,

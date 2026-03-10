@@ -1,6 +1,7 @@
 import { fetchPlaceholders, readBlockConfig } from '../../scripts/lib-franklin.js';
+import { getData } from '../../scripts/scripts.js';
 
-import { createOverview, fetchData } from '../news/news.js';
+import { createOverview } from '../news/news.js';
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
@@ -16,7 +17,8 @@ export default async function decorate(block) {
   options.activeFilters.set('year', '');
   options.activeFilters.set('page', 1);
 
-  options.data = await fetchData('publications');
+  const { publications } = await getData();
+  options.data = publications;
   await createOverview(
     block,
     options);
