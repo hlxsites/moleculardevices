@@ -1,15 +1,12 @@
 import {
   a, p, i, ul, li, div,
 } from '../../scripts/dom-helpers.js';
-import ffetch from '../../scripts/ffetch.js';
 import { toClassName } from '../../scripts/lib-franklin.js';
 import {
-  decorateLinkedPictures, formatDate, toCapitalize, unixDateToString,
+  decorateLinkedPictures, formatDate, getData, toCapitalize, unixDateToString,
 } from '../../scripts/scripts.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
-import { sortEventsData } from '../latest-events/latest-events.js';
-import { getNewsData } from '../news/news.js';
 import { decorateFooterSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 
 /* utility helpers */
@@ -40,13 +37,8 @@ export function initToggleBehavior(container) {
 
 /* news and events */
 async function renderEvents(container) {
-  const events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .chunks(50)
-    .all();
-
-  const sortedEvents = sortEventsData(events).slice(0, 3);
+  const { events } = await getData();
+  const sortedEvents = events.slice(0, 3);
 
   clear(container);
 
@@ -59,7 +51,8 @@ async function renderEvents(container) {
 }
 
 async function renderNews(container) {
-  const news = await getNewsData(3);
+  const data = await getData();
+  const news = data.news.slice(0, 3);
   clear(container);
   news.forEach((item) => container.append(formatEntry(item)));
   container.append(addChevron('More News', '/newsroom/news'));
@@ -77,17 +70,21 @@ export async function buildNewsEvents(container) {
     });
   });
 
-  await renderNews(container.querySelector('.news-list'));
-  await renderEvents(container.querySelector('.events-list'));
+  const newsEl = container.querySelector('.news-list');
+  const eventsEl = container.querySelector('.events-list');
+
+  await Promise.all([
+    renderNews(newsEl),
+    renderEvents(eventsEl),
+  ]);
+
   initToggleBehavior(container);
 }
 
 /* newsletters */
 async function getNewslettersList() {
-  const newsletters = await ffetch('/query-index.json')
-    .sheet('newsletters')
-    .limit(3)
-    .all();
+  const data = await getData();
+  const newsletters = data.newsletters.slice(0, 3);
 
   const list = ul({ class: 'newsletter-list' });
 
@@ -115,19 +112,32 @@ export async function buildNewsletter(container) {
   // add submission form from hubspot
   container.querySelector(`#${newsletterId}`).replaceWith(form);
 
+  const [latestNewsletter, newsletterList] = await Promise.all([
+    getLatestNewsletter(),
+    getNewslettersList(),
+  ]);
+
   const formConfig = {
     formType,
-    latestNewsletter: await getLatestNewsletter(),
+    latestNewsletter,
     redirectUrl: 'null',
   };
 
-  loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+        obs.disconnect();
+      }
+    });
+  });
 
-  const newsletterList = await getNewslettersList();
+  observer.observe(container.querySelector(`#${newsletterId}`));
+
   const isNewsletterListExist = document.querySelector('.newsletter-list');
-
   if (!isNewsletterListExist) {
-    container.querySelector(`#${newsletterId}`).insertAdjacentElement('afterend', newsletterList);
+    const newsletterContainer = container.querySelector(`#${newsletterId}`);
+    newsletterContainer.insertAdjacentElement('afterend', newsletterList);
   }
 }
 

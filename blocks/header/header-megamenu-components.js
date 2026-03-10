@@ -5,9 +5,9 @@ import {
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
-import { formatEventDates, sortEventsData } from '../latest-events/latest-events.js';
+import { formatEventDates } from '../latest-events/latest-events.js';
 import {
-  formatDate, sortDataByDate, summariseDescription, unixDateToString,
+  formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
@@ -176,11 +176,8 @@ async function getRecentBlogPostsHandler(featuredPostUrl) {
 
   let recentPostLinks = [];
   const blogs = await getRecentBlogPosts(featuredPostUrl, false);
-  const publications = await ffetch('/query-index.json')
-    .sheet('publications')
-    .filter((resource) => resource.publicationType === 'Full Article')
-    .limit(4)
-    .all();
+  const { fullArticle } = await getData();
+  const publications = fullArticle.slice(0, 4);
   recentPostLinks = sortDataByDate([...publications, ...blogs]).slice(0, 4);
   const featuredPostLink = await getRecentBlogPosts(featuredPostUrl, true);
 
@@ -218,10 +215,7 @@ async function recentEventHandler(block) {
   const eventsMenu = div({ class: ['flex-space-between'] });
   document.querySelector('.events-right-submenu').replaceChildren(eventsMenu);
 
-  let events = await ffetch('/query-index.json')
-    .sheet('events')
-    .filter((item) => item.eventEnd * 1000 > Date.now())
-    .all();
+  let { events } = await getData();
 
   const featuredEvents = [];
 
@@ -234,7 +228,7 @@ async function recentEventHandler(block) {
     events = featuredEvents;
   }
 
-  const sortedEvents = sortEventsData(events).slice(0, 2);
+  const sortedEvents = events.slice(0, 2);
 
   sortedEvents.forEach((event) => {
     let description;
@@ -285,11 +279,8 @@ async function recentNewsHandler() {
   const newsMenu = div({ class: ['flex-space-between'] });
   document.querySelector('.news-cards-submenu').replaceChildren(newsMenu);
 
-  let news = await ffetch('/query-index.json')
-    .sheet('news')
-    .all();
-
-  news = sortDataByDate(news).slice(0, 1);
+  const data = await getData();
+  const news = data.news.slice(0, 1);
 
   news.forEach((item) => {
     const newsDate = formatDate(unixDateToString(item.date));
