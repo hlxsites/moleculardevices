@@ -699,8 +699,7 @@ function addPageSchema() {
             headline: schemaTitle,
             name: schemaTitle,
             description,
-            about: keywords ? keywords.split(',').map((k) => k.trim()).filter((k) => k.length > 0).slice(0, 8)
-              .map((k) => ({ '@type': 'Thing', name: k })) : [],
+            about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             author: {
               '@type': 'Organization',
               name: moleculardevicesSiteName,
