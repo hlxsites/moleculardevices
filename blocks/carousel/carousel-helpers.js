@@ -82,20 +82,22 @@ export function handleNavBoundaries(carousel, direction, newIndex, step, maxInde
  */
 export function applyInfiniteScrollIllusion(
   carousel, dir, index, newIndex, maxIndex, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+
   if (dir === 'next' && (newIndex === 0 || index >= maxIndex)) {
+    const targetOffset = newSelectedItem.previousElementSibling.offsetLeft;
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.previousElementSibling.offsetLeft
-        - carousel.getBlockPadding()
-        - carousel.block.offsetLeft,
+      left: targetOffset - padding - blockOffset,
     });
   }
+
   if (dir === 'prev' && newIndex === maxIndex) {
+    const targetOffset = newSelectedItem.nextElementSibling.offsetLeft;
     newSelectedItem.parentNode.scrollTo({
       top: 0,
-      left: newSelectedItem.nextElementSibling.offsetLeft
-        - carousel.getBlockPadding()
-        - carousel.block.offsetLeft,
+      left: targetOffset - padding - blockOffset,
     });
   }
 }
@@ -104,9 +106,13 @@ export function applyInfiniteScrollIllusion(
  * Scroll smoothly to a selected item
  */
 export function scrollToItem(carousel, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+  const itemOffset = newSelectedItem.offsetLeft;
+
   newSelectedItem.parentNode.scrollTo({
     top: 0,
-    left: newSelectedItem.offsetLeft - carousel.getBlockPadding() - carousel.block.offsetLeft,
+    left: itemOffset - padding - blockOffset,
     behavior: 'smooth',
   });
 }
