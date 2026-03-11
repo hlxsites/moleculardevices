@@ -27,7 +27,6 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
-import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1782,28 +1781,25 @@ async function loadData() {
     const response = await fetch(url);
     const json = await response.json();
 
-    const getData = (sheetName) => {
+    const getQueryData = (sheetName) => {
       if (json[sheetName] && json[sheetName].data) return json[sheetName].data;
       if (Array.isArray(json)) return json;
       return [];
     };
 
-    const eventsRaw = getData('events');
-    const newsRaw = getData(newsSheet);
-    const newsletters = getData('newsletters');
-    const blogs = getData('blog');
-    const publications = getData('publications');
+    const eventsRaw = getQueryData('events');
+    const newsRaw = getQueryData(newsSheet);
+    const newsletters = getQueryData('newsletters');
+    const blogs = getQueryData('blog');
+    const publications = getQueryData('publications');
 
     const now = Date.now();
 
-    const events = eventsRaw
-      .filter((item) => item.eventEnd * 1000 > now)
-      .sort((a, b) => a.eventStart - b.eventStart);
-
+    const events = eventsRaw.filter((item) => item.eventEnd * 1000 > now);
     const news = sortDataByDate(newsRaw);
 
     return {
-      events,
+      events: sortEventsData(events),
       news,
       newsletters,
       blogs,
@@ -1811,6 +1807,7 @@ async function loadData() {
       fullArticle: publications.filter((r) => r.publicationType === 'Full Article'),
     };
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error('Fetch error:', e);
     return {};
   }
