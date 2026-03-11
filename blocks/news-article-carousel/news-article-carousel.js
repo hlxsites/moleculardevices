@@ -16,14 +16,6 @@ const styleConfig = {
   ],
 };
 
-async function renderFragment(fragment, block, postType) {
-  const fragmentWrapper = div({ class: 'post-wrapper' });
-  fragmentWrapper.append(...fragment.html.children);
-  decorateButtons(fragmentWrapper);
-  block.append(fragmentWrapper);
-  await decoratePost(fragmentWrapper, postType);
-}
-
 export default async function decorateArticles(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
   if (fragmentPaths.length === 0) return '';
@@ -36,16 +28,21 @@ export default async function decorateArticles(block) {
 
       const fragmentElement = div();
       fragmentElement.innerHTML = fragmentHtml;
-      return { html: fragmentElement };
+
+      const fragmentWrapper = div({ class: 'post-wrapper' });
+      fragmentWrapper.append(...fragmentElement.children);
+      decorateButtons(fragmentWrapper);
+      return fragmentWrapper;
     }),
   );
 
-  for (let i = 0; i < fragments.length; i += 1) {
-    const fragment = fragments[i];
+  const validFragments = fragments.filter((f) => f !== null);
+  block.append(...validFragments);
+
+  await Promise.all(validFragments.map((wrapper, i) => {
     const postType = i === 0 ? 'publications' : 'blog';
-    // eslint-disable-next-line no-await-in-loop
-    await renderFragment(fragment, block, postType);
-  }
+    return decoratePost(wrapper, postType);
+  }));
 
   return createCarousel(block, [...block.children], styleConfig);
 }
