@@ -1,36 +1,28 @@
 import { div, ol } from '../../scripts/dom-helpers.js';
-import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.js';
 import { loadBreadcrumbs } from '../hero/hero.js';
 
 function decorateTeaser(video, teaserPicture, target) {
-  if (!video && !teaserPicture) {
-    // nothing to decorate
-    return;
-  }
+  if (!video) return;
 
   const videoTag = document.createElement('video');
   videoTag.classList.add('video-cover');
-  videoTag.toggleAttribute('muted', true);
-  videoTag.toggleAttribute('loop', true);
+  videoTag.muted = true;
+  videoTag.loop = true;
+  videoTag.playsInline = true; // required for autoplay on iOS
   videoTag.setAttribute('title', video.title);
 
-  const mql = window.matchMedia('only screen and (max-width: 768px)');
-  if (mql.matches && teaserPicture) {
-    videoTag.setAttribute('preload', 'metadata');
-  } else {
-    videoTag.toggleAttribute('autoplay', true);
+  if (teaserPicture) {
+    videoTag.poster = teaserPicture.src;
   }
+  videoTag.preload = 'metadata';
 
-  mql.onchange = (e) => {
-    if (!e.matches && !videoTag.hasAttribute('autoplay')) {
-      videoTag.toggleAttribute('autoplay', true);
-      videoTag.play();
-    }
-  };
+  const mql = window.matchMedia('only screen and (max-width: 768px)');
+  if (!mql.matches || !teaserPicture) {
+    videoTag.autoplay = true;
+  }
 
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
   target.prepend(videoTag);
-  videoTag.muted = true;
   video.remove();
 }
 
@@ -45,17 +37,18 @@ function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLink
 
 export default function decorate(block) {
   const isHomepage = window.location.pathname === '/';
+
   if (!isHomepage) {
     const breadcrumbs = div({ class: 'breadcrumbs' }, ol());
     block.parentElement.prepend(breadcrumbs);
     loadBreadcrumbs(breadcrumbs);
   }
 
-  const homePromoSection = document.body.querySelector('.home-promo');
-  if (homePromoSection) {
-    const imageSrc = getFirstBackgroundImage(homePromoSection);
-    preloadLCPImage(imageSrc);
-  }
+  // const homePromoSection = document.body.querySelector('.home-promo');
+  // if (homePromoSection) {
+  //   const imageSrc = getFirstBackgroundImage(homePromoSection);
+  //   preloadLCPImage(imageSrc);
+  // }
 
   const videoBanner = block.children[0];
   videoBanner.classList.add('hero-video-banner');
@@ -66,27 +59,31 @@ export default function decorate(block) {
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
 
-  teaserPicture.loading = 'eager';
-  teaserPicture.fetchPriority = 'high';
-  teaserPicture.decoding = 'async';
+  if (teaserPicture) {
+    teaserPicture.loading = 'eager';
+    teaserPicture.fetchPriority = 'high';
+    teaserPicture.decoding = 'async';
+  }
 
   const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
-
   if (placeholderPicture) {
     placeholderPicture.classList.add('placeholder-image');
     block.appendChild(placeholderPicture);
   }
 
-  preloadLCPImage(teaserPicture.src);
-  decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+  // preloadLCPImage(teaserPicture.src);
+  window.requestAnimationFrame(() => {
+    if (teaserVideoLink) {
+      decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+    }
+  });
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
 
   const fullScreenVideoLink = overlay.querySelector('a:last-of-type');
-  if (!fullScreenVideoLink) {
-    return;
+  if (fullScreenVideoLink) {
+    decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLink.href);
+    fullScreenVideoLink.remove();
   }
-  const fullScreenVideoLinkHref = fullScreenVideoLink.href;
-  decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref);
 }
