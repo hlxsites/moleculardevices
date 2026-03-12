@@ -732,6 +732,32 @@ export function getHref() {
 }
 
 /**
+ * Optimize images for performance
+ * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
+ * - All others remain lazy with async decoding
+ */
+export function decorateImages() {
+  const images = [...document.querySelectorAll('img')];
+  if (images.length === 0) return;
+
+  // Identify first image in viewport (LCP candidate)
+  const lcpImage = images.find((img) => img.getBoundingClientRect().top < window.innerHeight);
+  if (lcpImage) {
+    lcpImage.setAttribute('loading', 'eager');
+    lcpImage.setAttribute('fetchpriority', 'high');
+  }
+
+  // Optimize all remaining images
+  images.forEach((img) => {
+    img.setAttribute('decoding', 'async');
+
+    if (img !== lcpImage) {
+      img.setAttribute('loading', 'lazy');
+    }
+  });
+}
+
+/**
  * Returns a picture element with webp and fallbacks
  * @param {string} src The image URL
  * @param {boolean} eager load image eager
@@ -782,32 +808,6 @@ export function createOptimizedPicture(src, alt = '', eager = true,
   });
 
   return picture;
-}
-
-/**
- * Optimize images for performance
- * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
- * - All others remain lazy with async decoding
- */
-export function decorateImages() {
-  const images = [...document.querySelectorAll('img')];
-  if (images.length === 0) return;
-
-  images.forEach((img) => {
-    // Identify first image in viewport (LCP candidate)
-    const lcpImage = img.getBoundingClientRect().top < window.innerHeight
-      && img.offsetParent !== null;
-
-    const src = img.getAttribute('src');
-    const alt = img.getAttribute('alt') || '';
-    const optimizedPicture = createOptimizedPicture(src, alt, lcpImage);
-    const wrapper = img.closest('picture');
-    if (wrapper) {
-      wrapper.replaceWith(optimizedPicture);
-    } else {
-      img.replaceWith(optimizedPicture);
-    }
-  });
 }
 
 /**
