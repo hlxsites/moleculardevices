@@ -178,18 +178,14 @@ class CompareModal {
   // This id lives in the product content page metadata
   async fetchFamilyId(path) {
     const resp = await fetch(`${path}`);
-    if (!resp.ok) {
-      return null;
-    }
+    if (!resp.ok) return null;
 
     // get the head meta tag with name="family-id"
     const html = await resp.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const meta = doc.querySelector('meta[name="family-id"]');
-    if (!meta) {
-      return null;
-    }
+    if (!meta) return null;
 
     return meta.getAttribute('content');
   }
@@ -378,8 +374,8 @@ class CompareModal {
 /**
  * Dynamically adjusts column widths based on the number of `.col-sm-3`
  */
-function adjustColumnWidths() {
-  document.querySelectorAll('.comparison-row').forEach((row) => {
+function adjustColumnWidths(modalElement) {
+  modalElement.querySelectorAll('.comparison-row').forEach((row) => {
     const columns = row.querySelectorAll('.col-sm-3');
     const columnCount = columns.length || 1;
     const columnWidth = `${100 / columnCount}%`;
@@ -390,10 +386,6 @@ function adjustColumnWidths() {
   });
 }
 
-// Observe changes to the comparison table and adjust column widths dynamically
-const observer = new MutationObserver(adjustColumnWidths);
-observer.observe(document.body, { childList: true, subtree: true });
-
 /**
  * Create and render default compare products modal.
  * @param {Object}  compareBanner     required - rendered compare banner
@@ -403,6 +395,11 @@ observer.observe(document.body, { childList: true, subtree: true });
 export default async function createCompareModalInterface(compareBanner, infos) {
   const modalInterface = new CompareModal(compareBanner, {});
   modalInterface.compareItemsMetadata = await modalInterface.createItems(infos);
-  await modalInterface.loadCSSFiles();
+
+  const cssPromise = modalInterface.loadCSSFiles();
+  const element = modalInterface.render();
+  adjustColumnWidths(element);
+
+  await cssPromise;
   return modalInterface;
 }
