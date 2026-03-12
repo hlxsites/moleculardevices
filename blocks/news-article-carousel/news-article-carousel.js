@@ -16,33 +16,44 @@ const styleConfig = {
   ],
 };
 
+// eslint-disable-next-line consistent-return
 export default async function decorateArticles(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
   if (fragmentPaths.length === 0) return '';
 
-  block.innerHTML = '';
-  const fragments = await Promise.all(
-    fragmentPaths.map(async (path) => {
-      const fragmentHtml = await fetchFragment(path);
-      if (!fragmentHtml) return null;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        observer.disconnect();
 
-      const fragmentElement = div();
-      fragmentElement.innerHTML = fragmentHtml;
+        block.innerHTML = '';
+        const fragments = await Promise.all(
+          fragmentPaths.map(async (path) => {
+            const fragmentHtml = await fetchFragment(path);
+            if (!fragmentHtml) return null;
 
-      const fragmentWrapper = div({ class: 'post-wrapper' });
-      fragmentWrapper.append(...fragmentElement.children);
-      decorateButtons(fragmentWrapper);
-      return fragmentWrapper;
-    }),
-  );
+            const fragmentElement = div();
+            fragmentElement.innerHTML = fragmentHtml;
 
-  const validFragments = fragments.filter((f) => f !== null);
-  block.append(...validFragments);
+            const fragmentWrapper = div({ class: 'post-wrapper' });
+            fragmentWrapper.append(...fragmentElement.children);
+            decorateButtons(fragmentWrapper);
+            return fragmentWrapper;
+          }),
+        );
 
-  await Promise.all(validFragments.map((wrapper, i) => {
-    const postType = i === 0 ? 'publications' : 'blog';
-    return decoratePost(wrapper, postType);
-  }));
+        const validFragments = fragments.filter((f) => f !== null);
+        block.append(...validFragments);
 
-  return createCarousel(block, [...block.children], styleConfig);
+        await Promise.all(validFragments.map((wrapper, i) => {
+          const postType = i === 0 ? 'publications' : 'blog';
+          return decoratePost(wrapper, postType);
+        }));
+
+        createCarousel(block, [...block.children], styleConfig);
+      }
+    });
+  }, { rootMargin: '200px' });
+
+  observer.observe(block);
 }
