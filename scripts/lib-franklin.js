@@ -776,9 +776,9 @@ function buildPicture(src, alt = '', eager = true, breakpoints = GLOBAL_BREAKPOI
   // Final <img> fallback
   const img = document.createElement('img');
   img.alt = alt;
-  img.decoding = 'async';
   img.loading = eager ? 'eager' : 'lazy';
   img.fetchPriority = eager ? 'high' : 'auto';
+  img.decoding = eager ? 'sync' : 'async';
   img.sizes = sizes;
   img.src = makeSrc(breakpoints.at(-1).width, ext);
   picture.appendChild(img);
@@ -814,13 +814,12 @@ export function decorateImages() {
 
     img.decoding = 'async';
     img.loading = isLCP ? 'eager' : 'lazy';
-    img.sizes = IMAGE_SIZES;
     if (isLCP) img.fetchPriority = 'high';
 
     // Upgrade to responsive picture with modern formats
     if (!img.dataset.optimized) {
       const picture = buildPicture(img.src, img.alt, isLCP);
-      img.replaceWith(picture);
+      img.closest('picture').replaceWith(picture);
       picture.querySelector('img').dataset.optimized = 'true';
     }
   });
