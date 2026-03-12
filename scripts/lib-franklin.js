@@ -518,8 +518,6 @@ export function readBlockConfig(block) {
  * @param {Element} $main The container element
  */
 export function decorateSections(main) {
-  const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
-
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
@@ -549,7 +547,6 @@ export function decorateSections(main) {
           if (background.startsWith('http')) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
-            const backgroundImages = [];
             const ext = pathname.split('.').pop();
             const widths = [750, 2000];
             const formats = ['avif', 'webp', ext];
@@ -557,16 +554,11 @@ export function decorateSections(main) {
             const makeUrl = (w, f) => `${pathname}?width=${w}&format=${f}&optimize=medium`;
 
             const imageSet = `image-set(${formats
-              .flatMap((format) =>
-                widths.map((width, i) =>
-                  `url("${makeUrl(width, format)}") ${i + 1}x type("image/${format}")`
-                )
-              )
+              .flatMap((format) => widths
+                .map((width, i) => `url("${makeUrl(width, format)}") ${i + 1}x type("image/${format}")`))
               .join(', ')})`;
-
             section.style.backgroundImage = imageSet;
             section.style.backgroundImage = `-webkit-${imageSet}`;
-
           } else {
             section.style.background = background;
           }
