@@ -71,11 +71,6 @@ main .tabs-vertical-container .cursor-pointer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
-}
-
-.tabs-vertical-main-content > .tabs-vertical-pane.active > picture img {
-  display: block;
 }
 
 @media (min-width: 768px) {
@@ -316,5 +311,13 @@ main .tabs-vertical-container .cursor-pointer {
     margin-top: 40px;
     width: auto;
     max-width: 100%;
+  }
+
+  .tabs-vertical-main-content > .tabs-vertical-pane > picture img {
+    display: none;
+  }
+
+  .tabs-vertical-main-content > .tabs-vertical-pane.active > picture img {
+    display: block;
   }
 }
