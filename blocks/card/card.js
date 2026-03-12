@@ -210,12 +210,15 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config = {}) {
-  placeholders = await fetchPlaceholders();
+  const placeholdersPromise = fetchPlaceholders();
+  const card = new Card(config);
+  const cssPromise = card.loadCSSFiles();
+
+  [placeholders] = await Promise.all([placeholdersPromise, cssPromise]);
 
   config.defaultButtonText = config.defaultButtonText
     ? (placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText)
-    : placeholders.readMore;
-  const card = new Card(config);
-  await card.loadCSSFiles();
+    : (placeholders.readMore || 'Read More');
+
   return card;
 }

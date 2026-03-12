@@ -3,13 +3,147 @@ import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   button, div, img, p, span,
 } from '../../scripts/dom-helpers.js';
-import {
-  applyInfiniteScrollIllusion, calculateNewIndex, createClone, handleNavBoundaries,
-  resetNavButtons, scrollToItem, updateSelection,
-} from './carousel-helpers.js';
+import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
+/**
+ * Clone a carousel item
+ * @param {Element} item carousel item to be cloned
+ * @returns {Element} clone of the carousel item
+ */
+function createClone(item) {
+  const clone = item.cloneNode(true);
+  clone.classList.add('clone');
+  clone.classList.remove('selected');
+
+  // if clone has compare box, add event handler
+  const compareCheckbox = clone.querySelector('.compare-checkbox');
+  if (compareCheckbox) {
+    compareCheckbox.addEventListener('click', handleCompareProducts);
+  }
+
+  return clone;
+}
+
+/**
+ * Reset nav button states
+ */
+function resetNavButtons(carousel) {
+  if (!carousel.infiniteScroll) {
+    carousel.navButtonRight?.classList.remove('disabled');
+    carousel.navButtonLeft?.classList.remove('disabled');
+  }
+}
+
+/**
+ * Calculate new index based on direction & step
+ * Signature: (direction, index, step, itemsLength)
+ */
+function calculateNewIndex(direction, index, step, itemsLength) {
+  let newIndex;
+
+  if (direction === 'next') {
+    newIndex = (index + step) % itemsLength;
+  } else {
+    newIndex = index - step;
+    if (newIndex < 0) {
+      newIndex = itemsLength - step;
+    }
+  }
+
+  return newIndex;
+}
+
+/**
+ * Handle finite mode boundaries
+ */
+function handleNavBoundaries(carousel, direction, newIndex, step, maxIndex, itemCount) {
+  if (carousel.infiniteScroll) return false;
+
+  if (step === 1) {
+    if (direction === 'next' && newIndex === 0) return true;
+    if (direction === 'next' && newIndex === itemCount - carousel.getCurrentVisibleItems()) {
+      carousel.navButtonRight?.classList.add('disabled');
+    }
+    if (direction === 'prev' && newIndex === itemCount - 1) return true;
+    if (direction === 'prev' && newIndex === 0) {
+      carousel.navButtonLeft?.classList.add('disabled');
+    }
+  } else {
+    if (direction === 'next' && newIndex === 0) return true;
+    if (direction === 'next' && newIndex === maxIndex) {
+      carousel.navButtonRight?.classList.add('disabled');
+    }
+    if (direction === 'prev' && newIndex === maxIndex) return true;
+    if (direction === 'prev' && newIndex === 0) {
+      carousel.navButtonLeft?.classList.add('disabled');
+    }
+  }
+  return false;
+}
+
+/**
+ * Illusion of infinite scroll (wrap jump)
+ */
+function applyInfiniteScrollIllusion(
+  carousel, dir, index, newIndex, maxIndex, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+
+  if (dir === 'next' && (newIndex === 0 || index >= maxIndex)) {
+    const targetOffset = newSelectedItem.previousElementSibling.offsetLeft;
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: targetOffset - padding - blockOffset,
+    });
+  }
+
+  if (dir === 'prev' && newIndex === maxIndex) {
+    const targetOffset = newSelectedItem.nextElementSibling.offsetLeft;
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: targetOffset - padding - blockOffset,
+    });
+  }
+}
+
+/**
+ * Scroll smoothly to a selected item
+ */
+function scrollToItem(carousel, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+  const itemOffset = newSelectedItem.offsetLeft;
+
+  requestAnimationFrame(() => {
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: itemOffset - padding - blockOffset,
+      behavior: 'smooth',
+    });
+  });
+}
+
+/**
+ * Update selection (items & dots)
+ */
+function updateSelection(carousel, items, dotButtons, newIndex, step) {
+  items.forEach((item) => item.classList.remove('selected'));
+  dotButtons.forEach((dot) => dot.classList.remove('selected'));
+
+  if (step === 1) {
+    items[newIndex].classList.add('selected');
+    if (dotButtons[newIndex]) dotButtons[newIndex].classList.add('selected');
+  } else {
+    for (let j = newIndex; j < newIndex + step && j < items.length; j += 1) {
+      items[j].classList.add('selected');
+    }
+    const pageIndex = Math.floor(newIndex / step);
+    if (dotButtons[pageIndex]) dotButtons[pageIndex].classList.add('selected');
+  }
+  carousel.updateCounterText(newIndex);
+}
 class Carousel {
   constructor(block, data, config) {
     // Set defaults
@@ -223,14 +357,15 @@ class Carousel {
       const item = this.block.querySelector('.carousel-item.selected');
       if (!item) return;
 
-      requestAnimationFrame(() => {
-        const padding = this.getBlockPadding();
-        const blockOffset = this.block.offsetLeft;
-        const itemOffset = item.offsetLeft;
+      const padding = this.getBlockPadding();
+      const blockOffset = this.block.offsetLeft;
+      const itemOffset = item.offsetLeft;
+      const targetLeft = itemOffset - padding - blockOffset;
 
+      requestAnimationFrame(() => {
         this.block.scrollTo({
           top: 0,
-          left: itemOffset - padding - blockOffset,
+          left: targetLeft,
         });
       });
     };
