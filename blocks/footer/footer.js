@@ -135,8 +135,10 @@ export async function buildNewsletter(container) {
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
         obs.disconnect();
+        (window.requestIdleCallback || setTimeout)(() => {
+          loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
+        });
       }
     });
   });

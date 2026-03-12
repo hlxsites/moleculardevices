@@ -33,13 +33,13 @@ main .tabs-vertical-container .cursor-pointer {
 }
 
 .tabs-vertical-main-content {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    text-align: left;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-align: left;
 }
 
 .tabs-vertical-main-content p {
-    line-height: 1.5;
+  line-height: 1.5;
 }
 
 .tabs-vertical-main-content h3 {
@@ -63,14 +63,19 @@ main .tabs-vertical-container .cursor-pointer {
 }
 
 .tabs-vertical-main-content > .tabs-vertical-pane > picture img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.tabs-vertical-main-content > .tabs-vertical-pane.active > picture img {
+  display: block;
 }
 
 @media (min-width: 768px) {
@@ -100,7 +105,7 @@ main .tabs-vertical-container .cursor-pointer {
   .tabs-vertical-pane-inside {
     padding: 54px 24px;
     width: calc(100vw * 0.7);
-    position:relative;
+    position: relative;
   }
 
   .tabs-vertical-list picture img {
@@ -127,7 +132,7 @@ main .tabs-vertical-container .cursor-pointer {
     border: 0;
     text-align: left;
     list-style: none;
-    margin:0;
+    margin: 0;
     padding-left: 0;
   }
 
@@ -184,7 +189,7 @@ main .tabs-vertical-container .cursor-pointer {
     width: 0;
     height: auto;
     visibility: visible;
-    float:left;
+    float: left;
   }
 
   .tabs-vertical-main-content .tabs-vertical-pane.active {
@@ -192,7 +197,7 @@ main .tabs-vertical-container .cursor-pointer {
   }
 
   .tabs-vertical-btn {
-    display:none;
+    display: none;
   }
 }
 
@@ -211,7 +216,7 @@ main .tabs-vertical-container .cursor-pointer {
 
   .tabs-vertical-content {
     max-width: 48%;
-}
+  }
 }
 
 @media (min-width: 1200px) {
@@ -253,7 +258,7 @@ main .tabs-vertical-container .cursor-pointer {
   }
 
   .tabs-vertical-content {
-    position:relative;
+    position: relative;
     display: block;
     overflow: hidden;
     padding-left: 30px;
