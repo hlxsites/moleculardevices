@@ -1,4 +1,5 @@
 import { div, ol } from '../../scripts/dom-helpers.js';
+import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.js';
 import { loadBreadcrumbs } from '../hero/hero.js';
 
 function decorateTeaser(video, teaserPicture, target) {
@@ -44,11 +45,11 @@ export default function decorate(block) {
     loadBreadcrumbs(breadcrumbs);
   }
 
-  // const homePromoSection = document.body.querySelector('.home-promo');
-  // if (homePromoSection) {
-  //   const imageSrc = getFirstBackgroundImage(homePromoSection);
-  //   preloadLCPImage(imageSrc);
-  // }
+  const homePromoSection = document.body.querySelector('.home-promo');
+  if (homePromoSection) {
+    const imageSrc = getFirstBackgroundImage(homePromoSection);
+    preloadLCPImage(imageSrc);
+  }
 
   const videoBanner = block.children[0];
   videoBanner.classList.add('hero-video-banner');
@@ -71,7 +72,7 @@ export default function decorate(block) {
     block.appendChild(placeholderPicture);
   }
 
-  // preloadLCPImage(teaserPicture.src);
+  preloadLCPImage(teaserPicture.src);
   window.requestAnimationFrame(() => {
     if (teaserVideoLink) {
       decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
