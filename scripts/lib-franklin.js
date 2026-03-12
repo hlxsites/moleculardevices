@@ -517,15 +517,9 @@ export function readBlockConfig(block) {
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
  */
-const GLOBAL_BREAKPOINTS = [
-  { media: '(min-width: 1400px)', width: '1400' },
-  { media: '(min-width: 1200px)', width: '1200' },
-  { media: '(min-width: 992px)', width: '992' },
-  { media: '(min-width: 768px)', width: '768' },
-  { width: '575' },
-];
-const IMAGE_SIZES = '(max-width: 575px) 100vw, (max-width: 768px) 100vw, (max-width: 992px) 100vw, (max-width: 1200px) 100vw, 1400px';
 export function decorateSections(main) {
+  const imageMediaQuery = window.matchMedia('only screen and (min-width: 400px)');
+
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
@@ -555,19 +549,24 @@ export function decorateSections(main) {
           if (background.startsWith('http')) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
+            const backgroundImages = [];
             const ext = pathname.split('.').pop();
-            const widths = GLOBAL_BREAKPOINTS;
+            const widths = [750, 2000];
             const formats = ['avif', 'webp', ext];
 
             const makeUrl = (w, f) => `${pathname}?width=${w}&format=${f}&optimize=medium`;
 
             const imageSet = `image-set(${formats
-              .flatMap((format) => widths
-                .map((width, i) => `url("${makeUrl(width, format)}") ${i + 1}x type("image/${format}")`))
+              .flatMap((format) =>
+                widths.map((width, i) =>
+                  `url("${makeUrl(width, format)}") ${i + 1}x type("image/${format}")`
+                )
+              )
               .join(', ')})`;
 
             section.style.backgroundImage = imageSet;
             section.style.backgroundImage = `-webkit-${imageSet}`;
+
           } else {
             section.style.background = background;
           }
@@ -743,84 +742,24 @@ export function getHref() {
 }
 
 /**
- * Helper: Creates a <picture> element for a given image
- * @param {string} src - Image source URL
- * @param {string} alt - Alt text
- * @param {boolean} eager - Whether to load eagerly (LCP candidate)
- * @param {Array} breakpoints - Responsive breakpoints
- * @param {string} sizes - Sizes attribute for responsive images
- */
-function buildPicture(src, alt = '', eager = true, breakpoints = GLOBAL_BREAKPOINTS, sizes = IMAGE_SIZES) {
-  const url = new URL(src, getHref());
-  const { pathname } = url;
-  const ext = pathname.split('.').pop();
-  const formats = ['avif', 'webp'];
-  const dprs = [1, 2];
-
-  const picture = document.createElement('picture');
-  const makeSrc = (width, format, dpr = 1) => `${src}?width=${width * dpr}&format=${format}&optimize=medium`;
-
-  // Generate <source> for all formats + DPR + breakpoints
-  [...formats, ext].forEach((format) => {
-    breakpoints.forEach((br) => {
-      dprs.forEach((dpr) => {
-        const source = document.createElement('source');
-        if (br.media) source.media = br.media;
-        source.type = format !== ext ? `image/${format}` : `image/${ext}`;
-        source.srcset = makeSrc(br.width, format, dpr) + (dpr > 1 ? ` ${dpr}x` : '');
-        picture.appendChild(source);
-      });
-    });
-  });
-
-  // Final <img> fallback
-  const img = document.createElement('img');
-  img.alt = alt;
-  img.loading = eager ? 'eager' : 'lazy';
-  img.fetchPriority = eager ? 'high' : 'auto';
-  img.decoding = eager ? 'sync' : 'async';
-  img.sizes = sizes;
-  img.src = makeSrc(breakpoints.at(-1).width, ext);
-  picture.appendChild(img);
-
-  return picture;
-}
-
-/**
  * Optimize images for performance
  * - Sets eager + fetchpriority only on the first visible image (LCP candidate)
  * - All others remain lazy with async decoding
  */
 export function decorateImages() {
   const images = [...document.querySelectorAll('img')];
-  if (!images.length) return;
+  if (images.length === 0) return;
 
-  const viewportHeight = window.innerHeight;
-
-  // Identify first image in viewport
-  let lcpImage = null;
-  let largestArea = 0;
+  // Identify first image in viewport (LCP candidate)
+  const lcpImage = images[0];
   images.forEach((img) => {
-    const rect = img.getBoundingClientRect();
-    const area = rect.width * rect.height;
-    if (rect.top < viewportHeight && area > largestArea) {
-      largestArea = area;
-      lcpImage = img;
-    }
-  });
+    lcpImage.setAttribute('decoding', 'async');
 
-  images.forEach((img) => {
-    const isLCP = img === lcpImage;
-
-    img.decoding = 'async';
-    img.loading = isLCP ? 'eager' : 'lazy';
-    if (isLCP) img.fetchPriority = 'high';
-
-    // Upgrade to responsive picture with modern formats
-    if (!img.dataset.optimized) {
-      const picture = buildPicture(img.src, img.alt, isLCP);
-      img.closest('picture').replaceWith(picture);
-      picture.querySelector('img').dataset.optimized = 'true';
+    if (img === lcpImage) {
+      lcpImage.setAttribute('loading', 'eager');
+      lcpImage.setAttribute('fetchpriority', 'high');
+    } else {
+      img.setAttribute('loading', 'lazy');
     }
   });
 }
@@ -831,8 +770,48 @@ export function decorateImages() {
  * @param {boolean} eager load image eager
  * @param {Array} breakpoints breakpoints and corresponding params (eg. width)
  */
-export function createOptimizedPicture(src, alt = '', eager = true, breakpoints = GLOBAL_BREAKPOINTS, sizes = IMAGE_SIZES) {
-  return buildPicture(src, alt, eager, breakpoints, sizes);
+export function createOptimizedPicture(src, alt = '', eager = true,
+  breakpoints = [{ media: '(min-width: 768px)', width: '1920' }, { width: '750' }],
+  sizes = '(max-width: 767px) 100vw, 1200px',
+) {
+  const url = new URL(src, getHref());
+  const picture = document.createElement('picture');
+  const { pathname } = url;
+  const ext = pathname.split('.').pop();
+
+  // webp
+  breakpoints.forEach((br) => {
+    const source = document.createElement('source');
+    if (br.media) source.media = br.media;
+    source.type = 'image/webp';
+    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
+    picture.appendChild(source);
+  });
+
+  // fallback image
+  breakpoints.forEach((br, i) => {
+    if (i < breakpoints.length - 1) {
+      const source = document.createElement('source');
+      if (br.media) source.media = br.media;
+      source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
+      picture.appendChild(source);
+    } else {
+      const img = document.createElement('img');
+      img.alt = alt;
+      img.decoding = 'async';
+      img.sizes = sizes;
+      img.loading = eager ? 'eager' : 'lazy';
+      img.fetchPriority = 'high';
+
+      if (br.width) img.setAttribute('width', br.width);
+      if (br.height) img.setAttribute('height', br.height);
+
+      picture.appendChild(img);
+      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
+    }
+  });
+
+  return picture;
 }
 
 /**
