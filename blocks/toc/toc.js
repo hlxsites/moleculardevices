@@ -16,8 +16,6 @@ export default async function decorate(block) {
       .map((i) => `article:nth-child(n+${tocPosition + 1}) ${i}, div:nth-child(n+${tocPosition + 1}) ${i}`)
       .join(','),
   );
-  console.log(section);
-  console.log(headings);
   const firstHTagName = headings[0].tagName;
   const firstHTagNameIndex = hTagNames.indexOf(firstHTagName);
   let previousHTagNameIndex = firstHTagNameIndex;

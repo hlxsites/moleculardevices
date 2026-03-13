@@ -83,6 +83,7 @@ main .insider-carousel .carousel-item p:not([class]) a {
   text-underline-offset: 4px;
 }
 
+/* stylelint-disable-next-line no-duplicate-selectors */
 main .insider-carousel .carousel-item-text .button-container {
   display: inline-block;
   margin-right: 1rem;
