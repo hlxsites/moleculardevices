@@ -25,6 +25,10 @@ main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
+main .section:has(.carousel.block) h2 {
+  text-align: center;
+}
+
 main .carousel,
 main .carousel-item {
   display: flex;
@@ -222,10 +226,27 @@ main .section.global-carousel .carousel h2 + h3 {
   margin-bottom: 18px;
 }
 
+main .carousel-wrapper .list .carousel-nav-button {
+  display: none;
+}
+
 @media only screen and (min-width: 768px) {
   main .section.global-carousel .carousel h2:only-child,
   main .section.global-carousel .carousel h2 + h3 {
     margin-bottom: 48px;
+  }
+
+  main .carousel-wrapper.cards .carousel.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: stretch;
+    width: 100%;
+  }
+
+  main .list .carousel-item.clone {
+    display: none;
   }
 }
 
@@ -297,7 +318,19 @@ main .section.global-carousel .carousel h2 + h3 {
   }
 }
 
+@media only screen and (max-width: 1199px) {
+  .carousel-wrapper.cards .carousel-item,
+  .carousel.list .carousel-item {
+    width: 50%;
+    max-width: 360px;
+  }
+}
+
 @media only screen and (max-width: 991px) {
+  main .section:has(.carousel.block) h2 {
+    font-size: 45px;
+  }
+
   main .carousel-item-columns-container {
     flex-direction: column;
     gap: 30px;
@@ -329,6 +362,10 @@ main .section.global-carousel .carousel h2 + h3 {
     padding: 20px;
   }
 
+  main .section:has(.carousel.block) h2 {
+    font-size: 36px;
+  }
+
   main .carousel-item-text h3 {
     font-size: 24px;
   }
@@ -336,13 +373,16 @@ main .section.global-carousel .carousel h2 + h3 {
   main .carousel-item-text .button-container {
     margin-top: 20px;
     margin-bottom: 0;
-    max-width: 100%;
+  }
+
+  .carousel.list .carousel-item,
+  main .carousel-item-text .button-container,
+  main .carousel-item-text .button-container .button {
     width: 100%;
+    max-width: 100%;
   }
 
   main .carousel-item-text .button-container .button {
-    max-width: 100%;
-    width: 100%;
     font-size: 12px;
   }
 

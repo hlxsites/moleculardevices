@@ -36,6 +36,7 @@ export default async function decorate(block) {
     thumbnailLink: false,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: 180,
+    showTag: true,
   });
 
   await createCarousel(

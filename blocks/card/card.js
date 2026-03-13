@@ -67,6 +67,7 @@ class Card {
     this.showFullDescription = false;
     this.isInPastYear = false;
     this.isBlogCarousel = false;
+    this.showTag = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -176,7 +177,7 @@ class Card {
         this.showCategory ? span({ class: 'card-category' },
           item.subCategory && item.subCategory !== '0' ? item.subCategory : item.category) : '',
         div({ class: 'card-caption' },
-          item.displayType ? div({ class: 'card-type' }, item.displayType) : '',
+          this.showTag && item.displayType ? div({ class: 'card-tag' }, item.displayType) : '',
           this.showDate ? time({ class: 'card-date' }, formatDateUTCSeconds(item.date)) : '',
           this.isBlogCarousel ? h4(cardTitle) : h3(cardTitle),
           cardDescription ? p({ class: 'card-description' }, cardDescription) : '',

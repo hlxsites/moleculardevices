@@ -1,16 +1,1 @@
-.resources-carousel.carousel .card:hover{
-  transform: scale(1.03);
-}
-
-.resources-carousel.carousel .card-type {
-	display: block;
-}
-
-.resources-carousel.carousel .card-thumb {
-  height: 200px;
-  min-height: 200px;
-}
-
-.resources-carousel.carousel .card-caption h3 {
-	min-height: auto;
-}
+/* resource-carousel.css */

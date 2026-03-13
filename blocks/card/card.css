@@ -142,13 +142,12 @@ main .card-caption .c2a .compare-checkbox.selected {
   border-color: var(--color-tertiary);
 }
 
-main .card-type {
-  display: none;
+main .card-tag {
   text-align: left;
   text-transform: uppercase;
   color: var(--color-tertiary);
   font-size: var(--font-size-body-xs);
-  margin: 5px 0;
+  margin-bottom: 0.5rem;
 }
 
 main .card-date {

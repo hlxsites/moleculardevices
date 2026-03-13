@@ -34,10 +34,6 @@ main .section .related-products-wrapper {
   object-position: bottom;
 }
 
-.related-products .card-type {
-  display: block;
-}
-
 .related-products .card-caption .card-description {
   font-size: var(--font-size-body-xs);
 }

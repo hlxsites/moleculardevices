@@ -72,6 +72,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
 }
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const blockLinks = block.querySelectorAll('a');
   let resources = [];
 
@@ -92,6 +93,7 @@ export default async function decorate(block) {
     showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
+    showTag: true,
   });
 
   // citations has default thumbnail image.
@@ -105,6 +107,7 @@ export default async function decorate(block) {
     block,
     sortDataByDate(resources),
     {
+      cssFiles: ['/blocks/carousel/carousel-cards.css'],
       defaultStyling: true,
       navButtons: true,
       dotButtons: false,
