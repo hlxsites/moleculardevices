@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 import {
-  a, div, h3, h4, p,
+  a, article, div, domEl, h3, h4, p,
 } from '../../scripts/dom-helpers.js';
 import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getData } from '../../scripts/scripts.js';
@@ -12,9 +12,9 @@ function renderItem(item) {
     h3(item.title),
     div({ class: 'columns-wrapper' },
       div({ class: 'columns columns-2-cols' },
-        div(
-          div(p(item.description), a({ href: item.path, class: 'button secondary' }, 'Read Press Release')),
-          div(div({ class: 'press-carousel-item-thumb' }, createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }]))),
+        div({ class: 'columns-row' },
+          article({ class: 'columns-col columns-text-col' }, p(item.description), a({ href: item.path, class: 'button secondary' }, 'Read Press Release')),
+          domEl('figure', { class: 'columns-col columns-img-col' }, createOptimizedPicture(item.image, item.title, 'lazy', [{ width: '800' }])),
         ),
       ),
     ),
