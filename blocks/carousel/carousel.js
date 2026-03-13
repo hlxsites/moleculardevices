@@ -3,13 +3,147 @@ import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
 import {
   button, div, img, p, span,
 } from '../../scripts/dom-helpers.js';
-import {
-  applyInfiniteScrollIllusion, calculateNewIndex, createClone, handleNavBoundaries,
-  resetNavButtons, scrollToItem, updateSelection,
-} from './carousel-helpers.js';
+import { handleCompareProducts } from '../card/card.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
+/**
+ * Clone a carousel item
+ * @param {Element} item carousel item to be cloned
+ * @returns {Element} clone of the carousel item
+ */
+function createClone(item) {
+  const clone = item.cloneNode(true);
+  clone.classList.add('clone');
+  clone.classList.remove('selected');
+
+  // if clone has compare box, add event handler
+  const compareCheckbox = clone.querySelector('.compare-checkbox');
+  if (compareCheckbox) {
+    compareCheckbox.addEventListener('click', handleCompareProducts);
+  }
+
+  return clone;
+}
+
+/**
+ * Reset nav button states
+ */
+function resetNavButtons(carousel) {
+  if (!carousel.infiniteScroll) {
+    carousel.navButtonRight?.classList.remove('disabled');
+    carousel.navButtonLeft?.classList.remove('disabled');
+  }
+}
+
+/**
+ * Calculate new index based on direction & step
+ * Signature: (direction, index, step, itemsLength)
+ */
+function calculateNewIndex(direction, index, step, itemsLength) {
+  let newIndex;
+
+  if (direction === 'next') {
+    newIndex = (index + step) % itemsLength;
+  } else {
+    newIndex = index - step;
+    if (newIndex < 0) {
+      newIndex = itemsLength - step;
+    }
+  }
+
+  return newIndex;
+}
+
+/**
+ * Handle finite mode boundaries
+ */
+function handleNavBoundaries(carousel, direction, newIndex, step, maxIndex, itemCount) {
+  if (carousel.infiniteScroll) return false;
+
+  if (step === 1) {
+    if (direction === 'next' && newIndex === 0) return true;
+    if (direction === 'next' && newIndex === itemCount - carousel.getCurrentVisibleItems()) {
+      carousel.navButtonRight?.classList.add('disabled');
+    }
+    if (direction === 'prev' && newIndex === itemCount - 1) return true;
+    if (direction === 'prev' && newIndex === 0) {
+      carousel.navButtonLeft?.classList.add('disabled');
+    }
+  } else {
+    if (direction === 'next' && newIndex === 0) return true;
+    if (direction === 'next' && newIndex === maxIndex) {
+      carousel.navButtonRight?.classList.add('disabled');
+    }
+    if (direction === 'prev' && newIndex === maxIndex) return true;
+    if (direction === 'prev' && newIndex === 0) {
+      carousel.navButtonLeft?.classList.add('disabled');
+    }
+  }
+  return false;
+}
+
+/**
+ * Illusion of infinite scroll (wrap jump)
+ */
+function applyInfiniteScrollIllusion(
+  carousel, dir, index, newIndex, maxIndex, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+
+  if (dir === 'next' && (newIndex === 0 || index >= maxIndex)) {
+    const targetOffset = newSelectedItem.previousElementSibling.offsetLeft;
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: targetOffset - padding - blockOffset,
+    });
+  }
+
+  if (dir === 'prev' && newIndex === maxIndex) {
+    const targetOffset = newSelectedItem.nextElementSibling.offsetLeft;
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: targetOffset - padding - blockOffset,
+    });
+  }
+}
+
+/**
+ * Scroll smoothly to a selected item
+ */
+function scrollToItem(carousel, newSelectedItem) {
+  const padding = carousel.getBlockPadding();
+  const blockOffset = carousel.block.offsetLeft;
+  const itemOffset = newSelectedItem.offsetLeft;
+
+  requestAnimationFrame(() => {
+    newSelectedItem.parentNode.scrollTo({
+      top: 0,
+      left: itemOffset - padding - blockOffset,
+      behavior: 'smooth',
+    });
+  });
+}
+
+/**
+ * Update selection (items & dots)
+ */
+function updateSelection(carousel, items, dotButtons, newIndex, step) {
+  items.forEach((item) => item.classList.remove('selected'));
+  dotButtons.forEach((dot) => dot.classList.remove('selected'));
+
+  if (step === 1) {
+    items[newIndex].classList.add('selected');
+    if (dotButtons[newIndex]) dotButtons[newIndex].classList.add('selected');
+  } else {
+    for (let j = newIndex; j < newIndex + step && j < items.length; j += 1) {
+      items[j].classList.add('selected');
+    }
+    const pageIndex = Math.floor(newIndex / step);
+    if (dotButtons[pageIndex]) dotButtons[pageIndex].classList.add('selected');
+  }
+  carousel.updateCounterText(newIndex);
+}
 class Carousel {
   constructor(block, data, config) {
     // Set defaults
@@ -28,6 +162,7 @@ class Carousel {
     this.hasImageInDots = false;
     this.cardStyling = false;
     this.hasStepByScroll = false;
+    this.cachedPadding = null;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
     this.visibleItems = [
@@ -60,10 +195,10 @@ class Carousel {
   }
 
   getBlockPadding() {
-    if (!this.blockStyle) {
-      this.blockStyle = window.getComputedStyle(this.block);
-    }
-    return +(this.blockStyle.getPropertyValue('padding-left').replace('px', ''));
+    if (this.cachedPadding) return this.cachedPadding;
+    const style = window.getComputedStyle(this.block);
+    this.cachedPadding = +(style.getPropertyValue('padding-left').replace('px', ''));
+    return this.cachedPadding;
   }
 
   getCurrentVisibleItems() {
@@ -113,8 +248,10 @@ class Carousel {
     if (handleNavBoundaries(this, direction, newIndex, step, maxIndex, items.length)) return;
 
     applyInfiniteScrollIllusion(this, direction, index, newIndex, maxIndex, newSelectedItem);
-    scrollToItem(this, newSelectedItem);
-    updateSelection(this, items, dotButtons, newIndex, step);
+    requestAnimationFrame(() => {
+      scrollToItem(this, newSelectedItem);
+      updateSelection(this, items, dotButtons, newIndex, step);
+    });
   }
 
   // wrappers
@@ -218,9 +355,18 @@ class Carousel {
   setInitialScrollingPosition() {
     const scrollToSelectedItem = () => {
       const item = this.block.querySelector('.carousel-item.selected');
-      item.parentNode.scrollTo({
-        top: 0,
-        left: item.offsetLeft - this.getBlockPadding() - this.block.offsetLeft,
+      if (!item) return;
+
+      const padding = this.getBlockPadding();
+      const blockOffset = this.block.offsetLeft;
+      const itemOffset = item.offsetLeft;
+      const targetLeft = itemOffset - padding - blockOffset;
+
+      requestAnimationFrame(() => {
+        this.block.scrollTo({
+          top: 0,
+          left: targetLeft,
+        });
       });
     };
 
@@ -356,15 +502,15 @@ class Carousel {
       ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
     );
 
-    let defaultCSSPromise;
+    /* css loading */
     if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-      // add default carousel classes to apply default CSS
-      defaultCSSPromise = Promise.all(this.cssFiles.map(loadCSS));
+      this.cssFiles.forEach((file) => loadCSS(file));
       this.block.parentElement.classList.add('carousel-wrapper');
       this.block.classList.add('carousel');
     }
 
-    this.block.innerHTML = '';
+    /* prevent reflow */
+    const fragment = document.createDocumentFragment();
     this.data.forEach((item, index) => {
       const itemContainer = document.createElement('div');
       itemContainer.classList.add('carousel-item', `carousel-item-${index + 1}`);
@@ -378,23 +524,40 @@ class Carousel {
         }
         itemContainer.appendChild(renderedItemElement);
       });
-      this.block.appendChild(itemContainer);
+      fragment.appendChild(itemContainer);
     });
 
-    // set initial selected carousel item
-    const activeItems = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
-    activeItems[this.currentIndex].classList.add('selected');
+    this.block.innerHTML = '';
+    this.block.appendChild(fragment);
 
-    // create autoscrolling animation
-    this.autoScroll && this.infiniteScroll
-      && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
+    // set initial selected carousel item
+    requestAnimationFrame(() => {
+      const activeItems = this.block.querySelectorAll('.carousel-item:not(.clone,.skip)');
+      if (activeItems[this.currentIndex]) {
+        activeItems[this.currentIndex].classList.add('selected');
+      }
+
+      // create autoscrolling animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && this.autoScroll && this.infiniteScroll && !this.intervalId) {
+            this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval);
+          } else if (!entry.isIntersecting) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(this.block);
+
+      this.infiniteScroll && this.setInitialScrollingPosition();
+    });
+
     this.dotButtons && this.createDotButtons();
     this.counter && this.createCounter();
     this.navButtons && this.createNavButtons(this.block.parentElement);
     this.infiniteScroll && this.createClones();
     this.addSwipeCapability();
-    this.infiniteScroll && this.setInitialScrollingPosition();
-    this.cssFiles && (await defaultCSSPromise);
   }
 }
 

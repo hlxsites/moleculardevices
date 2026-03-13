@@ -16,3 +16,23 @@ main .press-carousel-item h3 {
   color: var(--color-text-primary);
   font-family: var(--ff-proxima-regular);
 }
+
+main .press-carousel-item .columns .columns-row {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+main .press-carousel-item .columns figure.columns-col {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  main .press-carousel-item .columns .columns-row {
+    flex-direction: unset;
+  }
+
+  main .press-carousel-item .columns .columns-col {
+    flex: 1;
+  }
+}

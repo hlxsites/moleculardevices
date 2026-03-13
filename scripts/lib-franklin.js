@@ -550,7 +550,7 @@ export function decorateSections(main) {
             const url = new URL(background, window.location.href);
             const { pathname } = url;
             const backgroundImages = [];
-            const exts = ['webply', pathname.substring(pathname.lastIndexOf('.') + 1)];
+            const exts = ['avif', 'webp', pathname.substring(pathname.lastIndexOf('.') + 1)];
             if (imageMediaQuery.matches) {
               exts.forEach((ext) => backgroundImages.push(`url(${pathname}?width=2000&format=${ext}&optimize=medium)`));
             } else {
@@ -745,14 +745,14 @@ export function decorateImages() {
   if (lcpImage) {
     lcpImage.setAttribute('loading', 'eager');
     lcpImage.setAttribute('fetchpriority', 'high');
-    lcpImage.setAttribute('decoding', 'async');
   }
 
   // Optimize all remaining images
   images.forEach((img) => {
+    img.setAttribute('decoding', 'async');
+
     if (img !== lcpImage) {
       img.setAttribute('loading', 'lazy');
-      img.setAttribute('decoding', 'async');
     }
   });
 }
@@ -772,13 +772,16 @@ export function createOptimizedPicture(src, alt = '', eager = true,
   const { pathname } = url;
   const ext = pathname.split('.').pop();
 
-  // webp
-  breakpoints.forEach((br) => {
-    const source = document.createElement('source');
-    if (br.media) source.media = br.media;
-    source.type = 'image/webp';
-    source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
-    picture.appendChild(source);
+  // modern format sources
+  const imgFormat = ['avif', 'webp'];
+  imgFormat.forEach((format) => {
+    breakpoints.forEach((br) => {
+      const source = document.createElement('source');
+      if (br.media) source.media = br.media;
+      source.type = `image/${format}`;
+      source.srcset = `${pathname}?width=${br.width}&format=${format}&optimize=medium`;
+      picture.appendChild(source);
+    });
   });
 
   // fallback image
@@ -786,7 +789,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
       if (br.media) source.media = br.media;
-      source.srcset = `${pathname}?width=${br.width}&format=webp&optimize=medium`;
+      source.srcset = `${pathname}?width=${br.width}&format=${ext}&optimize=medium`;
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
@@ -795,12 +798,12 @@ export function createOptimizedPicture(src, alt = '', eager = true,
       img.sizes = sizes;
       img.loading = eager ? 'eager' : 'lazy';
       img.fetchPriority = 'high';
+      img.src = `${pathname}?width=${br.width}&format=${ext}&optimize=medium`;
 
       if (br.width) img.setAttribute('width', br.width);
       if (br.height) img.setAttribute('height', br.height);
 
       picture.appendChild(img);
-      img.src = `${pathname}?width=${breakpoints.at(-1).width}&format=${ext}&optimize=medium`;
     }
   });
 

@@ -27,7 +27,6 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
-import ffetch from './ffetch.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1765,53 +1764,53 @@ export function getFirstBackgroundImage(element) {
 /* Load Data */
 let dataPromise;
 
+/**
+ * Helper to sort by date (assuming 'date' or 'eventStart' property exists)
+ */
 export function sortEventsData(events) {
   return [...events].sort((first, second) => first.eventStart - second.eventStart);
 }
 
-export async function fetchQueryIndex(type, filter) {
-  let response = ffetch('/query-index.json').sheet(type);
-  if (filter) response = response.filter(filter);
-  return response.all();
-}
-
-async function fetchAllEvents() {
-  const now = Date.now();
-  return sortEventsData(
-    await fetchQueryIndex('events', (item) => item.eventEnd * 1000 > now),
-  );
-}
-
-async function getNewsData() {
-  const { lang } = document.documentElement;
-  const sheet = lang === 'zh' ? 'china-news' : 'news';
-  const data = await fetchQueryIndex(sheet);
-  return sortDataByDate(data);
-}
-
 async function loadData() {
-  const [
-    events,
-    news,
-    newsletters,
-    blogs,
-    publications,
-  ] = await Promise.all([
-    fetchAllEvents(),
-    getNewsData(),
-    fetchQueryIndex('newsletters'),
-    fetchQueryIndex('blog'),
-    fetchQueryIndex('publications'),
-  ]);
+  const { lang } = document.documentElement;
+  const newsSheet = lang === 'zh' ? 'china-news' : 'news';
 
-  return {
-    events,
-    news,
-    newsletters,
-    blogs,
-    publications,
-    fullArticle: publications.filter((r) => r.publicationType === 'Full Article'),
-  };
+  const url = `/query-index.json?sheet=events&sheet=${newsSheet}&sheet=newsletters&sheet=blog&sheet=publications`;
+
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+
+    const getQueryData = (sheetName) => {
+      if (json[sheetName] && json[sheetName].data) return json[sheetName].data;
+      if (Array.isArray(json)) return json;
+      return [];
+    };
+
+    const eventsRaw = getQueryData('events');
+    const newsRaw = getQueryData(newsSheet);
+    const newsletters = getQueryData('newsletters');
+    const blogs = getQueryData('blog');
+    const publications = getQueryData('publications');
+
+    const now = Date.now();
+
+    const events = eventsRaw.filter((item) => item.eventEnd * 1000 > now);
+    const news = sortDataByDate(newsRaw);
+
+    return {
+      events: sortEventsData(events),
+      news,
+      newsletters,
+      blogs,
+      publications,
+      fullArticle: publications.filter((r) => r.publicationType === 'Full Article'),
+    };
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Fetch error:', e);
+    return {};
+  }
 }
 
 export function getData() {
