@@ -2,23 +2,15 @@
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.js';
-// eslint-disable-next-line import/no-cycle
 import {
   formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import {
-  a, div, h3, p, i, span,
-  article,
-  figure,
-  time,
-  h4,
+  a, div, h3, p, i, span, article, figure, time, h4,
 } from '../../scripts/dom-helpers.js';
 import { createCompareBannerInterface } from '../../templates/compare-items/compare-banner.js';
 import {
-  MAX_COMPARE_ITEMS,
-  getTitleFromNode,
-  getSelectedItems,
-  updateCompareButtons,
+  MAX_COMPARE_ITEMS, getTitleFromNode, getSelectedItems, updateCompareButtons,
 } from '../../scripts/compare-helpers.js';
 import { isNotOlderThan365Days } from '../product-finder/product-finder.js';
 import { isCountryCodeUS } from '../request-quote-carousel/request-quote-carousel.js';
@@ -210,12 +202,15 @@ class Card {
  * customizing the rendering and behaviour
  */
 export async function createCard(config = {}) {
-  placeholders = await fetchPlaceholders();
+  const placeholdersPromise = fetchPlaceholders();
+  const card = new Card(config);
+  const cssPromise = card.loadCSSFiles();
+
+  [placeholders] = await Promise.all([placeholdersPromise, cssPromise]);
 
   config.defaultButtonText = config.defaultButtonText
     ? (placeholders[toCamelCase(config.defaultButtonText)] || config.defaultButtonText)
-    : placeholders.readMore;
-  const card = new Card(config);
-  await card.loadCSSFiles();
+    : (placeholders.readMore || 'Read More');
+
   return card;
 }
