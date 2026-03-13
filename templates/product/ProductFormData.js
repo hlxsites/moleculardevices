@@ -4,7 +4,7 @@ const PRODUCT_FORM_DATA = [
     heading: 'Advance Drug Discovery with Human-Relevant 3D Biology',
     bodyContent: [
       "We're shifting paradigms together—helping scientists move beyond traditional models with automated, scalable 3D biology solutions.",
-      "From our CellXpress.ai™ system for high-throughput cell culture to organoid models that more accurately mirror human biology, we're enabling reliable, reproducible insights earlier in the drug development pipeline. Reduce attrition, assess efficacy, and make smarter decisions—sooner.",
+      "From our CellXpress.ai™ system for automated cell culture to organoid models that more accurately mirror human biology, we're enabling reliable, reproducible insights earlier in the drug development pipeline. Reduce attrition, assess efficacy, and make smarter decisions—sooner.",
       "Let's partner to build more predictive workflows and advance human-relevant science with confidence.",
     ],
     formTitle: "Ready to take your 3D biology research further? Let's connect.",
