@@ -16,6 +16,7 @@ async function getCBData(category) {
 }
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const cbPath = '/customer-breakthroughs';
   let category = getMetadata('category');
   if (category === 'Services and Support') category = 'Lab Automation';
@@ -42,12 +43,14 @@ export default async function decorate(block) {
     showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
+    showTag: true,
   });
 
   await createCarousel(
     block,
     resources,
     {
+      cssFiles: ['/blocks/carousel/carousel-cards.css'],
       defaultStyling: true,
       cardStyling: true,
       navButtons: true,
@@ -55,16 +58,9 @@ export default async function decorate(block) {
       infiniteScroll: true,
       autoScroll: false,
       visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
+        { items: 1, condition: (width) => width < 768 },
+        { items: 2, condition: (width) => width < 1200 },
+        { items: 3 },
       ],
       cardRenderer: resourceCard,
     },

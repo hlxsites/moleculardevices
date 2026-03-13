@@ -240,16 +240,6 @@
   margin-bottom: 40px;
 }
 
-.thank-you-page .carousel-wrapper {
-  padding: 0;
-}
-
-.thank-you-page .carousel.cards img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
 .section.thank-you-page > .default-content-wrapper:nth-last-child(2) {
   padding-top: 50px;
 }
@@ -260,38 +250,6 @@
 
 .section.thank-you-page > .default-content-wrapper:first-of-type > h2 {
   color: var(--color-tertiary);
-}
-
-.section.thank-you-page .carousel-item > .card > div > p:first-of-type {
-  color: var(--color-tertiary);
-}
-
-.section.thank-you-page .carousel-item > .card .card-caption .card-description {
-  color: var(--color-text-primary);
-  font-size: var(--font-size-body-xs);
-}
-
-.thank-you-page p.button-container span[aria-hidden='true'] {
-  display: none;
-}
-
-.thank-you-page .carousel.cards p.button-container {
-  display: flex;
-  justify-content: center;
-}
-
-.thank-you-page .carousel.cards p.button-container a {
-  font-size: 14px;
-  padding: 8px 30px;
-  margin-bottom: 10px;
-}
-
-.thank-you-page .carousel.cards .carousel-item h3,
-.thank-you-page .block.latest-resources .carousel-item h3 {
-  font-size: 22px;
-  padding-top: 10px;
-  margin-top: 0;
-  color: var(--color-text-primary);
 }
 
 body .thank-you-page h3 {
@@ -318,15 +276,6 @@ body .thank-you-page h4 {
 
 .landing-page.thankyou .columns-container h3 {
   font-size: 40px;
-}
-
-.landing-page.thankyou .carousel.cards p.button-container a {
-  border: 1px solid var(--color-tertiary);
-  color: var(--color-black);
-}
-
-.landing-page.thankyou .carousel.cards .card > div:last-child > p:first-child {
-  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
