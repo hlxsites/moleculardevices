@@ -33,7 +33,9 @@ main div.carousel-wrapper:last-child {
   justify-content: center;
 }
 
-main .section:has(.carousel.block) .default-content-wrapper h2 {
+.product main .section:has(.carousel.block) .default-content-wrapper h2,
+.application main .section:has(.carousel.block) .default-content-wrapper h2,
+.technology main .section:has(.carousel.block) .default-content-wrapper h2 {
   text-align: center;
   font-size: var(--fs-display-xl);
   font-family: var(--ff-proxima-light);
