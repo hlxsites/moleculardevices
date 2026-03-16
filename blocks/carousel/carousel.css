@@ -16,7 +16,7 @@ main div.carousel-wrapper.container-width-carousel {
   position: relative;
 }
 
-main .section:has(.block:empty) {
+main .section:has(.block.carousel:empty) {
   display: none;
 }
 
