@@ -50,6 +50,14 @@ main .carousel-item {
   padding: 50px 80px;
 }
 
+.carousel-wrapper.cards .carousel-item {
+  display: block;
+  width: 33.33%;
+  max-width: 33.3%;
+  padding: 20px 15px;
+  margin: 0;
+}
+
 main .carousel-item[style*="background-image"] {
   background-size: cover;
   background-position: center;
@@ -226,7 +234,7 @@ main .section.global-carousel .carousel h2 + h3 {
   margin-bottom: 18px;
 }
 
-main .carousel-wrapper .list .carousel-nav-button {
+main .carousel-wrapper.list .carousel-nav-button {
   display: none;
 }
 
@@ -319,10 +327,9 @@ main .carousel-wrapper .list .carousel-nav-button {
 }
 
 @media only screen and (max-width: 1199px) {
-  .carousel-wrapper.cards .carousel-item,
-  .carousel.list .carousel-item {
+  .carousel-wrapper.cards .carousel-item {
     width: 50%;
-    max-width: 360px;
+    max-width: 50%;
   }
 }
 

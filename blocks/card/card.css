@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 main .card {
   height: 100%;
   background: var(--color-white);
@@ -32,6 +33,11 @@ main .card .new-product-tag {
   height: auto;
 }
 
+main .card.new-product .new-product-tag img {
+  height: unset;
+  min-height: unset;
+}
+
 main .card-thumb {
   height: 200px;
   min-height: 200px;
@@ -49,6 +55,7 @@ main .card-thumb img {
   width: 100%;
   min-width: auto;
   object-fit: cover;
+  display: block;
   transition: all 0.5s ease-in-out;
 }
 
@@ -77,7 +84,6 @@ main .card-caption {
 }
 
 main .card-caption h3 {
-  font-size: 22px;
   font-weight: normal;
   text-align: left;
   min-height: 49px;
@@ -158,6 +164,7 @@ main .card-date {
   display: block;
   width: 100%;
   text-align: left;
+  margin-bottom: 0.5rem;
 }
 
 main .card a .icon.icon-chevron-right-outline {

@@ -1,9 +1,10 @@
 import ffetch from '../../scripts/ffetch.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const productPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const unsortedProducts = await ffetch('/query-index.json')
     .sheet('products')
@@ -29,16 +30,7 @@ export default async function decorate(block) {
     block,
     products,
     {
-      defaultStyling: true,
-      navButtons: window.matchMedia('only screen and (max-width: 1200px)').matches || products.length > 3,
-      dotButtons: false,
-      infiniteScroll: products.length > 3,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer,
     },
   );

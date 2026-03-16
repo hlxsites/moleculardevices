@@ -589,23 +589,17 @@ export function renderCardItem(item) {
   return item;
 }
 
-const cardStyleConfig = {
-  cssFiles: ['/blocks/carousel/carousel-cards.css'],
+export const cardStyleConfig = {
+  defaultStyling: true,
   navButtons: true,
+  cardStyling: true,
   dotButtons: false,
   infiniteScroll: true,
   autoScroll: false,
   visibleItems: [
-    {
-      items: 1,
-      condition: () => window.innerWidth < 768,
-    },
-    {
-      items: 2,
-      condition: () => window.innerWidth < 1200,
-    }, {
-      items: 3,
-    },
+    { items: 1, condition: (width) => width < 768 },
+    { items: 2, condition: (width) => width < 1200 },
+    { items: 3 },
   ],
   renderItem: renderCardItem,
 };

@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 import { div } from '../../scripts/dom-helpers.js';
@@ -50,18 +50,7 @@ export default async function decorate(block) {
     block,
     resources,
     {
-      cssFiles: ['/blocks/carousel/carousel-cards.css'],
-      defaultStyling: true,
-      cardStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer: resourceCard,
     },
   );

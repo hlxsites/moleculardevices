@@ -1,22 +1,3 @@
-main .carousel-wrapper.product-carousel-wrapper {
-  width: 1140px;
-  padding: unset;
-  margin-top: 40px;
-}
-
-main .carousel.product-carousel {
-  width: 88%;
-  padding: 0;
-}
-
-.product-carousel .carousel-item {
-  display: block;
-  max-width: 333px;
-  width: 333px;
-  padding: 20px 15px;
-  margin: 0;
-}
-
 .product-carousel .carousel-item .card-thumb {
   flex-shrink: 0;
   height: 230px;
@@ -37,20 +18,10 @@ main .carousel.product-carousel {
 .product-carousel .carousel-item .card-thumb img {
   height: unset;
   width: unset;
+  min-height: unset;
 }
 
-.product-carousel .carousel-item .card-caption {
-  padding: 15px;
-}
-
-.product-carousel .carousel-item .card-caption h3 {
-  font-size: var(--font-size-h3);
-  margin-bottom: 8px;
-  margin-top: 0;
-  color: var(--color-text-primary);
-}
-
-.product-carousel .carousel-item .card-caption .button-container {
+.product-carousel .carousel-item .card .card-caption .button-container {
   float: left;
   text-align: left;
   margin-top: 10px;
@@ -59,30 +30,6 @@ main .carousel.product-carousel {
 
 .product-carousel .carousel-item .card-caption .compare-button {
   margin-top: 10px;
-}
-
-@media only screen and (max-width: 1200px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 940px;
-  }
-
-  .product-carousel .carousel-item {
-    max-width: unset;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 100%;
-  }
-
-  .product-carousel .carousel-item {
-    width: 50%;
-  }
-
-  .carousel.product-carousel .card-caption h3 {
-    font-size: 18px;
-  }
 }
 
 @media only screen and (max-width: 767px) {

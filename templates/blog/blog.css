@@ -167,11 +167,6 @@ main .section.blog-wide > article {
   margin: 0 auto;
 }
 
-.blog main .section.blog-heading > div {
-  max-width: unset;
-  width: unset;
-}
-
 .blog main .section.blog-heading > .default-content-wrapper {
   display: flex;
   justify-content: space-between;
@@ -204,21 +199,6 @@ main .section.sidebar p.picture {
 
 main .section.sidebar h3 {
   line-height: 30px;
-}
-
-.blog .section.blog-heading h4,
-.section.recent-blogs-carousel-container h4 {
-  font-size: 22px;
-  font-weight: normal;
-  text-align: left;
-  min-height: 49px;
-  margin-top: 14px;
-  margin-bottom: 15px;
-}
-
-.blog .section.blog-heading h4 a,
-.section.recent-blogs-carousel-container h4 a {
-  color: inherit;
 }
 
 main .section.sidebar h4,

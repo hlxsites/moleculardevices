@@ -1,6 +1,6 @@
 /* Cards Carousel specific styling */
 main .carousel-wrapper.cards {
-  width: 1140px;
+  width: var(--layout-carousel-max-width);
   padding: 0 15px 30px;
   margin: 0 auto;
 }
@@ -8,14 +8,6 @@ main .carousel-wrapper.cards {
 main .carousel-wrapper.cards .carousel {
   width: 88%;
   padding: 0;
-}
-
-.carousel.cards .carousel-item {
-  display: block;
-  width: 33.3%;
-  max-width: 33.3%;
-  padding: 20px 15px;
-  margin: 0;
 }
 
 .carousel-wrapper.cards div > picture {
@@ -130,7 +122,7 @@ main .carousel-wrapper.cards .carousel {
   margin-bottom: 0;
 }
 
-.carousel.cards .carousel-item a {
+.carousel.cards .carousel-item .c2a a {
   font-size: 18px;
   color: var(--color-primary);
 }
@@ -222,12 +214,6 @@ main .carousel-wrapper.cards .carousel {
 
 .carousel.cards .carousel-item-columns-container {
   flex-direction: column;
-}
-
-@media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.cards {
-    width: 940px;
-  }
 }
 
 @media only screen and (max-width: 991px) {

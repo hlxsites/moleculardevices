@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { createCard } from '../card/card.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getCountryCode, sortDataByTitle } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
@@ -8,6 +8,7 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 export const isCountryCodeUS = await getCountryCode() === 'US';
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const fragmentPaths = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const placeholders = await fetchPlaceholders();
   const cardRenderer = await createCard({
@@ -38,16 +39,7 @@ export default async function decorate(block) {
     block,
     sortDataByTitle(fragments),
     {
-      defaultStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer,
     },
   );
