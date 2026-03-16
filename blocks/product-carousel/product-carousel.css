@@ -1,44 +1,53 @@
-.product-carousel .carousel-item .card-thumb {
+.product-carousel.cards .carousel-item .card-thumb {
   flex-shrink: 0;
   height: 230px;
 }
 
-.product-carousel .carousel-item .card-thumb a {
+.product-carousel.cards .carousel-item .card-thumb a {
   display: block;
   height: 100%;
 }
 
-.product-carousel .carousel-item .card-thumb picture {
+.product-carousel.cards .carousel-item .card-thumb picture {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.product-carousel .carousel-item .card-thumb img {
+.product-carousel.cards .carousel-item .card-thumb img {
   height: unset;
   width: unset;
   min-height: unset;
 }
 
-.product-carousel .carousel-item .card .card-caption .button-container {
+.product-carousel.cards .carousel-item .card .card-caption .button-container {
   float: left;
   text-align: left;
   margin-top: 10px;
   margin-bottom: 0;
+  width: auto;
 }
 
-.product-carousel .carousel-item .card-caption .compare-button {
+.product-carousel.cards .carousel-item .card-caption .compare-button {
   margin-top: 10px;
 }
 
+.carousel-wrapper.cards .product-carousel .card-caption .c2a {
+  display: block;
+}
+
+.carousel-wrapper.cards .product-carousel .card .c2a .button-container a {
+  min-width: unset;
+}
+
 @media only screen and (max-width: 767px) {
-  main .carousel.product-carousel {
+  main .carousel.product-carousel.cards {
     width: 100%;
     padding: 0 10%;
   }
 
-  .carousel.product-carousel .carousel-item {
+  .carousel.product-carousel.cards .carousel-item {
     width: 100%;
   }
 

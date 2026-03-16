@@ -1,3 +1,1 @@
-main .section.latest-resources-container:has( .latest-resources.block:empty){
-  display: none;
-}
+/* latest-resources.css */

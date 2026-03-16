@@ -10,6 +10,10 @@ main .section.recent-blogs-carousel-container > article {
   width: unset;
 }
 
+main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
+  width: 100%;
+}
+
 main .section.recent-blogs-carousel-container > .default-content-wrapper {
   display: flex;
   justify-content: space-between;
@@ -69,18 +73,6 @@ main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-right {
   right: -60px;
 }
 
-main .carousel.recent-blogs-carousel {
-  padding: 0;
-}
-
-main .carousel.recent-blogs-carousel .carousel-item {
-  display: block;
-  width: 33.3%;
-  max-width: 33.3%;
-  padding: 20px 15px;
-  margin: 0;
-}
-
 main .blog-card-thumb:hover img {
   transform: scale(1.1);
 }
@@ -94,7 +86,7 @@ main .blog-card-thumb:hover img {
     right: -10px;
   }
 
-  main .carousel.recent-blogs-carousel {
+  main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
     width: 90%;
   }
 
@@ -110,7 +102,7 @@ main .blog-card-thumb:hover img {
     margin-top: 50px;
   }
 
-  main .carousel.recent-blogs-carousel{
+  main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
     width: 100%;
     padding: 0 10%;
   }
@@ -120,7 +112,7 @@ main .blog-card-thumb:hover img {
     max-width: 100%;
   }
 
-  main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-button{
+  main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-button {
     display: none;
   }
 }

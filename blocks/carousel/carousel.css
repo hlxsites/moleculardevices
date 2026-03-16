@@ -16,6 +16,10 @@ main div.carousel-wrapper.container-width-carousel {
   position: relative;
 }
 
+main .section:has(.block:empty) {
+  display: none;
+}
+
 main div.fragments-carousel-wrapper.carousel-wrapper,
 main div.carousel-wrapper.container-width-carousel {
   width: var(--layout-max-width);
@@ -25,8 +29,18 @@ main div.carousel-wrapper:last-child {
   margin-bottom: 0 !important;
 }
 
-main .section:has(.carousel.block) h2 {
+.carousel.block:not(:has(.carousel-item:nth-child(3))) {
+  justify-content: center;
+}
+
+main .section:has(.carousel.block) .default-content-wrapper h2 {
   text-align: center;
+  font-size: var(--fs-display-xl);
+  font-family: var(--ff-proxima-light);
+}
+
+main .section:has(.carousel.block.mini) .default-content-wrapper h2 {
+  text-align: left;
 }
 
 main .carousel,
@@ -334,7 +348,7 @@ main .carousel-wrapper.list .carousel-nav-button {
 }
 
 @media only screen and (max-width: 991px) {
-  main .section:has(.carousel.block) h2 {
+  main .section:has(.carousel.block) .default-content-wrapper h2 {
     font-size: 45px;
   }
 
@@ -369,7 +383,7 @@ main .carousel-wrapper.list .carousel-nav-button {
     padding: 20px;
   }
 
-  main .section:has(.carousel.block) h2 {
+  main .section:has(.carousel.block) .default-content-wrapper h2 {
     font-size: 36px;
   }
 
@@ -492,6 +506,18 @@ main .carousel-wrapper.wave .carousel-nav-button:hover {
   color: var(--color-gray-300);
   border-color: var(--color-gray-300);
   background-color: inherit;
+}
+
+main .section.wave.blue .button-container {
+  margin-top: 30px;
+}
+
+main .section.wave.blue .button-container > a {
+  color: var(--color-white);
+  font-size: var(--font-size-body-m);
+  border-radius: 0;
+  padding: 15px 40px;
+  border: 1px solid var(--color-white);
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {

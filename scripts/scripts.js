@@ -1133,19 +1133,15 @@ export function addCustomBgToCarousel(main, dataset) {
 
     const carouselItems = section.querySelectorAll('.carousel-item');
 
-    if (bg.includes('http')) {
-      [...carouselItems].forEach((item) => {
+    carouselItems.forEach((item) => {
+      if (bg.includes('http')) {
         item.style.backgroundImage = `url('${bg}')`;
-      });
-    } else if (bg.includes('gradient')) {
-      [...carouselItems].forEach((item) => {
+      } else if (bg.includes('gradient')) {
         item.style.backgroundImage = bg;
-      });
-    } else {
-      [...carouselItems].forEach((item) => {
+      } else {
         item.style.backgroundColor = bg;
-      });
-    }
+      }
+    });
   });
 }
 

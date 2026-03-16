@@ -167,27 +167,6 @@ main .section.blog-wide > article {
   margin: 0 auto;
 }
 
-.blog main .section.blog-heading > .default-content-wrapper {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0 15px 50px;
-  width: unset;
-}
-
-.blog main .section.blog-heading > .default-content-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: -21px;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background-color: var(--color-tertiary);
-  background-image: var(--gradient-theme);
-}
-
 .blog main .section.blog-heading > .default-content-wrapper p {
   margin: 0;
 }
@@ -461,10 +440,6 @@ main .card-list-filter ul {
 main .section .spectra-newsletter-column .columns-text-col .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
-}
-
-main .carousel-wrapper.cards .carousel {
-  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
