@@ -594,8 +594,8 @@ export const cardStyleConfig = {
   navButtons: true,
   cardStyling: true,
   dotButtons: false,
-  infiniteScroll: true,
   autoScroll: false,
+  infiniteScroll: renderCardItem.length > 3,
   visibleItems: [
     { items: 1, condition: (width) => width < 768 },
     { items: 2, condition: (width) => width < 1200 },
