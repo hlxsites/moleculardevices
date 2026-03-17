@@ -206,21 +206,6 @@ main .section.sidebar h3 {
   line-height: 30px;
 }
 
-.blog .section.blog-heading h4,
-.section.recent-blogs-carousel-container h4 {
-  font-size: 22px;
-  font-weight: normal;
-  text-align: left;
-  min-height: 49px;
-  margin-top: 14px;
-  margin-bottom: 15px;
-}
-
-.blog .section.blog-heading h4 a,
-.section.recent-blogs-carousel-container h4 a {
-  color: inherit;
-}
-
 main .section.sidebar h4,
 .blog .section.blog-heading h3,
 .section.recent-blogs-carousel-container .default-content-wrapper h3,
@@ -481,10 +466,6 @@ main .card-list-filter ul {
 main .section .spectra-newsletter-column .columns-text-col .hubspot-form .hs_error_rollup .hs-error-msgs.inputs-list {
   margin-top: -10px;
   margin-bottom: 10px;
-}
-
-main .carousel-wrapper.cards .carousel {
-  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {

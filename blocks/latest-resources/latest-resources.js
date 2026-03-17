@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import {
   div, p, strong, a,
@@ -72,6 +72,7 @@ export function addViewAllCTA(block, links, containerClass, href, handleClick, b
 }
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const blockLinks = block.querySelectorAll('a');
   let resources = [];
 
@@ -92,6 +93,7 @@ export default async function decorate(block) {
     showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
+    showTag: true,
   });
 
   // citations has default thumbnail image.
@@ -105,16 +107,7 @@ export default async function decorate(block) {
     block,
     sortDataByDate(resources),
     {
-      defaultStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer: resourceCard,
     },
   );

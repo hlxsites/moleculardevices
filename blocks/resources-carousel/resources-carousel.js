@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 
 async function getFeaturedResources(paths) {
@@ -36,23 +36,14 @@ export default async function decorate(block) {
     thumbnailLink: false,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: 180,
+    showTag: true,
   });
 
   await createCarousel(
     block,
     resources,
     {
-      defaultStyling: true,
-      cardStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer,
     },
   );

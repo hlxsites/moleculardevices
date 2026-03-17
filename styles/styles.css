@@ -2161,19 +2161,6 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   Category page
 */
 
-/* Button in blue wave carousels */
-.category main .section.wave.blue .button-container {
-  margin-top: 30px;
-}
-
-.category main .section.wave.blue .button-container > a {
-  color: var(--color-white);
-  font-size: var(--font-size-body-m);
-  border-radius: 0;
-  padding: 15px 40px;
-  border: 1px solid var(--color-white);
-}
-
 .category .default-content-wrapper h3 {
   font-size: 34px;
 }

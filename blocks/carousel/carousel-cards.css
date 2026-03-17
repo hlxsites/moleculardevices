@@ -1,8 +1,6 @@
-/*
-  Cards Carousel specific styling.
-*/
+/* Cards Carousel specific styling */
 main .carousel-wrapper.cards {
-  width: 1140px;
+  width: var(--layout-carousel-max-width);
   padding: 0 15px 30px;
   margin: 0 auto;
 }
@@ -10,14 +8,6 @@ main .carousel-wrapper.cards {
 main .carousel-wrapper.cards .carousel {
   width: 88%;
   padding: 0;
-}
-
-.carousel.cards .carousel-item {
-  display: block;
-  width: 33.3%;
-  max-width: 33.3%;
-  padding: 20px 15px;
-  margin: 0;
 }
 
 .carousel-wrapper.cards div > picture {
@@ -28,15 +18,14 @@ main .carousel-wrapper.cards .carousel {
 .carousel-wrapper.cards div > picture img,
 .carousel-wrapper.cards .card-thumb,
 .carousel-wrapper.cards .card-thumb img {
-  /* height: 190px;
-  min-height: 190px; */
+  height: 190px;
+  min-height: 190px;
   width: 100%;
   min-width: auto;
   object-fit: cover;
   transition: all 0.5s ease-in-out;
 }
 
-.carousel-wrapper.cards > div:not(picture:only-child),
 .carousel-wrapper.cards .card-caption {
   padding-top: 20px;
 }
@@ -133,7 +122,7 @@ main .carousel-wrapper.cards .carousel {
   margin-bottom: 0;
 }
 
-.carousel.cards .carousel-item a {
+.carousel.cards .carousel-item .c2a a {
   font-size: 18px;
   color: var(--color-primary);
 }
@@ -182,56 +171,42 @@ main .carousel-wrapper.cards .carousel {
   text-transform: none;
 }
 
+.carousel-wrapper.cards .carousel .card .button-container:has(.button.primary) {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-wrapper.cards .carousel .card .button-container .button.primary {
+  color: var(--color-text-primary);
+  display: inline-block;
+  font-size: 1rem;
+}
+
 .carousel-wrapper.cards .carousel .card .button-container a span svg {
   display: block;
 }
 
 .carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child,
-.carousel.cards.microplate-related-products
-  .carousel-item
-  .card
-  > div:first-child {
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
   flex-shrink: 0;
 }
 
-.carousel.cards.gpx-compliance-resources
-  .carousel-item
-  .card
-  > div:first-child {
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child {
   height: 200px;
 }
 
-.carousel.cards.microplate-related-products
-  .carousel-item
-  .card
-  > div:first-child {
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child {
   height: 250px;
 }
 
-.carousel.cards.gpx-compliance-resources
-  .carousel-item
-  .card
-  > div:first-child
-  picture,
-.carousel.cards.microplate-related-products
-  .carousel-item
-  .card
-  > div:first-child
-  picture {
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child picture,
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child picture {
   display: block;
   height: 100%;
 }
 
-.carousel.cards.gpx-compliance-resources
-  .carousel-item
-  .card
-  > div:first-child
-  img,
-.carousel.cards.microplate-related-products
-  .carousel-item
-  .card
-  > div:first-child
-  img {
+.carousel.cards.gpx-compliance-resources .carousel-item .card > div:first-child img,
+.carousel.cards.microplate-related-products .carousel-item .card > div:first-child img {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -239,17 +214,6 @@ main .carousel-wrapper.cards .carousel {
 
 .carousel.cards .carousel-item-columns-container {
   flex-direction: column;
-}
-
-@media only screen and (max-width: 1199px) {
-  main .carousel-wrapper.cards {
-    width: 940px;
-  }
-
-  .carousel-wrapper.cards .carousel-item {
-    width: 50%;
-    max-width: 50%;
-  }
 }
 
 @media only screen and (max-width: 991px) {
@@ -263,8 +227,11 @@ main .carousel-wrapper.cards .carousel {
 }
 
 @media only screen and (max-width: 767px) {
-  .carousel-wrapper.cards {
+  .carousel-wrapper.cards,
+  main .carousel-wrapper.cards .carousel,
+   .carousel-wrapper.cards .carousel-item {
     width: 100%;
+    max-width: 100%;
   }
 
   main .carousel-wrapper.cards {
@@ -272,24 +239,10 @@ main .carousel-wrapper.cards .carousel {
   }
 
   main .carousel-wrapper.cards .carousel {
-    width: 100%;
     padding: 0 10%;
-  }
-
-  .carousel-wrapper.cards .carousel-item {
-    width: 100%;
-    max-width: 100%;
   }
 
   .carousel-wrapper.cards .carousel-nav-button {
     display: none;
   }
-
-  /* .carousel-wrapper.cards div > picture,
-  .carousel-wrapper.cards div > picture img,
-  .carousel-wrapper.cards .card-thumb,
-  .carousel-wrapper.cards .card-thumb img {
-    height: 150px;
-    min-height: 150px;
-  } */
 }
