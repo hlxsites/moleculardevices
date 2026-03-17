@@ -55,8 +55,8 @@ export async function newsletterModal(metaCMP = '') {
 
 export async function getBlogAndPublications() {
   let data = [];
-  const { publications, blogs } = await getData();
-  data = [...publications, ...blogs];
+  const { fullArticle, blogs } = await getData();
+  data = [...fullArticle, ...blogs];
   return sortDataByDate(data);
 }
 

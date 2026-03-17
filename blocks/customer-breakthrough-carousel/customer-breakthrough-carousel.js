@@ -1,6 +1,6 @@
 import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 import { div } from '../../scripts/dom-helpers.js';
@@ -16,6 +16,7 @@ async function getCBData(category) {
 }
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const cbPath = '/customer-breakthroughs';
   let category = getMetadata('category');
   if (category === 'Services and Support') category = 'Lab Automation';
@@ -42,30 +43,14 @@ export default async function decorate(block) {
     showDate: true,
     defaultButtonText: placeholders.learnMore || 'Learn more',
     descriptionLength: block.classList.contains('list') ? 180 : 75,
+    showTag: true,
   });
 
   await createCarousel(
     block,
     resources,
     {
-      defaultStyling: true,
-      cardStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        {
-          items: 1,
-          condition: () => window.screen.width < 768,
-        },
-        {
-          items: 2,
-          condition: () => window.screen.width < 1200,
-        }, {
-          items: 3,
-        },
-      ],
+      ...cardStyleConfig,
       cardRenderer: resourceCard,
     },
   );

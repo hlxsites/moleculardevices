@@ -1,5 +1,5 @@
 import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
-import { createCarousel } from '../carousel/carousel.js';
+import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { goToTabSection } from '../../scripts/utilities.js';
@@ -24,6 +24,7 @@ function getDescription(element) {
 }
 
 export default async function decorate(block) {
+  block.classList.add('cards');
   const heading = block.closest('.section')?.querySelector('h2');
   const placeholders = await fetchPlaceholders();
   const hasApplicationTab = block.closest('main').querySelector('.page-tabs');
@@ -75,16 +76,7 @@ export default async function decorate(block) {
     block,
     sortedFragments,
     {
-      defaultStyling: true,
-      navButtons: true,
-      dotButtons: false,
-      infiniteScroll: true,
-      autoScroll: false,
-      visibleItems: [
-        { items: 1, condition: (width) => width < 768 },
-        { items: 2, condition: (width) => width < 1200 },
-        { items: 3 },
-      ],
+      ...cardStyleConfig,
       cardRenderer,
     },
   );

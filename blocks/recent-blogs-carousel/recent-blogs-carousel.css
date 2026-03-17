@@ -1,5 +1,5 @@
 main .recent-blogs-carousel-container {
-  width: 1140px;
+  width: var(--layout-carousel-max-width);
   padding: 0 15px;
   margin: 60px auto 0;
 }
@@ -10,6 +10,10 @@ main .section.recent-blogs-carousel-container > article {
   width: unset;
 }
 
+main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
+  width: 100%;
+}
+
 main .section.recent-blogs-carousel-container > .default-content-wrapper {
   display: flex;
   justify-content: space-between;
@@ -17,6 +21,18 @@ main .section.recent-blogs-carousel-container > .default-content-wrapper {
   padding-left: 0;
   padding-right: 0;
   margin: 0 15px 50px;
+}
+
+main .section.recent-blogs-carousel-container h4 {
+  font-size: var(--fs-h3);
+  font-weight: normal;
+  text-align: left;
+  margin-top: 14px;
+  margin-bottom: 15px;
+}
+
+main .section.recent-blogs-carousel-container h4 a {
+  color: inherit;
 }
 
 main .section.recent-blogs-carousel-container > .default-content-wrapper h3,
@@ -57,42 +73,11 @@ main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-right {
   right: -60px;
 }
 
-main .carousel.recent-blogs-carousel {
-  padding: 0;
-}
-
-main .carousel.recent-blogs-carousel .carousel-item {
-  display: block;
-  padding: 20px 15px 40px;
-  width: 370px;
-  margin: 0;
-}
-
 main .blog-card-thumb:hover img {
   transform: scale(1.1);
 }
 
-@media only screen and (max-width: 1200px) {
-  main .recent-blogs-carousel-container {
-    width: 940px;
-  }
-
-  main .carousel.recent-blogs-carousel .carousel-item {
-    width: 303.33px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  main .carousel.recent-blogs-carousel .carousel-item {
-    width: 455px;
-  }
-}
-
 @media only screen and (max-width: 991px) {
-  main .recent-blogs-carousel-container {
-    width: 720px;
-  }
-
   main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-left {
     left: -10px;
   }
@@ -101,23 +86,33 @@ main .blog-card-thumb:hover img {
     right: -10px;
   }
 
-  main .carousel.recent-blogs-carousel {
+  main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
     width: 90%;
   }
 
   main .carousel.recent-blogs-carousel .carousel-item {
-    width: 310.5px;
+    width: 50%;
+    max-width: 50%;
   }
 }
 
 @media only screen and (max-width: 767px) {
   main .recent-blogs-carousel-container {
-    width: 100%;
-    padding: 0 30px;
+    padding: 0;
     margin-top: 50px;
+  }
+
+  main .carousel-wrapper.cards .carousel.recent-blogs-carousel {
+    width: 100%;
+    padding: 0 10%;
   }
 
   main .carousel.recent-blogs-carousel .carousel-item {
     width: 100%;
+    max-width: 100%;
+  }
+
+  main .carousel-wrapper.recent-blogs-carousel-wrapper .carousel-nav-button {
+    display: none;
   }
 }

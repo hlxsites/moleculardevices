@@ -1,97 +1,53 @@
-main .carousel-wrapper.product-carousel-wrapper {
-  width: 1140px;
-  padding: unset;
-  margin-top: 40px;
-}
-
-main .carousel.product-carousel {
-  width: 88%;
-  padding: 0;
-}
-
-.product-carousel .carousel-item {
-  display: block;
-  max-width: 333px;
-  width: 333px;
-  padding: 20px 15px;
-  margin: 0;
-}
-
-.product-carousel .carousel-item .card-thumb {
+.product-carousel.cards .carousel-item .card-thumb {
   flex-shrink: 0;
   height: 230px;
 }
 
-.product-carousel .carousel-item .card-thumb a {
+.product-carousel.cards .carousel-item .card-thumb a {
   display: block;
   height: 100%;
 }
 
-.product-carousel .carousel-item .card-thumb picture {
+.product-carousel.cards .carousel-item .card-thumb picture {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.product-carousel .carousel-item .card-thumb img {
+.product-carousel.cards .carousel-item .card-thumb img {
   height: unset;
   width: unset;
+  min-height: unset;
 }
 
-.product-carousel .carousel-item .card-caption {
-  padding: 15px;
-}
-
-.product-carousel .carousel-item .card-caption h3 {
-  font-size: var(--font-size-h3);
-  margin-bottom: 8px;
-  margin-top: 0;
-  color: var(--color-text-primary);
-}
-
-.product-carousel .carousel-item .card-caption .button-container {
+.product-carousel.cards .carousel-item .card .card-caption .button-container {
   float: left;
   text-align: left;
   margin-top: 10px;
   margin-bottom: 0;
+  width: auto;
 }
 
-.product-carousel .carousel-item .card-caption .compare-button {
+.product-carousel.cards .carousel-item .card-caption .compare-button {
   margin-top: 10px;
 }
 
-@media only screen and (max-width: 1200px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 940px;
-  }
-
-  .product-carousel .carousel-item {
-    max-width: unset;
-  }
+.carousel-wrapper.cards .product-carousel .card-caption .c2a {
+  display: block;
 }
 
-@media only screen and (max-width: 991px) {
-  main .carousel-wrapper.product-carousel-wrapper {
-    width: 100%;
-  }
-
-  .product-carousel .carousel-item {
-    width: 50%;
-  }
-
-  .carousel.product-carousel .card-caption h3 {
-    font-size: 18px;
-  }
+.carousel-wrapper.cards .product-carousel .card .c2a .button-container a {
+  min-width: unset;
 }
 
 @media only screen and (max-width: 767px) {
-  main .carousel.product-carousel {
+  main .carousel.product-carousel.cards {
     width: 100%;
     padding: 0 10%;
   }
 
-  .carousel.product-carousel .carousel-item {
+  .carousel.product-carousel.cards .carousel-item {
     width: 100%;
   }
 
