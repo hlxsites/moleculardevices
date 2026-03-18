@@ -10,12 +10,8 @@ function decorateTeaser(video, teaserPicture, target) {
   videoTag.muted = true;
   videoTag.loop = true;
   videoTag.playsInline = true; // required for autoplay on iOS
-  videoTag.setAttribute('title', video.title);
-
-  if (teaserPicture) {
-    videoTag.poster = teaserPicture.src;
-  }
   videoTag.preload = 'none';
+  videoTag.setAttribute('title', video.title);
 
   const mql = window.matchMedia('only screen and (max-width: 768px)');
   if (!mql.matches || !teaserPicture) {
@@ -25,15 +21,6 @@ function decorateTeaser(video, teaserPicture, target) {
   videoTag.innerHTML = `<source src="${video.href}" type="video/mp4">`;
   target.prepend(videoTag);
   video.remove();
-}
-
-function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref) {
-  const button = document.createElement('a');
-  button.classList.add('video-banner-btn');
-  button.href = fullScreenVideoLinkHref;
-
-  button.innerHTML = fullScreenVideoLink.innerHTML;
-  overlay.appendChild(button);
 }
 
 export default function decorate(block) {
@@ -74,10 +61,4 @@ export default function decorate(block) {
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
-
-  const fullScreenVideoLink = overlay.querySelector('a:last-of-type');
-  if (fullScreenVideoLink) {
-    decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLink.href);
-    fullScreenVideoLink.remove();
-  }
 }
