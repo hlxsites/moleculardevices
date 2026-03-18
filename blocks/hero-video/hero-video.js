@@ -73,11 +73,20 @@ export default function decorate(block) {
   }
 
   // preloadLCPImage(teaserPicture.src);
-  window.requestAnimationFrame(() => {
-    if (teaserVideoLink) {
-      decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+  const observer = new PerformanceObserver((list) => {
+    const entries = list.getEntries();
+    const lastEntry = entries[entries.length - 1];
+
+    if (lastEntry) {
+      observer.disconnect();
+
+      setTimeout(() => {
+        decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
+      }, 300);
     }
   });
+
+  observer.observe({ type: 'largest-contentful-paint', buffered: true });
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
