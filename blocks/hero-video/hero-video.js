@@ -60,33 +60,17 @@ export default function decorate(block) {
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
 
-  // if (teaserPicture) {
-  //   teaserPicture.loading = 'eager';
-  //   teaserPicture.fetchPriority = 'high';
-  //   teaserPicture.decoding = 'async';
-  // }
-
   const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
   if (placeholderPicture) {
     placeholderPicture.classList.add('placeholder-image');
     block.appendChild(placeholderPicture);
   }
 
-  // preloadLCPImage(teaserPicture.src);
-  const observer = new PerformanceObserver((list) => {
-    const entries = list.getEntries();
-    const lastEntry = entries[entries.length - 1];
-
-    if (lastEntry) {
-      observer.disconnect();
-
-      setTimeout(() => {
-        decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
-      }, 300);
+  setTimeout(() => {
+    if (teaserVideoLink) {
+      decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
     }
-  });
-
-  observer.observe({ type: 'largest-contentful-paint', buffered: true });
+  }, 1200);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
