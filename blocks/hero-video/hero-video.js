@@ -15,7 +15,7 @@ function decorateTeaser(video, teaserPicture, target) {
   if (teaserPicture) {
     videoTag.poster = teaserPicture.src;
   }
-  videoTag.preload = 'metadata';
+  videoTag.preload = 'none';
 
   const mql = window.matchMedia('only screen and (max-width: 768px)');
   if (!mql.matches || !teaserPicture) {
@@ -46,7 +46,7 @@ export default function decorate(block) {
   }
 
   const homePromoSection = document.body.querySelector('.home-promo');
-  if (homePromoSection) {
+  if (isHomepage && homePromoSection) {
     const imageSrc = getFirstBackgroundImage(homePromoSection);
     preloadLCPImage(imageSrc);
   }
@@ -60,11 +60,11 @@ export default function decorate(block) {
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
 
-  if (teaserPicture) {
-    teaserPicture.loading = 'eager';
-    teaserPicture.fetchPriority = 'high';
-    teaserPicture.decoding = 'async';
-  }
+  // if (teaserPicture) {
+  //   teaserPicture.loading = 'eager';
+  //   teaserPicture.fetchPriority = 'high';
+  //   teaserPicture.decoding = 'async';
+  // }
 
   const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
   if (placeholderPicture) {
@@ -72,7 +72,7 @@ export default function decorate(block) {
     block.appendChild(placeholderPicture);
   }
 
-  preloadLCPImage(teaserPicture.src);
+  // preloadLCPImage(teaserPicture.src);
   window.requestAnimationFrame(() => {
     if (teaserVideoLink) {
       decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
