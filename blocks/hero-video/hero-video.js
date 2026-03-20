@@ -23,6 +23,15 @@ function decorateTeaser(video, teaserPicture, target) {
   video.remove();
 }
 
+function decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLinkHref) {
+  const button = document.createElement('a');
+  button.classList.add('video-banner-btn');
+  button.href = fullScreenVideoLinkHref;
+
+  button.innerHTML = fullScreenVideoLink.innerHTML;
+  overlay.appendChild(button);
+}
+
 export default function decorate(block) {
   const isHomepage = window.location.pathname === '/';
 
@@ -61,4 +70,10 @@ export default function decorate(block) {
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
+
+  const fullScreenVideoLink = overlay.querySelector('a:last-of-type');
+  if (fullScreenVideoLink) {
+    decorateOverlayButton(fullScreenVideoLink, overlay, fullScreenVideoLink.href);
+    fullScreenVideoLink.remove();
+  }
 }
