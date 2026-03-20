@@ -196,6 +196,8 @@ async function loadIframeForm(data, type) {
           .querySelector('meta[name="related-products"]')
           .getAttribute('content');
         tab = relatedProducts && relatedProducts.trim().length > 0 ? relatedProducts : data.title;
+        tab = tab.replace('iD3', 'iD3s');
+        tab = tab.replace('iD5', 'iD5e');
         sfdcPrimaryApplication = tab;
 
         const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
