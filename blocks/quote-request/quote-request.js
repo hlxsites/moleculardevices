@@ -199,6 +199,7 @@ async function loadIframeForm(data, type) {
         sfdcPrimaryApplication = tab;
 
         const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
+        console.log(mainProduct);
         if (mainProduct) {
           sfdcProductFamily = mainProduct.productFamily;
           sfdcProductSelection = mainProduct.productFamily;
@@ -249,9 +250,6 @@ async function loadIframeForm(data, type) {
   if (data.path) {
     hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
   }
-
-  tab = tab.replace('iD3', 'iD3s');
-  tab = tab.replace('iD5', 'iD5e');
 
   const formWrapper = div(
     h3('Request Quote or Information for:'),
