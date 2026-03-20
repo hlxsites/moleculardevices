@@ -10,12 +10,8 @@ function decorateTeaser(video, teaserPicture, target) {
   videoTag.muted = true;
   videoTag.loop = true;
   videoTag.playsInline = true; // required for autoplay on iOS
+  videoTag.preload = 'none';
   videoTag.setAttribute('title', video.title);
-
-  if (teaserPicture) {
-    videoTag.poster = teaserPicture.src;
-  }
-  videoTag.preload = 'metadata';
 
   const mql = window.matchMedia('only screen and (max-width: 768px)');
   if (!mql.matches || !teaserPicture) {
@@ -46,7 +42,7 @@ export default function decorate(block) {
   }
 
   const homePromoSection = document.body.querySelector('.home-promo');
-  if (homePromoSection) {
+  if (isHomepage && homePromoSection) {
     const imageSrc = getFirstBackgroundImage(homePromoSection);
     preloadLCPImage(imageSrc);
   }
@@ -60,24 +56,17 @@ export default function decorate(block) {
   const teaserVideoLink = heroContent.querySelector('a');
   const teaserPicture = heroContent.querySelector('img');
 
-  if (teaserPicture) {
-    teaserPicture.loading = 'eager';
-    teaserPicture.fetchPriority = 'high';
-    teaserPicture.decoding = 'async';
-  }
-
   const placeholderPicture = heroContent.querySelector('picture').cloneNode(true);
   if (placeholderPicture) {
     placeholderPicture.classList.add('placeholder-image');
     block.appendChild(placeholderPicture);
   }
 
-  preloadLCPImage(teaserPicture.src);
-  window.requestAnimationFrame(() => {
+  setTimeout(() => {
     if (teaserVideoLink) {
       decorateTeaser(teaserVideoLink, teaserPicture, heroContent);
     }
-  });
+  }, 1200);
 
   const overlay = videoBanner.children[1];
   overlay.classList = 'overlay';
