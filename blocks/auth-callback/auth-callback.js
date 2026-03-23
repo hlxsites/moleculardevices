@@ -21,12 +21,12 @@ export default async function decorate(block) {
     const idToken = await getIdToken();
     const auth0User = await getUser();
     sessionStorage.setItem(
-      `${window.DanaherConfig?.siteID}_${env}_apiToken`,
+      `${window.hlx?.siteID}_${env}_apiToken`,
       JSON.stringify({ access_token: idToken }),
     );
     if (auth0User) {
       sessionStorage.setItem(
-        `${window.DanaherConfig?.siteID}_${env}_auth0User`,
+        `${window.hlx?.siteID}_${env}_auth0User`,
         auth0User?.sub,
       );
     }
