@@ -25,10 +25,10 @@ export default async function initAuth0() {
   await loadAuth0Script();
 
   auth0Client = await window.auth0.createAuth0Client({
-    domain: window.DanaherConfig.auth0Domain ? window.DanaherConfig.auth0Domain : 'dev.login.lifesciences.danaher.com',
-    clientId: window.DanaherConfig.auth0ClientID ? window.DanaherConfig.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
+    domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'dev.login.lifesciences.danaher.com',
+    clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
     authorizationParams: {
-      redirect_uri: window.location.origin,
+      redirect_uri: `${window.location.origin}/callback`,
       scope: 'openid profile email',
     },
   });
