@@ -24,27 +24,36 @@ export default async function initAuth0() {
 
   await loadAuth0Script();
 
-  if (window.location.hostname.includes('localhost') && document.location.hostname.includes('.aem.page')) {
-    /* stage */
-    auth0Client = await window.auth0.createAuth0Client({
-      domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'stage.login.lifesciences.danaher.com',
-      clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn',
-      authorizationParams: {
-        redirect_uri: `${window.location.origin}/callback`,
-        scope: 'openid profile email',
-      },
-    });
-  } else {
-    /* production */
-    auth0Client = await window.auth0.createAuth0Client({
-      domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'dev.login.lifesciences.danaher.com',
-      clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
-      authorizationParams: {
-        redirect_uri: `${window.location.origin}/callback`,
-        scope: 'openid profile email',
-      },
-    });
-  }
+  // if (window.location.hostname.includes('localhost') && document.location.hostname.includes('.aem.page')) {
+  //   /* stage */
+  //   auth0Client = await window.auth0.createAuth0Client({
+  //     domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'stage.login.lifesciences.danaher.com',
+  //     clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn',
+  //     authorizationParams: {
+  //       redirect_uri: `${window.location.origin}/callback`,
+  //       scope: 'openid profile email',
+  //     },
+  //   });
+  // } else {
+  //   /* production */
+  //   auth0Client = await window.auth0.createAuth0Client({
+  //     domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'dev.login.lifesciences.danaher.com',
+  //     clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
+  //     authorizationParams: {
+  //       redirect_uri: `${window.location.origin}/callback`,
+  //       scope: 'openid profile email',
+  //     },
+  //   });
+  // }
+
+  auth0Client = await window.auth0.createAuth0Client({
+    domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'dev.login.lifesciences.danaher.com',
+    clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
+    authorizationParams: {
+      redirect_uri: `${window.location.origin}/callback`,
+      scope: 'openid profile email',
+    },
+  });
 
   return auth0Client;
 }
