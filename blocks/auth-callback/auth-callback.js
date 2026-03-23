@@ -1,24 +1,19 @@
 import initAuth0, { getIdToken, getUser } from '../../scripts/auth.js';
 
 const hostName = window.location.hostname;
-
-export function getEnv() {
-  let env;
-  if (hostName.includes('local')) {
-    env = 'local';
-  } else if (hostName.includes('dev')) {
-    env = 'dev';
-  } else if (hostName.includes('stage')) {
-    env = 'stage';
-  } else {
-    env = 'prod';
-  }
-  return env;
+let env;
+if (hostName.includes('local')) {
+  env = 'local';
+} else if (hostName.includes('dev')) {
+  env = 'dev';
+} else if (hostName.includes('stage')) {
+  env = 'stage';
+} else {
+  env = 'prod';
 }
 
 export default async function decorate(block) {
   block.innerHTML = '<p>Signing you in...</p>';
-  const env = getEnv();
 
   try {
     console.log('TRY');
