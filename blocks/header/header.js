@@ -9,7 +9,8 @@ import {
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
-import { login } from '../../scripts/auth.js';
+import { login, logout } from '../../scripts/auth.js';
+import { getEnv } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
@@ -45,6 +46,7 @@ function renderStore() {
 }
 
 function buildTools(content) {
+  const env = getEnv();
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = div(
     { class: 'company-links' },
@@ -53,9 +55,22 @@ function buildTools(content) {
 
   /* auth0 login */
   const loginAnchor = toolsWrapper.querySelector('a[href*="lifesciences.danaher.com"]');
+  const hasLoggedIn = sessionStorage.getItem(`${env}_apiToken`);
+
+  if (hasLoggedIn) {
+    loginAnchor.textContent = 'Logout';
+  } else {
+    loginAnchor.textContent = 'Login';
+  }
+
   loginAnchor.addEventListener('click', (e) => {
     e.preventDefault();
-    login();
+
+    if (hasLoggedIn) {
+      logout();
+    } else {
+      login();
+    }
   });
 
   decorateLanguagesTool(toolsWrapper);
