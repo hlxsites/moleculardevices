@@ -10,22 +10,11 @@ import { decorateExternalLink, detectStore, getCartItemCount } from '../../scrip
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
 import { getIdToken, login, logout } from '../../scripts/auth.js';
+import { getEnv } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
 export const SITE_LOGO_ALT_VALUE = 'Molecular Devices logo';
-
-const hostName = window.location.hostname;
-let env;
-if (hostName.includes('local')) {
-  env = 'local';
-} else if (hostName.includes('dev')) {
-  env = 'dev';
-} else if (hostName.includes('stage')) {
-  env = 'stage';
-} else {
-  env = 'prod';
-}
 
 function renderCart() {
   return (
@@ -57,6 +46,7 @@ function renderStore() {
 }
 
 function buildTools(content) {
+  const env = getEnv();
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = div(
     { class: 'company-links' },
