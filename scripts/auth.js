@@ -46,15 +46,6 @@ export default async function initAuth0() {
     });
   }
 
-  auth0Client = await window.auth0.createAuth0Client({
-    domain: window.hlx.auth0Domain ? window.hlx.auth0Domain : 'dev.login.lifesciences.danaher.com',
-    clientId: window.hlx.auth0ClientID ? window.hlx.auth0ClientID : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU',
-    authorizationParams: {
-      redirect_uri: `${window.location.origin}/callback`,
-      scope: 'openid profile email',
-    },
-  });
-
   return auth0Client;
 }
 
