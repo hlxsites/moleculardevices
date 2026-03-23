@@ -9,6 +9,7 @@ import {
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
+import { login } from '../../scripts/auth.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
@@ -49,6 +50,14 @@ function buildTools(content) {
     { class: 'company-links' },
   );
   toolsWrapper.innerHTML = toolsList.innerHTML;
+
+  /* auth0 login */
+  const loginAnchor = toolsWrapper.querySelector('a[href*="lifesciences.danaher.com"]');
+  loginAnchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    login();
+  });
+
   decorateLanguagesTool(toolsWrapper);
   if (detectStore()) {
     const linksList = toolsWrapper.querySelector('ul');

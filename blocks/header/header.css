@@ -286,11 +286,17 @@ header .company-links > ul > li {
   float: left;
   position: relative;
   list-style: none;
-  margin-right: 30px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 1px;
+  line-height: 1;
 }
 
 header .company-links a {
   color: var(--color-theme-gray);
+  line-height: 1;
 }
 
 header .company-links img {
@@ -300,10 +306,15 @@ header .company-links img {
   width: 15px;
   background-position: center;
   display: inline-block;
-  margin-right: 2px;
   vertical-align: bottom;
   font-style: italic;
   object-fit: contain;
+}
+
+header .company-links i[class*="fa"] {
+  font-size: 1rem;
+  color: var(--color-gray-400);
+  line-height: 1;
 }
 
 header .company-links ul li {
