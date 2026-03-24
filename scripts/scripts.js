@@ -27,6 +27,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import { getEnv } from '../blocks/auth-callback/auth-callback.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -1551,9 +1552,12 @@ export function isAuthorizedUser() {
  * Check if a resource should be served as gated or original
  */
 export function isGatedResource(item) {
+  const env = getEnv();
+  const sessionKey = `${env}_apiToken`;
+  const hasLoggedIn = sessionStorage.getItem(sessionKey);
   const authorizedUser = isAuthorizedUser();
   return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
-    && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
+    && (!authorizedUser || !hasLoggedIn || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }
 
 export function processSectionMetadata(element) {
