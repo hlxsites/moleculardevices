@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { getEnv } from '../blocks/auth-callback/auth-callback.js';
-import { deleteCookie, setCookie } from './scripts.js';
+import { deleteCookie } from './scripts.js';
 
 let auth0Client = null;
 
@@ -80,9 +80,6 @@ export async function getExpiryTime() {
 }
 
 export async function userLogIn() {
-  const env = getEnv();
-  const idToken = await getIdToken();
-  setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }));
   await login();
 }
 
