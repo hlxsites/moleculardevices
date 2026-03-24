@@ -1491,6 +1491,10 @@ export function getCookie(cname) {
   return '';
 }
 
+export function deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
 /**
  * Set a cookie from query string parameters
  */
