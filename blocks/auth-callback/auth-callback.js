@@ -17,28 +17,34 @@ export function getEnv() {
 }
 
 export default async function decorate(block) {
-  block.innerHTML = '<p>Signing you in...</p>';
-  const env = getEnv();
+  setTimeout(async () => {
+    const loginAnchor = document.querySelector('header a[href*="lifesciences.danaher.com"]');
+    loginAnchor.textContent = 'Logout';
 
-  try {
-    const auth0Client = await initAuth0();
-    const result = await auth0Client.handleRedirectCallback();
-    const idToken = await getIdToken();
-    const auth0User = await getUser();
-    sessionStorage.setItem(
-      `${env}_apiToken`,
-      JSON.stringify({ access_token: idToken }),
-    );
-    if (auth0User) {
+    block.innerHTML = '<p>Signing you in...</p>';
+    const env = getEnv();
+
+    try {
+      const auth0Client = await initAuth0();
+      const result = await auth0Client.handleRedirectCallback();
+      const idToken = await getIdToken();
+      const auth0User = await getUser();
       sessionStorage.setItem(
-        `${env}_auth0User`,
-        auth0User?.sub,
+        `${env}_apiToken`,
+        JSON.stringify({ access_token: idToken }),
       );
+      if (auth0User) {
+        sessionStorage.setItem(
+          `${env}_auth0User`,
+          auth0User?.sub,
+        );
+      }
+
+      const target = result?.appState?.returnTo || '/';
+      window.location.href = target;
+    } catch (err) {
+      loginAnchor.textContent = 'Login';
+      block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
     }
-    // await userLogin('customer', idToken);
-    const target = result?.appState?.returnTo || '/';
-    window.location.href = target;
-  } catch (err) {
-    block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
-  }
+  }, 500);
 }
