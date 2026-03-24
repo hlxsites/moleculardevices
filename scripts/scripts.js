@@ -1556,8 +1556,8 @@ export function isGatedResource(item) {
   const sessionKey = `${env}_apiToken`;
   const hasLoggedIn = sessionStorage.getItem(sessionKey);
   const authorizedUser = isAuthorizedUser();
-  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
-    && (!authorizedUser || !hasLoggedIn || item.gatedURL.includes('https://chat.moleculardevices.com'));
+  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0' && hasLoggedIn
+    && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }
 
 export function processSectionMetadata(element) {
