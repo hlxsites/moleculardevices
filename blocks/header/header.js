@@ -10,7 +10,7 @@ import { decorateExternalLink, detectStore, getCartItemCount } from '../../scrip
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
 import { getIdToken, login, logout } from '../../scripts/auth.js';
-import { getEnv } from '../auth-callback/auth-callback.js';
+import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 export const SITE_LOGO_URL = '/images/header-menus/mol-dev-logo.svg';
@@ -130,10 +130,8 @@ export default async function decorate(block) {
   handleViewportChanges(block);
 
   /* auth0 login */
-  const env = getEnv();
+  const hasLoggedIn = hasAuth0LoggedIn();
   const loginAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
-  const sessionKey = `${env}_apiToken`;
-  const hasLoggedIn = sessionStorage.getItem(sessionKey);
 
   if (hasLoggedIn) {
     loginAnchor.textContent = 'Logout';

@@ -16,6 +16,12 @@ export function getEnv() {
   return env;
 }
 
+export function hasAuth0LoggedIn() {
+  const env = getEnv();
+  const sessionKey = `${env}_apiToken`;
+  return sessionStorage.getItem(sessionKey);
+}
+
 export default async function decorate(block) {
   setTimeout(async () => {
     const loginAnchor = document.querySelector('header a[href*="lifesciences.danaher.com"]');

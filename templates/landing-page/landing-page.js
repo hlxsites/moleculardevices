@@ -3,7 +3,7 @@ import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
-import { getEnv } from '../../blocks/auth-callback/auth-callback.js';
+import { hasAuth0LoggedIn } from '../../blocks/auth-callback/auth-callback.js';
 
 export async function iframeResizeHandler(id) {
   await new Promise((resolve) => {
@@ -66,9 +66,7 @@ function handleEmbed() {
 }
 
 export default async function buildAutoBlocks() {
-  const env = getEnv();
-  const sessionKey = `${env}_apiToken`;
-  const hasLoggedIn = sessionStorage.getItem(sessionKey);
+  const hasLoggedIn = hasAuth0LoggedIn();
   if (isAuthorizedUser() || hasLoggedIn) {
     const path = window.location.pathname;
     const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
