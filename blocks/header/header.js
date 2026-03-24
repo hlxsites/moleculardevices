@@ -9,7 +9,7 @@ import {
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
-import { getIdToken, login, logout } from '../../scripts/auth.js';
+import { getIdToken, userLogIn, userLogOut } from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -143,10 +143,9 @@ export default async function decorate(block) {
     e.preventDefault();
 
     if (hasLoggedIn) {
-      sessionStorage.clear();
-      await logout();
+      await userLogOut();
     } else {
-      await login();
+      await userLogIn();
     }
   });
 }
