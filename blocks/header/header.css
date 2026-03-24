@@ -296,6 +296,9 @@ header .company-links > ul > li {
 
 header .company-links a {
   color: var(--color-theme-gray);
+}
+
+header .company-links > ul > li > a {
   line-height: 1;
 }
 
