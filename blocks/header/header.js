@@ -46,32 +46,11 @@ function renderStore() {
 }
 
 function buildTools(content) {
-  const env = getEnv();
   const toolsList = content.querySelector('div:nth-child(2)');
   const toolsWrapper = div(
     { class: 'company-links' },
   );
   toolsWrapper.innerHTML = toolsList.innerHTML;
-
-  /* auth0 login */
-  const loginAnchor = toolsWrapper.querySelector('a[href*="lifesciences.danaher.com"]');
-  const hasLoggedIn = sessionStorage.getItem(`${env}_apiToken`);
-
-  if (hasLoggedIn) {
-    loginAnchor.textContent = 'Logout';
-  } else {
-    loginAnchor.textContent = 'Login';
-  }
-
-  loginAnchor.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (hasLoggedIn) {
-      logout();
-    } else {
-      login();
-    }
-  });
 
   decorateLanguagesTool(toolsWrapper);
   if (detectStore()) {
@@ -149,4 +128,27 @@ export default async function decorate(block) {
 
   addIndividualComponents(block);
   handleViewportChanges(block);
+
+  /* auth0 login */
+  const env = getEnv();
+  const loginAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
+  const sessionKey = `${env}_apiToken`;
+  const hasLoggedIn = sessionStorage.getItem(sessionKey);
+
+  if (hasLoggedIn) {
+    loginAnchor.textContent = 'Logout';
+  } else {
+    loginAnchor.textContent = 'Login';
+  }
+
+  loginAnchor.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    if (hasLoggedIn) {
+      sessionStorage.clear();
+      await logout();
+    } else {
+      await login();
+    }
+  });
 }

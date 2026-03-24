@@ -65,7 +65,6 @@ export async function logout() {
 export async function getIdToken() {
   const auth0 = await initAuth0();
   const claims = await auth0.getIdTokenClaims();
-  console.log(claims);
   // eslint-disable-next-line no-underscore-dangle
   return claims?.__raw;
 }

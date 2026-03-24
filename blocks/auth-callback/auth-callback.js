@@ -21,7 +21,6 @@ export default async function decorate(block) {
   const env = getEnv();
 
   try {
-    console.log('TRY');
     const auth0Client = await initAuth0();
     const result = await auth0Client.handleRedirectCallback();
     const idToken = await getIdToken();
@@ -40,7 +39,6 @@ export default async function decorate(block) {
     const target = result?.appState?.returnTo || '/';
     window.location.href = target;
   } catch (err) {
-    console.log('CATCH');
     block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
   }
 }
