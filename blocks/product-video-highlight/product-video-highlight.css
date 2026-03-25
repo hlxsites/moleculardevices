@@ -1,15 +1,7 @@
-/* stylelint-disable selector-class-pattern */
 .product-video-highlight {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 30px;
-}
-
-.product-video-highlight,
-:root[lang="ko-kr"] .product-video-highlight.OneLinkShow_ko,
-:root[lang="it-it"] .product-video-highlight.OneLinkShow_it,
-:root[lang="es-es"] .product-video-highlight.OneLinkShow_es,
-:root[lang="zh-cn"] .product-video-highlight.OneLinkShow_zh {
-  display: grid !important;
 }
 
 /* avoid CLS */
@@ -83,7 +75,7 @@
 
 .product-video-highlight a.reference-placeholder {
   position: relative;
-  display: block;
+  display: block
 }
 
 .product-video-highlight a.reference-placeholder .video-icon {
@@ -159,11 +151,7 @@
 
 /* Mobile Only */
 @media only screen and (max-width: 767px) {
-  .product-video-highlight,
-  :root[lang="ko-kr"] .product-video-highlight.OneLinkShow_ko,
-  :root[lang="it-it"] .product-video-highlight.OneLinkShow_it,
-  :root[lang="es-es"] .product-video-highlight.OneLinkShow_es,
-  :root[lang="zh-cn"] .product-video-highlight.OneLinkShow_zh {
+  .product-video-highlight {
     display: block;
   }
 
@@ -179,7 +167,7 @@
     width: unset;
   }
 
-  .product-video-highlight .related > div > p:last-child {
+  .product-video-highlight .related > div > p:last-child  {
     padding: 0 15px;
     margin-top: 10px;
   }
