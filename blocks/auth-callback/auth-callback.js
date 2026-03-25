@@ -1,4 +1,6 @@
-import initAuth0, { getIdToken, getUser } from '../../scripts/auth.js';
+/* eslint-disable import/no-cycle */
+import initAuth0, { getExpiryTime, getIdToken, getUser } from '../../scripts/auth.js';
+import { getCookie, setCookie } from '../../scripts/scripts.js';
 
 const hostName = window.location.hostname;
 
@@ -19,7 +21,7 @@ export function getEnv() {
 export function hasAuth0LoggedIn() {
   const env = getEnv();
   const sessionKey = `${env}_apiToken`;
-  return sessionStorage.getItem(sessionKey);
+  return getCookie(sessionKey);
 }
 
 export default async function decorate(block) {
@@ -35,15 +37,13 @@ export default async function decorate(block) {
       const result = await auth0Client.handleRedirectCallback();
       const idToken = await getIdToken();
       const auth0User = await getUser();
-      sessionStorage.setItem(
-        `${env}_apiToken`,
-        JSON.stringify({ access_token: idToken }),
-      );
+      const exp = await getExpiryTime();
+
+      sessionStorage.setItem(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
+      setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
+
       if (auth0User) {
-        sessionStorage.setItem(
-          `${env}_auth0User`,
-          auth0User?.sub,
-        );
+        sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
       const target = result?.appState?.returnTo || '/';
