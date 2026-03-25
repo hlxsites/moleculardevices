@@ -151,7 +151,8 @@ header .navbar-header > .company-links {
   display: none;
 }
 
-header .languages-dropdown {
+header .languages-dropdown,
+header .auth-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -172,11 +173,13 @@ header .languages-dropdown {
   line-height: 18px;
 }
 
-header .languages-dropdown.show {
+header .languages-dropdown.show,
+header .auth-dropdown.show {
   display: block;
 }
 
-header .languages-dropdown a {
+header .languages-dropdown a,
+header .auth-dropdown a {
   padding: 3px 20px;
   padding-right: 18px;
   clear: both;
@@ -727,7 +730,8 @@ header .text-submenu ul > li > a {
   text-transform: none;
 }
 
-header .languages-dropdown a:hover {
+header .languages-dropdown a:hover,
+header .auth-dropdown a:hover {
   background-color: var(--color-gray-50);
 }
 
@@ -2346,4 +2350,11 @@ header .company-right-submenu > div:last-child > div:last-child img {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+/* auth0 */
+.auth-dropdown {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }

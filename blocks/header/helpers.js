@@ -1,9 +1,11 @@
-import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
 // eslint-disable-next-line import/no-cycle
 import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from './header.js';
+import { userLogOut } from '../../scripts/auth.js';
+import { getCookie } from '../../scripts/scripts.js';
 
 let elementsWithEventListener = [];
 
@@ -126,6 +128,19 @@ export function buildRequestQuote(classes) {
   );
 }
 
+export function toggleClassOnCompanyLinks(link, dropdown, className = 'show') {
+  link.addEventListener('click', () => {
+    dropdown.classList.toggle('show');
+  });
+
+  const body = document.querySelector('body');
+  body.addEventListener('click', (e) => {
+    if (e.target !== link) {
+      dropdown.classList.remove(className);
+    }
+  });
+}
+
 export function decorateLanguagesTool(tools) {
   const languageTool = tools.querySelector('li:has(img[alt="Language options"])');
   if (!languageTool) return;
@@ -141,16 +156,7 @@ export function decorateLanguagesTool(tools) {
     link.href = `${link.href}${pathLocation.slice(1)}`;
   });
 
-  languageTool.addEventListener('click', () => {
-    languagesList.classList.toggle('show');
-  });
-
-  const body = document.querySelector('body');
-  body.addEventListener('click', (e) => {
-    if (e.target !== languageTool) {
-      languagesList.classList.remove('show');
-    }
-  });
+  toggleClassOnCompanyLinks(languageTool, languagesList);
 }
 
 // eslint-disable-next-line consistent-return
@@ -173,4 +179,23 @@ export function fetchMenuId(menuId) {
     }
     return cleanedMenuId;
   }
+}
+
+export function buildAuthDropdown() {
+  // const { name } = JSON.parse(getCookie('local_user_data'));
+  // const userAvatarImage = createOptimizedPicture(picture, name, false);
+
+  const authDropdownList = ul({ class: 'auth-dropdown' },
+    // li(a({ class: 'auth-usename' }, userAvatarImage, name)),
+    // li(a({ class: 'auth-usename' }, name)),
+    li(a({ class: 'auth-logout' }, 'Logout')),
+  );
+
+  const logoutBtn = authDropdownList.querySelector('.auth-logout');
+  logoutBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await userLogOut();
+  });
+
+  return authDropdownList;
 }

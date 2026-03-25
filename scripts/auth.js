@@ -86,6 +86,11 @@ export async function userLogIn() {
 export async function userLogOut() {
   const env = getEnv();
   deleteCookie(`${env}_apiToken`);
+  deleteCookie(`${env}_user_data`);
+  deleteCookie('first_name');
+  deleteCookie('last_name');
+  deleteCookie('rationalized_id');
+
   sessionStorage.clear();
   await logout();
 }

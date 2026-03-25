@@ -1,15 +1,20 @@
 /* eslint-disable import/no-cycle */
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
-import { fetchHeaderContent, decorateLanguagesTool } from './helpers.js';
+import { fetchHeaderContent, decorateLanguagesTool, buildAuthDropdown, toggleClassOnCompanyLinks } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
   a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
-import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
+import {
+  decorateExternalLink, detectStore, getCartItemCount,
+  getCookie,
+} from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
-import { getIdToken, getUser, userLogIn, userLogOut } from '../../scripts/auth.js';
+import {
+  getIdToken, getUser, userLogIn,
+} from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -130,24 +135,25 @@ export default async function decorate(block) {
   handleViewportChanges(block);
 
   /* auth0 login */
-  const user = await getUser();
-  console.log(user?.name);
   const hasLoggedIn = hasAuth0LoggedIn();
-  const loginAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
+  const authAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
+  authAnchor.removeAttribute('href');
 
   if (hasLoggedIn) {
-    loginAnchor.textContent = 'Logout';
+    // const userData = JSON.parse(getCookie('local_user_data'));
+    // console.log(userData);
+    const firstName = getCookie('first_name');
+    authAnchor.textContent = `Hi, ${firstName}`;
+    const authListItem = authAnchor.parentElement;
+    const authDropdownList = buildAuthDropdown();
+    authListItem.appendChild(authDropdownList);
+    toggleClassOnCompanyLinks(authAnchor, authDropdownList);
   } else {
-    loginAnchor.textContent = 'Login';
+    authAnchor.textContent = 'Login';
   }
 
-  loginAnchor.addEventListener('click', async (e) => {
+  authAnchor.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    if (hasLoggedIn) {
-      await userLogOut();
-    } else {
-      await userLogIn();
-    }
+    if (!hasLoggedIn) await userLogIn();
   });
 }

@@ -40,7 +40,12 @@ export default async function decorate(block) {
       const exp = await getExpiryTime();
 
       sessionStorage.setItem(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
+
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
+      setCookie(`${env}_user_data`, JSON.stringify(auth0User));
+      setCookie('first_name', auth0User?.given_name);
+      setCookie('last_name', auth0User?.family_name);
+      setCookie('rationalized_id', auth0User?.email);
 
       if (auth0User) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
