@@ -43,7 +43,7 @@ export default async function decorate(block) {
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
 
       if (auth0User) {
-        sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub);
+        sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
       const target = result?.appState?.returnTo || '/';

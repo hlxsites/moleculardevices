@@ -9,7 +9,7 @@ import {
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
-import { getIdToken, userLogIn, userLogOut } from '../../scripts/auth.js';
+import { getIdToken, getUser, userLogIn, userLogOut } from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -130,6 +130,8 @@ export default async function decorate(block) {
   handleViewportChanges(block);
 
   /* auth0 login */
+  const user = await getUser();
+  console.log(user?.name);
   const hasLoggedIn = hasAuth0LoggedIn();
   const loginAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
 
