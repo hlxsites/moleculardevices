@@ -21,7 +21,7 @@ export function getEnv() {
 export function hasAuth0LoggedIn() {
   const env = getEnv();
   const sessionKey = `${env}_apiToken`;
-  return getCookie(sessionKey);
+  return !!getCookie(sessionKey);
 }
 
 export default async function decorate(block) {
