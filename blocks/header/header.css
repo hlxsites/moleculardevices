@@ -175,6 +175,7 @@ header .auth-dropdown {
 
 header .auth-dropdown {
   min-width: max-content;
+  left: 4px;
 }
 
 header .languages-dropdown.show,
