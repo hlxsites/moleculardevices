@@ -404,10 +404,10 @@ function decorateBlockLocale(block) {
 
     localesFound.push(blockClass);
     if (blockClass !== 'en') {
-      // block.classList.add(`OneLinkShow_${blockClass}`);
+      block.classList.add(`OneLinkShow_${blockClass}`);
       block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
     } else {
-      // block.classList.add('OneLinkHide');
+      block.classList.add('OneLinkHide');
       block.parentElement.classList.add('OneLinkHide');
     }
   });
