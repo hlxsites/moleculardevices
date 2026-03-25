@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
 import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
-import { fetchHeaderContent, decorateLanguagesTool, buildAuthDropdown, toggleClassOnCompanyLinks } from './helpers.js';
+import {
+  fetchHeaderContent, decorateLanguagesTool, buildAuthDropdown, toggleClassOnCompanyLinks,
+} from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
   a, div, li, span, i, domEl,
@@ -12,9 +14,7 @@ import {
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
-import {
-  getIdToken, getUser, userLogIn,
-} from '../../scripts/auth.js';
+import { getIdToken, userLogIn } from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
