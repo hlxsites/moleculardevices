@@ -174,7 +174,7 @@ header .auth-dropdown {
 }
 
 header .auth-dropdown {
-  min-width: 110px;
+  min-width: max-content;
 }
 
 header .languages-dropdown.show,
@@ -306,7 +306,7 @@ header .company-links a {
 }
 
 header .company-links > ul > li:hover,
-header .company-links > ul > li > a:hover{
+header .company-links > ul > li > a:hover {
   color: var(--color-black);
 }
 
