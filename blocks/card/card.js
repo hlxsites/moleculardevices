@@ -97,8 +97,6 @@ class Card {
 
     /* default button */
     let cardLink = item.path;
-
-    console.log(isGatedResource(item));
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {

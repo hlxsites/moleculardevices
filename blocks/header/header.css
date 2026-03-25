@@ -173,6 +173,10 @@ header .auth-dropdown {
   line-height: 18px;
 }
 
+header .auth-dropdown {
+  min-width: 110px;
+}
+
 header .languages-dropdown.show,
 header .auth-dropdown.show {
   display: block;
@@ -299,6 +303,11 @@ header .company-links > ul > li {
 
 header .company-links a {
   color: var(--color-theme-gray);
+}
+
+header .company-links > ul > li:hover,
+header .company-links > ul > li > a:hover{
+  color: var(--color-black);
 }
 
 header .company-links > ul > li > a {

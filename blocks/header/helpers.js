@@ -1,11 +1,10 @@
-import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';
 // eslint-disable-next-line import/no-cycle
 import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from './header.js';
 import { userLogOut } from '../../scripts/auth.js';
-import { getCookie } from '../../scripts/scripts.js';
 
 let elementsWithEventListener = [];
 
