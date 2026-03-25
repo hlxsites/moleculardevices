@@ -159,7 +159,11 @@
 
 /* Mobile Only */
 @media only screen and (max-width: 767px) {
-  .product-video-highlight {
+  .product-video-highlight,
+  :root[lang="ko-kr"] .product-video-highlight.OneLinkShow_ko,
+  :root[lang="it-it"] .product-video-highlight.OneLinkShow_it,
+  :root[lang="es-es"] .product-video-highlight.OneLinkShow_es,
+  :root[lang="zh-cn"] .product-video-highlight.OneLinkShow_zh {
     display: block;
   }
 
