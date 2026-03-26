@@ -14,6 +14,12 @@ const AUTOSCROLL_INTERVAL = 7000;
  */
 function createClone(item) {
   const clone = item.cloneNode(true);
+
+  // remove heavy elements inside clone
+  clone.querySelectorAll('img').forEach((itemImg) => {
+    itemImg.loading = 'lazy';
+  });
+
   clone.classList.add('clone');
   clone.classList.remove('selected');
 
@@ -606,24 +612,37 @@ export const cardStyleConfig = {
 };
 
 export default async function decorate(block) {
-  // show full description
-  const showFullDescription = block.classList.contains('show-full-description');
-  if (showFullDescription) {
-    cardStyleConfig.showFullDescription = true;
-  }
+  const initCarousel = async () => {
+    // show full description
+    const showFullDescription = block.classList.contains('show-full-description');
+    if (showFullDescription) {
+      cardStyleConfig.showFullDescription = true;
+    }
 
-  const noRepetition = block.classList.contains('no-repetition');
-  if (noRepetition && block.children.length < 3) {
-    cardStyleConfig.infiniteScroll = false;
-  }
+    const noRepetition = block.classList.contains('no-repetition');
+    if (noRepetition && block.children.length < 3) {
+      cardStyleConfig.infiniteScroll = false;
+    }
 
-  // cards style carousel
-  const useCardsStyle = block.classList.contains('cards');
-  if (useCardsStyle) {
-    await createCarousel(block, [...block.children], cardStyleConfig);
-    return;
-  }
+    // cards style carousel
+    const useCardsStyle = block.classList.contains('cards');
+    if (useCardsStyle) {
+      await createCarousel(block, [...block.children], cardStyleConfig);
+      return;
+    }
 
-  // use the default carousel
-  await createCarousel(block);
+    // use the default carousel
+    await createCarousel(block);
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        initCarousel();
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(block);
 }
