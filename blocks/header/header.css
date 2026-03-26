@@ -1653,7 +1653,7 @@ header .products-right-submenu > div:first-child > div > p:last-of-type strong >
 }
 
 /* 3D Biology */
-header .flex-space-between:has(.biology-3d-right-submenu) {
+header .flex-space-between:has(.biology-3d-right-submenu):not(:has(.biology-3d-right-submenu > div > div:nth-child(3))) {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
 }
