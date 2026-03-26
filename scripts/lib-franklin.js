@@ -404,8 +404,7 @@ function decorateBlockLocale(block) {
 
     localesFound.push(blockClass);
 
-    const isFooterBlock = block.classList.contains('footer');
-
+    const isFooterBlock = block.closest('.footer');
     if (blockClass !== 'en') {
       if (isFooterBlock) block.classList.add(`OneLinkShow_${blockClass}`);
       block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
