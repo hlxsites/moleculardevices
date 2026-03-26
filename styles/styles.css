@@ -2506,7 +2506,7 @@ main .section.no-margin-bottom {
 }
 
 .slas-page .section .columns.tutorials-posters > div:not(:last-child) {
-  margin: 0;
+  margin: 0 0 20px;
 }
 
 .slas-page .section .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) {
@@ -2533,6 +2533,10 @@ main .section.no-margin-bottom {
 
 .slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
   font-size: var(--fs-h1);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .slas-page .section .default-content-wrapper h2 + h3 {
