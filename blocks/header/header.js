@@ -60,19 +60,21 @@ function buildTools(content) {
   decorateLanguagesTool(toolsWrapper);
   if (detectStore()) {
     const linksList = toolsWrapper.querySelector('ul');
-    linksList.prepend(renderStore());
-    linksList.prepend(renderCart());
+    const loginEl = linksList.querySelector('li:first-child');
+    loginEl.insertAdjacentElement('afterend', renderStore());
+    loginEl.insertAdjacentElement('afterend', renderCart());
   }
 
   document.addEventListener('geolocationUpdated', () => {
     if (detectStore()) {
       const linksList = toolsWrapper.querySelector('ul');
+      const loginEl = linksList.querySelector('li:first-child');
       if (linksList.querySelector('.store-link')) {
         return; // store and cart already rendered
       }
 
-      linksList.prepend(renderStore());
-      linksList.prepend(renderCart());
+      loginEl.insertAdjacentElement('afterend', renderStore());
+      loginEl.insertAdjacentElement('afterend', renderCart());
     }
   });
   return toolsWrapper;

@@ -286,16 +286,15 @@ header .company-links > ul {
   list-style: none;
   padding-left: 30px;
   margin-bottom: 0;
-  display: inline-block;
+  display: inline-flex;
   margin-top: 0;
+  gap: 24px;
 }
 
 header .company-links > ul > li {
-  float: left;
   position: relative;
   list-style: none;
-  margin-right: 24px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
   margin-top: 1px;
