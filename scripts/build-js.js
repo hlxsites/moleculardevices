@@ -13,7 +13,15 @@ const files = [
     const code = fs.readFileSync(file.in, 'utf-8');
 
     // eslint-disable-next-line no-await-in-loop
-    const result = await minify(code, { compress: true, mangle: true });
+    const result = await minify(code, {
+      compress: true,
+      mangle: false,
+      format: {
+        beautify: false,
+        semicolons: true,
+        comments: false,
+      },
+    });
 
     fs.writeFileSync(file.out, result.code);
     // eslint-disable-next-line no-console
