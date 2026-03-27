@@ -146,7 +146,7 @@ body.openmenu header .hamburger > .icon-bar + .icon-bar {
 /* Company Links (carrers/languages/...) */
 header .navbar-header > .company-links {
   position: absolute;
-  top: 45px;
+  top: 44px;
   right: -1px;
   display: none;
 }
@@ -325,6 +325,7 @@ header .company-links img {
   vertical-align: bottom;
   font-style: italic;
   object-fit: contain;
+  transform: translateY(-1px);
 }
 
 header .company-links i[class*="fa"] {
