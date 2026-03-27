@@ -132,9 +132,11 @@ export function toggleClassOnCompanyLinks(link, dropdown, className = 'show') {
     dropdown.classList.toggle('show');
   });
 
+  const icon = link.querySelector(':scope img,:scope > .fa-solid, :scope > .fa, :scope > .icon');
+
   const body = document.querySelector('body');
   body.addEventListener('click', (e) => {
-    if (e.target !== link) {
+    if (e.target !== link && e.target !== icon && e.target.parentElement !== link) {
       dropdown.classList.remove(className);
     }
   });
@@ -177,6 +179,19 @@ export function fetchMenuId(menuId) {
         break;
     }
     return cleanedMenuId;
+  }
+}
+
+export function wrapLiContentWithAnchor(listItem) {
+  if (!listItem) return;
+
+  const existingLink = listItem.querySelector(':scope > a');
+  const icons = listItem.querySelectorAll(':scope > picture, :scope > .icon, :scope > .fa, :scope > .fa-solid');
+
+  if (existingLink && icons.length) {
+    icons.forEach((icon) => {
+      existingLink.prepend(icon);
+    });
   }
 }
 

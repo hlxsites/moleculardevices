@@ -294,15 +294,16 @@ header .company-links > ul {
 header .company-links > ul > li {
   position: relative;
   list-style: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
   margin-top: 1px;
   line-height: 1;
 }
 
+header .company-links > ul > li,
 header .company-links a {
   color: var(--color-theme-gray);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 header .company-links > ul > li:hover,

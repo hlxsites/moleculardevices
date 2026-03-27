@@ -3,6 +3,7 @@ import handleViewportChanges from './header-events.js';
 import { buildHamburger, buildMobileMenu } from './menus/mobile-menu.js';
 import {
   fetchHeaderContent, decorateLanguagesTool, buildAuthDropdown, toggleClassOnCompanyLinks,
+  wrapLiContentWithAnchor,
 } from './helpers.js';
 import { buildNavbar } from './header-megamenu.js';
 import {
@@ -24,14 +25,12 @@ export const SITE_LOGO_ALT_VALUE = 'Molecular Devices logo';
 function renderCart() {
   return (
     li({ class: 'cart-link' },
-      i({ class: 'fa fa-shopping-cart' }),
-      span({ class: 'cart-count' }, getCartItemCount()),
       a({
         href: `${SHOP_BASE_URL}/cart`,
         target: '_blank',
         name: 'Cart',
         rel: 'noopener noreferrer',
-      }, 'CART'),
+      }, i({ class: 'fa fa-shopping-cart' }), span({ class: 'cart-count' }, getCartItemCount()), 'CART'),
     )
   );
 }
@@ -39,13 +38,12 @@ function renderCart() {
 function renderStore() {
   return (
     li({ class: 'store-link' },
-      span({ class: 'icon icon-store' }),
       a({
         href: `${SHOP_BASE_URL}/`,
         target: '_blank',
         name: 'Store',
         rel: 'noopener noreferrer',
-      }, 'STORE'),
+      }, span({ class: 'icon icon-store' }), 'STORE'),
     )
   );
 }
@@ -77,6 +75,39 @@ function buildTools(content) {
       loginEl.insertAdjacentElement('afterend', renderCart());
     }
   });
+
+  const toolItems = toolsWrapper.querySelectorAll(':scope > ul > li');
+  toolItems.forEach((listItem) => {
+    wrapLiContentWithAnchor(listItem);
+  });
+
+  /* auth0 login */
+  const hasLoggedIn = hasAuth0LoggedIn();
+  const authAnchor = toolsWrapper.querySelector(':scope > ul > li:first-child > a');
+  authAnchor.href = '';
+
+  const authAnchorEl = a(i({ class: 'fa-solid fa-user-circle' }), span('Login'));
+  const loginEl = authAnchorEl.querySelector('span');
+  authAnchor.replaceWith(authAnchorEl);
+
+  if (hasLoggedIn) {
+    // const userData = JSON.parse(getCookie('local_user_data'));
+    // console.log(userData);
+    const firstName = getCookie('first_name');
+    loginEl.textContent = `Hi, ${firstName}`;
+    const authListItem = authAnchorEl.parentElement;
+    const authDropdownList = buildAuthDropdown();
+    authListItem.appendChild(authDropdownList);
+    toggleClassOnCompanyLinks(authAnchorEl, authDropdownList);
+  } else {
+    loginEl.textContent = 'Login';
+  }
+
+  authAnchorEl.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!hasLoggedIn) await userLogIn();
+  });
+
   return toolsWrapper;
 }
 
@@ -135,27 +166,4 @@ export default async function decorate(block) {
 
   addIndividualComponents(block);
   handleViewportChanges(block);
-
-  /* auth0 login */
-  const hasLoggedIn = hasAuth0LoggedIn();
-  const authAnchor = block.querySelector('a[href*="lifesciences.danaher.com"]');
-  authAnchor.removeAttribute('href');
-
-  if (hasLoggedIn) {
-    // const userData = JSON.parse(getCookie('local_user_data'));
-    // console.log(userData);
-    const firstName = getCookie('first_name');
-    authAnchor.textContent = `Hi, ${firstName}`;
-    const authListItem = authAnchor.parentElement;
-    const authDropdownList = buildAuthDropdown();
-    authListItem.appendChild(authDropdownList);
-    toggleClassOnCompanyLinks(authAnchor, authDropdownList);
-  } else {
-    authAnchor.textContent = 'Login';
-  }
-
-  authAnchor.addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!hasLoggedIn) await userLogIn();
-  });
 }
