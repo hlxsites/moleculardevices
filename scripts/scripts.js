@@ -1515,7 +1515,7 @@ export function detectStore() {
   }
 
   try {
-    return JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'IN';
+    return JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code === 'US';
   } catch (err) {
     // eslint-disable-next-line no-console
     console.warn('Could not load user information.', err);
