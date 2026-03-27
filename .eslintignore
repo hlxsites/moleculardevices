@@ -1,8 +1,8 @@
 dist/
 node_modules/
 helix-importer-ui
-scripts/ffetch.js
 campaigns
+styles/styles.min.css
+scripts/ffetch.js
 scripts/scripts.min.js
 scripts/lib-franklin.min.js
-styles/styles.min.css
