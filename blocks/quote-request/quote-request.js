@@ -199,7 +199,6 @@ async function loadIframeForm(data, type) {
         sfdcPrimaryApplication = tab;
 
         const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
-        console.log(mainProduct);
         if (mainProduct) {
           sfdcProductFamily = mainProduct.productFamily;
           sfdcProductSelection = mainProduct.productFamily;

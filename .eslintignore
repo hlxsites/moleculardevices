@@ -5,3 +5,4 @@ scripts/ffetch.js
 campaigns
 scripts/scripts.min.js
 scripts/lib-franklin.min.js
+styles/styles.min.css
