@@ -6,7 +6,7 @@
   "scripts": {
     "test": "wtr \"./test/**/*.test.js\" --node-resolve --port=2000 --coverage",
     "test:watch": "npm test -- --watch",
-    "lint:js": "eslint scripts/*.min.js",
+    "lint:js": "eslint ./scripts/*.min.js",
     "lint:css": "stylelint 'blocks/**/*.css' 'styles/*.css'",
     "lint": "npm run lint:js && npm run lint:css",
     "build:js": "node ./scripts/build-js.js",
