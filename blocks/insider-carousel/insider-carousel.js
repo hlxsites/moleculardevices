@@ -1,4 +1,4 @@
-// import { addLinkIcon } from '../../scripts/scripts.js';
+// import { addLinkIcon } from '../../scripts/scripts.min.js';
 import { createCarousel } from '../carousel/carousel.js';
 
 const styleConfig = {

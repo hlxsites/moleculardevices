@@ -1,8 +1,8 @@
 import { div } from '../../scripts/dom-helpers.js';
-import { fetchFragment } from '../../scripts/scripts.js';
+import { fetchFragment } from '../../scripts/scripts.min.js';
 import decoratePost from '../featured-posts/featured-posts.js';
 import { createCarousel } from '../carousel/carousel.js';
-import { decorateButtons } from '../../scripts/lib-franklin.js';
+import { decorateButtons } from '../../scripts/lib-franklin.min.js';
 
 const styleConfig = {
   cssFiles: ['/blocks/featured-posts/featured-posts.css'],

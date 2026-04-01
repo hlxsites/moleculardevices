@@ -1,4 +1,4 @@
-import { formatDate } from '../../scripts/scripts.js';
+import { formatDate } from '../../scripts/scripts.min.js';
 import { loadEmbed } from '../../blocks/embed/embed.js';
 import {
   a,
@@ -8,7 +8,7 @@ import {
 import {
   getMetadata, buildBlock,
   loadCSS,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import decorate from '../../blocks/table/table.js';
 
 function decorateTitle(parentElem, titleElem) {

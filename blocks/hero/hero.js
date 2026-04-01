@@ -1,11 +1,11 @@
 /* eslint-disable no-plusplus */
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.min.js';
 import {
   formatDate,
   isVideo,
   preloadLCPImage,
   videoButton,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import {
   a, div, i, img, ol, span,
 } from '../../scripts/dom-helpers.js';

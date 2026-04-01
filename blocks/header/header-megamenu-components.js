@@ -4,11 +4,11 @@ import {
   img, div, a, p, h3, strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.min.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
 import {
   formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;

@@ -2,8 +2,8 @@
 import {
   button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
-import { loadScript, toTitleCase } from '../../scripts/scripts.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.min.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.min.js';
 import { scrollToSection } from '../../scripts/utilities.js';
 import decorateProductPage, { productThankyouSection, rfqThankyouMessage } from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';

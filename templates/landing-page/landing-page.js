@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
-import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
+import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
+import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.min.js';
 import ffetch from '../../scripts/ffetch.js';
 
 export async function iframeResizeHandler(id) {

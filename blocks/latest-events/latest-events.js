@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
+import { formatDate, getData, unixDateToString } from '../../scripts/scripts.min.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
 
 export function formatEventDates(startUnixStr, endUnixStr) {

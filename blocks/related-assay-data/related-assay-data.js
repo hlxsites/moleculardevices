@@ -1,4 +1,4 @@
-import { fetchFragment } from '../../scripts/scripts.js';
+import { fetchFragment } from '../../scripts/scripts.min.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 export default async function decorate(block) {
