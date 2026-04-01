@@ -15,7 +15,7 @@ const files = [
     // eslint-disable-next-line no-await-in-loop
     const result = await minify(code, {
       compress: true,
-      mangle: false,
+      mangle: true,
       format: {
         beautify: false,
         semicolons: true,
