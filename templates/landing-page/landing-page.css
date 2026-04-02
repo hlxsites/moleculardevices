@@ -433,6 +433,10 @@ body .thank-you-page h4 {
 }
 
 /* slas page */
+.slas-page.landing-page {
+  --font-size-h2: 30px;
+}
+
 .slas-page .section .columns.tutorials-posters > div:not(:last-child) {
   margin: 0 0 20px;
 }
