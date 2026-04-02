@@ -403,11 +403,13 @@ function decorateBlockLocale(block) {
     if (!SUPPORTED_LOCALES.includes(blockClass)) return;
 
     localesFound.push(blockClass);
+
+    const isFooterBlock = block.closest('.footer');
     if (blockClass !== 'en') {
-      block.classList.add(`OneLinkShow_${blockClass}`);
+      if (isFooterBlock) block.classList.add(`OneLinkShow_${blockClass}`);
       block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
     } else {
-      block.classList.add('OneLinkHide');
+      if (isFooterBlock) block.classList.add('OneLinkHide');
       block.parentElement.classList.add('OneLinkHide');
     }
   });

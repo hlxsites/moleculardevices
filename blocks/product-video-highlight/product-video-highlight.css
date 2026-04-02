@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 .product-video-highlight {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -75,7 +76,7 @@
 
 .product-video-highlight a.reference-placeholder {
   position: relative;
-  display: block
+  display: block;
 }
 
 .product-video-highlight a.reference-placeholder .video-icon {
@@ -167,7 +168,7 @@
     width: unset;
   }
 
-  .product-video-highlight .related > div > p:last-child  {
+  .product-video-highlight .related > div > p:last-child {
     padding: 0 15px;
     margin-top: 10px;
   }
