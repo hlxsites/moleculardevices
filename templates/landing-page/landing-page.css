@@ -110,7 +110,7 @@
 
 .landing-page .no-form-embed h3,
 .landing-page .download-form h3 {
-  font-size: 30px;
+  font-size: 45px;
   font-weight: 600;
   margin-bottom: 40px;
   padding-top: 0;
@@ -120,10 +120,6 @@
 .landing-page .no-form-embed h2 ~ h3,
 .landing-page .download-form h2 ~ h3 {
   margin-bottom: 1rem;
-}
-
-.landing-page main .download-form h4 {
-  font-size: 40px;
 }
 
 .landing-page main .section > div.embed-wrapper {
@@ -329,6 +325,19 @@ body .thank-you-page h4 {
     margin-bottom: 15px;
   }
 
+  .landing-page main .section > div.forms-wrapper h3,
+  .landing-page main .section > div.forms-wrapper h4,
+  .landing-page .embed h3,
+  .landing-page .embed h4,
+  .landing-page .no-form-embed h2 ~ h3,
+  .landing-page .download-form h2 ~ h3 {
+    font-size: 30px;
+  }
+
+  .landing-page main .download-form h4 {
+    font-size: 40px;
+  }
+
   .landing-page .hero-inner p {
     font-size: 27px;
   }
@@ -382,7 +391,8 @@ body .thank-you-page h4 {
     font-size: 25px;
   }
 
-  .landing-page .no-form-embed h3, .landing-page .download-form h3{
+  .landing-page .no-form-embed h3,
+  .landing-page .download-form h3 {
     font-size: 20px;
   }
 
