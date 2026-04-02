@@ -35,7 +35,7 @@
 }
 
 .landing-page h3 {
-  font-size: 42px;
+  font-size: 45px;
   font-weight: normal;
   margin-bottom: 20px;
   color: var(--color-input);
@@ -110,7 +110,7 @@
 
 .landing-page .no-form-embed h3,
 .landing-page .download-form h3 {
-  font-size: 45px;
+  font-size: 30px;
   font-weight: 600;
   margin-bottom: 40px;
   padding-top: 0;
@@ -119,7 +119,6 @@
 
 .landing-page .no-form-embed h2 ~ h3,
 .landing-page .download-form h2 ~ h3 {
-  font-size: 36px;
   margin-bottom: 1rem;
 }
 
@@ -148,7 +147,6 @@
 .landing-page .embed h3,
 .landing-page .embed h4 {
   color: var(--color-highlight);
-  font-size: 30px !important;
   text-align: center;
   padding: 0 20px;
   margin-bottom: 30px;
@@ -382,6 +380,10 @@ body .thank-you-page h4 {
   .landing-page .no-form-embed .default-content-wrapper h2,
   .landing-page .download-form .default-content-wrapper h2 {
     font-size: 25px;
+  }
+
+  .landing-page .no-form-embed h3, .landing-page .download-form h3{
+    font-size: 20px;
   }
 
   .landing-page .no-form-embed .default-content-wrapper p,
