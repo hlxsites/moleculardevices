@@ -1,4 +1,10 @@
 /* stylelint-disable no-descending-specificity */
+.landing-page {
+  --nav-height: 139px;
+  --nav-height-mobile: 74px;
+  --font-size-h2: 45px;
+}
+
 .landing-page .hamburger,
 .landing-page header .mainmenu-wrapper,
 .landing-page header .navbar-header > .company-links,
@@ -8,20 +14,12 @@
   display: none;
 }
 
-.landing-page header {
-  height: 74px;
-}
-
 .landing-page .hero-container {
   padding-bottom: 50px;
 }
 
 .landing-page .hero {
   margin-top: -9px;
-}
-
-.landing-page .hero-inner h1 {
-  font-size: 70px;
 }
 
 .landing-page .hero-inner h2 {
@@ -37,7 +35,7 @@
 }
 
 .landing-page h3 {
-  font-size: 42px;
+  font-size: 45px;
   font-weight: normal;
   margin-bottom: 20px;
   color: var(--color-input);
@@ -104,10 +102,9 @@
 .landing-page .no-form-embed .default-content-wrapper h2,
 .landing-page .download-form .default-content-wrapper h2 {
   color: var(--color-highlight);
-  font-size: 45px;
 }
 
-.landing-page .download-form[style*='background-image'] .default-content-wrapper * {
+.landing-page .download-form[style*="background-image"] .default-content-wrapper * {
   color: var(--color-white);
 }
 
@@ -120,8 +117,9 @@
   margin-top: 20px;
 }
 
-.landing-page main .download-form h4 {
-  font-size: 40px;
+.landing-page .no-form-embed h2 ~ h3,
+.landing-page .download-form h2 ~ h3 {
+  margin-bottom: 1rem;
 }
 
 .landing-page main .section > div.embed-wrapper {
@@ -141,11 +139,10 @@
 }
 
 .landing-page main .section > div.forms-wrapper h3,
-.landing-page main .section > div.forms-wrapper h4 ,
+.landing-page main .section > div.forms-wrapper h4,
 .landing-page .embed h3,
 .landing-page .embed h4 {
   color: var(--color-highlight);
-  font-size: 30px !important;
   text-align: center;
   padding: 0 20px;
   margin-bottom: 30px;
@@ -170,7 +167,7 @@
 }
 
 /* huspot form */
-.landing-page main .section > div.forms-wrapper > div{
+.landing-page main .section > div.forms-wrapper > div {
   background-color: var(--color-gray-100);
   padding: 20px;
 }
@@ -182,12 +179,10 @@
 
 @media (max-width: 767px) {
   .landing-page .hero-inner {
+    --font-size-h1: 32px;
+
     background-color: var(--color-black);
     padding-top: 73px;
-  }
-
-  .landing-page .hero-inner h1 {
-    font-size: 32px;
   }
 
   .landing-page .hero-inner h2 {
@@ -219,23 +214,20 @@
 }
 
 @media (min-width: 992px) {
-  .landing-page header {
-    height: 139px;
-  }
-
   .landing-page h3 {
     font-size: 30px;
   }
 }
 
+/* THANKYOU PAGE */
 .thank-you-page {
+  --font-size-h2: 54px;
+
   padding-top: 100px;
 }
 
 .thank-you-page h2 {
   color: var(--color-primary);
-  font-family: var(--ff-proxima-light);
-  font-size: 54px;
   text-align: center;
   margin-bottom: 40px;
 }
@@ -291,7 +283,11 @@ body .thank-you-page h4 {
     padding-top: 25px;
   }
 
-  .landing-page main .section.download-form:not(.center, .columns-2) .default-content-wrapper:first-child h2:first-child {
+  .landing-page
+    main
+    .section.download-form:not(.center, .columns-2)
+    .default-content-wrapper:first-child
+    h2:first-child {
     margin-top: 0;
   }
 
@@ -327,6 +323,19 @@ body .thank-you-page h4 {
 
   .landing-page .hero-inner h1 {
     margin-bottom: 15px;
+  }
+
+  .landing-page main .section > div.forms-wrapper h3,
+  .landing-page main .section > div.forms-wrapper h4,
+  .landing-page .embed h3,
+  .landing-page .embed h4,
+  .landing-page .no-form-embed h2 ~ h3,
+  .landing-page .download-form h2 ~ h3 {
+    font-size: 30px;
+  }
+
+  .landing-page main .download-form h4 {
+    font-size: 40px;
   }
 
   .landing-page .hero-inner p {
@@ -380,6 +389,11 @@ body .thank-you-page h4 {
   .landing-page .no-form-embed .default-content-wrapper h2,
   .landing-page .download-form .default-content-wrapper h2 {
     font-size: 25px;
+  }
+
+  .landing-page .no-form-embed h3,
+  .landing-page .download-form h3 {
+    font-size: 20px;
   }
 
   .landing-page .no-form-embed .default-content-wrapper p,
