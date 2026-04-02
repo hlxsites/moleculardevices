@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
-import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
+import { getCookie, isAuthorizedUser, loadScript, preloadLCPImage } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 
 export async function iframeResizeHandler(id) {
@@ -107,5 +107,14 @@ export default async function buildAutoBlocks() {
         }, 1000);
       });
     });
+
+
+    const fullWidthSection = document.querySelector('.full-width');
+    if (fullWidthSection) {
+      const sectionImage = fullWidthSection.querySelector('img');
+      sectionImage.decoding = 'async';
+      sectionImage.loading = 'eager';
+      sectionImage.fetchPriority = 'high';
+    }
   }, 800);
 }
