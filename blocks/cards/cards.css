@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+.cards > ul:not(:has(> li:nth-child(3))) {
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+}
+
 .cards .cards-card-body {
   margin: 16px;
   position: relative;
@@ -136,6 +140,10 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
   width: 100%;
+}
+
+.cards.image-ratio-16-9 > ul > li img {
+  aspect-ratio: 16/9;
 }
 
 .cards.stacked-image-text img {
