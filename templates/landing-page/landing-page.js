@@ -107,5 +107,13 @@ export default async function buildAutoBlocks() {
         }, 1000);
       });
     });
+
+    const fullWidthSection = document.querySelector('.full-width');
+    if (fullWidthSection) {
+      const sectionImage = fullWidthSection.querySelector('img');
+      sectionImage.decoding = 'async';
+      sectionImage.loading = 'eager';
+      sectionImage.fetchPriority = 'high';
+    }
   }, 800);
 }
