@@ -7,7 +7,7 @@ import {
   a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
 import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
-import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { buildSearchBar } from './menus/search.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';

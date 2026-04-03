@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 
 function getSelectOptions(rows) {
   return rows.map((value) => `<option value='${value}'>${value}</option>`);

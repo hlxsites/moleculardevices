@@ -4,7 +4,7 @@ import {
   img, div, a, p, h3, strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.min.js';
 import { formatEventDates } from '../latest-events/latest-events.js';
 import {
   formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
