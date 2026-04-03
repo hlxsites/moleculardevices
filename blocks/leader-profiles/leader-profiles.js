@@ -53,11 +53,8 @@ class LeadershipModal {
         allImages.forEach((image) => {
           const PictureEl = image.closest('.leader-profiles-card-image');
           if (PictureEl) {
-            PictureEl.style.minHeight = `${
-              PictureEl.clientWidth < PictureEl.clientHeight
-                ? PictureEl.clientWidth
-                : PictureEl.clientHeight
-            }px`;
+            PictureEl.style.minHeight = `${PictureEl.clientWidth < PictureEl.clientHeight
+              ? PictureEl.clientWidth : PictureEl.clientHeight}px`;
             image.width = PictureEl.clientWidth;
             image.height = PictureEl.clientHeight;
           }
