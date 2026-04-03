@@ -1,4 +1,4 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 // eslint-disable-next-line object-curly-newline
 import { article, a, div, p } from '../../scripts/dom-helpers.js';
 import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';

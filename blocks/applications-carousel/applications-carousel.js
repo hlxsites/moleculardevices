@@ -1,7 +1,7 @@
 import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { goToTabSection } from '../../scripts/utilities.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 

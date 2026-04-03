@@ -1,5 +1,5 @@
 import { a, span } from '../../scripts/dom-helpers.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 export function openMediaGallery(mg) {

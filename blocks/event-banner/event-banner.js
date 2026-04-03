@@ -4,7 +4,7 @@ import {
 import {
   decorateLinks, formatDate, getData, unixDateToString,
 } from '../../scripts/scripts.js';
-import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.min.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';

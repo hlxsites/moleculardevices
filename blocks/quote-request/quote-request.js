@@ -5,7 +5,7 @@ import {
   div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
-import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { sampleRUM } from '../../scripts/lib-franklin.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { RFQ_CMP_ID } from '../forms/formMapping.js';
 

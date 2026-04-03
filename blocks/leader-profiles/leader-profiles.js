@@ -1,4 +1,4 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 
 class LeadershipModal {
   constructor(leaderCardItems) {

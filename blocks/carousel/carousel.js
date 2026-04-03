@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions, import/no-cycle */
-import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
+import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.min.js';
 import {
   button, div, img, p, span,
 } from '../../scripts/dom-helpers.js';
