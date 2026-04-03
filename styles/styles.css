@@ -1383,6 +1383,11 @@ main .section.wave .default-content-wrapper {
   padding-right: 15px;
 }
 
+main .section.wave .default-content-wrapper:empty{
+  margin: 0;
+  padding: 0;
+}
+
 main .section.wave .default-content-wrapper h2 {
   font-size: var(--font-size-h2);
   margin-bottom: 30px;

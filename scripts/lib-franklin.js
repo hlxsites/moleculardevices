@@ -914,6 +914,9 @@ export async function waitForLCP(lcpBlocks) {
  * loads a block named 'header' into header
  */
 export function loadHeader(header) {
+  if (!header || header.dataset.loaded) return;
+  header.dataset.loaded = 'true';
+
   const headerBlock = buildBlock('header', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
@@ -925,6 +928,9 @@ export function loadHeader(header) {
  * loads a block named 'footer' into footer
  */
 export function loadFooter(footer) {
+  if (!footer || footer.dataset.loaded) return;
+  footer.dataset.loaded = 'true';
+
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);

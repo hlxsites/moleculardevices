@@ -122,15 +122,22 @@ function decorateWaveSection(main) {
   ]);
   waveImage.querySelector('img').setAttribute('width', '1663');
   waveImage.querySelector('img').setAttribute('height', '180');
+
   const skipWave = document.querySelector(':scope.fragment > div, .page-tabs, .landing-page, .section.wave:last-of-type, .section:last-of-type div:first-of-type .fragment:only-child');
   const waveSections = document.querySelectorAll('.section.wave:not(.bluegreen):last-of-type, .section.wave.orange-buttons:not(.bluegreen)');
   const waveSections2 = document.querySelectorAll('.section.wave:not(.bluegreen, .wavecarousel)');
+
   waveSections.forEach((section) => {
-    if (section && !section.querySelector('picture')) { section.appendChild(waveImage); }
+    const existingPictures = section.querySelectorAll('picture:has(img[src*="wave-footer-bg-top"])');
+    existingPictures.forEach((pic) => pic.remove());
+    section.appendChild(waveImage);
   });
   waveSections2.forEach((section) => {
-    if (section && !section.querySelector(':scope > picture')) { section.appendChild(waveImage); }
+    const existingPictures = section.querySelectorAll('picture:has(img[src*="wave-footer-bg-top"])');
+    existingPictures.forEach((pic) => pic.remove());
+    section.appendChild(waveImage);
   });
+
   if (!skipWave) main.appendChild(div({ class: 'section wave', 'data-section-status': 'initialized' }, waveImage));
 }
 
@@ -148,7 +155,9 @@ function decorateEmbeddedBlocks(container) {
  * Breadcrumb block created at the top of first section
  */
 function createBreadcrumbsSpace(main) {
-  if (getMetadata('breadcrumbs') === 'auto') {
+  const breadcrumbWrapper = main.querySelector('.breadcrumbs-wrapper');
+
+  if (!breadcrumbWrapper && getMetadata('breadcrumbs') === 'auto') {
     const blockWrapper = document.createElement('nav');
     blockWrapper.classList.add('breadcrumbs-wrapper');
     blockWrapper.setAttribute('aria-label', 'Breadcrumb');
@@ -157,13 +166,21 @@ function createBreadcrumbsSpace(main) {
 }
 
 async function loadBreadcrumbs(main) {
-  if (getMetadata('breadcrumbs') === 'auto') {
-    const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
-    const block = buildBlock('breadcrumbs', '');
-    blockWrapper.append(block);
-    decorateBlock(block);
-    await loadBlock(block);
-  }
+  if (getMetadata('breadcrumbs') !== 'auto') return;
+
+  const blockWrapper = main.querySelector('.breadcrumbs-wrapper');
+  if (!blockWrapper) return;
+
+  if (blockWrapper.dataset.loaded) return;
+  blockWrapper.dataset.loaded = 'true';
+
+  const block = buildBlock('breadcrumbs', '');
+
+  blockWrapper.innerHTML = '';
+  blockWrapper.append(block);
+
+  decorateBlock(block);
+  await loadBlock(block);
 }
 
 /**
