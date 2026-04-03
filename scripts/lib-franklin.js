@@ -921,6 +921,7 @@ export function loadHeader(header) {
   header.append(headerBlock);
   decorateBlock(headerBlock);
   loadBlock(headerBlock);
+  // eslint-disable-next-line consistent-return
   return headerBlock;
 }
 
@@ -934,6 +935,7 @@ export function loadFooter(footer) {
   const footerBlock = buildBlock('footer', '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
+  // eslint-disable-next-line consistent-return
   return loadBlock(footerBlock);
 }
 
