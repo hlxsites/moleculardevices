@@ -2,10 +2,10 @@
 import {
   createOptimizedPicture, decorateBlock, decorateIcons,
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   embedVideo, fetchFragment, isGatedResource, itemSearchTitle, summariseDescription,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
   div, a, p, h3, i, h2, span, ul, li,

@@ -1057,10 +1057,10 @@ export function setup() {
   window.hlx.plugins = new PluginsRegistry();
   window.hlx.templates = new TemplatesRegistry();
 
-  const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+  const scriptEl = document.querySelector('script[src$="/scripts/scripts.min.js"]');
   if (scriptEl) {
     try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
+      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.min.js');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie, fetchFragment } from '../../scripts/scripts.js';
+import { getCookie, fetchFragment } from '../../scripts/scripts.min.js';
 import {
   div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
-import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { sampleRUM } from '../../scripts/lib-franklin.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { RFQ_CMP_ID } from '../forms/formMapping.js';
 

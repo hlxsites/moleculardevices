@@ -3,13 +3,13 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   createOptimizedPicture,
   decorateIcons, fetchPlaceholders, toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   a, div, h3, img, li, span, strong,
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
-import { toTitleCase } from '../../scripts/scripts.js';
+import { toTitleCase } from '../../scripts/scripts.min.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';

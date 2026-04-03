@@ -1,5 +1,5 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
-import { fetchFragment, videoButton } from '../../scripts/scripts.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
+import { fetchFragment, videoButton } from '../../scripts/scripts.min.js';
 
 async function getFragmentFromFile(fragmentURL) {
   const fragment = await fetchFragment(fragmentURL, false);

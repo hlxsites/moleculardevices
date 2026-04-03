@@ -1,4 +1,4 @@
-import { getData } from '../../scripts/scripts.js';
+import { getData } from '../../scripts/scripts.min.js';
 import { buildList } from '../latest-news/latest-news.js';
 
 export default async function decorate(block) {

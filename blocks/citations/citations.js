@@ -1,12 +1,12 @@
 import {
   decorateLinks, fetchFragment, formatNumberInUs, sortDataByDate,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import {
   a, div, h3, p, span,
 } from '../../scripts/dom-helpers.js';
 import {
   createOptimizedPicture, getMetadata, toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import ffetch from '../../scripts/ffetch.js';
 
 const lineHeightOfPage = 1.33 * 18;

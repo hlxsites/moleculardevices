@@ -1,7 +1,7 @@
 import { div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { toClassName } from '../../scripts/lib-franklin.js';
-import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
+import { getCookie, iframeResizeHandler } from '../../scripts/scripts.min.js';
 
 let DEFAULT_CMP = '';
 let REGION = new URLSearchParams(window.location.search).get('region');

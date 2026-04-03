@@ -1,12 +1,12 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
+import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import {
   div, p, strong, a,
 } from '../../scripts/dom-helpers.js';
 import resourceMapping from '../resources/resource-mapping.js';
-import { sortDataByDate } from '../../scripts/scripts.js';
+import { sortDataByDate } from '../../scripts/scripts.min.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',

@@ -6,8 +6,8 @@ import {
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { decorateModal } from '../../blocks/modal/modal.js';
-import { decorateLinks, getData, sortDataByDate } from '../../scripts/scripts.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { decorateLinks, getData, sortDataByDate } from '../../scripts/scripts.min.js';
+import { getMetadata } from '../../scripts/lib-franklin.min.js';
 
 export async function getLatestNewsletter() {
   const resources = await ffetch('/query-index.json')

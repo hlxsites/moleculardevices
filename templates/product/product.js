@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
 import { getRFQDataByFamilyID } from '../../blocks/quote-request/quote-request.js';
-import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.min.js';
 import {
   a, div, h2, p,
 } from '../../scripts/dom-helpers.js';

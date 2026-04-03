@@ -1,14 +1,14 @@
 import {
   decorateIcons, decorateBlock, getMetadata, createOptimizedPicture,
   toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
 import {
   decorateExternalLink, decorateLinkedPictures, formatDate,
   getData, toCapitalize, unixDateToString,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from '../header/header.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
