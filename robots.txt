@@ -102,7 +102,7 @@ Disallow: /en/assets/app-note/br/sensitive-quantitation-plasmid-dna-from-bacteri
 Disallow: /en/assets/app-note/dd/3d-biology/cellxpress-ai-for-automated-robust-brain-organoid-generation
 Disallow: /en/assets/app-note/dd/img/ai-driven-3d-segmentation-drug-toxicity-screening-human-liver-microtissues
 Disallow: /en/assets/app-note/dd/img/ai-assisted-spike-train-synchronization-human-brain-organoids
-Disallow: /en/assets/app-note/dd/img/high-content-cell-profiling-using-imaging-with-led
+Disallow: /en/assets/app-note/dd/img/high-content-cell-profiling-using-imaging-with-led-illumination
 
 
 
