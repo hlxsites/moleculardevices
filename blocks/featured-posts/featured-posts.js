@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 import { a, div, span } from '../../scripts/dom-helpers.js';
 
 async function getPostList(type, postUrls) {

@@ -4,7 +4,7 @@ import {
 
 import {
   buildBlock, decorateBlock, decorateIcons, loadBlock,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 
 export default async function decorate(block) {
   block.style = `grid-template-rows: repeat(${Math.max(block.children.length - 1, 3)}, auto);`;

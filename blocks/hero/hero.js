@@ -1,5 +1,5 @@
 /* eslint-disable no-plusplus */
-import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.min.js';
 import {
   formatDate,
   isVideo,

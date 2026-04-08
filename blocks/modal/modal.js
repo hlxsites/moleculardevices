@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { button, div, span } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.min.js';
 import { newsletterModal } from '../../templates/blog/blog.js';
 
 let timer;

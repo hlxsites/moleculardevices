@@ -1,5 +1,5 @@
 import { a, div, i } from '../../scripts/dom-helpers.js';
-import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
+import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.min.js';
 
 /**
  * Extracts a numeric value from a class name like "position-bottom-40".
