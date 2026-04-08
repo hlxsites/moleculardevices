@@ -1,6 +1,6 @@
 /* eslint-disable no-console, max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
-import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.js';
+import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.min.js';
 import { getCookie } from '../../scripts/scripts.js';
 import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-request.js';
 import {

@@ -1,6 +1,6 @@
 import { embedVideo, fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
-import { decorateButtons } from '../../scripts/lib-franklin.js';
+import { decorateButtons } from '../../scripts/lib-franklin.min.js';
 import { createCarousel } from '../carousel/carousel.js';
 import { triggerModalWithUrl } from '../modal/modal.js';
 

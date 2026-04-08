@@ -1,7 +1,7 @@
 import {
   div, li, ul,
 } from '../../scripts/dom-helpers.js';
-import { toClassName } from '../../scripts/lib-franklin.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
 import { processEmbedFragment } from '../../scripts/scripts.js';
 
 const classActive = 'active';

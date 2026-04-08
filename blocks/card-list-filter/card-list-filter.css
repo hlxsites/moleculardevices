@@ -33,7 +33,7 @@
   line-height: 1.33;
 }
 
-.card-list-filter ul li+li a::before {
+.card-list-filter ul li + li a::before {
   content: "|";
   position: absolute;
   left: 0;
@@ -106,7 +106,7 @@
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
-  .card-list-filter.blog ul li+li a::before,
+  .card-list-filter.blog ul li + li a::before,
   .card-list-filter.blog ul li a.active::after {
     content: none;
   }
@@ -238,8 +238,8 @@
   .card-list-filter.video-gallery {
     position: absolute;
     bottom: 0;
-    top: -270px;
-    left: 50px;
+    top: -200px;
+    left: 20px;
     width: 250px;
   }
 

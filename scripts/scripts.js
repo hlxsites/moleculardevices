@@ -19,7 +19,7 @@ import {
   toCamelCase,
   createOptimizedPicture,
   decorateImages,
-} from './lib-franklin.js';
+} from './lib-franklin.min.js';
 import {
   a, div, domEl, iframe, p,
 } from './dom-helpers.js';

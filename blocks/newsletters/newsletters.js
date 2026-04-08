@@ -1,6 +1,6 @@
 import {
   fetchPlaceholders, readBlockConfig, toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   createList, createDropdown, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';

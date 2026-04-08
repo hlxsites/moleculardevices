@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { button, div, span } from '../../scripts/dom-helpers.js';
-import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { embedCerosFrame } from '../embed/embed.js';
 
 function openCerosModal(block, cerosUrl) {

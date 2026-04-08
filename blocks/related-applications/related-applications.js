@@ -39,6 +39,20 @@ function alignTitles() {
   relApps.forEach((relApp) => observer.observe(relApp));
 }
 
+function getUniqueId(baseId) {
+  if (!baseId) return '';
+
+  let uniqueId = baseId;
+  let counter = 1;
+
+  while (document.getElementById(uniqueId)) {
+    uniqueId = `${baseId}-${counter}`;
+    counter += 1;
+  }
+
+  return uniqueId;
+}
+
 export default async function decorate(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => a.href);
   const hasTOC = block.classList.contains('toc');
@@ -52,7 +66,10 @@ export default async function decorate(block) {
       const fragmentElement = div();
       fragmentElement.innerHTML = fragmentHtml;
       const h3 = fragmentElement.querySelector('h3');
-      return { id: h3.id, title: h3.textContent, html: fragmentElement };
+      const headingID = h3?.id || h3?.textContent?.toLowerCase().replace(/\s+/g, '-');
+      const uniqueID = getUniqueId(headingID);
+      if (h3) h3.id = uniqueID;
+      return { id: uniqueID, title: h3.textContent, html: fragmentElement };
     }
     return null;
   }));

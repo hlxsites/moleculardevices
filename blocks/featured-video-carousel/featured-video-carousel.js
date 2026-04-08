@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { createCard } from '../card/card.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 

@@ -1,4 +1,4 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { fetchFragment, videoButton } from '../../scripts/scripts.js';
 
 async function getFragmentFromFile(fragmentURL) {

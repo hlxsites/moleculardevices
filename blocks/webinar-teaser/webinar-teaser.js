@@ -1,4 +1,4 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { div } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
