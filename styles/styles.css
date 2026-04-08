@@ -1672,39 +1672,19 @@ main .section.background-molecules {
 }
 
 /* --store-- */
-.company-links li.store-link {
-  margin-top: 2px;
-}
-
-.company-links li.store-link .icon-store > svg {
-  margin-top: -2px;
-}
-
-.company-links li.cart-link {
-  margin: -5px 5px 0 0;
-  padding-right: 30px;
-}
-
-.company-links li.cart-link i.fa.fa-shopping-cart {
-  font-size: 19px;
-  color: var(--color-gray-350);
-  position: relative;
-  padding-right: 5px;
-}
-
 .company-links .cart-count {
   text-align: center;
   vertical-align: middle;
   background-color: var(--color-secondary);
   color: var(--color-white);
   font-weight: 700;
-  line-height: 19px;
+  line-height: 18px;
   border-radius: 50%;
   position: absolute;
-  left: 7px;
+  left: 6px;
   font-size: 10px;
-  top: -11px;
-  min-width: 21px;
+  top: -9px;
+  min-width: 18px;
   max-width: 40px;
 }
 

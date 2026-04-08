@@ -74,6 +74,7 @@ main .carousel-wrapper.cards .carousel {
   font-size: var(--fs-h3);
   margin-bottom: 15px;
   margin-top: 0;
+  padding-top: 0;
 }
 
 .carousel.cards.three-lines-heading .carousel-item h3 {

@@ -146,12 +146,13 @@ body.openmenu header .hamburger > .icon-bar + .icon-bar {
 /* Company Links (carrers/languages/...) */
 header .navbar-header > .company-links {
   position: absolute;
-  top: 45px;
+  top: 44px;
   right: -1px;
   display: none;
 }
 
-header .languages-dropdown {
+header .languages-dropdown,
+header .auth-dropdown {
   position: absolute;
   top: 100%;
   left: 0;
@@ -172,11 +173,18 @@ header .languages-dropdown {
   line-height: 18px;
 }
 
-header .languages-dropdown.show {
+header .auth-dropdown {
+  min-width: max-content;
+  left: 4px;
+}
+
+header .languages-dropdown.show,
+header .auth-dropdown.show {
   display: block;
 }
 
-header .languages-dropdown a {
+header .languages-dropdown a,
+header .auth-dropdown a {
   padding: 3px 20px;
   padding-right: 18px;
   clear: both;
@@ -278,19 +286,33 @@ header .company-links > ul {
   list-style: none;
   padding-left: 30px;
   margin-bottom: 0;
-  display: inline-block;
+  display: inline-flex;
   margin-top: 0;
+  gap: 24px;
 }
 
 header .company-links > ul > li {
-  float: left;
   position: relative;
   list-style: none;
-  margin-right: 30px;
+  margin-top: 1px;
+  line-height: 1;
 }
 
+header .company-links > ul > li,
 header .company-links a {
   color: var(--color-theme-gray);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+header .company-links > ul > li:hover,
+header .company-links > ul > li > a:hover {
+  color: var(--color-black);
+}
+
+header .company-links > ul > li > a {
+  line-height: 1;
 }
 
 header .company-links img {
@@ -300,10 +322,16 @@ header .company-links img {
   width: 15px;
   background-position: center;
   display: inline-block;
-  margin-right: 2px;
   vertical-align: bottom;
   font-style: italic;
   object-fit: contain;
+  transform: translateY(-1px);
+}
+
+header .company-links i[class*="fa"] {
+  font-size: 1rem;
+  color: var(--color-gray-400);
+  line-height: 1;
 }
 
 header .company-links ul li {
@@ -713,7 +741,8 @@ header .text-submenu ul > li > a {
   text-transform: none;
 }
 
-header .languages-dropdown a:hover {
+header .languages-dropdown a:hover,
+header .auth-dropdown a:hover {
   background-color: var(--color-gray-50);
 }
 
@@ -2339,4 +2368,11 @@ header .company-right-submenu > div:last-child > div:last-child img {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+/* auth0 */
+.auth-dropdown {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
