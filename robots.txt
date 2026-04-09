@@ -50,7 +50,7 @@ Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/scaling-with-organo
 Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/getting-started-with-organoids.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/gut-microbiome-research.pdf
 Disallow: /sites/default/files/en/assets/ebook/bpd/molecular-cloning.pdf
-
+Disallow: /sites/default/files/en/assets/ebook/dd/3d-biology/image-guided-cell-culture-automation-biologists.pdf
 
 # User Guide
 Disallow: /sites/default/files/en/assets/user-guide/dd/cns/the-axon-guide.pdf
