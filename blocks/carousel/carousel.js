@@ -181,8 +181,8 @@ class Carousel {
     Object.assign(this, config);
 
     if (this.getCurrentVisibleItems() >= this.data.length) {
-      // this.infiniteScroll = false;
-      // this.navButtons = false;
+      this.infiniteScroll = false;
+      this.navButtons = false;
       this.block.classList.add('fully-visible', 'three-items-visible');
     }
 
