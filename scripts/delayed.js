@@ -32,6 +32,26 @@ window.intercomSettings = {
     else{w.addEventListener('load',l,false);}
   }
 })();
+  function updateIntercomContext() {
+    if (window.Intercom) {
+      const context = getPageContext();
+
+      window.Intercom("update", {
+        page_type: context.page_type,
+        product_name: context.product_name,
+        url: window.location.href
+      });
+
+      console.log("Intercom context updated:", context); // debug
+    }
+  }
+
+  // Run after page load
+  window.addEventListener("load", function () {
+    setTimeout(updateIntercomContext, 1000);
+  });
+})();
+
 // end of intercom script for the chatbot
 /*
 IPStack Integration to get specific user information
