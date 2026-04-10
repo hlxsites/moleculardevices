@@ -31,7 +31,44 @@ window.intercomSettings = {
     else if(w.attachEvent){w.attachEvent('onload',l);}
     else{w.addEventListener('load',l,false);}
   }
-})();
+})
+
+(function () {
+  function getPageContext() {
+    const path = window.location.pathname.toLowerCase();
+
+    let pageType = "other";
+    let productName = "";
+
+    // Detect page type
+    if (path === "/" || path === "") {
+      pageType = "homepage";
+    } else if (path.includes("/products")) {
+      pageType = "product";
+    } else if (path.includes("/applications")) {
+      pageType = "application";
+    } else if (path.includes("/blog") || path.includes("/lab-notes")) {
+      pageType = "blog";
+    }
+
+    // Extract product name from URL (example: /products/imagexpress-confocal-ht-ai)
+    if (pageType === "product") {
+      const parts = path.split("/");
+      const slug = parts[parts.length - 1];
+
+      if (slug) {
+        productName = slug
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase()); // Capitalize
+      }
+    }
+
+    return {
+      page_type: pageType,
+      product_name: productName
+    };
+  }
+
   function updateIntercomContext() {
     if (window.Intercom) {
       const context = getPageContext();
@@ -50,7 +87,9 @@ window.intercomSettings = {
   window.addEventListener("load", function () {
     setTimeout(updateIntercomContext, 1000);
   });
-})();
+})
+();
+
 
 // end of intercom script for the chatbot
 /*
