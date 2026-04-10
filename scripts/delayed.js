@@ -6,61 +6,6 @@ const isSidekickLibrary = (window.location.href === 'about:srcdoc');
 window.intercomSettings = {
     app_id: "kahrndo3"
   };
-  (function () {
-  function getPageContext() {
-    const path = window.location.pathname.toLowerCase();
-
-    let pageType = "other";
-    let productName = "";
-
-    // Detect page type
-    if (path === "/" || path === "") {
-      pageType = "homepage";
-    } else if (path.includes("/products")) {
-      pageType = "product";
-    } else if (path.includes("/applications")) {
-      pageType = "application";
-    } else if (path.includes("/blog") || path.includes("/lab-notes")) {
-      pageType = "blog";
-    }
-
-    // Extract product name from URL (example: /products/imagexpress-confocal-ht-ai)
-    if (pageType === "product") {
-      const parts = path.split("/");
-      const slug = parts[parts.length - 1];
-
-      if (slug) {
-        productName = slug
-          .replace(/-/g, " ")
-          .replace(/\b\w/g, (c) => c.toUpperCase()); // Capitalize
-      }
-    }
-
-    return {
-      page_type: pageType,
-      product_name: productName
-    };
-  }
-
-  function updateIntercomContext() {
-    if (window.Intercom) {
-      const context = getPageContext();
-
-      window.Intercom("update", {
-        page_type: context.page_type,
-        product_name: context.product_name,
-        url: window.location.href
-      });
-
-      console.log("Intercom context updated:", context); // debug
-    }
-  }
-
-  // Run after page load
-  window.addEventListener("load", function () {
-    setTimeout(updateIntercomContext, 1000);
-  });
-})();
 
 (function(){
   var w=window;
