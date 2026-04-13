@@ -14,7 +14,6 @@ const cardRenderer = await createCard({
 });
 
 export default async function decorate(block) {
-  block.classList.add('cards');
   const links = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const pressItems = await ffetch('/query-index.json')
     .sheet('resources')
