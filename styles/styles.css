@@ -795,10 +795,6 @@ main .section.columns-2 > article {
   main .breadcrumbs-wrapper {
     height: 30px;
   }
-
-  main .section.columns-2 {
-    padding: 0;
-  }
 }
 
 @media only screen and (min-width: 768px) {
