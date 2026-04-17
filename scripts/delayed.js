@@ -2,42 +2,37 @@
 import { sampleRUM, loadScript } from './lib-franklin.js';
 
 const isSidekickLibrary = (window.location.href === 'about:srcdoc');
+// start of intercom script for the chatbot
+window.intercomSettings = {
+    app_id: "kahrndo3"
+  };
 
-/* eslint-disable */
-// function LoadDriftWidget() {
-//     var t = window.driftt = window.drift = window.driftt || [];
-//     if (!t.init) {
-//         if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-//         t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
-//         t.factory = function(e) {
-//         return function() {
-//             var n = Array.prototype.slice.call(arguments);
-//             return n.unshift(e), t.push(n), t;
-//         };
-//         }, t.methods.forEach(function(e) {
-//         t[e] = t.factory(e);
-//         }), t.load = function(t) {
-//         var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
-//         o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
-//         var i = document.getElementsByTagName("script")[0];
-//         i.parentNode.insertBefore(o, i);
-//     };
-//     }
-//     drift.SNIPPET_VERSION = '0.3.1';
-//     drift.load('pyupvvckemp9');
-//     // dreamdata script
-//     drift.on("emailCapture", function(payload) {
-//   if (payload.data && payload.data.email && window.analytics) {
-//       window.analytics.identify(null, {
-//           email: payload.data.email,
-//       });
-//       window.analytics.track("chat_converted");
-//   }
-// });
-
-// };
-/* eslint-enable */
-
+(function(){
+  var w=window;
+  var ic=w.Intercom;
+  if(typeof ic==="function"){
+    ic('reattach_activator');
+    ic('update',w.intercomSettings);
+  } else {
+    var d=document;
+    var i=function(){i.c(arguments);};
+    i.q=[];
+    i.c=function(args){i.q.push(args);};
+    w.Intercom=i;
+    var l=function(){
+      var s=d.createElement('script');
+      s.type='text/javascript';
+      s.async=true;
+      s.src='https://widget.intercom.io/widget/kahrndo3';
+      var x=d.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s,x);
+    };
+    if(document.readyState==='complete'){l();}
+    else if(w.attachEvent){w.attachEvent('onload',l);}
+    else{w.addEventListener('load',l,false);}
+  }
+})();
+// end of intercom script for the chatbot
 /*
 IPStack Integration to get specific user information
 Stores dedicated user data in a cookie.
