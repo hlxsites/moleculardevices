@@ -1288,20 +1288,7 @@ export function formatDateUTCSeconds(date, options = {}) {
 }
 
 export function unixDateToString(unixDateString) {
-  if (!unixDateString) return '';
-
-  const ts = Number(unixDateString);
-
-  // check if valid number
-  if (isNaN(ts)) return '';
-
-  // handle seconds vs milliseconds
-  const timestamp = ts < 1e12 ? ts * 1000 : ts;
-
-  const date = new Date(timestamp);
-
-  // check if valid date
-  if (isNaN(date.getTime())) return '';
+  const date = new Date(unixDateString * 1000);
 
   const day = String(date.getUTCDate()).padStart(2, '0');
   const month = String(date.getUTCMonth() + 1).padStart(2, '0');
