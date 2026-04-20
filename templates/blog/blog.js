@@ -111,6 +111,7 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
+const TEST_KEY = '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';
 async function summarizeContentHandler() {
   const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
   const summaryEl = document.querySelector('.ai-summary-result');
