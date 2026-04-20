@@ -2,6 +2,7 @@
 import {
   div, img, h3, p, h5, strong, i, a,
   article,
+  button,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
@@ -60,6 +61,10 @@ export async function getBlogAndPublications() {
   return sortDataByDate(data);
 }
 
+async function summarizeContentHandler() {
+  console.log('SUMMARIZED');
+}
+
 export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
   const newsletterCMP = getMetadata('newsletter-form-cmp');
@@ -114,4 +119,14 @@ export default async function decorate() {
       block.append(creditParagraph);
     }, 1000);
   }
+
+  /* added cta */
+  const summarizeCTA = button({ class: 'summarize-cta button' }, 'Summarize with AI');
+  const result = div({ class: 'ai-summary-result text-left' });
+  summarizeCTA.addEventListener('click', summarizeContentHandler);
+
+  setTimeout(() => {
+    const block = document.querySelector('.hero-container + .section');
+    block.prepend(div({ class: 'default-content-wrapper text-right', style: 'margin-bottom: 1rem;' }, summarizeCTA, result));
+  }, 1000);
 }
