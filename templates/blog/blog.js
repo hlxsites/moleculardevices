@@ -61,8 +61,84 @@ export async function getBlogAndPublications() {
   return sortDataByDate(data);
 }
 
+function parseMarkdownToHTML(text) {
+  // return text;
+  // let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  // html = html.replace(/^\*\s+(.*)$/gm, '<li>$1</li>');
+  // html = html.replace(/(<li>(?:.*?)<\/li>)/gs, '<ul>$1</ul>');
+  // const lines = html.split('\n');
+  // const wrappedLines = lines.map((line) => {
+  //   const trimmed = line.trim();
+  //   if (!trimmed) return '';
+  //   if (trimmed.startsWith('<ul>')
+  // || trimmed.startsWith('<li>') || trimmed.startsWith('</ul>')) {
+  //     return trimmed;
+  //   }
+  //   return `<p>${trimmed}</p>`;
+  // });
+
+  // return wrappedLines.join('');
+
+  const processedText = text
+    .trim()
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  const lines = processedText.split('\n');
+  let htmlResult = '';
+  let inList = false;
+
+  lines.forEach((line) => {
+    const trimmedLine = line.trim();
+    if (!trimmedLine) return;
+
+    if (trimmedLine.startsWith('* ')) {
+      if (!inList) {
+        htmlResult += '<ul>';
+        inList = true;
+      }
+      const content = trimmedLine.replace(/^\*\s+/, '');
+      htmlResult += `<li>${content}</li>`;
+    } else {
+      if (inList) {
+        htmlResult += '</ul>';
+        inList = false;
+      }
+      htmlResult += `<p>${trimmedLine}</p>`;
+    }
+  });
+
+  if (inList) htmlResult += '</ul>';
+  return htmlResult;
+}
+
+const TEST_KEY = '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';
 async function summarizeContentHandler() {
-  console.log('SUMMARIZED');
+  const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
+  const summaryEl = document.querySelector('.ai-summary-result');
+  const blogTextContent = [];
+
+  summaryEl.textContent = 'Summarizing...';
+  sections.forEach((section) => {
+    blogTextContent.push(section.textContent.replace(/\n/g, ' ').trim());
+  });
+
+  const finalText = blogTextContent.join();
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${TEST_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-8b-instant',
+      messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
+    }),
+    // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
+  });
+
+  const data = await response.json();
+
+  summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
 }
 
 export default async function decorate() {
@@ -99,6 +175,11 @@ export default async function decorate() {
     blogCarouselSection.parentElement.insertBefore(socialShareSection, blogCarouselSection);
   }
 
+  /* added cta */
+  const summarizeCTA = button({ class: 'summarize-cta button' }, 'Summarize with AI');
+  const result = div({ class: 'ai-summary-result text-left' });
+  summarizeCTA.addEventListener('click', summarizeContentHandler);
+
   // add article sentence
   const isArticlePage = getMetadata('blog-type') === 'Article';
   const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
@@ -116,14 +197,10 @@ export default async function decorate() {
     setTimeout(() => {
       const block = document.querySelector('.hero-container + .section');
       decorateLinks(creditParagraph);
+      block.prepend(div({ class: 'default-content-wrapper text-right', style: 'margin-bottom: 1rem;' }, summarizeCTA, result));
       block.append(creditParagraph);
     }, 1000);
   }
-
-  /* added cta */
-  const summarizeCTA = button({ class: 'summarize-cta button' }, 'Summarize with AI');
-  const result = div({ class: 'ai-summary-result text-left' });
-  summarizeCTA.addEventListener('click', summarizeContentHandler);
 
   setTimeout(() => {
     const block = document.querySelector('.hero-container + .section');
