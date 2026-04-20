@@ -1289,9 +1289,11 @@ export function formatDateUTCSeconds(date, options = {}) {
 
 export function unixDateToString(unixDateString) {
   const date = new Date(unixDateString * 1000);
-  const day = date.getUTCDate();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear();
+
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+  const year = date.getUTCFullYear();
+
   return `${month}/${day}/${year}`;
 }
 
