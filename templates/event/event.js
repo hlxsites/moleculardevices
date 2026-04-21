@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { createEventBanner } from '../../blocks/event-banner/event-banner.js';
 import { div } from '../../scripts/dom-helpers.js';
 import { getAllMetadata, getMetadata } from '../../scripts/lib-franklin.min.js';

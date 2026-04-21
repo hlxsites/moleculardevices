@@ -6,7 +6,7 @@ import {
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.min.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
-import { formatEventDateRange } from '../../scripts/list.js';
+import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 import { compareEvents } from '../events/events.js';
 
 /* get latest events */
@@ -29,7 +29,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
     div({ class: 'event-details' },
       p({ class: 'cite' }, eventObj?.eventType),
       isFeaturedBanner ? h2({ class: 'event-title' }, a({ href: eventObj?.path }, eventObj?.title)) : eventObj?.title,
-      eventObj?.eventStart ? p({ class: 'event-date' }, formatEventDateRange(eventObj?.eventStart, eventObj?.eventEnd)) : '',
+      eventObj?.eventStart ? p({ class: 'event-date' }, formatEventDateRange(normalizeDate(eventObj?.eventStart), normalizeDate(eventObj?.eventEnd))) : '',
       p(eventObj?.eventAddress),
       p(eventObj?.eventRegion),
     ),
