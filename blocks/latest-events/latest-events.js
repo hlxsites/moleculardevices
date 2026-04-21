@@ -1,16 +1,7 @@
 /* eslint-disable import/no-cycle */
-import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
+import { getData } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
-
-export function formatEventDates(startUnixStr, endUnixStr) {
-  let eventDates = '';
-  if (startUnixStr && endUnixStr) {
-    const [startDate] = formatDate(unixDateToString(startUnixStr)).split(',');
-    const endDate = formatDate(unixDateToString(endUnixStr));
-    eventDates = `${startDate} - ${endDate}`;
-  }
-  return eventDates;
-}
+import { formatEventDateRange, unixToDate } from '../../scripts/list.js';
 
 export function buildList(data, block) {
   const list = div({ class: 'list' });
@@ -22,7 +13,7 @@ export function buildList(data, block) {
           item.title,
         ),
       ),
-      p({}, `${formatEventDates(item.eventStart, item.eventEnd)} | ${item.eventRegion}`),
+      p({}, `${formatEventDateRange(unixToDate(item.eventStart), unixToDate(item.eventEnd))} | ${item.eventRegion}`),
     ));
   });
 }

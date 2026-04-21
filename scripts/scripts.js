@@ -1254,20 +1254,21 @@ async function loadEager(doc) {
  * @param {Object} options result string format options
  * @returns new string with the formated date
  */
-export function formatDate(dateStr, options = {}) {
-  if (!dateStr) return '';
-  const parts = dateStr.split(/[/,]/);
-  const date = new Date(parts[2], parts[0] - 1, parts[1]);
+export const DATE_LOCALE = 'de-DE';
 
-  if (date) {
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
-      ...options,
-    });
-  }
-  return dateStr;
+export function formatDate(date, options = {}) {
+  if (!date) return '';
+
+  const d = date instanceof Date ? date : new Date(date);
+
+  if (Number.isNaN(d.getTime())) return '';
+
+  return d.toLocaleDateString(DATE_LOCALE, {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+    ...options,
+  });
 }
 
 /**
@@ -1279,7 +1280,7 @@ export function formatDateUTCSeconds(date, options = {}) {
   const dateObj = new Date(0);
   dateObj.setUTCSeconds(date);
 
-  return dateObj.toLocaleDateString('en-US', {
+  return dateObj.toLocaleDateString(DATE_LOCALE, {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
@@ -1294,7 +1295,7 @@ export function unixDateToString(unixDateString) {
   const month = String(date.getUTCMonth() + 1).padStart(2, '0');
   const year = date.getUTCFullYear();
 
-  return `${month}/${day}/${year}`;
+  return `${year}-${month}-${day}`;
 }
 
 export function addLinkIcon(elem) {

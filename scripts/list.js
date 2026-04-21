@@ -1,7 +1,9 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
-import { formatDate, toTitleCase, unixDateToString } from './scripts.js';
+import {
+  DATE_LOCALE, formatDate, toTitleCase, unixDateToString,
+} from './scripts.js';
 import {
   a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';
@@ -37,51 +39,61 @@ function hasImage(imgPath) {
   return (!imgPath.startsWith('/default-meta-image.png'));
 }
 
-export function formatEventDateRange(startDateStr, endDateStr) {
-  const startDate = new Date(startDateStr);
-  const endDate = new Date(endDateStr);
+/**
+ * Convert Unix seconds → Date
+ */
+export function unixToDate(unixSeconds) {
+  if (!unixSeconds || unixSeconds === '0') return null;
+  return new Date(unixSeconds * 1000);
+}
+
+/**
+ * Format event date range from Date objects or timestamps
+ */
+export function formatEventDateRange(start, end) {
+  const startDate = new Date(start);
+  const endDate = new Date(end);
 
   if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
     // eslint-disable-next-line no-console
-    console.error('Invalid input date:', { startDateStr, endDateStr });
+    console.error('Invalid input date:', { start, end });
     return 'Invalid Date';
   }
 
-  const startMonth = startDate.toLocaleString('en-US', { month: 'long' });
-  const endMonth = endDate.toLocaleString('en-US', { month: 'long' });
+  const sameDay = startDate.getUTCDate() === endDate.getUTCDate()
+    && startDate.getUTCMonth() === endDate.getUTCMonth()
+    && startDate.getUTCFullYear() === endDate.getUTCFullYear();
 
-  const startDay = startDate.getDate();
-  const endDay = endDate.getDate();
+  const sameMonth = startDate.getUTCMonth() === endDate.getUTCMonth()
+    && startDate.getUTCFullYear() === endDate.getUTCFullYear();
 
-  const startYear = startDate.getFullYear();
-  const endYear = endDate.getFullYear();
-
-  const sameDay = startDay === endDay
-    && startDate.getMonth() === endDate.getMonth()
-    && startYear === endYear;
-
-  const sameMonthAndYear = startDate.getMonth() === endDate.getMonth() && startYear === endYear;
+  const startMonth = startDate.toLocaleString(DATE_LOCALE, { month: 'long' });
+  const endMonth = endDate.toLocaleString(DATE_LOCALE, { month: 'long' });
 
   if (sameDay) {
-    return `${startMonth} ${startDay}, ${startYear}`;
+    return `${startMonth} ${startDate.getUTCDate()}, ${startDate.getUTCFullYear()}`;
   }
-  if (sameMonthAndYear) {
-    return `${startMonth} ${startDay} - ${endDay}, ${startYear}`;
+
+  if (sameMonth) {
+    return `${startMonth} ${startDate.getUTCDate()} - ${endDate.getUTCDate()}, ${startDate.getUTCFullYear()}`;
   }
-  return `${startMonth} ${startDay} - ${endMonth} ${endDay}, ${startYear}`;
+
+  return `${startMonth} ${startDate.getUTCDate()} - ${endMonth} ${endDate.getUTCDate()}, ${startDate.getUTCFullYear()}`;
 }
 
 function renderListItem(item, idx) {
   let dt = (item.date && item.date !== '0') ? formatDate(unixDateToString(item.date)) : '';
-  let eventDate;
+
+  let eventDate = '';
+
   if (!dt && item.eventStart && item.eventEnd) {
-    const startFormatDate = formatDate(unixDateToString(item.eventStart));
-    const endFormatDate = formatDate(unixDateToString(item.eventEnd));
-    console.log(item.eventEnd);
-    const startDate = (item.eventStart && item.eventStart !== '0') ? formatDate(unixDateToString(item.eventStart)).split(',')[0] : '';
-    const endDate = (item.eventEnd && item.eventEnd !== '0') ? formatDate(unixDateToString(item.eventEnd)) : '';
-    dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
+    const startFormatDate = unixToDate(item.eventStart);
+    const endFormatDate = unixToDate(item.eventEnd);
     eventDate = formatEventDateRange(startFormatDate, endFormatDate);
+
+    const startDate = startFormatDate ? formatDate(startFormatDate).split(',')[0] : '';
+    const endDate = endFormatDate ? formatDate(endFormatDate) : '';
+    dt = (startDate && endDate) ? `${startDate} - ${endDate}` : '';
   }
 
   const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
