@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { getData } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
-import { formatEventDateRange, unixToDate } from '../../scripts/list.js';
+import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 
 export function buildList(data, block) {
   const list = div({ class: 'list' });
@@ -13,7 +13,7 @@ export function buildList(data, block) {
           item.title,
         ),
       ),
-      p({}, `${formatEventDateRange(unixToDate(item.eventStart), unixToDate(item.eventEnd))} | ${item.eventRegion}`),
+      p({}, `${formatEventDateRange(normalizeDate(item.eventStart), normalizeDate(item.eventEnd))} | ${item.eventRegion}`),
     ));
   });
 }

@@ -3,20 +3,6 @@ import { createEventBanner } from '../../blocks/event-banner/event-banner.js';
 import { div } from '../../scripts/dom-helpers.js';
 import { getAllMetadata, getMetadata } from '../../scripts/lib-franklin.min.js';
 
-export function dateOnlyToTimestamp(dateStr) {
-  if (!dateStr) return null;
-
-  const d = new Date(dateStr);
-
-  if (Number.isNaN(d.getTime())) return null;
-
-  return Date.UTC(
-    d.getFullYear(),
-    d.getMonth(),
-    d.getDate(),
-  );
-}
-
 export default async function buildAutoBlocks() {
   const {
     address, booth, end, region, start, type, url,
@@ -32,8 +18,8 @@ export default async function buildAutoBlocks() {
     eventType,
     booth,
     eventAddress: address,
-    eventStart: dateOnlyToTimestamp(start),
-    eventEnd: dateOnlyToTimestamp(end),
+    eventStart: start,
+    eventEnd: end,
     eventRegion: region,
     eventURL: url,
   };

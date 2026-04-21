@@ -39,12 +39,26 @@ function hasImage(imgPath) {
   return (!imgPath.startsWith('/default-meta-image.png'));
 }
 
-/**
- * Convert Unix seconds → Date
- */
-export function unixToDate(unixSeconds) {
-  if (!unixSeconds || unixSeconds === '0') return null;
-  return new Date(unixSeconds * 1000);
+export function normalizeDate(input) {
+  if (!input || input === '0') return null;
+
+  // CASE 1: Unix timestamp (seconds)
+  if (typeof input === 'number' || /^\d+$/.test(input)) {
+    const ts = Number(input);
+    return new Date(ts * 1000);
+  }
+
+  // CASE 2: Date string (date-only or datetime)
+  const d = new Date(input);
+
+  if (Number.isNaN(d.getTime())) return null;
+
+  // Return UTC midnight timestamp to avoid timezone shifts
+  return Date.UTC(
+    d.getFullYear(),
+    d.getMonth(),
+    d.getDate(),
+  );
 }
 
 /**
@@ -87,8 +101,8 @@ function renderListItem(item, idx) {
   let eventDate = '';
 
   if (!dt && item.eventStart && item.eventEnd) {
-    const startFormatDate = unixToDate(item.eventStart);
-    const endFormatDate = unixToDate(item.eventEnd);
+    const startFormatDate = normalizeDate(item.eventStart);
+    const endFormatDate = normalizeDate(item.eventEnd);
     eventDate = formatEventDateRange(startFormatDate, endFormatDate);
 
     const startDate = startFormatDate ? formatDate(startFormatDate).split(',')[0] : '';

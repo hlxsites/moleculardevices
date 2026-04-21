@@ -8,7 +8,7 @@ import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.
 import {
   formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
-import { formatEventDateRange, unixToDate } from '../../scripts/list.js';
+import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
@@ -243,7 +243,7 @@ async function recentEventHandler(block) {
         p(
           strong(
             `${event.eventType} | ${event.eventRegion} | ${event.eventAddress
-            } — ${formatEventDateRange(unixToDate(event.eventStart), unixToDate(event.eventEnd))}`,
+            } — ${formatEventDateRange(normalizeDate(event.eventStart), normalizeDate(event.eventEnd))}`,
           ),
         ),
         p(summariseDescription(description, 120)),
