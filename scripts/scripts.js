@@ -1254,7 +1254,7 @@ async function loadEager(doc) {
  * @param {Object} options result string format options
  * @returns new string with the formated date
  */
-export const DATE_LOCALE = 'de-DE';
+export const DATE_LOCALE = 'en-US';
 
 export function formatDate(date, options = {}) {
   if (!date) return '';
