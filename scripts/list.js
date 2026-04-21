@@ -1,6 +1,7 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
 } from './lib-franklin.js';
+// eslint-disable-next-line import/no-cycle
 import {
   DATE_LOCALE, formatDate, toTitleCase, unixDateToString,
 } from './scripts.js';
