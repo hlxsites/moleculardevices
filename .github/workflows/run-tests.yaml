@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: '20.x'                # set this to the node version to use
+  NODE_VERSION: '24.x'                # set this to the node version to use
 name: Tests and Linting
 on:
   - pull_request
@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm install

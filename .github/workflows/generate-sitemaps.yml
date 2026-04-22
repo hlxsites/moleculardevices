@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: '22.x'                # set this to the node version to use
+  NODE_VERSION: '24.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
@@ -18,7 +18,7 @@ jobs:
           echo "Status: ${{ github.event.client_payload.status }}"
           echo "Path: ${{ github.event.client_payload.path }}"
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Run scripts and commit changes
@@ -48,7 +48,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
