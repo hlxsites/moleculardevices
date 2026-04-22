@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: '25.x'                # set this to the node version to use
+  NODE_VERSION: '24.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
@@ -60,7 +60,7 @@ jobs:
         run: |
           node create.js
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update generated content-sitemap.xml file"
           file_pattern: "content-sitemap.xml"
