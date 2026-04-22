@@ -27,7 +27,7 @@ jobs:
         run: |
           node generate-coveo-sitemap.js
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update generated coveo.xml file."
           repository: coveo
