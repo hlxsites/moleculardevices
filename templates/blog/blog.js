@@ -111,8 +111,8 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
-const TEST_KEY = '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';
-async function summarizeContentHandler() {
+// const TEST_KEY = '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';
+export async function summarizeContentHandler() {
   const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
   const summaryEl = document.querySelector('.ai-summary-result');
   const blogTextContent = [];
@@ -123,20 +123,20 @@ async function summarizeContentHandler() {
   });
 
   const finalText = blogTextContent.join();
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${TEST_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'llama-3.1-8b-instant',
-      messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
-    }),
-    // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
-  });
+  // const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  //   method: 'POST',
+  //   headers: {
+  //     Authorization: `Bearer ${TEST_KEY}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     model: 'llama-3.1-8b-instant',
+  //     messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
+  //   }),
+  //   // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
+  // });
 
-  const data = await response.json();
+  // const data = await response.json();
 
   summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
 }
@@ -175,11 +175,6 @@ export default async function decorate() {
     blogCarouselSection.parentElement.insertBefore(socialShareSection, blogCarouselSection);
   }
 
-  /* added cta */
-  const summarizeCTA = button({ class: 'summarize-cta button' }, 'Summarize with AI');
-  const result = div({ class: 'ai-summary-result text-left' });
-  summarizeCTA.addEventListener('click', summarizeContentHandler);
-
   // add article sentence
   const isArticlePage = getMetadata('blog-type') === 'Article';
   const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
@@ -197,10 +192,14 @@ export default async function decorate() {
     setTimeout(() => {
       const block = document.querySelector('.hero-container + .section');
       decorateLinks(creditParagraph);
-      block.prepend(div({ class: 'default-content-wrapper text-right', style: 'margin-bottom: 1rem;' }, summarizeCTA, result));
       block.append(creditParagraph);
     }, 1000);
   }
+
+  /* added cta */
+  const summarizeCTA = button({ class: 'summarize-cta button secondary' }, '⚡ Summarize with AI');
+  const result = div({ class: 'ai-summary-result text-left' });
+  summarizeCTA.addEventListener('click', summarizeContentHandler);
 
   setTimeout(() => {
     const block = document.querySelector('.hero-container + .section');

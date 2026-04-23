@@ -562,3 +562,10 @@ main .social-share-wrapper .share-event ul.button-container li i {
     transform: none;
   }
 }
+
+/* AI SUMMARY */
+.ai-summary-result:not(:empty) {
+  background: rgb(var(--color-primary-rgb) / 14%);
+  padding: 2rem;
+  margin-top: 1rem;
+}
