@@ -111,6 +111,7 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
+const TEST_KEY = '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';
 export async function summarizeContentHandler() {
   const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
   const summaryEl = document.querySelector('.ai-summary-result');
@@ -120,6 +121,24 @@ export async function summarizeContentHandler() {
   sections.forEach((section) => {
     blogTextContent.push(section.textContent.replace(/\n/g, ' ').trim());
   });
+
+  const finalText = blogTextContent.join();
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${TEST_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-8b-instant',
+      messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
+    }),
+    // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
+  });
+
+  const data = await response.json();
+
+  summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
 }
 
 export default async function decorate() {
@@ -178,7 +197,7 @@ export default async function decorate() {
   }
 
   /* added cta */
-  const summarizeCTA = button({ class: 'summarize-cta button secondary' }, '⚡ Summarize with AI');
+  const summarizeCTA = button({ class: 'summarize-cta button secondary' }, '✨ Summarize with AI');
   const result = div({ class: 'ai-summary-result text-left' });
   summarizeCTA.addEventListener('click', summarizeContentHandler);
 
