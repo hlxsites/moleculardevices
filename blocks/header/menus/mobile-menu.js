@@ -43,6 +43,8 @@ function getResponseMetadata(content, metadataField) {
 // This function receives the content of one of the mobile menu items (eg. "Products", etc.)
 // and builds the <li> element for it.
 async function buildMobileMenuItem(menuItem, menuId) {
+  if (!menuId) return;
+
   const menuName = menuItem.querySelector('a').textContent;
   const menuParentLink = menuItem.getAttribute('menu-link');
 
@@ -71,7 +73,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
         processSectionMetadata(subcategoryContent.parentElement);
         const mobileMode = subcategoryContent.parentElement.getAttribute('data-mobile-mode');
         const categoryId = subcategoryContent.getAttribute('id');
-        let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div > p > a, div > h3 > a')];
+        let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a,  div > h3 > a')];
 
         if (subcategoryItems.length === 0) {
           subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p')];
