@@ -92,11 +92,11 @@ function buildTools(content) {
   const loginEl = authAnchorEl.querySelector('span');
   authAnchor.replaceWith(authAnchorEl);
 
-  if (hasLoggedIn && authorizedUser) {
+  if (hasLoggedIn || authorizedUser) {
     // const userData = JSON.parse(getCookie('local_user_data'));
     // console.log(userData);
     const firstName = getCookie('first_name');
-    loginEl.textContent = `Hi, ${firstName}`;
+    loginEl.textContent = firstName ? `Hi, ${firstName}` : 'Logout';
     const authListItem = authAnchorEl.parentElement;
     const authDropdownList = buildAuthDropdown();
     authListItem.appendChild(authDropdownList);
