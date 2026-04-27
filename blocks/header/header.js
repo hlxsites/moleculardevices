@@ -85,6 +85,7 @@ function buildTools(content) {
   /* auth0 login */
   const hasLoggedIn = hasAuth0LoggedIn();
   const authorizedUser = isAuthorizedUser();
+  console.log(authorizedUser);
   const authAnchor = toolsWrapper.querySelector(':scope > ul > li:first-child > a');
   authAnchor.href = '';
 
