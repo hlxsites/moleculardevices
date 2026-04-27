@@ -1548,8 +1548,7 @@ cookieParams.forEach((param) => {
 
 export function isAuthorizedUser() {
   const supportCookie = getCookie('STYXKEY_PortalUserRole');
-  return supportCookie && SUPPORT_CHANNELS.includes(supportCookie);
-  // && window.location.hostname.endsWith('moleculardevices.com');
+  return supportCookie && SUPPORT_CHANNELS.includes(supportCookie) && window.location.hostname.endsWith('moleculardevices.com');
 }
 
 /**
