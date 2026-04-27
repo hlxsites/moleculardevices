@@ -71,7 +71,7 @@ async function buildMobileMenuItem(menuItem, menuId) {
         processSectionMetadata(subcategoryContent.parentElement);
         const mobileMode = subcategoryContent.parentElement.getAttribute('data-mobile-mode');
         const categoryId = subcategoryContent.getAttribute('id');
-        let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div div > p > a')];
+        let subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div > p > a, div > h3 > a')];
 
         if (subcategoryItems.length === 0) {
           subcategoryItems = [...subcategoryContent.parentElement.querySelectorAll('div div p')];
