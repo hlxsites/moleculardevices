@@ -12,6 +12,7 @@ import {
 import {
   decorateExternalLink, detectStore, getCartItemCount,
   getCookie,
+  isAuthorizedUser,
 } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
 import { buildSearchBar } from './menus/search.js';
@@ -83,6 +84,7 @@ function buildTools(content) {
 
   /* auth0 login */
   const hasLoggedIn = hasAuth0LoggedIn();
+  const authorizedUser = isAuthorizedUser();
   const authAnchor = toolsWrapper.querySelector(':scope > ul > li:first-child > a');
   authAnchor.href = '';
 
@@ -90,7 +92,7 @@ function buildTools(content) {
   const loginEl = authAnchorEl.querySelector('span');
   authAnchor.replaceWith(authAnchorEl);
 
-  if (hasLoggedIn) {
+  if (hasLoggedIn && authorizedUser) {
     // const userData = JSON.parse(getCookie('local_user_data'));
     // console.log(userData);
     const firstName = getCookie('first_name');
