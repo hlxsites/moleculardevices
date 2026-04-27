@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { loadCSS } from '../../scripts/lib-franklin.js';
+import { loadCSS } from '../../scripts/lib-franklin.min.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 
 const organizationId = 'moleculardevicesproductionca45f5xc';

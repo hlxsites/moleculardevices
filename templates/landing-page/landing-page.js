@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 import { div, h1, p } from '../../scripts/dom-helpers.js';
-import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
 import { hasAuth0LoggedIn } from '../../blocks/auth-callback/auth-callback.js';
@@ -109,5 +109,13 @@ export default async function buildAutoBlocks() {
         }, 1000);
       });
     });
+
+    const fullWidthSection = document.querySelector('.full-width');
+    if (fullWidthSection) {
+      const sectionImage = fullWidthSection.querySelector('img');
+      sectionImage.decoding = 'async';
+      sectionImage.loading = 'eager';
+      sectionImage.fetchPriority = 'high';
+    }
   }, 800);
 }

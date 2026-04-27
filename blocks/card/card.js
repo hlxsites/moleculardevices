@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle, no-alert */
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';

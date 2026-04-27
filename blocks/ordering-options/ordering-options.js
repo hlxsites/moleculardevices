@@ -3,7 +3,7 @@ import { loadUserData } from '../../scripts/delayed.js';
 import {
   a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
-import { toClassName } from '../../scripts/lib-franklin.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
 const COOKIE_NAME_CART_ITEM_COUNT = 'cart-item-count';

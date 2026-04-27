@@ -2,7 +2,7 @@
 import {
   createOptimizedPicture, decorateBlock, decorateIcons,
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   embedVideo, fetchFragment, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
