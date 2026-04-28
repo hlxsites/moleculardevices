@@ -1820,3 +1820,4 @@ export function getData() {
 document.addEventListener('DOMContentLoaded', getData);
 
 loadPage();
+/* end of script .js */
