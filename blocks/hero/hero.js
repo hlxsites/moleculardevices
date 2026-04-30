@@ -186,7 +186,7 @@ function tagSimilarLinksByGeo(referenceLink) {
       if (!parent) return;
 
       if (geoCode) {
-        parent.classList.add(`OneLinkShow_${geoCode}`);
+        parent.classList.add(geoCode, `OneLinkShow_${geoCode}`);
       } else {
         geoArray.forEach((code) => {
           parent.classList.add(`OneLinkHide_${code}`);
