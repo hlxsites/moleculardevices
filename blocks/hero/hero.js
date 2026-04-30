@@ -144,25 +144,55 @@ function extractBaseName(href) {
   return file.replace(/(-[a-z]{2})?\.pdf$/, '');
 }
 
-function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
+function tagSimilarLinksByGeo(referenceLink) {
   if (!referenceLink || !referenceLink.href) return;
 
-  const refHref = referenceLink.getAttribute('href');
-  const refBaseName = extractBaseName(refHref);
   const anchors = document.querySelectorAll('a[href$=".pdf"]');
+  const anchorGroups = {};
 
   anchors.forEach((link) => {
     const href = link.getAttribute('href');
     const baseName = extractBaseName(href);
 
-    if (baseName === refBaseName) {
-      const geoCode = extractGeoSuffix(href);
-      if (geoCode) {
-        link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
-      } else {
-        link.parentElement.classList.add(baseClass);
-      }
+    if (!anchorGroups[baseName]) {
+      anchorGroups[baseName] = {
+        items: [],
+        geoCodes: new Set(),
+      };
     }
+
+    const geoCode = extractGeoSuffix(href);
+
+    if (geoCode) {
+      anchorGroups[baseName].geoCodes.add(geoCode);
+    }
+
+    anchorGroups[baseName].items.push({
+      link,
+      geoCode,
+    });
+  });
+
+  Object.values(anchorGroups).forEach(({ items, geoCodes }) => {
+    const hasGeoVariants = geoCodes.size > 0;
+    const hasMultiple = items.length > 1;
+
+    if (!(hasGeoVariants && hasMultiple)) return;
+
+    const geoArray = Array.from(geoCodes);
+
+    items.forEach(({ link, geoCode }) => {
+      const parent = link.parentElement;
+      if (!parent) return;
+
+      if (geoCode) {
+        parent.classList.add(geoCode, `OneLinkShow_${geoCode}`);
+      } else {
+        geoArray.forEach((code) => {
+          parent.classList.add(`OneLinkHide_${code}`);
+        });
+      }
+    });
   });
 }
 
@@ -201,7 +231,7 @@ export function buildHero(block) {
 
   /* show/hide cta in geo sites */
   const ctaLinks = block.querySelectorAll('a');
-  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink, 'OneLinkHide'));
+  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink));
 
   /* removed duplicate breadcrumb block */
   const hasBreadcrumbBlock = getMetadata('breadcrumbs') === 'auto';
