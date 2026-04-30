@@ -175,7 +175,7 @@ function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
         if (geoCode) {
           link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
         } else {
-          link.parentElement.classList.add(baseClass);
+          link.parentElement.classList.add(geoCode, `OneLinkHide_${geoCode}`);
         }
       });
     }
