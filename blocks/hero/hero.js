@@ -147,21 +147,37 @@ function extractBaseName(href) {
 function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
   if (!referenceLink || !referenceLink.href) return;
 
-  const refHref = referenceLink.getAttribute('href');
-  const refBaseName = extractBaseName(refHref);
   const anchors = document.querySelectorAll('a[href$=".pdf"]');
+
+  const anchorGroups = {};
 
   anchors.forEach((link) => {
     const href = link.getAttribute('href');
     const baseName = extractBaseName(href);
 
-    if (baseName === refBaseName) {
-      const geoCode = extractGeoSuffix(href);
-      if (geoCode) {
-        link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
-      } else {
-        link.parentElement.classList.add(baseClass);
-      }
+    if (!anchorGroups[baseName]) {
+      anchorGroups[baseName] = [];
+    }
+
+    anchorGroups[baseName].push({
+      link,
+      href,
+      geoCode: extractGeoSuffix(href),
+    });
+  });
+
+  Object.values(anchorGroups).forEach((group) => {
+    const hasGeoVariants = group.some((item) => item.geoCode);
+    const hasMultiple = group.length > 1;
+
+    if (hasGeoVariants && hasMultiple) {
+      group.forEach(({ link, geoCode }) => {
+        if (geoCode) {
+          link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
+        } else {
+          link.parentElement.classList.add(baseClass);
+        }
+      });
     }
   });
 }
