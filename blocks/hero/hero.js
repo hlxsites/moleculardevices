@@ -144,11 +144,10 @@ function extractBaseName(href) {
   return file.replace(/(-[a-z]{2})?\.pdf$/, '');
 }
 
-function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
+function tagSimilarLinksByGeo(referenceLink) {
   if (!referenceLink || !referenceLink.href) return;
 
   const anchors = document.querySelectorAll('a[href$=".pdf"]');
-
   const anchorGroups = {};
 
   anchors.forEach((link) => {
@@ -156,29 +155,44 @@ function tagSimilarLinksByGeo(referenceLink, baseClass = 'similar-link') {
     const baseName = extractBaseName(href);
 
     if (!anchorGroups[baseName]) {
-      anchorGroups[baseName] = [];
+      anchorGroups[baseName] = {
+        items: [],
+        geoCodes: new Set(),
+      };
     }
 
-    anchorGroups[baseName].push({
+    const geoCode = extractGeoSuffix(href);
+
+    if (geoCode) {
+      anchorGroups[baseName].geoCodes.add(geoCode);
+    }
+
+    anchorGroups[baseName].items.push({
       link,
-      href,
-      geoCode: extractGeoSuffix(href),
+      geoCode,
     });
   });
 
-  Object.values(anchorGroups).forEach((group) => {
-    const hasGeoVariants = group.some((item) => item.geoCode);
-    const hasMultiple = group.length > 1;
+  Object.values(anchorGroups).forEach(({ items, geoCodes }) => {
+    const hasGeoVariants = geoCodes.size > 0;
+    const hasMultiple = items.length > 1;
 
-    if (hasGeoVariants && hasMultiple) {
-      group.forEach(({ link, geoCode }) => {
-        if (geoCode) {
-          link.parentElement.classList.add(geoCode, `OneLinkShow_${geoCode}`);
-        } else {
-          link.parentElement.classList.add(geoCode, `OneLinkHide_${geoCode}`);
-        }
-      });
-    }
+    if (!(hasGeoVariants && hasMultiple)) return;
+
+    const geoArray = Array.from(geoCodes);
+
+    items.forEach(({ link, geoCode }) => {
+      const parent = link.parentElement;
+      if (!parent) return;
+
+      if (geoCode) {
+        parent.classList.add(`OneLinkShow_${geoCode}`);
+      } else {
+        geoArray.forEach((code) => {
+          parent.classList.add(`OneLinkHide_${code}`);
+        });
+      }
+    });
   });
 }
 
@@ -217,7 +231,7 @@ export function buildHero(block) {
 
   /* show/hide cta in geo sites */
   const ctaLinks = block.querySelectorAll('a');
-  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink, 'OneLinkHide'));
+  ctaLinks.forEach((ctaLink) => tagSimilarLinksByGeo(ctaLink));
 
   /* removed duplicate breadcrumb block */
   const hasBreadcrumbBlock = getMetadata('breadcrumbs') === 'auto';
