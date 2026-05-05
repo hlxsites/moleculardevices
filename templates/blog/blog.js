@@ -111,8 +111,12 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
-const TEST_KEY = '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';
 export async function summarizeContentHandler() {
+  const configUrl = '/config.json';
+  const res = await fetch(configUrl);
+  const config = await res.json();
+  const TEST_KEY = config.public.custom.aikey;
+
   const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
   const summaryEl = document.querySelector('.ai-summary-result');
   const blogTextContent = [];
