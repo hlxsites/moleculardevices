@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 import initAuth0, { getExpiryTime, getIdToken, getUser } from '../../scripts/auth.js';
+import { div, p } from '../../scripts/dom-helpers.js';
 import { getCookie, setCookie } from '../../scripts/scripts.js';
+import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 const hostName = window.location.hostname;
 
@@ -27,9 +29,13 @@ export function hasAuth0LoggedIn() {
 export default async function decorate(block) {
   setTimeout(async () => {
     const loginAnchor = document.querySelector('header a[href*="lifesciences.danaher.com"]');
-    loginAnchor.textContent = 'Logout';
+    if (loginAnchor) loginAnchor.textContent = 'Logout';
 
-    block.innerHTML = '<p>Signing you in...</p>';
+    block.appendChild(div(
+      p('Signing you in...'),
+      div({ id: 'auth0-form' }),
+    ));
+
     const env = getEnv();
 
     try {
@@ -46,15 +52,45 @@ export default async function decorate(block) {
       setCookie('first_name', auth0User?.given_name, exp);
       setCookie('last_name', auth0User?.family_name, exp);
       setCookie('rationalized_id', auth0User?.email, exp);
+      setCookie('country_code', auth0User?.country, exp);
+      setCookie('organization', auth0User?.org, exp);
+      setCookie('jobtitle', auth0User?.title, exp);
 
       if (auth0User) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
-      const target = result?.appState?.returnTo || '/';
-      window.location.href = target;
+      /* hubspot login */
+      const firstName = auth0User?.given_name || getCookie('first_name');
+      const lastName = auth0User?.family_name || getCookie('last_name');
+      const emailID = auth0User?.rationalized_id || getCookie('rationalized_id');
+      const countyCode = auth0User?.country || getCookie('country_code');
+      const organization = auth0User?.org || getCookie('organization');
+      const jobtitle = auth0User?.title || getCookie('jobtitle');
+
+      const formConfig = {
+        formType: 'auth0',
+        firstname: firstName,
+        lastname: lastName,
+        email: emailID,
+        country_code: countyCode,
+        organization,
+        jobtitle,
+      };
+
+      loadHubSpotScript(() => createHubSpotForm(formConfig));
+
+      setTimeout(() => {
+        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+        if (submitButtom) submitButtom?.click();
+
+        setTimeout(() => {
+          const target = result?.appState?.returnTo || '/';
+          window.location.href = target;
+        }, 1500);
+      }, 1000);
     } catch (err) {
-      loginAnchor.textContent = 'Login';
+      if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
     }
   }, 500);

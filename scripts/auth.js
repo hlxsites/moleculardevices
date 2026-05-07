@@ -90,6 +90,9 @@ export async function userLogOut() {
   deleteCookie('first_name');
   deleteCookie('last_name');
   deleteCookie('rationalized_id');
+  deleteCookie('country_code');
+  deleteCookie('organization');
+  deleteCookie('jobtitle');
 
   sessionStorage.clear();
   await logout();
