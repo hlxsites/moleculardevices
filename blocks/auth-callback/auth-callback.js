@@ -33,7 +33,7 @@ export default async function decorate(block) {
 
     block.appendChild(div(
       p('Signing you in...'),
-      div({ id: 'auth0-form' }),
+      div({ id: 'auth0-form', style: 'display: none;' }),
     ));
 
     const env = getEnv();
