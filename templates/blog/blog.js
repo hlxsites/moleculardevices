@@ -62,23 +62,6 @@ export async function getBlogAndPublications() {
 }
 
 function parseMarkdownToHTML(text) {
-  // return text;
-  // let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  // html = html.replace(/^\*\s+(.*)$/gm, '<li>$1</li>');
-  // html = html.replace(/(<li>(?:.*?)<\/li>)/gs, '<ul>$1</ul>');
-  // const lines = html.split('\n');
-  // const wrappedLines = lines.map((line) => {
-  //   const trimmed = line.trim();
-  //   if (!trimmed) return '';
-  //   if (trimmed.startsWith('<ul>')
-  // || trimmed.startsWith('<li>') || trimmed.startsWith('</ul>')) {
-  //     return trimmed;
-  //   }
-  //   return `<p>${trimmed}</p>`;
-  // });
-
-  // return wrappedLines.join('');
-
   const processedText = text
     .trim()
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -111,7 +94,7 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
-export async function summarizeContentHandler() {
+export async function summarizeContentHandler(event) {
   const configUrl = '/config.json';
   const res = await fetch(configUrl);
   const config = await res.json();
@@ -143,6 +126,8 @@ export async function summarizeContentHandler() {
   const data = await response.json();
 
   summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
+
+  event.target.disabled = true;
 }
 
 export default async function decorate() {
@@ -201,7 +186,7 @@ export default async function decorate() {
   }
 
   /* added cta */
-  const summarizeCTA = button({ class: 'summarize-cta button secondary' }, '✨ Summarize with AI');
+  const summarizeCTA = button({ class: 'summarize-cta button' }, '✨ Summarize with AI');
   const result = div({ class: 'ai-summary-result text-left' });
   summarizeCTA.addEventListener('click', summarizeContentHandler);
 

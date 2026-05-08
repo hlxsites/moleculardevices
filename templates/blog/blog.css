@@ -588,6 +588,11 @@ main .social-share-wrapper .share-event ul.button-container li i {
   color: var(--color-gray-800);
 }
 
+.button.summarize-cta:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 /* Rotating gradient border */
 .button.summarize-cta::before,
 .ai-summary-result:not(:empty)::before {
