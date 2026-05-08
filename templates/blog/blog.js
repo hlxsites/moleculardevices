@@ -94,22 +94,36 @@ function parseMarkdownToHTML(text) {
   return htmlResult;
 }
 
-export async function summarizeContentHandler(event) {
+let isSummaryGenerated = false;
+let isSummaryVisible = true;
+
+export async function summarizeContentHandler() {
+  const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
+  const summaryEl = document.querySelector('.ai-summary-result');
+  const summarizeCTA = document.querySelector('.summarize-cta');
+
+  if (isSummaryGenerated) {
+    isSummaryVisible = !isSummaryVisible;
+
+    summaryEl.style.display = isSummaryVisible ? 'block' : 'none';
+    summarizeCTA.textContent = isSummaryVisible ? 'Hide Summary' : 'Show Summary';
+    return;
+  }
+
   const configUrl = '/config.json';
   const res = await fetch(configUrl);
   const config = await res.json();
   const TEST_KEY = config.public.custom.aikey;
-
-  const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
-  const summaryEl = document.querySelector('.ai-summary-result');
   const blogTextContent = [];
 
   summaryEl.textContent = 'Summarizing...';
+
   sections.forEach((section) => {
     blogTextContent.push(section.textContent.replace(/\n/g, ' ').trim());
   });
 
   const finalText = blogTextContent.join();
+
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
@@ -127,7 +141,11 @@ export async function summarizeContentHandler(event) {
 
   summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
 
-  event.target.disabled = true;
+  // Update CTA behavior after summary is generated
+  isSummaryGenerated = true;
+  isSummaryVisible = true;
+
+  summarizeCTA.textContent = 'Hide Summary';
 }
 
 export default async function decorate() {
