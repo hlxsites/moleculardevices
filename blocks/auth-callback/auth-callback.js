@@ -74,6 +74,7 @@ export default async function decorate(block) {
         lastname: lastName,
         email: emailID,
         country_code: countyCode,
+        qdc: 'Call',
         organization,
         jobtitle,
       };
