@@ -132,6 +132,7 @@ export async function summarizeContentHandler() {
     },
     body: JSON.stringify({
       model: 'llama-3.1-8b-instant',
+      temperature: 0,
       messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
     }),
     // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
