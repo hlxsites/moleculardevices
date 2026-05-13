@@ -44,6 +44,7 @@ export default async function decorate(block) {
       const idToken = await getIdToken();
       const auth0User = await getUser();
       const exp = await getExpiryTime();
+      console.log(auth0User);
 
       sessionStorage.setItem(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
 
@@ -54,7 +55,9 @@ export default async function decorate(block) {
       setCookie('rationalized_id', auth0User?.email, exp);
       setCookie('country_code', auth0User?.country, exp);
       setCookie('organization', auth0User?.org, exp);
-      setCookie('jobtitle', auth0User?.title, exp);
+      setCookie('title', auth0User?.title, exp);
+      setCookie('phone', auth0User?.phone, exp);
+      setCookie('marketing_consented', auth0User?.marketing_consented, exp);
 
       if (auth0User) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
@@ -66,7 +69,11 @@ export default async function decorate(block) {
       const emailID = auth0User?.rationalized_id || getCookie('rationalized_id');
       const countyCode = auth0User?.country || getCookie('country_code');
       const organization = auth0User?.org || getCookie('organization');
-      const jobtitle = auth0User?.title || getCookie('jobtitle');
+      const title = auth0User?.title || getCookie('title');
+      const phone = auth0User?.phone || getCookie('phone');
+      let marketingConsented = auth0User?.marketing_consented || getCookie('marketing_consented');
+
+      marketingConsented = marketingConsented ? 'TRUE' : 'FALSE';
 
       const formConfig = {
         formType: 'auth0',
@@ -76,20 +83,22 @@ export default async function decorate(block) {
         country_code: countyCode,
         qdc: 'Call',
         organization,
-        jobtitle,
+        title,
+        phone,
+        marketingConsented,
       };
-
+      console.log(formConfig);
       loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-      setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-        if (submitButtom) submitButtom?.click();
+      // setTimeout(() => {
+      //   const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+      //   if (submitButtom) submitButtom?.click();
 
-        setTimeout(() => {
-          const target = result?.appState?.returnTo || '/';
-          window.location.href = target;
-        }, 1500);
-      }, 1000);
+      //   setTimeout(() => {
+      //     const target = result?.appState?.returnTo || '/';
+      //     window.location.href = target;
+      //   }, 1500);
+      // }, 1000);
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';

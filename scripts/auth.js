@@ -92,7 +92,9 @@ export async function userLogOut() {
   deleteCookie('rationalized_id');
   deleteCookie('country_code');
   deleteCookie('organization');
-  deleteCookie('jobtitle');
+  deleteCookie('title');
+  deleteCookie('phone');
+  deleteCookie('marketing_consented');
 
   sessionStorage.clear();
   await logout();

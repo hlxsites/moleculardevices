@@ -130,8 +130,12 @@ export async function getFormFieldValues(formConfig) {
     lastname: formConfig.lastname || '',
     email: formConfig.email || '',
     country_code: formConfig.country_code || '',
+    // state_dropdown: formConfig.state || '',
     company: formConfig.organization || '',
-    jobtitle: formConfig.jobtitle || '',
+    mobilephone: formConfig.phone || '',
+    title: formConfig.title || '',
+    // research_area: formConfig.jobtitle || '',
+    marketing_opt_in__c: formConfig.marketingConsented || '',
 
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
