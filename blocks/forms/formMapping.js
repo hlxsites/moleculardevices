@@ -40,6 +40,7 @@ export const fieldsObj = [
   { inputName: 'last_name', inputFieldName: 'lastname' },
   { inputName: 'email', inputFieldName: 'email' },
   { inputName: 'phone', inputFieldName: 'phone' },
+  { inputName: 'phone', inputFieldName: 'mobilephone' },
   { inputName: 'phone', inputFieldName: '0-2/phone' },
   { inputName: 'company', inputFieldName: 'company' },
   { inputName: 'country', inputFieldName: 'country' },
