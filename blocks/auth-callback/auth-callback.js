@@ -90,15 +90,15 @@ export default async function decorate(block) {
       console.log(formConfig);
       loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-      // setTimeout(() => {
-      //   const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-      //   if (submitButtom) submitButtom?.click();
+      setTimeout(() => {
+        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+        if (submitButtom) submitButtom?.click();
 
-      //   setTimeout(() => {
-      //     const target = result?.appState?.returnTo || '/';
-      //     window.location.href = target;
-      //   }, 1500);
-      // }, 1000);
+        setTimeout(() => {
+          const target = result?.appState?.returnTo || '/';
+          window.location.href = target;
+        }, 1500);
+      }, 1000);
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
