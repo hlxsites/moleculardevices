@@ -81,4 +81,5 @@ export const fieldsObj = [
   { inputName: 'Meeting_Date__c', inputFieldName: 'date' },
   { inputName: 'Meeting_Date__c', inputFieldName: 'meeting_date_text' },
   { inputName: 'Meeting_Time__c', inputFieldName: 'meeting_time' },
+  { inputName: 'Marketing_Opt_In__c', inputFieldName: 'marketing_opt_in__c' },
 ];
