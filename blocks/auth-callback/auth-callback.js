@@ -56,7 +56,7 @@ export default async function decorate(block) {
       setCookie('organization', auth0User?.org, exp);
       setCookie('jobtitle', auth0User?.title, exp);
       setCookie('phone', auth0User?.phone, exp);
-      setCookie('marketing_consented', auth0User?.marketing_consented, exp);
+      setCookie('marketing_consented', !!auth0User?.marketing_consented, exp);
 
       if (auth0User) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
@@ -70,7 +70,7 @@ export default async function decorate(block) {
       const organization = auth0User?.org || getCookie('organization');
       const jobtitle = auth0User?.title || getCookie('jobtitle');
       const phone = auth0User?.phone || getCookie('phone');
-      const subscribe = auth0User?.marketing_consented || getCookie('marketing_consented');
+      const subscribe = !!auth0User?.marketing_consented;
 
       const formConfig = {
         formType: 'auth0',
