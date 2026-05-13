@@ -44,7 +44,6 @@ export default async function decorate(block) {
       const idToken = await getIdToken();
       const auth0User = await getUser();
       const exp = await getExpiryTime();
-      console.log(auth0User);
 
       sessionStorage.setItem(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
 
@@ -71,9 +70,7 @@ export default async function decorate(block) {
       const organization = auth0User?.org || getCookie('organization');
       const jobtitle = auth0User?.title || getCookie('jobtitle');
       const phone = auth0User?.phone || getCookie('phone');
-      let marketingConsented = auth0User?.marketing_consented || getCookie('marketing_consented');
-
-      marketingConsented = marketingConsented && marketingConsented === 'true' ? 'TRUE' : 'FALSE';
+      const subscribe = auth0User?.marketing_consented || getCookie('marketing_consented');
 
       const formConfig = {
         formType: 'auth0',
@@ -85,9 +82,9 @@ export default async function decorate(block) {
         organization,
         jobtitle,
         phone,
-        marketingConsented,
+        subscribe,
       };
-      console.log(formConfig);
+
       loadHubSpotScript(() => createHubSpotForm(formConfig));
 
       setTimeout(() => {

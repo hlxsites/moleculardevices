@@ -134,8 +134,8 @@ export async function getFormFieldValues(formConfig) {
     company: formConfig.organization || '',
     mobilephone: formConfig.phone || '',
     jobtitle: formConfig.jobtitle || '',
+    subscribe: formConfig.subscribe || '',
     // research_area: formConfig.jobtitle || '',
-    marketing_opt_in__c: formConfig.marketingConsented || '',
 
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
@@ -168,7 +168,11 @@ export function updateFormFields(form, fieldValues) {
   Object.entries(fieldValues).forEach(([fieldName, value]) => {
     if (value && form.querySelector(`input[name="${fieldName}"]`)) {
       const formInput = form.querySelector(`input[name="${fieldName}"]`);
-      formInput.value = value;
+      if (formInput.type === 'checkbox') {
+        formInput.checked = Boolean(value);
+      } else {
+        formInput.value = value;
+      }
 
       formInput.dispatchEvent(new Event('input', { bubbles: true }));
       formInput.dispatchEvent(new Event('change', { bubbles: true }));
@@ -281,6 +285,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
   /* subscribe */
   let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
   subscribe = subscribe && subscribe.checked ? 'true' : 'false';
+  if (formConfig.formType === 'auth0') subscribe.checked = formConfig?.marketing_consented;
 
   /* returnURL */
   let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl;
