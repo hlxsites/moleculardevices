@@ -285,7 +285,6 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
   /* subscribe */
   let subscribe = hubspotForm.querySelector('input[name="subscribe"]');
   subscribe = subscribe && subscribe.checked ? 'true' : 'false';
-  if (formConfig.formType === 'auth0') subscribe.checked = formConfig?.marketing_consented;
 
   /* returnURL */
   let returnURL = hubspotFormData.get('return_url') || formConfig.redirectUrl;
