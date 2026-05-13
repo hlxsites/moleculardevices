@@ -73,7 +73,7 @@ export default async function decorate(block) {
       const phone = auth0User?.phone || getCookie('phone');
       let marketingConsented = auth0User?.marketing_consented || getCookie('marketing_consented');
 
-      marketingConsented = marketingConsented ? 'TRUE' : 'FALSE';
+      marketingConsented = marketingConsented && marketingConsented === 'true' ? 'TRUE' : 'FALSE';
 
       const formConfig = {
         formType: 'auth0',
