@@ -49,6 +49,7 @@ export const fieldsObj = [
   { inputName: 'zip', inputFieldName: 'zip' },
   { inputName: timelineValue, inputFieldName: 'timeline__c' },
   { inputName: 'jobtitle', inputFieldName: 'jobtitle' },
+  { inputName: 'title', inputFieldName: 'jobtitle' },
   { inputName: 'city', inputFieldName: 'city' },
   { inputName: 'Danaher_Partner_Rep__c', inputFieldName: 'danaher_partner_rep__c' },
   { inputName: 'Danaher_Partner_Rep_Email__c', inputFieldName: 'danaher_partner_rep_email__c' },

@@ -133,7 +133,7 @@ export async function getFormFieldValues(formConfig) {
     // state_dropdown: formConfig.state || '',
     company: formConfig.organization || '',
     mobilephone: formConfig.phone || '',
-    title: formConfig.title || '',
+    jobtitle: formConfig.jobtitle || '',
     // research_area: formConfig.jobtitle || '',
     marketing_opt_in__c: formConfig.marketingConsented || '',
 

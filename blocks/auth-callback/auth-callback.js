@@ -55,7 +55,7 @@ export default async function decorate(block) {
       setCookie('rationalized_id', auth0User?.email, exp);
       setCookie('country_code', auth0User?.country, exp);
       setCookie('organization', auth0User?.org, exp);
-      setCookie('title', auth0User?.title, exp);
+      setCookie('jobtitle', auth0User?.title, exp);
       setCookie('phone', auth0User?.phone, exp);
       setCookie('marketing_consented', auth0User?.marketing_consented, exp);
 
@@ -69,7 +69,7 @@ export default async function decorate(block) {
       const emailID = auth0User?.rationalized_id || getCookie('rationalized_id');
       const countyCode = auth0User?.country || getCookie('country_code');
       const organization = auth0User?.org || getCookie('organization');
-      const title = auth0User?.title || getCookie('title');
+      const jobtitle = auth0User?.title || getCookie('jobtitle');
       const phone = auth0User?.phone || getCookie('phone');
       let marketingConsented = auth0User?.marketing_consented || getCookie('marketing_consented');
 
@@ -83,7 +83,7 @@ export default async function decorate(block) {
         country_code: countyCode,
         qdc: 'Call',
         organization,
-        title,
+        jobtitle,
         phone,
         marketingConsented,
       };
