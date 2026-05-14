@@ -47,55 +47,65 @@ export default async function decorate(block) {
 
       sessionStorage.setItem(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
 
+      const firstName = auth0User?.given_name;
+      const lastName = auth0User?.family_name;
+      const emailID = auth0User?.rationalized_id;
+      const countyCode = auth0User?.country;
+      const organization = auth0User?.org;
+      const jobtitle = auth0User?.title;
+      const phone = auth0User?.phone;
+      const subscribe = !!auth0User?.marketing_consented;
+
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
       setCookie(`${env}_user_data`, JSON.stringify(auth0User), exp);
-      setCookie('first_name', auth0User?.given_name, exp);
-      setCookie('last_name', auth0User?.family_name, exp);
-      setCookie('rationalized_id', auth0User?.email, exp);
-      setCookie('country_code', auth0User?.country, exp);
-      setCookie('organization', auth0User?.org, exp);
-      setCookie('jobtitle', auth0User?.title, exp);
-      setCookie('phone', auth0User?.phone, exp);
-      setCookie('marketing_consented', !!auth0User?.marketing_consented, exp);
+      setCookie('first_name', firstName, exp);
+      setCookie('last_name', lastName, exp);
+      setCookie('rationalized_id', emailID, exp);
+      setCookie('country_code', countyCode, exp);
+      setCookie('organization', organization, exp);
 
       if (auth0User) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
-      /* hubspot login */
-      const firstName = auth0User?.given_name || getCookie('first_name');
-      const lastName = auth0User?.family_name || getCookie('last_name');
-      const emailID = auth0User?.rationalized_id || getCookie('rationalized_id');
-      const countyCode = auth0User?.country || getCookie('country_code');
-      const organization = auth0User?.org || getCookie('organization');
-      const jobtitle = auth0User?.title || getCookie('jobtitle');
-      const phone = auth0User?.phone || getCookie('phone');
-      const subscribe = !!auth0User?.marketing_consented;
+      const createdTime = new Date(auth0User?.created_at).getTime();
+      const updatedTime = new Date(auth0User?.updated_at).getTime();
+      const diffTime = updatedTime - createdTime;
+      const welcomeStorageKey = `welcome_email_sent_${emailID}`;
+      const hasWelcomeStorageKey = localStorage.getItem(welcomeStorageKey);
 
-      const formConfig = {
-        formType: 'auth0',
-        firstname: firstName,
-        lastname: lastName,
-        email: emailID,
-        country_code: countyCode,
-        qdc: 'Call',
-        organization,
-        jobtitle,
-        phone,
-        subscribe,
-      };
+      if (diffTime < 5000 && !hasWelcomeStorageKey) {
+        const formConfig = {
+          formType: 'auth0',
+          firstname: firstName,
+          lastname: lastName,
+          email: emailID,
+          country_code: countyCode,
+          qdc: 'Call',
+          organization,
+          jobtitle,
+          phone,
+          subscribe,
+        };
 
-      loadHubSpotScript(() => createHubSpotForm(formConfig));
+        /* embed hubspot form */
+        loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-      setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-        if (submitButtom) submitButtom?.click();
+        localStorage.setItem(welcomeStorageKey, 'true');
 
         setTimeout(() => {
-          const target = result?.appState?.returnTo || '/';
-          window.location.href = target;
-        }, 1500);
-      }, 1000);
+          const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+          if (submitButtom) submitButtom?.click();
+
+          setTimeout(() => {
+            const target = result?.appState?.returnTo || '/';
+            window.location.href = target;
+          }, 1500);
+        }, 1000);
+      } else {
+        const target = result?.appState?.returnTo || '/';
+        window.location.href = target;
+      }
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
