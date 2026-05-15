@@ -125,6 +125,18 @@ export async function getFormFieldValues(formConfig) {
   }
 
   return {
+    /* auth0 fields */
+    firstname: formConfig.firstname || '',
+    lastname: formConfig.lastname || '',
+    email: formConfig.email || '',
+    country_code: formConfig.country_code || '',
+    // state_dropdown: formConfig.state || '',
+    company: formConfig.organization || '',
+    mobilephone: formConfig.phone || '',
+    jobtitle: formConfig.jobtitle || '',
+    subscribe: formConfig.subscribe || '',
+    // research_area: formConfig.jobtitle || '',
+
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
@@ -155,7 +167,21 @@ export async function getFormFieldValues(formConfig) {
 export function updateFormFields(form, fieldValues) {
   Object.entries(fieldValues).forEach(([fieldName, value]) => {
     if (value && form.querySelector(`input[name="${fieldName}"]`)) {
-      form.querySelector(`input[name="${fieldName}"]`).value = value;
+      const formInput = form.querySelector(`input[name="${fieldName}"]`);
+      if (formInput.type === 'checkbox') {
+        formInput.checked = Boolean(value);
+      } else {
+        formInput.value = value;
+      }
+
+      formInput.dispatchEvent(new Event('input', { bubbles: true }));
+      formInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    if (value && form.querySelector(`select[name="${fieldName}"]`)) {
+      const select = form.querySelector(`select[name="${fieldName}"]`);
+      select.value = value;
+
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     }
   });
 }

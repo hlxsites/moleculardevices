@@ -17,6 +17,7 @@ export const formMapping = [
   { type: 'app-note-promo', id: 'ed0daf7c-99c6-4fd8-aa32-13d4e053fa64' },
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
   { type: 'events', id: '4decc5b8-acd7-4c3d-ba12-6a840e64ea4b' },
+  { type: 'auth0', id: '253e76d8-9b56-41f1-9d5a-c5b3c4bb90d4' },
 ];
 
 export const DEFAULT_QDC_VALUE = 'Quote';
@@ -39,6 +40,7 @@ export const fieldsObj = [
   { inputName: 'last_name', inputFieldName: 'lastname' },
   { inputName: 'email', inputFieldName: 'email' },
   { inputName: 'phone', inputFieldName: 'phone' },
+  { inputName: 'phone', inputFieldName: 'mobilephone' },
   { inputName: 'phone', inputFieldName: '0-2/phone' },
   { inputName: 'company', inputFieldName: 'company' },
   { inputName: 'country', inputFieldName: 'country' },
@@ -47,6 +49,7 @@ export const fieldsObj = [
   { inputName: 'state', inputFieldName: 'state' },
   { inputName: 'zip', inputFieldName: 'zip' },
   { inputName: timelineValue, inputFieldName: 'timeline__c' },
+  { inputName: 'title', inputFieldName: 'jobtitle' },
   { inputName: 'jobtitle', inputFieldName: 'jobtitle' },
   { inputName: 'city', inputFieldName: 'city' },
   { inputName: 'Danaher_Partner_Rep__c', inputFieldName: 'danaher_partner_rep__c' },
