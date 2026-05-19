@@ -23,7 +23,7 @@ const addChevron = (text, link) => (p(
     i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })),
 ));
 
-export const formatEntry = (item) => {
+const formatEntry = (item) => {
   const isNumber = /^\d+$/.test(item.date);
   const date = isNumber ? formatDate(unixDateToString(item.date)) : item.date;
   return p(date,
