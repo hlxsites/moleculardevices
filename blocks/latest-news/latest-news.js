@@ -6,7 +6,6 @@ import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js'
 export function buildList(data, block) {
   data.forEach((item, idx) => {
     const thumbImage = item.thumbnail && item.thumbnail !== '0' ? item.thumbnail : item.image;
-    console.log(item);
     let dateLine = formatDate(unixDateToString(item.date));
     if (item.publisher) dateLine += ` | ${item.publisher}`;
 
