@@ -166,7 +166,7 @@ class Card {
     }
 
     cardTitle = this.titleLink ? a({ href: cardLink }, cardTitle) : cardTitle;
-
+    console.log(item);
     return (
       article({ class: `card ${this.isInPastYear ? 'new-product' : ''}` },
         this.isInPastYear ? div({ class: 'new-product-tag' },

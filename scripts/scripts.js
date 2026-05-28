@@ -1289,6 +1289,8 @@ export function formatDate(date, options = {}) {
  * @returns new string with the formated date
  */
 export function formatDateUTCSeconds(date, options = {}) {
+  if (!date) return '';
+
   const dateObj = new Date(0);
   dateObj.setUTCSeconds(date);
 
@@ -1296,6 +1298,7 @@ export function formatDateUTCSeconds(date, options = {}) {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
+    timeZone: 'UTC',
     ...options,
   });
 }
