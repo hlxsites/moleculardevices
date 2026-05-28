@@ -1259,7 +1259,19 @@ export const DATE_LOCALE = 'en-US';
 export function formatDate(date, options = {}) {
   if (!date) return '';
 
-  const d = date instanceof Date ? date : new Date(date);
+  let d;
+
+  if (typeof date === 'number' || (!isNaN(date) && !isNaN(parseFloat(date)))) {
+    d = new Date(Number(date) * 1000);
+  } else if (typeof date === 'string') {
+    if (date.includes('-')) {
+      d = new Date(date.replace(/-/g, '/'));
+    } else {
+      d = new Date(date);
+    }
+  } else {
+    d = date instanceof Date ? date : new Date(date);
+  }
 
   if (Number.isNaN(d.getTime())) return '';
 
@@ -1267,7 +1279,6 @@ export function formatDate(date, options = {}) {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
-    timeZone: 'UTC',
     ...options,
   });
 }
