@@ -12,7 +12,7 @@ function loadOnce(src, ...args) {
 }
 
 function applyPadding(block) {
-  const wrapper = block.querySelector('iframe').parentElement;
+  const wrapper = block.querySelector('iframe')?.parentElement;
   if (!wrapper) return;
 
   const classes = [...block.classList];
