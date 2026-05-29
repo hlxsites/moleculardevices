@@ -84,13 +84,13 @@ indices:
         value: attribute(el, "content")
       productDiscontinued:
         select: head > meta[name="product-discontinued"]
-        value: attribute(el, "content")  
+        value: attribute(el, "content")
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss UTC")
       h1:
         select: main > div:first-child > div:first-child h1, main > div > h1, main .event-summary > h1
         value: textContent(el)
@@ -173,7 +173,7 @@ indices:
         value: attribute(el, "content")
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss UTC")
   fragments:
     include:
       - '/fragments/**'
@@ -193,7 +193,7 @@ indices:
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss UTC")
   files:
     include:
       - '/sites/default/files/en/**'
@@ -203,7 +203,7 @@ indices:
     properties:
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss UTC")
   hubspot:
     include:
       - '/en/assets/newsletters/**'
@@ -214,4 +214,4 @@ indices:
         value: attribute(el, "content")
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss UTC")
