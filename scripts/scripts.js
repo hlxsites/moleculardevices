@@ -1261,7 +1261,7 @@ export function formatDate(date, options = {}) {
 
   let d;
 
-  if (typeof date === 'number' || (!Number.isNaN(date) && !Number.isNaN(parseFloat(date)))) {
+  if (typeof date === 'string' && /^\d+$/.test(date.trim())) {
     d = new Date(Number(date) * 1000);
   } else if (typeof date === 'string') {
     if (date.includes('-')) {
