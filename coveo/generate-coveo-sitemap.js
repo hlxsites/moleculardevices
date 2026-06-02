@@ -333,6 +333,7 @@ async function writeCoveoSitemapXML(index) {
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`); // TODO
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`); // TODO
+    xmlData.push(`      <md_de_url><![CDATA[ ${isNotEmpty(item.md_de_url) ? item.md_de_url : ''} ]]></md_de_url>`); // TODO
     xmlData.push(`      <md_source><![CDATA[ ${isNotEmpty(item.md_source) ? item.md_source : ''} ]]></md_source>`); // TODO
     xmlData.push('    </coveo:metadata>');
     xmlData.push('    <md_pagesort>1</md_pagesort>');
