@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/lib-franklin.min.js';
 import {
   a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';

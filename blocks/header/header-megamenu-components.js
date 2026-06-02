@@ -4,11 +4,11 @@ import {
   img, div, a, p, h3, strong,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.js';
-import { formatEventDates } from '../latest-events/latest-events.js';
+import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.min.js';
 import {
   formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
 } from '../../scripts/scripts.js';
+import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {
   let linkCopy;
@@ -243,7 +243,7 @@ async function recentEventHandler(block) {
         p(
           strong(
             `${event.eventType} | ${event.eventRegion} | ${event.eventAddress
-            } — ${formatEventDates(event.eventStart, event.eventEnd)}`,
+            } — ${formatEventDateRange(normalizeDate(event.eventStart), normalizeDate(event.eventEnd))}`,
           ),
         ),
         p(summariseDescription(description, 120)),

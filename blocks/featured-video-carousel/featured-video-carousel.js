@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { createCard } from '../card/card.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 
@@ -14,7 +14,6 @@ const cardRenderer = await createCard({
 });
 
 export default async function decorate(block) {
-  block.classList.add('cards');
   const links = [...block.querySelectorAll('a')].map((elem) => elem.getAttribute('href'));
   const pressItems = await ffetch('/query-index.json')
     .sheet('resources')

@@ -6,7 +6,7 @@
 
 import { decorateMain } from '../../scripts/scripts.js';
 
-import { loadBlocks } from '../../scripts/lib-franklin.js';
+import { loadBlocks } from '../../scripts/lib-franklin.min.js';
 
 /**
  * Loads a fragment.

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
+import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.min.js';
 import {
   a, div, i, span, img,
 } from '../../scripts/dom-helpers.js';

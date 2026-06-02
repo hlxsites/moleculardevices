@@ -1,5 +1,5 @@
 env:
-  NODE_VERSION: '25.x'                # set this to the node version to use
+  NODE_VERSION: '24.x'                # set this to the node version to use
 name: Regenerate the Sitemaps
 
 on:
@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - run: |
           echo "Status: ${{ github.event.client_payload.status }}"
           echo "Path: ${{ github.event.client_payload.path }}"
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Run scripts and commit changes
@@ -27,11 +27,10 @@ jobs:
         run: |
           node generate-coveo-sitemap.js
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update generated coveo.xml file."
-          repository: coveo
-          file_pattern: "coveo-xml.xml"
+          file_pattern: "coveo/coveo-xml.xml"
           push_options: --force
           skip_dirty_check: true
           commit_options: "--allow-empty"
@@ -40,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - run: |
           echo "Status: ${{ github.event.client_payload.status }}"
           echo "Path: ${{ github.event.client_payload.path }}"
@@ -49,7 +48,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install dependencies
@@ -60,7 +59,7 @@ jobs:
         run: |
           node create.js
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Update generated content-sitemap.xml file"
           file_pattern: "content-sitemap.xml"

@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';

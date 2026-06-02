@@ -1,4 +1,4 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
 import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 
@@ -12,7 +12,7 @@ function loadOnce(src, ...args) {
 }
 
 function applyPadding(block) {
-  const wrapper = block.querySelector('iframe').parentElement;
+  const wrapper = block.querySelector('iframe')?.parentElement;
   if (!wrapper) return;
 
   const classes = [...block.classList];

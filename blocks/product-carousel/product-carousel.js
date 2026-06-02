@@ -1,7 +1,7 @@
 import ffetch from '../../scripts/ffetch.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 
 export default async function decorate(block) {
   block.classList.add('cards');

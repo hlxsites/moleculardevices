@@ -1,4 +1,4 @@
-import { getMetadata, toClassName } from '../../scripts/lib-franklin.js';
+import { getMetadata, toClassName } from '../../scripts/lib-franklin.min.js';
 import {
   a, div, i, li, span, ul,
 } from '../../scripts/dom-helpers.js';

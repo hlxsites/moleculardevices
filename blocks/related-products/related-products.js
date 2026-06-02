@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/lib-franklin.min.js';
 import { createCard } from '../card/card.js';
 import { createCarousel } from '../carousel/carousel.js';
 

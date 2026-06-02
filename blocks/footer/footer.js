@@ -1,7 +1,7 @@
 import {
   decorateIcons, decorateBlock, getMetadata, createOptimizedPicture,
   toClassName,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   a, div, i, li, p, ul,
 } from '../../scripts/dom-helpers.js';
@@ -23,10 +23,14 @@ const addChevron = (text, link) => (p(
     i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })),
 ));
 
-export const formatEntry = (item) => p(formatDate(unixDateToString(item.date)),
-  document.createElement('br'),
-  a({ href: item.path, 'aria-label': item.title }, item.title),
-);
+const formatEntry = (item) => {
+  const isNumber = /^\d+$/.test(item.date);
+  const date = isNumber ? formatDate(unixDateToString(item.date)) : item.date;
+  return p(date,
+    document.createElement('br'),
+    a({ href: item.path, 'aria-label': item.title }, item.title),
+  );
+};
 
 function toggleSection(container, target) {
   if (!target.parentElement.classList.contains('on')) {

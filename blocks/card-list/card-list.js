@@ -293,7 +293,7 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => !!product.productLandingPageOrder && product.productLandingPageOrder !== '0',
+        (product) => !!product.productLandingPageOrder && product.productLandingPageOrder !== '0' && product.productDiscontinued !== 'Yes',
       );
 
       products.sort(
@@ -324,7 +324,8 @@ const VARIANTS = {
       products = products.filter(
         (product) => product.subCategory === 'Accessories and Consumables'
           && product.locale !== 'ZH'
-          && product.path !== '/products/accessories-consumables',
+          && product.path !== '/products/accessories-consumables'
+          && product.productDiscontinued !== 'Yes',
       );
 
       products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));
@@ -349,7 +350,7 @@ const VARIANTS = {
         .sheet('products')
         .all();
 
-      products = products.filter((product) => product.category === 'Assay Kits')
+      products = products.filter((product) => product.category === 'Assay Kits' && product.productDiscontinued !== 'Yes')
         // check if products are newer than 18 months to add the "New" Badge
         .map((product) => {
           const productDate = new Date(0);
@@ -379,7 +380,7 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => product.category === 'Additional Products' && product.productSeriesMain !== 'Yes',
+        (product) => product.category === 'Additional Products' && product.productSeriesMain !== 'Yes' && product.productDiscontinued !== 'Yes',
       );
 
       products.sort(compareByDate);
@@ -402,7 +403,7 @@ const VARIANTS = {
         .all();
 
       products = products.filter(
-        (product) => product.category === 'Culture Media and Reagents',
+        (product) => product.category === 'Culture Media and Reagents' && product.productDiscontinued !== 'Yes',
       );
 
       products.sort((product1, product2) => product1.h1.localeCompare(product2.h1));

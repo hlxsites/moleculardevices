@@ -1,7 +1,7 @@
 import {
   a, div, domEl, h3, i, p, span,
 } from '../../scripts/dom-helpers.js';
-import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
 
 function decorateDownloadButton() {
   const specsAnnotationBlock = document.querySelector('.section[aria-labelledby="specifications-options"] .default-content-wrapper:last-child');

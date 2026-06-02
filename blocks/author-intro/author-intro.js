@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/lib-franklin.min.js';
 
 export default async function decorate(block) {
   const isBlogPage = getMetadata('template') === 'Blog';

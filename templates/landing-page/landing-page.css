@@ -412,7 +412,7 @@ body .thank-you-page h4 {
 
 .thankyou main .section,
 .thankyou main .section.wave.wave-bottom-section,
-.landing-page:not(.thankyou) main .thankyou-banner,
+.landing-page:not(.thankyou) main .section:has(.thankyou-banner),
 .thankyou main .hide-banner-on-thankyou {
   display: none;
 }
@@ -430,4 +430,76 @@ body .thank-you-page h4 {
 .landing-page main .section.download-form.forms-container .default-content-wrapper:first-child {
   padding-top: 0;
   padding-bottom: 30px;
+}
+
+/* slas page */
+.slas-page.landing-page {
+  --font-size-h2: 30px;
+}
+
+.slas-page .section .columns.tutorials-posters > div:not(:last-child) {
+  margin: 0 0 20px;
+}
+
+.slas-page .section .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) {
+  padding: 20px 0;
+  border-bottom: 1px solid;
+}
+
+.slas-page .columns.tutorials-posters > div:not(.image-left) > div:not(:empty) p:first-of-type {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.slas-page .section .default-content-wrapper h2 + h3,
+.slas-page .columns.tutorials-posters h3,
+.slas-page .columns.tutorials-posters h4 {
+  font-family: var(--ff-proxima-regular);
+  color: var(--color-text-primary);
+}
+
+.slas-page main .section h3 {
+  padding-top: 0;
+}
+
+.slas-page main .section:not(.slas-resource-list, .carousel-container) h3 {
+  font-size: var(--fs-h1);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.slas-page .section .default-content-wrapper h2 + h3 {
+  text-align: left;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.slas-page .columns.tutorials-posters h4 {
+  margin: 10px 0;
+  color: var(--color-tertiary);
+}
+
+.slas-page .columns.tutorials-posters p {
+  margin: 0;
+}
+
+.slas-page .slas-resource-list .columns > div > div h3 {
+  padding-top: 0;
+  font-size: 24px;
+  color: inherit;
+  font-weight: bold;
+}
+
+.slas-page .slas-resource-list .columns > div > div h3 + ul {
+  padding-top: 0;
+  padding-left: 20px;
+}
+
+@media (min-width: 768px) {
+  .slas-page.landing-page {
+    --font-size-h2: 70px;
+  }
 }

@@ -1,5 +1,5 @@
 import { a, div, p } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 import { formatDate, getData, unixDateToString } from '../../scripts/scripts.js';
 import { createCarousel } from '../carousel/carousel.js';
 
