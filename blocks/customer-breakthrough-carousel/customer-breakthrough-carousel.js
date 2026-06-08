@@ -16,11 +16,14 @@ async function getCBData(category) {
 }
 
 export default async function decorate(block) {
+  const pageIdentifier = getMetadata('identifier');
   block.classList.add('cards');
   const cbPath = '/customer-breakthroughs';
   let category = getMetadata('category');
   if (category === 'Services and Support') category = 'Lab Automation';
-  const resources = await getCBData(category);
+
+  let resources = await getCBData(category);
+  resources = resources.filter((res) => res.relatedProducts.includes(pageIdentifier));
 
   category = category.split(' ').join('-');
   const anchor = `${cbPath}#${category}`;
@@ -32,7 +35,7 @@ export default async function decorate(block) {
     { media: '(min-width: 992px)', width: '1663' },
     { width: '900' },
   ]);
-  if (resources.length < 3) {
+  if (resources.length < 1) {
     block.closest('.section').previousElementSibling.classList.add('wave-section');
     block.closest('.section').previousElementSibling.appendChild(div({ class: 'wave' }, waveImage));
     block.closest('.section').remove();
