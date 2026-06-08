@@ -115,7 +115,7 @@ export async function buildNewsletter(container) {
   if (container.querySelector(`#${newsletterId} form`)) return; // newsletter already present
 
   const formType = 'newsletter';
-  const formHeading = 'Lab Notes eNewsletter';
+  const formHeading = 'News & Product Updates';
 
   const form = div({ class: toClassName(`${formHeading}-wrapper`) },
     div({ id: newsletterId, class: 'enewsletter-wrapper', loading: 'lazy' },
