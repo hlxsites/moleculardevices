@@ -7,10 +7,10 @@ import { div } from '../../scripts/dom-helpers.js';
 
 const placeholders = await fetchPlaceholders();
 
-async function getCBData(category) {
+async function getCBData(category, pageIdentifier) {
   return ffetch('/query-index.json')
     .sheet('customer-breakthroughs')
-    .filter((cb) => cb.category.includes(category))
+    .filter((cb) => cb.category.includes(category) && cb.relatedProducts.includes(pageIdentifier))
     .limit(9)
     .all();
 }
@@ -22,8 +22,7 @@ export default async function decorate(block) {
   let category = getMetadata('category');
   if (category === 'Services and Support') category = 'Lab Automation';
 
-  let resources = await getCBData(category);
-  resources = resources.filter((res) => res.relatedProducts.includes(pageIdentifier));
+  const resources = await getCBData(category, pageIdentifier);
 
   category = category.split(' ').join('-');
   const anchor = `${cbPath}#${category}`;
