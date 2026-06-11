@@ -76,40 +76,40 @@ export default async function decorate(block) {
       const welcomeStorageKey = `welcome_email_sent_${emailID}`;
       const hasWelcomeStorageKey = localStorage.getItem(welcomeStorageKey);
 
-      // if (diffTime < 5000 && !hasWelcomeStorageKey) {
-      const formConfig = {
-        formType: 'auth0',
-        firstname: firstName,
-        lastname: lastName,
-        email: emailID,
-        country_code: countyCode,
-        qdc: 'Call',
-        state,
-        organization,
-        jobtitle,
-        phone,
-        subscribe,
-        researchArea,
-      };
+      if (diffTime < 5000 && !hasWelcomeStorageKey) {
+        const formConfig = {
+          formType: 'auth0',
+          firstname: firstName,
+          lastname: lastName,
+          email: emailID,
+          country_code: countyCode,
+          qdc: 'Call',
+          state,
+          organization,
+          jobtitle,
+          phone,
+          subscribe,
+          researchArea,
+        };
 
-      /* embed hubspot form */
-      loadHubSpotScript(() => createHubSpotForm(formConfig));
+        /* embed hubspot form */
+        loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-      localStorage.setItem(welcomeStorageKey, 'true');
+        localStorage.setItem(welcomeStorageKey, 'true');
 
-      setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-        if (submitButtom) submitButtom?.click();
+        setTimeout(() => {
+          const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+          if (submitButtom) submitButtom?.click();
 
-        // setTimeout(() => {
-        //   const target = result?.appState?.returnTo || '/';
-        //   window.location.href = target;
-        // }, 1500);
-      }, 1000);
-      // } else {
-      //   const target = result?.appState?.returnTo || '/';
-      //   window.location.href = target;
-      // }
+          setTimeout(() => {
+            const target = result?.appState?.returnTo || '/';
+            window.location.href = target;
+          }, 1500);
+        }, 1000);
+      } else {
+        const target = result?.appState?.returnTo || '/';
+        window.location.href = target;
+      }
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
