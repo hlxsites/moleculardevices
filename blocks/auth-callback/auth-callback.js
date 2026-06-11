@@ -56,7 +56,8 @@ export default async function decorate(block) {
       const jobtitle = auth0User?.title;
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
-      const researchArea = auth0User.reserch_areas;
+      const researchArea = auth0User?.reserch_areas;
+      const hasSignedUp = !!auth0User?.sign_up;
 
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
       setCookie(`${env}_user_data`, JSON.stringify(auth0User), exp);
@@ -70,13 +71,7 @@ export default async function decorate(block) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
-      const createdTime = new Date(auth0User?.created_at).getTime();
-      const updatedTime = new Date(auth0User?.updated_at).getTime();
-      const diffTime = updatedTime - createdTime;
-      const welcomeStorageKey = `welcome_email_sent_${emailID}`;
-      const hasWelcomeStorageKey = localStorage.getItem(welcomeStorageKey);
-
-      if (diffTime < 5000 && !hasWelcomeStorageKey) {
+      if (hasSignedUp) {
         const formConfig = {
           formType: 'auth0',
           firstname: firstName,
@@ -94,8 +89,6 @@ export default async function decorate(block) {
 
         /* embed hubspot form */
         loadHubSpotScript(() => createHubSpotForm(formConfig));
-
-        localStorage.setItem(welcomeStorageKey, 'true');
 
         setTimeout(() => {
           const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
