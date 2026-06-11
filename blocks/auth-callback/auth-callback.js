@@ -49,12 +49,14 @@ export default async function decorate(block) {
 
       const firstName = auth0User?.given_name;
       const lastName = auth0User?.family_name;
-      const emailID = auth0User?.rationalized_id;
+      const emailID = auth0User?.email;
       const countyCode = auth0User?.country;
+      const state = auth0User?.state;
       const organization = auth0User?.org;
       const jobtitle = auth0User?.title;
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
+      const researchArea = auth0User.reserch_areas;
 
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
       setCookie(`${env}_user_data`, JSON.stringify(auth0User), exp);
@@ -74,38 +76,40 @@ export default async function decorate(block) {
       const welcomeStorageKey = `welcome_email_sent_${emailID}`;
       const hasWelcomeStorageKey = localStorage.getItem(welcomeStorageKey);
 
-      if (diffTime < 5000 && !hasWelcomeStorageKey) {
-        const formConfig = {
-          formType: 'auth0',
-          firstname: firstName,
-          lastname: lastName,
-          email: emailID,
-          country_code: countyCode,
-          qdc: 'Call',
-          organization,
-          jobtitle,
-          phone,
-          subscribe,
-        };
+      // if (diffTime < 5000 && !hasWelcomeStorageKey) {
+      const formConfig = {
+        formType: 'auth0',
+        firstname: firstName,
+        lastname: lastName,
+        email: emailID,
+        country_code: countyCode,
+        qdc: 'Call',
+        state,
+        organization,
+        jobtitle,
+        phone,
+        subscribe,
+        researchArea,
+      };
 
-        /* embed hubspot form */
-        loadHubSpotScript(() => createHubSpotForm(formConfig));
+      /* embed hubspot form */
+      loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-        localStorage.setItem(welcomeStorageKey, 'true');
+      localStorage.setItem(welcomeStorageKey, 'true');
 
-        setTimeout(() => {
-          const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-          if (submitButtom) submitButtom?.click();
+      setTimeout(() => {
+        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
+        if (submitButtom) submitButtom?.click();
 
-          setTimeout(() => {
-            const target = result?.appState?.returnTo || '/';
-            window.location.href = target;
-          }, 1500);
-        }, 1000);
-      } else {
-        const target = result?.appState?.returnTo || '/';
-        window.location.href = target;
-      }
+        // setTimeout(() => {
+        //   const target = result?.appState?.returnTo || '/';
+        //   window.location.href = target;
+        // }, 1500);
+      }, 1000);
+      // } else {
+      //   const target = result?.appState?.returnTo || '/';
+      //   window.location.href = target;
+      // }
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
