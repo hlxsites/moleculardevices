@@ -57,8 +57,8 @@ export default async function decorate(block) {
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
       const researchArea = auth0User?.reserch_areas;
-      const hasSignedUp = !!auth0User?.sign_up;
-      console.log('hasSignedUp: ', hasSignedUp);
+      // const hasSignedUp = !!auth0User?.sign_up;
+      console.log('auth0User: ', auth0User);
 
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
       setCookie(`${env}_user_data`, JSON.stringify(auth0User), exp);
@@ -92,8 +92,8 @@ export default async function decorate(block) {
       loadHubSpotScript(() => createHubSpotForm(formConfig));
 
       setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form').querySelector('[type=submit]');
-        if (submitButtom) submitButtom?.click();
+        const submitButtom = document.getElementById('auth0-form')?.querySelector('[type=submit]');
+        if (submitButtom) submitButtom.click();
 
         setTimeout(() => {
           const target = result?.appState?.returnTo || '/';
