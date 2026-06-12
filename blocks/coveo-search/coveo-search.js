@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, getCountryCode, loadScript } from '../../scripts/scripts.js';
 
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
@@ -227,11 +227,11 @@ async function coveoSearchInitiation(organizationID, accessToken) {
   }
   Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
     const { result } = args;
-    const link = args.item.querySelector('.geo-result-link');
+    const link = args.item.querySelector('.coveo-result-link');
 
-    const userCountry = window.userCountry || 'US';
+    const countryCode = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code;
+    const userCountry = countryCode || 'US';
     const dePath = result.raw.md_de_url;
-    console.log(window.userCountry);
 
     if (userCountry === 'DE' && dePath && link) {
       link.href = `https://www.moleculardevices.com${dePath}`;
