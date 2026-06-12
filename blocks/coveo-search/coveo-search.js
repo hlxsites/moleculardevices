@@ -134,7 +134,9 @@ export function searchMainSection() {
                             <div class="coveo-result-cell">
                               <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
-                                  <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/\${raw.sfurlname}" target="_blank"> </a>
+                                  <div class="coveo-result-cell">
+                                    <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/\${raw.sfurlname}" target="_blank"> </a>
+                                  </div>
                                 </div>
                                 <div class="coveo-result-cell">
                                   <div class="coveo-result-row">
@@ -223,6 +225,18 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
   }
+  Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
+    const { result } = args;
+    const link = args.item.querySelector('.geo-result-link');
+
+    const userCountry = window.userCountry || 'US';
+    const dePath = result.raw.md_de_url;
+    console.log(window.userCountry);
+
+    if (userCountry === 'DE' && dePath && link) {
+      link.href = `https://www.moleculardevices.com${dePath}`;
+    }
+  });
 }
 
 export function addCoveoFiles() {
