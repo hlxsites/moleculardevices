@@ -112,7 +112,7 @@ export default async function decorate(block) {
   } else if (formConfig.formId || formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   } else {
-    const formTypeList = ul({ class: 'type-not-found-msg' }, p('Please add one of the following type to the block:'));
+    const formTypeList = ul({ class: 'type-not-found-msg' }, p('Please add form id or one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }
