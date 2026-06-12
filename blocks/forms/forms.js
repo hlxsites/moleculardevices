@@ -20,7 +20,7 @@ export async function createHubSpotForm(formConfig) {
       window.hbspt?.forms.create({
         region: formConfig.region || 'na1',
         portalId: formConfig.portalId || '20222769',
-        formId: getFormId(formConfig.formType),
+        formId: formConfig.formId || getFormId(formConfig.formType),
         target: `#${formConfig.formType}-form`,
 
         onFormReady: async (form) => {
@@ -84,7 +84,7 @@ export default async function decorate(block) {
 
   let formHeading = formConfig.heading || '';
 
-  formConfig.formType = formType;
+  formConfig.formType = formConfig.formId ? 'custom-hubspot-form' : formType;
   const target = `${formConfig.formType || 'unknown-type'}-form`;
 
   /* product page form */
@@ -109,10 +109,10 @@ export default async function decorate(block) {
 
   if (template.includes('Product')) {
     decorateProductPage();
-  } else if (formType) {
+  } else if (formConfig.formId || formType) {
     loadHubSpotScript(createHubSpotForm.bind(null, formConfig));
   } else {
-    const formTypeList = ul({ class: 'type-not-found-msg' }, p('Please add one of the following type to the block:'));
+    const formTypeList = ul({ class: 'type-not-found-msg' }, p('Please add form id or one of the following type to the block:'));
     formMapping.map((item) => formTypeList.appendChild(li(toTitleCase(item.type))));
     block.appendChild(formTypeList);
   }
