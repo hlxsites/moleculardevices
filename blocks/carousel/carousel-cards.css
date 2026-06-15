@@ -77,6 +77,10 @@ main .carousel-wrapper.cards .carousel {
   padding-top: 0;
 }
 
+.carousel.cards .carousel-item h3 a {
+  color: inherit;
+}
+
 .carousel.cards.three-lines-heading .carousel-item h3 {
   display: -webkit-box;
   display: block;
