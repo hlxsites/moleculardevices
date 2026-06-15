@@ -229,11 +229,11 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     const { result } = args;
     const link = args.item.querySelector('.coveo-result-link');
 
-    const countryCode = JSON.parse(localStorage.getItem('ipstack:geolocation')).country_code;
-    const userCountry = countryCode || 'US';
+    const { lang } = document.documentElement;
+    const userCountry = lang || 'en';
     const dePath = result.raw.md_de_url;
 
-    if (userCountry === 'DE' && dePath && link) {
+    if (userCountry.includes('de') && dePath && link) {
       link.href = `https://www.moleculardevices.com${dePath}`;
     }
   });
