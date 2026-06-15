@@ -135,7 +135,7 @@ export function searchMainSection() {
                               <div class="coveo-result-row">
                                 <div class="coveo-result-cell">
                                   <div class="coveo-result-cell">
-                                    <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/\${raw.sfurlname}" target="_blank"> </a>
+                                  <a class="CoveoResultLink coveo-result-link"  data-href-template="https://support.moleculardevices.com/s/article/\${raw.sfurlname}" target="_blank"> </a>
                                   </div>
                                 </div>
                                 <div class="coveo-result-cell">
@@ -225,16 +225,21 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
   }
+
+  const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
+
   Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
     const { result } = args;
     const link = args.item.querySelector('.coveo-result-link');
 
-    const { lang } = document.documentElement;
-    const userCountry = lang || 'en';
-    const dePath = result.raw.md_de_url;
+    if (!link) return;
 
-    if (userCountry.includes('de') && dePath && link) {
-      link.href = `https://www.moleculardevices.com${dePath}`;
+    const lang = document.documentElement.lang || 'en';
+    const locale = lang.split('-')[0].toLowerCase();
+    const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`];
+
+    if (localizedPath) {
+      link.href = `https://www.moleculardevices.com${localizedPath}`;
     }
   });
 }
