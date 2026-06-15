@@ -166,6 +166,7 @@ main .carousel-wrapper.cards .carousel {
   line-height: 1;
   text-align: left;
   margin-bottom: 0;
+  overflow: unset;
 }
 
 .carousel-wrapper.cards .carousel .card .button-container a {
