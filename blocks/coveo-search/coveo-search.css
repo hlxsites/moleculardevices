@@ -259,6 +259,7 @@
   padding-left: 16px;
 }
 
+.coveo-result-frame .coveo-result-cell h1,
 .coveo-result-frame .coveo-result-cell h2 {
   font-size: inherit;
   font-family: inherit;

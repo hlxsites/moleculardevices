@@ -223,6 +223,23 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
   }
+
+  const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
+
+  Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
+    const { result } = args;
+    const link = args.item.querySelector('.coveo-result-link');
+
+    if (!link) return;
+
+    const lang = document.documentElement.lang || 'en';
+    const locale = lang.split('-')[0].toLowerCase();
+    const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`];
+
+    if (localizedPath) {
+      link.href = `https://www.moleculardevices.com${localizedPath}`;
+    }
+  });
 }
 
 export function addCoveoFiles() {
