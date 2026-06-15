@@ -2,7 +2,7 @@
 import {
   button, div, h3, li, p, ul,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture, getMetadata, loadCSS } from '../../scripts/lib-franklin.min.js';
+import { createOptimizedPicture, getMetadata, loadCSS, toClassName } from '../../scripts/lib-franklin.min.js';
 import { loadScript, toTitleCase } from '../../scripts/scripts.js';
 import { scrollToSection } from '../../scripts/utilities.js';
 import decorateProductPage, { productThankyouSection, rfqThankyouMessage } from '../../templates/product/product.js';
@@ -84,7 +84,7 @@ export default async function decorate(block) {
 
   let formHeading = formConfig.heading || '';
 
-  formConfig.formType = formConfig.formId ? 'custom-hubspot-form' : formType;
+  formConfig.formType = formConfig.formId ? toClassName(formConfig.heading) : formType;
   const target = `${formConfig.formType || 'unknown-type'}-form`;
 
   /* product page form */
