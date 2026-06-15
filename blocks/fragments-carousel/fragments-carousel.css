@@ -7,7 +7,7 @@ main .carousel.fragments-carousel .carousel-item {
   padding-block: 0;
 }
 
-main .carousel.fragments-carousel .carousel-item img{
+main .carousel.fragments-carousel .carousel-item img {
   width: unset;
 }
 
@@ -24,6 +24,17 @@ main .fragments-carousel-wrapper .carousel-nav-button {
   main .layout-60-40 .carousel.fragments-carousel .columns > div:has(> div:not(:only-child)) {
     display: grid;
     grid-template-columns: 60% 40%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  main .carousel.fragments-carousel .columns > div > div:first-child {
+    margin-bottom: 1.5rem;
+  }
+
+  main .carousel.fragments-carousel .carousel-item .carousel-item-image img{
+    display: block;
+    margin: 0 auto;
   }
 }
 

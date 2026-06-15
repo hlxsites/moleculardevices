@@ -1,6 +1,6 @@
 import { fetchFragment } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
-import { decorateButtons } from '../../scripts/lib-franklin.js';
+import { decorateButtons } from '../../scripts/lib-franklin.min.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);

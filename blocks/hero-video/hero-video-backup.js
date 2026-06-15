@@ -1,4 +1,4 @@
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {

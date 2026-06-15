@@ -1,7 +1,7 @@
 import {
   button, div, span,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons } from '../../scripts/lib-franklin.js';
+import { decorateIcons } from '../../scripts/lib-franklin.min.js';
 
 const viewAllCategory = 'viewall';
 

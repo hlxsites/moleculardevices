@@ -2,7 +2,7 @@ import ffetch from '../../scripts/ffetch.js';
 import {
   div, h4, select, label, option, span,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 
 const PRODUCT_FINDER_URL = '/product-finder/product-finder.json';
 let placeholders = {};

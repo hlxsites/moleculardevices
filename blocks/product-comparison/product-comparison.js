@@ -1,7 +1,7 @@
 import {
   domEl, div, span, a, p,
 } from '../../scripts/dom-helpers.js';
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 
 export default async function decorate(block) {
   const specURLs = [...block.querySelectorAll('a')].map((link) => link.href);

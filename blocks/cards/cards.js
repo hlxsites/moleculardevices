@@ -1,4 +1,4 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 import { domEl } from '../../scripts/dom-helpers.js';
 import { applyAdaptiveTextColor } from '../../scripts/utilities.js';
 

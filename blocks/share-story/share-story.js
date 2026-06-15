@@ -2,7 +2,7 @@ import {
   div, a, p, h3, span, button,
   i,
 } from '../../scripts/dom-helpers.js';
-import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 

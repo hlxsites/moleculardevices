@@ -1,6 +1,6 @@
 import { div, iframe } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
-import { toClassName } from '../../scripts/lib-franklin.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
 import { getCookie, iframeResizeHandler } from '../../scripts/scripts.js';
 
 let DEFAULT_CMP = '';

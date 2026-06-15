@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { loadCSS, decorateIcons } from '../../scripts/lib-franklin.js';
+import { loadCSS, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import {
   div, button, h2, a, h3, img, span, p,
 } from '../../scripts/dom-helpers.js';

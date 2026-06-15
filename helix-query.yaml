@@ -82,6 +82,9 @@ indices:
       showinSitemap:
         select: head > meta[name="show-in-sitemap"]
         value: attribute(el, "content")
+      productDiscontinued:
+        select: head > meta[name="product-discontinued"]
+        value: attribute(el, "content")  
       date:
         select: head > meta[name="publication-date"]
         value: parseTimestamp(attribute(el, "content"), "MM/DD/YYYY")

@@ -193,10 +193,7 @@ main .section .hero-advanced-wrapper {
   color: var(--color-text-primary);
 }
 
-.hero.order .order-container.store-hidden {
-  display: none;
-}
-
+.hero.order .order-container.store-hidden,
 #overlay {
   display: none;
 }
@@ -540,10 +537,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 
   /* Video Gallery Variant - Desktop -- End */
 
-  .hero-inner h1 {
-    font-size: 45px;
-  }
-
   .hero-inner .container {
     overflow: auto;
     align-items: stretch;
@@ -604,10 +597,6 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (min-width: 992px) {
-  .hero-inner h1 {
-    font-size: 70px;
-  }
-
   .hero-inner .container > div {
     float: left;
   }
@@ -655,8 +644,12 @@ main .hero.service-support .two-column > div:nth-of-type(2) .button-container {
 }
 
 @media (max-width: 767px) {
+  .hero-inner {
+    --font-size-h1: 45px;
+  }
+
   .thankyou .hero-inner h1 {
-    font-size: 32px;
+    --font-size-h1: 32px;
   }
 
   .thankyou .hero-inner p {

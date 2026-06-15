@@ -1,4 +1,4 @@
-import { toClassName } from '../../scripts/lib-franklin.js';
+import { toClassName } from '../../scripts/lib-franklin.min.js';
 import { getCookie, isVideo, loadScript } from '../../scripts/scripts.js';
 import { div } from '../../scripts/dom-helpers.js';
 

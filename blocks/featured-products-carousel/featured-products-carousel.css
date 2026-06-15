@@ -139,4 +139,8 @@ main .featured-products-carousel .carousel-item-text .button-container .secondar
   main .section.columns-2 .featured-products-carousel-wrapper.mini {
     width: 85vw;
   }
+
+  main .featured-products-carousel .carousel-item-text .button-container .secondary {
+    white-space: normal;
+  }
 }

@@ -1,6 +1,6 @@
 // eslint-disable-next-line object-curly-newline
 import { div, ul, li, span, a, strong } from '../../scripts/dom-helpers.js';
-import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { decorateIcons, fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 
 function activeItem(slider, item, diff) {
   const carousel = slider.closest('.block').querySelector('.carousel');

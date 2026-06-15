@@ -403,11 +403,13 @@ function decorateBlockLocale(block) {
     if (!SUPPORTED_LOCALES.includes(blockClass)) return;
 
     localesFound.push(blockClass);
+
+    const isFooterBlock = block.closest('.footer');
     if (blockClass !== 'en') {
-      block.classList.add(`OneLinkShow_${blockClass}`);
+      if (isFooterBlock) block.classList.add(`OneLinkShow_${blockClass}`);
       block.parentElement.classList.add(`OneLinkShow_${blockClass}`);
     } else {
-      block.classList.add('OneLinkHide');
+      if (isFooterBlock) block.classList.add('OneLinkHide');
       block.parentElement.classList.add('OneLinkHide');
     }
   });
@@ -779,7 +781,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
       const source = document.createElement('source');
       if (br.media) source.media = br.media;
       source.type = `image/${format}`;
-      source.srcset = `${pathname}?width=${br.width}&format=${format}&optimize=medium`;
+      source.srcset = `${url}?width=${br.width}&format=${format}&optimize=medium`;
       picture.appendChild(source);
     });
   });
@@ -789,7 +791,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
       if (br.media) source.media = br.media;
-      source.srcset = `${pathname}?width=${br.width}&format=${ext}&optimize=medium`;
+      source.srcset = `${url}?width=${br.width}&format=${ext}&optimize=medium`;
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
@@ -798,7 +800,7 @@ export function createOptimizedPicture(src, alt = '', eager = true,
       img.sizes = sizes;
       img.loading = eager ? 'eager' : 'lazy';
       img.fetchPriority = 'high';
-      img.src = `${pathname}?width=${br.width}&format=${ext}&optimize=medium`;
+      img.src = `${url}?width=${br.width}&format=${ext}&optimize=medium`;
 
       if (br.width) img.setAttribute('width', br.width);
       if (br.height) img.setAttribute('height', br.height);

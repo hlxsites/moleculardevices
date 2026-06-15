@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle, no-alert */
 import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
@@ -97,8 +97,6 @@ class Card {
 
     /* default button */
     let cardLink = item.path;
-
-    console.log(isGatedResource(item));
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {

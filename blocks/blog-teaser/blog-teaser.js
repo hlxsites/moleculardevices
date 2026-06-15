@@ -5,7 +5,7 @@ import {
   createOptimizedPicture,
   fetchPlaceholders,
   getMetadata,
-} from '../../scripts/lib-franklin.js';
+} from '../../scripts/lib-franklin.min.js';
 import {
   fetchFragment, formatDate, getData, sortDataByDate,
 } from '../../scripts/scripts.js';

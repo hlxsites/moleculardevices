@@ -524,6 +524,15 @@ main .category-form.forms-container .forms {
   color: var(--color-white);
 }
 
+main .category-form.forms-container .forms a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+main .category-form.forms-container .hs-fieldtype-booleancheckbox .hs-form-booleancheckbox label{
+  color: inherit;
+}
+
 main .category-form .hs-form .hs-form-field .hs-field-desc,
 main .category-form .hs-form .hs-form-field .hs-field-desc a,
 main .category-form .hs-form a {

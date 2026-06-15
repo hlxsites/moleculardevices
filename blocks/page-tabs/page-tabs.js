@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { a, li, ul } from '../../scripts/dom-helpers.js';
-import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, toCamelCase } from '../../scripts/lib-franklin.min.js';
 import { activateTab, scrollToHashTarget, scrollToWithOffset } from '../../scripts/utilities.js';
 
 const TAB_SCROLL_OFFSET = 50;

@@ -5,7 +5,7 @@ import {
   div, h3, ul, li, img, a, span, i, button,
   p,
 } from '../../scripts/dom-helpers.js';
-import { sampleRUM } from '../../scripts/lib-franklin.js';
+import { sampleRUM } from '../../scripts/lib-franklin.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 import { RFQ_CMP_ID } from '../forms/formMapping.js';
 
@@ -199,7 +199,6 @@ async function loadIframeForm(data, type) {
         sfdcPrimaryApplication = tab;
 
         const mainProduct = await getRFQDataByTitle(relatedProducts.split(',')[0].trim());
-        console.log(mainProduct);
         if (mainProduct) {
           sfdcProductFamily = mainProduct.productFamily;
           sfdcProductSelection = mainProduct.productFamily;

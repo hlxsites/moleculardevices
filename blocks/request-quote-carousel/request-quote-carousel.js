@@ -3,7 +3,7 @@ import { createCard } from '../card/card.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import ffetch from '../../scripts/ffetch.js';
 import { getCountryCode, sortDataByTitle } from '../../scripts/scripts.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 
 export const isCountryCodeUS = await getCountryCode() === 'US';
 
