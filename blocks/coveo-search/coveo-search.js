@@ -234,7 +234,7 @@ async function coveoSearchInitiation(organizationID, accessToken) {
 
     const lang = document.documentElement.lang || 'en';
     const locale = lang.split('-')[0].toLowerCase();
-    const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`].join().trim();
+    const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`].trim();
 
     if (localizedPath) {
       link.href = `https://www.moleculardevices.com${localizedPath}`;
