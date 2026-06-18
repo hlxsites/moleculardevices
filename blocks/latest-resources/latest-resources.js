@@ -34,7 +34,7 @@ async function getResourcesFromMetaTags() {
     .sheet('resources')
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
-    .limit(9)
+    // .limit(9)
     .all();
 }
 
@@ -45,7 +45,7 @@ async function getFeaturedResources(paths) {
       || paths.includes(resource.gatedURL)
       || (resource.gatedURL && resource.gatedURL !== '0' && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname)),
     )
-    .limit(9)
+    // .limit(9)
     .all();
 }
 
@@ -85,6 +85,8 @@ export default async function decorate(block) {
     block.parentElement.parentElement.remove();
     return;
   }
+  resources = resources.filter((resource) => resource.date < 1612117800);
+  // console.log(resources);
 
   /* view all CTA */
   addViewAllCTA(block, blockLinks, 'latest-resources', '#resources', onViewAllClick, 'View Resources');

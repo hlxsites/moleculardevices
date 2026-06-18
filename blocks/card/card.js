@@ -96,7 +96,11 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
+    // const lang = document.documentElement.lang.split('-')[0].toLowerCase();
+    // const lang = 'de';
+    // console.log(lang);
     let cardLink = item.path;
+    // console.log(item);
 
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
