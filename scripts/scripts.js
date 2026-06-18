@@ -1590,13 +1590,18 @@ export async function processEmbedFragment(element) {
   const link = element.querySelector('a');
   if (link) {
     const linkUrl = new URL(link.href);
-
-    if (linkUrl.pathname) {
+    let linkTextUrl;
+    try {
+      linkTextUrl = new URL(link.textContent);
+    } catch {
+      // not a url, ignore
+    }
+    if (linkTextUrl && linkTextUrl.pathname === linkUrl.pathname) {
       const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.aem.page', 'moleculardevices--hlxsites.aem.live'];
       found = fragmentDomains.find((domain) => linkUrl.hostname.endsWith(domain));
       if (found) {
         block.classList.remove('button-container');
-        const fragment = await fetchFragment(linkUrl.pathname);
+        const fragment = await fetchFragment(linkUrl);
         block.innerHTML = fragment;
         const sections = block.querySelectorAll('.embed-fragment > div');
         [...sections].forEach((section) => {
