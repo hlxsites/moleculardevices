@@ -2,6 +2,7 @@
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 
+export const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
 
@@ -230,8 +231,6 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
   }
-
-  const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 
   Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
     const { result } = args;
