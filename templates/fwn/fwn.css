@@ -82,6 +82,7 @@
 
 .what-next main .section.newsletter-form a {
   color: inherit;
+  text-decoration: underline;
 }
 
 .what-next main .section.newsletter-form .default-content-wrapper,

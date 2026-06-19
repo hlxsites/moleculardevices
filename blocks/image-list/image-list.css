@@ -18,6 +18,7 @@ main div.image-list-wrapper {
   margin-bottom: 30px;
 }
 
+.image-list.columns-2.block,
 .image-list.features.block {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -54,6 +55,7 @@ main div.image-list-wrapper {
   margin-top: 45px;
 }
 
+.image-list.columns-2.block .item,
 .image-list.features.block .item {
   margin-top: 0;
 }
@@ -65,7 +67,7 @@ main div.image-list-wrapper {
 .service-support.support-options .image-list-wrapper h3 {
   font-size: 36px;
   font-weight: 300;
-  font-family: 'Proxima Nova Light', sans-serif;
+  font-family: "Proxima Nova Light", sans-serif;
   padding-top: 0;
 }
 
@@ -90,6 +92,7 @@ main div.image-list-wrapper {
 }
 
 @media only screen and (max-width: 768px) {
+  .image-list.columns-2.block,
   .image-list.features.block {
     grid-template-columns: 1fr;
     column-gap: 0;
