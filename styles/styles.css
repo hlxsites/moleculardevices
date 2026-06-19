@@ -1914,6 +1914,11 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin: 0 15px;
 }
 
+.product .section.tabs h2 + h3,
+.product .section.tabs h2 + h3 ~ p {
+  margin: 0 0 10px;
+}
+
 .product p.video-title {
   font-size: 24px;
   font-family: var(--ff-proxima-xbold);

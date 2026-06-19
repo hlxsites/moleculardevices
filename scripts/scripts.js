@@ -1260,7 +1260,19 @@ export const DATE_LOCALE = 'en-US';
 export function formatDate(date, options = {}) {
   if (!date) return '';
 
-  const d = date instanceof Date ? date : new Date(date);
+  let d;
+
+  if (typeof date === 'string' && /^\d+$/.test(date.trim())) {
+    d = new Date(Number(date) * 1000);
+  } else if (typeof date === 'string') {
+    if (date.includes('-')) {
+      d = new Date(date.replace(/-/g, '/'));
+    } else {
+      d = new Date(date);
+    }
+  } else {
+    d = date instanceof Date ? date : new Date(date);
+  }
 
   if (Number.isNaN(d.getTime())) return '';
 
@@ -1278,6 +1290,8 @@ export function formatDate(date, options = {}) {
  * @returns new string with the formated date
  */
 export function formatDateUTCSeconds(date, options = {}) {
+  if (!date) return '';
+
   const dateObj = new Date(0);
   dateObj.setUTCSeconds(date);
 
@@ -1285,6 +1299,7 @@ export function formatDateUTCSeconds(date, options = {}) {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
+    timeZone: 'UTC',
     ...options,
   });
 }
@@ -1581,18 +1596,13 @@ export async function processEmbedFragment(element) {
   const link = element.querySelector('a');
   if (link) {
     const linkUrl = new URL(link.href);
-    let linkTextUrl;
-    try {
-      linkTextUrl = new URL(link.textContent);
-    } catch {
-      // not a url, ignore
-    }
-    if (linkTextUrl && linkTextUrl.pathname === linkUrl.pathname) {
+
+    if (linkUrl.pathname) {
       const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.aem.page', 'moleculardevices--hlxsites.aem.live'];
       found = fragmentDomains.find((domain) => linkUrl.hostname.endsWith(domain));
       if (found) {
         block.classList.remove('button-container');
-        const fragment = await fetchFragment(linkUrl);
+        const fragment = await fetchFragment(linkUrl.pathname);
         block.innerHTML = fragment;
         const sections = block.querySelectorAll('.embed-fragment > div');
         [...sections].forEach((section) => {
