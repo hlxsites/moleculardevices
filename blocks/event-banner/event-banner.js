@@ -20,6 +20,8 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
   const socials = ['facebook-f', 'linkedin-in', 'x-twitter', 'youtube'];
   const imageThumbPosition = getMetadata('image-thumb-position') || 'center';
   const bannerClasses = `event-banner event-thumb-${toClassName(imageThumbPosition)} ${isFeaturedBanner ? 'featured-event-banner' : ''}`;
+  const ctaTItle = getMetadata('cta-title');
+  const ctaText = ctaTItle || 'See us at the show';
 
   const leftCol = div({ class: 'left-col' },
     isFeaturedBanner ? a({ href: eventObj?.path }, createOptimizedPicture(eventObj?.image))
@@ -35,7 +37,7 @@ export function createEventBanner(eventObj, isFeaturedBanner = false) {
     ),
     div(
       eventObj?.booth ? h2({ class: 'event-sub-title' }, eventObj?.booth) : '',
-      !isFeaturedBanner && eventObj?.eventURL ? p(a({ class: 'button primary', href: eventObj?.eventURL }, 'See us at the show')) : '',
+      !isFeaturedBanner && eventObj?.eventURL ? p(a({ class: 'button primary', href: eventObj?.eventURL }, ctaText)) : '',
       socialShareBlock('Share this event', socials),
     ),
   );

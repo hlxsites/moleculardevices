@@ -23,10 +23,14 @@ const addChevron = (text, link) => (p(
     i({ class: 'fa fa-chevron-circle-right', 'aria-hidden': true })),
 ));
 
-export const formatEntry = (item) => p(formatDate(unixDateToString(item.date)),
-  document.createElement('br'),
-  a({ href: item.path, 'aria-label': item.title }, item.title),
-);
+const formatEntry = (item) => {
+  const isNumber = /^\d+$/.test(item.date);
+  const date = isNumber ? formatDate(unixDateToString(item.date)) : item.date;
+  return p(date,
+    document.createElement('br'),
+    a({ href: item.path, 'aria-label': item.title }, item.title),
+  );
+};
 
 function toggleSection(container, target) {
   if (!target.parentElement.classList.contains('on')) {
@@ -111,7 +115,7 @@ export async function buildNewsletter(container) {
   if (container.querySelector(`#${newsletterId} form`)) return; // newsletter already present
 
   const formType = 'newsletter';
-  const formHeading = 'Lab Notes eNewsletter';
+  const formHeading = 'News & Product Updates';
 
   const form = div({ class: toClassName(`${formHeading}-wrapper`) },
     div({ id: newsletterId, class: 'enewsletter-wrapper', loading: 'lazy' },
