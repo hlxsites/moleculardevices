@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const BASE_URL = 'https://www.moleculardevices.com';
 
+const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
+
 const INDENTIFIER_MAPPING = new Map();
 
 const RESOURCES = [
@@ -222,6 +224,17 @@ function createCoveoFields(index, icons) {
 
     item.md_img = coveoImageURL.toString();
 
+    // if (item.path.includes('/service-support/professional-services')) {
+    item.md_geo_assets = ALL_LOCALES
+      .filter((locale) => {
+        const url = item[`md_${locale}_url`];
+        return url && url.trim() !== '' && url.trim() !== '0' && url.trim() !== '#N/A';
+      })
+      .map((locale) => locale.toUpperCase())
+      .join(';');
+    //   console.log(item);
+    // }
+
     if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
       if (isNotEmpty(item.subcategory)) {
@@ -340,6 +353,7 @@ async function writeCoveoSitemapXML(index) {
     xmlData.push(`      <md_it_url><![CDATA[ ${isNotEmpty(item.md_it_url) ? item.md_it_url : ''} ]]></md_it_url>`);
     xmlData.push(`      <md_es_url><![CDATA[ ${isNotEmpty(item.md_es_url) ? item.md_es_url : ''} ]]></md_es_url>`);
     xmlData.push(`      <md_source><![CDATA[ ${isNotEmpty(item.md_source) ? item.md_source : ''} ]]></md_source>`);
+    xmlData.push(`      <md_geo_assets><![CDATA[ ${isNotEmpty(item.md_geo_assets) ? item.md_geo_assets : ''} ]]></md_geo_assets>`);
     xmlData.push('    </coveo:metadata>');
     xmlData.push('    <md_pagesort>1</md_pagesort>');
     xmlData.push('  </url>');

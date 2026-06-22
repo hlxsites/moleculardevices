@@ -2,6 +2,7 @@
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
 import { getCookie, loadScript } from '../../scripts/scripts.js';
 
+export const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
 
@@ -97,6 +98,8 @@ export function searchMainSection() {
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Content Type" data-enable-facet-search="false" data-field="@md_contenttype" data-number-of-values="8" data-tab="Resources, All"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-enable-facet-search="false" data-title="Article Type" data-field="@mdarticletypedatacategory" data-number-of-values="8" data-tab="All, SalesforceArticle"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Content Type 2" data-field="@pagetype" data-tab="Resources"></div>
+
+                  <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Geo Assets" data-field="@md_geo_assets" data-number-of-values="8" data-tab="Resources, All"></div>
 
                 </div>
                 <div class="coveo-results-column">
@@ -223,8 +226,6 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     // eslint-disable-next-line no-console
     console.error('Coveo library is not available.');
   }
-
-  const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 
   Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
     const { result } = args;
