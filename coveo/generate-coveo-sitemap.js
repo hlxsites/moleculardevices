@@ -224,13 +224,16 @@ function createCoveoFields(index, icons) {
 
     item.md_img = coveoImageURL.toString();
 
+    // if (item.path.includes('/service-support/professional-services')) {
     item.md_geo_assets = ALL_LOCALES
       .filter((locale) => {
         const url = item[`md_${locale}_url`];
-        return url && url.trim() !== '' && url.trim() !== '0';
+        return url && url.trim() !== '' && url.trim() !== '0' && url.trim() !== '#N/A';
       })
       .map((locale) => locale.toUpperCase())
       .join(';');
+    //   console.log(item);
+    // }
 
     if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
