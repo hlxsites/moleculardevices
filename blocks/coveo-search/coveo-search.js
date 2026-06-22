@@ -99,6 +99,7 @@ export function searchMainSection() {
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-enable-facet-search="false" data-title="Article Type" data-field="@mdarticletypedatacategory" data-number-of-values="8" data-tab="All, SalesforceArticle"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Content Type 2" data-field="@pagetype" data-tab="Resources"></div>
 
+                  <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Geo Assets" data-field="@md_geo_assets" data-number-of-values="8" data-tab="Resources, All"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="DE Resources" data-field="@md_de_url" data-number-of-values="8" data-tab="Resources, All"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="ZH Resources" data-field="@md_zh_url" data-number-of-values="8" data-tab="Resources, All"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="FR Resources" data-field="@md_fr_url" data-number-of-values="8" data-tab="Resources, All"></div>
