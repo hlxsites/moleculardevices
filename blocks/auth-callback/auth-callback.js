@@ -100,7 +100,7 @@ export default async function decorate(block) {
           const target = result?.appState?.returnTo || '/';
           window.location.href = target;
         }, 1500);
-      }, 1000);
+      }, 1200);
       // } else {
       //   const target = result?.appState?.returnTo || '/';
       //   window.location.href = target;
