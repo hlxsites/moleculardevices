@@ -229,10 +229,10 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     const { result } = args;
     const link = args.item.querySelector('.coveo-result-link');
     const linkTitle = args.item.querySelector('.CoveoFieldValue[data-field="@md_title"] span');
-     if (!link) return;
+    if (!link) return;
 
-    //const lang = document.documentElement.lang || 'en';
-     const lang = 'it';
+    // const lang = document.documentElement.lang || 'en';
+    const lang = 'it';
     const locale = lang.split('-')[0].toLowerCase();
     const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`].trim();
     const localizedTitle = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_title`].trim();
@@ -241,7 +241,7 @@ async function coveoSearchInitiation(organizationID, accessToken) {
       link.href = `https://www.moleculardevices.com${localizedPath}`;
       linkTitle.textContent = localizedTitle;
     }
-    console.log('GEO title'+localizedTitle);
+    console.log('GEO title: ', localizedTitle);
   });
 }
 
