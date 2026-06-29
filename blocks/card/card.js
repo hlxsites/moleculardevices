@@ -3,7 +3,7 @@ import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.min.js';
 import {
-  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
+  formatDateUTCSeconds, isGatedResource, isNotEmpty, itemSearchTitle, summariseDescription,
 } from '../../scripts/scripts.js';
 import {
   a, div, h3, p, i, span, article, figure, time, h4,
@@ -97,10 +97,16 @@ class Card {
 
     /* default button */
     // const lang = document.documentElement.lang.split('-')[0].toLowerCase();
-    // const lang = 'de';
-    // console.log(lang);
+    const lang = 'de';
+    const geoPath = item[`${lang.toUpperCase()} Path`];
+    const geoTitle = item[`${lang.toUpperCase()} Title`];
+    const geoDescription = item[`${lang.toUpperCase()} Description`];
+
+    if (isNotEmpty(geoPath)) item.path = geoPath;
+    if (isNotEmpty(geoTitle)) cardTitle = geoTitle;
+    if (isNotEmpty(geoDescription)) item.cardDescription = geoDescription;
+
     let cardLink = item.path;
-    // console.log(item);
 
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;

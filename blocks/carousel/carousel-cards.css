@@ -79,6 +79,7 @@ main .carousel-wrapper.cards .carousel {
 
 .carousel.cards .carousel-item h3 a {
   color: inherit;
+  word-break: break-word;
 }
 
 .carousel.cards.three-lines-heading .carousel-item h3 {
