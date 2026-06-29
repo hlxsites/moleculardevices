@@ -234,7 +234,6 @@ async function coveoSearchInitiation(organizationID, accessToken) {
 
     const lang = document.documentElement.lang || 'en';
     const locale = lang.split('-')[0].toLowerCase();
-    console.log(result.raw);
     const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`].trim();
     const localizedTitle = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_title`].trim();
     const localizedDesc = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_desc`].trim();
