@@ -59,7 +59,7 @@ export async function decorateResources(block) {
   const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
 
   const resources = await ffetch('/query-index.json')
-    .sheet('resources')
+    .sheet('resources-dev')
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .all();

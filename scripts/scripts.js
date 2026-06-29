@@ -1706,6 +1706,16 @@ export function isNotEmpty(field) {
 }
 
 /**
+ * Checks whether a string contains only numeric digits (0-9).
+ *
+ * @param {string} value - The string to validate.
+ * @returns {boolean} Returns `true` if the string contains only digits; otherwise, `false`.
+ */
+function isNumericString(value) {
+  return /^\d+$/.test(value);
+}
+
+/**
  * Retrieves the most relevant title for an item, prioritizing searchTitle, h1, and title fields.
  *
  * @param {Object} item - The item containing title fields.
@@ -1715,11 +1725,11 @@ export function isNotEmpty(field) {
  * @returns {string} The most relevant title or an empty string if none are available.
  */
 export function itemSearchTitle(item) {
-  if (isNotEmpty(item.searchTitle)) {
+  if (isNotEmpty(item.searchTitle) && !isNumericString(item.searchTitle)) {
     return item.searchTitle;
   }
 
-  if (isNotEmpty(item.h1)) {
+  if (isNotEmpty(item.h1) && !isNumericString(item.searchTitle)) {
     return item.h1;
   }
 

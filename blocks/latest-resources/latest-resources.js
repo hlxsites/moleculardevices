@@ -31,7 +31,7 @@ async function getResourcesFromMetaTags() {
   const relatedResource = relatedResourcesHeaders[template] || 'relatedProducts';
 
   return ffetch('/query-index.json')
-    .sheet('resources')
+    .sheet('resources-dev')
     .filter((resource) => resource[relatedResource].includes(identifier)
       && includedResourceTypes.includes(resource.type))
     .limit(9)
@@ -40,7 +40,7 @@ async function getResourcesFromMetaTags() {
 
 async function getFeaturedResources(paths) {
   return ffetch('/query-index.json')
-    .sheet('resources')
+    .sheet('resources-dev')
     .filter((resource) => paths.includes(resource.path)
       || paths.includes(resource.gatedURL)
       || (resource.gatedURL && resource.gatedURL !== '0' && paths.includes(new URL(resource.gatedURL, 'https://moleculardevices.com').pathname)),
