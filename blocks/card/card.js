@@ -96,8 +96,7 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
-    // const lang = document.documentElement.lang.split('-')[0].toLowerCase();
-    const lang = 'de';
+    const lang = document.documentElement.lang.split('-')[0].toLowerCase();
     const geoPath = item[`${lang.toUpperCase()} Path`];
     const geoTitle = item[`${lang.toUpperCase()} Title`];
     const geoDescription = item[`${lang.toUpperCase()} Description`];
