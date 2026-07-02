@@ -3,6 +3,7 @@ import { div, h1, p } from '../../scripts/dom-helpers.js';
 import { getMetadata, createOptimizedPicture } from '../../scripts/lib-franklin.min.js';
 import { getCookie, isAuthorizedUser, loadScript } from '../../scripts/scripts.js';
 import ffetch from '../../scripts/ffetch.js';
+import { hasAuth0LoggedIn } from '../../blocks/auth-callback/auth-callback.js';
 
 export async function iframeResizeHandler(id) {
   await new Promise((resolve) => {
@@ -65,7 +66,8 @@ function handleEmbed() {
 }
 
 export default async function buildAutoBlocks() {
-  if (isAuthorizedUser()) {
+  const hasLoggedIn = hasAuth0LoggedIn();
+  if (isAuthorizedUser() || hasLoggedIn) {
     const path = window.location.pathname;
     const pageIndex = await ffetch('/query-index.json').sheet('gated-resources').all();
     const foundPage = pageIndex.find((page) => page.gatedURL === path || page.gatedURL.endsWith(`moleculardevices.com${path}`));
