@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // md_geo_assets filter removed ---- to be added back
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.min.js';
 
 export const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 const organizationId = 'moleculardevicesproductionca45f5xc';

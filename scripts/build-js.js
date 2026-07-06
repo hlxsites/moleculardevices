@@ -4,7 +4,7 @@ import fs from 'fs';
 
 const files = [
   { in: './scripts/lib-franklin.js', out: './scripts/lib-franklin.min.js' },
-  { in: './scripts/scripts.js', out: './scripts/scripts.min.js' },
+  { in: './scripts/scripts.min.js', out: './scripts/scripts.min.js' },
 ];
 
 (async () => {
@@ -13,12 +13,21 @@ const files = [
     const code = fs.readFileSync(file.in, 'utf-8');
 
     // eslint-disable-next-line no-await-in-loop
+    // const result = await minify(code, {
+    //   compress: true,
+    //   mangle: false,
+    //   format: {
+    //     beautify: false,
+    //     semicolons: true,
+    //     comments: false,
+    //   },
+    // });
+    // eslint-disable-next-line no-await-in-loop
     const result = await minify(code, {
-      compress: true,
+      module: true,
+      compress: false,
       mangle: false,
       format: {
-        beautify: false,
-        semicolons: true,
         comments: false,
       },
     });

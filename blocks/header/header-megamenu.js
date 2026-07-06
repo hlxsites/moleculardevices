@@ -9,7 +9,7 @@ import {
   buildBrandLogo, buildRequestQuote, fetchMenuId,
   addCloseMenuButtonListener, reverseElementLinkTagRelation,
 } from './helpers.js';
-import { processSectionMetadata } from '../../scripts/scripts.js';
+import { processSectionMetadata } from '../../scripts/scripts.min.js';
 
 export function showRightSubmenu(element) {
   if (!element) return;
