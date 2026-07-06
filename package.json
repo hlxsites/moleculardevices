@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "description": "Starter project for Adobe Helix",
-  "type": "module",
   "scripts": {
     "test": "wtr \"./test/**/*.test.js\" --node-resolve --port=2000 --coverage",
     "test:watch": "npm test -- --watch",
