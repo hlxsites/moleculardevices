@@ -33,6 +33,7 @@ import { SITE_LOGO_URL } from '../blocks/header/header.js';
  */
 const TEMPLATE_LIST = [
   'application-note',
+  'technical-note',
   'news',
   'newsletter',
   'publication',
@@ -483,7 +484,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Technical Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -690,7 +691,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application Note') {
+    if (type === 'Application Note' || type === 'Technicals Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [

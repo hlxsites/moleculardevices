@@ -5,7 +5,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
 import customBreadcrumbs, { customResourcesBreadcrumb } from './customBreadcrumbs.js';
 
-const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Cell Counter', 'Interactive Demo'];
+const customResourceTypes = ['Videos and Webinars', 'Application Note', 'Technical Note', 'Cell Counter', 'Interactive Demo'];
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;

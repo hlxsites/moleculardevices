@@ -2625,6 +2625,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 /* application notes */
+.technical-note h2,
 .application-note h2 {
   font-size: 36px;
   margin-bottom: 20px;
@@ -2632,6 +2633,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   font-weight: 400;
 }
 
+.technical-note h4,
 .application-note h4 {
   font-weight: bold;
   margin-bottom: 1em;
