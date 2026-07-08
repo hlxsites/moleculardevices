@@ -37,6 +37,7 @@ export const marketingOptin = '00N70000003ipQF';
 export const authResearchArea = '00NRn000001Lbgj';
 export const authResearchAreaOther = '00NRn0000025n29';
 
+/* salesforce field names */
 export const fieldsObj = [
   { inputName: 'first_name', inputFieldName: 'firstname' },
   { inputName: 'last_name', inputFieldName: 'lastname' },
@@ -86,5 +87,5 @@ export const fieldsObj = [
   // { inputName: 'Research_Area__c', inputFieldName: 'research_area' },
   { inputName: authResearchArea, inputFieldName: 'research_area' },
   // { inputName: 'Research_Area_Other__c', inputFieldName: 'research_area_other' },
-  { inputName: authResearchAreaOther, inputFieldName: 'research_area_other' },
+  { inputName: authResearchAreaOther, inputFieldName: 'research_area__other' },
 ];

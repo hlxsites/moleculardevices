@@ -124,6 +124,7 @@ export async function getFormFieldValues(formConfig) {
     formConfigWebsite = `${hostName}${formConfig.path}`;
   }
 
+  /* hubspot field names */
   return {
     /* auth0 fields */
     firstname: formConfig.firstname || '',
@@ -135,7 +136,7 @@ export async function getFormFieldValues(formConfig) {
     mobilephone: formConfig.phone || '',
     jobtitle: formConfig.jobtitle || '',
     subscribe: formConfig.subscribe || '',
-    research_area_other: formConfig.researchAreaOther || '',
+    research_area__other: formConfig.researchAreaOther || '',
 
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
@@ -172,6 +173,8 @@ export function updateFormFields(form, fieldValues) {
       checkboxes.forEach((checkbox) => {
         checkbox.checked = Array.isArray(value) ? value.includes(checkbox.value) : Boolean(value);
         checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+        console.log(checkbox);
+        console.log(checkbox.checked);
       });
 
       return;

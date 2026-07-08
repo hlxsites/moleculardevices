@@ -61,6 +61,7 @@ export default async function decorate(block) {
       const hasSignedUp = !!auth0User?.sign_up;
       // eslint-disable-next-line no-console
       console.log('hasSignedUp: ', hasSignedUp);
+      if (researchAreaOther) researchArea.push('other');
 
       setCookie(`${env}_apiToken`, JSON.stringify({ access_token: idToken }), exp);
       setCookie(`${env}_user_data`, JSON.stringify(auth0User), exp);
