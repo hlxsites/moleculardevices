@@ -1,10 +1,10 @@
 import {
   createOptimizedPicture, loadCSS, toCamelCase, toClassName,
-} from './lib-franklin.js';
+} from './lib-franklin.min.js';
 // eslint-disable-next-line import/no-cycle
 import {
   DATE_LOCALE, formatDate, toTitleCase, unixDateToString,
-} from './scripts.js';
+} from './scripts.min.js';
 import {
   a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';
