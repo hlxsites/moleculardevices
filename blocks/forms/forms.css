@@ -310,6 +310,10 @@ main form fieldset[class*="form-columns"] .input {
 .hubspot-form form div:has(> .hs-richtext .privacy),
 .hubspot-form form fieldset:has(> .hs-richtext .privacy) {
   order: 2;
+}
+
+.events .hubspot-form form div:has(> .hs-richtext .privacy),
+.submit-story-modal .hubspot-form form fieldset:has(> .hs-richtext .privacy) {
   text-align: center;
 }
 

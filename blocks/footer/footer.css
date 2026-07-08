@@ -227,10 +227,6 @@
   margin-top: 5px;
 }
 
-.footer-newsletter-form .hubspot-form form div:has(> .hs-richtext .privacy) {
-  text-align: left;
-}
-
 /* row 4 | global headquarters list */
 .row-4 {
   position: relative;
