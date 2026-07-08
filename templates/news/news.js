@@ -1,4 +1,4 @@
-import { formatDate } from '../../scripts/scripts.js';
+import { formatDate } from '../../scripts/scripts.min.js';
 import { loadEmbed } from '../../blocks/embed/embed.js';
 import {
   a,

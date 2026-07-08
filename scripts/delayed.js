@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM, loadScript } from './lib-franklin.js';
+import { sampleRUM, loadScript } from './lib-franklin.min.js';
 
 const isSidekickLibrary = (window.location.href === 'about:srcdoc');
 
@@ -118,7 +118,7 @@ setTimeout(() => {
   if (typeof OnetrustActiveGroups !== 'undefined' && OnetrustActiveGroups.includes('C0004')) {
     loadEvergageScript();
   }
-  
+
 }, 500);
 
 // SalesForce MCP - end
