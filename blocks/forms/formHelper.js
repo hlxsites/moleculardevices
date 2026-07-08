@@ -135,6 +135,7 @@ export async function getFormFieldValues(formConfig) {
     mobilephone: formConfig.phone || '',
     jobtitle: formConfig.jobtitle || '',
     subscribe: formConfig.subscribe || '',
+    research_area_other: formConfig.researchAreaOther || '',
 
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',

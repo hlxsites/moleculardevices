@@ -57,6 +57,7 @@ export default async function decorate(block) {
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
       const researchArea = auth0User?.reserch_areas;
+      const researchAreaOther = auth0User?.research_area_other.join('');
       const hasSignedUp = !!auth0User?.sign_up;
       // eslint-disable-next-line no-console
       console.log('hasSignedUp: ', hasSignedUp);
@@ -87,6 +88,7 @@ export default async function decorate(block) {
         phone,
         subscribe,
         researchArea,
+        researchAreaOther,
       };
 
       /* embed hubspot form */
