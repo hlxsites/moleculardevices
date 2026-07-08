@@ -148,7 +148,7 @@ export default async function decorate(block) {
 
   /* add wave to category-form section */
   if (hasWaveSection) {
-    const blockSection = block.closest('section');
+    const blockSection = block.closest('.section');
 
     // Thank You page flow
     const pageParam = new URLSearchParams(window.location.search).get('page');
