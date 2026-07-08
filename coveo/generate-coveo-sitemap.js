@@ -14,6 +14,7 @@ const RESOURCES = [
   'Publications',
   'Videos & Webinars',
   'Application Note',
+  'Technical Note',
   'Customer Breakthrough',
   'Data Sheet',
   'Brochure',
@@ -180,6 +181,7 @@ function createCoveoFields(index, icons) {
 
     const TYPE_REMAP_PREFIXES = {
       '/en/assets/app-note/': 'Application Note',
+      '/en/assets/tech-note/': 'Technical Note',
       '/en/assets/ebook/': 'eBook',
       '/en/assets/scientific-posters/': 'Scientific Poster',
       '/en/assets/tutorials-videos/': 'Videos & Webinars',
