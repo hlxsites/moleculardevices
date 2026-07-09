@@ -47,14 +47,19 @@ export async function handleCompareProducts(e) {
 
 const RESOURCECTAMAPPING = {
   'Application Note': 'View Application Note',
-  Publication: 'Read Publication',
-  'Videos and Webinars': 'Watch Webinar',
-  News: 'Read News',
   Blog: 'Read Article',
-  'Technical Note': 'View Technical Note',
+  Brochure: 'View Brochure',
+  'Case Study': 'Read Case Study',
   'Customer Breakthrough': 'Read Success Story',
+  'Data Sheet': 'View Data Sheet',
   Ebook: 'Download eBook',
+  Infographic: 'View Infographic',
+  News: 'Read News',
+  Publication: 'Read Publication',
   'Scientific Poster': 'View Poster',
+  'Technical Note': 'View Technical Note',
+  'Videos and Webinars': 'Watch Webinar',
+  'White Paper': 'Read White Paper',
 };
 
 class Card {
