@@ -115,7 +115,7 @@ export async function decorateResources(block) {
         div(
           { class: 'resource-header' },
           p(item.displayType),
-          h3(geoTitle || itemSearchTitle(item)),
+          h3(isNotEmpty(geoTitle) ? geoTitle : itemSearchTitle(item)),
         ),
         div(
           { class: 'resource-description' },
