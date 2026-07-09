@@ -124,7 +124,20 @@ export async function getFormFieldValues(formConfig) {
     formConfigWebsite = `${hostName}${formConfig.path}`;
   }
 
+  /* hubspot field names */
   return {
+    /* auth0 fields */
+    firstname: formConfig.firstname || '',
+    lastname: formConfig.lastname || '',
+    email: formConfig.email || '',
+    country_code: formConfig.country_code || '',
+    state_dropdown: formConfig.state || '',
+    company: formConfig.organization || '',
+    mobilephone: formConfig.phone || '',
+    jobtitle: formConfig.jobtitle || '',
+    subscribe: formConfig.subscribe || '',
+    research_area__other: formConfig.researchAreaOther || '',
+
     cmp: valuecmp || formConfig.cmp || '',
     gclid__c: formConfig.gclid__c || getCookie('gclid') || '',
     google_analytics_medium__c: formConfig.googleAnalyticsMedium || getCookie('utm_medium') || '',
@@ -154,15 +167,40 @@ export async function getFormFieldValues(formConfig) {
 /*  Function to update multiple form fields */
 export function updateFormFields(form, fieldValues) {
   Object.entries(fieldValues).forEach(([fieldName, value]) => {
-    if (value && form.querySelector(`input[name="${fieldName}"]`)) {
-      form.querySelector(`input[name="${fieldName}"]`).value = value;
+    // Handle checkbox groups
+    const checkboxes = form.querySelectorAll(`input[name="${fieldName}"][type="checkbox"]`);
+    if (checkboxes.length) {
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = Array.isArray(value) ? value.includes(checkbox.value) : Boolean(value);
+        checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+        console.log(checkbox);
+        console.log(checkbox.checked);
+      });
+
+      return;
+    }
+
+    // Handle other inputs
+    const formInput = form.querySelector(`input[name="${fieldName}"]`);
+    if (value && formInput) {
+      formInput.value = value;
+
+      formInput.dispatchEvent(new Event('input', { bubbles: true }));
+      formInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    // Handle select
+    const select = form.querySelector(`select[name="${fieldName}"]`);
+    if (value && select) {
+      select.value = value;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     }
   });
 }
 
 /* custom form fields */
 function createHiddenField(hubspotFormData, inputFieldName, inputName) {
-  const fieldVal = hubspotFormData.get(inputFieldName);
+  const fieldVal = hubspotFormData.getAll(inputFieldName).join(', ');
   if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
     const elementCompany = input({ name: inputName, value: fieldVal, type: 'hidden' });
     return elementCompany;
