@@ -5,7 +5,7 @@ import {
 import {
   createOptimizedPicture, getMetadata, loadCSS, toClassName,
 } from '../../scripts/lib-franklin.min.js';
-import { loadScript, toTitleCase } from '../../scripts/scripts.js';
+import { loadScript, toTitleCase } from '../../scripts/scripts.min.js';
 import { scrollToSection } from '../../scripts/utilities.js';
 import decorateProductPage, { productThankyouSection, rfqThankyouMessage } from '../../templates/product/product.js';
 import PRODUCT_FORM_DATA from '../../templates/product/ProductFormData.js';
@@ -148,7 +148,7 @@ export default async function decorate(block) {
 
   /* add wave to category-form section */
   if (hasWaveSection) {
-    const blockSection = block.closest('section');
+    const blockSection = block.closest('.section');
 
     // Thank You page flow
     const pageParam = new URLSearchParams(window.location.search).get('page');

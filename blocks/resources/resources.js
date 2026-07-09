@@ -4,8 +4,8 @@ import {
   fetchPlaceholders, getMetadata, loadBlock, loadCSS,
 } from '../../scripts/lib-franklin.min.js';
 import {
-  embedVideo, fetchFragment, isGatedResource, itemSearchTitle, summariseDescription,
-} from '../../scripts/scripts.js';
+  embedVideo, fetchFragment, isGatedResource, isNotEmpty, itemSearchTitle, summariseDescription,
+} from '../../scripts/scripts.min.js';
 import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
   div, a, p, h3, i, h2, span, ul, li,
@@ -82,11 +82,18 @@ export async function decorateResources(block) {
 
   const otherResourcesBlock = div({ class: 'resources-section' });
   otherResources.forEach((item) => {
+    const lang = document.documentElement.lang.split('-')[0].toLowerCase();
+    const geoPath = item[`${lang.toUpperCase()} Path`];
+    const geoTitle = item[`${lang.toUpperCase()} Title`];
+    const geoDescription = item[`${lang.toUpperCase()} Description`];
+
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = isGatedResource(item) ? item.gatedURL : item.path;
+    const resourceLink = isGatedResource(item) ? item.gatedURL : (geoPath || item.path);
     displayFilters[resourceType] = resourceDisplayType;
+
+    if (isNotEmpty(geoDescription)) item.description = geoDescription;
 
     const resourceBlock = div(
       {
@@ -108,7 +115,7 @@ export async function decorateResources(block) {
         div(
           { class: 'resource-header' },
           p(item.displayType),
-          h3(itemSearchTitle(item)),
+          h3(geoTitle || itemSearchTitle(item)),
         ),
         div(
           { class: 'resource-description' },

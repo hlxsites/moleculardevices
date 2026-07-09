@@ -9,7 +9,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import { createCard } from '../card/card.js';
 import renderFiltersRow from './filters.js';
-import { toTitleCase } from '../../scripts/scripts.js';
+import { toTitleCase } from '../../scripts/scripts.min.js';
 
 const STEP_PREFIX = 'step';
 const ACTIVE_CLASS = 'active';

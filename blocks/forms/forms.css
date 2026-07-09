@@ -312,6 +312,11 @@ main form fieldset[class*="form-columns"] .input {
   order: 2;
 }
 
+.events .hubspot-form form div:has(> .hs-richtext .privacy),
+.submit-story-modal .hubspot-form form fieldset:has(> .hs-richtext .privacy) {
+  text-align: center;
+}
+
 .orange-buttons .hubspot-form .button {
   background: var(--color-secondary);
 }

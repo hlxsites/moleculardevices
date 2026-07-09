@@ -3,8 +3,8 @@ import {
   decorateIcons, loadCSS, createOptimizedPicture, fetchPlaceholders, toCamelCase,
 } from '../../scripts/lib-franklin.min.js';
 import {
-  formatDateUTCSeconds, isGatedResource, itemSearchTitle, summariseDescription,
-} from '../../scripts/scripts.js';
+  formatDateUTCSeconds, isGatedResource, isNotEmpty, itemSearchTitle, summariseDescription,
+} from '../../scripts/scripts.min.js';
 import {
   a, div, h3, p, i, span, article, figure, time, h4,
 } from '../../scripts/dom-helpers.js';
@@ -96,6 +96,15 @@ class Card {
       ? item.imageBlock : createOptimizedPicture(itemImage, item.title, 'lazy', [{ width: '800' }]);
 
     /* default button */
+    const lang = document.documentElement.lang.split('-')[0].toLowerCase();
+    const geoPath = item[`${lang.toUpperCase()} Path`];
+    const geoTitle = item[`${lang.toUpperCase()} Title`];
+    const geoDescription = item[`${lang.toUpperCase()} Description`];
+
+    if (isNotEmpty(geoPath)) item.path = geoPath;
+    if (isNotEmpty(geoTitle)) cardTitle = geoTitle;
+    if (isNotEmpty(geoDescription)) item.cardDescription = geoDescription;
+
     let cardLink = item.path;
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;

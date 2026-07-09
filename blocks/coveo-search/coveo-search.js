@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
+// md_geo_assets filter removed ---- to be added back
 import { loadCSS } from '../../scripts/lib-franklin.min.js';
-import { getCookie, loadScript } from '../../scripts/scripts.js';
+import { getCookie, loadScript } from '../../scripts/scripts.min.js';
 
+export const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 const organizationId = 'moleculardevicesproductionca45f5xc';
 const coveoToken = 'xxd4878081-5099-4f8c-98a1-6ed5c5399e12';
 
@@ -97,7 +99,6 @@ export function searchMainSection() {
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Content Type" data-enable-facet-search="false" data-field="@md_contenttype" data-number-of-values="8" data-tab="Resources, All"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-enable-facet-search="false" data-title="Article Type" data-field="@mdarticletypedatacategory" data-number-of-values="8" data-tab="All, SalesforceArticle"></div>
                   <div class="CoveoDynamicFacet" data-enable-scroll-to-top="false" data-title="Content Type 2" data-field="@pagetype" data-tab="Resources"></div>
-
                 </div>
                 <div class="coveo-results-column">
                   <div class="CoveoShareQuery"></div>
@@ -224,20 +225,23 @@ async function coveoSearchInitiation(organizationID, accessToken) {
     console.error('Coveo library is not available.');
   }
 
-  const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
-
   Coveo.$$(document.querySelector('#search')).on('newResultDisplayed', (e, args) => {
     const { result } = args;
     const link = args.item.querySelector('.coveo-result-link');
-
+    const coveoTitle = args.item.querySelector('.CoveoFieldValue[data-field="@md_title"] span');
+    const coveoDesc = args.item.querySelector('.coveo-excerpt');
     if (!link) return;
 
     const lang = document.documentElement.lang || 'en';
     const locale = lang.split('-')[0].toLowerCase();
     const localizedPath = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_url`].trim();
+    const localizedTitle = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_title`].trim();
+    const localizedDesc = ALL_LOCALES.includes(locale) && result.raw[`md_${locale}_desc`].trim();
 
     if (localizedPath) {
       link.href = `https://www.moleculardevices.com${localizedPath}`;
+      coveoTitle.textContent = localizedTitle;
+      coveoDesc.textContent = localizedDesc;
     }
   });
 }
