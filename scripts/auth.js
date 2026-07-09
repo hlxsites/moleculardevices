@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { getEnv } from '../blocks/auth-callback/auth-callback.js';
-import { deleteCookie } from './scripts.js';
+import { deleteCookie } from './scripts.min.js';
 
 let auth0Client = null;
 

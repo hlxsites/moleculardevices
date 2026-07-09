@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import initAuth0, { getExpiryTime, getIdToken, getUser } from '../../scripts/auth.js';
 import { div, p } from '../../scripts/dom-helpers.js';
-import { getCookie, setCookie } from '../../scripts/scripts.js';
+import { getCookie, setCookie } from '../../scripts/scripts.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
 const hostName = window.location.hostname;
