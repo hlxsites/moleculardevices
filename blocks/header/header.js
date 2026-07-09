@@ -13,8 +13,8 @@ import {
   decorateExternalLink, detectStore, getCartItemCount,
   getCookie,
   isAuthorizedUser,
-} from '../../scripts/scripts.js';
-import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.js';
+} from '../../scripts/scripts.min.js';
+import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { buildSearchBar } from './menus/search.js';
 import { getIdToken, userLogIn } from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
