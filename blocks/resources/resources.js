@@ -86,11 +86,12 @@ export async function decorateResources(block) {
     const geoPath = item[`${lang.toUpperCase()} Path`];
     const geoTitle = item[`${lang.toUpperCase()} Title`];
     const geoDescription = item[`${lang.toUpperCase()} Description`];
+    const itemLink = isNotEmpty(geoPath) ? geoPath : item.path;
 
     const resourceType = item.type;
     const resourceDisplayType = item.displayType;
     const resourceImage = resourceMapping[item.type]?.image;
-    const resourceLink = isGatedResource(item) ? item.gatedURL : (geoPath || item.path);
+    const resourceLink = isGatedResource(item) ? item.gatedURL : itemLink;
     displayFilters[resourceType] = resourceDisplayType;
 
     if (isNotEmpty(geoDescription)) item.description = geoDescription;
