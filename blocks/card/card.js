@@ -132,7 +132,7 @@ class Card {
       ? item.cardC2A : this.defaultButtonText;
 
     if (this.useResourceTypeToCTA) {
-      buttonText = RESOURCECTAMAPPING[item.type];
+      buttonText = RESOURCECTAMAPPING[item.type] || 'Learn more';
     }
 
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
