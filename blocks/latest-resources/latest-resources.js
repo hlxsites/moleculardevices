@@ -1,5 +1,5 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
+import { decorateButtons, getMetadata } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import {
@@ -13,8 +13,6 @@ const relatedResourcesHeaders = {
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
-
-const placeholders = await fetchPlaceholders();
 
 function onViewAllClick(e) {
   e.preventDefault();
