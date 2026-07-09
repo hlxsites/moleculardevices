@@ -1193,32 +1193,42 @@ function loadCarousels(main) {
   });
 }
 
+const runWhenIdle = (cb) => {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(cb);
+  } else {
+    setTimeout(cb, 1);
+  }
+};
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function decorateMain(main) {
-  // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
   optimiseHeroBlock(main);
   decorateSections(main);
   decorateWaveSection(main);
   decorateBlocks(main);
-  decoratePageNav(main);
-  detectSidebar(main);
-  decorateLinkedPictures(main);
-  decorateLinks(main);
-  decorateParagraphs(main);
-  loadCarousels(main);
-  formInModalHandler(main);
-  addSectionBgColor(main);
-  addBlockBgColor(main);
-  addBgToCarousel(main);
-  addPageSchema();
-  addHreflangTags();
-  decorateImages();
+
+  runWhenIdle(() => {
+    decoratePageNav(main);
+    detectSidebar(main);
+    decorateLinkedPictures(main);
+    decorateLinks(main);
+    decorateParagraphs(main);
+    loadCarousels(main);
+    formInModalHandler(main);
+    addSectionBgColor(main);
+    addBlockBgColor(main);
+    addBgToCarousel(main);
+    addPageSchema();
+    addHreflangTags();
+    decorateImages();
+  });
 }
 
 /* function isHomepage() {
@@ -1429,7 +1439,9 @@ async function loadLazy(doc) {
     const element = hash ? doc.getElementById(hash.substring(1)) : false;
     if (hash && element) element.scrollIntoView();
 
-    loadFooter(doc.querySelector('footer'));
+    window.addEventListener('load', () => {
+      loadFooter(doc.querySelector('footer'));
+    });
     loadBreadcrumbs(main);
 
     window.hlx.plugins.run('loadLazy');

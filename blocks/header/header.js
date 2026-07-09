@@ -115,8 +115,11 @@ export default async function decorate(block) {
 
   const hideSearch = hasCustomLogo;
   const hideGlobalRFQ = hasCustomLogo;
-  const megaMenu = await buildNavbar(content, hideSearch, hideGlobalRFQ);
-  const mobileMenu = await buildMobileMenu(content, hideSearch, hideGlobalRFQ);
+
+  const [megaMenu, mobileMenu] = await Promise.all([
+    buildNavbar(content, hideSearch, hideGlobalRFQ),
+    buildMobileMenu(content, hideSearch, hideGlobalRFQ),
+  ]);
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();
