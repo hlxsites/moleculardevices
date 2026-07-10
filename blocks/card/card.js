@@ -52,7 +52,7 @@ const RESOURCECTAMAPPING = {
   'Case Study': 'Read Case Study',
   'Customer Breakthrough': 'Read Success Story',
   'Data Sheet': 'View Data Sheet',
-  Ebook: 'Download eBook',
+  eBook: 'Download eBook',
   Infographic: 'View Infographic',
   News: 'Read News',
   Publication: 'Read Publication',
