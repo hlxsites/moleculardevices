@@ -1439,9 +1439,7 @@ async function loadLazy(doc) {
     const element = hash ? doc.getElementById(hash.substring(1)) : false;
     if (hash && element) element.scrollIntoView();
 
-    window.addEventListener('load', () => {
-      loadFooter(doc.querySelector('footer'));
-    });
+    loadFooter(doc.querySelector('footer'));
     loadBreadcrumbs(main);
 
     window.hlx.plugins.run('loadLazy');
