@@ -1,5 +1,5 @@
 import { decorateIcons } from '../../scripts/lib-franklin.min.js';
-import { preloadLCPImage } from '../../scripts/scripts.min.js';
+import { preloadLCPImage } from '../../scripts/scripts.js';
 
 function decorateTeaserPicture(teaserPicture, target) {
   teaserPicture.parentElement.classList.add('video-cover');

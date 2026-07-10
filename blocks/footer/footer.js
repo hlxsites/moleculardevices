@@ -8,7 +8,7 @@ import {
 import {
   decorateExternalLink, decorateLinkedPictures, formatDate,
   getData, toCapitalize, unixDateToString,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 import { SITE_LOGO_ALT_VALUE, SITE_LOGO_URL } from '../header/header.js';
 import { getLatestNewsletter } from '../../templates/blog/blog.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';

@@ -3,7 +3,7 @@ import {
 } from '../../scripts/dom-helpers.js';
 import {
   decorateLinks, formatDate, getData, unixDateToString,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 import { createOptimizedPicture, getMetadata, toClassName } from '../../scripts/lib-franklin.min.js';
 import { decorateSocialIcons, socialShareBlock } from '../social-share/social-share.js';
 import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';

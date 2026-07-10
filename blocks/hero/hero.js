@@ -5,7 +5,7 @@ import {
   isVideo,
   preloadLCPImage,
   videoButton,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 import {
   a, div, i, img, ol, span,
 } from '../../scripts/dom-helpers.js';

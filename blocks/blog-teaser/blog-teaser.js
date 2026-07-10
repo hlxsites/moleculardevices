@@ -8,7 +8,7 @@ import {
 } from '../../scripts/lib-franklin.min.js';
 import {
   fetchFragment, formatDate, getData, sortDataByDate,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 
 function renderBlockTeaser(blogData) {
   /* eslint-disable indent */

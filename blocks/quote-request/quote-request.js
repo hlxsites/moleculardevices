@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie, fetchFragment } from '../../scripts/scripts.min.js';
+import { getCookie, fetchFragment } from '../../scripts/scripts.js';
 import {
   div, h3, ul, li, img, a, span, i, button,
   p,

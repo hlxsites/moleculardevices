@@ -4,7 +4,7 @@ import {
 // eslint-disable-next-line import/no-cycle
 import {
   DATE_LOCALE, formatDate, toTitleCase, unixDateToString,
-} from './scripts.min.js';
+} from './scripts.js';
 import {
   a, article, button, div, h2, h3, nav, p, span, ul, li, h4,
 } from './dom-helpers.js';

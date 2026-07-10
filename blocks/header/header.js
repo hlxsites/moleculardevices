@@ -6,7 +6,7 @@ import { buildNavbar } from './header-megamenu.js';
 import {
   a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
-import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.min.js';
+import { decorateExternalLink, detectStore, getCartItemCount } from '../../scripts/scripts.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { buildSearchBar } from './menus/search.js';
 
@@ -115,8 +115,11 @@ export default async function decorate(block) {
 
   const hideSearch = hasCustomLogo;
   const hideGlobalRFQ = hasCustomLogo;
-  const megaMenu = await buildNavbar(content, hideSearch, hideGlobalRFQ);
-  const mobileMenu = await buildMobileMenu(content, hideSearch, hideGlobalRFQ);
+
+  const [megaMenu, mobileMenu] = await Promise.all([
+    buildNavbar(content, hideSearch, hideGlobalRFQ),
+    buildMobileMenu(content, hideSearch, hideGlobalRFQ),
+  ]);
 
   block.append(headerWrapper, megaMenu, mobileMenu);
   decorateIcons();
