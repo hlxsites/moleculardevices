@@ -5,7 +5,7 @@ import {
 } from '../../scripts/lib-franklin.min.js';
 import {
   embedVideo, fetchFragment, isGatedResource, isNotEmpty, itemSearchTitle, summariseDescription,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 import { addCoveoFiles } from '../coveo-search/coveo-search.js';
 import {
   div, a, p, h3, i, h2, span, ul, li,

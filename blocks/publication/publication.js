@@ -1,5 +1,5 @@
 import { fetchPlaceholders, readBlockConfig } from '../../scripts/lib-franklin.min.js';
-import { getData } from '../../scripts/scripts.min.js';
+import { getData } from '../../scripts/scripts.js';
 
 import { createOverview } from '../news/news.js';
 

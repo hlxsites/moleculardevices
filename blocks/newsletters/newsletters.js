@@ -5,7 +5,7 @@ import {
   createList, createDropdown, renderPagination, swapData, toggleFilter,
 } from '../../scripts/list.js';
 import { iframe, p } from '../../scripts/dom-helpers.js';
-import { getData, toTitleCase } from '../../scripts/scripts.min.js';
+import { getData, toTitleCase } from '../../scripts/scripts.js';
 
 let placeholders = {};
 

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { getData } from '../../scripts/scripts.min.js';
+import { getData } from '../../scripts/scripts.js';
 import { a, div, p } from '../../scripts/dom-helpers.js';
 import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 

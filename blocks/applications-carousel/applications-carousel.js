@@ -1,4 +1,4 @@
-import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.min.js';
+import { fetchFragment, sortDataByTitle } from '../../scripts/scripts.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
