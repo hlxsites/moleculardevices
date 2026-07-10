@@ -7,7 +7,7 @@ import ffetch from '../../scripts/ffetch.js';
 import { createOptimizedPicture, toClassName } from '../../scripts/lib-franklin.min.js';
 import {
   formatDate, getData, sortDataByDate, summariseDescription, unixDateToString,
-} from '../../scripts/scripts.min.js';
+} from '../../scripts/scripts.js';
 import { formatEventDateRange, normalizeDate } from '../../scripts/list.js';
 
 function wrapLinkAroundComponent(link, component, removeLink = false) {

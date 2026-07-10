@@ -1,4 +1,4 @@
-import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.min.js';
+import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.js';
 import { loadUserData } from '../../scripts/delayed.js';
 import {
   a, button, div, domEl, h3, i, img, input, label, p, span,
