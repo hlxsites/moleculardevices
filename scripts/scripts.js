@@ -1193,14 +1193,6 @@ function loadCarousels(main) {
   });
 }
 
-const runWhenIdle = (cb) => {
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(cb);
-  } else {
-    setTimeout(cb, 1);
-  }
-};
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -1213,22 +1205,19 @@ export async function decorateMain(main) {
   decorateSections(main);
   decorateWaveSection(main);
   decorateBlocks(main);
-
-  runWhenIdle(() => {
-    decoratePageNav(main);
-    detectSidebar(main);
-    decorateLinkedPictures(main);
-    decorateLinks(main);
-    decorateParagraphs(main);
-    loadCarousels(main);
-    formInModalHandler(main);
-    addSectionBgColor(main);
-    addBlockBgColor(main);
-    addBgToCarousel(main);
-    addPageSchema();
-    addHreflangTags();
-    decorateImages();
-  });
+  decoratePageNav(main);
+  detectSidebar(main);
+  decorateLinkedPictures(main);
+  decorateLinks(main);
+  decorateParagraphs(main);
+  loadCarousels(main);
+  formInModalHandler(main);
+  addSectionBgColor(main);
+  addBlockBgColor(main);
+  addBgToCarousel(main);
+  addPageSchema();
+  addHreflangTags();
+  decorateImages();
 }
 
 /* function isHomepage() {
