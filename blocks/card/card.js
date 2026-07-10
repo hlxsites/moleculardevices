@@ -46,7 +46,7 @@ export async function handleCompareProducts(e) {
 }
 
 const RESOURCECTAMAPPING = {
-  'Application Note': 'View Application Note',
+  'Application Note': 'Read Application Note',
   Blog: 'Read Article',
   Brochure: 'View Brochure',
   'Case Study': 'Read Case Study',
@@ -56,8 +56,8 @@ const RESOURCECTAMAPPING = {
   Infographic: 'View Infographic',
   News: 'Read News',
   Publication: 'Read Publication',
-  'Scientific Poster': 'View Poster',
-  'Technical Note': 'View Technical Note',
+  'Scientific Poster': 'View Scientific Poster',
+  'Technical Note': 'Read Technical Note',
   'Videos and Webinars': 'Watch Webinar',
   'White Paper': 'Read White Paper',
 };
