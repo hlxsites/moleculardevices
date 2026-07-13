@@ -45,6 +45,25 @@ export async function handleCompareProducts(e) {
   compareBannerInterface.refreshBanner();
 }
 
+const RESOURCECTAMAPPING = {
+  'Application Note': 'Read Application Note',
+  Blog: 'Read Article',
+  Brochure: 'View Brochure',
+  'Case Study': 'Read Case Study',
+  'Customer Breakthrough': 'Read Success Story',
+  'Data Sheet': 'View Data Sheet',
+  eBook: 'Download eBook',
+  Flyer: 'View Flyer',
+  Infographic: 'View Infographic',
+  News: 'Read News',
+  Publication: 'Read Publication',
+  'Scientific Poster': 'View Poster',
+  'Technical Guide': 'Read Technical Guide',
+  'Technical Note': 'Read Technical Note',
+  'Videos and Webinars': 'Watch Webinar',
+  'White Paper': 'Read White Paper',
+};
+
 class Card {
   constructor(config = {}) {
     this.cssFiles = [];
@@ -68,6 +87,7 @@ class Card {
     this.isInPastYear = false;
     this.isBlogCarousel = false;
     this.showTag = false;
+    this.useResourceTypeToCTA = false;
 
     // Apply overwrites
     Object.assign(this, config);
@@ -115,8 +135,13 @@ class Card {
       cardLink = item.redirectPath;
     }
 
-    const buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
+    let buttonText = !this.useDefaultButtonText && item.cardC2A && item.cardC2A !== '0'
       ? item.cardC2A : this.defaultButtonText;
+
+    if (this.useResourceTypeToCTA) {
+      buttonText = RESOURCECTAMAPPING[item.type] || 'Learn more';
+    }
+
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
     if (this.c2aLinkConfig) {
       c2aLinkBlock = a(this.c2aLinkConfig, buttonText);
