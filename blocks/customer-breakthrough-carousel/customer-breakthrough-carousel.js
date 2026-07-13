@@ -1,11 +1,9 @@
 import ffetch from '../../scripts/ffetch.js';
-import { createOptimizedPicture, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import { addViewAllCTA } from '../latest-resources/latest-resources.js';
 import { div } from '../../scripts/dom-helpers.js';
-
-const placeholders = await fetchPlaceholders();
 
 async function getCBData(category, pageIdentifier) {
   return ffetch('/query-index.json')
