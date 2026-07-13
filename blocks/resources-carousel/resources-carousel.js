@@ -1,5 +1,4 @@
 import ffetch from '../../scripts/ffetch.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 
@@ -29,12 +28,10 @@ export default async function decorate(block) {
     );
   }
 
-  const placeholders = await fetchPlaceholders();
-
   const cardRenderer = await createCard({
     titleLink: false,
     thumbnailLink: false,
-    defaultButtonText: placeholders.learnMore || 'Learn more',
+    useResourceTypeToCTA: true,
     descriptionLength: 180,
     showTag: true,
   });

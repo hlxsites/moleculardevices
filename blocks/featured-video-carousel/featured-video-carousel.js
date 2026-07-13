@@ -9,6 +9,7 @@ const cardRenderer = await createCard({
   titleLink: false,
   thumbnailLink: false,
   defaultButtonText: placeholders.learnMore || 'Learn more',
+  useResourceTypeToCTA: true,
   c2aLinkStyle: true,
   hideDescription: true,
 });
