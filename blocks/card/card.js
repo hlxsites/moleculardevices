@@ -62,6 +62,7 @@ const RESOURCECTAMAPPING = {
   'Technical Note': 'Read Technical Note',
   'Videos and Webinars': 'Watch Webinar',
   'White Paper': 'Read White Paper',
+  'Interactive Demo': 'Explore Interactive Demo',
 };
 
 class Card {
