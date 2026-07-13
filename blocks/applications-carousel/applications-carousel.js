@@ -46,8 +46,6 @@ export default async function decorate(block) {
       const description = getDescription(fragmentElement);
       const appLinks = fragmentElement.querySelectorAll('a:last-of-type');
       const appLink = fragmentElement.querySelectorAll('a:last-of-type')[appLinks.length - 1];
-      console.log(appLink);
-      console.log(hasApplicationTab);
       return {
         id: h3Block.id,
         title: h3Block.textContent,
