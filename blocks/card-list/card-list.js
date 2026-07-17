@@ -33,7 +33,7 @@ const productCardRender = await createCard({
   defaultButtonText: 'Learn more',
   useDefaultButtonText: true,
   descriptionLength: 150,
-  useResourceTypeToCTA: true
+  useResourceTypeToCTA: true,
 });
 
 const blogCardRender = await createCard({
