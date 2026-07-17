@@ -63,6 +63,14 @@ const RESOURCECTAMAPPING = {
   'Videos and Webinars': 'Watch Webinar',
   'White Paper': 'Read White Paper',
   'Interactive Demo': 'Explore Interactive Demo',
+  Product: 'View Product',
+  Application: 'Explore Application',
+  Technology: 'Explore Technology',
+  Software: 'View Software',
+  Service: 'View Service',
+  Solution: 'Explore Solution',
+  'User Guide': 'View User Guide',
+  Citation: 'View Citation',
 };
 
 class Card {
