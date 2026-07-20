@@ -253,7 +253,7 @@ export function handleFormSubmit(hubspotForm, formConfig, type) {
   /* qdc */
   const qdcCall = hubspotForm.querySelector('input[name="requested_a_salesperson_to_call__c"]');
   const qdc = qdcCall && qdcCall.checked
-    ? 'Call'
+    ? 'Call test'
     : hubspotFormData.get('requested_qdc_discussion__c') || formConfig.qdc || '';
 
   /* subscribe */
