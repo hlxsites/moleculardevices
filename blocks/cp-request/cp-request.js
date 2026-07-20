@@ -1,4 +1,4 @@
-import { getQueryParameter, setCookie } from '../../scripts/scripts.js';
+import { getQueryParameter, setCookie } from '../../scripts/scripts.min.js';
 
 const paramName = 'STYXKEY_PortalUserRole';
 const readQuery = getQueryParameter();
