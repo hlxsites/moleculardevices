@@ -1,7 +1,7 @@
 import { div, ul } from '../../scripts/dom-helpers.js';
 import {
   addLinkIcon, fetchFragment, handleHashNavigation, sortDataByTitle,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 
 async function renderFragment(fragment, block, className) {
   fragment.classList.add(className);

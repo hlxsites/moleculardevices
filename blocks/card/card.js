@@ -4,7 +4,7 @@ import {
 } from '../../scripts/lib-franklin.min.js';
 import {
   formatDateUTCSeconds, isGatedResource, isNotEmpty, itemSearchTitle, summariseDescription,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import {
   a, div, h3, p, i, span, article, figure, time, h4,
 } from '../../scripts/dom-helpers.js';

@@ -1,5 +1,5 @@
 import { div, ol } from '../../scripts/dom-helpers.js';
-import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.js';
+import { getFirstBackgroundImage, preloadLCPImage } from '../../scripts/scripts.min.js';
 import { loadBreadcrumbs } from '../hero/hero.js';
 
 function decorateTeaser(video, teaserPicture, target) {
