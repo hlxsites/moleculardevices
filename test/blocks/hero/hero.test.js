@@ -8,7 +8,7 @@ document.body.innerHTML = await readFile({ path: '../../scripts/body.html' });
 
 describe('Hero block', () => {
   it('Builds hero block from picture and h1', async () => {
-    await import('../../../scripts/scripts.js');
+    await import('../../../scripts/scripts.min.js');
     expect(document.querySelector('.hero')).to.exist;
   });
 });
