@@ -29,6 +29,7 @@ export default async function decorate(block) {
     defaultButtonText: 'Details',
     showCategory: true,
     showTag: true,
+    useResourceTypeToCTA: true
   });
 
   const renderedCards = allItems.map((product) => cardRenderer.renderItem(product));

@@ -69,6 +69,7 @@ const RESOURCECTAMAPPING = {
   Software: 'Explore Software',
   Service: 'Explore Service',
   Solution: 'Explore Solution',
+  Category: 'Explore Category',
   'User Guide': 'View User Guide',
   Citation: 'View Citation',
 };
@@ -148,7 +149,12 @@ class Card {
       ? item.cardC2A : this.defaultButtonText;
 
     if (this.useResourceTypeToCTA) {
-      buttonText = RESOURCECTAMAPPING[item.type] || 'Learn more';
+      buttonText = RESOURCECTAMAPPING[
+        item.type
+          .split(',')
+          .map((type) => type.trim())
+          .find((type) => RESOURCECTAMAPPING[type])
+      ] ?? 'Learn more';
     }
 
     let c2aLinkBlock = a({ href: cardLink, 'aria-label': buttonText, class: 'button primary' }, buttonText);
