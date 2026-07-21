@@ -129,6 +129,10 @@ main .card-caption .c2a .compare-button {
   display: none;
 }
 
+main .card-caption .c2a .button-container:has(+ .compare-button) {
+  margin-bottom: 0;
+}
+
 .product-finder .card-caption .c2a .compare-button,
 .product-compare main .card-caption .c2a .compare-button {
   display: flex;
