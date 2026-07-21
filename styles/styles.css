@@ -1989,7 +1989,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .product .section.tabs .columns-wrapper h2,
 .technology
-  .section.tabs:not(.wave, .category-form, .latest-resources-container.list)
+  .section.tabs:not(.wave, .category-form, .latest-resources-container)
   .default-content-wrapper
   h2:not(#features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
