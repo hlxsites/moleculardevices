@@ -106,7 +106,7 @@ export async function getFormFieldValues(formConfig) {
   });
   const cmpCookieValue = getCookie('cmp');
   const familyID = getMetadata('family-id');
-  const rfqData = await getRFQDataByFamilyID(familyID);
+  const rfqData = await getRFQDataByFamilyID(familyID) || '';
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];
