@@ -7882,7 +7882,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro 6 -Vielseitige Software Zur Datenaufnahme Und - Analyse Von Mikrotiterplatten-Assays (German) ]]></md_title>
+      <md_title><![CDATA[ SoftMax Pro 6 -Vielseitige Software Zur Datenaufnahme Und, Analyse Von Mikrotiterplatten-Assays (German Version) ]]></md_title>
       <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
@@ -65514,6 +65514,45 @@
       <mdapplicationsdatacategory><![CDATA[ Research Areas;Research Areas|Gene Editing (CRISPR/Cas9) ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[ EN ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/tech-note/dd/3d-biology/extending-automation-beyond-cell-culture-workflows</loc>
+    <lastmod>2026-07-24T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Extending automation beyond cell culture ]]></md_title>
+      <md_contenttype><![CDATA[ Technical Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/technical-note.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Disease Modeling;Drug Discovery and Development;Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
       <md_de_desc><![CDATA[  ]]></md_de_desc>
       <md_de_url><![CDATA[  ]]></md_de_url>
@@ -218305,4 +218344,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-07-28T09:03:13.501Z -->
+<!-- build timestamp: 2026-07-29T05:23:09.070Z -->
