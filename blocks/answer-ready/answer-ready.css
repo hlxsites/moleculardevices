@@ -28,12 +28,16 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .answer-ready-item {
+    --icon-size: 28px;
+  }
+
   .answer-ready-wrappert {
-    display: block;
+    gap: 1rem;
     padding: 1rem;
   }
 
   .answer-ready-wrappert i {
-    display: none;
+    font-size: 0.9rem;
   }
 }
