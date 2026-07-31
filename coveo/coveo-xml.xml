@@ -268,7 +268,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/service-support</loc>
-    <lastmod>2026-01-09T12:02:22.000Z</lastmod>
+    <lastmod>2026-07-31T07:57:21.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.1</priority>
     <coveo:metadata>
@@ -956,7 +956,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/service-support/time-and-materials-repair</loc>
+    <loc>https://www.moleculardevices.com/service-support/time-and-materials-services</loc>
     <lastmod>2018-03-12T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.2</priority>
@@ -218383,4 +218383,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-07-31T07:11:15.655Z -->
+<!-- build timestamp: 2026-07-31T08:05:12.942Z -->
