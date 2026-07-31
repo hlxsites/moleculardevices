@@ -968,7 +968,7 @@
       <md_application><![CDATA[  ]]></md_application>
       <mdproductsdatacategory><![CDATA[ Services and Support;Services and Support|Time and Materials Services;Services and Support|Time and Materials Services|Time and Materials Services ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_rfq>https://www.moleculardevices.com/quote-request?pid=professional-services</md_rfq>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=time-and-materials-services</md_rfq>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -218344,4 +218344,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-07-31T10:01:20.974Z -->
+<!-- build timestamp: 2026-07-31T10:07:27.887Z -->
