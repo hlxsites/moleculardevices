@@ -15818,9 +15818,9 @@
       <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;FlexStation 3 reader;SpectraMax M Series Multi-Mode Microplate Readers;SpectraMax Mini Reader;SpectraMax Paradigm reader;SpectraMax i3x reader;SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;CellReporterXpress software;ImageXpress HCS.ai High-Content Screening System;ImageXpress Pico system;MetaXpress Acquire High-Content Image Acquisition Software;MetaXpress software;ClonePix 2 System;Mammalian Screening;High-Content Imaging  ]]></md_product>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;FlexStation 3 reader;SpectraMax M Series Multi-Mode Microplate Readers;SpectraMax Mini Reader;SpectraMax Paradigm reader;SpectraMax i3x reader;SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;CellReporterXpress software;ImageXpress HCS.ai High-Content Screening System;ImageXpress Pico system;MetaXpress Acquire High-Content Image Acquisition Software;MetaXpress software;ClonePix 2 System;Mammalian Screening;High-Content Imaging;IN Carta Image Analysis Software  ]]></md_product>
       <md_application><![CDATA[ Organoids;Patient-derived organoids (Tumoroids);Automated Cell Culture;Cell Line Development;Drug Discovery and Development ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|FlexStation 3 reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax M Series Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Mini Reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Paradigm reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax i3x reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|CellReporterXpress software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging;Cellular Imaging Systems|High-Content Imaging|ImageXpress HCS.ai High-Content Screening System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging;Cellular Imaging Systems|High-Content Imaging|ImageXpress Pico system;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|MetaXpress Acquire High-Content Image Acquisition Software;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|MetaXpress software;Clone Screening;Clone Screening|Mammalian Screening;Clone Screening|Mammalian Screening|ClonePix 2 System;Clone Screening;Clone Screening|Mammalian Screening;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|FlexStation 3 reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax M Series Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Mini Reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Paradigm reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax i3x reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|CellReporterXpress software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging;Cellular Imaging Systems|High-Content Imaging|ImageXpress HCS.ai High-Content Screening System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging;Cellular Imaging Systems|High-Content Imaging|ImageXpress Pico system;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|MetaXpress Acquire High-Content Image Acquisition Software;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|MetaXpress software;Clone Screening;Clone Screening|Mammalian Screening;Clone Screening|Mammalian Screening|ClonePix 2 System;Clone Screening;Clone Screening|Mammalian Screening;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging;Cellular Imaging Systems;Cellular Imaging Systems|High-content Analysis;Cellular Imaging Systems|High-content Analysis|IN Carta Image Analysis Software ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids;3D Cell Models;3D Cell Models|Patient-derived organoids (Tumoroids);Automated Cell Culture;Automated Cell Culture|Automated Cell Culture;Research Areas;Research Areas|Cell Line Development;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[ EN ]]></md_lang>
@@ -70380,7 +70380,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Molecular Devices Service Plans vs. 3rd Parties ]]></md_title>
+      <md_title><![CDATA[ Molecular Devices Service Plans vs. 3rd Parties (EU) ]]></md_title>
       <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
@@ -213903,7 +213903,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Maximize Productivity with Our Imaging Service Plans ]]></md_title>
+      <md_title><![CDATA[ Maximize Productivity with Our Imaging Service Plans (EU) ]]></md_title>
       <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
@@ -217647,7 +217647,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Service plans ]]></md_title>
+      <md_title><![CDATA[ Service plans (NA) ]]></md_title>
       <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
@@ -217764,7 +217764,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Service plan options ]]></md_title>
+      <md_title><![CDATA[ Service plan options (NA) ]]></md_title>
       <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
@@ -218383,4 +218383,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-07-31T05:37:56.171Z -->
+<!-- build timestamp: 2026-07-31T07:11:15.655Z -->
