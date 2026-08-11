@@ -65383,12 +65383,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/highly-sensitive-multiplex-tr-fret-assay-on-spectramax-id5e</loc>
-    <lastmod>2026-07-16T00:00:00.000Z</lastmod>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/sensitive-multiplex-tr-fret-assay-on-spectramax-id5e</loc>
+    <lastmod>2026-08-11T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Highly sensitive multiplex TR-FRET assay on the SpectraMax iD5e Multi-Mode Microplate Reader ]]></md_title>
+      <md_title><![CDATA[ Measure Two Biomarkers in One Well with High-Sensitivity Multiplex TR-FRET ]]></md_title>
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
@@ -80202,7 +80202,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/dd/flipr/flipr-penta-user-guide-5069582g.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/dd/flipr/flipr-penta-user-guide-5069582h.pdf</loc>
     <lastmod>2022-02-11T04:46:06.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -218382,4 +218382,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-08-11T04:48:37.189Z -->
+<!-- build timestamp: 2026-08-11T11:08:02.489Z -->
