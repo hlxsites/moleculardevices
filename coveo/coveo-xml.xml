@@ -72635,12 +72635,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/declaration-of-conformity/spectramax-i3-minimax.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/declaration-of-conformity/spectramax-i3x-minimax.pdf</loc>
     <lastmod>2023-05-23T10:16:30.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ SpectraMax i3 Minimax Declaration of Conformity ]]></md_title>
+      <md_title><![CDATA[ SpectraMax i3x MiniMax Declaration of Conformity ]]></md_title>
       <md_contenttype><![CDATA[ Declaration of Conformity ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
@@ -218459,4 +218459,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-08-17T08:19:57.082Z -->
+<!-- build timestamp: 2026-08-17T08:23:56.832Z -->
