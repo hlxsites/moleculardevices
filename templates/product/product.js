@@ -8,6 +8,7 @@ import {
 import PRODUCT_FORM_DATA from './ProductFormData.js';
 import { scrollToSection } from '../../scripts/utilities.js';
 import { RFQ_CMP_ID } from '../../blocks/forms/formMapping.js';
+import initServicePlansRegion from './service-plans-region.js';
 
 const formType = 'product-rfq';
 export const productThankyouSection = `${formType}-thankyou-section`;
@@ -119,4 +120,7 @@ export default async function decorateProductPage() {
 
     initForm();
   }
+
+  /* SERVICE PLANS MODAL */
+  initServicePlansRegion();
 }

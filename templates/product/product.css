@@ -19,3 +19,20 @@
     max-width: 50%;
   }
 }
+
+/* SERVICE PLANS PAGE */
+.service-plans-region-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.service-plans-region-option {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
