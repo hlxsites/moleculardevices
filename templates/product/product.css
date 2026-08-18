@@ -23,6 +23,8 @@
 /* SERVICE PLANS PAGE */
 .service-plans-region-modal-wrapper.modal-inner-wrapper {
   max-width: 550px;
+
+  /* max-width: 640px; */
 }
 
 /* .service-plans-region-modal-wrapper.modal-inner-wrapper .modal-form {
