@@ -44,15 +44,15 @@
 .service-plans-region-option {
   width: 100%;
   border-radius: 4px;
-  background: rgb(var(--color-white-rgb) / 100%);
+  background: var(--color-white);
   color: var(--color-text-primary);
   display: inline-block;
   max-width: 240px;
 
   &:hover,
   &:focus-within {
-    color: var(--color-text-primary);
-    background: rgb(var(--color-white-rgb) / 90%);
+    color: var(--color-white);
+    background: var(--color-primary);
   }
 }
 
