@@ -67,7 +67,7 @@ function redirectToRegion(region) {
 function handleRegionSelect(region) {
   if (!isValidRegion(region)) return;
 
-  setCookie(REGION_COOKIE, region, 365);
+  setCookie(REGION_COOKIE, region, 1);
   redirectToRegion(region);
 }
 
