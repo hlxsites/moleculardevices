@@ -1776,7 +1776,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/products/microplate-readers/multi-mode-readers</loc>
-    <lastmod>2026-01-27T10:37:10.000Z</lastmod>
+    <lastmod>2026-08-12T11:39:22.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.2</priority>
     <coveo:metadata>
@@ -3764,45 +3764,6 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/in-carta-image-analysis-software</loc>
-    <lastmod>2021-01-23T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.2</priority>
-    <coveo:metadata>
-      <md_contenttype><![CDATA[  ]]></md_contenttype>
-      <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/media_148504b2a7b8b1ac1bb485bb06d596a18e2c086ae.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_rfq>https://www.moleculardevices.com/quote-request?pid=in-carta-image-analysis-software</md_rfq>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging</loc>
     <lastmod>2026-08-03T06:15:29.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -3816,45 +3777,6 @@
       <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_rfq>https://www.moleculardevices.com/quote-request?pid=high-content-imaging-and-analysis</md_rfq>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/cellreporterxpress</loc>
-    <lastmod>2015-12-27T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.2</priority>
-    <coveo:metadata>
-      <md_contenttype><![CDATA[  ]]></md_contenttype>
-      <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/media_195283ffed7c864dff6221b516a2161b82c0d60a5.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|CellReporterXpress software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_rfq>https://www.moleculardevices.com/quote-request?pid=cellreporterxpress-image-acquisition-and-analysis-software</md_rfq>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -3920,45 +3842,6 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/metaxpress</loc>
-    <lastmod>2015-12-27T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.2</priority>
-    <coveo:metadata>
-      <md_contenttype><![CDATA[  ]]></md_contenttype>
-      <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/media_1df0dd69a11dafd26ec17c20fa002d4db329635cc.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_rfq>https://www.moleculardevices.com/quote-request?pid=metaxpress-high-content-image-acquisition-and-analysis-software</md_rfq>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/imagexpress-hcs-ai</loc>
     <lastmod>2025-01-16T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -3998,7 +3881,46 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/metaxpress-acquire</loc>
+    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/stratominer</loc>
+    <lastmod>2022-02-01T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.2</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Product</md_pagetype>
+      <md_img>https://www.moleculardevices.com/media_145245affef9b07c74c87ae5d54d8eb226cf21242.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|Advanced Cloud-Based Analytics with StratoMineR ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=advanced-cloud-based-analytics-with-stratominer</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/metaxpress-acquire</loc>
     <lastmod>2025-01-16T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.2</priority>
@@ -4037,19 +3959,97 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-analysis/stratominer</loc>
-    <lastmod>2022-02-01T00:00:00.000Z</lastmod>
+    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/metaxpress</loc>
+    <lastmod>2015-12-27T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.2</priority>
     <coveo:metadata>
       <md_contenttype><![CDATA[  ]]></md_contenttype>
       <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/media_145245affef9b07c74c87ae5d54d8eb226cf21242.png</md_img>
+      <md_img>https://www.moleculardevices.com/media_1df0dd69a11dafd26ec17c20fa002d4db329635cc.png</md_img>
       <md_product><![CDATA[   ]]></md_product>
       <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|Advanced Cloud-Based Analytics with StratoMineR ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_rfq>https://www.moleculardevices.com/quote-request?pid=advanced-cloud-based-analytics-with-stratominer</md_rfq>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=metaxpress-high-content-image-acquisition-and-analysis-software</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/in-carta-image-analysis-software</loc>
+    <lastmod>2021-01-23T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.2</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Product</md_pagetype>
+      <md_img>https://www.moleculardevices.com/media_148504b2a7b8b1ac1bb485bb06d596a18e2c086ae.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=in-carta-image-analysis-software</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/cellreporterxpress</loc>
+    <lastmod>2015-12-27T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.2</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Product</md_pagetype>
+      <md_img>https://www.moleculardevices.com/media_195283ffed7c864dff6221b516a2161b82c0d60a5.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|CellReporterXpress software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=cellreporterxpress-image-acquisition-and-analysis-software</md_rfq>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -65654,6 +65654,122 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/events/festival-of-biologics-2026</loc>
+    <lastmod>2026-08-12T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Event</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/event.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://email.moleculardevices.com/july</loc>
+    <lastmod>2026-08-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Newsletter - August 2026 ]]></md_title>
+      <md_contenttype><![CDATA[ Newsletter ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/tech-note/dd/3d-biology/interleaved-cell-culture-workflows-without-compromise</loc>
+    <lastmod>2026-08-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Interleaved cell culture workflows without compromise ]]></md_title>
+      <md_contenttype><![CDATA[ Technical Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/technical-note.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ Disease Modeling;Drug Discovery and Development ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -72558,12 +72674,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/declaration-of-conformity/spectramax-i3-minimax.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/declaration-of-conformity/spectramax-i3x-minimax.pdf</loc>
     <lastmod>2023-05-23T10:16:30.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ SpectraMax i3 Minimax Declaration of Conformity ]]></md_title>
+      <md_title><![CDATA[ SpectraMax i3x MiniMax Declaration of Conformity ]]></md_title>
       <md_contenttype><![CDATA[ Declaration of Conformity ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
@@ -218382,4 +218498,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-08-11T11:08:02.489Z -->
+<!-- build timestamp: 2026-08-20T11:10:21.547Z -->
