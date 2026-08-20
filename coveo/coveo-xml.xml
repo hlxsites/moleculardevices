@@ -65887,6 +65887,45 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/en/assets/tech-note/dd/3d-biology/interleaved-cell-culture-workflows-without-compromise</loc>
+    <lastmod>2026-08-20T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Interleaved cell culture workflows without compromise ]]></md_title>
+      <md_contenttype><![CDATA[ Technical Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/technical-note.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ Disease Modeling;Drug Discovery and Development ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -218615,4 +218654,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-08-19T10:15:09.495Z -->
+<!-- build timestamp: 2026-08-20T05:21:00.352Z -->
