@@ -4,7 +4,7 @@ import {
   div, img, i, h2, h3, p, a,
 } from '../../scripts/dom-helpers.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.min.js';
-import { formatNumberInUs } from '../../scripts/scripts.js';
+import { formatNumberInUs } from '../../scripts/scripts.min.js';
 
 let placeholders = {};
 

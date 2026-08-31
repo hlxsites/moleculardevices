@@ -9,6 +9,7 @@ const viewAllCategory = 'viewall';
 
 const defaultCardRender = await createCard({
   defaultButtonText: 'Learn more',
+  useResourceTypeToCTA: true,
   useDefaultButtonText: true,
   descriptionLength: 100,
 });
@@ -18,18 +19,21 @@ const noThumbnailCardRender = await createCard({
   c2aLinkStyle: true,
   showImageThumbnail: false,
   descriptionLength: 150,
+  useResourceTypeToCTA: true,
 });
 
 const thumbnailAndLinkCardRender = await createCard({
   defaultButtonText: 'Details',
   c2aLinkStyle: true,
   descriptionLength: 150,
+  useResourceTypeToCTA: true,
 });
 
 const productCardRender = await createCard({
   defaultButtonText: 'Learn more',
   useDefaultButtonText: true,
   descriptionLength: 150,
+  useResourceTypeToCTA: true,
 });
 
 const blogCardRender = await createCard({

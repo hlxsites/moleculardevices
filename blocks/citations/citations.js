@@ -1,6 +1,6 @@
 import {
   decorateLinks, fetchFragment, formatNumberInUs, sortDataByDate,
-} from '../../scripts/scripts.js';
+} from '../../scripts/scripts.min.js';
 import {
   a, div, h3, p, span,
 } from '../../scripts/dom-helpers.js';

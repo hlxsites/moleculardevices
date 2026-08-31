@@ -1,7 +1,7 @@
 /* eslint-disable no-console, max-len, import/no-cycle */
 import { input } from '../../scripts/dom-helpers.js';
 import { getMetadata, toCamelCase } from '../../scripts/lib-franklin.min.js';
-import { getCookie } from '../../scripts/scripts.js';
+import { getCookie } from '../../scripts/scripts.min.js';
 import { getRFQDataByFamilyID, prepImageUrl } from '../quote-request/quote-request.js';
 import {
   DEFAULT_QDC_VALUE,
@@ -106,7 +106,7 @@ export async function getFormFieldValues(formConfig) {
   });
   const cmpCookieValue = getCookie('cmp');
   const familyID = getMetadata('family-id');
-  const rfqData = await getRFQDataByFamilyID(familyID);
+  const rfqData = await getRFQDataByFamilyID(familyID) || '';
   const valuecmp = params.cmp || cmpCookieValue;
   const thankyouUrl = `${window.location.origin}${window.location.pathname}?page=thankyou`;
   const currentUrl = window.location.href.split('?')[0];

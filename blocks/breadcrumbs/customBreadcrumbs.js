@@ -99,6 +99,10 @@ const customBreadcrumbs = {
     name: 'Microbial Screening',
     url_path: '/products/clone-screening/microbial-screening',
   },
+  'high-content-analysis': {
+    name: 'High-Content Imaging & Analysis',
+    url_path: '/products/cellular-imaging-systems/high-content-analysis',
+  },
   stacker: {
     name: 'Stacker',
   },

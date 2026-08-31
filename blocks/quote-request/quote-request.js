@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import ffetch from '../../scripts/ffetch.js';
-import { getCookie, fetchFragment } from '../../scripts/scripts.js';
+import { getCookie, fetchFragment } from '../../scripts/scripts.min.js';
 import {
   div, h3, ul, li, img, a, span, i, button,
   p,
@@ -227,6 +227,7 @@ async function loadIframeForm(data, type) {
   const cmpValue = getCookie('cmp') || RFQ_CMP_ID; // old cmp  70170000000hlRa
   // if (mpCmpValue) cmpValue = mpCmpValue;
   const requestTypeParam = queryParams && queryParams.get('request_type');
+  const { origin } = window.location;
   const hubSpotQuery = {
     formType: 'rfq',
     productFamily: sfdcProductFamily,
@@ -242,8 +243,8 @@ async function loadIframeForm(data, type) {
     productBundle,
     qdc: requestTypeParam || 'Quote',
     redirectUrl: data.familyID
-      ? `https://www.moleculardevices.com/quote-request-success?cat=${data.familyID}`
-      : 'https://www.moleculardevices.com/quote-request-success',
+      ? `${origin}/quote-request-success?cat=${data.familyID}`
+      : `${origin}/quote-request-success`,
   };
 
   if (data.path) {

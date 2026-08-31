@@ -1,20 +1,18 @@
 import ffetch from '../../scripts/ffetch.js';
-import { decorateButtons, fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.min.js';
+import { decorateButtons, getMetadata } from '../../scripts/lib-franklin.min.js';
 import { cardStyleConfig, createCarousel } from '../carousel/carousel.js';
 import { createCard } from '../card/card.js';
 import {
   div, p, strong, a,
 } from '../../scripts/dom-helpers.js';
 import resourceMapping from '../resources/resource-mapping.js';
-import { sortDataByDate } from '../../scripts/scripts.js';
+import { sortDataByDate } from '../../scripts/scripts.min.js';
 
 const relatedResourcesHeaders = {
   Product: 'relatedProducts',
   Technology: 'relatedTechnologies',
   Application: 'relatedApplications',
 };
-
-const placeholders = await fetchPlaceholders();
 
 function onViewAllClick(e) {
   e.preventDefault();
@@ -91,7 +89,7 @@ export default async function decorate(block) {
 
   const resourceCard = await createCard({
     showDate: true,
-    defaultButtonText: placeholders.learnMore || 'Learn more',
+    useResourceTypeToCTA: true,
     descriptionLength: block.classList.contains('list') ? 180 : 75,
     showTag: true,
   });

@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const BASE_URL = 'https://www.moleculardevices.com';
 
+const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
+
 const INDENTIFIER_MAPPING = new Map();
 
 const RESOURCES = [
@@ -12,6 +14,7 @@ const RESOURCES = [
   'Publications',
   'Videos & Webinars',
   'Application Note',
+  'Technical Note',
   'Customer Breakthrough',
   'Data Sheet',
   'Brochure',
@@ -178,6 +181,7 @@ function createCoveoFields(index, icons) {
 
     const TYPE_REMAP_PREFIXES = {
       '/en/assets/app-note/': 'Application Note',
+      '/en/assets/tech-note/': 'Technical Note',
       '/en/assets/ebook/': 'eBook',
       '/en/assets/scientific-posters/': 'Scientific Poster',
       '/en/assets/tutorials-videos/': 'Videos & Webinars',
@@ -221,6 +225,17 @@ function createCoveoFields(index, icons) {
     coveoImageURL.search = '';
 
     item.md_img = coveoImageURL.toString();
+
+    // if (item.path.includes('/service-support/professional-services')) {
+    item.md_geo_assets = ALL_LOCALES
+      .filter((locale) => {
+        const url = item[`md_${locale}_url`];
+        return url && url.trim() !== '' && url.trim() !== '0' && url.trim() !== '#N/A';
+      })
+      .map((locale) => locale.toUpperCase())
+      .join(';');
+    //   console.log(item);
+    // }
 
     if (item.type === 'Product' && isNotEmpty(item.category)) {
       const result = [item.category];
@@ -333,13 +348,26 @@ async function writeCoveoSitemapXML(index) {
     item.md_rfq && xmlData.push(`      <md_rfq>${item.md_rfq}</md_rfq>`);
     xmlData.push(`      <md_country><![CDATA[ ${isNotEmpty(item.md_country) ? item.md_country : ''} ]]></md_country>`);
     xmlData.push(`      <md_lang><![CDATA[ ${isNotEmpty(item.md_lang) ? item.md_lang : ''} ]]></md_lang>`);
+    xmlData.push(`      <md_de_title><![CDATA[ ${isNotEmpty(item.md_de_title) ? item.md_de_title : ''} ]]></md_de_title>`);
+    xmlData.push(`      <md_de_desc><![CDATA[ ${isNotEmpty(item.md_de_desc) ? item.md_de_desc : ''} ]]></md_de_desc>`);
     xmlData.push(`      <md_de_url><![CDATA[ ${isNotEmpty(item.md_de_url) ? item.md_de_url : ''} ]]></md_de_url>`);
+    xmlData.push(`      <md_zh_title><![CDATA[ ${isNotEmpty(item.md_zh_title) ? item.md_zh_title : ''} ]]></md_zh_title>`);
+    xmlData.push(`      <md_zh_desc><![CDATA[ ${isNotEmpty(item.md_zh_desc) ? item.md_zh_desc : ''} ]]></md_zh_desc>`);
     xmlData.push(`      <md_zh_url><![CDATA[ ${isNotEmpty(item.md_zh_url) ? item.md_zh_url : ''} ]]></md_zh_url>`);
+    xmlData.push(`      <md_fr_title><![CDATA[ ${isNotEmpty(item.md_fr_title) ? item.md_fr_title : ''} ]]></md_fr_title>`);
+    xmlData.push(`      <md_fr_desc><![CDATA[ ${isNotEmpty(item.md_fr_desc) ? item.md_fr_desc : ''} ]]></md_fr_desc>`);
     xmlData.push(`      <md_fr_url><![CDATA[ ${isNotEmpty(item.md_fr_url) ? item.md_fr_url : ''} ]]></md_fr_url>`);
+    xmlData.push(`      <md_ko_title><![CDATA[ ${isNotEmpty(item.md_ko_title) ? item.md_ko_title : ''} ]]></md_ko_title>`);
+    xmlData.push(`      <md_ko_desc><![CDATA[ ${isNotEmpty(item.md_ko_desc) ? item.md_ko_desc : ''} ]]></md_ko_desc>`);
     xmlData.push(`      <md_ko_url><![CDATA[ ${isNotEmpty(item.md_ko_url) ? item.md_ko_url : ''} ]]></md_ko_url>`);
+    xmlData.push(`      <md_it_title><![CDATA[ ${isNotEmpty(item.md_it_title) ? item.md_it_title : ''} ]]></md_it_title>`);
+    xmlData.push(`      <md_it_desc><![CDATA[ ${isNotEmpty(item.md_it_desc) ? item.md_it_desc : ''} ]]></md_it_desc>`);
     xmlData.push(`      <md_it_url><![CDATA[ ${isNotEmpty(item.md_it_url) ? item.md_it_url : ''} ]]></md_it_url>`);
+    xmlData.push(`      <md_es_title><![CDATA[ ${isNotEmpty(item.md_es_title) ? item.md_es_title : ''} ]]></md_es_title>`);
+    xmlData.push(`      <md_es_desc><![CDATA[ ${isNotEmpty(item.md_es_desc) ? item.md_es_desc : ''} ]]></md_es_desc>`);
     xmlData.push(`      <md_es_url><![CDATA[ ${isNotEmpty(item.md_es_url) ? item.md_es_url : ''} ]]></md_es_url>`);
     xmlData.push(`      <md_source><![CDATA[ ${isNotEmpty(item.md_source) ? item.md_source : ''} ]]></md_source>`);
+    xmlData.push(`      <md_geo_assets><![CDATA[ ${isNotEmpty(item.md_geo_assets) ? item.md_geo_assets : ''} ]]></md_geo_assets>`);
     xmlData.push('    </coveo:metadata>');
     xmlData.push('    <md_pagesort>1</md_pagesort>');
     xmlData.push('  </url>');

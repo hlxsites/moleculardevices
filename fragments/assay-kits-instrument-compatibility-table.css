@@ -22,36 +22,40 @@
 }
 
 .float_lt {
-  float: left;
-  width: 124px !important;
+  flex: 1;
   text-align: center;
   padding: 0 18px;
   border-right: 2px solid var(--color-gray-50);
 }
 
 .wrap_head {
-  float: left;
   text-align: center;
-  width: 142px;
   padding: 0 15px;
   background-color: var(--color-white);
+}
+
+.wrap_head > a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .txt_wrap {
   font-size: 13px;
   min-height: 76px;
-  float: left;
+  display: inline-block;
 }
 
 .service-icon {
-  display: block;
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 110px;
   height: 110px;
   border-radius: 50%;
   border: 2px solid var(--color-secondary);
-  padding-top: 35px;
   position: relative;
+  margin: 0 auto 30px;
 }
 
 a.req_quote {
@@ -66,8 +70,9 @@ a.req_quote {
 }
 
 .table_wrap {
-  float: left;
+  display: flex;
   width: 100%;
+  margin: 30px auto;
 }
 
 .text_tick {
@@ -134,19 +139,11 @@ a.req_quote {
   .feat {
     display: none;
   }
-
-  .wrap_head.row_1 {
-    width: 142px;
-  }
 }
 
 @media (max-width: 1200px) {
   .fa.fa-check {
     margin-right: 15px;
-  }
-
-  .table_wrap {
-    margin-top: 30px;
   }
 
   .feat {
@@ -161,15 +158,18 @@ a.req_quote {
   }
 
   .float_lt {
-    max-width: 270px;
-    width: 100% !important;
     margin: 0 18px 20px;
     border: 1px solid var(--color-gray-250);
     padding: 20px;
+    flex: 270px;
   }
 
   .float_lt.col_1 {
     display: none;
+  }
+
+  .table_wrap {
+    flex-wrap: wrap;
   }
 
   .text_tick {
@@ -183,13 +183,6 @@ a.req_quote {
     border-bottom: 1px solid transparent;
   }
 
-  .wrap_head {
-    float: none !important;
-    width: 100%;
-    max-width: 142px;
-    margin: 0 auto;
-  }
-
   .feat_icon {
     vertical-align: middle;
     display: table-cell;
@@ -197,32 +190,8 @@ a.req_quote {
     text-align: right;
   }
 
-  .table_wrap {
-    float: none;
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
   .ct_text_wrap p {
     float: left;
     width: 100%;
-  }
-}
-
-@media (max-width: 960px) {
-  .table_wrap {
-    max-width: 614px;
-  }
-}
-
-@media only screen and (min-width: 320px) and (max-width: 667px) {
-  .float_lt {
-    max-width: 95%;
-  }
-}
-
-@media only screen and (min-width: 481px) and (max-width: 667px) {
-  .wrap_head {
-    max-width: 144px;
   }
 }

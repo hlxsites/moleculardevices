@@ -3,6 +3,10 @@ export default {
     image: 'application-note',
     action: 'readApplicationNote',
   },
+  'Technical Note': {
+    image: 'application-note',
+    action: 'readTechnicalNote',
+  },
   Blog: {
     image: 'blog',
     action: 'readBlog',

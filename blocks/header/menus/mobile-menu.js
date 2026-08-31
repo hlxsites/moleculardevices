@@ -7,7 +7,7 @@ import {
   div, ul, li, a, nav, span, button, p,
 } from '../../../scripts/dom-helpers.js';
 import { buildMobileSearch } from './search.js';
-import { processSectionMetadata } from '../../../scripts/scripts.js';
+import { processSectionMetadata } from '../../../scripts/scripts.min.js';
 
 function openSubMenu(menuItem) {
   menuItem.classList.add('submenu-open');

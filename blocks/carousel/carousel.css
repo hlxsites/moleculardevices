@@ -41,6 +41,11 @@ main div.carousel-wrapper:last-child {
   font-family: var(--ff-proxima-light);
 }
 
+.application main .section:has(.carousel.block.list) .default-content-wrapper h2 {
+  font-size: var(--fs-h1);
+  font-family: var(--ff-proxima-regular);
+}
+
 main .section:has(.carousel.block.mini) .default-content-wrapper h2 {
   text-align: left;
 }
