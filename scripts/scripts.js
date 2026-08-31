@@ -695,7 +695,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application Note' || type === 'Technical Note') {
+    if (type === 'Application Note' || type === 'Technicals Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [

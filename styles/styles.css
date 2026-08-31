@@ -1997,7 +1997,7 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   .section.tabs:not(.wave, .category-form, .latest-resources-container:not(.list))
   .default-content-wrapper
   h2:not(#features, .video-resources-title),
-.application .section.tabs .columns-wrapper h2  {
+.application .section.tabs .columns-wrapper h2 {
   font-size: var(--fs-h1);
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
