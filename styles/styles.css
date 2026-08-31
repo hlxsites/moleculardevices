@@ -1934,6 +1934,11 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
   margin: 0 15px;
 }
 
+.product .section.tabs h2 + h3,
+.product .section.tabs h2 + h3 ~ p {
+  margin: 0 0 10px;
+}
+
 .product p.video-title {
   font-size: 24px;
   font-family: var(--ff-proxima-xbold);
@@ -1984,15 +1989,15 @@ main .section.home-promo .carousel-item-columns-container .carousel-item-column 
 
 .product .section.tabs .columns-wrapper h2,
 .technology
-  .section.tabs:not(.wave, .category-form)
+  .section.tabs:not(.wave, .category-form, .latest-resources-container)
   .default-content-wrapper
-  h2:not(#latest-resources, #features, .video-resources-title),
+  h2:not(#features, .video-resources-title),
 .technology .section.tabs .columns-wrapper h2,
 .application
-  .section.tabs:not(.wave, .category-form)
+  .section.tabs:not(.wave, .category-form, .latest-resources-container:not(.list))
   .default-content-wrapper
-  h2:not(#latest-resources, #features, .video-resources-title),
-.application .section.tabs .columns-wrapper h2 {
+  h2:not(#features, .video-resources-title),
+.application .section.tabs .columns-wrapper h2  {
   font-size: var(--fs-h1);
   font-family: var(--ff-proxima-regular);
   margin-top: 0;
@@ -2620,6 +2625,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
 }
 
 /* application notes */
+.technical-note h2,
 .application-note h2 {
   font-size: 36px;
   margin-bottom: 20px;
@@ -2627,6 +2633,7 @@ main div.dark-button.orange-buttons .button.secondary:visited {
   font-weight: 400;
 }
 
+.technical-note h4,
 .application-note h4 {
   font-weight: bold;
   margin-bottom: 1em;

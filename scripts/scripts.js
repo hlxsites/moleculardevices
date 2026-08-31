@@ -37,6 +37,7 @@ import ffetch from './ffetch.js';
  */
 const TEMPLATE_LIST = [
   'application-note',
+  'technical-note',
   'news',
   'newsletter',
   'publication',
@@ -487,7 +488,7 @@ export function decorateLinkedPictures(container) {
 function addPageSchema() {
   if (document.querySelector('head > script[type="application/ld+json"]')) return;
 
-  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
+  const includedTypes = ['Product', 'Application', 'Category', 'homepage', 'Blog', 'Event', 'Application Note', 'Technical Note', 'Videos and Webinars', 'contact', 'About Us', 'FWN', 'FWN main', 'Landing Page'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
 
@@ -694,7 +695,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application Note') {
+    if (type === 'Application Note' || type === 'Technical Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -1594,18 +1595,13 @@ export async function processEmbedFragment(element) {
   const link = element.querySelector('a');
   if (link) {
     const linkUrl = new URL(link.href);
-    let linkTextUrl;
-    try {
-      linkTextUrl = new URL(link.textContent);
-    } catch {
-      // not a url, ignore
-    }
-    if (linkTextUrl && linkTextUrl.pathname === linkUrl.pathname) {
+
+    if (linkUrl.pathname) {
       const fragmentDomains = ['localhost', 'moleculardevices.com', 'moleculardevices--hlxsites.aem.page', 'moleculardevices--hlxsites.aem.live'];
       found = fragmentDomains.find((domain) => linkUrl.hostname.endsWith(domain));
       if (found) {
         block.classList.remove('button-container');
-        const fragment = await fetchFragment(linkUrl);
+        const fragment = await fetchFragment(linkUrl.pathname);
         block.innerHTML = fragment;
         const sections = block.querySelectorAll('.embed-fragment > div');
         [...sections].forEach((section) => {
