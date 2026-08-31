@@ -22,6 +22,12 @@
   margin-top: 35px;
 }
 
+.related-app > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .related-link {
   line-height: 21px;
   margin-bottom: 10px;
@@ -44,6 +50,15 @@ li.related-link::marker {
 
 .related-app h3 {
   text-align: left;
+}
+
+.related-app > div p:last-child {
+  margin-top: auto;
+}
+
+.related-app > div p:last-child a:has(> .fa-chevron-circle-right) {
+  display: block;
+  margin: 1rem 0;
 }
 
 .product .section .related-apps-container .related-app h4 {
