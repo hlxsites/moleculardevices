@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 body.fragments main input,
 body.fragments main select.select-options {
   font-size: 1rem;
@@ -48,7 +49,7 @@ body.fragments main .section .button {
 .accordion.fragments-list.tagging > div:not(:first-child) {
   padding-top: 2rem;
   margin-top: 2rem;
-  border-top: 2px solid var(--color-theme-gray-dark);
+  border-top: 2px solid var(--color-theme-gray);
 }
 
 .tabs-horizontal .tab-pane .section .fragments-list-block,
@@ -89,4 +90,8 @@ body.fragments main .section .button {
 
 .accordion.fragments-list [aria-expanded] .accordion-content {
   max-height: 700px;
+}
+
+.tagging-match-section:not(:first-child) {
+  margin-top: 1rem;
 }
