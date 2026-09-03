@@ -1,0 +1,97 @@
+/* stylelint-disable no-descending-specificity */
+body.fragments main input,
+body.fragments main select.select-options {
+  font-size: 1rem;
+  padding: 0.75rem 0.6rem;
+  border-radius: 0.25rem;
+  margin-right: 8px;
+  height: auto;
+}
+
+body.fragments main h3 {
+  font-family: var(--ff-proxima-xbold);
+}
+
+.tabs-horizontal .tab-pane .section {
+  padding: 20px;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+body.fragments main .section .button {
+  min-width: 180px;
+}
+
+.tabs-horizontal .tab-pane .section a,
+.accordion.fragments-list a {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.tabs-horizontal .tab-pane .section p,
+.accordion.fragments-list p {
+  font-size: var(--font-size-body-l);
+  font-weight: bold;
+}
+
+.accordion.fragments-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.accordion.fragments-list table th,
+.accordion.fragments-list table td {
+  border: 1px solid var(--color-theme-gray);
+  padding: 8px;
+  margin: 0;
+}
+
+.accordion.fragments-list.tagging > div:not(:first-child) {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 2px solid var(--color-theme-gray);
+}
+
+.tabs-horizontal .tab-pane .section .fragments-list-block,
+.accordion.fragments-list .fragments-list-block {
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.accordion.fragments-list.tagging .fragments-list-block {
+  gap: unset;
+  border: 1px solid #ccc;
+}
+
+.accordion.fragments-list .download-sheet-btn {
+  display: none;
+}
+
+.accordion.fragments-list.tagging .fragments-list-block li {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.tabs-horizontal .tab-pane .section .fragments-list-block,
+.accordion.fragments-list:not(.tagging) .fragments-list-block {
+  grid-template-columns: repeat(3, 1fr);
+  list-style: disc;
+  padding-left: 1rem;
+}
+
+.accordion.fragments-list.tagging .fragments-list-block span {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.accordion.fragments-list [aria-expanded] .accordion-content {
+  max-height: 700px;
+}
+
+.tagging-match-section:not(:first-child) {
+  margin-top: 1rem;
+}
