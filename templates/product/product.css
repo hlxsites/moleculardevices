@@ -19,3 +19,51 @@
     max-width: 50%;
   }
 }
+
+/* SERVICE PLANS PAGE */
+.service-plans-region-modal-wrapper.modal-inner-wrapper {
+  max-width: 550px;
+
+  /* max-width: 640px; */
+}
+
+/* .service-plans-region-modal-wrapper.modal-inner-wrapper .modal-form {
+  color: var(--color-text-primary);
+  background: var(--color-white);
+} */
+
+.service-plans-region-options {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  /* grid-template-columns: repeat(3, 1fr); */
+}
+
+.service-plans-region-option {
+  width: 100%;
+  border-radius: 4px;
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  display: inline-block;
+  max-width: 240px;
+
+  &:hover,
+  &:focus-within {
+    color: var(--color-white);
+    background: var(--color-orange);
+  }
+}
+
+.service-plans-region-option svg {
+  width: 100px;
+  height: 100px;
+  fill: inherit;
+  display: none;
+}
+
+.service-plans-region-option p {
+  margin-top: 0;
+  color: inherit;
+}
