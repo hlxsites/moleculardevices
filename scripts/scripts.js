@@ -203,14 +203,14 @@ export function embedVideo(link, url, type, hasAutoplay) {
   observer.observe(link.parentElement);
 }
 
-export function videoButton(container, videoBtn, url) {
+export function videoButton(container, button, url) {
   const videoId = url.pathname.split('/').at(-1).trim();
   const overlay = div({ id: 'overlay' }, div({
     class: 'vidyard-player-embed', 'data-uuid': videoId, 'dava-v': '4', 'data-type': 'lightbox', 'data-autoplay': '2',
   }));
 
   container.prepend(overlay);
-  videoBtn.addEventListener('click', (e) => {
+  button.addEventListener('click', (e) => {
     e.preventDefault();
     loadScript('https://play.vidyard.com/embed/v4.js', () => {
       // eslint-disable-next-line no-undef
