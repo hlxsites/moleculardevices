@@ -26,8 +26,10 @@ export default function decorate(block) {
   // Create the modal element
   const closeButton = button({ class: 'modal-close' });
   const closeButtonImage = document.createElement('img');
-  closeButtonImage.src = 'https://www.moleculardevices.com/themes/moldev/images/close2.png';
+  closeButtonImage.src = '/themes/moldev/images/close2.png';
   closeButtonImage.alt = 'Close';
+  closeButtonImage.width = 48;
+  closeButtonImage.height = 48;
   closeButton.appendChild(closeButtonImage);
 
   const modal = div({ id: 'my-modal', class: 'modal' },
