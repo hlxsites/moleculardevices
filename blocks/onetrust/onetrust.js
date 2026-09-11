@@ -30,15 +30,15 @@ async function onetrsutInitializationHandler(ontrustID) {
     }
     const opcoCookiePolicy = document.getElementsByClassName('OpCoCookiePolicy');
     for (let i = 0; i < opcoCookiePolicy.length; i += 1) {
-      opcoCookiePolicy[i].href = `${HOSTNAME}/cookie-notice`;
+      opcoCookiePolicy[i].href = 'https://www.moleculardevices.com/cookie-notice';
     }
     const opcoCcpaPolicy = document.getElementsByClassName('OpCoCCPAPolicy');
     for (let i = 0; i < opcoCcpaPolicy.length; i += 1) {
-      opcoCcpaPolicy[i].href = `${HOSTNAME}/california-consumer-rights-notice`;
+      opcoCcpaPolicy[i].href = 'https://www.moleculardevices.com/california-consumer-rights-notice';
     }
     const opcoPrivacyPolicy = document.getElementsByClassName('OpCoPrivacyPolicy');
     for (let i = 0; i < opcoPrivacyPolicy.length; i += 1) {
-      opcoPrivacyPolicy[i].href = `${HOSTNAME}/privacy-policy`;
+      opcoPrivacyPolicy[i].href = 'https://www.moleculardevices.com/privacy-policy';
     }
     const versionNumber = document.getElementsByClassName('otnotice-public-version')[0].innerHTML;
     const versionNum = document.getElementsByClassName('VersionNumber');
