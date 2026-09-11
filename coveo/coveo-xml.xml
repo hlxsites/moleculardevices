@@ -218186,6 +218186,45 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/flyer/dd/3d-biology/validated-automated-human-intestinal-organoid-workflow.pdf</loc>
+    <lastmod>2026-09-10T23:41:48.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Validated automated workflow for human intestinal organoid culture ]]></md_title>
+      <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Disease Modeling;Drug Discovery and Development ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/applications/absorbance</loc>
     <lastmod>2019-09-03T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -218459,4 +218498,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-09-03T05:29:52.300Z -->
+<!-- build timestamp: 2026-09-11T05:55:03.702Z -->
