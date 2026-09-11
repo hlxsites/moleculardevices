@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 import { div } from '../../scripts/dom-helpers.js';
 
-const HOSTNAME = window.location.origin;
-
 async function onetrsutInitializationHandler(ontrustID) {
   const privacyNoticesUrl = `https://privacyportalde-cdn.onetrust.com/c579c0d0-360f-49c0-bccc-f7b7cded31cd/privacy-notices/${ontrustID}.json`;
 
