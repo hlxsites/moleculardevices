@@ -97,7 +97,7 @@ export default async function decorate() {
   // add article sentence
   const isArticlePage = getMetadata('blog-type') === 'Article';
   const signatureCTA = 'Inspired by what you’ve read? Let’s connect!';
-  const contactURL = 'https://www.moleculardevices.com/contact?region=americas#get-in-touch';
+  const contactURL = '/contact?region=americas#get-in-touch';
 
   if (isArticlePage) {
     const publisher = getMetadata('publisher');

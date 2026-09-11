@@ -8,7 +8,7 @@ import {
   fieldsObj, formMapping, marketingOptin, OID, prodPrimApp, QDCRrequest,
 } from './formMapping.js';
 
-const hostName = 'https://www.moleculardevices.com';
+const hostName = window.location.origin;
 
 /**
  * Initialize a cross-browser custom date input with placeholder + min date.
