@@ -3,7 +3,7 @@
 const https = require('https');
 const fs = require('fs');
 
-const BASE_URL = 'https://www.moleculardevices.com';
+const BASE_URL = window.location.origin;
 
 const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 
@@ -64,7 +64,7 @@ const PRIORITYMAPPING = {
 
 async function getData() {
   return new Promise((resolve) => {
-    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
+    https.get('/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
       const data = [];
 
       res.on('data', (chunk) => {
@@ -84,7 +84,7 @@ async function getData() {
 
 async function getCoveoIcons() {
   return new Promise((resolve) => {
-    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-icon-mapping&limit=50', (res) => {
+    https.get('/query-index.json?sheet=coveo-icon-mapping&limit=50', (res) => {
       const data = [];
 
       res.on('data', (chunk) => {

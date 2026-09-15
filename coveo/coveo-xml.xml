@@ -65818,10 +65818,10 @@
       <md_contenttype><![CDATA[ News ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_product><![CDATA[ 3D Biology Solutions;CellXpress.ai Automated Cell Culture System;3D Ready Organoid Expansion Service  ]]></md_product>
+      <md_application><![CDATA[ Organoids;Brain Organoids;Breast Cancer Organoids;Colorectal Cancer (CRC) Organoids;Intestinal Organoids, 3D Microtissue Models;Patient-derived organoids (Tumoroids);Pulmonary (Lung) Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids;3D Cell Models;3D Cell Models|Brain Organoids;3D Cell Models;3D Cell Models|Breast Cancer Organoids;3D Cell Models;3D Cell Models|Colorectal Cancer (CRC) Organoids;3D Cell Models;3D Cell Models|Intestinal Organoids, 3D Microtissue Models;3D Cell Models;3D Cell Models|Patient-derived organoids (Tumoroids);3D Cell Models;3D Cell Models|Pulmonary (Lung) Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -218693,4 +218693,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-09-14T13:02:59.021Z -->
+<!-- build timestamp: 2026-09-15T04:43:46.814Z -->
