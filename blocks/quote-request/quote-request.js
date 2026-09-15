@@ -141,7 +141,7 @@ export function prepImageUrl(thumbImage) {
     if (thumbImg.startsWith('.')) {
       thumbImgnew = thumbImage.substring(1);
     }
-    thumbImgnew = `https://www.moleculardevices.com${thumbImgnew}`;
+    thumbImgnew = `${window.location.origin}${thumbImgnew}`;
   }
   return thumbImgnew;
 }
@@ -248,7 +248,7 @@ async function loadIframeForm(data, type) {
   };
 
   if (data.path) {
-    hubSpotQuery.website = `https://www.moleculardevices.com${data.path}`;
+    hubSpotQuery.website = `${window.location.origin}${data.path}`;
   }
 
   const formWrapper = div(
