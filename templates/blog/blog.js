@@ -2,6 +2,7 @@
 import {
   div, img, h3, p, h5, strong, i, a,
   article,
+  button,
 } from '../../scripts/dom-helpers.js';
 import ffetch from '../../scripts/ffetch.js';
 import { createHubSpotForm, loadHubSpotScript } from '../../blocks/forms/forms.js';
@@ -60,6 +61,94 @@ export async function getBlogAndPublications() {
   return sortDataByDate(data);
 }
 
+function parseMarkdownToHTML(text) {
+  const processedText = text
+    .trim()
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  const lines = processedText.split('\n');
+  let htmlResult = '';
+  let inList = false;
+
+  lines.forEach((line) => {
+    const trimmedLine = line.trim();
+    if (!trimmedLine) return;
+
+    if (trimmedLine.startsWith('* ')) {
+      if (!inList) {
+        htmlResult += '<ul>';
+        inList = true;
+      }
+      const content = trimmedLine.replace(/^\*\s+/, '');
+      htmlResult += `<li>${content}</li>`;
+    } else {
+      if (inList) {
+        htmlResult += '</ul>';
+        inList = false;
+      }
+      htmlResult += `<p>${trimmedLine}</p>`;
+    }
+  });
+
+  if (inList) htmlResult += '</ul>';
+  return htmlResult;
+}
+
+let isSummaryGenerated = false;
+let isSummaryVisible = true;
+
+export async function summarizeContentHandler() {
+  const sections = document.querySelectorAll('main > .section:not(.hero-container, .social-share-container, .recent-blogs-carousel-container)');
+  const summaryEl = document.querySelector('.ai-summary-result');
+  const summarizeCTA = document.querySelector('.summarize-cta');
+
+  if (isSummaryGenerated) {
+    isSummaryVisible = !isSummaryVisible;
+
+    summaryEl.style.display = isSummaryVisible ? 'block' : 'none';
+    summarizeCTA.textContent = isSummaryVisible ? 'Hide Summary' : 'Show Summary';
+    return;
+  }
+
+  const configUrl = '/config.json';
+  const res = await fetch(configUrl);
+  const config = await res.json();
+  const TEST_KEY = config.public.custom.aikey;
+  const blogTextContent = [];
+
+  summaryEl.textContent = 'Summarizing...';
+
+  sections.forEach((section) => {
+    blogTextContent.push(section.textContent.replace(/\n/g, ' ').trim());
+  });
+
+  const finalText = blogTextContent.join();
+
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${TEST_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'llama-3.1-8b-instant',
+      temperature: 0,
+      messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
+    }),
+    // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
+  });
+
+  const data = await response.json();
+
+  summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
+
+  // Update CTA behavior after summary is generated
+  isSummaryGenerated = true;
+  isSummaryVisible = true;
+
+  summarizeCTA.textContent = 'Hide Summary';
+}
+
 export default async function decorate() {
   const newsletterMetaData = getMetadata('newsletter-modal');
   const newsletterCMP = getMetadata('newsletter-form-cmp');
@@ -114,4 +203,14 @@ export default async function decorate() {
       block.append(creditParagraph);
     }, 1000);
   }
+
+  /* added cta */
+  const summarizeCTA = button({ class: 'summarize-cta button' }, '✨ Summarize with AI');
+  const result = div({ class: 'ai-summary-result text-left' });
+  summarizeCTA.addEventListener('click', summarizeContentHandler);
+
+  setTimeout(() => {
+    const block = document.querySelector('.hero-container + .section');
+    block.prepend(div({ class: 'default-content-wrapper text-right', style: 'margin-bottom: 1rem;' }, summarizeCTA, result));
+  }, 1000);
 }
