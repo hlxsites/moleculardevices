@@ -57,7 +57,7 @@ export default async function decorate(block) {
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
       const researchArea = auth0User?.research_area;
-      const researchAreaOther = auth0User?.research_area_other.join('');
+      const researchAreaOther = auth0User?.research_area_other?.join('');
       const hasSignedUp = !!auth0User?.sign_up;
       // eslint-disable-next-line no-console
       console.log('hasSignedUp: ', hasSignedUp);
@@ -95,15 +95,15 @@ export default async function decorate(block) {
       /* embed hubspot form */
       loadHubSpotScript(() => createHubSpotForm(formConfig));
 
-      setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form')?.querySelector('[type=submit]');
-        if (submitButtom) submitButtom.click();
+      // setTimeout(() => {
+      //   const submitButtom = document.getElementById('auth0-form')?.querySelector('[type=submit]');
+      //   if (submitButtom) submitButtom.click();
 
-        setTimeout(() => {
-          const target = result?.appState?.returnTo || '/';
-          window.location.href = target;
-        }, 1500);
-      }, 1200);
+      //   setTimeout(() => {
+      //     const target = result?.appState?.returnTo || '/';
+      //     window.location.href = target;
+      //   }, 1500);
+      // }, 1200);
       // } else {
       //   const target = result?.appState?.returnTo || '/';
       //   window.location.href = target;
