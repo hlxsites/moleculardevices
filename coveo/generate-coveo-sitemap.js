@@ -4,8 +4,8 @@ const https = require('https');
 const fs = require('fs');
 
 // const BASE_URL = window.location.origin;
-   const BASE_URL = 'https://www.moleculardevices.com';
-  
+const BASE_URL = 'https://www.moleculardevices.com';
+
 const ALL_LOCALES = ['de', 'es', 'fr', 'it', 'ko', 'zh'];
 
 const INDENTIFIER_MAPPING = new Map();
