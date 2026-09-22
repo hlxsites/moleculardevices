@@ -16,7 +16,7 @@ export function rfqThankyouMessage() {
   return div({ class: 'submitted-message forms' },
     h2('Thank you!'),
     p('We have received your request for quote and would like to thank you for contacting us. We have sent you an email to confirm your details.'),
-    p('A sales rep will be contacting you within 24-business hours. If you require immediate attention, please feel free to ',
+    p('A representative will follow up with you as soon as possible using your preferred method of contact.. If you require immediate attention, please feel free to ',
       a({ href: '/contact', title: 'contact us' }, 'contact us.')),
     h2('Have a great day!'),
     createOptimizedPicture('/images/e-mail-thankyou-icon.png', 'E-mail Icon', true),

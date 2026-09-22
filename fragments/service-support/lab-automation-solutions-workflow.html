@@ -1,6 +1,12 @@
 <style type="text/css">
+  .no-margin-bottom {
+    margin-bottom: 0 !important;
+  }
+
   .cm-infographic-wrapper {
-    padding: 50px 15px;
+    padding: 30px 0;
+    margin-left: -10px;
+    margin-right: -10px;
     position: relative
   }
 
@@ -18,14 +24,15 @@
   }
 
   .cm-infographic-container .cm-infographic-img .cm-info-link {
-    padding: 0 15px
+    padding: 0 10px
   }
 
   .cm-robot-img-2 img {
     margin: auto
   }
 
-  .cm-infographic-img img {
+  .cm-infographic-img img,
+  .cm-robot-img-2 img {
     transition: all .2s ease-in-out;
     transform: scale(1);
     width: 100%;
@@ -34,12 +41,14 @@
     backface-visibility: hidden
   }
 
-  .cm-infographic-img:hover img {
+  .cm-infographic-img:hover img,
+  .cm-robot-img-2:hover img {
     transform: scale(1.04)
   }
 
   .cm-infographic-container .cm-infographic-img img {
-    max-width: 305px
+    max-width: 305px;
+    background-color: #fff;
   }
 
   .cm-infographic-wrapper .cm-infographic-img.hide-mob img {
@@ -83,14 +92,14 @@
     bottom: 0
   }
 
-  .cm-infographic-wrapper .cm-infographic-img.hide-mob::before {
-    bottom: auto;
-    top: -30px
+  .cm-infographic-wrapper .cm-infographic-img.hide-mob {
+    padding-top: 20px;
   }
 
-  .cm-infographic-wrapper .read-comp-btn-part.text-center {
-    margin-top: -20px;
-    margin-left: 45px
+  .cm-infographic-wrapper .cm-infographic-img.hide-mob::before {
+    bottom: auto;
+    top: -30px;
+    height: 50px;
   }
 
   @media only screen and (min-width: 768px) {
@@ -118,12 +127,12 @@
       width: 50%
     }
 
-    .cm-infographic-wrapper .cm-infographic-img:nth-child(3)::after {
+    .cm-infographic-wrapper .cm-infographic-img:nth-child(4)::after {
       width: 50%
     }
 
     .cm-infographic-container .cm-infographic-img {
-      max-width: 33.33%;
+      max-width: 25%;
       width: 100%
     }
 
@@ -134,27 +143,22 @@
       justify-content: center
     }
 
-    .cm-infographic-wrapper .cm-infographic-img.hide-mob {
-      width: 60%
+    .cm-infographic-wrapper .cm-infographic-img.hide-mob,
+    .cm-infographic-wrapper .lab-robot-container {
+      width: auto;
     }
 
     .cm-infographic-wrapper .lab-robot-container {
-      width: 40%;
       position: relative;
-      flex-direction: column
-    }
-
-    .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 {
-      position: absolute;
-      right: 0;
-      top: -54px
+      flex-direction: row-reverse;
     }
 
     .cm-infographic-wrapper {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
-      justify-content: space-around
+      justify-content: center;
+      column-gap: 2rem;
     }
   }
 
@@ -169,10 +173,6 @@
   @media only screen and (max-width: 991px) and (min-width:768px) {
     .cm-robot-img-2 img {
       margin: 0
-    }
-
-    .cm-infographic-wrapper .read-comp-btn-part.text-center {
-      margin-left: -70px
     }
 
     .cm-infographic-wrapper .lab-robot-container .cm-robot-img-1 {
@@ -195,10 +195,6 @@
       display: none !important
     }
 
-    .cm-infographic-wrapper .read-comp-btn-part {
-      text-align: center
-    }
-
     .banner_instrument_detail h1.hero-heading {
       font-size: 28px
     }
@@ -214,9 +210,10 @@
     .cm-infographic-wrapper .lab-robot-container {
       width: 100%;
       display: flex;
-      justify-content: center;
-      padding-top: 30px;
-      position: relative
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      gap: 20px;
     }
 
     .cm-infographic-wrapper .lab-robot-container .cm-robot-img img {
@@ -243,95 +240,70 @@
       top: 0;
     }
 
-    .cm-infographic-wrapper .read-comp-btn-part.text-center {
-      margin-top: 0;
-      margin-left: 0;
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%)
-    }
-
     .cm-infographic-wrapper .lab-robot-container .cm-robot-img {
       display: flex;
-      justify-content: center
+      justify-content: center;
+    }
+
+    .cm-infographic-container .cm-infographic-img img[alt="Lab Components"] {
+      max-width: 425px;
     }
   }
 </style>
 <div class="cm-infographic-wrapper">
   <div class="cm-infographic-container">
     <div class="cm-infographic-img">
-      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Cellular Imaging" data-di-id="di-id-d6980a85-af8d480d">
-        <img
-          src="/fragments/service-support/lab-automation-solutions/cell-imaging-lab.png"
-          alt="Cellular Imaging"
-          loading="lazy"
-        />
+      <a class="cm-info-link" href="/products/3d-biology/cellxpress-ai-automated-cell-culture-system"
+        title="Automated Cell Culture">
+        <img src="/fragments/service-support/images/automated-cell-culture.png" alt="Automated Cell Culture"
+          loading="lazy">
       </a>
     </div>
     <div class="cm-infographic-img">
-      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-clone-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Clone Screening" data-di-id="di-id-409f2e2a-a687e259">
-        <img
-          src="/fragments/service-support/lab-automation-solutions/clone-screening-labortory.png"
-          alt="Clone Screening"
-          loading="lazy"
-        />
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening"
+        title="Cellular Imaging">
+        <img src="/fragments/service-support/images/cellular-imaging-2.png" alt="Cellular Imaging" loading="lazy">
       </a>
     </div>
     <div class="cm-infographic-img">
-      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-plate-based-assays" data-responsive-image-style="applications_mm_covid_19_webp" title="Protein and Cell Biology" data-di-id="di-id-b09f6d7c-b79fbb19">
-        <img
-          src="/fragments/service-support/lab-automation-solutions/microplate-technology-lab.png"
-          alt="Microplate Technology"
-          loading="lazy"
-        />
+      <a class="cm-info-link"
+        href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-clone-screening"
+        title="Cellular Workflow Automation">
+        <img src="/fragments/service-support/images/cellular-workflow-automation.png" alt="Cellular Workflow Automation"
+          loading="lazy">
+      </a>
+    </div>
+    <div class="cm-infographic-img">
+      <a class="cm-info-link"
+        href="/service-support/lab-automation-solutions/lab-automation-for-high-throughput-plate-based-assays"
+        title="Microplate Technology">
+        <img src="/fragments/service-support/images/microplate-technology-2.png" alt="Microplate Technology"
+          loading="lazy">
       </a>
     </div>
     <div class="cm-infographic-img show-mob">
-      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Lab Components" data-di-id="di-id-d6980a85-af8d480d">
-        <img
-          src="/fragments/service-support/lab-automation-solutions/lab-components-mob.png"
-          alt="Lab Components"
-          loading="lazy"
-        />
+      <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening"
+        title="Lab Components">
+        <img src="/fragments/service-support/images/lab-components-2.png" alt="Lab Components" loading="lazy">
       </a>
     </div>
   </div>
-  <div class="lab-robot-container show-mob">
-    <div class="cm-robot-img">
-      <img
-        src="/fragments/service-support/lab-automation-solutions/robotic-arm-mob.png"
-        alt="Robot Precise Automation"
-        loading="lazy"
-      />
-      <br>
-      <div class="read-comp-btn-part text-center"><p class="button-container"><strong><a href="/quote-request?pid=laboratory-automation-customization-solutions" title="Speak to a specialist" class="button primary">Speak to a specialist<span class="button-border"></span></a></strong></p></div>
-    </div>
-  </div>
-  <div class="lab-robot-container hide-mob">
+  <div class="lab-robot-container">
     <div class="cm-robot-img-1">
-      <img
-        src="/fragments/service-support/lab-automation-solutions/robotic-arm-precision.png"
-        alt="Robot Precise Automation"
-        loading="lazy"
-      />
+      <img src="/fragments/service-support/images/automation-robotic-arm.png" alt="Robot Precise Automation"
+        loading="lazy">
     </div>
     <div class="cm-robot-img-2">
-      <img
-        src="/fragments/service-support/lab-automation-solutions/interested-in-automated-workflow.png"
-        alt="Interested in Automating"
-        loading="lazy"
-      />
+      <a href="/quote-request?pid=laboratory-automation-customization-solutions" title="Discuss Your Solutions">
+        <img src="/fragments/service-support/images/discuss-your-solutions.png" alt="Discuss Your Solutions"
+          loading="lazy">
+      </a>
     </div>
-    <div class="read-comp-btn-part text-center"><p class="button-container"><strong><a href="/quote-request?pid=laboratory-automation-customization-solutions" title="Speak to a specialist" class="button primary">Speak to a specialist<span class="button-border"></span></a></strong></p></div>
   </div>
-  <div class="cm-infographic-img hide-mob">
-    <a class="cm-info-link" href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" data-responsive-image-style="applications_mm_covid_19_webp" title="Lab Components" data-di-id="di-id-206b6724-4c855d88">
-      <img
-        src="/fragments/service-support/lab-automation-solutions/lab-component.png"
-        alt="Lab Components"
-        loading="lazy"
-      />
+  <div class="cm-infographic-img hide-mob no-margin-bottom">
+    <a class="cm-info-link no-margin-bottom"
+      href="/service-support/lab-automation-solutions/lab-automation-for-high-content-screening" title="Lab Components">
+      <img src="/fragments/service-support/images/lab-components-2.png" alt="Lab Components" loading="lazy">
     </a>
   </div>
 </div>

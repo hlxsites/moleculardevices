@@ -7,12 +7,12 @@ const customBreadcrumbs = {
   'app-note': {
     name: 'App Note',
     url_path:
-      'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D',
+      '/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BApplication%20Note%5D',
   },
   ebook: {
     name: 'EBook',
     url_path:
-      'https://www.moleculardevices.com/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D',
+      '/search-results#t=All&sort=relevancy&f:@md_contenttype=%5BeBook%5D',
   },
   'lab-notes': {
     name: 'Lab Notes',
@@ -98,6 +98,10 @@ const customBreadcrumbs = {
   'microbial-screening': {
     name: 'Microbial Screening',
     url_path: '/products/clone-screening/microbial-screening',
+  },
+  'high-content-analysis': {
+    name: 'High-Content Imaging & Analysis',
+    url_path: '/products/cellular-imaging-systems/high-content-analysis',
   },
   stacker: {
     name: 'Stacker',
