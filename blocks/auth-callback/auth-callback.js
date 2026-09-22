@@ -60,7 +60,6 @@ export default async function decorate(block) {
       const researchAreaOther = auth0User?.research_area_other?.join('');
       const hasSignedUp = !!auth0User?.sign_up;
       // eslint-disable-next-line no-console
-      console.log(auth0User);
       console.log('hasSignedUp: ', hasSignedUp);
       if (researchAreaOther) researchArea.push('other');
 

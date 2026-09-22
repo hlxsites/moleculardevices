@@ -198,7 +198,7 @@ export function updateFormFields(form, fieldValues) {
 
 /* custom form fields */
 function createHiddenField(hubspotFormData, inputFieldName, inputName) {
-  const fieldVal = hubspotFormData.getAll(inputFieldName).join(', ');
+  const fieldVal = hubspotFormData.getAll(inputFieldName).join(';');
   if (fieldVal && fieldVal !== undefined && fieldVal !== '') {
     const elementCompany = input({ name: inputName, value: fieldVal, type: 'hidden' });
     return elementCompany;
