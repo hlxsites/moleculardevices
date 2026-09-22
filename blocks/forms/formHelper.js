@@ -173,8 +173,6 @@ export function updateFormFields(form, fieldValues) {
       checkboxes.forEach((checkbox) => {
         checkbox.checked = Array.isArray(value) ? value.includes(checkbox.value) : Boolean(value);
         checkbox.dispatchEvent(new Event('change', { bubbles: true }));
-        console.log(checkbox);
-        console.log(checkbox.checked);
       });
 
       return;
