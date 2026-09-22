@@ -106,6 +106,7 @@ class Card {
     if (isNotEmpty(geoDescription)) item.cardDescription = geoDescription;
 
     let cardLink = item.path;
+
     if (isGatedResource(item)) {
       cardLink = item.gatedURL;
     } else if (this.isShopifyCard && item.shopifyUrl) {

@@ -496,9 +496,9 @@ function addPageSchema() {
   }
 
   try {
-    const moleculardevicesRootURL = 'https://www.moleculardevices.com/';
+    const moleculardevicesRootURL = window.location.origin;
     const moleculardevicesSiteName = 'Molecular Devices';
-    const moleculardevicesLogoURL = `https://www.moleculardevices.com${SITE_LOGO_URL}`;
+    const moleculardevicesLogoURL = `${moleculardevicesRootURL}${SITE_LOGO_URL}`;
 
     const h1 = document.querySelector('main h1');
     const schemaTitle = getMetadata('og:title') ? getMetadata('og:title') : h1.textContent;
@@ -533,10 +533,10 @@ function addPageSchema() {
       'https://www.x.com/moldev',
     ];
     const fwnRelatedLink = [
-      'https://www.moleculardevices.com/for-whats-next/exploring-complex-biology',
-      'https://www.moleculardevices.com/for-whats-next/shifting-paradigms-together',
-      'https://www.moleculardevices.com/for-whats-next/transforming-science',
-      'https://www.moleculardevices.com/for-whats-next/validating-next-gen-therapeutics',
+      `${window.location.origin}/for-whats-next/exploring-complex-biology`,
+      `${window.location.origin}/for-whats-next/shifting-paradigms-together`,
+      `${window.location.origin}/for-whats-next/transforming-science`,
+      `${window.location.origin}/for-whats-next/validating-next-gen-therapeutics`,
     ];
 
     let schemaInfo = null;
@@ -578,7 +578,7 @@ function addPageSchema() {
               'query-input': 'required name=search_term_string',
               target: {
                 '@type': 'EntryPoint',
-                urlTemplate: 'https://www.moleculardevices.com/search-results#q={search_term_string}',
+                urlTemplate: `${window.location.origin}/search-results#q={search_term_string}`,
               },
             },
           },
@@ -752,7 +752,7 @@ function addPageSchema() {
         '@graph': [
           {
             '@type': 'ContactPage',
-            url: 'https://www.moleculardevices.com/contact',
+            url: `${window.location.origin}/contact`,
             name: schemaTitle,
             description: getMetadata('description'),
             publisher: {
@@ -794,7 +794,7 @@ function addPageSchema() {
         '@graph': [
           {
             '@type': 'AboutPage',
-            url: 'https://www.moleculardevices.com/about-us',
+            url: `${window.location.origin}/about-us`,
             name: schemaTitle,
             description: getMetadata('description'),
             publisher: {
@@ -881,7 +881,7 @@ function addPageSchema() {
             about: keywords ? keywords.split(',').map((k) => k.trim()) : [],
             isPartOf: {
               '@type': 'WebPage',
-              url: 'https://www.moleculardevices.com/for-whats-next',
+              url: `${window.location.origin}/for-whats-next`,
             },
           },
         ],
@@ -1200,7 +1200,6 @@ function loadCarousels(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export async function decorateMain(main) {
-  // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
   optimiseHeroBlock(main);
