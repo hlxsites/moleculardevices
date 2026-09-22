@@ -99,10 +99,10 @@ export default async function decorate(block) {
         const submitButtom = document.getElementById('auth0-form')?.querySelector('[type=submit]');
         if (submitButtom) submitButtom.click();
 
-        // setTimeout(() => {
-        //   const target = result?.appState?.returnTo || '/';
-        //   window.location.href = target;
-        // }, 1500);
+        setTimeout(() => {
+          const target = result?.appState?.returnTo || '/';
+          window.location.href = target;
+        }, 1500);
       }, 1200);
       // } else {
       //   const target = result?.appState?.returnTo || '/';
