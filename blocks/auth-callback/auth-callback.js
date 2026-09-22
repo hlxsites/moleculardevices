@@ -56,10 +56,11 @@ export default async function decorate(block) {
       const jobtitle = auth0User?.title;
       const phone = auth0User?.phone;
       const subscribe = !!auth0User?.marketing_consented;
-      const researchArea = auth0User?.research_area?.join('; ');
+      const researchArea = auth0User?.research_area?.join(',');
       const researchAreaOther = auth0User?.research_area_other?.join('');
       const hasSignedUp = !!auth0User?.sign_up;
       // eslint-disable-next-line no-console
+      console.log(researchArea);
       console.log('hasSignedUp: ', hasSignedUp);
       if (researchAreaOther) researchArea.push('other');
 
