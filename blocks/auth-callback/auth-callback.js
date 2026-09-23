@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import initAuth0, { getExpiryTime, getIdToken, getUser } from '../../scripts/auth.js';
-import { div, p } from '../../scripts/dom-helpers.js';
+import { div, h3, span } from '../../scripts/dom-helpers.js';
 import { getCookie, setCookie } from '../../scripts/scripts.min.js';
 import { createHubSpotForm, loadHubSpotScript } from '../forms/forms.js';
 
@@ -31,8 +31,11 @@ export default async function decorate(block) {
     const loginAnchor = document.querySelector('header a[href*="lifesciences.danaher.com"]');
     if (loginAnchor) loginAnchor.textContent = 'Logout';
 
-    block.appendChild(div(
-      p('Signing you in...'),
+    const loader = div({ class: 'loading-dots', 'aria-label': 'Loading' }, span(), span(), span());
+
+    block.appendChild(div({ class: 'text-center' },
+      h3('Getting things ready for you...'),
+      loader,
       div({ id: 'auth0-form', style: 'display: none;' }),
     ));
 
@@ -110,7 +113,7 @@ export default async function decorate(block) {
       // }
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
-      block.innerHTML = '<p>Authentication failed. Please refresh or try again.</p>';
+      block.innerHTML = '<h3 class="text-center">Authentication failed. Please refresh or try again.</h3>';
     }
   }, 500);
 }
