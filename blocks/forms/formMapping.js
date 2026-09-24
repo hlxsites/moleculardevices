@@ -18,6 +18,7 @@ export const formMapping = [
   { type: 'product-promo', id: 'cb509c1d-3c9d-4d8a-ac06-11f6e8fd14d0' },
   { type: 'events', id: '4decc5b8-acd7-4c3d-ba12-6a840e64ea4b' },
   { type: 'tech-note', id: 'db56f65d-4747-427d-ac69-abd0c97daebe' },
+  { type: 'auth0', id: '253e76d8-9b56-41f1-9d5a-c5b3c4bb90d4' },
 ];
 
 export const DEFAULT_QDC_VALUE = 'Quote';
@@ -34,12 +35,16 @@ export const customSolutionsOpportunity = '00N70000003ScgU';
 export const preQualifiedForSalesrep = '00N0g000003YFXF';
 export const QDCRrequest = '00N70000003iu65';
 export const marketingOptin = '00N70000003ipQF';
+export const authResearchArea = '00NRn000001Lbgj';
+export const authResearchAreaOther = '00NRn0000025n29';
 
+/* salesforce field names */
 export const fieldsObj = [
   { inputName: 'first_name', inputFieldName: 'firstname' },
   { inputName: 'last_name', inputFieldName: 'lastname' },
   { inputName: 'email', inputFieldName: 'email' },
   { inputName: 'phone', inputFieldName: 'phone' },
+  { inputName: 'phone', inputFieldName: 'mobilephone' },
   { inputName: 'phone', inputFieldName: '0-2/phone' },
   { inputName: 'company', inputFieldName: 'company' },
   { inputName: 'country', inputFieldName: 'country' },
@@ -48,6 +53,7 @@ export const fieldsObj = [
   { inputName: 'state', inputFieldName: 'state' },
   { inputName: 'zip', inputFieldName: 'zip' },
   { inputName: timelineValue, inputFieldName: 'timeline__c' },
+  { inputName: 'title', inputFieldName: 'jobtitle' },
   { inputName: 'jobtitle', inputFieldName: 'jobtitle' },
   { inputName: 'city', inputFieldName: 'city' },
   { inputName: 'Danaher_Partner_Rep__c', inputFieldName: 'danaher_partner_rep__c' },
@@ -79,4 +85,8 @@ export const fieldsObj = [
   { inputName: 'Meeting_Date__c', inputFieldName: 'date' },
   { inputName: 'Meeting_Date__c', inputFieldName: 'meeting_date_text' },
   { inputName: 'Meeting_Time__c', inputFieldName: 'meeting_time' },
+  // { inputName: 'Research_Area__c', inputFieldName: 'research_area' },
+  { inputName: authResearchArea, inputFieldName: 'research_area' },
+  // { inputName: 'Research_Area_Other__c', inputFieldName: 'research_area_other' },
+  { inputName: authResearchAreaOther, inputFieldName: 'research_area__other' },
 ];
