@@ -34,7 +34,7 @@ export default async function decorate(block) {
     const loader = div({ class: 'loading-dots', 'aria-label': 'Loading' }, span(), span(), span());
 
     block.appendChild(div({ class: 'text-center' },
-      h3('Getting things ready for you...'),
+      h3('We are signing you in, please wait...'),
       loader,
       div({ id: 'auth0-form', style: 'display: none;' }),
     ));

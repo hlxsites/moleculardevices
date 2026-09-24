@@ -1,6 +1,6 @@
 .auth-callback {
   padding: 8rem 2rem;
-  background: var(--color-primary-alpha-5);
+  background: var(--color-gray-50);
   border: 1px solid rgb(var(--color-primary-rgb) / 10%);
 }
 
