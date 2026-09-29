@@ -60999,7 +60999,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/improved-cell-viability-multi-day-cell-based-microplate</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/improved-cell-viability-multi-day-cell-based-microplate-assays</loc>
     <lastmod>2025-07-15T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61310,7 +61310,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-analysis</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis</loc>
     <lastmod>2025-07-31T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61426,7 +61426,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-screening-and-ai-analysis-increase-insights-complex-3d-assay</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-screening-ai-analysis-increase-insights-complex-3d-assay</loc>
     <lastmod>2025-08-11T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61777,7 +61777,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-using-imagexpress-hcs-ai</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-imagexpress-hcs-ai</loc>
     <lastmod>2025-09-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61816,12 +61816,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/exploring-effect-of-shaking-conditions-on-microbial-growth</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/effect-of-shaking-conditions-on-microbial-growth</loc>
     <lastmod>2025-09-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Optimizing Shaking for Microbial Growth in Microplates ]]></md_title>
+      <md_title><![CDATA[ Exploring the effect of shaking conditions on microbial growth ]]></md_title>
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
@@ -62126,7 +62126,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-scanlater</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-and-scanlater</loc>
     <lastmod>2025-09-30T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62165,12 +62165,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitative-lfa-bright-dtech-nanoparticles-scanlater</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitative-lateral-flow-assays-bright-dtech-nanoparticles-scanlater</loc>
     <lastmod>2025-09-30T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ LDH as a Case Study: Unlocking Quantitative Power in Lateral Flow Assays ]]></md_title>
+      <md_title><![CDATA[ LDH as a case study: Unlocking quantitative power in lateral flow assays with Bright-Dtech™ Nanoparticles and ScanLater® Detection ]]></md_title>
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
@@ -62514,7 +62514,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/anaerobic-microbiome-workflows-qpix-flex</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/anaerobic-microbiome-workflows-with-qpix-flex</loc>
     <lastmod>2025-10-31T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62592,7 +62592,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/monitor-effects-of-nutrient-antibiotic-addition-on-bacterial-growth</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/monitor-effects-of-nutrient-antibiotic-on-bacterial-growth</loc>
     <lastmod>2025-11-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62862,7 +62862,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitation-plasmid-dna-from-bacteria-cultured-in-microplates</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/sensitive-quantitation-plasmid-dna-from-bacteria-cultured-in-microplates</loc>
     <lastmod>2025-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -63518,7 +63518,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/ai-assisted-spike-train-analysis-human-brain-organoids</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/ai-assisted-spike-train-synchronization-human-brain-organoids</loc>
     <lastmod>2026-03-10T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64220,7 +64220,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-cell-profiling-imaging-with-led</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-cell-profiling-using-imaging-with-led-illumination</loc>
     <lastmod>2026-04-07T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64415,7 +64415,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/technothrombin-tga-thrombin-generation-spectramax-i3x</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/technothrombin-tga-thrombin-generation-assay-spectramax-i3x</loc>
     <lastmod>2026-05-12T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64917,7 +64917,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/3d-biology/cellxpress-ai-for-patient-derived-crc-organoid-expansion</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/3d-biology/cellxpress-ai-for-patient-derived-crc-organoid-expansion-monitoring</loc>
     <lastmod>2026-06-19T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -65927,7 +65927,45 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection</loc>
+    <loc>https://www.moleculardevices.com/events/bio-europe</loc>
+    <lastmod>2026-09-21T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Event</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/event.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection.pdf</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217797,7 +217835,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/advancing-label-free-cell-imaging-ai-driven-analysis</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/img/label-free-cell-imaging-transmitted-light-deep-learning.pdf</loc>
     <lastmod>2026-03-17T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217836,7 +217874,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/complete-microbial-workflow-plating-to-dna-quantitation</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/microbial-workflow-plating-picking-to-plasmid-dna-quantitation.pdf</loc>
     <lastmod>2026-03-18T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217914,7 +217952,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/neuronal-diseases-with-ipsc-derived-dorsal-forebrain-3d-organoids</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/neuronal-diseases-with-ipsc-derived-dorsal-forebrain-3d-organoids.pdf</loc>
     <lastmod>2026-03-24T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217953,7 +217991,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/automated-patient-derived-colorectal-cancer-organoids</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-patient-derived-colorectal-cancer-organoids.pdf</loc>
     <lastmod>2026-03-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -218070,7 +218108,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/automated-microbial-screening-phenotyping-qpix-flex</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/automated-microbial-screening-phenotyping-qpix-flex.pdf</loc>
     <lastmod>2026-05-11T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -218109,7 +218147,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/br/glucose-uptake-under-hypoxic-mcf7-u2-os-cancer-cell</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/br/glucose-uptake-under-hypoxic-mcf7-u2-os-cancer-cell.pdf</loc>
     <lastmod>2026-06-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -218187,7 +218225,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/automated-organoid-workflow-t-cell-screening-using-cellxpress-ai</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-organoid-workflow-t-cell-screening-using-cellxpress-ai.pdf</loc>
     <lastmod>2026-06-10T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -219123,4 +219161,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-09-29T01:40:06.799Z -->
+<!-- build timestamp: 2026-09-29T14:20:38.351Z -->
