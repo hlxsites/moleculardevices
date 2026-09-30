@@ -941,7 +941,8 @@ function addPageSchema() {
 
 function addHreflangTags() {
   // Avoid duplicate tags
-  if (document.querySelectorAll('head link[hreflang]').length > 0) return;
+  document.head.querySelectorAll('link[hreflang]').forEach(link => link.remove());
+
 
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
   const type = getMetadata('template');
@@ -955,6 +956,7 @@ function addHreflangTags() {
 
   const baseHreflangs = [
     { lang: 'x-default', href: 'https://www.moleculardevices.com' },
+    { lang: 'en', href: 'https://www.moleculardevices.com' },
     { lang: 'de', href: 'https://de.moleculardevices.com' },
     { lang: 'es', href: 'https://es.moleculardevices.com' },
     { lang: 'fr', href: 'https://fr.moleculardevices.com' },
@@ -968,7 +970,7 @@ function addHreflangTags() {
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
 
-    const href = hl.lang === 'x-default' ? 'https://www.moleculardevices.com' : hl.href + path;
+    const href = hl.lang === 'x-default' ? hl.href : hl.href + path;
     ln.setAttribute('href', href);
 
     document.head.appendChild(ln);
