@@ -955,6 +955,7 @@ function addHreflangTags() {
 
   const baseHreflangs = [
     { lang: 'x-default', href: 'https://www.moleculardevices.com' },
+    { lang: 'en', href: 'https://www.moleculardevices.com' },
     { lang: 'de', href: 'https://de.moleculardevices.com' },
     { lang: 'es', href: 'https://es.moleculardevices.com' },
     { lang: 'fr', href: 'https://fr.moleculardevices.com' },
@@ -967,7 +968,10 @@ function addHreflangTags() {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
-    ln.setAttribute('href', hl.href + path);
+
+    const href = hl.lang === 'x-default' ? hl.href : hl.href + path;
+    ln.setAttribute('href', href);
+
     document.head.appendChild(ln);
   });
 }
