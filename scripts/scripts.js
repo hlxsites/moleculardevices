@@ -940,6 +940,9 @@ function addPageSchema() {
 }
 
 function addHreflangTags() {
+  // Avoid duplicate tags
+  if (document.querySelectorAll('head link[hreflang]').length > 0) return;
+
   const includedTypes = ['homepage', 'Product', 'Application', 'Category', 'Technology', 'Customer Breakthrough', 'Video Gallery', 'contact', 'About Us'];
   const type = getMetadata('template');
   const spTypes = (type) ? type.split(',').map((k) => k.trim()) : [];
@@ -950,12 +953,8 @@ function addHreflangTags() {
     return;
   }
 
-  // Avoid duplicate tags
-  document.head.querySelectorAll('link[hreflang]').forEach(link => link.remove());
-
   const baseHreflangs = [
     { lang: 'x-default', href: 'https://www.moleculardevices.com' },
-    { lang: 'en', href: 'https://www.moleculardevices.com' },
     { lang: 'de', href: 'https://de.moleculardevices.com' },
     { lang: 'es', href: 'https://es.moleculardevices.com' },
     { lang: 'fr', href: 'https://fr.moleculardevices.com' },
@@ -968,14 +967,8 @@ function addHreflangTags() {
     const ln = document.createElement('link');
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
-
-    const href = hl.lang === 'x-default' ? hl.href : hl.href + path;
-    ln.setAttribute('href', href);
-    ln.setAttribute('data-source', 'my-hreflang-script');
-
+    ln.setAttribute('href', hl.href + path);
     document.head.appendChild(ln);
-
-    console.log(`[hreflang] ${hl.lang}: ${ln.href}`);
   });
 }
 
