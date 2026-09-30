@@ -954,14 +954,14 @@ function addHreflangTags() {
   }
 
   const baseHreflangs = [
-    { lang: 'x-default', href: 'https://www.moleculardevices.com' },
-    { lang: 'en', href: 'https://www.moleculardevices.com' },
+    // { lang: 'x-default', href: 'https://www.moleculardevices.com' },
     { lang: 'de', href: 'https://de.moleculardevices.com' },
     { lang: 'es', href: 'https://es.moleculardevices.com' },
     { lang: 'fr', href: 'https://fr.moleculardevices.com' },
     { lang: 'it', href: 'https://it.moleculardevices.com' },
     { lang: 'ko', href: 'https://ko.moleculardevices.com' },
     { lang: 'zh', href: 'https://www.moleculardevices.com.cn' },
+    { lang: 'en', href: 'https://www.moleculardevices.com' },
   ];
 
   baseHreflangs.forEach((hl) => {
@@ -969,7 +969,7 @@ function addHreflangTags() {
     ln.setAttribute('rel', 'alternate');
     ln.setAttribute('hreflang', hl.lang);
 
-    const href = hl.lang === 'x-default' ? hl.href : hl.href + path;
+    const href = hl.lang === 'x-default' ? 'https://www.moleculardevices.com' : hl.href + path;
     ln.setAttribute('href', href);
 
     document.head.appendChild(ln);
