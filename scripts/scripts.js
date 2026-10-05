@@ -1449,7 +1449,12 @@ function loadDelayed() {
       window.hlx.plugins.load('delayed');
       window.hlx.plugins.run('loadDelayed');
       // eslint-disable-next-line import/no-cycle
-      return import('./delayed.js');
+      return import('./delayed.js')
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          return import('./runtime.js');
+        });
     }, 3000);
   }
   // load anything that can be postponed to the latest here
