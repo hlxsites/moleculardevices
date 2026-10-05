@@ -382,6 +382,23 @@ function extractUrls(value = '') {
   });
 }
 
+function isDiscontinuedProduct(item) {
+  return ['true', 'yes', 'Yes'].includes(
+    String(item.productDiscontinued ?? '').trim().toLowerCase(),
+  );
+}
+
+function filterSearchResults(results, { gatedOnly, excludeDiscontinued }) {
+  return results.map(({ type, data }) => ({
+    type,
+    data: data.filter((item) => {
+      if (gatedOnly && (!item.gatedURL || item.gatedURL === '0')) return false;
+      if (excludeDiscontinued && type === 'Products' && isDiscontinuedProduct(item)) return false;
+      return true;
+    }),
+  })).filter(({ data }) => data.length > 0);
+}
+
 /* -------------------------------------------------------------------------- */
 /* Resource Rendering                                                         */
 /* -------------------------------------------------------------------------- */
@@ -452,12 +469,28 @@ function createFormSection(heading, sectionId, inputCls, inputPlaceholder, ctaTi
 }
 
 function createSearchForm() {
-  const heading = 'Search Pages/Resources: ';
-  const sectionId = 'search-fragment-form';
-  const inputCls = 'search-fragment';
-  const placeholder = 'Enter title or path...';
-  const ctaTitle = 'Find Pages';
-  return createFormSection(heading, sectionId, inputCls, placeholder, ctaTitle);
+  const searchForm = createFormSection(
+    'Search Pages/Resources: ',
+    'search-fragment-form',
+    'search-fragment',
+    'Enter title or path...',
+    'Find Pages',
+  );
+
+  const filters = div({ style: 'display: flex; gap: 20px; align-items: center; margin-top: 10px; padding-left: 0;' },
+    div({ style: 'display: flex; align-items: baseline;' },
+      input({ type: 'checkbox', id: 'search-gated-only', name: 'search-gated-only' }),
+      label({ for: 'search-gated-only', style: 'margin-left: 8px;' },
+        'Only show resources with gated URLs',
+      )),
+    div({ style: 'display: flex; align-items: baseline;' },
+      input({ type: 'checkbox', id: 'search-exclude-discontinued', name: 'search-exclude-discontinued' }),
+      label({ for: 'search-exclude-discontinued', style: 'margin-left: 8px;' },
+        'Exclude discontinued products')));
+
+  searchForm.appendChild(filters);
+
+  return searchForm;
 }
 
 function createTaggingForm() {
@@ -674,33 +707,46 @@ async function findTaggedItems(values, type) {
 }
 
 async function renderSearchResults() {
-  const block = document.querySelector('main .fragments-list.tagging');
-  const search = document.querySelector('#search-fragment-form > input');
-  const searchValue = search.value.trim();
+  const resultsContainer = document.querySelector('main .fragments-list.tagging');
+  const searchInput = document.querySelector('#search-fragment-form > input').value.trim();
+  const gatedOnly = document.getElementById('search-gated-only').checked;
+  const excludeDiscontinued = document.getElementById('search-exclude-discontinued').checked;
 
-  if (!searchValue) {
-    block.innerHTML = '';
-    block.appendChild(p('Enter a page title or path to search.'));
+  if (!searchInput) {
+    resultsContainer.innerHTML = '';
+    resultsContainer.appendChild(p('Enter a page title or path to search.'));
     return;
   }
 
-  block.innerHTML = '';
-  const loading = p({ style: 'padding-top: 20px;' }, `Searching for "${searchValue}"...`);
-  block.appendChild(loading);
+  resultsContainer.innerHTML = '';
+
+  const loadingMessage = p({ style: 'padding-top: 20px;' }, `Searching for "${searchInput}"...`);
+  resultsContainer.appendChild(loadingMessage);
 
   try {
-    const results = await searchPagesAndResources(searchValue);
-    const resultsWithData = results.filter(({ data }) => data.length > 0);
+    const searchResults = await searchPagesAndResources(searchInput);
 
-    loading.remove();
+    const results = filterSearchResults(searchResults, { gatedOnly, excludeDiscontinued });
 
-    if (!resultsWithData.length) {
-      block.appendChild(p(`No pages or resources found for "${searchValue}".`));
+    loadingMessage.remove();
+
+    if (!results.length) {
+      let message = `No pages or resources found for "${searchInput}".`;
+
+      if (gatedOnly && excludeDiscontinued) {
+        message = `No pages or resources with gated URLs found for "${searchInput}" after excluding discontinued products.`;
+      } else if (gatedOnly) {
+        message = `No pages or resources with gated URLs found for "${searchInput}".`;
+      } else if (excludeDiscontinued) {
+        message = `No pages or resources found for "${searchInput}" after excluding discontinued products.`;
+      }
+
+      resultsContainer.appendChild(p(message));
       return;
     }
 
     const resultLists = await Promise.all(
-      resultsWithData.map(({ type, data }) => (
+      results.map(({ type, data }) => (
         type === 'Resources'
           ? createResourceList(`${type} Pages (${data.length}):`, data)
           : createFragmentList(type, data)
@@ -708,14 +754,13 @@ async function renderSearchResults() {
     );
 
     resultLists.forEach((resultList) => {
-      block.appendChild(resultList);
+      resultsContainer.appendChild(resultList);
     });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Search failed:', error);
-
-    loading.remove();
-    block.appendChild(p('Unable to search pages. Please try again.'));
+    loadingMessage.remove();
+    resultsContainer.appendChild(p('Unable to search pages. Please try again.'));
   }
 }
 
