@@ -126,7 +126,7 @@ setTimeout(() => {
 // Fathom Analytics Code
 // const attrsFa = JSON.parse('{"data-site": "ZLJXKMGA"}');
 // loadScript('https://cdn.usefathom.com/script.js', attrsFa);
-loadGTM();
+
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
   loadUserData();
