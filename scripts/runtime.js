@@ -130,6 +130,7 @@ setTimeout(() => {
 if (!isSidekickLibrary) {
   sampleRUM('cwv');
   loadUserData();
+  loadGTM();
   if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.aem.page')) {
     loadGTM();
   }
