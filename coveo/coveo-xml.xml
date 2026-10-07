@@ -8735,7 +8735,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part2</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/performing-advanced-statistical-analyses-in-softmax-pro-software</loc>
     <lastmod>2020-04-20T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8774,7 +8774,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part3</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/how-to-perform-parallel-line-analysis-in-softmax-pro-software</loc>
     <lastmod>2020-04-24T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8852,7 +8852,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part1</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/how-to-set-up-elisa-assay-and-basic-analysis-using-softmax-pro</loc>
     <lastmod>2020-04-15T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8865,45 +8865,6 @@
       <md_application><![CDATA[ Enzyme-Linked Immunosorbent Assay (ELISA) ]]></md_application>
       <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Enzyme-Linked Immunosorbent Assay (ELISA) ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part4</loc>
-    <lastmod>2020-05-01T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ Helping GMP/GLP labs meet data integrity guidelines: Introducing SQL & protocol workflow in SoftMax Pro 7.1.1 GxP ]]></md_title>
-      <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -27462,6 +27423,45 @@
       <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_rfq>https://www.moleculardevices.com/quote-request?pid=heartbeat-bio-scales-cardioid-screening</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/lab-notes/3d-biology/how-core-facilities-are-scaling-organoid-research</loc>
+    <lastmod>2026-10-07T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ How core facilities are scaling organoid research to meet growing demand ]]></md_title>
+      <md_contenttype><![CDATA[ Blog ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/blog.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -217918,7 +217918,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Automated Microbial Workflow from Colony to DNA ]]></md_title>
+      <md_title><![CDATA[ Automated Microbial Workflow from Plating and Picking to DNA Quantitation ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -217996,7 +217996,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ IPCS derived brain organoids enable functional neuronal disease modeling ]]></md_title>
+      <md_title><![CDATA[ Neuronal Diseases with iPSC-derived dorsal forebrain 3D Organoids ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -218035,7 +218035,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Scalable expansion of patient derived cancer organoids through automation ]]></md_title>
+      <md_title><![CDATA[ Automated Patient-Derived Colorectal Cancer Organoids ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -218269,7 +218269,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ CellXpress.ai Automated Cell Culture System: Automated workstation for reproducible organoid cultivation ]]></md_title>
+      <md_title><![CDATA[ Automated Organoid Workflow for T-Cell Screening Using CellXpress.ai ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -219200,4 +219200,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-10-06T07:47:48.429Z -->
+<!-- build timestamp: 2026-10-07T10:49:35.561Z -->
