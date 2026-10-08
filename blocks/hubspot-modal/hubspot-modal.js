@@ -12,11 +12,13 @@ function openModal(block) {
     modalContent.appendChild(iframe({ src: iframeSrc }));
   }
 
+  document.body.classList.add('no-scroll');
   modal.classList.add('open');
 }
 
 function closeModal() {
   const modal = document.getElementById('my-modal');
+  document.body.classList.remove('no-scroll');
   modal.classList.remove('open');
 }
 
@@ -33,8 +35,9 @@ export default function decorate(block) {
   closeButton.appendChild(closeButtonImage);
 
   const modal = div({ id: 'my-modal', class: 'modal' },
-    div({ class: 'modal-content' }),
-    closeButton,
+    div({ class: 'modal-content' },
+      closeButton,
+    ),
   );
 
   document.body.appendChild(modal);
