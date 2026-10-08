@@ -90,6 +90,8 @@
 .modal-close img {
   width: 2.5vw;
   height: 2.5vw;
+  min-width: 25px;
+  min-height: 25px;
   display: block;
 }
 
