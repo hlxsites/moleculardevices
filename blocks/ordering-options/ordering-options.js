@@ -1,5 +1,5 @@
 import { detectStore, getCartItemCount, setCookie } from '../../scripts/scripts.min.js';
-import { loadUserData } from '../../scripts/delayed.js';
+import { loadUserData } from '../../scripts/runtime.js';
 import {
   a, button, div, domEl, h3, i, img, input, label, p, span,
 } from '../../scripts/dom-helpers.js';
