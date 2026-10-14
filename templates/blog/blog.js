@@ -102,6 +102,13 @@ export async function summarizeContentHandler() {
   const summaryEl = document.querySelector('.ai-summary-result');
   const summarizeCTA = document.querySelector('.summarize-cta');
 
+  if (!summaryEl || !summarizeCTA) {
+    // eslint-disable-next-line no-console
+    console.error('Summary elements were not found.');
+    return;
+  }
+
+  // Toggle the existing summary without making another API request.
   if (isSummaryGenerated) {
     isSummaryVisible = !isSummaryVisible;
 
@@ -110,43 +117,72 @@ export async function summarizeContentHandler() {
     return;
   }
 
-  const configUrl = '/config.json';
-  const res = await fetch(configUrl);
-  const config = await res.json();
-  const TEST_KEY = config.public.custom.aikey;
-  const blogTextContent = [];
+  try {
+    summarizeCTA.disabled = true;
+    summaryEl.textContent = 'Summarizing...';
 
-  summaryEl.textContent = 'Summarizing...';
+    const configResponse = await fetch('/config.json');
+    if (!configResponse.ok) throw new Error(`Config request failed: ${configResponse.status}`);
 
-  sections.forEach((section) => {
-    blogTextContent.push(section.textContent.replace(/\n/g, ' ').trim());
-  });
+    const config = await configResponse.json();
+    const apiKey = config?.public?.custom?.aikey;
+    if (!apiKey) throw new Error('Groq API key is missing from config.json.');
 
-  const finalText = blogTextContent.join();
+    const finalText = Array.from(sections)
+      .map((section) => section.textContent.trim())
+      .filter(Boolean)
+      .join(' ');
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${TEST_KEY}`,
-      'Content-Type': 'application/json',
+    if (!finalText) throw new Error('No blog content was found to summarize.');
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'openai/gpt-oss-20b',
+        temperature: 0,
+        messages: [
+          {
+            role: 'user',
+            content: `Summarize this blog post in exactly 3 concise bullet points. Use only information from the article:\n\n${finalText}`,
+          },
+        ],
+      }),
     },
-    body: JSON.stringify({
-      model: 'llama-3.1-8b-instant',
-      temperature: 0,
-      messages: [{ role: 'user', content: `Summarize this blog post in 3 bullet points:: ${finalText}` }],
-    }),
-    // messages: [{ role: 'user', content: `Summarize this post in bullet points: ${finalText}` }],
-  });
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  summaryEl.innerHTML = parseMarkdownToHTML(data?.choices[0]?.message?.content) || 'No summary generated.';
+    if (!response.ok) {
+      // eslint-disable-next-line no-console
+      console.error('Groq API error:', data);
+      throw new Error(data?.error?.message || `Groq API request failed with status ${response.status}`,
+      );
+    }
 
-  // Update CTA behavior after summary is generated
-  isSummaryGenerated = true;
-  isSummaryVisible = true;
+    const summary = data?.choices?.[0]?.message?.content;
+    if (!summary) throw new Error('Groq returned an empty summary.');
 
-  summarizeCTA.textContent = 'Hide Summary';
+    summaryEl.innerHTML = parseMarkdownToHTML(summary);
+
+    isSummaryGenerated = true;
+    isSummaryVisible = true;
+    summarizeCTA.textContent = 'Hide Summary';
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Blog summarization failed:', error);
+    summaryEl.textContent = 'Unable to generate the summary right now. Please try again.';
+
+    // Allow another attempt after a failed request.
+    isSummaryGenerated = false;
+    isSummaryVisible = true;
+    summarizeCTA.textContent = 'Retry Summary';
+  } finally {
+    summarizeCTA.disabled = false;
+  }
 }
 
 export default async function decorate() {
