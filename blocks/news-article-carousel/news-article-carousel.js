@@ -21,39 +21,29 @@ export default async function decorateArticles(block) {
   const fragmentPaths = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
   if (fragmentPaths.length === 0) return '';
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(async (entry) => {
-      if (entry.isIntersecting) {
-        observer.disconnect();
+  block.innerHTML = '';
+  const fragments = await Promise.all(
+    fragmentPaths.map(async (path) => {
+      const fragmentHtml = await fetchFragment(path);
+      if (!fragmentHtml) return null;
 
-        block.innerHTML = '';
-        const fragments = await Promise.all(
-          fragmentPaths.map(async (path) => {
-            const fragmentHtml = await fetchFragment(path);
-            if (!fragmentHtml) return null;
+      const fragmentElement = div();
+      fragmentElement.innerHTML = fragmentHtml;
 
-            const fragmentElement = div();
-            fragmentElement.innerHTML = fragmentHtml;
+      const fragmentWrapper = div({ class: 'post-wrapper' });
+      fragmentWrapper.append(...fragmentElement.children);
+      decorateButtons(fragmentWrapper);
+      return fragmentWrapper;
+    }),
+  );
 
-            const fragmentWrapper = div({ class: 'post-wrapper' });
-            fragmentWrapper.append(...fragmentElement.children);
-            decorateButtons(fragmentWrapper);
-            return fragmentWrapper;
-          }),
-        );
+  const validFragments = fragments.filter(Boolean);
+  block.append(...validFragments);
 
-        const validFragments = fragments.filter((f) => f !== null);
-        block.append(...validFragments);
+  await Promise.all(validFragments.map((wrapper, i) => {
+    const postType = i === 0 ? 'publications' : 'blog';
+    return decoratePost(wrapper, postType);
+  }));
 
-        await Promise.all(validFragments.map((wrapper, i) => {
-          const postType = i === 0 ? 'publications' : 'blog';
-          return decoratePost(wrapper, postType);
-        }));
-
-        createCarousel(block, [...block.children], styleConfig);
-      }
-    });
-  }, { rootMargin: '200px' });
-
-  observer.observe(block);
+  createCarousel(block, [...block.children], styleConfig);
 }

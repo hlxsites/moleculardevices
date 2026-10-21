@@ -12,11 +12,13 @@ function openModal(block) {
     modalContent.appendChild(iframe({ src: iframeSrc }));
   }
 
+  document.body.classList.add('no-scroll');
   modal.classList.add('open');
 }
 
 function closeModal() {
   const modal = document.getElementById('my-modal');
+  document.body.classList.remove('no-scroll');
   modal.classList.remove('open');
 }
 
@@ -26,13 +28,16 @@ export default function decorate(block) {
   // Create the modal element
   const closeButton = button({ class: 'modal-close' });
   const closeButtonImage = document.createElement('img');
-  closeButtonImage.src = 'https://www.moleculardevices.com/themes/moldev/images/close2.png';
+  closeButtonImage.src = '/themes/moldev/images/close2.png';
   closeButtonImage.alt = 'Close';
+  closeButtonImage.width = 48;
+  closeButtonImage.height = 48;
   closeButton.appendChild(closeButtonImage);
 
   const modal = div({ id: 'my-modal', class: 'modal' },
-    div({ class: 'modal-content' }),
-    closeButton,
+    div({ class: 'modal-content' },
+      closeButton,
+    ),
   );
 
   document.body.appendChild(modal);

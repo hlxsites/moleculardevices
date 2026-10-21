@@ -11,8 +11,10 @@ function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
-function skipParts(pathSplit) {
+function skipParts(pathSplit, page) {
   const partsToSkip = ['en', 'assets', 'br', 'img', 'citations', 'dd', 'tutorials-videos', 'bpd', 'cns', 'flipr', 'contaminants', 'enzyme'];
+  if (page && page.type === 'Customer Breakthrough') partsToSkip.push('3d-biology');
+
   return pathSplit.filter((item) => !partsToSkip.includes(item));
 }
 
@@ -60,10 +62,10 @@ export default async function createBreadcrumbs(container) {
   const breadCrumbsCSS = loadCSS('/blocks/breadcrumbs/breadcrumbs.css');
 
   const path = window.location.pathname;
-  const pathSplit = skipParts(path.split('/'));
 
   const pageIndex = await ffetch('/query-index.json').all();
   const pg = pageIndex.find((page) => page.path === path);
+  const pathSplit = skipParts(path.split('/'), pg);
 
   // default Home breadcrumb
   const breadcrumbs = [
