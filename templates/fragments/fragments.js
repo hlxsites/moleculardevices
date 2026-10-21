@@ -425,21 +425,33 @@ async function createResourceList(title, array) {
   return div(p(title), fragmentList);
 }
 
+const normalizeURL = (value) => {
+  if (!value) return '';
+  try {
+    const url = new URL(value, window.location.origin);
+    return decodeURIComponent(url.pathname).replace(/\/+$/, '').toLowerCase();
+  } catch {
+    return value.trim().replace(/\/+$/, '').toLowerCase();
+  }
+};
+
 async function createResourceLinksList(links, parent) {
   const list = div({ class: 'list', style: 'padding-left: 0; padding-top: 20px;' });
 
   list.appendChild(p('Loading...'));
   parent.appendChild(list);
 
+  const normalizedLinks = new Set(links.map(normalizeURL));
+
   const resources = await ffetch('/query-index.json')
     .sheet('resources')
-    .filter((item) => links.includes(item.gatedURL) || links.includes(item.path))
+    .filter((item) => normalizedLinks.has(normalizeURL(item.gatedURL))
+      || normalizedLinks.has(normalizeURL(item.path)),
+    )
     .all();
 
   resources.forEach((resource) => {
-    const pageURL = resource.gatedURL && resource.gatedURL !== '0'
-      ? resource.gatedURL
-      : resource.path;
+    const pageURL = resource.gatedURL && resource.gatedURL !== '0' ? resource.gatedURL : resource.path;
     list.appendChild(
       div(a({ href: pageURL, target: '_blank' }, resource.title || resource.path)),
     );
