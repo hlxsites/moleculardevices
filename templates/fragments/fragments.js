@@ -370,7 +370,7 @@ async function createGatedPageLink(gatedURL) {
 
   return div({ style: 'margin-bottom: 10px;' },
     'GATED PAGE: ',
-    a({ href: gatedPage.url }, gatedPageTitle || gatedPage.url));
+    a({ href: gatedPage.url, target: '_blank' }, gatedPageTitle || gatedPage.url));
 }
 
 function extractUrls(value = '') {
@@ -441,7 +441,7 @@ async function createResourceLinksList(links, parent) {
       ? resource.gatedURL
       : resource.path;
     list.appendChild(
-      div(a({ href: pageURL }, resource.title || resource.path)),
+      div(a({ href: pageURL, target: '_blank' }, resource.title || resource.path)),
     );
   });
 
