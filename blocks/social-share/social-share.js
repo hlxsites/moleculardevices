@@ -21,7 +21,7 @@ function onSocialShareClick(event) {
 
 function buildFullUrl(pathOrUrl) {
   const pathName = new URL(decodeURIComponent(pathOrUrl)).pathname;
-  return `https://www.moleculardevices.com${pathName}`;
+  return `${window.location.origin}${pathName}`;
 }
 
 function decorateLink(social, type, icon, url) {

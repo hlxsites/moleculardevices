@@ -4278,7 +4278,7 @@
     <coveo:metadata>
       <md_contenttype><![CDATA[  ]]></md_contenttype>
       <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/products/assay-kits/contaminants/media_142835dc01279463a2abd16f77518ef9a33f7f519.jpeg</md_img>
+      <md_img>https://www.moleculardevices.com/products/assay-kits/contaminants/media_142835dc01279463a2abd16f77518ef9a33f7f519.jpg</md_img>
       <md_product><![CDATA[   ]]></md_product>
       <md_application><![CDATA[  ]]></md_application>
       <mdproductsdatacategory><![CDATA[ Assay Kits;Assay Kits|Other;Assay Kits|Other|Contaminant Detection Assays ]]></mdproductsdatacategory>
@@ -5259,6 +5259,45 @@
       <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_rfq>https://www.moleculardevices.com/quote-request?pid=custom-organoid-expansion-service</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/products/3d-biology/3d-ready-cardioid-supplement-kits</loc>
+    <lastmod>2026-10-19T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.2</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Product</md_pagetype>
+      <md_img>https://www.moleculardevices.com/media_1a0928f6db5cc9c6269f89309944e57abfcdbaf49.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=3d-ready-cardioid-supplement-kits</md_rfq>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -8735,7 +8774,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part2</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/performing-advanced-statistical-analyses-in-softmax-pro-software</loc>
     <lastmod>2020-04-20T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8774,7 +8813,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part3</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/how-to-perform-parallel-line-analysis-in-softmax-pro-software</loc>
     <lastmod>2020-04-24T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8813,46 +8852,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp</loc>
-    <lastmod>2024-07-18T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro GxP Software Tutorials ]]></md_title>
-      <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[ SoftMax Pro GxP Software  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[ EN ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part1</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/how-to-set-up-elisa-assay-and-basic-analysis-using-softmax-pro</loc>
     <lastmod>2020-04-15T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -8865,45 +8865,6 @@
       <md_application><![CDATA[ Enzyme-Linked Immunosorbent Assay (ELISA) ]]></md_application>
       <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Enzyme-Linked Immunosorbent Assay (ELISA) ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[  ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/br/softmax-pro-gxp#part4</loc>
-    <lastmod>2020-05-01T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ Helping GMP/GLP labs meet data integrity guidelines: Introducing SQL & protocol workflow in SoftMax Pro 7.1.1 GxP ]]></md_title>
-      <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[   ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -11747,7 +11708,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Advancing scientific discovery to improve quality of life ]]></md_title>
+      <md_title><![CDATA[ Advancing Scientific Discovery to Improve Quality of Life ]]></md_title>
       <md_contenttype><![CDATA[ Blog ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/blog.png</md_img>
@@ -15783,6 +15744,45 @@
       <md_application><![CDATA[ Organoids;Patient-derived organoids (Tumoroids);Automated Cell Culture;Cell Line Development;Drug Discovery and Development ]]></md_application>
       <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|FlexStation 3 reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax M Series Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Mini Reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Paradigm reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax i3x reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|CellReporterXpress software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Pico system;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress Acquire High-Content Image Acquisition Software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software;Clone Screening;Clone Screening|Mammalian Screening;Clone Screening|Mammalian Screening|ClonePix 2 System;Clone Screening;Clone Screening|Mammalian Screening;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids;3D Cell Models;3D Cell Models|Patient-derived organoids (Tumoroids);Automated Cell Culture;Automated Cell Culture|Automated Cell Culture;Research Areas;Research Areas|Cell Line Development;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ EN ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/bpd/automated-microbial-screening-qpix-flex-odin</loc>
+    <lastmod>2026-10-14T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Integrate Your Low- or No-Oxygen Microbial Workflow: High Throughput Isolation and Screening with the QPix FLEX System and Odin ]]></md_title>
+      <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
+      <md_product><![CDATA[ QPix FLEX Microbial Colony Picker;Qpix colony pickers  ]]></md_product>
+      <md_application><![CDATA[ Microbiomes ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Clone Screening;Clone Screening|Microbial Screening;Clone Screening|Microbial Screening|QPix FLEX Microbial Colony Picker;Clone Screening;Clone Screening|Microbial Screening;Clone Screening|Microbial Screening|Qpix colony pickers ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ Clone Screening;Clone Screening|Microbiomes ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[ EN ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -22176,7 +22176,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Tips for running a successful live cell imaging experiment ]]></md_title>
+      <md_title><![CDATA[ Tips for Running a Successful Live Cell Imaging Experiment ]]></md_title>
       <md_contenttype><![CDATA[ Blog ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/blog.png</md_img>
@@ -27448,6 +27448,85 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/en/assets/customer-breakthrough/dd/3d-biology/heartbeat-bio</loc>
+    <lastmod>2026-09-25T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ HeartBeat.bio Scales Cardioid Screening with the CellXpress.ai Automated Cell Culture System ]]></md_title>
+      <md_contenttype><![CDATA[ Customer Breakthrough ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/customer-breakthrough.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;ImageXpress HCS.ai High-Content Screening System;FLIPR Penta System  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_rfq>https://www.moleculardevices.com/quote-request?pid=heartbeat-bio-scales-cardioid-screening</md_rfq>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/lab-notes/3d-biology/how-core-facilities-are-scaling-organoid-research</loc>
+    <lastmod>2026-10-07T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ How core facilities are scaling organoid research to meet growing demand ]]></md_title>
+      <md_contenttype><![CDATA[ Blog ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/blog.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/newsroom/news/mds-analytical-technologies-launches-molecular-devices-metamorph-ics-confocal-microscope-live</loc>
     <lastmod>2007-10-01T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -30967,9 +31046,9 @@
       <md_contenttype><![CDATA[ News ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[ EarlyTox Cardiotoxicity Kit;Lab Automation for High Content Screening (HCS);Laboratory Automation Solutions  ]]></md_product>
+      <md_product><![CDATA[ EarlyTox Cardiotoxicity Kit;Lab Automation for High Content Screening (HCS);Laboratory Automation Solutions;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ 3D Cell Models;Cardiotoxicity;Drug Discovery and Development;Organoid Innovation Center;Organoids ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Assay Kits;Assay Kits|Cardiotox;Assay Kits|Cardiotox|EarlyTox Cardiotoxicity Kit;Services and Support;Services and Support|High-Content Screening;Services and Support|High-Content Screening|Lab Automation for High Content Screening (HCS);Lab Automation;Lab Automation|Lab Automation;Lab Automation|Lab Automation|Laboratory Automation Solutions ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ Assay Kits;Assay Kits|Cardiotox;Assay Kits|Cardiotox|EarlyTox Cardiotoxicity Kit;Services and Support;Services and Support|High-Content Screening;Services and Support|High-Content Screening|Lab Automation for High Content Screening (HCS);Lab Automation;Lab Automation|Lab Automation;Lab Automation|Lab Automation|Laboratory Automation Solutions;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;FLIPR;FLIPR|Cardiotoxicity;Research Areas;Research Areas|Drug Discovery and Development;Research Areas;Research Areas|Organoid Innovation Center;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -33525,7 +33604,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/integrity-compliance/weee-information-sweden</loc>
-    <lastmod>2025-03-10T12:15:19.000Z</lastmod>
+    <lastmod>2026-09-03T04:37:37.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -33639,7 +33718,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/integrity-compliance/weee-information-belgium</loc>
-    <lastmod>2025-03-10T12:49:04.000Z</lastmod>
+    <lastmod>2026-10-16T12:47:41.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -33753,7 +33832,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/integrity-compliance/weee-information-united-kingdom</loc>
-    <lastmod>2025-03-10T12:12:18.000Z</lastmod>
+    <lastmod>2026-09-03T04:38:41.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -41032,7 +41111,7 @@
     <coveo:metadata>
       <md_contenttype><![CDATA[  ]]></md_contenttype>
       <md_pagetype>Product</md_pagetype>
-      <md_img>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/pico/media_1713b88a5cadc1ea53f65bfa2ec587b0f86459591.jpeg</md_img>
+      <md_img>https://www.moleculardevices.com/products/cellular-imaging-systems/high-content-imaging/pico/media_1713b88a5cadc1ea53f65bfa2ec587b0f86459591.jpg</md_img>
       <md_product><![CDATA[   ]]></md_product>
       <md_application><![CDATA[  ]]></md_application>
       <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
@@ -45357,7 +45436,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/newsroom/news/molecular-devices-launch-its-next-generation-axon-digidata-1550-digitizer</loc>
-    <lastmod>2013-05-09T00:00:00.000Z</lastmod>
+    <lastmod>2013-05-09T10:54:06.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -54515,7 +54594,7 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Life sciences firm Cellesce exits Cardiff Medicentre for larger labs in the capital ]]></md_title>
+      <md_title><![CDATA[ Cellesce Moves to Larger Labs in Cardiff ]]></md_title>
       <md_contenttype><![CDATA[ Publications ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
@@ -59345,9 +59424,9 @@
       <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;FLIPR Penta System  ]]></md_product>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;FLIPR Penta System;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ Automated Cell Culture ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Automated Cell Culture;Automated Cell Culture|Automated Cell Culture ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -60038,9 +60117,9 @@
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
-      <md_product><![CDATA[ FLIPR calcium kits;FLIPR Penta System;ImageXpress Micro Confocal system;Laboratory Automation Solutions;MetaXpress software;ScreenWorks Software;CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_product><![CDATA[ FLIPR calcium kits;FLIPR Penta System;ImageXpress Micro Confocal system;Laboratory Automation Solutions;MetaXpress software;ScreenWorks Software;CellXpress.ai Automated Cell Culture System;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ 3D Cell Models;Cardiotoxicity;Cell Imaging & Analysis;Disease Modeling;Drug Discovery and Development;Fluorescence;Organoid Innovation Center;Organoids;Spheroids;Toxicology;Automated Cell Culture ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Assay Kits;Assay Kits|GPCR;Assay Kits|GPCR|FLIPR calcium kits;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Micro Confocal system;Lab Automation;Lab Automation|Lab Automation;Lab Automation|Lab Automation|Laboratory Automation Solutions;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software;FLIPR;FLIPR|Screenworks;FLIPR|Screenworks|ScreenWorks Software;3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ Assay Kits;Assay Kits|GPCR;Assay Kits|GPCR|FLIPR calcium kits;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Micro Confocal system;Lab Automation;Lab Automation|Lab Automation;Lab Automation|Lab Automation|Laboratory Automation Solutions;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software;FLIPR;FLIPR|Screenworks;FLIPR|Screenworks|ScreenWorks Software;3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;FLIPR;FLIPR|Cardiotoxicity;Cellular Imaging Systems;Cellular Imaging Systems|Cell Imaging & Analysis;Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development;Microplate Readers;Microplate Readers|Fluorescence;Research Areas;Research Areas|Organoid Innovation Center;3D Biology;3D Biology|Organoids;3D Biology;3D Biology|Spheroids;Research Areas;Research Areas|Toxicology;Automated Cell Culture;Automated Cell Culture|Automated Cell Culture ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -60959,7 +61038,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/improved-cell-viability-multi-day-cell-based-microplate</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/improved-cell-viability-multi-day-cell-based-microplate-assays</loc>
     <lastmod>2025-07-15T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61233,7 +61312,7 @@
   </url>
   <url>
     <loc>https://www.moleculardevices.com/events/webinar-from-image-to-insight</loc>
-    <lastmod>2027-04-07T00:00:00.000Z</lastmod>
+    <lastmod>2025-07-28T11:15:04.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -61270,7 +61349,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-analysis</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-speed-phenotypic-profiling-using-imaging-platform-with-ai-image-analysis</loc>
     <lastmod>2025-07-31T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61386,7 +61465,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-screening-and-ai-analysis-increase-insights-complex-3d-assay</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-screening-ai-analysis-increase-insights-complex-3d-assay</loc>
     <lastmod>2025-08-11T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61551,9 +61630,9 @@
       <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
-      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ Organoids ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -61737,7 +61816,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-using-imagexpress-hcs-ai</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/quantitative-single-molecule-spatial-transcriptomics-imagexpress-hcs-ai</loc>
     <lastmod>2025-09-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -61776,12 +61855,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/exploring-effect-of-shaking-conditions-on-microbial-growth</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/effect-of-shaking-conditions-on-microbial-growth</loc>
     <lastmod>2025-09-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Optimizing Shaking for Microbial Growth in Microplates ]]></md_title>
+      <md_title><![CDATA[ Exploring the effect of shaking conditions on microbial growth ]]></md_title>
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
@@ -62086,7 +62165,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-scanlater</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/overcoming-lfa-limitations-psa-testing-with-bright-dtech-and-scanlater</loc>
     <lastmod>2025-09-30T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62125,12 +62204,12 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitative-lfa-bright-dtech-nanoparticles-scanlater</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitative-lateral-flow-assays-bright-dtech-nanoparticles-scanlater</loc>
     <lastmod>2025-09-30T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ LDH as a Case Study: Unlocking Quantitative Power in Lateral Flow Assays ]]></md_title>
+      <md_title><![CDATA[ LDH as a case study: Unlocking quantitative power in lateral flow assays with Bright-Dtech™ Nanoparticles and ScanLater® Detection ]]></md_title>
       <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
@@ -62474,7 +62553,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/anaerobic-microbiome-workflows-qpix-flex</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/bpd/anaerobic-microbiome-workflows-with-qpix-flex</loc>
     <lastmod>2025-10-31T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62552,7 +62631,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/monitor-effects-of-nutrient-antibiotic-addition-on-bacterial-growth</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/monitor-effects-of-nutrient-antibiotic-on-bacterial-growth</loc>
     <lastmod>2025-11-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -62822,7 +62901,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/quantitation-plasmid-dna-from-bacteria-cultured-in-microplates</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/sensitive-quantitation-plasmid-dna-from-bacteria-cultured-in-microplates</loc>
     <lastmod>2025-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -63478,7 +63557,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/ai-assisted-spike-train-analysis-human-brain-organoids</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/ai-assisted-spike-train-synchronization-human-brain-organoids</loc>
     <lastmod>2026-03-10T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64180,7 +64259,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-cell-profiling-imaging-with-led</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/img/high-content-cell-profiling-using-imaging-with-led-illumination</loc>
     <lastmod>2026-04-07T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64375,7 +64454,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/br/technothrombin-tga-thrombin-generation-spectramax-i3x</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/technothrombin-tga-thrombin-generation-assay-spectramax-i3x</loc>
     <lastmod>2026-05-12T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -64877,7 +64956,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/3d-biology/cellxpress-ai-for-patient-derived-crc-organoid-expansion</loc>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/3d-biology/cellxpress-ai-for-patient-derived-crc-organoid-expansion-monitoring</loc>
     <lastmod>2026-06-19T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -65624,9 +65703,9 @@
       <md_contenttype><![CDATA[ News ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[ 3D Ready Organoid Expansion Service;CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_product><![CDATA[ 3D Ready Organoid Expansion Service;CellXpress.ai Automated Cell Culture System;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ Organoids ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service;3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service;3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -65770,7 +65849,279 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection</loc>
+    <loc>https://www.moleculardevices.com/en/assets/tech-note/dd/3d-biology/cellxpress-ai-automated-cell-culture-implementation</loc>
+    <lastmod>2026-09-14T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Implementing the CellXpress.ai Automated Cell Culture System ]]></md_title>
+      <md_contenttype><![CDATA[ Technical Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/technical-note.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/newsroom/news/molecular-devices-stemcell-technologies-organoid-automation</loc>
+    <lastmod>2026-09-14T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Molecular Devices and STEMCELL Technologies Collaborate to Accelerate Adoption of Human-Relevant Organoid Models Through Automation ]]></md_title>
+      <md_contenttype><![CDATA[ News ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
+      <md_product><![CDATA[ 3D Biology Solutions;CellXpress.ai Automated Cell Culture System;3D Ready Organoid Expansion Service  ]]></md_product>
+      <md_application><![CDATA[ Organoids;Brain Organoids;Breast Cancer Organoids;Colorectal Cancer (CRC) Organoids;Intestinal Organoids, 3D Microtissue Models;Patient-derived organoids (Tumoroids);Pulmonary (Lung) Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids;3D Cell Models;3D Cell Models|Brain Organoids;3D Cell Models;3D Cell Models|Breast Cancer Organoids;3D Cell Models;3D Cell Models|Colorectal Cancer (CRC) Organoids;3D Cell Models;3D Cell Models|Intestinal Organoids, 3D Microtissue Models;3D Cell Models;3D Cell Models|Patient-derived organoids (Tumoroids);3D Cell Models;3D Cell Models|Pulmonary (Lung) Organoids ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/newsroom/news/molecular-devices-launches-softmax-pro-7-6-glp-mode</loc>
+    <lastmod>2026-09-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Molecular Devices Expands SoftMax® Pro GxP Software Suite with GLP Mode to Help Laboratories Advance Confidently from Discovery Toward Regulated Compliance ]]></md_title>
+      <md_contenttype><![CDATA[ News ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
+      <md_product><![CDATA[ GxP Compliance Solutions;SoftMax Pro Software;AquaMax washer;FlexStation 3 reader;FlexStation 3 Pipet Tips;Gemini readers;MultiWash+ washer;SoftMax Pro Software;SpectraDrop microplate;SpectraMax ABS & ABS Plus Absorbance ELISA Microplate Readers;SmartInject Technology;SpectraMax L reader;SpectraMax M Series Multi-Mode Microplate Readers;SpectraMax Mini Reader;SpectraMax MiniMax cytometer;SpectraMax Paradigm reader;QuickDrop spectrophotometer;SpectraMax i3x reader;SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;StakMax system;Western Blot Cartridge;GxP Software Installation and Qualification Services;IQ/OQ/PM Services;SoftMax Pro GxP Software;SpectraTest Validation Plates and Recertification;GxP Assessment Questionnaire for SoftMax Pro GxP Software  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;Microplate Readers;Microplate Readers|Microplate Washers;Microplate Readers|Microplate Washers|AquaMax washer;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|FlexStation 3 reader;Microplate Readers;Microplate Readers|Accessories and Consumables;Microplate Readers|Accessories and Consumables|FlexStation 3 Pipet Tips;Microplate Readers;Microplate Readers|Fluorescence Readers;Microplate Readers|Fluorescence Readers|Gemini readers;Microplate Readers;Microplate Readers|Microplate Washers;Microplate Readers|Microplate Washers|MultiWash+ washer;Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;Microplate Readers;Microplate Readers|Accessories and Consumables;Microplate Readers|Accessories and Consumables|SpectraDrop microplate;Microplate Readers;Microplate Readers|Absorbance Readers;Microplate Readers|Absorbance Readers|SpectraMax ABS & ABS Plus Absorbance ELISA Microplate Readers;Microplate Readers;Microplate Readers|Accessories and Consumables;Microplate Readers|Accessories and Consumables|SmartInject Technology;Microplate Readers;Microplate Readers|Luminescence Readers;Microplate Readers|Luminescence Readers|SpectraMax L reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax M Series Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Mini Reader;Microplate Readers;Microplate Readers|Accessories and Consumables;Microplate Readers|Accessories and Consumables|SpectraMax MiniMax cytometer;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax Paradigm reader;Microplate Readers;Microplate Readers|Absorbance Readers;Microplate Readers|Absorbance Readers|QuickDrop spectrophotometer;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax i3x reader;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Stacker;Microplate Readers|Stacker|StakMax system;Microplate Readers;Microplate Readers|Accessories and Consumables;Microplate Readers|Accessories and Consumables|Western Blot Cartridge;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Software Installation and Qualification Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|IQ/OQ/PM Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SpectraTest Validation Plates and Recertification;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Assessment Questionnaire for SoftMax Pro GxP Software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/bio-europe</loc>
+    <lastmod>2026-09-29T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Event</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/event.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/newsroom/in-the-news/beating-cardiac-organoids-drug-screening</loc>
+    <lastmod>2026-09-29T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Beating Cardiac Organoids Offer a Platform for Drug Screening ]]></md_title>
+      <md_contenttype><![CDATA[ Publications ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
+      <md_product><![CDATA[ Lab Automation for High Content Screening (HCS);3D Ready Organoid Expansion Service;CellXpress.ai Automated Cell Culture System;CellReporterXpress software;IN Carta Image Analysis Software;ImageXpress HCS.ai High-Content Screening System;ImageXpress Pico system;MetaXpress Acquire High-Content Image Acquisition Software;MetaXpress software;High-Content Imaging & Analysis  ]]></md_product>
+      <md_application><![CDATA[ Drug Discovery and Development;Organoids;3D Cell Models ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Services and Support;Services and Support|High-Content Screening;Services and Support|High-Content Screening|Lab Automation for High Content Screening (HCS);3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service;3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|CellReporterXpress software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Pico system;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress Acquire High-Content Image Acquisition Software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|MetaXpress software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ Research Areas;Research Areas|Drug Discovery and Development;3D Biology;3D Biology|Organoids;3D Biology;3D Biology|3D Cell Models ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/tr-fret-assay-validation-spectramax-readers</loc>
+    <lastmod>2026-10-14T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ TR-FRET Assay Validation with SpectraMax Readers ]]></md_title>
+      <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
+      <md_product><![CDATA[ SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;SoftMax Pro Software;SpectraMax i3x reader  ]]></md_product>
+      <md_application><![CDATA[ Protein Detection, Quantification and Analysis;Drug Discovery and Development;Biomarker Discovery ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers;Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax i3x reader ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Protein Detection, Quantification and Analysis;Research Areas;Research Areas|Drug Discovery and Development;Microplate Readers;Microplate Readers|Biomarker Discovery ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/tutorials-videos/dd/3d-biology/3l-cardioid-morphological-analysis</loc>
+    <lastmod>2026-10-19T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ 3L-Cardioid Morphological Analysis & 3D Reconstruction ]]></md_title>
+      <md_contenttype><![CDATA[ Videos & Webinars ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/videos-and-webinars.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection.pdf</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -66247,9 +66598,9 @@
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
-      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;EarlyTox Cardiotoxicity Kit;ImageXpress HCS.ai High-Content Screening System;FLIPR Penta System  ]]></md_product>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System;EarlyTox Cardiotoxicity Kit;ImageXpress HCS.ai High-Content Screening System;FLIPR Penta System;3D Ready Cardioid Supplement Kits  ]]></md_product>
       <md_application><![CDATA[ Automated Cell Culture;3D Cell Models;Cardiotoxicity;Disease Modeling;Drug Discovery and Development;Toxicology;Western Blot ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Assay Kits;Assay Kits|Cardiotox;Assay Kits|Cardiotox|EarlyTox Cardiotoxicity Kit;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System ]]></mdproductsdatacategory>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System;Assay Kits;Assay Kits|Cardiotox;Assay Kits|Cardiotox|EarlyTox Cardiotoxicity Kit;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress HCS.ai High-Content Screening System;FLIPR;FLIPR|FLIPR;FLIPR|FLIPR|FLIPR Penta System;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Automated Cell Culture;Automated Cell Culture|Automated Cell Culture;3D Biology;3D Biology|3D Cell Models;FLIPR;FLIPR|Cardiotoxicity;Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development;Research Areas;Research Areas|Toxicology;Microplate Readers;Microplate Readers|Western Blot ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
@@ -67812,84 +68163,6 @@
       <md_application><![CDATA[ Cell Imaging & Analysis;Colorectal Cancer (CRC) Organoids;Live Cell Imaging;3D Cell Models;Organoid Innovation Center;Organoids ]]></md_application>
       <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Micro Confocal system;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|Cell Imaging & Analysis;3D Cell Models;3D Cell Models|Colorectal Cancer (CRC) Organoids;Cellular Imaging Systems;Cellular Imaging Systems|Live Cell Imaging;3D Biology;3D Biology|3D Cell Models;Research Areas;Research Areas|Organoid Innovation Center;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ MD ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/legal/br/softmax-pro-7-2-gxp-eres-assessment.pdf</loc>
-    <lastmod>2024-11-11T13:13:26.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro 7.2 GxP - ERES Assessment ]]></md_title>
-      <md_contenttype><![CDATA[ Legal ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[ GxP Compliance Solutions;SoftMax Pro GxP Software;GxP Software Installation and Qualification Services;SpectraTest Validation Plates and Recertification;IQ/OQ/PM Services  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Software Installation and Qualification Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SpectraTest Validation Plates and Recertification;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|IQ/OQ/PM Services ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ MD ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/legal/br/softmax-pro-7-3-gxp-eres-assessment.pdf</loc>
-    <lastmod>2024-11-11T13:13:26.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro 7.3 GxP - ERES Assessment ]]></md_title>
-      <md_contenttype><![CDATA[ Legal ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[ GxP Compliance Solutions;SoftMax Pro GxP Software;GxP Software Installation and Qualification Services;SpectraTest Validation Plates and Recertification;IQ/OQ/PM Services  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Software Installation and Qualification Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SpectraTest Validation Plates and Recertification;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|IQ/OQ/PM Services ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -91862,7 +92135,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-danish-dk.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-danish-dk.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -91901,7 +92174,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-dutch-nl.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-dutch-nl.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -92096,7 +92369,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-french-fr.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-french-fr.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -92135,7 +92408,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-german-de.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-german-de.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -92174,7 +92447,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-italian-it.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-italian-it.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -92330,7 +92603,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-spanish-es.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-spanish-es.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -92408,7 +92681,7 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-r8172-swedish-se.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/flipr-calcium-6-assay-kit-5024048-5024049-5024106-5024050-5024051-5024107-r8190-r8191-r8195-r8192-r8193-r8196-r8194-swedish-se.pdf</loc>
     <lastmod>2021-07-06T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -93541,6 +93814,279 @@
   <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-r8172-english-se.pdf</loc>
     <lastmod>2021-07-01T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - Swedish (SE) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Swedish (SE) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-danish-dk.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - Danish (DK) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Danish (DK) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-dutch-nl.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - Dutch (NL) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Dutch (NL) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-french-fr.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - French (FR) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ French (FR) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-german-de.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - German (DE) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ German (DE) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-italian-it.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - Italian (IT) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Italian (IT) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-spanish-es.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 4 Component A - Spanish (ES) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Spanish (ES) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-4-component-a-r7446-r7447-r7448-r8141-r8142-r8143-swedish-se.pdf</loc>
+    <lastmod>2026-09-28T01:03:44.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
@@ -98609,45 +99155,6 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/softmax-pro-user-guide-v7-1.pdf</loc>
-    <lastmod>2021-05-05T11:46:57.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro Software User Guide Version 7.1 ]]></md_title>
-      <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
-      <md_product><![CDATA[ SoftMax Pro Software  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ KB ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/softmax-pro-user-guide-v7-1-2.pdf</loc>
     <lastmod>2021-05-04T07:23:47.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -99434,45 +99941,6 @@
     <priority>0.5</priority>
     <coveo:metadata>
       <md_title><![CDATA[ SoftMax® Pro Data Acquisition and Analysis Software Version 7.1.1 ]]></md_title>
-      <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
-      <md_product><![CDATA[ SoftMax Pro Software  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ KB ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/softmax-pro-release-notes-7-1.pdf</loc>
-    <lastmod>2021-04-30T04:14:05.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax® Pro Data Acquisition and Analysis Software Version 7.1 ]]></md_title>
       <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
@@ -166433,12 +166901,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-danish-dk.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-danish-dk.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - Danish (DK) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - Danish (DK) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166472,12 +166940,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-dutch-nl.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-dutch-nl.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - Dutch (NL) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - Dutch (NL) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166667,12 +167135,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-french-fr.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-french-fr.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - French (FR) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - French (FR) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166706,12 +167174,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-german-de.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-german-de.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - German (DE) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - German (DE) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166745,12 +167213,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-italian-it.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-italian-it.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - Italian (IT) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - Italian (IT) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166901,12 +167369,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-spanish-es.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-spanish-es.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - Spanish (ES) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - Spanish (ES) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -166979,12 +167447,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-swedish-se.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/component-d-sotalol-hydrochloride-r7554-explorer-r8210-bulk-r8211-swedish-se.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Sotalol Hydrochloride - Swedish (Se) ]]></md_title>
+      <md_title><![CDATA[ Component D: Sotalol Hydrochloride - Swedish (Se) ]]></md_title>
       <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
@@ -183632,7 +184100,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/spectramax-m2m2e-userguide-01120102h-01.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/spectramax-m2m2e-userguide-0112-0102j.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -183671,7 +184139,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/spectramax-m3m5e-userguide-0112-0015l.pdf</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/br/spectramax-m3m4m5m5e-userguide-0112-0015m.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -208826,45 +209294,6 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/data-sheets/br/softmax-pro-gxp-software.pdf</loc>
-    <lastmod>2018-01-30T08:45:08.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro GxP Software ]]></md_title>
-      <md_contenttype><![CDATA[ Data Sheet ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/data-sheet.png</md_img>
-      <md_product><![CDATA[ Accessories and Consumables;GxP Software Installation and Qualification Services;SoftMax Pro GxP Software;GxP Assessment Questionnaire for SoftMax Pro GxP Software  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Software Installation and Qualification Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Assessment Questionnaire for SoftMax Pro GxP Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ MD ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/data-sheets/bpd/qpix-400-series-organism-specific-picking-pins-and-detection-software.pdf</loc>
     <lastmod>2018-01-30T05:35:54.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -213233,45 +213662,6 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/dd/3d-biology/cellxpress-ai-1-4-1-release-notes-5320690b.pdf</loc>
-    <lastmod>2025-11-17T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ CellXpress.ai System Software 1.4.1 Release Notes ]]></md_title>
-      <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
-      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ KB ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/10-mm-monochlorobimane-mcb-component-of-earlytox-glutathione-assay-kits-r8344a-r8345a-r8345-r8344-english-ca.pdf</loc>
     <lastmod>2025-11-24T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -213950,6 +214340,279 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
       <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-danish-dk.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - Danish (DK) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Danish (DK) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-dutch-nl.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - Dutch (NL) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Dutch (NL) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-french-fr.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - French (FR) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ French (FR) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-german-de.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - German (DE) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ German (DE) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-italian-it.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - Italian (IT) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Italian (IT) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-spanish-es.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - Swedish (SE) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Spanish (ES) ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ KB ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/sds/reagents/calcium-5-component-a-5000625-5000624-5000626-r8186-r8185-r8187-swedish-se.pdf</loc>
+    <lastmod>2026-09-28T01:54:21.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Calcium 5 Component A - Swedish (SE) ]]></md_title>
+      <md_contenttype><![CDATA[ SDS ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/sds.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ Swedish (SE) ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
       <md_de_desc><![CDATA[  ]]></md_de_desc>
       <md_de_url><![CDATA[  ]]></md_de_url>
@@ -217289,7 +217952,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/img/advancing-label-free-cell-imaging-ai-driven-analysis</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/img/label-free-cell-imaging-transmitted-light-deep-learning.pdf</loc>
     <lastmod>2026-03-17T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217328,12 +217991,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/complete-microbial-workflow-plating-to-dna-quantitation</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/microbial-workflow-plating-picking-to-plasmid-dna-quantitation.pdf</loc>
     <lastmod>2026-03-18T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Automated Microbial Workflow from Colony to DNA ]]></md_title>
+      <md_title><![CDATA[ Automated Microbial Workflow from Plating and Picking to DNA Quantitation ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -217406,12 +218069,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/neuronal-diseases-with-ipsc-derived-dorsal-forebrain-3d-organoids</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/neuronal-diseases-with-ipsc-derived-dorsal-forebrain-3d-organoids.pdf</loc>
     <lastmod>2026-03-24T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ IPCS derived brain organoids enable functional neuronal disease modeling ]]></md_title>
+      <md_title><![CDATA[ Neuronal Diseases with iPSC-derived dorsal forebrain 3D Organoids ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -217445,12 +218108,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/automated-patient-derived-colorectal-cancer-organoids</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-patient-derived-colorectal-cancer-organoids.pdf</loc>
     <lastmod>2026-03-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ Scalable expansion of patient derived cancer organoids through automation ]]></md_title>
+      <md_title><![CDATA[ Automated Patient-Derived Colorectal Cancer Organoids ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -217562,7 +218225,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/bpd/automated-microbial-screening-phenotyping-qpix-flex</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/automated-microbial-screening-phenotyping-qpix-flex.pdf</loc>
     <lastmod>2026-05-11T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217601,7 +218264,7 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/br/glucose-uptake-under-hypoxic-mcf7-u2-os-cancer-cell</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/br/glucose-uptake-under-hypoxic-mcf7-u2-os-cancer-cell.pdf</loc>
     <lastmod>2026-06-09T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -217679,12 +218342,12 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/en/assets/scientific-posters/dd/3d-biology/automated-organoid-workflow-t-cell-screening-using-cellxpress-ai</loc>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/dd/3d-biology/automated-organoid-workflow-t-cell-screening-using-cellxpress-ai.pdf</loc>
     <lastmod>2026-06-10T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
     <coveo:metadata>
-      <md_title><![CDATA[ CellXpress.ai Automated Cell Culture System: Automated workstation for reproducible organoid cultivation ]]></md_title>
+      <md_title><![CDATA[ Automated Organoid Workflow for T-Cell Screening Using CellXpress.ai ]]></md_title>
       <md_contenttype><![CDATA[ Scientific Poster ]]></md_contenttype>
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/scientific-poster.png</md_img>
@@ -218186,6 +218849,201 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/flyer/dd/3d-biology/validated-automated-human-intestinal-organoid-workflow.pdf</loc>
+    <lastmod>2026-09-11T00:40:04.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Validated automated workflow for human intestinal organoid culture ]]></md_title>
+      <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
+      <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Disease Modeling;Drug Discovery and Development ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;Research Areas;Research Areas|Disease Modeling;Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/data-sheets/br/softmax-pro-gxp-imaging-edition.pdf</loc>
+    <lastmod>2026-09-14T00:15:14.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SoftMax® Pro GxP Imaging Edition ]]></md_title>
+      <md_contenttype><![CDATA[ Data Sheet ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/data-sheet.png</md_img>
+      <md_product><![CDATA[ SoftMax Pro Software;SoftMax Pro GxP Software  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/flyer/br/softmax-pro-7-6-glp-mode.pdf</loc>
+    <lastmod>2026-09-14T00:15:14.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SoftMax® Pro 7.6 GLP Mode ]]></md_title>
+      <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
+      <md_product><![CDATA[ SoftMax Pro Software;SoftMax Pro GxP Software  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/technical-guide/br/softmax-pro-gxp-compliance-guide.pdf</loc>
+    <lastmod>2026-09-14T00:15:14.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ SoftMax Pro GxP Compliance Guide ]]></md_title>
+      <md_contenttype><![CDATA[ Technical Guide ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
+      <md_product><![CDATA[ SoftMax Pro Software;SoftMax Pro GxP Software  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Microplate Software;Microplate Readers|Microplate Software|SoftMax Pro Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/flyer/dd/3d-biology/3d-ready-cardioid-supplement-kits.pdf</loc>
+    <lastmod>2026-10-19T00:27:55.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ 3D Ready Cardioid Supplement Kits ]]></md_title>
+      <md_contenttype><![CDATA[ Flyer ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/flyer.png</md_img>
+      <md_product><![CDATA[ 3D Biology Solutions;3D Ready Cardioid Supplement Kits  ]]></md_product>
+      <md_application><![CDATA[ 3D Cell Models;Cardiotoxicity;Cell Health: Viability, Proliferation, Cytotoxicity, and Cellular Function;Cell Imaging & Analysis;Drug Discovery and Development;Toxicology;Organoids ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|3D Cell Models;FLIPR;FLIPR|Cardiotoxicity;Microplate Readers;Microplate Readers|Cell Health: Viability, Proliferation, Cytotoxicity, and Cellular Function;Cellular Imaging Systems;Cellular Imaging Systems|Cell Imaging & Analysis;Research Areas;Research Areas|Drug Discovery and Development;Research Areas;Research Areas|Toxicology;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[ MD ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/applications/absorbance</loc>
     <lastmod>2019-09-03T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -218459,4 +219317,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-08-31T11:25:39.609Z -->
+<!-- build timestamp: 2026-10-19T12:33:14.917Z -->
