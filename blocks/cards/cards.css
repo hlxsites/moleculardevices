@@ -437,3 +437,53 @@ main .section .cards.cols-4 .cards-card-body h3:has(+ h4) {
   flex: 1 1 160px;
   border: none;
 }
+
+/* ================ PARTNERS ================ */
+
+.cards.partners > ul {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cards.partners > ul > li {
+  padding: 1rem;
+}
+
+.cards.partners > ul > li img {
+  aspect-ratio: unset;
+  object-fit: contain;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.cards.partners .cards-card-body {
+  margin: auto 0 0;
+}
+
+.cards.partners .cards-card-body br:first-child {
+  display: none;
+}
+
+.cards.partners .cards-card-body h3 {
+  margin-bottom: 0;
+}
+
+.cards.partners > ul > li > .cards-card-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .cards.partners > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .cards.partners > ul {
+    grid-template-columns: 1fr;
+  }
+}
