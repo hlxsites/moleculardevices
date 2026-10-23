@@ -815,28 +815,54 @@ export function createOptimizedPicture(src, alt = '', eager = true,
 }
 
 /**
- * Normalizes all headings within a container element.
- * @param {Element} el The container element
- * @param {[string]} allowedHeadings The list of allowed headings (h1 ... h6)
+ * Normalizes heading IDs that conflict with section IDs.
+ *
+ * Section IDs are preserved. Headings whose IDs match a section ID
+ * or its numeric-suffix form are assigned unique, sequential IDs
+ * based on their DOM order (for example, `test-id-1`, `test-id-2`).
+ *
+ * @param {HTMLElement} main - The main content container to process.
+ * @returns {void}
  */
 export function normalizeHeadings(main) {
   if (!main) return;
 
-  const normalizeId = (id) => id.replace(/-/g, '').toLowerCase();
+  const sections = [...main.querySelectorAll('.section')];
+  const sectionIds = new Set(sections.map((section) => section.id).filter(Boolean));
+  const usedIds = new Set(sectionIds);
 
-  main.querySelectorAll('.section').forEach((section) => {
-    if (!section.id) return;
+  // Reserve IDs outside sections.
+  main.querySelectorAll('[id]').forEach((element) => {
+    if (!element.closest('.section')) usedIds.add(element.id);
+  });
 
-    const sectionId = section.id;
-    const normalizedSectionId = normalizeId(sectionId);
+  sections.forEach((section) => {
+    const headings = [...section.querySelectorAll('h1, h2, h3, h4, h5, h6')];
 
-    const headings = [...section.querySelectorAll('h1, h2, h3, h4, h5, h6')]
-      .filter((heading) => (heading.id
-        && normalizeId(heading.id).startsWith(normalizedSectionId)
-      ));
+    headings.forEach((heading) => {
+      if (!heading.id) return;
 
-    headings.forEach((heading, index) => {
-      heading.id = `${sectionId}-${index + 1}`;
+      // Find a section whose ID matches the heading ID,
+      // including previously generated numeric suffixes.
+      const baseId = [...sectionIds]
+        .find((id) => (heading.id === id
+          || new RegExp(`^${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-\\d+$`).test(heading.id)));
+
+      if (!baseId) {
+        if (!usedIds.has(heading.id)) usedIds.add(heading.id);
+        return;
+      }
+
+      let suffix = 1;
+      let newId = `${baseId}-${suffix}`;
+
+      while (usedIds.has(newId)) {
+        suffix += 1;
+        newId = `${baseId}-${suffix}`;
+      }
+
+      heading.id = newId;
+      usedIds.add(newId);
     });
   });
 }
