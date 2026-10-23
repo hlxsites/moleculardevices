@@ -19,6 +19,7 @@ import {
   toCamelCase,
   createOptimizedPicture,
   decorateImages,
+  normalizeHeadings,
 } from './lib-franklin.min.js';
 import {
   a, div, domEl, iframe, p,
@@ -1219,6 +1220,7 @@ export async function decorateMain(main) {
   addPageSchema();
   addHreflangTags();
   decorateImages();
+  normalizeHeadings(main);
 }
 
 /* function isHomepage() {
