@@ -566,6 +566,8 @@ export function decorateSections(main) {
           // section.id = toClassName(meta[key]);
           section.dataset[toCamelCase(key)] = toClassName(meta[key]);
           section.title = meta[key];
+        } else if (key === 'id') {
+          section.id = toClassName(meta[key]);
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
@@ -813,30 +815,55 @@ export function createOptimizedPicture(src, alt = '', eager = true,
 }
 
 /**
- * Normalizes all headings within a container element.
- * @param {Element} el The container element
- * @param {[string]} allowedHeadings The list of allowed headings (h1 ... h6)
+ * Normalizes heading IDs that conflict with section IDs.
+ *
+ * Section IDs are preserved. Headings whose IDs match a section ID
+ * or its numeric-suffix form are assigned unique, sequential IDs
+ * based on their DOM order (for example, `test-id-1`, `test-id-2`).
+ *
+ * @param {HTMLElement} main - The main content container to process.
+ * @returns {void}
  */
-export function normalizeHeadings(el, allowedHeadings) {
-  const allowed = allowedHeadings.map((h) => h.toLowerCase());
-  el.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
-    const h = tag.tagName.toLowerCase();
-    if (allowed.indexOf(h) === -1) {
-      // current heading is not in the allowed list -> try first to "promote" the heading
-      let level = parseInt(h.charAt(1), 10) - 1;
-      while (allowed.indexOf(`h${level}`) === -1 && level > 0) {
-        level -= 1;
+export function normalizeHeadings(main) {
+  if (!main) return;
+
+  const sections = [...main.querySelectorAll('.section')];
+  const sectionIds = new Set(sections.map((section) => section.id).filter(Boolean));
+  const usedIds = new Set(sectionIds);
+
+  // Reserve IDs outside sections.
+  main.querySelectorAll('[id]').forEach((element) => {
+    if (!element.closest('.section')) usedIds.add(element.id);
+  });
+
+  sections.forEach((section) => {
+    const headings = [...section.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+
+    headings.forEach((heading) => {
+      if (!heading.id) return;
+
+      // Find a section whose ID matches the heading ID,
+      // including previously generated numeric suffixes.
+      const baseId = [...sectionIds]
+        .find((id) => (heading.id === id
+          || new RegExp(`^${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-\\d+$`).test(heading.id)));
+
+      if (!baseId) {
+        if (!usedIds.has(heading.id)) usedIds.add(heading.id);
+        return;
       }
-      if (level === 0) {
-        // did not find a match -> try to "downgrade" the heading
-        while (allowed.indexOf(`h${level}`) === -1 && level < 7) {
-          level += 1;
-        }
+
+      let suffix = 1;
+      let newId = `${baseId}-${suffix}`;
+
+      while (usedIds.has(newId)) {
+        suffix += 1;
+        newId = `${baseId}-${suffix}`;
       }
-      if (level !== 7) {
-        tag.outerHTML = `<h${level} id="${tag.id}">${tag.textContent}</h${level}>`;
-      }
-    }
+
+      heading.id = newId;
+      usedIds.add(newId);
+    });
   });
 }
 
