@@ -128,11 +128,8 @@ main .featured-products-carousel .carousel-item-text .button-container .secondar
   .homepage main .featured-products-carousel.full-bg .carousel-item {
     box-sizing: border-box;
     aspect-ratio: 2500 / 1020;
+    min-height: 500px;
     padding: 0;
-  }
-
-  .homepagemain .featured-products-carousel.full-bg .carousel-item-columns-container {
-    min-height: 0;
   }
 
   .homepage main .featured-products-carousel.full-bg .carousel-item-image img {

@@ -349,14 +349,10 @@ function decorateParagraphs(main) {
  * @param {string} nameOfFirstSection Exact name of the first section, in case there is no hash
  */
 function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
-  const rawHash = window.location.hash.slice(1);
-  const hashId = rawHash.toLowerCase();
-  const tabNames = sections.map((s) => s.getAttribute('aria-labelledby'));
-  const hashTab = rawHash
-    ? document.getElementById(rawHash)?.closest('.section.tabs[aria-labelledby]')
-      ?.getAttribute('aria-labelledby')
-    : null;
-  const active = hashTab || (tabNames.includes(hashId) ? hashId : nameOfFirstSection);
+  const activeHash = window.location.hash;
+  const active = activeHash
+    ? activeHash.substring(1, activeHash.length).toLowerCase()
+    : nameOfFirstSection;
 
   sections.forEach((section) => {
     if (section.getAttribute('aria-labelledby') !== active) {
@@ -1040,48 +1036,59 @@ async function formInModalHandler(main) {
 }
 
 /* ============================ scrollToHashSection ============================ */
-function waitForElement(id, timeout = 8000) {
-  return new Promise((resolve) => {
-    const found = document.getElementById(id);
-    if (found) { resolve(found); return; }
+export function scrollToHashSection(rawHash = window.location.hash) {
+  const id = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
+  const targetElement = document.getElementById(id);
+  const offset = getScrollOffset() + 170;
+
+  const scrollToTarget = (el) => {
+    if (!el) return;
+    setTimeout(() => {
+      const rect = el.offsetTop;
+      const top = rect - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }, 800);
+  };
+
+  if (targetElement) {
+    scrollToTarget(targetElement);
+  } else {
     const observer = new MutationObserver(() => {
-      const el = document.getElementById(id);
-      if (el) { observer.disconnect(); resolve(el); }
+      const lateEl = document.getElementById(id);
+      if (lateEl) {
+        scrollToTarget(lateEl);
+        observer.disconnect();
+      }
     });
     observer.observe(document.body, { childList: true, subtree: true });
-    setTimeout(() => { observer.disconnect(); resolve(null); }, timeout);
-  });
-}
-
-export async function scrollToHashSection(rawHash = window.location.hash) {
-  const id = decodeURIComponent(rawHash.replace(/^#/, ''));
-  const el = await waitForElement(id);
-  if (!el) return;
-
-  const tabSection = el.closest('.section.tabs[aria-labelledby]');
-  if (tabSection) {
-    const link = document.querySelector(
-      `.page-tabs li > a[href="#${tabSection.getAttribute('aria-labelledby')}"]`,
-    );
-    if (link) activateTab(link);
   }
-
-  setTimeout(() => {
-    const top = el.getBoundingClientRect().top + window.scrollY - (getScrollOffset() + 170);
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-  }, 800);
 }
 
 export function handleHashNavigation(rawHash) {
   if (!rawHash) return;
+
   const hash = rawHash.startsWith('#') ? rawHash.slice(1) : rawHash;
   const tabLink = document.querySelector(`.page-tabs li > a[href="#${hash}"]`);
   const tabSection = document.querySelector(`.section[aria-labelledby="${hash}"]`);
+  const hashEl = document.getElementById(hash);
 
   if (tabLink && tabSection) {
     activateTab(tabLink, tabSection);
     return;
   }
+
+  const parentTabSection = hashEl?.closest('.section.tabs[aria-labelledby]');
+  if (hashEl && parentTabSection) {
+    const tabId = parentTabSection.getAttribute('aria-labelledby');
+    const parentTabLink = document.querySelector(`.page-tabs li > a[href="#${tabId}"]`);
+    if (parentTabLink) {
+      activateTab(parentTabLink);
+      requestAnimationFrame(() => scrollToHashSection(`#${hash}`));
+      return;
+    }
+  }
+
+  activateTab(tabLink);
   scrollToHashSection(`#${hash}`);
 }
 
@@ -1422,8 +1429,7 @@ async function loadLazy(doc) {
 
     const { hash } = window.location;
     const element = hash ? doc.getElementById(hash.substring(1)) : false;
-    /* if (hash && element) element.scrollIntoView(); */
-    if (hash) handleHashNavigation(hash);
+    if (hash && element) element.scrollIntoView();
 
     loadFooter(doc.querySelector('footer'));
     loadBreadcrumbs(main);
