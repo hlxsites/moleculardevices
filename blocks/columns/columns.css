@@ -862,13 +862,13 @@ main .section .cards.cols-4 ul li {
   border: none;
 }
 
-main .section .cards.cols-4 .cards-card-wrapper {
+main .section .cards.cols-4:not(.no-background-color) .cards-card-wrapper {
   height: 100%;
   background-color: var(--color-primary-alpha-5);
   color: var(--color-black);
 }
 
-main .section .cards.cols-4 .cards-card-wrapper a {
+main .section .cards.cols-4:not(.no-background-color) .cards-card-wrapper a {
   color: inherit;
 }
 
@@ -881,8 +881,16 @@ main .section .cards.cols-4 .cards-card-wrapper h4 {
   margin-bottom: 20px;
 }
 
+main .section .cards.cols-4 .cards-card-wrapper,
+main .section .cards.cols-4 .cards-card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 main .section .cards.cols-4 .cards-card-image {
   overflow: hidden;
+  min-height: max-content;
 }
 
 main .section .cards.cols-4 .cards-card-image img {
@@ -891,6 +899,20 @@ main .section .cards.cols-4 .cards-card-image img {
 
 main .section .cards.cols-4 .cards-card-image img:hover {
   transform: scale(1.05);
+}
+
+main .section .cards.cols-4 .button-container {
+  margin-top: auto;
+}
+
+main .section .cards.cols-4 a .icon.icon-chevron-right-outline {
+  margin-left: 5px;
+  vertical-align: text-top;
+}
+
+main .section .cards.cols-4 a .icon.icon-chevron-right-outline svg {
+  height: 18px;
+  width: 18px;
 }
 
 @media only screen and (min-width: 768px) {
