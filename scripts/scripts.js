@@ -19,6 +19,7 @@ import {
   toCamelCase,
   createOptimizedPicture,
   decorateImages,
+  normalizeHeadings,
 } from './lib-franklin.min.js';
 import {
   a, div, domEl, iframe, p,
@@ -45,6 +46,7 @@ const TEMPLATE_LIST = [
   'landing-page',
   'product',
   'fwn',
+  'fragments',
 ];
 window.hlx.templates.add(TEMPLATE_LIST.map((tpl) => `/templates/${tpl}`));
 
@@ -386,7 +388,7 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
       };
 
       // In case the user clicks on the section, quickly render it on the spot,
-      // if it happens before the timeout bleow
+      // if it happens before the timeout below
       const observer = new IntersectionObserver((entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           observer.disconnect();
@@ -692,7 +694,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application Note' || type === 'Technicals Note') {
+    if (type === 'Application Note' || type === 'Technical Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -1219,6 +1221,7 @@ export async function decorateMain(main) {
   addPageSchema();
   addHreflangTags();
   decorateImages();
+  normalizeHeadings(main);
 }
 
 /* function isHomepage() {
@@ -1253,7 +1256,7 @@ async function loadEager(doc) {
  * Format date expressed as string: mm/dd/yyyy
  * @param {string} dateStr date as string
  * @param {Object} options result string format options
- * @returns new string with the formated date
+ * @returns new string with the formatted date
  */
 export const DATE_LOCALE = 'en-US';
 
@@ -1287,7 +1290,7 @@ export function formatDate(date, options = {}) {
 /**
  * Format date expressed in UTC seconds
  * @param {number} date
- * @returns new string with the formated date
+ * @returns new string with the formatted date
  */
 export function formatDateUTCSeconds(date, options = {}) {
   if (!date) return '';
