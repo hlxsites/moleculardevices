@@ -78,39 +78,39 @@ export default async function decorate(block) {
         sessionStorage.setItem(`${env}_auth0User`, auth0User?.sub, exp);
       }
 
-      // if (hasSignedUp) {
-      const formConfig = {
-        formType: 'auth0',
-        firstname: firstName,
-        lastname: lastName,
-        email: emailID,
-        country_code: countyCode,
-        qdc: 'Call',
-        state,
-        organization,
-        jobtitle,
-        phone,
-        subscribe,
-        researchArea,
-        researchAreaOther,
-      };
+      if (hasSignedUp) {
+        const formConfig = {
+          formType: 'auth0',
+          firstname: firstName,
+          lastname: lastName,
+          email: emailID,
+          country_code: countyCode,
+          qdc: 'Call',
+          state,
+          organization,
+          jobtitle,
+          phone,
+          subscribe,
+          researchArea,
+          researchAreaOther,
+        };
 
-      /* embed hubspot form */
-      loadHubSpotScript(() => createHubSpotForm(formConfig));
-
-      setTimeout(() => {
-        const submitButtom = document.getElementById('auth0-form')?.querySelector('[type=submit]');
-        if (submitButtom) submitButtom.click();
+        /* embed hubspot form */
+        loadHubSpotScript(() => createHubSpotForm(formConfig));
 
         setTimeout(() => {
-          const target = result?.appState?.returnTo || '/';
-          window.location.href = target;
-        }, 1500);
-      }, 1200);
-      // } else {
-      //   const target = result?.appState?.returnTo || '/';
-      //   window.location.href = target;
-      // }
+          const submitButton = document.getElementById('auth0-form')?.querySelector('[type=submit]');
+          if (submitButton) submitButton.click();
+
+          setTimeout(() => {
+            const target = result?.appState?.returnTo || '/';
+            window.location.href = target;
+          }, 1500);
+        }, 1200);
+      } else {
+        const target = result?.appState?.returnTo || '/';
+        window.location.href = target;
+      }
     } catch (err) {
       if (loginAnchor) loginAnchor.textContent = 'Login';
       block.innerHTML = '<h3 class="text-center">Authentication failed. Please refresh or try again.</h3>';

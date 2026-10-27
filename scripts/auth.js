@@ -28,12 +28,12 @@ export default async function initAuth0() {
 
   const isStageEnv = window.location.hostname.includes('localhost') || document.location.hostname.includes('.aem.page');
   const authDomain = isStageEnv ? 'stage.login.lifesciences.danaher.com' : 'dev.login.lifesciences.danaher.com';
-  const authCliendID = isStageEnv ? 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn' : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU';
+  const authClientID = isStageEnv ? 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn' : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU';
 
   await loadAuth0Script();
   auth0Client = await window.auth0.createAuth0Client({
     domain: window.hlx.auth0Domain || authDomain,
-    clientId: window.hlx.auth0ClientID || authCliendID,
+    clientId: window.hlx.auth0ClientID || authClientID,
     authorizationParams: {
       redirect_uri: `${window.location.origin}/callback`,
       scope: 'openid profile email',

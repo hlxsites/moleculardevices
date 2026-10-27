@@ -85,30 +85,30 @@ function buildTools(content) {
   /* auth0 login */
   const hasLoggedIn = hasAuth0LoggedIn();
   const authorizedUser = isAuthorizedUser();
-  const authAnchor = toolsWrapper.querySelector(':scope > ul > li:first-child > a');
-  authAnchor.href = '';
+  const authAnchor = toolsWrapper.querySelector(':scope > ul > li:first-child > a[href*="lifesciences.danaher.com"]');
+  if (authAnchor) {
+    authAnchor.href = '';
 
-  const authAnchorEl = a(i({ class: 'fa-solid fa-user-circle' }), span('Login'));
-  const loginEl = authAnchorEl.querySelector('span');
-  authAnchor.replaceWith(authAnchorEl);
+    const authAnchorEl = a(i({ class: 'fa-solid fa-user-circle' }), span('Login'));
+    const loginEl = authAnchorEl.querySelector('span');
+    authAnchor.replaceWith(authAnchorEl);
 
-  if (hasLoggedIn || authorizedUser) {
-    // const userData = JSON.parse(getCookie('local_user_data'));
-    // console.log(userData);
-    const firstName = getCookie('first_name');
-    loginEl.textContent = firstName ? `Hi, ${firstName}` : 'Logout';
-    const authListItem = authAnchorEl.parentElement;
-    const authDropdownList = buildAuthDropdown();
-    authListItem.appendChild(authDropdownList);
-    toggleClassOnCompanyLinks(authAnchorEl, authDropdownList);
-  } else {
-    loginEl.textContent = 'Login';
+    if (hasLoggedIn || authorizedUser) {
+      const firstName = getCookie('first_name');
+      loginEl.textContent = firstName ? `Hi, ${firstName}` : 'Logout';
+      const authListItem = authAnchorEl.parentElement;
+      const authDropdownList = buildAuthDropdown();
+      authListItem.appendChild(authDropdownList);
+      toggleClassOnCompanyLinks(authAnchorEl, authDropdownList);
+    } else {
+      loginEl.textContent = 'Login';
+    }
+
+    authAnchorEl.addEventListener('click', async (e) => {
+      e.preventDefault();
+      if (!hasLoggedIn) await userLogIn();
+    });
   }
-
-  authAnchorEl.addEventListener('click', async (e) => {
-    e.preventDefault();
-    if (!hasLoggedIn) await userLogIn();
-  });
 
   return toolsWrapper;
 }
