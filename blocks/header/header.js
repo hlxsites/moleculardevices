@@ -10,9 +10,7 @@ import {
   a, div, li, span, i, domEl,
 } from '../../scripts/dom-helpers.js';
 import {
-  decorateExternalLink, detectStore, getCartItemCount,
-  getCookie,
-  isAuthorizedUser,
+  decorateExternalLink, detectStore, getCartItemCount, getCookie, isAuthorizedUser,
 } from '../../scripts/scripts.min.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { buildSearchBar } from './menus/search.js';

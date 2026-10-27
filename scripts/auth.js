@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { getEnv } from '../blocks/auth-callback/auth-callback.js';
+import { loadScript } from './lib-franklin.min.js';
 import { deleteCookie } from './scripts.min.js';
 
 let auth0Client = null;
@@ -7,18 +8,18 @@ let auth0Client = null;
 /**
  * Dynamically load the Auth0 SDK script from CDN (only when needed).
  */
-async function loadAuth0Script() {
-  if (window.auth0) return; // already loaded
+// async function loadAuth0Script() {
+//   if (window.auth0) return; // already loaded
 
-  await new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js';
-    script.async = true;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-}
+//   await new Promise((resolve, reject) => {
+//     const script = document.createElement('script');
+//     script.src = 'https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js';
+//     script.async = true;
+//     script.onload = resolve;
+//     script.onerror = reject;
+//     document.head.appendChild(script);
+//   });
+// }
 
 /**
  * Initialize Auth0 client, only once.
@@ -30,7 +31,7 @@ export default async function initAuth0() {
   const authDomain = isStageEnv ? 'stage.login.lifesciences.danaher.com' : 'dev.login.lifesciences.danaher.com';
   const authClientID = isStageEnv ? 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn' : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU';
 
-  await loadAuth0Script();
+  await loadScript('https://cdn.auth0.com/js/auth0-spa-js/2.1/auth0-spa-js.production.js');
   auth0Client = await window.auth0.createAuth0Client({
     domain: window.hlx.auth0Domain || authDomain,
     clientId: window.hlx.auth0ClientID || authClientID,

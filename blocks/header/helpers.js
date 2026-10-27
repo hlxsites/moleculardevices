@@ -196,12 +196,7 @@ export function wrapLiContentWithAnchor(listItem) {
 }
 
 export function buildAuthDropdown() {
-  // const { name } = JSON.parse(getCookie('local_user_data'));
-  // const userAvatarImage = createOptimizedPicture(picture, name, false);
-
   const authDropdownList = ul({ class: 'auth-dropdown' },
-    // li(a({ class: 'auth-usename' }, userAvatarImage, name)),
-    // li(a({ class: 'auth-usename' }, name)),
     li(a({ class: 'auth-logout' }, 'Logout')),
   );
 
