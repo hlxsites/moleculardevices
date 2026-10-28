@@ -133,7 +133,7 @@ function addIndividualComponents(block) {
 export default async function decorate(block) {
   block.textContent = '';
 
-  await getIdToken();
+  // await getIdToken();
   // fetch nav content
   const content = await fetchHeaderContent();
 
