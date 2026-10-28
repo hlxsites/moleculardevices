@@ -14,7 +14,7 @@ import {
 } from '../../scripts/scripts.min.js';
 import { createOptimizedPicture, decorateIcons } from '../../scripts/lib-franklin.min.js';
 import { buildSearchBar } from './menus/search.js';
-import { getIdToken, userLogIn } from '../../scripts/auth.js';
+import { userLogIn } from '../../scripts/auth.js';
 import { hasAuth0LoggedIn } from '../auth-callback/auth-callback.js';
 
 const SHOP_BASE_URL = 'https://shop.moleculardevices.com';
@@ -133,7 +133,6 @@ function addIndividualComponents(block) {
 export default async function decorate(block) {
   block.textContent = '';
 
-  // await getIdToken();
   // fetch nav content
   const content = await fetchHeaderContent();
 
