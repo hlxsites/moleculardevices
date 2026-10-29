@@ -26,7 +26,7 @@ async function loadAuth0Script() {
 export default async function initAuth0() {
   if (auth0Client) return auth0Client;
 
-  const isStageEnv = window.location.hostname.includes('localhost') || document.location.hostname.includes('.aem.page');
+  const isStageEnv = window.location.hostname.includes('localhost') || document.location.hostname.includes('.aem.page') || document.location.hostname.includes('.stage.onelink-translations.com');
   const authDomain = isStageEnv ? 'stage.login.lifesciences.danaher.com' : 'dev.login.lifesciences.danaher.com';
   const authClientID = isStageEnv ? 'Uu8eX9EWpdXWtiQI5PiNGQ2Rcmus1qrn' : 'TfZziBqZ3MaoarFZSzl98YrbURqxWHBU';
 
