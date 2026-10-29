@@ -10,8 +10,10 @@ export function getEnv() {
   let env;
   if (hostName.includes('local')) {
     env = 'local';
-  } else if (hostName.includes('dev') || hostName.includes('stage')) {
+  } else if (hostName.includes('dev')) {
     env = 'dev';
+  } else if (hostName.includes('stage')) {
+    env = 'stage';
   } else {
     env = 'prod';
   }
