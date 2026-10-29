@@ -28,6 +28,7 @@ import { decorateModal } from '../blocks/modal/modal.js';
 import { createCarousel } from '../blocks/carousel/carousel.js';
 import { activateTab, getScrollOffset } from './utilities.js';
 import { SITE_LOGO_URL } from '../blocks/header/header.js';
+import { hasAuth0LoggedIn } from '../blocks/auth-callback/auth-callback.js';
 
 /**
  * to add/remove a template, just add/remove it in the list below
@@ -387,7 +388,7 @@ function lazyLoadHiddenPageNavTabs(sections, nameOfFirstSection) {
       };
 
       // In case the user clicks on the section, quickly render it on the spot,
-      // if it happens before the timeout bleow
+      // if it happens before the timeout below
       const observer = new IntersectionObserver((entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           observer.disconnect();
@@ -693,7 +694,7 @@ function addPageSchema() {
       };
     }
 
-    if (type === 'Application Note' || type === 'Technicals Note') {
+    if (type === 'Application Note' || type === 'Technical Note') {
       schemaInfo = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -1255,7 +1256,7 @@ async function loadEager(doc) {
  * Format date expressed as string: mm/dd/yyyy
  * @param {string} dateStr date as string
  * @param {Object} options result string format options
- * @returns new string with the formated date
+ * @returns new string with the formatted date
  */
 export const DATE_LOCALE = 'en-US';
 
@@ -1289,7 +1290,7 @@ export function formatDate(date, options = {}) {
 /**
  * Format date expressed in UTC seconds
  * @param {number} date
- * @returns new string with the formated date
+ * @returns new string with the formatted date
  */
 export function formatDateUTCSeconds(date, options = {}) {
   if (!date) return '';
@@ -1512,6 +1513,10 @@ export function getCookie(cname) {
   return '';
 }
 
+export function deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
 /**
  * Set a cookie from query string parameters
  */
@@ -1568,8 +1573,9 @@ export function isAuthorizedUser() {
  * Check if a resource should be served as gated or original
  */
 export function isGatedResource(item) {
+  const hasLoggedIn = hasAuth0LoggedIn();
   const authorizedUser = isAuthorizedUser();
-  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0'
+  return item.gated === 'Yes' && item.gatedURL && item.gatedURL !== '0' && !hasLoggedIn
     && (!authorizedUser || item.gatedURL.includes('https://chat.moleculardevices.com'));
 }
 
