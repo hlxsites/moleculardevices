@@ -63,25 +63,75 @@ const PRIORITYMAPPING = {
   Category: 0.2,
 };
 
+
 async function getData() {
-  return new Promise((resolve) => {
-    https.get('https://www.moleculardevices.com/query-index.json?sheet=coveo-sitemap-source&limit=7000', (res) => {
-      const data = [];
+  const limit = 2000;
+  let offset = 0;
+  let allData = [];
+  let total = Infinity;
 
-      res.on('data', (chunk) => {
-        data.push(chunk);
-      });
+  while (offset < total) {
+    const url = `https://www.moleculardevices.com/query-index.json?sheet=coveo-sitemap-source&limit=${limit}&offset=${offset}`;
 
-      res.on('end', () => {
-        const entries = JSON.parse(Buffer.concat(data).toString());
-        console.log(`Successfully retrieved ${entries.data.length} items from index`);
-        resolve(entries);
-      });
-    }).on('error', (err) => {
-      console.log('Error: ', err.message);
+    console.log(`Fetching records: offset=${offset}, limit=${limit}`);
+
+    const page = await new Promise((resolve, reject) => {
+      https.get(url, (res) => {
+        const chunks = [];
+
+        res.on('data', (chunk) => {
+          chunks.push(chunk);
+        });
+
+        res.on('end', () => {
+          const body = Buffer.concat(chunks).toString();
+
+          if (res.statusCode !== 200) {
+            return reject(new Error(
+              `HTTP ${res.statusCode}: ${body || 'Empty response'}`
+            ));
+          }
+
+          if (!body.trim()) {
+            return reject(new Error('Empty API response'));
+          }
+
+          try {
+            resolve(JSON.parse(body));
+          } catch (err) {
+            reject(new Error(`Invalid JSON: ${err.message}`));
+          }
+        });
+      }).on('error', reject);
     });
-  });
+
+    if (!Array.isArray(page.data)) {
+      throw new Error('API response does not contain a valid data array');
+    }
+
+    if (offset === 0) {
+      total = page.total;
+    }
+
+    allData.push(...page.data);
+
+    console.log(`Retrieved ${allData.length} of ${total} records`);
+
+    if (page.data.length === 0) {
+      break;
+    }
+
+    offset += page.data.length;
+  }
+
+  console.log(`Successfully retrieved ${allData.length} items from index`);
+
+  return {
+    data: allData,
+    total: allData.length
+  };
 }
+
 
 async function getCoveoIcons() {
   return new Promise((resolve) => {
