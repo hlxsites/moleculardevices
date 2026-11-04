@@ -11625,45 +11625,6 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/data-sheets/br/softmax-pro-gxp-functional-requirements-specification.pdf</loc>
-    <lastmod>2024-01-17T08:34:29.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro 7.2.x GxP – Functional Requirements Specification Assessment ]]></md_title>
-      <md_contenttype><![CDATA[ Data Sheet ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/data-sheet.png</md_img>
-      <md_product><![CDATA[ SoftMax Pro GxP Software;GxP Assessment Questionnaire for SoftMax Pro GxP Software  ]]></md_product>
-      <md_application><![CDATA[ Drug Discovery and Development ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Assessment Questionnaire for SoftMax Pro GxP Software ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[ Research Areas;Research Areas|Drug Discovery and Development ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ MD ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/data-sheets/br/softmax-pro-gxp-market-requirements-assessment.pdf</loc>
     <lastmod>2023-06-07T08:34:29.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -66238,6 +66199,83 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/br/run-analyze-fast-kinetic-enzyme-assay-on-spectramax-id-series</loc>
+    <lastmod>2026-11-04T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Run and analyze fast kinetic enzyme assays ]]></md_title>
+      <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
+      <md_product><![CDATA[ SpectraMax iD3s and iD5e Multi-Mode Microplate Readers  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ Microplate Readers;Microplate Readers|Multi-Mode Readers;Microplate Readers|Multi-Mode Readers|SpectraMax iD3s and iD5e Multi-Mode Microplate Readers ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ EN ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/events/pharmalab</loc>
+    <lastmod>2026-11-04T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_contenttype><![CDATA[  ]]></md_contenttype>
+      <md_pagetype>Event</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/event.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection.pdf</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -68280,45 +68318,6 @@
       <md_application><![CDATA[ Cell Imaging & Analysis;Colorectal Cancer (CRC) Organoids;Live Cell Imaging;3D Cell Models;Organoid Innovation Center;Organoids ]]></md_application>
       <mdproductsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|IN Carta Image Analysis Software;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis;Cellular Imaging Systems|High-Content Imaging & Analysis|ImageXpress Micro Confocal system;Cellular Imaging Systems;Cellular Imaging Systems|High-Content Imaging & Analysis ]]></mdproductsdatacategory>
       <mdapplicationsdatacategory><![CDATA[ Cellular Imaging Systems;Cellular Imaging Systems|Cell Imaging & Analysis;3D Cell Models;3D Cell Models|Colorectal Cancer (CRC) Organoids;Cellular Imaging Systems;Cellular Imaging Systems|Live Cell Imaging;3D Biology;3D Biology|3D Cell Models;Research Areas;Research Areas|Organoid Innovation Center;3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ MD ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/legal/br/softmax-pro-7-3-gxp-functional-requirements-specification.pdf</loc>
-    <lastmod>2024-11-11T13:13:26.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ SoftMax Pro 7.3 GxP – Functional Requirements Specification Assessment ]]></md_title>
-      <md_contenttype><![CDATA[ Legal ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
-      <md_product><![CDATA[ GxP Compliance Solutions;SoftMax Pro GxP Software;GxP Software Installation and Qualification Services;SpectraTest Validation Plates and Recertification;IQ/OQ/PM Services  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SoftMax Pro GxP Software;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|GxP Software Installation and Qualification Services;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|SpectraTest Validation Plates and Recertification;GxP compliance solutions;GxP compliance solutions|GxP compliance solutions;GxP compliance solutions|GxP compliance solutions|IQ/OQ/PM Services ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
@@ -219590,4 +219589,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-11-03T13:21:23.338Z -->
+<!-- build timestamp: 2026-11-04T13:18:56.499Z -->
