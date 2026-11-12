@@ -66208,11 +66208,50 @@
       <md_pagetype>Resource</md_pagetype>
       <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
       <md_product><![CDATA[ CellXpress.ai Automated Cell Culture System  ]]></md_product>
-      <md_application><![CDATA[ Organoids ]]></md_application>
+      <md_application><![CDATA[ Organoids;Organoid Innovation Center;Brain Organoids ]]></md_application>
       <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Automated Cell Culture System;3D Biology|Automated Cell Culture System|CellXpress.ai Automated Cell Culture System ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids ]]></mdapplicationsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoids;Research Areas;Research Areas|Organoid Innovation Center;3D Cell Models;3D Cell Models|Brain Organoids ]]></mdapplicationsdatacategory>
       <md_country><![CDATA[  ]]></md_country>
       <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
+    <loc>https://www.moleculardevices.com/en/assets/app-note/dd/3d-biology/3d-organoid-platform-cardiac-safety-screening</loc>
+    <lastmod>2026-11-11T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Build more physiologically relevant cardiac safety assays with iPSC-derived 3D cardioids ]]></md_title>
+      <md_contenttype><![CDATA[ Application Note ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/application-note.png</md_img>
+      <md_product><![CDATA[ 3D Ready Organoid Expansion Service;3D Ready Cardioid Supplement Kits  ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[ 3D Biology;3D Biology|Organoid Expansion Service;3D Biology|Organoid Expansion Service|3D Ready Organoid Expansion Service;3D Biology;3D Biology|3D Ready Cardioid;3D Biology|3D Ready Cardioid|3D Ready Cardioid Supplement Kits ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[ EN ]]></md_lang>
       <md_de_title><![CDATA[  ]]></md_de_title>
       <md_de_desc><![CDATA[  ]]></md_de_desc>
       <md_de_url><![CDATA[  ]]></md_de_url>
@@ -219550,4 +219589,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-11-11T07:59:46.987Z -->
+<!-- build timestamp: 2026-11-12T06:25:50.080Z -->
