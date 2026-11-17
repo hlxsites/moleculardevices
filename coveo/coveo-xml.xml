@@ -66276,6 +66276,45 @@
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
+    <loc>https://email.moleculardevices.com/november-newsletter</loc>
+    <lastmod>2026-11-17T00:00:00.000Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+    <coveo:metadata>
+      <md_title><![CDATA[ Newsletter - November 2026 ]]></md_title>
+      <md_contenttype><![CDATA[ Newsletter ]]></md_contenttype>
+      <md_pagetype>Resource</md_pagetype>
+      <md_img>https://www.moleculardevices.com/images/resource-icons/document.png</md_img>
+      <md_product><![CDATA[   ]]></md_product>
+      <md_application><![CDATA[  ]]></md_application>
+      <mdproductsdatacategory><![CDATA[  ]]></mdproductsdatacategory>
+      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
+      <md_country><![CDATA[  ]]></md_country>
+      <md_lang><![CDATA[  ]]></md_lang>
+      <md_de_title><![CDATA[  ]]></md_de_title>
+      <md_de_desc><![CDATA[  ]]></md_de_desc>
+      <md_de_url><![CDATA[  ]]></md_de_url>
+      <md_zh_title><![CDATA[  ]]></md_zh_title>
+      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
+      <md_zh_url><![CDATA[  ]]></md_zh_url>
+      <md_fr_title><![CDATA[  ]]></md_fr_title>
+      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
+      <md_fr_url><![CDATA[  ]]></md_fr_url>
+      <md_ko_title><![CDATA[  ]]></md_ko_title>
+      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
+      <md_ko_url><![CDATA[  ]]></md_ko_url>
+      <md_it_title><![CDATA[  ]]></md_it_title>
+      <md_it_desc><![CDATA[  ]]></md_it_desc>
+      <md_it_url><![CDATA[  ]]></md_it_url>
+      <md_es_title><![CDATA[  ]]></md_es_title>
+      <md_es_desc><![CDATA[  ]]></md_es_desc>
+      <md_es_url><![CDATA[  ]]></md_es_url>
+      <md_source><![CDATA[  ]]></md_source>
+      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
+    </coveo:metadata>
+    <md_pagesort>1</md_pagesort>
+  </url>
+  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/scientific-posters/bpd/qpix-flex-workflow-automated-microbial-screening-hit-selection.pdf</loc>
     <lastmod>2025-10-01T07:05:40.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -189637,84 +189676,6 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
   <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/bpd/clonepix-fl-software-applications-manual.pdf</loc>
-    <lastmod>2020-11-25T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ ClonePix FL Software Applications Manual ]]></md_title>
-      <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
-      <md_product><![CDATA[ ClonePix 2 System  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Clone Screening;Clone Screening|Mammalian Screening;Clone Screening|Mammalian Screening|ClonePix 2 System ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ KB ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
-    <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/bpd/clonepix-fl-robot-manual.pdf</loc>
-    <lastmod>2020-11-25T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-    <coveo:metadata>
-      <md_title><![CDATA[ ClonePix FL Robot Manual ]]></md_title>
-      <md_contenttype><![CDATA[ User Guide ]]></md_contenttype>
-      <md_pagetype>Resource</md_pagetype>
-      <md_img>https://www.moleculardevices.com/images/resource-icons/brochure.png</md_img>
-      <md_product><![CDATA[ ClonePix 2 System  ]]></md_product>
-      <md_application><![CDATA[  ]]></md_application>
-      <mdproductsdatacategory><![CDATA[ Clone Screening;Clone Screening|Mammalian Screening;Clone Screening|Mammalian Screening|ClonePix 2 System ]]></mdproductsdatacategory>
-      <mdapplicationsdatacategory><![CDATA[  ]]></mdapplicationsdatacategory>
-      <md_country><![CDATA[  ]]></md_country>
-      <md_lang><![CDATA[  ]]></md_lang>
-      <md_de_title><![CDATA[  ]]></md_de_title>
-      <md_de_desc><![CDATA[  ]]></md_de_desc>
-      <md_de_url><![CDATA[  ]]></md_de_url>
-      <md_zh_title><![CDATA[  ]]></md_zh_title>
-      <md_zh_desc><![CDATA[  ]]></md_zh_desc>
-      <md_zh_url><![CDATA[  ]]></md_zh_url>
-      <md_fr_title><![CDATA[  ]]></md_fr_title>
-      <md_fr_desc><![CDATA[  ]]></md_fr_desc>
-      <md_fr_url><![CDATA[  ]]></md_fr_url>
-      <md_ko_title><![CDATA[  ]]></md_ko_title>
-      <md_ko_desc><![CDATA[  ]]></md_ko_desc>
-      <md_ko_url><![CDATA[  ]]></md_ko_url>
-      <md_it_title><![CDATA[  ]]></md_it_title>
-      <md_it_desc><![CDATA[  ]]></md_it_desc>
-      <md_it_url><![CDATA[  ]]></md_it_url>
-      <md_es_title><![CDATA[  ]]></md_es_title>
-      <md_es_desc><![CDATA[  ]]></md_es_desc>
-      <md_es_url><![CDATA[  ]]></md_es_url>
-      <md_source><![CDATA[ KB ]]></md_source>
-      <md_geo_assets><![CDATA[  ]]></md_geo_assets>
-    </coveo:metadata>
-    <md_pagesort>1</md_pagesort>
-  </url>
-  <url>
     <loc>https://www.moleculardevices.com/sites/default/files/en/assets/user-guide/bpd/clonepix-fl-quick-set-up-instructions.pdf</loc>
     <lastmod>2020-11-25T00:00:00.000Z</lastmod>
     <changefreq>daily</changefreq>
@@ -219589,4 +219550,4 @@ di laboratorio, con un approccio pronto per l’uso ]]></md_it_desc>
     <md_pagesort>1</md_pagesort>
   </url>
 </urlset>
-<!-- build timestamp: 2026-11-12T06:25:50.080Z -->
+<!-- build timestamp: 2026-11-17T05:58:54.751Z -->
