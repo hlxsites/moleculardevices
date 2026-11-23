@@ -65,7 +65,7 @@ const PRIORITYMAPPING = {
 
 
 async function getData() {
-  const limit = 2000;
+  const limit = 1000;
   let offset = 0;
   let allData = [];
   let total = Infinity;
