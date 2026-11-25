@@ -490,22 +490,22 @@ main .category-form.forms-container {
   background-image: url("/templates/product/images/default-background.png");
 }
 
-main .category-form.forms-container.wave-section {
+/* main .category-form.forms-container.wave-section {
   position: relative;
   padding-bottom: 18%;
-}
+} */
 
 main .category-form.forms-container.wave-section + .section.wave {
   display: none;
 }
 
-main .category-form.forms-container.wave-section .wave {
+/* main .category-form.forms-container.wave-section .wave {
   position: absolute;
   width: 100%;
   left: 0;
   bottom: 0;
   padding: 0;
-}
+} */
 
 main .category-form.forms-container.wave-section .wave picture,
 main .category-form.forms-container.wave-section .wave picture img {
@@ -682,5 +682,20 @@ input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-outer-spin-button,
 input[type="date"]::-moz-calendar-picker-indicator,
 input[type="date"]::-ms-expand {
+  display: none;
+}
+
+main .category-form.forms-container.wave-section {
+  padding-bottom: 18%;
+  background-image:
+    url("/images/wave-footer-bg-top.png"),
+    url("/templates/product/images/default-background.png");
+  background-repeat: no-repeat, no-repeat;
+  background-position: left bottom, center;
+  background-size: 100% auto, cover;
+}
+ 
+ 
+main .category-form.forms-container.wave-section .wave {
   display: none;
 }
